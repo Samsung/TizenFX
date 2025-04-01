@@ -25,6 +25,7 @@ namespace Tizen.NUI
     /// A MeasureSpecification is used during the Measure pass by a LayoutGroup to inform it's children how to be measured.
     /// For instance, it may measure a child with an exact width and an unspecified height in order to determine height for width.
     /// </summary>
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct MeasureSpecification
     {
         /// <summary>

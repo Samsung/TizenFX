@@ -40,8 +40,8 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr NewItemFactory();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemFactory_director_connect")]
-            public static extern void DirectorConnect(global::System.Runtime.InteropServices.HandleRef jarg1, Tizen.NUI.ItemFactory.SwigDelegateItemFactory_0 delegate0,
-                Tizen.NUI.ItemFactory.SwigDelegateItemFactory_1 delegate1, Tizen.NUI.ItemFactory.SwigDelegateItemFactory_2 delegate2);
+            public static extern void DirectorConnect(global::System.Runtime.InteropServices.HandleRef jarg1, Tizen.NUI.ItemFactory.SwigDelegateItemFactory0 delegate0,
+                Tizen.NUI.ItemFactory.SwigDelegateItemFactory1 delegate1, Tizen.NUI.ItemFactory.SwigDelegateItemFactory2 delegate2);
         }
     }
 }
