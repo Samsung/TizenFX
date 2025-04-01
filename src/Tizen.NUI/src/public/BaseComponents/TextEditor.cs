@@ -34,23 +34,23 @@ namespace Tizen.NUI.BaseComponents
     {
         static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextEditor";
         static private string defaultFontFamily = "TizenSans";
-        private string textEditorTextSid = null;
-        private string textEditorPlaceHolderTextSid = null;
-        private InputMethodContext inputMethodContext = null;
+        private string textEditorTextSid;
+        private string textEditorPlaceHolderTextSid;
+        private InputMethodContext inputMethodContext;
         private string fontFamily = defaultFontFamily;
         private float fontSizeScale = 1.0f;
-        private bool hasSystemLanguageChanged = false;
-        private bool hasSystemFontSizeChanged = false;
-        private bool hasSystemFontTypeChanged = false;
-        private bool isSettingTextInCSharp = false;
+        private bool hasSystemLanguageChanged;
+        private bool hasSystemFontSizeChanged;
+        private bool hasSystemFontTypeChanged;
+        private bool isSettingTextInCSharp;
 
-        private Color internalPlaceholderTextColor = null;
-        private Vector4 internalPrimaryCursorColor = null;
-        private Vector4 internalSecondaryCursorColor = null;
-        private Vector4 internalSelectionHighlightColor = null;
-        private Vector4 internalInputColor = null;
-        private Vector4 internalTextColor = null;
-        private Color internalGrabHandleColor = null;
+        private Color internalPlaceholderTextColor;
+        private Vector4 internalPrimaryCursorColor;
+        private Vector4 internalSecondaryCursorColor;
+        private Vector4 internalSelectionHighlightColor;
+        private Vector4 internalInputColor;
+        private Vector4 internalTextColor;
+        private Color internalGrabHandleColor;
 
 
         static TextEditor()

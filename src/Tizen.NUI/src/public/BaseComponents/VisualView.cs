@@ -42,10 +42,10 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public class VisualView : CustomView
     {
-        private Dictionary<int, string> visualNameDictionary = null;
-        private Dictionary<int, VisualBase> visualDictionary = null;
-        private Dictionary<int, PropertyMap> tranformDictionary = null;
-        private PropertyArray animateArray = null;
+        private Dictionary<int, string> visualNameDictionary;
+        private Dictionary<int, VisualBase> visualDictionary;
+        private Dictionary<int, PropertyMap> tranformDictionary;
+        private PropertyArray animateArray;
 
         /// <summary>
         /// Constructor.

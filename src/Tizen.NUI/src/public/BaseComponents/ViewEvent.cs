@@ -106,12 +106,12 @@ namespace Tizen.NUI.BaseComponents
         private delegate void LayoutDirectionChangedEventCallbackType(IntPtr data, ViewLayoutDirectionType type);
 
         // List of dispatch Event
-        private PanGestureDetector panGestureDetector = null;
-        private LongPressGestureDetector longGestureDetector = null;
-        private PinchGestureDetector pinchGestureDetector = null;
-        private TapGestureDetector tapGestureDetector = null;
-        private RotationGestureDetector rotationGestureDetector = null;
-        private int configGestureCount = 0;
+        private PanGestureDetector panGestureDetector;
+        private LongPressGestureDetector longGestureDetector;
+        private PinchGestureDetector pinchGestureDetector;
+        private TapGestureDetector tapGestureDetector;
+        private RotationGestureDetector rotationGestureDetector;
+        private int configGestureCount;
         private bool dispatchTouchEvents = true;
         private bool dispatchParentTouchEvents = true;
         private bool dispatchHoverEvents = true;
