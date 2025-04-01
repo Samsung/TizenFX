@@ -23,6 +23,7 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public enum FilterModeType
     {
+#pragma warning disable CA1707 // Identifiers should not contain underscores
         /// <summary>
         /// Use GL defaults (minification NEAREST_MIPMAP_LINEAR, magnification LINEAR).
         /// </summary>
@@ -64,4 +65,5 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         LINEAR_MIPMAP_LINEAR
     }
+#pragma warning restore CA1707 // Identifiers should not contain underscores
 }

@@ -39,10 +39,10 @@ namespace Tizen.NUI
             /// <since_tizen> 3 </since_tizen>
             public enum Mask
             {
-                NONE = 0,
-                DEPTH = 1 << 0,
-                STENCIL = 1 << 1,
-                DEPTH_STENCIL = DEPTH | STENCIL
+                None = 0,
+                Depth = 1 << 0,
+                Stencil = 1 << 1,
+                DepthStencil = Depth | Stencil
             }
         }
 
