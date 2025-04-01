@@ -32,12 +32,12 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Start position in stored text.
         /// </summary>
-        public int StartOffset { get; set; } = 0;
+        public int StartOffset { get; set; }
 
         /// <summary>
         /// End position in stored text.
         /// </summary>
-        public int EndOffset { get; set; } = 0;
+        public int EndOffset { get; set; }
 
         /// <summary>
         /// Text content in stored text.

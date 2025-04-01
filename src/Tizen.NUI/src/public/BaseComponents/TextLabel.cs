@@ -244,16 +244,16 @@ namespace Tizen.NUI.BaseComponents
 
         static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextLabel";
         static private string defaultFontFamily = "BreezeSans";
-        private string textLabelSid = null;
+        private string textLabelSid;
         private TextLabelSelectorData selectorData;
         private string fontFamily = defaultFontFamily;
         private float fontSizeScale = 1.0f;
 
         private bool textIsEmpty = true;
 
-        private bool hasSystemLanguageChanged = false;
-        private bool hasSystemFontSizeChanged = false;
-        private bool hasSystemFontTypeChanged = false;
+        private bool hasSystemLanguageChanged;
+        private bool hasSystemFontSizeChanged;
+        private bool hasSystemFontTypeChanged;
 
         private Color internalTextColor;
         private Color internalAnchorColor;

@@ -838,12 +838,12 @@ namespace Tizen.NUI.BaseComponents
 
 
         #region Private
-        private string resourceUrl = null;
-        private int repeatCnt = 0;
+        private string resourceUrl;
+        private int repeatCnt;
         private RepeatModes repeatMode = RepeatModes.Restart;
         private int minimumFrame = -1, maximumFrame = -1;
-        private string minimumFrameMarker = null;
-        private string maximumFrameMarker = null;
+        private string minimumFrameMarker;
+        private string maximumFrameMarker;
         private minMaxSetTypes isMinMaxFrameSet = minMaxSetTypes.NotSetByUser;
         private int innerCurrentFrame = -1;
         private EndActions innerEndAction = EndActions.Cancel;

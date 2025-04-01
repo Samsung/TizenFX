@@ -346,11 +346,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// <summary>
-        /// Indicates that this View should listen Touch event to handle its ControlState.
-        /// </summary>
-        private bool enableControlState = false;
-
         private int LeftFocusableViewId
         {
             get
@@ -1440,6 +1435,11 @@ namespace Tizen.NUI.BaseComponents
                 internalSizeModeFactor = null;
                 internalCurrentScreenPosition?.Dispose();
                 internalCurrentScreenPosition = null;
+
+                backgroundExtraData?.Dispose();
+                backgroundExtraData = null;
+                layoutExtraData?.Dispose();
+                layoutExtraData = null;
 
                 if (visualContainers != null)
                 {

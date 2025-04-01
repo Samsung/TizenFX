@@ -27,8 +27,8 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public partial class Renderable : Animatable
     {
-        private Geometry geometry = null;
-        private Shader shader = null;
+        private Geometry geometry;
+        private Shader shader;
 
         /// <summary>
         /// Create an instance of Renderable without Geometry or Shader.

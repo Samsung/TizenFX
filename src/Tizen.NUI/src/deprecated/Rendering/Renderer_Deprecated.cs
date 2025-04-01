@@ -27,8 +27,8 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Renderer : Animatable
     {
-        private Geometry CurrentGeometry = null;
-        private Shader CurrentShader = null;
+        private Geometry CurrentGeometry;
+        private Shader CurrentShader;
 
         /// <summary>
         /// Create an instance of Renderer.
