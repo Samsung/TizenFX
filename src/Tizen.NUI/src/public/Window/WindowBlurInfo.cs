@@ -27,7 +27,7 @@ namespace Tizen.NUI
     /// including the type of blur, its intensity, and the corner rounding for the background blur.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct WindowBlurInfo
+    public struct WindowBlurInfo : IEquatable<WindowBlurInfo>
     {
         /// <summary>
         /// The construct with blur type, radius and corner radius for background type.
@@ -76,5 +76,64 @@ namespace Tizen.NUI
         /// <value>The corner radius of the window.</value>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int BackgroundCornerRadius {get; set;}
+        
+        /// <summary>
+        /// Whether this is equivalent to other.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Equals(WindowBlurInfo other)
+        {
+            return BlurType == other.BlurType &&
+                   BlurRadius == other.BlurRadius &&
+                   BackgroundCornerRadius == other.BackgroundCornerRadius;
+        }
+
+        ///  <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj)
+        {
+            if (obj is WindowBlurInfo other)
+            {
+                return Equals(other);
+            }
+            return base.Equals(obj);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hashcode = ((int)BlurType).GetHashCode();
+                hashcode = hashcode * 397 ^ BlurRadius.GetHashCode();
+                hashcode = hashcode * 397 ^ BackgroundCornerRadius.GetHashCode();
+                return hashcode;
+            }
+        }
+
+        /// <summary>
+        /// Compares two WindowBlurInfo for equality.
+        /// </summary>
+        /// <param name="operand1">The first operand object.</param>
+        /// <param name="operand2">The second operand object.</param>
+        /// <returns>True if both are equal, otherwise false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(WindowBlurInfo operand1, WindowBlurInfo operand2)
+        {
+            return operand1.Equals(operand2);
+        }
+
+        /// <summary>
+        /// Compares two WindowBlurInfo for inequality.
+        /// </summary>
+        /// <param name="operand1">The first operand object.</param>
+        /// <param name="operand2">The second operand object.</param>
+        /// <returns>True if both are not equal, otherwise false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(WindowBlurInfo operand1, WindowBlurInfo operand2)
+        {
+            return !operand1.Equals(operand2);
+        }
     }
 }

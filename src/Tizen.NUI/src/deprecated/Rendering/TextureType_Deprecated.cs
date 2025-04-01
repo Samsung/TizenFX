@@ -23,6 +23,7 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public enum TextureType
     {
+#pragma warning disable CA1707 // Identifiers should not contain underscores
         /// <summary>
         /// One 2D image
         /// </summary>
@@ -33,5 +34,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         TEXTURE_CUBE
+#pragma warning restore CA1707 // Identifiers should not contain underscores
     }
 }

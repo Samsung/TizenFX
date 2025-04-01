@@ -23,6 +23,7 @@
 
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI.Utility
 {
@@ -35,6 +36,7 @@ namespace Tizen.NUI.Utility
         /// <summary>
         /// Positions and event time information
         /// </summary>
+        [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
         protected struct Movement
         {
             public uint EventTime;

@@ -99,7 +99,9 @@ namespace Tizen.NUI
             /// New properties are registered by calling RegisterProperty() with an unused property name.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+#pragma warning disable CA1707 // Identifiers should not contain underscores
             DYNAMIC_PROPERTIES = 0x01
+#pragma warning restore CA1707 // Identifiers should not contain underscores
         }
 
         /// <summary>

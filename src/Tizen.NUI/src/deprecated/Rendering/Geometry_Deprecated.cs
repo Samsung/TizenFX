@@ -32,6 +32,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public enum Type
         {
+#pragma warning disable CA1707 // Identifiers should not contain underscores
             /// <summary>
             /// Individual points.
             /// </summary>
@@ -66,6 +67,7 @@ namespace Tizen.NUI
             /// A strip of triangles (after the first triangle, following triangles need only 1 point).
             /// </summary>
             TRIANGLE_STRIP
+#pragma warning restore CA1707 // Identifiers should not contain underscores
         }
 
         /// <summary>
