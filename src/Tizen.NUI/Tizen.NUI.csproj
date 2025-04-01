@@ -12,16 +12,8 @@
         <EnableNETAnalyzers>true</EnableNETAnalyzers>
     </PropertyGroup>
 
-    <Choose>
-        <When Condition="'$(NuiRoslynAnalysis)' == 'true'">
-            <ItemGroup>
-                <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="*">
-                    <PrivateAssets>all</PrivateAssets>
-                    <IncludeAssets>runtime;build;native;contentfiles;analyzers;buildtransitive</IncludeAssets>
-                </PackageReference>
-            </ItemGroup>
-        </When>
-    </Choose>
+    <Import Project="$(MSBuildThisFileDirectory)../../build/analyzers.props"
+            Condition="'$(NuiRoslynAnalysis)' == 'True'" />
 
     <ItemGroup>
         <TizenPreloadFile Include="Tizen.NUI.preload" Sequence="30" />
