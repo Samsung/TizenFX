@@ -66,68 +66,12 @@ namespace Tizen.NUI
             internal static readonly int RequiresSync = Interop.RenderTask.RequiresSyncGet();
         }
 
-
-        public static bool DEFAULT_EXCLUSIVE
-        {
-            get
-            {
-                //this originates to Dali::RenderTask::DEFAULT_EXCLUSIVE
-                return false;
-            }
-        }
-
-        public static bool DEFAULT_INPUT_ENABLED
-        {
-            get
-            {
-                //this originates to Dali::RenderTask::DEFAULT_INPUT_ENABLED
-                return true;
-            }
-        }
-
-        private static Vector4 defaultClearColor;
-
-        public static Vector4 DEFAULT_CLEAR_COLOR
-        {
-            get
-            {
-                //this originates to Dali::RenderTask::DEFAULT_CLEAR_COLOR
-                if (null == defaultClearColor)
-                {
-                    defaultClearColor = new Vector4(0.0f, 0.0f, 0.0f, 1.0f);
-                }    
-
-                return defaultClearColor;
-            }
-        }
-
-        public static bool DEFAULT_CLEAR_ENABLED
-        {
-            get
-            {
-                //this originates to Dali::RenderTask::DEFAULT_CLEAR_ENABLED
-                return false;
-            }
-        }
-
-        public static bool DEFAULT_CULL_MODE
-        {
-            get
-            {
-                //this originates to Dali::RenderTask::DEFAULT_CULL_MODE
-                return true;
-            }
-        }
-
-        public static uint DEFAULT_REFRESH_RATE
-        {
-            get
-            {
-                //this originates to Dali::RenderTask::DEFAULT_REFRESH_RATE
-                return 1;
-            }
-        }
-#pragma warning restore CA1707
+        public const bool DefaultExclusive = false; //this originates to Dali::RenderTask::DEFAULT_EXCLUSIVE
+        public const bool DefaultInputEnabled = true; //this originates to Dali::RenderTask::DEFAULT_INPUT_ENABLED
+        public const bool DefaultClearEnabled = false; //this originates to Dali::RenderTask::DEFAULT_CLEAR_ENABLED
+        public const bool DefaultCullMode = true; //this originates to Dali::RenderTask::DEFAULT_CULL_MODE
+        public const uint DefaultRefreshRate = 1; //this originates to Dali::RenderTask::DEFAULT_REFRESH_RATE
+        public static readonly Vector4 DefaultClearColor = new Vector4(0.0f, 0.0f, 0.0f, 1.0f); //this originates to Dali::RenderTask::DEFAULT_CLEAR_COLOR
 
         public RenderTask() : this(Interop.RenderTask.NewRenderTask(), true)
         {
@@ -165,8 +109,16 @@ namespace Tizen.NUI
 
         public View GetSourceView()
         {
-            // TODO : Fix me, to avoid memory leak issue.
-            View ret = new View(Interop.RenderTask.GetSourceActor(SwigCPtr), true);
+            IntPtr cPtr = Interop.RenderTask.GetSourceActor(SwigCPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+            if (ret != null)
+            {
+                Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, cPtr));
+            }
+            else
+            {
+                ret = new View(cPtr, true);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

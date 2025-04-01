@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI
 {
@@ -24,42 +25,43 @@ namespace Tizen.NUI
     /// Structure to define properties for texture upload
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct TextureUploadProperties
     {
         /// <summary>
         /// The layer of a cube map or array texture.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint layer;
+        public uint Layer { get; set; }
 
         /// <summary>
         /// The level-of-detail number. Level 0 is the base image level. Level n is the nth mipmap reduction image.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint mipmap;
+        public uint Mipmap { get; set; }
 
         /// <summary>
         /// The horizontal offset of the rectangular area in the texture that will be updated.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint xOffset;
+        public uint XOffset { get; set; }
 
         /// <summary>
         /// The vertical offset of the rectangular area in the texture that will be updated.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint yOffset;
+        public uint YOffset { get; set; }
 
         /// <summary>
         /// The width of the rectangular area in the texture that will be updated.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint width;
+        public uint Width { get; set; }
 
         /// <summary>
         /// height of the rectangular area in the texture that will be updated.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint height;
+        public uint Height { get; set; }
     }
 }
