@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// Defines a value type of view state.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public readonly struct UIState
+    public readonly struct UIState : IEquatable<UIState>
     {
         /// <summary>
         /// The All state is used in a selector class. It represents all states, so if this state is defined in a selector, the other states are ignored.

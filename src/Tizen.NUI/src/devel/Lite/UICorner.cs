@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -22,7 +23,7 @@ namespace Tizen.NUI
     /// Defines a value type of corner radius.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct UICorner
+    public struct UICorner : IEquatable<UICorner>
     {
         /// <summary>
         /// The default corner. (This is to distinguish from zero corners)
@@ -92,27 +93,81 @@ namespace Tizen.NUI
         /// <summary>
         /// The radius of the top left corner of the rectangle.
         /// </summary>
-        public float TopLeft { get; }
+        public float TopLeft { get; init; }
 
         /// <summary>
         /// The radius of the top right corner of the rectangle.
         /// </summary>
-        public float TopRight { get; }
+        public float TopRight { get; init; }
 
         /// <summary>
         /// The radius of the bottom right corner of the rectangle.
         /// </summary>
-        public float BottomRight { get; }
+        public float BottomRight { get; init; }
 
         /// <summary>
         /// The radius of the bottom left corner of the rectangle.
         /// </summary>
-        public float BottomLeft { get; }
+        public float BottomLeft { get; init; }
 
         /// <summary>
         /// Gets a value indicating whether the values are relative to target box size.
         /// </summary>
-        public bool IsRelative { get; }
+        public bool IsRelative { get; init; }
+
+        /// <summary>
+        /// Compares two value for equality.
+        /// </summary>
+        /// <param name="operand1">The first operand object.</param>
+        /// <param name="operand2">The second operand object.</param>
+        /// <returns>True if both are equal, otherwise false.</returns>
+        public static bool operator ==(UICorner operand1, UICorner operand2)
+        {
+            return operand1.Equals(operand2);
+        }
+
+        /// <summary>
+        /// Compares two value for inequality.
+        /// </summary>
+        /// <param name="operand1">The first operand object.</param>
+        /// <param name="operand2">The second operand object.</param>
+        /// <returns>True if both are not equal, otherwise false.</returns>
+        public static bool operator !=(UICorner operand1, UICorner operand2)
+        {
+            return !operand1.Equals(operand2);
+        }
+
+        /// <summary>
+        /// Whether this is equivalent to other.
+        /// </summary>
+        public bool Equals(UICorner other)
+        {
+            return TopLeft == other.TopLeft && TopRight == other.TopRight && BottomRight == other.BottomRight && BottomLeft == other.BottomLeft && IsRelative && other.IsRelative;
+        }
+
+        ///  <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            if (obj is UICorner other)
+            {
+                return Equals(other);
+            }
+            return base.Equals(obj);
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hashcode = TopLeft.GetHashCode();
+                hashcode = hashcode * 397 ^ TopRight.GetHashCode();
+                hashcode = hashcode * 397 ^ BottomRight.GetHashCode();
+                hashcode = hashcode * 397 ^ BottomLeft.GetHashCode();
+                hashcode = hashcode * 397 ^ IsRelative.GetHashCode();
+                return hashcode;
+            }
+        }
 
         internal readonly NUI.Vector4 ToReferenceType() => new NUI.Vector4(TopLeft, TopRight, BottomRight, BottomLeft);
     }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -6,7 +7,7 @@ namespace Tizen.NUI
     /// Defines the thickness of a border around a control.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct UIExtents
+    public struct UIExtents : IEquatable<UIExtents>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UIExtents"/> struct with the specified uniform size.
@@ -43,22 +44,22 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the width of the left border.
         /// </summary>
-        public float Start { get; set; }
+        public float Start { get; init; }
 
         /// <summary>
         /// Gets or sets the width of the right border.
         /// </summary>
-        public float End { get; set; }
+        public float End { get; init; }
 
         /// <summary>
         /// Gets or sets the width of the top border.
         /// </summary>
-        public float Top { get; set; }
+        public float Top { get; init; }
 
         /// <summary>
         /// Gets or sets the width of the bottom border.
         /// </summary>
-        public float Bottom { get; set; }
+        public float Bottom { get; init; }
 
         /// <summary>
         /// Gets the total width of the horizontal borders.
@@ -89,7 +90,10 @@ namespace Tizen.NUI
             return new UIExtents(uniformSize);
         }
 
-        bool Equals(UIExtents other)
+        /// <summary>
+        /// Whether this is equivalent to other.
+        /// </summary>
+        public bool Equals(UIExtents other)
         {
             return Start.Equals(other.Start) && End.Equals(other.End) && Top.Equals(other.Top) && Bottom.Equals(other.Bottom);
         }
