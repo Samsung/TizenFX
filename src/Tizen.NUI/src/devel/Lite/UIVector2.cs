@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -22,7 +23,7 @@ namespace Tizen.NUI
     /// Defines a value type of vector2.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public readonly struct UIVector2
+    public struct UIVector2 : IEquatable<UIVector2>
     {
         /// <summary>
         /// The zero vector2.
@@ -46,6 +47,7 @@ namespace Tizen.NUI
         public float X
         {
             get;
+            init;
         }
 
         /// <summary>
@@ -54,6 +56,7 @@ namespace Tizen.NUI
         public float Y
         {
             get;
+            init;
         }
 
         public readonly bool IsZero => X == 0 && Y == 0;
@@ -61,12 +64,69 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the width component of the vector2.
         /// </summary>
-        public float Width => X;
+        public float Width
+        {
+            get => X;
+            init => X = value;
+        }
 
         /// <summary>
         /// Gets the height component of the vector2.
         /// </summary>
-        public float Height => Y;
+        public float Height
+        {
+            get => Y;
+            init => Y = value;
+        }
+
+        /// <summary>
+        /// Compares two value for equality.
+        /// </summary>
+        /// <param name="operand1">The first operand object.</param>
+        /// <param name="operand2">The second operand object.</param>
+        /// <returns>True if both are equal, otherwise false.</returns>
+        public static bool operator ==(UIVector2 operand1, UIVector2 operand2)
+        {
+            return operand1.Equals(operand2);
+        }
+
+        /// <summary>
+        /// Compares two value for inequality.
+        /// </summary>
+        /// <param name="operand1">The first operand object.</param>
+        /// <param name="operand2">The second operand object.</param>
+        /// <returns>True if both are not equal, otherwise false.</returns>
+        public static bool operator !=(UIVector2 operand1, UIVector2 operand2)
+        {
+            return !operand1.Equals(operand2);
+        }
+
+        /// <summary>
+        /// Whether this is equivalent to other.
+        /// </summary>
+        public bool Equals(UIVector2 other)
+        {
+            return X == other.X && Y == other.Y;
+        }
+
+        ///  <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            if (obj is UIVector2 other)
+            {
+                return Equals(other);
+            }
+            return base.Equals(obj);
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return X.GetHashCode() ^ (Y.GetHashCode() * 397);
+            }
+        }
 
         /// <summary>
         /// Converts the UIVector2 to Vector3 class implicitly.

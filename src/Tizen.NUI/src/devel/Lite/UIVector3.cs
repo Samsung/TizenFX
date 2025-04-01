@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// Defines a value type of vector3.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public readonly struct UIVector3 : IEquatable<UIVector3>
+    public struct UIVector3 : IEquatable<UIVector3>
     {
         /// <summary>
         /// The zero vector3.
@@ -58,6 +58,7 @@ namespace Tizen.NUI
         public float X
         {
             get;
+            init;
         }
 
         /// <summary>
@@ -66,6 +67,7 @@ namespace Tizen.NUI
         public float Y
         {
             get;
+            init;
         }
 
         /// <summary>
@@ -74,6 +76,7 @@ namespace Tizen.NUI
         public float Z
         {
             get;
+            init;
         }
 
         public readonly bool IsZero => X == 0 && Y == 0 && Z == 0;
@@ -81,17 +84,29 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the width component of the vector3.
         /// </summary>
-        public float Width => X;
+        public float Width
+        {
+            get => X;
+            init => X = value;
+        }
 
         /// <summary>
         /// Gets the height component of the vector3.
         /// </summary>
-        public float Height => Y;
+        public float Height
+        {
+            get => Y;
+            init => Y = value;
+        }
 
         /// <summary>
         /// Gets the depth component of the vector3.
         /// </summary>
-        public float Depth => Z;
+        public float Depth
+        {
+            get => Z;
+            init => Z = value;
+        }
 
         /// <summary>
         /// Converts the UIVector2 to UIVector3 class implicitly.
