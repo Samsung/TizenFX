@@ -49,5 +49,16 @@ namespace Tizen.NUI
         internal static readonly int StencilOperationOnFail = Interop.Renderer.StencilOperationOnFailGet();
         internal static readonly int StencilOperationOnZFail = Interop.Renderer.StencilOperationOnZFailGet();
         internal static readonly int StencilOperationOnZPass = Interop.Renderer.StencilOperationOnZPassGet();
+        internal static readonly int MixColor = Interop.Renderer.MixColorGet();
+        internal static readonly int MixColorRed = Interop.Renderer.MixColorRedGet();
+        internal static readonly int MixColorGreen = Interop.Renderer.MixColorGreenGet();
+        internal static readonly int MixColorBlue = Interop.Renderer.MixColorBlueGet();
+        internal static readonly int MixColorOpacity = Interop.Renderer.MixColorOpacityGet();
+        internal static readonly int RenderingBehavior = Interop.Renderer.RenderingBehaviorGet();
+        internal static readonly int BlendEquation = Interop.Renderer.BlendEquationGet();
+        internal static readonly int VertexRangeFirst = IndexRangeFirst;
+        internal static readonly int VertexRangeCount = IndexRangeCount;
+        internal static readonly int InstanceCount = Interop.Renderer.InstanceCountGet();
+        internal static readonly int UpdateAreaExtents = Interop.Renderer.UpdateAreaExtentsGet();
     }
 }
