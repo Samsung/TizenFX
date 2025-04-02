@@ -2291,7 +2291,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (backgroundExtraData == null)
             {
-                Object.InternalSetPropertyVector4(SwigCPtr, View.Property.BACKGROUND, ((Color)value).SwigCPtr);
+                Object.InternalSetPropertyVector4(SwigCPtr, View.Property.BACKGROUND, value.SwigCPtr);
                 return;
             }
 

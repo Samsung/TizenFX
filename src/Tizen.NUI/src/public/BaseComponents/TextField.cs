@@ -1073,6 +1073,8 @@ namespace Tizen.NUI.BaseComponents
                 internalTextColor = new Color(0, 0, 0, 0);
             }
             Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.TextColor, internalTextColor.SwigCPtr);
+            internalTextColor.CopyValuesFromDali();
+
             return internalTextColor;
         }
 
@@ -3899,6 +3901,8 @@ namespace Tizen.NUI.BaseComponents
                 internalGrabHandleColor = new Color(0, 0, 0, 0);
             }
             Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.GrabHandleColor, internalGrabHandleColor.SwigCPtr);
+            internalGrabHandleColor.CopyValuesFromDali();
+
             return internalGrabHandleColor;
         }
 
