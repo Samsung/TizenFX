@@ -1709,5 +1709,200 @@ namespace Tizen.Network.WiFiDirect
                 WiFiDirectErrorFactory.ThrowWiFiDirectException((int)WiFiDirectError.NotPermitted);
             }
         }
+
+        /// <summary>
+        /// Adds the Wi-Fi Vendor Specific Information Element (VSIE) to specific frame type.
+        /// </summary>
+        /// <param name="frameType">frame type for setting VSIE.</param>
+        /// <param name="vsie">VSIE value. A valid string contains hexadecimal characters i.e. [0-9a-f]</param>
+        /// <privilege>
+        /// http://tizen.org/privilege/wifidirect
+        /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/network.wifidirect
+        /// </feature>
+        /// <remarks>
+        /// Wi-Fi Direct must be activated.
+        /// <paramref name="vsie"/> for <paramref name="frameType"/> will be in effect until Wi-Fi Direct is deactivated.
+        /// A valid VSIE value if not already added, will be appended to already added VSIE values. Already present VSIE value will do nothing.
+        /// In case of invalid VSIE, an InvalidOperationException exception will thrown.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        public static void AddVsie(WiFiDirectVsieFrameType frameType, string vsie)
+        {
+            if (Globals.IsActivated)
+            {
+                WiFiDirectManagerImpl.Instance.AddVsie(frameType, vsie);
+            }
+
+            else
+            {
+                Log.Error(Globals.LogTag, "Wifi-direct is not activated");
+                WiFiDirectErrorFactory.ThrowWiFiDirectException((int)WiFiDirectError.NotPermitted);
+            }
+        }
+
+        /// <summary>
+        /// Gets the Wi-Fi Vendor Specific Information Elements (VSIE) from specific frame type.
+        /// </summary>
+        /// <param name="frameType">frame type for getting VSIE.</param>
+        /// <returns>VSIE value if success else null value.</returns>
+        /// <privilege>
+        /// http://tizen.org/privilege/wifidirect
+        /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/network.wifidirect
+        /// </feature>
+        /// <remarks>
+        /// Wi-Fi Direct must be activated.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        public static string GetVsie(WiFiDirectVsieFrameType frameType)
+        {
+            if (Globals.IsActivated)
+            {
+                return WiFiDirectManagerImpl.Instance.GetVsie(frameType);
+            }
+
+            else
+            {
+                Log.Error(Globals.LogTag, "Wifi-direct is not activated");
+                WiFiDirectErrorFactory.ThrowWiFiDirectException((int)WiFiDirectError.NotPermitted);
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Removes the Wi-Fi Vendor Specific Information Element (VSIE) from specific frame type.
+        /// </summary>
+        /// <param name="frameType">frame type for removing VSIE.</param>
+        /// <param name="vsie">VSIE value</param>
+        /// <privilege>
+        /// http://tizen.org/privilege/wifidirect
+        /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/network.wifidirect
+        /// </feature>
+        /// <remarks>
+        /// Wi-Fi Direct must be activated.
+        /// A VSIE value if already added, will be removed from VSIE value else InvalidOperationException will be thrown.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        public static void RemoveVsie(WiFiDirectVsieFrameType frameType, string vsie)
+        {
+            if (Globals.IsActivated)
+            {
+                WiFiDirectManagerImpl.Instance.RemoveVsie(frameType, vsie);
+            }
+
+            else
+            {
+                Log.Error(Globals.LogTag, "Wifi-direct is not activated");
+                WiFiDirectErrorFactory.ThrowWiFiDirectException((int)WiFiDirectError.NotPermitted);
+            }
+        }
+
+        /// <summary>
+        /// Gets the information of peer devices which is in the connecting state.
+        /// </summary>
+        /// <returns>Connecting peer object.</returns>
+        /// <privilege>
+        /// http://tizen.org/privilege/wifidirect
+        /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/network.wifidirect
+        /// </feature>
+        /// <remarks>
+        /// Wi-Fi Direct service must be in connecting state.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        public static WiFiDirectPeer GetConnectingPeer()
+        {
+            if (Globals.IsActivated)
+            {
+                return WiFiDirectManagerImpl.Instance.GetConnectingPeer();
+            }
+
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// Accepts a connection requested from peer.
+        /// </summary>
+        /// <param name="peerMacAddress">MAC Address of the peer.</param>
+        /// <privilege>
+        /// http://tizen.org/privilege/wifidirect
+        /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/network.wifidirect
+        /// </feature>
+        /// <remarks>
+        /// Wi-Fi Direct must be activated.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void AcceptConnection(string peerMacAddress)
+        {
+            if (Globals.IsActivated)
+            {
+                WiFiDirectManagerImpl.Instance.AcceptConnection(peerMacAddress);
+            }
+
+            else
+            {
+                Log.Error(Globals.LogTag, "Wifi-direct is not activated");
+                WiFiDirectErrorFactory.ThrowWiFiDirectException((int)WiFiDirectError.NotPermitted);
+            }
+        }
+
+        /// <summary>
+        /// Rejects the connection request from other device now in progress.
+        /// </summary>
+        /// <param name="peerMacAddress">The MAC address of rejected device.</param>
+        /// <privilege>
+        /// http://tizen.org/privilege/wifidirect
+        /// </privilege>
+        /// <feature>
+        /// http://tizen.org/feature/network.wifidirect
+        /// </feature>
+        /// <remarks>
+        /// Wi-Fi Direct must be activated.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void RejectConnection(string peerMacAddress)
+        {
+            if (Globals.IsActivated)
+            {
+                WiFiDirectManagerImpl.Instance.RejectConnection(peerMacAddress);
+            }
+
+            else
+            {
+                Log.Error(Globals.LogTag, "Wifi-direct is not activated");
+                WiFiDirectErrorFactory.ThrowWiFiDirectException((int)WiFiDirectError.NotPermitted);
+            }
+        }
     }
 }
