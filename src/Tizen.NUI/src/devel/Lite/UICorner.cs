@@ -142,7 +142,7 @@ namespace Tizen.NUI
         /// </summary>
         public bool Equals(UICorner other)
         {
-            return TopLeft == other.TopLeft && TopRight == other.TopRight && BottomRight == other.BottomRight && BottomLeft == other.BottomLeft && IsRelative && other.IsRelative;
+            return TopLeft == other.TopLeft && TopRight == other.TopRight && BottomRight == other.BottomRight && BottomLeft == other.BottomLeft && IsRelative == other.IsRelative;
         }
 
         ///  <inheritdoc/>
@@ -168,6 +168,9 @@ namespace Tizen.NUI
                 return hashcode;
             }
         }
+
+        ///  <inheritdoc/>
+        public override string ToString() => $"UICorner([relative:{IsRelative}] {TopLeft}, {TopRight}, {BottomRight}, {BottomLeft})";
 
         internal readonly NUI.Vector4 ToReferenceType() => new NUI.Vector4(TopLeft, TopRight, BottomRight, BottomLeft);
     }
