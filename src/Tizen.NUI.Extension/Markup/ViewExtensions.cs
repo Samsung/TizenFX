@@ -27,19 +27,6 @@ namespace Tizen.NUI.Extension
     public static class ViewExtensions
     {
         /// <summary>
-        /// Assign this view reference to the given variable.
-        /// </summary>
-        /// <typeparam name="T">The type of the view.</typeparam>
-        /// <param name="view">The extension target.</param>
-        /// <param name="self">The variable to save the reference to.</param>
-        /// <returns>The view itself.</returns>
-        public static T Self<T>(this T view, out T self) where T : View
-        {
-            self = view;
-            return view;
-        }
-
-        /// <summary>
         /// Sets the color of the view.
         /// </summary>
         /// <typeparam name="T">The type of the view.</typeparam>
