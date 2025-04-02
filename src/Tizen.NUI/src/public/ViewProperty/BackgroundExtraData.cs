@@ -80,9 +80,6 @@ namespace Tizen.NUI
             if (disposing)
             {
                 backgroundImageBorder?.Dispose();
-                CornerRadius?.Dispose();
-                CornerSquareness?.Dispose();
-                BorderlineColor?.Dispose();
             }
             disposed = true;
         }
