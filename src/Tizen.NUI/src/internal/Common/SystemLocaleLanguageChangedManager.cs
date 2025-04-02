@@ -19,6 +19,7 @@ extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI
 {
@@ -29,6 +30,7 @@ namespace Tizen.NUI
     internal static class SystemLocaleLanguageChangedManager
     {
         private static string localeLanguage = string.Empty;
+        private static string defaultLocaleLanguage = "en_US";
         private static WeakEvent<EventHandler<LocaleLanguageChangedEventArgs>> proxy = new WeakEvent<EventHandler<LocaleLanguageChangedEventArgs>>();
 
         static SystemLocaleLanguageChangedManager()
@@ -66,13 +68,22 @@ namespace Tizen.NUI
             Finished?.Invoke(sender, args);
         }
 
+        [SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types", Justification = "This method is to handle system settings information that may throw an exception but ignorable. This method should not interrupt the main stream.")]
         public static string LocaleLanguage
         {
             get
             {
                 if (string.IsNullOrEmpty(localeLanguage))
                 {
-                    localeLanguage = SystemSettings.LocaleLanguage;
+                    try
+                    {
+                        localeLanguage = SystemSettings.LocaleLanguage;
+                    }
+                    catch (Exception e)
+                    {
+                        Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
+                        localeLanguage = defaultLocaleLanguage;
+                    }
                 }
                 return localeLanguage;
             }
