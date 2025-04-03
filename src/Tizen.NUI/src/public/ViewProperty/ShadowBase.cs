@@ -60,7 +60,7 @@ namespace Tizen.NUI
             Offset = new Vector2(noOffset);
             Extents = new Vector2(noExtents);
 
-            var transformProperty = propertyMap.Find(Visual.Property.Transform);
+            var transformProperty = propertyMap?.Find(Visual.Property.Transform);
 
             if (transformProperty == null)
             {

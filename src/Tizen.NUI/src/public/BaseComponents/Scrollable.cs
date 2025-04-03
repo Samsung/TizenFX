@@ -295,7 +295,8 @@ namespace Tizen.NUI.BaseComponents
                     scrollableStartedEventHandler += value;
 
                     scrollableStartedCallbackDelegate = new StartedCallbackDelegate(OnStarted);
-                    this.ScrollStartedSignal().Connect(scrollableStartedCallbackDelegate);
+                    using var signal = ScrollStartedSignal();
+                    signal.Connect(scrollableStartedCallbackDelegate);
                 }
             }
 
@@ -303,7 +304,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (scrollableStartedEventHandler != null)
                 {
-                    this.ScrollStartedSignal().Disconnect(scrollableStartedCallbackDelegate);
+                    using var signal = ScrollStartedSignal();
+                    signal.Disconnect(scrollableStartedCallbackDelegate);
                 }
 
                 scrollableStartedEventHandler -= value;
@@ -326,7 +328,8 @@ namespace Tizen.NUI.BaseComponents
                     scrollableUpdatedEventHandler += value;
 
                     scrollableUpdatedCallbackDelegate = new UpdatedCallbackDelegate(OnUpdated);
-                    this.ScrollUpdatedSignal().Connect(scrollableUpdatedCallbackDelegate);
+                    using var signal = ScrollUpdatedSignal();
+                    signal.Connect(scrollableUpdatedCallbackDelegate);
                 }
             }
 
@@ -334,7 +337,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (scrollableUpdatedEventHandler != null)
                 {
-                    this.ScrollUpdatedSignal().Disconnect(scrollableUpdatedCallbackDelegate);
+                    using var signal = ScrollUpdatedSignal();
+                    signal.Disconnect(scrollableUpdatedCallbackDelegate);
                 }
 
                 scrollableUpdatedEventHandler -= value;
@@ -358,7 +362,8 @@ namespace Tizen.NUI.BaseComponents
                     scrollableCompletedEventHandler += value;
 
                     scrollableCompletedCallbackDelegate = new CompletedCallbackDelegate(OnCompleted);
-                    this.ScrollCompletedSignal().Connect(scrollableCompletedCallbackDelegate);
+                    using var signal = ScrollCompletedSignal();
+                    signal.Connect(scrollableCompletedCallbackDelegate);
                 }
             }
 
@@ -366,7 +371,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (scrollableCompletedEventHandler != null)
                 {
-                    this.ScrollCompletedSignal().Disconnect(scrollableCompletedCallbackDelegate);
+                    using var signal = ScrollCompletedSignal();
+                    signal.Disconnect(scrollableCompletedCallbackDelegate);
                 }
 
                 scrollableCompletedEventHandler -= value;

@@ -47,7 +47,7 @@ namespace Tizen.NUI
         public static ulong Register(string stateName)
         {
             if (stateName == null)
-                throw new ArgumentNullException($"{nameof(stateName)} cannot be null.", nameof(stateName));
+                throw new ArgumentNullException(nameof(stateName), $"{nameof(stateName)} cannot be null.");
 
             if (string.IsNullOrWhiteSpace(stateName))
                 throw new ArgumentException($"{nameof(stateName)} cannot be whitespace.", nameof(stateName));

@@ -76,13 +76,17 @@ namespace Tizen.NUI
         {
             get
             {
+#pragma warning disable CA2000 // Dispose objects before losing scope
                 Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-                Tizen.NUI.Object.GetProperty(SwigCPtr, PathConstrainer.Property.FORWARD).Get(temp);
+#pragma warning restore CA2000 // Dispose objects before losing scope
+                using var prop = Tizen.NUI.Object.GetProperty(SwigCPtr, PathConstrainer.Property.FORWARD);
+                prop.Get(temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(SwigCPtr, PathConstrainer.Property.FORWARD, new Tizen.NUI.PropertyValue(value));
+                using var pv = new Tizen.NUI.PropertyValue(value);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, PathConstrainer.Property.FORWARD, pv);
             }
         }
 
@@ -90,13 +94,17 @@ namespace Tizen.NUI
         {
             get
             {
+#pragma warning disable CA2000 // Dispose objects before losing scope
                 Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                Tizen.NUI.Object.GetProperty(SwigCPtr, PathConstrainer.Property.POINTS).Get(temp);
+#pragma warning restore CA2000 // Dispose objects before losing scope
+                using var prop = Tizen.NUI.Object.GetProperty(SwigCPtr, PathConstrainer.Property.POINTS);
+                prop.Get(temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(SwigCPtr, PathConstrainer.Property.POINTS, new Tizen.NUI.PropertyValue(value));
+                using var pv = new Tizen.NUI.PropertyValue(value);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, PathConstrainer.Property.POINTS, pv);
             }
         }
 
@@ -104,13 +112,17 @@ namespace Tizen.NUI
         {
             get
             {
+#pragma warning disable CA2000 // Dispose objects before losing scope
                 Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                Tizen.NUI.Object.GetProperty(SwigCPtr, PathConstrainer.Property.ControlPoints).Get(temp);
+#pragma warning restore CA2000 // Dispose objects before losing scope
+                using var prop = Tizen.NUI.Object.GetProperty(SwigCPtr, PathConstrainer.Property.ControlPoints);
+                prop.Get(temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(SwigCPtr, PathConstrainer.Property.ControlPoints, new Tizen.NUI.PropertyValue(value));
+                using var pv = new Tizen.NUI.PropertyValue(value);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, PathConstrainer.Property.ControlPoints, pv);
             }
         }
     }

@@ -75,7 +75,8 @@ namespace Tizen.NUI
                 if (detectedEventHandler == null)
                 {
                     detectedCallback = OnRotationGestureDetected;
-                    DetectedSignal().Connect(detectedCallback);
+                    using var signal = DetectedSignal();
+                    signal.Connect(detectedCallback);
                 }
 
                 detectedEventHandler += value;
@@ -84,10 +85,10 @@ namespace Tizen.NUI
             remove
             {
                 detectedEventHandler -= value;
-
-                if (detectedEventHandler == null && DetectedSignal().Empty() == false)
+                using var signal = DetectedSignal();
+                if (detectedEventHandler == null && signal.Empty() == false)
                 {
-                    DetectedSignal().Disconnect(detectedCallback);
+                    signal.Disconnect(detectedCallback);
                 }
             }
         }

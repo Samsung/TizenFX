@@ -981,7 +981,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (value != null)
             {
-                Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, Property.SHADOW, TextShadow.ToPropertyValue(value));
+                using var pv = TextShadow.ToPropertyValue(value);
+                Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, Property.SHADOW, pv);
             }
         }
     }

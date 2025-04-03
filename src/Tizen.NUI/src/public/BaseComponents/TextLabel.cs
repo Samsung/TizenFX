@@ -3351,12 +3351,14 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textLabelAnchorClickedCallbackDelegate != null)
                 {
-                    AnchorClickedSignal().Disconnect(textLabelAnchorClickedCallbackDelegate);
+                    using var signal = AnchorClickedSignal();
+                    signal.Disconnect(textLabelAnchorClickedCallbackDelegate);
                 }
 
                 if (textLabelTextFitChangedCallbackDelegate != null)
                 {
-                    TextFitChangedSignal().Disconnect(textLabelTextFitChangedCallbackDelegate);
+                    using var signal = TextFitChangedSignal();
+                    signal.Disconnect(textLabelTextFitChangedCallbackDelegate);
                 }
 
                 if (textLabelAsyncTextRenderedCallbackDelegate != null)

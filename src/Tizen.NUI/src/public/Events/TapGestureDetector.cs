@@ -87,7 +87,8 @@ namespace Tizen.NUI
                 if (_detectedEventHandler == null)
                 {
                     _detectedCallback = OnTapGestureDetected;
-                    DetectedSignal().Connect(_detectedCallback);
+                    using var signal = DetectedSignal();
+                    signal.Connect(_detectedCallback);
                 }
 
                 _detectedEventHandler += value;
@@ -96,10 +97,10 @@ namespace Tizen.NUI
             remove
             {
                 _detectedEventHandler -= value;
-
-                if (_detectedEventHandler == null && DetectedSignal().Empty() == false)
+                using var signal = DetectedSignal();
+                if (_detectedEventHandler == null && signal.Empty() == false)
                 {
-                    DetectedSignal().Disconnect(_detectedCallback);
+                    signal.Disconnect(_detectedCallback);
                 }
             }
         }
