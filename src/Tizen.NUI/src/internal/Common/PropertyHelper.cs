@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Runtime.CompilerServices;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -78,7 +79,7 @@ namespace Tizen.NUI
         {
             var propertyName = LowerFirstLetter(stringProperty);
 
-            if(animatable is View)
+            if (animatable is View)
             {
                 View view = animatable as View;
                 return SearchProperty(view, propertyName) ?? SearchVisualProperty(view, propertyName);
@@ -137,11 +138,17 @@ namespace Tizen.NUI
             return result;
         }
 
-        private static string LowerFirstLetter(string original)
+        private static unsafe string LowerFirstLetter(string original)
         {
-            StringBuilder sb = new StringBuilder(original);
-            sb[0] = (char)(sb[0] | 0x20);
-            return sb.ToString();
+            if (string.IsNullOrEmpty(original) || char.IsLower(original[0]))
+                return original;
+
+            fixed (char* chars = original)
+            {
+                chars[0] = char.ToLower(chars[0]);
+            }
+
+            return original;
         }
 
         private static object ObjectColorToVector4(object value)
