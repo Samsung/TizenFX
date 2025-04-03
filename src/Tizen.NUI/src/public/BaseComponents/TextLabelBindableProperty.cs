@@ -881,7 +881,8 @@ namespace Tizen.NUI.BaseComponents
                 }
 
                 Color color = new Color();
-                if (!GetProperty(TextLabel.Property.TextColor).Get(color))
+                using var prop = GetProperty(TextLabel.Property.TextColor);
+                if (!prop.Get(color))
                 {
                     return null;
                 }
@@ -981,7 +982,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (value != null)
             {
-                Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, Property.SHADOW, TextShadow.ToPropertyValue(value));
+                using var pv = TextShadow.ToPropertyValue(value);
+                Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, Property.SHADOW, pv);
             }
         }
     }

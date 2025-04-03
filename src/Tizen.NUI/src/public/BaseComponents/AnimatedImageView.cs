@@ -465,7 +465,8 @@ namespace Tizen.NUI.BaseComponents
                 // Sync as current properties
                 UpdateImage();
 
-                DoAction(Property.IMAGE, ActionJumpTo, new PropertyValue(value));
+                using var pv = new PropertyValue(value);
+                DoAction(Property.IMAGE, ActionJumpTo, pv);
             }
             get
             {

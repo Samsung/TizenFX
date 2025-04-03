@@ -629,19 +629,24 @@ namespace Tizen.NUI
                 global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(dummyObect, cPtr);
                 Interop.BaseHandle.DeleteBaseHandle(CPtr);
                 CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+#if !PROFILE_TV
+                //tv profile never use default focus indicator, so this is not needed!
+                ret.FocusIndicator = ret.GetDefaultFocusIndicator();
+#endif
+                return ret;
             }
             else
             {
                 ret = new FocusManager(cPtr, true);
-            }
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
 #if !PROFILE_TV
-            //tv profile never use default focus indicator, so this is not needed!
-            ret.FocusIndicator = ret.GetDefaultFocusIndicator();
+                //tv profile never use default focus indicator, so this is not needed!
+                ret.FocusIndicator = ret.GetDefaultFocusIndicator();
 #endif
-            return ret;
+                return ret;
+            }
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

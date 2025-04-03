@@ -295,7 +295,8 @@ namespace Tizen.NUI.BaseComponents
                     scrollableStartedEventHandler += value;
 
                     scrollableStartedCallbackDelegate = new StartedCallbackDelegate(OnStarted);
-                    this.ScrollStartedSignal().Connect(scrollableStartedCallbackDelegate);
+                    using var signal = ScrollStartedSignal();
+                    signal.Connect(scrollableStartedCallbackDelegate);
                 }
             }
 
@@ -303,7 +304,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (scrollableStartedEventHandler != null)
                 {
-                    this.ScrollStartedSignal().Disconnect(scrollableStartedCallbackDelegate);
+                    using var signal = ScrollStartedSignal();
+                    signal.Disconnect(scrollableStartedCallbackDelegate);
                 }
 
                 scrollableStartedEventHandler -= value;
@@ -326,7 +328,8 @@ namespace Tizen.NUI.BaseComponents
                     scrollableUpdatedEventHandler += value;
 
                     scrollableUpdatedCallbackDelegate = new UpdatedCallbackDelegate(OnUpdated);
-                    this.ScrollUpdatedSignal().Connect(scrollableUpdatedCallbackDelegate);
+                    using var signal = ScrollUpdatedSignal();
+                    signal.Connect(scrollableUpdatedCallbackDelegate);
                 }
             }
 
@@ -334,7 +337,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (scrollableUpdatedEventHandler != null)
                 {
-                    this.ScrollUpdatedSignal().Disconnect(scrollableUpdatedCallbackDelegate);
+                    using var signal = ScrollUpdatedSignal();
+                    signal.Disconnect(scrollableUpdatedCallbackDelegate);
                 }
 
                 scrollableUpdatedEventHandler -= value;
@@ -358,7 +362,8 @@ namespace Tizen.NUI.BaseComponents
                     scrollableCompletedEventHandler += value;
 
                     scrollableCompletedCallbackDelegate = new CompletedCallbackDelegate(OnCompleted);
-                    this.ScrollCompletedSignal().Connect(scrollableCompletedCallbackDelegate);
+                    using var signal = ScrollCompletedSignal();
+                    signal.Connect(scrollableCompletedCallbackDelegate);
                 }
             }
 
@@ -366,7 +371,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (scrollableCompletedEventHandler != null)
                 {
-                    this.ScrollCompletedSignal().Disconnect(scrollableCompletedCallbackDelegate);
+                    using var signal = ScrollCompletedSignal();
+                    signal.Disconnect(scrollableCompletedCallbackDelegate);
                 }
 
                 scrollableCompletedEventHandler -= value;
@@ -417,11 +423,11 @@ namespace Tizen.NUI.BaseComponents
 
         private Vector4 GetInternalOvershootEffectColor()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.OvershootEffectColor);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.OvershootEffectColor))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -563,11 +569,11 @@ namespace Tizen.NUI.BaseComponents
 
         private Vector2 GetInternalOvershootSize()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             Vector2 temp = new Vector2(0.0f, 0.0f);
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.OvershootSize);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.OvershootSize))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -662,11 +668,11 @@ namespace Tizen.NUI.BaseComponents
 
         private Vector2 GetInternalScrollRelativePosition()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             Vector2 temp = new Vector2(0.0f, 0.0f);
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.ScrollRelativePosition);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.ScrollRelativePosition))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -714,11 +720,11 @@ namespace Tizen.NUI.BaseComponents
 
         private Vector2 GetInternalScrollPositionMin()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             Vector2 temp = new Vector2(0.0f, 0.0f);
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.ScrollPositionMin);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.ScrollPositionMin))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -766,11 +772,11 @@ namespace Tizen.NUI.BaseComponents
 
         private Vector2 GetInternalScrollPositionMax()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             Vector2 temp = new Vector2(0.0f, 0.0f);
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.ScrollPositionMax);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.ScrollPositionMax))
+            {
+                prop?.Get(temp);
+            }
             return temp;
         }
 
