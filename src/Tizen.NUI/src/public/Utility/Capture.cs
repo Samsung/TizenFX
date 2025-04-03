@@ -152,9 +152,10 @@ namespace Tizen.NUI
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start4(SwigCPtr, source.SwigCPtr, new Vector2(position.X, position.Y).SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
-
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                using var posVector = new Vector2(position.X, position.Y);
+                using var sizeVector = new Vector2(size.Width, size.Height);
+                Interop.Capture.Start4(SwigCPtr, source.SwigCPtr, posVector.SwigCPtr, sizeVector.SwigCPtr, path, color.SwigCPtr);
+                NDalicPINVOKE.ThrowExceptionIfExists();
             }
         }
 
@@ -196,9 +197,9 @@ namespace Tizen.NUI
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start3(SwigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr, quality);
-
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                using var sizeVector = new Vector2(size.Width, size.Height);
+                Interop.Capture.Start3(SwigCPtr, source.SwigCPtr, sizeVector.SwigCPtr, path, color.SwigCPtr, quality);
+                NDalicPINVOKE.ThrowExceptionIfExists();
             }
         }
 
@@ -235,9 +236,9 @@ namespace Tizen.NUI
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start1(SwigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path, new Vector4(color.R, color.G, color.B, color.A).SwigCPtr);
-
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                using var sizeVector = new Vector2(size.Width, size.Height);
+                Interop.Capture.Start1(SwigCPtr, source.SwigCPtr, sizeVector.SwigCPtr, path, color.SwigCPtr);
+                NDalicPINVOKE.ThrowExceptionIfExists();
             }
         }
 
@@ -272,8 +273,8 @@ namespace Tizen.NUI
 
             if (source is View || source is Layer)
             {
-                Interop.Capture.Start2(SwigCPtr, source.SwigCPtr, new Vector2(size.Width, size.Height).SwigCPtr, path);
-
+                using var sizeVector = new Vector2(size.Width, size.Height);
+                Interop.Capture.Start2(SwigCPtr, source.SwigCPtr, sizeVector.SwigCPtr, path);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }

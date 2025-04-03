@@ -177,13 +177,11 @@ namespace Tizen.NUI
                 return null;
             }
 
-            var colorValue = new Vector4();
-            value.Get(colorValue);
-            using (var v4 = new Vector4(colorValue.R, colorValue.G, colorValue.B, colorValue.A))
+            return ReusablePool<Vector4>.GetOne((vector4, value) =>
             {
-                colorValue.Dispose();
-                return new PropertyValue(v4);
-            }
+                value.Get(vector4);
+                return new PropertyValue(vector4);
+            }, value);
         }
 
         private static object ObjectIntToFloat(object value)
