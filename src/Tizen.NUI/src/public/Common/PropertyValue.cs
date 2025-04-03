@@ -361,126 +361,151 @@ namespace Tizen.NUI
             }
 
             System.Type type = obj.GetType();
-            PropertyValue value;
             if (type.IsEnum)
             {
-                value = new PropertyValue((int)obj);//Enum.Parse(type, str);
+                PropertyValue value = new PropertyValue((int)obj);//Enum.Parse(type, str);
+                return value;
             }
             else if (type.Equals(typeof(int)))
             {
-                value = new PropertyValue((int)obj);
+                PropertyValue value = new PropertyValue((int)obj);
+                return value;
             }
             else if (type.Equals(typeof(System.Int32)))
             {
-                value = new PropertyValue((int)obj);
+                PropertyValue value = new PropertyValue((int)obj);
+                return value;
             }
             else if (type.Equals(typeof(bool)))
             {
-                value = new PropertyValue((bool)obj);
+                PropertyValue value = new PropertyValue((bool)obj);
+                return value;
             }
             else if (type.Equals(typeof(float)))
             {
-                value = new PropertyValue((float)obj);
+                PropertyValue value = new PropertyValue((float)obj);
+                return value;
             }
             else if (type.Equals(typeof(string)))
             {
-                value = new PropertyValue((string)obj);
+                PropertyValue value = new PropertyValue((string)obj);
+                return value;
             }
             else if (type.Equals(typeof(Vector2)))
             {
-                value = new PropertyValue((Vector2)obj);
+                PropertyValue value = new PropertyValue((Vector2)obj);
+                return value;
             }
             else if (type.Equals(typeof(Vector3)))
             {
-                value = new PropertyValue((Vector3)obj);
+                PropertyValue value = new PropertyValue((Vector3)obj);
+                return value;
             }
             else if (type.Equals(typeof(Vector4)))
             {
-                value = new PropertyValue((Vector4)obj);
+                PropertyValue value = new PropertyValue((Vector4)obj);
+                return value;
             }
             else if (type.Equals(typeof(Position)))
             {
-                value = new PropertyValue((Position)obj);
+                PropertyValue value = new PropertyValue((Position)obj);
+                return value;
             }
             else if (type.Equals(typeof(Position2D)))
             {
-                value = new PropertyValue((Position2D)obj);
+                PropertyValue value = new PropertyValue((Position2D)obj);
+                return value;
             }
             else if (type.Equals(typeof(Size)))
             {
-                value = new PropertyValue((Size)obj);
+                PropertyValue value = new PropertyValue((Size)obj);
+                return value;
             }
             else if (type.Equals(typeof(Size2D)))
             {
-                value = new PropertyValue((Size2D)obj);
+                PropertyValue value = new PropertyValue((Size2D)obj);
+                return value;
             }
             else if (type.Equals(typeof(Color)))
             {
-                value = new PropertyValue((Color)obj);
+                PropertyValue value = new PropertyValue((Color)obj);
+                return value;
             }
             else if (type.Equals(typeof(Rotation)))
             {
-                value = new PropertyValue((Rotation)obj);
+                PropertyValue value = new PropertyValue((Rotation)obj);
+                return value;
             }
             else if (type.Equals(typeof(RelativeVector2)))
             {
-                value = new PropertyValue((RelativeVector2)obj);
+                PropertyValue value = new PropertyValue((RelativeVector2)obj);
+                return value;
             }
             else if (type.Equals(typeof(RelativeVector3)))
             {
-                value = new PropertyValue((RelativeVector3)obj);
+                PropertyValue value = new PropertyValue((RelativeVector3)obj);
+                return value;
             }
             else if (type.Equals(typeof(RelativeVector4)))
             {
-                value = new PropertyValue((RelativeVector4)obj);
+                PropertyValue value = new PropertyValue((RelativeVector4)obj);
+                return value;
             }
             else if (type.Equals(typeof(Extents)))
             {
-                value = new PropertyValue((Extents)obj);
+                PropertyValue value = new PropertyValue((Extents)obj);
+                return value;
             }
             else if (type.Equals(typeof(Rectangle)))
             {
-                value = new PropertyValue((Rectangle)obj);
+                PropertyValue value = new PropertyValue((Rectangle)obj);
+                return value;
             }
             else if (type.Equals(typeof(PropertyArray)))
             {
-                value = new PropertyValue((PropertyArray)obj);
+                PropertyValue value = new PropertyValue((PropertyArray)obj);
+                return value;
             }
             else if (type.Equals(typeof(PropertyMap)))
             {
-                value = new PropertyValue((PropertyMap)obj);
+                PropertyValue value = new PropertyValue((PropertyMap)obj);
+                return value;
             }
             else if (type.Equals(typeof(UIColor)))
             {
                 UIColor color = ((UIColor)obj);
-                value = new PropertyValue(color.R, color.G, color.B, color.A);
+                PropertyValue value = new PropertyValue(color.R, color.G, color.B, color.A);
+                return value;
             }
             else if (type.Equals(typeof(UICorner)))
             {
                 UICorner corner = ((UICorner)obj);
-                value = new PropertyValue(corner.TopLeft, corner.TopRight, corner.BottomRight, corner.BottomLeft);
+                PropertyValue value = new PropertyValue(corner.TopLeft, corner.TopRight, corner.BottomRight, corner.BottomLeft);
+                return value;
             }
             else if (type.Equals(typeof(UIExtents)))
             {
                 // TODO Do not create Extents instance
                 using Extents extents = ((UIExtents)obj).ToReferenceType();
-                value = new PropertyValue(extents);
+                PropertyValue value = new PropertyValue(extents);
+                return value;
             }
             else if (type.Equals(typeof(UIVector2)))
             {
                 UIVector2 vector2 = ((UIVector2)obj);
-                value = new PropertyValue(vector2.X, vector2.Y);
+                PropertyValue value = new PropertyValue(vector2.X, vector2.Y);
+                return value;
             }
             else if (type.Equals(typeof(UIVector3)))
             {
                 UIVector3 vector3 = ((UIVector3)obj);
-                value = new PropertyValue(vector3.X, vector3.Y, vector3.Z);
+                PropertyValue value = new PropertyValue(vector3.X, vector3.Y, vector3.Z);
+                return value;
             }
             else
             {
                 throw new global::System.InvalidOperationException("Unimplemented type for Property Value :" + type.Name);
             }
-            return value;
         }
 
 

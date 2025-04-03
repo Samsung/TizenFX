@@ -93,8 +93,10 @@ namespace Tizen.NUI.Visuals
             get
             {
                 Rectangle ret = new Rectangle();
-                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.NpatchImageVisualProperty.Border);
-                propertyValue?.Get(ret);
+                using (var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.NpatchImageVisualProperty.Border))
+                {
+                    propertyValue?.Get(ret);
+                }
                 return ret;
             }
         }

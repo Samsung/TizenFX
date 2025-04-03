@@ -63,7 +63,8 @@ namespace Tizen.NUI
                 if (stateChangedEventHandler == null)
                 {
                     stateChangedEventCallback = OnStateChanged;
-                    StateChangedSignal().Connect(stateChangedEventCallback);
+                    using var signal = StateChangedSignal();
+                    signal.Connect(stateChangedEventCallback);
                 }
 
                 stateChangedEventHandler += value;
@@ -71,10 +72,10 @@ namespace Tizen.NUI
             remove
             {
                 stateChangedEventHandler -= value;
-
-                if (stateChangedEventHandler == null && StateChangedSignal().Empty() == false && stateChangedEventCallback != null)
+                using var signal = StateChangedSignal();
+                if (stateChangedEventHandler == null && signal.Empty() == false && stateChangedEventCallback != null)
                 {
-                    StateChangedSignal().Disconnect(stateChangedEventCallback);
+                    signal.Disconnect(stateChangedEventCallback);
                 }
             }
         }
@@ -180,14 +181,14 @@ namespace Tizen.NUI
                 HandleRef CPtr = new HandleRef(dummyObect, cPtr);
                 Interop.BaseHandle.DeleteBaseHandle(CPtr);
                 CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
             else
             {
                 ret = new TTSPlayer(cPtr, true);
+                return ret;
             }
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

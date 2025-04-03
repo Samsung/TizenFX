@@ -336,11 +336,11 @@ namespace Tizen.NUI.BaseComponents
 
         private Vector2 GetInternalCellPadding()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             Vector2 temp = new Vector2(0.0f, 0.0f);
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.CellPadding);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.CellPadding))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -386,11 +386,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalLayoutRows()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.LayoutRows);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.LayoutRows))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -436,11 +436,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalLayoutColumns()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.LayoutColumns);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.LayoutColumns))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
