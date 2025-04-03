@@ -78,7 +78,8 @@ namespace Tizen.NUI
                 if (activatedEventHandler == null)
                 {
                     CreateSafeCallback(OnActivated, out activatedEventCallback);
-                    ActivatedSignal().Connect(activatedEventCallback);
+                    using var signal = ActivatedSignal();
+                    signal.Connect(activatedEventCallback);
                 }
 
                 activatedEventHandler += value;
@@ -89,7 +90,8 @@ namespace Tizen.NUI
 
                 if (activatedEventHandler == null && activatedEventCallback != null)
                 {
-                    ActivatedSignal().Disconnect(activatedEventCallback);
+                    using var signal = ActivatedSignal();
+                    signal.Disconnect(activatedEventCallback);
                     ReleaseSafeCallback(ref activatedEventCallback);
                 }
             }
@@ -106,7 +108,8 @@ namespace Tizen.NUI
                 if (eventReceivedEventHandler == null)
                 {
                     CreateSafeCallback(OnEventReceived, out eventReceivedEventCallback);
-                    EventReceivedSignal().Connect(eventReceivedEventCallback);
+                    using var signal = EventReceivedSignal();
+                    signal.Connect(eventReceivedEventCallback);
                 }
 
                 eventReceivedEventHandler += value;
@@ -117,7 +120,8 @@ namespace Tizen.NUI
 
                 if (eventReceivedEventHandler == null && eventReceivedEventCallback != null)
                 {
-                    EventReceivedSignal().Disconnect(eventReceivedEventCallback);
+                    using var signal = EventReceivedSignal();
+                    signal.Disconnect(eventReceivedEventCallback);
                     ReleaseSafeCallback(ref eventReceivedEventCallback);
                 }
             }
@@ -134,7 +138,8 @@ namespace Tizen.NUI
                 if (statusChangedEventHandler == null)
                 {
                     CreateSafeCallback(OnStatusChanged, out statusChangedEventCallback);
-                    StatusChangedSignal().Connect(statusChangedEventCallback);
+                    using var signal = StatusChangedSignal();
+                    signal.Connect(statusChangedEventCallback);
                 }
 
                 statusChangedEventHandler += value;
@@ -145,7 +150,8 @@ namespace Tizen.NUI
 
                 if (statusChangedEventHandler == null && statusChangedEventCallback != null)
                 {
-                    StatusChangedSignal().Disconnect(statusChangedEventCallback);
+                    using var signal = StatusChangedSignal();
+                    signal.Disconnect(statusChangedEventCallback);
                     ReleaseSafeCallback(ref statusChangedEventCallback);
                 }
             }
@@ -162,7 +168,8 @@ namespace Tizen.NUI
                 if (resizedEventHandler == null)
                 {
                     CreateSafeCallback(OnResized, out resizedEventCallback);
-                    ResizedSignal().Connect(resizedEventCallback);
+                    using var signal = ResizedSignal();
+                    signal.Connect(resizedEventCallback);
                 }
 
                 resizedEventHandler += value;
@@ -173,7 +180,8 @@ namespace Tizen.NUI
 
                 if (resizedEventHandler == null && resizedEventCallback != null)
                 {
-                    ResizedSignal().Disconnect(resizedEventCallback);
+                    using var signal = ResizedSignal();
+                    signal.Disconnect(resizedEventCallback);
                     ReleaseSafeCallback(ref resizedEventCallback);
                 }
             }
@@ -190,7 +198,8 @@ namespace Tizen.NUI
                 if (languageChangedEventHandler == null)
                 {
                     CreateSafeCallback(OnLanguageChanged, out languageChangedEventCallback);
-                    LanguageChangedSignal().Connect(languageChangedEventCallback);
+                    using var signal = LanguageChangedSignal();
+                    signal.Connect(languageChangedEventCallback);
                 }
 
                 languageChangedEventHandler += value;
@@ -201,7 +210,8 @@ namespace Tizen.NUI
 
                 if (languageChangedEventHandler == null && languageChangedEventCallback != null)
                 {
-                    LanguageChangedSignal().Disconnect(languageChangedEventCallback);
+                    using var signal = LanguageChangedSignal();
+                    signal.Disconnect(languageChangedEventCallback);
                     ReleaseSafeCallback(ref languageChangedEventCallback);
                 }
             }
@@ -218,7 +228,8 @@ namespace Tizen.NUI
                 if (keyboardTypeChangedEventHandler == null)
                 {
                     CreateSafeCallback(OnKeyboardTypeChanged, out keyboardTypeChangedEventCallback);
-                    KeyboardTypeChangedSignal().Connect(keyboardTypeChangedEventCallback);
+                    using var signal = KeyboardTypeChangedSignal();
+                    signal.Connect(keyboardTypeChangedEventCallback);
                 }
 
                 keyboardTypeChangedEventHandler += value;
@@ -229,7 +240,8 @@ namespace Tizen.NUI
 
                 if (keyboardTypeChangedEventHandler == null && keyboardTypeChangedEventCallback != null)
                 {
-                    KeyboardTypeChangedSignal().Disconnect(keyboardTypeChangedEventCallback);
+                    using var signal = KeyboardTypeChangedSignal();
+                    signal.Disconnect(keyboardTypeChangedEventCallback);
                     ReleaseSafeCallback(ref keyboardTypeChangedEventCallback);
                 }
             }
@@ -247,7 +259,8 @@ namespace Tizen.NUI
                 if (contentReceivedEventHandler == null)
                 {
                     CreateSafeCallback(OnContentReceived, out contentReceivedEventCallback);
-                    ContentReceivedSignal().Connect(contentReceivedEventCallback);
+                    using var signal = ContentReceivedSignal();
+                    signal.Connect(contentReceivedEventCallback);
                 }
 
                 contentReceivedEventHandler += value;
@@ -258,7 +271,8 @@ namespace Tizen.NUI
 
                 if (contentReceivedEventHandler == null && contentReceivedEventCallback != null)
                 {
-                    ContentReceivedSignal().Disconnect(contentReceivedEventCallback);
+                    using var signal = ContentReceivedSignal();
+                    signal.Disconnect(contentReceivedEventCallback);
                     ReleaseSafeCallback(ref contentReceivedEventCallback);
                 }
             }
@@ -928,43 +942,50 @@ namespace Tizen.NUI
 
             if (activatedEventCallback != null)
             {
-                ActivatedSignal().Disconnect(activatedEventCallback);
+                using var signal = ActivatedSignal();
+                signal.Disconnect(activatedEventCallback);
                 activatedEventCallback = null;
             }
 
             if (eventReceivedEventCallback != null)
             {
-                EventReceivedSignal().Disconnect(eventReceivedEventCallback);
+                using var signal = EventReceivedSignal();
+                signal.Disconnect(eventReceivedEventCallback);
                 eventReceivedEventCallback = null;
             }
 
             if (statusChangedEventCallback != null)
             {
-                StatusChangedSignal().Disconnect(statusChangedEventCallback);
+                using var signal = StatusChangedSignal();
+                signal.Disconnect(statusChangedEventCallback);
                 statusChangedEventCallback = null;
             }
 
             if (resizedEventCallback != null)
             {
-                ResizedSignal().Disconnect(resizedEventCallback);
+                using var signal = ResizedSignal();
+                signal.Disconnect(resizedEventCallback);
                 resizedEventCallback = null;
             }
 
             if (languageChangedEventCallback != null)
             {
-                LanguageChangedSignal().Disconnect(languageChangedEventCallback);
+                using var signal = LanguageChangedSignal();
+                signal.Disconnect(languageChangedEventCallback);
                 languageChangedEventCallback = null;
             }
 
             if (keyboardTypeChangedEventCallback != null)
             {
-                KeyboardTypeChangedSignal().Disconnect(keyboardTypeChangedEventCallback);
+                using var signal = KeyboardTypeChangedSignal();
+                signal.Disconnect(keyboardTypeChangedEventCallback);
                 keyboardTypeChangedEventCallback = null;
             }
 
             if (contentReceivedEventCallback != null)
             {
-                ContentReceivedSignal().Disconnect(contentReceivedEventCallback);
+                using var signal = ContentReceivedSignal();
+                signal.Disconnect(contentReceivedEventCallback);
                 contentReceivedEventCallback = null;
             }
         }

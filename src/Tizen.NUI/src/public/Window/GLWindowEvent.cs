@@ -47,7 +47,8 @@ namespace Tizen.NUI
                 if (focusChangedEventCallback == null)
                 {
                     focusChangedEventCallback = OnWindowFocusedChanged;
-                    FocusChangedSignal().Connect(focusChangedEventCallback);
+                    using var signal = FocusChangedSignal();
+                    signal.Connect(focusChangedEventCallback);
                 }
 
                 focusChangedEventHandler += value;
@@ -55,10 +56,10 @@ namespace Tizen.NUI
             remove
             {
                 focusChangedEventHandler -= value;
-
-                if (focusChangedEventHandler == null && FocusChangedSignal().Empty() == false && focusChangedEventCallback != null)
+                using var signal = FocusChangedSignal();
+                if (focusChangedEventHandler == null && signal.Empty() == false && focusChangedEventCallback != null)
                 {
-                    FocusChangedSignal().Disconnect(focusChangedEventCallback);
+                    signal.Disconnect(focusChangedEventCallback);
                 }
             }
         }
@@ -105,16 +106,18 @@ namespace Tizen.NUI
                 if (stageKeyHandler == null)
                 {
                     windowKeyCallbackDelegate = OnStageKey;
-                    KeyEventSignal().Connect(windowKeyCallbackDelegate);
+                    using var signal = KeyEventSignal();
+                    signal.Connect(windowKeyCallbackDelegate);
                 }
                 stageKeyHandler += value;
             }
             remove
             {
                 stageKeyHandler -= value;
-                if (stageKeyHandler == null && KeyEventSignal().Empty() == false)
+                using var signal = KeyEventSignal();
+                if (stageKeyHandler == null && signal.Empty() == false)
                 {
-                    KeyEventSignal().Disconnect(windowKeyCallbackDelegate);
+                    signal.Disconnect(windowKeyCallbackDelegate);
                 }
             }
         }
@@ -130,7 +133,8 @@ namespace Tizen.NUI
                 if (windowResizedEventHandler == null)
                 {
                     windowResizedEventCallback = OnResized;
-                    GLWindowResizedSignal().Connect(windowResizedEventCallback);
+                    using var signal = GLWindowResizedSignal();
+                    signal.Connect(windowResizedEventCallback);
                 }
 
                 windowResizedEventHandler += value;
@@ -138,10 +142,10 @@ namespace Tizen.NUI
             remove
             {
                 windowResizedEventHandler -= value;
-
-                if (windowResizedEventHandler == null && GLWindowResizedSignal().Empty() == false && windowResizedEventCallback != null)
+                using var signal = GLWindowResizedSignal();
+                if (windowResizedEventHandler == null && signal.Empty() == false && windowResizedEventCallback != null)
                 {
-                    GLWindowResizedSignal().Disconnect(windowResizedEventCallback);
+                    signal.Disconnect(windowResizedEventCallback);
                 }
             }
         }
@@ -179,7 +183,8 @@ namespace Tizen.NUI
         {
             if (focusChangedEventCallback != null)
             {
-                FocusChangedSignal().Disconnect(focusChangedEventCallback);
+                using var signal = FocusChangedSignal();
+                signal.Disconnect(focusChangedEventCallback);
             }
 
             if (windowTouchDataCallback != null)
@@ -190,12 +195,14 @@ namespace Tizen.NUI
 
             if (windowKeyCallbackDelegate != null)
             {
-                KeyEventSignal().Disconnect(windowKeyCallbackDelegate);
+                using var signal = KeyEventSignal();
+                signal.Disconnect(windowKeyCallbackDelegate);
             }
 
             if (windowResizedEventCallback != null)
             {
-                GLWindowResizedSignal().Disconnect(windowResizedEventCallback);
+                using var signal = GLWindowResizedSignal();
+                signal.Disconnect(windowResizedEventCallback);
             }
         }
 

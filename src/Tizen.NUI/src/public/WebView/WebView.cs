@@ -1816,11 +1816,11 @@ namespace Tizen.NUI.BaseComponents
 
         private Vector2 GetInternalScrollSize()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             Vector2 temp = new Vector2(0.0f, 0.0f);
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.ScrollSize);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.ScrollSize))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -1847,11 +1847,11 @@ namespace Tizen.NUI.BaseComponents
 
         private Vector2 GetInternalContentSize()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             Vector2 temp = new Vector2(0.0f, 0.0f);
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.ContentSize);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.ContentSize))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
