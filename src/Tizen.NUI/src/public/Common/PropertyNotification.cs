@@ -182,14 +182,14 @@ namespace Tizen.NUI
                 global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
                 Interop.BaseHandle.DeleteBaseHandle(CPtr);
                 CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
             else
             {
                 ret = new PropertyCondition(cPtr, true);
+                return ret;
             }
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>

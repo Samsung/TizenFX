@@ -1273,7 +1273,7 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(arg1));
             }
-            Color result = arg1.Add(arg2);
+            using Color result = arg1.Add(arg2);
             return ValueCheck(result);
         }
 
@@ -1291,7 +1291,7 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(arg1));
             }
-            Color result = arg1.Subtract(arg2);
+            using Color result = arg1.Subtract(arg2);
             return ValueCheck(result);
         }
 
@@ -1308,7 +1308,7 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(arg1));
             }
-            Color result = arg1.Subtract();
+            using Color result = arg1.Subtract();
             return ValueCheck(result);
         }
 
@@ -1326,7 +1326,7 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(arg1));
             }
-            Color result = arg1.Multiply(arg2);
+            using Color result = arg1.Multiply(arg2);
             return ValueCheck(result);
         }
 
@@ -1344,7 +1344,7 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(arg1));
             }
-            Color result = arg1.Multiply(arg2);
+            using Color result = arg1.Multiply(arg2);
             return ValueCheck(result);
         }
 
@@ -1362,7 +1362,7 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(arg1));
             }
-            Color result = arg1.Divide(arg2);
+            using Color result = arg1.Divide(arg2);
             return ValueCheck(result);
         }
 
@@ -1380,7 +1380,7 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(arg1));
             }
-            Color result = arg1.Divide(arg2);
+            using Color result = arg1.Divide(arg2);
             return ValueCheck(result);
         }
 

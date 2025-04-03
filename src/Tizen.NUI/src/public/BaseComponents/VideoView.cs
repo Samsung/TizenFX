@@ -232,16 +232,18 @@ namespace Tizen.NUI.BaseComponents
                 if (videoViewFinishedEventHandler == null)
                 {
                     videoViewFinishedCallbackDelegate = (OnFinished);
-                    FinishedSignal().Connect(videoViewFinishedCallbackDelegate);
+                    using var signal = FinishedSignal();
+                    signal.Connect(videoViewFinishedCallbackDelegate);
                 }
                 videoViewFinishedEventHandler += value;
             }
             remove
             {
                 videoViewFinishedEventHandler -= value;
-                if (videoViewFinishedEventHandler == null && FinishedSignal().Empty() == false)
+                using var signal = FinishedSignal();
+                if (videoViewFinishedEventHandler == null && signal.Empty() == false)
                 {
-                    FinishedSignal().Disconnect(videoViewFinishedCallbackDelegate);
+                    signal.Disconnect(videoViewFinishedCallbackDelegate);
                 }
             }
         }
@@ -288,11 +290,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalVideo()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.VIDEO);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.VIDEO))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -428,11 +430,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalVolume()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.VOLUME);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.VOLUME))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -683,7 +685,8 @@ namespace Tizen.NUI.BaseComponents
 
             if (this != null && videoViewFinishedCallbackDelegate != null)
             {
-                FinishedSignal().Disconnect(videoViewFinishedCallbackDelegate);
+                using var signal = FinishedSignal();
+                signal.Disconnect(videoViewFinishedCallbackDelegate);
             }
 
             base.Dispose(type);
