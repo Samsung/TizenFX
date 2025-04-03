@@ -139,78 +139,6 @@ namespace Tizen.NUI.Visuals
 
                 return cachedVisualTransformPropertyMap;
             }
-
-            internal void ConvertFromPropertyMap(PropertyMap inputMap)
-            {
-                using (PropertyValue value = inputMap?.Find((int)VisualTransformPropertyType.Size))
-                    if (value != null)
-                    {
-                        using var size = new Size();
-                        if (value.Get(size))
-                        {
-                            width = size.Width;
-                            height = size.Height;
-                        }
-                    }
-                using (PropertyValue value = inputMap?.Find((int)VisualTransformPropertyType.Offset))
-                    if (value != null)
-                    {
-                        using var offset = new Position();
-                        if (value.Get(offset))
-                        {
-                            offsetX = offset.X;
-                            offsetY = offset.Y;
-                        }
-                    }
-                using (PropertyValue value = inputMap?.Find((int)VisualTransformPropertyType.SizePolicy))
-                    if (value != null)
-                    {
-                        using var policyValue = new Vector2();
-                        if (value.Get(policyValue))
-                        {
-                            widthPolicy = (VisualTransformPolicyType)policyValue.X;
-                            heightPolicy = (VisualTransformPolicyType)policyValue.Y;
-                        }
-                    }
-                using (PropertyValue value = inputMap?.Find((int)VisualTransformPropertyType.OffsetPolicy))
-                    if (value != null)
-                    {
-                        using var policyValue = new Vector2();
-                        if (value.Get(policyValue))
-                        {
-                            offsetXPolicy = (VisualTransformPolicyType)policyValue.X;
-                            offsetYPolicy = (VisualTransformPolicyType)policyValue.Y;
-                        }
-                    }
-                using (PropertyValue value = inputMap?.Find((int)VisualTransformPropertyType.Origin))
-                    if (value != null)
-                    {
-                        int ret = 0;
-                        if (value.Get(out ret))
-                        {
-                            origin = (Visual.AlignType)ret;
-                        }
-                    }
-                using (PropertyValue value = inputMap?.Find((int)VisualTransformPropertyType.AnchorPoint))
-                    if (value != null)
-                    {
-                        int ret = 0;
-                        if (value.Get(out ret))
-                        {
-                            pivotPoint = (Visual.AlignType)ret;
-                        }
-                    }
-                using (PropertyValue value = inputMap?.Find((int)VisualTransformPropertyType.ExtraSize))
-                    if (value != null)
-                    {
-                        using var extraValue = new Vector2();
-                        if (value.Get(extraValue))
-                        {
-                            extraWidth = extraValue.Width;
-                            extraHeight = extraValue.Height;
-                        }
-                    }
-            }
         };
         internal VisualTransformInfo transformInfo;
         #endregion
@@ -879,42 +807,6 @@ namespace Tizen.NUI.Visuals
         /// </remarks>
         internal PropertyMap Properties
         {
-            private set
-            {
-                visualCreationRequiredFlag = true;
-                cachedVisualPropertyMap = value;
-
-                changedPropertyMap?.Dispose();
-                changedPropertyMap = null;
-
-                transformInfo.Clear();
-
-                // Get transform informations from input property map.
-                using var transformValue = cachedVisualPropertyMap?.Find((int)Tizen.NUI.Visual.Property.Transform);
-                if (transformValue != null)
-                {
-                    PropertyMap transformMap = new PropertyMap();
-                    if (transformValue.Get(ref transformMap) && transformMap != null)
-                    {
-                        transformInfo.ConvertFromPropertyMap(transformMap);
-                    }
-                    transformMap?.Dispose();
-                }
-                transformInfo.changed = false;
-
-                // Get type from the property map.
-                internalType = (int)Tizen.NUI.Visual.Type.Invalid;
-                using var pv = cachedVisualPropertyMap?.Find((int)Tizen.NUI.Visual.Property.Type);
-                if (pv?.Get(out internalType) ?? false)
-                {
-                    UpdateVisualPropertyMap();
-                }
-                else
-                {
-                    // If type is not set, then remove the visual.
-                    UnregisterVisual();
-                }
-            }
             get
             {
                 // Sync as current properties
