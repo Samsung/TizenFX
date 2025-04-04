@@ -31,22 +31,6 @@ namespace Tizen.NUI
             Interop.Watch.DeleteWatchApplication(swigCPtr);
         }
 
-        private void DisConnectFromSignals()
-        {
-            if (timeTickCallback != null)
-            {
-                this.TimeTickSignal().Disconnect(timeTickCallback);
-            }
-            if (ambientTickCallback != null)
-            {
-                this.AmbientTickSignal().Disconnect(ambientTickCallback);
-            }
-            if (ambientChangedCallback != null)
-            {
-                this.AmbientChangedSignal().Disconnect(ambientChangedCallback);
-            }
-        }
-
         public static WatchApplication NewWatchApplication()
         {
             WatchApplication ret = New();
@@ -143,7 +127,8 @@ namespace Tizen.NUI
                 if (timeTickEventHandler == null)
                 {
                     timeTickCallback = new TimeTickCallbackType(OnTimeTick);
-                    TimeTickSignal().Connect(timeTickCallback);
+                    using var signal = TimeTickSignal();
+                    signal.Connect(timeTickCallback);
                 }
 
                 timeTickEventHandler += value;
@@ -155,7 +140,8 @@ namespace Tizen.NUI
 
                 if (timeTickEventHandler == null && timeTickCallback != null)
                 {
-                    TimeTickSignal().Disconnect(timeTickCallback);
+                    using var signal = TimeTickSignal();
+                    signal.Disconnect(timeTickCallback);
                     timeTickCallback = null;
                 }
             }
@@ -216,7 +202,8 @@ namespace Tizen.NUI
                 if (ambientTickEventHandler == null)
                 {
                     ambientTickCallback = new AmbientTickCallbackType(OnAmbientTick);
-                    AmbientTickSignal().Connect(ambientTickCallback);
+                    using var signal = AmbientTickSignal();
+                    signal.Connect(ambientTickCallback);
                 }
 
                 ambientTickEventHandler += value;
@@ -228,7 +215,8 @@ namespace Tizen.NUI
 
                 if (ambientTickEventHandler == null && ambientTickCallback != null)
                 {
-                    AmbientTickSignal().Disconnect(ambientTickCallback);
+                    using var signal = AmbientTickSignal();
+                    signal.Disconnect(ambientTickCallback);
                     ambientTickCallback = null;
                 }
             }
@@ -289,7 +277,8 @@ namespace Tizen.NUI
                 if (ambientChangedEventHandler == null)
                 {
                     ambientChangedCallback = new AmbientChangedCallbackType(OnAmbientChanged);
-                    AmbientChangedSignal().Connect(ambientChangedCallback);
+                    using var signal = AmbientChangedSignal();
+                    signal.Connect(ambientChangedCallback);
                 }
 
                 ambientChangedEventHandler += value;
@@ -301,7 +290,8 @@ namespace Tizen.NUI
 
                 if (ambientChangedEventHandler == null && ambientChangedCallback != null)
                 {
-                    AmbientChangedSignal().Disconnect(ambientChangedCallback);
+                    using var signal = AmbientChangedSignal();
+                    signal.Disconnect(ambientChangedCallback);
                     ambientChangedCallback = null;
                 }
             }

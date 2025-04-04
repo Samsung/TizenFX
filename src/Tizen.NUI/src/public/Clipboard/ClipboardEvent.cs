@@ -114,7 +114,8 @@ namespace Tizen.NUI
                 if (clipboardDataSelectedEventHandler == null)
                 {
                     clipboardDataSelectedCallback = (OnClipboardDataSelected);
-                    ClipboardDataSelectedSignal().Connect(clipboardDataSelectedCallback);
+                    using var signal = ClipboardDataSelectedSignal();
+                    signal.Connect(clipboardDataSelectedCallback);
                 }
                 clipboardDataSelectedEventHandler += value;
             }
@@ -123,7 +124,8 @@ namespace Tizen.NUI
                 clipboardDataSelectedEventHandler -= value;
                 if (clipboardDataSelectedEventHandler == null && clipboardDataSelectedCallback != null)
                 {
-                    ClipboardDataSelectedSignal().Disconnect(clipboardDataSelectedCallback);
+                    using var signal = ClipboardDataSelectedSignal();
+                    signal.Disconnect(clipboardDataSelectedCallback);
                     clipboardDataSelectedCallback = null;
                 }
             }
@@ -136,7 +138,8 @@ namespace Tizen.NUI
                 if (clipboardDataReceivedEventHandler == null)
                 {
                     clipboardDataReceivedCallback = (OnClipboardDataReceived);
-                    ClipboardDataReceivedSignal().Connect(clipboardDataReceivedCallback);
+                    using var signal = ClipboardDataReceivedSignal();
+                    signal.Connect(clipboardDataReceivedCallback);
                 }
                 clipboardDataReceivedEventHandler += value;
             }
@@ -145,7 +148,8 @@ namespace Tizen.NUI
                 clipboardDataReceivedEventHandler -= value;
                 if (clipboardDataReceivedEventHandler == null && clipboardDataReceivedCallback != null)
                 {
-                    ClipboardDataReceivedSignal().Disconnect(clipboardDataReceivedCallback);
+                    using var signal = ClipboardDataReceivedSignal();
+                    signal.Disconnect(clipboardDataReceivedCallback);
                     clipboardDataReceivedCallback = null;
                 }
             }

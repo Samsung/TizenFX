@@ -836,9 +836,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static TOut Merge<TOut>(this TOut value, TOut other) where TOut : Tizen.NUI.BaseComponents.ViewStyle
         {
+            _ = value ?? throw new ArgumentNullException(nameof(value));
             var newStyle = value.Clone() as TOut;
 
-            newStyle?.CopyFrom(other);
+            newStyle.CopyFrom(other);
 
             return newStyle;
         }

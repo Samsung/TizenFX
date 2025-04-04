@@ -203,16 +203,18 @@ namespace Tizen.NUI.BaseComponents
                 if (textLabelAnchorClickedEventHandler == null)
                 {
                     textLabelAnchorClickedCallbackDelegate = (OnAnchorClicked);
-                    AnchorClickedSignal().Connect(textLabelAnchorClickedCallbackDelegate);
+                    using var signal = AnchorClickedSignal();
+                    signal.Connect(textLabelAnchorClickedCallbackDelegate);
                 }
                 textLabelAnchorClickedEventHandler += value;
             }
             remove
             {
                 textLabelAnchorClickedEventHandler -= value;
-                if (textLabelAnchorClickedEventHandler == null && AnchorClickedSignal().Empty() == false)
+                using var signal = AnchorClickedSignal();
+                if (textLabelAnchorClickedEventHandler == null && signal.Empty() == false)
                 {
-                    AnchorClickedSignal().Disconnect(textLabelAnchorClickedCallbackDelegate);
+                    signal.Disconnect(textLabelAnchorClickedCallbackDelegate);
                 }
             }
         }
@@ -254,16 +256,18 @@ namespace Tizen.NUI.BaseComponents
                 if (textLabelTextFitChangedEventHandler == null)
                 {
                     textLabelTextFitChangedCallbackDelegate = (OnTextFitChanged);
-                    TextFitChangedSignal().Connect(textLabelTextFitChangedCallbackDelegate);
+                    using var signal = TextFitChangedSignal();
+                    signal.Connect(textLabelTextFitChangedCallbackDelegate);
                 }
                 textLabelTextFitChangedEventHandler += value;
             }
             remove
             {
                 textLabelTextFitChangedEventHandler -= value;
-                if (textLabelTextFitChangedEventHandler == null && TextFitChangedSignal().Empty() == false)
+                using var signal = TextFitChangedSignal();
+                if (textLabelTextFitChangedEventHandler == null && signal.Empty() == false)
                 {
-                    TextFitChangedSignal().Disconnect(textLabelTextFitChangedCallbackDelegate);
+                    signal.Disconnect(textLabelTextFitChangedCallbackDelegate);
                 }
             }
         }

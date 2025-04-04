@@ -184,7 +184,8 @@ namespace Tizen.NUI
                     pageTurnViewPagePanStartedEventHandler += value;
 
                     pageTurnViewPagePanStartedCallbackDelegate = new PagePanStartedCallbackDelegate(OnPagePanStarted);
-                    this.PagePanStartedSignal().Connect(pageTurnViewPagePanStartedCallbackDelegate);
+                    using var signal = PagePanStartedSignal();
+                    signal.Connect(pageTurnViewPagePanStartedCallbackDelegate);
                 }
             }
 
@@ -192,7 +193,8 @@ namespace Tizen.NUI
             {
                 if (pageTurnViewPagePanStartedEventHandler != null)
                 {
-                    this.PagePanStartedSignal().Disconnect(pageTurnViewPagePanStartedCallbackDelegate);
+                    using var signal = PagePanStartedSignal();
+                    signal.Disconnect(pageTurnViewPagePanStartedCallbackDelegate);
                 }
 
                 pageTurnViewPagePanStartedEventHandler -= value;
@@ -224,7 +226,8 @@ namespace Tizen.NUI
                     pageTurnViewPagePanFinishedEventHandler += value;
 
                     pageTurnViewPagePanFinishedCallbackDelegate = new PagePanFinishedCallbackDelegate(OnPagePanFinished);
-                    this.PagePanFinishedSignal().Connect(pageTurnViewPagePanFinishedCallbackDelegate);
+                    using var signal = PagePanFinishedSignal();
+                    signal.Connect(pageTurnViewPagePanFinishedCallbackDelegate);
                 }
             }
 
@@ -232,7 +235,8 @@ namespace Tizen.NUI
             {
                 if (pageTurnViewPagePanFinishedEventHandler != null)
                 {
-                    this.PagePanFinishedSignal().Disconnect(pageTurnViewPagePanFinishedCallbackDelegate);
+                    using var signal = PagePanFinishedSignal();
+                    signal.Disconnect(pageTurnViewPagePanFinishedCallbackDelegate);
                 }
 
                 pageTurnViewPagePanFinishedEventHandler -= value;
@@ -265,7 +269,8 @@ namespace Tizen.NUI
                     pageTurnViewPageTurnStartedEventHandler += value;
 
                     pageTurnViewPageTurnStartedCallbackDelegate = new PageTurnStartedCallbackDelegate(OnPageTurnStarted);
-                    this.PageTurnStartedSignal().Connect(pageTurnViewPageTurnStartedCallbackDelegate);
+                    using var signal = PageTurnStartedSignal();
+                    signal.Connect(pageTurnViewPageTurnStartedCallbackDelegate);
                 }
             }
 
@@ -273,7 +278,8 @@ namespace Tizen.NUI
             {
                 if (pageTurnViewPageTurnStartedEventHandler != null)
                 {
-                    this.PageTurnStartedSignal().Disconnect(pageTurnViewPageTurnStartedCallbackDelegate);
+                    using var signal = PageTurnStartedSignal();
+                    signal.Disconnect(pageTurnViewPageTurnStartedCallbackDelegate);
                 }
 
                 pageTurnViewPageTurnStartedEventHandler -= value;
@@ -309,7 +315,8 @@ namespace Tizen.NUI
                     pageTurnViewPageTurnFinishedEventHandler += value;
 
                     pageTurnViewPageTurnFinishedCallbackDelegate = new PageTurnFinishedCallbackDelegate(OnPageTurnFinished);
-                    this.PageTurnFinishedSignal().Connect(pageTurnViewPageTurnFinishedCallbackDelegate);
+                    using var signal = PageTurnFinishedSignal();
+                    signal.Connect(pageTurnViewPageTurnFinishedCallbackDelegate);
                 }
             }
 
@@ -317,7 +324,8 @@ namespace Tizen.NUI
             {
                 if (pageTurnViewPageTurnFinishedEventHandler != null)
                 {
-                    this.PageTurnFinishedSignal().Disconnect(pageTurnViewPageTurnFinishedCallbackDelegate);
+                    using var signal = PageTurnFinishedSignal();
+                    signal.Disconnect(pageTurnViewPageTurnFinishedCallbackDelegate);
                 }
 
                 pageTurnViewPageTurnFinishedEventHandler -= value;
@@ -413,13 +421,17 @@ namespace Tizen.NUI
         {
             get
             {
+#pragma warning disable CA2000 // Dispose objects before losing scope
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                GetProperty(PageTurnView.Property.ViewPageSize).Get(temp);
+#pragma warning restore CA2000 // Dispose objects before losing scope
+                using var prop = GetProperty(PageTurnView.Property.ViewPageSize);
+                prop.Get(temp);
                 return temp;
             }
             set
             {
-                SetProperty(PageTurnView.Property.ViewPageSize, new Tizen.NUI.PropertyValue(value));
+                using var pv = new Tizen.NUI.PropertyValue(value);
+                SetProperty(PageTurnView.Property.ViewPageSize, pv);
             }
         }
         public int CurrentPageId
@@ -427,25 +439,31 @@ namespace Tizen.NUI
             get
             {
                 int temp = 0;
-                GetProperty(PageTurnView.Property.CurrentPageId).Get(out temp);
+                using var prop = GetProperty(PageTurnView.Property.CurrentPageId);
+                prop.Get(out temp);
                 return temp;
             }
             set
             {
-                SetProperty(PageTurnView.Property.CurrentPageId, new Tizen.NUI.PropertyValue(value));
+                using var pv = new Tizen.NUI.PropertyValue(value);
+                SetProperty(PageTurnView.Property.CurrentPageId, pv);
             }
         }
         public Vector2 SpineShadow
         {
             get
             {
+#pragma warning disable CA2000 // Dispose objects before losing scope
                 Vector2 temp = new Vector2(0.0f, 0.0f);
-                GetProperty(PageTurnView.Property.SpineShadow).Get(temp);
+#pragma warning restore CA2000 // Dispose objects before losing scope
+                using var prop = GetProperty(PageTurnView.Property.SpineShadow);
+                prop.Get(temp);
                 return temp;
             }
             set
             {
-                SetProperty(PageTurnView.Property.SpineShadow, new Tizen.NUI.PropertyValue(value));
+                using var pv = new Tizen.NUI.PropertyValue(value);
+                SetProperty(PageTurnView.Property.SpineShadow, pv);
             }
         }
     }

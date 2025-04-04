@@ -92,16 +92,18 @@ namespace Tizen.NUI
             {
                 if (timerTickEventHandler == null && disposed == false)
                 {
-                    TickSignal().Connect(timerTickCallbackOfNative);
+                    using var signal = TickSignal();
+                    signal.Connect(timerTickCallbackOfNative);
                 }
                 timerTickEventHandler += value;
             }
             remove
             {
                 timerTickEventHandler -= value;
-                if (timerTickEventHandler == null && TickSignal().Empty() == false)
+                using var signal = TickSignal();
+                if (timerTickEventHandler == null && signal.Empty() == false)
                 {
-                    TickSignal().Disconnect(timerTickCallbackOfNative);
+                    signal.Disconnect(timerTickCallbackOfNative);
                 }
             }
         }
@@ -272,7 +274,8 @@ namespace Tizen.NUI
 
             if (this != null && timerTickCallbackDelegate != null)
             {
-                TickSignal().Disconnect(timerTickCallbackOfNative);
+                using var signal = TickSignal();
+                signal.Disconnect(timerTickCallbackOfNative);
             }
 
             if (disposed)

@@ -4750,32 +4750,38 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldCursorPositionChangedCallbackDelegate != null)
                 {
-                    this.CursorPositionChangedSignal().Disconnect(textFieldCursorPositionChangedCallbackDelegate);
+                    using var signal = CursorPositionChangedSignal();
+                    signal.Disconnect(textFieldCursorPositionChangedCallbackDelegate);
                 }
 
                 if (textFieldMaxLengthReachedCallbackDelegate != null)
                 {
-                    this.MaxLengthReachedSignal().Disconnect(textFieldMaxLengthReachedCallbackDelegate);
+                    using var signal = MaxLengthReachedSignal();
+                    signal.Disconnect(textFieldMaxLengthReachedCallbackDelegate);
                 }
 
                 if (textFieldSelectionStartedCallbackDelegate != null)
                 {
-                    this.SelectionStartedSignal().Disconnect(textFieldSelectionStartedCallbackDelegate);
+                    using var signal = SelectionStartedSignal();
+                    signal.Disconnect(textFieldSelectionStartedCallbackDelegate);
                 }
 
                 if (textFieldSelectionClearedCallbackDelegate != null)
                 {
-                    this.SelectionClearedSignal().Disconnect(textFieldSelectionClearedCallbackDelegate);
+                    using var signal = SelectionClearedSignal();
+                    signal.Disconnect(textFieldSelectionClearedCallbackDelegate);
                 }
 
                 if (textFieldSelectionChangedCallbackDelegate != null)
                 {
-                    this.SelectionChangedSignal().Disconnect(textFieldSelectionChangedCallbackDelegate);
+                    using var signal = SelectionChangedSignal();
+                    signal.Disconnect(textFieldSelectionChangedCallbackDelegate);
                 }
 
                 if (textFieldTextChangedCallbackDelegate != null)
                 {
-                    TextChangedSignal().Disconnect(textFieldTextChangedCallbackDelegate);
+                    using var signal = TextChangedSignal();
+                    signal.Disconnect(textFieldTextChangedCallbackDelegate);
                 }
             }
 
@@ -4800,7 +4806,8 @@ namespace Tizen.NUI.BaseComponents
         internal void SetTextWithoutTextChanged(string text)
         {
             invokeTextChanged = false;
-            Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, TextField.Property.TEXT, new Tizen.NUI.PropertyValue(text));
+            using var pv = new Tizen.NUI.PropertyValue(text);
+            Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, TextField.Property.TEXT, pv);
             invokeTextChanged = true;
         }
 

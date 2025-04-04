@@ -66,16 +66,18 @@ namespace Tizen.NUI
                 if (styleManagerStyleChangedEventHandler == null)
                 {
                     styleManagerStyleChangedCallbackDelegate = (OnStyleChanged);
-                    StyleChangedSignal().Connect(styleManagerStyleChangedCallbackDelegate);
+                    using var signal = StyleChangedSignal();
+                    signal.Connect(styleManagerStyleChangedCallbackDelegate);
                 }
                 styleManagerStyleChangedEventHandler += value;
             }
             remove
             {
                 styleManagerStyleChangedEventHandler -= value;
-                if (styleManagerStyleChangedEventHandler == null && StyleChangedSignal().Empty() == false)
+                using var signal = StyleChangedSignal();
+                if (styleManagerStyleChangedEventHandler == null && signal.Empty() == false)
                 {
-                    StyleChangedSignal().Disconnect(styleManagerStyleChangedCallbackDelegate);
+                    signal.Disconnect(styleManagerStyleChangedCallbackDelegate);
                 }
             }
         }

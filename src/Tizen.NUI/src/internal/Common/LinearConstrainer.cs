@@ -75,13 +75,17 @@ namespace Tizen.NUI
         {
             get
             {
+#pragma warning disable CA2000 // Dispose objects before losing scope
                 Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                Tizen.NUI.Object.GetProperty(SwigCPtr, LinearConstrainer.Property.VALUE).Get(temp);
+#pragma warning restore CA2000 // Dispose objects before losing scope
+                using var prop = Tizen.NUI.Object.GetProperty(SwigCPtr, LinearConstrainer.Property.VALUE);
+                prop.Get(temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(SwigCPtr, LinearConstrainer.Property.VALUE, new Tizen.NUI.PropertyValue(value));
+                using var pv = new Tizen.NUI.PropertyValue(value);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, LinearConstrainer.Property.VALUE, pv);
             }
         }
 
@@ -89,13 +93,17 @@ namespace Tizen.NUI
         {
             get
             {
+#pragma warning disable CA2000 // Dispose objects before losing scope
                 Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                Tizen.NUI.Object.GetProperty(SwigCPtr, LinearConstrainer.Property.PROGRESS).Get(temp);
+#pragma warning restore CA2000 // Dispose objects before losing scope
+                using var prop = Tizen.NUI.Object.GetProperty(SwigCPtr, LinearConstrainer.Property.PROGRESS);
+                prop.Get(temp);
                 return temp;
             }
             set
             {
-                Tizen.NUI.Object.SetProperty(SwigCPtr, LinearConstrainer.Property.PROGRESS, new Tizen.NUI.PropertyValue(value));
+                using var pv = new Tizen.NUI.PropertyValue(value);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, LinearConstrainer.Property.PROGRESS, pv);
             }
         }
     }

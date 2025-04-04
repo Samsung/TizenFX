@@ -63,7 +63,8 @@ namespace Tizen.NUI
                 if (stateChangedEventHandler == null)
                 {
                     stateChangedEventCallback = OnStateChanged;
-                    StateChangedSignal().Connect(stateChangedEventCallback);
+                    using var signal = StateChangedSignal();
+                    signal.Connect(stateChangedEventCallback);
                 }
 
                 stateChangedEventHandler += value;
@@ -71,10 +72,10 @@ namespace Tizen.NUI
             remove
             {
                 stateChangedEventHandler -= value;
-
-                if (stateChangedEventHandler == null && StateChangedSignal().Empty() == false && stateChangedEventCallback != null)
+                using var signal = StateChangedSignal();
+                if (stateChangedEventHandler == null && signal.Empty() == false && stateChangedEventCallback != null)
                 {
-                    StateChangedSignal().Disconnect(stateChangedEventCallback);
+                    signal.Disconnect(stateChangedEventCallback);
                 }
             }
         }
