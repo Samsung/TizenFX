@@ -291,6 +291,36 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// you can override it to clean-up your own resources.
+        /// </summary>
+        /// <param name="type">DisposeTypes</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+                // Keep delegate life ownership until next frame rendered.
+                RenderThreadObjectHolder.RegisterDelegate(glInitializeCallback);
+                RenderThreadObjectHolder.RegisterDelegate(glRenderFrameCallback);
+                RenderThreadObjectHolder.RegisterDelegate(glTerminateCallback);
+                RenderThreadObjectHolder.RegisterDelegate(internalRenderFrameCallback);
+
+                // DevNote : Do not make glRenderFrameCallback as null here, to avoid race condition or lock overhead.
+            }
+
+            base.Dispose(type);
+        }
+
         private int OnRenderFrame(global::System.IntPtr cPtr)
         {
             if (glRenderFrameCallback != null)
