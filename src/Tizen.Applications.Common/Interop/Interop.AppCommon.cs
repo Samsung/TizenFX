@@ -113,6 +113,15 @@ internal static partial class Interop
 
         [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_time_zone")]
         internal static extern ErrorCode AppEventGetTimeZone(IntPtr handle, out string timeZone, out string timeZoneId);
+        
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_watchdog_timer_enable")]
+        internal static extern AppCommonErrorCode AppWatchdogTimerEnable();
+
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_watchdog_timer_disable")]
+        internal static extern AppCommonErrorCode AppWatchdogTimerDisable();
+
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_watchdog_timer_kick")]
+        internal static extern AppCommonErrorCode AppWatchdogTimerKick();
     }
 }
 
