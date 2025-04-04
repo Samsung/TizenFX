@@ -3,6 +3,14 @@ using System.ComponentModel;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// A class to send request about watchdog timer.
+    /// </summary>
+    /// <remarks>
+    /// This class provides functionality for managing watchdog timer of caller.
+    /// An application can toggle watchdog timer of itself.
+    /// </remarks>
+    /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class WatchdogTimer
     {
@@ -15,7 +23,7 @@ namespace Tizen.Applications
         /// Trying to disable watchdog timer already disabled will generate error.
         /// </remarks>
         /// <exception cref="InvalidOperationException">Invalid watchdog context</exception>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public static void Disable()
         {
             Interop.AppCommon.AppCommonErrorCode err = Interop.AppCommon.AppWatchdogTimerDisable();
@@ -35,7 +43,7 @@ namespace Tizen.Applications
         /// the timer will elapse and generate a signal to terminate the running application.
         /// </remarks>
         /// <exception cref="InvalidOperationException">Invalid watchdog context</exception>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public static void Enable()
         {
             Interop.AppCommon.AppCommonErrorCode err = Interop.AppCommon.AppWatchdogTimerEnable();
@@ -50,7 +58,7 @@ namespace Tizen.Applications
         /// Sends a kick request to the watchdog timer.
         /// </summary>
         /// <exception cref="InvalidOperationException">Invalid watchdog context</exception>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public static void Kick()
         {
             Interop.AppCommon.AppCommonErrorCode err = Interop.AppCommon.AppWatchdogTimerKick();
