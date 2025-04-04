@@ -29,19 +29,19 @@ namespace Tizen.NUI.Samples
 
             log.Debug(tag, $"root view added \n");
 
-            capturedView0 = new ImageView(resourcePath + "/images/image1.jpg")
+            capturedView0 = new ImageView(resourcePath + "/images/AGIF/dali-logo-anim-001.png")
             {
                 Name = "test_v0",
-                Size = new Size(100, 100),
+                Size = new Size(326, 171),
                 BackgroundColor = Color.Red,
             };
             root.Add(capturedView0);
 
-            capturedView1 = new ImageView(resourcePath + "/images/image2.jpg")
+            capturedView1 = new ImageView(resourcePath + "/images/AGIF/dog-anim-005.png")
             {
                 Name = "test_v1",
-                Size = new Size(150, 150),
-                Position = new Position(150, 150),
+                Size = new Size(256, 256),
+                Position = new Position(350, 200),
                 BackgroundColor = Color.Yellow,
             };
             root.Add(capturedView1);
@@ -77,7 +77,15 @@ namespace Tizen.NUI.Samples
                 {
                     done = true;
                     capture = new Capture();
-                    capture.Start(root, new Size(510, 510), "");
+                    if (clickCount % 2 == 0)
+                    {
+                        capture.Start(root, new Size(510, 510), "");
+                    }
+                    else
+                    {
+                        capture.Start(root, new Size(510, 510), "", Color.Blue);
+                    }
+                    clickCount++;
                     capture.Finished += onCaptureFinished;
                     log.Debug(tag, $"capture done \n");
                 }
@@ -112,6 +120,7 @@ namespace Tizen.NUI.Samples
         private Capture capture;
         private ImageView capturedImage;
         private bool done = false;
+        private int clickCount = 0;
         private string resourcePath;
     }
 }

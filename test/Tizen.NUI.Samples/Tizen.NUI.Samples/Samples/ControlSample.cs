@@ -40,6 +40,16 @@ namespace Tizen.NUI.Samples
             var animation = new Animation(2000);
             animation.AnimateTo(control, "SizeWidth", 200, 0, 1000);
             animation.AnimateTo(control, "SizeWidth", 100, 1000, 2000);
+
+            // test for backgroud color animation with key frames.
+            KeyFrames colorKeyFrames = new KeyFrames();
+            colorKeyFrames.Add(0.0f, new Vector4(0.0f, 0.0f, 1.0f, 1.0f));
+            colorKeyFrames.Add(0.25f, new Vector4(0.0f, 0.5f, 0.5f, 1.0f));
+            colorKeyFrames.Add(0.5f, new Vector4(0.5f, 0.5f, 0.0f, 1.0f));
+            colorKeyFrames.Add(0.75f, new Vector4(0.5f, 0.5f, 0.0f, 1.0f));
+            colorKeyFrames.Add(1.0f, new Vector4(1.0f, 0.0f, 0.0f, 1.0f));
+            animation.AnimateBetween(control, "BackgroundColor", colorKeyFrames, 1000, 2000);
+
             animation.Looping = true;
             animation.Play();
         }
