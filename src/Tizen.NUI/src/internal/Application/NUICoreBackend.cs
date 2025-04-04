@@ -142,8 +142,16 @@ namespace Tizen.NUI
         /// </summary>
         public void Exit()
         {
+            //This appears as an error log but actually does not indicate an error.
+            //The reason it is logged as an error is because the log level displayed in the GBM target is set to 'error' and 'fatal'.
+            //Therefore, although we have included this as an error log for debugging purposes, please note that it is not an actual error log.
+            Tizen.Log.Error("NUI", "NUICoreBackend.Exit() !");
             if (application != null)
             {
+                //This appears as an error log but actually does not indicate an error.
+                //The reason it is logged as an error is because the log level displayed in the GBM target is set to 'error' and 'fatal'.
+                //Therefore, although we have included this as an error log for debugging purposes, please note that it is not an actual error log.
+                Tizen.Log.Error("NUI", "application.Quit() !");
                 application.Quit();
             }
         }

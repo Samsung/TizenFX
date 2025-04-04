@@ -571,5 +571,12 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetDefaultAudioInputDevice(string deviceId)
+        {
+            Interop.WebSettings.SetDefaultAudioInputDevice(SwigCPtr, deviceId);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
     }
 }
