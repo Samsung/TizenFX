@@ -2350,7 +2350,8 @@ namespace Tizen.NUI.BaseComponents
             if (_border != value)
             {
                 _border = new Rectangle(value);
-                UpdateImage(NpatchImageVisualProperty.Border, new PropertyValue(_border));
+                using var pv = new PropertyValue(_border);
+                UpdateImage(NpatchImageVisualProperty.Border, pv);
             }
         }
 
