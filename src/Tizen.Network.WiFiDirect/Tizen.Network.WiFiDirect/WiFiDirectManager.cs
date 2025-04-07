@@ -1724,8 +1724,9 @@ namespace Tizen.Network.WiFiDirect
         /// <remarks>
         /// Wi-Fi Direct must be activated.
         /// <paramref name="vsie"/> for <paramref name="frameType"/> will be in effect until Wi-Fi Direct is deactivated.
-        /// A valid VSIE value if not already added, will be appended to already added VSIE values. Already present VSIE value will do nothing.
-        /// In case of invalid VSIE, an InvalidOperationException exception will thrown.
+        /// A valid value will be concatenated to already added VSIE values. If vsie value is invalid, InvalidOperationException
+        /// will be thrown. If same value for given frameType is already in effect, then there will be no change.
+        /// VSIE data structure is described in 802.11 specification.
         /// </remarks>
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
