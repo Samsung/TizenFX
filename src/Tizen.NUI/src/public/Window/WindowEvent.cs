@@ -1939,7 +1939,10 @@ namespace Tizen.NUI
             for (int i = 0; i < size; i++)
             {
                 string option = "none";
-                tmp.GetElementAt((uint)i).Get(out option);
+                using (var pv = tmp.GetElementAt((uint)i))
+                {
+                    pv.Get(out option);
+                }
                 tmpList.Add(option);
             }
 
