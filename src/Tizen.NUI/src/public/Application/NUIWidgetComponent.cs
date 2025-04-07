@@ -57,8 +57,8 @@ namespace Tizen.NUI
                     instance.GetWindow().Hide();
                     defaultWindowSet = true;
                 }
-
-                Window = new Window(new Rectangle(0, 0, width, height), false);
+                using var rect = new Rectangle(0, 0, width, height);
+                Window = new Window(rect, false);
                 Window.Show();
             }
             NUIWindowProxy = new NUIWindowProxy(Window);

@@ -499,6 +499,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 // Register new camera into Registry.
                 ret = new Animatable(cPtr, true);
+                return ret;
             }
             else
             {
@@ -506,9 +507,9 @@ namespace Tizen.NUI.BaseComponents
                 HandleRef handle = new HandleRef(this, cPtr);
                 Interop.Actor.DeleteActor(handle);
                 handle = new HandleRef(null, IntPtr.Zero);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -647,13 +648,14 @@ namespace Tizen.NUI.BaseComponents
             if (ret != null)
             {
                 Interop.BaseHandle.DeleteBaseHandle(new HandleRef(this, cPtr));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                return ret;
             }
             else
             {
                 ret = new Renderable(cPtr, true);
+                return ret;
             }
-            NDalicPINVOKE.ThrowExceptionIfExists();
-            return ret;
         }
 
         /// <summary>

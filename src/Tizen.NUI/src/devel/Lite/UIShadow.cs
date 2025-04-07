@@ -211,7 +211,13 @@ namespace Tizen.NUI
             return !operand1.Equals(operand2);
         }
 
-        internal readonly NUI.Shadow ToShadow() => new NUI.Shadow(BlurRadius, Color.ToReferenceType(), new (OffsetX, OffsetY), new (ExtraWidth, ExtraHeight));
+        internal readonly NUI.Shadow ToShadow()
+        {
+            using var color = Color.ToReferenceType();
+            using Vector2 offset = new(OffsetX, OffsetY);
+            using Vector2 extents = new(ExtraWidth, ExtraHeight);
+            return new NUI.Shadow(BlurRadius, color, offset, extents);
+        }
 
         internal readonly PropertyMap BuildMap(View attachedView)
         {
