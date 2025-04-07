@@ -904,7 +904,8 @@ namespace Tizen.NUI.Visuals
 
                 // Get type from the property map.
                 internalType = (int)Tizen.NUI.Visual.Type.Invalid;
-                if (cachedVisualPropertyMap?.Find((int)Tizen.NUI.Visual.Property.Type)?.Get(out internalType) ?? false)
+                using var pv = cachedVisualPropertyMap?.Find((int)Tizen.NUI.Visual.Property.Type);
+                if (pv?.Get(out internalType) ?? false)
                 {
                     UpdateVisualPropertyMap();
                 }
