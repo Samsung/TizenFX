@@ -36,7 +36,6 @@ namespace Tizen.NUI
         public PanGestureDetector() : this(Interop.PanGestureDetector.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
         /// <summary>
@@ -52,10 +51,28 @@ namespace Tizen.NUI
 
         internal PanGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
+            Initialized();
         }
 
         internal PanGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
+            Initialized();
+        }
+
+        private void Initialized()
+        {
+            if (HasBody())
+            {
+                if (GestureOptions.Instance.GetPanGestureMinimumTouchesRequired() > 0)
+                {
+                    SetMinimumTouchesRequired(GestureOptions.Instance.GetPanGestureMinimumTouchesRequired());
+                }
+
+                if (GestureOptions.Instance.GetPanGestureMaximumTouchesRequired() > 0)
+                {
+                    SetMaximumTouchesRequired(GestureOptions.Instance.GetPanGestureMaximumTouchesRequired());
+                }
+            }
         }
 
         private DaliEventHandler<object, DetectedEventArgs> detectedEventHandler;
