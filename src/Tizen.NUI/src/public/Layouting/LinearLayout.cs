@@ -197,7 +197,7 @@ namespace Tizen.NUI
         /// <since_tizen> 9 </since_tizen>
         public VerticalAlignment VerticalAlignment { get; set; } = VerticalAlignment.Top;
 
-        private float totalLength = 0.0f;
+        private float totalLength;
         private Size2D cellPadding = new Size2D(0, 0);
         private Orientation linearOrientation = Orientation.Horizontal;
 
@@ -333,7 +333,7 @@ namespace Tizen.NUI
             // whose width specification policy is MatchParent.
             foreach (var childLayout in LayoutChildren)
             {
-                if (!childLayout.SetPositionByLayout)
+                if (!childLayout.SetPositionByLayout || !(childLayout.Owner.Visibility))
                 {
                     continue;
                 }
@@ -407,7 +407,7 @@ namespace Tizen.NUI
             // And the widths of all weighted children are accumulated to calculate weighted width.
             foreach (var childLayout in LayoutChildren)
             {
-                if (!childLayout.SetPositionByLayout)
+                if (!childLayout.SetPositionByLayout || !(childLayout.Owner.Visibility))
                 {
                     continue;
                 }
@@ -501,7 +501,7 @@ namespace Tizen.NUI
             {
                 foreach (LayoutItem childLayout in LayoutChildren)
                 {
-                    if (!childLayout.SetPositionByLayout)
+                    if (!childLayout.SetPositionByLayout || !(childLayout.Owner.Visibility))
                     {
                         continue;
                     }
@@ -540,7 +540,7 @@ namespace Tizen.NUI
             // Decide the max height among children.
             foreach (var childLayout in LayoutChildren)
             {
-                if (!childLayout.SetPositionByLayout)
+                if (!childLayout.SetPositionByLayout || !(childLayout.Owner.Visibility))
                 {
                     continue;
                 }
@@ -598,7 +598,7 @@ namespace Tizen.NUI
             // whose height specification policy is MatchParent.
             foreach (var childLayout in LayoutChildren)
             {
-                if (!childLayout.SetPositionByLayout)
+                if (!childLayout.SetPositionByLayout || !(childLayout.Owner.Visibility))
                 {
                     continue;
                 }
@@ -672,7 +672,7 @@ namespace Tizen.NUI
             // And the heights of all weighted children are accumulated to calculate weighted height.
             foreach (var childLayout in LayoutChildren)
             {
-                if (!childLayout.SetPositionByLayout)
+                if (!childLayout.SetPositionByLayout || !(childLayout.Owner.Visibility))
                 {
                     continue;
                 }
@@ -766,7 +766,7 @@ namespace Tizen.NUI
             {
                 foreach (var childLayout in LayoutChildren)
                 {
-                    if (!childLayout.SetPositionByLayout)
+                    if (!childLayout.SetPositionByLayout || !(childLayout.Owner.Visibility))
                     {
                         continue;
                     }
@@ -804,7 +804,7 @@ namespace Tizen.NUI
             // Decide the max width among children.
             foreach (var childLayout in LayoutChildren)
             {
-                if (!childLayout.SetPositionByLayout)
+                if (!childLayout.SetPositionByLayout || !(childLayout.Owner.Visibility))
                 {
                     continue;
                 }
@@ -993,7 +993,7 @@ namespace Tizen.NUI
             MeasureSpecification uniformMeasureSpec = new MeasureSpecification(MeasuredHeight.Size, MeasureSpecification.ModeType.Exactly);
             foreach (var childLayout in LayoutChildren)
             {
-                if (!childLayout.SetPositionByLayout)
+                if (!childLayout.SetPositionByLayout || !(childLayout.Owner.Visibility))
                 {
                     continue;
                 }

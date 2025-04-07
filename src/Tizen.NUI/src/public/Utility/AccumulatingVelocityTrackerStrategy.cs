@@ -48,8 +48,8 @@ namespace Tizen.NUI.Utility
 
         private const int mHistorySize = 20;
         private uint mMaximumTime;
-        private uint mLastEventTime = 0;
-        private float mLastPosition = 0;
+        private uint mLastEventTime;
+        private float mLastPosition;
         private uint mAssumePointerStoppedTime = 40; // 40ms
         protected SortedDictionary<int, List<Movement>> mMovements;
 

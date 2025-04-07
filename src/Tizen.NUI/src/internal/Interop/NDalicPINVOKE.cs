@@ -167,7 +167,7 @@ namespace Tizen.NUI
         {
             [global::System.ThreadStatic]
             private static global::System.Exception pendingException = null;
-            private static int numExceptionsPending = 0;
+            private static int numExceptionsPending;
             private static readonly object exceptionPendingLock = new object();
 
             /// <since_tizen> 3 </since_tizen>

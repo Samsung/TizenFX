@@ -24,43 +24,8 @@ namespace Tizen.NUI
     /// Defines a value type of color.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct UIColor : IEquatable<UIColor>, IToken<UIColor>
+    public partial struct UIColor : IEquatable<UIColor>, IToken<UIColor>
     {
-        /// <summary>
-        /// The default color. (This is to distinguish from zero corners)
-        /// </summary>
-        public static readonly UIColor Default = new (-1, -1, -1, -1);
-
-        /// <summary>
-        /// The transparent color.
-        /// </summary>
-        public static readonly UIColor Transparent = new (0, 0, 0, 0);
-
-        /// <summary>
-        /// The transparent color.
-        /// </summary>
-        public static readonly UIColor Black = new (0, 0, 0, 1);
-
-        /// <summary>
-        /// The white color.
-        /// </summary>
-        public static readonly UIColor White = new (1, 1, 1, 1);
-
-        /// <summary>
-        /// The red color.
-        /// </summary>
-        public static readonly UIColor Red = new (1, 0, 0, 1);
-
-        /// <summary>
-        /// The green color.
-        /// </summary>
-        public static readonly UIColor Green = new (0, 1, 0, 1);
-
-        /// <summary>
-        /// The blue color.
-        /// </summary>
-        public static readonly UIColor Blue = new (0, 0, 1, 1);
-
         private float _r; // multiply alpha for token
         private float _g; // fixed alpha for token
         private float _b;
@@ -121,10 +86,6 @@ namespace Tizen.NUI
             _b = 0f;
             _a = 0f;
             _tokenId = tokenId;
-        }
-
-        internal UIColor(NUI.Vector4 vector4) : this(vector4.X, vector4.Y, vector4.Z, vector4.W)
-        {
         }
 
         /// <summary>
@@ -230,6 +191,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="id">The unique identifier of the token.</param>
         public static UIColor Token(string id) => new (id, 1f);
+
+        internal static UIColor From(NUI.Vector4 vector4) => new UIColor(vector4.X, vector4.Y, vector4.Z, vector4.W);
 
         /// <summary>
         /// Compares two UIColor for equality.

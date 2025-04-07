@@ -99,18 +99,18 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FillVerticalProperty = null;
 
-        private static Dictionary<View, View> leftTargetMap = null;
-        private static Dictionary<View, View> rightTargetMap = null;
-        private static Dictionary<View, View> topTargetMap = null;
-        private static Dictionary<View, View> bottomTargetMap = null;
-        private static Dictionary<View, float> leftRelativeOffsetMap = null;
-        private static Dictionary<View, float> rightRelativeOffsetMap = null;
-        private static Dictionary<View, float> topRelativeOffsetMap = null;
-        private static Dictionary<View, float> bottomRelativeOffsetMap = null;
-        private static Dictionary<View, Alignment> horizontalAlignmentMap = null;
-        private static Dictionary<View, Alignment> verticalAlignmentMap = null;
-        private static Dictionary<View, bool> fillHorizontalMap = null;
-        private static Dictionary<View, bool> fillVerticalMap = null;
+        private static Dictionary<View, View> leftTargetMap;
+        private static Dictionary<View, View> rightTargetMap;
+        private static Dictionary<View, View> topTargetMap;
+        private static Dictionary<View, View> bottomTargetMap;
+        private static Dictionary<View, float> leftRelativeOffsetMap;
+        private static Dictionary<View, float> rightRelativeOffsetMap;
+        private static Dictionary<View, float> topRelativeOffsetMap;
+        private static Dictionary<View, float> bottomRelativeOffsetMap;
+        private static Dictionary<View, Alignment> horizontalAlignmentMap;
+        private static Dictionary<View, Alignment> verticalAlignmentMap;
+        private static Dictionary<View, bool> fillHorizontalMap;
+        private static Dictionary<View, bool> fillVerticalMap;
 
         static RelativeLayout()
         {
@@ -484,8 +484,9 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 leftTargetMap[view] = reference;
-                OnChildPropertyChanged(view, null, reference);
+                view.Layout?.RequestLayout();
             }
         }
 
@@ -505,8 +506,9 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 rightTargetMap[view] = reference;
-                OnChildPropertyChanged(view, null, reference);
+                view.Layout?.RequestLayout();
             }
         }
 
@@ -526,8 +528,9 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 topTargetMap[view] = reference;
-                OnChildPropertyChanged(view, null, reference);
+                view.Layout?.RequestLayout();
             }
         }
 
@@ -547,8 +550,9 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 bottomTargetMap[view] = reference;
-                OnChildPropertyChanged(view, null, reference);
+                view.Layout?.RequestLayout();
             }
         }
 
@@ -569,8 +573,9 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 leftRelativeOffsetMap[view] = value;
-                OnChildPropertyChanged(view, null, value);
+                view.Layout?.RequestLayout();
             }
         }
 
@@ -591,8 +596,9 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 rightRelativeOffsetMap[view] = value;
-                OnChildPropertyChanged(view, null, value);
+                view.Layout?.RequestLayout();
             }
         }
 
@@ -613,8 +619,9 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 topRelativeOffsetMap[view] = value;
-                OnChildPropertyChanged(view, null, value);
+                view.Layout?.RequestLayout();
             }
         }
 
@@ -635,8 +642,9 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 bottomRelativeOffsetMap[view] = value;
-                OnChildPropertyChanged(view, null, value);
+                view.Layout?.RequestLayout();
             }
         }
 
@@ -655,8 +663,9 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 horizontalAlignmentMap[view] = value;
-                OnChildPropertyChanged(view, null, value);
+                view.Layout?.RequestLayout();
             }
         }
 
@@ -675,8 +684,9 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 verticalAlignmentMap[view] = value;
-                OnChildPropertyChanged(view, null, value);
+                view.Layout?.RequestLayout();
             }
         }
 
@@ -695,8 +705,9 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 fillHorizontalMap[view] = value;
-                OnChildPropertyChanged(view, null, value);
+                view.Layout?.RequestLayout();
             }
         }
 
@@ -715,8 +726,9 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 fillVerticalMap[view] = value;
-                OnChildPropertyChanged(view, null, value);
+                view.Layout?.RequestLayout();
             }
         }
 

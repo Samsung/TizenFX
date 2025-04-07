@@ -921,6 +921,7 @@ namespace Tizen.NUI
         internal static new void Preload()
         {
             // Do nothing. Just call for load static values.
+            UIColor.Preload();
         }
 
         /// <summary>

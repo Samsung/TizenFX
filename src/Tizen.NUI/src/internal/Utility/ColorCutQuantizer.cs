@@ -24,7 +24,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Concurrent;
 using System.Linq;
 
 namespace Tizen.NUI
@@ -37,8 +36,8 @@ namespace Tizen.NUI
         private const int componentGreen = -2;
         private const int componentBlue = -1;
 
-        private static ConcurrentDictionary<int, int> colorPopulations;
-        private static int[] colors;
+        private Dictionary<int, int> colorPopulations;
+        private int[] colors;
         private List<Palette.Swatch> quantizedColors;
         private float[] tempHsl = new float[3];
 
@@ -60,11 +59,11 @@ namespace Tizen.NUI
 
             // First, lets pack the populations into a SparseIntArray so that they can be easily
             // retrieved without knowing a color's index
-            colorPopulations = new ConcurrentDictionary<int, int>();
+            colorPopulations = new Dictionary<int, int>();
 
             for (int i = 0; i < rawColors.Length; i++)
             {
-                colorPopulations.TryAdd(rawColors[i], rawColorCounts[i]);
+                colorPopulations.Add(rawColors[i], rawColorCounts[i]);
             }
 
             // Now go through all of the colors and keep those which we do not want to ignore
@@ -102,7 +101,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Factory-method to generate a ColorCutQuantizer from a  PixelBuffer object.
         /// </summary>
-      public static ColorCutQuantizer FromBitmap(PixelBuffer pixelBuffer, Rectangle region, int maxColors)
+        public static ColorCutQuantizer FromBitmap(PixelBuffer pixelBuffer, Rectangle region, int maxColors)
         {
             int width;
             int height;
@@ -158,7 +157,7 @@ namespace Tizen.NUI
             // split the largest box in the queue
             CustomHeap<Vbox> customHeap = new CustomHeap<Vbox>(new VboxComparatorVolume());
             // To start, offer a box which contains all of the colors
-            customHeap.Offer(new Vbox(0, maxColorIndex));
+            customHeap.Offer(new Vbox(0, maxColorIndex, this));
             // Now go through the boxes, splitting them until we have reached maxColors or there are no
             // more boxes to split
             SplitBoxes(customHeap, maxColors);
@@ -262,7 +261,7 @@ namespace Tizen.NUI
             private const int minGrow = 1;
 
             private int capacity = initialcapacity;
-            private int tail = 0;
+            private int tail;
             private T[] heap = Array.Empty<T>();
 
             public CustomHeap(Comparer<T> comparer)
@@ -407,10 +406,13 @@ namespace Tizen.NUI
             private int upperIndex;
             private int minRed, maxRed, minGreen, maxGreen, minBlue, maxBlue;
 
-            public Vbox(int lowerIndex, int upperIndex)
+            private ColorCutQuantizer colorCutQuantizer; // Keep owner to get raw color array and populations.
+
+            public Vbox(int lowerIndex, int upperIndex, ColorCutQuantizer colorCutQuantizer)
             {
                 this.lowerIndex = lowerIndex;
                 this.upperIndex = upperIndex;
+                this.colorCutQuantizer = colorCutQuantizer;
                 FitBox();
             }
 
@@ -434,6 +436,8 @@ namespace Tizen.NUI
             /// </summary>
             public void FitBox()
             {
+                var colors = colorCutQuantizer.colors;
+
                 // Reset the min and max to opposite values
                 minRed = minGreen = minBlue = 0xff;
                 maxRed = maxGreen = maxBlue = 0x0;
@@ -467,7 +471,7 @@ namespace Tizen.NUI
                 // find median along the longest dimension
                 int splitPoint = FindSplitPoint();
 
-                Vbox newBox = new Vbox(splitPoint + 1, upperIndex);
+                Vbox newBox = new Vbox(splitPoint + 1, upperIndex, colorCutQuantizer);
                 // Now change this box's upperIndex and recompute the color boundaries
                 upperIndex = splitPoint;
                 FitBox();
@@ -516,8 +520,9 @@ namespace Tizen.NUI
                 // it's most significant is the desired dimension
                 ModifySignificantOctet(longestDimension, lowerIndex, upperIndex);
 
+                var colors = colorCutQuantizer.colors;
                 Array.Sort(colors, lowerIndex, upperIndex + 1 - lowerIndex);
-                
+
                 // Now revert all of the colors so that they are packed as RGB again
                 ModifySignificantOctet(longestDimension, lowerIndex, upperIndex);
 
@@ -559,6 +564,9 @@ namespace Tizen.NUI
                 int greenSum = 0;
                 int blueSum = 0;
                 int totalPopulation = 0;
+
+                var colorPopulations = colorCutQuantizer.colorPopulations;
+                var colors = colorCutQuantizer.colors;
 
                 for (int i = lowerIndex; i <= upperIndex; i++)
                 {
@@ -604,10 +612,15 @@ namespace Tizen.NUI
                 switch (dimension)
                 {
                     case componentRed:
+                    {
                         // Already in RGB, no need to do anything
                         break;
+                    }
                     case componentGreen:
+                    {
                         // We need to do a RGB to GRB swap, or vice-versa
+                        var colors = colorCutQuantizer.colors;
+
                         for (int i = lowIndex; i <= highIndex; i++)
                         {
                             int color = colors[i];
@@ -620,10 +633,13 @@ namespace Tizen.NUI
                                 colors[i] = (color >> 24 & 0xff) << 24 | (color >> 8 & 0xff) << 16 | (color >> 16 & 0xff) << 8 | (color & 0xff);
                             }
                         }
-
                         break;
+                    }
                     case componentBlue:
+                    {
                         // We need to do a RGB to BGR swap, or vice-versa
+                        var colors = colorCutQuantizer.colors;
+
                         for (int i = lowIndex; i <= highIndex; i++)
                         {
                             int color = colors[i];
@@ -637,6 +653,7 @@ namespace Tizen.NUI
                             }
                         }
                         break;
+                    }
                 }
             }
         }

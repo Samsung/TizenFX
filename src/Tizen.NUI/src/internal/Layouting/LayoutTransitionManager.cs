@@ -23,7 +23,7 @@ namespace Tizen.NUI
 {
     internal class LayoutTransitionManager : Disposable
     {
-        private bool overrideCoreAnimation = false;
+        private bool overrideCoreAnimation;
         private Animation coreAnimation;
         private List<LayoutData> layoutTransitionDataQueue;
         private List<LayoutItem> itemRemovalQueue;

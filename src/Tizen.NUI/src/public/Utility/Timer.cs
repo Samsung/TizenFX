@@ -35,7 +35,7 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Timer : BaseHandle
     {
-        private bool played = false;
+        private bool played;
         private EventHandlerWithReturnType<object, TickEventArgs, bool> timerTickEventHandler;
         private TickCallbackDelegate timerTickCallbackDelegate;
 

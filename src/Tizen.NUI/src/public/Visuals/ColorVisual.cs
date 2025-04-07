@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class ColorVisual : VisualMap
     {
-        private Color mixColorForColorVisual = null;
+        private Color mixColorForColorVisual;
         private bool? renderIfTransparent = false;
 
         /// <summary>

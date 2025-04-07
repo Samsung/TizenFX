@@ -547,6 +547,6 @@ namespace Tizen.NUI
             depth = d;
         }
 
-        private SizeChangedCallback callback = null;
+        private SizeChangedCallback callback;
     }
 }

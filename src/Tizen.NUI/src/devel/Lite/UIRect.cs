@@ -18,12 +18,12 @@ using System.ComponentModel;
 using System.Globalization;
 
 namespace Tizen.NUI
-{   
+{
     /// <summary>
     /// Represents a rectangular area by defining its position and size.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct UIRect
+    public struct UIRect : IEquatable<UIRect>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UIRect"/> struct.
@@ -43,27 +43,27 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the x-coordinate of the upper-left corner of the rectangle.
         /// </summary>
-        public float X { get; set; }
+        public float X { get; init; }
 
         /// <summary>
         /// Gets or sets the y-coordinate of the upper-left corner of the rectangle.
         /// </summary>
-        public float Y { get; set; }
+        public float Y { get; init; }
 
         /// <summary>
         /// Gets or sets the width of the rectangle.
         /// </summary>
-        public float Width { get; set; }
+        public float Width { get; init; }
 
         /// <summary>
         /// Gets or sets the height of the rectangle.
         /// </summary>
-        public float Height { get; set; }
+        public float Height { get; init; }
 
         /// <summary>
         /// Gets a <see cref="UIRect"/> structure with all coordinates and sizes set to zero.
         /// </summary>
-        public static UIRect Zero = new UIRect();
+        public static readonly UIRect Zero;
 
         /// <summary>
         /// Gets the y-coordinate of the top edge of the rectangle.
@@ -96,7 +96,7 @@ namespace Tizen.NUI
         public UIVector2 Size
         {
             get => new UIVector2(Width, Height);
-            set
+            init
             {
                 Width = value.Width;
                 Height = value.Height;
@@ -109,7 +109,7 @@ namespace Tizen.NUI
         public UIVector2 Location
         {
             get => new UIVector2(X, Y);
-            set
+            init
             {
                 X = value.X;
                 Y = value.Y;
@@ -272,12 +272,13 @@ namespace Tizen.NUI
         /// <returns>A new rectangle that represents the inflated version of the current rectangle.</returns>
         public UIRect Inflate(float width, float height)
         {
-            UIRect r = this;
-            r.X -= width;
-            r.Y -= height;
-            r.Width += width * 2;
-            r.Height += height * 2;
-            return r;
+            return new ()
+            {
+                X = X - width,
+                Y = Y - height,
+                Width = Width + width * 2,
+                Height = Height + height * 2
+            };
         }
 
         /// <summary>
@@ -288,10 +289,13 @@ namespace Tizen.NUI
         /// <returns>A new rectangle with the offset applied.</returns>
         public UIRect Offset(float dx, float dy)
         {
-            UIRect r = this;
-            r.X += dx;
-            r.Y += dy;
-            return r;
+            return new ()
+            {
+                X = X + dx,
+                Y = Y + dy,
+                Width = Width,
+                Height = Height
+            };
         }
 
         /// <summary>

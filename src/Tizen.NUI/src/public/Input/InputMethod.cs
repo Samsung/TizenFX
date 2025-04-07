@@ -22,10 +22,10 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class InputMethod
     {
-        private PanelLayoutType? panelLayout = null;
-        private ActionButtonTitleType? actionButton = null;
-        private AutoCapitalType? autoCapital = null;
-        private int? variation = null;
+        private PanelLayoutType? panelLayout;
+        private ActionButtonTitleType? actionButton;
+        private AutoCapitalType? autoCapital;
+        private int? variation;
 
         /// <summary>
         /// The default constructor of InputMethod.

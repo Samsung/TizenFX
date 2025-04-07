@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,8 +22,11 @@ namespace Tizen.NUI
     /// Sampler is a handle to an object that can be used to provide the sampling parameters to sample textures.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class Sampler : BaseHandle
+    public partial class Sampler : BaseHandle
     {
+        private SamplerFilter minificationFilter = SamplerFilter.Linear;
+        private SamplerFilter magnificationFilter = SamplerFilter.Linear;
+        private MipmapFilter mipmapFilter = MipmapFilter.None;
 
         /// <summary>
         /// Create an instance of Sampler.
@@ -35,15 +38,54 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets the filter modes for this sampler.
+        /// Determines how a texture is sampled when scaled down
         /// </summary>
-        /// <param name="minFilter">The minification filter that will be used.</param>
-        /// <param name="magFilter">The magnification filter that will be used.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void SetFilterMode(FilterModeType minFilter, FilterModeType magFilter)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SamplerFilter MinificationFilter
         {
-            Interop.Sampler.SetFilterMode(SwigCPtr, (int)minFilter, (int)magFilter);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            get => minificationFilter;
+            set
+            {
+                if (minificationFilter != value)
+                {
+                    minificationFilter = value;
+                    SetFilterMode(SamplerUtility.GetPresetFilter(minificationFilter, mipmapFilter), SamplerUtility.GetPresetFilter(magnificationFilter));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Determines how a texture is sampled when scaled up
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SamplerFilter MagnificationFilter
+        {
+            get => magnificationFilter;
+            set
+            {
+                if (magnificationFilter != value)
+                {
+                    magnificationFilter = value;
+                    SetFilterMode(SamplerUtility.GetPresetFilter(minificationFilter, mipmapFilter), SamplerUtility.GetPresetFilter(magnificationFilter));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Specifies how mipmaps are used for texture sampling
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public MipmapFilter MipmapFilter
+        {
+            get => mipmapFilter;
+            set
+            {
+                if (mipmapFilter != value)
+                {
+                    mipmapFilter = value;
+                    SetFilterMode(SamplerUtility.GetPresetFilter(minificationFilter, mipmapFilter), SamplerUtility.GetPresetFilter(magnificationFilter));
+                }
+            }
         }
 
         /// <summary>
@@ -68,6 +110,17 @@ namespace Tizen.NUI
         public void SetWrapMode(WrapModeType rWrap, WrapModeType sWrap, WrapModeType tWrap)
         {
             Interop.Sampler.SetWrapMode(SwigCPtr, (int)rWrap, (int)sWrap, (int)tWrap);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets the filter modes for this sampler.
+        /// </summary>
+        /// <param name="minFilter">The minification filter that will be used.</param>
+        /// <param name="magFilter">The magnification filter that will be used.</param>
+        private void SetFilterMode(SamplerUtility.PresetFilter minFilter, SamplerUtility.PresetFilter magFilter)
+        {
+            Interop.Sampler.SetFilterMode(SwigCPtr, (int)minFilter, (int)magFilter);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

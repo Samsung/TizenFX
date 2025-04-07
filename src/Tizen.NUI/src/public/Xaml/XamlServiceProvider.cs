@@ -127,7 +127,7 @@ namespace Tizen.NUI.Xaml
 
         HydrationContext Context { get; }
         public object TargetObject { get; }
-        public object TargetProperty { get; internal set; } = null;
+        public object TargetProperty { get; internal set; }
 
         IEnumerable<object> IProvideParentValues.ParentObjects
         {

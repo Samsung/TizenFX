@@ -23,9 +23,9 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class NPatchVisual : VisualMap
     {
-        private string url = null;
-        private bool? borderOnly = null;
-        private Rectangle border = null;
+        private string url;
+        private bool? borderOnly;
+        private Rectangle border;
 
         /// <summary>
         /// Default constructor of NPatchVisual class.

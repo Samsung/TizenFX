@@ -504,7 +504,7 @@ namespace Tizen.NUI.Extension
         public static UIColor TextColor(this TextLabel view)
         {
             //FIXME: we need to set UI value type directly without converting reference value.
-            return new UIColor(view.TextColor);
+            return UIColor.From(view.TextColor);
         }
     }
 }

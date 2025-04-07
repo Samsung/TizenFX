@@ -36,7 +36,7 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public BindableProperty Property { get; set; }
 
-        private bool isOriginalValue = false;
+        private bool isOriginalValue;
         private object value;
 
         [EditorBrowsable(EditorBrowsableState.Never)]

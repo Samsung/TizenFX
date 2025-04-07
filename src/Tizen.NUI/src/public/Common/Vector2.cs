@@ -115,7 +115,7 @@ namespace Tizen.NUI
         }
 
         internal delegate void Vector2ChangedCallback(float x, float y);
-        private Vector2ChangedCallback callback = null;
+        private Vector2ChangedCallback callback;
 
         /// <summary>
         /// Returns a Vector2 instance where both the x and y components are set to 1.0f.

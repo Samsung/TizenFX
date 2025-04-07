@@ -648,7 +648,7 @@ namespace Tizen.NUI.Extension
             var color = view.Color;
 
             //FIXME: we need to set UI value type directly without converting reference value.
-            return color != null ? new UIColor(color) : UIColor.Transparent;
+            return color != null ? UIColor.From(color) : UIColor.Transparent;
         }
 
         /// <summary>
@@ -693,7 +693,7 @@ namespace Tizen.NUI.Extension
             var color = view.BorderlineColor;
 
             //FIXME: we need to set UI value type directly without converting reference value.
-            return color != null ? new UIColor(color) : UIColor.Transparent;
+            return color != null ? UIColor.From(color) : UIColor.Transparent;
         }
     }
 }

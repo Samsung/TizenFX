@@ -23,9 +23,9 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class BorderVisual : VisualMap
     {
-        private Color color = null;
-        private float? size = null;
-        private bool? antiAliasing = null;
+        private Color color;
+        private float? size;
+        private bool? antiAliasing;
 
         /// <summary>
         /// Default constructor of BorderVisual class.

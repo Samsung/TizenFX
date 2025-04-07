@@ -39,7 +39,7 @@ namespace Tizen.NUI
     /// </summary>
     public class LayoutItem : IDisposable
     {
-        private bool disposed = false;
+        private bool disposed;
         private MeasureSpecification oldWidthMeasureSpec; // Store measure specification to compare against later
         private MeasureSpecification oldHeightMeasureSpec; // Store measure specification to compare against later
 
@@ -52,7 +52,7 @@ namespace Tizen.NUI
         private Extents padding;
         private Extents margin;
 
-        private bool parentReplacement = false;
+        private bool parentReplacement;
         private bool setPositionByLayout = true;
 
         /// <summary>

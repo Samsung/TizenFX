@@ -81,20 +81,20 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public const int AutoRow = int.MinValue;
 
-        private static Dictionary<View, int> columnMap = null;
-        private static Dictionary<View, int> columnSpanMap = null;
-        private static Dictionary<View, int> rowMap = null;
-        private static Dictionary<View, int> rowSpanMap = null;
-        private static Dictionary<View, StretchFlags> horizontalStretchMap = null;
-        private static Dictionary<View, StretchFlags> verticalStretchMap = null;
-        private static Dictionary<View, Alignment> horizontalAlignmentMap  = null;
-        private static Dictionary<View, Alignment> verticalAlignmentMap = null;
+        private static Dictionary<View, int> columnMap;
+        private static Dictionary<View, int> columnSpanMap;
+        private static Dictionary<View, int> rowMap;
+        private static Dictionary<View, int> rowSpanMap;
+        private static Dictionary<View, StretchFlags> horizontalStretchMap;
+        private static Dictionary<View, StretchFlags> verticalStretchMap;
+        private static Dictionary<View, Alignment> horizontalAlignmentMap;
+        private static Dictionary<View, Alignment> verticalAlignmentMap;
 
         private Orientation gridOrientation = Orientation.Horizontal;
         private int columns = 1;
         private int rows = 1;
-        private float columnSpacing = 0;
-        private float rowSpacing = 0;
+        private float columnSpacing;
+        private float rowSpacing;
 
         /// <summary>
         /// Enumeration for the direction in which the content is laid out
@@ -337,10 +337,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= 0)
                 {
                     columnMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -361,10 +362,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= 1)
                 {
                     columnSpanMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -386,10 +388,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= 0)
                 {
                     rowMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -410,10 +413,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= 1)
                 {
                     rowSpanMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -434,10 +438,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= StretchFlags.None && value <= StretchFlags.ExpandAndFill)
                 {
                     horizontalStretchMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -458,10 +463,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= StretchFlags.None && value <= StretchFlags.ExpandAndFill)
                 {
                     verticalStretchMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -482,10 +488,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= Alignment.Start && value <= Alignment.End)
                 {
                     horizontalAlignmentMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -506,10 +513,11 @@ namespace Tizen.NUI
             }
             else
             {
+                _ = view ?? throw new ArgumentNullException(nameof(view));
                 if (value >= Alignment.Start && value <= Alignment.End)
                 {
                     verticalAlignmentMap[view] = value;
-                    OnChildPropertyChanged(view, null, value);
+                    view.Layout?.RequestLayout();
                 }
             }
         }
@@ -748,7 +756,7 @@ namespace Tizen.NUI
                     // because the grand children's Measure() is called with the mode type AtMost.
                     var layoutWidth = child.LayoutItem.Owner.LayoutWidth;
                     var layoutHeight = child.LayoutItem.Owner.LayoutHeight;
-                    Size2D origSize = new Size2D(child.LayoutItem.Owner.Size2D.Width, child.LayoutItem.Owner.Size2D.Height);
+                    using Size2D origSize = new Size2D(child.LayoutItem.Owner.Size2D.Width, child.LayoutItem.Owner.Size2D.Height);
 
                     if (needMeasuredWidth)
                     {

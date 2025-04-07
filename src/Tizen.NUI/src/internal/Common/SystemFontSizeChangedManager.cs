@@ -28,6 +28,9 @@ namespace Tizen.NUI
     /// </summary>
     internal static class SystemFontSizeChangedManager
     {
+        private static SystemSettingsFontSize? fontSize;
+        private static WeakEvent<EventHandler<FontSizeChangedEventArgs>> proxy = new WeakEvent<EventHandler<FontSizeChangedEventArgs>>();
+
         static SystemFontSizeChangedManager()
         {
             SystemSettings.FontSizeChanged += SystemFontSizeChanged;
@@ -74,8 +77,5 @@ namespace Tizen.NUI
                 return fontSize ?? SystemSettingsFontSize.Normal;
             }
         }
-
-        private static SystemSettingsFontSize? fontSize = null;
-        private static WeakEvent<EventHandler<FontSizeChangedEventArgs>> proxy = new WeakEvent<EventHandler<FontSizeChangedEventArgs>>();
     }
 }
