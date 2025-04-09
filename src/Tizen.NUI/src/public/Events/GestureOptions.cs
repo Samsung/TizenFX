@@ -279,7 +279,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets the maximum number of touches required for the pan gesture to be detected.
         /// </summary>
-        /// <param name="minimum"></param>
+        /// <param name="maximum"></param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetPanGestureMaximumTouchesRequired(uint maximum)
         {
