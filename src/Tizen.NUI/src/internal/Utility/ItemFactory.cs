@@ -73,11 +73,11 @@ namespace Tizen.NUI
         private void SwigDirectorConnect()
         {
             if (SwigDerivedClassHasMethod("GetNumberOfItems", swigMethodTypes0))
-                swigDelegate0 = new SwigDelegateItemFactory_0(SwigDirectorGetNumberOfItems);
+                swigDelegate0 = new SwigDelegateItemFactory0(SwigDirectorGetNumberOfItems);
             if (SwigDerivedClassHasMethod("NewItem", swigMethodTypes1))
-                swigDelegate1 = new SwigDelegateItemFactory_1(SwigDirectorNewItem);
+                swigDelegate1 = new SwigDelegateItemFactory1(SwigDirectorNewItem);
             if (SwigDerivedClassHasMethod("ItemReleased", swigMethodTypes2))
-                swigDelegate2 = new SwigDelegateItemFactory_2(SwigDirectorItemReleased);
+                swigDelegate2 = new SwigDelegateItemFactory2(SwigDirectorItemReleased);
             Interop.ItemFactory.DirectorConnect(SwigCPtr, swigDelegate0, swigDelegate1, swigDelegate2);
         }
 
@@ -106,19 +106,19 @@ namespace Tizen.NUI
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate uint SwigDelegateItemFactory_0();
+        public delegate uint SwigDelegateItemFactory0();
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate global::System.IntPtr SwigDelegateItemFactory_1(uint itemId);
+        public delegate global::System.IntPtr SwigDelegateItemFactory1(uint itemId);
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void SwigDelegateItemFactory_2(uint itemId, global::System.IntPtr actor);
+        public delegate void SwigDelegateItemFactory2(uint itemId, global::System.IntPtr actor);
 
-        private SwigDelegateItemFactory_0 swigDelegate0;
-        private SwigDelegateItemFactory_1 swigDelegate1;
-        private SwigDelegateItemFactory_2 swigDelegate2;
+        private SwigDelegateItemFactory0 swigDelegate0;
+        private SwigDelegateItemFactory1 swigDelegate1;
+        private SwigDelegateItemFactory2 swigDelegate2;
 
         private static global::System.Type[] swigMethodTypes0 = System.Array.Empty<global::System.Type>();
         private static global::System.Type[] swigMethodTypes1 = new global::System.Type[] { typeof(uint) };

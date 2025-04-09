@@ -159,7 +159,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Represents a <see cref="UIExtents"/> with all values set to 0.
         /// </summary>
-        public static UIExtents Zero = new UIExtents(0);
+        public static readonly UIExtents Zero = new (0);
 
         /// <summary>
         /// Adds the specified <see cref="float"/> to each component of the <see cref="UIExtents"/>.

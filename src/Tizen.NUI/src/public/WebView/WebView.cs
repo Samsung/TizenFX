@@ -170,6 +170,9 @@ namespace Tizen.NUI.BaseComponents
         private WebContext webContext;
         private WebCookieManager webCookieManager;
 
+        private EventHandler<WebViewDeviceConnectionChangedEventArgs> deviceConnectionChangedEventHandler;
+        private webViewDeviceConnectionChangedCallback deviceConnectionChangedCallback;
+
         /// <summary>
         /// Default constructor to create a WebView.
         /// </summary>
@@ -439,6 +442,22 @@ namespace Tizen.NUI.BaseComponents
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewUserMediaPermissionRequestCallback(IntPtr permission, string message);
        
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void webViewDeviceConnectionChangedCallback(int deviceType);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void internalWebViewDeviceListGetCallback(IntPtr list, int size);
+        private internalWebViewDeviceListGetCallback internalDeviceListGetCallback;
+
+        /// <summary>
+        /// The callback to receive the list of currently connected devices
+        /// </summary>
+        /// <param name="list">the list of currently connected devices</param>
+        /// <param name="size">the number of currently connected devices</param>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void WebViewDeviceListGetCallback(WebDeviceList list, int size);
+        private WebViewDeviceListGetCallback deviceListGetCallbackForUser;
 
         /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
@@ -1110,6 +1129,50 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// This event is triggered when the connected devices change, such as when a new device is connected or an already connected device is disconnected
+        /// </summary>
+        /// <remarks>
+        /// In the handler of this event, you can set the callback method in the SetDeviceListGetCallback method to receive the list of currently connected devices
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewDeviceConnectionChangedEventArgs> DeviceConnectionChanged
+        {
+            add
+            {
+                if (deviceConnectionChangedEventHandler == null)
+                {
+                    deviceConnectionChangedCallback = OnDeviceConnectionChanged;
+                    Interop.WebView.RegisterDeviceConnectionChangedCallback(SwigCPtr, Marshal.GetFunctionPointerForDelegate(deviceConnectionChangedCallback));
+                }
+                deviceConnectionChangedEventHandler += value;
+            }
+            remove
+            {
+                deviceConnectionChangedEventHandler -= value;
+                if (deviceConnectionChangedEventHandler == null)
+                {
+                    Interop.WebView.RegisterDeviceConnectionChangedCallback(SwigCPtr, IntPtr.Zero);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Set a callback method in this method to receive the list of currently connected devices
+        /// </summary>
+        /// <param name="callback">The callback to get the device list</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetDeviceListGetCallback(WebViewDeviceListGetCallback callback)
+        {
+            deviceListGetCallbackForUser = callback;
+            internalDeviceListGetCallback ??= deviceListGet;
+            Interop.WebView.RegisterDeviceListGetCallback(SwigCPtr, Marshal.GetFunctionPointerForDelegate(internalDeviceListGetCallback));
+        }
+
+        private void deviceListGet(IntPtr list, int size)
+        {
+            deviceListGetCallbackForUser?.Invoke(new WebDeviceList(list, true), size);
+        }
 
         /// <summary>
         /// Options for searching texts.
@@ -2998,6 +3061,28 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Feed mouse wheel event forcefully.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void FeedMouseWheel(bool yDirection, int step, int x, int y)
+        {
+            Interop.WebView.FeedMouseWheel(SwigCPtr, yDirection, step, x, y);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Enable video hole for a specific window type.
+        /// </summary>
+        /// <param name="enable">true if enabled, false othewise</param>
+        /// <param name="isWaylandWindow">true if wayland window, false if EFL window.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetVideoHole(bool enable, bool isWaylandWindow)
+        {
+            Interop.WebView.SetVideoHole(SwigCPtr, enable, isWaylandWindow);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal static WebView DownCast(BaseHandle handle)
         {
             WebView ret = new WebView(Interop.WebView.DownCast(BaseHandle.getCPtr(handle)), true);
@@ -3010,28 +3095,6 @@ namespace Tizen.NUI.BaseComponents
             WebView ret = new WebView(Interop.WebView.Assign(SwigCPtr, WebView.getCPtr(webView)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal override void ApplyCornerRadius()
-        {
-            base.ApplyCornerRadius();
-
-            if (backgroundExtraData == null) 
-            {
-                return;
-            }
-
-            // Update corner radius properties to webView by ActionUpdateProperty
-            if (backgroundExtraData.CornerRadius != null)
-            {
-                _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
-            }
-            if (backgroundExtraData.CornerSquareness != null)
-            {
-                _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
-            }
-            _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
         }
 
         private void OnPageLoadStarted(string pageUrl)
@@ -3177,6 +3240,11 @@ namespace Tizen.NUI.BaseComponents
         private void OnUserMediaPermissionRequset(IntPtr permission, string message)
         {
             userMediaPermissionRequestEventHandler?.Invoke(this, new WebViewUserMediaPermissionRequestEventArgs(new WebUserMediaPermissionRequest(permission, true), message));
+        }
+
+        private void OnDeviceConnectionChanged(int deviceType)
+        {
+            deviceConnectionChangedEventHandler?.Invoke(this, new WebViewDeviceConnectionChangedEventArgs(deviceType));
         }
 
     }

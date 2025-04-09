@@ -55,6 +55,7 @@ namespace Tizen.NUI
             /// <since_tizen> 3 </since_tizen>
             public enum Value
             {
+#pragma warning disable CA1707 // Identifiers should not contain underscores
                 /// <summary>
                 /// No hints.
                 /// </summary>
@@ -72,6 +73,7 @@ namespace Tizen.NUI
                 /// </summary>
                 /// <since_tizen> 3 </since_tizen>
                 MODIFIES_GEOMETRY = 0x02
+#pragma warning restore CA1707 // Identifiers should not contain underscores
             }
         }
     }

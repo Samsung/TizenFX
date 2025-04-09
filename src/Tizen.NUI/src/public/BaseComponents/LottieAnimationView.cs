@@ -242,10 +242,6 @@ namespace Tizen.NUI.BaseComponents
 
                 if (backgroundExtraData != null)
                 {
-                    if (backgroundExtraData.CornerRadius != null || backgroundExtraData.CornerSquareness != null)
-                    {
-                        UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.ContentsCornerRadius);
-                    }
                     if (backgroundExtraData.BorderlineWidth > 0.0f)
                     {
                         UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.ContentsBorderline);
@@ -1660,7 +1656,7 @@ namespace Tizen.NUI.BaseComponents
         private VisualEventSignalCallbackType visualEventSignalCallback;
         private EventHandler<VisualEventSignalArgs> visualEventSignalHandler;
 
-        static private int dynamicPropertyCallbackId = 0;
+        static private int dynamicPropertyCallbackId;
         //static private Dictionary<int, DynamicPropertyCallbackType> dynamicPropertyCallbacks = new Dictionary<int, DynamicPropertyCallbackType>();
         static private ConcurrentDictionary<int, WeakReference<LottieAnimationView>> weakReferencesOfLottie = new ConcurrentDictionary<int, WeakReference<LottieAnimationView>>();
 

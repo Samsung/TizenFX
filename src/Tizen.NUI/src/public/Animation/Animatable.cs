@@ -16,6 +16,7 @@
  */
 using System.ComponentModel;
 using System.Text;
+using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI
 {
@@ -98,7 +99,9 @@ namespace Tizen.NUI
             /// New properties are registered by calling RegisterProperty() with an unused property name.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+#pragma warning disable CA1707 // Identifiers should not contain underscores
             DYNAMIC_PROPERTIES = 0x01
+#pragma warning restore CA1707 // Identifiers should not contain underscores
         }
 
         /// <summary>
@@ -320,11 +323,17 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private static string LowerFirstLetter(string original)
+        private static unsafe string LowerFirstLetter(string original)
         {
-            StringBuilder sb = new StringBuilder(original);
-            sb[0] = (char)(sb[0] | 0x20);
-            return sb.ToString();
+            if (string.IsNullOrEmpty(original) || char.IsLower(original[0]))
+                return original;
+
+            fixed (char* chars = original)
+            {
+                chars[0] = char.ToLower(chars[0]);
+            }
+
+            return original;
         }
 
         /// This will not be public opened.

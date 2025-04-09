@@ -244,16 +244,15 @@ namespace Tizen.NUI.BaseComponents
 
         static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextLabel";
         static private string defaultFontFamily = "BreezeSans";
-        private string textLabelSid = null;
+        private string textLabelSid;
         private TextLabelSelectorData selectorData;
         private string fontFamily = defaultFontFamily;
         private float fontSizeScale = 1.0f;
-
         private bool textIsEmpty = true;
 
-        private bool hasSystemLanguageChanged = false;
-        private bool hasSystemFontSizeChanged = false;
-        private bool hasSystemFontTypeChanged = false;
+        private bool hasSystemLanguageChanged;
+        private bool hasSystemFontSizeChanged;
+        private bool hasSystemFontTypeChanged;
 
         private Color internalTextColor;
         private Color internalAnchorColor;
@@ -580,22 +579,13 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                string newFontFamily;
-
                 if (string.Equals(fontFamily, value)) return;
-
                 fontFamily = value;
+
+                string newFontFamily;
                 if (fontFamily == Tizen.NUI.FontFamily.UseSystemSetting)
                 {
-                    try
-                    {
-                        newFontFamily = SystemFontTypeChangedManager.FontType;
-                    }
-                    catch (Exception e)
-                    {
-                        Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
-                        newFontFamily = defaultFontFamily;
-                    }
+                    newFontFamily = SystemFontTypeChangedManager.FontType;
                     AddSystemSettingsFontTypeChanged();
                 }
                 else
@@ -3076,24 +3066,13 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                float newFontSizeScale;
-
                 if (fontSizeScale == value) return;
-
                 fontSizeScale = value;
+
+                float newFontSizeScale;
                 if (fontSizeScale == Tizen.NUI.FontSizeScale.UseSystemSetting)
                 {
-                    SystemSettingsFontSize systemSettingsFontSize;
-
-                    try
-                    {
-                        systemSettingsFontSize = SystemFontSizeChangedManager.FontSize;
-                    }
-                    catch (Exception e)
-                    {
-                        Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
-                        systemSettingsFontSize = SystemSettingsFontSize.Normal;
-                    }
+                    var systemSettingsFontSize = SystemFontSizeChangedManager.FontSize;
                     newFontSizeScale = TextUtils.GetFontSizeScale(systemSettingsFontSize);
                     AddSystemSettingsFontSizeChanged();
                 }
@@ -3440,15 +3419,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (!hasSystemLanguageChanged)
             {
-                try
-                {
-                    SystemLocaleLanguageChangedManager.Add(SystemSettingsLocaleLanguageChanged);
-                    hasSystemLanguageChanged = true;
-                }
-                catch (Exception e)
-                {
-                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
-                }
+                SystemLocaleLanguageChangedManager.Add(SystemSettingsLocaleLanguageChanged);
+                hasSystemLanguageChanged = true;
             }
         }
         
@@ -3456,15 +3428,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (hasSystemLanguageChanged)
             {
-                try
-                {
-                    SystemLocaleLanguageChangedManager.Remove(SystemSettingsLocaleLanguageChanged);
-                    hasSystemLanguageChanged = false;
-                }
-                catch (Exception e)
-                {
-                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
-                }
+                SystemLocaleLanguageChangedManager.Remove(SystemSettingsLocaleLanguageChanged);
+                hasSystemLanguageChanged = false;
             }
         }
 
@@ -3478,15 +3443,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (!hasSystemFontSizeChanged)
             {
-                try
-                {
-                    SystemFontSizeChangedManager.Add(SystemSettingsFontSizeChanged);
-                    hasSystemFontSizeChanged = true;
-                }
-                catch (Exception e)
-                {
-                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
-                }
+                SystemFontSizeChangedManager.Add(SystemSettingsFontSizeChanged);
+                hasSystemFontSizeChanged = true;
             }
         }
 
@@ -3494,15 +3452,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (hasSystemFontSizeChanged)
             {
-                try
-                {
-                    SystemFontSizeChangedManager.Remove(SystemSettingsFontSizeChanged);
-                    hasSystemFontSizeChanged = false;
-                }
-                catch (Exception e)
-                {
-                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
-                }
+                SystemFontSizeChangedManager.Remove(SystemSettingsFontSizeChanged);
+                hasSystemFontSizeChanged = false;
             }
         }
 
@@ -3515,15 +3466,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (HasStyle() && !hasSystemFontTypeChanged)
             {
-                try
-                {
-                    SystemFontTypeChangedManager.Add(SystemSettingsFontTypeChanged);
-                    hasSystemFontTypeChanged = true;
-                }
-                catch (Exception e)
-                {
-                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
-                }
+                SystemFontTypeChangedManager.Add(SystemSettingsFontTypeChanged);
+                hasSystemFontTypeChanged = true;
             }
         }
         
@@ -3531,15 +3475,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (hasSystemFontTypeChanged)
             {
-                try
-                {
-                    SystemFontTypeChangedManager.Remove(SystemSettingsFontTypeChanged);
-                    hasSystemFontTypeChanged = false;
-                }
-                catch (Exception e)
-                {
-                    Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
-                }
+                SystemFontTypeChangedManager.Remove(SystemSettingsFontTypeChanged);
+                hasSystemFontTypeChanged = false;
             }
         }
 
