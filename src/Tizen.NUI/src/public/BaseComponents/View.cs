@@ -4629,7 +4629,6 @@ namespace Tizen.NUI.BaseComponents
             }
             else
             {
-                widthConstraint?.Remove();
                 widthConstraint?.Dispose();
                 widthConstraint = null;
 
@@ -4710,7 +4709,6 @@ namespace Tizen.NUI.BaseComponents
             }
             else
             {
-                heightConstraint?.Remove();
                 heightConstraint?.Dispose();
                 heightConstraint = null;
 

@@ -126,11 +126,7 @@ namespace Tizen.NUI
         public int GetPropertyIndex(string name)
         {
             // Convert property string to be lowercase
-            StringBuilder sb = new StringBuilder(name);
-            sb[0] = (char)(sb[0] | 0x20);
-            string str = sb.ToString();
-
-            int ret = Interop.Handle.GetPropertyIndex(SwigCPtr, str);
+            int ret = Interop.Handle.GetPropertyIndex(SwigCPtr, LowerFirstLetter(name));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

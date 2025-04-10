@@ -28,7 +28,7 @@ namespace Tizen.NUI
         internal EqualConstraintWithParentFloat(HandleRef handle, int targetIndex, int parentIndex)
          : base(Interop.Constraint.NewEqualConstraintWithParentFloat(handle, targetIndex, parentIndex), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
     }
 }
