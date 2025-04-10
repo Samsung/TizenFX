@@ -151,9 +151,9 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.FastTrackUploading,
         };
         internal PropertyMap cachedImagePropertyMap;
-        internal bool imagePropertyUpdatedFlag = false;
+        internal bool imagePropertyUpdatedFlag;
 
-        private bool imagePropertyUpdateProcessAttachedFlag = false;
+        private bool imagePropertyUpdateProcessAttachedFlag;
         private Rectangle _border;
 
         // Development Guide : Please make ensure that these 5 values are matched with current image.
@@ -161,7 +161,7 @@ namespace Tizen.NUI.BaseComponents
         private string _alphaMaskUrl = "";
         private int _desired_width = -1;
         private int _desired_height = -1;
-        private bool _fastTrackUploading = false;
+        private bool _fastTrackUploading;
 
         private TriggerableSelector<string> resourceUrlSelector;
         private TriggerableSelector<Rectangle> borderSelector;
@@ -1947,7 +1947,7 @@ namespace Tizen.NUI.BaseComponents
                 NotifyPropertyChanged();
             }
         }
-        private bool adjustViewSize = false;
+        private bool adjustViewSize;
 
         /// <summary>
         /// ImageView PlaceHolderUrl, type string.
@@ -2229,28 +2229,6 @@ namespace Tizen.NUI.BaseComponents
             ViewResourceReadySignal ret = new ViewResourceReadySignal(Interop.View.ResourceReadySignal(View.getCPtr(view)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal override void ApplyCornerRadius()
-        {
-            base.ApplyCornerRadius();
-
-            if (backgroundExtraData == null) return;
-
-            // Update corner radius properties to image by ActionUpdateProperty
-            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ContentsCornerRadius))
-            {
-                if (backgroundExtraData.CornerRadius != null)
-                {
-                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
-                }
-                if (backgroundExtraData.CornerSquareness != null)
-                {
-                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
-                }
-                _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
-            }
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -2562,17 +2540,6 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
 
-            if (backgroundExtraData != null && backgroundExtraData.CornerRadius != null)
-            {
-                cachedImagePropertyMap.Set(Visual.Property.CornerRadius, backgroundExtraData.CornerRadius);
-                cachedImagePropertyMap.Set(Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
-
-                if (backgroundExtraData.CornerSquareness != null)
-                {
-                    cachedImagePropertyMap.Set(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness);
-                }
-            }
-
             if (backgroundExtraData != null && backgroundExtraData.BorderlineWidth > 0.0f)
             {
                 cachedImagePropertyMap.Set(Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth);
@@ -2581,7 +2548,6 @@ namespace Tizen.NUI.BaseComponents
             }
 
             // We already applied background extra data now.
-            backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.ContentsCornerRadius;
             backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.ContentsBorderline;
 
             UpdateImageMap();

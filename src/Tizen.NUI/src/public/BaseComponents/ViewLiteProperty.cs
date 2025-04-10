@@ -36,14 +36,9 @@ namespace Tizen.NUI.BaseComponents
                 using var map = new PropertyMap()
                     .Append(Visual.Property.Type, (int)Visual.Type.Color)
                     .Append(ColorVisualProperty.MixColor, color)
-                    .Append(Visual.Property.CornerRadius, backgroundExtraData.CornerRadius)
-                    .Append(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness)
-                    .Append(Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy)
                     .Append(Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth)
                     .Append(Visual.Property.BorderlineColor, backgroundExtraData.BorderlineColor ?? Color.Black)
                     .Append(Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
-
-                backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
 
                 Object.InternalSetPropertyMap(SwigCPtr, Property.BACKGROUND, map.SwigCPtr);
             }
@@ -56,8 +51,6 @@ namespace Tizen.NUI.BaseComponents
         internal void SetBoxShadow(UIShadow shadow)
         {
             themeData?.selectorData?.ClearShadow(this);
-
-            backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Shadow;
 
             using var map = shadow.BuildMap(this);
 

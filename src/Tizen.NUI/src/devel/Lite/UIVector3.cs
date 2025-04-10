@@ -147,7 +147,13 @@ namespace Tizen.NUI
         /// <inheritdoc/>
         public override int GetHashCode()
         {
-            return X.GetHashCode() ^ (Y.GetHashCode() * 397) ^ Z.GetHashCode();
+            unchecked
+            {
+                int hashcode = X.GetHashCode();
+                hashcode = hashcode * 397 ^ Y.GetHashCode();
+                hashcode = hashcode * 397 ^ Z.GetHashCode();
+                return hashcode;
+            }
         }
 
         /// <summary>

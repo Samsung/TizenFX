@@ -16,6 +16,7 @@
  */
 using System;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI
@@ -44,6 +45,7 @@ namespace Tizen.NUI
         /// Enumeration for the direction
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
         public struct Direction
         {
             /// <summary>
@@ -69,13 +71,15 @@ namespace Tizen.NUI
         /// Tooltip
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
         public struct Tooltip
         {
             /// <summary>
             /// The properties used for a Tooltip.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1716: Identifiers should not match keywords")]
+            [SuppressMessage("Naming", "CA1716: Identifiers should not match keywords")]
+            [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
             public struct Property
             {
                 /// <summary>
@@ -129,6 +133,7 @@ namespace Tizen.NUI
             /// Background Property
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
             public struct BackgroundProperty
             {
                 /// <summary>
@@ -147,6 +152,7 @@ namespace Tizen.NUI
             /// The properties of the tail used by the tooltip.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
             public struct TailProperty
             {
                 /// <summary>
@@ -214,7 +220,6 @@ namespace Tizen.NUI
             [Obsolete("Do not use this ViewMode.StereoInterlaced(Deprecated).")]
             StereoInterlaced
         }
-
     } // namespace Constants
 
 

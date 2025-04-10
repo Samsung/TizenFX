@@ -27,9 +27,6 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
-        private float userSizeWidth = 0.0f;
-        private float userSizeHeight = 0.0f;
-
         /// <summary>
         /// StyleNameProperty (DALi json)
         /// </summary>
@@ -2219,10 +2216,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (backgroundExtraData != null)
             {
-                map.Add(Visual.Property.CornerRadius, backgroundExtraData.CornerRadius)
-                   .Add(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness)
-                   .Add(Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy)
-                   .Add(Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth)
+                map.Add(Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth)
                    .Add(Visual.Property.BorderlineColor, backgroundExtraData.BorderlineColor == null ? Color.Black : backgroundExtraData.BorderlineColor)
                    .Add(Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
             }
@@ -2302,9 +2296,6 @@ namespace Tizen.NUI.BaseComponents
 
             map.Add(Visual.Property.Type, (int)Visual.Type.Color)
                .Add(ColorVisualProperty.MixColor, value)
-               .Add(Visual.Property.CornerRadius, backgroundExtraData.CornerRadius)
-               .Add(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness)
-               .Add(Visual.Property.CornerRadiusPolicy, (int)(backgroundExtraData.CornerRadiusPolicy))
                .Add(Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth)
                .Add(Visual.Property.BorderlineColor, backgroundExtraData.BorderlineColor == null ? Color.Black : backgroundExtraData.BorderlineColor)
                .Add(Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
@@ -2376,7 +2367,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetShadow(ShadowBase value)
         {
-            backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Shadow;
             Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, View.Property.SHADOW, value == null ? new PropertyValue() : value.ToPropertyValue(this));
         }
     }

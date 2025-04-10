@@ -34,20 +34,15 @@ namespace Tizen.NUI.BaseComponents
         [Flags]
         internal enum BackgroundExtraDataUpdatedFlag : byte
         {
-            BackgroundCornerRadius = 1 << 0,
             BackgroundBorderline = 1 << 1,
-            ShadowCornerRadius = 1 << 2,
-            ContentsCornerRadius = 1 << 3, /// Subclass cases.
             ContentsBorderline = 1 << 4, /// Subclass cases.
 
-            Background = BackgroundCornerRadius | BackgroundBorderline,
-            Shadow = ShadowCornerRadius,
+            Background = BackgroundBorderline,
 
-            CornerRadius = BackgroundCornerRadius | ShadowCornerRadius | ContentsCornerRadius,
             Borderline = BackgroundBorderline | ContentsBorderline,
 
             None = 0,
-            All = Background | Shadow,
+            All = Background,
         }
 
         internal BackgroundExtraDataUpdatedFlag backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
@@ -345,11 +340,6 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
-
-        /// <summary>
-        /// Indicates that this View should listen Touch event to handle its ControlState.
-        /// </summary>
-        private bool enableControlState = false;
 
         private int LeftFocusableViewId
         {
@@ -1224,10 +1214,6 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            if (IsShadowEmpty())
-            {
-                backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Shadow;
-            }
             if (!Rectangle.IsNullOrZero(backgroundExtraData.BackgroundImageBorder))
             {
                 backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
@@ -1242,43 +1228,14 @@ namespace Tizen.NUI.BaseComponents
             {
                 ApplyBorderline();
             }
-            if ((backgroundExtraDataUpdatedFlag & BackgroundExtraDataUpdatedFlag.CornerRadius) != BackgroundExtraDataUpdatedFlag.None)
-            {
-                ApplyCornerRadius();
-            }
+
             backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Do not use this, that is deprecated in API13.")]
         internal virtual void ApplyCornerRadius()
         {
-            if (backgroundExtraData == null) return;
-
-            // Update corner radius properties to background and shadow by ActionUpdateProperty
-            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.BackgroundCornerRadius))
-            {
-                if (backgroundExtraData.CornerRadius != null)
-                {
-                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
-                }
-                if (backgroundExtraData.CornerSquareness != null)
-                {
-                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
-                }
-                _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
-            }
-            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ShadowCornerRadius))
-            {
-                if (backgroundExtraData.CornerRadius != null)
-                {
-                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
-                }
-                if (backgroundExtraData.CornerSquareness != null)
-                {
-                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
-                }
-                _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
-            }
+            Tizen.Log.Error("NUI", "ApplyCornerRadius() deprecated internally, Please don't use it.\n");
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1440,6 +1397,11 @@ namespace Tizen.NUI.BaseComponents
                 internalSizeModeFactor = null;
                 internalCurrentScreenPosition?.Dispose();
                 internalCurrentScreenPosition = null;
+
+                backgroundExtraData?.Dispose();
+                backgroundExtraData = null;
+                layoutExtraData?.Dispose();
+                layoutExtraData = null;
 
                 if (visualContainers != null)
                 {

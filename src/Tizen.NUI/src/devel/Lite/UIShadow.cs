@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
@@ -23,7 +24,7 @@ namespace Tizen.NUI
     /// Defines a value type of shadow.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct UIShadow
+    public struct UIShadow : IEquatable<UIShadow>
     {
         private static readonly UIColor s_defaultColor = UIColor.Black;
 
@@ -148,6 +149,68 @@ namespace Tizen.NUI
         /// Whether this shadow is default.
         /// </summary>
         public bool IsDefault => BlurRadius == 0 && Color == UIColor.Transparent && OffsetX == 0 && OffsetY == 0 && ExtraWidth == 0 && ExtraHeight == 0 && CutoutPolicy == ColorVisualCutoutPolicyType.None;
+
+        /// <summary>
+        /// Whether this is equivalent to other.
+        /// </summary>
+        public bool Equals(UIShadow other)
+        {
+            return BlurRadius == other.BlurRadius &&
+                   Color == other.Color &&
+                   OffsetX == other.OffsetX &&
+                   OffsetY == other.OffsetY &&
+                   ExtraWidth == other.ExtraWidth &&
+                   ExtraHeight == other.ExtraHeight &&
+                   CutoutPolicy == other.CutoutPolicy;
+        }
+
+        ///  <inheritdoc/>
+        public override bool Equals(object obj)
+        {
+            if (obj is UIShadow other)
+            {
+                return Equals(other);
+            }
+            return base.Equals(obj);
+        }
+
+        /// <inheritdoc/>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hashcode = BlurRadius.GetHashCode();
+                hashcode = hashcode * 397 ^ Color.GetHashCode();
+                hashcode = hashcode * 397 ^ OffsetX.GetHashCode();
+                hashcode = hashcode * 397 ^ OffsetY.GetHashCode();
+                hashcode = hashcode * 397 ^ ExtraWidth.GetHashCode();
+                hashcode = hashcode * 397 ^ ExtraHeight.GetHashCode();
+                hashcode = hashcode * 397 ^ ((int)CutoutPolicy).GetHashCode();
+                return hashcode;
+            }
+        }
+
+        /// <summary>
+        /// Compares two UIShadow for equality.
+        /// </summary>
+        /// <param name="operand1">The first operand object.</param>
+        /// <param name="operand2">The second operand object.</param>
+        /// <returns>True if both are equal, otherwise false.</returns>
+        public static bool operator ==(UIShadow operand1, UIShadow operand2)
+        {
+            return operand1.Equals(operand2);
+        }
+
+        /// <summary>
+        /// Compares two UIShadow for inequality.
+        /// </summary>
+        /// <param name="operand1">The first operand object.</param>
+        /// <param name="operand2">The second operand object.</param>
+        /// <returns>True if both are not equal, otherwise false.</returns>
+        public static bool operator !=(UIShadow operand1, UIShadow operand2)
+        {
+            return !operand1.Equals(operand2);
+        }
 
         internal readonly NUI.Shadow ToShadow() => new NUI.Shadow(BlurRadius, Color.ToReferenceType(), new (OffsetX, OffsetY), new (ExtraWidth, ExtraHeight));
 
