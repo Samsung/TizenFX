@@ -18,7 +18,7 @@
 namespace Tizen.NUI
 {
     using global::System.Runtime.InteropServices;
-    
+
     /// <summary>
     /// Specialized Constraint.
     /// Make handle's targetIndex value always equal with handle's parent's parentIndex value
@@ -28,7 +28,7 @@ namespace Tizen.NUI
         internal RelativeConstraintWithParentFloat(HandleRef handle, int targetIndex, int parentIndex, float rate)
          : base(Interop.Constraint.NewRelativeConstraintWithParentFloat(handle, targetIndex, parentIndex, rate), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
     }
 }
