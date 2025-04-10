@@ -53,17 +53,17 @@ namespace Tizen.NUI
         internal void Apply()
         {
             Interop.Constraint.Apply(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
+
         /// <summary>
         /// Remove current constraint.
         /// </summary>
         internal void Remove()
         {
             Interop.Constraint.Remove(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
-
 
         /// <summary>
         /// Remove action. Determine the target values action after remove current constriant.
@@ -74,7 +74,7 @@ namespace Tizen.NUI
             set => Interop.Constraint.SetRemoveAction(SwigCPtr, (int)value);
             get => (RemoveActionType) Interop.Constraint.GetRemoveAction(SwigCPtr);
         }
-        
+
         /// <summary>
         /// Tag number. It will be useful when you want to seperate constraints
         /// </summary>
@@ -90,16 +90,16 @@ namespace Tizen.NUI
         internal BaseHandle GetTargetObject()
         {
             BaseHandle handle = new BaseHandle(Interop.Constraint.GetTargetObject(SwigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            NDalicPINVOKE.ThrowExceptionIfExists();
             return handle;
         }
         /// <summary>
         /// Get constrainted target property index
         /// </summary>
-        internal int GetTargetPropert()
+        internal int GetTargetPropertyIndex()
         {
             int index = Interop.Constraint.GetTargetProperty(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            NDalicPINVOKE.ThrowExceptionIfExists();
             return index;
         }
 
@@ -119,6 +119,7 @@ namespace Tizen.NUI
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
+                Remove();
             }
             base.Dispose(type);
         }
@@ -128,9 +129,9 @@ namespace Tizen.NUI
         protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
         {
             Interop.Constraint.DeleteConstraint(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
-        
+
         /// <summary>
         /// Determinate how objects property will be when constraint removed.
         /// Default is Bake.
