@@ -1686,6 +1686,82 @@ If it is deactivated, null will be returned during get and Not permitted excepti
 
 
 
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_AddVsie_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.AddVsie*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1735">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_AddVsie_Tizen_Network_WiFiDirect_WiFiDirectVsieFrameType_System_String_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.AddVsie(Tizen.Network.WiFiDirect.WiFiDirectVsieFrameType,System.String)">AddVsie(WiFiDirectVsieFrameType, string)</h4>
+    <section>
+    <p>Adds the Wi-Fi Vendor Specific Information Element (VSIE) to specific frame type.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void AddVsie(WiFiDirectVsieFrameType frameType, string vsie)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectVsieFrameType.html">WiFiDirectVsieFrameType</a></td>
+        <td><span class="parametername">frameType</span></td>
+        <td><p>frame type for setting VSIE.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">vsie</span></td>
+        <td><p>VSIE value. A valid string contains hexadecimal characters i.e. [0-9a-f]</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_AddVsie_Tizen_Network_WiFiDirect_WiFiDirectVsieFrameType_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+<code data-dev-comment-type="paramref" class="paramref">vsie</code> for <code data-dev-comment-type="paramref" class="paramref">frameType</code> will be in effect until Wi-Fi Direct is deactivated.
+A valid value will be concatenated to already added VSIE values. If vsie value is invalid, InvalidOperationException
+will be thrown. If same value for given frameType is already in effect, then there will be no change.
+VSIE data structure is described in 802.11 specification.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
   <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_CancelDiscovery_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.CancelDiscovery*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -2117,6 +2193,70 @@ If this succeeds, ConnectionStatusChanged event will be invoked.</p>
 
 
 
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_GetConnectingPeer_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.GetConnectingPeer*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1832">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_GetConnectingPeer" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.GetConnectingPeer">GetConnectingPeer()</h4>
+    <section>
+    <p>Gets the information of peer devices which is in the connecting state.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static WiFiDirectPeer GetConnectingPeer()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectPeer.html">WiFiDirectPeer</a></td>
+        <td><p>Connecting peer object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_GetConnectingPeer_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct service must be in connecting state.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
   <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_GetDiscoveredPeers_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.GetDiscoveredPeers*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -2274,6 +2414,88 @@ If this succeeds, ConnectionStatusChanged event will be invoked.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_GetVsie_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.GetVsie*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1767">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_GetVsie_Tizen_Network_WiFiDirect_WiFiDirectVsieFrameType_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.GetVsie(Tizen.Network.WiFiDirect.WiFiDirectVsieFrameType)">GetVsie(WiFiDirectVsieFrameType)</h4>
+    <section>
+    <p>Gets the Wi-Fi Vendor Specific Information Elements (VSIE) from specific frame type.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static string GetVsie(WiFiDirectVsieFrameType frameType)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectVsieFrameType.html">WiFiDirectVsieFrameType</a></td>
+        <td><span class="parametername">frameType</span></td>
+        <td><p>frame type for getting VSIE.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>VSIE value if success else null value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_GetVsie_Tizen_Network_WiFiDirect_WiFiDirectVsieFrameType__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.</p>
+</div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
     <thead>
@@ -2558,6 +2780,79 @@ If there is any error while registering service, 0 will be returned.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The object is in invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when application does not have privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Network_WiFiDirect_WiFiDirectManager_RemoveVsie_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.RemoveVsie*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.WiFiDirect/Tizen.Network.WiFiDirect/WiFiDirectManager.cs/#L1801">View Source</a>
+    </span>
+    <h4 id="Tizen_Network_WiFiDirect_WiFiDirectManager_RemoveVsie_Tizen_Network_WiFiDirect_WiFiDirectVsieFrameType_System_String_" data-uid="Tizen.Network.WiFiDirect.WiFiDirectManager.RemoveVsie(Tizen.Network.WiFiDirect.WiFiDirectVsieFrameType,System.String)">RemoveVsie(WiFiDirectVsieFrameType, string)</h4>
+    <section>
+    <p>Removes the Wi-Fi Vendor Specific Information Element (VSIE) from specific frame type.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RemoveVsie(WiFiDirectVsieFrameType frameType, string vsie)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.WiFiDirect.WiFiDirectVsieFrameType.html">WiFiDirectVsieFrameType</a></td>
+        <td><span class="parametername">frameType</span></td>
+        <td><p>frame type for removing VSIE.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">vsie</span></td>
+        <td><p>VSIE value</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_WiFiDirect_WiFiDirectManager_RemoveVsie_Tizen_Network_WiFiDirect_WiFiDirectVsieFrameType_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Wi-Fi Direct must be activated.
+A VSIE value if already added, will be removed from VSIE value else InvalidOperationException will be thrown.</p>
+</div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
     <thead>
