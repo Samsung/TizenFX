@@ -16,7 +16,6 @@
  */
 using System.ComponentModel;
 using System.Text;
-using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI
 {
@@ -319,17 +318,11 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private static unsafe string LowerFirstLetter(string original)
+        private static string LowerFirstLetter(string original)
         {
-            if (string.IsNullOrEmpty(original) || char.IsLower(original[0]))
-                return original;
-
-            fixed (char* chars = original)
-            {
-                chars[0] = char.ToLower(chars[0]);
-            }
-
-            return original;
+            StringBuilder sb = new StringBuilder(original);
+            sb[0] = (char)(sb[0] | 0x20);
+            return sb.ToString();
         }
 
         /// This will not be public opened.
