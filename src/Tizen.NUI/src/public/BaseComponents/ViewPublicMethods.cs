@@ -391,8 +391,7 @@ namespace Tizen.NUI.BaseComponents
                 parentChildren.Remove(this);
                 parentChildren.Add(this);
 
-                LayoutGroup layout = Layout as LayoutGroup;
-                layout?.ChangeLayoutSiblingOrder(parentChildren.Count - 1);
+                Layout?.ChangeLayoutSiblingOrder(parentChildren.Count - 1);
 
                 Interop.NDalic.RaiseToTop(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -418,8 +417,7 @@ namespace Tizen.NUI.BaseComponents
                 parentChildren.Remove(this);
                 parentChildren.Insert(0, this);
 
-                LayoutGroup layout = Layout as LayoutGroup;
-                layout?.ChangeLayoutSiblingOrder(0);
+                Layout?.ChangeLayoutSiblingOrder(0);
 
                 Interop.NDalic.LowerToBottom(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
