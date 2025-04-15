@@ -566,16 +566,16 @@ namespace Tizen.NUI.Samples
 
             // Set corner radius as input of constraints
             cornerConstraint = Constraint.GenerateConstraint(renderable, "uCornerRadius", new Constraint.ConstraintFloatFunctionCallbackType(OnConstraintFloat));
-            cornerConstraint.AddSource(view, "CornerRadius");
-            cornerConstraint.AddSource(view, "CornerRadiusPolicy");
+            cornerConstraint.AddSource(view, "viewCornerRadius");
+            cornerConstraint.AddSource(view, "viewCornerRadiusPolicy");
             cornerConstraint.AddSource(view, "sizeWidth");
             cornerConstraint.AddSource(view, "sizeHeight");
             cornerConstraint.Apply();
 
             // Note that the first charactor of property name become lower case internally.
-            // Here, "UCornerSquareness" -> "uCornerSquareness", "CornerSquareness" -> "cornerSquareness"
+            // Here, "UCornerSquareness" -> "uCornerSquareness", "ViewCornerSquareness" -> "viewcornerSquareness"
             cornerConstraint2 = Constraint.GenerateConstraint(renderable, "UCornerSquareness", new Constraint.ConstraintFloatFunctionCallbackType(OnConstraintFloat));
-            cornerConstraint2.AddSource(view, "CornerSquareness");
+            cornerConstraint2.AddSource(view, "ViewCornerSquareness");
             cornerConstraint2.Apply();
 
             // Set orientation as input of constraints
