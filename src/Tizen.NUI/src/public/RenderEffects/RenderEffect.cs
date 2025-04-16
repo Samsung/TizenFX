@@ -39,6 +39,7 @@ namespace Tizen.NUI
         /// Alpha: Uses the alpha channel of the mask texture. (Default)
         /// Luminance: Converts RGB to grayscale and uses the luminance as mask value.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum MaskMode
         {
             Alpha = 0,
