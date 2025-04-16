@@ -1,0 +1,634 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Scrollable
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Scrollable
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API7">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.BaseComponents.Scrollable">
+
+
+  <h1 id="Tizen_NUI_BaseComponents_Scrollable" data-uid="Tizen.NUI.BaseComponents.Scrollable" class="text-break">Class Scrollable
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.BaseComponents.html">BaseComponents</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Base class for derived Scrollables that contains actors that can be scrolled manually
+(via touch) or automatically.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Scrollable : View, INotifyPropertyChanged, IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.BindableObject</span></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></div>
+        <div><span class="xref">Scrollable</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/Scrollable.cs/#L213">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Scrollable__ctor_" data-uid="Tizen.NUI.BaseComponents.Scrollable.#ctor*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Scrollable__ctor" data-uid="Tizen.NUI.BaseComponents.Scrollable.#ctor">Scrollable()</h4>
+  <div class="markdown level1 summary"><p>Create an instance of scrollable.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Scrollable()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/Scrollable.cs/#L494">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Scrollable_CanScrollHorizontal_" data-uid="Tizen.NUI.BaseComponents.Scrollable.CanScrollHorizontal*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Scrollable_CanScrollHorizontal" data-uid="Tizen.NUI.BaseComponents.Scrollable.CanScrollHorizontal">CanScrollHorizontal</h4>
+  <div class="markdown level1 summary"><p>Gets and Sets CanScrollHorizontal property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanScrollHorizontal { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/Scrollable.cs/#L477">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Scrollable_CanScrollVertical_" data-uid="Tizen.NUI.BaseComponents.Scrollable.CanScrollVertical*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Scrollable_CanScrollVertical" data-uid="Tizen.NUI.BaseComponents.Scrollable.CanScrollVertical">CanScrollVertical</h4>
+  <div class="markdown level1 summary"><p>Gets and Sets CanScrollVertical property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool CanScrollVertical { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/Scrollable.cs/#L358">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Scrollable_OvershootAnimationSpeed_" data-uid="Tizen.NUI.BaseComponents.Scrollable.OvershootAnimationSpeed*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Scrollable_OvershootAnimationSpeed" data-uid="Tizen.NUI.BaseComponents.Scrollable.OvershootAnimationSpeed">OvershootAnimationSpeed</h4>
+  <div class="markdown level1 summary"><p>Sets and Gets the speed of overshoot animation in pixels per second.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float OvershootAnimationSpeed { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/Scrollable.cs/#L341">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Scrollable_OvershootEffectColor_" data-uid="Tizen.NUI.BaseComponents.Scrollable.OvershootEffectColor*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Scrollable_OvershootEffectColor" data-uid="Tizen.NUI.BaseComponents.Scrollable.OvershootEffectColor">OvershootEffectColor</h4>
+  <div class="markdown level1 summary"><p>Sets and Gets the color of the overshoot effect.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector4 OvershootEffectColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/Scrollable.cs/#L375">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Scrollable_OvershootEnabled_" data-uid="Tizen.NUI.BaseComponents.Scrollable.OvershootEnabled*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Scrollable_OvershootEnabled" data-uid="Tizen.NUI.BaseComponents.Scrollable.OvershootEnabled">OvershootEnabled</h4>
+  <div class="markdown level1 summary"><p>Checks if scroll overshoot has been enabled or not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool OvershootEnabled { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/Scrollable.cs/#L392">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Scrollable_OvershootSize_" data-uid="Tizen.NUI.BaseComponents.Scrollable.OvershootSize*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Scrollable_OvershootSize" data-uid="Tizen.NUI.BaseComponents.Scrollable.OvershootSize">OvershootSize</h4>
+  <div class="markdown level1 summary"><p>Gets and Sets OvershootSize property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 OvershootSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/Scrollable.cs/#L460">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Scrollable_ScrollPositionMax_" data-uid="Tizen.NUI.BaseComponents.Scrollable.ScrollPositionMax*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Scrollable_ScrollPositionMax" data-uid="Tizen.NUI.BaseComponents.Scrollable.ScrollPositionMax">ScrollPositionMax</h4>
+  <div class="markdown level1 summary"><p>Gets and Sets ScrollPositionMax property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 ScrollPositionMax { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/Scrollable.cs/#L443">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Scrollable_ScrollPositionMin_" data-uid="Tizen.NUI.BaseComponents.Scrollable.ScrollPositionMin*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Scrollable_ScrollPositionMin" data-uid="Tizen.NUI.BaseComponents.Scrollable.ScrollPositionMin">ScrollPositionMin</h4>
+  <div class="markdown level1 summary"><p>Gets and Sets ScrollPositionMin property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 ScrollPositionMin { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/Scrollable.cs/#L426">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Scrollable_ScrollRelativePosition_" data-uid="Tizen.NUI.BaseComponents.Scrollable.ScrollRelativePosition*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Scrollable_ScrollRelativePosition" data-uid="Tizen.NUI.BaseComponents.Scrollable.ScrollRelativePosition">ScrollRelativePosition</h4>
+  <div class="markdown level1 summary"><p>Gets and Sets ScrollRelativePosition property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 ScrollRelativePosition { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/Scrollable.cs/#L409">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Scrollable_ScrollToAlphaFunction_" data-uid="Tizen.NUI.BaseComponents.Scrollable.ScrollToAlphaFunction*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Scrollable_ScrollToAlphaFunction" data-uid="Tizen.NUI.BaseComponents.Scrollable.ScrollToAlphaFunction">ScrollToAlphaFunction</h4>
+  <div class="markdown level1 summary"><p>Gets and Sets ScrollToAlphaFunction property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int ScrollToAlphaFunction { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/Scrollable.cs/#L533">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_Scrollable_Dispose_" data-uid="Tizen.NUI.BaseComponents.Scrollable.Dispose*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_Scrollable_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.BaseComponents.Scrollable.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
+  <div class="markdown level1 summary"><p>you can override it to clean-up your own resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(DisposeTypes type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DisposeTypes.html">DisposeTypes</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>DisposeTypes</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_Dispose_Tizen_NUI_DisposeTypes_">View.Dispose(DisposeTypes)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/Scrollable.cs/#L306">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_Scrollable_ScrollCompleted" data-uid="Tizen.NUI.BaseComponents.Scrollable.ScrollCompleted">ScrollCompleted</h4>
+  <div class="markdown level1 summary"><p>The ScrollCompleted event emitted when the Scrollable has completed movement
+(whether by touch or animation).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event DaliEventHandler&lt;object, Scrollable.CompletedEventArgs&gt; ScrollCompleted</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DaliEventHandler-2.html">DaliEventHandler</a>&lt;<span class="xref">object</span>, <a class="xref" href="Tizen.NUI.BaseComponents.Scrollable.html">Scrollable</a>.<a class="xref" href="Tizen.NUI.BaseComponents.Scrollable.CompletedEventArgs.html">CompletedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/Scrollable.cs/#L235">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_Scrollable_ScrollStarted" data-uid="Tizen.NUI.BaseComponents.Scrollable.ScrollStarted">ScrollStarted</h4>
+  <div class="markdown level1 summary"><p>The ScrollStarted event emitted when the Scrollable has moved (whether by touch or animation).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event DaliEventHandler&lt;object, Scrollable.StartedEventArgs&gt; ScrollStarted</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DaliEventHandler-2.html">DaliEventHandler</a>&lt;<span class="xref">object</span>, <a class="xref" href="Tizen.NUI.BaseComponents.Scrollable.html">Scrollable</a>.<a class="xref" href="Tizen.NUI.BaseComponents.Scrollable.StartedEventArgs.html">StartedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/Scrollable.cs/#L270">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_Scrollable_ScrollUpdated" data-uid="Tizen.NUI.BaseComponents.Scrollable.ScrollUpdated">ScrollUpdated</h4>
+  <div class="markdown level1 summary"><p>The ScrollUpdated event emitted when the Scrollable has moved (whether by touch or animation).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event DaliEventHandler&lt;object, Scrollable.UpdatedEventArgs&gt; ScrollUpdated</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.DaliEventHandler-2.html">DaliEventHandler</a>&lt;<span class="xref">object</span>, <a class="xref" href="Tizen.NUI.BaseComponents.Scrollable.html">Scrollable</a>.<a class="xref" href="Tizen.NUI.BaseComponents.Scrollable.UpdatedEventArgs.html">UpdatedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/BaseComponents/Scrollable.cs/#L29" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

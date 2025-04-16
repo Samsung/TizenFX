@@ -1,0 +1,938 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class BluetoothGattClient
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class BluetoothGattClient
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient">
+
+
+  <h1 id="Tizen_Network_Bluetooth_BluetoothGattClient" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient" class="text-break">Class BluetoothGattClient
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Network</span>.<a class="xref" href="Tizen.Network.Bluetooth.html">Bluetooth</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Network.Bluetooth.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The Bluetooth GATT client.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class BluetoothGattClient : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">BluetoothGattClient</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L469">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothGattClient_RemoteAddress_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.RemoteAddress*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_RemoteAddress" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.RemoteAddress">RemoteAddress</h4>
+  <div class="markdown level1 summary"><p>The address of the remote device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string RemoteAddress { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the BT/BTLE is not enabled
+or when the remote device is disconnected.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L422">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothGattClient_ConnectAsync_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.ConnectAsync*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_ConnectAsync_System_Boolean_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.ConnectAsync(System.Boolean)">ConnectAsync(bool)</h4>
+  <div class="markdown level1 summary"><p>Connects to the remote GATT server asynchronously.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ConnectAsync(bool autoConnect)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">autoConnect</span></td>
+        <td><p>The flag for reconnecting when the connection is disconnceted.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>A task indicating whether the method is done or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the BT/BTLE is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the create GATT client fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L321">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothGattClient_CreateClient_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.CreateClient*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_CreateClient_System_String_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.CreateClient(System.String)">CreateClient(string)</h4>
+  <div class="markdown level1 summary"><p>Creates the Bluetooth GATT client.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static BluetoothGattClient CreateClient(string remoteAddress)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">remoteAddress</span></td>
+        <td><p>The remote device address.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothGattClient.html">BluetoothGattClient</a></td>
+        <td><p>The BluetoothGattClient instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the BT/BTLE is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the create GATT client fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L457">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothGattClient_DestroyClient_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.DestroyClient*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_DestroyClient" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.DestroyClient">DestroyClient()</h4>
+  <div class="markdown level1 summary"><p>Destroy Bluetooth GATT client</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 6. Please use Dispose() method on BluetoothGattClient.&quot;)]
+public void DestroyClient()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L442">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothGattClient_DisconnectAsync_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.DisconnectAsync*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_DisconnectAsync" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.DisconnectAsync">DisconnectAsync()</h4>
+  <div class="markdown level1 summary"><p>Disconnects to the remote GATT server asynchronously.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task DisconnectAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><p>A task indicating whether the method is done or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the BT/BTLE is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the create GATT client fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L618">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothGattClient_Dispose_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.Dispose*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_Dispose" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Destroys the current object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L629">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothGattClient_Dispose_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.Dispose*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_Dispose_System_Boolean_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.Dispose(System.Boolean)">Dispose(bool)</h4>
+  <div class="markdown level1 summary"><p>Releases all the resources currently used by this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>true if the managed resources should be disposed, otherwise false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L608">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothGattClient_Finalize_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.Finalize*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_Finalize" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.Finalize">~BluetoothGattClient()</h4>
+  <div class="markdown level1 summary"><p>Destroys the current object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~BluetoothGattClient()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L489">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothGattClient_GetService_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.GetService*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_GetService_System_String_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.GetService(System.String)">GetService(string)</h4>
+  <div class="markdown level1 summary"><p>Gets the service with the given UUID that belongs to the remote device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public BluetoothGattService GetService(string uuid)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">uuid</span></td>
+        <td><p>The UUID for the service to get.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothGattService.html">BluetoothGattService</a></td>
+        <td><p>The service with the given UUID if it exists, null otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the BT/BTLE is not enabled
+or when the remote device is disconnected, or when the get service fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L501">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothGattClient_GetServices_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.GetServices*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_GetServices" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.GetServices">GetServices()</h4>
+  <div class="markdown level1 summary"><p>Gets list of services that belongs to the remote device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;BluetoothGattService&gt; GetServices()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.BluetoothGattService.html">BluetoothGattService</a>&gt;</td>
+        <td><p>The list of services that belongs to the remote device.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the BT/BTLE is not enabled
+or when the remote device is disconnected, or when the get service fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L514">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothGattClient_ReadValueAsync_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.ReadValueAsync*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_ReadValueAsync_Tizen_Network_Bluetooth_BluetoothGattCharacteristic_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.ReadValueAsync(Tizen.Network.Bluetooth.BluetoothGattCharacteristic)">ReadValueAsync(BluetoothGattCharacteristic)</h4>
+  <div class="markdown level1 summary"><p>Reads the value of a given characteristic from the remote device asynchronously.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; ReadValueAsync(BluetoothGattCharacteristic characteristic)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothGattCharacteristic.html">BluetoothGattCharacteristic</a></td>
+        <td><span class="parametername">characteristic</span></td>
+        <td><p>The characteristic to be read.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">bool</span>&gt;</td>
+        <td><p>true on success, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the BT/BTLE is not enabled
+or when the remote device is disconnected, or when the read attribute value fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L527">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothGattClient_ReadValueAsync_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.ReadValueAsync*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_ReadValueAsync_Tizen_Network_Bluetooth_BluetoothGattDescriptor_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.ReadValueAsync(Tizen.Network.Bluetooth.BluetoothGattDescriptor)">ReadValueAsync(BluetoothGattDescriptor)</h4>
+  <div class="markdown level1 summary"><p>Reads the value of the given descriptor from the remote device asynchronously.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; ReadValueAsync(BluetoothGattDescriptor descriptor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothGattDescriptor.html">BluetoothGattDescriptor</a></td>
+        <td><span class="parametername">descriptor</span></td>
+        <td><p>The descriptor to be read.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">bool</span>&gt;</td>
+        <td><p>true on success, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the BT/BTLE is not enabled
+or when the remote device is disconnected, or when the read attribute value fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L540">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothGattClient_WriteValueAsync_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.WriteValueAsync*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_WriteValueAsync_Tizen_Network_Bluetooth_BluetoothGattCharacteristic_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.WriteValueAsync(Tizen.Network.Bluetooth.BluetoothGattCharacteristic)">WriteValueAsync(BluetoothGattCharacteristic)</h4>
+  <div class="markdown level1 summary"><p>Writes the value of a given characteristic to the remote device asynchronously.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; WriteValueAsync(BluetoothGattCharacteristic characteristic)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothGattCharacteristic.html">BluetoothGattCharacteristic</a></td>
+        <td><span class="parametername">characteristic</span></td>
+        <td><p>The characteristic to be written.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">bool</span>&gt;</td>
+        <td><p>true on success, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the BT/BTLE is not enabled
+or when the remote device is disconnected or when the write attribute value fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L553">View Source</a>
+  </span>
+  <a id="Tizen_Network_Bluetooth_BluetoothGattClient_WriteValueAsync_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.WriteValueAsync*"></a>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_WriteValueAsync_Tizen_Network_Bluetooth_BluetoothGattDescriptor_" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.WriteValueAsync(Tizen.Network.Bluetooth.BluetoothGattDescriptor)">WriteValueAsync(BluetoothGattDescriptor)</h4>
+  <div class="markdown level1 summary"><p>Writes the value of the given descriptor to the remote device asynchronously.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; WriteValueAsync(BluetoothGattDescriptor descriptor)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.Bluetooth.BluetoothGattDescriptor.html">BluetoothGattDescriptor</a></td>
+        <td><span class="parametername">descriptor</span></td>
+        <td><p>The descriptor to be written.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">bool</span>&gt;</td>
+        <td><p>true on success, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the BT/BTLE is not enabled
+or when the remote device is disconnected, or when the write attribute value fails.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L331">View Source</a>
+  </span>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_ConnectionStateChanged" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.ConnectionStateChanged">ConnectionStateChanged</h4>
+  <div class="markdown level1 summary"><p>The ConnectionStateChanged event is raised when the gatt connection state is changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;GattConnectionStateChangedEventArgs&gt; ConnectionStateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.GattConnectionStateChangedEventArgs.html">GattConnectionStateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L598">View Source</a>
+  </span>
+  <h4 id="Tizen_Network_Bluetooth_BluetoothGattClient_ServiceChanged" data-uid="Tizen.Network.Bluetooth.BluetoothGattClient.ServiceChanged">ServiceChanged</h4>
+  <div class="markdown level1 summary"><p>The ServiceChanged event is raised when the service is changed from the remote device(GATT server).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ServiceChangedEventArgs&gt; ServiceChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.Bluetooth.ServiceChangedEventArgs.html">ServiceChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.Bluetooth/Tizen.Network.Bluetooth/BluetoothGatt.cs/#L284" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

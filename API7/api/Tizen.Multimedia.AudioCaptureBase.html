@@ -1,0 +1,769 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AudioCaptureBase
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AudioCaptureBase
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API7">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Multimedia.AudioCaptureBase">
+
+
+  <h1 id="Tizen_Multimedia_AudioCaptureBase" data-uid="Tizen.Multimedia.AudioCaptureBase" class="text-break">Class AudioCaptureBase
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Multimedia.html">Multimedia</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Multimedia.AudioIO.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Provides the ability to directly manage the system audio input devices.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class AudioCaptureBase : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">AudioCaptureBase</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  <dl class="attribute-list stack">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.AsyncAudioCapture.html">AsyncAudioCapture</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.AsyncAudioCapture.html">AsyncAudioCapture</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.AsyncAudioCapture.html">AsyncAudioCapture</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.AsyncAudioCapture.html">AsyncAudioCapture</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.AsyncAudioCapture.html">AsyncAudioCapture</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.AsyncAudioCapture.html">AsyncAudioCapture</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.AsyncAudioCapture.html">AsyncAudioCapture</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.AudioCapture.html">AudioCapture</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.AudioCapture.html">AudioCapture</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.AudioCapture.html">AudioCapture</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.AudioCapture.html">AudioCapture</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.AudioCapture.html">AudioCapture</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.AudioCapture.html">AudioCapture</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Multimedia.AudioCapture.html">AudioCapture</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/AudioIO/AudioCapture.cs/#L42">View Source</a>
+  </span>
+  <h4 id="Tizen_Multimedia_AudioCaptureBase_MaxSampleRate" data-uid="Tizen.Multimedia.AudioCaptureBase.MaxSampleRate">MaxSampleRate</h4>
+  <div class="markdown level1 summary"><p>Specifies the maximum value allowed for the audio capture, in Hertz (Hz).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int MaxSampleRate</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_AudioCaptureBase_MaxSampleRate_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.AudioCaptureBase.html#Tizen_Multimedia_AudioCaptureBase_SampleRate">SampleRate</a></div>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/AudioIO/AudioCapture.cs/#L35">View Source</a>
+  </span>
+  <h4 id="Tizen_Multimedia_AudioCaptureBase_MinSampleRate" data-uid="Tizen.Multimedia.AudioCaptureBase.MinSampleRate">MinSampleRate</h4>
+  <div class="markdown level1 summary"><p>Specifies the minimum value allowed for the audio capture, in Hertz (Hz).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int MinSampleRate</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_AudioCaptureBase_MinSampleRate_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.AudioCaptureBase.html#Tizen_Multimedia_AudioCaptureBase_SampleRate">SampleRate</a></div>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/AudioIO/AudioCapture.cs/#L171">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioCaptureBase_Channel_" data-uid="Tizen.Multimedia.AudioCaptureBase.Channel*"></a>
+  <h4 id="Tizen_Multimedia_AudioCaptureBase_Channel" data-uid="Tizen.Multimedia.AudioCaptureBase.Channel">Channel</h4>
+  <div class="markdown level1 summary"><p>Gets the channel type of the audio input data stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AudioChannel Channel { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.AudioChannel.html">AudioChannel</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/AudioIO/AudioCapture.cs/#L165">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioCaptureBase_SampleRate_" data-uid="Tizen.Multimedia.AudioCaptureBase.SampleRate*"></a>
+  <h4 id="Tizen_Multimedia_AudioCaptureBase_SampleRate" data-uid="Tizen.Multimedia.AudioCaptureBase.SampleRate">SampleRate</h4>
+  <div class="markdown level1 summary"><p>Gets the sample rate of the audio input data stream, in Hertz (Hz).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int SampleRate { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/AudioIO/AudioCapture.cs/#L177">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioCaptureBase_SampleType_" data-uid="Tizen.Multimedia.AudioCaptureBase.SampleType*"></a>
+  <h4 id="Tizen_Multimedia_AudioCaptureBase_SampleType" data-uid="Tizen.Multimedia.AudioCaptureBase.SampleType">SampleType</h4>
+  <div class="markdown level1 summary"><p>Gets the sample type of the audio input data stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AudioSampleType SampleType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.AudioSampleType.html">AudioSampleType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/AudioIO/AudioCapture.cs/#L300">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioCaptureBase_ApplyStreamPolicy_" data-uid="Tizen.Multimedia.AudioCaptureBase.ApplyStreamPolicy*"></a>
+  <h4 id="Tizen_Multimedia_AudioCaptureBase_ApplyStreamPolicy_Tizen_Multimedia_AudioStreamPolicy_" data-uid="Tizen.Multimedia.AudioCaptureBase.ApplyStreamPolicy(Tizen.Multimedia.AudioStreamPolicy)">ApplyStreamPolicy(AudioStreamPolicy)</h4>
+  <div class="markdown level1 summary"><p>Sets the sound stream information to the audio input.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ApplyStreamPolicy(AudioStreamPolicy streamPolicy)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a></td>
+        <td><span class="parametername">streamPolicy</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a> to apply for the AudioCapture.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> has already been disposed of.<br>
+-or-<br>
+The AudioCaptureBase has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Not able to retrieve information from <code data-dev-comment-type="paramref" class="paramref">streamPolicy</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/AudioIO/AudioCapture.cs/#L106">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioCaptureBase_Dispose_" data-uid="Tizen.Multimedia.AudioCaptureBase.Dispose*"></a>
+  <h4 id="Tizen_Multimedia_AudioCaptureBase_Dispose" data-uid="Tizen.Multimedia.AudioCaptureBase.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Releases all resources used by the <a class="xref" href="Tizen.Multimedia.AudioCaptureBase.html">AudioCaptureBase</a> object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/AudioIO/AudioCapture.cs/#L119">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioCaptureBase_Dispose_" data-uid="Tizen.Multimedia.AudioCaptureBase.Dispose*"></a>
+  <h4 id="Tizen_Multimedia_AudioCaptureBase_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.AudioCaptureBase.Dispose(System.Boolean)">Dispose(bool)</h4>
+  <div class="markdown level1 summary"><p>Releases the resources used by the <a class="xref" href="Tizen.Multimedia.AudioCaptureBase.html">AudioCaptureBase</a> object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>true to release both managed and unmanaged resources; false to release only unmanaged resources.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/AudioIO/AudioCapture.cs/#L72">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioCaptureBase_Finalize_" data-uid="Tizen.Multimedia.AudioCaptureBase.Finalize*"></a>
+  <h4 id="Tizen_Multimedia_AudioCaptureBase_Finalize" data-uid="Tizen.Multimedia.AudioCaptureBase.Finalize">~AudioCaptureBase()</h4>
+  <div class="markdown level1 summary"><p>Finalizes an instance of the AudioCaptureBase class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~AudioCaptureBase()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/AudioIO/AudioCapture.cs/#L279">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioCaptureBase_Flush_" data-uid="Tizen.Multimedia.AudioCaptureBase.Flush*"></a>
+  <h4 id="Tizen_Multimedia_AudioCaptureBase_Flush" data-uid="Tizen.Multimedia.AudioCaptureBase.Flush">Flush()</h4>
+  <div class="markdown level1 summary"><p>Flushes and discards buffered audio data from the input stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Flush()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is <a class="xref" href="Tizen.Multimedia.AudioIOState.html#Tizen_Multimedia_AudioIOState_Idle">Idle</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The AudioCaptureBase has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/AudioIO/AudioCapture.cs/#L184">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioCaptureBase_GetBufferSize_" data-uid="Tizen.Multimedia.AudioCaptureBase.GetBufferSize*"></a>
+  <h4 id="Tizen_Multimedia_AudioCaptureBase_GetBufferSize" data-uid="Tizen.Multimedia.AudioCaptureBase.GetBufferSize">GetBufferSize()</h4>
+  <div class="markdown level1 summary"><p>Gets the size allocated for the audio input buffer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetBufferSize()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The AudioCaptureBase has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/AudioIO/AudioCapture.cs/#L241">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioCaptureBase_Pause_" data-uid="Tizen.Multimedia.AudioCaptureBase.Pause*"></a>
+  <h4 id="Tizen_Multimedia_AudioCaptureBase_Pause" data-uid="Tizen.Multimedia.AudioCaptureBase.Pause">Pause()</h4>
+  <div class="markdown level1 summary"><p>Pauses buffering of audio data from the device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Pause()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is <a class="xref" href="Tizen.Multimedia.AudioIOState.html#Tizen_Multimedia_AudioIOState_Idle">Idle</a>.<br>
+-or-<br>
+The method is called in the <a class="xref" href="Tizen.Multimedia.AsyncAudioCapture.html#Tizen_Multimedia_AsyncAudioCapture_DataAvailable">DataAvailable</a> event handler.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The AudioCaptureBase has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_AudioCaptureBase_Pause_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.AudioCaptureBase.html#Tizen_Multimedia_AudioCaptureBase_Resume">Resume()</a></div>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/AudioIO/AudioCapture.cs/#L205">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioCaptureBase_Prepare_" data-uid="Tizen.Multimedia.AudioCaptureBase.Prepare*"></a>
+  <h4 id="Tizen_Multimedia_AudioCaptureBase_Prepare" data-uid="Tizen.Multimedia.AudioCaptureBase.Prepare">Prepare()</h4>
+  <div class="markdown level1 summary"><p>Prepares the AudioCapture for reading audio data by starting buffering of audio data from the device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Prepare()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Operation failed due to an internal error.<br>
+-or-<br>
+The current state is not <a class="xref" href="Tizen.Multimedia.AudioIOState.html#Tizen_Multimedia_AudioIOState_Idle">Idle</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The AudioCaptureBase has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_AudioCaptureBase_Prepare_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.AudioCaptureBase.html#Tizen_Multimedia_AudioCaptureBase_Unprepare">Unprepare()</a></div>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/AudioIO/AudioCapture.cs/#L262">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioCaptureBase_Resume_" data-uid="Tizen.Multimedia.AudioCaptureBase.Resume*"></a>
+  <h4 id="Tizen_Multimedia_AudioCaptureBase_Resume" data-uid="Tizen.Multimedia.AudioCaptureBase.Resume">Resume()</h4>
+  <div class="markdown level1 summary"><p>Resumes buffering audio data from the device.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resume()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is <a class="xref" href="Tizen.Multimedia.AudioIOState.html#Tizen_Multimedia_AudioIOState_Idle">Idle</a>.<br>
+-or-<br>
+The method is called in the <a class="xref" href="Tizen.Multimedia.AsyncAudioCapture.html#Tizen_Multimedia_AsyncAudioCapture_DataAvailable">DataAvailable</a> event handler.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The AudioCaptureBase has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_AudioCaptureBase_Resume_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.AudioCaptureBase.html#Tizen_Multimedia_AudioCaptureBase_Pause">Pause()</a></div>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/AudioIO/AudioCapture.cs/#L223">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_AudioCaptureBase_Unprepare_" data-uid="Tizen.Multimedia.AudioCaptureBase.Unprepare*"></a>
+  <h4 id="Tizen_Multimedia_AudioCaptureBase_Unprepare" data-uid="Tizen.Multimedia.AudioCaptureBase.Unprepare">Unprepare()</h4>
+  <div class="markdown level1 summary"><p>Unprepares the AudioCapture.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Unprepare()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Operation failed due to an internal error.<br>
+-or-<br>
+The current state is <a class="xref" href="Tizen.Multimedia.AudioIOState.html#Tizen_Multimedia_AudioIOState_Idle">Idle</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The AudioCaptureBase has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_AudioCaptureBase_Unprepare_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Multimedia.AudioCaptureBase.html#Tizen_Multimedia_AudioCaptureBase_Prepare">Prepare()</a></div>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/AudioIO/AudioCapture.cs/#L81">View Source</a>
+  </span>
+  <h4 id="Tizen_Multimedia_AudioCaptureBase_StateChanged" data-uid="Tizen.Multimedia.AudioCaptureBase.StateChanged">StateChanged</h4>
+  <div class="markdown level1 summary"><p>Occurs when the state of the AudioCapture is changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;AudioIOStateChangedEventArgs&gt; StateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioIOStateChangedEventArgs.html">AudioIOStateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Multimedia.AudioIO/AudioIO/AudioCapture.cs/#L28" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

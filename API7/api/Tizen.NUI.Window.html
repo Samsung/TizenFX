@@ -1,0 +1,2571 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Window
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Window
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API7">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.Window">
+
+
+  <h1 id="Tizen_NUI_Window" data-uid="Tizen.NUI.Window" class="text-break">Class Window
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The window class is used internally for drawing.<br>
+The window has an orientation and indicator properties.<br></p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Window : BaseHandle, INotifyPropertyChanged, IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.BindableObject</span></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div><span class="xref">Window</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L72">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window__ctor_" data-uid="Tizen.NUI.Window.#ctor*"></a>
+  <h4 id="Tizen_NUI_Window__ctor_System_String_Tizen_NUI_Rectangle_System_Boolean_" data-uid="Tizen.NUI.Window.#ctor(System.String,Tizen.NUI.Rectangle,System.Boolean)">Window(string, Rectangle, bool)</h4>
+  <div class="markdown level1 summary"><p>Creates a new Window with a specific name.<br>
+This creates an extra window in addition to the default main window<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Window(string name, Rectangle windowPosition = null, bool isTranslucent = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name for extra window.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">windowPosition</span></td>
+        <td><p>The position and size of the Window.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">isTranslucent</span></td>
+        <td><p>Whether Window is translucent.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L58">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window__ctor_" data-uid="Tizen.NUI.Window.#ctor*"></a>
+  <h4 id="Tizen_NUI_Window__ctor_Tizen_NUI_Rectangle_System_Boolean_" data-uid="Tizen.NUI.Window.#ctor(Tizen.NUI.Rectangle,System.Boolean)">Window(Rectangle, bool)</h4>
+  <div class="markdown level1 summary"><p>Creates a new Window.<br>
+This creates an extra window in addition to the default main window<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Window(Rectangle windowPosition = null, bool isTranslucent = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">windowPosition</span></td>
+        <td><p>The position and size of the Window.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">isTranslucent</span></td>
+        <td><p>Whether Window is translucent.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L298">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_BackgroundColor_" data-uid="Tizen.NUI.Window.BackgroundColor*"></a>
+  <h4 id="Tizen_NUI_Window_BackgroundColor" data-uid="Tizen.NUI.Window.BackgroundColor">BackgroundColor</h4>
+  <div class="markdown level1 summary"><p>The background color property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color BackgroundColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Color.html">Color</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L316">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_Dpi_" data-uid="Tizen.NUI.Window.Dpi*"></a>
+  <h4 id="Tizen_NUI_Window_Dpi" data-uid="Tizen.NUI.Window.Dpi">Dpi</h4>
+  <div class="markdown level1 summary"><p>The DPI property (read-only).<br>
+Retrieves the DPI of the display device to which the Window is connected.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 Dpi { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L208">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_Instance_" data-uid="Tizen.NUI.Window.Instance*"></a>
+  <h4 id="Tizen_NUI_Window_Instance" data-uid="Tizen.NUI.Window.Instance">Instance</h4>
+  <div class="markdown level1 summary"><p>The stage instance property (read-only).<br>
+Gets the current window.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Window Instance { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Window.html">Window</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L329">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_LayerCount_" data-uid="Tizen.NUI.Window.LayerCount*"></a>
+  <h4 id="Tizen_NUI_Window_LayerCount" data-uid="Tizen.NUI.Window.LayerCount">LayerCount</h4>
+  <div class="markdown level1 summary"><p>The layer count property (read-only).<br>
+Queries the number of on-Window layers.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint LayerCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L269">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_RenderingBehavior_" data-uid="Tizen.NUI.Window.RenderingBehavior*"></a>
+  <h4 id="Tizen_NUI_Window_RenderingBehavior" data-uid="Tizen.NUI.Window.RenderingBehavior">RenderingBehavior</h4>
+  <div class="markdown level1 summary"><p>The rendering behavior of a Window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RenderingBehaviorType RenderingBehavior { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.RenderingBehaviorType.html">RenderingBehaviorType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L285">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_Size_" data-uid="Tizen.NUI.Window.Size*"></a>
+  <h4 id="Tizen_NUI_Window_Size" data-uid="Tizen.NUI.Window.Size">Size</h4>
+  <div class="markdown level1 summary"><p>The window size property (read-only).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Size2D Size { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L252">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_Title_" data-uid="Tizen.NUI.Window.Title*"></a>
+  <h4 id="Tizen_NUI_Window_Title" data-uid="Tizen.NUI.Window.Title">Title</h4>
+  <div class="markdown level1 summary"><p>Gets/Sets a window title.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Title { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L233">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_Type_" data-uid="Tizen.NUI.Window.Type*"></a>
+  <h4 id="Tizen_NUI_Window_Type" data-uid="Tizen.NUI.Window.Type">Type</h4>
+  <div class="markdown level1 summary"><p>Gets or sets a window type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WindowType Type { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.WindowType.html">WindowType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L357">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_WindowPosition_" data-uid="Tizen.NUI.Window.WindowPosition*"></a>
+  <h4 id="Tizen_NUI_Window_WindowPosition" data-uid="Tizen.NUI.Window.WindowPosition">WindowPosition</h4>
+  <div class="markdown level1 summary"><p>Gets or sets a position of the window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Position2D WindowPosition { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position2D.html">Position2D</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L341">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_WindowSize_" data-uid="Tizen.NUI.Window.WindowSize*"></a>
+  <h4 id="Tizen_NUI_Window_WindowSize" data-uid="Tizen.NUI.Window.WindowSize">WindowSize</h4>
+  <div class="markdown level1 summary"><p>Gets or sets a size of the window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Size2D WindowSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L741">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_Activate_" data-uid="Tizen.NUI.Window.Activate*"></a>
+  <h4 id="Tizen_NUI_Window_Activate" data-uid="Tizen.NUI.Window.Activate">Activate()</h4>
+  <div class="markdown level1 summary"><p>Activates the window to the top of the window stack even it is iconified.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Activate()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L762">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_Add_" data-uid="Tizen.NUI.Window.Add*"></a>
+  <h4 id="Tizen_NUI_Window_Add_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.Window.Add(Tizen.NUI.BaseComponents.View)">Add(View)</h4>
+  <div class="markdown level1 summary"><p>Add a child view to window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Add(View view)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>the child should be added to the window.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L530">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_AddAuxiliaryHint_" data-uid="Tizen.NUI.Window.AddAuxiliaryHint*"></a>
+  <h4 id="Tizen_NUI_Window_AddAuxiliaryHint_System_String_System_String_" data-uid="Tizen.NUI.Window.AddAuxiliaryHint(System.String,System.String)">AddAuxiliaryHint(string, string)</h4>
+  <div class="markdown level1 summary"><p>Creates an auxiliary hint of the window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint AddAuxiliaryHint(string hint, string value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">hint</span></td>
+        <td><p>The auxiliary hint string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>The ID of created auxiliary hint, or 0 on failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L1037">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_AddAvailableOrientation_" data-uid="Tizen.NUI.Window.AddAvailableOrientation*"></a>
+  <h4 id="Tizen_NUI_Window_AddAvailableOrientation_Tizen_NUI_Window_WindowOrientation_" data-uid="Tizen.NUI.Window.AddAvailableOrientation(Tizen.NUI.Window.WindowOrientation)">AddAvailableOrientation(WindowOrientation)</h4>
+  <div class="markdown level1 summary"><p>Adds an orientation to the list of available orientations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddAvailableOrientation(Window.WindowOrientation orientation)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Window.html">Window</a>.<a class="xref" href="Tizen.NUI.Window.WindowOrientation.html">WindowOrientation</a></td>
+        <td><span class="parametername">orientation</span></td>
+        <td><p>The available orientation to add</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L915">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_AddLayer_" data-uid="Tizen.NUI.Window.AddLayer*"></a>
+  <h4 id="Tizen_NUI_Window_AddLayer_Tizen_NUI_Layer_" data-uid="Tizen.NUI.Window.AddLayer(Tizen.NUI.Layer)">AddLayer(Layer)</h4>
+  <div class="markdown level1 summary"><p>Adds a layer to the stage.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddLayer(Layer layer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Layer.html">Layer</a></td>
+        <td><span class="parametername">layer</span></td>
+        <td><p>Layer to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L935">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_FeedKey_" data-uid="Tizen.NUI.Window.FeedKey*"></a>
+  <h4 id="Tizen_NUI_Window_FeedKey_Tizen_NUI_Key_" data-uid="Tizen.NUI.Window.FeedKey(Tizen.NUI.Key)">FeedKey(Key)</h4>
+  <div class="markdown level1 summary"><p>Feeds a key event into the window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void FeedKey(Key keyEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Key.html">Key</a></td>
+        <td><span class="parametername">keyEvent</span></td>
+        <td><p>The key event to feed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L435">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_FeedKeyEvent_" data-uid="Tizen.NUI.Window.FeedKeyEvent*"></a>
+  <h4 id="Tizen_NUI_Window_FeedKeyEvent_Tizen_NUI_Key_" data-uid="Tizen.NUI.Window.FeedKeyEvent(Tizen.NUI.Key)">FeedKeyEvent(Key)</h4>
+  <div class="markdown level1 summary"><p>Feed a key-event into the window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Please do not use! This will be deprecated! Please use FeedKey(Key keyEvent) instead!&quot;)]
+public static void FeedKeyEvent(Key keyEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Key.html">Key</a></td>
+        <td><span class="parametername">keyEvent</span></td>
+        <td><p>The key event to feed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L583">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_GetAuxiliaryHintId_" data-uid="Tizen.NUI.Window.GetAuxiliaryHintId*"></a>
+  <h4 id="Tizen_NUI_Window_GetAuxiliaryHintId_System_String_" data-uid="Tizen.NUI.Window.GetAuxiliaryHintId(System.String)">GetAuxiliaryHintId(string)</h4>
+  <div class="markdown level1 summary"><p>Gets an ID of the auxiliary hint string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint GetAuxiliaryHintId(string hint)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">hint</span></td>
+        <td><p>The auxiliary hint string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>The ID of auxiliary hint string, or 0 on failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L570">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_GetAuxiliaryHintValue_" data-uid="Tizen.NUI.Window.GetAuxiliaryHintValue*"></a>
+  <h4 id="Tizen_NUI_Window_GetAuxiliaryHintValue_System_UInt32_" data-uid="Tizen.NUI.Window.GetAuxiliaryHintValue(System.UInt32)">GetAuxiliaryHintValue(uint)</h4>
+  <div class="markdown level1 summary"><p>Gets a value of the auxiliary hint.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetAuxiliaryHintValue(uint id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The auxiliary hint ID.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The string value of the auxiliary hint ID, or an empty string if none exists.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L698">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_GetBrightness_" data-uid="Tizen.NUI.Window.GetBrightness*"></a>
+  <h4 id="Tizen_NUI_Window_GetBrightness" data-uid="Tizen.NUI.Window.GetBrightness">GetBrightness()</h4>
+  <div class="markdown level1 summary"><p>Gets the preferred brightness of the window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int GetBrightness()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>The preferred brightness.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L752">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_GetDefaultLayer_" data-uid="Tizen.NUI.Window.GetDefaultLayer*"></a>
+  <h4 id="Tizen_NUI_Window_GetDefaultLayer" data-uid="Tizen.NUI.Window.GetDefaultLayer">GetDefaultLayer()</h4>
+  <div class="markdown level1 summary"><p>Gets the default ( root ) layer.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Layer GetDefaultLayer()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Layer.html">Layer</a></td>
+        <td><p>The root layer.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L903">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_GetKeyboardRepeatInfo_" data-uid="Tizen.NUI.Window.GetKeyboardRepeatInfo*"></a>
+  <h4 id="Tizen_NUI_Window_GetKeyboardRepeatInfo_System_Single__System_Single__" data-uid="Tizen.NUI.Window.GetKeyboardRepeatInfo(System.Single@,System.Single@)">GetKeyboardRepeatInfo(out float, out float)</h4>
+  <div class="markdown level1 summary"><p>Gets the keyboard repeat information.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool GetKeyboardRepeatInfo(out float rate, out float delay)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">rate</span></td>
+        <td><p>The key repeat rate value in seconds.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">delay</span></td>
+        <td><p>The key repeat delay value in seconds.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if setting the keyboard repeat succeeds.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L788">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_GetLayer_" data-uid="Tizen.NUI.Window.GetLayer*"></a>
+  <h4 id="Tizen_NUI_Window_GetLayer_System_UInt32_" data-uid="Tizen.NUI.Window.GetLayer(System.UInt32)">GetLayer(uint)</h4>
+  <div class="markdown level1 summary"><p>Retrieves the layer at a specified depth.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Layer GetLayer(uint depth)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">depth</span></td>
+        <td><p>The layer's depth index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Layer.html">Layer</a></td>
+        <td><p>The layer found at the given depth.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L619">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_GetNotificationLevel_" data-uid="Tizen.NUI.Window.GetNotificationLevel*"></a>
+  <h4 id="Tizen_NUI_Window_GetNotificationLevel" data-uid="Tizen.NUI.Window.GetNotificationLevel">GetNotificationLevel()</h4>
+  <div class="markdown level1 summary"><p>Gets a priority level for the specified notification window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NotificationLevel GetNotificationLevel()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.NotificationLevel.html">NotificationLevel</a></td>
+        <td><p>The notification window level.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L995">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_GetParent_" data-uid="Tizen.NUI.Window.GetParent*"></a>
+  <h4 id="Tizen_NUI_Window_GetParent" data-uid="Tizen.NUI.Window.GetParent">GetParent()</h4>
+  <div class="markdown level1 summary"><p>Gets parent window of the window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Window GetParent()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Window.html">Window</a></td>
+        <td><p>The parent window of the window.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L1070">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_GetPreferredOrientation_" data-uid="Tizen.NUI.Window.GetPreferredOrientation*"></a>
+  <h4 id="Tizen_NUI_Window_GetPreferredOrientation" data-uid="Tizen.NUI.Window.GetPreferredOrientation">GetPreferredOrientation()</h4>
+  <div class="markdown level1 summary"><p>Gets the preferred orientation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Window.WindowOrientation GetPreferredOrientation()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Window.html">Window</a>.<a class="xref" href="Tizen.NUI.Window.WindowOrientation.html">WindowOrientation</a></td>
+        <td><p>The preferred orientation if previously set, or none.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L673">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_GetScreenOffMode_" data-uid="Tizen.NUI.Window.GetScreenOffMode*"></a>
+  <h4 id="Tizen_NUI_Window_GetScreenOffMode" data-uid="Tizen.NUI.Window.GetScreenOffMode">GetScreenOffMode()</h4>
+  <div class="markdown level1 summary"><p>Gets the screen mode of the window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScreenOffMode GetScreenOffMode()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ScreenOffMode.html">ScreenOffMode</a></td>
+        <td><p>The screen off mode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L516">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_GetSupportedAuxiliaryHint_" data-uid="Tizen.NUI.Window.GetSupportedAuxiliaryHint*"></a>
+  <h4 id="Tizen_NUI_Window_GetSupportedAuxiliaryHint_System_UInt32_" data-uid="Tizen.NUI.Window.GetSupportedAuxiliaryHint(System.UInt32)">GetSupportedAuxiliaryHint(uint)</h4>
+  <div class="markdown level1 summary"><p>Gets the supported auxiliary hint string of the window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetSupportedAuxiliaryHint(uint index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of the supported auxiliary hint lists.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The auxiliary hint string of the index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L503">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_GetSupportedAuxiliaryHintCount_" data-uid="Tizen.NUI.Window.GetSupportedAuxiliaryHintCount*"></a>
+  <h4 id="Tizen_NUI_Window_GetSupportedAuxiliaryHintCount" data-uid="Tizen.NUI.Window.GetSupportedAuxiliaryHintCount">GetSupportedAuxiliaryHintCount()</h4>
+  <div class="markdown level1 summary"><p>Gets the count of supported auxiliary hints of the window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint GetSupportedAuxiliaryHintCount()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>The number of supported auxiliary hints.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L861">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_GrabKey_" data-uid="Tizen.NUI.Window.GrabKey*"></a>
+  <h4 id="Tizen_NUI_Window_GrabKey_System_Int32_Tizen_NUI_Window_KeyGrabMode_" data-uid="Tizen.NUI.Window.GrabKey(System.Int32,Tizen.NUI.Window.KeyGrabMode)">GrabKey(int, KeyGrabMode)</h4>
+  <div class="markdown level1 summary"><p>Grabs the key specified by a key for a window in a GrabMode. <br>
+Details: This function can be used for following example scenarios: <br></p>
+<ul>
+<li>TV - A user might want to change the volume or channel of the background TV contents while focusing on the foregrund app. <br></li>
+<li>Mobile - When a user presses the Home key, the homescreen appears regardless of the current foreground app. <br></li>
+<li>Mobile - Using the volume up or down as zoom up or down in camera apps. <br></li>
+</ul>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool GrabKey(int DaliKey, Window.KeyGrabMode GrabMode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">DaliKey</span></td>
+        <td><p>The key code to grab.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Window.html">Window</a>.<a class="xref" href="Tizen.NUI.Window.KeyGrabMode.html">KeyGrabMode</a></td>
+        <td><span class="parametername">GrabMode</span></td>
+        <td><p>The grab mode for the key.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the grab succeeds.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L829">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_GrabKeyTopmost_" data-uid="Tizen.NUI.Window.GrabKeyTopmost*"></a>
+  <h4 id="Tizen_NUI_Window_GrabKeyTopmost_System_Int32_" data-uid="Tizen.NUI.Window.GrabKeyTopmost(System.Int32)">GrabKeyTopmost(int)</h4>
+  <div class="markdown level1 summary"><p>Grabs the key specified by a key for a window only when a window is the topmost window.<br>
+This function can be used for following example scenarios: <br></p>
+<ul>
+<li>Mobile - Using volume up or down as zoom up or down in camera apps.<br></li>
+</ul>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool GrabKeyTopmost(int DaliKey)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">DaliKey</span></td>
+        <td><p>The key code to grab.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the grab succeeds.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L480">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_Hide_" data-uid="Tizen.NUI.Window.Hide*"></a>
+  <h4 id="Tizen_NUI_Window_Hide" data-uid="Tizen.NUI.Window.Hide">Hide()</h4>
+  <div class="markdown level1 summary"><p>Hides the window if it is showing.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Hide()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L458">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_IsFocusAcceptable_" data-uid="Tizen.NUI.Window.IsFocusAcceptable*"></a>
+  <h4 id="Tizen_NUI_Window_IsFocusAcceptable" data-uid="Tizen.NUI.Window.IsFocusAcceptable">IsFocusAcceptable()</h4>
+  <div class="markdown level1 summary"><p>Returns whether the window accepts a focus or not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsFocusAcceptable()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the window accepts a focus, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L648">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_IsOpaqueState_" data-uid="Tizen.NUI.Window.IsOpaqueState*"></a>
+  <h4 id="Tizen_NUI_Window_IsOpaqueState" data-uid="Tizen.NUI.Window.IsOpaqueState">IsOpaqueState()</h4>
+  <div class="markdown level1 summary"><p>Returns whether a transparent window's visual state is opaque or not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsOpaqueState()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the window's visual state is opaque, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Window_IsOpaqueState_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The return value has no meaning on an opaque window.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L491">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_IsVisible_" data-uid="Tizen.NUI.Window.IsVisible*"></a>
+  <h4 id="Tizen_NUI_Window_IsVisible" data-uid="Tizen.NUI.Window.IsVisible">IsVisible()</h4>
+  <div class="markdown level1 summary"><p>Retrieves whether the window is visible or not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsVisible()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the window is visible.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L815">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_KeepRendering_" data-uid="Tizen.NUI.Window.KeepRendering*"></a>
+  <h4 id="Tizen_NUI_Window_KeepRendering_System_Single_" data-uid="Tizen.NUI.Window.KeepRendering(System.Single)">KeepRendering(float)</h4>
+  <div class="markdown level1 summary"><p>Keep rendering for at least the given amount of time.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void KeepRendering(float durationSeconds)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">durationSeconds</span></td>
+        <td><p>Time to keep rendering, 0 means render at least one more frame.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L731">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_Lower_" data-uid="Tizen.NUI.Window.Lower*"></a>
+  <h4 id="Tizen_NUI_Window_Lower" data-uid="Tizen.NUI.Window.Lower">Lower()</h4>
+  <div class="markdown level1 summary"><p>Lowers the window to the bottom of the window stack.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Lower()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L721">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_Raise_" data-uid="Tizen.NUI.Window.Raise*"></a>
+  <h4 id="Tizen_NUI_Window_Raise" data-uid="Tizen.NUI.Window.Raise">Raise()</h4>
+  <div class="markdown level1 summary"><p>Raises the window to the top of the window stack.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Raise()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L775">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_Remove_" data-uid="Tizen.NUI.Window.Remove*"></a>
+  <h4 id="Tizen_NUI_Window_Remove_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.Window.Remove(Tizen.NUI.BaseComponents.View)">Remove(View)</h4>
+  <div class="markdown level1 summary"><p>Remove a child view from window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(View view)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>the child to be removed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L543">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_RemoveAuxiliaryHint_" data-uid="Tizen.NUI.Window.RemoveAuxiliaryHint*"></a>
+  <h4 id="Tizen_NUI_Window_RemoveAuxiliaryHint_System_UInt32_" data-uid="Tizen.NUI.Window.RemoveAuxiliaryHint(System.UInt32)">RemoveAuxiliaryHint(uint)</h4>
+  <div class="markdown level1 summary"><p>Removes an auxiliary hint of the window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveAuxiliaryHint(uint id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The ID of the auxiliary hint.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if no error occurred, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L1048">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_RemoveAvailableOrientation_" data-uid="Tizen.NUI.Window.RemoveAvailableOrientation*"></a>
+  <h4 id="Tizen_NUI_Window_RemoveAvailableOrientation_Tizen_NUI_Window_WindowOrientation_" data-uid="Tizen.NUI.Window.RemoveAvailableOrientation(Tizen.NUI.Window.WindowOrientation)">RemoveAvailableOrientation(WindowOrientation)</h4>
+  <div class="markdown level1 summary"><p>Removes an orientation from the list of available orientations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveAvailableOrientation(Window.WindowOrientation orientation)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Window.html">Window</a>.<a class="xref" href="Tizen.NUI.Window.WindowOrientation.html">WindowOrientation</a></td>
+        <td><span class="parametername">orientation</span></td>
+        <td><p>The available orientation to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L925">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_RemoveLayer_" data-uid="Tizen.NUI.Window.RemoveLayer*"></a>
+  <h4 id="Tizen_NUI_Window_RemoveLayer_Tizen_NUI_Layer_" data-uid="Tizen.NUI.Window.RemoveLayer(Tizen.NUI.Layer)">RemoveLayer(Layer)</h4>
+  <div class="markdown level1 summary"><p>Removes a layer from the stage.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveLayer(Layer layer)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Layer.html">Layer</a></td>
+        <td><span class="parametername">layer</span></td>
+        <td><p>Layer to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L946">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_RenderOnce_" data-uid="Tizen.NUI.Window.RenderOnce*"></a>
+  <h4 id="Tizen_NUI_Window_RenderOnce" data-uid="Tizen.NUI.Window.RenderOnce">RenderOnce()</h4>
+  <div class="markdown level1 summary"><p>Allows at least one more render, even when paused.
+The window should be shown, not minimised.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RenderOnce()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L447">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_SetAcceptFocus_" data-uid="Tizen.NUI.Window.SetAcceptFocus*"></a>
+  <h4 id="Tizen_NUI_Window_SetAcceptFocus_System_Boolean_" data-uid="Tizen.NUI.Window.SetAcceptFocus(System.Boolean)">SetAcceptFocus(bool)</h4>
+  <div class="markdown level1 summary"><p>Sets whether the window accepts a focus or not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetAcceptFocus(bool accept)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">accept</span></td>
+        <td><p>If a focus is accepted or not. The default is true.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L557">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_SetAuxiliaryHintValue_" data-uid="Tizen.NUI.Window.SetAuxiliaryHintValue*"></a>
+  <h4 id="Tizen_NUI_Window_SetAuxiliaryHintValue_System_UInt32_System_String_" data-uid="Tizen.NUI.Window.SetAuxiliaryHintValue(System.UInt32,System.String)">SetAuxiliaryHintValue(uint, string)</h4>
+  <div class="markdown level1 summary"><p>Changes a value of the auxiliary hint.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SetAuxiliaryHintValue(uint id, string value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The auxiliary hint ID.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value string to be set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if no error occurred, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L686">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_SetBrightness_" data-uid="Tizen.NUI.Window.SetBrightness*"></a>
+  <h4 id="Tizen_NUI_Window_SetBrightness_System_Int32_" data-uid="Tizen.NUI.Window.SetBrightness(System.Int32)">SetBrightness(int)</h4>
+  <div class="markdown level1 summary"><p>Sets preferred brightness of the window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SetBrightness(int brightness)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">brightness</span></td>
+        <td><p>The preferred brightness (0 to 100).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if no error occurred, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L711">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_SetClass_" data-uid="Tizen.NUI.Window.SetClass*"></a>
+  <h4 id="Tizen_NUI_Window_SetClass_System_String_System_String_" data-uid="Tizen.NUI.Window.SetClass(System.String,System.String)">SetClass(string, string)</h4>
+  <div class="markdown level1 summary"><p>Sets the window name and the class string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetClass(string name, string klass)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name of the window.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">klass</span></td>
+        <td><p>The class of the window.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L595">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_SetInputRegion_" data-uid="Tizen.NUI.Window.SetInputRegion*"></a>
+  <h4 id="Tizen_NUI_Window_SetInputRegion_Tizen_NUI_Rectangle_" data-uid="Tizen.NUI.Window.SetInputRegion(Tizen.NUI.Rectangle)">SetInputRegion(Rectangle)</h4>
+  <div class="markdown level1 summary"><p>Sets a region to accept input events.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetInputRegion(Rectangle inputRegion)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Rectangle.html">Rectangle</a></td>
+        <td><span class="parametername">inputRegion</span></td>
+        <td><p>The region to accept input events.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L889">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_SetKeyboardRepeatInfo_" data-uid="Tizen.NUI.Window.SetKeyboardRepeatInfo*"></a>
+  <h4 id="Tizen_NUI_Window_SetKeyboardRepeatInfo_System_Single_System_Single_" data-uid="Tizen.NUI.Window.SetKeyboardRepeatInfo(System.Single,System.Single)">SetKeyboardRepeatInfo(float, float)</h4>
+  <div class="markdown level1 summary"><p>Sets the keyboard repeat information.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SetKeyboardRepeatInfo(float rate, float delay)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">rate</span></td>
+        <td><p>The key repeat rate value in seconds.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">delay</span></td>
+        <td><p>The key repeat delay value in seconds.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if setting the keyboard repeat succeeds.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L607">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_SetNotificationLevel_" data-uid="Tizen.NUI.Window.SetNotificationLevel*"></a>
+  <h4 id="Tizen_NUI_Window_SetNotificationLevel_Tizen_NUI_NotificationLevel_" data-uid="Tizen.NUI.Window.SetNotificationLevel(Tizen.NUI.NotificationLevel)">SetNotificationLevel(NotificationLevel)</h4>
+  <div class="markdown level1 summary"><p>Sets a priority level for the specified notification window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SetNotificationLevel(NotificationLevel level)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.NotificationLevel.html">NotificationLevel</a></td>
+        <td><span class="parametername">level</span></td>
+        <td><p>The notification window level.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if no error occurred, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L636">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_SetOpaqueState_" data-uid="Tizen.NUI.Window.SetOpaqueState*"></a>
+  <h4 id="Tizen_NUI_Window_SetOpaqueState_System_Boolean_" data-uid="Tizen.NUI.Window.SetOpaqueState(System.Boolean)">SetOpaqueState(bool)</h4>
+  <div class="markdown level1 summary"><p>Sets a transparent window's visual state to opaque. <br>
+If a visual state of a transparent window is opaque, <br>
+then the window manager could handle it as an opaque window when calculating visibility.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetOpaqueState(bool opaque)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">opaque</span></td>
+        <td><p>Whether the window's visual state is opaque.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Window_SetOpaqueState_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This will have no effect on an opaque window. <br>
+It doesn't change transparent window to opaque window but lets the window manager know the visual state of the window.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L973">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_SetParent_" data-uid="Tizen.NUI.Window.SetParent*"></a>
+  <h4 id="Tizen_NUI_Window_SetParent_Tizen_NUI_Window_" data-uid="Tizen.NUI.Window.SetParent(Tizen.NUI.Window)">SetParent(Window)</h4>
+  <div class="markdown level1 summary"><p>Sets parent window of the window.
+After setting that, these windows do together when raise-up, lower and iconified/deiconified.
+Initially, the window is located on top of the parent. The window can go below parent by calling Lower().
+If parent's window stack is changed by calling Raise() or Lower(), child windows are located on top of the parent again.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetParent(Window parent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Window.html">Window</a></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>The parent window.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L1059">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_SetPreferredOrientation_" data-uid="Tizen.NUI.Window.SetPreferredOrientation*"></a>
+  <h4 id="Tizen_NUI_Window_SetPreferredOrientation_Tizen_NUI_Window_WindowOrientation_" data-uid="Tizen.NUI.Window.SetPreferredOrientation(Tizen.NUI.Window.WindowOrientation)">SetPreferredOrientation(WindowOrientation)</h4>
+  <div class="markdown level1 summary"><p>Sets a preferred orientation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPreferredOrientation(Window.WindowOrientation orientation)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Window.html">Window</a>.<a class="xref" href="Tizen.NUI.Window.WindowOrientation.html">WindowOrientation</a></td>
+        <td><span class="parametername">orientation</span></td>
+        <td><p>The preferred orientation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L661">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_SetScreenOffMode_" data-uid="Tizen.NUI.Window.SetScreenOffMode*"></a>
+  <h4 id="Tizen_NUI_Window_SetScreenOffMode_Tizen_NUI_ScreenOffMode_" data-uid="Tizen.NUI.Window.SetScreenOffMode(Tizen.NUI.ScreenOffMode)">SetScreenOffMode(ScreenOffMode)</h4>
+  <div class="markdown level1 summary"><p>Sets a window's screen off mode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SetScreenOffMode(ScreenOffMode screenOffMode)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.ScreenOffMode.html">ScreenOffMode</a></td>
+        <td><span class="parametername">screenOffMode</span></td>
+        <td><p>The screen mode.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if no error occurred, false otherwise.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L957">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_SetTransparency_" data-uid="Tizen.NUI.Window.SetTransparency*"></a>
+  <h4 id="Tizen_NUI_Window_SetTransparency_System_Boolean_" data-uid="Tizen.NUI.Window.SetTransparency(System.Boolean)">SetTransparency(bool)</h4>
+  <div class="markdown level1 summary"><p>Sets whether the window is transparent or not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetTransparency(bool transparent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">transparent</span></td>
+        <td><p>Whether the window is transparent or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L470">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_Show_" data-uid="Tizen.NUI.Window.Show*"></a>
+  <h4 id="Tizen_NUI_Window_Show" data-uid="Tizen.NUI.Window.Show">Show()</h4>
+  <div class="markdown level1 summary"><p>Shows the window if it is hidden.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Show()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L875">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_UngrabKey_" data-uid="Tizen.NUI.Window.UngrabKey*"></a>
+  <h4 id="Tizen_NUI_Window_UngrabKey_System_Int32_" data-uid="Tizen.NUI.Window.UngrabKey(System.Int32)">UngrabKey(int)</h4>
+  <div class="markdown level1 summary"><p>Ungrabs the key specified by a key for a window.<br>
+Note: If this function is called between key down and up events of a grabbed key, an application doesn't receive the key up event. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UngrabKey(int DaliKey)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">DaliKey</span></td>
+        <td><p>The key code to ungrab.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the ungrab succeeds.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L843">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_UngrabKeyTopmost_" data-uid="Tizen.NUI.Window.UngrabKeyTopmost*"></a>
+  <h4 id="Tizen_NUI_Window_UngrabKeyTopmost_System_Int32_" data-uid="Tizen.NUI.Window.UngrabKeyTopmost(System.Int32)">UngrabKeyTopmost(int)</h4>
+  <div class="markdown level1 summary"><p>Ungrabs the key specified by a key for the window.<br>
+Note: If this function is called between key down and up events of a grabbed key, an application doesn't receive the key up event.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool UngrabKeyTopmost(int DaliKey)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">DaliKey</span></td>
+        <td><p>The key code to ungrab.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the ungrab succeeds.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/Window.cs/#L984">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Window_Unparent_" data-uid="Tizen.NUI.Window.Unparent*"></a>
+  <h4 id="Tizen_NUI_Window_Unparent" data-uid="Tizen.NUI.Window.Unparent">Unparent()</h4>
+  <div class="markdown level1 summary"><p>Unsets parent window of the window.
+After unsetting, the window is disconnected his parent window.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Unparent()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/WindowEvent.cs/#L65">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Window_FocusChanged" data-uid="Tizen.NUI.Window.FocusChanged">FocusChanged</h4>
+  <div class="markdown level1 summary"><p>FocusChanged event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;Window.FocusChangedEventArgs&gt; FocusChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Window.html">Window</a>.<a class="xref" href="Tizen.NUI.Window.FocusChangedEventArgs.html">FocusChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/WindowEvent.cs/#L145">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Window_KeyEvent" data-uid="Tizen.NUI.Window.KeyEvent">KeyEvent</h4>
+  <div class="markdown level1 summary"><p>Emits the event when the key event is received.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;Window.KeyEventArgs&gt; KeyEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Window.html">Window</a>.<a class="xref" href="Tizen.NUI.Window.KeyEventArgs.html">KeyEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/WindowEvent.cs/#L170">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Window_Resized" data-uid="Tizen.NUI.Window.Resized">Resized</h4>
+  <div class="markdown level1 summary"><p>Emits the event when the window resized.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;Window.ResizedEventArgs&gt; Resized</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Window.html">Window</a>.<a class="xref" href="Tizen.NUI.Window.ResizedEventArgs.html">ResizedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/WindowEvent.cs/#L95">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Window_TouchEvent" data-uid="Tizen.NUI.Window.TouchEvent">TouchEvent</h4>
+  <div class="markdown level1 summary"><p>Emits the event when the screen is touched and when the touch ends.<br>
+If there are multiple touch points then it is emitted when the first touch occurs and
+when the last finger is lifted too.<br>
+Even though incoming events are interrupted, the event occurs.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;Window.TouchEventArgs&gt; TouchEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Window.html">Window</a>.<a class="xref" href="Tizen.NUI.Window.TouchEventArgs.html">TouchEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/WindowEvent.cs/#L120">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Window_WheelEvent" data-uid="Tizen.NUI.Window.WheelEvent">WheelEvent</h4>
+  <div class="markdown level1 summary"><p>Emits the event when the wheel event is received.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;Window.WheelEventArgs&gt; WheelEvent</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Window.html">Window</a>.<a class="xref" href="Tizen.NUI.Window.WheelEventArgs.html">WheelEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.NUI/src/public/WindowEvent.cs/#L30" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

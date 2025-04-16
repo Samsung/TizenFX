@@ -1,0 +1,1701 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Request
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Request
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API5">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Content.Download.Request">
+
+
+  <h1 id="Tizen_Content_Download_Request" data-uid="Tizen.Content.Download.Request" class="text-break">Class Request
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Content</span>.<a class="xref" href="Tizen.Content.Download.html">Download</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Content.Download.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The Request class provides the functions to create and manage a single download request.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Request : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">Request</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L140">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request__ctor_" data-uid="Tizen.Content.Download.Request.#ctor*"></a>
+  <h4 id="Tizen_Content_Download_Request__ctor_System_String_System_String_System_String_Tizen_Content_Download_NetworkType_System_Collections_Generic_IDictionary_System_String_System_String__" data-uid="Tizen.Content.Download.Request.#ctor(System.String,System.String,System.String,Tizen.Content.Download.NetworkType,System.Collections.Generic.IDictionary{System.String,System.String})">Request(string, string, string, NetworkType, IDictionary&lt;string, string&gt;)</h4>
+  <div class="markdown level1 summary"><p>Creates a Request object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Request(string url, string destinationPath, string fileName, NetworkType type, IDictionary&lt;string, string&gt; httpHeaders)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">url</span></td>
+        <td><p>The URL to download.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">destinationPath</span></td>
+        <td><p>The directory path where the downloaded file is stored.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">fileName</span></td>
+        <td><p>The name of the downloaded file.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Content.Download.NetworkType.html">NetworkType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The network type which the download request must adhere to.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IDictionary&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;</td>
+        <td><span class="parametername">httpHeaders</span></td>
+        <td><p>HTTP header fields for the download request.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L83">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request__ctor_" data-uid="Tizen.Content.Download.Request.#ctor*"></a>
+  <h4 id="Tizen_Content_Download_Request__ctor_System_String_System_String_System_String_Tizen_Content_Download_NetworkType_" data-uid="Tizen.Content.Download.Request.#ctor(System.String,System.String,System.String,Tizen.Content.Download.NetworkType)">Request(string, string, string, NetworkType)</h4>
+  <div class="markdown level1 summary"><p>Creates a Request object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Request(string url, string destinationPath, string fileName, NetworkType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">url</span></td>
+        <td><p>The URL to download</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">destinationPath</span></td>
+        <td><p>The directory path where downloaded file is stored.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">fileName</span></td>
+        <td><p>The name of the downloaded file.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Content.Download.NetworkType.html">NetworkType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The network type which the download request must adhere to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when a feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L47">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request__ctor_" data-uid="Tizen.Content.Download.Request.#ctor*"></a>
+  <h4 id="Tizen_Content_Download_Request__ctor_System_String_" data-uid="Tizen.Content.Download.Request.#ctor(System.String)">Request(string)</h4>
+  <div class="markdown level1 summary"><p>Creates a Request object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Request(string url)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">url</span></td>
+        <td><p>The URL to download.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L520">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_AllowedNetworkType_" data-uid="Tizen.Content.Download.Request.AllowedNetworkType*"></a>
+  <h4 id="Tizen_Content_Download_Request_AllowedNetworkType" data-uid="Tizen.Content.Download.Request.AllowedNetworkType">AllowedNetworkType</h4>
+  <div class="markdown level1 summary"><p>The allowed network type for downloading the file.
+The file will be downloaded only under the allowed network.
+If you try to get this property value before setting or if any other error occurs, the default value NetworkType All is returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public NetworkType AllowedNetworkType { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Content.Download.NetworkType.html">NetworkType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Content_Download_Request_AllowedNetworkType_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Should be set before calling Start().</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L626">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_AutoDownload_" data-uid="Tizen.Content.Download.Request.AutoDownload*"></a>
+  <h4 id="Tizen_Content_Download_Request_AutoDownload" data-uid="Tizen.Content.Download.Request.AutoDownload">AutoDownload</h4>
+  <div class="markdown level1 summary"><p>Enables or disables auto download.
+If this option is enabled, the previous downloading item is restarted automatically as soon as the download daemon is restarted. The download progress continues after the client process is terminated.
+If you try to get this property value before setting, the default value false is returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AutoDownload { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Content_Download_Request_AutoDownload_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The default value is false.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L328">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_ContentName_" data-uid="Tizen.Content.Download.Request.ContentName*"></a>
+  <h4 id="Tizen_Content_Download_Request_ContentName" data-uid="Tizen.Content.Download.Request.ContentName">ContentName</h4>
+  <div class="markdown level1 summary"><p>The content name of the downloaded file.
+This can be defined with reference of the HTTP response header data. The content name can be received when the HTTP response header is received.
+If you try to get this property value before calling Start(), an empty string is returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ContentName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L353">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_ContentSize_" data-uid="Tizen.Content.Download.Request.ContentSize*"></a>
+  <h4 id="Tizen_Content_Download_Request_ContentSize" data-uid="Tizen.Content.Download.Request.ContentSize">ContentSize</h4>
+  <div class="markdown level1 summary"><p>The total size of the downloaded content.
+This information is received from the server. If the server does not send the total size of the content, the content size is set to zero.
+If you try to get this property value before calling Start(), 0 is returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ulong ContentSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ulong</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L555">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_DestinationPath_" data-uid="Tizen.Content.Download.Request.DestinationPath*"></a>
+  <h4 id="Tizen_Content_Download_Request_DestinationPath" data-uid="Tizen.Content.Download.Request.DestinationPath">DestinationPath</h4>
+  <div class="markdown level1 summary"><p>The file will be downloaded to the set the destination file path. The downloaded file is saved to an auto-generated file name in the destination. If the destination is not specified, the file will be downloaded to the default storage.
+If you try to get this property value before setting or if any other error occurs, an empty string is returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DestinationPath { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Content_Download_Request_DestinationPath_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Should be set before calling Start().</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L256">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_DownloadedPath_" data-uid="Tizen.Content.Download.Request.DownloadedPath*"></a>
+  <h4 id="Tizen_Content_Download_Request_DownloadedPath" data-uid="Tizen.Content.Download.Request.DownloadedPath">DownloadedPath</h4>
+  <div class="markdown level1 summary"><p>The absolute path where the file will be downloaded.
+If you try to get this property value before calling Start(), an empty string is returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DownloadedPath { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Content_Download_Request_DownloadedPath_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Returns an empty string if the download is not completed or if a state has not yet changed to completed or if any other error occurs.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L408">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_ETagValue_" data-uid="Tizen.Content.Download.Request.ETagValue*"></a>
+  <h4 id="Tizen_Content_Download_Request_ETagValue" data-uid="Tizen.Content.Download.Request.ETagValue">ETagValue</h4>
+  <div class="markdown level1 summary"><p>The ETag value from the HTTP response header when making a HTTP request for resume.
+If you try to get this property value before calling Start() or if any other error occurs, an empty string is returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ETagValue { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Content_Download_Request_ETagValue_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The ETag value is either available or not dependent on the web server. If not available, then, on getting the property, a null value is returned.
+After the download is started, it can get the ETag value.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L590">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_FileName_" data-uid="Tizen.Content.Download.Request.FileName*"></a>
+  <h4 id="Tizen_Content_Download_Request_FileName" data-uid="Tizen.Content.Download.Request.FileName">FileName</h4>
+  <div class="markdown level1 summary"><p>The file will be saved in the specified destination or the default storage with the set file name. If the file name is not specified, the downloaded file will be saved with an auto-generated file name in the destination.
+If you try to get this property value before setting or if any other error occurs, an empty string is returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string FileName { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Content_Download_Request_FileName_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Should be set before calling Start().</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L660">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_HttpHeaders_" data-uid="Tizen.Content.Download.Request.HttpHeaders*"></a>
+  <h4 id="Tizen_Content_Download_Request_HttpHeaders" data-uid="Tizen.Content.Download.Request.HttpHeaders">HttpHeaders</h4>
+  <div class="markdown level1 summary"><p>The HTTP header field and value pairs to the download request.
+The HTTP header &lt;field,value&gt; pair is the &lt;key,value&gt; pair in the dictionary HttpHeaders.
+The given HTTP header field will be included with the HTTP request of the download request.
+If you try to get this property value before setting, an empty dictionary is returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IDictionary&lt;string, string&gt; HttpHeaders { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IDictionary&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Content_Download_Request_HttpHeaders_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>HTTP header fields should be set before calling Start().
+HTTP header fields can be removed before calling Start().</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L380">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_HttpStatus_" data-uid="Tizen.Content.Download.Request.HttpStatus*"></a>
+  <h4 id="Tizen_Content_Download_Request_HttpStatus" data-uid="Tizen.Content.Download.Request.HttpStatus">HttpStatus</h4>
+  <div class="markdown level1 summary"><p>The HTTP status code when a download exception occurs.
+If you try to get this property value before calling Start(), 0 is returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int HttpStatus { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Content_Download_Request_HttpStatus_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The state of the download request must be DownlodState.Failed.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L280">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_MimeType_" data-uid="Tizen.Content.Download.Request.MimeType*"></a>
+  <h4 id="Tizen_Content_Download_Request_MimeType" data-uid="Tizen.Content.Download.Request.MimeType">MimeType</h4>
+  <div class="markdown level1 summary"><p>The MIME type of the downloaded content.
+If you try to get this property value before calling Start(), an empty string is returned.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string MimeType { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L434">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_NotificationProperties_" data-uid="Tizen.Content.Download.Request.NotificationProperties*"></a>
+  <h4 id="Tizen_Content_Download_Request_NotificationProperties" data-uid="Tizen.Content.Download.Request.NotificationProperties">NotificationProperties</h4>
+  <div class="markdown level1 summary"><p>Contains properties required for creating download notifications.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Notification NotificationProperties { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Content.Download.Notification.html">Notification</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Content_Download_Request_NotificationProperties_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>When the notification message is clicked, the action taken by the system is decided by the application control properties of the NotificationProperties instance.
+If the app control is not set, the following default operation is executed when the notification message is clicked:</p>
+<ol>
+<li>The download completed state - the viewer application is executed according to the extension name of the downloaded content.</li>
+<li>The download failed state and ongoing state - the client application is executed.
+This property should be set before calling Start().</li>
+</ol>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L303">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_State_" data-uid="Tizen.Content.Download.Request.State*"></a>
+  <h4 id="Tizen_Content_Download_Request_State" data-uid="Tizen.Content.Download.Request.State">State</h4>
+  <div class="markdown level1 summary"><p>The current state of the download.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DownloadState State { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Content.Download.DownloadState.html">DownloadState</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L453">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_TemporaryPath_" data-uid="Tizen.Content.Download.Request.TemporaryPath*"></a>
+  <h4 id="Tizen_Content_Download_Request_TemporaryPath" data-uid="Tizen.Content.Download.Request.TemporaryPath">TemporaryPath</h4>
+  <div class="markdown level1 summary"><p>The full path of the temporary file stores the downloaded content.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string TemporaryPath { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Content_Download_Request_TemporaryPath_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The download state must be one of the states after downloading.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L480">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_Url_" data-uid="Tizen.Content.Download.Request.Url*"></a>
+  <h4 id="Tizen_Content_Download_Request_Url" data-uid="Tizen.Content.Download.Request.Url">Url</h4>
+  <div class="markdown level1 summary"><p>The URL to download.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Url { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Content_Download_Request_Url_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Should be set before calling Start().
+If you try to get this property value before setting or if any other error occurs, an empty string is returned.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L752">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_Cancel_" data-uid="Tizen.Content.Download.Request.Cancel*"></a>
+  <h4 id="Tizen_Content_Download_Request_Cancel" data-uid="Tizen.Content.Download.Request.Cancel">Cancel()</h4>
+  <div class="markdown level1 summary"><p>Cancels the download request.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Cancel()</code></pre>
+  </div>
+  <h5 id="Tizen_Content_Download_Request_Cancel_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The canceled download can be restarted with Start().</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L772">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_Dispose_" data-uid="Tizen.Content.Download.Request.Dispose*"></a>
+  <h4 id="Tizen_Content_Download_Request_Dispose" data-uid="Tizen.Content.Download.Request.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Releases all the resources used by the Request class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <h5 id="Tizen_Content_Download_Request_Dispose_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>After calling this method, the download request related data exists in the download database for a certain period of time. Within that time, it is possible to use other APIs with this data.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L786">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_Dispose_" data-uid="Tizen.Content.Download.Request.Dispose*"></a>
+  <h4 id="Tizen_Content_Download_Request_Dispose_System_Boolean_" data-uid="Tizen.Content.Download.Request.Dispose(System.Boolean)">Dispose(bool)</h4>
+  <div class="markdown level1 summary"><p>Deletes the corresponding download request.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L183">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_Finalize_" data-uid="Tizen.Content.Download.Request.Finalize*"></a>
+  <h4 id="Tizen_Content_Download_Request_Finalize" data-uid="Tizen.Content.Download.Request.Finalize">~Request()</h4>
+  <div class="markdown level1 summary"><p>Destructor of the Request class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~Request()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L732">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_Pause_" data-uid="Tizen.Content.Download.Request.Pause*"></a>
+  <h4 id="Tizen_Content_Download_Request_Pause" data-uid="Tizen.Content.Download.Request.Pause">Pause()</h4>
+  <div class="markdown level1 summary"><p>Pauses the download request.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Pause()</code></pre>
+  </div>
+  <h5 id="Tizen_Content_Download_Request_Pause_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The paused download request can be restarted with Start() or canceled with Cancel().</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L681">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_SetTemporaryFilePath_" data-uid="Tizen.Content.Download.Request.SetTemporaryFilePath*"></a>
+  <h4 id="Tizen_Content_Download_Request_SetTemporaryFilePath_System_String_" data-uid="Tizen.Content.Download.Request.SetTemporaryFilePath(System.String)">SetTemporaryFilePath(string)</h4>
+  <div class="markdown level1 summary"><p>Sets the directory path of a temporary file used in a previous download request.
+This is only useful when resuming download to make the HTTP request header at the client side. Otherwise, the path is ignored.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetTemporaryFilePath(string path)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Content_Download_Request_SetTemporaryFilePath_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If the ETag value is not present in the download database, it is not useful to set the temporary file path.
+When resuming the download request, the data is attached at the end of this temporary file.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L702">View Source</a>
+  </span>
+  <a id="Tizen_Content_Download_Request_Start_" data-uid="Tizen.Content.Download.Request.Start*"></a>
+  <h4 id="Tizen_Content_Download_Request_Start" data-uid="Tizen.Content.Download.Request.Start">Start()</h4>
+  <div class="markdown level1 summary"><p>Starts or resumes the download.
+Starts to download the current URL, or resumes the download if paused.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Start()</code></pre>
+  </div>
+  <h5 id="Tizen_Content_Download_Request_Start_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The URL is the mandatory information to start the download.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L224">View Source</a>
+  </span>
+  <h4 id="Tizen_Content_Download_Request_ProgressChanged" data-uid="Tizen.Content.Download.Request.ProgressChanged">ProgressChanged</h4>
+  <div class="markdown level1 summary"><p>An event that occurs when the download progress changes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ProgressChangedEventArgs&gt; ProgressChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Content.Download.ProgressChangedEventArgs.html">ProgressChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L196">View Source</a>
+  </span>
+  <h4 id="Tizen_Content_Download_Request_StateChanged" data-uid="Tizen.Content.Download.Request.StateChanged">StateChanged</h4>
+  <div class="markdown level1 summary"><p>An event that occurs when the download state changes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;StateChangedEventArgs&gt; StateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Content.Download.StateChangedEventArgs.html">StateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it is failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it is failed due to an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when a permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API5/src/Tizen.Content.Download/Tizen.Content.Download/Request.cs/#L27" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

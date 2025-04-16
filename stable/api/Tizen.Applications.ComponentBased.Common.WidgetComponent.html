@@ -1,0 +1,384 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class WidgetComponent
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class WidgetComponent
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Applications.ComponentBased.Common.WidgetComponent">
+
+
+  <h1 id="Tizen_Applications_ComponentBased_Common_WidgetComponent" data-uid="Tizen.Applications.ComponentBased.Common.WidgetComponent" class="text-break">Class WidgetComponent
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a>.<a class="xref" href="Tizen.Applications.ComponentBased.html">ComponentBased</a>.<a class="xref" href="Tizen.Applications.ComponentBased.Common.html">Common</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.ComponentBased.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Represents a base class for widget components in the component-based application model.
+This class provides methods for handling the lifecycle and state of widget components.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class WidgetComponent : BaseComponent</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.Applications.ComponentBased.Common.BaseComponent.html">BaseComponent</a></div>
+        <div><span class="xref">WidgetComponent</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.Common/WidgetComponent.cs/#L48">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ComponentBased_Common_WidgetComponent_CreateWindowInfo_" data-uid="Tizen.Applications.ComponentBased.Common.WidgetComponent.CreateWindowInfo*"></a>
+  <h4 id="Tizen_Applications_ComponentBased_Common_WidgetComponent_CreateWindowInfo_System_Int32_System_Int32_" data-uid="Tizen.Applications.ComponentBased.Common.WidgetComponent.CreateWindowInfo(System.Int32,System.Int32)">CreateWindowInfo(int, int)</h4>
+  <div class="markdown level1 summary"><p>Called to create the window for the widget. This method will be called before the <a class="xref" href="Tizen.Applications.ComponentBased.Common.WidgetComponent.html#Tizen_Applications_ComponentBased_Common_WidgetComponent_OnCreate_System_Int32_System_Int32_">OnCreate(int, int)</a> method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract IWindowProxy CreateWindowInfo(int width, int height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The width of the widget window.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>The height of the widget window.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.ComponentBased.Common.IWindowProxy.html">IWindowProxy</a></td>
+        <td><p>An <a class="xref" href="Tizen.Applications.ComponentBased.Common.IWindowProxy.html">IWindowProxy</a> object representing the window to use.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.Common/WidgetComponent.cs/#L37">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ComponentBased_Common_WidgetComponent_OnCreate_" data-uid="Tizen.Applications.ComponentBased.Common.WidgetComponent.OnCreate*"></a>
+  <h4 id="Tizen_Applications_ComponentBased_Common_WidgetComponent_OnCreate_System_Int32_System_Int32_" data-uid="Tizen.Applications.ComponentBased.Common.WidgetComponent.OnCreate(System.Int32,System.Int32)">OnCreate(int, int)</h4>
+  <div class="markdown level1 summary"><p>Called when the widget component is created. Override this method to implement custom creation behavior.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract bool OnCreate(int width, int height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The width of the widget component instance.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>The height of the widget component instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p><code>true</code> if the widget component is successfully created; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.Common/WidgetComponent.cs/#L92">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ComponentBased_Common_WidgetComponent_OnDestroy_" data-uid="Tizen.Applications.ComponentBased.Common.WidgetComponent.OnDestroy*"></a>
+  <h4 id="Tizen_Applications_ComponentBased_Common_WidgetComponent_OnDestroy_System_Boolean_" data-uid="Tizen.Applications.ComponentBased.Common.WidgetComponent.OnDestroy(System.Boolean)">OnDestroy(bool)</h4>
+  <div class="markdown level1 summary"><p>Called when the widget component is destroyed. Override this method to handle destruction behavior.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnDestroy(bool permanent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">permanent</span></td>
+        <td><p><code>true</code> if the instance is permanent; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.Common/WidgetComponent.cs/#L73">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ComponentBased_Common_WidgetComponent_OnPause_" data-uid="Tizen.Applications.ComponentBased.Common.WidgetComponent.OnPause*"></a>
+  <h4 id="Tizen_Applications_ComponentBased_Common_WidgetComponent_OnPause" data-uid="Tizen.Applications.ComponentBased.Common.WidgetComponent.OnPause">OnPause()</h4>
+  <div class="markdown level1 summary"><p>Called when the widget component is paused. Override this method to handle pause behavior.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnPause()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.Common/WidgetComponent.cs/#L65">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ComponentBased_Common_WidgetComponent_OnResume_" data-uid="Tizen.Applications.ComponentBased.Common.WidgetComponent.OnResume*"></a>
+  <h4 id="Tizen_Applications_ComponentBased_Common_WidgetComponent_OnResume" data-uid="Tizen.Applications.ComponentBased.Common.WidgetComponent.OnResume">OnResume()</h4>
+  <div class="markdown level1 summary"><p>Called when the widget component is resumed. Override this method to handle resume behavior.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnResume()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.Common/WidgetComponent.cs/#L57">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ComponentBased_Common_WidgetComponent_OnStart_" data-uid="Tizen.Applications.ComponentBased.Common.WidgetComponent.OnStart*"></a>
+  <h4 id="Tizen_Applications_ComponentBased_Common_WidgetComponent_OnStart_System_Boolean_" data-uid="Tizen.Applications.ComponentBased.Common.WidgetComponent.OnStart(System.Boolean)">OnStart(bool)</h4>
+  <div class="markdown level1 summary"><p>Called when the widget component is started. Override this method to handle start behavior.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnStart(bool restarted)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">restarted</span></td>
+        <td><p><code>true</code> if the component was restarted; otherwise, <code>false</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.Common/WidgetComponent.cs/#L81">View Source</a>
+  </span>
+  <a id="Tizen_Applications_ComponentBased_Common_WidgetComponent_OnStop_" data-uid="Tizen.Applications.ComponentBased.Common.WidgetComponent.OnStop*"></a>
+  <h4 id="Tizen_Applications_ComponentBased_Common_WidgetComponent_OnStop" data-uid="Tizen.Applications.ComponentBased.Common.WidgetComponent.OnStop">OnStop()</h4>
+  <div class="markdown level1 summary"><p>Called when the widget component is stopped. Override this method to handle stop behavior.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public virtual void OnStop()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.Common/WidgetComponent.cs/#L26" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

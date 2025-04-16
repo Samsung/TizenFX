@@ -1,0 +1,414 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Alarm
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Alarm
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API6">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Applications.Alarm">
+
+
+  <h1 id="Tizen_Applications_Alarm" data-uid="Tizen.Applications.Alarm" class="text-break">Class Alarm
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Alarm.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The alarm API allows setting an &quot;alarm clock&quot; for the delivery of a notification at some point in the future.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Alarm</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">Alarm</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h5 id="Tizen_Applications_Alarm_examples"><strong>Examples</strong></h5>
+  <pre><code>public class AlarmExample
+{
+    /// ...
+    IEnumerable &lt; Alarm > alarms = AlarmManager.GetAllScheduledAlarms();
+    alarms[0].Cancel();
+}</code></pre>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Alarm/Tizen.Applications/Alarm.cs/#L187">View Source</a>
+  </span>
+  <a id="Tizen_Applications_Alarm_AlarmAppControl_" data-uid="Tizen.Applications.Alarm.AlarmAppControl*"></a>
+  <h4 id="Tizen_Applications_Alarm_AlarmAppControl" data-uid="Tizen.Applications.Alarm.AlarmAppControl">AlarmAppControl</h4>
+  <div class="markdown level1 summary"><p>Gets the AppControl to be invoked when the the alarm is triggered.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AppControl AlarmAppControl { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Alarm/Tizen.Applications/Alarm.cs/#L52">View Source</a>
+  </span>
+  <a id="Tizen_Applications_Alarm_AlarmId_" data-uid="Tizen.Applications.Alarm.AlarmId*"></a>
+  <h4 id="Tizen_Applications_Alarm_AlarmId" data-uid="Tizen.Applications.Alarm.AlarmId">AlarmId</h4>
+  <div class="markdown level1 summary"><p>The alarm ID uniquely identifies an alarm.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int AlarmId { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Alarm/Tizen.Applications/Alarm.cs/#L209">View Source</a>
+  </span>
+  <a id="Tizen_Applications_Alarm_Global_" data-uid="Tizen.Applications.Alarm.Global*"></a>
+  <h4 id="Tizen_Applications_Alarm_Global" data-uid="Tizen.Applications.Alarm.Global">Global</h4>
+  <div class="markdown level1 summary"><p>Gets whether the alarm will launch global application or not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Global { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Alarm/Tizen.Applications/Alarm.cs/#L158">View Source</a>
+  </span>
+  <a id="Tizen_Applications_Alarm_Period_" data-uid="Tizen.Applications.Alarm.Period*"></a>
+  <h4 id="Tizen_Applications_Alarm_Period" data-uid="Tizen.Applications.Alarm.Period">Period</h4>
+  <div class="markdown level1 summary"><p>Gets the period of time between the recurrent alarms.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Period { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Alarm_Period_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The <code>Period</code> property setter is available since API Level 6.
+If the week recurrence flag was set before, it will be removed and the period will be set
+If the period was set before, it will be overwritten.If it was not, it will be set.
+If the @a period argument is 0 and the period was previously set,
+the period attribute will be cleared and the alarm will be changed to one-time.
+If the @a period argument is 0 and the period was not set,
+or the week recurrence flag was set, the alarm will be unchanged.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Alarm/Tizen.Applications/Alarm.cs/#L107">View Source</a>
+  </span>
+  <a id="Tizen_Applications_Alarm_ScheduledDate_" data-uid="Tizen.Applications.Alarm.ScheduledDate*"></a>
+  <h4 id="Tizen_Applications_Alarm_ScheduledDate" data-uid="Tizen.Applications.Alarm.ScheduledDate">ScheduledDate</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the scheduled time.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime ScheduledDate { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Alarm_ScheduledDate_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The <code>SchduleDate</code> property setter is available since API Level 6.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Alarm/Tizen.Applications/Alarm.cs/#L73">View Source</a>
+  </span>
+  <a id="Tizen_Applications_Alarm_WeekFlag_" data-uid="Tizen.Applications.Alarm.WeekFlag*"></a>
+  <h4 id="Tizen_Applications_Alarm_WeekFlag" data-uid="Tizen.Applications.Alarm.WeekFlag">WeekFlag</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the recurrence days of the week.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AlarmWeekFlag WeekFlag { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AlarmWeekFlag.html">AlarmWeekFlag</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_Alarm_WeekFlag_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The <code>WeekFlag</code> property setter is available since API Level 6.
+Weekflag may be a combination of days, like Tuesday | Friday.
+If the period was set before, it will be removed and the week recurrence flag will be set.
+If the week recurrence flag was set before, it will be overwritten.If it was not, it will be set.
+If the Weekflag argument is 0 and the flag was previously set,
+the flag attribute will be cleared and the alarm will be changed to one-time.
+If the Weekflag argument is 0 and the flag was not set,
+or the period was set, the alarm will be unchanged.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Alarm/Tizen.Applications/Alarm.cs/#L242">View Source</a>
+  </span>
+  <a id="Tizen_Applications_Alarm_Cancel_" data-uid="Tizen.Applications.Alarm.Cancel*"></a>
+  <h4 id="Tizen_Applications_Alarm_Cancel" data-uid="Tizen.Applications.Alarm.Cancel">Cancel()</h4>
+  <div class="markdown level1 summary"><p>Cancels the specific alarm.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Cancel()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parmaeter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of a permission denied due to insufficient privileges.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API6/src/Tizen.Applications.Alarm/Tizen.Applications/Alarm.cs/#L35" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

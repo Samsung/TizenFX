@@ -1,0 +1,1399 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class TableView
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class TableView
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.BaseComponents.TableView">
+
+
+  <h1 id="Tizen_NUI_BaseComponents_TableView" data-uid="Tizen.NUI.BaseComponents.TableView" class="text-break">Class TableView
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.BaseComponents.html">BaseComponents</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>TableView is a layout container for aligning child actors in a grid like layout.<br>
+TableView constraints the X and the Y position and the width and the height of the child actors.<br>
+The Z position and depth are left intact so that the 3D model actors can also be laid out
+in a grid without loosing their depth scaling.<br></p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TableView : View, INotifyPropertyChanged, IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></div>
+        <div><span class="xref">TableView</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L143">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView__ctor_" data-uid="Tizen.NUI.BaseComponents.TableView.#ctor*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView__ctor" data-uid="Tizen.NUI.BaseComponents.TableView.#ctor">TableView()</h4>
+  <div class="markdown level1 summary"><p>Creates the default TableView view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TableView()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L154">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView__ctor_" data-uid="Tizen.NUI.BaseComponents.TableView.#ctor*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView__ctor_System_UInt32_System_UInt32_" data-uid="Tizen.NUI.BaseComponents.TableView.#ctor(System.UInt32,System.UInt32)">TableView(uint, uint)</h4>
+  <div class="markdown level1 summary"><p>Creates the TableView view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TableView(uint initialRows, uint initialColumns)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">initialRows</span></td>
+        <td><p>Initial rows for the table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">initialColumns</span></td>
+        <td><p>Initial columns for the table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L165">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView__ctor_" data-uid="Tizen.NUI.BaseComponents.TableView.#ctor*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView__ctor_Tizen_NUI_BaseComponents_TableView_" data-uid="Tizen.NUI.BaseComponents.TableView.#ctor(Tizen.NUI.BaseComponents.TableView)">TableView(TableView)</h4>
+  <div class="markdown level1 summary"><p>The Copy constructor. Creates another handle that points to the same real object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TableView(TableView handle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.TableView.html">TableView</a></td>
+        <td><span class="parametername">handle</span></td>
+        <td><p>Handle to copy from.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L301">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_CellPadding_" data-uid="Tizen.NUI.BaseComponents.TableView.CellPadding*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_CellPadding" data-uid="Tizen.NUI.BaseComponents.TableView.CellPadding">CellPadding</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the padding between cells in the TableView.
+The padding vector specifying the horizontal and vertical padding.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector2 CellPadding { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L255">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_Columns_" data-uid="Tizen.NUI.BaseComponents.TableView.Columns*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_Columns" data-uid="Tizen.NUI.BaseComponents.TableView.Columns">Columns</h4>
+  <div class="markdown level1 summary"><p>The amount of columns in the table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Columns { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L401">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_LayoutColumns_" data-uid="Tizen.NUI.BaseComponents.TableView.LayoutColumns*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_LayoutColumns" data-uid="Tizen.NUI.BaseComponents.TableView.LayoutColumns">LayoutColumns</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the number of layout columns.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PropertyMap LayoutColumns { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PropertyMap.html">PropertyMap</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L351">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_LayoutRows_" data-uid="Tizen.NUI.BaseComponents.TableView.LayoutRows*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_LayoutRows" data-uid="Tizen.NUI.BaseComponents.TableView.LayoutRows">LayoutRows</h4>
+  <div class="markdown level1 summary"><p>This property allows setting the number of rows in the table view layout, which can affect how child views are arranged within the table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PropertyMap LayoutRows { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PropertyMap.html">PropertyMap</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L210">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_Rows_" data-uid="Tizen.NUI.BaseComponents.TableView.Rows*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_Rows" data-uid="Tizen.NUI.BaseComponents.TableView.Rows">Rows</h4>
+  <div class="markdown level1 summary"><p>The amount of rows in the table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Rows { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L455">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_AddChild_" data-uid="Tizen.NUI.BaseComponents.TableView.AddChild*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_AddChild_Tizen_NUI_BaseComponents_View_Tizen_NUI_BaseComponents_TableView_CellPosition_" data-uid="Tizen.NUI.BaseComponents.TableView.AddChild(Tizen.NUI.BaseComponents.View,Tizen.NUI.BaseComponents.TableView.CellPosition)">AddChild(View, CellPosition)</h4>
+  <div class="markdown level1 summary"><p>Adds a child to the table.<br>
+If the row or column index is outside the table, the table gets resized bigger.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AddChild(View child, TableView.CellPosition position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">child</span></td>
+        <td><p>The child to add.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.TableView.html">TableView</a>.<a class="xref" href="Tizen.NUI.BaseComponents.TableView.CellPosition.html">CellPosition</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position for the child.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the addition succeeded, and false if the cell is already occupied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L554">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_DeleteColumn_" data-uid="Tizen.NUI.BaseComponents.TableView.DeleteColumn*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_DeleteColumn_System_UInt32_" data-uid="Tizen.NUI.BaseComponents.TableView.DeleteColumn(System.UInt32)">DeleteColumn(uint)</h4>
+  <div class="markdown level1 summary"><p>Deletes a column from the given index.<br>
+Removed elements are deleted.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DeleteColumn(uint columnIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">columnIndex</span></td>
+        <td><p>The columnIndex of the column to delete.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L531">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_DeleteRow_" data-uid="Tizen.NUI.BaseComponents.TableView.DeleteRow*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_DeleteRow_System_UInt32_" data-uid="Tizen.NUI.BaseComponents.TableView.DeleteRow(System.UInt32)">DeleteRow(uint)</h4>
+  <div class="markdown level1 summary"><p>Deletes a row from the given index.<br>
+Removed elements are deleted.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DeleteRow(uint rowIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">rowIndex</span></td>
+        <td><p>The rowIndex of the row to delete.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L507">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_FindChildPosition_" data-uid="Tizen.NUI.BaseComponents.TableView.FindChildPosition*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_FindChildPosition_Tizen_NUI_BaseComponents_View_Tizen_NUI_BaseComponents_TableView_CellPosition_" data-uid="Tizen.NUI.BaseComponents.TableView.FindChildPosition(Tizen.NUI.BaseComponents.View,Tizen.NUI.BaseComponents.TableView.CellPosition)">FindChildPosition(View, CellPosition)</h4>
+  <div class="markdown level1 summary"><p>Finds the child's layout position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool FindChildPosition(View child, TableView.CellPosition position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">child</span></td>
+        <td><p>The child to search for.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.TableView.html">TableView</a>.<a class="xref" href="Tizen.NUI.BaseComponents.TableView.CellPosition.html">CellPosition</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position for the child.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the child was included in this TableView.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L469">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_GetChildAt_" data-uid="Tizen.NUI.BaseComponents.TableView.GetChildAt*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_GetChildAt_Tizen_NUI_BaseComponents_TableView_CellPosition_" data-uid="Tizen.NUI.BaseComponents.TableView.GetChildAt(Tizen.NUI.BaseComponents.TableView.CellPosition)">GetChildAt(CellPosition)</h4>
+  <div class="markdown level1 summary"><p>Returns a child from the given layout position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public View GetChildAt(TableView.CellPosition position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.TableView.html">TableView</a>.<a class="xref" href="Tizen.NUI.BaseComponents.TableView.CellPosition.html">CellPosition</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position in the table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><p>Child that was in the cell or an uninitialized handle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L666">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_GetFixedHeight_" data-uid="Tizen.NUI.BaseComponents.TableView.GetFixedHeight*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_GetFixedHeight_System_UInt32_" data-uid="Tizen.NUI.BaseComponents.TableView.GetFixedHeight(System.UInt32)">GetFixedHeight(uint)</h4>
+  <div class="markdown level1 summary"><p>Gets a row's fixed height.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetFixedHeight(uint rowIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">rowIndex</span></td>
+        <td><p>The row index with a fixed height.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>height The height in world coordinate units.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L719">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_GetFixedWidth_" data-uid="Tizen.NUI.BaseComponents.TableView.GetFixedWidth*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_GetFixedWidth_System_UInt32_" data-uid="Tizen.NUI.BaseComponents.TableView.GetFixedWidth(System.UInt32)">GetFixedWidth(uint)</h4>
+  <div class="markdown level1 summary"><p>Gets a column's fixed width.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetFixedWidth(uint columnIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">columnIndex</span></td>
+        <td><p>The column index with a fixed width.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>Width in world coordinate units.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L693">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_GetRelativeHeight_" data-uid="Tizen.NUI.BaseComponents.TableView.GetRelativeHeight*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_GetRelativeHeight_System_UInt32_" data-uid="Tizen.NUI.BaseComponents.TableView.GetRelativeHeight(System.UInt32)">GetRelativeHeight(uint)</h4>
+  <div class="markdown level1 summary"><p>Gets a row's relative height.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetRelativeHeight(uint rowIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">rowIndex</span></td>
+        <td><p>The row index with a relative height.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>Height in percentage units, between 0.0f and 1.0f.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L746">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_GetRelativeWidth_" data-uid="Tizen.NUI.BaseComponents.TableView.GetRelativeWidth*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_GetRelativeWidth_System_UInt32_" data-uid="Tizen.NUI.BaseComponents.TableView.GetRelativeWidth(System.UInt32)">GetRelativeWidth(uint)</h4>
+  <div class="markdown level1 summary"><p>Gets a column's relative width.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float GetRelativeWidth(uint columnIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">columnIndex</span></td>
+        <td><p>The column index with a relative width.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>Width in percentage units, between 0.0f and 1.0f.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L542">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_InsertColumn_" data-uid="Tizen.NUI.BaseComponents.TableView.InsertColumn*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_InsertColumn_System_UInt32_" data-uid="Tizen.NUI.BaseComponents.TableView.InsertColumn(System.UInt32)">InsertColumn(uint)</h4>
+  <div class="markdown level1 summary"><p>Inserts a new column to the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void InsertColumn(uint columnIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">columnIndex</span></td>
+        <td><p>The columnIndex of the new column.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L519">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_InsertRow_" data-uid="Tizen.NUI.BaseComponents.TableView.InsertRow*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_InsertRow_System_UInt32_" data-uid="Tizen.NUI.BaseComponents.TableView.InsertRow(System.UInt32)">InsertRow(uint)</h4>
+  <div class="markdown level1 summary"><p>Inserts a new row to the given index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void InsertRow(uint rowIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">rowIndex</span></td>
+        <td><p>The rowIndex of the new row.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L616">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_IsFitHeight_" data-uid="Tizen.NUI.BaseComponents.TableView.IsFitHeight*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_IsFitHeight_System_UInt32_" data-uid="Tizen.NUI.BaseComponents.TableView.IsFitHeight(System.UInt32)">IsFitHeight(uint)</h4>
+  <div class="markdown level1 summary"><p>Checks if the row is a fit row.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsFitHeight(uint rowIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">rowIndex</span></td>
+        <td><p>The row to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the row is fit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L640">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_IsFitWidth_" data-uid="Tizen.NUI.BaseComponents.TableView.IsFitWidth*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_IsFitWidth_System_UInt32_" data-uid="Tizen.NUI.BaseComponents.TableView.IsFitWidth(System.UInt32)">IsFitWidth(uint)</h4>
+  <div class="markdown level1 summary"><p>Checks if the column is a fit column.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsFitWidth(uint columnIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">columnIndex</span></td>
+        <td><p>The column to check.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>True if the column is fit.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L488">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_RemoveChildAt_" data-uid="Tizen.NUI.BaseComponents.TableView.RemoveChildAt*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_RemoveChildAt_Tizen_NUI_BaseComponents_TableView_CellPosition_" data-uid="Tizen.NUI.BaseComponents.TableView.RemoveChildAt(Tizen.NUI.BaseComponents.TableView.CellPosition)">RemoveChildAt(CellPosition)</h4>
+  <div class="markdown level1 summary"><p>Removes a child from the given layout position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public View RemoveChildAt(TableView.CellPosition position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.TableView.html">TableView</a>.<a class="xref" href="Tizen.NUI.BaseComponents.TableView.CellPosition.html">CellPosition</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position for the child to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><p>Child that was removed or an uninitialized handle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L566">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_Resize_" data-uid="Tizen.NUI.BaseComponents.TableView.Resize*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_Resize_System_UInt32_System_UInt32_" data-uid="Tizen.NUI.BaseComponents.TableView.Resize(System.UInt32,System.UInt32)">Resize(uint, uint)</h4>
+  <div class="markdown level1 summary"><p>Resizes the TableView.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Resize(uint rows, uint columns)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">rows</span></td>
+        <td><p>The rows for the table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">columns</span></td>
+        <td><p>The columns for the table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L761">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_SetCellAlignment_" data-uid="Tizen.NUI.BaseComponents.TableView.SetCellAlignment*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_SetCellAlignment_Tizen_NUI_BaseComponents_TableView_CellPosition_Tizen_NUI_HorizontalAlignmentType_Tizen_NUI_VerticalAlignmentType_" data-uid="Tizen.NUI.BaseComponents.TableView.SetCellAlignment(Tizen.NUI.BaseComponents.TableView.CellPosition,Tizen.NUI.HorizontalAlignmentType,Tizen.NUI.VerticalAlignmentType)">SetCellAlignment(CellPosition, HorizontalAlignmentType, VerticalAlignmentType)</h4>
+  <div class="markdown level1 summary"><p>Sets the alignment on a cell.<br>
+Cells without calling this function have the default values of left and top respectively.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetCellAlignment(TableView.CellPosition position, HorizontalAlignmentType horizontal, VerticalAlignmentType vertical)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.TableView.html">TableView</a>.<a class="xref" href="Tizen.NUI.BaseComponents.TableView.CellPosition.html">CellPosition</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The cell to set alignment on.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.HorizontalAlignmentType.html">HorizontalAlignmentType</a></td>
+        <td><span class="parametername">horizontal</span></td>
+        <td><p>The horizontal alignment.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.VerticalAlignmentType.html">VerticalAlignmentType</a></td>
+        <td><span class="parametername">vertical</span></td>
+        <td><p>The vertical alignment.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L604">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_SetFitHeight_" data-uid="Tizen.NUI.BaseComponents.TableView.SetFitHeight*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_SetFitHeight_System_UInt32_" data-uid="Tizen.NUI.BaseComponents.TableView.SetFitHeight(System.UInt32)">SetFitHeight(uint)</h4>
+  <div class="markdown level1 summary"><p>Specifies this row as fitting its height to its children.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetFitHeight(uint rowIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">rowIndex</span></td>
+        <td><p>The row to set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L628">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_SetFitWidth_" data-uid="Tizen.NUI.BaseComponents.TableView.SetFitWidth*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_SetFitWidth_System_UInt32_" data-uid="Tizen.NUI.BaseComponents.TableView.SetFitWidth(System.UInt32)">SetFitWidth(uint)</h4>
+  <div class="markdown level1 summary"><p>Specifies this column as fitting its width to its children.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetFitWidth(uint columnIndex)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">columnIndex</span></td>
+        <td><p>The column to set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L654">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_SetFixedHeight_" data-uid="Tizen.NUI.BaseComponents.TableView.SetFixedHeight*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_SetFixedHeight_System_UInt32_System_Single_" data-uid="Tizen.NUI.BaseComponents.TableView.SetFixedHeight(System.UInt32,System.Single)">SetFixedHeight(uint, float)</h4>
+  <div class="markdown level1 summary"><p>Sets a row to have a fixed height.<br>
+Setting a fixed height of 0 has no effect.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetFixedHeight(uint rowIndex, float height)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">rowIndex</span></td>
+        <td><p>The rowIndex for row with a fixed height.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">height</span></td>
+        <td><p>The height in world coordinate units.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L707">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_SetFixedWidth_" data-uid="Tizen.NUI.BaseComponents.TableView.SetFixedWidth*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_SetFixedWidth_System_UInt32_System_Single_" data-uid="Tizen.NUI.BaseComponents.TableView.SetFixedWidth(System.UInt32,System.Single)">SetFixedWidth(uint, float)</h4>
+  <div class="markdown level1 summary"><p>Sets a column to have a fixed width.<br>
+Setting a fixed width of 0 has no effect.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetFixedWidth(uint columnIndex, float width)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">columnIndex</span></td>
+        <td><p>The columnIndex for column with a fixed width.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">width</span></td>
+        <td><p>The width in world coordinate units.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L681">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_SetRelativeHeight_" data-uid="Tizen.NUI.BaseComponents.TableView.SetRelativeHeight*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_SetRelativeHeight_System_UInt32_System_Single_" data-uid="Tizen.NUI.BaseComponents.TableView.SetRelativeHeight(System.UInt32,System.Single)">SetRelativeHeight(uint, float)</h4>
+  <div class="markdown level1 summary"><p>Sets a row to have a relative height. Relative height means percentage of
+the remainder of the table height after subtracting padding and fixed height rows.<br>
+Setting a relative height of 0 has no effect.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetRelativeHeight(uint rowIndex, float heightPercentage)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">rowIndex</span></td>
+        <td><p>The rowIndex for row with a relative height.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">heightPercentage</span></td>
+        <td><p>The height percentage between 0.0f and 1.0f.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L734">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TableView_SetRelativeWidth_" data-uid="Tizen.NUI.BaseComponents.TableView.SetRelativeWidth*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TableView_SetRelativeWidth_System_UInt32_System_Single_" data-uid="Tizen.NUI.BaseComponents.TableView.SetRelativeWidth(System.UInt32,System.Single)">SetRelativeWidth(uint, float)</h4>
+  <div class="markdown level1 summary"><p>Sets a column to have a relative width. Relative width means percentage of
+the remainder of the table width after subtracting padding and fixed width columns.<br>
+Setting a relative width of 0 has no effect.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetRelativeWidth(uint columnIndex, float widthPercentage)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">columnIndex</span></td>
+        <td><p>The columnIndex for column with a fixed width.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">widthPercentage</span></td>
+        <td><p>The widthPercentage between 0.0f and 1.0f.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L32" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

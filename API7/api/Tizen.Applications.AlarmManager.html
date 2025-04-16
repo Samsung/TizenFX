@@ -1,0 +1,1004 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AlarmManager
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AlarmManager
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API7">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Applications.AlarmManager">
+
+
+  <h1 id="Tizen_Applications_AlarmManager" data-uid="Tizen.Applications.AlarmManager" class="text-break">Class AlarmManager
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.Alarm.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Mobile devices typically give constant access to information from various sources. Some of this information is best delivered through alarms.
+The most obvious case is a calendar scheduling application, which lets you know when a meeting is about to start. Alarms are certainly better than actively waiting in a loop.
+They are also better than putting an interface to sleep because they do not block your main UI thread.
+Use of alarms helps build smooth user experiences and implements unattended data synchronization tasks.
+If an application is installed after setting the alarm, your alarm is canceled automatically.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class AlarmManager</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">AlarmManager</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h5 id="Tizen_Applications_AlarmManager_examples"><strong>Examples</strong></h5>
+  <pre><code>public class AlarmManagerExample
+{
+    /// ...
+    Alarm alarm = AlarmManager.CreateAlarm(24000,1000,null);
+    AlarmManager.CancelAll();
+}</code></pre>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Alarm/Tizen.Applications/AlarmManager.cs/#L365">View Source</a>
+  </span>
+  <a id="Tizen_Applications_AlarmManager_CancelAll_" data-uid="Tizen.Applications.AlarmManager.CancelAll*"></a>
+  <h4 id="Tizen_Applications_AlarmManager_CancelAll" data-uid="Tizen.Applications.AlarmManager.CancelAll">CancelAll()</h4>
+  <div class="markdown level1 summary"><p>Cancels all scheduled alarms that are registered by the application that calls this API.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void CancelAll()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Alarm/Tizen.Applications/AlarmManager.cs/#L220">View Source</a>
+  </span>
+  <a id="Tizen_Applications_AlarmManager_CreateAlarm_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm*"></a>
+  <h4 id="Tizen_Applications_AlarmManager_CreateAlarm_System_DateTime_Tizen_Applications_AlarmWeekFlag_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm(System.DateTime,Tizen.Applications.AlarmWeekFlag,Tizen.Applications.AppControl)">CreateAlarm(DateTime, AlarmWeekFlag, AppControl)</h4>
+  <div class="markdown level1 summary"><p>Sets an alarm to be triggered periodically, starting at a specific time.
+The date describes the time of the first occurrence.
+The weekFlag is the repeat value of the days of the week.
+If the weekFlag is AlarmWeekFlag.Tuesday, the alarm will repeat every Tuesday at a specific time.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Alarm CreateAlarm(DateTime value, AlarmWeekFlag weekFlag, AppControl appControl)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The first active alarm time.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AlarmWeekFlag.html">AlarmWeekFlag</a></td>
+        <td><span class="parametername">weekFlag</span></td>
+        <td><p>The day of the week, AlarmWeekFlag may be a combination of days, like AlarmWeekFlag.Sunday | AlarmWeekFlag.Monday.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></td>
+        <td><span class="parametername">appControl</span></td>
+        <td><p>The destination AppControl to perform specific work when the alarm is triggered.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Alarm.html">Alarm</a></td>
+        <td><p>An alarm instance is created with the set param values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AlarmManager_CreateAlarm_System_DateTime_Tizen_Applications_AlarmWeekFlag_Tizen_Applications_AppControl__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This operation is permitted with UI application appcontrol only.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Alarm/Tizen.Applications/AlarmManager.cs/#L312">View Source</a>
+  </span>
+  <a id="Tizen_Applications_AlarmManager_CreateAlarm_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm*"></a>
+  <h4 id="Tizen_Applications_AlarmManager_CreateAlarm_System_DateTime_Tizen_Applications_AlarmWeekFlag_Tizen_Applications_Notifications_Notification_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm(System.DateTime,Tizen.Applications.AlarmWeekFlag,Tizen.Applications.Notifications.Notification)">CreateAlarm(DateTime, AlarmWeekFlag, Notification)</h4>
+  <div class="markdown level1 summary"><p>Sets a notification alarm to be triggered periodically, starting at a specific time.
+The date describes the time of the first occurrence.
+The weekFlag is the repeat value of the days of the week.
+If the weekFlag is AlarmWeekFlag.Tuesday, the alarm will repeat every Tuesday at a specific time.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Alarm CreateAlarm(DateTime dateTime, AlarmWeekFlag weekFlag, Notification notification)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td><span class="parametername">dateTime</span></td>
+        <td><p>The first active alarm time.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AlarmWeekFlag.html">AlarmWeekFlag</a></td>
+        <td><span class="parametername">weekFlag</span></td>
+        <td><p>The day of the week, AlarmWeekFlag may be a combination of days,
+like AlarmWeekFlag.Sunday | AlarmWeekFlag.Monday.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Notifications.Notification.html">Notification</a></td>
+        <td><span class="parametername">notification</span></td>
+        <td><p>The notification to be posted when the alarm is triggered.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Alarm.html">Alarm</a></td>
+        <td><p>An alarm instance is created with the set param values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Alarm/Tizen.Applications/AlarmManager.cs/#L189">View Source</a>
+  </span>
+  <a id="Tizen_Applications_AlarmManager_CreateAlarm_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm*"></a>
+  <h4 id="Tizen_Applications_AlarmManager_CreateAlarm_System_DateTime_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm(System.DateTime,Tizen.Applications.AppControl)">CreateAlarm(DateTime, AppControl)</h4>
+  <div class="markdown level1 summary"><p>Sets an alarm to be triggered at a specific time.
+The date describes the time of the first occurrence.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Alarm CreateAlarm(DateTime value, AppControl appControl)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The first active alarm time.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></td>
+        <td><span class="parametername">appControl</span></td>
+        <td><p>The destination AppControl to perform specific work when the alarm is triggered.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Alarm.html">Alarm</a></td>
+        <td><p>An alarm instance is created with the set param values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_AlarmManager_CreateAlarm_System_DateTime_Tizen_Applications_AppControl__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This operation is permitted with the UI application appcontrol only.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Alarm/Tizen.Applications/AlarmManager.cs/#L248">View Source</a>
+  </span>
+  <a id="Tizen_Applications_AlarmManager_CreateAlarm_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm*"></a>
+  <h4 id="Tizen_Applications_AlarmManager_CreateAlarm_System_DateTime_Tizen_Applications_Notifications_Notification_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm(System.DateTime,Tizen.Applications.Notifications.Notification)">CreateAlarm(DateTime, Notification)</h4>
+  <div class="markdown level1 summary"><p>Sets a notification alarm to be triggered at a specific time.
+The date describes the time of the first occurrence.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Alarm CreateAlarm(DateTime dateTime, Notification notification)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td><span class="parametername">dateTime</span></td>
+        <td><p>The first active alarm time.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Notifications.Notification.html">Notification</a></td>
+        <td><span class="parametername">notification</span></td>
+        <td><p>The notification to be posted when the alarm is triggered.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Alarm.html">Alarm</a></td>
+        <td><p>An alarm instance is created with the set param values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Alarm/Tizen.Applications/AlarmManager.cs/#L135">View Source</a>
+  </span>
+  <a id="Tizen_Applications_AlarmManager_CreateAlarm_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm*"></a>
+  <h4 id="Tizen_Applications_AlarmManager_CreateAlarm_System_Int32_System_Int32_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm(System.Int32,System.Int32,Tizen.Applications.AppControl)">CreateAlarm(int, int, AppControl)</h4>
+  <div class="markdown level1 summary"><p>Sets an alarm to be triggered after a specific time.
+The alarm will first go off delay seconds later and then will go off every certain amount of time defined using period seconds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Alarm CreateAlarm(int delay, int period, AppControl appControl)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">delay</span></td>
+        <td><p>The amount of time before the first execution (in seconds).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">period</span></td>
+        <td><p>The amount of time between subsequent alarms (in seconds). This value does not guarantee the accuracy.
+The actual interval is calculated by the OS. The minimum value is 600sec.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></td>
+        <td><span class="parametername">appControl</span></td>
+        <td><p>The destination AppControl is used to perform a specific task when the alarm is triggered.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Alarm.html">Alarm</a></td>
+        <td><p>An alarm instance is created with the set param values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Alarm/Tizen.Applications/AlarmManager.cs/#L279">View Source</a>
+  </span>
+  <a id="Tizen_Applications_AlarmManager_CreateAlarm_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm*"></a>
+  <h4 id="Tizen_Applications_AlarmManager_CreateAlarm_System_Int32_System_Int32_Tizen_Applications_Notifications_Notification_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm(System.Int32,System.Int32,Tizen.Applications.Notifications.Notification)">CreateAlarm(int, int, Notification)</h4>
+  <div class="markdown level1 summary"><p>Sets a notification alarm to be triggered after a specific time.
+The alarm will first go off delay seconds later and then will go off every certain amount of time defined using period seconds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Alarm CreateAlarm(int delay, int period, Notification notification)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">delay</span></td>
+        <td><p>The amount of time before the first execution (in seconds).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">period</span></td>
+        <td><p>The amount of time between subsequent alarms (in seconds). This value does not guarantee the accuracy.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Notifications.Notification.html">Notification</a></td>
+        <td><span class="parametername">notification</span></td>
+        <td><p>The notification to be posted when the alarm is triggered.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Alarm.html">Alarm</a></td>
+        <td><p>An alarm instance is created with the set param values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Alarm/Tizen.Applications/AlarmManager.cs/#L162">View Source</a>
+  </span>
+  <a id="Tizen_Applications_AlarmManager_CreateAlarm_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm*"></a>
+  <h4 id="Tizen_Applications_AlarmManager_CreateAlarm_System_Int32_Tizen_Applications_AppControl_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm(System.Int32,Tizen.Applications.AppControl)">CreateAlarm(int, AppControl)</h4>
+  <div class="markdown level1 summary"><p>Sets an alarm to be triggered after a specific time.
+The alarm will go off delay seconds later.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Alarm CreateAlarm(int delay, AppControl appControl)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">delay</span></td>
+        <td><p>The amount of time before the execution (in seconds).</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.AppControl.html">AppControl</a></td>
+        <td><span class="parametername">appControl</span></td>
+        <td><p>The destination AppControl to perform a specific task when the alarm is triggered.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Alarm.html">Alarm</a></td>
+        <td><p>An alarm instance is created with the set param values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Alarm/Tizen.Applications/AlarmManager.cs/#L342">View Source</a>
+  </span>
+  <a id="Tizen_Applications_AlarmManager_CreateAlarm_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm*"></a>
+  <h4 id="Tizen_Applications_AlarmManager_CreateAlarm_System_Int32_Tizen_Applications_Notifications_Notification_" data-uid="Tizen.Applications.AlarmManager.CreateAlarm(System.Int32,Tizen.Applications.Notifications.Notification)">CreateAlarm(int, Notification)</h4>
+  <div class="markdown level1 summary"><p>Sets a notification alarm to be triggered after a specific time.
+The alarm will go off delay seconds later.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Alarm CreateAlarm(int delay, Notification notification)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">delay</span></td>
+        <td><p>The amount of time before the first execution (in seconds).</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Notifications.Notification.html">Notification</a></td>
+        <td><span class="parametername">notification</span></td>
+        <td><p>The notification to be posted when the alarm is triggered.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.Alarm.html">Alarm</a></td>
+        <td><p>An alarm instance is created with the set param values.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Alarm/Tizen.Applications/AlarmManager.cs/#L382">View Source</a>
+  </span>
+  <a id="Tizen_Applications_AlarmManager_GetAllScheduledAlarms_" data-uid="Tizen.Applications.AlarmManager.GetAllScheduledAlarms*"></a>
+  <h4 id="Tizen_Applications_AlarmManager_GetAllScheduledAlarms" data-uid="Tizen.Applications.AlarmManager.GetAllScheduledAlarms">GetAllScheduledAlarms()</h4>
+  <div class="markdown level1 summary"><p>Retrieves all registered alarms.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;Alarm&gt; GetAllScheduledAlarms()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Alarm.html">Alarm</a>&gt;</td>
+        <td><p>List of all alarm instances.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of a permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Alarm/Tizen.Applications/AlarmManager.cs/#L406">View Source</a>
+  </span>
+  <a id="Tizen_Applications_AlarmManager_GetCurrentTime_" data-uid="Tizen.Applications.AlarmManager.GetCurrentTime*"></a>
+  <h4 id="Tizen_Applications_AlarmManager_GetCurrentTime" data-uid="Tizen.Applications.AlarmManager.GetCurrentTime">GetCurrentTime()</h4>
+  <div class="markdown level1 summary"><p>Gets the current system time.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static DateTime GetCurrentTime()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.DateTime</span></td>
+        <td><p>The current system time.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API7/src/Tizen.Applications.Alarm/Tizen.Applications/AlarmManager.cs/#L96" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

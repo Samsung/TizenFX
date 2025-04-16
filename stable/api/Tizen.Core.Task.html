@@ -1,0 +1,1066 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class Task
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class Task
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Core.Task">
+
+
+  <h1 id="Tizen_Core_Task" data-uid="Tizen.Core.Task" class="text-break">Class Task
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Core.html">Core</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Core.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Represents the task used for creating, running and terminating the thread with the main loop.
+The state of the task can be changed as follows: Constructed -&gt; Running -&gt; Terminated.
+To start the task, use 'Task.Run()' method. Once started, the task enters into 'Running' state. To terminate the task, use 'Task.Quit()' method.
+After termination, the task returns back to 'Constructed' state.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Task : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">Task</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L71">View Source</a>
+  </span>
+  <a id="Tizen_Core_Task__ctor_" data-uid="Tizen.Core.Task.#ctor*"></a>
+  <h4 id="Tizen_Core_Task__ctor_System_String_" data-uid="Tizen.Core.Task.#ctor(System.String)">Task(string)</h4>
+  <div class="markdown level1 summary"><p>Initializes the Task class with the specified ID.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task(string id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The unique identifier for the task.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Core_Task__ctor_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The constructor throws an exception when the ID already exists.
+By default, the task creates a separate thread. However, if the <code data-dev-comment-type="paramref" class="paramref">id</code> is set to &quot;main&quot;, no separate thread is created.
+In such case, the 'main' task will operate on the main application thread instead.</p>
+</div>
+  <h5 id="Tizen_Core_Task__ctor_System_String__examples">Examples</h5>
+  <pre><code>TizenCore.Initialize();
+var task = new Task(&quot;Worker&quot;);
+task.Run();</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the <code data-dev-comment-type="paramref" class="paramref">id</code> is invalid or a Task with that ID already exists.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L670">View Source</a>
+  </span>
+  <a id="Tizen_Core_Task_Running_" data-uid="Tizen.Core.Task.Running*"></a>
+  <h4 id="Tizen_Core_Task_Running" data-uid="Tizen.Core.Task.Running">Running</h4>
+  <div class="markdown level1 summary"><p>Checks whether the task is running or not.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Running { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L310">View Source</a>
+  </span>
+  <a id="Tizen_Core_Task_AddChannelReceiver_" data-uid="Tizen.Core.Task.AddChannelReceiver*"></a>
+  <h4 id="Tizen_Core_Task_AddChannelReceiver_Tizen_Core_ChannelReceiver_" data-uid="Tizen.Core.Task.AddChannelReceiver(Tizen.Core.ChannelReceiver)">AddChannelReceiver(ChannelReceiver)</h4>
+  <div class="markdown level1 summary"><p>Adds a channel receiver to a main loop of the task.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddChannelReceiver(ChannelReceiver receiver)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Core.ChannelReceiver.html">ChannelReceiver</a></td>
+        <td><span class="parametername">receiver</span></td>
+        <td><p>The channel receiver instance that needs to be added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Core_Task_AddChannelReceiver_Tizen_Core_ChannelReceiver__examples">Examples</h5>
+  <p>In the following code snippet, we create a channel, find or spawn a task named &quot;ReceivingTask&quot;, and then add the channel receiver to the task's main loop by calling the 'AddChannelReceiver' method.</p>
+<pre><code>var channel = new Channel();
+var task = TizenCore.Find(&quot;ReceivingTask&quot;) ?? TizenCore.Spawn(&quot;ReceivingTask&quot;);
+var receiver = channel.Receiver;
+receiver.Received += (sender, args) => {
+  Console.WriteLine(&quot;OnChannelMessageReceived. Message = &quot; + (string)args.Data);
+};
+task.AddChannelReceiver(receiver);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the argument is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when out of memory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L426">View Source</a>
+  </span>
+  <a id="Tizen_Core_Task_AddEvent_" data-uid="Tizen.Core.Task.AddEvent*"></a>
+  <h4 id="Tizen_Core_Task_AddEvent_Tizen_Core_Event_" data-uid="Tizen.Core.Task.AddEvent(Tizen.Core.Event)">AddEvent(Event)</h4>
+  <div class="markdown level1 summary"><p>Adds an event to a main loop of the task.
+If the event is successfully added, its unique identifier is assigned to the event. The identifier can then be used later to identify the specific event among others.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddEvent(Event coreEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Core.Event.html">Event</a></td>
+        <td><span class="parametername">coreEvent</span></td>
+        <td><p>The event instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Core_Task_AddEvent_Tizen_Core_Event__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method allows you to associate an event with a specific task. By adding an event to a task's main loop, other threads can utilize this event to communicate with the task.
+However, note that once an event is attached to a task, it cannot be reused or attached to another task.
+If the argument passed to this method is null, an exception will be thrown. Additionally, if the event has been previously added, an argument exception will be raised.</p>
+</div>
+  <h5 id="Tizen_Core_Task_AddEvent_Tizen_Core_Event__examples">Examples</h5>
+  <pre><code>var coreEvent = new Event();
+coreEvent.EventReceived += (sender, args) => {
+  Console.WriteLine(&quot;OnEventReceived. ID = {}, Message = {}&quot;, args.Id, (string)args.Data);
+};
+
+var task = TizenCore.Find(&quot;EventTask&quot;) ?? TizenCore.Spawn(&quot;EventTask&quot;);
+task.AddEvent(coreEvent);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the argument is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when out of memory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L223">View Source</a>
+  </span>
+  <a id="Tizen_Core_Task_AddTimer_" data-uid="Tizen.Core.Task.AddTimer*"></a>
+  <h4 id="Tizen_Core_Task_AddTimer_System_UInt32_System_Func_System_Boolean__" data-uid="Tizen.Core.Task.AddTimer(System.UInt32,System.Func{System.Boolean})">AddTimer(uint, Func&lt;bool&gt;)</h4>
+  <div class="markdown level1 summary"><p>Adds a recurring timer to a main loop of the task.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int AddTimer(uint interval, Func&lt;bool&gt; callback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">interval</span></td>
+        <td><p>The interval of the timer in milliseconds.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Func&lt;TResult&gt;</span>&lt;<span class="xref">bool</span>&gt;</td>
+        <td><span class="parametername">callback</span></td>
+        <td><p>The recurring timer callback function which returns whether or not to continue triggering the timer.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>The registered timer ID to be used with <a class="xref" href="Tizen.Core.Task.html#Tizen_Core_Task_RemoveTimer_System_Int32_">RemoveTimer(int)</a>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Core_Task_AddTimer_System_UInt32_System_Func_System_Boolean___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The callback function will be called every time the specified interval elapses. It should return true to keep the timer running, otherwise the timer will be stopped.</p>
+</div>
+  <h5 id="Tizen_Core_Task_AddTimer_System_UInt32_System_Func_System_Boolean___examples">Examples</h5>
+  <pre><code>var task = TizenCore.Find(&quot;TimerTask&quot;) ?? TizenCore.Spawn(&quot;TimerTask&quot;);
+var timerId = task.AddTimer(1000, () => {
+  Console.WriteLine(&quot;Timer callback is invoked&quot;);
+  return true;
+});</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the callback argument is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when out of memory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L765">View Source</a>
+  </span>
+  <a id="Tizen_Core_Task_Dispose_" data-uid="Tizen.Core.Task.Dispose*"></a>
+  <h4 id="Tizen_Core_Task_Dispose" data-uid="Tizen.Core.Task.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Release any unmanaged resources used by this object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L739">View Source</a>
+  </span>
+  <a id="Tizen_Core_Task_Dispose_" data-uid="Tizen.Core.Task.Dispose*"></a>
+  <h4 id="Tizen_Core_Task_Dispose_System_Boolean_" data-uid="Tizen.Core.Task.Dispose(System.Boolean)">Dispose(bool)</h4>
+  <div class="markdown level1 summary"><p>Release any unmanaged resources used by this object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>If true, disposes any disposable objects. If false, does not dispose disposable objects.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L540">View Source</a>
+  </span>
+  <a id="Tizen_Core_Task_EmitEvent_" data-uid="Tizen.Core.Task.EmitEvent*"></a>
+  <h4 id="Tizen_Core_Task_EmitEvent_Tizen_Core_EventObject_" data-uid="Tizen.Core.Task.EmitEvent(Tizen.Core.EventObject)">EmitEvent(EventObject)</h4>
+  <div class="markdown level1 summary"><p>Emits the event object to all registered event handlers of the task.
+It's similar to Event.Emit(), but EmitAllEvent() sends the event object to every event handler of the task while Event.Emit() sends the event object only to the target event's event handler.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EmitEvent(EventObject eventObject)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Core.EventObject.html">EventObject</a></td>
+        <td><span class="parametername">eventObject</span></td>
+        <td><p>The event object instance to be sent.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Core_Task_EmitEvent_Tizen_Core_EventObject__examples">Examples</h5>
+  <pre><code>int id = 0;
+string message = &quot;Test Event&quot;;
+using (var eventObject = new TCoreEventObject(id++, message))
+{
+  var task = TizenCore.Find(&quot;EventTask&quot;) ?? TizenCore.Spawn(&quot;EventTask&quot;);
+  task.EmitEvent(eventObject);
+}</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the argument is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L89">View Source</a>
+  </span>
+  <a id="Tizen_Core_Task_Finalize_" data-uid="Tizen.Core.Task.Finalize*"></a>
+  <h4 id="Tizen_Core_Task_Finalize" data-uid="Tizen.Core.Task.Finalize">~Task()</h4>
+  <div class="markdown level1 summary"><p>Finalizes the Task class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~Task()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L118">View Source</a>
+  </span>
+  <a id="Tizen_Core_Task_Post_" data-uid="Tizen.Core.Task.Post*"></a>
+  <h4 id="Tizen_Core_Task_Post_System_Action_" data-uid="Tizen.Core.Task.Post(System.Action)">Post(Action)</h4>
+  <div class="markdown level1 summary"><p>Posts an action to be executed later.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Post(Action action)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Action</span></td>
+        <td><span class="parametername">action</span></td>
+        <td><p>The action callback to post.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Core_Task_Post_System_Action__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The action callback will be executed by the main loop of the task.
+If there was any error during this process, an appropriate exception will be thrown.
+In order to prevent the <code data-dev-comment-type="paramref" class="paramref">action</code> from throwing an exception, you should add a try/catch block. If not, it may cause the application to crash or terminate.</p>
+</div>
+  <h5 id="Tizen_Core_Task_Post_System_Action__examples">Examples</h5>
+  <pre><code>var task = TizenCore.Find(&quot;Test&quot;) ?? TizenCore.Spawn(&quot;Test&quot;);
+task.Post(() =>
+{
+  Console.WriteLine(&quot;Test task&quot;);
+});</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the action argument is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when out of memory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L173">View Source</a>
+  </span>
+  <a id="Tizen_Core_Task_Post_" data-uid="Tizen.Core.Task.Post*"></a>
+  <h4 id="Tizen_Core_Task_Post_System_Func_System_Threading_Tasks_Task__" data-uid="Tizen.Core.Task.Post(System.Func{System.Threading.Tasks.Task})">Post(Func&lt;Task&gt;)</h4>
+  <div class="markdown level1 summary"><p>Posts a task to be executed later.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Post(Func&lt;Task&gt; task)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Func&lt;TResult&gt;</span>&lt;<span class="xref">System.Threading.Tasks.Task</span>&gt;</td>
+        <td><span class="parametername">task</span></td>
+        <td><p>The task to post.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Core_Task_Post_System_Func_System_Threading_Tasks_Task___remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The task will be stored in the internal map using its unique identifier.
+Then it will be added as an idle job to the main loop of the task.
+If there was any error during this process, the task will be removed from the map and an appropriate exception will be thrown.
+In order to prevent the <code data-dev-comment-type="paramref" class="paramref">task</code> from throwing an exception, you should add a try/catch block. If not, it may cause the application to crash or terminate.</p>
+</div>
+  <h5 id="Tizen_Core_Task_Post_System_Func_System_Threading_Tasks_Task___examples">Examples</h5>
+  <pre><code>var channel = new Channel();
+var task = TizenCore.Find(&quot;Sender&quot;) ?? TizenCore.Spawn(&quot;Sender&quot;);
+
+int id = 0;
+task.Post(async () =>
+{
+  var channelObject = await channel.Receiver.Receive();
+  var message = (string)channelObject.Data;
+  Console.WriteLine(&quot;Received message = &quot; + message);
+});</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the task argument is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of an invalid operation.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when out of memory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L725">View Source</a>
+  </span>
+  <a id="Tizen_Core_Task_Quit_" data-uid="Tizen.Core.Task.Quit*"></a>
+  <h4 id="Tizen_Core_Task_Quit" data-uid="Tizen.Core.Task.Quit">Quit()</h4>
+  <div class="markdown level1 summary"><p>Quits the main loop of the task.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Quit()</code></pre>
+  </div>
+  <h5 id="Tizen_Core_Task_Quit_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This function can be called from any thread.
+It requests the task to finish the current iteration of its loop and stop running.
+All pending events in the event queue will be processed before quitting. Once the task quits, it's finished.
+To start another task, you need to create a new one and call the <a class="xref" href="Tizen.Core.Task.html#Tizen_Core_Task_Run">Run()</a> method on it.</p>
+</div>
+  <h5 id="Tizen_Core_Task_Quit_examples">Examples</h5>
+  <pre><code>var coreTask = new TCoreTask(&quot;Runner&quot;);
+coreTask.Run();
+if (coreTask.Running)
+{
+  coreTask.Quit();
+}</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L372">View Source</a>
+  </span>
+  <a id="Tizen_Core_Task_RemoveChannelReceiver_" data-uid="Tizen.Core.Task.RemoveChannelReceiver*"></a>
+  <h4 id="Tizen_Core_Task_RemoveChannelReceiver_Tizen_Core_ChannelReceiver_" data-uid="Tizen.Core.Task.RemoveChannelReceiver(Tizen.Core.ChannelReceiver)">RemoveChannelReceiver(ChannelReceiver)</h4>
+  <div class="markdown level1 summary"><p>Removes the registered channel receiver from the main loop of the task.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveChannelReceiver(ChannelReceiver receiver)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Core.ChannelReceiver.html">ChannelReceiver</a></td>
+        <td><span class="parametername">receiver</span></td>
+        <td><p>The channel receiver instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Core_Task_RemoveChannelReceiver_Tizen_Core_ChannelReceiver__examples">Examples</h5>
+  <pre><code>var channel = new Channel();
+var task = TizenCore.Find(&quot;ReceivingTask&quot;) ?? TizenCore.Spawn(&quot;ReceivingTask&quot;);
+var receiver = channel.Receiver;
+receiver.Received += (sender, args) => {
+  Console.WriteLine(&quot;OnChannelMessageReceived. Message = &quot; + (string)args.Data);
+};
+
+task.AddChannelReceiver(receiver);
+task.RemoveChannelReceiver(receiver);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the argument is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the argument is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L492">View Source</a>
+  </span>
+  <a id="Tizen_Core_Task_RemoveEvent_" data-uid="Tizen.Core.Task.RemoveEvent*"></a>
+  <h4 id="Tizen_Core_Task_RemoveEvent_Tizen_Core_Event_" data-uid="Tizen.Core.Task.RemoveEvent(Tizen.Core.Event)">RemoveEvent(Event)</h4>
+  <div class="markdown level1 summary"><p>Removes the registered event from the main loop of the task.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveEvent(Event coreEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Core.Event.html">Event</a></td>
+        <td><span class="parametername">coreEvent</span></td>
+        <td><p>The event instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Core_Task_RemoveEvent_Tizen_Core_Event__examples">Examples</h5>
+  <pre><code>var coreEvent = new Event();
+coreEvent.EventReceived += (sender, args) => {
+  Console.WriteLine(&quot;OnEventReceived. ID = {}, Message = {}&quot;, args.Id, (string)args.Data);
+};
+
+var task = TizenCore.Find(&quot;EventTask&quot;) ?? TizenCore.Spawn(&quot;EventTask&quot;);
+task.AddEvent(coreEvent);
+task.RemoveEvent(coreEvent);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when the argument is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the argument is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L271">View Source</a>
+  </span>
+  <a id="Tizen_Core_Task_RemoveTimer_" data-uid="Tizen.Core.Task.RemoveTimer*"></a>
+  <h4 id="Tizen_Core_Task_RemoveTimer_System_Int32_" data-uid="Tizen.Core.Task.RemoveTimer(System.Int32)">RemoveTimer(int)</h4>
+  <div class="markdown level1 summary"><p>Removes the registered timer from the main loop of the task.
+If the specified timer was already stopped, no action occurs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveTimer(int id)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">id</span></td>
+        <td><p>The registered timer ID.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Core_Task_RemoveTimer_System_Int32__examples">Examples</h5>
+  <pre><code>var task = TizenCore.Find(&quot;TimerTask&quot;) ?? TizenCore.Spawn(&quot;TimerTask&quot;);
+var timerId = task.AddTimer(1000, () => {
+  Console.WriteLine(&quot;Timer handler is invoked&quot;);
+  return true;
+});
+...
+task.RemoveTimer(timerId);</code></pre>
+
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L693">View Source</a>
+  </span>
+  <a id="Tizen_Core_Task_Run_" data-uid="Tizen.Core.Task.Run*"></a>
+  <h4 id="Tizen_Core_Task_Run" data-uid="Tizen.Core.Task.Run">Run()</h4>
+  <div class="markdown level1 summary"><p>Runs the main loop of the task.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Run()</code></pre>
+  </div>
+  <h5 id="Tizen_Core_Task_Run_examples">Examples</h5>
+  <p>Here's an example that demonstrates how to create a Core Task and run its main loop:</p>
+<pre><code>// Create a Core Task named &quot;Runner&quot;
+var coreTask = new TCoreTask(&quot;Runner&quot;);
+
+// Start the main loop of the task
+coreTask.Run();</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L32" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

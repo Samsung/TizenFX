@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace Tizen.Telephony
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace Tizen.Telephony
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Telephony">
+
+  <h1 id="Tizen_Telephony" data-uid="Tizen.Telephony" class="text-break">Namespace Tizen.Telephony
+</h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+</h3>
+      <h4><a class="xref" href="Tizen.Telephony.Call.html">Call</a></h4>
+      <section><p>The Call APIs allow you to get the voice and video call states.
+It provides the list of CallHandle which can be used to get the information about call related actions.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.CallHandle.html">CallHandle</a></h4>
+      <section><p>This class provides the APIs to get the information about calls.
+It contains several properties such as HandleId, Number, Type, Status, Direction, and ConferenceStatus,
+which allow users to obtain specific details about a call. These properties can be accessed individually
+to gain insights into aspects like the call handle ID, number, type, status, direction, and whether it is a conference call or not.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.ChangeNotificationEventArgs.html">ChangeNotificationEventArgs</a></h4>
+      <section><p>This class contains the data related to the Notification event.
+Each Notification type corresponds to a specific change in the telephony or network configuration,
+allowing developers to react accordingly. By leveraging these notifications, applications can maintain
+real-time awareness of critical telephony and network conditions, enhancing overall user experience.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.Manager.html">Manager</a></h4>
+      <section><p>This class provides APIs to initialize and deinitialize the framework.
+It also provides APIs to get the SlotHandles, which can then be used to get other Network/Sim/Call/Modem information.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.Modem.html">Modem</a></h4>
+      <section><p>This class provides APIs to obtain information from the modem.
+It includes properties such as Imei, which allows users to retrieve the International
+Mobile Station Equipment Identity (IMEI) of a mobile phone. By utilizing these features,
+developers can gather valuable information about the modem and incorporate it into their applications effectively.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.Network.html">Network</a></h4>
+      <section><p>The Network class provides APIs to obtain information about the current telephony service network.
+It offers properties such as Lac, which allows users to retrieve the Location Area Code (LAC) of
+the current location. Another property, CellId, enables users to obtain the cell identification number.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.Sim.html">Sim</a></h4>
+      <section></section>
+      <h4><a class="xref" href="Tizen.Telephony.SlotHandle.html">SlotHandle</a></h4>
+      <section><p>This class provides APIs that provide functionality related to the slot handle.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.StateEventArgs.html">StateEventArgs</a></h4>
+      <section><p>This class contains the data related to the State changed event.</p>
+</section>
+    <h3 id="enums">Enums
+</h3>
+      <h4><a class="xref" href="Tizen.Telephony.CallHandle.CallDirection.html">CallHandle.CallDirection</a></h4>
+      <section><p>Enumeration for the call direction.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.CallHandle.CallStatus.html">CallHandle.CallStatus</a></h4>
+      <section><p>Enumeration for the call status.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.CallHandle.CallType.html">CallHandle.CallType</a></h4>
+      <section><p>Enumeration for the call type.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.CallPreferredVoiceSubscription.html">CallPreferredVoiceSubscription</a></h4>
+      <section><p>Enumeration for the preferred voice call subscription.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.ChangeNotificationEventArgs.Notification.html">ChangeNotificationEventArgs.Notification</a></h4>
+      <section><p>Enumeration for the Telephony Notification.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.Modem.PowerStatus.html">Modem.PowerStatus</a></h4>
+      <section><p>Enumeration for the Modem Power Status.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.Network.DefaultDataSubscription.html">Network.DefaultDataSubscription</a></h4>
+      <section><p>Enumeration for the possible 'default' Data Subscriptions for the Packet Switched(PS).</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.Network.DefaultSubscription.html">Network.DefaultSubscription</a></h4>
+      <section><p>Enumeration for defining the possible 'default' Subscriptions for the Circuit Switched(CS).</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.Network.NameOption.html">Network.NameOption</a></h4>
+      <section><p>Enumeration for the network name priority.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.Network.PsType.html">Network.PsType</a></h4>
+      <section><p>Enumeration for the PS types.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.Network.Rssi.html">Network.Rssi</a></h4>
+      <section><p>Enumeration for the RSSI (Receive Signal Strength Indicator).
+Rssi6 indicates the highest strength.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.Network.SelectionMode.html">Network.SelectionMode</a></h4>
+      <section><p>Enumeration for the network selection modes.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.Network.ServiceState.html">Network.ServiceState</a></h4>
+      <section><p>Enumeration for the network service states.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.Network.Type.html">Network.Type</a></h4>
+      <section><p>Enumeration for the network types.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.Sim.ApplicationType.html">Sim.ApplicationType</a></h4>
+      <section><p>Enumeration for the type of the SIM card.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.Sim.LockState.html">Sim.LockState</a></h4>
+      <section><p>Enumeration for the lock state of the SIM card.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.Sim.State.html">Sim.State</a></h4>
+      <section><p>Enumeration for the state of the SIM card.</p>
+</section>
+      <h4><a class="xref" href="Tizen.Telephony.State.html">State</a></h4>
+      <section><p>Enumeration for the telephony states.</p>
+</section>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

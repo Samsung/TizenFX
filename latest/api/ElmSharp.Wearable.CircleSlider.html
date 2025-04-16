@@ -1,0 +1,977 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class CircleSlider
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class CircleSlider
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="ElmSharp.Wearable.CircleSlider">
+
+
+  <h1 id="ElmSharp_Wearable_CircleSlider" data-uid="ElmSharp.Wearable.CircleSlider" class="text-break">Class CircleSlider
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="ElmSharp.html">ElmSharp</a>.<a class="xref" href="ElmSharp.Wearable.html">Wearable</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>ElmSharp.Wearable.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>Circle slider is a circular designed widget used to select a value in a range by the Rotary event.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public class CircleSlider : Widget, IAccessibleObject, IRotaryActionWidget, ICircleWidget</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a></div>
+        <div class="pdl"><a class="xref" href="ElmSharp.Accessible.AccessibleObject.html">AccessibleObject</a></div>
+        <div class="pdl"><a class="xref" href="ElmSharp.Widget.html">Widget</a></div>
+        <div><span class="xref">CircleSlider</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="ElmSharp.Accessible.IAccessibleObject.html">IAccessibleObject</a></div>
+      <div class="pdl"><a class="xref" href="ElmSharp.Wearable.IRotaryActionWidget.html">IRotaryActionWidget</a></div>
+      <div class="pdl"><a class="xref" href="ElmSharp.Wearable.ICircleWidget.html">ICircleWidget</a></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L39">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider__ctor_" data-uid="ElmSharp.Wearable.CircleSlider.#ctor*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider__ctor_ElmSharp_EvasObject_ElmSharp_Wearable_CircleSurface_" data-uid="ElmSharp.Wearable.CircleSlider.#ctor(ElmSharp.EvasObject,ElmSharp.Wearable.CircleSurface)">CircleSlider(EvasObject, CircleSurface)</h4>
+  <div class="markdown level1 summary"><p>Creates and initializes a new instance of the CircleSlider class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public CircleSlider(EvasObject parent, CircleSurface surface)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>The EvasObject to which the new CircleSlider will be attached as a child.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.Wearable.CircleSurface.html">CircleSurface</a></td>
+        <td><span class="parametername">surface</span></td>
+        <td><p>The surface for drawing the circle features for this widget.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L229">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_BackgroundAngle_" data-uid="ElmSharp.Wearable.CircleSlider.BackgroundAngle*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_BackgroundAngle" data-uid="ElmSharp.Wearable.CircleSlider.BackgroundAngle">BackgroundAngle</h4>
+  <div class="markdown level1 summary"><p>Sets or gets the angle in degree of the circle slider background.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public double BackgroundAngle { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L265">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_BackgroundAngleOffset_" data-uid="ElmSharp.Wearable.CircleSlider.BackgroundAngleOffset*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_BackgroundAngleOffset" data-uid="ElmSharp.Wearable.CircleSlider.BackgroundAngleOffset">BackgroundAngleOffset</h4>
+  <div class="markdown level1 summary"><p>Sets or gets the angle offset for the circle slider background.
+Offset value means start position of the slider background.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public double BackgroundAngleOffset { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L156">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_BackgroundColor_" data-uid="ElmSharp.Wearable.CircleSlider.BackgroundColor*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_BackgroundColor" data-uid="ElmSharp.Wearable.CircleSlider.BackgroundColor">BackgroundColor</h4>
+  <div class="markdown level1 summary"><p>Sets or gets the color of the circle slider background.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public override Color BackgroundColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.Color.html">Color</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="ElmSharp.Widget.html#ElmSharp_Widget_BackgroundColor">Widget.BackgroundColor</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L195">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_BackgroundLineWidth_" data-uid="ElmSharp.Wearable.CircleSlider.BackgroundLineWidth*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_BackgroundLineWidth" data-uid="ElmSharp.Wearable.CircleSlider.BackgroundLineWidth">BackgroundLineWidth</h4>
+  <div class="markdown level1 summary"><p>Sets or gets the line width of the circle slider background.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public int BackgroundLineWidth { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L414">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_BackgroundRadius_" data-uid="ElmSharp.Wearable.CircleSlider.BackgroundRadius*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_BackgroundRadius" data-uid="ElmSharp.Wearable.CircleSlider.BackgroundRadius">BackgroundRadius</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the radius value for the circle slider background.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public double BackgroundRadius { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L212">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_BarAngle_" data-uid="ElmSharp.Wearable.CircleSlider.BarAngle*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_BarAngle" data-uid="ElmSharp.Wearable.CircleSlider.BarAngle">BarAngle</h4>
+  <div class="markdown level1 summary"><p>Sets or gets the angle in degree of the circle slider bar.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public double BarAngle { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L303">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_BarAngleMaximum_" data-uid="ElmSharp.Wearable.CircleSlider.BarAngleMaximum*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_BarAngleMaximum" data-uid="ElmSharp.Wearable.CircleSlider.BarAngleMaximum">BarAngleMaximum</h4>
+  <div class="markdown level1 summary"><p>Sets or gets the maximum angle of the circle slider bar.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public double BarAngleMaximum { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L282">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_BarAngleMinimum_" data-uid="ElmSharp.Wearable.CircleSlider.BarAngleMinimum*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_BarAngleMinimum" data-uid="ElmSharp.Wearable.CircleSlider.BarAngleMinimum">BarAngleMinimum</h4>
+  <div class="markdown level1 summary"><p>Sets or gets the minimum angle of the circle slider bar.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public double BarAngleMinimum { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L247">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_BarAngleOffset_" data-uid="ElmSharp.Wearable.CircleSlider.BarAngleOffset*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_BarAngleOffset" data-uid="ElmSharp.Wearable.CircleSlider.BarAngleOffset">BarAngleOffset</h4>
+  <div class="markdown level1 summary"><p>Sets or gets the angle offset for the slider bar.
+Offset value means start position of the slider bar.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public double BarAngleOffset { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L134">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_BarColor_" data-uid="ElmSharp.Wearable.CircleSlider.BarColor*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_BarColor" data-uid="ElmSharp.Wearable.CircleSlider.BarColor">BarColor</h4>
+  <div class="markdown level1 summary"><p>Sets or gets the color of the circle slider bar.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public Color BarColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.Color.html">Color</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L178">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_BarLineWidth_" data-uid="ElmSharp.Wearable.CircleSlider.BarLineWidth*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_BarLineWidth" data-uid="ElmSharp.Wearable.CircleSlider.BarLineWidth">BarLineWidth</h4>
+  <div class="markdown level1 summary"><p>Sets or gets the line width of the circle slider bar.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public int BarLineWidth { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L397">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_BarRadius_" data-uid="ElmSharp.Wearable.CircleSlider.BarRadius*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_BarRadius" data-uid="ElmSharp.Wearable.CircleSlider.BarRadius">BarRadius</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the radius value for the circle slider bar.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public double BarRadius { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L70">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_CircleHandle_" data-uid="ElmSharp.Wearable.CircleSlider.CircleHandle*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_CircleHandle" data-uid="ElmSharp.Wearable.CircleSlider.CircleHandle">CircleHandle</h4>
+  <div class="markdown level1 summary"><p>Gets the handle for the Circle widget.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public virtual IntPtr CircleHandle { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L77">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_CircleSurface_" data-uid="ElmSharp.Wearable.CircleSlider.CircleSurface*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_CircleSurface" data-uid="ElmSharp.Wearable.CircleSlider.CircleSurface">CircleSurface</h4>
+  <div class="markdown level1 summary"><p>Gets the handle for the circle surface used in this widget.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public virtual CircleSurface CircleSurface { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.Wearable.CircleSurface.html">CircleSurface</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L117">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_IsEnabled_" data-uid="ElmSharp.Wearable.CircleSlider.IsEnabled*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_IsEnabled" data-uid="ElmSharp.Wearable.CircleSlider.IsEnabled">IsEnabled</h4>
+  <div class="markdown level1 summary"><p>Sets or gets the state of the widget, which might be enabled or disabled.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public override bool IsEnabled { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="ElmSharp.Widget.html#ElmSharp_Widget_IsEnabled">Widget.IsEnabled</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L356">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_Maximum_" data-uid="ElmSharp.Wearable.CircleSlider.Maximum*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_Maximum" data-uid="ElmSharp.Wearable.CircleSlider.Maximum">Maximum</h4>
+  <div class="markdown level1 summary"><p>Sets or gets the maximum values for the circle slider.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public double Maximum { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="ElmSharp_Wearable_CircleSlider_Maximum_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This defines the allowed maximum values to be selected by the user.
+If the actual value is bigger than the maximum value, it is updated to the maximum value.
+Actual value can be obtained with Value. By default, the minimum value is equal to 0.0, and the maximum value is equal to 1.0.
+Maximum must be greater than minimum, otherwise the behavior is undefined.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L329">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_Minimum_" data-uid="ElmSharp.Wearable.CircleSlider.Minimum*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_Minimum" data-uid="ElmSharp.Wearable.CircleSlider.Minimum">Minimum</h4>
+  <div class="markdown level1 summary"><p>Sets or gets the minimum values for the circle slider.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public double Minimum { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="ElmSharp_Wearable_CircleSlider_Minimum_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This defines the allowed minimum values to be selected by the user.
+If the actual value is less than the minimum value, it is updated to the minimum value.
+Actual value can be obtained with Value. By default, minimum value is equal to 0.0.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L88">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_Step_" data-uid="ElmSharp.Wearable.CircleSlider.Step*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_Step" data-uid="ElmSharp.Wearable.CircleSlider.Step">Step</h4>
+  <div class="markdown level1 summary"><p>Sets or gets the step by which the circle slider bar moves.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public double Step { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="ElmSharp_Wearable_CircleSlider_Step_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This value is used when the circle slider value is changed by a drag or the Rotary event.
+The value of the slider is increased/decreased by the step value.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L380">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_Value_" data-uid="ElmSharp.Wearable.CircleSlider.Value*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_Value" data-uid="ElmSharp.Wearable.CircleSlider.Value">Value</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the value displayed by the circle slider.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public double Value { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="ElmSharp_Wearable_CircleSlider_Value_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The value must be between minimum and maximum.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L445">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_CreateHandle_" data-uid="ElmSharp.Wearable.CircleSlider.CreateHandle*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_CreateHandle_ElmSharp_EvasObject_" data-uid="ElmSharp.Wearable.CircleSlider.CreateHandle(ElmSharp.EvasObject)">CreateHandle(EvasObject)</h4>
+  <div class="markdown level1 summary"><p>Creates a widget handle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected override IntPtr CreateHandle(EvasObject parent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>Parent EvasObject</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><p>Handle IntPtr.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="ElmSharp.EvasObject.html#ElmSharp_EvasObject_CreateHandle_ElmSharp_EvasObject_">EvasObject.CreateHandle(EvasObject)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L431">View Source</a>
+  </span>
+  <a id="ElmSharp_Wearable_CircleSlider_OnRealized_" data-uid="ElmSharp.Wearable.CircleSlider.OnRealized*"></a>
+  <h4 id="ElmSharp_Wearable_CircleSlider_OnRealized" data-uid="ElmSharp.Wearable.CircleSlider.OnRealized">OnRealized()</h4>
+  <div class="markdown level1 summary"><p>The callback of the Realized event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+protected override void OnRealized()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="ElmSharp.Widget.html#ElmSharp_Widget_OnRealized">Widget.OnRealized()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L64">View Source</a>
+  </span>
+  <h4 id="ElmSharp_Wearable_CircleSlider_ValueChanged" data-uid="ElmSharp.Wearable.CircleSlider.ValueChanged">ValueChanged</h4>
+  <div class="markdown level1 summary"><p>Changed will be triggered when the circle slider value changes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public event EventHandler ValueChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="ElmSharp.Accessible.IAccessibleObject.html">IAccessibleObject</a>
+  </div>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.IRotaryActionWidget.html">IRotaryActionWidget</a>
+  </div>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.ICircleWidget.html">ICircleWidget</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_Activate_ElmSharp_EvasObject_">RotaryEventExtensions.Activate(EvasObject)</a>
+  </div>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_AddRotaryEventHandler_ElmSharp_EvasObject_ElmSharp_Wearable_RotaryEventHandler_">RotaryEventExtensions.AddRotaryEventHandler(EvasObject, RotaryEventHandler)</a>
+  </div>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_Deactivate_ElmSharp_EvasObject_">RotaryEventExtensions.Deactivate(EvasObject)</a>
+  </div>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_RemoveRotaryEventHandler_ElmSharp_EvasObject_ElmSharp_Wearable_RotaryEventHandler_">RotaryEventExtensions.RemoveRotaryEventHandler(EvasObject, RotaryEventHandler)</a>
+  </div>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_Activate_ElmSharp_Wearable_IRotaryActionWidget_">RotaryEventExtensions.Activate(IRotaryActionWidget)</a>
+  </div>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_Deactivate_ElmSharp_Wearable_IRotaryActionWidget_">RotaryEventExtensions.Deactivate(IRotaryActionWidget)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp.Wearable/ElmSharp.Wearable/CircleSlider.cs/#L27" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

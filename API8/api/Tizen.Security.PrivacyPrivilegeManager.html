@@ -1,0 +1,632 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class PrivacyPrivilegeManager
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class PrivacyPrivilegeManager
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API8">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Security.PrivacyPrivilegeManager">
+
+
+  <h1 id="Tizen_Security_PrivacyPrivilegeManager" data-uid="Tizen.Security.PrivacyPrivilegeManager" class="text-break">Class PrivacyPrivilegeManager
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Security.html">Security</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Security.PrivacyPrivilegeManager.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The PrivacyPrivilegeManager provides the properties or methods to check and request a permission for privacy privilege.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static class PrivacyPrivilegeManager</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">PrivacyPrivilegeManager</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Security.PrivacyPrivilegeManager/Tizen.Security/PrivacyPrivilegeManager.cs/#L115">View Source</a>
+  </span>
+  <a id="Tizen_Security_PrivacyPrivilegeManager_CheckPermission_" data-uid="Tizen.Security.PrivacyPrivilegeManager.CheckPermission*"></a>
+  <h4 id="Tizen_Security_PrivacyPrivilegeManager_CheckPermission_System_String_" data-uid="Tizen.Security.PrivacyPrivilegeManager.CheckPermission(System.String)">CheckPermission(string)</h4>
+  <div class="markdown level1 summary"><p>Gets the status of a privacy privilege permission.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static CheckResult CheckPermission(string privilege)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">privilege</span></td>
+        <td><p>The privacy privilege to be checked.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Security.CheckResult.html">CheckResult</a></td>
+        <td><p>The permission setting for a respective privilege.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Security_PrivacyPrivilegeManager_CheckPermission_System_String__examples">Examples</h5>
+  <pre><code>    CheckResult result = PrivacyPrivilegeManager.CheckPermission(&quot;http://tizen.org/privilege/account.read&quot;);
+    switch (result)
+    {
+        case Allow:
+            // Privilege can be used
+            break;
+        case Deny:
+            // Privilege can&apos;t be used
+            break;
+        case Ask:
+            // User permission request required
+            PrivacyPrivilegeManager.RequestPermission(&quot;http://tizen.org/privilege/account.read&quot;);
+            break;
+    }</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid parameter is passed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when a memory error occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.IOException</span></td>
+        <td><p>Thrown when the method failed due to an internal I/O error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Security.PrivacyPrivilegeManager/Tizen.Security/PrivacyPrivilegeManager.cs/#L161">View Source</a>
+  </span>
+  <a id="Tizen_Security_PrivacyPrivilegeManager_CheckPermissions_" data-uid="Tizen.Security.PrivacyPrivilegeManager.CheckPermissions*"></a>
+  <h4 id="Tizen_Security_PrivacyPrivilegeManager_CheckPermissions_System_Collections_Generic_IEnumerable_System_String__" data-uid="Tizen.Security.PrivacyPrivilegeManager.CheckPermissions(System.Collections.Generic.IEnumerable{System.String})">CheckPermissions(IEnumerable&lt;string&gt;)</h4>
+  <div class="markdown level1 summary"><p>Gets the status of a privacy privileges permission.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;CheckResult&gt; CheckPermissions(IEnumerable&lt;string&gt; privileges)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="parametername">privileges</span></td>
+        <td><p>The privacy privileges to be checked.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.CheckResult.html">CheckResult</a>&gt;</td>
+        <td><p>The permission setting for a respective privileges.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Security_PrivacyPrivilegeManager_CheckPermissions_System_Collections_Generic_IEnumerable_System_String___examples">Examples</h5>
+  <pre><code>    string[] privileges = new [] {&quot;http://tizen.org/privilege/account.read&quot;,
+                                  &quot;http://tizen.org/privilege/alarm&quot;};
+    CheckResult[] results = PrivacyPrivilegeManager.CheckPermissions(privileges).ToArray();
+    List&lt;string> privilegesWithAskStatus = new List&lt;string>();
+    for (int iterator = 0; iterator &lt; results.Length; ++iterator)
+    {
+        switch (results[iterator])
+        {
+            case CheckResult.Allow:
+                // Privilege can be used
+                break;
+            case CheckResult.Deny:
+                // Privilege can&apos;t be used
+                break;
+            case CheckResult.Ask:
+                // User permission request required
+                privilegesWithAskStatus.Add(privileges[iterator]);
+                break;
+        }
+    }
+    PrivacyPrivilegeManager.RequestPermissions(privilegesWithAskStatus);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid parameter is passed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when a memory error occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.IOException</span></td>
+        <td><p>Thrown when the method failed due to an internal I/O error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Security.PrivacyPrivilegeManager/Tizen.Security/PrivacyPrivilegeManager.cs/#L358">View Source</a>
+  </span>
+  <a id="Tizen_Security_PrivacyPrivilegeManager_GetResponseContext_" data-uid="Tizen.Security.PrivacyPrivilegeManager.GetResponseContext*"></a>
+  <h4 id="Tizen_Security_PrivacyPrivilegeManager_GetResponseContext_System_String_" data-uid="Tizen.Security.PrivacyPrivilegeManager.GetResponseContext(System.String)">GetResponseContext(string)</h4>
+  <div class="markdown level1 summary"><p>Gets the response context for a given privilege.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static WeakReference&lt;PrivacyPrivilegeManager.ResponseContext&gt; GetResponseContext(string privilege)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">privilege</span></td>
+        <td><p>The privilege.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.WeakReference&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.PrivacyPrivilegeManager.html">PrivacyPrivilegeManager</a>.<a class="xref" href="Tizen.Security.PrivacyPrivilegeManager.ResponseContext.html">ResponseContext</a>&gt;</td>
+        <td><p>The response context of a respective privilege.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Security_PrivacyPrivilegeManager_GetResponseContext_System_String__examples">Examples</h5>
+  <pre><code>private static void PPM_RequestResponse(object sender, RequestResponseEventArgs e)
+{
+    if (e.cause == CallCause.Answer)
+    {
+       switch(e.result)
+
+       {
+
+        case RequestResult.AllowForever:
+            Console.WriteLine(&quot;User allowed usage of privilege {0} definitely&quot;, e.privilege);
+            break;
+        case RequestResult.DenyForever:
+            Console.WriteLine(&quot;User denied usage of privilege {0} definitely&quot;, e.privilege);
+            break;
+        case RequestResult.DenyOnce:
+            Console.WriteLine(&quot;User denied usage of privilege {0} this time&quot;, e.privilege);
+            break;
+        };
+    }
+    else
+    {
+        Console.WriteLine(&quot;Error occured during requesting permission for {0}&quot;, e.privilege);
+    }
+}
+
+    PrivacyPrivilegeManager.ResponseContext context = null;
+    PrivacyPrivilegeManager.GetResponseContext(&quot;http://tizen.org/privilege/account.read&quot;).TryGetTarget(out context);
+    if(context != null)
+    {
+        context.ResponseFetched += PPM_RequestResponse;
+    }
+
+    PrivacyPrivilegeManager.RequestPermission(&quot;http://tizen.org/privilege/account.read&quot;);
+
+    PrivacyPrivilegeManager.GetResponseContext(&quot;http://tizen.org/privilege/account.read&quot;).TryGetTarget(out context);
+    if(context != null)
+    {
+        context.ResponseFetched -= PPM_RequestResponse;
+    }</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown if the key is an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Security_PrivacyPrivilegeManager_GetResponseContext_System_String__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Tizen.Security.PrivacyPrivilegeManager.html">PrivacyPrivilegeManager</a>.<a class="xref" href="Tizen.Security.PrivacyPrivilegeManager.ResponseContext.html">ResponseContext</a></div>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Security.PrivacyPrivilegeManager/Tizen.Security/PrivacyPrivilegeManager.cs/#L208">View Source</a>
+  </span>
+  <a id="Tizen_Security_PrivacyPrivilegeManager_RequestPermission_" data-uid="Tizen.Security.PrivacyPrivilegeManager.RequestPermission*"></a>
+  <h4 id="Tizen_Security_PrivacyPrivilegeManager_RequestPermission_System_String_" data-uid="Tizen.Security.PrivacyPrivilegeManager.RequestPermission(System.String)">RequestPermission(string)</h4>
+  <div class="markdown level1 summary"><p>Triggers the permission request for a user.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void RequestPermission(string privilege)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">privilege</span></td>
+        <td><p>The privacy privilege to be requested.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Security_PrivacyPrivilegeManager_RequestPermission_System_String__examples">Examples</h5>
+  <pre><code>    CheckResult result = PrivacyPrivilegeManager.CheckPermission(&quot;http://tizen.org/privilege/account.read&quot;);
+    switch (result)
+    {
+        case Allow:
+            // Privilege can be used
+            break;
+        case Deny:
+            // Privilege can&apos;t be used
+            break;
+        case Ask:
+            // User permission request required
+            PrivacyPrivilegeManager.RequestPermission(&quot;http://tizen.org/privilege/account.read&quot;);
+            break;
+    }</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid parameter is passed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when a memory error occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.IOException</span></td>
+        <td><p>Thrown when the method failed due to an internal I/O error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Security.PrivacyPrivilegeManager/Tizen.Security/PrivacyPrivilegeManager.cs/#L260">View Source</a>
+  </span>
+  <a id="Tizen_Security_PrivacyPrivilegeManager_RequestPermissions_" data-uid="Tizen.Security.PrivacyPrivilegeManager.RequestPermissions*"></a>
+  <h4 id="Tizen_Security_PrivacyPrivilegeManager_RequestPermissions_System_Collections_Generic_IEnumerable_System_String__" data-uid="Tizen.Security.PrivacyPrivilegeManager.RequestPermissions(System.Collections.Generic.IEnumerable{System.String})">RequestPermissions(IEnumerable&lt;string&gt;)</h4>
+  <div class="markdown level1 summary"><p>Triggers the permissions request for a user.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task&lt;RequestMultipleResponseEventArgs&gt; RequestPermissions(IEnumerable&lt;string&gt; privileges)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="parametername">privileges</span></td>
+        <td><p>The privacy privileges to be requested.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Security.RequestMultipleResponseEventArgs.html">RequestMultipleResponseEventArgs</a>&gt;</td>
+        <td><p>Permission request Task</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Security_PrivacyPrivilegeManager_RequestPermissions_System_Collections_Generic_IEnumerable_System_String___examples">Examples</h5>
+  <pre><code>    string[] privileges = new [] {&quot;http://tizen.org/privilege/account.read&quot;,
+                                  &quot;http://tizen.org/privilege/alarm&quot;};
+    CheckResult[] results = PrivacyPrivilegeManager.CheckPermissions(privileges).ToArray();
+    List&lt;string> privilegesWithAskStatus = new List&lt;string>();
+    for (int iterator = 0; iterator &lt; results.Length; ++iterator)
+    {
+        switch (results[iterator])
+        {
+            case CheckResult.Allow:
+                // Privilege can be used
+                break;
+            case CheckResult.Deny:
+                // Privilege can&apos;t be used
+                break;
+            case CheckResult.Ask:
+                // User permission request required
+                privilegesWithAskStatus.Add(privileges[iterator]);
+                break;
+        }
+    }
+    IEnumerable&lt;PermissionRequestResponse> responses = PrivacyPrivilegeManager.RequestPermissions(privilegesWithAskStatus).Result;
+    //handle responses</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an invalid parameter is passed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when a memory error occurred.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.IOException</span></td>
+        <td><p>Thrown when the method failed due to an internal I/O error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Security.PrivacyPrivilegeManager/Tizen.Security/PrivacyPrivilegeManager.cs/#L28" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

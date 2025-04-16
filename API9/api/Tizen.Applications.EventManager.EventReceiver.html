@@ -1,0 +1,361 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class EventReceiver
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class EventReceiver
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API9">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Applications.EventManager.EventReceiver">
+
+
+  <h1 id="Tizen_Applications_EventManager_EventReceiver" data-uid="Tizen.Applications.EventManager.EventReceiver" class="text-break">Class EventReceiver
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.Applications.html">Applications</a>.<a class="xref" href="Tizen.Applications.EventManager.html">EventManager</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Applications.EventManager.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The ApplicationEventReceiver Class provides functions to add event handler.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class EventReceiver : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">EventReceiver</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h5 id="Tizen_Applications_EventManager_EventReceiver_examples"><strong>Examples</strong></h5>
+  <pre><code>using Tizen.Applications.EventManager.SystemEvents;
+void OnReceived(object sender, ApplicationEventArgs e)
+{
+    if (e.Name == &quot;event.org.tizen.example.AppEventTestApp.Tizen.Mobile.AppEvent&quot;)
+        LogUtils.Write(LogUtils.DEBUG, LOG_TAG, &quot;On Received : &quot; + e.Name);
+
+    if (e.Name == EarjackStatus.EventName)
+    {
+        Bundle eventData = e.Data;
+        object aValue = eventData.GetItem(EarjackStatus.StatusKey);
+        if (eventData.Is&lt;string>(EarjackStatus.StatusKey))
+        {
+            string statusValue = (string)aValue;
+            LogUtils.Write(LogUtils.DEBUG, LOG_TAG, &quot;EarjackStatus : &quot; + statusValue);
+        }
+    }
+}
+public class EventManagerSample
+{
+   ...
+   EventReceiver receiver = new EventReceiver(&quot;event.org.tizen.example.helloworld.AppEvent&quot;);
+   receiver.Received += OnReceived;
+}</code></pre>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Applications.EventManager/Tizen.Applications/EventReceiver.cs/#L66">View Source</a>
+  </span>
+  <a id="Tizen_Applications_EventManager_EventReceiver__ctor_" data-uid="Tizen.Applications.EventManager.EventReceiver.#ctor*"></a>
+  <h4 id="Tizen_Applications_EventManager_EventReceiver__ctor_System_String_" data-uid="Tizen.Applications.EventManager.EventReceiver.#ctor(System.String)">EventReceiver(string)</h4>
+  <div class="markdown level1 summary"><p>Initializer of class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EventReceiver(string eventName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">eventName</span></td>
+        <td><p>The interested event name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Applications.EventManager/Tizen.Applications/EventReceiver.cs/#L84">View Source</a>
+  </span>
+  <a id="Tizen_Applications_EventManager_EventReceiver_EventName_" data-uid="Tizen.Applications.EventManager.EventReceiver.EventName*"></a>
+  <h4 id="Tizen_Applications_EventManager_EventReceiver_EventName" data-uid="Tizen.Applications.EventManager.EventReceiver.EventName">EventName</h4>
+  <div class="markdown level1 summary"><p>Gets the eventname.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string EventName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Applications.EventManager/Tizen.Applications/EventReceiver.cs/#L170">View Source</a>
+  </span>
+  <a id="Tizen_Applications_EventManager_EventReceiver_Dispose_" data-uid="Tizen.Applications.EventManager.EventReceiver.Dispose*"></a>
+  <h4 id="Tizen_Applications_EventManager_EventReceiver_Dispose" data-uid="Tizen.Applications.EventManager.EventReceiver.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Release all the resources used by the class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Applications.EventManager/Tizen.Applications/EventReceiver.cs/#L149">View Source</a>
+  </span>
+  <a id="Tizen_Applications_EventManager_EventReceiver_Dispose_" data-uid="Tizen.Applications.EventManager.EventReceiver.Dispose*"></a>
+  <h4 id="Tizen_Applications_EventManager_EventReceiver_Dispose_System_Boolean_" data-uid="Tizen.Applications.EventManager.EventReceiver.Dispose(System.Boolean)">Dispose(bool)</h4>
+  <div class="markdown level1 summary"><p>Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>If true, disposes any disposable objects. If false, does not dispose disposable objects.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Applications.EventManager/Tizen.Applications/EventReceiver.cs/#L75">View Source</a>
+  </span>
+  <a id="Tizen_Applications_EventManager_EventReceiver_Finalize_" data-uid="Tizen.Applications.EventManager.EventReceiver.Finalize*"></a>
+  <h4 id="Tizen_Applications_EventManager_EventReceiver_Finalize" data-uid="Tizen.Applications.EventManager.EventReceiver.Finalize">~EventReceiver()</h4>
+  <div class="markdown level1 summary"><p>Finalizer of class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~EventReceiver()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Applications.EventManager/Tizen.Applications/EventReceiver.cs/#L105">View Source</a>
+  </span>
+  <h4 id="Tizen_Applications_EventManager_EventReceiver_Received" data-uid="Tizen.Applications.EventManager.EventReceiver.Received">Received</h4>
+  <div class="markdown level1 summary"><p>Occurs when events are received.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;EventManagerEventArgs&gt; Received</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.EventManager.EventManagerEventArgs.html">EventManagerEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Applications_EventManager_EventReceiver_Received_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If you want to add the privileged event, you MUST declare right privilege first.
+Unless that, throw UnauthorizedAccessException.
+The privileged events are commented on remarks of it's definitions.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Applications.EventManager/Tizen.Applications/EventReceiver.cs/#L52" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

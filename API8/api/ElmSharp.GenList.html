@@ -1,0 +1,2235 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class GenList
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class GenList
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API8">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="ElmSharp.GenList">
+
+
+  <h1 id="ElmSharp_GenList" data-uid="ElmSharp.GenList" class="text-break">Class GenList
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="ElmSharp.html">ElmSharp</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>ElmSharp.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>It inherits <a class="xref" href="ElmSharp.Layout.html">Layout</a>.
+The GenList is a widget that aims to have a more expansive list than the simple <a class="xref" href="ElmSharp.List.html">List</a> in ElmSharp that could have more flexible items and allow many more entries while still being fast and low on memory usage.
+At the same time it was also made to be able to do tree structures.
+But the price to pay is more complex when it comes to usage.
+If all you want is a simple list with icons and a single text, use <a class="xref" href="ElmSharp.List.html">List</a> widget.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class GenList : Layout, IAccessibleObject</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a></div>
+        <div class="pdl"><a class="xref" href="ElmSharp.Accessible.AccessibleObject.html">AccessibleObject</a></div>
+        <div class="pdl"><a class="xref" href="ElmSharp.Widget.html">Widget</a></div>
+        <div class="pdl"><a class="xref" href="ElmSharp.Container.html">Container</a></div>
+        <div class="pdl"><a class="xref" href="ElmSharp.Layout.html">Layout</a></div>
+        <div><span class="xref">GenList</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  <dl class="attribute-list stack">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="ElmSharp.Wearable.CircleGenList.html">CircleGenList</a></div>
+      <div class="pdl"><a class="xref" href="ElmSharp.Wearable.CircleGenList.html">CircleGenList</a></div>
+      <div class="pdl"><a class="xref" href="ElmSharp.Wearable.CircleGenList.html">CircleGenList</a></div>
+      <div class="pdl"><a class="xref" href="ElmSharp.Wearable.CircleGenList.html">CircleGenList</a></div>
+      <div class="pdl"><a class="xref" href="ElmSharp.Wearable.CircleGenList.html">CircleGenList</a></div>
+      <div class="pdl"><a class="xref" href="ElmSharp.Wearable.CircleGenList.html">CircleGenList</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="ElmSharp.Accessible.IAccessibleObject.html">IAccessibleObject</a></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L171">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList__ctor_" data-uid="ElmSharp.GenList.#ctor*"></a>
+  <h4 id="ElmSharp_GenList__ctor" data-uid="ElmSharp.GenList.#ctor">GenList()</h4>
+  <div class="markdown level1 summary"><p>Creates and initializes a new instance of the GenList class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected GenList()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L163">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList__ctor_" data-uid="ElmSharp.GenList.#ctor*"></a>
+  <h4 id="ElmSharp_GenList__ctor_ElmSharp_EvasObject_" data-uid="ElmSharp.GenList.#ctor(ElmSharp.EvasObject)">GenList(EvasObject)</h4>
+  <div class="markdown level1 summary"><p>Creates and initializes a new instance of the GenList class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenList(EvasObject parent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>The parent is a given container, which will be attached by GenList as a child. It's <a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a> type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L268">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_BlockCount_" data-uid="ElmSharp.GenList.BlockCount*"></a>
+  <h4 id="ElmSharp_GenList_BlockCount" data-uid="ElmSharp.GenList.BlockCount">BlockCount</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the maximum number of items within an item block.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int BlockCount { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L382">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_Count_" data-uid="ElmSharp.GenList.Count*"></a>
+  <h4 id="ElmSharp_GenList_Count" data-uid="ElmSharp.GenList.Count">Count</h4>
+  <div class="markdown level1 summary"><p>Gets the count of items in a this genlist widget.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L224">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_FirstItem_" data-uid="ElmSharp.GenList.FirstItem*"></a>
+  <h4 id="ElmSharp_GenList_FirstItem" data-uid="ElmSharp.GenList.FirstItem">FirstItem</h4>
+  <div class="markdown level1 summary"><p>Gets the first item in the genlist.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenListItem FirstItem { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L321">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_FocusOnSelection_" data-uid="ElmSharp.GenList.FocusOnSelection*"></a>
+  <h4 id="ElmSharp_GenList_FocusOnSelection" data-uid="ElmSharp.GenList.FocusOnSelection">FocusOnSelection</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the focus upon the items selection mode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool FocusOnSelection { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="ElmSharp_GenList_FocusOnSelection_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>When enabled, every selection of an item inside <a class="xref" href="ElmSharp.GenList.html">GenList</a> will automatically set focus to its first focusable widget from the left.
+This is true of course, if the selection was made by clicking an unfocusable area in an item or selecting it with a key movement.
+Clicking on a focusable widget inside an item will couse this particular item to get focus as usual.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L182">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_Homogeneous_" data-uid="ElmSharp.GenList.Homogeneous*"></a>
+  <h4 id="ElmSharp_GenList_Homogeneous" data-uid="ElmSharp.GenList.Homogeneous">Homogeneous</h4>
+  <div class="markdown level1 summary"><p>Gets or sets whether the homogeneous mode is enabled.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Homogeneous { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="ElmSharp_GenList_Homogeneous_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If true, the genlist items will have the same height and width.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L398">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_HorizontalScrollBarVisiblePolicy_" data-uid="ElmSharp.GenList.HorizontalScrollBarVisiblePolicy*"></a>
+  <h4 id="ElmSharp_GenList_HorizontalScrollBarVisiblePolicy" data-uid="ElmSharp.GenList.HorizontalScrollBarVisiblePolicy">HorizontalScrollBarVisiblePolicy</h4>
+  <div class="markdown level1 summary"><p>Sets or gets the value of HorizontalScrollBarVisiblePolicy.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScrollBarVisiblePolicy HorizontalScrollBarVisiblePolicy { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.ScrollBarVisiblePolicy.html">ScrollBarVisiblePolicy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="ElmSharp_GenList_HorizontalScrollBarVisiblePolicy_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>ScrollBarVisiblePolicy.Auto means the horizontal scrollbar is made visible if it is needed, and otherwise kept hidden.
+ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L284">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_IsHighlight_" data-uid="ElmSharp.GenList.IsHighlight*"></a>
+  <h4 id="ElmSharp_GenList_IsHighlight" data-uid="ElmSharp.GenList.IsHighlight">IsHighlight</h4>
+  <div class="markdown level1 summary"><p>Gets or sets whether the genlist items should be highlighted when an item is selected.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsHighlight { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L337">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_IsMultiSelection_" data-uid="ElmSharp.GenList.IsMultiSelection*"></a>
+  <h4 id="ElmSharp_GenList_IsMultiSelection" data-uid="ElmSharp.GenList.IsMultiSelection">IsMultiSelection</h4>
+  <div class="markdown level1 summary"><p>Gets or sets whether to enable multi-selection in the genlist.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsMultiSelection { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L237">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_LastItem_" data-uid="ElmSharp.GenList.LastItem*"></a>
+  <h4 id="ElmSharp_GenList_LastItem" data-uid="ElmSharp.GenList.LastItem">LastItem</h4>
+  <div class="markdown level1 summary"><p>Gets the last item in the genlist.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenListItem LastItem { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L208">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_ListMode_" data-uid="ElmSharp.GenList.ListMode*"></a>
+  <h4 id="ElmSharp_GenList_ListMode" data-uid="ElmSharp.GenList.ListMode">ListMode</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the horizontal stretching mode. This mode used for sizing items horizontally.
+The default value is <a class="xref" href="ElmSharp.GenListMode.html#ElmSharp_GenListMode_Scroll">Scroll</a>, which means that if the items are too wide to fit, the scroller scrolls horizontally.
+If set to <a class="xref" href="ElmSharp.GenListMode.html#ElmSharp_GenListMode_Compress">Compress</a>, means that the item width is fixed (restricted to a minimum) to the list width when calculating its size in order to allow the height to be calculated based on it.
+If set to <a class="xref" href="ElmSharp.GenListMode.html#ElmSharp_GenListMode_Limit">Limit</a>, means that items are expanded to the viewport width and limited to that size.
+If set to <a class="xref" href="ElmSharp.GenListMode.html#ElmSharp_GenListMode_Expand">Expand</a>, means that genlist try to reserve space to all its items to be visible at a time.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenListMode ListMode { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListMode.html">GenListMode</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="ElmSharp_GenList_ListMode_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Compress makes the genlist resize slower, as it recalculates every item height again whenever the list width changes.
+The homogeneous mode is so that all items in the genlist are of the same width/height. With Compress, the genlist items are initialized fast.
+However, there are no subobjects in the genlist, which can be on the flying resizable (such as TEXTBLOCK).
+If so, then some dynamic resizable objects in the genlist would not be diplayed properly.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L300">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_LongPressTimeout_" data-uid="ElmSharp.GenList.LongPressTimeout*"></a>
+  <h4 id="ElmSharp_GenList_LongPressTimeout" data-uid="ElmSharp.GenList.LongPressTimeout">LongPressTimeout</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the timeout in seconds for the longpress event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double LongPressTimeout { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L252">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_ReorderMode_" data-uid="ElmSharp.GenList.ReorderMode*"></a>
+  <h4 id="ElmSharp_GenList_ReorderMode" data-uid="ElmSharp.GenList.ReorderMode">ReorderMode</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the reorder mode.
+After turning on the reorder mode, longpress on a normal item triggers reordering of the item.
+You can move the item up and down. However, reordering does not work with group items.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ReorderMode { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L353">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_SelectedItem_" data-uid="ElmSharp.GenList.SelectedItem*"></a>
+  <h4 id="ElmSharp_GenList_SelectedItem" data-uid="ElmSharp.GenList.SelectedItem">SelectedItem</h4>
+  <div class="markdown level1 summary"><p>Gets the selected item in a given GenList widget.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenListItem SelectedItem { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L366">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_SelectionMode_" data-uid="ElmSharp.GenList.SelectionMode*"></a>
+  <h4 id="ElmSharp_GenList_SelectionMode" data-uid="ElmSharp.GenList.SelectionMode">SelectionMode</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the genlist select mode by <a class="xref" href="ElmSharp.GenItemSelectionMode.html">GenItemSelectionMode</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenItemSelectionMode SelectionMode { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenItemSelectionMode.html">GenItemSelectionMode</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L420">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_VerticalScrollBarVisiblePolicy_" data-uid="ElmSharp.GenList.VerticalScrollBarVisiblePolicy*"></a>
+  <h4 id="ElmSharp_GenList_VerticalScrollBarVisiblePolicy" data-uid="ElmSharp.GenList.VerticalScrollBarVisiblePolicy">VerticalScrollBarVisiblePolicy</h4>
+  <div class="markdown level1 summary"><p>Sets or gets the value of VerticalScrollBarVisiblePolicy.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.ScrollBarVisiblePolicy.html">ScrollBarVisiblePolicy</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="ElmSharp_GenList_VerticalScrollBarVisiblePolicy_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>ScrollBarVisiblePolicy.Auto means the vertical scrollbar is made visible if it is needed, and otherwise kept hidden.
+ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L581">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_Append_" data-uid="ElmSharp.GenList.Append*"></a>
+  <h4 id="ElmSharp_GenList_Append_ElmSharp_GenItemClass_System_Object_ElmSharp_GenListItemType_ElmSharp_GenListItem_" data-uid="ElmSharp.GenList.Append(ElmSharp.GenItemClass,System.Object,ElmSharp.GenListItemType,ElmSharp.GenListItem)">Append(GenItemClass, object, GenListItemType, GenListItem)</h4>
+  <div class="markdown level1 summary"><p>Appends a new item with <a class="xref" href="ElmSharp.GenListItemType.html">GenListItemType</a> to the end of a given GenList widget or the end of the children list, if the parent is given.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenListItem Append(GenItemClass itemClass, object data, GenListItemType type, GenListItem parent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenItemClass.html">GenItemClass</a></td>
+        <td><span class="parametername">itemClass</span></td>
+        <td><p>The itemClass defines how to display the data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The item data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItemType.html">GenListItemType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The genlist item type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>The parent item, otherwise null if there is no parent item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><p>Return a newly added genlist item that contains the data and itemClass.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L567">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_Append_" data-uid="ElmSharp.GenList.Append*"></a>
+  <h4 id="ElmSharp_GenList_Append_ElmSharp_GenItemClass_System_Object_ElmSharp_GenListItemType_" data-uid="ElmSharp.GenList.Append(ElmSharp.GenItemClass,System.Object,ElmSharp.GenListItemType)">Append(GenItemClass, object, GenListItemType)</h4>
+  <div class="markdown level1 summary"><p>Appends a new item with <a class="xref" href="ElmSharp.GenListItemType.html">GenListItemType</a> to the end of a given GenList widget.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenListItem Append(GenItemClass itemClass, object data, GenListItemType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenItemClass.html">GenItemClass</a></td>
+        <td><span class="parametername">itemClass</span></td>
+        <td><p>The itemClass defines how to display the data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The item data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItemType.html">GenListItemType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The genlist item type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><p>Return a newly added genlist item that contains the data and itemClass.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L554">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_Append_" data-uid="ElmSharp.GenList.Append*"></a>
+  <h4 id="ElmSharp_GenList_Append_ElmSharp_GenItemClass_System_Object_" data-uid="ElmSharp.GenList.Append(ElmSharp.GenItemClass,System.Object)">Append(GenItemClass, object)</h4>
+  <div class="markdown level1 summary"><p>Appends a new item to the end of a given GenList widget.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenListItem Append(GenItemClass itemClass, object data)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenItemClass.html">GenItemClass</a></td>
+        <td><span class="parametername">itemClass</span></td>
+        <td><p>The itemClass defines how to display the data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The item data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><p>Return a newly added genlist item that contains the data and itemClass.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="ElmSharp_GenList_Append_ElmSharp_GenItemClass_System_Object__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="ElmSharp.GenItemClass.html">GenItemClass</a></div>
+      <div><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></div>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L789">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_Clear_" data-uid="ElmSharp.GenList.Clear*"></a>
+  <h4 id="ElmSharp_GenList_Clear" data-uid="ElmSharp.GenList.Clear">Clear()</h4>
+  <div class="markdown level1 summary"><p>Removes all the items from a given genlist widget.
+This removes (and deletes) all items in the object, making it empty.
+To delete just one item, use <a class="xref" href="ElmSharp.ItemObject.html#ElmSharp_ItemObject_Delete">Delete()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+  </div>
+  <h5 id="ElmSharp_GenList_Clear_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="ElmSharp.ItemObject.html#ElmSharp_ItemObject_Delete">Delete</a>()</div>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L839">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_CreateHandle_" data-uid="ElmSharp.GenList.CreateHandle*"></a>
+  <h4 id="ElmSharp_GenList_CreateHandle_ElmSharp_EvasObject_" data-uid="ElmSharp.GenList.CreateHandle(ElmSharp.EvasObject)">CreateHandle(EvasObject)</h4>
+  <div class="markdown level1 summary"><p>Creates a widget handle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override IntPtr CreateHandle(EvasObject parent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.EvasObject.html">EvasObject</a></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>Parent EvasObject.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.IntPtr</span></td>
+        <td><p>Handle IntPtr.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="ElmSharp.Layout.html#ElmSharp_Layout_CreateHandle_ElmSharp_EvasObject_">Layout.CreateHandle(EvasObject)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L816">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_GetItemByIndex_" data-uid="ElmSharp.GenList.GetItemByIndex*"></a>
+  <h4 id="ElmSharp_GenList_GetItemByIndex_System_Int32_" data-uid="ElmSharp.GenList.GetItemByIndex(System.Int32)">GetItemByIndex(int)</h4>
+  <div class="markdown level1 summary"><p>Gets the nth item in a given genlist widget, placed at position nth, in its internal items list.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenListItem GetItemByIndex(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The number of the item to grab (0 being the first).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L804">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_GetItemByPosition_" data-uid="ElmSharp.GenList.GetItemByPosition*"></a>
+  <h4 id="ElmSharp_GenList_GetItemByPosition_System_Int32_System_Int32_System_Int32__" data-uid="ElmSharp.GenList.GetItemByPosition(System.Int32,System.Int32,System.Int32@)">GetItemByPosition(int, int, out int)</h4>
+  <div class="markdown level1 summary"><p>Gets the item that is at the X, Y canvas coordinates.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenListItem GetItemByPosition(int x, int y, out int pos)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">x</span></td>
+        <td><p>The input X-coordinate.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">y</span></td>
+        <td><p>The input Y-coordinate.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">pos</span></td>
+        <td><p>The position relative to the item returned here.
+-1, 0, or 1 depending on whether the coordinate is on the upper portion of that item (-1), in the middle section (0), or on the lower part (1).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><p>The item at the given coordinates.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L697">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_InsertAfter_" data-uid="ElmSharp.GenList.InsertAfter*"></a>
+  <h4 id="ElmSharp_GenList_InsertAfter_ElmSharp_GenItemClass_System_Object_ElmSharp_GenListItem_ElmSharp_GenListItemType_ElmSharp_GenListItem_" data-uid="ElmSharp.GenList.InsertAfter(ElmSharp.GenItemClass,System.Object,ElmSharp.GenListItem,ElmSharp.GenListItemType,ElmSharp.GenListItem)">InsertAfter(GenItemClass, object, GenListItem, GenListItemType, GenListItem)</h4>
+  <div class="markdown level1 summary"><p>Inserts an item with <a class="xref" href="ElmSharp.GenListItemType.html">GenListItemType</a> after another item under a parent in a GenList widget.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenListItem InsertAfter(GenItemClass itemClass, object data, GenListItem after, GenListItemType type, GenListItem parent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenItemClass.html">GenItemClass</a></td>
+        <td><span class="parametername">itemClass</span></td>
+        <td><p>The itemClass defines how to display the data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The item data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><span class="parametername">after</span></td>
+        <td><p>The item after which to place this new one.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItemType.html">GenListItemType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The genlist item type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>The parent item, otherwise null if there is no parent item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><p>Return a newly added genlist item that contains data and itemClass.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L670">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_InsertBefore_" data-uid="ElmSharp.GenList.InsertBefore*"></a>
+  <h4 id="ElmSharp_GenList_InsertBefore_ElmSharp_GenItemClass_System_Object_ElmSharp_GenListItem_ElmSharp_GenListItemType_ElmSharp_GenListItem_" data-uid="ElmSharp.GenList.InsertBefore(ElmSharp.GenItemClass,System.Object,ElmSharp.GenListItem,ElmSharp.GenListItemType,ElmSharp.GenListItem)">InsertBefore(GenItemClass, object, GenListItem, GenListItemType, GenListItem)</h4>
+  <div class="markdown level1 summary"><p>Inserts an item with <a class="xref" href="ElmSharp.GenListItemType.html">GenListItemType</a> before another item under a parent in a GenList widget.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenListItem InsertBefore(GenItemClass itemClass, object data, GenListItem before, GenListItemType type, GenListItem parent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenItemClass.html">GenItemClass</a></td>
+        <td><span class="parametername">itemClass</span></td>
+        <td><p>The itemClass defines how to display the data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The item data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><span class="parametername">before</span></td>
+        <td><p>The item before which to place this new one.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItemType.html">GenListItemType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The genlist item type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>The parent item, otherwise null if there is no parent item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><p>Return a newly added genlist item that contains data and itemClass.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L655">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_InsertBefore_" data-uid="ElmSharp.GenList.InsertBefore*"></a>
+  <h4 id="ElmSharp_GenList_InsertBefore_ElmSharp_GenItemClass_System_Object_ElmSharp_GenListItem_ElmSharp_GenListItemType_" data-uid="ElmSharp.GenList.InsertBefore(ElmSharp.GenItemClass,System.Object,ElmSharp.GenListItem,ElmSharp.GenListItemType)">InsertBefore(GenItemClass, object, GenListItem, GenListItemType)</h4>
+  <div class="markdown level1 summary"><p>Inserts an item with <a class="xref" href="ElmSharp.GenListItemType.html">GenListItemType</a> before another item in a GenList widget.
+It is the same tree level or group as the item before which it is inserted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenListItem InsertBefore(GenItemClass itemClass, object data, GenListItem before, GenListItemType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenItemClass.html">GenItemClass</a></td>
+        <td><span class="parametername">itemClass</span></td>
+        <td><p>The itemClass defines how to display the data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The item data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><span class="parametername">before</span></td>
+        <td><p>The item before which to place this new one.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItemType.html">GenListItemType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The genlist item type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><p>Return a newly added genlist item that contains data and itemClass.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L640">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_InsertBefore_" data-uid="ElmSharp.GenList.InsertBefore*"></a>
+  <h4 id="ElmSharp_GenList_InsertBefore_ElmSharp_GenItemClass_System_Object_ElmSharp_GenListItem_" data-uid="ElmSharp.GenList.InsertBefore(ElmSharp.GenItemClass,System.Object,ElmSharp.GenListItem)">InsertBefore(GenItemClass, object, GenListItem)</h4>
+  <div class="markdown level1 summary"><p>Inserts an item before another item in a genlist widget.
+It is the same tree level or group as the item before which it is inserted.????</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenListItem InsertBefore(GenItemClass itemClass, object data, GenListItem before)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenItemClass.html">GenItemClass</a></td>
+        <td><span class="parametername">itemClass</span></td>
+        <td><p>The itemClass defines how to display the data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The item data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><span class="parametername">before</span></td>
+        <td><p>The item before which to place this new one.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><p>Return a newly added genlist item that contains data and itemClass.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L724">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_InsertSorted_" data-uid="ElmSharp.GenList.InsertSorted*"></a>
+  <h4 id="ElmSharp_GenList_InsertSorted_ElmSharp_GenItemClass_System_Object_System_Comparison_System_Object__ElmSharp_GenListItemType_ElmSharp_GenListItem_" data-uid="ElmSharp.GenList.InsertSorted(ElmSharp.GenItemClass,System.Object,System.Comparison{System.Object},ElmSharp.GenListItemType,ElmSharp.GenListItem)">InsertSorted(GenItemClass, object, Comparison&lt;object&gt;, GenListItemType, GenListItem)</h4>
+  <div class="markdown level1 summary"><p>Inserts an item in a GenList widget using a user-defined sort function.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenListItem InsertSorted(GenItemClass itemClass, object data, Comparison&lt;object&gt; comparison, GenListItemType type, GenListItem parent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenItemClass.html">GenItemClass</a></td>
+        <td><span class="parametername">itemClass</span></td>
+        <td><p>The itemClass defines how to display the data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The item data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Comparison&lt;T&gt;</span>&lt;<span class="xref">object</span>&gt;</td>
+        <td><span class="parametername">comparison</span></td>
+        <td><p>User-defined comparison function that defines the sort order based on the genlist item and its data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItemType.html">GenListItemType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The genlist item type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>The parent item, otherwise null if there is no parent item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><p>Return a genlist item that contains the data and itemClass.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L826">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_OnRealized_" data-uid="ElmSharp.GenList.OnRealized*"></a>
+  <h4 id="ElmSharp_GenList_OnRealized" data-uid="ElmSharp.GenList.OnRealized">OnRealized()</h4>
+  <div class="markdown level1 summary"><p>The callback of the Unrealized event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnRealized()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="ElmSharp.Layout.html#ElmSharp_Layout_OnRealized">Layout.OnRealized()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L623">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_Prepend_" data-uid="ElmSharp.GenList.Prepend*"></a>
+  <h4 id="ElmSharp_GenList_Prepend_ElmSharp_GenItemClass_System_Object_ElmSharp_GenListItemType_ElmSharp_GenListItem_" data-uid="ElmSharp.GenList.Prepend(ElmSharp.GenItemClass,System.Object,ElmSharp.GenListItemType,ElmSharp.GenListItem)">Prepend(GenItemClass, object, GenListItemType, GenListItem)</h4>
+  <div class="markdown level1 summary"><p>Prepends a new item with <a class="xref" href="ElmSharp.GenListItemType.html">GenListItemType</a> to the beginning of a given GenList widget or the beginning of the children list, if the parent is given.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenListItem Prepend(GenItemClass itemClass, object data, GenListItemType type, GenListItem parent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenItemClass.html">GenItemClass</a></td>
+        <td><span class="parametername">itemClass</span></td>
+        <td><p>The itemClass defines how to display the data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The item data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItemType.html">GenListItemType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The genlist item type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><span class="parametername">parent</span></td>
+        <td><p>The parent item, otherwise null if there is no parent item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><p>Return a newly added genlist item that contains the data and itemClass.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L609">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_Prepend_" data-uid="ElmSharp.GenList.Prepend*"></a>
+  <h4 id="ElmSharp_GenList_Prepend_ElmSharp_GenItemClass_System_Object_ElmSharp_GenListItemType_" data-uid="ElmSharp.GenList.Prepend(ElmSharp.GenItemClass,System.Object,ElmSharp.GenListItemType)">Prepend(GenItemClass, object, GenListItemType)</h4>
+  <div class="markdown level1 summary"><p>Prepends a new item with <a class="xref" href="ElmSharp.GenListItemType.html">GenListItemType</a> to the beginning of a given genlist widget.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenListItem Prepend(GenItemClass itemClass, object data, GenListItemType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenItemClass.html">GenItemClass</a></td>
+        <td><span class="parametername">itemClass</span></td>
+        <td><p>The itemClass defines how to display the data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The item data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItemType.html">GenListItemType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The genlist item type.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><p>Return a newly added genlist item that contains data and itemClass.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L596">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_Prepend_" data-uid="ElmSharp.GenList.Prepend*"></a>
+  <h4 id="ElmSharp_GenList_Prepend_ElmSharp_GenItemClass_System_Object_" data-uid="ElmSharp.GenList.Prepend(ElmSharp.GenItemClass,System.Object)">Prepend(GenItemClass, object)</h4>
+  <div class="markdown level1 summary"><p>Prepends a new item to the beginning of a given GenList widget.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public GenListItem Prepend(GenItemClass itemClass, object data)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenItemClass.html">GenItemClass</a></td>
+        <td><span class="parametername">itemClass</span></td>
+        <td><p>The itemClass defines how to display the data.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The item data.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><p>Return a newly added genlist item that contains data and itemClass.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L757">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_ScrollTo_" data-uid="ElmSharp.GenList.ScrollTo*"></a>
+  <h4 id="ElmSharp_GenList_ScrollTo_ElmSharp_GenListItem_ElmSharp_ScrollToPosition_System_Boolean_" data-uid="ElmSharp.GenList.ScrollTo(ElmSharp.GenListItem,ElmSharp.ScrollToPosition,System.Boolean)">ScrollTo(GenListItem, ScrollToPosition, bool)</h4>
+  <div class="markdown level1 summary"><p>Shows the given item with the position type in a genlist.
+When animated is true, the genlist will jump to the given item and display it (by animatedly scrolling), if it is not fully visible. This may use animation and take sometime.
+When animated is false, the genlist will jump to the given item and display it (by jumping to that position), if it is not fully visible.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ScrollTo(GenListItem item, ScrollToPosition position, bool animated)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="ElmSharp.GenListItem.html">GenListItem</a></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>The item to display.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="ElmSharp.ScrollToPosition.html">ScrollToPosition</a></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>The position to show the given item to <a class="xref" href="ElmSharp.ScrollToPosition.html">ScrollToPosition</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">animated</span></td>
+        <td><p>The animated indicates how to display the item, by scrolling or by jumping.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L777">View Source</a>
+  </span>
+  <a id="ElmSharp_GenList_UpdateRealizedItems_" data-uid="ElmSharp.GenList.UpdateRealizedItems*"></a>
+  <h4 id="ElmSharp_GenList_UpdateRealizedItems" data-uid="ElmSharp.GenList.UpdateRealizedItems">UpdateRealizedItems()</h4>
+  <div class="markdown level1 summary"><p>Updates the content of all the realized items.
+This updates all the realized items by calling all <a class="xref" href="ElmSharp.GenItemClass.html">GenItemClass</a> again to get the content, text, and states.
+Use this when the original item data has changed and the changes are desired to reflect.
+To update just one item, use <a class="xref" href="ElmSharp.GenListItem.html#ElmSharp_GenListItem_Update">Update()</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UpdateRealizedItems()</code></pre>
+  </div>
+  <h5 id="ElmSharp_GenList_UpdateRealizedItems_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="ElmSharp.GenListItem.html#ElmSharp_GenListItem_Update">Update()</a></div>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L519">View Source</a>
+  </span>
+  <h4 id="ElmSharp_GenList_Changed" data-uid="ElmSharp.GenList.Changed">Changed</h4>
+  <div class="markdown level1 summary"><p>Changed is raised when the genlist has changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler Changed</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L462">View Source</a>
+  </span>
+  <h4 id="ElmSharp_GenList_ItemActivated" data-uid="ElmSharp.GenList.ItemActivated">ItemActivated</h4>
+  <div class="markdown level1 summary"><p>ItemActivated is raised when a new genlist item is double-clicked or pressed (enter|return|spacebar).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;GenListItemEventArgs&gt; ItemActivated</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.GenListItemEventArgs.html">GenListItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L468">View Source</a>
+  </span>
+  <h4 id="ElmSharp_GenList_ItemDoubleClicked" data-uid="ElmSharp.GenList.ItemDoubleClicked">ItemDoubleClicked</h4>
+  <div class="markdown level1 summary"><p>ItemDoubleClicked is raised when a new genlist item is double-clicked.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;GenListItemEventArgs&gt; ItemDoubleClicked</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.GenListItemEventArgs.html">GenListItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L474">View Source</a>
+  </span>
+  <h4 id="ElmSharp_GenList_ItemExpanded" data-uid="ElmSharp.GenList.ItemExpanded">ItemExpanded</h4>
+  <div class="markdown level1 summary"><p>ItemExpanded is raised when a new genlist item is indicated to expand.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;GenListItemEventArgs&gt; ItemExpanded</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.GenListItemEventArgs.html">GenListItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L493">View Source</a>
+  </span>
+  <h4 id="ElmSharp_GenList_ItemLongPressed" data-uid="ElmSharp.GenList.ItemLongPressed">ItemLongPressed</h4>
+  <div class="markdown level1 summary"><p>ItemLongPressed is raised when a genlist item is pressed for a certain amount of time. By default, it's 1 second.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;GenListItemEventArgs&gt; ItemLongPressed</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.GenListItemEventArgs.html">GenListItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L499">View Source</a>
+  </span>
+  <h4 id="ElmSharp_GenList_ItemMoved" data-uid="ElmSharp.GenList.ItemMoved">ItemMoved</h4>
+  <div class="markdown level1 summary"><p>ItemMoved is raised when a genlist item is moved in the reorder mode.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;GenListItemEventArgs&gt; ItemMoved</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.GenListItemEventArgs.html">GenListItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L506">View Source</a>
+  </span>
+  <h4 id="ElmSharp_GenList_ItemMovedAfter" data-uid="ElmSharp.GenList.ItemMovedAfter">ItemMovedAfter</h4>
+  <div class="markdown level1 summary"><p>ItemMovedAfter is raised when a genlist item is moved after another item in the reorder mode.
+To get the relative previous item, use <a class="xref" href="ElmSharp.GenListItem.html#ElmSharp_GenListItem_Previous">Previous</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;GenListItemEventArgs&gt; ItemMovedAfter</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.GenListItemEventArgs.html">GenListItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L513">View Source</a>
+  </span>
+  <h4 id="ElmSharp_GenList_ItemMovedBefore" data-uid="ElmSharp.GenList.ItemMovedBefore">ItemMovedBefore</h4>
+  <div class="markdown level1 summary"><p>ItemMovedBefore is raised when a genlist item is moved before another item in the reorder mode.
+To get the relative next item, use <a class="xref" href="ElmSharp.GenListItem.html#ElmSharp_GenListItem_Next">Next</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;GenListItemEventArgs&gt; ItemMovedBefore</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.GenListItemEventArgs.html">GenListItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L450">View Source</a>
+  </span>
+  <h4 id="ElmSharp_GenList_ItemPressed" data-uid="ElmSharp.GenList.ItemPressed">ItemPressed</h4>
+  <div class="markdown level1 summary"><p>ItemPressed is raised when a new genlist item is pressed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;GenListItemEventArgs&gt; ItemPressed</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.GenListItemEventArgs.html">GenListItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L480">View Source</a>
+  </span>
+  <h4 id="ElmSharp_GenList_ItemRealized" data-uid="ElmSharp.GenList.ItemRealized">ItemRealized</h4>
+  <div class="markdown level1 summary"><p>ItemRealized is raised when a new genlist item is created as a real object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;GenListItemEventArgs&gt; ItemRealized</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.GenListItemEventArgs.html">GenListItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L456">View Source</a>
+  </span>
+  <h4 id="ElmSharp_GenList_ItemReleased" data-uid="ElmSharp.GenList.ItemReleased">ItemReleased</h4>
+  <div class="markdown level1 summary"><p>ItemReleased is raised when a new genlist item is released.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;GenListItemEventArgs&gt; ItemReleased</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.GenListItemEventArgs.html">GenListItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L438">View Source</a>
+  </span>
+  <h4 id="ElmSharp_GenList_ItemSelected" data-uid="ElmSharp.GenList.ItemSelected">ItemSelected</h4>
+  <div class="markdown level1 summary"><p>ItemSelected is raised when a new genlist item is selected.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;GenListItemEventArgs&gt; ItemSelected</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.GenListItemEventArgs.html">GenListItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L487">View Source</a>
+  </span>
+  <h4 id="ElmSharp_GenList_ItemUnrealized" data-uid="ElmSharp.GenList.ItemUnrealized">ItemUnrealized</h4>
+  <div class="markdown level1 summary"><p>ItemUnrealized is raised when a new genlist item is unrealized.
+After calling unrealize, the item's content objects are deleted, and the item object itself is deleted or is put into a floating cache.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;GenListItemEventArgs&gt; ItemUnrealized</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.GenListItemEventArgs.html">GenListItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L444">View Source</a>
+  </span>
+  <h4 id="ElmSharp_GenList_ItemUnselected" data-uid="ElmSharp.GenList.ItemUnselected">ItemUnselected</h4>
+  <div class="markdown level1 summary"><p>ItemUnselected is raised when the genlist item is unselected.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;GenListItemEventArgs&gt; ItemUnselected</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="ElmSharp.GenListItemEventArgs.html">GenListItemEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L529">View Source</a>
+  </span>
+  <h4 id="ElmSharp_GenList_ScrollAnimationStarted" data-uid="ElmSharp.GenList.ScrollAnimationStarted">ScrollAnimationStarted</h4>
+  <div class="markdown level1 summary"><p>ScrollAnimationStarted is raised when the scrolling animation has started.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler ScrollAnimationStarted</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L539">View Source</a>
+  </span>
+  <h4 id="ElmSharp_GenList_ScrollAnimationStopped" data-uid="ElmSharp.GenList.ScrollAnimationStopped">ScrollAnimationStopped</h4>
+  <div class="markdown level1 summary"><p>ScrollAnimationStopped is raised when the scrolling animation has stopped.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler ScrollAnimationStopped</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="ElmSharp.Accessible.IAccessibleObject.html">IAccessibleObject</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_Activate_ElmSharp_EvasObject_">RotaryEventExtensions.Activate(EvasObject)</a>
+  </div>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_AddRotaryEventHandler_ElmSharp_EvasObject_ElmSharp_Wearable_RotaryEventHandler_">RotaryEventExtensions.AddRotaryEventHandler(EvasObject, RotaryEventHandler)</a>
+  </div>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_Deactivate_ElmSharp_EvasObject_">RotaryEventExtensions.Deactivate(EvasObject)</a>
+  </div>
+  <div>
+      <a class="xref" href="ElmSharp.Wearable.RotaryEventExtensions.html#ElmSharp_Wearable_RotaryEventExtensions_RemoveRotaryEventHandler_ElmSharp_EvasObject_ElmSharp_Wearable_RotaryEventHandler_">RotaryEventExtensions.RemoveRotaryEventHandler(EvasObject, RotaryEventHandler)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/ElmSharp/ElmSharp/GenList.cs/#L137" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

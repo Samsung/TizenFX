@@ -1,0 +1,1648 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class SttClient
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class SttClient
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.Uix.Stt.SttClient">
+
+
+  <h1 id="Tizen_Uix_Stt_SttClient" data-uid="Tizen.Uix.Stt.SttClient" class="text-break">Class SttClient
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<span class="xref">Uix</span>.<a class="xref" href="Tizen.Uix.Stt.html">Stt</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.Uix.Stt.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>A main function of Speech-To-Text (below STT) API recognizes sound data recorded by users.
+After choosing a language, the applications will start recording and recognizing.
+After recording, the applications will receive the recognized result.
+The STT has a client-server for the service of multi-applications.
+The STT service always works in the background as a server. If the service is not working, client library will invoke it and the client will communicate with it.
+The service has engines and a recorder, so that the client does not have the recorder itself. Only the client request commands to the STT service for using STT.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SttClient : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">SttClient</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L357">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient__ctor_" data-uid="Tizen.Uix.Stt.SttClient.#ctor*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient__ctor" data-uid="Tizen.Uix.Stt.SttClient.#ctor">SttClient()</h4>
+  <div class="markdown level1 summary"><p>Constructor to create a STT instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SttClient()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>This exception can be due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L691">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_CurrentState_" data-uid="Tizen.Uix.Stt.SttClient.CurrentState*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_CurrentState" data-uid="Tizen.Uix.Stt.SttClient.CurrentState">CurrentState</h4>
+  <div class="markdown level1 summary"><p>Gets the current STT state.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public State CurrentState { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.Stt.State.html">State</a></td>
+        <td><p>Current state of STT.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L632">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_DefaultLanguage_" data-uid="Tizen.Uix.Stt.SttClient.DefaultLanguage*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_DefaultLanguage" data-uid="Tizen.Uix.Stt.SttClient.DefaultLanguage">DefaultLanguage</h4>
+  <div class="markdown level1 summary"><p>Gets the default language set by the user.
+The language is specified as an ISO 3166 alpha-2 two letter country-code followed by ISO 639-1 for the two-letter language code.
+For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American English.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DefaultLanguage { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>Default language in STT.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L730">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_Engine_" data-uid="Tizen.Uix.Stt.SttClient.Engine*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_Engine" data-uid="Tizen.Uix.Stt.SttClient.Engine">Engine</h4>
+  <div class="markdown level1 summary"><p>This property can be used to get and set the current engine id.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Engine { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>Current STT engine id.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exceptioncan occur while setting due to the following reasons:</p>
+<ol>
+<li>Operation Failed</li>
+<li>Invalid State</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>This exception can be due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>This can happen if improper EngineId is provided while setting the value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L661">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_RecordingVolume_" data-uid="Tizen.Uix.Stt.SttClient.RecordingVolume*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_RecordingVolume" data-uid="Tizen.Uix.Stt.SttClient.RecordingVolume">RecordingVolume</h4>
+  <div class="markdown level1 summary"><p>Gets the microphone volume during recording.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float RecordingVolume { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>Recording volume in STT.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L1439">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_Cancel_" data-uid="Tizen.Uix.Stt.SttClient.Cancel*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_Cancel" data-uid="Tizen.Uix.Stt.SttClient.Cancel">Cancel()</h4>
+  <div class="markdown level1 summary"><p>Cancels processing the recognition and recording asynchronously.
+This function cancels recording and the engine cancels recognition processing.
+After successful cancellation, the StateChanged event is invoked, otherwise if an error is occurs, the ErrorOccurred event is invoked.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Cancel()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Invalid State</li>
+<li>Operation Failed</li>
+<li>Progress to ready is not finished</li>
+<li>Progress to recording is not finished</li>
+<li>Progress to processing is not finished</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L1453">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_Dispose_" data-uid="Tizen.Uix.Stt.SttClient.Dispose*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_Dispose" data-uid="Tizen.Uix.Stt.SttClient.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Method to release resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L1466">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_Dispose_" data-uid="Tizen.Uix.Stt.SttClient.Dispose*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_Dispose_System_Boolean_" data-uid="Tizen.Uix.Stt.SttClient.Dispose(System.Boolean)">Dispose(bool)</h4>
+  <div class="markdown level1 summary"><p>Method to release resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>The boolean value for destoying stt handle.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L373">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_Finalize_" data-uid="Tizen.Uix.Stt.SttClient.Finalize*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_Finalize" data-uid="Tizen.Uix.Stt.SttClient.Finalize">~SttClient()</h4>
+  <div class="markdown level1 summary"><p>Destructor to destroy a STT instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~SttClient()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L775">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_GetDetailedResult_" data-uid="Tizen.Uix.Stt.SttClient.GetDetailedResult*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_GetDetailedResult" data-uid="Tizen.Uix.Stt.SttClient.GetDetailedResult">GetDetailedResult()</h4>
+  <div class="markdown level1 summary"><p>Retrieves the time stamp of the current recognition result.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;ResultTime&gt; GetDetailedResult()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Stt.ResultTime.html">ResultTime</a>&gt;</td>
+        <td><p>List of ResultTime.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Uix_Stt_SttClient_GetDetailedResult_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This function should only be called in the RecognitionResult event.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L818">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_GetPrivateData_" data-uid="Tizen.Uix.Stt.SttClient.GetPrivateData*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_GetPrivateData_System_String_" data-uid="Tizen.Uix.Stt.SttClient.GetPrivateData(System.String)">GetPrivateData(string)</h4>
+  <div class="markdown level1 summary"><p>Gets the private data from the STT engine.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetPrivateData(string key)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The data corresponding to the key is provided.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.TimeoutException</span></td>
+        <td><p>This exception can be due to No Answer from STT Service.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L883">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_GetSupportedEngines_" data-uid="Tizen.Uix.Stt.SttClient.GetSupportedEngines*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_GetSupportedEngines" data-uid="Tizen.Uix.Stt.SttClient.GetSupportedEngines">GetSupportedEngines()</h4>
+  <div class="markdown level1 summary"><p>Gets the list of supported engines.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;SupportedEngine&gt; GetSupportedEngines()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Stt.SupportedEngine.html">SupportedEngine</a>&gt;</td>
+        <td><p>IEnumerable&lt;SupportedEngine&gt; list of supported engines.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>This exception can be due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L1025">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_GetSupportedLanguages_" data-uid="Tizen.Uix.Stt.SttClient.GetSupportedLanguages*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_GetSupportedLanguages" data-uid="Tizen.Uix.Stt.SttClient.GetSupportedLanguages">GetSupportedLanguages()</h4>
+  <div class="markdown level1 summary"><p>Retrieves all the supported languages of the current engine.
+The language is specified as an ISO 3166 alpha-2 two letter country-code followed by ISO 639-1 for the two-letter language code.
+For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American English.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;string&gt; GetSupportedLanguages()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><p>List of strings for supported languages.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Engine Not Found.</li>
+<li>Operation Failed.</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L1072">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_IsRecognitionTypeSupported_" data-uid="Tizen.Uix.Stt.SttClient.IsRecognitionTypeSupported*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_IsRecognitionTypeSupported_Tizen_Uix_Stt_RecognitionType_" data-uid="Tizen.Uix.Stt.SttClient.IsRecognitionTypeSupported(Tizen.Uix.Stt.RecognitionType)">IsRecognitionTypeSupported(RecognitionType)</h4>
+  <div class="markdown level1 summary"><p>Checks whether the recognition type is supported.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsRecognitionTypeSupported(RecognitionType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.Stt.RecognitionType.html">RecognitionType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>RecognitionType value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Bool value indicating whether the recognition type is supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Invalid State</li>
+<li>Engine Not Found</li>
+<li>Operation Failed</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L962">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_Prepare_" data-uid="Tizen.Uix.Stt.SttClient.Prepare*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_Prepare" data-uid="Tizen.Uix.Stt.SttClient.Prepare">Prepare()</h4>
+  <div class="markdown level1 summary"><p>Connects to the STT service asynchronously.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Prepare()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L931">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_SetCredential_" data-uid="Tizen.Uix.Stt.SttClient.SetCredential*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_SetCredential_System_String_" data-uid="Tizen.Uix.Stt.SttClient.SetCredential(System.String)">SetCredential(string)</h4>
+  <div class="markdown level1 summary"><p>Sets the application credential.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetCredential(string credential)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">credential</span></td>
+        <td><p>The credential string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exceptioncan be due to the following reasons:</p>
+<ol>
+<li>Operation Failed</li>
+<li>Invalid State</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>This exception can be due to out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>This can happen if Improper value is provided while setting the value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L855">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_SetPrivateData_" data-uid="Tizen.Uix.Stt.SttClient.SetPrivateData*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_SetPrivateData_System_String_System_String_" data-uid="Tizen.Uix.Stt.SttClient.SetPrivateData(System.String,System.String)">SetPrivateData(string, string)</h4>
+  <div class="markdown level1 summary"><p>Sets the private data to the STT engine.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPrivateData(string key, string data)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">key</span></td>
+        <td><p>The key string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">data</span></td>
+        <td><p>The data string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.TimeoutException</span></td>
+        <td><p>This exception can be due to No Answer from STT Service.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>This can happen if Improper value is provided while setting the value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L1143">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_SetSilenceDetection_" data-uid="Tizen.Uix.Stt.SttClient.SetSilenceDetection*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_SetSilenceDetection_Tizen_Uix_Stt_SilenceDetection_" data-uid="Tizen.Uix.Stt.SttClient.SetSilenceDetection(Tizen.Uix.Stt.SilenceDetection)">SetSilenceDetection(SilenceDetection)</h4>
+  <div class="markdown level1 summary"><p>Sets the silence detection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetSilenceDetection(SilenceDetection type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.Stt.SilenceDetection.html">SilenceDetection</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>SilenceDetection value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Invalid State</li>
+<li>Not supported feature of current engine</li>
+<li>Operation Failed</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L1179">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_SetStartSound_" data-uid="Tizen.Uix.Stt.SttClient.SetStartSound*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_SetStartSound_System_String_" data-uid="Tizen.Uix.Stt.SttClient.SetStartSound(System.String)">SetStartSound(string)</h4>
+  <div class="markdown level1 summary"><p>Sets the sound to start recording.
+Sound file type should be .wav type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetStartSound(string filePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">filePath</span></td>
+        <td><p>File path for the sound.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Invalid State</li>
+<li>Operation Failed</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>If an Invalid Parameter is provided.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L1246">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_SetStopSound_" data-uid="Tizen.Uix.Stt.SttClient.SetStopSound*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_SetStopSound_System_String_" data-uid="Tizen.Uix.Stt.SttClient.SetStopSound(System.String)">SetStopSound(string)</h4>
+  <div class="markdown level1 summary"><p>Sets the sound to stop recording.
+Sound file type should be .wav type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetStopSound(string filePath)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">filePath</span></td>
+        <td><p>File Path for the sound.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Invalid State</li>
+<li>Operation Failed</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>This exception can be due to Invalid Parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L1324">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_Start_" data-uid="Tizen.Uix.Stt.SttClient.Start*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_Start_System_String_Tizen_Uix_Stt_RecognitionType_" data-uid="Tizen.Uix.Stt.SttClient.Start(System.String,Tizen.Uix.Stt.RecognitionType)">Start(string, RecognitionType)</h4>
+  <div class="markdown level1 summary"><p>Starts the recording and recognition asynchronously.
+This function starts recording in the STT service and sends the recording data to the engine.
+This work continues until stop, cancel, or silence is detected by engine.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Start(string language, RecognitionType type)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">language</span></td>
+        <td><p>The language selected.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.Stt.RecognitionType.html">RecognitionType</a></td>
+        <td><span class="parametername">type</span></td>
+        <td><p>The type for recognition.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Invalid State</li>
+<li>Operation Failed</li>
+<li>Recorder Busy</li>
+<li>Progress to recording is not finished</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>This exception can be due to an invalid language.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L1398">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_Stop_" data-uid="Tizen.Uix.Stt.SttClient.Stop*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_Stop" data-uid="Tizen.Uix.Stt.SttClient.Stop">Stop()</h4>
+  <div class="markdown level1 summary"><p>Finishes the recording and starts recognition processing in the engine asynchronously.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Stop()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Invalid State</li>
+<li>Operation Failed</li>
+<li>Progress to ready is not finished</li>
+<li>Progress to recording is not finished</li>
+<li>Progress to processing is not finished</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L992">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_Unprepare_" data-uid="Tizen.Uix.Stt.SttClient.Unprepare*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_Unprepare" data-uid="Tizen.Uix.Stt.SttClient.Unprepare">Unprepare()</h4>
+  <div class="markdown level1 summary"><p>Disconnects from the STT service.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Unprepare()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to invalid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L1210">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_UnsetStartSound_" data-uid="Tizen.Uix.Stt.SttClient.UnsetStartSound*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_UnsetStartSound" data-uid="Tizen.Uix.Stt.SttClient.UnsetStartSound">UnsetStartSound()</h4>
+  <div class="markdown level1 summary"><p>Unsets the sound to start recording.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UnsetStartSound()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Invalid State</li>
+<li>Operation Failed</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>This exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L1277">View Source</a>
+  </span>
+  <a id="Tizen_Uix_Stt_SttClient_UnsetStopSound_" data-uid="Tizen.Uix.Stt.SttClient.UnsetStopSound*"></a>
+  <h4 id="Tizen_Uix_Stt_SttClient_UnsetStopSound" data-uid="Tizen.Uix.Stt.SttClient.UnsetStopSound">UnsetStopSound()</h4>
+  <div class="markdown level1 summary"><p>Unsets the sound to stop recording.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void UnsetStopSound()</code></pre>
+  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be due to the following reasons:</p>
+<ol>
+<li>Invalid State</li>
+<li>Operation Failed</li>
+</ol>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>This exception can be due to STT not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>his exception can be due to permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L526">View Source</a>
+  </span>
+  <h4 id="Tizen_Uix_Stt_SttClient_DefaultLanguageChanged" data-uid="Tizen.Uix.Stt.SttClient.DefaultLanguageChanged">DefaultLanguageChanged</h4>
+  <div class="markdown level1 summary"><p>Event to be invoked when the default language changes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;DefaultLanguageChangedEventArgs&gt; DefaultLanguageChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Stt.DefaultLanguageChangedEventArgs.html">DefaultLanguageChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L574">View Source</a>
+  </span>
+  <h4 id="Tizen_Uix_Stt_SttClient_EngineChanged" data-uid="Tizen.Uix.Stt.SttClient.EngineChanged">EngineChanged</h4>
+  <div class="markdown level1 summary"><p>Event to be invoked to detect the engine change.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;EngineChangedEventArgs&gt; EngineChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Stt.EngineChangedEventArgs.html">EngineChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L481">View Source</a>
+  </span>
+  <h4 id="Tizen_Uix_Stt_SttClient_ErrorOccurred" data-uid="Tizen.Uix.Stt.SttClient.ErrorOccurred">ErrorOccurred</h4>
+  <div class="markdown level1 summary"><p>Event to be invoked when an error occurs.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ErrorOccurredEventArgs&gt; ErrorOccurred</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Stt.ErrorOccurredEventArgs.html">ErrorOccurredEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L382">View Source</a>
+  </span>
+  <h4 id="Tizen_Uix_Stt_SttClient_RecognitionResult" data-uid="Tizen.Uix.Stt.SttClient.RecognitionResult">RecognitionResult</h4>
+  <div class="markdown level1 summary"><p>Event to be invoked when the recognition is done.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;RecognitionResultEventArgs&gt; RecognitionResult</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Stt.RecognitionResultEventArgs.html">RecognitionResultEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L435">View Source</a>
+  </span>
+  <h4 id="Tizen_Uix_Stt_SttClient_StateChanged" data-uid="Tizen.Uix.Stt.SttClient.StateChanged">StateChanged</h4>
+  <div class="markdown level1 summary"><p>Event to be invoked when the STT state changes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;StateChangedEventArgs&gt; StateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Stt.StateChangedEventArgs.html">StateChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Uix.Stt/Tizen.Uix.Stt/SttClient.cs/#L320" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>
