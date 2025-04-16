@@ -7,13 +7,13 @@ on:
   workflow_dispatch:
 
 env:
-  TARGET_BRANCHES: 'master API9'
+  TARGET_BRANCHES: 'main API12 API11'
 
 jobs:
   nightly:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: 0
 
@@ -28,10 +28,9 @@ jobs:
             TARGETS="${TARGETS} $x"
           fi
         done
-        echo "::set-output name=targets::${TARGETS}"
-
+        echo "targets=${TARGETS}" >> $GITHUB_OUTPUT
     - name: Trigger Release
-      uses: actions/github-script@v4
+      uses: actions/github-script@v6
       env:
         TARGETS: ${{ steps.find-targets.outputs.targets }}
         WORKFLOW_NAME: 'Deploy Packages'
@@ -53,8 +52,8 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: workflow.id,
-              ref: 'master',
-              inputs: { target, deploy_to_myget: 'true', deploy_to_tizen: 'true' }
+              ref: 'main',
+              inputs: { target, deploy_to_gpr: 'true', deploy_to_myget: 'true', deploy_to_tizen: 'true' }
             })
             console.log(`Event dispatch for ${target} : ${dispatchResp.status}`)
           })
