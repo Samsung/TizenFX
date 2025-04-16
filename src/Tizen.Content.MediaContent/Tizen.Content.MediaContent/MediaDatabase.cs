@@ -222,8 +222,6 @@ namespace Tizen.Content.MediaContent
         ///     <paramref name="path"/> is a zero-length string, contains only white space.<br/>
         ///     -or-<br/>
         ///     <paramref name="path"/> contains a hidden path that starts with '.'.<br/>
-        ///     -or-<br/>
-        ///     <paramref name="path"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
@@ -248,7 +246,6 @@ namespace Tizen.Content.MediaContent
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
         /// <param name="folderPath">The path to scan.</param>
-        /// <remarks>Folders that contains a file named ".scan_ignore" will not be scanned.</remarks>
         /// <returns>A task that represents the asynchronous scan operation.</returns>
         /// <exception cref="InvalidOperationException">The database is not connected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
@@ -258,8 +255,6 @@ namespace Tizen.Content.MediaContent
         ///     <paramref name="folderPath"/> is a zero-length string, contains only white space.<br/>
         ///     -or-<br/>
         ///     <paramref name="folderPath"/> contains a hidden path that starts with '.'.<br/>
-        ///     -or-<br/>
-        ///     <paramref name="folderPath"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public Task ScanFolderAsync(string folderPath)
@@ -279,7 +274,6 @@ namespace Tizen.Content.MediaContent
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
         /// <param name="folderPath">The path to scan.</param>
         /// <param name="recursive">The value indicating if the folder is to be recursively scanned.</param>
-        /// <remarks>Folders that contains a file named ".scan_ignore" will not be scanned.</remarks>
         /// <returns>A task that represents the asynchronous scan operation.</returns>
         /// <exception cref="InvalidOperationException">The database is not connected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
@@ -289,8 +283,6 @@ namespace Tizen.Content.MediaContent
         ///     <paramref name="folderPath"/> is a zero-length string, contains only white space.<br/>
         ///     -or-<br/>
         ///     <paramref name="folderPath"/> contains a hidden path that starts with '.'.<br/>
-        ///     -or-<br/>
-        ///     <paramref name="folderPath"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public Task ScanFolderAsync(string folderPath, bool recursive)
@@ -310,7 +302,6 @@ namespace Tizen.Content.MediaContent
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
         /// <param name="folderPath">The path to scan.</param>
         /// <param name="cancellationToken">The token to stop scanning.</param>
-        /// <remarks>Folders that contains a file named ".scan_ignore" will not be scanned.</remarks>
         /// <returns>A task that represents the asynchronous scan operation.</returns>
         /// <exception cref="InvalidOperationException">The database is not connected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
@@ -320,8 +311,6 @@ namespace Tizen.Content.MediaContent
         ///     <paramref name="folderPath"/> is a zero-length string, contains only white space.<br/>
         ///     -or-<br/>
         ///     <paramref name="folderPath"/> contains a hidden path that starts with '.'.<br/>
-        ///     -or-<br/>
-        ///     <paramref name="folderPath"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public Task ScanFolderAsync(string folderPath, CancellationToken cancellationToken)
@@ -342,7 +331,6 @@ namespace Tizen.Content.MediaContent
         /// <param name="folderPath">The path to scan.</param>
         /// <param name="recursive">The value indicating if the folder is to be recursively scanned.</param>
         /// <param name="cancellationToken">The token to stop scanning.</param>
-        /// <remarks>Folders that contains a file named ".scan_ignore" will not be scanned.</remarks>
         /// <returns>A task that represents the asynchronous scan operation.</returns>
         /// <exception cref="InvalidOperationException">The database is not connected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
@@ -352,8 +340,6 @@ namespace Tizen.Content.MediaContent
         ///     <paramref name="folderPath"/> is a zero-length string, contains only white space.<br/>
         ///     -or-<br/>
         ///     <paramref name="folderPath"/> contains a hidden path that starts with '.'.<br/>
-        ///     -or-<br/>
-        ///     <paramref name="folderPath"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public Task ScanFolderAsync(string folderPath, bool recursive, CancellationToken cancellationToken)
