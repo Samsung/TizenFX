@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2024 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,10 +23,11 @@ namespace Tizen.NUI
     /// View's optional render effect.
     /// Applications can apply RenderEffect as the example below :
     /// <code>
-    ///
-    /// view.SetRenderEffect(RenderEffect.CreateBackgroundBlurEffect(20));
-    /// view.ClearRenderEffect();
-    ///
+    /// BackgroundBlurEffect effect = RenderEffect.CreateBackgroundBlurEffect(20);
+    /// view.SetRenderEffect(effect); // activates effect
+    /// effect.Deactivate();
+    /// effect.Activate();
+    /// view.ClearRenderEffect(); // deactivates effect
     /// </code>
     /// Note that a view owns at most one render effect.
     /// </summary>
@@ -38,18 +39,32 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Activates render effect
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Activate()
+        {
+            Interop.RenderEffect.Activate(SwigCPtr);
+        }
+
+        /// <summary>
+        /// Deactivates render effect
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Deactivate()
+        {
+            Interop.RenderEffect.Deactivate(SwigCPtr);
+        }
+
+        /// <summary>
         /// Create a background blur effect
         /// </summary>
-        /// <remarks>
-        /// Created RenderEffect is immutable.
-        /// </remarks>
         /// <param name="blurRadius">The blur radius value. The unit is pixel for standard cases.</param>
-        /// <param name="blurOnce">Whether to blur once or always.</param>
         /// <returns>Background blur effect with given blur radius.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static RenderEffect CreateBackgroundBlurEffect(float blurRadius, bool blurOnce=false)
+        public static BackgroundBlurEffect CreateBackgroundBlurEffect(float blurRadius)
         {
-            return new RenderEffect(Interop.BackgroundBlurEffect.New((uint)Math.Round(blurRadius, 0), blurOnce));
+            return new BackgroundBlurEffect(Interop.BackgroundBlurEffect.New((uint)Math.Round(blurRadius, 0)));
         }
     }
 }
