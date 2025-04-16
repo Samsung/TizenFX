@@ -837,6 +837,8 @@ namespace Tizen.NUI.BaseComponents
             keyInputFocusLostEventHandler?.Invoke(this, null);
         }
 
+        private static ObjectPool<KeyEventArgs> eventArgsPool;
+
         private bool OnKeyEvent(IntPtr view, IntPtr keyEvent)
         {
             if (Disposed || IsDisposeQueued)
@@ -845,30 +847,33 @@ namespace Tizen.NUI.BaseComponents
                 return false;
             }
 
-            if (keyEvent == global::System.IntPtr.Zero)
+            if (keyEvent == IntPtr.Zero)
             {
                 NUILog.Error("keyEvent should not be null!");
                 return true;
             }
 
-            KeyEventArgs e = new KeyEventArgs();
-
-            bool result = false;
-
-            e.Key = Tizen.NUI.Key.GetKeyFromPtr(keyEvent);
-
-            if (keyEventHandler != null)
+            if (eventArgsPool == null)
             {
-                Delegate[] delegateList = keyEventHandler.GetInvocationList();
-
-                // Oring the result of each callback.
-                foreach (EventHandlerWithReturnType<object, KeyEventArgs, bool> del in delegateList)
-                {
-                    result |= del(this, e);
-                }
+                eventArgsPool = new ObjectPool<KeyEventArgs>(() => new KeyEventArgs(), 10);
             }
 
-            return result;
+            return eventArgsPool.Get((args, keyEvent) =>
+            {
+                bool result = false;
+                using var key = Tizen.NUI.Key.GetKeyFromPtr(keyEvent);
+                args.Key = key;
+                if (keyEventHandler != null)
+                {
+                    Delegate[] delegateList = keyEventHandler.GetInvocationList();
+                    // ORing the result of each callback.
+                    foreach (EventHandlerWithReturnType<object, KeyEventArgs, bool> del in delegateList)
+                    {
+                        result |= del(this, args);
+                    }
+                }
+                return result;
+            }, keyEvent);
         }
 
         // Callback for View OnRelayout signal
