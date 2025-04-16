@@ -21,6 +21,18 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
     /// <summary>
+    /// Enumeration for selecting how the mask source interprets pixel data
+    /// Alpha: Uses the alpha channel of the mask texture. (Default)
+    /// Luminance: Converts RGB to grayscale and uses the luminance as mask value.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum MaskEffectMode
+    {
+        Alpha = 0,
+        Luminance,
+    }
+
+    /// <summary>
     /// View's optional render effect.
     /// Applications can apply RenderEffect as the example below :
     /// <code>
@@ -34,17 +46,6 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RenderEffect : BaseHandle
     {
-        /// <summary>
-        /// Enumeration for selecting how the mask source interprets pixel data
-        /// Alpha: Uses the alpha channel of the mask texture. (Default)
-        /// Luminance: Converts RGB to grayscale and uses the luminance as mask value.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public enum MaskMode
-        {
-            Alpha = 0,
-            Luminance,
-        }
         internal RenderEffect(global::System.IntPtr cPtr) : base(cPtr)
         {
         }
@@ -92,7 +93,7 @@ namespace Tizen.NUI
         /// <param name="scaleY">The Y Scale of mask source.</param>
         /// <returns>mask effect with given control.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static RenderEffect CreateMaskEffect(View control, MaskMode maskMode, float positionX = 0.0f, float positionY = 0.0f, float scaleX = 1.0f, float scaleY = 1.0f)
+        public static RenderEffect CreateMaskEffect(View control, MaskEffectMode maskMode, float positionX = 0.0f, float positionY = 0.0f, float scaleX = 1.0f, float scaleY = 1.0f)
         {
             return new RenderEffect(Interop.MaskEffect.New(control.SwigCPtr, maskMode, positionX, positionY, scaleX, scaleY));
         }
