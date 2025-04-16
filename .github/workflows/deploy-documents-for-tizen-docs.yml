@@ -1,8 +1,6 @@
 name: "Deploy Documents for Tizen Docs"
 
 on:
-  schedule:
-  - cron: "0 17 * * *"
   workflow_dispatch:
 
 env:
@@ -12,7 +10,7 @@ env:
 jobs:
 
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     container:
       image: tizendotnet/tizenfx-build-worker:2.5
       options: --ulimit nofile=10240:10240
@@ -23,8 +21,6 @@ jobs:
         repository: TizenAPI/TizenFX-Docs
 
     - name: Checkout TizenFX sources
-      env:
-        DOCFX_FILE: "docfx_tizen_docs.json"
       run: |
         ./build.sh clone
 
@@ -38,7 +34,7 @@ jobs:
     - name: Build Documents
       env:
         DOCFX_FILE: "docfx_tizen_docs.json"
-      # if: steps.cache-site.outputs.cache-hit != 'true'
+      if: steps.cache-site.outputs.cache-hit != 'true'
       run: |
         ./build.sh restore
         ./build.sh build
@@ -52,6 +48,7 @@ jobs:
       with:
         name: documents
         path: site.tar.gz
+        overwrite: true
 
   deploy:
     needs: [build]
@@ -61,6 +58,7 @@ jobs:
     - uses: actions/download-artifact@v4
       with:
         name: documents
+        overwrite: true
 
     - name: Extract Artifacts
       run: |
