@@ -26,26 +26,10 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public struct UIShadow : IEquatable<UIShadow>
     {
-        private static readonly UIColor s_defaultColor = UIColor.Black;
-
         /// <summary>
-        /// The default shadow value.
+        /// The none shadow.
         /// </summary>
-        public static UIShadow Default => new UIShadow(0f, UIColor.Transparent);
-
-        /// <summary>
-        /// Create a Shadow.
-        /// </summary>
-        /// <param name="blurRadius">The blur radius value for the shadow. Bigger value, much blurry.</param>
-        /// <param name="offsetX">Optional. The x offset value from the top left corner. The default is 0.</param>
-        /// <param name="offsetY">Optional. The y offset value from the top left corner. The default is 0.</param>
-        /// <param name="extraWidth">Optional. The shadow will extend its size by specified amount of length. The default is 0.</param>
-        /// <param name="extraHeight">Optional. The shadow will extend its size by specified amount of length. The default is 0.</param>
-        /// <param name="cutoutPolicy">The policy of the shadow cutout. The default is <see cref="ColorVisualCutoutPolicyType.None"/>.</param>
-        public UIShadow(float blurRadius, float offsetX = 0, float offsetY = 0, float extraWidth = 0, float extraHeight = 0, ColorVisualCutoutPolicyType cutoutPolicy = ColorVisualCutoutPolicyType.None)
-            : this(blurRadius, s_defaultColor, offsetX, offsetY, extraWidth, extraHeight, cutoutPolicy)
-        {
-        }
+        public static UIShadow None => new UIShadow(0f, UIColor.Transparent);
 
         /// <summary>
         /// Create a Shadow.
@@ -56,8 +40,23 @@ namespace Tizen.NUI
         /// <param name="offsetY">Optional. The y offset value from the top left corner. The default is 0.</param>
         /// <param name="extraWidth">Optional. The shadow will extend its size by specified amount of length. The default is 0.</param>
         /// <param name="extraHeight">Optional. The shadow will extend its size by specified amount of length. The default is 0.</param>
+        /// <param name="cutoutInner">Optional. Whether the shadow should be cutout with inner space of the target view. The default is false.</param>
+        public UIShadow(float blurRadius, UIColor color, float offsetX = 0, float offsetY = 0, float extraWidth = 0, float extraHeight = 0, bool cutoutInner = false)
+            : this(blurRadius, color, offsetX, offsetY, extraWidth, extraHeight, cutoutInner ? ColorVisualCutoutPolicyType.CutoutViewWithCornerRadius : ColorVisualCutoutPolicyType.None)
+        {
+        }
+
+        /// <summary>
+        /// Create a Shadow.
+        /// </summary>
+        /// <param name="blurRadius">The blur radius value for the shadow. Bigger value, much blurry.</param>
+        /// <param name="color">The color for the shadow.</param>
+        /// <param name="offsetX">The x offset value from the top left corner. The default is 0.</param>
+        /// <param name="offsetY">The y offset value from the top left corner. The default is 0.</param>
+        /// <param name="extraWidth">The shadow will extend its size by specified amount of length. The default is 0.</param>
+        /// <param name="extraHeight">The shadow will extend its size by specified amount of length. The default is 0.</param>
         /// <param name="cutoutPolicy">The policy of the shadow cutout. The default is <see cref="ColorVisualCutoutPolicyType.None"/>.</param>
-        public UIShadow(float blurRadius, UIColor color, float offsetX = 0, float offsetY = 0, float extraWidth = 0, float extraHeight = 0, ColorVisualCutoutPolicyType cutoutPolicy = ColorVisualCutoutPolicyType.None)
+        public UIShadow(float blurRadius, UIColor color, float offsetX, float offsetY, float extraWidth, float extraHeight, ColorVisualCutoutPolicyType cutoutPolicy)
         {
             BlurRadius = blurRadius;
             Color = color;
@@ -146,9 +145,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Whether this shadow is default.
+        /// Whether this shadow is none.
         /// </summary>
-        public bool IsDefault => BlurRadius == 0 && Color == UIColor.Transparent && OffsetX == 0 && OffsetY == 0 && ExtraWidth == 0 && ExtraHeight == 0 && CutoutPolicy == ColorVisualCutoutPolicyType.None;
+        public bool IsNone => BlurRadius == 0 && Color == UIColor.Transparent && OffsetX == 0 && OffsetY == 0 && ExtraWidth == 0 && ExtraHeight == 0 && CutoutPolicy == ColorVisualCutoutPolicyType.None;
 
         /// <summary>
         /// Whether this is equivalent to other.
