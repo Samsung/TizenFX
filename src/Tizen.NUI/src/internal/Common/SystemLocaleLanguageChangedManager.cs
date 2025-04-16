@@ -35,7 +35,15 @@ namespace Tizen.NUI
 
         static SystemLocaleLanguageChangedManager()
         {
-            SystemSettings.LocaleLanguageChanged += SystemLocaleLanguageChanged;
+            try
+            {
+                SystemSettings.LocaleLanguageChanged += SystemLocaleLanguageChanged;
+            }
+            catch(Exception e)
+            {
+                Tizen.Log.Info("NUI", $"{e} Exception caught! SystemLocaleLangeChanged will not be detected!\n");
+                localeLanguage = defaultLocaleLanguage;
+            }
         }
 
         /// <summary>
