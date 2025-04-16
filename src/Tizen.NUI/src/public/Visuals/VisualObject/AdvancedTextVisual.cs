@@ -68,7 +68,15 @@ namespace Tizen.NUI.Visuals
                 }
                 string translatableText = null;
                 textLabelSid = value;
-                translatableText = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new global::System.Globalization.CultureInfo(SystemSettings.LocaleLanguage.Replace("_", "-")));
+                try
+                {
+                    translatableText = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new global::System.Globalization.CultureInfo(SystemSettings.LocaleLanguage.Replace("_", "-")));
+                }
+                catch(global::System.Exception e)
+                {
+                    Tizen.Log.Info("NUI", $"{e} Exception caught! Translate {value} failed!\n");
+                    translatableText = null;
+                }
 
                 if (translatableText != null)
                 {
