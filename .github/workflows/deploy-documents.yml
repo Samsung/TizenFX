@@ -6,7 +6,7 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     container:
       image: tizendotnet/tizenfx-build-worker:2.5
       options: --ulimit nofile=10240:10240
