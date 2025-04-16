@@ -47,6 +47,9 @@ namespace DRGLApplication
         [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "getAngle")]
         public static extern int getAngle();
 
+        [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "setWorldColor")]
+        public static extern int setWorldColor(float r, float g, float b, float a);
+
         private string TAG = "NUIDRGLVIEW";
 
         private DirectRenderingGLView glView;
@@ -60,6 +63,8 @@ namespace DRGLApplication
         private Window window;
 
         private int mNumTouched = 0;
+
+        private Animation opacityAnimation;
 
         protected override void OnCreate()
         {
@@ -176,6 +181,12 @@ namespace DRGLApplication
             layoutView.Add(label);
             layoutView.Add(glViewLayout);
             layoutView.Add(textButton);
+
+            opacityAnimation = new Animation(10000);
+            opacityAnimation.LoopingMode = Animation.LoopingModes.AutoReverse;
+            opacityAnimation.Looping = true;
+            opacityAnimation.AnimateTo(layoutView, "Opacity", 0.25f, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOutSine));
+            opacityAnimation.Play();
 
             LoadTexture();
 
@@ -297,11 +308,13 @@ namespace DRGLApplication
             log.Error(TAG, $"  Window Rotated? : {isRotated}\n");
             log.Error(TAG, $"  Window PositionSize : {localWindowPositionSize.X},{localWindowPositionSize.Y} : {localWindowPositionSize.Width}x{localWindowPositionSize.Height}\n");
             log.Error(TAG, $"  Size : {input.Size.Width}, {input.Size.Height}\n");
+            log.Error(TAG, $"  WorldColor : {input.WorldColor.R}, {input.WorldColor.G} {input.WorldColor.B} {input.WorldColor.A}\n");
             log.Error(TAG, $"  Clipping : {input.ClippingBox.X},{input.ClippingBox.Y} : {input.ClippingBox.Width}x{input.ClippingBox.Height}\n");
 
             // Note that we should use view port position always (0,0), since it depend on window size
             setViewport(0, 0, localWindowPositionSize.Width, localWindowPositionSize.Height);
             setSize(input.Size.Width, input.Size.Height);
+            setWorldColor(input.WorldColor.R, input.WorldColor.G, input.WorldColor.B, input.WorldColor.A);
 
             // Note that input.ClippingBox's (0,0) is left-bottom of window (not include rotation!).
             // And glScissor need to (0,0) is left-bottom of window (not include rotation!).
