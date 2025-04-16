@@ -26,11 +26,6 @@ namespace Tizen.NUI
     public struct UICorner : IEquatable<UICorner>
     {
         /// <summary>
-        /// The default corner. (This is to distinguish from zero corners)
-        /// </summary>
-        public static readonly UICorner Default = new (-1, -1, -1, -1);
-
-        /// <summary>
         /// The zero corner.
         /// </summary>
         public static readonly UICorner Zero = new (0.0f, 0.0f, 0.0f, 0.0f);
@@ -81,9 +76,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets a value indicating whether this is default.
+        /// Gets a value indicating whether this is NaN.
         /// </summary>
-        public readonly bool IsDefault => TopLeft == -1 && TopRight == -1 && BottomRight == -1 && BottomLeft == -1;
+        public readonly bool IsNaN => float.IsNaN(TopLeft) && float.IsNaN(TopRight) && float.IsNaN(BottomRight) && float.IsNaN(BottomLeft);
 
         /// <summary>
         /// Gets a value indicating whether this is zero.
