@@ -14,15 +14,36 @@
  * limitations under the License.
  *
  */
- 
 namespace Tizen.NUI
 {
+    using global::System;
+    using global::System.Runtime.InteropServices;
+
     internal static partial class Interop
     {
-        internal static partial class BackgroundBlurEffect
+        internal static class BackgroundBlurEffect
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_New__SWIG_1")]
-            public static extern global::System.IntPtr New(uint pixelRadius, bool blurOnce);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_New__SWIG_1")]
+            public static extern IntPtr New(uint blurRadius);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_SetBlurOnce")]
+            public static extern void SetBlurOnce(HandleRef effect, bool blurRadius);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_GetBlurOnce")]
+            [return: MarshalAs(UnmanagedType.U1)]
+            public static extern bool GetBlurOnce(HandleRef effect);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_SetBlurRadius")]
+            public static extern void SetBlurRadius(HandleRef effect, uint blurRadius);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_GetBlurRadius")]
+            public static extern uint GetBlurRadius(HandleRef effect);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_AddBlurStrengthAnimation")]
+            public static extern void AddBlurStrengthAnimation(HandleRef effect, HandleRef animation, HandleRef alphaFunction, HandleRef timePeriod, float fromValue, float toValue);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_AddBlurOpacityAnimation")]
+            public static extern void AddBlurOpacityAnimation(HandleRef effect, HandleRef animation, HandleRef alphaFunction, HandleRef timePeriod, float fromValue, float toValue);
         }
     }
 }
