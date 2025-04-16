@@ -837,6 +837,8 @@ namespace Tizen.NUI.BaseComponents
             keyInputFocusLostEventHandler?.Invoke(this, null);
         }
 
+        private KeyEventArgs keyEventArgs;
+
         private bool OnKeyEvent(IntPtr view, IntPtr keyEvent)
         {
             if (Disposed || IsDisposeQueued)
@@ -851,23 +853,23 @@ namespace Tizen.NUI.BaseComponents
                 return true;
             }
 
-            KeyEventArgs e = new KeyEventArgs();
+            if (keyEventArgs == null)
+            {
+                keyEventArgs = new KeyEventArgs();
+            }
 
             bool result = false;
-
-            e.Key = Tizen.NUI.Key.GetKeyFromPtr(keyEvent);
-
+            using var key = Tizen.NUI.Key.GetKeyFromPtr(keyEvent);
+            keyEventArgs.Key = key;
             if (keyEventHandler != null)
             {
                 Delegate[] delegateList = keyEventHandler.GetInvocationList();
-
-                // Oring the result of each callback.
+                // ORing the result of each callback.
                 foreach (EventHandlerWithReturnType<object, KeyEventArgs, bool> del in delegateList)
                 {
-                    result |= del(this, e);
+                    result |= del(this, keyEventArgs);
                 }
             }
-
             return result;
         }
 
