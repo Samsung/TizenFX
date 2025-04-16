@@ -68,6 +68,9 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_TextureBindings_get")]
             public static extern global::System.IntPtr GlViewGetRednerCallbackInputTextureBindings(global::System.IntPtr renderInput, ref int size);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_WorldColor_get")]
+            public static extern global::System.IntPtr GlViewGetRednerCallbackInputWorldColor(global::System.IntPtr renderInput);
         }
     }
 }
