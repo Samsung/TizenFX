@@ -13,7 +13,11 @@ env:
 jobs:
 
   build:
+<<<<<<< HEAD
     runs-on: [self-hosted, linux, x64]
+=======
+    runs-on: ubuntu-22.04
+>>>>>>> 7ff73371be... Bump Ubuntu version in github action to 22.04 (#6848)
     container:
       image: tizendotnet/tizenfx-build-worker:2.0
 
@@ -50,7 +54,7 @@ jobs:
 
   deploy:
     needs: [build]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/download-artifact@v3
