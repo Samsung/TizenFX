@@ -278,7 +278,7 @@ namespace Tizen.NUI.Extension
         /// <returns>The view itself.</returns>
         public static T BoxShadow<T>(this T view, float blurRadius, float offsetX = 0, float offsetY = 0) where T : View
         {
-            return view.BoxShadow(new UIShadow(blurRadius, offsetX, offsetY));
+            return view.BoxShadow(new UIShadow(blurRadius, UIColor.Black, offsetX, offsetY));
         }
 
         /// <summary>
