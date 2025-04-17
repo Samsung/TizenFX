@@ -41,6 +41,10 @@ namespace Tizen.Applications
         /// Only some preloaded packages can have this type.
         /// </summary>
         RPM
+        /// <summary>
+        /// Tizen Resource Package (RPK) for sharing read-only resources with access control and version management.
+        /// </summary>
+        RPK
     }
 
     internal static class PackageTypeMethods
@@ -64,6 +68,10 @@ namespace Tizen.Applications
             else if (lowerType == "rpm")
             {
                 return PackageType.RPM;
+            }
+            else if (lowerType == "rpk")
+            {
+                return PackageType.RPK;
             }
             else
             {
