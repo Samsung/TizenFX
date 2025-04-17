@@ -86,40 +86,40 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public delegate void OnLongPressDelegate(LongPressGesture longPress);
 
-        public new OnSceneConnectionDelegate OnSceneConnection;
-        public new OnSceneDisconnectionDelegate OnSceneDisconnection;
+        public OnSceneConnectionDelegate OnSceneConnection;
+        public OnSceneDisconnectionDelegate OnSceneDisconnection;
         public OnSceneConnectionDelegate OnStageConnection;
         public OnSceneDisconnectionDelegate OnStageDisconnection;
-        public new OnChildAddDelegate OnChildAdd;
-        public new OnChildRemoveDelegate OnChildRemove;
-        public new OnPropertySetDelegate OnPropertySet;
-        public new OnSizeSetDelegate OnSizeSet;
-        public new OnSizeAnimationDelegate OnSizeAnimation;
+        public OnChildAddDelegate OnChildAdd;
+        public OnChildRemoveDelegate OnChildRemove;
+        public OnPropertySetDelegate OnPropertySet;
+        public OnSizeSetDelegate OnSizeSet;
+        public OnSizeAnimationDelegate OnSizeAnimation;
         public OnTouchDelegate OnTouch;
         public OnHoverDelegate OnHover;
         public OnKeyDelegate OnKey;
         public OnWheelDelegate OnWheel;
-        public new OnRelayoutDelegate OnRelayout;
-        public new OnSetResizePolicyDelegate OnSetResizePolicy;
-        public new GetNaturalSizeDelegate GetNaturalSize;
-        public new CalculateChildSizeDelegate CalculateChildSize;
-        public new GetHeightForWidthDelegate GetHeightForWidth;
-        public new GetWidthForHeightDelegate GetWidthForHeight;
+        public OnRelayoutDelegate OnRelayout;
+        public OnSetResizePolicyDelegate OnSetResizePolicy;
+        public GetNaturalSizeDelegate GetNaturalSize;
+        public CalculateChildSizeDelegate CalculateChildSize;
+        public GetHeightForWidthDelegate GetHeightForWidth;
+        public GetWidthForHeightDelegate GetWidthForHeight;
         public RelayoutDependentOnChildrenDimensionDelegate RelayoutDependentOnChildrenDimension;
-        public new RelayoutDependentOnChildrenDelegate RelayoutDependentOnChildren;
-        public new OnCalculateRelayoutSizeDelegate OnCalculateRelayoutSize;
-        public new OnLayoutNegotiatedDelegate OnLayoutNegotiated;
-        public new OnStyleChangeDelegate OnStyleChange;
-        public new OnAccessibilityActivatedDelegate OnAccessibilityActivated;
+        public RelayoutDependentOnChildrenDelegate RelayoutDependentOnChildren;
+        public OnCalculateRelayoutSizeDelegate OnCalculateRelayoutSize;
+        public OnLayoutNegotiatedDelegate OnLayoutNegotiated;
+        public OnStyleChangeDelegate OnStyleChange;
+        public OnAccessibilityActivatedDelegate OnAccessibilityActivated;
         public OnFocusGainedDelegate OnFocusGained;
         public OnFocusLostDelegate OnFocusLost;
-        public new GetNextFocusableViewDelegate GetNextFocusableView;
-        public new OnFocusChangeCommittedDelegate OnFocusChangeCommitted;
-        public new OnKeyboardEnterDelegate OnKeyboardEnter;
-        public new OnPinchDelegate OnPinch;
-        public new OnPanDelegate OnPan;
-        public new OnTapDelegate OnTap;
-        public new OnLongPressDelegate OnLongPress;
+        public GetNextFocusableViewDelegate GetNextFocusableView;
+        public OnFocusChangeCommittedDelegate OnFocusChangeCommitted;
+        public OnKeyboardEnterDelegate OnKeyboardEnter;
+        public OnPinchDelegate OnPinch;
+        public OnPanDelegate OnPan;
+        public OnTapDelegate OnTap;
+        public OnLongPressDelegate OnLongPress;
 
         internal ViewWrapperImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -291,7 +291,6 @@ namespace Tizen.NUI
             Delegate38 = new DelegateViewWrapperImpl_38(DirectorOnLongPress);
             Interop.ViewWrapperImpl.DirectorConnect(SwigCPtr, Delegate0, Delegate1, Delegate2, Delegate3, Delegate4, Delegate5, Delegate6, Delegate9, Delegate11, Delegate12, Delegate13, Delegate14, Delegate15, Delegate16, Delegate17, Delegate18, Delegate19, Delegate20, Delegate21, Delegate24, Delegate25, Delegate30, Delegate31, Delegate32, Delegate33, Delegate34, Delegate35, Delegate36, Delegate37, Delegate38, null, null);
         }
-
 
         private void DirectorDisconnect()
         {
