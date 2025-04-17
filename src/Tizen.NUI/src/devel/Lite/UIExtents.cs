@@ -10,6 +10,11 @@ namespace Tizen.NUI
     public struct UIExtents : IEquatable<UIExtents>
     {
         /// <summary>
+        /// Represents a <see cref="UIExtents"/> with all values set to 0.
+        /// </summary>
+        public static readonly UIExtents Zero = new (0);
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="UIExtents"/> struct with the specified uniform size.
         /// </summary>
         /// <param name="uniformSize">The uniform size of the borders.</param>
@@ -72,9 +77,9 @@ namespace Tizen.NUI
         public float VerticalExtents => Top + Bottom;
 
         /// <summary>
-        /// Gets a value indicating whether all borders have a width of 0.
+        /// Gets a value indicating whether this is zero.
         /// </summary>
-        public bool IsEmpty => Start == 0 && Top == 0 && End == 0 && Bottom == 0;
+        public readonly bool IsZero => Start == 0 && Top == 0 && End == 0 && Bottom == 0;
 
         /// <summary>
         /// Gets a value indicating whether any border has a width of NaN.
@@ -155,11 +160,6 @@ namespace Tizen.NUI
             top = Top;
             bottom = Bottom;
         }
-
-        /// <summary>
-        /// Represents a <see cref="UIExtents"/> with all values set to 0.
-        /// </summary>
-        public static readonly UIExtents Zero = new (0);
 
         /// <summary>
         /// Adds the specified <see cref="float"/> to each component of the <see cref="UIExtents"/>.

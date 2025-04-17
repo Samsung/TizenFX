@@ -515,9 +515,9 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetOriginalImageSize(string filename, bool orientationCorrection)
         {
-            var val = new Uint16Pair(Interop.ImageLoading.GetOriginalImageSize(filename, orientationCorrection), true);
-            Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
+            using var val = new Uint16Pair(Interop.ImageLoading.GetOriginalImageSize(filename, orientationCorrection), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
             return ret;
         }
 

@@ -36,6 +36,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Rotation_4")]
             public static extern global::System.IntPtr NewRotation4(global::System.Runtime.InteropServices.HandleRef vector4);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rotation_Assign")]
+            public static extern global::System.IntPtr RotationAssign(global::System.Runtime.InteropServices.HandleRef destination, global::System.Runtime.InteropServices.HandleRef source);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Rotation")]
             public static extern void DeleteRotation(global::System.Runtime.InteropServices.HandleRef rotation);
 

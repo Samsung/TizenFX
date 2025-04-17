@@ -500,9 +500,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue GetValue(uint position)
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyValue ret = new PropertyValue(Interop.PropertyMap.GetValue(SwigCPtr, position), false);
-#pragma warning restore CA2000 // Dispose objects before losing scope
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -515,9 +513,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyKey GetKeyAt(uint position)
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyKey ret = new PropertyKey(Interop.PropertyMap.GetKeyAt(SwigCPtr, position), true);
-#pragma warning restore CA2000 // Dispose objects before losing scope
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -531,9 +527,7 @@ namespace Tizen.NUI
         public PropertyValue Find(string stringKey)
         {
             global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, stringKey);
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
-#pragma warning restore CA2000 // Dispose objects before losing scope
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -547,9 +541,7 @@ namespace Tizen.NUI
         public PropertyValue Find(int key)
         {
             global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
-#pragma warning restore CA2000 // Dispose objects before losing scope
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -564,9 +556,7 @@ namespace Tizen.NUI
         public PropertyValue Find(int indexKey, string stringKey)
         {
             global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, indexKey, stringKey);
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
-#pragma warning restore CA2000 // Dispose objects before losing scope
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -605,9 +595,7 @@ namespace Tizen.NUI
         /// <returns>The value for the element with the specified key.</returns>
         internal PropertyValue ValueOfIndex(string key)
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyValue ret = new PropertyValue(Interop.PropertyMap.ValueOfIndex(SwigCPtr, key), false);
-#pragma warning restore CA2000 // Dispose objects before losing scope
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -619,9 +607,7 @@ namespace Tizen.NUI
         /// <returns>The value for the element with the specified key.</returns>
         internal PropertyValue ValueOfIndex(int key)
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyValue ret = new PropertyValue(Interop.PropertyMap.ValueOfIndex(SwigCPtr, key), false);
-#pragma warning restore CA2000 // Dispose objects before losing scope
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

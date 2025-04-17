@@ -1167,14 +1167,22 @@ namespace Tizen.NUI.BaseComponents
             // Update currentStates properties to cachedImagePropertyMap
             if (currentStates.changed)
             {
-                UpdateImage(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount), false);
-                UpdateImage(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction), false);
-                UpdateImage(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode), false);
-                UpdateImage(ImageVisualProperty.RedrawInScalingDown, new PropertyValue(currentStates.redrawInScalingDown), false);
-                UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue(currentStates.synchronousLoading), false);
-                UpdateImage(ImageVisualProperty.EnableFrameCache, new PropertyValue(currentStates.enableFrameCache), false);
-                UpdateImage(ImageVisualProperty.NotifyAfterRasterization, new PropertyValue(currentStates.notifyAfterRasterization), false);
-                UpdateImage(ImageVisualProperty.FrameSpeedFactor, new PropertyValue(currentStates.frameSpeedFactor), false);
+                using (var pv = new PropertyValue(currentStates.loopCount))
+                    UpdateImage(ImageVisualProperty.LoopCount, pv, false);
+                using (var pv = new PropertyValue((int)currentStates.stopEndAction))
+                    UpdateImage(ImageVisualProperty.StopBehavior, pv, false);
+                using (var pv = new PropertyValue((int)currentStates.loopMode))
+                    UpdateImage(ImageVisualProperty.LoopingMode, pv, false);
+                using (var pv = new PropertyValue(currentStates.redrawInScalingDown))
+                    UpdateImage(ImageVisualProperty.RedrawInScalingDown, pv, false);
+                using (var pv = new PropertyValue(currentStates.synchronousLoading))
+                    UpdateImage(ImageVisualProperty.SynchronousLoading, pv, false);
+                using (var pv = new PropertyValue(currentStates.enableFrameCache))
+                    UpdateImage(ImageVisualProperty.EnableFrameCache, pv, false);
+                using (var pv = new PropertyValue(currentStates.notifyAfterRasterization))
+                    UpdateImage(ImageVisualProperty.NotifyAfterRasterization, pv, false);
+                using (var pv = new PropertyValue(currentStates.frameSpeedFactor))
+                    UpdateImage(ImageVisualProperty.FrameSpeedFactor, pv, false);
 
                 // Do not cache PlayRange and TotalFrameNumber into cachedImagePropertyMap.
                 // (To keep legacy implements behaviour)

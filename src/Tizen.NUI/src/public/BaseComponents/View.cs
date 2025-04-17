@@ -1898,11 +1898,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalTooltip()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var pv = Object.GetProperty(SwigCPtr, Property.TOOLTIP);
-            pv.Get(temp);
+            using (var pv = Object.GetProperty(SwigCPtr, Property.TOOLTIP))
+            {
+                pv.Get(temp);
+            }
             return temp;
         }
 
@@ -3908,11 +3908,11 @@ namespace Tizen.NUI.BaseComponents
 
         private Rotation GetInternalOrientation()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             Rotation temp = new Rotation();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var pv = Object.GetProperty(SwigCPtr, Property.ORIENTATION);
-            pv.Get(temp);
+            using (var pv = Object.GetProperty(SwigCPtr, Property.ORIENTATION))
+            {
+                pv.Get(temp);
+            }
             return temp;
         }
 
@@ -4629,7 +4629,6 @@ namespace Tizen.NUI.BaseComponents
             }
             else
             {
-                widthConstraint?.Remove();
                 widthConstraint?.Dispose();
                 widthConstraint = null;
 
@@ -4710,7 +4709,6 @@ namespace Tizen.NUI.BaseComponents
             }
             else
             {
-                heightConstraint?.Remove();
                 heightConstraint?.Dispose();
                 heightConstraint = null;
 
@@ -5420,17 +5418,21 @@ namespace Tizen.NUI.BaseComponents
                 {
                     ret = new View(Layer.getCPtr(layer).Handle, false);
                     NUILog.Error("This Parent property is deprecated, should do not be used");
+                    Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                    CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                    return ret;
                 }
                 else
                 {
                     ret = basehandle as View;
+                    Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                    CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                    return ret;
                 }
-
-                Interop.BaseHandle.DeleteBaseHandle(CPtr);
-                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
             }
         }
 

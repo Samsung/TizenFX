@@ -60,8 +60,10 @@ namespace Tizen.NUI.Visuals
             get
             {
                 Tizen.NUI.Color ret = new Tizen.NUI.Color();
-                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.BorderVisualProperty.Color);
-                propertyValue?.Get(ret);
+                using (var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.BorderVisualProperty.Color))
+                {
+                    propertyValue?.Get(ret);
+                }
                 return ret;
             }
         }

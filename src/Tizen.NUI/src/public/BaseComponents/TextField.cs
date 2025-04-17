@@ -743,11 +743,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalFontStyle()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.FontStyle);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.FontStyle))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -1770,11 +1770,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalSelectionPopupStyle()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.SelectionPopupStyle);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.SelectionPopupStyle))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -1825,11 +1825,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalSelectionHandleImageLeft()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.SelectionHandleImageLeft);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.SelectionHandleImageLeft))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -1880,11 +1880,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalSelectionHandleImageRight()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.SelectionHandleImageRight);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.SelectionHandleImageRight))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -2011,11 +2011,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalSelectionHandlePressedImageLeft()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.SelectionHandlePressedImageLeft);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.SelectionHandlePressedImageLeft))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -2066,11 +2066,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalSelectionHandlePressedImageRight()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.SelectionHandlePressedImageRight);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.SelectionHandlePressedImageRight))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -2197,11 +2197,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalSelectionHandleMarkerImageLeft()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.SelectionHandleMarkerImageLeft);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.SelectionHandleMarkerImageLeft))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -2252,11 +2252,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalSelectionHandleMarkerImageRight()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.SelectionHandleMarkerImageRight);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.SelectionHandleMarkerImageRight))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -2439,11 +2439,11 @@ namespace Tizen.NUI.BaseComponents
 
         private Rectangle GetInternalDecorationBoundingBox()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             Rectangle temp = new Rectangle(0, 0, 0, 0);
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.DecorationBoundingBox);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.DecorationBoundingBox))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -2504,11 +2504,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalInputMethodSettings()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.InputMethodSettings);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.InputMethodSettings))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -2704,11 +2704,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalInputFontStyle()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.InputFontStyle);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.InputFontStyle))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -2862,11 +2862,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalUnderline()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.UNDERLINE);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.UNDERLINE))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -3022,11 +3022,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalShadow()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.SHADOW);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.SHADOW))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -3270,11 +3270,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalOutline()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.OUTLINE);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.OUTLINE))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -3442,11 +3442,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalHiddenInputSettings()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.HiddenInputSettings);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.HiddenInputSettings))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -4158,11 +4158,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalPlaceholder()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap map = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.PLACEHOLDER);
-            prop.Get(map);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.PLACEHOLDER))
+            {
+                prop.Get(map);
+            }
 
             string defalutText = "";
 
@@ -4750,32 +4750,38 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldCursorPositionChangedCallbackDelegate != null)
                 {
-                    this.CursorPositionChangedSignal().Disconnect(textFieldCursorPositionChangedCallbackDelegate);
+                    using var signal = CursorPositionChangedSignal();
+                    signal.Disconnect(textFieldCursorPositionChangedCallbackDelegate);
                 }
 
                 if (textFieldMaxLengthReachedCallbackDelegate != null)
                 {
-                    this.MaxLengthReachedSignal().Disconnect(textFieldMaxLengthReachedCallbackDelegate);
+                    using var signal = MaxLengthReachedSignal();
+                    signal.Disconnect(textFieldMaxLengthReachedCallbackDelegate);
                 }
 
                 if (textFieldSelectionStartedCallbackDelegate != null)
                 {
-                    this.SelectionStartedSignal().Disconnect(textFieldSelectionStartedCallbackDelegate);
+                    using var signal = SelectionStartedSignal();
+                    signal.Disconnect(textFieldSelectionStartedCallbackDelegate);
                 }
 
                 if (textFieldSelectionClearedCallbackDelegate != null)
                 {
-                    this.SelectionClearedSignal().Disconnect(textFieldSelectionClearedCallbackDelegate);
+                    using var signal = SelectionClearedSignal();
+                    signal.Disconnect(textFieldSelectionClearedCallbackDelegate);
                 }
 
                 if (textFieldSelectionChangedCallbackDelegate != null)
                 {
-                    this.SelectionChangedSignal().Disconnect(textFieldSelectionChangedCallbackDelegate);
+                    using var signal = SelectionChangedSignal();
+                    signal.Disconnect(textFieldSelectionChangedCallbackDelegate);
                 }
 
                 if (textFieldTextChangedCallbackDelegate != null)
                 {
-                    TextChangedSignal().Disconnect(textFieldTextChangedCallbackDelegate);
+                    using var signal = TextChangedSignal();
+                    signal.Disconnect(textFieldTextChangedCallbackDelegate);
                 }
             }
 
@@ -4800,7 +4806,8 @@ namespace Tizen.NUI.BaseComponents
         internal void SetTextWithoutTextChanged(string text)
         {
             invokeTextChanged = false;
-            Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, TextField.Property.TEXT, new Tizen.NUI.PropertyValue(text));
+            using var pv = new Tizen.NUI.PropertyValue(text);
+            Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, TextField.Property.TEXT, pv);
             invokeTextChanged = true;
         }
 

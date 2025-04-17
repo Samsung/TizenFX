@@ -142,72 +142,74 @@ namespace Tizen.NUI.Visuals
 
             internal void ConvertFromPropertyMap(PropertyMap inputMap)
             {
-#pragma warning disable CA2000 // Dispose objects before losing scope
-                PropertyValue value = null;
-
-                if ((value = inputMap?.Find((int)VisualTransformPropertyType.Size)) != null)
-                {
-                    using var size = new Size();
-                    if (value.Get(size))
+                using (PropertyValue value = inputMap?.Find((int)VisualTransformPropertyType.Size))
+                    if (value != null)
                     {
-                        width = size.Width;
-                        height = size.Height;
+                        using var size = new Size();
+                        if (value.Get(size))
+                        {
+                            width = size.Width;
+                            height = size.Height;
+                        }
                     }
-                }
-                if ((value = inputMap?.Find((int)VisualTransformPropertyType.Offset)) != null)
-                {
-                    using var offset = new Position();
-                    if (value.Get(offset))
+                using (PropertyValue value = inputMap?.Find((int)VisualTransformPropertyType.Offset))
+                    if (value != null)
                     {
-                        offsetX = offset.X;
-                        offsetY = offset.Y;
+                        using var offset = new Position();
+                        if (value.Get(offset))
+                        {
+                            offsetX = offset.X;
+                            offsetY = offset.Y;
+                        }
                     }
-                }
-                if ((value = inputMap?.Find((int)VisualTransformPropertyType.SizePolicy)) != null)
-                {
-                    using var policyValue = new Vector2();
-                    if (value.Get(policyValue))
+                using (PropertyValue value = inputMap?.Find((int)VisualTransformPropertyType.SizePolicy))
+                    if (value != null)
                     {
-                        widthPolicy = (VisualTransformPolicyType)policyValue.X;
-                        heightPolicy = (VisualTransformPolicyType)policyValue.Y;
+                        using var policyValue = new Vector2();
+                        if (value.Get(policyValue))
+                        {
+                            widthPolicy = (VisualTransformPolicyType)policyValue.X;
+                            heightPolicy = (VisualTransformPolicyType)policyValue.Y;
+                        }
                     }
-                }
-                if ((value = inputMap?.Find((int)VisualTransformPropertyType.OffsetPolicy)) != null)
-                {
-                    using var policyValue = new Vector2();
-                    if (value.Get(policyValue))
+                using (PropertyValue value = inputMap?.Find((int)VisualTransformPropertyType.OffsetPolicy))
+                    if (value != null)
                     {
-                        offsetXPolicy = (VisualTransformPolicyType)policyValue.X;
-                        offsetYPolicy = (VisualTransformPolicyType)policyValue.Y;
+                        using var policyValue = new Vector2();
+                        if (value.Get(policyValue))
+                        {
+                            offsetXPolicy = (VisualTransformPolicyType)policyValue.X;
+                            offsetYPolicy = (VisualTransformPolicyType)policyValue.Y;
+                        }
                     }
-                }
-                if ((value = inputMap?.Find((int)VisualTransformPropertyType.Origin)) != null)
-                {
-                    int ret = 0;
-                    if (value.Get(out ret))
+                using (PropertyValue value = inputMap?.Find((int)VisualTransformPropertyType.Origin))
+                    if (value != null)
                     {
-                        origin = (Visual.AlignType)ret;
+                        int ret = 0;
+                        if (value.Get(out ret))
+                        {
+                            origin = (Visual.AlignType)ret;
+                        }
                     }
-                }
-                if ((value = inputMap?.Find((int)VisualTransformPropertyType.AnchorPoint)) != null)
-                {
-                    int ret = 0;
-                    if (value.Get(out ret))
+                using (PropertyValue value = inputMap?.Find((int)VisualTransformPropertyType.AnchorPoint))
+                    if (value != null)
                     {
-                        pivotPoint = (Visual.AlignType)ret;
+                        int ret = 0;
+                        if (value.Get(out ret))
+                        {
+                            pivotPoint = (Visual.AlignType)ret;
+                        }
                     }
-                }
-                if ((value = inputMap?.Find((int)VisualTransformPropertyType.ExtraSize)) != null)
-                {
-                    using var extraValue = new Vector2();
-                    if (value.Get(extraValue))
+                using (PropertyValue value = inputMap?.Find((int)VisualTransformPropertyType.ExtraSize))
+                    if (value != null)
                     {
-                        extraWidth = extraValue.Width;
-                        extraHeight = extraValue.Height;
+                        using var extraValue = new Vector2();
+                        if (value.Get(extraValue))
+                        {
+                            extraWidth = extraValue.Width;
+                            extraHeight = extraValue.Height;
+                        }
                     }
-                }
-                value?.Dispose();
-#pragma warning restore CA2000 // Dispose objects before losing scope
             }
         };
         internal VisualTransformInfo transformInfo;
@@ -341,11 +343,11 @@ namespace Tizen.NUI.Visuals
             }
             get
             {
-#pragma warning disable CA2000 // Dispose objects before losing scope
                 Tizen.NUI.Color ret = new Tizen.NUI.Color(1.0f, 1.0f, 1.0f, 1.0f);
-#pragma warning restore CA2000 // Dispose objects before losing scope
-                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.MixColor);
-                propertyValue?.Get(ret);
+                using (var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.MixColor))
+                {
+                    propertyValue?.Get(ret);
+                }
                 return ret;
             }
         }
@@ -902,7 +904,8 @@ namespace Tizen.NUI.Visuals
 
                 // Get type from the property map.
                 internalType = (int)Tizen.NUI.Visual.Type.Invalid;
-                if (cachedVisualPropertyMap?.Find((int)Tizen.NUI.Visual.Property.Type)?.Get(out internalType) ?? false)
+                using var pv = cachedVisualPropertyMap?.Find((int)Tizen.NUI.Visual.Property.Type);
+                if (pv?.Get(out internalType) ?? false)
                 {
                     UpdateVisualPropertyMap();
                 }

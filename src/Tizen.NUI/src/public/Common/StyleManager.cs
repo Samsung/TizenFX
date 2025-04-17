@@ -66,16 +66,18 @@ namespace Tizen.NUI
                 if (styleManagerStyleChangedEventHandler == null)
                 {
                     styleManagerStyleChangedCallbackDelegate = (OnStyleChanged);
-                    StyleChangedSignal().Connect(styleManagerStyleChangedCallbackDelegate);
+                    using var signal = StyleChangedSignal();
+                    signal.Connect(styleManagerStyleChangedCallbackDelegate);
                 }
                 styleManagerStyleChangedEventHandler += value;
             }
             remove
             {
                 styleManagerStyleChangedEventHandler -= value;
-                if (styleManagerStyleChangedEventHandler == null && StyleChangedSignal().Empty() == false)
+                using var signal = StyleChangedSignal();
+                if (styleManagerStyleChangedEventHandler == null && signal.Empty() == false)
                 {
-                    StyleChangedSignal().Disconnect(styleManagerStyleChangedCallbackDelegate);
+                    signal.Disconnect(styleManagerStyleChangedCallbackDelegate);
                 }
             }
         }
@@ -124,14 +126,14 @@ namespace Tizen.NUI
                 HandleRef CPtr = new HandleRef(dummyObect, cPtr);
                 Interop.BaseHandle.DeleteBaseHandle(CPtr);
                 CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
             else
             {
                 ret = new StyleManager(cPtr, true);
+                return ret;
             }
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

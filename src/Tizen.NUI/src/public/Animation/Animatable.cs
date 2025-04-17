@@ -125,11 +125,7 @@ namespace Tizen.NUI
         public int GetPropertyIndex(string name)
         {
             // Convert property string to be lowercase
-            StringBuilder sb = new StringBuilder(name);
-            sb[0] = (char)(sb[0] | 0x20);
-            string str = sb.ToString();
-
-            int ret = Interop.Handle.GetPropertyIndex(SwigCPtr, str);
+            int ret = Interop.Handle.GetPropertyIndex(SwigCPtr, LowerFirstLetter(name));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -157,6 +153,19 @@ namespace Tizen.NUI
         {
             bool ret = Interop.Handle.IsPropertyAnimatable(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// whether a writable property can be the source of an constraint.
+        /// </summary>
+        /// <param name="index">The index of the property.</param>
+        /// <returns>True if the property is a constraint input.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal bool IsPropertyAConstraintInput(int index)
+        {
+            bool ret = Interop.Handle.IsPropertyAConstraintInput(SwigCPtr, index);
+            NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
 

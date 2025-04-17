@@ -2251,7 +2251,10 @@ namespace Tizen.NUI.BaseComponents
 
             int visualType = 0;
 
-            map.Find(Visual.Property.Type)?.Get(out visualType);
+            using (var pv = map.Find(Visual.Property.Type))
+            {
+                pv?.Get(out visualType);
+            }
 
             if (visualType == (int)Visual.Type.Image)
             {
@@ -2261,7 +2264,10 @@ namespace Tizen.NUI.BaseComponents
             // Background extra data flag is not meanful anymore.
             backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
 
-            Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, View.Property.BACKGROUND, new PropertyValue(map));
+            using (var pv = new PropertyValue(map))
+            {
+                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.BACKGROUND, pv);
+            }
         }
 
         private void SetBorderlineColor(Color value)
@@ -2302,9 +2308,8 @@ namespace Tizen.NUI.BaseComponents
 
             backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
 
-            var mapValue = new PropertyValue(map);
+            using var mapValue = new PropertyValue(map);
             Object.SetProperty(SwigCPtr, Property.BACKGROUND, mapValue);
-
         }
 
         private void SetColor(Color value)
@@ -2367,7 +2372,8 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetShadow(ShadowBase value)
         {
-            Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, View.Property.SHADOW, value == null ? new PropertyValue() : value.ToPropertyValue(this));
+            using var pv = value == null ? new PropertyValue() : value.ToPropertyValue(this);
+            Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.SHADOW, pv);
         }
     }
 }
