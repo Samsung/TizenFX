@@ -150,4 +150,63 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         InvalidOperation = ScreenMirroringErrorCode.InvalidOperation
     }
+
+    /// <summary>
+    /// Specifies the display mode for <see cref="ScreenMirroring"/>.
+    /// </summary>
+    /// <since_tizen> 13 </since_tizen>
+    public enum ScreenMirroringDisplayMode
+    {
+        /// <summary>
+        /// Letter box.
+        /// </summary>
+        LetterBox,
+
+        /// <summary>
+        /// Original size.
+        /// </summary>
+        OriginSize,
+
+        /// <summary>
+        /// Full screen.
+        /// </summary>
+        Full,
+
+        /// <summary>
+        /// Cropped full screen.
+        /// </summary>
+        CroppedFull,
+
+        /// <summary>
+        /// Original size or letter box.
+        /// </summary>
+        OriginOrLetterBox,
+
+        /// <summary>
+        /// Custom ROI.
+        /// </summary>
+        CustomROI
+    }
+
+    /// <summary>
+    /// Specifies the device type for <see cref="ScreenMirroring"/>.
+    /// </summary>
+    /// <since_tizen> 13 </since_tizen>
+    public enum ScreenMirroringDeviceType
+    {
+        /// <summary>
+        /// All other devices except TV and Mobile.
+        /// </summary>
+        Generic,
+
+        /// <summary>
+        /// TV device.
+        /// </summary>
+        Tv,
+
+        /// <summary>
+        /// Mobile device.
+        /// </summary>
+        Mobile
+    }
 }
