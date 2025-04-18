@@ -632,11 +632,11 @@ namespace Tizen.NUI.BaseComponents
                 UpdateImage();
 
                 // Get current properties force.
-#pragma warning disable CA2000 // Dispose objects before losing scope
                 PropertyMap returnValue = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-                using var prop = Object.GetProperty(SwigCPtr, Property.IMAGE);
-                prop.Get(returnValue);
+                using (var prop = Object.GetProperty(SwigCPtr, Property.IMAGE))
+                {
+                    prop.Get(returnValue);
+                }
 
                 // Update cached property map
                 if (returnValue != null)
@@ -1618,7 +1618,8 @@ namespace Tizen.NUI.BaseComponents
                 transition.Add("initialValue", initValue);
                 transition.Add("targetValue", destValue);
 
-                SetProperty(ImageView.Property.TransitionEffectOption, new Tizen.NUI.PropertyValue(transition));
+                using var pv = new Tizen.NUI.PropertyValue(transition);
+                SetProperty(ImageView.Property.TransitionEffectOption, pv);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -2350,7 +2351,8 @@ namespace Tizen.NUI.BaseComponents
             if (_border != value)
             {
                 _border = new Rectangle(value);
-                UpdateImage(NpatchImageVisualProperty.Border, new PropertyValue(_border));
+                using var pv = new PropertyValue(_border);
+                UpdateImage(NpatchImageVisualProperty.Border, pv);
             }
         }
 
@@ -2363,7 +2365,7 @@ namespace Tizen.NUI.BaseComponents
             // Unregist and detach process only if previous resourceUrl was not empty
             if (!string.IsNullOrEmpty(_resourceUrl))
             {
-                PropertyValue emptyValue = new PropertyValue();
+                using PropertyValue emptyValue = new PropertyValue();
 
                 // Remove current registed Image.
                 SetProperty(ImageView.Property.IMAGE, emptyValue);
@@ -2426,7 +2428,8 @@ namespace Tizen.NUI.BaseComponents
                     }
                 }
 
-                SetProperty(ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(map));
+                using var pv = new Tizen.NUI.PropertyValue(map);
+                SetProperty(ImageView.Property.IMAGE, pv);
             }
             else
             {

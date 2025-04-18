@@ -296,8 +296,8 @@ namespace Tizen.NUI.Visuals
                 using var urlArray = new PropertyArray();
                 foreach (var url in resourceUrls)
                 {
-                    using var urlValue = new PropertyValue(url);
-                    urlArray.Add(urlValue);
+                    var urlValue = new PropertyValue(url);
+                    using var _ = urlArray.Add(urlValue);
                 }
 
                 if (cachedVisualPropertyMap != null)

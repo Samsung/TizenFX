@@ -83,7 +83,7 @@ namespace Tizen.NUI.BaseComponents
                     };
                 }
             }
-            return UIShadow.Default;
+            return UIShadow.None;
         }
 
         internal bool UpdateBoxShadowColor(UIColor color)

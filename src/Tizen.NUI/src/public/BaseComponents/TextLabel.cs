@@ -655,11 +655,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalFontStyle()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.FontStyle);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.FontStyle))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -1686,11 +1686,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalUnderline()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.UNDERLINE);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.UNDERLINE))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -1801,11 +1801,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalShadow()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.SHADOW);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.SHADOW))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -1906,9 +1906,7 @@ namespace Tizen.NUI.BaseComponents
 
         private TextShadow GetInternalTextShadow()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
-            PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
+            using PropertyMap temp = new PropertyMap();
             using var prop = Object.GetProperty(SwigCPtr, Property.SHADOW);
             prop.Get(temp);
             return temp.Empty() ? null : new TextShadow(temp);
@@ -2008,11 +2006,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalOutline()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.OUTLINE);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.OUTLINE))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -2562,11 +2560,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalTextFit()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.TextFit);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.TextFit))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -3351,12 +3349,14 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textLabelAnchorClickedCallbackDelegate != null)
                 {
-                    AnchorClickedSignal().Disconnect(textLabelAnchorClickedCallbackDelegate);
+                    using var signal = AnchorClickedSignal();
+                    signal.Disconnect(textLabelAnchorClickedCallbackDelegate);
                 }
 
                 if (textLabelTextFitChangedCallbackDelegate != null)
                 {
-                    TextFitChangedSignal().Disconnect(textLabelTextFitChangedCallbackDelegate);
+                    using var signal = TextFitChangedSignal();
+                    signal.Disconnect(textLabelTextFitChangedCallbackDelegate);
                 }
 
                 if (textLabelAsyncTextRenderedCallbackDelegate != null)

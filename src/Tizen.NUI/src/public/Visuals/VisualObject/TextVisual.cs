@@ -175,8 +175,10 @@ namespace Tizen.NUI.Visuals
             get
             {
                 Tizen.NUI.Color ret = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.TextColor);
-                propertyValue?.Get(ret);
+                using (var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.TextColor))
+                {
+                    propertyValue?.Get(ret);
+                }
                 return ret;
             }
         }

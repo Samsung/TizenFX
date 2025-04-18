@@ -60,7 +60,8 @@ namespace Tizen.NUI
 
         public void InitializeWindow(int width, int height)
         {
-            window.WindowSize = new Size(width, height);
+            using var size = new Size(width, height);
+            window.WindowSize = size;
         }
 
         /// <summary>

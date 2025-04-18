@@ -1944,10 +1944,9 @@ namespace Tizen.NUI
             }
 
             // It will be removed until dali APIs are prepared.
-            Rectangle initRectangle = new Rectangle(0, 0, 0, 0);
+            using Rectangle initRectangle = new Rectangle(0, 0, 0, 0);
 
             Application ret = new Application(Interop.Application.New(argc, argvStr, stylesheet, (int)windowMode, Rectangle.getCPtr(initRectangle), (int)type), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

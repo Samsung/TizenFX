@@ -1142,8 +1142,8 @@ namespace Tizen.NUI.BaseComponents
                 textFitArray.Enable = TextMapHelper.GetBoolFromMap(textFitArrayMap, "enable", false);
                 textFitArray.OptionList = new List<TextFitArrayOption>();
 
-                var pointSizeArray = TextMapHelper.GetArrayFromMap(textFitArrayMap, "pointSizeArray");
-                var minLineSizeArray = TextMapHelper.GetArrayFromMap(textFitArrayMap, "minLineSizeArray");
+                using var pointSizeArray = TextMapHelper.GetArrayFromMap(textFitArrayMap, "pointSizeArray");
+                using var minLineSizeArray = TextMapHelper.GetArrayFromMap(textFitArrayMap, "minLineSizeArray");
 
                 if (pointSizeArray != null && minLineSizeArray != null && pointSizeArray.Count() == minLineSizeArray.Count())
                 {

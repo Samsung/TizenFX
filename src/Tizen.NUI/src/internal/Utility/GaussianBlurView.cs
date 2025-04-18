@@ -86,7 +86,8 @@ namespace Tizen.NUI
             //because the execution order of Finalizes is non-deterministic.
             if (finishedCallback != null)
             {
-                FinishedSignal().Disconnect(finishedCallback);
+                using var signal = FinishedSignal();
+                signal.Disconnect(finishedCallback);
             }
 
             base.Dispose(type);
@@ -109,7 +110,8 @@ namespace Tizen.NUI
                 if (finishedEventHandler == null)
                 {
                     finishedCallback = new FinishedCallbackType(OnFinished);
-                    FinishedSignal().Connect(finishedCallback);
+                    using var signal = FinishedSignal();
+                    signal.Connect(finishedCallback);
                 }
 
                 finishedEventHandler += value;
@@ -121,7 +123,8 @@ namespace Tizen.NUI
 
                 if (finishedEventHandler == null && finishedCallback != null)
                 {
-                    FinishedSignal().Disconnect(finishedCallback);
+                    using var signal = FinishedSignal();
+                    signal.Disconnect(finishedCallback);
                     finishedCallback = null;
                 }
             }
