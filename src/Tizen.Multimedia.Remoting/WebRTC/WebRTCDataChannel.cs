@@ -227,7 +227,9 @@ namespace Tizen.Multimedia.Remoting
 
             if (_handle != IntPtr.Zero)
             {
+                Log.Info(WebRTCLog.Tag, "[Start] Native Data Channel destroy");
                 NativeDataChannel.Destroy(_handle);
+                Log.Info(WebRTCLog.Tag, "[End] Native Data Channel destroy");
                 _disposed = true;
             }
         }
