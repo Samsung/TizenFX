@@ -104,6 +104,11 @@ namespace Tizen.Network.Bluetooth
             {
                 return RemoteDeviceName;
             }
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            set
+            {
+                RemoteDeviceName = value;
+            }
         }
         /// <summary>
         /// The strength indicator of received signal of the device.
@@ -137,6 +142,25 @@ namespace Tizen.Network.Bluetooth
             {
                 return RemoteDeviceService;
             }
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            set
+            {
+                if (RemoteDeviceService != null)
+                {
+                    RemoteDeviceService.Clear();
+                }
+                else
+                {
+                    RemoteDeviceService = new Collection<string>();
+                    if (value != null)
+                    {
+                        foreach (var item in value)
+                        {
+                            RemoteDeviceService.Add(item);
+                        }
+                    }
+                }
+            }
         }
         /// <summary>
         /// The number of services.
@@ -147,6 +171,11 @@ namespace Tizen.Network.Bluetooth
             get
             {
                 return RemoteDeviceCount;
+            }
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            set
+            {
+                RemoteDeviceCount = value;
             }
         }
         /// <summary>
@@ -204,6 +233,11 @@ namespace Tizen.Network.Bluetooth
             {
                 return RemoteManufLength;
             }
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            set
+            {
+                RemoteManufLength = value;
+            }
         }
         /// <summary>
         /// The manufacturer data.
@@ -214,6 +248,11 @@ namespace Tizen.Network.Bluetooth
             get
             {
                 return RemoteManufData;
+            }
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            set
+            {
+                RemoteManufData = value;
             }
         }
 
