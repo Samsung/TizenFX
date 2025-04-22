@@ -27,21 +27,7 @@ namespace Tizen.NUI.BaseComponents
             // Background property will be Color after now. Remove background image url information.
             backgroundImageUrl = null;
 
-            if (backgroundExtraData == null)
-            {
-                Object.InternalSetPropertyColor(SwigCPtr, Property.BACKGROUND, color);
-            }
-            else
-            {
-                using var map = new PropertyMap()
-                    .Append(Visual.Property.Type, (int)Visual.Type.Color)
-                    .Append(ColorVisualProperty.MixColor, color)
-                    .Append(Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth)
-                    .Append(Visual.Property.BorderlineColor, backgroundExtraData.BorderlineColor ?? Color.Black)
-                    .Append(Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
-
-                Object.InternalSetPropertyMap(SwigCPtr, Property.BACKGROUND, map.SwigCPtr);
-            }
+            Object.InternalSetPropertyColor(SwigCPtr, Property.BACKGROUND, color);
 
             NotifyPropertyChanged(nameof(BackgroundColor));
             NotifyBackgroundChanged();
@@ -60,9 +46,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal UIShadow GetBoxShadow()
         {
-            // Sync as current properties
-            UpdateBackgroundExtraData();
-
             using PropertyValue shadowMapValue = Object.GetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, Property.SHADOW);
             if (shadowMapValue != null)
             {
@@ -88,9 +71,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal bool UpdateBoxShadowColor(UIColor color)
         {
-            // Sync as current properties
-            UpdateBackgroundExtraData();
-
             using PropertyValue shadowMapValue = Object.GetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, Property.SHADOW);
             if (shadowMapValue != null)
             {
