@@ -31,22 +31,6 @@ namespace Tizen.NUI.BaseComponents
     {
         internal string styleName;
 
-        [Flags]
-        internal enum BackgroundExtraDataUpdatedFlag : byte
-        {
-            BackgroundBorderline = 1 << 1,
-            ContentsBorderline = 1 << 4, /// Subclass cases.
-
-            Background = BackgroundBorderline,
-
-            Borderline = BackgroundBorderline | ContentsBorderline,
-
-            None = 0,
-            All = Background,
-        }
-
-        internal BackgroundExtraDataUpdatedFlag backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
-
         // TODO : Re-open this API when we resolve Animation issue.
         // private bool backgroundExtraDataUpdateProcessAttachedFlag = false;
 
@@ -1160,107 +1144,16 @@ namespace Tizen.NUI.BaseComponents
             return (ResourceLoadingStatusType)Interop.View.GetVisualResourceStatus(this.SwigCPtr, Property.BACKGROUND);
         }
 
-        /// <summary>
-        /// Lazy call to UpdateBackgroundExtraData.
-        /// Collect Properties need to be update, and set properties that starts the Processing.
-        /// </summary>
-        internal virtual void UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag flag)
-        {
-            if (backgroundExtraData == null)
-            {
-                return;
-            }
-
-            if (!backgroundExtraDataUpdatedFlag.HasFlag(flag))
-            {
-                backgroundExtraDataUpdatedFlag |= flag;
-                // TODO : Re-open this API when we resolve Animation issue.
-                // Instead, let we call UpdateBackgroundExtraData() synchronously.
-                UpdateBackgroundExtraData();
-                // if (!backgroundExtraDataUpdateProcessAttachedFlag)
-                // {
-                //     backgroundExtraDataUpdateProcessAttachedFlag = true;
-                //     ProcessorController.Instance.ProcessorOnceEvent += UpdateBackgroundExtraData;
-                //     // Call process hardly.
-                //     ProcessorController.Instance.Awake();
-                // }
-            }
-        }
-
-        /// <summary>
-        /// Callback function to Lazy UpdateBackgroundExtraData.
-        /// </summary>
-        private void UpdateBackgroundExtraData(object source, EventArgs e)
-        {
-            // Note : To allow event attachment during UpdateBackgroundExtraData, let we make flag as false before call UpdateBackgroundExtraData().
-            // TODO : Re-open this API when we resolve Animation issue.
-            // backgroundExtraDataUpdateProcessAttachedFlag = false;
-            UpdateBackgroundExtraData();
-        }
-
-        /// <summary>
-        /// Update background extra data properties synchronously.
-        /// After call this API, All background extra data properties updated.
-        /// </summary>
-        internal virtual void UpdateBackgroundExtraData()
-        {
-            if (Disposed)
-            {
-                return;
-            }
-
-            if (backgroundExtraData == null)
-            {
-                return;
-            }
-
-            if (!Rectangle.IsNullOrZero(backgroundExtraData.BackgroundImageBorder))
-            {
-                backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
-            }
-
-            if (backgroundExtraDataUpdatedFlag == BackgroundExtraDataUpdatedFlag.None)
-            {
-                return;
-            }
-
-            if ((backgroundExtraDataUpdatedFlag & BackgroundExtraDataUpdatedFlag.Borderline) != BackgroundExtraDataUpdatedFlag.None)
-            {
-                ApplyBorderline();
-            }
-
-            backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
-        }
-
         [Obsolete("Do not use this, that is deprecated in API13.")]
         internal virtual void ApplyCornerRadius()
         {
             Tizen.Log.Error("NUI", "ApplyCornerRadius() deprecated internally, Please don't use it.\n");
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Do not use this, that is deprecated in API13.")]
         internal virtual void ApplyBorderline()
         {
-            if (backgroundExtraData == null) return;
-
-            // ActionUpdateProperty works well only if BACKGROUND visual setup before.
-            // If view don't have BACKGROUND visual, we set transparent background color in default.
-            if (IsBackgroundEmpty())
-            {
-                // BACKGROUND visual doesn't exist.
-                SetBackgroundColor(Color.Transparent);
-                // SetBackgroundColor function apply borderline internally.
-                // So we can just return now.
-                return;
-            }
-
-            // Update borderline properties to background by ActionUpdateProperty
-            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.BackgroundBorderline))
-            {
-                _ = Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth);
-                _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineColor, Vector4.getCPtr(backgroundExtraData.BorderlineColor ?? Color.Black));
-                _ = Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
-            }
+            Tizen.Log.Error("NUI", "ApplyBorderline() deprecated internally, Please don't use it.\n");
         }
 
         /// <summary>
@@ -1446,8 +1339,6 @@ namespace Tizen.NUI.BaseComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
-            backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
 
             LayoutCount = 0;
 
