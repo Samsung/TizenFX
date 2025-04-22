@@ -835,34 +835,6 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Callback when Borderline property changed.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal override void ApplyBorderline()
-        {
-            base.ApplyBorderline();
-
-            if (backgroundExtraData == null) return;
-
-            // Update corner radius properties to image by ActionUpdateProperty
-            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ContentsBorderline))
-            {
-                {
-                    using var setValue = new Tizen.NUI.PropertyValue(backgroundExtraData.BorderlineWidth);
-                    SetProperty(Interop.SceneView.BorderlineWidthGet(), setValue);
-                }
-                {
-                    using var setValue = new Tizen.NUI.PropertyValue((backgroundExtraData.BorderlineColor ?? Color.Black));
-                    SetProperty(Interop.SceneView.BorderlineColorGet(), setValue);
-                }
-                {
-                    using var setValue = new Tizen.NUI.PropertyValue(backgroundExtraData.BorderlineOffset);
-                    SetProperty(Interop.SceneView.BorderlineOffsetGet(), setValue);
-                }
-            }
-        }
-
-        /// <summary>
         /// Release swigCPtr.
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)

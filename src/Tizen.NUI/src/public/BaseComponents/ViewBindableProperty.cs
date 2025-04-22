@@ -2173,8 +2173,6 @@ namespace Tizen.NUI.BaseComponents
         {
             if (string.IsNullOrEmpty(value))
             {
-                backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
-
                 backgroundImageUrl = null;
 
                 var empty = new PropertyValue();
@@ -2214,15 +2212,6 @@ namespace Tizen.NUI.BaseComponents
                 map.Add(Visual.Property.Type, (int)Visual.Type.Image);
             }
 
-            if (backgroundExtraData != null)
-            {
-                map.Add(Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth)
-                   .Add(Visual.Property.BorderlineColor, backgroundExtraData.BorderlineColor == null ? Color.Black : backgroundExtraData.BorderlineColor)
-                   .Add(Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
-            }
-
-            backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
-
             using var mapValue = new PropertyValue(map);
             Object.SetProperty(SwigCPtr, Property.BACKGROUND, mapValue);
         }
@@ -2261,9 +2250,6 @@ namespace Tizen.NUI.BaseComponents
                 map.Set(Visual.Property.Type, (int)Visual.Type.NPatch);
             }
 
-            // Background extra data flag is not meanful anymore.
-            backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
-
             using (var pv = new PropertyValue(map))
             {
                 Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.BACKGROUND, pv);
@@ -2277,9 +2263,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).BorderlineColor = value;
-
-            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.Borderline);
+            Object.InternalSetPropertyVector4(SwigCPtr, Property.BorderlineColor, value.SwigCPtr);
         }
 
         private void SetBackgroundColor(Color value)
@@ -2292,24 +2276,7 @@ namespace Tizen.NUI.BaseComponents
             // Background property will be Color after now. Remove background image url information.
             backgroundImageUrl = null;
 
-            if (backgroundExtraData == null)
-            {
-                Object.InternalSetPropertyVector4(SwigCPtr, View.Property.BACKGROUND, ((Color)value).SwigCPtr);
-                return;
-            }
-
-            using var map = new PropertyMap();
-
-            map.Add(Visual.Property.Type, (int)Visual.Type.Color)
-               .Add(ColorVisualProperty.MixColor, value)
-               .Add(Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth)
-               .Add(Visual.Property.BorderlineColor, backgroundExtraData.BorderlineColor == null ? Color.Black : backgroundExtraData.BorderlineColor)
-               .Add(Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
-
-            backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
-
-            using var mapValue = new PropertyValue(map);
-            Object.SetProperty(SwigCPtr, Property.BACKGROUND, mapValue);
+            Object.InternalSetPropertyVector4(SwigCPtr, View.Property.BACKGROUND, ((Color)value).SwigCPtr);
         }
 
         private void SetColor(Color value)

@@ -1221,10 +1221,6 @@ namespace Tizen.NUI.BaseComponents
             if (map == null)
                 return;
 
-            // Background extra data is not valid anymore. We should ignore lazy UpdateBackgroundExtraData
-            backgroundExtraData = null;
-            backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
-
             // Update backgroundImageUrl and backgroundImageSynchronousLoading from Map
             foreach (int key in cachedNUIViewBackgroundImagePropertyKeyList)
             {
@@ -1248,9 +1244,6 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalBackground()
         {
-            // Sync as current properties
-            UpdateBackgroundExtraData();
-
             PropertyMap tmp = new PropertyMap();
             var propertyValue = Object.GetProperty(SwigCPtr, Property.BACKGROUND);
             propertyValue.Get(tmp);
@@ -1328,9 +1321,6 @@ namespace Tizen.NUI.BaseComponents
 
         private ImageShadow GetInternalImageShadow()
         {
-            // Sync as current properties
-            UpdateBackgroundExtraData();
-
             using PropertyMap map = new PropertyMap();
             using var shadowProperty = Object.GetProperty(SwigCPtr, Property.SHADOW);
             shadowProperty.Get(map);
@@ -1405,9 +1395,6 @@ namespace Tizen.NUI.BaseComponents
 
         private Shadow GetInternalBoxShadow()
         {
-            // Sync as current properties
-            UpdateBackgroundExtraData();
-
             using PropertyMap map = new PropertyMap();
             using var shadowProperty = Object.GetProperty(SwigCPtr, Property.SHADOW);
             shadowProperty.Get(map);
@@ -1598,13 +1585,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalBorderlineWidth(float borderlineWidth)
         {
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).BorderlineWidth = borderlineWidth;
-            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.Borderline);
+            Object.InternalSetPropertyFloat(SwigCPtr, Property.BorderlineWidth, borderlineWidth);
         }
 
         private float GetInternalBorderlineWidth()
         {
-            return backgroundExtraData == null ? 0.0f : backgroundExtraData.BorderlineWidth;
+            return Object.InternalGetPropertyFloat(SwigCPtr, Property.BorderlineWidth);
         }
 
         /// <summary>
@@ -1668,7 +1654,9 @@ namespace Tizen.NUI.BaseComponents
 
         private Color GetInternalBorderlineColor()
         {
-            return backgroundExtraData == null ? Color.Black : backgroundExtraData.BorderlineColor;
+            Vector4 value = new Vector4();
+            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.BorderlineColor, value.SwigCPtr);
+            return value;
         }
 
         /// <summary>
@@ -1755,13 +1743,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalBorderlineOffset(float borderlineOffset)
         {
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).BorderlineOffset = borderlineOffset;
-            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.Borderline);
+            Object.InternalSetPropertyFloat(SwigCPtr, Property.BorderlineOffset, borderlineOffset);
         }
 
         private float GetInternalBorderlineOffset()
         {
-            return backgroundExtraData == null ? 0.0f : backgroundExtraData.BorderlineOffset;
+            return Object.InternalGetPropertyFloat(SwigCPtr, Property.BorderlineOffset);
         }
 
         /// <summary>
