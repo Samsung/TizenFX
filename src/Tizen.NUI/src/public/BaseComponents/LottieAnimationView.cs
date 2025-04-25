@@ -550,7 +550,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Sets or gets the stop behavior of the LottieAnimationView. 
+        /// Sets or gets the stop behavior of the LottieAnimationView.
         /// This property determines how the animation behaves when it stops.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
