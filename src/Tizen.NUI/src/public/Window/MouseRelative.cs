@@ -25,12 +25,11 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class MouseRelative : Disposable
     {
-
         /// <summary>
         /// The default constructor.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public MouseRelative() : this(Interop.MouseRelative.NewMouseRelative((int)MouseRelative.StateType.None, 0, 0, Vector2.getCPtr(new Vector2(0, 0)), Vector2.getCPtr(new Vector2(0, 0))), true)
+        public MouseRelative() : this(Interop.MouseRelative.NewMouseRelative((int)MouseRelative.StateType.None, 0, 0, Vector2.getCPtr(Vector2.Zero), Vector2.getCPtr(Vector2.Zero)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
