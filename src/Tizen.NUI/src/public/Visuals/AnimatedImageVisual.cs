@@ -176,8 +176,10 @@ namespace Tizen.NUI
                     using var urlArray = new PropertyArray();
                     foreach (var url in urls)
                     {
-                        var pv = new PropertyValue(url);
-                        using var _ = urlArray.Add(pv);
+                        using (var pv = new PropertyValue(url))
+                        {
+                            using var _ = urlArray.Add(pv);
+                        }
                     }
                     using (var temp = new PropertyValue(urlArray))
                     {
