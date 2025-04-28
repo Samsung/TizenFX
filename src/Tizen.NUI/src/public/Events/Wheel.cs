@@ -28,12 +28,11 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Wheel : BaseHandle
     {
-
         /// <summary>
         /// The default constructor of Wheel class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Wheel() : this(Interop.Wheel.New(0, 0, 0u, Vector2.getCPtr(new Vector2(0.0f, 0.0f)), 0, 0u), true)
+        public Wheel() : this(Interop.Wheel.New(0, 0, 0u, Vector2.getCPtr(Vector2.Zero), 0, 0u), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
