@@ -125,7 +125,7 @@ namespace Tizen.NUI
         public int GetPropertyIndex(string name)
         {
             // Convert property string to be lowercase
-            int ret = Interop.Handle.GetPropertyIndex(SwigCPtr, LowerFirstLetter(name));
+            int ret = Interop.Handle.GetPropertyIndex(SwigCPtr, name);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -202,8 +202,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetProperty(string name, PropertyValue propertyValue)
         {
-            var propertyName = LowerFirstLetter(name);
-            Property property = new Property(this, propertyName);
+            Property property = new Property(this, name);
             if (property.PropertyIndex == Property.InvalidIndex)
             {
                 Tizen.Log.Error("NUI", "Invalid property name\n");
@@ -329,13 +328,6 @@ namespace Tizen.NUI
         {
             Interop.HandleInternal.HandleRemoveConstraints(SwigCPtr, tag);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        private static string LowerFirstLetter(string original)
-        {
-            StringBuilder sb = new StringBuilder(original);
-            sb[0] = (char)(sb[0] | 0x20);
-            return sb.ToString();
         }
 
         /// This will not be public opened.
