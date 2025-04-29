@@ -1249,6 +1249,26 @@ namespace Tizen.NUI.Samples
         }
 
         /// <summary>
+        /// Set ruler X
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetRulerX(RulerPtr ruler)
+        {
+            Tizen.NUI.Interop.ScrollView.SetRulerX(SwigCPtr, RulerPtr.getCPtr(ruler));
+        }
+
+        /// <summary>
+        /// Set ruler Y
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetRulerY(RulerPtr ruler)
+        {
+            Tizen.NUI.Interop.ScrollView.SetRulerY(SwigCPtr, RulerPtr.getCPtr(ruler));
+        }
+
+        /// <summary>
         /// Dispose
         /// </summary>
         /// <param name="type">the dispose type</param>
