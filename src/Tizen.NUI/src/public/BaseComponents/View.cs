@@ -472,6 +472,13 @@ namespace Tizen.NUI.BaseComponents
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Custom,
+            /// <summary>
+            /// Ignore all accessibility implementation. Cannot use View.Accessibility...()
+            /// will be necessary to reduce memory of the View.
+            /// Note that it will make invalidate it's all childrens and parent's accessibility features.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Ignore,
         }
 
         /// <summary>
@@ -518,6 +525,21 @@ namespace Tizen.NUI.BaseComponents
                         default:
                         {
                             return Interop.View.NewCustom();
+                        }
+                    }
+                }
+                case ViewAccessibilityMode.Ignore:
+                {
+                    switch (resizePolicyMode)
+                    {
+                        case ViewResizePolicyMode.Ignore:
+                        {
+                            return Interop.View.NewCustomWithBehaviour(1 + 256); // Special enum to ignore size negotiate and accessibility.
+                        }
+                        case ViewResizePolicyMode.Default:
+                        default:
+                        {
+                            return Interop.View.NewCustomWithBehaviour(256); // Special enum to ignore accessibility.
                         }
                     }
                 }
