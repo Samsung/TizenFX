@@ -56,6 +56,11 @@ namespace Tizen.NUI
         private bool setPositionByLayout = true;
 
         /// <summary>
+        /// Event that is raised when the layout is requested to be re-laid out.
+        /// </summary>
+        internal event EventHandler MeasureInvalidated;
+
+        /// <summary>
         /// Condition event that is causing this Layout to transition.
         /// </summary>
         internal TransitionCondition ConditionForAnimation { get; set; }
@@ -348,6 +353,7 @@ namespace Tizen.NUI
         public void RequestLayout()
         {
             flags = flags | LayoutFlags.ForceLayout;
+            MeasureInvalidated?.Invoke(this, EventArgs.Empty);
             if (parent == null)
             {
                 // If RequestLayout() is called while main loop is in idle state,
