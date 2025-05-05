@@ -20,6 +20,7 @@ using System.Runtime.InteropServices;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 
 namespace Tizen.Network.WiFiDirect
 {
@@ -779,6 +780,36 @@ namespace Tizen.Network.WiFiDirect
             {
                 Log.Error(Globals.LogTag, "Wifi-direct is not activated");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException((int)WiFiDirectError.NotPermitted);
+            }
+        }
+
+        /// <summary>
+        /// The vendor specific information element (VSIE) of a peer.
+        /// </summary>
+        /// <remarks>
+        /// Wi-Fi Direct must be activated.
+        /// If there is any error, null will be returned.
+        /// </remarks>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Vsie
+        {
+            get
+            {
+                if (Globals.IsActivated)
+                {
+                    string vsie;
+                    int ret = Interop.WiFiDirect.GetPeerVsie(_peerMacAddress, out vsie);
+
+                    if (ret != (int)WiFiDirectError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Failed to get the peer VSIE, Error - " + (WiFiDirectError)ret);
+                        return null;
+                    }
+
+                    return vsie;
+                }
+                return null;
             }
         }
     }
