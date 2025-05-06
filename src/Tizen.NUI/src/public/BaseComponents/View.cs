@@ -1056,8 +1056,10 @@ namespace Tizen.NUI.BaseComponents
 
             if (visualType == (int)Visual.Type.Color)
             {
-                Object.InternalRetrievingVisualPropertyVector4(SwigCPtr, Property.BACKGROUND, ColorVisualProperty.MixColor, Color.getCPtr(internalBackgroundColor));
+                Object.InternalRetrievingVisualProperty4FloatValues(SwigCPtr, Property.BACKGROUND, ColorVisualProperty.MixColor, out var r, out var g, out var b, out var a);
+                internalBackgroundColor.ResetValue(r, g, b, a);
             }
+
             return internalBackgroundColor;
         }
 
@@ -3411,14 +3413,15 @@ namespace Tizen.NUI.BaseComponents
         {
             if (origin != null)
             {
-                Object.InternalSetPropertyVector3(SwigCPtr, Property.ParentOrigin, origin.SwigCPtr);
+                Object.InternalSetPropertyVector3(SwigCPtr, Property.ParentOrigin, origin.X, origin.Y, origin.Z);
             }
         }
 
         private Position GetInternalParentOrigin()
         {
             Position temp = new Position(0.0f, 0.0f, 0.0f);
-            Object.InternalRetrievingPropertyVector3(SwigCPtr, Property.ParentOrigin, temp.SwigCPtr);
+            Object.InternalRetrievingPropertyVector3(SwigCPtr, Property.ParentOrigin, out var x, out var y, out var z);
+            temp.ResetValue(x, y, z);
             return temp;
         }
 
@@ -3486,7 +3489,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalPivotPoint = new Position(OnPivotPointChanged, 0, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector3(SwigCPtr, Property.AnchorPoint, internalPivotPoint.SwigCPtr);
+            Object.InternalRetrievingPropertyVector3(SwigCPtr, Property.AnchorPoint, out var x, out var y, out var z);
+            internalPivotPoint.ResetValue(x, y, z);
             return internalPivotPoint;
         }
 
@@ -3684,7 +3688,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (position != null)
             {
-                Object.InternalSetPropertyVector3(SwigCPtr, Property.POSITION, position.SwigCPtr);
+                Object.InternalSetPropertyVector3(SwigCPtr, Property.POSITION, position.X, position.Y, position.Z);
             }
         }
 
@@ -3694,7 +3698,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalPosition = new Position(OnPositionChanged, 0, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector3(SwigCPtr, Property.POSITION, internalPosition.SwigCPtr);
+            Object.InternalRetrievingPropertyVector3(SwigCPtr, Property.POSITION, out var x, out var y, out var z);
+            internalPosition.ResetValue(x, y, z);
             return internalPosition;
         }
 
@@ -6021,7 +6026,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalColor = new Color(OnColorChanged, 0, 0, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector4(SwigCPtr, View.Property.COLOR, internalColor.SwigCPtr);
+            Object.InternalRetrievingProperty4FloatValues(SwigCPtr, View.Property.COLOR, out var r, out var g, out var b, out var a);
+            internalColor.ResetValue(r, g, b, a);
+
             return internalColor;
         }
 

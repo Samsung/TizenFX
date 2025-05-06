@@ -2294,7 +2294,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (backgroundExtraData == null)
             {
-                Object.InternalSetPropertyVector4(SwigCPtr, View.Property.BACKGROUND, ((Color)value).SwigCPtr);
+                Object.InternalSetProperty4FloatValues(SwigCPtr, View.Property.BACKGROUND, value.R, value.G, value.B, value.A);
                 return;
             }
 
@@ -2319,7 +2319,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            Interop.ActorInternal.SetColor(SwigCPtr, value.SwigCPtr);
+            Interop.ActorInternal.SetColor(SwigCPtr, value.R, value.G, value.B, value.A);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

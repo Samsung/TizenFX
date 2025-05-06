@@ -66,7 +66,7 @@ namespace Tizen.NUI
             DragType type = (DragType)Interop.DragAndDrop.GetAction(nativeDragEvent);
             DragEvent dragEvent = new DragEvent();
             global::System.IntPtr cPtr = Interop.DragAndDrop.GetPosition(nativeDragEvent);
-            dragEvent.Position = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, true);
+            dragEvent.Position = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr);
 
             IntPtr nativeMimeTypes;
             int count;
@@ -115,7 +115,7 @@ namespace Tizen.NUI
             DragType type = (DragType)Interop.DragAndDrop.GetAction(nativeDragEvent);
             DragEvent dragEvent = new DragEvent();
             global::System.IntPtr cPtr = Interop.DragAndDrop.GetPosition(nativeDragEvent);
-            dragEvent.Position = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+            dragEvent.Position = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr);
 
             IntPtr nativeMimeTypes;
             int count;

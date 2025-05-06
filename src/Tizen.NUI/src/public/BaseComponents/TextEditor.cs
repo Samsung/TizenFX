@@ -3311,7 +3311,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (color != null)
             {
-                Object.InternalSetPropertyVector4(SwigCPtr, Property.PlaceholderTextColor, color.SwigCPtr);
+                Object.InternalSetProperty4FloatValues(SwigCPtr, Property.PlaceholderTextColor, color.R, color.G, color.B, color.A);
             }
         }
 
@@ -3321,7 +3321,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalPlaceholderTextColor = new Color(0, 0, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.PlaceholderTextColor, internalPlaceholderTextColor.SwigCPtr);
+            Object.InternalRetrievingProperty4FloatValues(SwigCPtr, Property.PlaceholderTextColor, out var r, out var g, out var b, out var a);
+            internalPlaceholderTextColor.ResetValue(r, g, b, a);
+
             return internalPlaceholderTextColor;
         }
 
@@ -3656,7 +3658,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (color != null)
             {
-                Object.InternalSetPropertyVector4(SwigCPtr, Property.GrabHandleColor, color.SwigCPtr);
+                Object.InternalSetProperty4FloatValues(SwigCPtr, Property.GrabHandleColor, color.R, color.G, color.B, color.A);
             }
         }
 
@@ -3666,7 +3668,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalGrabHandleColor = new Color(0, 0, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.GrabHandleColor, internalGrabHandleColor.SwigCPtr);
+            Object.InternalRetrievingProperty4FloatValues(SwigCPtr, Property.GrabHandleColor, out var r, out var g, out var b, out var a);
+            internalGrabHandleColor.ResetValue(r, g, b, a);
+
             return internalGrabHandleColor;
         }
 
