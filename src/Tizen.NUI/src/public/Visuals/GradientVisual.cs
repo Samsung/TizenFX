@@ -196,7 +196,7 @@ namespace Tizen.NUI
         /// If not supplied, the default is 0.0f.<br />
         /// Optional.
         /// </summary>
-        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float StartOffset
         {
             get

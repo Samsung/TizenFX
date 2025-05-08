@@ -756,7 +756,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets the gradient's start position offset.
         /// </summary>
-        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int StartOffset = NDalic.GradientVisualStartOffset;
     }
 
