@@ -53,6 +53,7 @@ namespace Tizen.NUI
             { "imageShadow.Offset",         new VisualPropertyData(View.Property.SHADOW, (int)VisualTransformPropertyType.Offset) },
             { "shadow.CornerRadius",        new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
             { "shadow.CornerSquareness",    new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerSquareness, ObjectIntToFloat) },
+            { "gradient.StartOffset",       new VisualPropertyData(View.Property.BACKGROUND, GradientVisualProperty.StartOffset, ObjectIntToFloat) },
         };
         private static readonly Dictionary<string, VisualPropertyData> visualPropertyUpperCaseTable = new Dictionary<string, VisualPropertyData>()
         {
