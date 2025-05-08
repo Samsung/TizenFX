@@ -80,6 +80,7 @@ namespace Tizen.NUI
             { "ImageShadow.Offset",         new VisualPropertyData(View.Property.SHADOW, (int)VisualTransformPropertyType.Offset) },
             { "Shadow.CornerRadius",        new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
             { "Shadow.CornerSquareness",    new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerSquareness, ObjectIntToFloat) },
+            { "Gradient.StartOffset",       new VisualPropertyData(View.Property.BACKGROUND, GradientVisualProperty.StartOffset, ObjectIntToFloat) },
         };
 
         static PropertyHelper() { }
