@@ -15,6 +15,8 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
     /// <summary>
@@ -31,6 +33,7 @@ namespace Tizen.NUI
         private PropertyArray _stopColor;
         private GradientVisualUnitsType? _units;
         private GradientVisualSpreadMethodType? _spreadMethod;
+        private float? _startOffset;
 
         /// <summary>
         /// Default constructor of GradientVisual.
@@ -191,6 +194,25 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets or sets the gradient's start position offset.<br />
+        /// If not supplied, the default is 0.0f.<br />
+        /// Optional.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float StartOffset
+        {
+            get
+            {
+                return _startOffset ?? (0.0f);
+            }
+            set
+            {
+                _startOffset = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
         /// Compose the out visual map.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -235,6 +257,11 @@ namespace Tizen.NUI
                 if (_spreadMethod != null)
                 {
                     _outputVisualMap.Add(GradientVisualProperty.SpreadMethod, (int)_spreadMethod);
+                }
+
+                if (_startOffset != null)
+                {
+                    _outputVisualMap.Add(GradientVisualProperty.StartOffset, (float)_startOffset);
                 }
                 base.ComposingPropertyMap();
             }
