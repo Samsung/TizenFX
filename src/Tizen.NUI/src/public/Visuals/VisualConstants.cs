@@ -753,6 +753,11 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int SpreadMethod = NDalic.GradientVisualSpreadMethod;
+        /// <summary>
+        /// Sets the gradient's start position offset.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int StartOffset = NDalic.GradientVisualStartOffset;
     }
 
     /// <summary>
