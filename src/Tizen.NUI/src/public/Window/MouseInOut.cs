@@ -25,12 +25,11 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class MouseInOut : Disposable
     {
-
         /// <summary>
         /// The default constructor.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public MouseInOut() : this(Interop.MouseInOut.NewMouseInOut((int)MouseInOut.StateType.None, 0, Vector2.getCPtr(new Vector2(0, 0)), 0), true)
+        public MouseInOut() : this(Interop.MouseInOut.NewMouseInOut((int)MouseInOut.StateType.None, 0, Vector2.getCPtr(Vector2.Zero), 0), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
