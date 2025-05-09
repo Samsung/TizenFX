@@ -976,7 +976,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalTextColor = new Color(0, 0, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.TextColor, internalTextColor.SwigCPtr);
+            Object.InternalRetrievingProperty4FloatValues(SwigCPtr, Property.TextColor, out var r, out var g, out var b, out var a);
+            internalTextColor.ResetValue(r, g, b, a);
+
             return internalTextColor;
         }
 
@@ -2861,7 +2863,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (color != null)
             {
-                Object.InternalSetPropertyVector4(SwigCPtr, Property.AnchorColor, color.SwigCPtr);
+                Object.InternalSetProperty4FloatValues(SwigCPtr, Property.AnchorColor, color.R, color.G, color.B, color.A);
             }
         }
 
@@ -2871,7 +2873,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalAnchorColor = new Color(0, 0, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.TextColor, internalAnchorColor.SwigCPtr);
+            Object.InternalRetrievingProperty4FloatValues(SwigCPtr, Property.TextColor, out var r, out var g, out var b, out var a);
+            internalAnchorColor.ResetValue(r, g, b, a);
+
             return internalAnchorColor;
         }
 
@@ -2918,7 +2922,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (color != null)
             {
-                Object.InternalSetPropertyVector4(SwigCPtr, Property.AnchorClickedColor, color.SwigCPtr);
+                Object.InternalSetProperty4FloatValues(SwigCPtr, Property.AnchorClickedColor, color.R, color.G, color.B, color.A);
             }
         }
 
@@ -2928,7 +2932,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalAnchorClickedColor = new Color(0, 0, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.TextColor, internalAnchorClickedColor.SwigCPtr);
+            Object.InternalRetrievingProperty4FloatValues(SwigCPtr, Property.TextColor, out var r, out var g, out var b, out var a);
+            internalAnchorClickedColor.ResetValue(r, g, b, a);
+
             return internalAnchorClickedColor;
         }
 
