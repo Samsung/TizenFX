@@ -1504,6 +1504,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(bool disposing)
         {
+            base.Dispose(disposing);
             callback = null;
         }
 
