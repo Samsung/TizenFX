@@ -185,7 +185,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Custom ROI.
         /// </summary>
-        CustomROI
+        CustomRoi
     }
 
     /// <summary>

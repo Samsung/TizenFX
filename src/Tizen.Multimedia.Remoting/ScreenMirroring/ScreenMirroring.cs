@@ -473,6 +473,8 @@ namespace Tizen.Multimedia.Remoting
         {
             get
             {
+                ThrowIfDisposed();
+
                 return _displayMode;
             }
             set
@@ -484,11 +486,11 @@ namespace Tizen.Multimedia.Remoting
 
         private Rectangle _displayRoi;
         /// <summary>
-        /// Gets or sets the diaplay ROI.
-        /// <remarks>
-        /// DisplayRoi will be applied when <see cref="DisplayMode"/> is <see cref="ScreenMirroringDisplayMode.CustomROI"/>.
-        /// </remarks>
+        /// Gets or sets the display position and size of the receiver screen view.
         /// </summary>
+        /// <remarks>
+        /// DisplayRoi will be applied when <see cref="DisplayMode"/> is <see cref="ScreenMirroringDisplayMode.CustomRoi"/>.
+        /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     DisplayRoi.X or DisplayRoi.Y is less than 0.<br/>
         ///     -or-<br/>
@@ -501,6 +503,8 @@ namespace Tizen.Multimedia.Remoting
         {
             get
             {
+                ThrowIfDisposed();
+
                 return _displayRoi;
             }
             set
@@ -534,7 +538,7 @@ namespace Tizen.Multimedia.Remoting
 
         private Rotation _displayRotation;
         /// <summary>
-        /// Gets or sets the diaplay rotation.
+        /// Gets or sets the display rotation.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
         /// <since_tizen> 13 </since_tizen>
@@ -542,6 +546,8 @@ namespace Tizen.Multimedia.Remoting
         {
             get
             {
+                ThrowIfDisposed();
+
                 return _displayRotation;
             }
             set
@@ -561,6 +567,8 @@ namespace Tizen.Multimedia.Remoting
         {
             get
             {
+                ThrowIfDisposed();
+
                 return _srcDeviceType;
             }
             set
