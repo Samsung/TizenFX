@@ -229,7 +229,7 @@ namespace Tizen.NUI.Samples
                 Shader = GenerateShader(),
             };
 
-            renderable.RegisterProperty("uCustomExtraSize", new PropertyValue(new UIVector2(extraSizeWidth, extraSizeHeight)));
+            renderable.RegisterProperty("uCustomExtraSize", new PropertyValue(extraSizeWidth, extraSizeHeight));
 
             return renderable;
         }
