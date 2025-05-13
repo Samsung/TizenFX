@@ -46,6 +46,8 @@ namespace Tizen.NUI
             public static extern int GradientVisualSpreadMethodGet();
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_START_OFFSET_get")]
             public static extern int GradientVisualStartOffsetGet();
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_START_ANGLE_get")]
+            public static extern int GradientVisualStartAngleGet();
         }
     }
 }
