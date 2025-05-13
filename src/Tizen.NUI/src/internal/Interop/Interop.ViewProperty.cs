@@ -93,6 +93,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_AUTOMATION_ID_get")]
             public static extern int AutomationIdGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_ACCESSIBILITY_STATES_get")]
+            public static extern int AccessibilityStateGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_ACCESSIBILITY_IS_MODAL_get")]
+            public static extern int AccessibilityIsModalGet();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_OFFSCREEN_RENDERING_get")]
             public static extern int OffScreenRenderingGet();
 
