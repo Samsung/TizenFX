@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
- 
+
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
@@ -50,6 +50,14 @@ namespace Tizen.NUI.Binding
         public static BindingProperty<View, UIColor> BackgroundColorProperty { get; } = new BindingProperty<View, UIColor>
         {
             Setter = (v, value) => v.SetBackgroundColor(value),
+        };
+
+        /// <summary>
+        /// Gets the binding property for IsEnabled of a <see cref="View"/>.
+        /// </summary>
+        public static BindingProperty<View, bool> IsEnabledProperty { get; } = new BindingProperty<View, bool>
+        {
+            Setter = (v, value) => v.IsEnabled = value,
         };
     }
 
