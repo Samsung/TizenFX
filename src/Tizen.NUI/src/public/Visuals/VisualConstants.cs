@@ -724,7 +724,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static readonly int EndPosition = NDalic.GradientVisualEndPosition;
         /// <summary>
-        /// The center point of a radial gradient.
+        /// The center point of a radial and conic gradient.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int Center = NDalic.GradientVisualCenter;
@@ -758,6 +758,11 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int StartOffset = NDalic.GradientVisualStartOffset;
+        /// <summary>
+        /// Sets the gradient's start angle of a conic gradiant.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int StartAngle = NDalic.GradientVisualStartAngle;
     }
 
     /// <summary>
