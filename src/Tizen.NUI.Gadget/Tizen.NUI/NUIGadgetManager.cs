@@ -62,14 +62,10 @@ namespace Tizen.NUI
                         }
                     }
                 }
-                else
-                {
-                    Log.Warn("No gadget packages found.");
-                }
             }
             else
             {
-                Log.Warn("GADGET_PKGIDS not set.");
+                Log.Warn("Failed to get environment variable");
             }
 
             var app = (CoreApplication)CoreApplication.Current;
