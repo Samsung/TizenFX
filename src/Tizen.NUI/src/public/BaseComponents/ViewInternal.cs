@@ -31,6 +31,24 @@ namespace Tizen.NUI.BaseComponents
     {
         internal string styleName;
 
+        [Flags]
+        internal enum BackgroundExtraDataUpdatedFlag : byte
+        {
+            BackgroundCornerRadius = 1 << 0,
+            ShadowCornerRadius = 1 << 2,
+            ContentsCornerRadius = 1 << 3, /// Subclass cases.
+
+            Background = BackgroundCornerRadius,
+            Shadow = ShadowCornerRadius,
+
+            CornerRadius = BackgroundCornerRadius | ShadowCornerRadius | ContentsCornerRadius,
+
+            None = 0,
+            All = Background | Shadow,
+        }
+
+        internal BackgroundExtraDataUpdatedFlag backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
+
         // TODO : Re-open this API when we resolve Animation issue.
         // private bool backgroundExtraDataUpdateProcessAttachedFlag = false;
 
@@ -1144,10 +1162,115 @@ namespace Tizen.NUI.BaseComponents
             return (ResourceLoadingStatusType)Interop.View.GetVisualResourceStatus(this.SwigCPtr, Property.BACKGROUND);
         }
 
-        [Obsolete("Do not use this, that is deprecated in API13.")]
+        /// <summary>
+        /// Lazy call to UpdateBackgroundExtraData.
+        /// Collect Properties need to be update, and set properties that starts the Processing.
+        /// </summary>
+        internal virtual void UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag flag)
+        {
+            if (backgroundExtraData == null)
+            {
+                return;
+            }
+
+            if (!backgroundExtraDataUpdatedFlag.HasFlag(flag))
+            {
+                backgroundExtraDataUpdatedFlag |= flag;
+                // TODO : Re-open this API when we resolve Animation issue.
+                // Instead, let we call UpdateBackgroundExtraData() synchronously.
+                UpdateBackgroundExtraData();
+                // if (!backgroundExtraDataUpdateProcessAttachedFlag)
+                // {
+                //     backgroundExtraDataUpdateProcessAttachedFlag = true;
+                //     ProcessorController.Instance.ProcessorOnceEvent += UpdateBackgroundExtraData;
+                //     // Call process hardly.
+                //     ProcessorController.Instance.Awake();
+                // }
+            }
+        }
+
+        /// <summary>
+        /// Callback function to Lazy UpdateBackgroundExtraData.
+        /// </summary>
+        private void UpdateBackgroundExtraData(object source, EventArgs e)
+        {
+            // Note : To allow event attachment during UpdateBackgroundExtraData, let we make flag as false before call UpdateBackgroundExtraData().
+            // TODO : Re-open this API when we resolve Animation issue.
+            // backgroundExtraDataUpdateProcessAttachedFlag = false;
+            UpdateBackgroundExtraData();
+        }
+
+        /// <summary>
+        /// Update background extra data properties synchronously.
+        /// After call this API, All background extra data properties updated.
+        /// </summary>
+        internal virtual void UpdateBackgroundExtraData()
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            if (backgroundExtraData == null)
+            {
+                return;
+            }
+
+            if (IsShadowEmpty())
+            {
+                backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Shadow;
+            }
+
+            if (!Rectangle.IsNullOrZero(backgroundExtraData.BackgroundImageBorder))
+            {
+                backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
+            }
+
+            if (backgroundExtraDataUpdatedFlag == BackgroundExtraDataUpdatedFlag.None)
+            {
+                return;
+            }
+
+            if ((backgroundExtraDataUpdatedFlag & BackgroundExtraDataUpdatedFlag.CornerRadius) != BackgroundExtraDataUpdatedFlag.None)
+            {
+                ApplyCornerRadius();
+            }
+
+            backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
+        }
+
+        //[Obsolete("Do not use this, that is deprecated in API13.")]
         internal virtual void ApplyCornerRadius()
         {
-            Tizen.Log.Error("NUI", "ApplyCornerRadius() deprecated internally, Please don't use it.\n");
+            //Tizen.Log.Error("NUI", "ApplyCornerRadius() deprecated internally, Please don't use it.\n");
+
+            if (backgroundExtraData == null) return;
+
+            // Update corner radius properties to background and shadow by ActionUpdateProperty
+            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.BackgroundCornerRadius))
+            {
+                if (backgroundExtraData.CornerRadius != null)
+                {
+                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+                }
+                if (backgroundExtraData.CornerSquareness != null)
+                {
+                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
+                }
+                _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+            }
+            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ShadowCornerRadius))
+            {
+                if (backgroundExtraData.CornerRadius != null)
+                {
+                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+                }
+                if (backgroundExtraData.CornerSquareness != null)
+                {
+                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
+                }
+                _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+            }
         }
 
         [Obsolete("Do not use this, that is deprecated in API13.")]

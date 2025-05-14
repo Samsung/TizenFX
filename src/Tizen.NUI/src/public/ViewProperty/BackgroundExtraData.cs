@@ -32,6 +32,11 @@ namespace Tizen.NUI
         internal BackgroundExtraData(BackgroundExtraData other)
         {
             BackgroundImageBorder = other.BackgroundImageBorder;
+
+            // Deprecated in API13
+            CornerRadius = other.CornerRadius;
+            CornerSquareness = other.CornerSquareness;
+            CornerRadiusPolicy = other.CornerRadiusPolicy;
         }
 
         private Rectangle backgroundImageBorder;
