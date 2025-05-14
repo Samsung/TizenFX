@@ -93,7 +93,12 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void AddPoint(Position point)
         {
-            Interop.Path.AddPoint(SwigCPtr, Position.getCPtr(point));
+            if (null == point)
+            {
+                throw new ArgumentNullException(nameof(point));
+            }
+
+            Interop.Path.AddPoint(SwigCPtr, point.X, point.Y, point.Z);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

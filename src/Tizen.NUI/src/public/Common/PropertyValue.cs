@@ -47,22 +47,41 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        private static IntPtr NewPropertyValueCPtrByPosition(Position position)
+        {
+            if (null == position)
+            {
+                throw new ArgumentNullException(nameof(position));
+            }
+
+            return Interop.PropertyValue.NewPropertyValueVector3Componentwise(position.X, position.Y, position.Z);
+        }
+
         /// <summary>
         /// Creates a Position property value.
         /// </summary>
         /// <param name="vectorValue">Position values.</param>
         /// <since_tizen> 3 </since_tizen>
-        public PropertyValue(Position vectorValue) : this(Interop.PropertyValue.NewPropertyValueVector3(Position.getCPtr(vectorValue)), true)
+        public PropertyValue(Position vectorValue) : this(NewPropertyValueCPtrByPosition(vectorValue), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        private static IntPtr NewPropertyValueCPtrByColor(Color color)
+        {
+            if (null == color)
+            {
+                throw new ArgumentNullException(nameof(color));
+            }
+
+            return Interop.PropertyValue.NewPropertyValueVector4Componentwise(color.R, color.G, color.B, color.A);
+        }
         /// <summary>
         /// Creates a Color property value.
         /// </summary>
         /// <param name="vectorValue">Color values.</param>
         /// <since_tizen> 3 </since_tizen>
-        public PropertyValue(Color vectorValue) : this(Interop.PropertyValue.NewPropertyValueVector4(Color.getCPtr(vectorValue)), true)
+        public PropertyValue(Color vectorValue) : this(NewPropertyValueCPtrByColor(vectorValue), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -564,7 +583,8 @@ namespace Tizen.NUI
             }
             else if (type.Equals(typeof(Position)))
             {
-                value = Interop.PropertyValue.NewPropertyValueVector3(Position.getCPtr((Position)obj));
+                var position = obj as Position;
+                value = Interop.PropertyValue.NewPropertyValueVector3Componentwise(position.X, position.Y, position.Z);
             }
             else if (type.Equals(typeof(Position2D)))
             {
@@ -581,7 +601,8 @@ namespace Tizen.NUI
             }
             else if (type.Equals(typeof(Color)))
             {
-                value = Interop.PropertyValue.NewPropertyValueVector4(Color.getCPtr((Color)obj));
+                var color = obj as Color;
+                value = Interop.PropertyValue.NewPropertyValueVector4Componentwise(color.R, color.G, color.B, color.A);
             }
             else if (type.Equals(typeof(Rotation)))
             {
@@ -698,7 +719,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Get(Position vectorValue)
         {
-            bool ret = Interop.PropertyValue.GetVector3(SwigCPtr, Position.getCPtr(vectorValue));
+            if (null == vectorValue)
+            {
+                throw new ArgumentNullException(nameof(vectorValue));
+            }
+
+            bool ret = Interop.PropertyValue.PropertyValueGetVector3Componentwise(SwigCPtr, out var x, out var y, out var z);
+            vectorValue.ResetValue(x, y, z);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -710,7 +738,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Get(Color vectorValue)
         {
-            bool ret = Interop.PropertyValue.GetVector4(SwigCPtr, Color.getCPtr(vectorValue));
+            if (null == vectorValue)
+            {
+                throw new ArgumentNullException(nameof(vectorValue));
+            }
+
+            bool ret = Interop.PropertyValue.PropertyValueGetVector4Componentwise(SwigCPtr, out var r, out var g, out var b, out var a);
+            vectorValue.ResetValue(r, g, b, a);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
