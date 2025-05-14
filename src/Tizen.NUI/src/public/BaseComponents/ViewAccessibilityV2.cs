@@ -65,10 +65,18 @@ namespace Tizen.NUI.BaseComponents
         private uint _bitMask;
 
         /// <summary>
-        /// Gets the state at the specsified name
+        /// Gets or sets the value of the specified accessibility state flag using bitmask operations.
         /// </summary>
-        /// <param name="state">The name of the state</param>
-        /// <returns>The state af the specified name</returns>
+        /// <param name="state">The <see cref="AccessibilityStateV2"/> enum value representing the accessibility state to check or modify.</param>
+        /// <returns>
+        /// <c>true</c> if the specified state flag is set in the bitmask; otherwise, <c>false</c>.
+        /// </returns>
+        /// <remarks>
+        /// This indexer uses bitwise operations to efficiently store and retrieve multiple boolean state flags
+        /// in a single integer field (_bitMask). Each state corresponds to a specific bit position determined
+        /// by its enum value.
+        /// </remarks>
+        /// </example>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool this[AccessibilityStateV2 state]
         {
