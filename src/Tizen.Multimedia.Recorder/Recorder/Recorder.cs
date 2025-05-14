@@ -52,6 +52,14 @@ namespace Tizen.Multimedia
             }
         }
 
+        /// <summary>
+        /// Finalizes an instance of the Recorder class.
+        /// </summary>
+        ~Recorder()
+        {
+            Dispose(false);
+        }
+
         internal NativeHandle Handle
         {
             get
@@ -75,6 +83,7 @@ namespace Tizen.Multimedia
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -88,10 +97,12 @@ namespace Tizen.Multimedia
         {
             if (!_disposed)
             {
-                if (_handle != null)
+                if (disposing)
                 {
-                    _handle.Dispose();
+                    _isInAudioStreamStoring?.Dispose();
                 }
+
+                _handle?.Dispose();
 
                 _disposed = true;
             }
