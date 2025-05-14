@@ -240,14 +240,6 @@ namespace Tizen.NUI.BaseComponents
 
                 Image = map;
 
-                if (backgroundExtraData != null)
-                {
-                    if (backgroundExtraData.BorderlineWidth > 0.0f)
-                    {
-                        UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.ContentsBorderline);
-                    }
-                }
-
                 // All states applied well.
                 currentStates.changed = false;
 
@@ -550,7 +542,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Sets or gets the stop behavior of the LottieAnimationView. 
+        /// Sets or gets the stop behavior of the LottieAnimationView.
         /// This property determines how the animation behaves when it stops.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>

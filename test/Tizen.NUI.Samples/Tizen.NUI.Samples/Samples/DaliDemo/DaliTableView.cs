@@ -458,7 +458,12 @@ namespace Tizen.NUI.Samples
             }
 
             // Update Ruler info.
-            // TODO : Implement something to make scroll-view stop fixed position here, without Ruler!
+            mScrollRulerX = new RulerPtr(new FixedRuler(mPageWidth));
+            mScrollRulerY = new RulerPtr(new DefaultRuler());
+            mScrollRulerX.SetDomain(new RulerDomain(0.0f, (mTotalPages + 1) * stageSize.Width * TABLE_RELATIVE_SIZE.X * 0.5f, true));
+            mScrollRulerY.Disable();
+            mScrollView.SetRulerX(mScrollRulerX);
+            mScrollView.SetRulerY(mScrollRulerY);
         }
 
         private void SetupBackground(View bubbleContainer)
@@ -741,6 +746,8 @@ namespace Tizen.NUI.Samples
         private Animation mPressedAnimation;         //  Button press scaling animation.
         private ScrollView mScrollView;               //  ScrollView container (for all Examples)
         private ScrollViewPagePathEffect mScrollViewEffect;         //  Effect to be applied to the scroll view
+        private RulerPtr mScrollRulerX;             //  ScrollView X (horizontal) ruler
+        private RulerPtr mScrollRulerY;             //  ScrollView Y (vertical) ruler
         private View mPressedActor;             //  The currently pressed actor.
         private Timer mAnimationTimer;           //  Timer used to turn off animation after a specific time period
 

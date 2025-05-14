@@ -96,6 +96,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_OFFSCREEN_RENDERING_get")]
             public static extern int OffScreenRenderingGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_INNER_SHADOW_get")]
+            public static extern int InnerShadowGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_BORDERLINE_get")]
+            public static extern int BorderlineGet();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_CORNER_RADIUS_POLICY_get")]
             public static extern int CornerRadiusPolicyGet();
 
@@ -104,6 +110,15 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_CORNER_SQUARENESS_get")]
             public static extern int CornerSquarenessGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_BORDERLINE_WIDTH_get")]
+            public static extern int BorderlineWidthGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_BORDERLINE_COLOR_get")]
+            public static extern int BorderlineColorGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_BORDERLINE_OFFSET_get")]
+            public static extern int BorderlineOffsetGet();
         }
     }
 }

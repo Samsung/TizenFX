@@ -15,16 +15,14 @@
  */
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
 using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Reflection;
 using Tizen.Applications;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
-using System.Runtime.Loader;
-using System.Reflection;
-using System.Threading.Tasks;
-using System.Security.AccessControl;
 
 using SystemIO = System.IO;
 
@@ -37,27 +35,30 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class NUIGadgetManager
     {
-        private static readonly Dictionary<string, NUIGadgetInfo> _gadgetInfos = new Dictionary<string, NUIGadgetInfo>();
-        private static readonly List<NUIGadget> _gadgets = new List<NUIGadget>();
+        private static readonly ConcurrentDictionary<string, NUIGadgetInfo> _gadgetInfos = new ConcurrentDictionary<string, NUIGadgetInfo>(StringComparer.Ordinal);
+        private static readonly ConcurrentDictionary<NUIGadget, byte> _gadgets = new ConcurrentDictionary<NUIGadget, byte>();
 
         static NUIGadgetManager()
         {
-            IntPtr gadgetPkgIds = Interop.Libc.GetEnviornmentVariable("GADGET_PKGIDS");
-            if (gadgetPkgIds != IntPtr.Zero)
+            var ptr = Interop.Libc.GetEnvironmentVariable("GADGET_PKGIDS");
+            if (ptr != IntPtr.Zero)
             {
-                string packages = Marshal.PtrToStringAnsi(gadgetPkgIds);
-                if (string.IsNullOrEmpty(packages))
+                var packages = Marshal.PtrToStringAnsi(ptr);
+                if (!string.IsNullOrWhiteSpace(packages))
                 {
-                    Log.Warn("There is no resource packages");
-                }
-                else
-                {
-                    foreach (string packageId in packages.Split(':').ToList())
+                    foreach (var pkg in packages.Split(':'))
                     {
-                        NUIGadgetInfo info = NUIGadgetInfo.CreateNUIGadgetInfo(packageId);
+                        var info = NUIGadgetInfo.CreateNUIGadgetInfo(pkg);
                         if (info != null)
                         {
-                            _gadgetInfos.Add(info.ResourceType, info);
+                            try
+                            {
+                                _gadgetInfos.TryAdd(info.ResourceType, info);
+                            }
+                            catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
+                            {
+                                Log.Error("Exception occurs. " + e.Message);
+                            }
                         }
                     }
                 }
@@ -67,43 +68,13 @@ namespace Tizen.NUI
                 Log.Warn("Failed to get environment variable");
             }
 
-            var context = (CoreApplication)CoreApplication.Current;
-            context.AppControlReceived += OnAppControlReceived;
-            context.LowMemory += OnLowMemory;
-            context.LowBattery += OnLowBattery;
-            context.LocaleChanged += OnLocaleChanged;
-            context.RegionFormatChanged += OnRegionFormatChanged;
-            context.DeviceOrientationChanged += OnDeviceOrientationChanged;
-        }
-
-        private static void OnAppControlReceived(object sender, AppControlReceivedEventArgs args)
-        {
-            HandleAppControl(args);
-        }
-
-        private static void OnLowMemory(object sender, LowMemoryEventArgs args)
-        {
-            HandleEvents(NUIGadgetEventType.LowMemory, args);
-        }
-
-        private static void OnLowBattery(object sender, LowBatteryEventArgs args)
-        {
-            HandleEvents(NUIGadgetEventType.LowBattery, args);
-        }
-
-        private static void OnLocaleChanged(object sender, LocaleChangedEventArgs args)
-        {
-            HandleEvents(NUIGadgetEventType.LocaleChanged, args);
-        }
-
-        private static void OnRegionFormatChanged(object sender, RegionFormatChangedEventArgs args)
-        {
-            HandleEvents(NUIGadgetEventType.RegionFormatChanged, args);
-        }
-
-        private static void OnDeviceOrientationChanged(object sender, DeviceOrientationEventArgs args)
-        {
-            HandleEvents(NUIGadgetEventType.DeviceORientationChanged, args);
+            var app = (CoreApplication)CoreApplication.Current;
+            app.AppControlReceived += (s, e) => HandleAppControl(e);
+            app.LowMemory += (s, e) => HandleEvents(NUIGadgetEventType.LowMemory, e);
+            app.LowBattery += (s, e) => HandleEvents(NUIGadgetEventType.LowBattery, e);
+            app.LocaleChanged += (s, e) => HandleEvents(NUIGadgetEventType.LocaleChanged, e);
+            app.RegionFormatChanged += (s, e) => HandleEvents(NUIGadgetEventType.RegionFormatChanged, e);
+            app.DeviceOrientationChanged += (s, e) => HandleEvents(NUIGadgetEventType.DeviceOrientationChanged, e);
         }
 
         /// <summary>
@@ -123,13 +94,13 @@ namespace Tizen.NUI
             if (args.State == NUIGadgetLifecycleState.Destroyed)
             {
                 args.Gadget.LifecycleChanged -= OnNUIGadgetLifecycleChanged;
-                _gadgets.Remove(args.Gadget);
+                _gadgets.TryRemove(args.Gadget, out _);
             }
         }
 
         private static NUIGadgetInfo Find(string resourceType)
         {
-            if (!_gadgetInfos.TryGetValue(resourceType, out NUIGadgetInfo info))
+            if (!_gadgetInfos.TryGetValue(resourceType, out var info))
             {
                 throw new ArgumentException("Failed to find NUIGadgetInfo. resource type: " + resourceType);
             }
@@ -148,10 +119,7 @@ namespace Tizen.NUI
         /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <since_tizen> 10 </since_tizen>
-        public static void Load(string resourceType)
-        {
-            Load(resourceType, true);
-        }
+        public static void Load(string resourceType) => Load(resourceType, true);
 
         /// <summary>
         /// Loads an assembly of the NUIGadget.
@@ -169,60 +137,14 @@ namespace Tizen.NUI
             }
 
             NUIGadgetInfo info = Find(resourceType);
-            Load(info, useDefaultContext);
+            LoadInternal(info, useDefaultContext);
         }
 
-        /// <summary>
-        /// Unloads the specified NUIGadget assembly from memory.
-        /// </summary>
-        /// <remarks>
-        /// To use this method properly, the assembly of the gadget must be loaded using Load() with the custom context.
-        /// </remarks>
-        /// <param name="resourceType">The resource type of the NUIGadget package to unload.</param>
-        /// <exception cref="ArgumentException">Thrown when the argument passed is not valid.</exception>
-        /// <example>
-        /// <code>
-        /// /// Load an assembly of the NUIGadget.
-        /// NUIGadgetManager.Load("org.tizen.appfw.gadget.NetworkSetting", false);
-        /// /// NUIGadgetManager.Add("org.tizen.appfw.gadget.NetworkSetting", "NetworkSettingGadget", false);
-        ///
-        /// /// Unload the loaded assembly
-        /// NUIGadgetManager.Unload("org.tizen.appfw.gadget.NetworkSetting");
-        /// </code>
-        /// </example>
-        /// <since_tizen> 10 </since_tizen>
-        public static void Unload(string resourceType)
-        {
-            if (string.IsNullOrEmpty(resourceType))
-            {
-                throw new ArgumentException("Invalid argument");
-            }
-
-            NUIGadgetInfo info = Find(resourceType);
-            Unload(info);
-        }
-
-        private static void Unload(NUIGadgetInfo info)
+        private static void LoadInternal(NUIGadgetInfo info, bool useDefaultContext)
         {
             if (info == null)
             {
-                throw new ArgumentException("Invalid argument");
-            }
-
-            lock (info)
-            {
-                if (info.NUIGadgetAssembly != null && info.NUIGadgetAssembly.IsLoaded)
-                {
-                    info.NUIGadgetAssembly.Unload();
-                }
-            }
-        }
-
-        private static void Load(NUIGadgetInfo info, bool useDefaultContext)
-        {
-            if (info == null)
-            {
-                throw new ArgumentException("Invalid argument");
+                throw new ArgumentException("Invalid argument", nameof(info));
             }
 
             try
@@ -251,13 +173,50 @@ namespace Tizen.NUI
                     }
                 }
             }
-            catch (FileLoadException e)
+            catch (Exception e) when (e is FileLoadException || e is BadImageFormatException)
             {
-                throw new InvalidOperationException(e.Message);
+                throw new InvalidOperationException(e.Message, e);
             }
-            catch (BadImageFormatException e)
+        }
+
+        /// <summary>
+        /// Unloads the specified NUIGadget assembly from memory.
+        /// </summary>
+        /// <remarks>
+        /// To use this method properly, the assembly of the gadget must be loaded using Load() with the custom context.
+        /// </remarks>
+        /// <param name="resourceType">The resource type of the NUIGadget package to unload.</param>
+        /// <exception cref="ArgumentException">Thrown when the argument passed is not valid.</exception>
+        /// <example>
+        /// <code>
+        /// /// Load an assembly of the NUIGadget.
+        /// NUIGadgetManager.Load("org.tizen.appfw.gadget.NetworkSetting", false);
+        /// /// NUIGadgetManager.Add("org.tizen.appfw.gadget.NetworkSetting", "NetworkSettingGadget", false);
+        ///
+        /// /// Unload the loaded assembly
+        /// NUIGadgetManager.Unload("org.tizen.appfw.gadget.NetworkSetting");
+        /// </code>
+        /// </example>
+        /// <since_tizen> 10 </since_tizen>
+        public static void Unload(string resourceType)
+        {
+            if (string.IsNullOrWhiteSpace(resourceType))
             {
-                throw new InvalidOperationException(e.Message);
+                throw new ArgumentException("Invalid argument", nameof(resourceType));
+            }
+
+            NUIGadgetInfo info = Find(resourceType);
+            if (info == null)
+            {
+                throw new ArgumentException("Invalid argument", nameof(resourceType));
+            }
+
+            lock (info)
+            {
+                if (info.NUIGadgetAssembly?.IsLoaded == true)
+                {
+                    info.NUIGadgetAssembly.Unload();
+                }
             }
         }
 
@@ -270,10 +229,7 @@ namespace Tizen.NUI
         /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <since_tizen> 10 </since_tizen>
-        public static NUIGadget Add(string resourceType, string className)
-        {
-            return Add(resourceType, className, true);
-        }
+        public static NUIGadget Add(string resourceType, string className) => Add(resourceType, className, true);
 
         /// <summary>
         /// Adds a NUIGadget to the NUIGadgetManager.
@@ -290,13 +246,13 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         public static NUIGadget Add(string resourceType, string className, bool useDefaultContext)
         {
-            if (string.IsNullOrEmpty(resourceType) || string.IsNullOrEmpty(className))
+            if (string.IsNullOrWhiteSpace(resourceType) || string.IsNullOrWhiteSpace(className))
             {
                 throw new ArgumentException("Invalid argument");
             }
 
             NUIGadgetInfo info = Find(resourceType);
-            Load(info, useDefaultContext);
+            LoadInternal(info, useDefaultContext);
 
             NUIGadget gadget = useDefaultContext ? info.Assembly.CreateInstance(className, true) as NUIGadget : info.NUIGadgetAssembly.CreateInstance(className);
             if (gadget == null)
@@ -313,7 +269,7 @@ namespace Tizen.NUI
                 throw new InvalidOperationException("The View MUST be created");
             }
 
-            _gadgets.Add(gadget);
+            _gadgets.TryAdd(gadget, 0);
             return gadget;
         }
 
@@ -322,10 +278,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>An enumerable list containing all the active NUIGadgets.</returns>
         /// <since_tizen> 10 </since_tizen>
-        public static IEnumerable<NUIGadget> GetGadgets()
-        {
-            return _gadgets;
-        }
+        public static IEnumerable<NUIGadget> GetGadgets() => _gadgets.Keys;
 
         /// <summary>
         /// Retrieves information about available NUIGadgets.
@@ -337,10 +290,7 @@ namespace Tizen.NUI
         /// </remarks>
         /// <returns>An enumerable list of NUIGadgetInfo objects.</returns>
         /// <since_tizen> 10 </since_tizen>
-        public static IEnumerable<NUIGadgetInfo> GetGadgetInfos()
-        {
-            return _gadgetInfos.Values.ToList();
-        }
+        public static IEnumerable<NUIGadgetInfo> GetGadgetInfos() => _gadgetInfos.Values;
 
         /// <summary>
         /// Removes the specified NUIGadget from the NUIGadgetManager.
@@ -355,18 +305,14 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         public static void Remove(NUIGadget gadget)
         {
-            if (gadget == null || !_gadgets.Contains(gadget))
+            if (gadget == null || !_gadgets.ContainsKey(gadget) || gadget.State == NUIGadgetLifecycleState.Destroyed)
             {
                 return;
             }
 
-            if (gadget.State == NUIGadgetLifecycleState.Destroyed)
+            _gadgets.TryRemove(gadget, out _);
+            CoreApplication.Post(() =>
             {
-                return;
-            }
-
-            _gadgets.Remove(gadget);
-            CoreApplication.Post(() => {
                 Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
                 gadget.Finish();
             });
@@ -382,9 +328,9 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         public static void RemoveAll()
         {
-            for (int i = _gadgets.Count - 1;  i >= 0; i--)
+            foreach (var gadget in _gadgets.Keys.ToList())
             {
-                Remove(_gadgets[i]);
+                Remove(gadget);
             }
         }
 
@@ -416,7 +362,7 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(gadget));
             }
 
-            if (!_gadgets.Contains(gadget))
+            if (!_gadgets.ContainsKey(gadget))
             {
                 return;
             }
@@ -444,7 +390,7 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(gadget));
             }
 
-            if (!_gadgets.Contains(gadget))
+            if (!_gadgets.ContainsKey(gadget))
             {
                 return;
             }
@@ -471,9 +417,9 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(gadget));
             }
 
-            if (!_gadgets.Contains(gadget))
+            if (!_gadgets.ContainsKey(gadget))
             {
-                throw new ArgumentException("Invalid argument");
+                throw new ArgumentException("Invalid argument", nameof(gadget));
             }
 
             if (appControl == null)
@@ -487,13 +433,13 @@ namespace Tizen.NUI
         internal static bool HandleAppControl(AppControlReceivedEventArgs args)
         {
             var extraData = args.ReceivedAppControl?.ExtraData;
-            if (extraData == null||!extraData.TryGet("__K_GADGET_RES_TYPE", out string resourceType) ||
+            if (extraData == null || !extraData.TryGet("__K_GADGET_RES_TYPE", out string resourceType) ||
                 !extraData.TryGet("__K_GADGET_CLASS_NAME", out string className))
             {
                 return false;
             }
 
-            foreach (NUIGadget gadget in _gadgets)
+            foreach (var gadget in _gadgets.Keys)
             {
                 if (gadget.NUIGadgetInfo.ResourceType == resourceType && gadget.ClassName == className)
                 {
@@ -507,7 +453,7 @@ namespace Tizen.NUI
 
         internal static void HandleEvents(NUIGadgetEventType eventType, EventArgs args)
         {
-            foreach (NUIGadget gadget in _gadgets)
+            foreach (NUIGadget gadget in _gadgets.Keys)
             {
                 gadget.HandleEvents(eventType, args);
             }

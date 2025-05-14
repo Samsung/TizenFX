@@ -53,6 +53,34 @@ namespace Tizen.NUI
             { "imageShadow.Offset",         new VisualPropertyData(View.Property.SHADOW, (int)VisualTransformPropertyType.Offset) },
             { "shadow.CornerRadius",        new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
             { "shadow.CornerSquareness",    new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerSquareness, ObjectIntToFloat) },
+            { "gradient.StartOffset",       new VisualPropertyData(View.Property.BACKGROUND, GradientVisualProperty.StartOffset, ObjectIntToFloat) },
+        };
+        private static readonly Dictionary<string, VisualPropertyData> visualPropertyUpperCaseTable = new Dictionary<string, VisualPropertyData>()
+        {
+            { "BackgroundColor",            new VisualPropertyData(View.Property.BACKGROUND, ColorVisualProperty.MixColor, ObjectColorToVector4, PropertyValueColorToVector4) },
+            { "BackgroundOpacity",          new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.Opacity, ObjectIntToFloat) },
+            { "BoxShadow.BlurRadius",       new VisualPropertyData(View.Property.SHADOW, ColorVisualProperty.BlurRadius) },
+            { "BoxShadow.Color",            new VisualPropertyData(View.Property.SHADOW, ColorVisualProperty.MixColor, ObjectColorToVector4, PropertyValueColorToVector4) },
+            { "BoxShadow.CornerRadius",     new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
+            { "BoxShadow.CornerSquareness", new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerSquareness, ObjectIntToFloat) },
+            { "BoxShadow.Offset",           new VisualPropertyData(View.Property.SHADOW, (int)VisualTransformPropertyType.Offset) },
+            { "BoxShadow.Opacity",          new VisualPropertyData(View.Property.SHADOW, Visual.Property.Opacity, ObjectIntToFloat) },
+            { "CornerRadius",               new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.CornerRadius, null, null,
+                                            new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, null, null,
+                                            new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.CornerRadius, null, null))) },
+            { "CornerSquareness",           new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.CornerSquareness, null, null,
+                                            new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerSquareness, null, null,
+                                            new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.CornerSquareness, null, null))) },
+            { "BorderlineWidth",            new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.BorderlineWidth, ObjectIntToFloat, null,
+                                            new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.BorderlineWidth, ObjectIntToFloat, null)) },
+            { "BorderlineColor",            new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.BorderlineColor, null, null,
+                                            new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.BorderlineColor, null, null)) },
+            { "BorderlineOffset",           new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.BorderlineOffset, null, null,
+                                            new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.BorderlineOffset, null, null)) },
+            { "ImageShadow.Offset",         new VisualPropertyData(View.Property.SHADOW, (int)VisualTransformPropertyType.Offset) },
+            { "Shadow.CornerRadius",        new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
+            { "Shadow.CornerSquareness",    new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerSquareness, ObjectIntToFloat) },
+            { "Gradient.StartOffset",       new VisualPropertyData(View.Property.BACKGROUND, GradientVisualProperty.StartOffset, ObjectIntToFloat) },
         };
 
         static PropertyHelper() { }
@@ -62,7 +90,7 @@ namespace Tizen.NUI
         ///</summary>
         internal static Property GetPropertyFromString(Animatable handle, string stringProperty)
         {
-            Property property = new Property(handle, LowerFirstLetter(stringProperty));
+            Property property = new Property(handle, stringProperty);
             if (property.PropertyIndex == Property.InvalidIndex)
             {
                 throw new System.ArgumentException("string property is invalid");
@@ -76,19 +104,17 @@ namespace Tizen.NUI
         ///</summary>
         internal static SearchResult Search(Animatable animatable, string stringProperty)
         {
-            var propertyName = LowerFirstLetter(stringProperty);
-
             if(animatable is View)
             {
                 View view = animatable as View;
-                return SearchProperty(view, propertyName) ?? SearchVisualProperty(view, propertyName);
+                return SearchProperty(view, stringProperty) ?? SearchVisualProperty(view, stringProperty);
             }
-            return SearchProperty(animatable, propertyName);
+            return SearchProperty(animatable, stringProperty);
         }
 
-        private static SearchResult SearchProperty(Animatable animatable, string lowercasePropertyString)
+        private static SearchResult SearchProperty(Animatable animatable, string propertyName)
         {
-            Property property = new Property(animatable, lowercasePropertyString);
+            Property property = new Property(animatable, propertyName);
 
             if (property.PropertyIndex == Property.InvalidIndex)
             {
@@ -105,11 +131,15 @@ namespace Tizen.NUI
             return new SearchResult(property, converter);
         }
 
-        private static SearchResult SearchVisualProperty(View view, string lowercasePropertyString)
+        private static SearchResult SearchVisualProperty(View view, string propertyName)
         {
-            if (visualPropertyTable.TryGetValue(lowercasePropertyString, out var found))
+            if (visualPropertyTable.TryGetValue(propertyName, out var found))
             {
                 return GenerateVisualPropertySearchResult(view, found);
+            }
+            else if (visualPropertyUpperCaseTable.TryGetValue(propertyName, out var foundAtUpperCase))
+            {
+                return GenerateVisualPropertySearchResult(view, foundAtUpperCase);
             }
 
             return null;
@@ -135,13 +165,6 @@ namespace Tizen.NUI
             }
 
             return result;
-        }
-
-        private static string LowerFirstLetter(string original)
-        {
-            StringBuilder sb = new StringBuilder(original);
-            sb[0] = (char)(sb[0] | 0x20);
-            return sb.ToString();
         }
 
         private static object ObjectColorToVector4(object value)

@@ -174,7 +174,7 @@ namespace Tizen.NUI
                 case NUIGadgetEventType.RegionFormatChanged:
                     OnRegionFormatChanged((RegionFormatChangedEventArgs)args);
                     break;
-                case NUIGadgetEventType.DeviceORientationChanged:
+                case NUIGadgetEventType.DeviceOrientationChanged:
                     OnDeviceOrientationChanged((DeviceOrientationEventArgs)args);
                     break;
                 default:
