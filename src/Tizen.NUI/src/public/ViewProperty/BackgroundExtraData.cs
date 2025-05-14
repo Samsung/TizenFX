@@ -27,15 +27,11 @@ namespace Tizen.NUI
         private bool disposed;
         internal BackgroundExtraData()
         {
-            BorderlineColor = Tizen.NUI.Color.Black;
         }
 
         internal BackgroundExtraData(BackgroundExtraData other)
         {
             BackgroundImageBorder = other.BackgroundImageBorder;
-            BorderlineWidth = other.BorderlineWidth;
-            BorderlineColor = other.BorderlineColor;
-            BorderlineOffset = other.BorderlineOffset;
         }
 
         private Rectangle backgroundImageBorder;
@@ -62,12 +58,15 @@ namespace Tizen.NUI
         internal VisualTransformPolicyType CornerRadiusPolicy { get; set; } = VisualTransformPolicyType.Absolute;
 
         /// <summary></summary>
+        [Obsolete("Do not use this, that is deprecated in API13.")]
         internal float BorderlineWidth { get; set; }
 
         /// <summary></summary>
+        [Obsolete("Do not use this, that is deprecated in API13.")]
         internal Color BorderlineColor { get; set; }
 
         /// <summary></summary>
+        [Obsolete("Do not use this, that is deprecated in API13.")]
         internal float BorderlineOffset { get; set; }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

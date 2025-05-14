@@ -240,14 +240,6 @@ namespace Tizen.NUI.BaseComponents
 
                 Image = map;
 
-                if (backgroundExtraData != null)
-                {
-                    if (backgroundExtraData.BorderlineWidth > 0.0f)
-                    {
-                        UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.ContentsBorderline);
-                    }
-                }
-
                 // All states applied well.
                 currentStates.changed = false;
 

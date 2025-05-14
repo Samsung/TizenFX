@@ -34,6 +34,7 @@ namespace Tizen.NUI
         private GradientVisualUnitsType? _units;
         private GradientVisualSpreadMethodType? _spreadMethod;
         private float? _startOffset;
+        private float? _startAngle;
 
         /// <summary>
         /// Default constructor of GradientVisual.
@@ -81,7 +82,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets or sets the center point of a radial gradient.<br />
-        /// Mandatory for radial.<br />
+        /// Mandatory for radial and conic.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Vector2 Center
@@ -208,6 +209,25 @@ namespace Tizen.NUI
             set
             {
                 _startOffset = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the start angle of the conic gradient.<br />
+        /// Mandatory for conic.<br />
+        /// Optional.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float StartAngle
+        {
+            get
+            {
+                return _startAngle ?? (0.0f);
+            }
+            set
+            {
+                _startAngle = value;
                 UpdateVisual();
             }
         }
