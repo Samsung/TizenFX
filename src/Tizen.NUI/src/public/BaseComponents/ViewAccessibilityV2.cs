@@ -23,41 +23,46 @@ using Tizen.NUI;
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
-    /// AccessibilityState2 is an enumeration that represents the states of the view to send to accessibility service.
+    /// AccessibilityStateV2 is an enumeration that represents the states of the view to send to accessibility service.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum AccessibilityState2
+    public enum AccessibilityStateV2
     {
         /// <summary>
         /// Indicates whether the view is enabled or not.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Enabled = 0,
         /// <summary>
         /// Indicates whether a selectable element is currently selected or not.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Selected,
         /// <summary>
         /// Indicates the state of a checkable element.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Checked,
         /// <summary>
         /// Indicates whether an element is currently busy or not.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Busy,
         /// <summary>
         /// Indicates whether an expandable element is currently expanded or collapsed.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Expanded
     }
 
     /// <summary>
-    /// The AccessibilityStates2 structure represents a set of states of the view to communicate to accessibility service.
+    /// The AccessibilityStatesV2 structure represents a set of states of the view to communicate to accessibility service.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct AccessibilityStates2
+    public struct AccessibilityStatesV2
     {
         const uint _on = 1;
-        uint _bitMask;
+        private uint _bitMask;
 
         /// <summary>
         /// Gets the state at the specsified name
@@ -65,7 +70,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="state">The name of the state</param>
         /// <returns>The state af the specified name</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool this[AccessibilityState2 state]
+        public bool this[AccessibilityStateV2 state]
         {
             get
             {
@@ -84,21 +89,21 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        AccessibilityStates2(int states)
+        AccessibilityStatesV2(int states)
         {
             _bitMask = (uint)states;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static explicit operator int(AccessibilityStates2 state)
+        public static explicit operator int(AccessibilityStatesV2 state)
         {
             return (int)state._bitMask;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static explicit operator AccessibilityStates2(int states)
+        public static explicit operator AccessibilityStatesV2(int states)
         {
-            return new AccessibilityStates2(states);
+            return new AccessibilityStatesV2(states);
         }
     }
 
@@ -106,119 +111,147 @@ namespace Tizen.NUI.BaseComponents
     /// Specifies the role of an accessible object.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum AccessibilityRole2
+    public enum AccessibilityRoleV2
     {
         /// <summary>
         /// A slider
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Adjustable = 200,
         /// <summary>
         /// An alert
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Alert,
         /// <summary>
         /// A button
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Button,
         /// <summary>
         /// A check box
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         CheckBox,
         /// <summary>
         /// A combo box
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         ComboBox,
         /// <summary>
         /// A container
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Container,
         /// <summary>
         /// A dialog
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Dialog,
         /// <summary>
         /// An entry
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Entry,
         /// <summary>
         /// A header
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Header,
         /// <summary>
         /// An Image
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Image,
         /// <summary>
         /// A link
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Link,
         /// <summary>
         /// A list
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         List,
         /// <summary>
         /// An item of the list
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         ListItem,
         /// <summary>
         /// A menu
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Menu,
         /// <summary>
         /// A menu bar
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         MenuBar,
         /// <summary>
         /// An item of the menu
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         MenuItem,
         /// <summary>
         /// None
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         None,
         /// <summary>
         /// A password text
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         PasswordText,
         /// <summary>
         /// A popup menu
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         PopupMenu,
         /// <summary>
         /// A progress bar
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         ProgressBar,
         /// <summary>
         /// A radio button
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         RadioButton,
         /// <summary>
         /// A scroll bar
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         ScrollBar,
         /// <summary>
         /// A spin button
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         SpinButton,
         /// <summary>
         /// A tab
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Tab,
         /// <summary>
         /// A tab list
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         TabList,
         /// <summary>
         /// A text
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Text,
         /// <summary>
         /// A toggle button
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         ToggleButton,
         /// <summary>
         /// a tool bar
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Toolbar,
     }
 
@@ -232,24 +265,22 @@ namespace Tizen.NUI.BaseComponents
         // ************ Accessibility Methods for Version 2 ************ //
         ///////////////////////////////////////////////////////////////////
 
-
         /// <summary>
-        /// Gets the AccessibilityStates property of the view.
+        /// Gets the AccessibilityStatesV2 property of the view.
         /// </summary>
-        /// <returns>The states<see cref="AccessibilityStates2"/> of the view</returns>
+        /// <returns>The states<see cref="AccessibilityStatesV2"/> of the view</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AccessibilityStates2 GetAccessibilityStates2()
+        public AccessibilityStatesV2 GetAccessibilityStatesV2()
         {
-
-            return (AccessibilityStates2)Object.InternalGetPropertyInt(SwigCPtr, Property.AccessibilityState);
+            return (AccessibilityStatesV2)Object.InternalGetPropertyInt(SwigCPtr, Property.AccessibilityState);
         }
 
         /// <summary>
-        /// Sets the AccessibilityStates property of the view.
+        /// Sets the AccessibilityStatesV2 property of the view.
         /// </summary>
-        /// <param name="states">The states<see cref="AccessibilityStates2"/> value to set.</param>
+        /// <param name="states">The states<see cref="AccessibilityStatesV2"/> value to set.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetAccessibilityStates2(AccessibilityStates2 states)
+        public void SetAccessibilityStatesV2(AccessibilityStatesV2 states)
         {
             Object.InternalSetPropertyInt(SwigCPtr, Property.AccessibilityState, (int)states);
         }
@@ -257,19 +288,19 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets the accessibility role of the view.
         /// </summary>
-        /// <returns>The role<see cref="AccessibilityRole2"/> of the view</returns>
+        /// <returns>The role<see cref="AccessibilityRoleV2"/> of the view</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AccessibilityRole2 GetAccessibilityRole()
+        public AccessibilityRoleV2 GetAccessibilityRoleV2()
         {
-            return (AccessibilityRole2)Object.InternalGetPropertyInt(SwigCPtr, Property.AccessibilityRole);
+            return (AccessibilityRoleV2)Object.InternalGetPropertyInt(SwigCPtr, Property.AccessibilityRole);
         }
 
         /// <summary>
         /// Sets the accessibiltiy role of the view.
         /// </summary>
-        /// <param name="role">The role<see cref="AccessibilityRole2"/> value to set.</param>
+        /// <param name="role">The role<see cref="AccessibilityRoleV2"/> value to set.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetAccessibilityRole(AccessibilityRole2 role)
+        public void SetAccessibilityRoleV2(AccessibilityRoleV2 role)
         {
             Object.InternalSetPropertyInt(SwigCPtr, Property.AccessibilityRole, (int)role);
         }
