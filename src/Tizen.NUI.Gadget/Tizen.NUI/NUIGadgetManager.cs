@@ -78,6 +78,7 @@ namespace Tizen.NUI
             app.LowBattery += (s, e) => HandleEvents(NUIGadgetEventType.LowBattery, e);
             app.LocaleChanged += (s, e) => HandleEvents(NUIGadgetEventType.LocaleChanged, e);
             app.RegionFormatChanged += (s, e) => HandleEvents(NUIGadgetEventType.RegionFormatChanged, e);
+            app.DeviceOrientationChanged += (s, e) => HandleEvents(NUIGadgetEventType.DeviceOrientationChanged, e);
         }
 
         /// <summary>
