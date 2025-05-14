@@ -138,18 +138,68 @@ namespace Tizen.NUI.BaseComponents
             Custom,
         }
 
-        private static IntPtr NewWithAccessibilityMode(ViewAccessibilityMode accessibilityMode)
+        /// <summary>
+        /// ResizePolicy mode for controlling View's Relayout implementation.
+        /// It will be used when we can ensure that current view
+        /// will not use ResizePolicy and Relayout signal.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum ViewResizePolicyMode
+        {
+            /// <summary>
+            /// Default implementation. Will consider ResizePolicy and Relayout implementations
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Default,
+            /// <summary>
+            /// Ignore ResizePolicy and relative functions.
+            /// </summary>
+            /// <remarks>
+            /// It will be useful when we can assume that this View is...
+            /// - Always be existed under Layout.
+            /// - ResizePolicy don't need.
+            /// - Relayout event not used.
+            /// - Internal visuals and VisualObjects don't use FittingMode.
+            /// - Text don't need.
+            /// </remarks>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Ignore,
+        }
+
+        private static IntPtr NewWithAccessibilityModeAndResizePolicyMode(ViewAccessibilityMode accessibilityMode, ViewResizePolicyMode resizePolicyMode)
         {
             switch (accessibilityMode)
             {
                 case ViewAccessibilityMode.Custom:
                 {
-                    return Interop.View.NewCustom((int)GetDefaultViewBehaviour());
+                    switch (resizePolicyMode)
+                    {
+                        case ViewResizePolicyMode.Ignore:
+                        {
+                            return Interop.View.NewCustom((int)GetDefaultViewBehaviour() | (int)(CustomViewBehaviour.DisableSizeNegotiation));
+                        }
+                        case ViewResizePolicyMode.Default:
+                        default:
+                        {
+                            return Interop.View.NewCustom((int)GetDefaultViewBehaviour());
+                        }
+                    }
                 }
                 case ViewAccessibilityMode.Default:
                 default:
                 {
-                    return Interop.View.New((int)GetDefaultViewBehaviour());
+                    switch (resizePolicyMode)
+                    {
+                        case ViewResizePolicyMode.Ignore:
+                        {
+                            return Interop.View.New((int)GetDefaultViewBehaviour() | (int)(CustomViewBehaviour.DisableSizeNegotiation));
+                        }
+                        case ViewResizePolicyMode.Default:
+                        default:
+                        {
+                            return Interop.View.New((int)GetDefaultViewBehaviour());
+                        }
+                    }
                 }
             }
         }
@@ -163,9 +213,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public View(ViewAccessibilityMode accessibilityMode) : this(NewWithAccessibilityMode(accessibilityMode), true)
+        public View(ViewAccessibilityMode accessibilityMode) : this(accessibilityMode, ViewResizePolicyMode.Default)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View(ViewResizePolicyMode resizePolicyMode) : this(ViewAccessibilityMode.Default, resizePolicyMode)
+        {
         }
 
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
@@ -234,6 +288,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal View(ViewAccessibilityMode accessibilityMode, ViewResizePolicyMode resizePolicyMode) : this(NewWithAccessibilityModeAndResizePolicyMode(accessibilityMode, resizePolicyMode), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
