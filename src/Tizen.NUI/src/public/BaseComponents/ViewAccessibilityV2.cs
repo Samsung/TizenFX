@@ -61,7 +61,7 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public struct AccessibilityStatesV2
     {
-        const uint _on = 1;
+        const uint c_on = 1;
         private uint _bitMask;
 
         /// <summary>
@@ -76,23 +76,22 @@ namespace Tizen.NUI.BaseComponents
         /// in a single integer field (_bitMask). Each state corresponds to a specific bit position determined
         /// by its enum value.
         /// </remarks>
-        /// </example>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool this[AccessibilityStateV2 state]
         {
             get
             {
-                return Convert.ToBoolean(_bitMask & (_on << (int)state));
+                return Convert.ToBoolean(_bitMask & (c_on << (int)state));
             }
             set
             {
                 if (value)
                 {
-                    _bitMask |= (_on << (int)state);
+                    _bitMask |= (c_on << (int)state);
                 }
                 else
                 {
-                    _bitMask &= ~(_on << (int)state);
+                    _bitMask &= ~(c_on << (int)state);
                 }
             }
         }
