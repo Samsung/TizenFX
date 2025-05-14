@@ -19,7 +19,6 @@ using System;
 using Tizen.NUI.Binding;
 using System.ComponentModel;
 using System.Globalization;
-using static Tizen.NUI.Shader.Hint;
 
 namespace Tizen.NUI
 {
