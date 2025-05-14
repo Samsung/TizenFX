@@ -240,6 +240,14 @@ namespace Tizen.NUI.BaseComponents
 
                 Image = map;
 
+                if (backgroundExtraData != null)
+                {
+                    if (backgroundExtraData.CornerRadius != null || backgroundExtraData.CornerSquareness != null)
+                    {
+                        UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.ContentsCornerRadius);
+                    }
+                }
+
                 // All states applied well.
                 currentStates.changed = false;
 
