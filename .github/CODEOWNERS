@@ -13,37 +13,37 @@
 /src/Tizen.Account.SyncManager/ @randeepsingh01 @d1-agarwal
 
 # APPLICATION FW
-# /src/Tizen.Applications.Alarm/ @kilig
+/src/Tizen.Applications.Alarm/ @kilig @hjhun @jusung-son
 # /src/Tizen.Applications.AttachPanel/ @engfaruque
-/src/Tizen.Applications.Badge/ @sukhyungkang
-/src/Tizen.Applications.Cion/ @jusung-son
-/src/Tizen.Applications.Common/ @upple
-/src/Tizen.Applications.ComponentBased.ComponentManager/ @upple
-/src/Tizen.Applications.ComponentBased.Default/ @upple
-/src/Tizen.Applications.ComponentBased.Port/ @upple
-/src/Tizen.Applications.ComponentBased/ @upple
-/src/Tizen.Applications.DataControl/ @jusung-son
-/src/Tizen.Applications.EventManager/ @jusung-son
-/src/Tizen.Applications.MessagePort/ @jusung-son
-/src/Tizen.Applications.Notification/ @sukhyungkang
-/src/Tizen.Applications.NotificationEventListener/ @sukhyungkang
-/src/Tizen.Applications.PackageManager/ @jeremy-jang
-/src/Tizen.Applications.Preference/ @sukhyungkang
-/src/Tizen.Applications.RemoteView/ @sukhyungkang
-/src/Tizen.Applications.Service/ @upple
-/src/Tizen.Applications.Shortcut/ @sukhyungkang
-/src/Tizen.Applications.ThemeManager/ @jeremy-jang
-/src/Tizen.Applications.ToastMessage/ @sukhyungkang
-/src/Tizen.Applications.UI/ @upple
-/src/Tizen.Applications.WatchApplication/ @sukhyungkang
-/src/Tizen.Applications.WatchfaceComplication/ @sukhyungkang
-/src/Tizen.Applications.WidgetApplication/ @sukhyungkang
-/src/Tizen.Applications.WidgetControl/ @sukhyungkang
+/src/Tizen.Applications.Badge/ @sukhyungkang @hjhun
+/src/Tizen.Applications.Cion/ @jusung-son @hjhun
+/src/Tizen.Applications.Common/ @upple @hjhun @pjh9216
+/src/Tizen.Applications.ComponentBased.ComponentManager/ @upple @hjhun @pjh9216
+/src/Tizen.Applications.ComponentBased.Default/ @upple @hjhun @pjh9216
+/src/Tizen.Applications.ComponentBased.Port/ @upple @hjhun @pjh9216
+/src/Tizen.Applications.ComponentBased/ @upple @hjhun @pjh9216
+/src/Tizen.Applications.DataControl/ @jusung-son @hjhun @kilig
+/src/Tizen.Applications.EventManager/ @jusung-son @hjhun @kilig
+/src/Tizen.Applications.MessagePort/ @jusung-son @hjhun @kilig
+/src/Tizen.Applications.Notification/ @sukhyungkang @hjhun @jusung-son
+/src/Tizen.Applications.NotificationEventListener/ @sukhyungkang @hjhun @jusung-son
+/src/Tizen.Applications.PackageManager/ @jeremy-jang @hjhun
+/src/Tizen.Applications.Preference/ @sukhyungkang @hjhun @upple
+/src/Tizen.Applications.RemoteView/ @sukhyungkang @hjhun @kilig
+/src/Tizen.Applications.Service/ @upple @hjhun @pjh9216
+/src/Tizen.Applications.Shortcut/ @sukhyungkang @hjhun @jusung-son
+/src/Tizen.Applications.ThemeManager/ @jeremy-jang @hjhun
+/src/Tizen.Applications.ToastMessage/ @sukhyungkang @hjhun @jusung-son
+/src/Tizen.Applications.UI/ @upple @hjhun @pjh9216
+/src/Tizen.Applications.WatchApplication/ @sukhyungkang @hjhun @kilig
+/src/Tizen.Applications.WatchfaceComplication/ @sukhyungkang @hjhun @kilig
+/src/Tizen.Applications.WidgetApplication/ @sukhyungkang @hjhun @kilig
+/src/Tizen.Applications.WidgetControl/ @sukhyungkang @hjhun @kilig
 
 # CONTENT
 /src/Tizen.Content.Download/ @chleun-moon @SeonahMoon
 /src/Tizen.Content.MediaContent/ @hsgwon @eunhaechoi
-/src/Tizen.Content.MimeType/ @sukhyungkang
+/src/Tizen.Content.MimeType/ @sukhyungkang @hjhun
 
 # CONTEXT
 /src/Tizen.Context/ @dh79pyun
@@ -133,7 +133,7 @@
 /src/Tizen.System/ @chanwoochoi @germonado
 /src/Tizen.System.Feedback/ @chanwoochoi @germonado
 /src/Tizen.System.Information/ @chanwoochoi @ppdl
-/src/Tizen.System.MediaKey/ @sukhyungkang
+/src/Tizen.System.MediaKey/ @sukhyungkang @hjhun
 /src/Tizen.System.PlatformConfig/ @chanwoochoi @ppdl
 /src/Tizen.System.PowerUsage/ @chanwoochoi
 /src/Tizen.System.Resource/ @chanwoochoi @ul24 @SangyounKwak
