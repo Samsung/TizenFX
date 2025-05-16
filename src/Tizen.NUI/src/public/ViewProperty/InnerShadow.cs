@@ -117,10 +117,6 @@ namespace Tizen.NUI
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public object Clone() => new InnerShadow(this);
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override PropertyMap GetPropertyMap()
         {
             var map = base.GetPropertyMap();
@@ -133,6 +129,11 @@ namespace Tizen.NUI
             map.Set(Visual.Property.BorderlineOffset, -1.0f);
 
             return map;
+        }
+
+        internal override object OnClone()
+        {
+            return new InnerShadow(this);
         }
 
         /// <summary>
