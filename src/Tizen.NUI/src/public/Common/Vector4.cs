@@ -680,6 +680,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Returns the length of the xyz components of vector.
+        /// </summary>
+        /// <returns>The length of xyz components.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float Length3()
+        {
+            float ret = Interop.Vector4.Length3(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Returns the length of the vector squared.<br />
         /// This is faster than using Length() when performing
         /// threshold checks as it avoids use of the square root.<br />
@@ -694,6 +706,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Returns the length of the vector squared.<br />
+        /// This is faster than using Length() when performing
+        /// threshold checks as it avoids use of the square root.<br />
+        /// </summary>
+        /// <returns>The length of xyz components vector squared.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float LengthSquared3()
+        {
+            float ret = Interop.Vector4.LengthSquared3(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Normalizes the vector.<br />
         /// Sets the vector to unit length whilst maintaining its direction.<br />
         /// </summary>
@@ -701,6 +727,17 @@ namespace Tizen.NUI
         public void Normalize()
         {
             Interop.Vector4.Normalize(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Normalizes the vector of xyz components.<br />
+        /// Sets the vector to unit length whilst maintaining its direction.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Normalize3()
+        {
+            Interop.Vector4.Normalize3(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -746,9 +783,15 @@ namespace Tizen.NUI
             return ret;
         }
 
+        [Obsolete("Do not use this, that will be deprecated. Use Vector4.Dot() instead.")]
         internal float Dot4(Vector4 other)
         {
-            float ret = Interop.Vector4.Dot4(SwigCPtr, Vector4.getCPtr(other));
+            return Dot(other);
+        }
+
+        internal float Dot3(Vector4 other)
+        {
+            float ret = Interop.Vector4.Dot3(SwigCPtr, Vector4.getCPtr(other));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
