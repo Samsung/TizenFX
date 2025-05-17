@@ -168,7 +168,15 @@ namespace Tizen.NUI
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public object Clone() => new Shadow(this);
+        public object Clone()
+        {
+            return OnClone();
+        }
+
+        internal virtual object OnClone()
+        {
+            return new Shadow(this);
+        }
 
         internal override bool IsEmpty()
         {

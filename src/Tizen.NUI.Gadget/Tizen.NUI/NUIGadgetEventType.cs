@@ -26,6 +26,6 @@ namespace Tizen.NUI
 
         RegionFormatChanged = 3,
 
-        DeviceORientationChanged = 4,
+        DeviceOrientationChanged = 4,
     }
 }

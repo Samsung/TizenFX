@@ -22,6 +22,6 @@ internal static partial class Interop
     internal static partial class Libc
     {
         [DllImport(Libraries.Libc, EntryPoint = "getenv")]
-        internal static extern IntPtr GetEnviornmentVariable(string name);
+        internal static extern IntPtr GetEnvironmentVariable(string name);
     }
 }
