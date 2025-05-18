@@ -135,6 +135,21 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal static int InternalSetProperty4FloatValues(HandleRef actor, int propertyType, float x, float y, float z, float w)
+        {
+            if (actor.Handle == System.IntPtr.Zero)
+            {
+                throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+            }
+            var ret = Interop.Actor.InternalSetPropertyVector4(actor, propertyType, x, y, z, w);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return ret;
+        }
+
         internal static int InternalRetrievingPropertyVector4(HandleRef actor, int propertyType, HandleRef retrievingVector4)
         {
             if (actor.Handle == System.IntPtr.Zero)
@@ -142,6 +157,21 @@ namespace Tizen.NUI
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
             var ret = Interop.Actor.InternalRetrievingPropertyVector4(actor, propertyType, retrievingVector4);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return ret;
+        }
+
+        internal static int InternalRetrievingProperty4FloatValues(HandleRef actor, int propertyType, out float x, out float y, out float z, out float w)
+        {
+            if (actor.Handle == System.IntPtr.Zero)
+            {
+                throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+            }
+            var ret = Interop.Actor.InternalRetrievingPropertyVector4(actor, propertyType, out x, out y, out z, out w);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -195,6 +225,21 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal static int InternalRetrievingPropertyVector3(HandleRef actor, int propertyType, out float x, out float y, out float z)
+        {
+            if (actor.Handle == System.IntPtr.Zero)
+            {
+                throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+            }
+            var ret = Interop.Actor.InternalRetrievingPropertyVector3(actor, propertyType, out x, out y, out z);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return ret;
+        }
+
         internal static int InternalSetPropertyVector3(HandleRef actor, int propertyType, HandleRef vector3)
         {
             if (actor.Handle == System.IntPtr.Zero)
@@ -202,6 +247,21 @@ namespace Tizen.NUI
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
             var ret = Interop.Actor.InternalSetPropertyVector3(actor, propertyType, vector3);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return ret;
+        }
+
+        internal static int InternalSetPropertyVector3(HandleRef actor, int propertyType, float x, float y, float z)
+        {
+            if (actor.Handle == System.IntPtr.Zero)
+            {
+                throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+            }
+            var ret = Interop.Actor.InternalSetProperty3FloatValues(actor, propertyType, x, y, z);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -322,6 +382,17 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal static int InternalRetrievingVisualProperty4FloatValues(HandleRef actor, int visualIndex, int visualPropertyIndex, out float x, out float y, out float z, out float w)
+        {
+            if (actor.Handle == System.IntPtr.Zero)
+            {
+                throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+            }
+            var ret = Interop.View.InternalRetrievingVisualProperty4FloatValues(actor, visualIndex, visualPropertyIndex, out x, out y, out z, out w);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
         /// <summary>
         /// Sets color value (vector4) to actor.
         /// </summary>
@@ -335,12 +406,8 @@ namespace Tizen.NUI
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
 
-            ReusablePool<Vector4>.GetOne((vector4, actor, propertyType, color) =>
-            {
-                vector4.Reset(color);
-                _ = Interop.Actor.InternalSetPropertyVector4(actor, propertyType, vector4.SwigCPtr);
-                NDalicPINVOKE.ThrowExceptionIfExists();
-            }, actor, propertyType, color);
+            _ = Interop.Actor.InternalSetPropertyVector4(actor, propertyType, color.R, color.G, color.B, color.A);
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
 
         /// <summary>
@@ -356,13 +423,9 @@ namespace Tizen.NUI
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
 
-            return ReusablePool<Vector4>.GetOne((vector4, actor, visualIndex, visualPropertyIndex) =>
-            {
-                vector4.Reset();
-                _ = Interop.View.InternalRetrievingVisualPropertyVector4(actor, visualIndex, visualPropertyIndex, vector4.SwigCPtr);
-                NDalicPINVOKE.ThrowExceptionIfExists();
-                return UIColor.From(vector4);
-            }, actor, visualIndex, visualPropertyIndex);
+            _ = Interop.View.InternalRetrievingVisualProperty4FloatValues(actor, visualIndex, visualPropertyIndex, out var r, out var g, out var b, out var a);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return new UIColor(r, g, b, a);
         }
 
         internal static void InternalSetPropertyMap(HandleRef actor, int propertyType, HandleRef map)

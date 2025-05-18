@@ -32,6 +32,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetParentOrigin")]
             public static extern void SetParentOrigin(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetParentOrigin_3FloatValues")]
+            public static extern void SetParentOrigin(global::System.Runtime.InteropServices.HandleRef jarg1, float x, float y, float z);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetSize__SWIG_0")]
             public static extern void SetSize(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
 
@@ -141,6 +144,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetColor")]
             public static extern void SetColor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetColor_4FloatValues")]
+            public static extern void SetColor(global::System.Runtime.InteropServices.HandleRef jarg1, float r, float g, float b, float a);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetColorMode")]
             public static extern void SetColorMode(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
@@ -192,6 +198,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveCurrentPropertyVector3")]
             public static extern int RetrieveCurrentPropertyVector3(HandleRef actor, int propertyType, HandleRef retrievingVector3);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveCurrentProperty3FloatValues")]
+            public static extern int RetrieveCurrentPropertyVector3(HandleRef actor, int propertyType, out float x, out float y, out float z);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveCurrentPropertyVector2ActualVector3")]
             public static extern int RetrieveCurrentPropertyVector2ActualVector3(HandleRef actor, int propertyType, HandleRef retrievingVector2);
 
@@ -200,6 +209,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveCurrentPropertyVector4")]
             public static extern int RetrieveCurrentPropertyVector4(HandleRef actor, int propertyType, HandleRef retrievingVector4);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveCurrentProperty4FloatValues")]
+            public static extern int RetrieveCurrentProperty4FloatValues(HandleRef actor, int propertyType, out float x, out float y, out float z, out float w);
         }
     }
 }

@@ -106,6 +106,13 @@ namespace Tizen.NUI
                 return;
             }
 
+            if (swigCPtr.Handle == IntPtr.Zero)
+            {
+                //Added by xiaohui.fang
+                //If object don't has DALi instance, don't need to dispose.
+                return;
+            }
+
             if (disposing)
             {
                 // TODO: dispose managed state (managed objects).

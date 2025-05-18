@@ -49,7 +49,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="position">Position to create this vector from</param>
         /// <since_tizen> 3 </since_tizen>
-        public Position2D(Position position) : this(Interop.Vector2.NewVector2WithVector3(Position.getCPtr(position)), true)
+        public Position2D(Position position) : this((int)position.X, (int)position.Y)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

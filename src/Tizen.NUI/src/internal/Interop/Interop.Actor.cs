@@ -61,6 +61,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetAnchorPoint")]
             public static extern void SetAnchorPoint(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetAnchorPoint_3FloatValues")]
+            public static extern void SetAnchorPoint(global::System.Runtime.InteropServices.HandleRef jarg1, float x, float y, float z);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_FindChildById")]
             public static extern global::System.IntPtr FindChildById(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
@@ -143,17 +146,32 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalSetPropertyVector2")]
             public static extern int InternalSetPropertyVector2(HandleRef actor, int propertyType, HandleRef vector2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalSetProperty2FloatValues")]
+            public static extern int InternalSetProperty2FloatValues(HandleRef actor, int propertyType, float x, float y);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingPropertyVector3")]
             public static extern int InternalRetrievingPropertyVector3(HandleRef actor, int propertyType, HandleRef retrievingVector3);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingProperty3FloatValues")]
+            public static extern int InternalRetrievingPropertyVector3(HandleRef actor, int propertyType, out float x, out float y, out float z);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalSetPropertyVector3")]
             public static extern int InternalSetPropertyVector3(HandleRef actor, int propertyType, HandleRef vector3);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalSetProperty3FloatValues")]
+            public static extern int InternalSetProperty3FloatValues(HandleRef actor, int propertyType, float x, float y, float z);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingPropertyVector4")]
             public static extern int InternalRetrievingPropertyVector4(HandleRef actor, int propertyType, HandleRef retrievingVector4);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingProperty4FloatValues")]
+            public static extern int InternalRetrievingPropertyVector4(HandleRef actor, int propertyType, out float x, out float y, out float z, out float w);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalSetPropertyVector4")]
             public static extern int InternalSetPropertyVector4(HandleRef actor, int propertyType, HandleRef vector4);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalSetProperty4FloatValues")]
+            public static extern int InternalSetPropertyVector4(HandleRef actor, int propertyType, float x, float y, float z, float w);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingPropertyVector2ActualVector3")]
             public static extern int InternalRetrievingPropertyVector2ActualVector3(HandleRef actor, int propertyType, HandleRef retrievingVector2);
