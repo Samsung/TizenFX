@@ -1735,6 +1735,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        public void EnableSkipPreResumeFrames()
+        {
+            NDalicPINVOKE.ApplicationEnableSkipPreResumeFrames(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         public void MainLoop()
         {
             NDalicPINVOKE.ApplicationMainLoop(SwigCPtr);

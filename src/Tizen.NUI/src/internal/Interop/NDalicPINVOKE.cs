@@ -257,6 +257,9 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_New_WithWindowSizePosition")]
         public static extern global::System.IntPtr ApplicationNewWithWindowSizePosition(int jarg1, string jarg2, string jarg3, int jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
 
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_EnableSkipPreResumeFrames")]
+        public static extern void ApplicationEnableSkipPreResumeFrames(global::System.Runtime.InteropServices.HandleRef application);
+
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_MainLoop__SWIG_0")]
         public static extern void ApplicationMainLoop(global::System.Runtime.InteropServices.HandleRef jarg1);
 
