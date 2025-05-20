@@ -53,7 +53,7 @@
         <dependency id="Microsoft.NETCore.Platforms" version="6.0.9" />
       </group>
       <group targetFramework="net6.0">
-        <dependency id="Tizen.NET.API12" version="12.0.0.18510" />
+        <dependency id="Tizen.NET.API13" version="$fxversion$" />
         <dependency id="Microsoft.NETCore.Platforms" version="6.0.9" />
       </group>
       <group targetFramework="net8.0-tizen10.0">
