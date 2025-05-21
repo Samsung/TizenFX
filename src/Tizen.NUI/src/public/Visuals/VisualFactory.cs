@@ -94,6 +94,24 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Default creation options for the visual factory.
+        /// </summary>
+        /// <remarks>
+        /// All Visuals will got efforts when we call <see cref="CreateVisual"/>.
+        /// Default value is <see cref="VisualFactoryCreationOptions.None"/>.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VisualFactoryCreationOptions DefaultCreationOptions
+        {
+            get => (VisualFactoryCreationOptions)Interop.VisualFactory.GetDefaultCreationOptions(SwigCPtr);
+            set
+            {
+                Interop.VisualFactory.SetDefaultCreationOptions(SwigCPtr, (int)value);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
+        }
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(bool disposing)
         {
