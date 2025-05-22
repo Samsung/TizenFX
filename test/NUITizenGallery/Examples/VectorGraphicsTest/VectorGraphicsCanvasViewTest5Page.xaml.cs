@@ -1,5 +1,3 @@
-using System.Drawing;
-using System.Threading;
 /*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
@@ -16,6 +14,9 @@ using System.Threading;
  * limitations under the License.
  *
  */
+
+using System.Drawing;
+using System.Threading;
 using System;
 using System.Collections.Generic;
 using Tizen.NUI;
