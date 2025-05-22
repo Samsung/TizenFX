@@ -463,6 +463,121 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
+        private ScreenMirroringDisplayMode _displayMode;
+        /// <summary>
+        /// Gets or sets the display mode.
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        public ScreenMirroringDisplayMode DisplayMode
+        {
+            get
+            {
+                ThrowIfDisposed();
+
+                return _displayMode;
+            }
+            set
+            {
+                Native.SetDisplayMode(Handle, value).ThrowIfError("Failed to set display mode");
+                _displayMode = value;
+            }
+        }
+
+        private Rectangle _displayRoi;
+        /// <summary>
+        /// Gets or sets the display position and size of the receiver screen view.
+        /// </summary>
+        /// <remarks>
+        /// DisplayRoi will be applied when <see cref="DisplayMode"/> is <see cref="ScreenMirroringDisplayMode.CustomRoi"/>.
+        /// </remarks>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     DisplayRoi.X or DisplayRoi.Y is less than 0.<br/>
+        ///     -or-<br/>
+        ///     DisplayRoi.Width or DisplayRoi.Height is less than or equal to 0.<br/>
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        /// <seealso cref="DisplayMode"/>
+        /// <since_tizen> 13 </since_tizen>
+        public Rectangle DisplayRoi
+        {
+            get
+            {
+                ThrowIfDisposed();
+
+                return _displayRoi;
+            }
+            set
+            {
+                if (value.X < 0)
+                {
+                    throw new ArgumentOutOfRangeException("X", value.X,
+                        $"The X of the roi can't be less than zero.");
+                }
+                if (value.Y < 0)
+                {
+                    throw new ArgumentOutOfRangeException("Y", value.Y,
+                        $"The Y of the roi can't be less than zero.");
+                }
+                if (value.Width <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Width", value.Width,
+                        $"The Width of the roi can't be less than or equal to zero.");
+                }
+                if (value.Height <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Height", value.Height,
+                        $"The Height of the roi can't be less than or equal to zero.");
+                }
+
+                Native.SetDisplayRoi(Handle, value.X, value.Y, value.Width, value.Height)
+                    .ThrowIfError("Failed to set display ROI");
+                _displayRoi = value;
+            }
+        }
+
+        private Rotation _displayRotation;
+        /// <summary>
+        /// Gets or sets the display rotation.
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        public Rotation DisplayRotation
+        {
+            get
+            {
+                ThrowIfDisposed();
+
+                return _displayRotation;
+            }
+            set
+            {
+                Native.SetDisplayRotation(Handle, value).ThrowIfError("Failed to set display rotation");
+                _displayRotation = value;
+            }
+        }
+
+        private ScreenMirroringDeviceType _srcDeviceType;
+        /// <summary>
+        /// Gets or sets the source device type.
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        public ScreenMirroringDeviceType SourceDeviceType
+        {
+            get
+            {
+                ThrowIfDisposed();
+
+                return _srcDeviceType;
+            }
+            set
+            {
+                Native.SetSrcDeviceType(Handle, value).ThrowIfError("Failed to set source device type");
+                _srcDeviceType = value;
+            }
+        }
+
         /// <summary>
         /// Releases all resource used by the <see cref="ScreenMirroring"/> object.
         /// </summary>
