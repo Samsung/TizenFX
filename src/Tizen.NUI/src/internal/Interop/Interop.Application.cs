@@ -51,6 +51,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Application")]
             public static extern void DeleteApplication(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_EnableSkipPreResumeFrames")]
+            public static extern void ApplicationEnableSkipPreResumeFrames(global::System.Runtime.InteropServices.HandleRef application);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_Lower")]
             public static extern void Lower(global::System.Runtime.InteropServices.HandleRef jarg1);
 

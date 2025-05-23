@@ -495,6 +495,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Enables to skip frames those are requested previous resume/pause.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void EnableSkipPreResumeFrames()
+        {
+            if (ApplicationHandle != null && ApplicationHandle.SwigCPtr.Handle != IntPtr.Zero)
+            {
+                Interop.Application.ApplicationEnableSkipPreResumeFrames(ApplicationHandle.SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
         /// Registers the specified assembly to XAML, allowing types within the assembly to be used in XAML files.
         /// </summary>
         /// <param name="assembly">The assembly to register.</param>
