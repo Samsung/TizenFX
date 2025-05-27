@@ -7158,6 +7158,7 @@ namespace Tizen.NUI.BaseComponents
         {
             Object.InternalSetPropertyInt(SwigCPtr, Property.OffScreenRendering, (int)value);
         }
+
         private OffScreenRenderingType GetInternalOffScreenRendering()
         {
             int temp = Object.InternalGetPropertyInt(SwigCPtr, Property.OffScreenRendering);
@@ -7168,6 +7169,33 @@ namespace Tizen.NUI.BaseComponents
                 case 2: return OffScreenRenderingType.RefreshAlways;
                 default: return OffScreenRenderingType.None;
             }
+        }
+
+        /// <summary>
+        /// Gets of sets the flag to identify the View will be ignored or not.
+        /// If the View is marked as ignored, it will not be rendered and will be excluded from render thread computation.
+        /// So, the render thread properties like WorldPosition and WorldColor become inaccurate.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Ignored
+        {
+            set => SetInternalIgnored(value);
+            get => IsInternalIgnored();
+        }
+
+        private void SetInternalIgnored(bool ignored)
+        {
+            Interop.Actor.SetIgnored(SwigCPtr, ignored);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        private bool IsInternalIgnored()
+        {
+            bool isIgnored = Interop.Actor.IsIgnored(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return isIgnored;
         }
 
         private LayoutExtraData EnsureLayoutExtraData()
