@@ -367,6 +367,8 @@ namespace Tizen.NUI
         internal static readonly int GradientVisualStopColor = Interop.NDalicGradientVisual.GradientVisualStopColorGet();
         internal static readonly int GradientVisualUnits = Interop.NDalicGradientVisual.GradientVisualUnitsGet();
         internal static readonly int GradientVisualSpreadMethod = Interop.NDalicGradientVisual.GradientVisualSpreadMethodGet();
+        internal static readonly int GradientVisualStartOffset = Interop.NDalicGradientVisual.GradientVisualStartOffsetGet();
+        internal static readonly int GradientVisualStartAngle = Interop.NDalicGradientVisual.GradientVisualStartAngleGet();
 
         internal static readonly int ImageVisualUrl = Interop.NDalicImageVisual.ImageVisualUrlGet();
         internal static readonly int ImageVisualAlphaMaskUrl = Interop.NDalicImageVisual.ImageVisualAlphaMaskUrlGet();

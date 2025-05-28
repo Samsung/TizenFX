@@ -462,6 +462,18 @@ namespace Tizen.NUI
         {
         }
 
+        /// <summary>
+        /// Assign.
+        /// </summary>
+        /// <param name="rhs">A reference to the copied handle.</param>
+        /// <returns>A reference to this.</returns>
+        internal Rotation Assign(Rotation rhs)
+        {
+            Rotation ret = new Rotation(Interop.Rotation.RotationAssign(SwigCPtr, Rotation.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)

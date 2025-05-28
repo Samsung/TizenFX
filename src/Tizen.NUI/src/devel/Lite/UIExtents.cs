@@ -1,4 +1,21 @@
-﻿using System;
+﻿/*
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -9,6 +26,11 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public struct UIExtents : IEquatable<UIExtents>
     {
+        /// <summary>
+        /// Represents a <see cref="UIExtents"/> with all values set to 0.
+        /// </summary>
+        public static readonly UIExtents Zero = new (0);
+
         /// <summary>
         /// Initializes a new instance of the <see cref="UIExtents"/> struct with the specified uniform size.
         /// </summary>
@@ -72,9 +94,9 @@ namespace Tizen.NUI
         public float VerticalExtents => Top + Bottom;
 
         /// <summary>
-        /// Gets a value indicating whether all borders have a width of 0.
+        /// Gets a value indicating whether this is zero.
         /// </summary>
-        public bool IsEmpty => Start == 0 && Top == 0 && End == 0 && Bottom == 0;
+        public readonly bool IsZero => Start == 0 && Top == 0 && End == 0 && Bottom == 0;
 
         /// <summary>
         /// Gets a value indicating whether any border has a width of NaN.
@@ -155,11 +177,6 @@ namespace Tizen.NUI
             top = Top;
             bottom = Bottom;
         }
-
-        /// <summary>
-        /// Represents a <see cref="UIExtents"/> with all values set to 0.
-        /// </summary>
-        public static readonly UIExtents Zero = new (0);
 
         /// <summary>
         /// Adds the specified <see cref="float"/> to each component of the <see cref="UIExtents"/>.

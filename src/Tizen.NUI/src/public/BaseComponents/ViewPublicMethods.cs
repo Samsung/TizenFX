@@ -391,8 +391,7 @@ namespace Tizen.NUI.BaseComponents
                 parentChildren.Remove(this);
                 parentChildren.Add(this);
 
-                LayoutGroup layout = Layout as LayoutGroup;
-                layout?.ChangeLayoutSiblingOrder(parentChildren.Count - 1);
+                Layout?.ChangeLayoutSiblingOrder(parentChildren.Count - 1);
 
                 Interop.NDalic.RaiseToTop(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -418,8 +417,7 @@ namespace Tizen.NUI.BaseComponents
                 parentChildren.Remove(this);
                 parentChildren.Insert(0, this);
 
-                LayoutGroup layout = Layout as LayoutGroup;
-                layout?.ChangeLayoutSiblingOrder(0);
+                Layout?.ChangeLayoutSiblingOrder(0);
 
                 Interop.NDalic.LowerToBottom(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -501,6 +499,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 // Register new camera into Registry.
                 ret = new Animatable(cPtr, true);
+                return ret;
             }
             else
             {
@@ -508,9 +507,9 @@ namespace Tizen.NUI.BaseComponents
                 HandleRef handle = new HandleRef(this, cPtr);
                 Interop.Actor.DeleteActor(handle);
                 handle = new HandleRef(null, IntPtr.Zero);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -649,13 +648,14 @@ namespace Tizen.NUI.BaseComponents
             if (ret != null)
             {
                 Interop.BaseHandle.DeleteBaseHandle(new HandleRef(this, cPtr));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                return ret;
             }
             else
             {
                 ret = new Renderable(cPtr, true);
+                return ret;
             }
-            NDalicPINVOKE.ThrowExceptionIfExists();
-            return ret;
         }
 
         /// <summary>

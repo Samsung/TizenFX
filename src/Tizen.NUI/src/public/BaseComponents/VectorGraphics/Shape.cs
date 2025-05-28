@@ -82,12 +82,13 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                     HandleRef CPtr = new HandleRef(this, cPtr);
                     Interop.BaseHandle.DeleteBaseHandle(CPtr);
                     CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+                    return ret;
                 }
                 else
                 {
                     ret = new Gradient(cPtr, true);
+                    return ret;
                 }
-                return ret;
             }
             set
             {
@@ -170,12 +171,13 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
                     HandleRef CPtr = new HandleRef(this, cPtr);
                     Interop.BaseHandle.DeleteBaseHandle(CPtr);
                     CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+                    return ret;
                 }
                 else
                 {
                     ret = new Gradient(cPtr, true);
+                    return ret;
                 }
-                return ret;
             }
             set
             {

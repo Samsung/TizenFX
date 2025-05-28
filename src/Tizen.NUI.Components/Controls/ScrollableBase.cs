@@ -216,6 +216,10 @@ namespace Tizen.NUI.Components
                 totalWidth = Math.Max(totalWidth, SuggestedMinimumWidth.AsDecimal());
                 totalHeight = Math.Max(totalHeight, SuggestedMinimumHeight.AsDecimal());
 
+                // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+                totalWidth = Math.Max(Math.Min(totalWidth, Owner.GetMaximumWidth()), Owner.GetMinimumWidth());
+                totalHeight = Math.Max(Math.Min(totalHeight, Owner.GetMaximumHeight()), Owner.GetMinimumHeight());
+
                 widthSizeAndState.State = childWidthState;
                 heightSizeAndState.State = childHeightState;
 

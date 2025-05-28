@@ -394,7 +394,9 @@ internal static partial class Interop
 
         protected override bool ReleaseHandle()
         {
+            Log.Info(WebRTCLog.Tag, "[Start] Native destroy");
             var ret = NativeWebRTC.Destroy(handle);
+            Log.Info(WebRTCLog.Tag, "[End] Native destroy");
             if (ret != WebRTCErrorCode.None)
             {
                 Log.Debug(GetType().FullName, $"Failed to release native {GetType().Name}");

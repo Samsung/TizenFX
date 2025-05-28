@@ -96,6 +96,27 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Constructor for spring-based AlphaFunction using a predefined SpringType.
+        /// </summary>
+        /// <param name="springType">The spring preset type to use (e.g., Gentle, Quick, etc.).</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AlphaFunction(AlphaFunctionSpringType springType) : this(Interop.AlphaFunction.NewAlphaFunctionSpringType((int)springType), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Constructor for spring-based AlphaFunction using custom spring parameters.
+        /// This allows creating a spring easing function with fully customizable physics behavior.
+        /// </summary>
+        /// <param name="springData"> The custom spring configuration (stiffness, damping, mass)</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AlphaFunction(AlphaFunctionSpringData springData) : this(Interop.AlphaFunction.NewAlphaFunctionSpringData(springData.Stiffness, springData.Damping, springData.Mass), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal AlphaFunction(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
@@ -199,10 +220,23 @@ namespace Tizen.NUI
             /// The user has provided a custom function.
             /// </summary>
             CustomFunction,
+
             /// <summary>
             /// The user has provided the control points of a bezier curve.
             /// </summary>
-            Bezier
+            Bezier,
+
+            /// <summary>
+            /// The user has provided the spring type.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Spring,
+
+            /// <summary>
+            /// The user has provided the spring data.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            CustomSpring
         }
 
         internal global::System.Delegate CustomAlphaFunctionDelegate { get; private set; }
@@ -215,7 +249,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void GetBezierControlPoints(out Vector2 controlPoint0, out Vector2 controlPoint1)
         {
-            Vector4 ret = new Vector4(Interop.AlphaFunction.GetBezierControlPoints(SwigCPtr), true);
+            using Vector4 ret = new Vector4(Interop.AlphaFunction.GetBezierControlPoints(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             controlPoint0 = new Vector2(ret.X, ret.Y);

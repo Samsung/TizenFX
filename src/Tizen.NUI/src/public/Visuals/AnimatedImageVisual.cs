@@ -173,16 +173,18 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    var urlArray = new PropertyArray();
+                    using var urlArray = new PropertyArray();
                     foreach (var url in urls)
                     {
-                        urlArray.Add(new PropertyValue(url));
+                        using (var pv = new PropertyValue(url))
+                        {
+                            using var _ = urlArray.Add(pv);
+                        }
                     }
                     using (var temp = new PropertyValue(urlArray))
                     {
                         _outputVisualMap.Add(ImageVisualProperty.URL, temp);
                     }
-                    urlArray.Dispose();
                 }
                 if (batchSize != null)
                 {

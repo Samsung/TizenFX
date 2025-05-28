@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+ 
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
@@ -25,14 +42,16 @@ namespace Tizen.NUI.BaseComponents
             Matrix mvp;
             Matrix projection;
             Size2D size;
+            Color worldColor;
             Rectangle clippingBox;
             ReadOnlyCollection<int> textureBindings;
 
-            public RenderCallbackInput(Matrix mvp, Matrix projection, Size2D size, Rectangle clippingBox, int[] textureBindings)
+            public RenderCallbackInput(Matrix mvp, Matrix projection, Size2D size, Color worldColor, Rectangle clippingBox, int[] textureBindings)
             {
                 this.mvp = mvp;
                 this.projection = projection;
                 this.size = size;
+                this.worldColor = worldColor;
                 this.clippingBox = clippingBox;
                 this.textureBindings = new ReadOnlyCollection<int>(textureBindings);
             }
@@ -59,6 +78,14 @@ namespace Tizen.NUI.BaseComponents
             public Size2D Size
             {
                 get { return size; }
+            }
+
+            /// <summary>
+            /// The World color of the DirectRenderingGLView
+            /// </summary>
+            public Color WorldColor
+            {
+                get { return worldColor; }
             }
 
             /// <summary>
@@ -328,10 +355,11 @@ namespace Tizen.NUI.BaseComponents
                 Matrix mvp = Matrix.GetMatrixFromPtr(Interop.GLView.GlViewGetRednerCallbackInputMvp(cPtr));
                 Matrix projection = Matrix.GetMatrixFromPtr(Interop.GLView.GlViewGetRednerCallbackInputProjection(cPtr));
                 Size2D size = Size2D.GetSize2DFromPtr(Interop.GLView.GlViewGetRednerCallbackInputSize(cPtr), false);
+                Color worldColor = Color.GetColorFromPtr(Interop.GLView.GlViewGetRednerCallbackInputWorldColor(cPtr));
                 Rectangle clippingBox = Rectangle.GetRectangleFromPtr(Interop.GLView.GlViewGetRednerCallbackInputClipplingBox(cPtr), false);
                 int[] textureBindings = GetTextureBindings(cPtr);
 
-                RenderCallbackInput input = new RenderCallbackInput(mvp, projection, size, clippingBox, textureBindings);
+                RenderCallbackInput input = new RenderCallbackInput(mvp, projection, size, worldColor, clippingBox, textureBindings);
 
                 return glRenderFrameCallback(input);
             }

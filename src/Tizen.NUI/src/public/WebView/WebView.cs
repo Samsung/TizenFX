@@ -103,6 +103,9 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<WebViewScrollEdgeReachedEventArgs> scrollEdgeReachedEventHandler;
         private WebViewScrollEdgeReachedCallback scrollEdgeReachedCallback;
 
+        private EventHandler<WebViewOverScrolledEventArgs> overScrolledEventHandler;
+        private WebViewOverScrolledCallback overScrolledCallback;
+
         private EventHandler<WebViewUrlChangedEventArgs> urlChangedEventHandler;
         private WebViewUrlChangedCallback urlChangedCallback;
 
@@ -389,6 +392,9 @@ namespace Tizen.NUI.BaseComponents
         private delegate void WebViewScrollEdgeReachedCallback(int edge);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void WebViewOverScrolledCallback(int overscrolled);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewUrlChangedCallback(string pageUrl);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -595,6 +601,34 @@ namespace Tizen.NUI.BaseComponents
                 {
                     IntPtr ip = IntPtr.Zero;
                     Interop.WebView.RegisterScrollEdgeReachedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for the OverScrolled signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when web view is over scrolled.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewOverScrolledEventArgs> OverScrolled
+        {
+            add
+            {
+                if (overScrolledEventHandler == null)
+                {
+                    overScrolledCallback = OnOverScrolled;
+                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(overScrolledCallback);
+                    Interop.WebView.RegisterOverScrolledCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+                overScrolledEventHandler += value;
+            }
+            remove
+            {
+                overScrolledEventHandler -= value;
+                if (overScrolledEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterOverScrolledCallback(SwigCPtr, new HandleRef(this, ip));
                 }
             }
         }
@@ -1816,11 +1850,11 @@ namespace Tizen.NUI.BaseComponents
 
         private Vector2 GetInternalScrollSize()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             Vector2 temp = new Vector2(0.0f, 0.0f);
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.ScrollSize);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.ScrollSize))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -1847,11 +1881,11 @@ namespace Tizen.NUI.BaseComponents
 
         private Vector2 GetInternalContentSize()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             Vector2 temp = new Vector2(0.0f, 0.0f);
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var prop = Object.GetProperty(SwigCPtr, Property.ContentSize);
-            prop.Get(temp);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.ContentSize))
+            {
+                prop.Get(temp);
+            }
             return temp;
         }
 
@@ -3097,6 +3131,27 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        internal override void ApplyCornerRadius()
+        {
+            base.ApplyCornerRadius();
+
+            if (backgroundExtraData == null) 
+            {
+                return;
+            }
+
+            // Update corner radius properties to webView by ActionUpdateProperty
+            if (backgroundExtraData.CornerRadius != null)
+            {
+                _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+            }
+            if (backgroundExtraData.CornerSquareness != null)
+            {
+                _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
+            }
+            _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+        }
+
         private void OnPageLoadStarted(string pageUrl)
         {
             WebViewPageLoadEventArgs e = new WebViewPageLoadEventArgs();
@@ -3130,6 +3185,11 @@ namespace Tizen.NUI.BaseComponents
         private void OnScrollEdgeReached(int edge)
         {
             scrollEdgeReachedEventHandler?.Invoke(this, new WebViewScrollEdgeReachedEventArgs((WebViewScrollEdgeReachedEventArgs.Edge)edge));
+        }
+
+        private void OnOverScrolled(int over)
+        {
+            overScrolledEventHandler?.Invoke(this, new WebViewOverScrolledEventArgs((WebViewOverScrolledEventArgs.Over)over));
         }
 
         private void OnUrlChanged(string pageUrl)

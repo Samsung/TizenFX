@@ -722,12 +722,12 @@ namespace Tizen.NUI.BaseComponents
         public enum RepeatModes
         {
             /// <summary>
-            /// When the animation reaches the end and RepeatCount is nonZero, the animation restarts from the beginning. 
+            /// When the animation reaches the end and RepeatCount is nonZero, the animation restarts from the beginning.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Restart = LoopingModeType.Restart,
             /// <summary>
-            /// When the animation reaches the end and RepeatCount nonZero, the animation reverses direction on every animation cycle. 
+            /// When the animation reaches the end and RepeatCount nonZero, the animation reverses direction on every animation cycle.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Reverse = LoopingModeType.AutoReverse

@@ -62,36 +62,6 @@ namespace Tizen.NUI
             }
         }
 
-        internal static int InvalidIndex
-        {
-            get
-            {
-                int ret = Interop.Property.InvalidIndexGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        internal static int InvalidKey
-        {
-            get
-            {
-                int ret = Interop.Property.InvalidKeyGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        internal static int InvalidComponentIndex
-        {
-            get
-            {
-                int ret = Interop.Property.InvalidComponentIndexGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
         internal Animatable Object
         {
             set
@@ -106,6 +76,10 @@ namespace Tizen.NUI
                 return ret;
             }
         }
+
+        internal const int InvalidIndex = -1; // Should be match with Interop.Property.InvalidIndexGet()
+        internal const int InvalidKey = -1; // Should be match with Interop.Property.InvalidKeyGet()
+        internal const int InvalidComponentIndex = -1; // Should be match with Interop.Property.InvalidComponentIndexGet()
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {

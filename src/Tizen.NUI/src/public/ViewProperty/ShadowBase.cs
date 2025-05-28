@@ -60,7 +60,7 @@ namespace Tizen.NUI
             Offset = new Vector2(noOffset);
             Extents = new Vector2(noExtents);
 
-            var transformProperty = propertyMap.Find(Visual.Property.Transform);
+            var transformProperty = propertyMap?.Find(Visual.Property.Transform);
 
             if (transformProperty == null)
             {
@@ -161,16 +161,6 @@ namespace Tizen.NUI
             }
 
             var map = GetPropertyMap();
-
-            if (attachedView.CornerRadius != null || attachedView.CornerRadius != Vector4.Zero)
-            {
-                map.Set(Visual.Property.CornerRadius, attachedView.CornerRadius);
-                map.Set(Visual.Property.CornerRadiusPolicy, (int)attachedView.CornerRadiusPolicy);
-            }
-            if (attachedView.CornerSquareness != null || attachedView.CornerSquareness != Vector4.Zero)
-            {
-                map.Set(Visual.Property.CornerSquareness, attachedView.CornerSquareness);
-            }
 
             return new PropertyValue(map);
         }

@@ -54,6 +54,7 @@ namespace Tizen.NUI.Binding
             { "GradientVisualProperty.StopColor", GradientVisualProperty.StopColor },
             { "GradientVisualProperty.Units", GradientVisualProperty.Units },
             { "GradientVisualProperty.SpreadMethod", GradientVisualProperty.SpreadMethod },
+            { "GradientVisualProperty.StartOffset", GradientVisualProperty.StartOffset },
             // ImageVisualProperty
             { "ImageVisualProperty.URL", ImageVisualProperty.URL },
             { "ImageVisualProperty.AlphaMaskURL", ImageVisualProperty.AlphaMaskURL },

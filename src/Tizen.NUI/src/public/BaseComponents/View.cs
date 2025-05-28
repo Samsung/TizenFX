@@ -1221,10 +1221,6 @@ namespace Tizen.NUI.BaseComponents
             if (map == null)
                 return;
 
-            // Background extra data is not valid anymore. We should ignore lazy UpdateBackgroundExtraData
-            backgroundExtraData = null;
-            backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
-
             // Update backgroundImageUrl and backgroundImageSynchronousLoading from Map
             foreach (int key in cachedNUIViewBackgroundImagePropertyKeyList)
             {
@@ -1248,9 +1244,6 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalBackground()
         {
-            // Sync as current properties
-            UpdateBackgroundExtraData();
-
             PropertyMap tmp = new PropertyMap();
             var propertyValue = Object.GetProperty(SwigCPtr, Property.BACKGROUND);
             propertyValue.Get(tmp);
@@ -1328,9 +1321,6 @@ namespace Tizen.NUI.BaseComponents
 
         private ImageShadow GetInternalImageShadow()
         {
-            // Sync as current properties
-            UpdateBackgroundExtraData();
-
             using PropertyMap map = new PropertyMap();
             using var shadowProperty = Object.GetProperty(SwigCPtr, Property.SHADOW);
             shadowProperty.Get(map);
@@ -1405,14 +1395,43 @@ namespace Tizen.NUI.BaseComponents
 
         private Shadow GetInternalBoxShadow()
         {
-            // Sync as current properties
-            UpdateBackgroundExtraData();
-
             using PropertyMap map = new PropertyMap();
             using var shadowProperty = Object.GetProperty(SwigCPtr, Property.SHADOW);
             shadowProperty.Get(map);
             var shadow = new Shadow(map);
             return shadow.IsEmpty() ? null : shadow;
+        }
+
+        /// <summary>
+        /// Describes a inner shadow shadow drawing for a View.
+        /// It is null by default.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public InnerShadow InnerShadow
+        {
+            get
+            {
+                return GetInternalInnerShadow();
+            }
+            set
+            {
+                SetInternalInnerShadow(value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private void SetInternalInnerShadow(InnerShadow innerShadow)
+        {
+            SetInnerShadow(innerShadow);
+        }
+
+        private InnerShadow GetInternalInnerShadow()
+        {
+            using PropertyMap map = new PropertyMap();
+            using var innerShadowProperty = Object.GetProperty(SwigCPtr, Property.InnerShadow);
+            innerShadowProperty.Get(map);
+            var innerShadow = new InnerShadow(map);
+            return innerShadow.IsEmpty() ? null : innerShadow;
         }
 
         /// <summary>
@@ -1460,6 +1479,10 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalCornerRadius(Vector4 cornerRadius)
         {
+            // Set for animation. Will be soon deprecated.
+            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerRadius = cornerRadius;
+            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
+
             Object.InternalSetPropertyVector4(SwigCPtr, Property.CornerRadius, cornerRadius.SwigCPtr);
         }
 
@@ -1504,6 +1527,13 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalCornerRadiusPolicy(VisualTransformPolicyType cornerRadiusPolicy)
         {
+            // Set for animation. Will be soon deprecated.
+            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerRadiusPolicy = cornerRadiusPolicy;
+            if (backgroundExtraData.CornerRadius != null)
+            {
+                UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
+            }
+
             Object.InternalSetPropertyInt(SwigCPtr, Property.CornerRadiusPolicy, (int)cornerRadiusPolicy);
         }
 
@@ -1547,6 +1577,10 @@ namespace Tizen.NUI.BaseComponents
         }
         internal void SetInternalCornerSqureness(Vector4 cornerSquareness)
         {
+            // Set for animation. Will be soon deprecated.
+            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerSquareness = cornerSquareness;
+            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
+
             Object.InternalSetPropertyVector4(SwigCPtr, Property.CornerSquareness, cornerSquareness.SwigCPtr);
         }
         internal Vector4 GetInternalCornerSqureness()
@@ -1598,13 +1632,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalBorderlineWidth(float borderlineWidth)
         {
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).BorderlineWidth = borderlineWidth;
-            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.Borderline);
+            Object.InternalSetPropertyFloat(SwigCPtr, Property.BorderlineWidth, borderlineWidth);
         }
 
         private float GetInternalBorderlineWidth()
         {
-            return backgroundExtraData == null ? 0.0f : backgroundExtraData.BorderlineWidth;
+            return Object.InternalGetPropertyFloat(SwigCPtr, Property.BorderlineWidth);
         }
 
         /// <summary>
@@ -1668,7 +1701,9 @@ namespace Tizen.NUI.BaseComponents
 
         private Color GetInternalBorderlineColor()
         {
-            return backgroundExtraData == null ? Color.Black : backgroundExtraData.BorderlineColor;
+            Vector4 value = new Vector4();
+            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.BorderlineColor, value.SwigCPtr);
+            return value;
         }
 
         /// <summary>
@@ -1755,13 +1790,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalBorderlineOffset(float borderlineOffset)
         {
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).BorderlineOffset = borderlineOffset;
-            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.Borderline);
+            Object.InternalSetPropertyFloat(SwigCPtr, Property.BorderlineOffset, borderlineOffset);
         }
 
         private float GetInternalBorderlineOffset()
         {
-            return backgroundExtraData == null ? 0.0f : backgroundExtraData.BorderlineOffset;
+            return Object.InternalGetPropertyFloat(SwigCPtr, Property.BorderlineOffset);
         }
 
         /// <summary>
@@ -1898,11 +1932,11 @@ namespace Tizen.NUI.BaseComponents
 
         private PropertyMap GetInternalTooltip()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             PropertyMap temp = new PropertyMap();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var pv = Object.GetProperty(SwigCPtr, Property.TOOLTIP);
-            pv.Get(temp);
+            using (var pv = Object.GetProperty(SwigCPtr, Property.TOOLTIP))
+            {
+                pv.Get(temp);
+            }
             return temp;
         }
 
@@ -3908,11 +3942,11 @@ namespace Tizen.NUI.BaseComponents
 
         private Rotation GetInternalOrientation()
         {
-#pragma warning disable CA2000 // Dispose objects before losing scope
             Rotation temp = new Rotation();
-#pragma warning restore CA2000 // Dispose objects before losing scope
-            using var pv = Object.GetProperty(SwigCPtr, Property.ORIENTATION);
-            pv.Get(temp);
+            using (var pv = Object.GetProperty(SwigCPtr, Property.ORIENTATION))
+            {
+                pv.Get(temp);
+            }
             return temp;
         }
 
@@ -4629,7 +4663,6 @@ namespace Tizen.NUI.BaseComponents
             }
             else
             {
-                widthConstraint?.Remove();
                 widthConstraint?.Dispose();
                 widthConstraint = null;
 
@@ -4710,7 +4743,6 @@ namespace Tizen.NUI.BaseComponents
             }
             else
             {
-                heightConstraint?.Remove();
                 heightConstraint?.Dispose();
                 heightConstraint = null;
 
@@ -5420,17 +5452,21 @@ namespace Tizen.NUI.BaseComponents
                 {
                     ret = new View(Layer.getCPtr(layer).Handle, false);
                     NUILog.Error("This Parent property is deprecated, should do not be used");
+                    Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                    CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                    return ret;
                 }
                 else
                 {
                     ret = basehandle as View;
+                    Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                    CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                    return ret;
                 }
-
-                Interop.BaseHandle.DeleteBaseHandle(CPtr);
-                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
             }
         }
 

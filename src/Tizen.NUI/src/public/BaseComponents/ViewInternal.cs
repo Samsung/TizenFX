@@ -34,15 +34,17 @@ namespace Tizen.NUI.BaseComponents
         [Flags]
         internal enum BackgroundExtraDataUpdatedFlag : byte
         {
-            BackgroundBorderline = 1 << 1,
-            ContentsBorderline = 1 << 4, /// Subclass cases.
+            BackgroundCornerRadius = 1 << 0,
+            ShadowCornerRadius = 1 << 2,
+            ContentsCornerRadius = 1 << 3, /// Subclass cases.
 
-            Background = BackgroundBorderline,
+            Background = BackgroundCornerRadius,
+            Shadow = ShadowCornerRadius,
 
-            Borderline = BackgroundBorderline | ContentsBorderline,
+            CornerRadius = BackgroundCornerRadius | ShadowCornerRadius | ContentsCornerRadius,
 
             None = 0,
-            All = Background,
+            All = Background | Shadow,
         }
 
         internal BackgroundExtraDataUpdatedFlag backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
@@ -1214,6 +1216,11 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+            if (IsShadowEmpty())
+            {
+                backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Shadow;
+            }
+
             if (!Rectangle.IsNullOrZero(backgroundExtraData.BackgroundImageBorder))
             {
                 backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
@@ -1224,43 +1231,52 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            if ((backgroundExtraDataUpdatedFlag & BackgroundExtraDataUpdatedFlag.Borderline) != BackgroundExtraDataUpdatedFlag.None)
+            if ((backgroundExtraDataUpdatedFlag & BackgroundExtraDataUpdatedFlag.CornerRadius) != BackgroundExtraDataUpdatedFlag.None)
             {
-                ApplyBorderline();
+                ApplyCornerRadius();
             }
 
             backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
         }
 
-        [Obsolete("Do not use this, that is deprecated in API13.")]
+        //[Obsolete("Do not use this, that is deprecated in API13.")]
         internal virtual void ApplyCornerRadius()
         {
-            Tizen.Log.Error("NUI", "ApplyCornerRadius() deprecated internally, Please don't use it.\n");
-        }
+            //Tizen.Log.Error("NUI", "ApplyCornerRadius() deprecated internally, Please don't use it.\n");
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal virtual void ApplyBorderline()
-        {
             if (backgroundExtraData == null) return;
 
-            // ActionUpdateProperty works well only if BACKGROUND visual setup before.
-            // If view don't have BACKGROUND visual, we set transparent background color in default.
-            if (IsBackgroundEmpty())
+            // Update corner radius properties to background and shadow by ActionUpdateProperty
+            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.BackgroundCornerRadius))
             {
-                // BACKGROUND visual doesn't exist.
-                SetBackgroundColor(Color.Transparent);
-                // SetBackgroundColor function apply borderline internally.
-                // So we can just return now.
-                return;
+                if (backgroundExtraData.CornerRadius != null)
+                {
+                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+                }
+                if (backgroundExtraData.CornerSquareness != null)
+                {
+                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
+                }
+                _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
             }
+            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ShadowCornerRadius))
+            {
+                if (backgroundExtraData.CornerRadius != null)
+                {
+                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+                }
+                if (backgroundExtraData.CornerSquareness != null)
+                {
+                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
+                }
+                _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+            }
+        }
 
-            // Update borderline properties to background by ActionUpdateProperty
-            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.BackgroundBorderline))
-            {
-                _ = Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth);
-                _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineColor, Vector4.getCPtr(backgroundExtraData.BorderlineColor ?? Color.Black));
-                _ = Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
-            }
+        [Obsolete("Do not use this, that is deprecated in API13.")]
+        internal virtual void ApplyBorderline()
+        {
+            Tizen.Log.Error("NUI", "ApplyBorderline() deprecated internally, Please don't use it.\n");
         }
 
         /// <summary>
@@ -1430,12 +1446,10 @@ namespace Tizen.NUI.BaseComponents
                 }
                 if (widthConstraint != null)
                 {
-                    widthConstraint.Remove();
                     widthConstraint.Dispose();
                 }
                 if (heightConstraint != null)
                 {
-                    heightConstraint.Remove();
                     heightConstraint.Dispose();
                 }
 
@@ -1448,8 +1462,6 @@ namespace Tizen.NUI.BaseComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
-            backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
 
             LayoutCount = 0;
 

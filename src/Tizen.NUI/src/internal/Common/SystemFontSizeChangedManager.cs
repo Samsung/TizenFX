@@ -34,7 +34,15 @@ namespace Tizen.NUI
 
         static SystemFontSizeChangedManager()
         {
-            SystemSettings.FontSizeChanged += SystemFontSizeChanged;
+            try
+            {
+                SystemSettings.FontSizeChanged += SystemFontSizeChanged;
+            }
+            catch(Exception e)
+            {
+                Tizen.Log.Info("NUI", $"{e} Exception caught! SystemFontSizeChanged will not be detected!\n");
+                fontSize = SystemSettingsFontSize.Normal;
+            }
         }
 
         /// <summary>

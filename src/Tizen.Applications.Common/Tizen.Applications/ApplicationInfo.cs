@@ -253,6 +253,9 @@ namespace Tizen.Applications
                             Log.Warn(LogTag, "Failed to get application metadata of " + _applicationId + ". err = " + err);
                         }
                     }
+
+                    GC.KeepAlive(_metadataCallback);
+
                     return metadata;
                 }
             }
@@ -354,6 +357,9 @@ namespace Tizen.Applications
                             Log.Warn(LogTag, "Failed to get application category of " + _applicationId + ". err = " + err);
                         }
                     }
+
+                    GC.KeepAlive(_categoryCallback);
+
                     return categories;
                 }
             }

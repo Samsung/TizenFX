@@ -35,7 +35,15 @@ namespace Tizen.NUI
 
         static SystemFontTypeChangedManager()
         {
-            SystemSettings.FontTypeChanged += SystemFontTypeChanged;
+            try
+            {
+                SystemSettings.FontTypeChanged += SystemFontTypeChanged;
+            }
+            catch(Exception e)
+            {
+                Tizen.Log.Info("NUI", $"{e} Exception caught! SystemFontTypeChanged will not be detected!\n");
+                fontType = defaultFontType;
+            }
         }
 
         /// <summary>

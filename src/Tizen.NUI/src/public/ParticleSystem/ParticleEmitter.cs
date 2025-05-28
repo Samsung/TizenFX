@@ -223,12 +223,13 @@ namespace Tizen.NUI.ParticleSystem
         {
             set
             {
-                var pixelBuffer = ImageLoader.LoadImageFromFile(value);
+                using var pixelBuffer = ImageLoader.LoadImageFromFile(value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                Texture tex = new Texture(TextureType.TEXTURE_2D, PixelFormat.RGBA8888, pixelBuffer.GetWidth(),
+                using Texture tex = new Texture(TextureType.TEXTURE_2D, PixelFormat.RGBA8888, pixelBuffer.GetWidth(),
                         pixelBuffer.GetHeight());
-                tex.Upload(pixelBuffer.CreatePixelData());
+                using var pd = pixelBuffer.CreatePixelData();
+                tex.Upload(pd);
 
                 Interop.ParticleEmitter.SetTexture(SwigCPtr, tex.SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
