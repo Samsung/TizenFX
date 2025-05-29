@@ -15,7 +15,9 @@
  */
 
 using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
+using Tizen.Multimedia;
 using Tizen.Multimedia.Remoting;
 
 internal static partial class Interop
@@ -39,11 +41,23 @@ internal static partial class Interop
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_display")]
         internal static extern ScreenMirroringErrorCode SetDisplay(IntPtr handle, int type, IntPtr display);
 
+        [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_display_mode")]
+        internal static extern ScreenMirroringErrorCode SetDisplayMode(IntPtr handle, ScreenMirroringDisplayMode mode);
+
+        [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_display_roi")]
+        internal static extern ScreenMirroringErrorCode SetDisplayRoi(IntPtr handle, int x, int y, int width, int height);
+
+        [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_display_rotation")]
+        internal static extern ScreenMirroringErrorCode SetDisplayRotation(IntPtr handle, Rotation rotatjion);
+
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_ecore_wl_display")]
         internal static extern ScreenMirroringErrorCode SetEcoreDisplay(IntPtr handle, IntPtr display);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_resolution")]
         internal static extern ScreenMirroringErrorCode SetResolution(IntPtr handle, ScreenMirroringResolutions resolution);
+
+        [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_src_device_type")]
+        internal static extern ScreenMirroringErrorCode SetSrcDeviceType(IntPtr handle, ScreenMirroringDeviceType type);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_prepare")]
         internal static extern ScreenMirroringErrorCode Prepare(IntPtr handle);
