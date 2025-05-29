@@ -458,5 +458,29 @@ namespace Tizen.NUI
                 gadget.HandleEvents(eventType, args);
             }
         }
+
+        /// <summary>
+        /// Occurs when the message is received.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        public static event EventHandler<NUIGadgetMessageReceivedEventArgs> NUIGadgetMessageReceived;
+
+        /// <summary>
+        /// Sends the message to the NUIGadgetManager.
+        /// </summary>
+        /// <param name="message">The message</param>
+        /// <exception cref="ArgumentNullException">Thrown if either 'envelope' is null.</exception>
+        public static void SendMessage(Bundle message)
+        {
+            if (message == null)
+            {
+                throw new ArgumentNullException(nameof(message));
+            }
+
+            CoreApplication.Post(() =>
+            {
+                NUIGadgetMessageReceived?.Invoke(null, new NUIGadgetMessageReceivedEventArgs(message));
+            });
+        }
     }
 }
