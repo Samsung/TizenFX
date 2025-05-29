@@ -42,7 +42,7 @@
 
 # CONTENT
 /src/Tizen.Content.Download/ @chleun-moon @SeonahMoon
-/src/Tizen.Content.MediaContent/ @hsgwon @eunhaechoi
+/src/Tizen.Content.MediaContent/ @hsgwon
 /src/Tizen.Content.MimeType/ @sukhyungkang @hjhun
 
 # CONTEXT
@@ -66,17 +66,17 @@
 /src/Tizen.Messaging/ @randeepsingh01
 
 # MULTIMEDIA FW
-/src/Tizen.Multimedia/ @hsgwon @sangchul1011 @eunhaechoi
-/src/Tizen.Multimedia.AudioIO/ @hsgwon @sangchul1011 @eunhaechoi
-/src/Tizen.Multimedia.Camera/ @hsgwon @eunhaechoi
-/src/Tizen.Multimedia.MediaCodec/ @hsgwon @eunhaechoi
-/src/Tizen.Multimedia.MediaPlayer/ @hsgwon @eunhaechoi
-/src/Tizen.Multimedia.Metadata/ @hsgwon @eunhaechoi
-/src/Tizen.Multimedia.Radio/ @hsgwon @eunhaechoi
-/src/Tizen.Multimedia.Recorder/ @hsgwon @eunhaechoi
-/src/Tizen.Multimedia.Remoting/ @hsgwon @eunhaechoi
-/src/Tizen.Multimedia.Util/ @hsgwon @eunhaechoi
-/src/Tizen.Multimedia.Vision/ @hsgwon @tyoungroy
+/src/Tizen.Multimedia/ @hsgwon
+/src/Tizen.Multimedia.AudioIO/ @hsgwon
+/src/Tizen.Multimedia.Camera/ @hsgwon
+/src/Tizen.Multimedia.MediaCodec/ @hsgwon
+/src/Tizen.Multimedia.MediaPlayer/ @hsgwon
+/src/Tizen.Multimedia.Metadata/ @hsgwon
+/src/Tizen.Multimedia.Radio/ @hsgwon
+/src/Tizen.Multimedia.Recorder/ @hsgwon
+/src/Tizen.Multimedia.Remoting/ @hsgwon
+/src/Tizen.Multimedia.Util/ @hsgwon
+/src/Tizen.Multimedia.Vision/ @hsgwon
 
 # UI FW (NUI)
 /src/Tizen.NUI.Components.Design/ @dongsug-song @bshsqa
