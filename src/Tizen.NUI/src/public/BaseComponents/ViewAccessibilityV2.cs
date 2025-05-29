@@ -44,7 +44,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Sets the AccessibilityStatesV2 property of the view.
         /// </summary>
-        /// <param name="states">The states<see cref="AccessibilityStatesV2"/> value to set.</param>
+        /// <param name="states">The states <see cref="AccessibilityStatesV2"/> value to set.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAccessibilityStatesV2(AccessibilityStatesV2 states)
         {
