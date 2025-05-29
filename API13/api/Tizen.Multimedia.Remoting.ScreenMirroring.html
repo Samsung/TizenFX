@@ -165,6 +165,220 @@ start, pause, and resume the screen mirroring as a sink.</p>
 
 
 
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_DisplayMode_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.DisplayMode*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L472">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_DisplayMode" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.DisplayMode">DisplayMode</h4>
+    <section>
+    <p>Gets or sets the display mode.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScreenMirroringDisplayMode DisplayMode { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringDisplayMode.html">ScreenMirroringDisplayMode</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_DisplayRoi_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.DisplayRoi*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L502">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_DisplayRoi" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.DisplayRoi">DisplayRoi</h4>
+    <section>
+    <p>Gets or sets the display position and size of the receiver screen view.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rectangle DisplayRoi { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Rectangle.html">Rectangle</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_ScreenMirroring_DisplayRoi_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>DisplayRoi will be applied when <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_DisplayMode">DisplayMode</a> is <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringDisplayMode.html#Tizen_Multimedia_Remoting_ScreenMirroringDisplayMode_CustomRoi">CustomRoi</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>DisplayRoi.X or DisplayRoi.Y is less than 0.<br>
+-or-<br>
+DisplayRoi.Width or DisplayRoi.Height is less than or equal to 0.<br></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="seealso">
+    <h5 id="Tizen_Multimedia_Remoting_ScreenMirroring_DisplayRoi_seealso">See Also</h5>
+      <div><a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_DisplayMode">DisplayMode</a></div>
+  </div>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_DisplayRotation_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.DisplayRotation*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L545">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_DisplayRotation" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.DisplayRotation">DisplayRotation</h4>
+    <section>
+    <p>Gets or sets the display rotation.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Rotation DisplayRotation { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
+  <a id="Tizen_Multimedia_Remoting_ScreenMirroring_SourceDeviceType_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.SourceDeviceType*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L566">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_SourceDeviceType" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.SourceDeviceType">SourceDeviceType</h4>
+    <section>
+    <p>Gets or sets the source device type.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScreenMirroringDeviceType SourceDeviceType { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringDeviceType.html">ScreenMirroringDeviceType</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring_VideoInfo_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.VideoInfo*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -462,7 +676,7 @@ An internal error occurs.</p>
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring_Dispose_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L477">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L592">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Dispose" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Dispose">Dispose()</h4>
     <section>
@@ -488,7 +702,7 @@ state. After calling <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirro
   <a id="Tizen_Multimedia_Remoting_ScreenMirroring_Dispose_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L490">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.Remoting/ScreenMirroring/ScreenMirroring.cs/#L605">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_Remoting_ScreenMirroring_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.Remoting.ScreenMirroring.Dispose(System.Boolean)">Dispose(bool)</h4>
     <section>
