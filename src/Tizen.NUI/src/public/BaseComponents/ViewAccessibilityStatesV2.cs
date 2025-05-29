@@ -22,10 +22,11 @@ using Tizen.NUI;
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
-    /// AccessibilityStateV2 is an enumeration that represents the states of the view to send to accessibility service.
+    /// AccessibilityStatesV2 is an enumeration that represents the states of the view to send to accessibility service.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum AccessibilityStateV2
+    [Flags]
+    public enum AccessibilityStatesV2
     {
         /// <summary>
         /// Indicates whether the view is enabled or not.
@@ -36,98 +37,52 @@ namespace Tizen.NUI.BaseComponents
         /// Indicates whether a selectable element is currently selected or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Selected,
+        Selected = 1,
         /// <summary>
         /// Indicates the state of a checkable element.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Checked,
+        Checked = 1 << 1,
         /// <summary>
         /// Indicates whether an element is currently busy or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Busy,
+        Busy = 1 << 2,
         /// <summary>
         /// Indicates whether an expandable element is currently expanded or collapsed.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Expanded
+        Expanded = 1 << 3
     }
 
     /// <summary>
-    /// The AccessibilityStatesV2 structure represents a set of states of the view to communicate to accessibility service.
+    /// Extension methods to help handling <see cref="AccessibilityStatesV2"/>.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct AccessibilityStatesV2
+    public static class AccessibilityStatesV2Extensions
     {
-        const uint c_on = 1;
-        private uint _bitMask;
+        /// <summary>
+        /// Add or remove a flag.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static AccessibilityStatesV2 Set(this AccessibilityStatesV2 self, AccessibilityStatesV2 state, bool value) => value ? Add(self, state) : Remove(self, state);
 
         /// <summary>
-        /// Gets or sets the value of the specified accessibility state flag using bitmask operations.
+        /// Add a state flag.
         /// </summary>
-        /// <param name="state">The <see cref="AccessibilityStateV2"/> enum value representing the accessibility state to check or modify.</param>
-        /// <returns>
-        /// <c>true</c> if the specified state flag is set in the bitmask; otherwise, <c>false</c>.
-        /// </returns>
-        /// <remarks>
-        /// This indexer uses bitwise operations to efficiently store and retrieve multiple boolean state flags
-        /// in a single integer field (_bitMask). Each state corresponds to a specific bit position determined
-        /// by its enum value.
-        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool this[AccessibilityStateV2 state]
-        {
-            get
-            {
-                return Convert.ToBoolean(_bitMask & (c_on << (int)state));
-            }
-            set
-            {
-                if (value)
-                {
-                    _bitMask |= (c_on << (int)state);
-                }
-                else
-                {
-                    _bitMask &= ~(c_on << (int)state);
-                }
-            }
-        }
-
-        AccessibilityStatesV2(int states)
-        {
-            _bitMask = (uint)states;
-        }
+        public static AccessibilityStatesV2 Add(this AccessibilityStatesV2 self, AccessibilityStatesV2 state) => self | state;
 
         /// <summary>
-        /// Converts an <see cref="AccessibilityStatesV2"/> enumeration value to an integer.
+        /// Remove a state flag.
         /// </summary>
-        /// <param name="state">The <see cref="AccessibilityStatesV2"/> value to convert.</param>
-        /// <returns>The integer representation of the specified <see cref="AccessibilityStatesV2"/> value.</returns>
-        /// <remarks>
-        /// This explicit operator retrieves the internal bitmask value of the <see cref="AccessibilityStatesV2"/> enumeration,
-        /// which represents the combined state flags in a single integer.
-        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static explicit operator int(AccessibilityStatesV2 state)
-        {
-            return (int)state._bitMask;
-        }
+        public static AccessibilityStatesV2 Remove(this AccessibilityStatesV2 self, AccessibilityStatesV2 state) => self & ~state;
 
         /// <summary>
-        /// Converts an integer to an <see cref="AccessibilityStatesV2"/> enumeration value.
+        /// Query if a state flag included.
         /// </summary>
-        /// <param name="states">The integer value to convert.</param>
-        /// <returns>A new instance of <see cref="AccessibilityStatesV2"/> initialized with the specified integer value.</returns>
-        /// <remarks>
-        /// This explicit operator creates a new <see cref="AccessibilityStatesV2"/> object using the provided integer value,
-        /// which is interpreted as a bitmask representing multiple state flags.
-        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static explicit operator AccessibilityStatesV2(int states)
-        {
-            return new AccessibilityStatesV2(states);
-        }
+        public static bool Has(this AccessibilityStatesV2 self, AccessibilityStatesV2 state) => (self & state) != 0;
     }
 }
