@@ -24,14 +24,16 @@ using Markdig.Syntax;
 namespace Tizen.NUI.MarkdownRenderer
 {
     /// <summary>
-    /// MarkdownParser.
+    /// Provides a Markdown parser configured with custom pipeline options,
+    /// enabling table support and enhanced emphasis handling for Tizen NUI markdown rendering.
     /// </summary>
     internal class MarkdownParser
     {
         private MarkdownPipeline pipeline;
 
         /// <summary>
-        /// Constructor.
+        /// Initializes a new instance of the <see cref="MarkdownParser"/> class
+        /// with a pipeline that supports pipe tables and emphasis extras.
         /// </summary>
         public MarkdownParser()
         {
@@ -42,9 +44,12 @@ namespace Tizen.NUI.MarkdownRenderer
         }
 
         /// <summary>
-        /// Parse Markdown.
+        /// Parses the given markdown string into a Markdig MarkdownDocument AST,
+        /// using the configured pipeline.
         /// </summary>
-        public MarkdownDocument Parse(string markdown)
+        /// <param name="markdown">The markdown text to parse.</param>
+        /// <returns>The parsed <see cref="MarkdownDocument"/> object.</returns>
+          public MarkdownDocument Parse(string markdown)
         {
             // Tizen.Log.Info("NUI", $"Parse:{markdown}\n");
             var document = Markdown.Parse(markdown, pipeline);

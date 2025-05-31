@@ -23,7 +23,8 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI.MarkdownRenderer
 {
     /// <summary>
-    /// MarkdownRenderer.
+    /// Provides a reusable NUI View for rendering Markdown text as UI components.
+    /// Supports incremental UI updates, streaming input, and rich markdown features.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class MarkdownRenderer : View
@@ -32,7 +33,7 @@ namespace Tizen.NUI.MarkdownRenderer
         private MarkdownUIBuilder builder;
 
         /// <summary>
-        /// Constructor.
+        /// Initializes a new instance of the <see cref="MarkdownRenderer"/> class.
         /// </summary>
         public MarkdownRenderer() : base()
         {
@@ -40,23 +41,26 @@ namespace Tizen.NUI.MarkdownRenderer
         }
 
         /// <summary>
-        /// MarkdownStyle.
+        /// Gets the style settings applied to the rendered Markdown UI.
         /// </summary>
         public MarkdownStyle Style { get; } = new MarkdownStyle();
 
         /// <summary>
-        /// Render Markdown.
+        /// Parses and renders the specified markdown string, updating the UI.
+        /// Automatically reuses or disposes of views for efficient updates.
         /// </summary>
+        /// <param name="markdown">The markdown text to render.</param>
         public void Render(string markdown)
         {
             var document = parser.Parse(markdown);
 
-            builder.ClearVisitedKeys();
-            builder.Build(document, this, 0, "root");
-
+            builder.Build(document, this, "root");
             builder.RemoveUnusedUI();
         }
 
+        /// <summary>
+        /// Initializes layout, parser, and UI builder components for rendering.
+        /// </summary>
         private void Initialize()
         {
             Layout = new LinearLayout()
