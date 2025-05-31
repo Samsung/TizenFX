@@ -1,0 +1,72 @@
+﻿/*
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+using System;
+using System.ComponentModel;
+
+namespace Tizen.NUI.MarkdownRenderer
+{
+    internal static class StyleDefaults
+    {
+        // Common
+        public const int CommonIndent = 40;
+        public const int CommonPadding = 10;
+        public const int CommonMargin = 10;
+
+        // Paragraph
+        public const string ParagraphFontColor = "#000000FF";
+        public const float ParagraphFontSize = 20.0f;
+        public const string ParagraphFontFamily = "SamsungOneUI_400";
+        public const float ParagraphLineHeight = 32.0f;
+
+        // Heading
+        public const float HeadingFontSizeLevel1 = 28.0f;
+        public const float HeadingFontSizeLevel2 = 24.0f;
+        public const float HeadingFontSizeLevel3 = 20.0f;
+        public const float HeadingFontSizeLevel4 = 16.0f;
+        public const float HeadingFontSizeLevel5 = 12.0f;
+        public const string HeadingFontFamily = "SamsungOneUI_700";
+
+        // ThematicBreakStyle
+        public const string ThematicBreakColor = "#EEEEEEFF";
+        public const int ThematicBreakThickness = 1;
+
+        // QuoteStyle
+        public const string QuoteBackgroundColor = "#CCCCCC33";
+        public const int QuotePadding = 10;
+
+        // TableStyle
+        public const string TableBorderColor = "#EEEEEEFF";
+        public const int TableBorderThickness = 1;
+        public const int TablePadding = 5;
+
+        // CodeStyle
+        public const string CodeFontFamily = "Ubuntu Mono"; // FIXME
+        public const string CodeFontColor = "#121212FF";
+        public const string CodeBackgroundColor = "#CCCCCC33";
+        public const float CodeFontSize = 20.0f;
+        public const string CodeTitleFontFamily = "Ubuntu Mono";
+        public const string CodeTitleFontColor = "#454545FF";
+        public const string CodeTitleBackgroundColor = "#CCCCCC55";
+        public const float CodeTitleFontSize = 16.0f;
+        public const int CodePadding = 10;
+
+        // LinkStyle
+        public const string LinkColor = "#4A90E2FF";
+        public const string LinkVisitedColor = "#9B59B6FF";
+    }
+}
