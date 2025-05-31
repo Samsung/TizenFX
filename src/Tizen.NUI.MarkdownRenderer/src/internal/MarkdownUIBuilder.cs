@@ -18,6 +18,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 
 using Tizen.NUI.BaseComponents;
@@ -32,149 +34,112 @@ using Markdig.Extensions.Tables;
 namespace Tizen.NUI.MarkdownRenderer
 {
     /// <summary>
-    /// Indent for log.
-    /// </summary>
-    internal class Indent
-    {
-        // level 0 ~ 6
-        private static readonly string[] indent = new[] {"", "  ", "    ", "      ", "        ", "         "};
-        public static string Get(int level)
-        {
-            return level >= 0 && level < indent.Length ? indent[level] : indent[^1];
-        }
-    }
-
-    /// <summary>
     /// MarkdownUIBuilder.
     /// </summary>
     internal class MarkdownUIBuilder
     {
         private MarkdownStyle style;
-        private List<View> uiBlocks;
+
+        private Dictionary<string, View> viewCache = new();
+        private HashSet<string> visitedKeys = new();
 
         public MarkdownUIBuilder(MarkdownStyle markdownStyle)
         {
             style = markdownStyle;
-
-            Initialize();
         }
 
-        public void Clear()
+        public void ClearVisitedKeys()
         {
-            for (int i = 0 ; i < uiBlocks.Count ; i ++)
-            {
-                uiBlocks[i].Dispose();
-            }
-            uiBlocks.Clear();
+            visitedKeys.Clear();
         }
 
-        public void Build(Block block, View parent, int indent)
+        public void RemoveUnusedUI()
         {
-            if (block is LeafBlock leafBlock)
+            foreach (var key in viewCache.Keys.ToList())
             {
-                Tizen.Log.Info("NUI", $"{Indent.Get(indent)}[{indent}][{block.GetType().Name}] : LeafBlock\n");
-
-                var text = leafBlock.Inline is null ? String.Empty : GetInlineText(leafBlock.Inline);
-                AddBlockToUI(block, parent, text, indent);
-            }
-            else if (block is ContainerBlock containerBlock)
-            {
-                Tizen.Log.Info("NUI", $"{Indent.Get(indent)}[{indent}][{block.GetType().Name}] : ContainerBlock\n");
-
-                var container = NewContainer(block);
-                parent.Add(container);
-
-                foreach (var subBlock in containerBlock)
+                if (!visitedKeys.Contains(key))
                 {
-                    Build(subBlock, container, indent + 1);
+                    viewCache[key]?.Dispose();
+                    viewCache.Remove(key);
                 }
+            }
+        }
+
+        public void Build(Block block, View parent, int indent, string path)
+        {
+            string type = block.GetType().Name;
+            string hash = "";
+
+            if (block is FencedCodeBlock fenced)
+            {
+                string language = fenced.Info;
+                string code = fenced.Lines.ToString();
+                hash = ComputeHash(language + code);
+            }
+            else if (block is LeafBlock leaf)
+            {
+                hash = ComputeHash(GetInlineText(leaf.Inline));
+            }
+            string key = $"{path}-{type}-{hash}";
+            visitedKeys.Add(key);
+
+            View view;
+            if (viewCache.TryGetValue(key, out view))
+            {
+                if (view.Parent != parent && !parent.Children.Contains(view))
+                    parent.Add(view);
             }
             else
             {
-                // Something wrong.
-                Tizen.Log.Info("NUI", $"{Indent.Get(indent)}[{indent}][{block.GetType().Name}] : UnknownBlock\n");
+                string text = string.Empty;
+                if (block is LeafBlock leafBlock)
+                    text = GetInlineText(leafBlock.Inline);
+
+                view = block is ContainerBlock ? NewContainer(block) : NewLeaf(block, text);
+                parent.Add(view);
+                viewCache[key] = view;
             }
-        }
 
-        private void Initialize()
-        {
-            uiBlocks = new List<View>();
-        }
-
-        private string GetInlineText(ContainerInline inline)
-        {
-            var result = new StringBuilder();
-            foreach (var child in inline)
+            if (block is ContainerBlock containerBlock)
             {
-                switch (child)
-                {
-                    case LiteralInline literal:
-                        result.Append(literal.Content.Text.Substring(literal.Content.Start, literal.Content.Length));
-                        break;
-
-                    case EmphasisInline emphasis:
-                        var content = GetInlineText(emphasis);
-                        if(emphasis.DelimiterChar == '~')
-                        {
-                            result.Append(emphasis.DelimiterCount == 2 ? $"<s>{content}</s>" : $"{content}");
-                        }
-                        else
-                        {
-                            // '*', '**'
-                            result.Append(emphasis.DelimiterCount == 2 ? $"<b>{content}</b>" : $"<i>{content}</i>");
-                        }
-                        break;
-
-                    case CodeInline code:
-                        result.Append($"<font family='{style.Code.FontFamily}'>{code.Content}</font>");
-                        break;
-
-                    case LineBreakInline:
-                        result.AppendLine();
-                        break;
-
-                    case LinkInline link:
-                        var label = GetInlineText(link);
-                        result.Append($"<a href='{link.Url}'>{label}</a>");
-                        break;
-
-                    default: // fallback
-                        if (child is ContainerInline container)
-                            result.Append(GetInlineText(container));
-                        break;
-                }
+                int index = 0;
+                foreach (var subBlock in containerBlock)
+                    Build(subBlock, view, indent + 1, $"{path}/{index++}");
             }
-            return result.ToString();
         }
 
-        private void AddBlockToUI(Block block, View parent, string text, int indent)
+        private string ComputeHash(string text)
+        {
+            if (string.IsNullOrEmpty(text)) return "";
+            using var sha1 = SHA1.Create();
+            var bytes = Encoding.UTF8.GetBytes(text);
+            var hash = sha1.ComputeHash(bytes);
+            return Convert.ToHexString(hash);
+        }
+
+        private View NewLeaf(Block block, string text)
         {
             if (block is HeadingBlock heading)
             {
-                Tizen.Log.Info("NUI", $"{Indent.Get(indent)}└[{indent}][HeadingBlock][{heading.Level}] Text:{text}\n");
-                parent.Add(NewHeading(text, heading.Level));
+                return NewHeading(text, heading.Level);
             }
             else if (block is ParagraphBlock)
             {
-                Tizen.Log.Info("NUI", $"{Indent.Get(indent)}└[{indent}][ParagraphBlock] Text:{text}\n");
-                parent.Add(NewParagraph(text));
+                return NewParagraph(text);
             }
             else if (block is ThematicBreakBlock)
             {
-                Tizen.Log.Info("NUI", $"{Indent.Get(indent)}└[{indent}][ThematicBreakBlock] Text:{text}\n");
-                parent.Add(NewThematicBreak());
+                return NewThematicBreak();
             }
             else if (block is FencedCodeBlock fenced)
             {
-                Tizen.Log.Info("NUI", $"{Indent.Get(indent)}└[{indent}][FencedCodeBlock] Text:{text}\n");
                 string language = fenced.Info;
                 string code = fenced.Lines.ToString();
-                parent.Add(NewCode(language, code));
+                return NewCode(language, code);
             }
             else
             {
-                Tizen.Log.Info("NUI", $"{Indent.Get(indent)}└[{indent}][UnknownBlock:{block.GetType().Name}] Text:{text}\n");
-                parent.Add(NewParagraph(text));
+                return NewParagraph(text); // fallback
             }
         }
 
@@ -206,12 +171,56 @@ namespace Tizen.NUI.MarkdownRenderer
             }
             else if (block is TableCell)
             {
-                return NewTableItem();
+                return NewTableCell();
             }
             else
             {
                 return NewBase();
             }
+        }
+
+        private string GetInlineText(ContainerInline inline)
+        {
+            if (inline == null)
+                return string.Empty;
+
+            var result = new StringBuilder();
+            foreach (var child in inline)
+            {
+                switch (child)
+                {
+                    case LiteralInline literal:
+                        result.Append(literal.Content.Text.Substring(literal.Content.Start, literal.Content.Length));
+                        break;
+
+                    case EmphasisInline emphasis:
+                        var content = GetInlineText(emphasis);
+                        if(emphasis.DelimiterChar == '~')
+                            result.Append(emphasis.DelimiterCount == 2 ? $"<s>{content}</s>" : $"{content}");
+                        else // '*', '**'
+                            result.Append(emphasis.DelimiterCount == 2 ? $"<b>{content}</b>" : $"<i>{content}</i>");
+                        break;
+
+                    case CodeInline code:
+                        result.Append($"<font family='{style.Code.FontFamily}'>{code.Content}</font>");
+                        break;
+
+                    case LineBreakInline:
+                        result.AppendLine();
+                        break;
+
+                    case LinkInline link:
+                        var label = GetInlineText(link);
+                        result.Append($"<a href='{link.Url}'>{label}</a>");
+                        break;
+
+                    default: // fallback
+                        if (child is ContainerInline container)
+                            result.Append(GetInlineText(container));
+                        break;
+                }
+            }
+            return result.ToString();
         }
 
         private View NewCode(string language, string text)
@@ -257,10 +266,6 @@ namespace Tizen.NUI.MarkdownRenderer
             };
             code.Add(label);
 
-            uiBlocks.Add(code);
-            uiBlocks.Add(title);
-            uiBlocks.Add(label);
-
             return code;
         }
 
@@ -278,7 +283,6 @@ namespace Tizen.NUI.MarkdownRenderer
                 BackgroundColor = Color.Transparent,
                 Padding = new Extents((ushort)style.Common.Padding),
             };
-            uiBlocks.Add(view);
             return view;
         }
 
@@ -296,7 +300,6 @@ namespace Tizen.NUI.MarkdownRenderer
                 BackgroundColor = Color.Transparent,
                 Margin = new Extents(0, 0, (ushort)style.Common.Margin, (ushort)style.Common.Margin),
             };
-            uiBlocks.Add(table);
             return table;
         }
 
@@ -315,11 +318,10 @@ namespace Tizen.NUI.MarkdownRenderer
                 BorderlineWidth = style.Table.BorderThickness,
                 BorderlineColor = new Color(style.Table.BorderColor),
             };
-            uiBlocks.Add(item);
             return item;
         }
 
-        private View NewTableItem()
+        private View NewTableCell()
         {
             var item = new View()
             {
@@ -333,7 +335,6 @@ namespace Tizen.NUI.MarkdownRenderer
                 BackgroundColor = Color.Transparent,
                 Padding = new Extents((ushort)style.Table.Padding),
             };
-            uiBlocks.Add(item);
             return item;
         }
 
@@ -351,7 +352,6 @@ namespace Tizen.NUI.MarkdownRenderer
                 BackgroundColor = Color.Transparent,
                 Margin = new Extents(0, 0, (ushort)style.Common.Margin, (ushort)style.Common.Margin),
             };
-            uiBlocks.Add(list);
             return list;
         }
 
@@ -369,7 +369,6 @@ namespace Tizen.NUI.MarkdownRenderer
                 BackgroundColor = Color.Transparent,
                 Margin = new Extents((ushort)style.Common.Indent, 0, 0, 0),
             };
-            uiBlocks.Add(item);
             return item;
         }
 
@@ -409,7 +408,6 @@ namespace Tizen.NUI.MarkdownRenderer
                     heading.PixelSize = style.Heading.FontSizeLevel1;
                     break;
             }
-            uiBlocks.Add(heading);
             return heading;
         }
 
@@ -428,7 +426,6 @@ namespace Tizen.NUI.MarkdownRenderer
                 Padding = new Extents((ushort)style.Quote.Padding),
                 Margin = new Extents((ushort)style.Common.Indent, 0, (ushort)style.Common.Margin, (ushort)style.Common.Margin),
             };
-            uiBlocks.Add(view);
             return view;
         }
 
@@ -441,7 +438,6 @@ namespace Tizen.NUI.MarkdownRenderer
                 BackgroundColor = new Color(style.ThematicBreak.Color),
                 Margin = new Extents(0, 0, (ushort)style.Common.Margin, (ushort)style.Common.Margin),
             };
-            uiBlocks.Add(view);
             return view;
         }
 
@@ -463,7 +459,6 @@ namespace Tizen.NUI.MarkdownRenderer
                 AnchorColor = new Color(style.Link.Color),
                 AnchorClickedColor = new Color(style.Link.VisitedColor),
             };
-            uiBlocks.Add(label);
             return label;
         }
     }
