@@ -51,8 +51,10 @@ namespace Tizen.NUI.MarkdownRenderer
         {
             var document = parser.Parse(markdown);
 
-            builder.Clear();
-            builder.Build(document, this, 0);
+            builder.ClearVisitedKeys();
+            builder.Build(document, this, 0, "root");
+
+            builder.RemoveUnusedUI();
         }
 
         private void Initialize()
