@@ -16,15 +16,10 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Text;
 
 using Markdig;
 using Markdig.Syntax;
@@ -34,57 +29,47 @@ using Markdig.Extensions.Tables;
 namespace Tizen.NUI.MarkdownRenderer
 {
     /// <summary>
-    /// MarkdownUIBuilder.
+    /// Builds a UI tree from a Markdown block AST and manages view re-use through caching.
+    /// Designed for efficient incremental updates and streaming rendering.
     /// </summary>
     internal class MarkdownUIBuilder
     {
         private MarkdownStyle style;
+        private MarkdownUICacheManager cacheManager = new MarkdownUICacheManager();
 
-        private Dictionary<string, View> viewCache = new();
-        private HashSet<string> visitedKeys = new();
-
+        /// <summary>
+        /// Initializes a new builder instance with the specified style.
+        /// </summary>
+        /// <param name="markdownStyle">Style settings for rendering markdown UI.</param>
         public MarkdownUIBuilder(MarkdownStyle markdownStyle)
         {
             style = markdownStyle;
         }
 
-        public void ClearVisitedKeys()
-        {
-            visitedKeys.Clear();
-        }
-
+        /// <summary>
+        /// Disposes and removes any views in the cache that were not visited
+        /// in the latest Build() traversal.
+        /// Should be called after each build pass.
+        /// </summary>
         public void RemoveUnusedUI()
         {
-            foreach (var key in viewCache.Keys.ToList())
-            {
-                if (!visitedKeys.Contains(key))
-                {
-                    viewCache[key]?.Dispose();
-                    viewCache.Remove(key);
-                }
-            }
+            cacheManager.RemoveUnusedViews();
         }
 
-        public void Build(Block block, View parent, int indent, string path)
+        /// <summary>
+        /// Recursively traverses the Markdown block AST, constructing and reusing
+        /// UI views for each block. Uses a cache to minimize unnecessary view creation.
+        /// </summary>
+        /// <param name="block">The current Markdown block node being processed.</param>
+        /// <param name="parent">The parent UI View to attach created/reused views to.</param>
+        /// <param name="path">A unique path string (e.g., "root/0/2") for key generation and cache lookup.</param>
+        public void Build(Block block, View parent, string path)
         {
-            string type = block.GetType().Name;
-            string hash = "";
+            string key = cacheManager.CreateKey(block, path);
+            cacheManager.MarkVisited(key);
 
-            if (block is FencedCodeBlock fenced)
-            {
-                string language = fenced.Info;
-                string code = fenced.Lines.ToString();
-                hash = ComputeHash(language + code);
-            }
-            else if (block is LeafBlock leaf)
-            {
-                hash = ComputeHash(GetInlineText(leaf.Inline));
-            }
-            string key = $"{path}-{type}-{hash}";
-            visitedKeys.Add(key);
-
-            View view;
-            if (viewCache.TryGetValue(key, out view))
+            var view = cacheManager.Get(key);
+            if (view is not null)
             {
                 if (view.Parent != parent && !parent.Children.Contains(view))
                     parent.Add(view);
@@ -97,24 +82,68 @@ namespace Tizen.NUI.MarkdownRenderer
 
                 view = block is ContainerBlock ? NewContainer(block) : NewLeaf(block, text);
                 parent.Add(view);
-                viewCache[key] = view;
+
+                cacheManager.Add(key, view);
             }
 
             if (block is ContainerBlock containerBlock)
             {
                 int index = 0;
                 foreach (var subBlock in containerBlock)
-                    Build(subBlock, view, indent + 1, $"{path}/{index++}");
+                    Build(subBlock, view, $"{path}/{index++}");
             }
         }
 
-        private string ComputeHash(string text)
+        /// <summary>
+        /// Recursively converts a Markdig inline node tree into a markup string for rich UI rendering.
+        /// Applies markdown styling (bold, italic, strikethrough, code, link, linebreak, etc)
+        /// by emitting markup tags suitable for TextLabel.
+        /// </summary>
+        /// <param name="inline">Root Markdig ContainerInline node to convert.</param>
+        /// <returns>
+        /// A string containing markup representing the fully styled inline content,
+        /// with emphasis, code, links, and other markdown features as tags.
+        /// </returns>
+        private string GetInlineText(ContainerInline inline)
         {
-            if (string.IsNullOrEmpty(text)) return "";
-            using var sha1 = SHA1.Create();
-            var bytes = Encoding.UTF8.GetBytes(text);
-            var hash = sha1.ComputeHash(bytes);
-            return Convert.ToHexString(hash);
+            if (inline == null) return string.Empty;
+            var sb = new StringBuilder();
+            foreach (var child in inline)
+            {
+                switch (child)
+                {
+                    case LiteralInline literal:
+                        sb.Append(literal.Content.Text, literal.Content.Start, literal.Content.Length);
+                        break;
+
+                    case EmphasisInline emphasis:
+                        var content = GetInlineText(emphasis);
+                        if(emphasis.DelimiterChar == '~')
+                            sb.Append(emphasis.DelimiterCount == 2 ? $"<s>{content}</s>" : $"{content}");
+                        else // '*', '**'
+                            sb.Append(emphasis.DelimiterCount == 2 ? $"<b>{content}</b>" : $"<i>{content}</i>");
+                        break;
+
+                    case CodeInline code:
+                        sb.Append($"<font family='{style.Code.FontFamily}'>{code.Content}</font>");
+                        break;
+
+                    case LineBreakInline:
+                        sb.AppendLine();
+                        break;
+
+                    case LinkInline link:
+                        var label = GetInlineText(link);
+                        sb.Append($"<a href='{link.Url}'>{label}</a>");
+                        break;
+
+                    default: // fallback
+                        if (child is ContainerInline container)
+                            sb.Append(GetInlineText(container));
+                        break;
+                }
+            }
+            return sb.ToString();
         }
 
         private View NewLeaf(Block block, string text)
@@ -177,50 +206,6 @@ namespace Tizen.NUI.MarkdownRenderer
             {
                 return NewBase();
             }
-        }
-
-        private string GetInlineText(ContainerInline inline)
-        {
-            if (inline == null)
-                return string.Empty;
-
-            var result = new StringBuilder();
-            foreach (var child in inline)
-            {
-                switch (child)
-                {
-                    case LiteralInline literal:
-                        result.Append(literal.Content.Text.Substring(literal.Content.Start, literal.Content.Length));
-                        break;
-
-                    case EmphasisInline emphasis:
-                        var content = GetInlineText(emphasis);
-                        if(emphasis.DelimiterChar == '~')
-                            result.Append(emphasis.DelimiterCount == 2 ? $"<s>{content}</s>" : $"{content}");
-                        else // '*', '**'
-                            result.Append(emphasis.DelimiterCount == 2 ? $"<b>{content}</b>" : $"<i>{content}</i>");
-                        break;
-
-                    case CodeInline code:
-                        result.Append($"<font family='{style.Code.FontFamily}'>{code.Content}</font>");
-                        break;
-
-                    case LineBreakInline:
-                        result.AppendLine();
-                        break;
-
-                    case LinkInline link:
-                        var label = GetInlineText(link);
-                        result.Append($"<a href='{link.Url}'>{label}</a>");
-                        break;
-
-                    default: // fallback
-                        if (child is ContainerInline container)
-                            result.Append(GetInlineText(container));
-                        break;
-                }
-            }
-            return result.ToString();
         }
 
         private View NewCode(string language, string text)
