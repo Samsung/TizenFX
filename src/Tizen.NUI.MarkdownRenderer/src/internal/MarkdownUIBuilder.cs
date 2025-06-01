@@ -57,6 +57,14 @@ namespace Tizen.NUI.MarkdownRenderer
         }
 
         /// <summary>
+        /// Clears the cached UI views and resets the builder's internal state.
+        /// </summary>
+        public void Clear()
+        {
+            cacheManager.Clear();
+        }
+
+        /// <summary>
         /// Recursively traverses the Markdown block AST, constructing and reusing
         /// UI views for each block. Uses a cache to minimize unnecessary view creation.
         /// </summary>
