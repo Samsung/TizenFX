@@ -162,7 +162,14 @@ namespace Tizen.NUI.MarkdownRenderer
             }
             else if (block is ParagraphBlock)
             {
-                return NewParagraph(text);
+                if (block.Parent is ListItemBlock)
+                {
+                    return NewListText(text);
+                }
+                else
+                {
+                    return NewParagraph(text);
+                }
             }
             else if (block is ThematicBreakBlock)
             {
@@ -362,6 +369,34 @@ namespace Tizen.NUI.MarkdownRenderer
                 BackgroundColor = Color.Transparent,
                 Margin = new Extents((ushort)style.Common.Indent, 0, 0, 0),
             };
+            return item;
+        }
+
+        private View NewListText(string text)
+        {
+            var item = new View()
+            {
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    HorizontalAlignment = HorizontalAlignment.Begin,
+                },
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                BackgroundColor = Color.Transparent,
+            };
+
+            int bulletSize = (int)(style.Paragraph.FontSize / 4);
+            ushort bulletMargin = (ushort)((style.Paragraph.LineHeight - bulletSize) / 2);
+            var bullet = new View()
+            {
+                WidthSpecification = bulletSize,
+                HeightSpecification = bulletSize,
+                BackgroundColor = new Color(style.Paragraph.FontColor),
+                Margin = new Extents(bulletMargin),
+            };
+            item.Add(bullet);
+            item.Add(NewParagraph(text));
             return item;
         }
 
