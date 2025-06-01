@@ -59,6 +59,14 @@ namespace Tizen.NUI.MarkdownRenderer
         }
 
         /// <summary>
+        /// Disposes all rendered views and clears the internal UI builder state.
+        /// </summary>
+        public void Clear()
+        {
+            builder.Clear();
+        }
+
+        /// <summary>
         /// Initializes layout, parser, and UI builder components for rendering.
         /// </summary>
         private void Initialize()
