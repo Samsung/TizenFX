@@ -121,7 +121,8 @@ namespace Tizen.NUI.MarkdownRenderer
                 switch (child)
                 {
                     case LiteralInline literal:
-                        sb.Append(literal.Content.Text, literal.Content.Start, literal.Content.Length);
+                        var slice = literal.Content;
+                        AppendEscaped(sb, slice.Text, slice.Start, slice.Length);
                         break;
 
                     case EmphasisInline emphasis:
@@ -152,6 +153,21 @@ namespace Tizen.NUI.MarkdownRenderer
                 }
             }
             return sb.ToString();
+        }
+
+        private void AppendEscaped(StringBuilder sb, string text, int start, int length)
+        {
+            for (int i = start; i < start + length; i++)
+            {
+                char c = text[i];
+                switch (c)
+                {
+                    case '&': sb.Append("&amp;"); break;
+                    case '<': sb.Append("&lt;"); break;
+                    case '>': sb.Append("&gt;"); break;
+                    default: sb.Append(c); break;
+                }
+            }
         }
 
         private View NewLeaf(Block block, string text)
