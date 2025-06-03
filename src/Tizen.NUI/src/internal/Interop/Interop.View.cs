@@ -127,6 +127,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingVisualPropertyVector4")]
             public static extern int InternalRetrievingVisualPropertyVector4(HandleRef actor,  int visualIndex, int visualPropertyIndex, HandleRef retrievingVector4);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingVisualProperty4FloatValues")]
+            public static extern int InternalRetrievingVisualProperty4FloatValues(HandleRef actor, int visualIndex, int visualPropertyIndex, out float x, out float y, out float z, out float w);
         }
     }
 }
