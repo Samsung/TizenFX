@@ -481,12 +481,13 @@ namespace Tizen.NUI.MarkdownRenderer
 
         private View NewThematicBreak()
         {
+            ushort margin = (ushort)(style.Common.Margin + style.ThematicBreak.Margin);
             var view = new View
             {
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = style.ThematicBreak.Thickness,
                 BackgroundColor = new Color(style.ThematicBreak.Color),
-                Margin = new Extents(0, 0, (ushort)style.Common.Margin, (ushort)style.Common.Margin),
+                Margin = new Extents(0, 0, margin, margin),
             };
             return view;
         }

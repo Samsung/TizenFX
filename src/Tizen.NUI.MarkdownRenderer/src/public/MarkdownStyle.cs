@@ -141,6 +141,9 @@ namespace Tizen.NUI.MarkdownRenderer
 
         /// Thickness.
         public int Thickness { get; set; } = StyleDefaults.ThematicBreakThickness;
+
+        /// Margin is added in pixels to the top and bottom of Block.
+        public int Margin { get; set; } = StyleDefaults.ThematicBreakMargin;
     }
 
     /// <summary>
