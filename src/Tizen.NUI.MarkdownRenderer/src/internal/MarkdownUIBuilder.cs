@@ -407,8 +407,8 @@ namespace Tizen.NUI.MarkdownRenderer
                 BackgroundColor = Color.Transparent,
             };
 
-            int bulletSize = (int)(style.Paragraph.FontSize / 4);
-            ushort bulletMargin = (ushort)((style.Paragraph.LineHeight - bulletSize) / 2);
+            int bulletSize = (int)Math.Round(style.Paragraph.FontSize / 4);
+            ushort bulletMargin = (ushort)Math.Round((style.Paragraph.LineHeight - bulletSize) / 2);
             var bullet = new View()
             {
                 WidthSpecification = bulletSize,
