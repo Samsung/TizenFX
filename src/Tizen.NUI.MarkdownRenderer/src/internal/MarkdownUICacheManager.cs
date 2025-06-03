@@ -92,7 +92,7 @@ namespace Tizen.NUI.MarkdownRenderer
         public void Clear()
         {
             foreach (var view in cache.Values)
-                view.Dispose();
+                view?.DisposeRecursively();
 
             cache.Clear();
             visited.Clear();
