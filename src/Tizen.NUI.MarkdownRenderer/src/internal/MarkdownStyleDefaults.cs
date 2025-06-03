@@ -64,9 +64,5 @@ namespace Tizen.NUI.MarkdownRenderer
         public const string CodeTitleBackgroundColor = "#CCCCCC55";
         public const float CodeTitleFontSize = 16.0f;
         public const int CodePadding = 10;
-
-        // LinkStyle
-        public const string LinkColor = "#4A90E2FF";
-        public const string LinkVisitedColor = "#9B59B6FF";
     }
 }
