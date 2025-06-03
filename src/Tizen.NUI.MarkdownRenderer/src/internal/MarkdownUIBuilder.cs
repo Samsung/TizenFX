@@ -134,7 +134,9 @@ namespace Tizen.NUI.MarkdownRenderer
                         break;
 
                     case CodeInline code:
-                        sb.Append($"<font family='{style.Code.FontFamily}'>{code.Content}</font>");
+                        sb.Append($"<font family='{style.Code.FontFamily}'>");
+                        AppendEscaped(sb, code.Content, 0, code.Content.Length);
+                        sb.Append("</font>");
                         break;
 
                     case LineBreakInline:
@@ -143,7 +145,9 @@ namespace Tizen.NUI.MarkdownRenderer
 
                     case LinkInline link:
                         var label = GetInlineText(link);
-                        sb.Append($"<a href='{link.Url}'>{label}</a>");
+                        sb.Append($"<b>{label}</b> [\U0001f517 ");
+                        AppendEscaped(sb, link.Url, 0, link.Url.Length);
+                        sb.Append("]");
                         break;
 
                     default: // fallback
@@ -274,6 +278,7 @@ namespace Tizen.NUI.MarkdownRenderer
                 FontFamily = style.Code.FontFamily,
                 PixelSize = style.Code.FontSize,
                 MultiLine = true,
+                EnableMarkup = false,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
                 TextColor = new Color(style.Code.FontColor),
@@ -502,8 +507,6 @@ namespace Tizen.NUI.MarkdownRenderer
                 HeightSpecification = LayoutParamPolicies.WrapContent,
                 VerticalLineAlignment = VerticalLineAlignment.Center,
                 BackgroundColor = Color.Transparent,
-                AnchorColor = new Color(style.Link.Color),
-                AnchorClickedColor = new Color(style.Link.VisitedColor),
             };
             return label;
         }

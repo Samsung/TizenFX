@@ -65,11 +65,6 @@ namespace Tizen.NUI.MarkdownRenderer
         /// CodeStyle.
         /// </summary>
         public CodeStyle Code { get; } = new CodeStyle();
-
-        /// <summary>
-        /// LinkStyle.
-        /// </summary>
-        public LinkStyle Link { get; } = new LinkStyle();
     }
 
     /// <summary>
@@ -209,18 +204,5 @@ namespace Tizen.NUI.MarkdownRenderer
 
         /// Padding.
         public int Padding { get; set; } = StyleDefaults.CodePadding;
-    }
-
-    /// <summary>
-    /// LinkStyle.
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class LinkStyle
-    {
-        /// LinkStyle.
-        public string Color { get; set; } = StyleDefaults.LinkColor;
-        
-        /// VisitedColor.
-        public string VisitedColor { get; set; } = StyleDefaults.LinkVisitedColor;
     }
 }
