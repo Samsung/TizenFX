@@ -91,6 +91,19 @@ namespace Tizen.NUI.MarkdownRenderer
                 view = block is ContainerBlock ? NewContainer(block) : NewLeaf(block, text);
                 parent.Add(view);
 
+                if (block is TableRow tableRow)
+                {
+                    if (tableRow.IsHeader)
+                    {
+                        var headerLine = new View
+                        {
+                            WidthSpecification = LayoutParamPolicies.MatchParent,
+                            HeightSpecification = style.Table.BorderThickness,
+                            BackgroundColor = new Color(style.Table.BorderColor),
+                        };
+                        parent.Add(headerLine);
+                    }
+                }
                 cacheManager.Add(key, view);
             }
 
@@ -318,7 +331,8 @@ namespace Tizen.NUI.MarkdownRenderer
                 },
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
-                BackgroundColor = Color.Transparent,
+                BackgroundColor = new Color(style.Table.BackgroundColor),
+                Padding = new Extents((ushort)style.Table.Padding),
                 Margin = new Extents(0, 0, (ushort)style.Common.Margin, (ushort)style.Common.Margin),
             };
             return table;
@@ -336,8 +350,6 @@ namespace Tizen.NUI.MarkdownRenderer
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
                 BackgroundColor = Color.Transparent,
-                BorderlineWidth = style.Table.BorderThickness,
-                BorderlineColor = new Color(style.Table.BorderColor),
             };
             return item;
         }
@@ -354,7 +366,7 @@ namespace Tizen.NUI.MarkdownRenderer
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
                 BackgroundColor = Color.Transparent,
-                Padding = new Extents((ushort)style.Table.Padding),
+                Padding = new Extents((ushort)style.Table.ItemPadding),
             };
             return item;
         }
