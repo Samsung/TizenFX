@@ -165,14 +165,20 @@ namespace Tizen.NUI.MarkdownRenderer
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TableStyle
     {
+        /// BackgroundColor.
+        public string BackgroundColor { get; set; } = StyleDefaults.TableBackgroundColor;
+
         /// BorderColor.
         public string BorderColor { get; set; } = StyleDefaults.TableBorderColor;
 
-        /// TitleFontFaBorderThicknessmily.
+        /// BorderThickness.
         public int BorderThickness { get; set; } = StyleDefaults.TableBorderThickness;
 
         /// Padding.
         public int Padding { get; set; } = StyleDefaults.TablePadding;
+
+        /// ItemPadding.
+        public int ItemPadding { get; set; } = StyleDefaults.TableItemPadding;
     }
 
     /// <summary>
