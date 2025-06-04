@@ -90,7 +90,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the main view of the NUI gadget..
+        /// Gets the main view of the NUI gadget.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public View MainView
@@ -293,6 +293,35 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         protected virtual void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
         {
+        }
+
+        /// <summary>
+        /// Overrides this method if want to handle behavior when the message is received.
+        /// </summary>
+        /// <param name="e">The message received event argument.</param>
+        /// <since_tizen> 13 </since_tizen>
+        protected virtual void OnMessageReceived(NUIGadgetMessageReceivedEventArgs e)
+        {
+        }
+
+        /// <summary>
+        /// Sends the message to the gadget.
+        /// The message will be delived to the OnMessageReceived() method.
+        /// </summary>
+        /// <param name="message">The message</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        /// <since_tizen> 13 </since_tizen>
+        public void SendMessage(Bundle message)
+        {
+            if (message == null)
+            {
+                throw new ArgumentNullException(nameof(message));
+            }
+
+            CoreApplication.Post(() =>
+            {
+                OnMessageReceived(new NUIGadgetMessageReceivedEventArgs(message));
+            });
         }
 
         /// <summary>
