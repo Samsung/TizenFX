@@ -164,8 +164,8 @@ namespace Tizen.NUI
         internal static InnerShadow GenerateInnerShadowByExtents(UIExtents insetExtents, float blurRadius, Color color, ColorVisualCutoutPolicyType cutoutPolicy)
         {
             var shadowWidth = CalculateShadowWidthByExtents(insetExtents, blurRadius);
-            var offset = CalculateOffsetByExtents(insetExtents);
-            var extents = CalculateExtraSizeByExtents(insetExtents, shadowWidth);
+            using var offset = CalculateOffsetByExtents(insetExtents);
+            using var extents = CalculateExtraSizeByExtents(insetExtents, shadowWidth);
 
             return new InnerShadow(shadowWidth, blurRadius, cutoutPolicy, color, offset, extents);
         }
