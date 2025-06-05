@@ -178,17 +178,17 @@ namespace Tizen.NUI.MarkdownRenderer
         {
             if (block is HeadingBlock heading)
             {
-                return NewHeading(text, heading.Level);
+                return new UIHeading(text, heading.Level, style.Heading, style.Common, style.Paragraph);
             }
             else if (block is ParagraphBlock)
             {
                 if (block.Parent is ListItemBlock)
                 {
-                    return NewListText(text);
+                    return new UIListItemText(text, style.Paragraph);
                 }
                 else
                 {
-                    return NewParagraph(text);
+                    return new UIParagraph(text, style.Paragraph);
                 }
             }
             else if (block is ThematicBreakBlock)
@@ -203,7 +203,7 @@ namespace Tizen.NUI.MarkdownRenderer
             }
             else
             {
-                return NewParagraph(text); // fallback
+                return new UIParagraph(text, style.Paragraph); // fallback
             }
         }
 
@@ -219,11 +219,11 @@ namespace Tizen.NUI.MarkdownRenderer
             }
             else if (block is ListBlock)
             {
-                return NewList();
+                return new UIList(style.Common);
             }
             else if (block is ListItemBlock)
             {
-                return NewListItem();
+                return new UIListItem(style.Common);
             }
             else if (block is Table)
             {
@@ -307,108 +307,6 @@ namespace Tizen.NUI.MarkdownRenderer
             return view;
         }
 
-        private View NewList()
-        {
-            var list = new View()
-            {
-                Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Vertical,
-                    HorizontalAlignment = HorizontalAlignment.Begin,
-                },
-                WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
-                BackgroundColor = Color.Transparent,
-                Margin = new Extents(0, 0, (ushort)style.Common.Margin, (ushort)style.Common.Margin),
-            };
-            return list;
-        }
-
-        private View NewListItem()
-        {
-            var item = new View()
-            {
-                Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Vertical,
-                    HorizontalAlignment = HorizontalAlignment.Begin,
-                },
-                WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
-                BackgroundColor = Color.Transparent,
-                Margin = new Extents((ushort)style.Common.Indent, 0, 0, 0),
-            };
-            return item;
-        }
-
-        private View NewListText(string text)
-        {
-            var item = new View()
-            {
-                Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    HorizontalAlignment = HorizontalAlignment.Begin,
-                },
-                WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
-                BackgroundColor = Color.Transparent,
-            };
-
-            int bulletSize = (int)Math.Round(style.Paragraph.FontSize / 4);
-            ushort bulletMargin = (ushort)Math.Round((style.Paragraph.LineHeight - bulletSize) / 2);
-            var bullet = new View()
-            {
-                WidthSpecification = bulletSize,
-                HeightSpecification = bulletSize,
-                BackgroundColor = new Color(style.Paragraph.FontColor),
-                Margin = new Extents(bulletMargin),
-            };
-            item.Add(bullet);
-            item.Add(NewParagraph(text));
-            return item;
-        }
-
-        private TextLabel NewHeading(string text, int level)
-        {
-            var heading = new TextLabel
-            {
-                Text = text,
-                FontFamily = style.Heading.FontFamily,
-                TextColor = new Color(style.Paragraph.FontColor),
-                MultiLine = true,
-                EnableMarkup = true,
-                Ellipsis = false,
-                WidthSpecification = LayoutParamPolicies.WrapContent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
-                BackgroundColor = Color.Transparent,
-                Margin = new Extents(0, 0, (ushort)style.Common.Margin, (ushort)style.Common.Margin),
-            };
-
-            switch(level)
-            {
-                case 1:
-                    heading.PixelSize = style.Heading.FontSizeLevel1;
-                    break;
-                case 2:
-                    heading.PixelSize = style.Heading.FontSizeLevel2;
-                    break;
-                case 3:
-                    heading.PixelSize = style.Heading.FontSizeLevel3;
-                    break;
-                case 4:
-                    heading.PixelSize = style.Heading.FontSizeLevel4;
-                    break;
-                case 5:
-                    heading.PixelSize = style.Heading.FontSizeLevel5;
-                    break;
-                default:
-                    heading.PixelSize = style.Heading.FontSizeLevel1;
-                    break;
-            }
-            return heading;
-        }
-
         private View NewThematicBreak()
         {
             ushort margin = (ushort)(style.Common.Margin + style.ThematicBreak.Margin);
@@ -420,26 +318,6 @@ namespace Tizen.NUI.MarkdownRenderer
                 Margin = new Extents(0, 0, margin, margin),
             };
             return view;
-        }
-
-        private TextLabel NewParagraph(string text)
-        {
-            var label = new TextLabel
-            {
-                Text = text,
-                FontFamily = style.Paragraph.FontFamily,
-                PixelSize = style.Paragraph.FontSize,
-                TextColor = new Color(style.Paragraph.FontColor),
-                MinLineSize = style.Paragraph.LineHeight,
-                MultiLine = true,
-                EnableMarkup = true,
-                Ellipsis = false,
-                WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
-                VerticalLineAlignment = VerticalLineAlignment.Center,
-                BackgroundColor = Color.Transparent,
-            };
-            return label;
         }
     }
 }
