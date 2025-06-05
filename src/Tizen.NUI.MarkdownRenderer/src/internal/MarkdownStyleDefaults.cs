@@ -47,6 +47,7 @@ namespace Tizen.NUI.MarkdownRenderer
         public const int ThematicBreakMargin = 10;
 
         // QuoteStyle
+        public const string QuoteFontColor = "#2F2F2FFF";
         public const string QuoteBarColor = "#DFDFDFFF";
         public const int QuoteBarWidth = 6;
         public const int QuoteBarMargin = 10;

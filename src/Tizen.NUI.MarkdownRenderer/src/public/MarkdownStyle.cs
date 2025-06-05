@@ -152,6 +152,9 @@ namespace Tizen.NUI.MarkdownRenderer
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class QuoteStyle
     {
+        /// FontColor.
+        public string FontColor { get; set; } = StyleDefaults.QuoteFontColor;
+
         /// BarColor.
         public string BarColor { get; set; } = StyleDefaults.QuoteBarColor;
 
