@@ -44,11 +44,33 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Sets the AccessibilityStatesV2 property of the view.
         /// </summary>
-        /// <param name="states">The states<see cref="AccessibilityStatesV2"/> value to set.</param>
+        /// <param name="states">The states <see cref="AccessibilityStatesV2"/> value to set.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAccessibilityStatesV2(AccessibilityStatesV2 states)
         {
             Object.InternalSetPropertyInt(SwigCPtr, Property.AccessibilityState, (int)states);
+        }
+
+        /// <summary>
+        /// Adds or remove given state to the current AccessibilityStatesV2 of the view.
+        /// </summary>
+        /// <param name="states">The states <see cref="AccessibilityStatesV2"/> value to add.</param>
+        /// <param name="isOn">True to add, false to remove.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ChangeAccessibilityStatesV2(AccessibilityStatesV2 states, bool isOn)
+        {
+            AccessibilityStatesV2 current = GetAccessibilityStatesV2();
+
+            if (isOn)
+            {
+                current = current.Add(states);
+            }
+            else
+            {
+                current = current.Remove(states);
+            }
+
+            Object.InternalSetPropertyInt(SwigCPtr, Property.AccessibilityState, (int)current);
         }
 
         /// <summary>
