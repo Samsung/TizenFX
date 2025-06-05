@@ -55,17 +55,20 @@ namespace Tizen.NUI.MarkdownRenderer
         private readonly View bar;
         private readonly View container;
 
-        private readonly QuoteStyle style;
+        private readonly QuoteStyle quote;
         private readonly CommonStyle common;
         private readonly ParagraphStyle paragraph;
         private readonly bool isHeaderQuote;
+        private readonly int barMargin;
 
         public UIQuote(bool isHeader, QuoteStyle quoteStyle, CommonStyle commonStyle, ParagraphStyle paragraphStyle) : base()
         {
             isHeaderQuote = isHeader;
-            style = quoteStyle;
+            quote = quoteStyle;
             common = commonStyle;
             paragraph = paragraphStyle;
+
+            barMargin = (int)Math.Round(((paragraph.FontSize * 1.4f) - quote.BarWidth) / 2);
 
             SetupLayout();
             bar = CreateBar();
@@ -103,15 +106,13 @@ namespace Tizen.NUI.MarkdownRenderer
             HeightSpecification = LayoutParamPolicies.WrapContent;
             BackgroundColor = Color.Transparent;
 
-            int barMargin = (int)Math.Round(((paragraph.FontSize * 1.4f) - style.BarWidth) / 2);
-            int indent = isHeaderQuote ? common.Indent : (int)(common.Indent - (style.BarWidth + barMargin * 2));
+            int indent = isHeaderQuote ? common.Indent : (int)(common.Indent - (quote.BarWidth + barMargin * 2));
             Margin = new Extents((ushort)indent, 0, (ushort)common.Margin, (ushort)common.Margin);
         }
 
         private View CreateBar()
         {
-            int barMargin = (int)Math.Round(((paragraph.FontSize * 1.4f) - style.BarWidth) / 2);
-            return new UIQuoteBar(style, barMargin);
+            return new UIQuoteBar(quote, barMargin);
         }
 
         private View CreateContainer()
@@ -126,7 +127,7 @@ namespace Tizen.NUI.MarkdownRenderer
                 BackgroundColor = Color.Transparent,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
-                Padding = new Extents((ushort)style.Padding),
+                Padding = new Extents((ushort)quote.Padding),
             };
         }
 
@@ -137,16 +138,16 @@ namespace Tizen.NUI.MarkdownRenderer
         {
             protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
             {
-                if (Owner is UIQuote quote && quote.bar is not null)
+                if (Owner is UIQuote uiQuote && uiQuote.bar is not null)
                 {
                     // Clear bar height before measuring
-                    quote.bar.Layout.MeasuredHeight = new MeasuredSize(new LayoutLength(0), MeasuredSize.StateType.MeasuredSizeOK);
+                    uiQuote.bar.Layout.MeasuredHeight = new MeasuredSize(new LayoutLength(0), MeasuredSize.StateType.MeasuredSizeOK);
 
                     base.OnMeasure(widthMeasureSpec, heightMeasureSpec);
 
                     float totalHeight = MeasuredHeight.Size.AsDecimal();
-                    int verticalMargin = quote.bar.Margin.Top + quote.bar.Margin.Bottom;
-                    quote.bar.Layout.MeasuredHeight = new MeasuredSize(new LayoutLength(totalHeight - verticalMargin), MeasuredSize.StateType.MeasuredSizeOK);
+                    int verticalMargin = uiQuote.bar.Margin.Top + uiQuote.bar.Margin.Bottom;
+                    uiQuote.bar.Layout.MeasuredHeight = new MeasuredSize(new LayoutLength(totalHeight - verticalMargin), MeasuredSize.StateType.MeasuredSizeOK);
                 }
             }
         }

@@ -22,14 +22,17 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.MarkdownRenderer
 {
+    /// <summary>
+    /// Renders a code block as a NUI View, including an optional language label and styled code text.
+    /// </summary>
     internal class UICode : View
     {
-        private readonly CodeStyle style;
+        private readonly CodeStyle code;
         private readonly CommonStyle common;
 
         public UICode(string language, string text, CodeStyle codeStyle, CommonStyle commonStyle) : base()
         {
-            style = codeStyle;
+            code = codeStyle;
             common = commonStyle;
             SetupLayout();
 
@@ -55,11 +58,11 @@ namespace Tizen.NUI.MarkdownRenderer
             return new UICodeText()
             {
                 Text = text,
-                FontFamily = style.TitleFontFamily,
-                PixelSize = style.TitleFontSize,
-                TextColor = new Color(style.TitleFontColor),
-                BackgroundColor = new Color(style.TitleBackgroundColor),
-                Padding = new Extents((ushort)style.Padding),
+                FontFamily = code.TitleFontFamily,
+                PixelSize = code.TitleFontSize,
+                TextColor = new Color(code.TitleFontColor),
+                BackgroundColor = new Color(code.TitleBackgroundColor),
+                Padding = new Extents((ushort)code.Padding),
             };
         }
 
@@ -68,11 +71,11 @@ namespace Tizen.NUI.MarkdownRenderer
             return new UICodeText()
             {
                 Text = text,
-                FontFamily = style.FontFamily,
-                PixelSize = style.FontSize,
-                TextColor = new Color(style.FontColor),
-                BackgroundColor = new Color(style.BackgroundColor),
-                Padding = new Extents((ushort)style.Padding),
+                FontFamily = code.FontFamily,
+                PixelSize = code.FontSize,
+                TextColor = new Color(code.FontColor),
+                BackgroundColor = new Color(code.BackgroundColor),
+                Padding = new Extents((ushort)code.Padding),
             };
         }
 
@@ -81,6 +84,7 @@ namespace Tizen.NUI.MarkdownRenderer
             public UICodeText() : base()
             {
                 MultiLine = true;
+                Ellipsis = false;
                 EnableMarkup = false;
                 WidthSpecification = LayoutParamPolicies.MatchParent;
                 HeightSpecification = LayoutParamPolicies.WrapContent;

@@ -22,17 +22,21 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.MarkdownRenderer
 {
+    /// <summary>
+    /// Renders a list item as a horizontal layout with a bullet and styled text.
+    /// Used for unordered or ordered markdown list items.
+    /// </summary>
     internal class UIListItemParagraph : View
     {
-        private readonly ParagraphStyle style;
+        private readonly ParagraphStyle paragraph;
 
         public UIListItemParagraph(string text, ParagraphStyle paragraphStyle) : base()
         {
-            style = paragraphStyle;
+            paragraph = paragraphStyle;
             SetupLayout();
 
             Add(CreateBullet());
-            Add(new UIParagraph(text, style));
+            Add(new UIParagraph(text, paragraph));
         }
 
         private void SetupLayout()
@@ -49,26 +53,30 @@ namespace Tizen.NUI.MarkdownRenderer
 
         private View CreateBullet()
         {
-            int bulletSize = (int)Math.Round(style.FontSize / 4);
-            ushort bulletMargin = (ushort)Math.Round((style.LineHeight - bulletSize) / 2);
+            int bulletSize = Math.Max(5, (int)Math.Round(paragraph.FontSize / 4));
+            ushort bulletMargin = (ushort)Math.Round((paragraph.LineHeight - bulletSize) / 2);
             var bullet = new View()
             {
                 WidthSpecification = bulletSize,
                 HeightSpecification = bulletSize,
-                BackgroundColor = new Color(style.FontColor),
+                BackgroundColor = new Color(paragraph.FontColor),
                 Margin = new Extents(bulletMargin),
             };
             return bullet;
         }
     }
 
+    /// <summary>
+    /// Represents a single list item container with vertical layout and indentation.
+    /// Used to group one or more list item paragraphs or nested lists.
+    /// </summary>
     internal class UIListItem : View
     {
-        private readonly CommonStyle style;
+        private readonly CommonStyle common;
 
         public UIListItem(CommonStyle commonStyle) : base()
         {
-            style = commonStyle;
+            common = commonStyle;
             SetupLayout();
         }
 
@@ -82,17 +90,21 @@ namespace Tizen.NUI.MarkdownRenderer
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.WrapContent;
             BackgroundColor = Color.Transparent;
-            Margin = new Extents((ushort)style.Indent, 0, 0, 0);
+            Margin = new Extents((ushort)common.Indent, 0, 0, 0);
         }
     }
 
+    /// <summary>
+    /// Represents a markdown list (ordered or unordered) with vertical layout and outer margin.
+    /// Acts as a container for list items.
+    /// </summary>
     internal class UIList : View
     {
-        private readonly CommonStyle style;
+        private readonly CommonStyle common;
 
         public UIList(CommonStyle commonStyle) : base()
         {
-            style = commonStyle;
+            common = commonStyle;
             SetupLayout();
         }
 
@@ -106,7 +118,7 @@ namespace Tizen.NUI.MarkdownRenderer
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.WrapContent;
             BackgroundColor = Color.Transparent;
-            Margin = new Extents(0, 0, (ushort)style.Margin, (ushort)style.Margin);
+            Margin = new Extents(0, 0, (ushort)common.Margin, (ushort)common.Margin);
         }
     }
 }
