@@ -50,7 +50,7 @@ namespace Tizen.NUI.MarkdownRenderer
             Margin = new Extents(0, 0, (ushort)common.Margin, (ushort)common.Margin);
         }
 
-        private TextLabel CreateTitle(string text)
+        private UICodeText CreateTitle(string text)
         {
             return new UICodeText()
             {
@@ -63,7 +63,7 @@ namespace Tizen.NUI.MarkdownRenderer
             };
         }
 
-        private TextLabel CreateCode(string text)
+        private UICodeText CreateCode(string text)
         {
             return new UICodeText()
             {

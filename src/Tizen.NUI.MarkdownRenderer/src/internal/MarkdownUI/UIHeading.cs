@@ -22,25 +22,16 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.MarkdownRenderer
 {
-    internal class UIHeading : TextLabel
+    internal class UIHeading : UIParagraph
     {
         HeadingStyle style;
 
-        public UIHeading(string text, int level, HeadingStyle headingStyle, CommonStyle commonStyle, ParagraphStyle paragraphStyle) : base()
+        public UIHeading(string text, int level, HeadingStyle headingStyle, CommonStyle commonStyle, ParagraphStyle paragraphStyle) : base(text, paragraphStyle)
         {
             style = headingStyle;
 
-            Text = text;
             FontFamily = style.FontFamily;
-            TextColor = new Color(paragraphStyle.FontColor);
-            MultiLine = true;
-            EnableMarkup = true;
-            Ellipsis = false;
-            WidthSpecification = LayoutParamPolicies.WrapContent;
-            HeightSpecification = LayoutParamPolicies.WrapContent;
-            BackgroundColor = Color.Transparent;
             Margin = new Extents(0, 0, (ushort)commonStyle.Margin, (ushort)commonStyle.Margin);
-
             SetFontSize(level);
         }
 
