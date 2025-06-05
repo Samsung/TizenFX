@@ -183,7 +183,11 @@ namespace Tizen.NUI.MarkdownRenderer
             else if (block is ParagraphBlock)
             {
                 if (block.Parent is ListItemBlock)
-                    return new UIListItemText(text, style.Paragraph);
+                    return new UIListItemParagraph(text, style.Paragraph);
+
+                else if (block.Parent is QuoteBlock)
+                    return new UIQuoteParagraph(text, style.Quote, style.Paragraph);
+
                 else
                     return new UIParagraph(text, style.Paragraph);
             }

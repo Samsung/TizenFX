@@ -22,11 +22,11 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.MarkdownRenderer
 {
-    internal class UIListItemText : View
+    internal class UIListItemParagraph : View
     {
         private readonly ParagraphStyle style;
 
-        public UIListItemText(string text, ParagraphStyle paragraphStyle) : base()
+        public UIListItemParagraph(string text, ParagraphStyle paragraphStyle) : base()
         {
             style = paragraphStyle;
             SetupLayout();
