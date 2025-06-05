@@ -25,9 +25,9 @@ namespace Tizen.NUI.MarkdownRenderer
     /// <summary>
     /// Represents the visual element for the Quote bar, which is a vertical bar displayed beside the quote text.
     /// </summary>
-    internal class QuoteBar : View
+    internal class UIQuoteBar : View
     {
-        public QuoteBar(QuoteStyle quoteStyle, int barMargin) : base()
+        public UIQuoteBar(QuoteStyle quoteStyle, int barMargin) : base()
         {
             WidthSpecification = quoteStyle.BarWidth;
             HeightSpecification = 0; // Height will be set by parent layout.
@@ -39,7 +39,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// <summary>
     /// Represents a Markdown quote block, which includes a vertical bar and a container for the quote text.
     /// </summary>
-    internal class Quote : View
+    internal class UIQuote : View
     {
         private readonly View bar;
         private readonly View container;
@@ -49,7 +49,7 @@ namespace Tizen.NUI.MarkdownRenderer
         private readonly ParagraphStyle paragraph;
         private readonly bool isHeaderQuote;
 
-        public Quote(bool isHeader, QuoteStyle quoteStyle, CommonStyle commonStyle, ParagraphStyle paragraphStyle) : base()
+        public UIQuote(bool isHeader, QuoteStyle quoteStyle, CommonStyle commonStyle, ParagraphStyle paragraphStyle) : base()
         {
             isHeaderQuote = isHeader;
             style = quoteStyle;
@@ -82,7 +82,7 @@ namespace Tizen.NUI.MarkdownRenderer
 
         private void SetupLayout()
         {
-            Layout = new QuoteLayout()
+            Layout = new UIQuoteLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
                 HorizontalAlignment = HorizontalAlignment.Begin,
@@ -100,7 +100,7 @@ namespace Tizen.NUI.MarkdownRenderer
         private View CreateBar()
         {
             int barMargin = (int)Math.Round(((paragraph.FontSize * 1.4f) - style.BarWidth) / 2);
-            return new QuoteBar(style, barMargin);
+            return new UIQuoteBar(style, barMargin);
         }
 
         private View CreateContainer()
@@ -122,11 +122,11 @@ namespace Tizen.NUI.MarkdownRenderer
         /// <summary>
         /// Custom layout for the Quote component that adjusts the height of the QuoteBar.
         /// </summary>
-        private class QuoteLayout : LinearLayout
+        private class UIQuoteLayout : LinearLayout
         {
             protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
             {
-                if (Owner is Quote quote && quote.bar is not null)
+                if (Owner is UIQuote quote && quote.bar is not null)
                 {
                     // Clear bar height before measuring
                     quote.bar.Layout.MeasuredHeight = new MeasuredSize(new LayoutLength(0), MeasuredSize.StateType.MeasuredSizeOK);
