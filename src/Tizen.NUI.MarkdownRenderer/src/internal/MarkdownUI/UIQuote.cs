@@ -22,13 +22,11 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.MarkdownRenderer
 {
+    /// <summary>
+    /// Represents a visual element for rendering a quote paragraph in a Markdown UI.
+    /// </summary>
     internal class UIQuoteParagraph : UIParagraph
     {
-        /// <summary>
-        /// Initializes a new instance of the UIQuoteParagraph class with the specified text and paragraph style.
-        /// </summary>
-        /// <param name="text">The text to display in the paragraph.</param>
-        /// <param name="paragraphStyle">The style applied to the paragraph.</param>
         public UIQuoteParagraph(string text, QuoteStyle quoteStyle, ParagraphStyle paragraphStyle) : base(text, paragraphStyle)
         {
             TextColor = new Color(quoteStyle.FontColor);

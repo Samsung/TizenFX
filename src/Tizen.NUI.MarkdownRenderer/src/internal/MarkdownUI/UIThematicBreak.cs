@@ -22,7 +22,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.MarkdownRenderer
 {
-    internal class UIThematicBreak : TextLabel
+    internal class UIThematicBreak : View
     {
         public UIThematicBreak(ThematicBreakStyle thematicBreakStyle, CommonStyle commonStyle) : base()
         {
