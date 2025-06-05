@@ -22,18 +22,28 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.MarkdownRenderer
 {
+    /// <summary>
+    /// Represents a single row within a markdown table, supporting both header and body rows.
+    /// Header rows include a container for cell content and an underline for separation.
+    /// </summary>
     internal class UITableRow : View
     {
         private readonly View container;
         private readonly View underline;
 
-        private readonly TableStyle style;
+        private readonly TableStyle table;
         private readonly bool isHeaderRow;
 
+        /// <summary>
+        /// Initializes a new instance of the UITableRow class.
+        /// as either a header or a body row with the given style.
+        /// </summary>
+        /// <param name="isHeader">Whether this row is a header row.</param>
+        /// <param name="tableStyle">The style to apply to the row.</param>
         public UITableRow(bool isHeader, TableStyle tableStyle) : base()
         {
             isHeaderRow = isHeader;
-            style = tableStyle;
+            table = tableStyle;
             SetupLayout();
             if (isHeaderRow)
             {
@@ -45,7 +55,8 @@ namespace Tizen.NUI.MarkdownRenderer
         }
 
         /// <summary>
-        /// Adds a child view to the table row content container.
+        /// Adds a child view to the table row.  
+        /// For header rows, children are added to the container; for body rows, directly to the row.
         /// </summary>
         public override void Add(View child)
         {
@@ -66,6 +77,9 @@ namespace Tizen.NUI.MarkdownRenderer
                 base.Remove(child);
         }
 
+        /// <summary>
+        /// Configures the layout, sizing, and background for the table row.
+        /// </summary>
         private void SetupLayout()
         {
             Layout = new LinearLayout()
@@ -78,16 +92,22 @@ namespace Tizen.NUI.MarkdownRenderer
             BackgroundColor = Color.Transparent;
         }
 
+        /// <summary>
+        /// Creates the underline view for header rows.
+        /// </summary>
         private View CreateUnderline()
         {
             return new View()
             {
                 WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = style.BorderThickness,
-                BackgroundColor = new Color(style.BorderColor),
+                HeightSpecification = table.BorderThickness,
+                BackgroundColor = new Color(table.BorderColor),
             };
         }
 
+        /// <summary>
+        /// Creates the container for header row cell content.
+        /// </summary>
         private View CreateContainer()
         {
             return new View()
@@ -104,13 +124,17 @@ namespace Tizen.NUI.MarkdownRenderer
         }
     }
 
+    /// <summary>
+    /// Represents a single cell within a markdown table.
+    /// Applies style and padding according to the table's style settings.
+    /// </summary>
     internal class UITableCell : View
     {
-        private readonly TableStyle style;
+        private readonly TableStyle table;
 
         public UITableCell(TableStyle tableStyle) : base()
         {
-            style = tableStyle;
+            table = tableStyle;
             SetupLayout();
         }
 
@@ -124,18 +148,22 @@ namespace Tizen.NUI.MarkdownRenderer
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.WrapContent;
             BackgroundColor = Color.Transparent;
-            Padding = new Extents((ushort)style.ItemPadding);
+            Padding = new Extents((ushort)table.ItemPadding);
         }
     }
 
+    /// <summary>
+    /// Represents a markdown table, containing header and body rows.
+    /// Applies overall table style and outer margin.
+    /// </summary>
     internal class UITable : View
     {
-        private readonly TableStyle style;
+        private readonly TableStyle table;
         private readonly CommonStyle common;
 
         public UITable(TableStyle tableStyle, CommonStyle commonStyle) : base()
         {
-            style = tableStyle;
+            table = tableStyle;
             common = commonStyle;
             SetupLayout();
         }
@@ -149,8 +177,8 @@ namespace Tizen.NUI.MarkdownRenderer
             };
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.WrapContent;
-            BackgroundColor = new Color(style.BackgroundColor);
-            Padding = new Extents((ushort)style.Padding);
+            BackgroundColor = new Color(table.BackgroundColor);
+            Padding = new Extents((ushort)table.Padding);
             Margin = new Extents(0, 0, (ushort)common.Margin, (ushort)common.Margin);
         }
     }

@@ -22,6 +22,10 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.MarkdownRenderer
 {
+    /// <summary>
+    /// Represents a visual horizontal rule (thematic break) in a Markdown UI.
+    /// Renders a line with specified color, thickness, and margin.
+    /// </summary>
     internal class UIThematicBreak : View
     {
         public UIThematicBreak(ThematicBreakStyle thematicBreakStyle, CommonStyle commonStyle) : base()
