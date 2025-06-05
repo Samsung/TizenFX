@@ -91,19 +91,6 @@ namespace Tizen.NUI.MarkdownRenderer
                 view = block is ContainerBlock ? NewContainer(block) : NewLeaf(block, text);
                 parent.Add(view);
 
-                if (block is TableRow tableRow)
-                {
-                    if (tableRow.IsHeader)
-                    {
-                        var headerLine = new View
-                        {
-                            WidthSpecification = LayoutParamPolicies.MatchParent,
-                            HeightSpecification = style.Table.BorderThickness,
-                            BackgroundColor = new Color(style.Table.BorderColor),
-                        };
-                        parent.Add(headerLine);
-                    }
-                }
                 cacheManager.Add(key, view);
             }
 
@@ -228,7 +215,7 @@ namespace Tizen.NUI.MarkdownRenderer
             }
             if (block is QuoteBlock)
             {
-                return NewQuote(block.Parent is MarkdownDocument);
+                return new UIQuote(block.Parent is MarkdownDocument, style.Quote, style.Common, style.Paragraph);
             }
             else if (block is ListBlock)
             {
@@ -240,15 +227,15 @@ namespace Tizen.NUI.MarkdownRenderer
             }
             else if (block is Table)
             {
-                return NewTable();
+                return new UITable(style.Table, style.Common);
             }
-            else if (block is TableRow)
+            else if (block is TableRow tableRow)
             {
-                return NewTableRow();
+                return new UITableRow(tableRow.IsHeader, style.Table);
             }
             else if (block is TableCell)
             {
-                return NewTableCell();
+                return new UITableCell(style.Table);
             }
             else
             {
@@ -318,57 +305,6 @@ namespace Tizen.NUI.MarkdownRenderer
                 Padding = new Extents((ushort)style.Common.Padding),
             };
             return view;
-        }
-
-        private View NewTable()
-        {
-            var table = new View()
-            {
-                Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Vertical,
-                    HorizontalAlignment = HorizontalAlignment.Begin,
-                },
-                WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
-                BackgroundColor = new Color(style.Table.BackgroundColor),
-                Padding = new Extents((ushort)style.Table.Padding),
-                Margin = new Extents(0, 0, (ushort)style.Common.Margin, (ushort)style.Common.Margin),
-            };
-            return table;
-        }
-
-        private View NewTableRow()
-        {
-            var item = new View()
-            {
-                Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    HorizontalAlignment = HorizontalAlignment.Begin,
-                },
-                WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
-                BackgroundColor = Color.Transparent,
-            };
-            return item;
-        }
-
-        private View NewTableCell()
-        {
-            var item = new View()
-            {
-                Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    HorizontalAlignment = HorizontalAlignment.Begin,
-                },
-                WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
-                BackgroundColor = Color.Transparent,
-                Padding = new Extents((ushort)style.Table.ItemPadding),
-            };
-            return item;
         }
 
         private View NewList()
@@ -471,11 +407,6 @@ namespace Tizen.NUI.MarkdownRenderer
                     break;
             }
             return heading;
-        }
-
-        private View NewQuote(bool isHeader)
-        {
-            return new Quote(isHeader, style.Quote, style.Common, style.Paragraph);
         }
 
         private View NewThematicBreak()
