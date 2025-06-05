@@ -22,6 +22,9 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.MarkdownRenderer
 {
+    /// <summary>
+    /// Represents a visual element for rendering a paragraph of text in a Markdown UI.
+    /// </summary>
     internal class UIParagraph : TextLabel
     {
         public UIParagraph(string text, ParagraphStyle paragraphStyle) : base()
