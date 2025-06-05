@@ -61,6 +61,17 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Removes the texture at position "index".
+        /// </summary>
+        /// <param name="index">The position in the texture set of the texture.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveTexture(uint index)
+        {
+            Interop.TextureSet.RemoveTexture(SwigCPtr, index);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Gets the image at position "index".
         /// </summary>
         /// <param name="index">The position in the texture set of the image.</param>
@@ -92,6 +103,17 @@ namespace Tizen.NUI
         public void SetSampler(uint index, Sampler sampler)
         {
             Interop.TextureSet.SetSampler(SwigCPtr, index, Sampler.getCPtr(sampler));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Removes the sampler at position "index".
+        /// </summary>
+        /// <param name="index">The position in the texture set of the sampler.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveSampler(uint index)
+        {
+            Interop.TextureSet.RemoveSampler(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
