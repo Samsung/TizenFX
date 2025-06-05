@@ -22,13 +22,17 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.MarkdownRenderer
 {
+    /// <summary>
+    /// Represents a container view with vertical layout and common padding.
+    /// Used as a parent for grouping other markdown-rendered views.
+    /// </summary>
     internal class UIContainer : View
     {
-        private readonly CommonStyle style;
+        private readonly CommonStyle common;
 
         public UIContainer(CommonStyle commonStyle) : base()
         {
-            style = commonStyle;
+            common = commonStyle;
             SetupLayout();
         }
 
@@ -42,7 +46,7 @@ namespace Tizen.NUI.MarkdownRenderer
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.WrapContent;
             BackgroundColor = Color.Transparent;
-            Padding = new Extents((ushort)style.Padding);
+            Padding = new Extents((ushort)common.Padding);
         }
     }
 }

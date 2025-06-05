@@ -22,15 +22,19 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.MarkdownRenderer
 {
+    /// <summary>
+    /// Renders a heading element as a styled paragraph with configurable heading levels.
+    /// Applies heading-specific styles and sizing based on the markdown heading level.
+    /// </summary>
     internal class UIHeading : UIParagraph
     {
-        HeadingStyle style;
+        HeadingStyle heading;
 
         public UIHeading(string text, int level, HeadingStyle headingStyle, CommonStyle commonStyle, ParagraphStyle paragraphStyle) : base(text, paragraphStyle)
         {
-            style = headingStyle;
+            heading = headingStyle;
 
-            FontFamily = style.FontFamily;
+            FontFamily = heading.FontFamily;
             Margin = new Extents(0, 0, (ushort)commonStyle.Margin, (ushort)commonStyle.Margin);
             SetFontSize(level);
         }
@@ -40,22 +44,22 @@ namespace Tizen.NUI.MarkdownRenderer
             switch(level)
             {
                 case 1:
-                    PixelSize = style.FontSizeLevel1;
+                    PixelSize = heading.FontSizeLevel1;
                     break;
                 case 2:
-                    PixelSize = style.FontSizeLevel2;
+                    PixelSize = heading.FontSizeLevel2;
                     break;
                 case 3:
-                    PixelSize = style.FontSizeLevel3;
+                    PixelSize = heading.FontSizeLevel3;
                     break;
                 case 4:
-                    PixelSize = style.FontSizeLevel4;
+                    PixelSize = heading.FontSizeLevel4;
                     break;
                 case 5:
-                    PixelSize = style.FontSizeLevel5;
+                    PixelSize = heading.FontSizeLevel5;
                     break;
                 default:
-                    PixelSize = style.FontSizeLevel1;
+                    PixelSize = heading.FontSizeLevel1;
                     break;
             }
         }
