@@ -88,11 +88,7 @@ namespace Tizen.NUI.MarkdownRenderer
 
                 cacheManager.Add(key, view);
             }
-            else
-            {
-                if (view.Parent != parent && !parent.Children.Contains(view))
-                    parent.Add(view);
-            }
+            // else: do nothing!
 
             if (block is ContainerBlock containerBlock)
             {
