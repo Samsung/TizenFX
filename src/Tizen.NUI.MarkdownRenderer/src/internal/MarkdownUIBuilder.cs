@@ -228,7 +228,7 @@ namespace Tizen.NUI.MarkdownRenderer
             }
             if (block is QuoteBlock)
             {
-                return NewQuote();
+                return NewQuote(block.Parent is MarkdownDocument);
             }
             else if (block is ListBlock)
             {
@@ -473,22 +473,9 @@ namespace Tizen.NUI.MarkdownRenderer
             return heading;
         }
 
-        private View NewQuote()
+        private View NewQuote(bool isHeader)
         {
-            var view = new View
-            {
-                Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Vertical,
-                    HorizontalAlignment = HorizontalAlignment.Begin,
-                },
-                WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
-                BackgroundColor = new Color(style.Quote.BackgroundColor),
-                Padding = new Extents((ushort)style.Quote.Padding),
-                Margin = new Extents((ushort)style.Common.Indent, 0, (ushort)style.Common.Margin, (ushort)style.Common.Margin),
-            };
-            return view;
+            return new Quote(isHeader, style.Quote, style.Common, style.Paragraph);
         }
 
         private View NewThematicBreak()

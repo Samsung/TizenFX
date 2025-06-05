@@ -74,7 +74,7 @@ namespace Tizen.NUI.MarkdownRenderer
             Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
-                LinearAlignment = LinearLayout.Alignment.Begin,
+                HorizontalAlignment = HorizontalAlignment.Begin,
             };
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
