@@ -27,12 +27,12 @@ namespace Tizen.NUI.MarkdownRenderer
     /// </summary>
     internal class QuoteBar : View
     {
-        public QuoteBar(QuoteStyle quoteStyle, int margin) : base()
+        public QuoteBar(QuoteStyle quoteStyle, int barMargin) : base()
         {
             WidthSpecification = quoteStyle.BarWidth;
-            HeightSpecification = 0;
+            HeightSpecification = 0; // Height will be set by parent layout.
             BackgroundColor = new Color(quoteStyle.BarColor);
-            Margin = new Extents((ushort)margin, (ushort)margin, (ushort)quoteStyle.BarMargin, (ushort)quoteStyle.BarMargin);
+            Margin = new Extents((ushort)barMargin, (ushort)barMargin, (ushort)quoteStyle.BarMargin, (ushort)quoteStyle.BarMargin);
         }
     }
 
@@ -41,35 +41,46 @@ namespace Tizen.NUI.MarkdownRenderer
     /// </summary>
     internal class Quote : View
     {
-        private View bar;
-        private View container;
-        private bool header;
+        private readonly View bar;
+        private readonly View container;
 
-        private QuoteStyle style;
-        private CommonStyle common;
-        private ParagraphStyle paragraph;
+        private readonly QuoteStyle style;
+        private readonly CommonStyle common;
+        private readonly ParagraphStyle paragraph;
+        private readonly bool isHeaderQuote;
 
         public Quote(bool isHeader, QuoteStyle quoteStyle, CommonStyle commonStyle, ParagraphStyle paragraphStyle) : base()
         {
-            header = isHeader;
+            isHeaderQuote = isHeader;
             style = quoteStyle;
             common = commonStyle;
             paragraph = paragraphStyle;
 
-            Initialize();
+            SetupLayout();
+            bar = CreateBar();
+            container = CreateContainer();
+
+            base.Add(bar);
+            base.Add(container);
         }
 
+        /// <summary>
+        /// Adds a child view to the quote content container.
+        /// </summary>
         public override void Add(View child)
         {
             container.Add(child);
         }
 
+        /// <summary>
+        /// Removes a child view from the quote content container.
+        /// </summary>
         public override void Remove(View child)
         {
             container.Remove(child);
         }
 
-        private void Initialize()
+        private void SetupLayout()
         {
             Layout = new QuoteLayout()
             {
@@ -81,15 +92,20 @@ namespace Tizen.NUI.MarkdownRenderer
             HeightSpecification = LayoutParamPolicies.WrapContent;
             BackgroundColor = Color.Transparent;
 
-            int barMargin = (ushort)Math.Round(((paragraph.FontSize * 1.4f) - style.BarWidth) / 2);
-
-            int indent = header ? common.Indent : common.Indent - (style.BarWidth + barMargin + barMargin);
+            int barMargin = (int)Math.Round(((paragraph.FontSize * 1.4f) - style.BarWidth) / 2);
+            int indent = isHeaderQuote ? common.Indent : (int)(common.Indent - (style.BarWidth + barMargin * 2));
             Margin = new Extents((ushort)indent, 0, (ushort)common.Margin, (ushort)common.Margin);
+        }
 
-            bar = new QuoteBar(style, barMargin);
-            base.Add(bar);
+        private View CreateBar()
+        {
+            int barMargin = (int)Math.Round(((paragraph.FontSize * 1.4f) - style.BarWidth) / 2);
+            return new QuoteBar(style, barMargin);
+        }
 
-            container = new View()
+        private View CreateContainer()
+        {
+            return new View()
             {
                 Layout = new LinearLayout()
                 {
@@ -101,12 +117,10 @@ namespace Tizen.NUI.MarkdownRenderer
                 HeightSpecification = LayoutParamPolicies.WrapContent,
                 Padding = new Extents((ushort)style.Padding),
             };
-            base.Add(container);
         }
 
         /// <summary>
-        /// Represents a custom layout for the Quote component, extending the LinearLayout.
-        /// Handles the measurement logic for the QuoteBar.
+        /// Custom layout for the Quote component that adjusts the height of the QuoteBar.
         /// </summary>
         private class QuoteLayout : LinearLayout
         {
@@ -114,13 +128,14 @@ namespace Tizen.NUI.MarkdownRenderer
             {
                 if (Owner is Quote quote && quote.bar is not null)
                 {
+                    // Clear bar height before measuring
                     quote.bar.Layout.MeasuredHeight = new MeasuredSize(new LayoutLength(0), MeasuredSize.StateType.MeasuredSizeOK);
 
                     base.OnMeasure(widthMeasureSpec, heightMeasureSpec);
 
-                    int margin = quote.bar.Margin.Top + quote.bar.Margin.Bottom;
                     float totalHeight = MeasuredHeight.Size.AsDecimal();
-                    quote.bar.Layout.MeasuredHeight = new MeasuredSize(new LayoutLength(totalHeight - (float)margin), MeasuredSize.StateType.MeasuredSizeOK);
+                    int verticalMargin = quote.bar.Margin.Top + quote.bar.Margin.Bottom;
+                    quote.bar.Layout.MeasuredHeight = new MeasuredSize(new LayoutLength(totalHeight - verticalMargin), MeasuredSize.StateType.MeasuredSizeOK);
                 }
             }
         }

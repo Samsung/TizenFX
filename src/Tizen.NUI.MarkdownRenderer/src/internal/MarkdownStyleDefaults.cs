@@ -42,7 +42,7 @@ namespace Tizen.NUI.MarkdownRenderer
         public const string HeadingFontFamily = "SamsungOneUI_700";
 
         // ThematicBreakStyle
-        public const string ThematicBreakColor = "#EEEEEEFF";
+        public const string ThematicBreakColor = "#DFDFDFFF";
         public const int ThematicBreakThickness = 1;
         public const int ThematicBreakMargin = 10;
 
