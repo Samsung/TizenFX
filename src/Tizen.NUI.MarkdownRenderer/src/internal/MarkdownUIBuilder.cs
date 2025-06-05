@@ -105,7 +105,7 @@ namespace Tizen.NUI.MarkdownRenderer
         /// <summary>
         /// Recursively converts a Markdig inline node tree into a markup string for rich UI rendering.
         /// Applies markdown styling (bold, italic, strikethrough, code, link, linebreak, etc)
-        /// by emitting markup tags suitable for TextLabel.
+        /// by emitting markup tags suitable for NUI TextLabel.
         /// </summary>
         /// <param name="inline">Root Markdig ContainerInline node to convert.</param>
         /// <returns>
