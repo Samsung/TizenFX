@@ -23,34 +23,6 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI.MarkdownRenderer
 {
     /// <summary>
-    /// Represents a custom layout for the Quote component, extending the LinearLayout.
-    /// Handles the measurement logic for the QuoteBar.
-    /// </summary>
-    internal class QuoteLayout : LinearLayout
-    {
-        protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
-        {
-            foreach (var child in Owner.Children)
-            {
-                if (child is QuoteBar)
-                    child.Layout.MeasuredHeight = new MeasuredSize(new LayoutLength(0), MeasuredSize.StateType.MeasuredSizeOK);
-            }
-
-            base.OnMeasure(widthMeasureSpec, heightMeasureSpec);
-
-            foreach (var child in Owner.Children)
-            {
-                if (child is QuoteBar)
-                {
-                    int margin = child.Margin.Top + child.Margin.Bottom;
-                    float totalHeight = MeasuredHeight.Size.AsDecimal();
-                    child.Layout.MeasuredHeight = new MeasuredSize(new LayoutLength(totalHeight - (float)margin), MeasuredSize.StateType.MeasuredSizeOK);
-                }
-            }
-        }
-    }
-
-    /// <summary>
     /// Represents the visual element for the Quote bar, which is a vertical bar displayed beside the quote text.
     /// </summary>
     internal class QuoteBar : View
@@ -87,9 +59,14 @@ namespace Tizen.NUI.MarkdownRenderer
             Initialize();
         }
 
-        public override void Add(View view)
+        public override void Add(View child)
         {
-            container.Add(view);
+            container.Add(child);
+        }
+
+        public override void Remove(View child)
+        {
+            container.Remove(child);
         }
 
         private void Initialize()
@@ -125,6 +102,27 @@ namespace Tizen.NUI.MarkdownRenderer
                 Padding = new Extents((ushort)style.Padding),
             };
             base.Add(container);
+        }
+
+        /// <summary>
+        /// Represents a custom layout for the Quote component, extending the LinearLayout.
+        /// Handles the measurement logic for the QuoteBar.
+        /// </summary>
+        private class QuoteLayout : LinearLayout
+        {
+            protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
+            {
+                if (Owner is Quote quote && quote.bar is not null)
+                {
+                    quote.bar.Layout.MeasuredHeight = new MeasuredSize(new LayoutLength(0), MeasuredSize.StateType.MeasuredSizeOK);
+
+                    base.OnMeasure(widthMeasureSpec, heightMeasureSpec);
+
+                    int margin = quote.bar.Margin.Top + quote.bar.Margin.Bottom;
+                    float totalHeight = MeasuredHeight.Size.AsDecimal();
+                    quote.bar.Layout.MeasuredHeight = new MeasuredSize(new LayoutLength(totalHeight - (float)margin), MeasuredSize.StateType.MeasuredSizeOK);
+                }
+            }
         }
     }
 }
