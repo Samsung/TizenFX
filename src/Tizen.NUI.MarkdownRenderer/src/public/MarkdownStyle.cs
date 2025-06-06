@@ -21,8 +21,18 @@ using System.ComponentModel;
 namespace Tizen.NUI.MarkdownRenderer
 {
     /// <summary>
-    /// MarkdownStyle.
+    /// Provides a lightweight, centralized style configuration for Markdown UI rendering.
+    /// <para>
+    /// Shares style settings across all Markdown UI components via reference.
+    /// Simple and efficient: avoids property setters, deep copies, and event bindings.
+    /// Enables fast, memory-efficient view creation with a single set of style instances.
+    /// Easy style access for all block and inline types (paragraphs, headings, tables, code, etc.).
+    /// </para>
     /// </summary>
+    /// <remarks>
+    /// Note: Changes to style properties at runtime are not automatically propagated to already rendered UI.
+    /// To apply updated style values, re-render the Markdown content.
+    /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class MarkdownStyle
     {
