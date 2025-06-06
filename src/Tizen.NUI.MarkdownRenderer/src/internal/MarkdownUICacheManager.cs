@@ -18,7 +18,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 
 using Markdig.Syntax;
@@ -108,7 +107,7 @@ namespace Tizen.NUI.MarkdownRenderer
         public string CreateKey(Block block, string path)
         {
             string type = block.GetType().Name;
-            string hash = "";
+            string hash = String.Empty;
 
             if (block is FencedCodeBlock fenced)
             {
@@ -125,17 +124,26 @@ namespace Tizen.NUI.MarkdownRenderer
         }
 
         /// <summary>
-        /// Generates a stable hash string from text (SHA1, hex-encoded).
+        /// Computes a non-cryptographic 32-bit FNV-1a hash for the given string.
+        /// Fast and simple, ideal for cache keys or non-security purposes.
+        /// Reference: http://isthe.com/chongo/tech/comp/fnv/
         /// </summary>
-        /// <param name="text">Input text to hash</param>
-        /// <returns>SHA1 hex string</returns>
+        /// <param name="text">Input string to hash. Null or empty returns an empty string.</param>
+        /// <returns>8-digit hex string representing the FNV-1a 32-bit hash of the input.</returns>
         private string ComputeHash(string text)
         {
             if (string.IsNullOrEmpty(text)) return "";
-            using var sha1 = SHA1.Create();
-            var bytes = Encoding.UTF8.GetBytes(text);
-            var hash = sha1.ComputeHash(bytes);
-            return Convert.ToHexString(hash);
+            unchecked
+            {
+                const uint fnvPrime = 0x01000193;
+                uint hash = 0x811C9DC5;
+                foreach (char c in text)
+                {
+                    hash ^= c;
+                    hash *= fnvPrime;
+                }
+                return hash.ToString("X8");
+            }
         }
 
         /// <summary>
@@ -169,7 +177,7 @@ namespace Tizen.NUI.MarkdownRenderer
                         break;
 
                     case LinkInline link:
-                        sb.Append($"{GetInlineText(link)}:{link.Url}");
+                        sb.Append(GetInlineText(link)).Append(':').Append(link.Url);
                         break;
 
                     default: // fallback
