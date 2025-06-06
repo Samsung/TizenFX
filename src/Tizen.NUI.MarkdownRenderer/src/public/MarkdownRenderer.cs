@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Text;
 
 using Tizen.NUI.BaseComponents;
 
@@ -31,6 +32,7 @@ namespace Tizen.NUI.MarkdownRenderer
     {
         private MarkdownParser parser;
         private MarkdownUIBuilder builder;
+        private readonly StringBuilder pathBuilder = new StringBuilder(16);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MarkdownRenderer"/> class.
@@ -54,7 +56,9 @@ namespace Tizen.NUI.MarkdownRenderer
         {
             var document = parser.Parse(markdown);
 
-            builder.Build(document, this, "root");
+            pathBuilder.Clear();
+            pathBuilder.Append("r"); // root
+            builder.Build(document, this, pathBuilder);
             builder.RemoveUnusedUI();
         }
 
