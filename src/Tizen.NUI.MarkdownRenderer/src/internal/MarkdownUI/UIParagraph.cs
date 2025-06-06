@@ -33,7 +33,7 @@ namespace Tizen.NUI.MarkdownRenderer
             FontFamily = paragraphStyle.FontFamily;
             PixelSize = paragraphStyle.FontSize;
             TextColor = new Color(paragraphStyle.FontColor);
-            MinLineSize = paragraphStyle.LineHeight;
+            MinLineSize = Math.Max(paragraphStyle.LineHeight, paragraphStyle.FontSize * 1.4f);
             MultiLine = true;
             EnableMarkup = true;
             Ellipsis = false;
