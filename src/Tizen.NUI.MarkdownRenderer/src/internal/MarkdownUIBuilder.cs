@@ -71,9 +71,14 @@ namespace Tizen.NUI.MarkdownRenderer
         /// <param name="block">The current Markdown block node being processed.</param>
         /// <param name="parent">The parent UI View to attach created/reused views to.</param>
         /// <param name="path">A unique path string (e.g., "root/0/2") for key generation and cache lookup.</param>
-        public void Build(Block block, View parent, string path)
+        /// <param name="childIndex">Index of the current child block (or -1 for root)</param>
+        public void Build(Block block, View parent, StringBuilder path, int childIndex = -1)
         {
-            string key = cacheManager.CreateKey(block, path);
+            int pathLength = path.Length;
+            if (childIndex >= 0)
+                path.Append('/').Append(childIndex);
+
+            string key = cacheManager.CreateKey(block, path.ToString());
             cacheManager.MarkVisited(key);
 
             var view = cacheManager.Get(key);
@@ -94,8 +99,10 @@ namespace Tizen.NUI.MarkdownRenderer
             {
                 int index = 0;
                 foreach (var subBlock in containerBlock)
-                    Build(subBlock, view, $"{path}/{index++}");
+                    Build(subBlock, view, path, index++);
             }
+
+            path.Length = pathLength;
         }
 
         /// <summary>
