@@ -39,6 +39,15 @@ namespace Tizen.NUI.MarkdownRenderer
             Add(new UIParagraph(text, paragraph));
         }
 
+        public UIListItemParagraph(string text, int number, ParagraphStyle paragraphStyle) : base()
+        {
+            paragraph = paragraphStyle;
+            SetupLayout();
+
+            Add(CreateNumber(number));
+            Add(new UIParagraph(text, paragraph));
+        }
+
         private void SetupLayout()
         {
             Layout = new LinearLayout()
@@ -63,6 +72,21 @@ namespace Tizen.NUI.MarkdownRenderer
                 Margin = new Extents(bulletMargin),
             };
             return bullet;
+        }
+
+        private UIParagraph CreateNumber(int number)
+        {
+            int numberSize = (int)paragraph.LineHeight;
+            ushort numberPadding = (ushort)Math.Round(paragraph.LineHeight / 4);
+            var numberParagraph = new UIParagraph($"{number}.", paragraph)
+            {
+                WidthSpecification = number < 10 ? numberSize : numberSize + numberPadding,
+                HeightSpecification = numberSize,
+                HorizontalAlignment = HorizontalAlignment.End,
+                MultiLine = false,
+                Padding = new Extents(0, numberPadding, 0, 0),
+            };
+            return numberParagraph;
         }
     }
 
