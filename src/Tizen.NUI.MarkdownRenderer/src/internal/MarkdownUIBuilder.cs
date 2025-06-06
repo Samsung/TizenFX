@@ -185,8 +185,20 @@ namespace Tizen.NUI.MarkdownRenderer
             }
             else if (block is ParagraphBlock)
             {
-                if (block.Parent is ListItemBlock)
-                    return new UIListItemParagraph(text, style.Paragraph);
+                if (block.Parent is ListItemBlock listItem)
+                {
+                    if (listItem.Parent is ListBlock listBlock && listBlock.IsOrdered)
+                    {
+                        int index = listBlock.IndexOf(listItem);
+                        int start = int.TryParse(listBlock.OrderedStart?.ToString(), out var s) ? s : 1;
+                        int number = start + index;
+                        return new UIListItemParagraph(text, number, style.Paragraph);
+                    }
+                    else
+                    {
+                        return new UIListItemParagraph(text, style.Paragraph);
+                    }
+                }
 
                 else if (block.Parent is QuoteBlock)
                     return new UIQuoteParagraph(text, style.Quote, style.Paragraph);
