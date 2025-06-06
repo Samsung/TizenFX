@@ -130,25 +130,35 @@ namespace Tizen.NUI.MarkdownRenderer
 
                     case EmphasisInline emphasis:
                         var content = GetInlineText(emphasis);
-                        if(emphasis.DelimiterChar == '~')
-                            sb.Append(emphasis.DelimiterCount == 2 ? $"<s>{content}</s>" : $"{content}");
+                        if (emphasis.DelimiterChar == '~')
+                        {
+                            if (emphasis.DelimiterCount == 2)
+                                sb.Append("<s>").Append(content).Append("</s>");
+                            else
+                                sb.Append(content);
+                        }
                         else // '*', '**', '__'
-                            sb.Append(emphasis.DelimiterCount == 2 ? $"<b>{content}</b>" : $"<i>{content}</i>");
+                        {
+                            if (emphasis.DelimiterCount == 2)
+                                sb.Append("<b>").Append(content).Append("</b>");
+                            else
+                                sb.Append("<i>").Append(content).Append("</i>");
+                        }
                         break;
 
                     case CodeInline code:
-                        sb.Append($"<font family='{style.Code.FontFamily}'>");
+                        sb.Append("<font family='").Append(style.Code.FontFamily).Append("'>");
                         AppendEscaped(sb, code.Content, 0, code.Content.Length);
                         sb.Append("</font>");
                         break;
 
                     case LineBreakInline:
-                        sb.AppendLine();
+                        sb.Append('\n');
                         break;
 
                     case LinkInline link:
                         var label = GetInlineText(link);
-                        sb.Append($"<b>{label}</b> [\U0001f517 ");
+                        sb.Append("<b>").Append(label).Append("</b> [\U0001f517 ");
                         AppendEscaped(sb, link.Url, 0, link.Url.Length);
                         sb.Append("]");
                         break;
@@ -199,10 +209,8 @@ namespace Tizen.NUI.MarkdownRenderer
                         return new UIListItemParagraph(text, style.Paragraph);
                     }
                 }
-
                 else if (block.Parent is QuoteBlock)
                     return new UIQuoteParagraph(text, style.Quote, style.Paragraph);
-
                 else
                     return new UIParagraph(text, style.Paragraph);
             }
