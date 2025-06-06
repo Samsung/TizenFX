@@ -28,7 +28,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// </summary>
     internal class UIHeading : UIParagraph
     {
-        HeadingStyle heading;
+        private readonly HeadingStyle heading;
 
         public UIHeading(string text, int level, HeadingStyle headingStyle, CommonStyle commonStyle, ParagraphStyle paragraphStyle) : base(text, paragraphStyle)
         {
