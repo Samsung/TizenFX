@@ -61,7 +61,7 @@ namespace Tizen.Sensor
         /// <remarks>
         /// To use this method, you must override the ConvertBatchData method.
         /// </remarks>
-        /// <seealso cref="Tizen.Sensor.Sensor">
+        /// <seealso cref="Tizen.Sensor.Sensor"/>
         /// <param name="eventsPtr">
         /// General batch data's raw pointer
         /// </param>
