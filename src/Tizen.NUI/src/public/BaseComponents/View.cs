@@ -5186,8 +5186,16 @@ namespace Tizen.NUI.BaseComponents
                     else
                     {
                         // Layout not being replaced so restore margin and padding to View.
-                        SetValue(MarginProperty, layout.Margin);
-                        SetValue(PaddingProperty, layout.Padding);
+                        if (NUIApplication.IsUsingXaml)
+                        {
+                            SetValue(MarginProperty, layout.Margin);
+                            SetValue(PaddingProperty, layout.Padding);
+                        }
+                        else
+                        {
+                            SetInternalMarginProperty(this, null, layout.Margin);
+                            SetInternalPaddingProperty(this, null, layout.Padding);
+                        }
                         NotifyPropertyChanged();
                     }
                 }
@@ -5207,7 +5215,15 @@ namespace Tizen.NUI.BaseComponents
                         {
                             // If View already has a margin set then store it in Layout instead.
                             value.Margin = margin;
-                            SetValue(MarginProperty, new Extents(0, 0, 0, 0));
+                            using var temp = new Extents(0, 0, 0, 0);
+                            if (NUIApplication.IsUsingXaml)
+                            {
+                                SetValue(MarginProperty, temp);
+                            }
+                            else
+                            {
+                                SetInternalMarginProperty(this, null, temp);
+                            }
                             setMargin = true;
                         }
 
@@ -5221,7 +5237,15 @@ namespace Tizen.NUI.BaseComponents
                         {
                             // If View already has a padding set then store it in Layout instead.
                             value.Padding = padding;
-                            SetValue(PaddingProperty, new Extents(0, 0, 0, 0));
+                            using var temp = new Extents(0, 0, 0, 0);
+                            if (NUIApplication.IsUsingXaml)
+                            {
+                                SetValue(PaddingProperty, temp);
+                            }
+                            else
+                            {
+                                SetInternalPaddingProperty(this, null, temp);
+                            }
                             setPadding = true;
                         }
 
