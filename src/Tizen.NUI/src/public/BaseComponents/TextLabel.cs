@@ -68,7 +68,9 @@ namespace Tizen.NUI.BaseComponents
                     }
                     else
                     {
-                        float width = naturalSize != null ? naturalSize.Width : 0;
+                        float width = naturalSize?.Width ?? 0;
+                        width = Math.Min(width, totalWidth);
+
                         // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
                         totalWidth = Math.Max(Math.Min(width, maxWidth < 0 ? Int32.MaxValue : maxWidth), minWidth);
 
