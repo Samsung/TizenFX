@@ -34,12 +34,6 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "book_meta_get_author")]
         internal static extern MediaContentError GetAuthor(IntPtr handle, out IntPtr author);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "book_meta_get_date")]
-        internal static extern MediaContentError GetDate(IntPtr handle, out IntPtr date); // Deprecated since API12
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "book_meta_get_publisher")]
-        internal static extern MediaContentError GetPublisher(IntPtr handle, out IntPtr publisher); // Deprecated since API12
-
         [DllImport(Libraries.MediaContent, EntryPoint = "book_meta_get_path_with_keyword")]
         internal static extern MediaContentError GetPathByKeyword(string keyword, out IntPtr path, out uint length);
     }
