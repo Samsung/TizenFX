@@ -82,14 +82,12 @@ namespace Tizen.NUI.MarkdownRenderer
         /// </summary>
         private void SetupLayout()
         {
-            Layout = new LinearLayout()
-            {
-                LinearOrientation = isHeaderRow ? LinearLayout.Orientation.Vertical : LinearLayout.Orientation.Horizontal,
-                HorizontalAlignment = HorizontalAlignment.Begin,
-            };
+            if (isHeaderRow)
+                Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
+            else
+                Layout = new LinearLayout() {};
+
             WidthSpecification = LayoutParamPolicies.MatchParent;
-            HeightSpecification = LayoutParamPolicies.WrapContent;
-            BackgroundColor = Color.Transparent;
         }
 
         /// <summary>
@@ -112,14 +110,8 @@ namespace Tizen.NUI.MarkdownRenderer
         {
             return new View()
             {
-                Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    HorizontalAlignment = HorizontalAlignment.Begin,
-                },
+                Layout = new LinearLayout() {},
                 WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
-                BackgroundColor = Color.Transparent,
             };
         }
     }
@@ -140,14 +132,8 @@ namespace Tizen.NUI.MarkdownRenderer
 
         private void SetupLayout()
         {
-            Layout = new LinearLayout()
-            {
-                LinearOrientation = LinearLayout.Orientation.Horizontal,
-                HorizontalAlignment = HorizontalAlignment.Begin,
-            };
+            Layout = new LinearLayout() {};
             WidthSpecification = LayoutParamPolicies.MatchParent;
-            HeightSpecification = LayoutParamPolicies.WrapContent;
-            BackgroundColor = Color.Transparent;
             Padding = new Extents((ushort)table.ItemPadding);
         }
     }
@@ -173,10 +159,8 @@ namespace Tizen.NUI.MarkdownRenderer
             Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
-                HorizontalAlignment = HorizontalAlignment.Begin,
             };
             WidthSpecification = LayoutParamPolicies.MatchParent;
-            HeightSpecification = LayoutParamPolicies.WrapContent;
             BackgroundColor = new Color(table.BackgroundColor);
             Padding = new Extents((ushort)table.Padding);
             Margin = new Extents(0, 0, (ushort)common.Margin, (ushort)common.Margin);
