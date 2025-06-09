@@ -37,10 +37,7 @@ namespace Tizen.NUI.MarkdownRenderer
             MultiLine = true;
             EnableMarkup = true;
             Ellipsis = false;
-            WidthSpecification = LayoutParamPolicies.MatchParent;
-            HeightSpecification = LayoutParamPolicies.WrapContent;
             VerticalLineAlignment = VerticalLineAlignment.Center;
-            BackgroundColor = Color.Transparent;
         }
     }
 }

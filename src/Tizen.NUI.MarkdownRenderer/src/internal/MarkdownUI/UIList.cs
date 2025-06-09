@@ -50,14 +50,7 @@ namespace Tizen.NUI.MarkdownRenderer
 
         private void SetupLayout()
         {
-            Layout = new LinearLayout()
-            {
-                LinearOrientation = LinearLayout.Orientation.Horizontal,
-                HorizontalAlignment = HorizontalAlignment.Begin,
-            };
-            WidthSpecification = LayoutParamPolicies.MatchParent;
-            HeightSpecification = LayoutParamPolicies.WrapContent;
-            BackgroundColor = Color.Transparent;
+            Layout = new LinearLayout() {};
         }
 
         private View CreateBullet()
@@ -83,7 +76,6 @@ namespace Tizen.NUI.MarkdownRenderer
                 WidthSpecification = number < 10 ? numberSize : numberSize + numberPadding,
                 HeightSpecification = numberSize,
                 HorizontalAlignment = HorizontalAlignment.End,
-                MultiLine = false,
                 Padding = new Extents(0, numberPadding, 0, 0),
             };
             return numberParagraph;
@@ -109,11 +101,7 @@ namespace Tizen.NUI.MarkdownRenderer
             Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
-                HorizontalAlignment = HorizontalAlignment.Begin,
             };
-            WidthSpecification = LayoutParamPolicies.MatchParent;
-            HeightSpecification = LayoutParamPolicies.WrapContent;
-            BackgroundColor = Color.Transparent;
             Margin = new Extents((ushort)common.Indent, 0, 0, 0);
         }
     }
@@ -137,11 +125,7 @@ namespace Tizen.NUI.MarkdownRenderer
             Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
-                HorizontalAlignment = HorizontalAlignment.Begin,
             };
-            WidthSpecification = LayoutParamPolicies.MatchParent;
-            HeightSpecification = LayoutParamPolicies.WrapContent;
-            BackgroundColor = Color.Transparent;
             Margin = new Extents(0, 0, (ushort)common.Margin, (ushort)common.Margin);
         }
     }

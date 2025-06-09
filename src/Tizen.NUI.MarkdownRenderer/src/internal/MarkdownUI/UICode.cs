@@ -45,38 +45,47 @@ namespace Tizen.NUI.MarkdownRenderer
             Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
-                HorizontalAlignment = HorizontalAlignment.Begin,
             };
             WidthSpecification = LayoutParamPolicies.MatchParent;
-            HeightSpecification = LayoutParamPolicies.WrapContent;
-            BackgroundColor = Color.Transparent;
             Margin = new Extents(0, 0, (ushort)common.Margin, (ushort)common.Margin);
         }
 
-        private UICodeText CreateTitle(string text)
+        private View CreateTitle(string text)
         {
-            return new UICodeText()
+            var view = new View()
+            {
+                Layout = new LinearLayout() {},
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                BackgroundColor = new Color(code.TitleBackgroundColor),
+                Padding = new Extents((ushort)code.Padding),
+            };
+            view.Add(new UICodeText()
             {
                 Text = text,
                 FontFamily = code.TitleFontFamily,
                 PixelSize = code.TitleFontSize,
                 TextColor = new Color(code.TitleFontColor),
-                BackgroundColor = new Color(code.TitleBackgroundColor),
-                Padding = new Extents((ushort)code.Padding),
-            };
+            });
+            return view; 
         }
 
-        private UICodeText CreateCode(string text)
+        private View CreateCode(string text)
         {
-            return new UICodeText()
+            var view = new View()
+            {
+                Layout = new LinearLayout() {},
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                BackgroundColor = new Color(code.BackgroundColor),
+                Padding = new Extents((ushort)code.Padding),
+            };
+            view.Add(new UICodeText()
             {
                 Text = text,
                 FontFamily = code.FontFamily,
                 PixelSize = code.FontSize,
                 TextColor = new Color(code.FontColor),
-                BackgroundColor = new Color(code.BackgroundColor),
-                Padding = new Extents((ushort)code.Padding),
-            };
+            });
+            return view; 
         }
 
         private class UICodeText : TextLabel
@@ -85,9 +94,6 @@ namespace Tizen.NUI.MarkdownRenderer
             {
                 MultiLine = true;
                 Ellipsis = false;
-                EnableMarkup = false;
-                WidthSpecification = LayoutParamPolicies.MatchParent;
-                HeightSpecification = LayoutParamPolicies.WrapContent;
             }
         }
     }
