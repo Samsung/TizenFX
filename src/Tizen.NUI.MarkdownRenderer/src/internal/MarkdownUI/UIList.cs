@@ -71,7 +71,8 @@ namespace Tizen.NUI.MarkdownRenderer
         {
             int numberSize = (int)paragraph.LineHeight;
             ushort numberPadding = (ushort)Math.Round(paragraph.LineHeight / 4);
-            var numberParagraph = new UIParagraph($"{number}.", paragraph)
+            string text = MarkdownRenderer.IsRTL ? $".{number}" : $"{number}.";
+            var numberParagraph = new UIParagraph(text, paragraph)
             {
                 WidthSpecification = number < 10 ? numberSize : numberSize + numberPadding,
                 HeightSpecification = numberSize,
