@@ -856,7 +856,7 @@ namespace Tizen.NUI
                     // In case of RTL map END alignment to the left edge
                     if (isLayoutRtl)
                     {
-                        childLeft = new LayoutLength(Padding.Start);
+                        childLeft = new LayoutLength(Padding.End);
                     }
                     else
                     {
@@ -865,7 +865,14 @@ namespace Tizen.NUI
                     break;
                 case HorizontalAlignment.Center:
                     // totalLength contains the padding already
-                    childLeft = new LayoutLength(Padding.Start + (right.AsDecimal() - left.AsDecimal() - totalLength) / 2.0f);
+                    if (isLayoutRtl)
+                    {
+                        childLeft = new LayoutLength(Padding.End + (right.AsDecimal() - left.AsDecimal() - totalLength) / 2.0f);
+                    }
+                    else
+                    {
+                        childLeft = new LayoutLength(Padding.Start + (right.AsDecimal() - left.AsDecimal() - totalLength) / 2.0f);
+                    }
                     break;
                 case HorizontalAlignment.Begin: // FALL THROUGH (default)
                 default:
@@ -873,7 +880,7 @@ namespace Tizen.NUI
                     // In case of RTL map BEGIN alignment to the right edge
                     if (isLayoutRtl)
                     {
-                        childLeft = new LayoutLength(Padding.Start + right.AsDecimal() - left.AsDecimal() - totalLength);
+                        childLeft = new LayoutLength(Padding.End + right.AsDecimal() - left.AsDecimal() - totalLength);
                     }
                     else
                     {
@@ -896,7 +903,7 @@ namespace Tizen.NUI
             {
                 int childIndex = start + dir * i;
                 // Get a reference to the childLayout at the given index
-                LayoutItem childLayout = LinearChildren.ElementAt<LayoutItem>(i);
+                LayoutItem childLayout = LinearChildren.ElementAt<LayoutItem>(childIndex);
 
                 LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                 LayoutLength childHeight = childLayout.MeasuredHeight.Size;
@@ -923,6 +930,8 @@ namespace Tizen.NUI
 
         private void LayoutVertical(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
+            bool isLayoutRtl = Owner.LayoutDirection == ViewLayoutDirectionType.RTL;
+
             LayoutLength childTop = new LayoutLength(Padding.Top);
             LayoutLength childLeft = new LayoutLength(Padding.Start);
 
@@ -963,20 +972,41 @@ namespace Tizen.NUI
                 childTop += childMargin.Top;
                 switch (HorizontalAlignment)
                 {
-                    case HorizontalAlignment.Begin:
-                    default:
-                        {
-                            childLeft = new LayoutLength(Padding.Start + childMargin.Start);
-                            break;
-                        }
                     case HorizontalAlignment.End:
                         {
-                            childLeft = new LayoutLength(width - Padding.End - childWidth - childMargin.End);
+                            if (isLayoutRtl)
+                            {
+                                childLeft = new LayoutLength(Padding.End + childMargin.End);
+                            }
+                            else
+                            {
+                                childLeft = new LayoutLength(width - Padding.End - childWidth - childMargin.End);
+                            }
                             break;
                         }
                     case HorizontalAlignment.Center:
                         {
-                            childLeft = new LayoutLength(Padding.Start + ((childSpace - childWidth).AsDecimal() / 2.0f) + childMargin.Start - childMargin.End);
+                            if (isLayoutRtl)
+                            {
+                                childLeft = new LayoutLength(Padding.End + ((childSpace - childWidth).AsDecimal() / 2.0f) + childMargin.End - childMargin.Start);
+                            }
+                            else
+                            {
+                                childLeft = new LayoutLength(Padding.Start + ((childSpace - childWidth).AsDecimal() / 2.0f) + childMargin.Start - childMargin.End);
+                            }
+                            break;
+                        }
+                    case HorizontalAlignment.Begin:
+                    default:
+                        {
+                            if (isLayoutRtl)
+                            {
+                                childLeft = new LayoutLength(width - Padding.Start - childWidth - childMargin.Start);
+                            }
+                            else
+                            {
+                                childLeft = new LayoutLength(Padding.Start + childMargin.Start);
+                            }
                             break;
                         }
                 }
