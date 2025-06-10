@@ -33,6 +33,8 @@ namespace Tizen.NUI.MarkdownRenderer
         private MarkdownParser parser;
         private MarkdownUIBuilder builder;
         private readonly StringBuilder pathBuilder = new StringBuilder(16);
+        private string lastInput = string.Empty;
+        internal static bool IsRTL = false;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MarkdownRenderer"/> class.
@@ -60,6 +62,7 @@ namespace Tizen.NUI.MarkdownRenderer
             pathBuilder.Append("r"); // root
             builder.Build(document, this, pathBuilder);
             builder.RemoveUnusedUI();
+            lastInput = markdown;
         }
 
         /// <summary>
@@ -86,6 +89,24 @@ namespace Tizen.NUI.MarkdownRenderer
 
             parser = new MarkdownParser();
             builder = new MarkdownUIBuilder(Style);
+            LayoutDirectionChanged += OnLayoutDirectionChanged;
+        }
+
+        private void OnLayoutDirectionChanged(object sender, LayoutDirectionChangedEventArgs e)
+        {
+            IsRTL = e.Type is ViewLayoutDirectionType.RTL;
+            if (!string.IsNullOrEmpty(lastInput))
+            {
+                Clear();
+                Render(lastInput);
+            }
+        }
+
+        protected override void Dispose(DisposeTypes type)
+        {
+            LayoutDirectionChanged -= OnLayoutDirectionChanged;
+            Clear();
+            base.Dispose(type);
         }
     }
 }

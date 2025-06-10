@@ -48,6 +48,7 @@ namespace Tizen.NUI.MarkdownRenderer
             };
             WidthSpecification = LayoutParamPolicies.MatchParent;
             Margin = new Extents(0, 0, (ushort)common.Margin, (ushort)common.Margin);
+            LayoutDirection = ViewLayoutDirectionType.LTR;
         }
 
         private View CreateTitle(string text)
