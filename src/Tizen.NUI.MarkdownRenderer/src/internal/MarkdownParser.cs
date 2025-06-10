@@ -29,7 +29,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// </summary>
     internal class MarkdownParser
     {
-        private MarkdownPipeline pipeline;
+        private static readonly MarkdownPipeline pipeline = new MarkdownPipelineBuilder().UsePipeTables().UseEmphasisExtras().Build();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MarkdownParser"/> class
@@ -37,10 +37,6 @@ namespace Tizen.NUI.MarkdownRenderer
         /// </summary>
         public MarkdownParser()
         {
-            pipeline = new MarkdownPipelineBuilder()
-            .UsePipeTables() // .UseAdvancedExtensions()
-            .UseEmphasisExtras()
-            .Build();
         }
 
         /// <summary>
