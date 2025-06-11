@@ -100,6 +100,7 @@ namespace Tizen.NUI.MarkdownRenderer
             {
                 VerticalAlignment = VerticalAlignment.Center,
             };
+            WidthSpecification = LayoutParamPolicies.MatchParent;
 
             int indent = isHeaderQuote ? common.Indent : (int)(common.Indent - (quote.BarWidth + barMargin * 2));
             Margin = new Extents((ushort)indent, 0, (ushort)common.Margin, (ushort)common.Margin);
@@ -118,6 +119,7 @@ namespace Tizen.NUI.MarkdownRenderer
                 {
                     LinearOrientation = LinearLayout.Orientation.Vertical,
                 },
+                WidthSpecification = LayoutParamPolicies.MatchParent,
                 Padding = new Extents((ushort)quote.Padding),
             };
         }
