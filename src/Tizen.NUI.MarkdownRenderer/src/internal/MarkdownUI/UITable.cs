@@ -83,9 +83,9 @@ namespace Tizen.NUI.MarkdownRenderer
         private void SetupLayout()
         {
             if (isHeaderRow)
-                Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
+                Layout = new MarkdownLinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
             else
-                Layout = new LinearLayout() {};
+                Layout = new MarkdownLinearLayout() {};
 
             WidthSpecification = LayoutParamPolicies.MatchParent;
         }
@@ -110,7 +110,7 @@ namespace Tizen.NUI.MarkdownRenderer
         {
             return new View()
             {
-                Layout = new LinearLayout() {},
+                Layout = new MarkdownLinearLayout() {},
                 WidthSpecification = LayoutParamPolicies.MatchParent,
             };
         }
@@ -132,7 +132,7 @@ namespace Tizen.NUI.MarkdownRenderer
 
         private void SetupLayout()
         {
-            Layout = new LinearLayout() {};
+            Layout = new MarkdownLinearLayout() {};
             WidthSpecification = LayoutParamPolicies.MatchParent;
             Padding = new Extents((ushort)table.ItemPadding);
         }
@@ -156,7 +156,7 @@ namespace Tizen.NUI.MarkdownRenderer
 
         private void SetupLayout()
         {
-            Layout = new LinearLayout()
+            Layout = new MarkdownLinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
             };
