@@ -50,7 +50,7 @@ namespace Tizen.NUI.MarkdownRenderer
 
         private void SetupLayout()
         {
-            Layout = new LinearLayout() {};
+            Layout = new MarkdownLinearLayout() {};
         }
 
         private View CreateBullet()
@@ -99,7 +99,7 @@ namespace Tizen.NUI.MarkdownRenderer
 
         private void SetupLayout()
         {
-            Layout = new LinearLayout()
+            Layout = new MarkdownLinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
             };
@@ -123,7 +123,7 @@ namespace Tizen.NUI.MarkdownRenderer
 
         private void SetupLayout()
         {
-            Layout = new LinearLayout()
+            Layout = new MarkdownLinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
             };
