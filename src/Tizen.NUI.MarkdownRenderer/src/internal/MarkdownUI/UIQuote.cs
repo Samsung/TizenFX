@@ -115,7 +115,7 @@ namespace Tizen.NUI.MarkdownRenderer
         {
             return new View()
             {
-                Layout = new LinearLayout()
+                Layout = new MarkdownLinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Vertical,
                 },
@@ -127,7 +127,7 @@ namespace Tizen.NUI.MarkdownRenderer
         /// <summary>
         /// Custom layout for the Quote component that adjusts the height of the QuoteBar.
         /// </summary>
-        private class UIQuoteLayout : LinearLayout
+        private class UIQuoteLayout : MarkdownLinearLayout
         {
             protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
             {
