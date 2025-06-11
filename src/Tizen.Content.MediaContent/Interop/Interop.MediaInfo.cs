@@ -46,32 +46,8 @@ internal static partial class Interop
         internal static extern MediaContentError ForeachMedia(FilterHandle filter, Common.ItemCallback callback,
             IntPtr userData = default);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_tag_count_from_db")]
-        internal static extern MediaContentError GetTagCount(string mediaId, FilterHandle filter, out int tagCount);  // Deprecated since API12
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_foreach_tag_from_db")]
-        internal static extern MediaContentError ForeachTags(string mediaId, FilterHandle filter,
-            Common.ItemCallback callback, IntPtr userData = default);  // Deprecated since API12
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_bookmark_count_from_db")]
-        internal static extern MediaContentError GetBookmarkCount(string mediaId, FilterHandle filter, out int bookmarkCount); // Deprecated since API12
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_foreach_bookmark_from_db")]
-        internal static extern MediaContentError ForeachBookmarks(string mediaId, FilterHandle filter,
-            Common.ItemCallback callback, IntPtr userData = default); // Deprecated since API12
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_face_count_from_db")]
-        internal static extern MediaContentError GetFaceCount(string mediaId, FilterHandle filter, out int bookmarkCount); // Deprecated
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_foreach_face_from_db")]
-        internal static extern MediaContentError ForeachFaces(string mediaId, FilterHandle filter, // Deprecated
-            Common.ItemCallback callback, IntPtr userData = default);
-
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_image")]
         internal static extern MediaContentError GetImage(MediaInfoHandle handle, out IntPtr imageHandle);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_video")]
-        internal static extern MediaContentError GetVideo(MediaInfoHandle handle, out IntPtr videoHandle); // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_audio")]
         internal static extern MediaContentError GetAudio(MediaInfoHandle handle, out IntPtr audioHandle);
@@ -103,57 +79,21 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_modified_time")]
         internal static extern MediaContentError GetModifiedTime(MediaInfoHandle handle, out IntPtr posixTime);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_timeline")]
-        internal static extern MediaContentError GetTimeline(MediaInfoHandle handle, out IntPtr posixTime);  // Deprecated since API12
-
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_thumbnail_path")]
         internal static extern MediaContentError GetThumbnailPath(MediaInfoHandle mediaInformationHandle, out IntPtr filePath);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_description")]
-        internal static extern MediaContentError GetDescription(MediaInfoHandle mediaInformationHandle, out IntPtr description);  // Deprecated since API12
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_longitude")]
-        internal static extern MediaContentError GetLongitude(MediaInfoHandle mediaInformationHandle, out double longitude);  // Deprecated since API12
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_latitude")]
-        internal static extern MediaContentError GetLatitude(MediaInfoHandle mediaInformationHandle, out double latitude);  // Deprecated since API12
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_altitude")]
-        internal static extern MediaContentError GetAltitude(MediaInfoHandle mediaInformationHandle, out double altitude);  // Deprecated since API12
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_rating")]
-        internal static extern MediaContentError GetRating(MediaInfoHandle mediaInformationHandle, out int rating);  // Deprecated since API12
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_favorite")]
-        internal static extern MediaContentError GetFavorite(MediaInfoHandle mediaInformationHandle, out bool favorite);  // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_title")]
         internal static extern MediaContentError GetTitle(MediaInfoHandle mediaInformationHandle, out IntPtr title);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_is_drm")]
-        internal static extern MediaContentError IsDrm(MediaInfoHandle mediaInformationHandle, out bool isDrm);  // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_media_from_db")]
         internal static extern MediaContentError GetMediaFromDB(string mediaId, out MediaInfoHandle handle);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_set_favorite")]
-        internal static extern MediaContentError SetFavorite(MediaInfoHandle mediaInformationHandle, bool favorite);  // Deprecated since API12
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_update_to_db")]
-        internal static extern MediaContentError UpdateToDB(MediaInfoHandle mediaInformationHandle);  // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_move_to_db")]
         internal static extern MediaContentError MoveToDB(MediaInfoHandle mediaInformationHandle, string dstPath);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_generate_thumbnail")]
         internal static extern MediaContentError GenerateThumbnail(MediaInfoHandle handle);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_start_face_detection")]
-        internal static extern MediaContentError StartFaceDetection(MediaInfoHandle handle, // Deprecated
-            FaceDetectionCompletedCallback callback, IntPtr userData = default);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_cancel_face_detection")]
-        internal static extern MediaContentError CancelFaceDetection(MediaInfoHandle handle); // Deprecated
     }
 
     internal sealed class MediaInfoHandle : SafeHandle
