@@ -15,6 +15,11 @@
  */
 
 using System;
+using System.ComponentModel;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Runtime.InteropServices;
+using Native = Interop.ScreenMirroring;
 
 namespace Tizen.Multimedia.Remoting
 {
@@ -52,5 +57,107 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public ScreenMirroringError Error { get; }
+    }
+
+    /// <summary>
+    /// Provides data for the <see cref="ScreenMirroring.DisplayOrientationChanged"/> event.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class ScreenMirroringDisplayOrientationChangedEventArgs : EventArgs
+    {
+        internal ScreenMirroringDisplayOrientationChangedEventArgs(ScreenMirroringDisplayOrientation orientation)
+        {
+            Orientation = orientation;
+        }
+
+        /// <summary>
+        /// Gets the display orientation of source.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScreenMirroringDisplayOrientation Orientation { get; }
+    }
+
+    /// <summary>
+    /// Provides data for the <see cref="ScreenMirroring.UibcInfoReceived"/> event.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class ScreenMirroringUibcInfoReceivedEventArgs : EventArgs
+    {
+        internal ScreenMirroringUibcInfoReceivedEventArgs(ScreenMirroringError error, IntPtr uibcInfo)
+        {
+            var unmanagedStruct = Marshal.PtrToStructure<Native.UibcInfo>(uibcInfo);
+
+            Error = error;
+            Ip = unmanagedStruct.Ip;
+            Port = unmanagedStruct.Port;
+            GenCapability = unmanagedStruct.GenCapability;
+            Resolution = new Size(unmanagedStruct.Width, unmanagedStruct.Height);
+            HidcCapabilities = GetUibcInputs(unmanagedStruct.hidcCapsList, unmanagedStruct.hidcCapsSize);
+        }
+
+        private ReadOnlyCollection<UibcInputs> GetUibcInputs(IntPtr unmanagedIntPtr, uint hidcCapsSize)
+        {
+            var size = Marshal.SizeOf(typeof(Native.UibcInput));
+            var unmanagedStruct = new Native.UibcInput[hidcCapsSize];
+            IntPtr unmanagedUibcInput;
+
+            for (int i = 0; i < hidcCapsSize; i++)
+            {
+                if (IntPtr.Size == 4)
+                {
+                    unmanagedUibcInput = new IntPtr(unmanagedIntPtr.ToInt32() + i * size);
+                }
+                else
+                {
+                    unmanagedUibcInput = new IntPtr(unmanagedIntPtr.ToInt64() + i * size);
+                }
+
+                unmanagedStruct[i] = Marshal.PtrToStructure<Native.UibcInput>(unmanagedUibcInput);
+            }
+
+            var hidcList = new List<UibcInputs>();
+            for (int i = 0; i < hidcCapsSize; i++)
+            {
+                hidcList.Add(new UibcInputs(unmanagedStruct[i].type, unmanagedStruct[i].path));
+            }
+
+            return new ReadOnlyCollection<UibcInputs>(hidcList);
+        }
+
+        /// <summary>
+        /// Gets the error that occurred.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScreenMirroringError Error { get; }
+
+        /// <summary>
+        /// Gets the IP address
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Ip { get; }
+
+        /// <summary>
+        /// Gets the port number
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint Port { get; }
+
+        /// <summary>
+        /// Gets the gen capability
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GenCapability { get; }
+
+        /// <summary>
+        /// Gets the resolution of window
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size Resolution { get; }
+
+        /// <summary>
+        /// Gets the HIDC(Human Interface Device Command) capabilities
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ReadOnlyCollection<UibcInputs> HidcCapabilities { get; }
     }
 }
