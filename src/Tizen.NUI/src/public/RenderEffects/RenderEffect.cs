@@ -112,5 +112,11 @@ namespace Tizen.NUI
         {
             return new RenderEffect(Interop.MaskEffect.New(control.SwigCPtr, maskMode, positionX, positionY, scaleX, scaleY));
         }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.RenderEffect.DeleteRenderEffect(swigCPtr);
+        }
     }
 }

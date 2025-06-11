@@ -29,6 +29,8 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderEffect_Deactivate")]
             public static extern void Deactivate(HandleRef effect);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderEffect_DeleteRenderEffect")]
+            public static extern void DeleteRenderEffect(global::System.Runtime.InteropServices.HandleRef swigCPtr);
         }
     }
 }
