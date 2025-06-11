@@ -42,7 +42,7 @@ namespace Tizen.NUI.MarkdownRenderer
 
         private void SetupLayout()
         {
-            Layout = new LinearLayout()
+            Layout = new MarkdownLinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
             };
@@ -55,7 +55,7 @@ namespace Tizen.NUI.MarkdownRenderer
         {
             var view = new View()
             {
-                Layout = new LinearLayout() {},
+                Layout = new MarkdownLinearLayout() {},
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 BackgroundColor = new Color(code.TitleBackgroundColor),
                 Padding = new Extents((ushort)code.Padding),
@@ -74,7 +74,7 @@ namespace Tizen.NUI.MarkdownRenderer
         {
             var view = new View()
             {
-                Layout = new LinearLayout() {},
+                Layout = new MarkdownLinearLayout() {},
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 BackgroundColor = new Color(code.BackgroundColor),
                 Padding = new Extents((ushort)code.Padding),

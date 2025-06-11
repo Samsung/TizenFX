@@ -78,7 +78,7 @@ namespace Tizen.NUI.MarkdownRenderer
         /// </summary>
         private void Initialize()
         {
-            Layout = new LinearLayout()
+            Layout = new MarkdownLinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
                 HorizontalAlignment = HorizontalAlignment.Begin,
@@ -102,6 +102,9 @@ namespace Tizen.NUI.MarkdownRenderer
             }
         }
 
+        /// <summary>
+        /// Disposes all rendered views, clears the internal UI builder state, and dispose itself.
+        /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
             LayoutDirectionChanged -= OnLayoutDirectionChanged;
