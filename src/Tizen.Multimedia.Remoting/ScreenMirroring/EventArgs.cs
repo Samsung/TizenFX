@@ -16,10 +16,10 @@
 
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Runtime.InteropServices;
 using Native = Interop.ScreenMirroring;
-using System.Collections.Generic;
 
 namespace Tizen.Multimedia.Remoting
 {
