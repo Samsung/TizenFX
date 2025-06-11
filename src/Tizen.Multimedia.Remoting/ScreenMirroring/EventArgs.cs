@@ -91,7 +91,7 @@ namespace Tizen.Multimedia.Remoting
             Ip = unmanagedStruct.Ip;
             Port = unmanagedStruct.Port;
             GenCapability = unmanagedStruct.GenCapability;
-            Size = new Size(unmanagedStruct.Width, unmanagedStruct.Height);
+            Resolution = new Size(unmanagedStruct.Width, unmanagedStruct.Height);
             HidcCapabilities = GetUibcInputs(unmanagedStruct.hidcCapsList, unmanagedStruct.hidcCapsSize);
         }
 
@@ -149,10 +149,10 @@ namespace Tizen.Multimedia.Remoting
         public uint GenCapability { get; }
 
         /// <summary>
-        /// Gets the size
+        /// Gets the resolution of window
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size Size { get; }
+        public Size Resolution { get; }
 
         /// <summary>
         /// Gets the HIDC(Human Interface Device Command) capabilities
