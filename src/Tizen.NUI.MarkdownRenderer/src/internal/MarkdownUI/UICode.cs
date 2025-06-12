@@ -30,8 +30,26 @@ namespace Tizen.NUI.MarkdownRenderer
         private readonly CodeStyle code;
         private readonly CommonStyle common;
 
-        public UICode(string language, string text, CodeStyle codeStyle, CommonStyle commonStyle) : base()
+        private UICodeText uiCodeTitle;
+        private UICodeText uiCodeText;
+
+        public string ContentHash { get; set; } = string.Empty;
+
+        public string Language
         {
+            get => uiCodeTitle.Text;
+            set => uiCodeTitle.Text = value;
+        }
+
+        public string Code
+        {
+            get => uiCodeText.Text;
+            set => uiCodeText.Text = value;
+        }
+
+        public UICode(string language, string text, CodeStyle codeStyle, CommonStyle commonStyle, string hash) : base()
+        {
+            ContentHash = hash;
             code = codeStyle;
             common = commonStyle;
             SetupLayout();
@@ -60,13 +78,14 @@ namespace Tizen.NUI.MarkdownRenderer
                 BackgroundColor = new Color(code.TitleBackgroundColor),
                 Padding = new Extents((ushort)code.Padding),
             };
-            view.Add(new UICodeText()
+            uiCodeTitle = new UICodeText()
             {
                 Text = text,
                 FontFamily = code.TitleFontFamily,
                 PixelSize = code.TitleFontSize,
                 TextColor = new Color(code.TitleFontColor),
-            });
+            };
+            view.Add(uiCodeTitle);
             return view; 
         }
 
@@ -79,13 +98,14 @@ namespace Tizen.NUI.MarkdownRenderer
                 BackgroundColor = new Color(code.BackgroundColor),
                 Padding = new Extents((ushort)code.Padding),
             };
-            view.Add(new UICodeText()
+            uiCodeText = new UICodeText()
             {
                 Text = text,
                 FontFamily = code.FontFamily,
                 PixelSize = code.FontSize,
                 TextColor = new Color(code.FontColor),
-            });
+            };
+            view.Add(uiCodeText);
             return view; 
         }
 

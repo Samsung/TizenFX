@@ -30,22 +30,36 @@ namespace Tizen.NUI.MarkdownRenderer
     {
         private readonly ParagraphStyle paragraph;
 
-        public UIListItemParagraph(string text, ParagraphStyle paragraphStyle) : base()
+        private UIParagraph uiParagraph;
+
+        public string ContentHash { get; set; } = string.Empty;
+
+        public string Text
         {
+            get => uiParagraph.Text;
+            set => uiParagraph.Text = value;
+        }
+
+        public UIListItemParagraph(string text, ParagraphStyle paragraphStyle, string hash) : base()
+        {
+            ContentHash = hash;
             paragraph = paragraphStyle;
             SetupLayout();
 
             Add(CreateBullet());
-            Add(new UIParagraph(text, paragraph));
+            uiParagraph = new UIParagraph(text, paragraph);
+            Add(uiParagraph);
         }
 
-        public UIListItemParagraph(string text, int number, ParagraphStyle paragraphStyle) : base()
+        public UIListItemParagraph(string text, int number, ParagraphStyle paragraphStyle, string hash) : base()
         {
+            ContentHash = hash;
             paragraph = paragraphStyle;
             SetupLayout();
 
             Add(CreateNumber(number));
-            Add(new UIParagraph(text, paragraph));
+            uiParagraph = new UIParagraph(text, paragraph);
+            Add(uiParagraph);
         }
 
         private void SetupLayout()
