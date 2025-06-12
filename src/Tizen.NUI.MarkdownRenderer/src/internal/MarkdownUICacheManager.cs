@@ -106,21 +106,7 @@ namespace Tizen.NUI.MarkdownRenderer
         /// <returns>Unique string key for caching</returns>
         public string CreateKey(Block block, string path)
         {
-            string type = block.GetType().Name;
-            string hash = String.Empty;
-
-            if (block is FencedCodeBlock fenced)
-            {
-                string language = fenced.Info;
-                string code = fenced.Lines.ToString();
-                hash = ComputeHash(language + code);
-            }
-            else if (block is LeafBlock leaf)
-            {
-                hash = ComputeHash(GetInlineText(leaf.Inline));
-            }
-
-            return $"{path}-{type}-{hash}";
+            return $"{path}-{block.GetType().Name}";
         }
 
         /// <summary>
@@ -130,7 +116,7 @@ namespace Tizen.NUI.MarkdownRenderer
         /// </summary>
         /// <param name="text">Input string to hash. Null or empty returns an empty string.</param>
         /// <returns>8-digit hex string representing the FNV-1a 32-bit hash of the input.</returns>
-        private string ComputeHash(string text)
+        public string ComputeHash(string text)
         {
             if (string.IsNullOrEmpty(text)) return "";
             unchecked
