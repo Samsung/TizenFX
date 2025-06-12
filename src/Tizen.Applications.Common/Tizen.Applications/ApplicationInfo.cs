@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Tizen.Applications
 {
@@ -488,6 +489,49 @@ namespace Tizen.Applications
                 label = Label;
             }
             return label;
+        }
+
+        /// <summary>
+        /// Gets the common shared data path.
+        /// </summary>
+        /// <remarks>
+        /// An application that wants to use shared/data directory must declare http://tizen.org/privilege/appdir.shareddata privilege.
+        /// If the application doesn't declare the privilege, the framework will not create shared/data directory for the application.
+        /// This property will return empty string when the application doesn't have shared/data directory.
+        /// </remarks>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string CommonSharedDataPath
+        {
+            get
+            {
+                string path = string.Empty;
+                err = Interop.ApplicationManager.AppManagerGetCommonSharedDataPath(ApplicationId, out path);
+                if (err != Interop.ApplicationManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to get the CommonSharedDataPath of " + _applicationId + ". err = " + err);
+                }
+                return path;
+            }
+        }
+
+        /// <summary>
+        /// Gets the common shared trust path.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string CommonSharedTrustedPath
+        {
+            get
+            {
+                string path = string.Empty;
+                err = Interop.ApplicationManager.AppManagerGetCommonSharedTrustedPath(ApplicationId, out path);
+                if (err != Interop.ApplicationManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to get the CommonSharedTrustedPath of " + _applicationId + ". err = " + err);
+                }
+                return path;
+            }
         }
 
         private IntPtr GetInfoHandle()
