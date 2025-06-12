@@ -27,8 +27,11 @@ namespace Tizen.NUI.MarkdownRenderer
     /// </summary>
     internal class UIParagraph : TextLabel
     {
-        public UIParagraph(string text, ParagraphStyle paragraphStyle) : base()
+        public string ContentHash { get; set; } = string.Empty;
+
+        public UIParagraph(string text, ParagraphStyle paragraphStyle, string hash = "") : base()
         {
+            ContentHash = hash; 
             Text = text;
             FontFamily = paragraphStyle.FontFamily;
             PixelSize = paragraphStyle.FontSize;

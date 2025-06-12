@@ -30,7 +30,7 @@ namespace Tizen.NUI.MarkdownRenderer
     {
         private readonly HeadingStyle heading;
 
-        public UIHeading(string text, int level, HeadingStyle headingStyle, CommonStyle commonStyle, ParagraphStyle paragraphStyle) : base(text, paragraphStyle)
+        public UIHeading(string text, int level, HeadingStyle headingStyle, CommonStyle commonStyle, ParagraphStyle paragraphStyle, string hash) : base(text, paragraphStyle, hash)
         {
             heading = headingStyle;
 
