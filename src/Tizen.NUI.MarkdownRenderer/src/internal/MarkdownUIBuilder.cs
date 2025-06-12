@@ -84,16 +84,25 @@ namespace Tizen.NUI.MarkdownRenderer
             var view = cacheManager.Get(key);
             if (view is null)
             {
-                string text = string.Empty;
-                if (block is LeafBlock leafBlock)
-                    text = GetInlineText(leafBlock.Inline);
-
-                view = block is ContainerBlock ? CreateContainer(block) : CreateLeaf(block, text);
+                if (block is ContainerBlock)
+                {
+                    view = CreateContainer(block);
+                }
+                else
+                {
+                    string text = (block is LeafBlock leafBlock) ? GetInlineText(leafBlock.Inline) : string.Empty;
+                    view = CreateLeaf(block, text);
+                }
                 parent.Add(view);
-
                 cacheManager.Add(key, view);
             }
-            // else: do nothing!
+            else if (IsUpdatable(block) && block is LeafBlock leafBlock)
+            {
+                string text = GetInlineText(leafBlock.Inline);
+                UpdateLeaf(view, block, text);
+            }
+
+            // else do nothing!
 
             if (block is ContainerBlock containerBlock)
             {
@@ -187,46 +196,124 @@ namespace Tizen.NUI.MarkdownRenderer
             }
         }
 
+        private bool IsUpdatable(Block block)
+        {
+            return block is HeadingBlock || block is ParagraphBlock || block is FencedCodeBlock;
+        }
+
+        private void UpdateLeaf(View view, Block block, string text)
+        {
+            switch (block)
+            {
+                case HeadingBlock heading when view is UIHeading uiHeading:
+                {
+                    var hash = cacheManager.ComputeHash(text);
+                    if (uiHeading.ContentHash != hash)
+                    {
+                        uiHeading.Text = text;
+                        uiHeading.ContentHash = hash;
+                    }
+                    break;
+                }
+                case ParagraphBlock when view is UIParagraph uiParagraph:
+                {
+                    var hash = cacheManager.ComputeHash(text);
+                    if (uiParagraph.ContentHash != hash)
+                    {
+                        uiParagraph.Text = text;
+                        uiParagraph.ContentHash = hash;
+                    }
+                    break;
+                }
+                case ParagraphBlock when view is UIListItemParagraph uiListItemParagraph && block.Parent is ListItemBlock listItem:
+                {
+                    var hash = cacheManager.ComputeHash(text);
+                    if (uiListItemParagraph.ContentHash != hash)
+                    {
+                        uiListItemParagraph.Text = text;
+                        uiListItemParagraph.ContentHash = hash;
+                    }
+                    break;
+                }
+                case ParagraphBlock when view is UIQuoteParagraph uiQuoteParagraph:
+                {
+                    var hash = cacheManager.ComputeHash(text);
+                    if (uiQuoteParagraph.ContentHash != hash)
+                    {
+                        uiQuoteParagraph.Text = text;
+                        uiQuoteParagraph.ContentHash = hash;
+                    }
+                    break;
+                }
+                case FencedCodeBlock fenced when view is UICode uiCode:
+                {
+                    string code = fenced.Lines.ToString();
+                    string language = fenced.Info;
+                    string hash = cacheManager.ComputeHash(language + code);
+                    if (uiCode.ContentHash != hash)
+                    {
+                        uiCode.Language = language;
+                        uiCode.Code = code;
+                        uiCode.ContentHash = hash;
+                    }
+                    break;
+                }
+                default:
+                    Tizen.Log.Error("NUI", $"Unknown type:{block.GetType().Name}\n");
+                    break;
+            }
+        }
+
         private View CreateLeaf(Block block, string text)
         {
-            if (block is HeadingBlock heading)
+            switch (block)
             {
-                return new UIHeading(text, heading.Level, style.Heading, style.Common, style.Paragraph);
-            }
-            else if (block is ParagraphBlock)
-            {
-                if (block.Parent is ListItemBlock listItem)
+                case HeadingBlock heading:
                 {
+                    string hash = cacheManager.ComputeHash(text);
+                    return new UIHeading(text, heading.Level, style.Heading, style.Common, style.Paragraph, hash);
+                }
+                case ParagraphBlock when block.Parent is ListItemBlock listItem:
+                {
+                    string hash = cacheManager.ComputeHash(text);
                     if (listItem.Parent is ListBlock listBlock && listBlock.IsOrdered)
                     {
                         int index = listBlock.IndexOf(listItem);
                         int start = int.TryParse(listBlock.OrderedStart?.ToString(), out var s) ? s : 1;
                         int number = start + index;
-                        return new UIListItemParagraph(text, number, style.Paragraph);
+                        return new UIListItemParagraph(text, number, style.Paragraph, hash);
                     }
                     else
                     {
-                        return new UIListItemParagraph(text, style.Paragraph);
+                        return new UIListItemParagraph(text, style.Paragraph, hash);
                     }
                 }
-                else if (block.Parent is QuoteBlock)
-                    return new UIQuoteParagraph(text, style.Quote, style.Paragraph);
-                else
-                    return new UIParagraph(text, style.Paragraph);
-            }
-            else if (block is ThematicBreakBlock)
-            {
-                return new UIThematicBreak(style.ThematicBreak, style.Common);
-            }
-            else if (block is FencedCodeBlock fenced)
-            {
-                string language = fenced.Info;
-                string code = fenced.Lines.ToString();
-                return new UICode(language, code, style.Code, style.Common);
-            }
-            else
-            {
-                return new UIParagraph(text, style.Paragraph); // fallback
+                case ParagraphBlock when block.Parent is QuoteBlock:
+                {
+                    string hash = cacheManager.ComputeHash(text);
+                    return new UIQuoteParagraph(text, style.Quote, style.Paragraph, hash);
+                }
+                case ParagraphBlock:
+                {
+                    string hash = cacheManager.ComputeHash(text);
+                    return new UIParagraph(text, style.Paragraph, hash);
+                }
+                case ThematicBreakBlock:
+                {
+                    return new UIThematicBreak(style.ThematicBreak, style.Common);
+                }
+                case FencedCodeBlock fenced:
+                {
+                    string language = fenced.Info;
+                    string code = fenced.Lines.ToString();
+                    string hash = cacheManager.ComputeHash(language + code);
+                    return new UICode(language, code, style.Code, style.Common, hash);
+                }
+                default:
+                {
+                    string hash = cacheManager.ComputeHash(text);
+                    return new UIParagraph(text, style.Paragraph, hash); // fallback
+                }
             }
         }
 
