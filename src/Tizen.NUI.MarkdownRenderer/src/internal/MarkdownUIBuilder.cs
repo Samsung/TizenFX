@@ -211,6 +211,7 @@ namespace Tizen.NUI.MarkdownRenderer
                     if (uiHeading.ContentHash != hash)
                     {
                         uiHeading.Text = text;
+                        uiHeading.Level = heading.Level;
                         uiHeading.ContentHash = hash;
                     }
                     break;
