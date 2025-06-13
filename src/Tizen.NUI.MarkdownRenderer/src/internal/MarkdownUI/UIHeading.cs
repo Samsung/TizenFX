@@ -29,27 +29,35 @@ namespace Tizen.NUI.MarkdownRenderer
     internal class UIHeading : UIParagraph
     {
         private readonly HeadingStyle heading;
+        private int level;
+
+        public int Level
+        {
+            get => level;
+            set
+            {
+                if (level == value) return;
+
+                level = value;
+                switch (level)
+                {
+                    case 1: PixelSize = heading.FontSizeLevel1; break;
+                    case 2: PixelSize = heading.FontSizeLevel2; break;
+                    case 3: PixelSize = heading.FontSizeLevel3; break;
+                    case 4: PixelSize = heading.FontSizeLevel4; break;
+                    case 5: PixelSize = heading.FontSizeLevel5; break;
+                    default: PixelSize = heading.FontSizeLevel1; break;
+                }
+            }
+        }
 
         public UIHeading(string text, int level, HeadingStyle headingStyle, CommonStyle commonStyle, ParagraphStyle paragraphStyle, string hash) : base(text, paragraphStyle, hash)
         {
             heading = headingStyle;
 
+            Level = level;
             FontFamily = heading.FontFamily;
             Margin = new Extents(0, 0, (ushort)commonStyle.Margin, (ushort)commonStyle.Margin);
-            SetFontSize(level);
-        }
-
-        private void SetFontSize(int level)
-        {
-            switch(level)
-            {
-                case 1: PixelSize = heading.FontSizeLevel1; break;
-                case 2: PixelSize = heading.FontSizeLevel2; break;
-                case 3: PixelSize = heading.FontSizeLevel3; break;
-                case 4: PixelSize = heading.FontSizeLevel4; break;
-                case 5: PixelSize = heading.FontSizeLevel5; break;
-                default: PixelSize = heading.FontSizeLevel1; break;
-            }
         }
     }
 }
