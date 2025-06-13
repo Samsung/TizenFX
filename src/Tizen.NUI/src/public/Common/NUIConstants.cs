@@ -146,7 +146,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Size is to use the actor's natural size.
         /// </summary>
-        /// <see cref="ViewImpl.GetNaturalSize"/>
         [Description("USE_NATURAL_SIZE")]
         UseNaturalSize,
         /// <summary>
