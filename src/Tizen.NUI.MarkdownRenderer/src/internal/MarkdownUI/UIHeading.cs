@@ -51,7 +51,7 @@ namespace Tizen.NUI.MarkdownRenderer
             }
         }
 
-        public UIHeading(string text, int level, HeadingStyle headingStyle, CommonStyle commonStyle, ParagraphStyle paragraphStyle, string hash) : base(text, paragraphStyle, hash)
+        public UIHeading(string text, int level, HeadingStyle headingStyle, CommonStyle commonStyle, ParagraphStyle paragraphStyle, string hash, bool asyncRendering) : base(text, paragraphStyle, hash, asyncRendering)
         {
             heading = headingStyle;
 
