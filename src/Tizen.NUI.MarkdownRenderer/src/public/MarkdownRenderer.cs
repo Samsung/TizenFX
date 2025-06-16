@@ -50,6 +50,16 @@ namespace Tizen.NUI.MarkdownRenderer
         public MarkdownStyle Style { get; } = new MarkdownStyle();
 
         /// <summary>
+        /// The UI elements are rendered asynchronously on a background thread whenever possible.
+        /// Currently only UIText can be async rendered.
+        /// </summary>
+        public bool AsyncRendering
+        {
+            get => builder.AsyncRendering;
+            set => builder.AsyncRendering = value;
+        }
+
+        /// <summary>
         /// Parses and renders the specified markdown string, updating the UI.
         /// Automatically reuses or disposes of views for efficient updates.
         /// </summary>
