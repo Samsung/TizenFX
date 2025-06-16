@@ -47,15 +47,15 @@ namespace Tizen.NUI.MarkdownRenderer
             set => uiCodeText.Text = value;
         }
 
-        public UICode(string language, string text, CodeStyle codeStyle, CommonStyle commonStyle, string hash) : base()
+        public UICode(string language, string text, CodeStyle codeStyle, CommonStyle commonStyle, string hash, bool asyncRendering) : base()
         {
             ContentHash = hash;
             code = codeStyle;
             common = commonStyle;
             SetupLayout();
 
-            Add(CreateTitle(language));
-            Add(CreateCode(text));
+            Add(CreateTitle(language, asyncRendering));
+            Add(CreateCode(text, asyncRendering));
         }
 
         private void SetupLayout()
@@ -69,7 +69,7 @@ namespace Tizen.NUI.MarkdownRenderer
             LayoutDirection = ViewLayoutDirectionType.LTR;
         }
 
-        private View CreateTitle(string text)
+        private View CreateTitle(string text, bool asyncRendering)
         {
             var view = new View()
             {
@@ -78,7 +78,7 @@ namespace Tizen.NUI.MarkdownRenderer
                 BackgroundColor = new Color(code.TitleBackgroundColor),
                 Padding = new Extents((ushort)code.Padding),
             };
-            uiCodeTitle = new UICodeText()
+            uiCodeTitle = new UICodeText(asyncRendering)
             {
                 Text = text,
                 FontFamily = code.TitleFontFamily,
@@ -89,7 +89,7 @@ namespace Tizen.NUI.MarkdownRenderer
             return view; 
         }
 
-        private View CreateCode(string text)
+        private View CreateCode(string text, bool asyncRendering)
         {
             var view = new View()
             {
@@ -98,7 +98,7 @@ namespace Tizen.NUI.MarkdownRenderer
                 BackgroundColor = new Color(code.BackgroundColor),
                 Padding = new Extents((ushort)code.Padding),
             };
-            uiCodeText = new UICodeText()
+            uiCodeText = new UICodeText(asyncRendering)
             {
                 Text = text,
                 FontFamily = code.FontFamily,
@@ -106,15 +106,16 @@ namespace Tizen.NUI.MarkdownRenderer
                 TextColor = new Color(code.FontColor),
             };
             view.Add(uiCodeText);
-            return view; 
+            return view;
         }
 
-        private class UICodeText : TextLabel
+        private class UICodeText : UIText
         {
-            public UICodeText() : base()
+            public UICodeText(bool asyncRendering) : base()
             {
                 MultiLine = true;
                 Ellipsis = false;
+                RenderMode = asyncRendering ? TextRenderMode.AsyncManual : TextRenderMode.Sync;
             }
         }
     }

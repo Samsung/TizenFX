@@ -25,11 +25,11 @@ namespace Tizen.NUI.MarkdownRenderer
     /// <summary>
     /// Represents a visual element for rendering a paragraph of text in a Markdown UI.
     /// </summary>
-    internal class UIParagraph : TextLabel
+    internal class UIParagraph : UIText
     {
         public string ContentHash { get; set; } = string.Empty;
 
-        public UIParagraph(string text, ParagraphStyle paragraphStyle, string hash = "") : base()
+        public UIParagraph(string text, ParagraphStyle paragraphStyle, string hash = "", bool asyncRendering = false) : base()
         {
             ContentHash = hash; 
             Text = text;
@@ -41,6 +41,7 @@ namespace Tizen.NUI.MarkdownRenderer
             EnableMarkup = true;
             Ellipsis = false;
             VerticalLineAlignment = VerticalLineAlignment.Center;
+            RenderMode = asyncRendering ? TextRenderMode.AsyncManual : TextRenderMode.Sync;
         }
     }
 }

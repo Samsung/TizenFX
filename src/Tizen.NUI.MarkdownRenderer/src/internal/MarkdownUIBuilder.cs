@@ -38,6 +38,12 @@ namespace Tizen.NUI.MarkdownRenderer
         private MarkdownUICacheManager cacheManager = new MarkdownUICacheManager();
 
         /// <summary>
+        /// The UI elements are rendered asynchronously on a background thread whenever possible.
+        /// Currently only UIText can be async rendered.
+        /// </summary>
+        public bool AsyncRendering { get; set; } = false;
+
+        /// <summary>
         /// Initializes a new builder instance with the specified style.
         /// </summary>
         /// <param name="markdownStyle">Style settings for rendering markdown UI.</param>
@@ -272,7 +278,7 @@ namespace Tizen.NUI.MarkdownRenderer
                 case HeadingBlock heading:
                 {
                     string hash = cacheManager.ComputeHash(text);
-                    return new UIHeading(text, heading.Level, style.Heading, style.Common, style.Paragraph, hash);
+                    return new UIHeading(text, heading.Level, style.Heading, style.Common, style.Paragraph, hash, AsyncRendering);
                 }
                 case ParagraphBlock when block.Parent is ListItemBlock listItem:
                 {
@@ -282,22 +288,22 @@ namespace Tizen.NUI.MarkdownRenderer
                         int index = listBlock.IndexOf(listItem);
                         int start = int.TryParse(listBlock.OrderedStart?.ToString(), out var s) ? s : 1;
                         int number = start + index;
-                        return new UIListItemParagraph(text, number, style.Paragraph, hash);
+                        return new UIListItemParagraph(text, number, style.Paragraph, hash, AsyncRendering);
                     }
                     else
                     {
-                        return new UIListItemParagraph(text, style.Paragraph, hash);
+                        return new UIListItemParagraph(text, style.Paragraph, hash, AsyncRendering);
                     }
                 }
                 case ParagraphBlock when block.Parent is QuoteBlock:
                 {
                     string hash = cacheManager.ComputeHash(text);
-                    return new UIQuoteParagraph(text, style.Quote, style.Paragraph, hash);
+                    return new UIQuoteParagraph(text, style.Quote, style.Paragraph, hash, AsyncRendering);
                 }
                 case ParagraphBlock:
                 {
                     string hash = cacheManager.ComputeHash(text);
-                    return new UIParagraph(text, style.Paragraph, hash);
+                    return new UIParagraph(text, style.Paragraph, hash, AsyncRendering);
                 }
                 case ThematicBreakBlock:
                 {
@@ -308,12 +314,12 @@ namespace Tizen.NUI.MarkdownRenderer
                     string language = fenced.Info;
                     string code = fenced.Lines.ToString();
                     string hash = cacheManager.ComputeHash(language + code);
-                    return new UICode(language, code, style.Code, style.Common, hash);
+                    return new UICode(language, code, style.Code, style.Common, hash, AsyncRendering);
                 }
                 default:
                 {
                     string hash = cacheManager.ComputeHash(text);
-                    return new UIParagraph(text, style.Paragraph, hash); // fallback
+                    return new UIParagraph(text, style.Paragraph, hash, AsyncRendering); // fallback
                 }
             }
         }
