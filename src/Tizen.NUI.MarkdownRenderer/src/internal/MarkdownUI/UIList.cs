@@ -40,25 +40,25 @@ namespace Tizen.NUI.MarkdownRenderer
             set => uiParagraph.Text = value;
         }
 
-        public UIListItemParagraph(string text, ParagraphStyle paragraphStyle, string hash) : base()
+        public UIListItemParagraph(string text, ParagraphStyle paragraphStyle, string hash, bool asyncRendering) : base()
         {
             ContentHash = hash;
             paragraph = paragraphStyle;
             SetupLayout();
 
             Add(CreateBullet());
-            uiParagraph = new UIParagraph(text, paragraph);
+            uiParagraph = new UIParagraph(text, paragraph, string.Empty, asyncRendering);
             Add(uiParagraph);
         }
 
-        public UIListItemParagraph(string text, int number, ParagraphStyle paragraphStyle, string hash) : base()
+        public UIListItemParagraph(string text, int number, ParagraphStyle paragraphStyle, string hash, bool asyncRendering) : base()
         {
             ContentHash = hash;
             paragraph = paragraphStyle;
             SetupLayout();
 
-            Add(CreateNumber(number));
-            uiParagraph = new UIParagraph(text, paragraph);
+            Add(CreateNumber(number, asyncRendering));
+            uiParagraph = new UIParagraph(text, paragraph, string.Empty, asyncRendering);
             Add(uiParagraph);
         }
 
@@ -81,7 +81,7 @@ namespace Tizen.NUI.MarkdownRenderer
             return bullet;
         }
 
-        private UIParagraph CreateNumber(int number)
+        private UIParagraph CreateNumber(int number, bool asyncRendering)
         {
             int numberSize = (int)paragraph.LineHeight;
             ushort numberPadding = (ushort)Math.Round(paragraph.LineHeight / 4);
@@ -92,6 +92,7 @@ namespace Tizen.NUI.MarkdownRenderer
                 HeightSpecification = numberSize,
                 HorizontalAlignment = HorizontalAlignment.End,
                 Padding = new Extents(0, numberPadding, 0, 0),
+                RenderMode = asyncRendering ? TextRenderMode.AsyncAuto : TextRenderMode.Sync,
             };
             return numberParagraph;
         }

@@ -27,7 +27,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// </summary>
     internal class UIQuoteParagraph : UIParagraph
     {
-        public UIQuoteParagraph(string text, QuoteStyle quoteStyle, ParagraphStyle paragraphStyle, string hash) : base(text, paragraphStyle, hash)
+        public UIQuoteParagraph(string text, QuoteStyle quoteStyle, ParagraphStyle paragraphStyle, string hash, bool asyncRendering) : base(text, paragraphStyle, hash, asyncRendering)
         {
             TextColor = new Color(quoteStyle.FontColor);
         }
