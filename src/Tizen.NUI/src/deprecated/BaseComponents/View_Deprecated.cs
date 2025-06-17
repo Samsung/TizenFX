@@ -36,7 +36,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return GetRendererCount();
+                return GetEffectiveRenderableCount();
             }
         }
 
