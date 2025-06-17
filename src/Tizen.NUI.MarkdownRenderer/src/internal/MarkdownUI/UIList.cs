@@ -90,7 +90,7 @@ namespace Tizen.NUI.MarkdownRenderer
             {
                 WidthSpecification = number < 10 ? numberSize : numberSize + numberPadding,
                 HeightSpecification = numberSize,
-                HorizontalAlignment = HorizontalAlignment.End,
+                HorizontalAlignment = HorizontalAlignment.Center,
                 Padding = new Extents(0, numberPadding, 0, 0),
                 RenderMode = asyncRendering ? TextRenderMode.AsyncAuto : TextRenderMode.Sync,
             };
