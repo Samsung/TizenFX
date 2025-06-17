@@ -148,7 +148,7 @@ namespace Tizen.NUI.MarkdownRenderer
                         if (emphasis.DelimiterChar == '~')
                         {
                             if (emphasis.DelimiterCount == 2)
-                                sb.Append("<s>").Append(content).Append("</s>");
+                                sb.Append("<s height='").Append(style.Paragraph.StrikethroughThickness).Append("'>").Append(content).Append("</s>");
                             else
                                 sb.Append(content);
                         }
