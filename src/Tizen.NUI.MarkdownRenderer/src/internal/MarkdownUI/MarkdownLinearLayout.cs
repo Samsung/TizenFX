@@ -95,7 +95,7 @@ namespace Tizen.NUI.MarkdownRenderer
                 horizontal = true;
             }
 
-            float childsShare = totalWeightLength * (childWeight / totalWeight);
+            float shareOfChild = totalWeightLength * (childWeight / totalWeight);
             var desiredWidth = childLayout.Owner.WidthSpecification;
             var desiredHeight = childLayout.Owner.HeightSpecification;
 
@@ -104,7 +104,7 @@ namespace Tizen.NUI.MarkdownRenderer
 
             if (horizontal)
             {
-                childWidthMeasureSpec = new MeasureSpecification(new LayoutLength(childsShare - (childLayout.Margin.Start + childLayout.Margin.End)), MeasureSpecification.ModeType.Exactly);
+                childWidthMeasureSpec = new MeasureSpecification(new LayoutLength(shareOfChild - (childLayout.Margin.Start + childLayout.Margin.End)), MeasureSpecification.ModeType.Exactly);
 
                 childHeightMeasureSpec = GetChildMeasureSpecification(
                                             new MeasureSpecification(
@@ -122,7 +122,7 @@ namespace Tizen.NUI.MarkdownRenderer
                                             new LayoutLength(Padding.Start + Padding.End),
                                             new LayoutLength(desiredWidth));
 
-                childHeightMeasureSpec = new MeasureSpecification(new LayoutLength(childsShare - (childLayout.Margin.Top + childLayout.Margin.Bottom)), MeasureSpecification.ModeType.Exactly);
+                childHeightMeasureSpec = new MeasureSpecification(new LayoutLength(shareOfChild - (childLayout.Margin.Top + childLayout.Margin.Bottom)), MeasureSpecification.ModeType.Exactly);
             }
 
             childLayout.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
