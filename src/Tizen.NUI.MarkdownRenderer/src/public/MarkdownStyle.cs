@@ -113,6 +113,9 @@ namespace Tizen.NUI.MarkdownRenderer
 
         /// The minimum height of a line in pixels.
         public float LineHeight { get; set; } = StyleDefaults.ParagraphLineHeight;
+
+        /// Thickness of the strikethrough.
+        public int StrikethroughThickness { get; set; } = StyleDefaults.ParagraphStrikethroughThickness;
     }
 
     /// <summary>
