@@ -45,9 +45,8 @@ namespace Tizen.NUI.MarkdownRenderer
         /// </summary>
         /// <param name="markdown">The markdown text to parse.</param>
         /// <returns>The parsed <see cref="MarkdownDocument"/> object.</returns>
-          public MarkdownDocument Parse(string markdown)
+        public MarkdownDocument Parse(string markdown)
         {
-            // Tizen.Log.Info("NUI", $"Parse:{markdown}\n");
             var document = Markdown.Parse(markdown, pipeline);
             return document;
         }
