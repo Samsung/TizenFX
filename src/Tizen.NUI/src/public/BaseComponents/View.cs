@@ -50,6 +50,8 @@ namespace Tizen.NUI.BaseComponents
         private string backgroundImageUrl;
         private bool backgroundImageSynchronousLoading;
 
+        private List<Renderable> renderables;
+
         // List of constraints
         private Constraint widthConstraint;
         private Constraint heightConstraint;
@@ -5237,14 +5239,26 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets the number of renderers held by the view.
+        /// Gets the number of user-defined renderables held by the view.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint RenderableCount
         {
             get
             {
-                return GetRendererCount();
+                return (renderables == null) ? 0u : (uint)renderables.Count;
+            }
+        }
+
+        /// <summary>
+        /// Gets the number of effective renderables, including both user-defined and system-generated.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint EffectiveRenderableCount
+        {
+            get
+            {
+                return GetEffectiveRenderableCount();
             }
         }
 
