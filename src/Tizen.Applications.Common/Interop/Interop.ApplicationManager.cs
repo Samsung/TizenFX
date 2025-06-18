@@ -159,6 +159,14 @@ internal static partial class Interop
         internal static extern ErrorCode AppManagerGetSharedTrustedPath(string applicationId, out string path);
         //int app_manager_get_shared_trusted_path (const char *appid, char **path);
 
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_get_common_shared_data_path")]
+        internal static extern ErrorCode AppManagerGetCommonSharedDataPath(string applicationId, out string path);
+        //int app_manager_get_common_shared_data_path (const char *appid, char **path);
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_get_common_shared_trusted_path")]
+        internal static extern ErrorCode AppManagerGetCommonSharedTrustedPath(string applicationId, out string path);
+        //int app_manager_get_common_shared_trusted_path (const char *appid, char **path);
+
         [DllImport(Libraries.AppManager, EntryPoint = "app_manager_get_external_shared_data_path")]
         internal static extern ErrorCode AppManagerGetExternalSharedDataPath(string applicationId, out string path);
         //int app_manager_get_external_shared_data_path (const char *appid, char **path);

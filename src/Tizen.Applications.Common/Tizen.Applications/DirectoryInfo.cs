@@ -16,6 +16,7 @@
 
 using System.IO;
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Applications
 {
@@ -181,6 +182,66 @@ namespace Tizen.Applications
                 if (_expansionPackageResourcePath == null)
                     _expansionPackageResourcePath = Interop.AppCommon.AppGetTepResourcePath();
                 return _expansionPackageResourcePath;
+            }
+        }
+
+        /// <summary>
+        /// Gets the absolute path to the application's common data directory, which is used to store private data of the application.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string CommonData
+        {
+            get
+            {
+                if (_dataPath == null)
+                    _dataPath = Interop.AppCommon.AppGetCommonDataPath();
+                return _dataPath;
+            }
+        }
+
+        /// <summary>
+        /// Gets the absolute path to the application's common cache directory, which is used to store temporary data of the application.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string CommonCache
+        {
+            get
+            {
+                if (_cachePath == null)
+                    _cachePath = Interop.AppCommon.AppGetCommonCachePath();
+                return _cachePath;
+            }
+        }
+
+        /// <summary>
+        /// Gets the absolute path to the application's common shared data directory, which is used to share data with other applications.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string CommonSharedData
+        {
+            get
+            {
+                if (_sharedDataPath == null)
+                    _sharedDataPath = Interop.AppCommon.AppGetCommonSharedDataPath();
+                return _sharedDataPath;
+            }
+        }
+
+        /// <summary>
+        /// Gets the absolute path to the application's common shared trusted directory, which is used to share data with a family of trusted applications.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string CommonSharedTrusted
+        {
+            get
+            {
+                if (_sharedTrustedPath == null)
+                    _sharedTrustedPath = Interop.AppCommon.AppGetCommonSharedTrustedPath();
+                return _sharedTrustedPath;
             }
         }
 
