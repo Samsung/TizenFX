@@ -77,6 +77,7 @@ namespace Tizen.NUI.MarkdownRenderer
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 BackgroundColor = new Color(code.TitleBackgroundColor),
                 Padding = new Extents((ushort)code.Padding),
+                CornerRadius = new Vector4(code.CornerRadius, code.CornerRadius, 0, 0),
             };
             uiCodeTitle = new UICodeText(asyncRendering)
             {
@@ -97,6 +98,7 @@ namespace Tizen.NUI.MarkdownRenderer
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 BackgroundColor = new Color(code.BackgroundColor),
                 Padding = new Extents((ushort)code.Padding),
+                CornerRadius = new Vector4(0, 0, code.CornerRadius, code.CornerRadius),
             };
             uiCodeText = new UICodeText(asyncRendering)
             {

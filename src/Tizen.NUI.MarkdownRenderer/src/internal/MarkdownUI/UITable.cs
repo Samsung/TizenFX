@@ -164,6 +164,7 @@ namespace Tizen.NUI.MarkdownRenderer
             BackgroundColor = new Color(table.BackgroundColor);
             Padding = new Extents((ushort)table.Padding);
             Margin = new Extents(0, 0, (ushort)common.Margin, (ushort)common.Margin);
+            CornerRadius = table.CornerRadius;
         }
     }
 }

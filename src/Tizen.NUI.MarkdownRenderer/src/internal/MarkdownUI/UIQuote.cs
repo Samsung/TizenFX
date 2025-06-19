@@ -44,6 +44,7 @@ namespace Tizen.NUI.MarkdownRenderer
             HeightSpecification = 0; // Height will be set by parent layout.
             BackgroundColor = new Color(quoteStyle.BarColor);
             Margin = new Extents((ushort)barMargin, (ushort)barMargin, (ushort)quoteStyle.BarMargin, (ushort)quoteStyle.BarMargin);
+            CornerRadius = quoteStyle.BarCornerRadius;
         }
     }
 

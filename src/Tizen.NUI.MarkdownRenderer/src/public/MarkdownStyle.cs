@@ -179,6 +179,9 @@ namespace Tizen.NUI.MarkdownRenderer
 
         /// Padding.
         public int Padding { get; set; } = StyleDefaults.QuotePadding;
+
+        /// BarCornerRadius.
+        public float BarCornerRadius { get; set; } = StyleDefaults.QuoteBarCornerRadius;
     }
 
     /// <summary>
@@ -201,6 +204,9 @@ namespace Tizen.NUI.MarkdownRenderer
 
         /// ItemPadding.
         public int ItemPadding { get; set; } = StyleDefaults.TableItemPadding;
+
+        /// CornerRadius.
+        public float CornerRadius { get; set; } = StyleDefaults.TableCornerRadius;
     }
 
     /// <summary>
@@ -235,5 +241,8 @@ namespace Tizen.NUI.MarkdownRenderer
 
         /// Padding.
         public int Padding { get; set; } = StyleDefaults.CodePadding;
+
+        /// CornerRadius.
+        public float CornerRadius { get; set; } = StyleDefaults.CodeCornerRadius;
     }
 }
