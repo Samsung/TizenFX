@@ -53,6 +53,7 @@ namespace Tizen.NUI.MarkdownRenderer
         public const int QuoteBarWidth = 6;
         public const int QuoteBarMargin = 10;
         public const int QuotePadding = 10;
+        public const float QuoteBarCornerRadius = 3.0f;
 
         // TableStyle
         public const string TableBackgroundColor = "#00000000";
@@ -60,6 +61,7 @@ namespace Tizen.NUI.MarkdownRenderer
         public const int TableBorderThickness = 1;
         public const int TablePadding = 10;
         public const int TableItemPadding = 5;
+        public const float TableCornerRadius = 12.0f;
 
         // CodeStyle
         public const string CodeFontFamily = "SamsungOneUI_300"; // FIXME: Tizen devices do not have mono space font.
@@ -71,5 +73,6 @@ namespace Tizen.NUI.MarkdownRenderer
         public const string CodeTitleBackgroundColor = "#CCCCCC55";
         public const float CodeTitleFontSize = 16.0f;
         public const int CodePadding = 10;
+        public const float CodeCornerRadius = 12.0f;
     }
 }
