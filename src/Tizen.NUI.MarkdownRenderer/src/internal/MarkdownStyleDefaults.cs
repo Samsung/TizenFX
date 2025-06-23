@@ -40,6 +40,7 @@ namespace Tizen.NUI.MarkdownRenderer
         public const float HeadingFontSizeLevel3 = 20.0f;
         public const float HeadingFontSizeLevel4 = 16.0f;
         public const float HeadingFontSizeLevel5 = 12.0f;
+        public const float HeadingFontSizeLevel6 = 10.0f;
         public const string HeadingFontFamily = "SamsungOneUI_700";
 
         // ThematicBreakStyle

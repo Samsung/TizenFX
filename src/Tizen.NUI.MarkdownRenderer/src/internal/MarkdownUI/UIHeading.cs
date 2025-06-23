@@ -46,6 +46,7 @@ namespace Tizen.NUI.MarkdownRenderer
                     case 3: PixelSize = heading.FontSizeLevel3; break;
                     case 4: PixelSize = heading.FontSizeLevel4; break;
                     case 5: PixelSize = heading.FontSizeLevel5; break;
+                    case 6: PixelSize = heading.FontSizeLevel6; break;
                     default: PixelSize = heading.FontSizeLevel1; break;
                 }
             }
