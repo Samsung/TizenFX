@@ -139,6 +139,9 @@ namespace Tizen.NUI.MarkdownRenderer
         /// Font size of heading level 5.
         public float FontSizeLevel5 { get; set; } = StyleDefaults.HeadingFontSizeLevel5;
 
+        /// Font size of heading level 6.
+        public float FontSizeLevel6 { get; set; } = StyleDefaults.HeadingFontSizeLevel6;
+
         /// FontFamily.
         public string FontFamily { get; set; } = StyleDefaults.HeadingFontFamily;
     }
