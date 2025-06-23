@@ -84,6 +84,18 @@ namespace Tizen.NUI.MarkdownRenderer
         }
 
         /// <summary>
+        /// Clears all state and re-renders the last input markdown.
+        /// </summary>
+        public void ClearAndRender()
+        {
+            if (!string.IsNullOrEmpty(lastInput))
+            {
+                Clear();
+                Render(lastInput);
+            }
+        }
+
+        /// <summary>
         /// Initializes layout, parser, and UI builder components for rendering.
         /// </summary>
         private void Initialize()
@@ -105,11 +117,7 @@ namespace Tizen.NUI.MarkdownRenderer
         private void OnLayoutDirectionChanged(object sender, LayoutDirectionChangedEventArgs e)
         {
             IsRTL = e.Type is ViewLayoutDirectionType.RTL;
-            if (!string.IsNullOrEmpty(lastInput))
-            {
-                Clear();
-                Render(lastInput);
-            }
+            ClearAndRender();
         }
 
         /// <summary>
