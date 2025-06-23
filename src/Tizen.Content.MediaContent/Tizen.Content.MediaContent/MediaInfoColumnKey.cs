@@ -25,51 +25,9 @@ namespace Tizen.Content.MediaContent
     public enum MediaInfoColumnKey
     {
         /// <summary>
-        /// Display name.
-        /// </summary>
-        [Obsolete("Deprecated since API12. Will be removed in API14.")]
-        DisplayName,
-
-        /// <summary>
-        /// Media type.
-        /// </summary>
-        [Obsolete("Deprecated since API12. Will be removed in API14.")]
-        Type,
-
-        /// <summary>
-        /// Mime type.
-        /// </summary>
-        [Obsolete("Deprecated since API12. Will be removed in API14.")]
-        MimeType,
-
-        /// <summary>
-        /// File size.
-        /// </summary>
-        [Obsolete("Deprecated since API12. Will be removed in API14.")]
-        Size,
-
-        /// <summary>
-        /// Date added.
-        /// </summary>
-        [Obsolete("Deprecated since API12. Will be removed in API14.")]
-        DateAdded,
-
-        /// <summary>
-        /// Date modified.
-        /// </summary>
-        [Obsolete("Deprecated since API12. Will be removed in API14.")]
-        DateModified,
-
-        /// <summary>
-        /// Content title.
-        /// </summary>
-        [Obsolete("Deprecated since API12. Will be removed in API14.")]
-        Title,
-
-        /// <summary>
         /// Artist.
         /// </summary>
-        Artist,
+        Artist = 7,
 
         /// <summary>
         /// Album artist.
@@ -82,62 +40,8 @@ namespace Tizen.Content.MediaContent
         Genre,
 
         /// <summary>
-        /// Composer.
-        /// </summary>
-        [Obsolete("Deprecated since API12. Will be removed in API14.")]
-        Composer = 10,
-
-        /// <summary>
         /// Year.
         /// </summary>
-        Year,
-
-        /// <summary>
-        /// Date recorded.
-        /// </summary>
-        [Obsolete("Deprecated since API12. Will be removed in API14.")]
-        DateRecorded,
-
-        /// <summary>
-        /// Copyright.
-        /// </summary>
-        [Obsolete("Deprecated since API12. Will be removed in API14.")]
-        Copyright,
-
-        /// <summary>
-        /// Track number.
-        /// </summary>
-        [Obsolete("Deprecated since API12. Will be removed in API14.")]
-        TrackNumber,
-
-        /// <summary>
-        /// Description.
-        /// </summary>
-        [Obsolete("Deprecated since API12. Will be removed in API14.")]
-        Description,
-
-        /// <summary>
-        /// Longitude.
-        /// </summary>
-        [Obsolete("Deprecated since API12. Will be removed in API14.")]
-        Longitude,
-
-        /// <summary>
-        /// Latitude.
-        /// </summary>
-        [Obsolete("Deprecated since API12. Will be removed in API14.")]
-        Latitude,
-
-        /// <summary>
-        /// Altitude.
-        /// </summary>
-        [Obsolete("Deprecated since API12. Will be removed in API14.")]
-        Altitude,
-
-        /// <summary>
-        /// Rating.
-        /// </summary>
-        [Obsolete("Deprecated since API12. Will be removed in API14.")]
-        Rating = 20,
+        Year = 11,
     }
 }
