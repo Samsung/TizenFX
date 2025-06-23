@@ -499,7 +499,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Dispose. 
+        /// Dispose.
         /// </summary>
         /// <remarks>
         /// Following the guide of https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose.
@@ -851,17 +851,19 @@ namespace Tizen.NUI
 
             LayoutItem childLayout = child.Layout;
             Extents margin = child.Margin;
+            float widthConstraint = MathF.Min(width, parentMeasureSpecificationWidth.Size.AsDecimal()) - (margin.Start + margin.End);
+            float heightConstraint = MathF.Min(height, parentMeasureSpecificationHeight.Size.AsDecimal()) - (margin.Top + margin.Bottom);
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                                     new MeasureSpecification(
-                                        new LayoutLength(parentMeasureSpecificationWidth.Size - (margin.Start + margin.End)),
+                                        new LayoutLength(widthConstraint),
                                         parentMeasureSpecificationWidth.Mode),
                                     new LayoutLength(Padding.Start + Padding.End),
                                     new LayoutLength(child.LayoutWidth));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                                     new MeasureSpecification(
-                                        new LayoutLength(parentMeasureSpecificationHeight.Size - (margin.Top + margin.Bottom)),
+                                        new LayoutLength(heightConstraint),
                                         parentMeasureSpecificationHeight.Mode),
                                     new LayoutLength(Padding.Top + Padding.Bottom),
                                     new LayoutLength(child.LayoutHeight));
