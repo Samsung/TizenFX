@@ -65,6 +65,7 @@ namespace Tizen.NUI.MarkdownRenderer
         private void SetupLayout()
         {
             Layout = new MarkdownLinearLayout() {};
+            WidthSpecification = LayoutParamPolicies.MatchParent;
         }
 
         private View CreateBullet()
@@ -118,6 +119,7 @@ namespace Tizen.NUI.MarkdownRenderer
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
             };
+            WidthSpecification = LayoutParamPolicies.MatchParent;
             Margin = new Extents((ushort)common.Indent, 0, 0, 0);
         }
     }
@@ -142,6 +144,7 @@ namespace Tizen.NUI.MarkdownRenderer
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
             };
+            WidthSpecification = LayoutParamPolicies.MatchParent;
             Margin = new Extents(0, 0, (ushort)common.Margin, (ushort)common.Margin);
         }
     }
