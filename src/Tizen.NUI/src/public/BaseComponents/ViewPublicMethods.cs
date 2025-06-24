@@ -311,11 +311,38 @@ namespace Tizen.NUI.BaseComponents
         /// Sets render effect to the view. The effect is applied to at most one view.
         /// </summary>
         /// <param name="effect">A render effect to set.</param>
+        /// <remarks>
+        /// This call works only if no render effect is set in advance. So if you do, clear before set.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetRenderEffect(RenderEffect effect)
         {
-            Interop.View.SetRenderEffect(SwigCPtr, RenderEffect.getCPtr(effect));
+            if((effect != null) && (GetRenderEffect() == null))
+            {
+                Interop.View.SetRenderEffect(SwigCPtr, RenderEffect.getCPtr(effect));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            else
+            {
+                Tizen.Log.Error("NUI", "This View is already taken. ClearRenderEffect() before setting something new.\n");
+            }
+        }
+
+        /// <summary>
+        /// Gets render effect.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public RenderEffect GetRenderEffect()
+        {
+            IntPtr cPtr = Interop.View.GetRenderEffect(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            // We do not create new RenderEffect here.
+            RenderEffect renderEffect = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as RenderEffect;
+            Interop.BaseHandle.DeleteBaseHandle(new HandleRef(this, cPtr));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+
+            return renderEffect;
         }
 
         /// <summary>
@@ -324,9 +351,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ClearRenderEffect()
         {
-            Interop.View.ClearRenderEffect(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
+            if(GetRenderEffect() != null)
+            {
+                Interop.View.ClearRenderEffect(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
         }
 
         /// <summary>
