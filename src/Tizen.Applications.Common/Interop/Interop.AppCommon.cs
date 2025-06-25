@@ -78,6 +78,18 @@ internal static partial class Interop
         [DllImport(Libraries.AppCommon, EntryPoint = "app_get_external_shared_data_path")]
         internal static extern string AppGetExternalSharedDataPath();
 
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_common_data_path")]
+        internal static extern string AppGetCommonDataPath();
+
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_common_cache_path")]
+        internal static extern string AppGetCommonCachePath();
+
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_common_shared_data_path")]
+        internal static extern string AppGetCommonSharedDataPath();
+
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_common_shared_trusted_path")]
+        internal static extern string AppGetCommonSharedTrustedPath();
+
         [DllImport(Libraries.AppCommon, EntryPoint = "app_get_version")]
         internal static extern ErrorCode AppGetVersion(out string version);
 

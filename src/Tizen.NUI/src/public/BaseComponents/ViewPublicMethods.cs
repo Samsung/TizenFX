@@ -16,7 +16,9 @@
  */
 
 using System;
+using System.Linq;
 using System.ComponentModel;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -622,14 +624,17 @@ namespace Tizen.NUI.BaseComponents
         /// Adds a renderable to the view.
         /// </summary>
         /// <param name="renderable">The renderable to add.</param>
-        /// <returns>The index of the Renderable that was added to the view.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint AddRenderable(Renderable renderable)
+        public void AddRenderable(Renderable renderable)
         {
             uint ret = Interop.Actor.AddRenderer(SwigCPtr, Renderable.getCPtr(renderable));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            if (renderables == null)
+            {
+                renderables = new List<Renderable>();
+            }
+            renderables.Add(renderable);
         }
 
         /// <summary>
@@ -638,10 +643,71 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="index">The index of the renderable to retrieve.</param>
         /// <returns>A Renderable object at the specified index.</returns>
         /// <remarks>
-        /// The index must be between 0 and GetRenderableCount()-1
+        /// The index must be within the valid range: 0 (inclusive) to RenderableCount (exclusive)
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Renderable GetRenderableAt(uint index)
+        {
+            if (renderables != null && index < renderables.Count)
+            {
+                return renderables[(int)index];
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Removes the specified renderable from the view.
+        /// </summary>
+        /// <param name="renderable">The renderable to remove.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveRenderable(Renderable renderable)
+        {
+            if (renderables == null || renderables.Any() == false)
+            {
+                return;
+            }
+
+            bool isRemoved = renderables.Remove(renderable);
+            if (!isRemoved)
+            {
+                return;
+            }
+
+            Interop.Actor.RemoveRenderer(SwigCPtr, Renderable.getCPtr(renderable));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Removes a renderable at the specified index from the view.
+        /// </summary>
+        /// <param name="index">The index of the renderable to remove.</param>
+        /// <remarks>
+        /// The index must be within the valid range: 0 (inclusive) to RenderableCount (exclusive)
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveRenderable(uint index)
+        {
+            if (renderables == null || renderables.Any() == false)
+            {
+                return;
+            }
+
+            Renderable renderable = renderables[(int)index];
+            RemoveRenderable(renderable);
+        }
+
+        /// <summary>
+        /// Retrieves the renderable at the specified index from the View,
+        /// including both user-defined and system-generated renderables
+        /// </summary>
+        /// <param name="index">The zero-based index of the effective renderable to retrieve.</param>
+        /// <returns>A Renderable object at the specified index.</returns>
+        /// <remarks>
+        /// The index must be within the valid range: 0 (inclusive) to EffectiveRenderableCount (exclusive)
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Renderable GetEffectiveRenderableAt(uint index)
         {
             IntPtr cPtr = Interop.Actor.GetRendererAt(SwigCPtr, index);
             Renderable ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Renderable;
@@ -656,30 +722,6 @@ namespace Tizen.NUI.BaseComponents
                 ret = new Renderable(cPtr, true);
                 return ret;
             }
-        }
-
-        /// <summary>
-        /// Removes the specified renderable from the view.
-        /// </summary>
-        /// <param name="renderable">The renderable to remove.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RemoveRenderable(Renderable renderable)
-        {
-            Interop.Actor.RemoveRenderer(SwigCPtr, Renderable.getCPtr(renderable));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Removes a renderable at the specified index from the view.
-        /// </summary>
-        /// <param name="index">The index of the renderable to remove.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RemoveRenderable(uint index)
-        {
-            Interop.Actor.RemoveRenderer(SwigCPtr, index);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.

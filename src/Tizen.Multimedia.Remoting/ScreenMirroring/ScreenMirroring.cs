@@ -15,10 +15,17 @@
  */
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.ExceptionServices;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Threading.Tasks.Dataflow;
+using Microsoft.VisualBasic;
 using Native = Interop.ScreenMirroring;
 
 namespace Tizen.Multimedia.Remoting
@@ -40,6 +47,10 @@ namespace Tizen.Multimedia.Remoting
         private AtomicState _state;
 
         private bool _disposed = false;
+
+        private Native.StateChangedCallback _stateChangedCallback;
+        private Native.SrcDisplayOrientationReceivedCallback _displayOrientationReceivedCallback;
+        private Native.UibcInfoReceivedCallback _uibcInfoReceivedCallback;
 
         internal IntPtr Handle
         {
@@ -78,6 +89,8 @@ namespace Tizen.Multimedia.Remoting
             VideoInfo = new ScreenMirroringVideoInfo(this);
 
             RegisterStateChangedEvent();
+            RegisterDisplayOrientationChangedEvent();
+            RegisterUibcInfoReceivedEvent();
         }
 
         /// <summary>
@@ -99,6 +112,18 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<ScreenMirroringErrorOccurredEventArgs> ErrorOccurred;
+
+        /// <summary>
+        /// Occurs when the display orientation of source is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<ScreenMirroringDisplayOrientationChangedEventArgs> DisplayOrientationChanged;
+
+        /// <summary>
+        /// Occurs when the UIBC information is received from source.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<ScreenMirroringUibcInfoReceivedEventArgs> UibcInfoReceived;
 
         #region Display support
 
@@ -455,6 +480,102 @@ namespace Tizen.Multimedia.Remoting
             DetachDisplay();
         }
 
+        /// <summary>
+        /// Sets the information for UIBC(User Input Back Channel).
+        /// </summary>
+        /// <exception cref="InvalidOperationException">
+        ///     The current state is not in the valid.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetUibcInformation(Size windowSize, ScreenMirroringCaptureMode mode)
+        {
+            ValidateState(ScreenMirroringState.Idle);
+
+            Native.SetWindowSize(Handle, windowSize.Width, windowSize.Height).ThrowIfError("Failed to set uibc window size");
+            Native.EnableUibc(Handle, mode).ThrowIfError("Failed to set uibc capture mode");
+        }
+
+        /// <summary>
+        /// Sends mouse event for UIBC(User Input Back Channel).
+        /// </summary>
+        /// <exception cref="InvalidOperationException">
+        ///     The current state is not in the valid.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentNullException"><paramref name="uibcMouseInfos"/> is null.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SendGenericMouseEvent(IEnumerable<UibcMouseInfo> uibcMouseInfos, ScreenMirroringMouseEventType type)
+        {
+            ValidateState(ScreenMirroringState.Connected);
+
+            if (!uibcMouseInfos.Any())
+            {
+                throw new ArgumentNullException(nameof(uibcMouseInfos));
+            }
+
+            var uibcMouseInfosSize = uibcMouseInfos.Count();
+            var uibcMouse = new Native.UibcMouse[uibcMouseInfosSize];
+            int i = 0;
+            IntPtr unmanagedUibcMousePtr;
+
+            foreach (var uibcMouseInfo in uibcMouseInfos)
+            {
+                uibcMouse[i].id = uibcMouseInfo.Id;
+                uibcMouse[i].x = uibcMouseInfo.X;
+                uibcMouse[i++].y = uibcMouseInfo.Y;
+            }
+
+            var size = Marshal.SizeOf(typeof(Native.UibcMouse));
+            IntPtr unmanagedUibcMouse = Marshal.AllocHGlobal(size * uibcMouseInfosSize);
+            for (i = 0; i < uibcMouseInfosSize; i++)
+            {
+                if (IntPtr.Size == 4)
+                {
+                    unmanagedUibcMousePtr = new IntPtr(unmanagedUibcMouse.ToInt32() + i * size);
+                }
+                else
+                {
+                    unmanagedUibcMousePtr = new IntPtr(unmanagedUibcMouse.ToInt64() + i * size);
+                }
+                Marshal.StructureToPtr(uibcMouse[i], unmanagedUibcMousePtr, false);
+            }
+
+            Native.UibcMouseEvent uibcObject;
+            uibcObject.size = uibcMouseInfosSize;
+            uibcObject.type = type;
+            uibcObject.uibcMouse = unmanagedUibcMouse;
+
+            var unmanagedUibcObject = Marshal.AllocHGlobal(Marshal.SizeOf(uibcObject));
+            Marshal.StructureToPtr(uibcObject, unmanagedUibcObject, false);
+
+            try
+            {
+                Native.SendGenericMouseEvent(Handle, unmanagedUibcObject).ThrowIfError("Failed to send generic mouse event");
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(unmanagedUibcMouse);
+                Marshal.FreeHGlobal(unmanagedUibcObject);
+            }
+        }
+
+        /// <summary>
+        /// Sends key event for UIBC(User Input Back Channel).
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SendGenericKeyEvent(ScreenMirroringKeyEventType type, ushort keyCode1, ushort keyCode2)
+        {
+            ValidateState(ScreenMirroringState.Connected);
+
+            Native.SendGenericKeyEvent(Handle, type, keyCode1, keyCode2).ThrowIfError("Failed to send generic key event");
+        }
+
         private void ThrowIfDisposed()
         {
             if (_disposed)
@@ -618,8 +739,6 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
-        private Native.StateChangedCallback _stateChangedCallback;
-
         private void RegisterStateChangedEvent()
         {
             _stateChangedCallback = (error, state, _) =>
@@ -645,6 +764,28 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfError("Failed to initialize StateChanged event.");
         }
 
+        private void RegisterDisplayOrientationChangedEvent()
+        {
+            _displayOrientationReceivedCallback = (orientation, _) =>
+            {
+                DisplayOrientationChanged?.Invoke(this, new ScreenMirroringDisplayOrientationChangedEventArgs(orientation));
+            };
+
+            Native.SetSrcDisplayOrientationChangedCb(Handle, _displayOrientationReceivedCallback).
+                ThrowIfError("Failed to initialize DisplayOrientationChanged event.");
+        }
+
+        private void RegisterUibcInfoReceivedEvent()
+        {
+            _uibcInfoReceivedCallback = (error, uibcInfo, _) =>
+            {
+                UibcInfoReceived?.Invoke(this, new ScreenMirroringUibcInfoReceivedEventArgs(error.ToCsharp(), uibcInfo));
+            };
+
+            Native.SetUibcInfoReceivedCb(Handle, _uibcInfoReceivedCallback).
+                ThrowIfError("Failed to initialize UibcInfoReceived event.");
+        }
+
         private void ValidateState(params ScreenMirroringState[] required)
         {
             Debug.Assert(required.Length > 0);
@@ -658,10 +799,9 @@ namespace Tizen.Multimedia.Remoting
             if (!required.Contains(curState))
             {
                 throw new InvalidOperationException($"The screen mirroring is not in a valid state. " +
-                    $"Current State : { curState }, Valid State : { string.Join(", ", required) }.");
+                    $"Current State : {curState}, Valid State : {string.Join(", ", required)}.");
             }
         }
-
     }
 
     internal class AtomicState

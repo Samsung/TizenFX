@@ -1037,7 +1037,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal uint GetRendererCount()
+        internal uint GetEffectiveRenderableCount()
         {
             uint ret = Interop.Actor.GetRendererCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
