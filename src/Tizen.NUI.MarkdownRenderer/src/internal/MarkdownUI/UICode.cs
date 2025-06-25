@@ -47,25 +47,25 @@ namespace Tizen.NUI.MarkdownRenderer
             set => uiCodeText.Text = value;
         }
 
-        public UICode(string language, string text, CodeStyle codeStyle, CommonStyle commonStyle, string hash, bool asyncRendering) : base()
+        public UICode(string language, string text, int indent, CodeStyle codeStyle, CommonStyle commonStyle, string hash, bool asyncRendering) : base()
         {
             ContentHash = hash;
             code = codeStyle;
             common = commonStyle;
-            SetupLayout();
+            SetupLayout(indent);
 
             Add(CreateTitle(language, asyncRendering));
             Add(CreateCode(text, asyncRendering));
         }
 
-        private void SetupLayout()
+        private void SetupLayout(int indent)
         {
             Layout = new MarkdownLinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
             };
             WidthSpecification = LayoutParamPolicies.MatchParent;
-            Margin = new Extents(0, 0, (ushort)common.Margin, (ushort)common.Margin);
+            Margin = new Extents((ushort)indent, 0, (ushort)common.Margin, (ushort)common.Margin);
             LayoutDirection = ViewLayoutDirectionType.LTR;
         }
 

@@ -202,6 +202,25 @@ namespace Tizen.NUI.MarkdownRenderer
             }
         }
 
+        private int GetIndent(Block block)
+        {
+            int indent = 0;
+            if (block.Parent is ListItemBlock listItem)
+            {
+                if (listItem.Parent is ListBlock listBlock && listBlock.IsOrdered)
+                {
+                    indent = UIList.GetNumberSize(style.Paragraph);
+                }
+                else
+                {
+                    int bulletSize = UIList.GetBulletSize(style.Paragraph);
+                    ushort bulletMargin = UIList.GetBulletMargin(bulletSize, style.Paragraph);
+                    indent = bulletSize + (int)(bulletMargin * 2);
+                }
+            }
+            return indent;
+        }
+
         private bool IsUpdatable(Block block)
         {
             return block is HeadingBlock || block is ParagraphBlock || block is FencedCodeBlock;
@@ -314,7 +333,7 @@ namespace Tizen.NUI.MarkdownRenderer
                     string language = fenced.Info;
                     string code = fenced.Lines.ToString();
                     string hash = cacheManager.ComputeHash(language + code);
-                    return new UICode(language, code, style.Code, style.Common, hash, AsyncRendering);
+                    return new UICode(language, code, GetIndent(block), style.Code, style.Common, hash, AsyncRendering);
                 }
                 default:
                 {
@@ -332,7 +351,7 @@ namespace Tizen.NUI.MarkdownRenderer
             }
             else if (block is QuoteBlock)
             {
-                return new UIQuote(block.Parent is MarkdownDocument, style.Quote, style.Common, style.Paragraph);
+                return new UIQuote(block.Parent is MarkdownDocument, GetIndent(block), style.Quote, style.Common, style.Paragraph);
             }
             else if (block is ListBlock)
             {
