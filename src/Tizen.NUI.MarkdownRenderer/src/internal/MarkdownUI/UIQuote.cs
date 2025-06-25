@@ -43,7 +43,7 @@ namespace Tizen.NUI.MarkdownRenderer
             WidthSpecification = quoteStyle.BarWidth;
             HeightSpecification = 0; // Height will be set by parent layout.
             BackgroundColor = new Color(quoteStyle.BarColor);
-            Margin = new Extents((ushort)barMargin, (ushort)barMargin, (ushort)quoteStyle.BarMargin, (ushort)quoteStyle.BarMargin);
+            Margin = new Extents(0, (ushort)barMargin, (ushort)quoteStyle.BarMargin, (ushort)quoteStyle.BarMargin);
             CornerRadius = quoteStyle.BarCornerRadius;
         }
     }
@@ -62,7 +62,7 @@ namespace Tizen.NUI.MarkdownRenderer
         private readonly bool isHeaderQuote;
         private readonly int barMargin;
 
-        public UIQuote(bool isHeader, QuoteStyle quoteStyle, CommonStyle commonStyle, ParagraphStyle paragraphStyle) : base()
+        public UIQuote(bool isHeader, int indent, QuoteStyle quoteStyle, CommonStyle commonStyle, ParagraphStyle paragraphStyle) : base()
         {
             isHeaderQuote = isHeader;
             quote = quoteStyle;
@@ -71,7 +71,7 @@ namespace Tizen.NUI.MarkdownRenderer
 
             barMargin = (int)Math.Round(((paragraph.FontSize * 1.4f) - quote.BarWidth) / 2);
 
-            SetupLayout();
+            SetupLayout(indent);
             bar = CreateBar();
             container = CreateContainer();
 
@@ -95,7 +95,7 @@ namespace Tizen.NUI.MarkdownRenderer
             container.Remove(child);
         }
 
-        private void SetupLayout()
+        private void SetupLayout(int indent)
         {
             Layout = new UIQuoteLayout()
             {
@@ -103,8 +103,8 @@ namespace Tizen.NUI.MarkdownRenderer
             };
             WidthSpecification = LayoutParamPolicies.MatchParent;
 
-            int indent = isHeaderQuote ? common.Indent : (int)(common.Indent - (quote.BarWidth + barMargin * 2));
-            Margin = new Extents((ushort)indent, 0, (ushort)common.Margin, (ushort)common.Margin);
+            int quoteIndent = isHeaderQuote ? common.Indent + barMargin : indent;
+            Margin = new Extents((ushort)quoteIndent, 0, (ushort)common.Margin, (ushort)common.Margin);
         }
 
         private View CreateBar()

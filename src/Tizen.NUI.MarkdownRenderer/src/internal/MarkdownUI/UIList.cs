@@ -70,8 +70,8 @@ namespace Tizen.NUI.MarkdownRenderer
 
         private View CreateBullet()
         {
-            int bulletSize = Math.Max(5, (int)Math.Round(paragraph.FontSize / 4));
-            ushort bulletMargin = (ushort)Math.Round((paragraph.LineHeight - bulletSize) / 2);
+            int bulletSize = UIList.GetBulletSize(paragraph);
+            ushort bulletMargin = UIList.GetBulletMargin(bulletSize, paragraph);
             var bullet = new View()
             {
                 WidthSpecification = bulletSize,
@@ -84,8 +84,8 @@ namespace Tizen.NUI.MarkdownRenderer
 
         private UIParagraph CreateNumber(int number, bool asyncRendering)
         {
-            int numberSize = (int)paragraph.LineHeight;
-            ushort numberPadding = (ushort)Math.Round(paragraph.LineHeight / 4);
+            int numberSize = UIList.GetNumberSize(paragraph);
+            ushort numberPadding = UIList.GetNumberPadding(paragraph);
             string text = MarkdownRenderer.IsRTL ? $".{number}" : $"{number}.";
             var numberParagraph = new UIParagraph(text, paragraph)
             {
@@ -130,6 +130,26 @@ namespace Tizen.NUI.MarkdownRenderer
     /// </summary>
     internal class UIList : View
     {
+        public static int GetBulletSize(ParagraphStyle paragraph)
+        {
+            return Math.Max(5, (int)Math.Round(paragraph.FontSize / 4));
+        }
+
+        public static ushort GetBulletMargin(int bulletSize, ParagraphStyle paragraph)
+        {
+            return (ushort)Math.Round((paragraph.LineHeight - bulletSize) / 2);
+        }
+
+        public static int GetNumberSize(ParagraphStyle paragraph)
+        {
+            return (int)paragraph.LineHeight;
+        }
+
+        public static ushort GetNumberPadding(ParagraphStyle paragraph)
+        {
+            return (ushort)Math.Round(paragraph.LineHeight / 4);
+        }
+
         private readonly CommonStyle common;
 
         public UIList(CommonStyle commonStyle) : base()
