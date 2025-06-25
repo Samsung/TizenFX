@@ -1,0 +1,67 @@
+name: Update NUI version and create PR
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'New NUI version (e.g., 22010)'
+        required: true
+        type: string
+
+jobs:
+  release-nui:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Debug gh auth status
+      env:
+        GH_TOKEN: ${{ secrets.MY_PAT }}
+      run: gh auth status
+
+    - name: Checkout forked repo (your fork, DevelNUI branch)
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        ref: DevelNUI
+
+    - name: Set up Git config
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
+    - name: Delete remote branch if exists
+      run: |
+        VERSION=${{ inputs.version }}
+        git push origin --delete update-nui-$VERSION || echo "No existing remote branch"
+
+    - name: Create new branch for version update
+      run: |
+        VERSION=${{ inputs.version }}
+        git fetch origin
+        git checkout origin/DevelNUI
+        git checkout -b update-nui-$VERSION
+
+    - name: Update version.txt
+      run: |
+        sed -i "s/^\(RPM_VERSION_SUFFIX=nui\)[0-9]\+/\1${{ inputs.version }}/" packaging/version.txt
+
+    - name: Update csapi-tizenfx.spec
+      run: |
+        sed -i "s/^\(%define TIZEN_NET_RPM_VERSION .*nui\)[0-9]\+/\1${{ inputs.version }}/" packaging/csapi-tizenfx.spec
+
+    - name: Commit and push changes
+      run: |
+        git add packaging/version.txt packaging/csapi-tizenfx.spec
+        git commit -m "Update NUI version to ${{ inputs.version }}"
+        git push origin HEAD
+
+    - name: Create Pull Request to Samsung/TizenFX:DevelNUI
+      env:
+        GH_TOKEN: ${{ secrets.MY_PAT }}
+      run: |
+        gh pr create \
+          --title "Update NUI version to ${{ inputs.version }}" \
+          --body "This PR updates NUI version to ${{ inputs.version }}." \
+          --base DevelNUI \
+          --head ${{ github.repository_owner }}:update-nui-${{ inputs.version }} \
+          --repo Samsung/TizenFX
