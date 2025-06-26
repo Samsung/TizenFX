@@ -252,12 +252,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void SetOrthographicProjection(float left, float right, float top, float bottom, float near, float far)
-        {
-            Interop.CameraActor.SetOrthographicProjection(SwigCPtr, left, right, top, bottom, near, far);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         // The type of GetType() and SetType() is different from Type property.
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1721: Property names should not match get methods")]
         public string Type

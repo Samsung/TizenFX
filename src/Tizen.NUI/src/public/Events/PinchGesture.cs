@@ -98,11 +98,6 @@ namespace Tizen.NUI
 
         private float scale
         {
-            set
-            {
-                Interop.PinchGesture.ScaleSet(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 float ret = Interop.PinchGesture.ScaleGet(SwigCPtr);
@@ -113,11 +108,6 @@ namespace Tizen.NUI
 
         private float speed
         {
-            set
-            {
-                Interop.PinchGesture.SpeedSet(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 float ret = Interop.PinchGesture.SpeedGet(SwigCPtr);
@@ -128,11 +118,6 @@ namespace Tizen.NUI
 
         private Vector2 screenCenterPoint
         {
-            set
-            {
-                Interop.PinchGesture.ScreenCenterPointSet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.PinchGesture.ScreenCenterPointGet(SwigCPtr);
@@ -144,11 +129,6 @@ namespace Tizen.NUI
 
         private Vector2 localCenterPoint
         {
-            set
-            {
-                Interop.PinchGesture.LocalCenterPointSet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.PinchGesture.LocalCenterPointGet(SwigCPtr);

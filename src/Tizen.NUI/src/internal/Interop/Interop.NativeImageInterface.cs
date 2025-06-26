@@ -21,13 +21,6 @@ namespace Tizen.NUI
     {
         internal static partial class NativeImageInterface
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageInterface_GlExtensionCreate")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool GlExtensionCreate(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageInterface_GlExtensionDestroy")]
-            public static extern void GlExtensionDestroy(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageInterface_TargetTexture")]
             public static extern uint TargetTexture(global::System.Runtime.InteropServices.HandleRef jarg1);
 
