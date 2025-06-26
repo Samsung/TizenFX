@@ -32,9 +32,6 @@ namespace Tizen.NUI.ParticleSystem
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_Assign")]
             internal static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_DownCast")]
-            internal static extern global::System.IntPtr DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetSource")]
             internal static extern void SetSource(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
@@ -62,9 +59,6 @@ namespace Tizen.NUI.ParticleSystem
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetActiveParticlesLimit")]
             internal static extern void SetActiveParticlesLimit(global::System.Runtime.InteropServices.HandleRef jarg1, uint count);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetActiveParticlesLimit")]
-            internal static extern uint GetActiveParticlesLimit(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_Start")]
             internal static extern void Start(global::System.Runtime.InteropServices.HandleRef jarg1);
             
@@ -73,9 +67,6 @@ namespace Tizen.NUI.ParticleSystem
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_RemoveModifierAt")]
             internal static extern void RemoveModifierAt(global::System.Runtime.InteropServices.HandleRef jarg1, uint index);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetModifierAt")]
-            internal static extern global::System.IntPtr GetModifierAt(global::System.Runtime.InteropServices.HandleRef jarg1, uint index);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetParticleList")]
             internal static extern global::System.IntPtr GetParticleList(global::System.Runtime.InteropServices.HandleRef jarg1);

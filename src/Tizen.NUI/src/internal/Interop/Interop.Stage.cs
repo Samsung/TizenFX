@@ -24,12 +24,6 @@ namespace Tizen.NUI
             {
             }
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_DEFAULT_BACKGROUND_COLOR_get")]
-            public static extern global::System.IntPtr DefaultBackgroundColorGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_DEBUG_BACKGROUND_COLOR_get")]
-            public static extern global::System.IntPtr DebugBackgroundColorGet();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_GetCurrent")]
             public static extern global::System.IntPtr GetCurrent();
 
