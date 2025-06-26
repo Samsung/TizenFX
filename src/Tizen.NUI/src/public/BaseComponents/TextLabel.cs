@@ -3421,6 +3421,28 @@ namespace Tizen.NUI.BaseComponents
             get => Object.InternalGetPropertyInt(SwigCPtr, Property.AsyncLineCount);
         }
 
+        /// <summary>
+        /// The LayoutDirectionPolicy property.
+        /// </summary>
+        /// <remarks>
+        /// Inherit : The text layout direction is inherited. If you change the layout direction, it will be aligned with the changed layout direction.<br />
+        /// Locale : The text layout direction is determined by the locale of the system language.<br />
+        /// Contents : The text layout direction is determined by the text itself.<br />
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextLayoutDirectionPolicy LayoutDirectionPolicy
+        {
+            get
+            {
+                return (TextLayoutDirectionPolicy)Object.InternalGetPropertyInt(this.SwigCPtr, TextLabel.Property.LayoutDirectionPolicy);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(this.SwigCPtr, TextLabel.Property.LayoutDirectionPolicy, (int)value);
+                NotifyPropertyChanged();
+            }
+        }
+
         private TextLabelSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextLabelSelectorData());
 
         /// <summary>
@@ -3725,6 +3747,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int RemoveBackInset = Interop.TextLabel.RemoveBackInsetGet();
             internal static readonly int Cutout = Interop.TextLabel.CutoutGet();
             internal static readonly int RenderMode = Interop.TextLabel.RenderModeGet();
+            internal static readonly int LayoutDirectionPolicy = Interop.TextLabel.LayoutDirectionPolicyGet();
             internal static readonly int ManualRendered = Interop.TextLabel.ManualRenderedGet();
             internal static readonly int NeedRequestAsyncRender = Interop.TextLabel.NeedRequestAsyncRenderGet();
             internal static readonly int AsyncLineCount = Interop.TextLabel.AsyncLineCountGet();
