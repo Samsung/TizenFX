@@ -653,28 +653,6 @@ namespace Tizen.NUI
             }
         }
 
-        internal static Vector4 DEFAULT_BACKGROUND_COLOR
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Stage.DefaultBackgroundColorGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        internal static Vector4 DEBUG_BACKGROUND_COLOR
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Stage.DebugBackgroundColorGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
         internal List<Layer> LayersChildren
         {
             get

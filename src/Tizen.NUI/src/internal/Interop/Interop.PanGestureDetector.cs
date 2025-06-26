@@ -135,44 +135,23 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PanGesture")]
             public static extern void DeletePanGesture(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_velocity_set")]
-            public static extern void PanGestureVelocitySet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_velocity_get")]
             public static extern global::System.IntPtr PanGestureVelocityGet(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_displacement_set")]
-            public static extern void PanGestureDisplacementSet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_displacement_get")]
             public static extern global::System.IntPtr PanGestureDisplacementGet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_position_set")]
-            public static extern void PanGesturePositionSet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_position_get")]
             public static extern global::System.IntPtr PanGesturePositionGet(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_screenVelocity_set")]
-            public static extern void PanGestureScreenVelocitySet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_screenVelocity_get")]
             public static extern global::System.IntPtr PanGestureScreenVelocityGet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_screenDisplacement_set")]
-            public static extern void PanGestureScreenDisplacementSet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_screenDisplacement_get")]
             public static extern global::System.IntPtr PanGestureScreenDisplacementGet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_screenPosition_set")]
-            public static extern void PanGestureScreenPositionSet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_screenPosition_get")]
             public static extern global::System.IntPtr PanGestureScreenPositionGet(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_numberOfTouches_set")]
-            public static extern void PanGestureNumberOfTouchesSet(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGesture_numberOfTouches_get")]
             public static extern uint PanGestureNumberOfTouchesGet(global::System.Runtime.InteropServices.HandleRef jarg1);

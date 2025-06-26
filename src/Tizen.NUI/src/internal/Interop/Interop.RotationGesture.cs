@@ -43,20 +43,11 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_RotationGesture")]
             public static extern void DeleteRotationGesture(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_rotation_set")]
-            public static extern void RotationSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_rotation_get")]
             public static extern float RotationGet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_screenCenterPoint_set")]
-            public static extern void ScreenCenterPointSet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_screenCenterPoint_get")]
             public static extern global::System.IntPtr ScreenCenterPointGet(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_localCenterPoint_set")]
-            public static extern void LocalCenterPointSet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_localCenterPoint_get")]
             public static extern global::System.IntPtr LocalCenterPointGet(global::System.Runtime.InteropServices.HandleRef jarg1);
