@@ -43,26 +43,14 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PinchGesture")]
             public static extern void DeletePinchGesture(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_scale_set")]
-            public static extern void ScaleSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_scale_get")]
             public static extern float ScaleGet(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_speed_set")]
-            public static extern void SpeedSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_speed_get")]
             public static extern float SpeedGet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_screenCenterPoint_set")]
-            public static extern void ScreenCenterPointSet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_screenCenterPoint_get")]
             public static extern global::System.IntPtr ScreenCenterPointGet(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_localCenterPoint_set")]
-            public static extern void LocalCenterPointSet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PinchGesture_localCenterPoint_get")]
             public static extern global::System.IntPtr LocalCenterPointGet(global::System.Runtime.InteropServices.HandleRef jarg1);

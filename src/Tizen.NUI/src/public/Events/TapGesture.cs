@@ -110,11 +110,6 @@ namespace Tizen.NUI
 
         private uint numberOfTaps
         {
-            set
-            {
-                Interop.TapGesture.NumberOfTapsSet(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 uint ret = Interop.TapGesture.NumberOfTapsGet(SwigCPtr);
@@ -125,11 +120,6 @@ namespace Tizen.NUI
 
         private uint numberOfTouches
         {
-            set
-            {
-                Interop.TapGesture.NumberOfTouchesSet(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 uint ret = Interop.TapGesture.NumberOfTouchesGet(SwigCPtr);
@@ -140,11 +130,6 @@ namespace Tizen.NUI
 
         private Vector2 screenPoint
         {
-            set
-            {
-                Interop.TapGesture.ScreenPointSet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.TapGesture.ScreenPointGet(SwigCPtr);
@@ -156,11 +141,6 @@ namespace Tizen.NUI
 
         private Vector2 localPoint
         {
-            set
-            {
-                Interop.TapGesture.LocalPointSet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.TapGesture.LocalPointGet(SwigCPtr);

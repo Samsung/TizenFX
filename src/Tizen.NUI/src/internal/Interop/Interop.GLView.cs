@@ -45,9 +45,6 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_GetRenderingMode")]
             public static extern global::System.IntPtr GlViewGetRenderingMode(HandleRef nuiGlView);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_GetBackendMode")]
-            public static extern global::System.IntPtr GlViewGetBackendMode(HandleRef nuiGlView);
-
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_RenderOnce")]
             public static extern void GlViewRenderOnce(HandleRef nuiGlView);
 

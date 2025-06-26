@@ -226,11 +226,6 @@ namespace Tizen.NUI
 
         private Gesture.GestureType type
         {
-            set
-            {
-                Interop.Gesture.TypeSet(SwigCPtr, (int)value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 Gesture.GestureType ret = (Gesture.GestureType)Interop.Gesture.TypeGet(SwigCPtr);
@@ -241,11 +236,6 @@ namespace Tizen.NUI
 
         private Gesture.StateType state
         {
-            set
-            {
-                Interop.Gesture.StateSet(SwigCPtr, (int)value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 Gesture.StateType ret = (Gesture.StateType)Interop.Gesture.StateGet(SwigCPtr);
@@ -256,11 +246,6 @@ namespace Tizen.NUI
 
         private uint time
         {
-            set
-            {
-                Interop.Gesture.TimeSet(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 uint ret = Interop.Gesture.TimeGet(SwigCPtr);

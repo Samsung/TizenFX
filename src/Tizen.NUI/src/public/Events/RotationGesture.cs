@@ -87,11 +87,6 @@ namespace Tizen.NUI
 
         private float rotation
         {
-            set
-            {
-                Interop.RotationGesture.RotationSet(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 float ret = Interop.RotationGesture.RotationGet(SwigCPtr);
@@ -102,11 +97,6 @@ namespace Tizen.NUI
 
         private Vector2 screenCenterPoint
         {
-            set
-            {
-                Interop.RotationGesture.ScreenCenterPointSet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.RotationGesture.ScreenCenterPointGet(SwigCPtr);
@@ -118,11 +108,6 @@ namespace Tizen.NUI
 
         private Vector2 localCenterPoint
         {
-            set
-            {
-                Interop.RotationGesture.LocalCenterPointSet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.RotationGesture.LocalCenterPointGet(SwigCPtr);
