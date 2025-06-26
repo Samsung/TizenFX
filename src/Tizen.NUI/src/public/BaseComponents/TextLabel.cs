@@ -35,57 +35,119 @@ namespace Tizen.NUI.BaseComponents
     {
         internal class TextLabelLayout : LayoutItem
         {
+            private float lastWidth = 0;
+            private float lastHeight = 0;
+
+            public void OnAsyncTextRendered(object sender, AsyncTextRenderedEventArgs e)
+            {
+                SetMeasuredDimensions(new LayoutLength(e.Width), new LayoutLength(e.Height));
+                RequestLayout();
+            }
+
             protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
             {
                 // Padding will be automatically applied by DALi TextLabel.
                 float totalWidth = widthMeasureSpec.Size.AsDecimal();
                 float totalHeight = heightMeasureSpec.Size.AsDecimal();
 
-                if (widthMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
+                if (Owner is TextLabel label && label.RenderMode == TextRenderMode.AsyncAuto)
                 {
-                    if (heightMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
+                    label.AddAsyncTextRendered();
+                    if (label.NeedRequestAsyncRender || (lastWidth != totalWidth) || (lastHeight != totalHeight))
                     {
-                        var padding = Owner.Padding;
-                        totalHeight = Owner.GetHeightForWidth(totalWidth - (padding.Start + padding.End));
-                        heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
+                        lastWidth = totalWidth;
+                        lastHeight = totalHeight;
+
+                        if (widthMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
+                        {
+                            if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
+                            {
+                                label.RequestAsyncRenderWithFixedSize(totalWidth, totalHeight);
+                            }
+                            else
+                            {
+                                if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Unspecified)
+                                {
+                                    totalHeight = float.PositiveInfinity;
+                                }
+                                label.RequestAsyncRenderWithFixedWidth(totalWidth, totalHeight);
+                            }
+                        }
+                        else
+                        {
+                            if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
+                            {
+                                // TODO : Async Render with "Constraint Width" and "Fixed Height" is not currently supported in DALi Text.
+                                var minWidth = Owner.GetMinimumWidth();
+                                var maxWidth = Owner.GetMaximumWidth();
+                                var naturalSize = Owner.GetNaturalSize();
+                                float tempWidth = naturalSize != null ? naturalSize.Width : 0;
+                                totalWidth = Math.Max(Math.Min(tempWidth, maxWidth < 0 ? Int32.MaxValue : maxWidth), minWidth);
+                                label.RequestAsyncRenderWithFixedSize(totalWidth, totalHeight);
+                            }
+                            else
+                            {
+                                if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Unspecified)
+                                {
+                                    totalHeight = float.PositiveInfinity;
+                                }
+                                label.RequestAsyncRenderWithConstraint(totalWidth, totalHeight);
+                            }
+                        }
+
+                        float width = label.SizeWidth;
+                        float height = label.SizeHeight;
+                        SetMeasuredDimensions(new LayoutLength(width), new LayoutLength(height));
                     }
                 }
                 else
                 {
-                    var minWidth = Owner.GetMinimumWidth();
-                    var minHeight = Owner.GetMinimumHeight();
-                    var maxWidth = Owner.GetMaximumWidth();
-                    var maxHeight = Owner.GetMaximumHeight();
-                    var naturalSize = Owner.GetNaturalSize();
-
-                    if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
+                    if (widthMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
                     {
-                        // GetWidthForHeight is not implemented.
-                        float width = naturalSize != null ? naturalSize.Width : 0;
-                        // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
-                        totalWidth = Math.Max(Math.Min(width, maxWidth < 0 ? Int32.MaxValue : maxWidth), minWidth);
-                        widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
+                        if (heightMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
+                        {
+                            var padding = Owner.Padding;
+                            totalHeight = Owner.GetHeightForWidth(totalWidth - (padding.Start + padding.End));
+                            heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
+                        }
                     }
                     else
                     {
-                        float width = naturalSize != null ? naturalSize.Width : 0;
-                        // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
-                        totalWidth = Math.Max(Math.Min(width, maxWidth < 0 ? Int32.MaxValue : maxWidth), minWidth);
+                        var minWidth = Owner.GetMinimumWidth();
+                        var minHeight = Owner.GetMinimumHeight();
+                        var maxWidth = Owner.GetMaximumWidth();
+                        var maxHeight = Owner.GetMaximumHeight();
+                        var naturalSize = Owner.GetNaturalSize();
 
-                        var padding = Owner.Padding;
-                        float height = Owner.GetHeightForWidth(totalWidth - (padding.Start + padding.End));
-                        totalHeight = Math.Max(Math.Min(height, maxHeight < 0 ? Int32.MaxValue : maxHeight), minHeight);
+                        if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
+                        {
+                            // GetWidthForHeight is not implemented.
+                            float width = naturalSize != null ? naturalSize.Width : 0;
+                            // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+                            totalWidth = Math.Max(Math.Min(width, maxWidth < 0 ? Int32.MaxValue : maxWidth), minWidth);
+                            widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
+                        }
+                        else
+                        {
+                            float width = naturalSize != null ? naturalSize.Width : 0;
+                            // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+                            totalWidth = Math.Max(Math.Min(width, maxWidth < 0 ? Int32.MaxValue : maxWidth), minWidth);
 
-                        heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
-                        widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
+                            var padding = Owner.Padding;
+                            float height = Owner.GetHeightForWidth(totalWidth - (padding.Start + padding.End));
+                            totalHeight = Math.Max(Math.Min(height, maxHeight < 0 ? Int32.MaxValue : maxHeight), minHeight);
+
+                            heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
+                            widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
+                        }
                     }
+
+                    MeasuredSize.StateType childWidthState = MeasuredSize.StateType.MeasuredSizeOK;
+                    MeasuredSize.StateType childHeightState = MeasuredSize.StateType.MeasuredSizeOK;
+
+                    SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, childWidthState),
+                                        ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, childHeightState));
                 }
-
-                MeasuredSize.StateType childWidthState = MeasuredSize.StateType.MeasuredSizeOK;
-                MeasuredSize.StateType childHeightState = MeasuredSize.StateType.MeasuredSizeOK;
-
-                SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, childWidthState),
-                                       ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, childHeightState));
             }
 
             /// <inheritdoc/>
@@ -253,6 +315,7 @@ namespace Tizen.NUI.BaseComponents
         private bool hasSystemLanguageChanged;
         private bool hasSystemFontSizeChanged;
         private bool hasSystemFontTypeChanged;
+        private bool hasAsyncTextRendered;
 
         private Color internalTextColor;
         private Color internalAnchorColor;
@@ -3332,6 +3395,14 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Whether a render request is required when render mode is AsyncManual.
+        /// </summary>
+        private bool NeedRequestAsyncRender
+        {
+            get => Object.InternalGetPropertyBool(SwigCPtr, Property.NeedRequestAsyncRender);
+        }
+
+        /// <summary>
         /// Number of lines after latest asynchronous computing or rendering of text.
         /// </summary>
         /// <example>
@@ -3443,6 +3514,7 @@ namespace Tizen.NUI.BaseComponents
             RemoveSystemSettingsLocaleLanguageChanged();
             RemoveSystemSettingsFontTypeChanged();
             RemoveSystemSettingsFontSizeChanged();
+            RemoveAsyncTextRendered();
 
             if (type == DisposeTypes.Explicit)
             {
@@ -3587,6 +3659,24 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private void AddAsyncTextRendered()
+        {
+            if (!hasAsyncTextRendered && Layout is TextLabelLayout layoutItem && layoutItem != null)
+            {
+                AsyncTextRendered += layoutItem.OnAsyncTextRendered;
+                hasAsyncTextRendered = true;
+            }
+        }
+
+        private void RemoveAsyncTextRendered()
+        {
+            if (hasAsyncTextRendered && Layout is TextLabelLayout layoutItem && layoutItem != null)
+            {
+                AsyncTextRendered -= layoutItem.OnAsyncTextRendered;
+                hasAsyncTextRendered = false;
+            }
+        }
+
         private void RequestLayout()
         {
             Layout?.RequestLayout();
@@ -3636,6 +3726,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int Cutout = Interop.TextLabel.CutoutGet();
             internal static readonly int RenderMode = Interop.TextLabel.RenderModeGet();
             internal static readonly int ManualRendered = Interop.TextLabel.ManualRenderedGet();
+            internal static readonly int NeedRequestAsyncRender = Interop.TextLabel.NeedRequestAsyncRenderGet();
             internal static readonly int AsyncLineCount = Interop.TextLabel.AsyncLineCountGet();
             internal static readonly int EllipsisMode = Interop.TextLabel.EllipsisModeGet();
             internal static readonly int IsScrolling = Interop.TextLabel.IsScrollingGet();

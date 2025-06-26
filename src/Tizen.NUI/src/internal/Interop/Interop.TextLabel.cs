@@ -206,6 +206,9 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_Property_MANUAL_RENDERED_get")]
             public static extern int ManualRenderedGet();
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_Property_NEED_REQUEST_ASYNC_RENDER_get")]
+            public static extern int NeedRequestAsyncRenderGet();
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_Property_ASYNC_LINE_COUNT_get")]
             public static extern int AsyncLineCountGet();
 
