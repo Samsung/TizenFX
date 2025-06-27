@@ -469,7 +469,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetParentOrigin(Position origin)
         {
-            Interop.ActorInternal.SetParentOrigin(SwigCPtr, Position.getCPtr(origin));
+            Interop.ActorInternal.SetParentOrigin(SwigCPtr, origin.X, origin.Y, origin.Z);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -482,7 +482,8 @@ namespace Tizen.NUI.BaseComponents
                 internalCurrentParentOrigin = new Position(0, 0, 0);
             }
 
-            _ = Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.ParentOrigin, internalCurrentParentOrigin.SwigCPtr);
+            _ = Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.ParentOrigin, out var x, out var y, out var z);
+            internalCurrentParentOrigin.ResetValue(x, y, z);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -493,7 +494,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetAnchorPoint(Position anchorPoint)
         {
-            Interop.Actor.SetAnchorPoint(SwigCPtr, Position.getCPtr(anchorPoint));
+            Interop.Actor.SetAnchorPoint(SwigCPtr, anchorPoint.X, anchorPoint.Y, anchorPoint.Z);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -506,7 +507,8 @@ namespace Tizen.NUI.BaseComponents
                 internalCurrentAnchorPoint = new Position(0, 0, 0);
             }
 
-            _ = Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.AnchorPoint, internalCurrentAnchorPoint.SwigCPtr);
+            _ = Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.AnchorPoint, out var x, out var y, out var z);
+            internalCurrentAnchorPoint.ResetValue(x, y, z);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
@@ -633,7 +635,8 @@ namespace Tizen.NUI.BaseComponents
                 internalCurrentPosition = new Position(0, 0, 0);
             }
 
-            _ = Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, Property.POSITION, internalCurrentPosition.SwigCPtr);
+            _ = Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, Property.POSITION, out var x, out var y, out var z);
+            internalCurrentPosition.ResetValue(x, y, z);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
