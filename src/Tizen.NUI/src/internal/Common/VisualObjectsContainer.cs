@@ -129,6 +129,27 @@ namespace Tizen.NUI.Visuals
             return ret;
         }
 
+        public bool AddShadowVisualObject(Tizen.NUI.Visuals.VisualBase visualObject, ViewShadowType shadowType)
+        {
+            // Detach from previous container first.
+            var previousContainer = visualObject.GetVisualContainer();
+            if (previousContainer != null)
+            {
+                if (previousContainer == this)
+                {
+                    // Already added to this container.
+                    return false;
+                }
+                visualObject.Detach();
+            }
+
+            visuals.Add(visualObject);
+
+            bool ret = Interop.VisualObjectsContainer.AddShadowVisualObject(SwigCPtr, Tizen.NUI.Visuals.VisualBase.getCPtr(visualObject), (int)shadowType);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
         public void RemoveVisualObject(Tizen.NUI.Visuals.VisualBase visualObject)
         {
             visuals.Remove(visualObject);

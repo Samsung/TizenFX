@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using Tizen.NUI.Visuals;
 
 namespace Tizen.NUI
 {
@@ -31,6 +32,8 @@ namespace Tizen.NUI
         internal static readonly Color noColor = new Color(0, 0, 0, 0);
 
         internal static readonly Color defaultColor = new Color(0, 0, 0, 0.5f);
+
+        private Visuals.ColorVisual shadowVisual;
 
         /// <summary>
         /// Create a Shadow with default values.
@@ -198,6 +201,28 @@ namespace Tizen.NUI
             map.Set(ColorVisualProperty.CutoutPolicy, (int)CutoutPolicy);
 
             return map;
+        }
+
+        internal virtual Visuals.ColorVisual GetShadowVisual()
+        {
+            if(shadowVisual == null)
+            {
+                shadowVisual = new Visuals.ColorVisual();
+            }
+
+            shadowVisual.Color = this.Color;
+            shadowVisual.BlurRadius = this.BlurRadius;
+            shadowVisual.OffsetX = this.Offset?.X ?? 0.0f;
+            shadowVisual.OffsetY = this.Offset?.Y ?? 0.0f;
+            shadowVisual.OffsetXPolicy = VisualTransformPolicyType.Absolute;
+            shadowVisual.OffsetYPolicy = VisualTransformPolicyType.Absolute;
+            shadowVisual.Origin = Visual.AlignType.Center;
+            shadowVisual.PivotPoint = Visual.AlignType.Center;
+            shadowVisual.ExtraWidth = this.Extents?.Width ?? 0.0f;
+            shadowVisual.ExtraHeight = this.Extents?.Height ?? 0.0f;
+            shadowVisual.CutoutPolicy = ColorVisualCutoutPolicyType.CutoutViewWithCornerRadius;
+
+            return shadowVisual;
         }
     }
 }

@@ -1037,6 +1037,31 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Adds a shadow to the view.
+        /// This method allows for the application of one or more shadow effects (either outer or inner shadows) to a view,
+        /// enabling complex and layered visual styles such as neumorphism.
+        /// </summary>
+        /// <param name="shadow">The shadow to add. This can be an instance of <see cref="Tizen.NUI.Shadow"/> for an outer shadow
+        /// or <see cref="Tizen.NUI.InnerShadow"/> for an inner shadow. If null, this method does nothing.</param>
+        /// <remarks>
+        /// Multiple shadows can be added to a single view by calling this method multiple times.
+        /// The added shadow will automatically inherit the view's <see cref="Tizen.NUI.BaseComponents.View.CornerRadius"/> property.
+        /// </remarks>
+        /// <seealso cref="Tizen.NUI.Shadow"/>
+        /// <seealso cref="Tizen.NUI.InnerShadow"/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddShadow(Shadow shadow)
+        {
+            if(shadow == null)
+            {
+                return;
+            }
+
+            Visuals.ColorVisual shadowVisual = shadow.GetShadowVisual();
+            AddShadowVisualInternal(shadowVisual, (shadow is InnerShadow) ? ViewShadowType.InnerShadow : ViewShadowType.BoxShadow);
+        }
+
+        /// <summary>
         /// Called during the execution of <see cref="RaiseToTop"/>.
         /// Override this method to customize behavior when <c>RaiseToTop</c> is invoked.
         /// </summary>
