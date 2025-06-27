@@ -143,6 +143,7 @@ namespace Tizen.NUI.MarkdownRenderer
         public UIText() : base()
         {
             Layout = new UITextLayout();
+            LayoutDirectionPolicy = TextLayoutDirectionPolicy.Inherit;
         }
 
         public new string Text
