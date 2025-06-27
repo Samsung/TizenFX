@@ -112,7 +112,7 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_MeshHitSignal_Connect")]
             public static extern void MeshHitSignalConnect(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef handler);
 
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_MotionData_MeshHitSignal_Disconnect")]
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_MeshHitSignal_Disconnect")]
             public static extern void MeshHitSignalDisconnect(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef handler);
         }
     }
