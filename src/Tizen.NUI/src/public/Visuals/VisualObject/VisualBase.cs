@@ -809,7 +809,7 @@ namespace Tizen.NUI.Visuals
         }
 
         /// <summary>
-        /// Set or Get visual property.
+        /// Get visual property.
         /// </summary>
         /// <remarks>
         /// This property might change the type of visual. We should not set it from subclass of VisualBase.

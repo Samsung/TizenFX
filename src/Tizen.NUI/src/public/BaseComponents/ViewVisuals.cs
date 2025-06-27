@@ -220,6 +220,12 @@ namespace Tizen.NUI.BaseComponents
             return visualContainer.AddVisualObject(visualBase);
         }
 
+        internal bool AddShadowVisualInternal(Tizen.NUI.Visuals.VisualBase visualBase, ViewShadowType shadowType)
+        {
+            var visualContainer = EnsureVisualContainer((int)((shadowType == ViewShadowType.InnerShadow) ? ViewVisualContainerRange.Decoration : ViewVisualContainerRange.Shadow));
+            return visualContainer.AddShadowVisualObject(visualBase, shadowType);
+        }
+
         internal Tizen.NUI.Visuals.VisualBase GetVisualAtInternal(uint index, int rangeType)
         {
             if (index >= GetVisualsCountInternal(rangeType))
