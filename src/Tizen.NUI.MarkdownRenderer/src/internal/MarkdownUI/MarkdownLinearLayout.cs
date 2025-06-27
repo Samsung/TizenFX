@@ -211,7 +211,7 @@ namespace Tizen.NUI.MarkdownRenderer
                 // Then, child layout1's size is 30 and child layout2's size is 50.
                 if ((childDesiredWidth == LayoutParamPolicies.WrapContent) || ((childDesiredWidth >= 0) && (!useRemainingWidth)))
                 {
-                    var measurableWidth = Math.Max(widthMeasureSpec.GetSize().AsDecimal() - (totalLength + CellPadding.Width * (childrenWrapContentCount - 1)), 0);
+                    var measurableWidth = Math.Max(widthMeasureSpec.GetSize().AsDecimal() - (totalLength + CellPadding.Width * childrenWrapContentCount), 0);
                     var measurableWidthSpec = new MeasureSpecification(new LayoutLength(measurableWidth), widthMeasureSpec.GetMode());
                     MeasureChildWithMargins(childLayout, measurableWidthSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
 
