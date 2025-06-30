@@ -112,5 +112,24 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Gets or sets the accessibility value of the view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string AccessibilityValue
+        {
+            get => Object.InternalGetPropertyString(SwigCPtr, Property.AccessibilityValue);
+            set => Object.InternalSetPropertyString(SwigCPtr, Property.AccessibilityValue, value);
+        }
+
+        /// <summary>
+        /// Gets or sets whether the view is scrollable or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool AccessibilityScrollable
+        {
+            get => Object.InternalGetPropertyBool(SwigCPtr, Property.AccessibilityScrollable);
+            set => Object.InternalSetPropertyBool(SwigCPtr, Property.AccessibilityScrollable, value);
+        }
     }
 }
