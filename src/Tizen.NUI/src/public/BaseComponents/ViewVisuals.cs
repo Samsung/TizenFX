@@ -77,11 +77,12 @@ namespace Tizen.NUI.BaseComponents
         /// visual will be detached from old view and added to this view.
         /// </remarks>
         /// <param name="visualBase">The visual to add.</param>
+        /// <param name="range">The range of visuals to be added. Default is ViewVisualContainerRange.Content</param>
         /// <returns>True if the visual was added successfully, false otherwise.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool AddVisual(Tizen.NUI.Visuals.VisualBase visualBase)
+        public bool AddVisual(Tizen.NUI.Visuals.VisualBase visualBase, ViewVisualContainerRange range = ViewVisualContainerRange.Content)
         {
-            return AddVisualInternal(visualBase, ContainerRangeType.Content);
+            return AddVisualInternal(visualBase, ConvertRangeToType(range));
         }
 
         /// <summary>
@@ -104,14 +105,42 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Get the range of given visual
+        /// </summary>
+        /// <param name="visualBase">The visual to get range.</param>
+        /// <returns>Get the visual's range of container. Invalid if not found.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ViewVisualContainerRange GetVisualsRange(Visuals.VisualBase visualBase)
+        {
+            if (visualContainers != null)
+            {
+                foreach (var visualContainer in visualContainers)
+                {
+                    if (visualContainer != null)
+                    {
+                        uint count = visualContainer.GetVisualObjectsCount();
+                        for (uint i = 0u; i < count; ++i)
+                        {
+                            if (visualBase == visualContainer[i])
+                            {
+                                return ConvertTypeToRange(visualContainer.GetContainerRangeType());
+                            }
+                        }
+                    }
+                }
+            }
+            return ViewVisualContainerRange.Invalid;
+        }
+
+        /// <summary>
         /// Get a Tizen.NUI.Visuals.VisualBase by sibling index
         /// </summary>
         /// <returns>Get visual base by sibling index</returns>
         /// <exception cref="InvalidOperationException"> Thrown when index is out of bounds. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Tizen.NUI.Visuals.VisualBase GetVisualAt(uint index)
+        public Tizen.NUI.Visuals.VisualBase GetVisualAt(uint index, ViewVisualContainerRange range = ViewVisualContainerRange.Content)
         {
-            return GetVisualAtInternal(index, ContainerRangeType.Content);
+            return GetVisualAtInternal(index, ConvertRangeToType(range));
         }
 
         /// <summary>
@@ -119,9 +148,9 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <returns>Get the number of visual base.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint GetVisualsCount()
+        public uint GetVisualsCount(ViewVisualContainerRange range = ViewVisualContainerRange.Content)
         {
-            return GetVisualsCountInternal(ContainerRangeType.Content);
+            return GetVisualsCountInternal(ConvertRangeToType(range));
         }
 
         /// <summary>
@@ -202,6 +231,64 @@ namespace Tizen.NUI.BaseComponents
             var newContainer = new Tizen.NUI.Visuals.VisualObjectsContainer(this, rangeType);
             visualContainers.Add(newContainer);
             return newContainer;
+        }
+
+        private static int ConvertRangeToType(ViewVisualContainerRange range)
+        {
+            switch (range)
+            {
+                case ViewVisualContainerRange.Shadow:
+                {
+                    return ContainerRangeType.Shadow;
+                }
+                case ViewVisualContainerRange.Background:
+                {
+                    return ContainerRangeType.Background;
+                }
+                case ViewVisualContainerRange.Content:
+                {
+                    return ContainerRangeType.Content;
+                }
+                case ViewVisualContainerRange.Decoration:
+                {
+                    return ContainerRangeType.Decoration;
+                }
+                case ViewVisualContainerRange.ForegroundEffect:
+                {
+                    return ContainerRangeType.ForegroundEffect;
+                }
+                default:
+                {
+                    return -1;
+                }
+            }
+        }
+
+        private static ViewVisualContainerRange ConvertTypeToRange(int range)
+        {
+            // Cannot use switch case here.
+            if (range == ContainerRangeType.Shadow)
+            {
+                return ViewVisualContainerRange.Shadow;
+            }
+            else if (range == ContainerRangeType.Background)
+            {
+                return ViewVisualContainerRange.Background;
+            }
+            else if (range == ContainerRangeType.Content)
+            {
+                return ViewVisualContainerRange.Content;
+            }
+            else if (range == ContainerRangeType.Decoration)
+            {
+                return ViewVisualContainerRange.Decoration;
+            }
+            else if (range == ContainerRangeType.ForegroundEffect)
+            {
+                return ViewVisualContainerRange.ForegroundEffect;
+            }
+
+            return ViewVisualContainerRange.Invalid;
         }
         #endregion
     }
