@@ -125,8 +125,11 @@ namespace Tizen.NUI.MarkdownRenderer
         /// </summary>
         protected override void Dispose(DisposeTypes type)
         {
-            LayoutDirectionChanged -= OnLayoutDirectionChanged;
-            Clear();
+            if (type == DisposeTypes.Explicit)
+            {
+                LayoutDirectionChanged -= OnLayoutDirectionChanged;
+                Clear();
+            }
             base.Dispose(type);
         }
     }
