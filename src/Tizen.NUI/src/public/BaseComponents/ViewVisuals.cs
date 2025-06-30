@@ -64,6 +64,52 @@ namespace Tizen.NUI.BaseComponents
         };
         #endregion
 
+        #region Public enum
+        /// <summary>
+        /// Range of visual for the container.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum ContainerRange
+        {
+            /// <summary>
+            /// Invalid enum.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Invalid = -1,
+
+            /// <summary>
+            /// Visual will be rendered under the shadow.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Shadow,
+
+            /// <summary>
+            /// Visual will be rendered under the background.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Background,
+
+            /// <summary>
+            /// Visual will be rendered under the content.
+            /// It is default value.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Content,
+
+            /// <summary>
+            /// Visual will be rendered under the decoration.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Decoration,
+
+            /// <summary>
+            /// Visual will be rendered above the foreground effect.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            ForegroundEffect,
+        };
+        #endregion
+
         #region Public Methods
         /// <summary>
         /// Add a Tizen.NUI.Visuals.VisualBase to the view.
@@ -77,11 +123,12 @@ namespace Tizen.NUI.BaseComponents
         /// visual will be detached from old view and added to this view.
         /// </remarks>
         /// <param name="visualBase">The visual to add.</param>
+        /// <param name="range">The range of visuals to be added. Default is ContainerRange.Content</param>
         /// <returns>True if the visual was added successfully, false otherwise.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool AddVisual(Tizen.NUI.Visuals.VisualBase visualBase)
+        public bool AddVisual(Tizen.NUI.Visuals.VisualBase visualBase, ContainerRange range = ContainerRange.Content)
         {
-            return AddVisualInternal(visualBase, ContainerRangeType.Content);
+            return AddVisualInternal(visualBase, ConvertRangeToType(range));
         }
 
         /// <summary>
@@ -104,14 +151,42 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Get the range of given visual
+        /// </summary>
+        /// <param name="visualBase">The visual to get range.</param>
+        /// <returns>Get the visual's range of container. Invalid if not found.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ContainerRange GetVisualsRange(Visuals.VisualBase visualBase)
+        {
+            if (visualContainers != null)
+            {
+                foreach (var visualContainer in visualContainers)
+                {
+                    if (visualContainer != null)
+                    {
+                        uint count = visualContainer.GetVisualObjectsCount();
+                        for (uint i = 0u; i < count; ++i)
+                        {
+                            if (visualBase == visualContainer[i])
+                            {
+                                return ConvertTypeToRange(visualContainer.GetContainerRangeType());
+                            }
+                        }
+                    }
+                }
+            }
+            return ContainerRange.Invalid;
+        }
+
+        /// <summary>
         /// Get a Tizen.NUI.Visuals.VisualBase by sibling index
         /// </summary>
         /// <returns>Get visual base by sibling index</returns>
         /// <exception cref="InvalidOperationException"> Thrown when index is out of bounds. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Tizen.NUI.Visuals.VisualBase GetVisualAt(uint index)
+        public Tizen.NUI.Visuals.VisualBase GetVisualAt(uint index, ContainerRange range = ContainerRange.Content)
         {
-            return GetVisualAtInternal(index, ContainerRangeType.Content);
+            return GetVisualAtInternal(index, ConvertRangeToType(range));
         }
 
         /// <summary>
@@ -119,9 +194,9 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <returns>Get the number of visual base.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint GetVisualsCount()
+        public uint GetVisualsCount(ContainerRange range = ContainerRange.Content)
         {
-            return GetVisualsCountInternal(ContainerRangeType.Content);
+            return GetVisualsCountInternal(ConvertRangeToType(range));
         }
 
         /// <summary>
@@ -202,6 +277,64 @@ namespace Tizen.NUI.BaseComponents
             var newContainer = new Tizen.NUI.Visuals.VisualObjectsContainer(this, rangeType);
             visualContainers.Add(newContainer);
             return newContainer;
+        }
+
+        private static int ConvertRangeToType(ContainerRange range)
+        {
+            switch (range)
+            {
+                case ContainerRange.Shadow:
+                {
+                    return ContainerRangeType.Shadow;
+                }
+                case ContainerRange.Background:
+                {
+                    return ContainerRangeType.Background;
+                }
+                case ContainerRange.Content:
+                {
+                    return ContainerRangeType.Content;
+                }
+                case ContainerRange.Decoration:
+                {
+                    return ContainerRangeType.Decoration;
+                }
+                case ContainerRange.ForegroundEffect:
+                {
+                    return ContainerRangeType.ForegroundEffect;
+                }
+                default:
+                {
+                    return -1;
+                }
+            }
+        }
+
+        private static ContainerRange ConvertTypeToRange(int range)
+        {
+            // Cannot use switch case here.
+            if (range == ContainerRangeType.Shadow)
+            {
+                return ContainerRange.Shadow;
+            }
+            else if (range == ContainerRangeType.Background)
+            {
+                return ContainerRange.Background;
+            }
+            else if (range == ContainerRangeType.Content)
+            {
+                return ContainerRange.Content;
+            }
+            else if (range == ContainerRangeType.Decoration)
+            {
+                return ContainerRange.Decoration;
+            }
+            else if (range == ContainerRangeType.ForegroundEffect)
+            {
+                return ContainerRange.ForegroundEffect;
+            }
+
+            return ContainerRange.Invalid;
         }
         #endregion
     }
