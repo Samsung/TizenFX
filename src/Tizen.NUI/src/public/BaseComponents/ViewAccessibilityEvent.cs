@@ -693,5 +693,79 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
+
+        ///////////////////////////////////////////////////////////////////
+        // ***************** AccessibilityActionSignal ***************** //
+        ///////////////////////////////////////////////////////////////////
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate bool AccessibilityActionReceivedHandlerType(IntPtr data);
+        private AccessibilityActionReceivedHandlerType _accessibilityActionReceivedCallback;
+        private EventHandler<AccessibilityActionReceivedEventArgs> _accessibilityActionReceivedHandler;
+
+        private bool OnAccessibilityActionReceived(IntPtr data)
+        {
+            Tizen.Log.Debug("NUI.OneUI", "OnAccessibilityActionReceived!");
+            var info = (AccessibilityActionInfo)Marshal.PtrToStructure(data, typeof(AccessibilityActionInfo));
+            var eventArgs = new AccessibilityActionReceivedEventArgs()
+            {
+                ActionType = info.ActionType,
+                Handled = false
+            };
+            _accessibilityActionReceivedHandler?.Invoke(this, eventArgs);
+
+            return eventArgs.Handled;
+        }
+
+        /// <summary>
+        /// Occurs when the view receives an accessibility action.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AccessibilityActionReceivedEventArgs> AccessibilityActionReceived
+        {
+            add
+            {
+                if (_accessibilityActionReceivedHandler == null)
+                {
+                    _accessibilityActionReceivedCallback = OnAccessibilityActionReceived;
+#if true
+                    using var handle = GetControl();
+                    Interop.AccessibilitySignal.AccessibilityActionConnect(handle, _accessibilityActionReceivedCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+#else
+                    using var actionSignal = this.AccessibilityActionSignal();
+                    actionSignal.Connect(_accessibilityActionReceivedCallback);
+                    Tizen.Log.Debug("NUI.OneUI", "AccessibilityActionReceived registered");
+#endif
+                }
+                _accessibilityActionReceivedHandler += value;
+            }
+            remove
+            {
+                _accessibilityActionReceivedHandler -= value;
+                if (_accessibilityActionReceivedHandler == null && _accessibilityActionReceivedCallback != null)
+                {
+#if true
+                    using var handle = GetControl();
+                    Interop.AccessibilitySignal.AccessibilityActionDisconnect(handle, _accessibilityActionReceivedCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+#else
+                    using var actionSignal = this.AccessibilityActionSignal();
+                    actionSignal.Disconnect(_accessibilityActionReceivedCallback);
+                    Tizen.Log.Debug("NUI.OneUI", "AccessibilityActionReceived unregistered");
+#endif
+                    _accessibilityActionReceivedCallback = null;
+                }
+            }
+        }
+
+#if false
+        private VoidSignal AccessibilityActionSignal()
+        {
+            var handle = GetControl();
+            VoidSignal ret = new VoidSignal(Interop.ControlDevel.DaliToolkitDevelControlAccessibilityActionSignal(handle), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+#endif
     }
 }
