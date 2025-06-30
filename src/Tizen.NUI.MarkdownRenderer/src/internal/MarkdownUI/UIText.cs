@@ -184,7 +184,10 @@ namespace Tizen.NUI.MarkdownRenderer
                 return;
             }
 
-            RemoveAsyncTextRendered();
+            if (type == DisposeTypes.Explicit)
+            {
+                RemoveAsyncTextRendered();
+            }
             base.Dispose(type);
         }
     }
