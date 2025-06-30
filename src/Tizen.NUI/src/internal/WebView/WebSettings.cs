@@ -141,11 +141,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CacheBuilderEnabled
         {
-            get 
+            get
             {
                 return cacheBuilderEnabled;
             }
-            set 
+            set
             {
                 Interop.WebSettings.EnableCacheBuilder(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -250,7 +250,7 @@ namespace Tizen.NUI
             {
                 return Interop.WebSettings.ArePluginsEnabled(SwigCPtr);
             }
-            set 
+            set
             {
                 Interop.WebSettings.EnablePlugins(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -576,6 +576,17 @@ namespace Tizen.NUI
         public void SetDefaultAudioInputDevice(string deviceId)
         {
             Interop.WebSettings.SetDefaultAudioInputDevice(SwigCPtr, deviceId);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Enables the Drag and Drop functionality
+        /// </summary>
+        /// <param name="enable">Enable or disable</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void EnableDragAndDrop(bool enable)
+        {
+            Interop.WebSettings.EnableDragAndDrop(SwigCPtr, enable);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
