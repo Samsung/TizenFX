@@ -83,23 +83,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Create a mask effect
         /// </summary>
-        /// <remarks>
-        /// Created RenderEffect is immutable.
-        /// </remarks>
         /// <param name="control">The mask source control.</param>
         /// <returns>mask effect with given control.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static RenderEffect CreateMaskEffect(View control)
+        public static MaskEffect CreateMaskEffect(View control)
         {
-            return new RenderEffect(Interop.MaskEffect.New(control.SwigCPtr));
+            return new MaskEffect(Interop.MaskEffect.New(control.SwigCPtr));
         }
 
         /// <summary>
         /// Create a mask effect
         /// </summary>
-        /// <remarks>
-        /// Created RenderEffect is immutable.
-        /// </remarks>
         /// <param name="control">The mask source control.</param>
         /// <param name="maskMode">Defines pixel data type (alpha, luminance) used as the mask source.</param>
         /// <param name="positionX">The X Position of mask source.</param>
@@ -108,9 +102,9 @@ namespace Tizen.NUI
         /// <param name="scaleY">The Y Scale of mask source.</param>
         /// <returns>mask effect with given control.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static RenderEffect CreateMaskEffect(View control, MaskEffectMode maskMode, float positionX = 0.0f, float positionY = 0.0f, float scaleX = 1.0f, float scaleY = 1.0f)
+        public static MaskEffect CreateMaskEffect(View control, MaskEffectMode maskMode, float positionX = 0.0f, float positionY = 0.0f, float scaleX = 1.0f, float scaleY = 1.0f)
         {
-            return new RenderEffect(Interop.MaskEffect.New(control.SwigCPtr, maskMode, positionX, positionY, scaleX, scaleY));
+            return new MaskEffect(Interop.MaskEffect.New(control.SwigCPtr, maskMode, positionX, positionY, scaleX, scaleY));
         }
     }
 }
