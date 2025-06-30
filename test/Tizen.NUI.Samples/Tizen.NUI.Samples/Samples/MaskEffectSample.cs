@@ -265,7 +265,7 @@ namespace Tizen.NUI.Samples
 
             TargetImage1 = new View()
             {
-                Size2D = new Size2D(WINDOW_WIDTH, WINDOW_HEIGHT),
+                Size2D = new Size2D(IMAGE_WIDTH, IMAGE_HEIGHT),
                 ParentOrigin = Position.ParentOriginTopLeft,
                 PivotPoint = Position.PivotPointTopLeft,
                 PositionUsesPivotPoint = true,
