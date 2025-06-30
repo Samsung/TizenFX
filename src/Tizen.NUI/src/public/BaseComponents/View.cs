@@ -482,7 +482,7 @@ namespace Tizen.NUI.BaseComponents
         /// will not use ResizePolicy and Relayout signal.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal enum ViewResizePolicyMode
+        public enum ViewResizePolicyMode
         {
             /// <summary>
             /// Default implementation. Will consider ResizePolicy and Relayout implementations
@@ -556,6 +556,17 @@ namespace Tizen.NUI.BaseComponents
         {
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View(ViewResizePolicyMode resizePolicyMode) : this(ViewAccessibilityMode.Default, resizePolicyMode)
+        {
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View(ViewAccessibilityMode accessibilityMode, ViewResizePolicyMode resizePolicyMode) : this(NewWithAccessibilityModeAndResizePolicyMode(accessibilityMode, resizePolicyMode), true)
+        {
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
         /// This will be public opened after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View(ViewStyle viewStyle) : this(Interop.View.New(), true, viewStyle)
@@ -573,17 +584,6 @@ namespace Tizen.NUI.BaseComponents
         {
             NDalicPINVOKE.ThrowExceptionIfExists();
             SetVisible(shown);
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal View(ViewResizePolicyMode resizePolicyMode) : this(ViewAccessibilityMode.Default, resizePolicyMode)
-        {
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal View(ViewAccessibilityMode accessibilityMode, ViewResizePolicyMode resizePolicyMode) : this(NewWithAccessibilityModeAndResizePolicyMode(accessibilityMode, resizePolicyMode), true)
-        {
-            NDalicPINVOKE.ThrowExceptionIfExists();
         }
 
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
