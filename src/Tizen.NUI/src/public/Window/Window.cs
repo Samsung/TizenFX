@@ -2668,6 +2668,31 @@ namespace Tizen.NUI
             }            
         }
 
+        /// <summary>
+        /// Calculates sizes and positions of views in all layers if the view's layout is required to be updated.
+        /// e.g. RequestLayout() is called for the view.
+        /// Since UpdateLayout calculates sizes and positions of views manually right now, do not abuse calling it.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void UpdateLayout()
+        {
+            using var size = GetSize();
+
+            LayersChildren?.ForEach(layer =>
+            {
+                if (layer?.LayoutCount > 0)
+                {
+                    layer?.Children?.ForEach(view =>
+                    {
+                        if (view != null)
+                        {
+                            LayoutController.FindRootLayouts(view, size.Width, size.Height);
+                        }
+                    });
+                }
+            });
+        }
+
         IntPtr IWindowProvider.WindowHandle => GetNativeWindowHandler();
         float IWindowProvider.X => WindowPosition.X;
         float IWindowProvider.Y => WindowPosition.Y;
