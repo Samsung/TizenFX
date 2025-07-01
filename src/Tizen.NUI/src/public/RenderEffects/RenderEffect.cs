@@ -70,6 +70,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Refreshes render effect
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Refresh()
+        {
+            Interop.RenderEffect.Refresh(SwigCPtr);
+        }
+
+        /// <summary>
         /// Create a background blur effect
         /// </summary>
         /// <param name="blurRadius">The blur radius value. The unit is pixel for standard cases.</param>
@@ -78,6 +87,17 @@ namespace Tizen.NUI
         public static BackgroundBlurEffect CreateBackgroundBlurEffect(float blurRadius)
         {
             return new BackgroundBlurEffect(Interop.BackgroundBlurEffect.New((uint)Math.Round(blurRadius, 0)));
+        }
+
+        /// <summary>
+        /// Create a blur effect
+        /// </summary>
+        /// <param name="blurRadius">The blur radius value. The unit is pixel for standard cases.</param>
+        /// <returns>Blur effect with given blur radius.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static GaussianBlurEffect CreateGaussianBlurEffect(float blurRadius)
+        {
+            return new GaussianBlurEffect(Interop.GaussianBlurEffect.New((uint)Math.Round(blurRadius, 0)));
         }
 
         /// <summary>
