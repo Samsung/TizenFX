@@ -21,17 +21,17 @@ using System;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Background blur effect of a View.
-    /// Applications can apply BackgroundBlurEffect as the example below :
+    /// Gaussian blur effect of a View.
+    /// Applications can apply GaussianBlurEffect as the example below :
     /// <code>
-    /// BackgroundBlurEffect effect = new BackgroundBlurEffect();
+    /// GaussianBlurEffect effect = new GaussianBlurEffect();
     /// view.SetRenderEffect(effect);
     /// </code>
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class BackgroundBlurEffect : RenderEffect
+    public class GaussianBlurEffect : RenderEffect
     {
-        internal BackgroundBlurEffect(global::System.IntPtr cPtr) : base(cPtr)
+        internal GaussianBlurEffect(global::System.IntPtr cPtr) : base(cPtr)
         {
         }
 
@@ -43,14 +43,14 @@ namespace Tizen.NUI
         {
             get
             {
-                bool blurOnce = Interop.BackgroundBlurEffect.GetBlurOnce(SwigCPtr);
+                bool blurOnce = Interop.GaussianBlurEffect.GetBlurOnce(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return blurOnce;
             }
 
             set
             {
-                Interop.BackgroundBlurEffect.SetBlurOnce(SwigCPtr, value);
+                Interop.GaussianBlurEffect.SetBlurOnce(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -64,14 +64,14 @@ namespace Tizen.NUI
         {
             get
             {
-                uint blurRadius = Interop.BackgroundBlurEffect.GetBlurRadius(SwigCPtr);
+                uint blurRadius = Interop.GaussianBlurEffect.GetBlurRadius(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return (float)blurRadius;
             }
 
             set
             {
-                Interop.BackgroundBlurEffect.SetBlurRadius(SwigCPtr, (uint)Math.Round(value, 0));
+                Interop.GaussianBlurEffect.SetBlurRadius(SwigCPtr, (uint)Math.Round(value, 0));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -85,21 +85,21 @@ namespace Tizen.NUI
         {
             get
             {
-                float downscaleFactor = Interop.BackgroundBlurEffect.GetBlurDownscaleFactor(SwigCPtr);
+                float downscaleFactor = Interop.GaussianBlurEffect.GetBlurDownscaleFactor(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return downscaleFactor;
             }
 
             set
             {
-                Interop.BackgroundBlurEffect.SetBlurDownscaleFactor(SwigCPtr, value);
+                Interop.GaussianBlurEffect.SetBlurDownscaleFactor(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         /// <summary>
         /// Adds blur strength animation to the effect.
-        /// Basically it is to animate blurring clear texture, but when starting value(fromValue) is bigger than the end value(toValue), 
+        /// Basically it is to animate blurring clear texture, but when starting value(fromValue) is bigger than the end value(toValue),
         /// it may show a reversed animation that instead clarifies blurred texture.
         /// </summary>
         /// <param name="animation">Animation instance to add blur strength animation.</param>
@@ -113,12 +113,13 @@ namespace Tizen.NUI
         {
             if (animation == null) throw new ArgumentNullException(nameof(animation));
 
-            Interop.BackgroundBlurEffect.AddBlurStrengthAnimation(SwigCPtr, Animation.getCPtr(animation), AlphaFunction.getCPtr(alphaFunction), TimePeriod.getCPtr(timePeriod), fromValue, toValue);
+            Interop.GaussianBlurEffect.AddBlurStrengthAnimation(SwigCPtr, Animation.getCPtr(animation), AlphaFunction.getCPtr(alphaFunction), TimePeriod.getCPtr(timePeriod), fromValue, toValue);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
         /// <summary>
         /// Adds blur opacity animation to the effect.
-        /// Basically it is to animate blurring clear texture, but when starting value(fromValue) is bigger than the end value(toValue), 
+        /// Basically it is to animate blurring clear texture, but when starting value(fromValue) is bigger than the end value(toValue),
         /// it may show a reversed animation that instead clarifies blurred texture.
         /// </summary>
         /// <param name="animation">Animation instance to add blur opacity animation.</param>
@@ -132,7 +133,7 @@ namespace Tizen.NUI
         {
             if (animation == null) throw new ArgumentNullException(nameof(animation));
 
-            Interop.BackgroundBlurEffect.AddBlurOpacityAnimation(SwigCPtr, Animation.getCPtr(animation), AlphaFunction.getCPtr(alphaFunction), TimePeriod.getCPtr(timePeriod), fromValue, toValue);
+            Interop.GaussianBlurEffect.AddBlurOpacityAnimation(SwigCPtr, Animation.getCPtr(animation), AlphaFunction.getCPtr(alphaFunction), TimePeriod.getCPtr(timePeriod), fromValue, toValue);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }

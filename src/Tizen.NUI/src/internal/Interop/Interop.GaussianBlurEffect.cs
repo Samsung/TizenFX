@@ -21,34 +21,34 @@ namespace Tizen.NUI
 
     internal static partial class Interop
     {
-        internal static class BackgroundBlurEffect
+        internal static class GaussianBlurEffect
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_New__SWIG_1")]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurEffect_New__SWIG_1")]
             public static extern IntPtr New(uint blurRadius);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_SetBlurOnce")]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurEffect_SetBlurOnce")]
             public static extern void SetBlurOnce(HandleRef effect, bool blurRadius);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_GetBlurOnce")]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurEffect_GetBlurOnce")]
             [return: MarshalAs(UnmanagedType.U1)]
             public static extern bool GetBlurOnce(HandleRef effect);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_SetBlurRadius")]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurEffect_SetBlurRadius")]
             public static extern void SetBlurRadius(HandleRef effect, uint blurRadius);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_GetBlurRadius")]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurEffect_GetBlurRadius")]
             public static extern uint GetBlurRadius(HandleRef effect);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_SetBlurDownscaleFactor")]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurEffect_SetBlurDownscaleFactor")]
             public static extern void SetBlurDownscaleFactor(HandleRef effect, float blurDownscaleFactor);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_GetBlurDownscaleFactor")]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurEffect_GetBlurDownscaleFactor")]
             public static extern float GetBlurDownscaleFactor(HandleRef effect);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_AddBlurStrengthAnimation")]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurEffect_AddBlurStrengthAnimation")]
             public static extern void AddBlurStrengthAnimation(HandleRef effect, HandleRef animation, HandleRef alphaFunction, HandleRef timePeriod, float fromValue, float toValue);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_AddBlurOpacityAnimation")]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurEffect_AddBlurOpacityAnimation")]
             public static extern void AddBlurOpacityAnimation(HandleRef effect, HandleRef animation, HandleRef alphaFunction, HandleRef timePeriod, float fromValue, float toValue);
         }
     }
