@@ -624,17 +624,20 @@ namespace Tizen.NUI.BaseComponents
         /// Adds a renderable to the view.
         /// </summary>
         /// <param name="renderable">The renderable to add.</param>
+        /// <returns>The index of the Renderable that was added to the view.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AddRenderable(Renderable renderable)
+        public uint AddRenderable(Renderable renderable)
         {
-            uint ret = Interop.Actor.AddRenderer(SwigCPtr, Renderable.getCPtr(renderable));
+            var _ = Interop.Actor.AddRenderer(SwigCPtr, Renderable.getCPtr(renderable));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             if (renderables == null)
             {
                 renderables = new List<Renderable>();
             }
+            uint ret = (uint)renderables.Count;
             renderables.Add(renderable);
+            return ret;
         }
 
         /// <summary>
