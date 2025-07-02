@@ -15,8 +15,9 @@
  *
  */
 
-using System.ComponentModel;
 using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
@@ -53,6 +54,45 @@ namespace Tizen.NUI
                 Interop.GaussianBlurEffect.SetBlurOnce(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
+        }
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void BlurFinishedEventCallbackType(IntPtr renderTask);
+        private event EventHandler blurFinishedEventHandler;
+        private BlurFinishedEventCallbackType blurFinishedCallback;
+
+        /// <summary>
+        /// Event when blur once finishes rendering. Does nothing when blur once is set to false(which redraws every frame).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler Finished
+        {
+            add
+            {
+                if (blurFinishedEventHandler == null)
+                {
+                    blurFinishedCallback = OnFinished;
+                    Interop.GaussianBlurEffect.FinishedSignalConnect(SwigCPtr, blurFinishedCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                blurFinishedEventHandler += value;
+            }
+            remove
+            {
+                blurFinishedEventHandler -= value;
+                if (blurFinishedEventHandler == null && blurFinishedCallback != null)
+                {
+                    Interop.GaussianBlurEffect.FinishedSignalDisconnect(SwigCPtr, blurFinishedCallback.ToHandleRef(this));
+                    blurFinishedCallback = null;
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+
+            }
+        }
+
+        private void OnFinished(IntPtr renderTask)
+        {
+            blurFinishedEventHandler?.Invoke(this, null);
         }
 
         /// <summary>
