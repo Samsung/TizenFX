@@ -79,6 +79,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Check whether effect is activated or not.
+        /// </summary>
+        /// <returns>True if effect is activated, False otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsActivated()
+        {
+            return Interop.RenderEffect.IsActivated(SwigCPtr);
+        }
+
+        /// <summary>
         /// Create a background blur effect
         /// </summary>
         /// <param name="blurRadius">The blur radius value. The unit is pixel for standard cases.</param>
