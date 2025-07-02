@@ -113,7 +113,7 @@ namespace Tizen.NUI
                 /// <since_tizen> 3 </since_tizen>
                 public static readonly int Position = NDalic.TooltipPosition;
                 /// <summary>
-                /// If Tooltip::Position::HOVER_POINT is used for the POSITION, then this is the offset the tooltip is displayed at from the hover point.
+                /// If Tooltip::Position::HOVER_POINT is used for the Position, then this is the offset the tooltip is displayed at from the hover point.
                 /// </summary>
                 /// <since_tizen> 3 </since_tizen>
                 public static readonly int HoverPointOffset = NDalic.TooltipHoverPointOffset;

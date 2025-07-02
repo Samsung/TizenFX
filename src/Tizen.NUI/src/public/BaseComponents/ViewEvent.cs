@@ -1265,7 +1265,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             BackgroundResourceLoadedEventArgs e = new BackgroundResourceLoadedEventArgs();
-            e.Status = (ResourceLoadingStatusType)Interop.View.GetVisualResourceStatus(this.SwigCPtr, Property.BACKGROUND);
+            e.Status = (ResourceLoadingStatusType)Interop.View.GetVisualResourceStatus(this.SwigCPtr, Property.Background);
 
             if (backgroundResourceLoadedEventHandler != null)
             {

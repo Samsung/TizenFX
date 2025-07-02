@@ -2177,7 +2177,7 @@ namespace Tizen.NUI.BaseComponents
 
                 var empty = new PropertyValue();
                 // Clear background
-                Object.SetProperty(SwigCPtr, Property.BACKGROUND, empty);
+                Object.SetProperty(SwigCPtr, Property.Background, empty);
                 empty.Dispose();
                 return;
             }
@@ -2193,7 +2193,7 @@ namespace Tizen.NUI.BaseComponents
             // Fast return for usual cases.
             if (backgroundExtraData == null && !backgroundImageSynchronousLoading)
             {
-                Object.InternalSetPropertyString(SwigCPtr, View.Property.BACKGROUND, value);
+                Object.InternalSetPropertyString(SwigCPtr, View.Property.Background, value);
                 return;
             }
 
@@ -2222,7 +2222,7 @@ namespace Tizen.NUI.BaseComponents
             backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
 
             using var mapValue = new PropertyValue(map);
-            Object.SetProperty(SwigCPtr, Property.BACKGROUND, mapValue);
+            Object.SetProperty(SwigCPtr, Property.Background, mapValue);
         }
 
         private void SetBackgroundImageBorder(Rectangle value)
@@ -2261,7 +2261,7 @@ namespace Tizen.NUI.BaseComponents
 
             using (var pv = new PropertyValue(map))
             {
-                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.BACKGROUND, pv);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.Background, pv);
             }
         }
 
@@ -2287,7 +2287,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (backgroundExtraData == null)
             {
-                Object.InternalSetPropertyVector4(SwigCPtr, View.Property.BACKGROUND, ((Color)value).SwigCPtr);
+                Object.InternalSetPropertyVector4(SwigCPtr, View.Property.Background, ((Color)value).SwigCPtr);
                 return;
             }
 
@@ -2303,7 +2303,7 @@ namespace Tizen.NUI.BaseComponents
             backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
 
             using var mapValue = new PropertyValue(map);
-            Object.SetProperty(SwigCPtr, Property.BACKGROUND, mapValue);
+            Object.SetProperty(SwigCPtr, Property.Background, mapValue);
         }
 
         private void SetColor(Color value)
@@ -2361,7 +2361,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            Object.InternalSetPropertyFloat(SwigCPtr, View.Property.OPACITY, (float)value);
+            Object.InternalSetPropertyFloat(SwigCPtr, View.Property.Opacity, (float)value);
         }
 
         private void SetShadow(ShadowBase value)
@@ -2369,7 +2369,7 @@ namespace Tizen.NUI.BaseComponents
             backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Shadow;
 
             using var pv = value == null ? new PropertyValue() : value.ToPropertyValue(this);
-            Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.SHADOW, pv);
+            Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.Shadow, pv);
         }
 
         private void SetInnerShadow(ShadowBase value)
