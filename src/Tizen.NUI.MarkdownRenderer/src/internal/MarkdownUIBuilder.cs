@@ -178,6 +178,12 @@ namespace Tizen.NUI.MarkdownRenderer
                         sb.Append("]");
                         break;
 
+                    case HtmlInline html:
+                        var htmlTag = html.Tag?.Trim().ToLowerInvariant();
+                        if (htmlTag == "<br>" || htmlTag == "<br/>" || htmlTag == "<br />")
+                            sb.Append('\n');
+                        break;
+
                     default: // fallback
                         if (child is ContainerInline container)
                             sb.Append(GetInlineText(container));
