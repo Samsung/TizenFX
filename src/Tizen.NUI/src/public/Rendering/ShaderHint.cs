@@ -35,6 +35,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Might change position of vertices, this option disables any culling optimizations
         /// </summary>
-        ModifiesGeometry = 0x02
+        ModifiesGeometry = 0x02,
+
+        /// <summary>
+        /// Cache the shader in a file
+        /// </summary>
+        FileCaching = 0x04
     }
 }
