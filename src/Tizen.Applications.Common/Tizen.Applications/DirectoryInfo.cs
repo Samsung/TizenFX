@@ -38,6 +38,11 @@ namespace Tizen.Applications
         private string _externalCachePath;
         private string _externalSharedDataPath;
 
+        private string _commonDataPath;
+        private string _commonCachePath;
+        private string _commonSharedDataPath;
+        private string _commonSharedTrustedPath;
+
         private string _expansionPackageResourcePath;
 
         internal DirectoryInfo()
@@ -194,9 +199,9 @@ namespace Tizen.Applications
         {
             get
             {
-                if (_dataPath == null)
-                    _dataPath = Interop.AppCommon.AppGetCommonDataPath();
-                return _dataPath;
+                if (_commonDataPath == null)
+                    _commonDataPath = Interop.AppCommon.AppGetCommonDataPath();
+                return _commonDataPath;
             }
         }
 
@@ -209,9 +214,9 @@ namespace Tizen.Applications
         {
             get
             {
-                if (_cachePath == null)
-                    _cachePath = Interop.AppCommon.AppGetCommonCachePath();
-                return _cachePath;
+                if (_commonCachePath == null)
+                    _commonCachePath = Interop.AppCommon.AppGetCommonCachePath();
+                return _commonCachePath;
             }
         }
 
@@ -224,9 +229,9 @@ namespace Tizen.Applications
         {
             get
             {
-                if (_sharedDataPath == null)
-                    _sharedDataPath = Interop.AppCommon.AppGetCommonSharedDataPath();
-                return _sharedDataPath;
+                if (_commonSharedDataPath == null)
+                    _commonSharedDataPath = Interop.AppCommon.AppGetCommonSharedDataPath();
+                return _commonSharedDataPath;
             }
         }
 
@@ -239,9 +244,9 @@ namespace Tizen.Applications
         {
             get
             {
-                if (_sharedTrustedPath == null)
-                    _sharedTrustedPath = Interop.AppCommon.AppGetCommonSharedTrustedPath();
-                return _sharedTrustedPath;
+                if (_commonSharedTrustedPath == null)
+                    _commonSharedTrustedPath = Interop.AppCommon.AppGetCommonSharedTrustedPath();
+                return _commonSharedTrustedPath;
             }
         }
 
