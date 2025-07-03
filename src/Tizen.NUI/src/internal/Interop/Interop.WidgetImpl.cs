@@ -31,9 +31,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_SetUsingKeyEvent")]
             public static extern void SetUsingKeyEvent(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_SetImpl")]
-            public static extern void SetImpl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_director_connect")]
             public static extern void DirectorConnect(global::System.Runtime.InteropServices.HandleRef jarg1, Tizen.NUI.WidgetImpl.SwigDelegateWidgetImpl_0 delegate0, Tizen.NUI.WidgetImpl.SwigDelegateWidgetImpl_1 delegate1,
                 Tizen.NUI.WidgetImpl.SwigDelegateWidgetImpl_2 delegate2, Tizen.NUI.WidgetImpl.SwigDelegateWidgetImpl_3 delegate3, Tizen.NUI.WidgetImpl.SwigDelegateWidgetImpl_4 delegate4, Tizen.NUI.WidgetImpl.SwigDelegateWidgetImpl_5 delegate5,

@@ -39,12 +39,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VisualObjectsContainer__SWIG_0")]
             public static extern global::System.IntPtr NewVisualObjectsContainer();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_VisualObjectsContainer")]
-            public static extern void DeleteVisualObjectsContainer(global::System.Runtime.InteropServices.HandleRef container);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_New")]
             public static extern global::System.IntPtr VisualObjectsContainerNew(global::System.Runtime.InteropServices.HandleRef view, int rangeType);
-
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_GetOwner")]
             public static extern global::System.IntPtr GetOwner(global::System.Runtime.InteropServices.HandleRef container);
