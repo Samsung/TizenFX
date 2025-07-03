@@ -69,7 +69,7 @@ clean() {
 
 restore() {
   if [ -d /nuget ]; then
-    dotnet restore -s /nuget $@
+    dotnet restore -s /nuget -s $SCRIPT_DIR/packaging/third-party $@
   else
     dotnet restore $@
   fi
