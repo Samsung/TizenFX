@@ -5546,14 +5546,22 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (NUIApplication.IsUsingXaml)
                 {
+                    if (value == (ViewLayoutDirectionType)GetValue(LayoutDirectionProperty))
+                    {
+                        return;
+                    }
                     SetValue(LayoutDirectionProperty, value);
                 }
                 else
                 {
+                    if (value == GetInternalLayoutDirection())
+                    {
+                        return;
+                    }
                     SetInternalLayoutDirection(value);
                 }
                 NotifyPropertyChanged();
-                RequestLayout();
+                RequestLayoutForInheritLayoutDirection();
             }
         }
 
@@ -5565,6 +5573,28 @@ namespace Tizen.NUI.BaseComponents
         private ViewLayoutDirectionType GetInternalLayoutDirection()
         {
             return (ViewLayoutDirectionType)Object.InternalGetPropertyInt(SwigCPtr, Property.LayoutDirection);
+        }
+
+        private void RequestLayoutForInheritLayoutDirection()
+        {
+            bool existInheritChild = false;
+            foreach (var child in Children)
+            {
+                if (child.InheritLayoutDirection)
+                {
+                    child.RequestLayoutForInheritLayoutDirection();
+
+                    if (!existInheritChild)
+                    {
+                        existInheritChild = true;
+                    }
+                }
+            }
+
+            if (!existInheritChild)
+            {
+                RequestLayout();
+            }
         }
 
         /// <summary>
