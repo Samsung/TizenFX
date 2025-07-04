@@ -331,7 +331,7 @@ namespace Tizen.NUI.BaseComponents
             };
             getDescriptionHandler?.Invoke(this, arg);
 
-            Interop.StringToVoidSignal.SetResult(data, arg.Description);
+            Interop.StringToVoidSignal.SetResult(data, arg.Description ?? string.Empty);
         }
 
         /// <summary>
@@ -386,7 +386,7 @@ namespace Tizen.NUI.BaseComponents
             };
             getNameHandler?.Invoke(this, arg);
 
-            Interop.StringToVoidSignal.SetResult(data, arg.Name);
+            Interop.StringToVoidSignal.SetResult(data, arg.Name ?? string.Empty);
         }
 
         /// <summary>
