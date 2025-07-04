@@ -3535,6 +3535,7 @@ namespace Tizen.NUI.BaseComponents
         public void SetMaskEffect(View control)
         {
             Interop.TextLabel.SetMaskEffect(SwigCPtr, control.SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <inheritdoc/>
