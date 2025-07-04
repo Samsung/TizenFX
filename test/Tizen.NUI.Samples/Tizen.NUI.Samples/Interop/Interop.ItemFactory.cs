@@ -15,7 +15,7 @@
  *
  */
 
-namespace Tizen.NUI
+namespace Tizen.NUI.Samples
 {
     internal static partial class Interop
     {
@@ -40,8 +40,8 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr NewItemFactory();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ItemFactory_director_connect")]
-            public static extern void DirectorConnect(global::System.Runtime.InteropServices.HandleRef jarg1, Tizen.NUI.ItemFactory.SwigDelegateItemFactory0 delegate0,
-                Tizen.NUI.ItemFactory.SwigDelegateItemFactory1 delegate1, Tizen.NUI.ItemFactory.SwigDelegateItemFactory2 delegate2);
+            public static extern void DirectorConnect(global::System.Runtime.InteropServices.HandleRef jarg1, Tizen.NUI.Samples.ItemFactory.SwigDelegateItemFactory0 delegate0,
+                Tizen.NUI.Samples.ItemFactory.SwigDelegateItemFactory1 delegate1, Tizen.NUI.Samples.ItemFactory.SwigDelegateItemFactory2 delegate2);
         }
     }
 }

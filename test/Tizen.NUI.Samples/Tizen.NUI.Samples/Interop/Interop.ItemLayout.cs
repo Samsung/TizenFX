@@ -15,13 +15,12 @@
  *
  */
 
-namespace Tizen.NUI
+namespace Tizen.NUI.Samples
 {
     internal static partial class Interop
     {
         internal static partial class ItemLayout
         {
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ItemLayout")]
             public static extern void DeleteItemLayout(global::System.Runtime.InteropServices.HandleRef jarg1);
 

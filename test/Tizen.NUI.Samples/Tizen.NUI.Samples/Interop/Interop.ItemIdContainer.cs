@@ -15,7 +15,7 @@
  *
  */
 
-namespace Tizen.NUI
+namespace Tizen.NUI.Samples
 {
     internal static partial class Interop
     {
