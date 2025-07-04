@@ -415,20 +415,7 @@ namespace Tizen.NUI.BaseComponents
         [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Method used to raise the object, not event")]
         public void RaiseToTop()
         {
-            var parentChildren = GetParent()?.Children;
-
-            if (parentChildren != null)
-            {
-                parentChildren.Remove(this);
-                parentChildren.Add(this);
-
-                Layout?.ChangeLayoutSiblingOrder(parentChildren.Count - 1);
-
-                Interop.NDalic.RaiseToTop(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
+            OnRaiseToTop();
         }
 
         /// <summary>
@@ -441,19 +428,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void LowerToBottom()
         {
-            var parentChildren = GetParent()?.Children;
-
-            if (parentChildren != null)
-            {
-                parentChildren.Remove(this);
-                parentChildren.Insert(0, this);
-
-                Layout?.ChangeLayoutSiblingOrder(0);
-
-                Interop.NDalic.LowerToBottom(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
+            OnLowerToBelow();
         }
 
         /// <summary>
@@ -874,24 +849,7 @@ namespace Tizen.NUI.BaseComponents
         [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Method used to raise the object, not event")]
         public void Raise()
         {
-            var parentChildren = GetParent()?.Children;
-
-            if (parentChildren != null)
-            {
-                int currentIndex = parentChildren.IndexOf(this);
-
-                // If the view is not already the last item in the list.
-                if (currentIndex >= 0 && currentIndex < parentChildren.Count - 1)
-                {
-                    View temp = parentChildren[currentIndex + 1];
-                    parentChildren[currentIndex + 1] = this;
-                    parentChildren[currentIndex] = temp;
-
-                    Interop.NDalic.Raise(SwigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending)
-                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-            }
+            OnRaise();
         }
 
         /// <summary>
@@ -900,24 +858,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public void Lower()
         {
-            var parentChildren = GetParent()?.Children;
-
-            if (parentChildren != null)
-            {
-                int currentIndex = parentChildren.IndexOf(this);
-
-                // If the view is not already the first item in the list.
-                if (currentIndex > 0 && currentIndex < parentChildren.Count)
-                {
-                    View temp = parentChildren[currentIndex - 1];
-                    parentChildren[currentIndex - 1] = this;
-                    parentChildren[currentIndex] = temp;
-
-                    Interop.NDalic.Lower(SwigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending)
-                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-            }
+            OnLower();
         }
 
         /// <summary>
@@ -932,31 +873,7 @@ namespace Tizen.NUI.BaseComponents
         [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Method used to raise the object, not event")]
         public void RaiseAbove(View target)
         {
-            var parentChildren = GetParent()?.Children;
-
-            if (parentChildren != null)
-            {
-                int currentIndex = parentChildren.IndexOf(this);
-                int targetIndex = parentChildren.IndexOf(target);
-
-                if (currentIndex < 0 || targetIndex < 0 ||
-                    currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
-                {
-                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
-                    return;
-                }
-                // If the currentIndex is less than the target index and the target has the same parent.
-                if (currentIndex < targetIndex)
-                {
-                    parentChildren.Remove(this);
-                    parentChildren.Insert(targetIndex, this);
-
-                    Interop.NDalic.RaiseAbove(SwigCPtr, View.getCPtr(target));
-                    if (NDalicPINVOKE.SWIGPendingException.Pending)
-                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-            }
-
+            OnRaiseAbove(target);
         }
 
         /// <summary>
@@ -969,32 +886,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public void LowerBelow(View target)
         {
-            var parentChildren = GetParent()?.Children;
-
-            if (parentChildren != null)
-            {
-                int currentIndex = parentChildren.IndexOf(this);
-                int targetIndex = parentChildren.IndexOf(target);
-                if (currentIndex < 0 || targetIndex < 0 ||
-                   currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
-                {
-                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
-                    return;
-                }
-
-                // If the currentIndex is not already the 0th index and the target has the same parent.
-                if ((currentIndex != 0) && (targetIndex != -1) &&
-                    (currentIndex > targetIndex))
-                {
-                    parentChildren.Remove(this);
-                    parentChildren.Insert(targetIndex, this);
-
-                    Interop.NDalic.LowerBelow(SwigCPtr, View.getCPtr(target));
-                    if (NDalicPINVOKE.SWIGPendingException.Pending)
-                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-            }
-
+            OnLowerBelow(target);
         }
 
         /// <summary>
@@ -1115,6 +1007,173 @@ namespace Tizen.NUI.BaseComponents
             Vector4 ret = new Vector4(Interop.Actor.CalculateScreenExtents(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Called during the execution of <see cref="RaiseToTop"/>.
+        /// Override this method to customize behavior when <c>RaiseToTop</c> is invoked.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnRaiseToTop()
+        {
+            var parentChildren = GetParent()?.Children;
+
+            if (parentChildren != null)
+            {
+                parentChildren.Remove(this);
+                parentChildren.Add(this);
+
+                Layout?.ChangeLayoutSiblingOrder(parentChildren.Count - 1);
+
+                Interop.NDalic.RaiseToTop(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Called during the execution of <see cref="LowerToBottom"/>.
+        /// Override this method to customize behavior when <c>LowerToBottom</c> is invoked.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnLowerToBelow()
+        {
+            var parentChildren = GetParent()?.Children;
+
+            if (parentChildren != null)
+            {
+                parentChildren.Remove(this);
+                parentChildren.Insert(0, this);
+
+                Layout?.ChangeLayoutSiblingOrder(0);
+
+                Interop.NDalic.LowerToBottom(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Called during the execution of <see cref="Raise"/>.
+        /// Override this method to customize behavior when <c>Raise</c> is invoked.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnRaise()
+        {
+            var parentChildren = GetParent()?.Children;
+
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+
+                // If the view is not already the last item in the list.
+                if (currentIndex >= 0 && currentIndex < parentChildren.Count - 1)
+                {
+                    View temp = parentChildren[currentIndex + 1];
+                    parentChildren[currentIndex + 1] = this;
+                    parentChildren[currentIndex] = temp;
+
+                    Interop.NDalic.Raise(SwigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called during the execution of <see cref="Lower"/>.
+        /// Override this method to customize behavior when <c>Lower</c> is invoked.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnLower()
+        {
+            var parentChildren = GetParent()?.Children;
+
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+
+                // If the view is not already the first item in the list.
+                if (currentIndex > 0 && currentIndex < parentChildren.Count)
+                {
+                    View temp = parentChildren[currentIndex - 1];
+                    parentChildren[currentIndex - 1] = this;
+                    parentChildren[currentIndex] = temp;
+
+                    Interop.NDalic.Lower(SwigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called during the execution of <see cref="RaiseAbove"/>.
+        /// Override this method to customize behavior when <c>RaiseAbove</c> is invoked.
+        /// </summary>
+        /// <param name="target">Will be raised above this view.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnRaiseAbove(View target)
+        {
+            var parentChildren = GetParent()?.Children;
+
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+                int targetIndex = parentChildren.IndexOf(target);
+
+                if (currentIndex < 0 || targetIndex < 0 ||
+                    currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
+                {
+                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
+                    return;
+                }
+                // If the currentIndex is less than the target index and the target has the same parent.
+                if (currentIndex < targetIndex)
+                {
+                    parentChildren.Remove(this);
+                    parentChildren.Insert(targetIndex, this);
+
+                    Interop.NDalic.RaiseAbove(SwigCPtr, View.getCPtr(target));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called during the execution of <see cref="LowerBelow"/>.
+        /// Override this method to customize behavior when <c>LowerBelow</c> is invoked.
+        /// </summary>
+        /// <param name="target">Will be lowered below this view.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnLowerBelow(View target)
+        {
+            var parentChildren = GetParent()?.Children;
+
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+                int targetIndex = parentChildren.IndexOf(target);
+                if (currentIndex < 0 || targetIndex < 0 ||
+                    currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
+                {
+                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
+                    return;
+                }
+
+                // If the currentIndex is not already the 0th index and the target has the same parent.
+                if ((currentIndex != 0) && (targetIndex != -1) &&
+                    (currentIndex > targetIndex))
+                {
+                    parentChildren.Remove(this);
+                    parentChildren.Insert(targetIndex, this);
+
+                    Interop.NDalic.LowerBelow(SwigCPtr, View.getCPtr(target));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
         }
     }
 }
