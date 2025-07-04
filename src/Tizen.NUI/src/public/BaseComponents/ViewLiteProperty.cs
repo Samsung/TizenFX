@@ -30,7 +30,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (backgroundExtraData == null)
             {
-                Object.InternalSetPropertyColor(SwigCPtr, Property.BACKGROUND, color);
+                Object.InternalSetPropertyColor(SwigCPtr, Property.Background, color);
             }
             else
             {
@@ -43,7 +43,7 @@ namespace Tizen.NUI.BaseComponents
 
                 backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
 
-                Object.InternalSetPropertyMap(SwigCPtr, Property.BACKGROUND, map.SwigCPtr);
+                Object.InternalSetPropertyMap(SwigCPtr, Property.Background, map.SwigCPtr);
             }
 
             NotifyPropertyChanged(nameof(BackgroundColor));
@@ -59,13 +59,13 @@ namespace Tizen.NUI.BaseComponents
 
             using var map = shadow.BuildMap(this);
 
-            Object.InternalSetPropertyMap(SwigCPtr, Property.SHADOW, map.SwigCPtr);
+            Object.InternalSetPropertyMap(SwigCPtr, Property.Shadow, map.SwigCPtr);
             NotifyPropertyChanged(nameof(BoxShadow));
         }
 
         internal UIShadow GetBoxShadow()
         {
-            using PropertyValue shadowMapValue = Object.GetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, Property.SHADOW);
+            using PropertyValue shadowMapValue = Object.GetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, Property.Shadow);
             if (shadowMapValue != null)
             {
                 using PropertyMap map = new PropertyMap();
@@ -90,14 +90,14 @@ namespace Tizen.NUI.BaseComponents
 
         internal bool UpdateBoxShadowColor(UIColor color)
         {
-            using PropertyValue shadowMapValue = Object.GetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, Property.SHADOW);
+            using PropertyValue shadowMapValue = Object.GetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, Property.Shadow);
             if (shadowMapValue != null)
             {
                 using PropertyMap map = new PropertyMap();
                 if (shadowMapValue.Get(map))
                 {
                     map.Set(ColorVisualProperty.MixColor, color);
-                    Object.InternalSetPropertyMap(SwigCPtr, Property.SHADOW, map.SwigCPtr);
+                    Object.InternalSetPropertyMap(SwigCPtr, Property.Shadow, map.SwigCPtr);
                     return true;
                 }
             }
