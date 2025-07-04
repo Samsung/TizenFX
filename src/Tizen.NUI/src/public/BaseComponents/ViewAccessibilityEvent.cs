@@ -704,7 +704,6 @@ namespace Tizen.NUI.BaseComponents
 
         private bool OnAccessibilityActionReceived(IntPtr data)
         {
-            Tizen.Log.Debug("NUI.OneUI", "OnAccessibilityActionReceived!");
             var info = (AccessibilityActionInfo)Marshal.PtrToStructure(data, typeof(AccessibilityActionInfo));
             var eventArgs = new AccessibilityActionReceivedEventArgs()
             {
@@ -734,7 +733,6 @@ namespace Tizen.NUI.BaseComponents
 #else
                     using var actionSignal = this.AccessibilityActionSignal();
                     actionSignal.Connect(_accessibilityActionReceivedCallback);
-                    Tizen.Log.Debug("NUI.OneUI", "AccessibilityActionReceived registered");
 #endif
                 }
                 _accessibilityActionReceivedHandler += value;
@@ -751,7 +749,6 @@ namespace Tizen.NUI.BaseComponents
 #else
                     using var actionSignal = this.AccessibilityActionSignal();
                     actionSignal.Disconnect(_accessibilityActionReceivedCallback);
-                    Tizen.Log.Debug("NUI.OneUI", "AccessibilityActionReceived unregistered");
 #endif
                     _accessibilityActionReceivedCallback = null;
                 }
