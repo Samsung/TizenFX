@@ -18,7 +18,7 @@
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
 
-namespace Tizen.NUI
+namespace Tizen.NUI.Samples
 {
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -31,7 +31,7 @@ namespace Tizen.NUI
 
         /// This will be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void ReleaseSwigCPtr(global::System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.ItemLayout.DeleteItemLayout(swigCPtr);
         }

@@ -19,7 +19,7 @@ using System.ComponentModel;
 using System.Reflection;
 using Tizen.NUI.BaseComponents;
 
-namespace Tizen.NUI
+namespace Tizen.NUI.Samples
 {
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -31,7 +31,7 @@ namespace Tizen.NUI
 
         /// This will be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        protected override void ReleaseSwigCPtr(global::System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.ItemFactory.DeleteItemFactory(swigCPtr);
         }
@@ -120,7 +120,7 @@ namespace Tizen.NUI
         private SwigDelegateItemFactory1 swigDelegate1;
         private SwigDelegateItemFactory2 swigDelegate2;
 
-        private static global::System.Type[] swigMethodTypes0 = System.Array.Empty<global::System.Type>();
+        private static global::System.Type[] swigMethodTypes0 = global::System.Array.Empty<global::System.Type>();
         private static global::System.Type[] swigMethodTypes1 = new global::System.Type[] { typeof(uint) };
         private static global::System.Type[] swigMethodTypes2 = new global::System.Type[] { typeof(uint), typeof(View) };
     }
