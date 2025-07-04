@@ -27,16 +27,25 @@ namespace Tizen.NUI.MarkdownRenderer
     /// </summary>
     internal class UIParagraph : UIText
     {
+        private readonly ParagraphStyle paragraph;
+
         public string ContentHash { get; set; } = string.Empty;
+
+        public void ApplyMargin()
+        {
+            Margin = new Extents(0, 0, (ushort)paragraph.Margin, (ushort)paragraph.Margin);
+        }
 
         public UIParagraph(string text, ParagraphStyle paragraphStyle, string hash = "", bool asyncRendering = false) : base()
         {
             ContentHash = hash; 
+            paragraph = paragraphStyle;
+
             Text = text;
-            FontFamily = paragraphStyle.FontFamily;
-            PixelSize = paragraphStyle.FontSize;
-            TextColor = new Color(paragraphStyle.FontColor);
-            MinLineSize = Math.Max(paragraphStyle.LineHeight, paragraphStyle.FontSize * 1.4f);
+            FontFamily = paragraph.FontFamily;
+            PixelSize = paragraph.FontSize;
+            TextColor = new Color(paragraph.FontColor);
+            MinLineSize = Math.Max(paragraph.LineHeight, paragraph.FontSize * 1.4f);
             MultiLine = true;
             EnableMarkup = true;
             Ellipsis = false;
