@@ -35,10 +35,12 @@
 /src/Tizen.Applications.ThemeManager/ @jeremy-jang @hjhun
 /src/Tizen.Applications.ToastMessage/ @sukhyungkang @hjhun @jusung-son
 /src/Tizen.Applications.UI/ @upple @hjhun @pjh9216
+/src/Tizen.Applications.UnitedService/ @upple @hjhun @pjh9216
 /src/Tizen.Applications.WatchApplication/ @sukhyungkang @hjhun @kilig
 /src/Tizen.Applications.WatchfaceComplication/ @sukhyungkang @hjhun @kilig
 /src/Tizen.Applications.WidgetApplication/ @sukhyungkang @hjhun @kilig
 /src/Tizen.Applications.WidgetControl/ @sukhyungkang @hjhun @kilig
+/src/Tizen.NUI.Gadget/ @upple @hjhun @pjh9216
 
 # CONTENT
 /src/Tizen.Content.Download/ @chleun-moon @SeonahMoon
@@ -83,7 +85,6 @@
 /src/Tizen.NUI.Components/ @dongsug-song @bshsqa
 /src/Tizen.NUI.Design/ @dongsug-song @bshsqa
 /src/Tizen.NUI.Extension/ @dongsug-song @bshsqa
-/src/Tizen.NUI.Gadget/ @dongsug-song @bshsqa
 /src/Tizen.NUI.Physics2D/ @dongsug-song @bshsqa
 /src/Tizen.NUI.Scene3D/ @dongsug-song @bshsqa
 /src/Tizen.NUI.Wearable/ @dongsug-song @bshsqa
