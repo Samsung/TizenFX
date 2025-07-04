@@ -28,6 +28,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// </summary>
     internal class UIListItemParagraph : View
     {
+        private readonly ListStyle list;
         private readonly ParagraphStyle paragraph;
 
         private UIParagraph uiParagraph;
@@ -40,9 +41,10 @@ namespace Tizen.NUI.MarkdownRenderer
             set => uiParagraph.Text = value;
         }
 
-        public UIListItemParagraph(string text, ParagraphStyle paragraphStyle, string hash, bool asyncRendering) : base()
+        public UIListItemParagraph(string text, ListStyle listStyle, ParagraphStyle paragraphStyle, string hash, bool asyncRendering) : base()
         {
             ContentHash = hash;
+            list = listStyle;
             paragraph = paragraphStyle;
             SetupLayout();
 
@@ -51,9 +53,10 @@ namespace Tizen.NUI.MarkdownRenderer
             Add(uiParagraph);
         }
 
-        public UIListItemParagraph(string text, int number, ParagraphStyle paragraphStyle, string hash, bool asyncRendering) : base()
+        public UIListItemParagraph(string text, int number, ListStyle listStyle, ParagraphStyle paragraphStyle, string hash, bool asyncRendering) : base()
         {
             ContentHash = hash;
+            list = listStyle;
             paragraph = paragraphStyle;
             SetupLayout();
 
@@ -66,6 +69,7 @@ namespace Tizen.NUI.MarkdownRenderer
         {
             Layout = new MarkdownLinearLayout() {};
             WidthSpecification = LayoutParamPolicies.MatchParent;
+            Margin = new Extents(0, 0, (ushort)list.ItemMarginTop, (ushort)list.ItemMarginBottom);
         }
 
         private View CreateBullet()
@@ -132,7 +136,7 @@ namespace Tizen.NUI.MarkdownRenderer
     {
         public static int GetBulletSize(ParagraphStyle paragraph)
         {
-            return Math.Max(5, (int)Math.Round(paragraph.FontSize / 4));
+            return Math.Max(2, (int)Math.Round(paragraph.FontSize / 4));
         }
 
         public static ushort GetBulletMargin(int bulletSize, ParagraphStyle paragraph)
@@ -150,11 +154,8 @@ namespace Tizen.NUI.MarkdownRenderer
             return (ushort)Math.Round(paragraph.LineHeight / 4);
         }
 
-        private readonly CommonStyle common;
-
-        public UIList(CommonStyle commonStyle) : base()
+        public UIList() : base()
         {
-            common = commonStyle;
             SetupLayout();
         }
 
@@ -165,7 +166,6 @@ namespace Tizen.NUI.MarkdownRenderer
                 LinearOrientation = LinearLayout.Orientation.Vertical,
             };
             WidthSpecification = LayoutParamPolicies.MatchParent;
-            Margin = new Extents(0, 0, (ushort)common.Margin, (ushort)common.Margin);
         }
     }
 }
