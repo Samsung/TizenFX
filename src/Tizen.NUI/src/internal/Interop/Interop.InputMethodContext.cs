@@ -21,7 +21,6 @@ namespace Tizen.NUI
     {
         internal static partial class InputMethodContext
         {
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_InputMethodContext_EventData__SWIG_0")]
             public static extern global::System.IntPtr NewInputMethodContextEventData();
 
@@ -147,9 +146,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetInputMethodArea")]
             public static extern global::System.IntPtr GetInputMethodArea(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_ApplyOptions")]
-            public static extern void ApplyOptions(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetInputPanelUserData")]
             public static extern void SetInputPanelUserData(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);

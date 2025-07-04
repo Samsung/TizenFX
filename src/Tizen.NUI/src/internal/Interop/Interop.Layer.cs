@@ -62,9 +62,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Layer_GetClippingBox")]
             public static extern global::System.IntPtr GetClippingBox(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Layer_SetSortFunction")]
-            public static extern void SetSortFunction(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Layer_SetTouchConsumed")]
             public static extern void SetTouchConsumed(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
 
