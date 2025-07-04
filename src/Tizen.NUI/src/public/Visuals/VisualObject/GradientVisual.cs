@@ -104,6 +104,7 @@ namespace Tizen.NUI.Visuals
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Radius
         {
             set
@@ -119,6 +120,7 @@ namespace Tizen.NUI.Visuals
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public List<float> StopOffset
         {
             set
@@ -138,6 +140,7 @@ namespace Tizen.NUI.Visuals
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public List<Vector4> StopColor
         {
             set
@@ -156,6 +159,7 @@ namespace Tizen.NUI.Visuals
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public GradientVisualUnitsType Units
         {
             set
@@ -171,6 +175,7 @@ namespace Tizen.NUI.Visuals
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public GradientVisualSpreadMethodType SpreadMethod
         {
             set
@@ -186,6 +191,7 @@ namespace Tizen.NUI.Visuals
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float StartOffset
         {
             set
@@ -201,6 +207,7 @@ namespace Tizen.NUI.Visuals
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float StartAngle
         {
             set
