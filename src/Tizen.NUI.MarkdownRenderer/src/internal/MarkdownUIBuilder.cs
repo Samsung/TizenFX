@@ -325,10 +325,17 @@ namespace Tizen.NUI.MarkdownRenderer
                     string hash = cacheManager.ComputeHash(text);
                     return new UIQuoteParagraph(text, style.Quote, style.Paragraph, hash, AsyncRendering);
                 }
-                case ParagraphBlock:
+                case ParagraphBlock when block.Parent is TableCell:
                 {
                     string hash = cacheManager.ComputeHash(text);
                     return new UIParagraph(text, style.Paragraph, hash, AsyncRendering);
+                }
+                case ParagraphBlock:
+                {
+                    string hash = cacheManager.ComputeHash(text);
+                    var uiParagraph = new UIParagraph(text, style.Paragraph, hash, AsyncRendering);
+                    uiParagraph.ApplyMargin();
+                    return uiParagraph;
                 }
                 case ThematicBreakBlock:
                 {

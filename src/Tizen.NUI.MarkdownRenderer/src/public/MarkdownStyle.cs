@@ -116,6 +116,9 @@ namespace Tizen.NUI.MarkdownRenderer
 
         /// Thickness of the strikethrough.
         public int StrikethroughThickness { get; set; } = StyleDefaults.ParagraphStrikethroughThickness;
+
+        /// Margin is added in pixels to the top and bottom of Paragraph. (Does not apply to UIListItemParagraph, UIQuoteParagraph and Paragraph inside UITableCell.)
+        public int Margin { get; set; } = StyleDefaults.ParagraphMargin;
     }
 
     /// <summary>

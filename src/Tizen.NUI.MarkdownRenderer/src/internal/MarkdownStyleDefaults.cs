@@ -33,6 +33,7 @@ namespace Tizen.NUI.MarkdownRenderer
         public const string ParagraphFontFamily = "SamsungOneUI_400";
         public const float ParagraphLineHeight = 32.0f;
         public const int ParagraphStrikethroughThickness = 2;
+        public const int ParagraphMargin = 10;
 
         // Heading
         public const float HeadingFontSizeLevel1 = 28.0f;
