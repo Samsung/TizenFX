@@ -41,6 +41,7 @@ namespace Tizen.NUI.MarkdownRenderer
             Layout = new MarkdownLinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
+                CellPadding = new Size(0, common.ItemPadding),
             };
             WidthSpecification = LayoutParamPolicies.MatchParent;
             Padding = new Extents((ushort)common.Padding);

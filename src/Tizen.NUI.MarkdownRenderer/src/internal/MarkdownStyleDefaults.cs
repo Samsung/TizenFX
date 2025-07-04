@@ -25,7 +25,7 @@ namespace Tizen.NUI.MarkdownRenderer
         // Common
         public const int CommonIndent = 40;
         public const int CommonPadding = 10;
-        public const int CommonMargin = 10;
+        public const int CommonItemPadding = 20;
 
         // Paragraph
         public const string ParagraphFontColor = "#000000FF";
@@ -75,5 +75,9 @@ namespace Tizen.NUI.MarkdownRenderer
         public const float CodeTitleFontSize = 16.0f;
         public const int CodePadding = 10;
         public const float CodeCornerRadius = 12.0f;
+
+        // List
+        public const int ListItemMarginTop = 0;
+        public const int ListItemMarginBottom = 10;
     }
 }

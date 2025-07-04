@@ -52,13 +52,12 @@ namespace Tizen.NUI.MarkdownRenderer
             }
         }
 
-        public UIHeading(string text, int level, HeadingStyle headingStyle, CommonStyle commonStyle, ParagraphStyle paragraphStyle, string hash, bool asyncRendering) : base(text, paragraphStyle, hash, asyncRendering)
+        public UIHeading(string text, int level, HeadingStyle headingStyle, ParagraphStyle paragraphStyle, string hash, bool asyncRendering) : base(text, paragraphStyle, hash, asyncRendering)
         {
             heading = headingStyle;
 
             Level = level;
             FontFamily = heading.FontFamily;
-            Margin = new Extents(0, 0, (ushort)commonStyle.Margin, (ushort)commonStyle.Margin);
         }
     }
 }
