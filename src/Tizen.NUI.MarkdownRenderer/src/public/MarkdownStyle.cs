@@ -75,6 +75,11 @@ namespace Tizen.NUI.MarkdownRenderer
         /// CodeStyle.
         /// </summary>
         public CodeStyle Code { get; } = new CodeStyle();
+
+        /// <summary>
+        /// ListStyle.
+        /// </summary>
+        public ListStyle List { get; } = new ListStyle();
     }
 
     /// <summary>
@@ -89,8 +94,8 @@ namespace Tizen.NUI.MarkdownRenderer
         /// Padding.
         public int Padding { get; set; } = StyleDefaults.CommonPadding;
 
-        /// Margin is added in pixels to the top and bottom of Block (Heading, List, Table, Code, Quote, ThematicBreak).
-        public int Margin { get; set; } = StyleDefaults.CommonMargin;
+        /// The spacing between UI items added to the top container of the view tree.
+        public int ItemPadding { get; set; } = StyleDefaults.CommonItemPadding;
     }
 
     /// <summary>
@@ -247,5 +252,18 @@ namespace Tizen.NUI.MarkdownRenderer
 
         /// CornerRadius.
         public float CornerRadius { get; set; } = StyleDefaults.CodeCornerRadius;
+    }
+
+    /// <summary>
+    /// ListStyle.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class ListStyle
+    {
+        /// ItemMarginTop.
+        public int ItemMarginTop { get; set; } = StyleDefaults.ListItemMarginTop;
+
+        /// ItemMarginBottom.
+        public int ItemMarginBottom { get; set; } = StyleDefaults.ListItemMarginBottom;
     }
 }
