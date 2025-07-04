@@ -3531,6 +3531,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// After this operation, the Textlabel will be parent of the control.
         /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMaskEffect(View control)
         {
             Interop.TextLabel.SetMaskEffect(SwigCPtr, control.SwigCPtr);
