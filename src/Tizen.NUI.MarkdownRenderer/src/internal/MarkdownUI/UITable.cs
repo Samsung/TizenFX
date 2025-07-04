@@ -145,12 +145,10 @@ namespace Tizen.NUI.MarkdownRenderer
     internal class UITable : View
     {
         private readonly TableStyle table;
-        private readonly CommonStyle common;
 
-        public UITable(TableStyle tableStyle, CommonStyle commonStyle) : base()
+        public UITable(TableStyle tableStyle) : base()
         {
             table = tableStyle;
-            common = commonStyle;
             SetupLayout();
         }
 
@@ -163,7 +161,6 @@ namespace Tizen.NUI.MarkdownRenderer
             WidthSpecification = LayoutParamPolicies.MatchParent;
             BackgroundColor = new Color(table.BackgroundColor);
             Padding = new Extents((ushort)table.Padding);
-            Margin = new Extents(0, 0, (ushort)common.Margin, (ushort)common.Margin);
             CornerRadius = table.CornerRadius;
         }
     }

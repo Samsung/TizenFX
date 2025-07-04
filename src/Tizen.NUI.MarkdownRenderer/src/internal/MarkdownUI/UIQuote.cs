@@ -104,7 +104,7 @@ namespace Tizen.NUI.MarkdownRenderer
             WidthSpecification = LayoutParamPolicies.MatchParent;
 
             int quoteIndent = isHeaderQuote ? common.Indent + barMargin : indent;
-            Margin = new Extents((ushort)quoteIndent, 0, (ushort)common.Margin, (ushort)common.Margin);
+            Margin = new Extents((ushort)quoteIndent, 0, 0, 0);
         }
 
         private View CreateBar()

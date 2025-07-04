@@ -28,9 +28,9 @@ namespace Tizen.NUI.MarkdownRenderer
     /// </summary>
     internal class UIThematicBreak : View
     {
-        public UIThematicBreak(ThematicBreakStyle thematicBreakStyle, CommonStyle commonStyle) : base()
+        public UIThematicBreak(ThematicBreakStyle thematicBreakStyle) : base()
         {
-            ushort margin = (ushort)(commonStyle.Margin + thematicBreakStyle.Margin);
+            ushort margin = (ushort)thematicBreakStyle.Margin;
 
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = thematicBreakStyle.Thickness;

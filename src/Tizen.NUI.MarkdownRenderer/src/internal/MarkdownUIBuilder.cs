@@ -303,7 +303,7 @@ namespace Tizen.NUI.MarkdownRenderer
                 case HeadingBlock heading:
                 {
                     string hash = cacheManager.ComputeHash(text);
-                    return new UIHeading(text, heading.Level, style.Heading, style.Common, style.Paragraph, hash, AsyncRendering);
+                    return new UIHeading(text, heading.Level, style.Heading, style.Paragraph, hash, AsyncRendering);
                 }
                 case ParagraphBlock when block.Parent is ListItemBlock listItem:
                 {
@@ -313,11 +313,11 @@ namespace Tizen.NUI.MarkdownRenderer
                         int index = listBlock.IndexOf(listItem);
                         int start = int.TryParse(listBlock.OrderedStart?.ToString(), out var s) ? s : 1;
                         int number = start + index;
-                        return new UIListItemParagraph(text, number, style.Paragraph, hash, AsyncRendering);
+                        return new UIListItemParagraph(text, number, style.List, style.Paragraph, hash, AsyncRendering);
                     }
                     else
                     {
-                        return new UIListItemParagraph(text, style.Paragraph, hash, AsyncRendering);
+                        return new UIListItemParagraph(text, style.List, style.Paragraph, hash, AsyncRendering);
                     }
                 }
                 case ParagraphBlock when block.Parent is QuoteBlock:
@@ -332,14 +332,14 @@ namespace Tizen.NUI.MarkdownRenderer
                 }
                 case ThematicBreakBlock:
                 {
-                    return new UIThematicBreak(style.ThematicBreak, style.Common);
+                    return new UIThematicBreak(style.ThematicBreak);
                 }
                 case FencedCodeBlock fenced:
                 {
                     string language = fenced.Info;
                     string code = fenced.Lines.ToString();
                     string hash = cacheManager.ComputeHash(language + code);
-                    return new UICode(language, code, GetIndent(block), style.Code, style.Common, hash, AsyncRendering);
+                    return new UICode(language, code, GetIndent(block), style.Code, hash, AsyncRendering);
                 }
                 default:
                 {
@@ -361,7 +361,7 @@ namespace Tizen.NUI.MarkdownRenderer
             }
             else if (block is ListBlock)
             {
-                return new UIList(style.Common);
+                return new UIList();
             }
             else if (block is ListItemBlock)
             {
@@ -369,7 +369,7 @@ namespace Tizen.NUI.MarkdownRenderer
             }
             else if (block is Table)
             {
-                return new UITable(style.Table, style.Common);
+                return new UITable(style.Table);
             }
             else if (block is TableRow tableRow)
             {
