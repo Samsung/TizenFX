@@ -764,5 +764,51 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 #endif
+
+        ///////////////////////////////////////////////////////////////////
+        // ************** AccessibilityHighlightedSignal *************** //
+        ///////////////////////////////////////////////////////////////////
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void BooleanValueHandlerType(bool data);
+        private BooleanValueHandlerType _accessibilityHighlightedCallback;
+        private EventHandler<AccessibilityHighlightChangedEventArgs> _accessibilityHighlightChangedHandler;
+
+        private void OnAccessibilityHighlighed(bool data)
+        {
+            _accessibilityHighlightChangedHandler?.Invoke(this, new AccessibilityHighlightChangedEventArgs()
+            {
+                IsHighlighted = data
+            });
+        }
+
+        /// <summary>
+        /// Occurs when the view gets or losts an accessibility highlight.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AccessibilityHighlightChangedEventArgs> AccessibilityHighlightChanged
+        {
+            add
+            {
+                if (_accessibilityHighlightChangedHandler == null)
+                {
+                    _accessibilityHighlightedCallback = OnAccessibilityHighlighed;
+                    using var handle = GetControl();
+                    Interop.AccessibilitySignal.AccessibilityHighlightedConnect(handle, _accessibilityHighlightedCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                _accessibilityHighlightChangedHandler += value;
+            }
+            remove
+            {
+                _accessibilityHighlightChangedHandler -= value;
+                if (_accessibilityHighlightChangedHandler == null && _accessibilityHighlightedCallback != null)
+                {
+                    using var handle = GetControl();
+                    Interop.AccessibilitySignal.AccessibilityHighlightedDisconnect(handle, _accessibilityHighlightedCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    _accessibilityHighlightedCallback = null;
+                }
+            }
+        }
     }
 }
