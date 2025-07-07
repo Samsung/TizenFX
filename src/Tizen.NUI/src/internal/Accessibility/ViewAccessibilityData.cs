@@ -47,110 +47,120 @@ namespace Tizen.NUI.BaseComponents
         private BooleanDataType _accessibilityHighlightedCallback;
         private EventHandler<AccessibilityHighlightChangedEventArgs> _accessibilityHighlightChangedHandler;
 
-        public void AddDescriptionRequestedHandler(View.ControlHandle handle, EventHandler<GetDescriptionEventArgs> value)
+        public void AddDescriptionRequestedHandler(View view, EventHandler<GetDescriptionEventArgs> value)
         {
             if (_getDescriptionHandler == null)
             {
                 _getDescriptionCallback = OnGetAccessibilityDescriptionEvent;
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityGetDescriptionConnect(handle, _getDescriptionCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }
             _getDescriptionHandler += value;
         }
 
-        public void RemoveDescriptionRequestedHandler(View.ControlHandle handle, EventHandler<GetDescriptionEventArgs> value)
+        public void RemoveDescriptionRequestedHandler(View view, EventHandler<GetDescriptionEventArgs> value)
         {
             _getDescriptionHandler -= value;
             if (_getDescriptionHandler == null && _getDescriptionCallback != null)
             {
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityGetDescriptionDisconnect(handle, _getDescriptionCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
                 _getDescriptionCallback = null;
             }
         }
 
-        public void AddNameRequestedHandler(View.ControlHandle handle, EventHandler<GetNameEventArgs> value)
+        public void AddNameRequestedHandler(View view, EventHandler<GetNameEventArgs> value)
         {
             if (_getNameHandler == null)
             {
                 _getNameCallback = OnGetAccessibilityNameEvent;
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityGetNameConnect(handle, _getNameCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }
             _getNameHandler += value;
         }
 
-        public void RemoveNameRequestedHandler(View.ControlHandle handle, EventHandler<GetNameEventArgs> value)
+        public void RemoveNameRequestedHandler(View view, EventHandler<GetNameEventArgs> value)
         {
             _getNameHandler -= value;
             if (_getNameHandler == null && _getNameCallback != null)
             {
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityGetNameDisconnect(handle, _getNameCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
                 _getNameCallback = null;
             }
         }
 
-        public void AddActivatedHandler(View.ControlHandle handle, EventHandler value)
+        public void AddActivatedHandler(View view, EventHandler value)
         {
             if (_activateHandler == null)
             {
                 _activateCallback = OnAccessibilityActivatedEvent;
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityActivateConnect(handle, _activateCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }
             _activateHandler += value;
         }
 
-        public void RemoveActivatedHandler(View.ControlHandle handle, EventHandler value)
+        public void RemoveActivatedHandler(View view, EventHandler value)
         {
             _activateHandler -= value;
             if (_activateHandler == null && _activateCallback != null)
             {
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityActivateDisconnect(handle, _activateCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
                 _activateCallback = null;
             }
         }
 
-        public void AddActionReceivedHandler(View.ControlHandle handle, EventHandler<AccessibilityActionReceivedEventArgs> value)
+        public void AddActionReceivedHandler(View view, EventHandler<AccessibilityActionReceivedEventArgs> value)
         {
             if (_accessibilityActionReceivedHandler == null)
             {
                 _accessibilityActionReceivedCallback = OnAccessibilityActionReceived;
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityActionConnect(handle, _accessibilityActionReceivedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }
             _accessibilityActionReceivedHandler += value;
         }
 
-        public void RemoveActionReceivedHandler(View.ControlHandle handle, EventHandler<AccessibilityActionReceivedEventArgs> value)
+        public void RemoveActionReceivedHandler(View view, EventHandler<AccessibilityActionReceivedEventArgs> value)
         {
             _accessibilityActionReceivedHandler -= value;
             if (_accessibilityActionReceivedHandler == null && _accessibilityActionReceivedCallback != null)
             {
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityActionDisconnect(handle, _accessibilityActionReceivedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
                 _accessibilityActionReceivedCallback = null;
             }
         }
 
-        public void AddHighlightChangedHandler(View.ControlHandle handle, EventHandler<AccessibilityHighlightChangedEventArgs> value)
+        public void AddHighlightChangedHandler(View view, EventHandler<AccessibilityHighlightChangedEventArgs> value)
         {
             if (_accessibilityHighlightChangedHandler == null)
             {
                 _accessibilityHighlightedCallback = OnAccessibilityHighlighed;
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityHighlightedConnect(handle, _accessibilityHighlightedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }
             _accessibilityHighlightChangedHandler += value;
         }
 
-        public void RemoveHighlightChangedHandler(View.ControlHandle handle, EventHandler<AccessibilityHighlightChangedEventArgs> value)
+        public void RemoveHighlightChangedHandler(View view, EventHandler<AccessibilityHighlightChangedEventArgs> value)
         {
             _accessibilityHighlightChangedHandler -= value;
             if (_accessibilityHighlightChangedHandler == null && _accessibilityHighlightedCallback != null)
             {
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityHighlightedDisconnect(handle, _accessibilityHighlightedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
                 _accessibilityHighlightedCallback = null;
