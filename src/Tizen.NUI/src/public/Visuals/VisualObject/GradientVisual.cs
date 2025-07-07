@@ -21,13 +21,18 @@ using System.ComponentModel;
 namespace Tizen.NUI.Visuals
 {
     /// <summary>
-    /// Visual to render gradient.
+    /// Visual to render gradient.<br />
     /// </summary>
+    /// <note>
+    /// To make linear gradient, use StartPosition and EndPosition.<br />
+    /// To make radial gradient, use Center and Radius.<br />
+    /// To make conic gradient, use Center and StartAngle.<br />
+    /// </note>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class GradientVisual : VisualBase
     {
-        private List<float> stopOffset;
-        private List<Vector4> stopColor;
+        private IList<float> _stopOffsets;
+        private IList<UIColor> _stopColors;
 
         #region Constructor
         /// <summary>
@@ -50,8 +55,13 @@ namespace Tizen.NUI.Visuals
         #endregion
 
         #region Visual Properties
+
+        /// <summary>
+        /// Gets or sets the start position of a linear gradient.<br />
+        /// Mandatory for linear.<br />
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 StartPosition
+        public UIVector2 StartPosition
         {
             set
             {
@@ -64,12 +74,16 @@ namespace Tizen.NUI.Visuals
                 {
                     propertyValue?.Get(ret);
                 }
-                return ret;
+                return new UIVector2(ret.X, ret.Y);
             }
         }
 
+        /// <summary>
+        /// Gets or sets the end position of a linear gradient.<br />
+        /// Mandatory for linear.<br />
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 EndPosition
+        public UIVector2 EndPosition
         {
             set
             {
@@ -82,12 +96,16 @@ namespace Tizen.NUI.Visuals
                 {
                     propertyValue?.Get(ret);
                 }
-                return ret;
+                return new UIVector2(ret.X, ret.Y);
             }
         }
 
+        /// <summary>
+        /// Gets or sets the center point of a radial gradient.<br />
+        /// Mandatory for radial and conic.<br />
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 Center
+        public UIVector2 Center
         {
             set
             {
@@ -100,10 +118,14 @@ namespace Tizen.NUI.Visuals
                 {
                     propertyValue?.Get(ret);
                 }
-                return ret;
+                return new UIVector2(ret.X, ret.Y);
             }
         }
 
+         /// <summary>
+        /// Gets or sets the size of the radius of a radial gradient.<br />
+        /// Mandatory for radial.<br />
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Radius
         {
@@ -120,14 +142,20 @@ namespace Tizen.NUI.Visuals
             }
         }
 
+        /// <summary>
+        /// Gets or sets all the stop offsets.<br />
+        /// A PropertyArray of float.<br />
+        /// If not supplied, the default is 0.0f and 1.0f.<br />
+        /// Optional.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public List<float> StopOffset
+        public IList<float> StopOffsets
         {
             set
             {
-                stopOffset = value;
+                _stopOffsets = value;
                 PropertyArray stopOffsetArray = new PropertyArray();
-                foreach (float val in stopOffset)
+                foreach (float val in _stopOffsets)
                 {
                     stopOffsetArray.Add(new PropertyValue(val));
                 }
@@ -136,29 +164,40 @@ namespace Tizen.NUI.Visuals
             }
             get
             {
-                return stopOffset;
+                return _stopOffsets;
             }
         }
 
+        /// <summary>
+        /// Gets or sets the color at the stop offsets.<br />
+        /// A PropertyArray of color.<br />
+        /// At least 2 values are required to show a gradient.<br />
+        /// Mandatory.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public List<Vector4> StopColor
+        public IList<UIColor> StopColors
         {
             set
             {
-                stopColor = value;
+                _stopColors = value;
                 PropertyArray stopColorArray = new PropertyArray();
-                foreach (Vector4 val in stopColor)
+                foreach (UIColor val in _stopColors)
                 {
-                    stopColorArray.Add(new PropertyValue(val));
+                    stopColorArray.Add(new PropertyValue(new Vector4(val.R, val.G, val.B, val.A)));
                 }
                 UpdateVisualProperty((int)Tizen.NUI.GradientVisualProperty.StopColor, stopColorArray);
             }
             get
             {
-                return stopColor;
+                return _stopColors;
             }
         }
 
+        /// <summary>
+        /// Gets or sets descriptions of the coordinate system for certain attributes of the points in a gradient.<br />
+        /// If not supplied, the default is GradientVisualUnitsType.ObjectBoundingBox.<br />
+        /// Optional.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public GradientVisualUnitsType Units
         {
@@ -175,6 +214,11 @@ namespace Tizen.NUI.Visuals
             }
         }
 
+        /// <summary>
+        /// Gets or sets indications of what happens if the gradient starts or ends inside the bounds of the target rectangle.<br />
+        /// If not supplied, the default is GradientVisualSpreadMethodType.Pad.<br />
+        /// Optional.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public GradientVisualSpreadMethodType SpreadMethod
         {
@@ -191,6 +235,11 @@ namespace Tizen.NUI.Visuals
             }
         }
 
+        /// <summary>
+        /// Gets or sets the gradient's start position offset.<br />
+        /// If not supplied, the default is 0.0f.<br />
+        /// Optional.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float StartOffset
         {
@@ -207,6 +256,11 @@ namespace Tizen.NUI.Visuals
             }
         }
 
+        /// <summary>
+        /// Gets or sets the start angle of the conic gradient.<br />
+        /// Mandatory for conic.<br />
+        /// Optional.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float StartAngle
         {
