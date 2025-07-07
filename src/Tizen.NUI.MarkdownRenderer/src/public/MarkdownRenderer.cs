@@ -30,7 +30,6 @@ namespace Tizen.NUI.MarkdownRenderer
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class MarkdownRenderer : View
     {
-        private MarkdownParser parser;
         private MarkdownUIBuilder builder;
         private readonly StringBuilder pathBuilder = new StringBuilder(16);
         private string lastInput = string.Empty;
@@ -66,7 +65,7 @@ namespace Tizen.NUI.MarkdownRenderer
         /// <param name="markdown">The markdown text to render.</param>
         public void Render(string markdown)
         {
-            var document = parser.Parse(markdown);
+            var document = MarkdownParser.Parse(markdown);
 
             pathBuilder.Clear();
             pathBuilder.Append("r"); // root
@@ -96,7 +95,7 @@ namespace Tizen.NUI.MarkdownRenderer
         }
 
         /// <summary>
-        /// Initializes layout, parser, and UI builder components for rendering.
+        /// Initializes layout and UI builder components for rendering.
         /// </summary>
         private void Initialize()
         {
@@ -109,7 +108,6 @@ namespace Tizen.NUI.MarkdownRenderer
             HeightSpecification = LayoutParamPolicies.MatchParent;
             BackgroundColor = Color.Transparent;
 
-            parser = new MarkdownParser();
             builder = new MarkdownUIBuilder(Style);
             LayoutDirectionChanged += OnLayoutDirectionChanged;
         }
