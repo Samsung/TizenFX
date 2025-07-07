@@ -343,6 +343,10 @@ namespace Tizen.NUI
             // We measure all children whose width specification policy is WrapContent without weight.
             // After 1st phase, remaining width of parent is accumulated to calculate width of children
             // whose width specification policy is MatchParent.
+            widthSpecSize = widthMeasureSpec.GetSize().AsDecimal();
+            float lastEnd = 0f;
+            float beginBound = 0f;
+            float endBound = 0f;
             foreach (var childLayout in LayoutChildren)
             {
                 if (!childLayout.SetPositionByLayout || !(childLayout.Owner.Visibility))
@@ -372,20 +376,25 @@ namespace Tizen.NUI
                 // Then, child layout1's size is 30 and child layout2's size is 50.
                 if ((childDesiredWidth == LayoutDimension.WrapContent) || ((childDesiredWidth >= 0) && (!useRemainingWidth)))
                 {
-                    var measurableWidth = Math.Max(widthMeasureSpec.GetSize().AsDecimal() - (totalLength + CellPadding.Width * childrenWrapContentCount), 0);
+                    var lastEndPlusCellPadding = lastEnd + (childrenWrapContentCount == 0 ? 0 : CellPadding.Width);
+                    var measurableWidth = Math.Max(Math.Min(widthSpecSize, widthSpecSize - lastEndPlusCellPadding), 0);
                     var measurableWidthSpec = new MeasureSpecification(new LayoutLength(measurableWidth), widthMeasureSpec.GetMode());
                     MeasureChildWithMargins(childLayout, measurableWidthSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
 
                     float childMeasuredWidth = childLayout.MeasuredWidth.Size.AsDecimal();
 
+                    beginBound = Math.Min(beginBound, lastEndPlusCellPadding);
+
                     if (childMeasuredWidth < 0)
                     {
-                        totalLength = Math.Max(totalLength, totalLength + childMarginWidth);
+                        lastEnd = lastEndPlusCellPadding + childMarginWidth;
                     }
                     else
                     {
-                        totalLength = Math.Max(totalLength, totalLength + childMeasuredWidth + childMarginWidth);
+                        lastEnd = lastEndPlusCellPadding + childMeasuredWidth + childMarginWidth;
                     }
+
+                    endBound = Math.Max(endBound, lastEnd);
 
                     childrenWrapContentCount++;
                 }
@@ -400,7 +409,10 @@ namespace Tizen.NUI
                 }
             } // 1ST PHASE foreach
 
-            totalLength = Math.Max(totalLength, totalLength + CellPadding.Width * (childrenCount - 1) + Padding.Start + Padding.End);
+            // If childrenWrapContentCount is less than 2, then CellPadding is not added to endBound and beginBound.
+            // So Math.Max(childrenWrapContentCount - 1, 0) is used to be multiplied to CellPadding.
+            totalLength = endBound - beginBound + CellPadding.Width * (childrenCount - 1 - Math.Max(childrenWrapContentCount - 1, 0));
+            totalLength = Math.Max(totalLength, totalLength + Padding.Start + Padding.End);
             float widthSize = Math.Max(totalLength, SuggestedMinimumWidth.AsDecimal());
             MeasuredSize widthSizeAndState = ResolveSizeAndState(new LayoutLength(widthSize), widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
             widthSize = widthSizeAndState.Size.AsDecimal();
@@ -408,6 +420,7 @@ namespace Tizen.NUI
             float remainingWidth = widthSize - totalLength;
             float totalWeightLength = 0.0f;
 
+            var childWidthMeasureSpec = new MeasureSpecification(widthMeasureSpec.GetSize(), widthMeasureSpec.GetMode());
             if (remainingWidth > 0)
             {
                 // 2ND PHASE:
@@ -434,7 +447,9 @@ namespace Tizen.NUI
                         {
                             // In MeasureChildWithMargins(), it is assumed that widthMeasureSpec includes Padding.Start and Padding.End.
                             // Therefore, Padding.Start and Padding.End are added to widthMeasureSpec.GetSize() before it is passed to MeasureChildWithMargins().
-                            widthMeasureSpec.SetSize(new LayoutLength((int)(remainingWidth / childrenMatchParentCount) + Padding.Start + Padding.End));
+                            // If CellPadding is very big negative value, then remaining / childrenMatchParentCount may exceed constraint.
+                            // So use the minimum between constraint and remaining / childrenMatchParentCount + padding.
+                            childWidthMeasureSpec.SetSize(new LayoutLength(Math.Min(widthMeasureSpec.GetSize().AsDecimal(), (int)(remainingWidth / childrenMatchParentCount) + Padding.Start + Padding.End)));
                             needToMeasure = true;
                         }
                         // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
@@ -457,7 +472,7 @@ namespace Tizen.NUI
 
                     if (needToMeasure == true)
                     {
-                        MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
+                        MeasureChildWithMargins(childLayout, childWidthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
                     }
 
                     if ((childWeight > 0) && ((childDesiredWidth == LayoutDimension.MatchParent) || (childDesiredWidth == 0)))
@@ -593,6 +608,10 @@ namespace Tizen.NUI
             // We measure all children whose height specification policy is WrapContent without weight.
             // After 1st phase, remaining height of parent is accumulated to calculate height of children
             // whose height specification policy is MatchParent.
+            heightSpecSize = heightMeasureSpec.GetSize().AsDecimal();
+            float lastEnd = 0f;
+            float beginBound = 0f;
+            float endBound = 0f;
             foreach (var childLayout in LayoutChildren)
             {
                 if (!childLayout.SetPositionByLayout || !(childLayout.Owner.Visibility))
@@ -622,20 +641,25 @@ namespace Tizen.NUI
                 // Then, child layout1's size is 30 and child layout2's size is 50.
                 if ((childDesiredHeight == LayoutDimension.WrapContent) || ((childDesiredHeight >= 0) && (!useRemainingHeight)))
                 {
-                    var measurableHeight = Math.Max(heightMeasureSpec.GetSize().AsDecimal() - (totalLength + CellPadding.Height * childrenWrapContentCount), 0);
+                    var lastEndPlusCellPadding = lastEnd + (childrenWrapContentCount == 0 ? 0 : CellPadding.Height);
+                    var measurableHeight = Math.Max(Math.Min(heightSpecSize, heightSpecSize - lastEndPlusCellPadding), 0);
                     var measurableHeightSpec = new MeasureSpecification(new LayoutLength(measurableHeight), heightMeasureSpec.GetMode());
                     MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), measurableHeightSpec, new LayoutLength(0));
 
                     float childMeasuredHeight = childLayout.MeasuredHeight.Size.AsDecimal();
 
+                    beginBound = Math.Min(beginBound, lastEndPlusCellPadding);
+
                     if (childMeasuredHeight < 0)
                     {
-                        totalLength = Math.Max(totalLength, totalLength + childMarginHeight);
+                        lastEnd = lastEndPlusCellPadding + childMarginHeight;
                     }
                     else
                     {
-                        totalLength = Math.Max(totalLength, totalLength + childMeasuredHeight + childMarginHeight);
+                        lastEnd = lastEndPlusCellPadding + childMeasuredHeight + childMarginHeight;
                     }
+
+                    endBound = Math.Max(endBound, lastEnd);
 
                     childrenWrapContentCount++;
                 }
@@ -650,7 +674,10 @@ namespace Tizen.NUI
                 }
             } // 1ST PHASE foreach
 
-            totalLength = Math.Max(totalLength, totalLength + CellPadding.Height * (childrenCount - 1) + Padding.Top + Padding.Bottom);
+            // If childrenWrapContentCount is less than 2, then CellPadding is not added to endBound and beginBound.
+            // So Math.Max(childrenWrapContentCount - 1, 0) is used to be multiplied to CellPadding.
+            totalLength = endBound - beginBound + CellPadding.Height * (childrenCount - 1 - Math.Max(childrenWrapContentCount - 1, 0));
+            totalLength = Math.Max(totalLength, totalLength + Padding.Top + Padding.Bottom);
             float heightSize = Math.Max(totalLength, SuggestedMinimumHeight.AsDecimal());
             MeasuredSize heightSizeAndState = ResolveSizeAndState(new LayoutLength(heightSize), heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
             heightSize = heightSizeAndState.Size.AsDecimal();
@@ -658,6 +685,7 @@ namespace Tizen.NUI
             float remainingHeight = heightSize - totalLength;
             float totalWeightLength = 0.0f;
 
+            var childHeightMeasureSpec = new MeasureSpecification(heightMeasureSpec.GetSize(), heightMeasureSpec.GetMode());
             if (remainingHeight > 0)
             {
                 // 2ND PHASE:
@@ -684,7 +712,9 @@ namespace Tizen.NUI
                         {
                             // In MeasureChildWithMargins(), it is assumed that heightMeasureSpec includes Padding.Top and Padding.Bottom.
                             // Therefore, Padding.Top and Padding.Bottom are added to heightMeasureSpec.GetSize() before it is passed to MeasureChildWithMargins().
-                            heightMeasureSpec.SetSize(new LayoutLength((int)(remainingHeight / childrenMatchParentCount) + Padding.Top + Padding.Bottom));
+                            // If CellPadding is very big negative value, then remaining / childrenMatchParentCount may exceed constraint.
+                            // So use the minimum between constraint and remaining / childrenMatchParentCount + padding.
+                            childHeightMeasureSpec.SetSize(new LayoutLength(Math.Min(heightMeasureSpec.GetSize().AsDecimal(), (int)(remainingHeight / childrenMatchParentCount) + Padding.Top + Padding.Bottom)));
                             needToMeasure = true;
                         }
                         // RelativeLayout's MatchParent children should not fill to the RelativeLayout.
@@ -707,7 +737,7 @@ namespace Tizen.NUI
 
                     if (needToMeasure == true)
                     {
-                        MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
+                        MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), childHeightMeasureSpec, new LayoutLength(0));
                     }
 
                     if ((childWeight > 0) && ((childDesiredHeight == LayoutDimension.MatchParent) || (childDesiredHeight == 0)))
@@ -819,7 +849,9 @@ namespace Tizen.NUI
             var LinearChildren = IterateLayoutChildren();
             int count = LinearChildren.Count();
 
-            float totalLength = 0;
+            float lastEnd = 0f;
+            float beginBound = 0f;
+            float endBound = 0f;
             int validChildCount = 0;
             foreach (var childLayout in LayoutChildren)
             {
@@ -831,11 +863,14 @@ namespace Tizen.NUI
                 var childWidthSize = childLayout.MeasuredWidth.Size.AsDecimal();
                 if (childWidthSize > 0)
                 {
+                    var lastEndPlusCellPadding = lastEnd + (validChildCount == 0 ? 0 : CellPadding.Width);
+                    beginBound = Math.Min(beginBound, lastEndPlusCellPadding);
+                    lastEnd = lastEndPlusCellPadding + childWidthSize + childLayout.Margin.Start + childLayout.Margin.End;
+                    endBound = Math.Max(endBound, lastEnd);
                     validChildCount++;
-                    totalLength += childWidthSize + childLayout.Margin.Start + childLayout.Margin.End;
                 }
             }
-            totalLength += CellPadding.Width * (validChildCount - 1);
+            float totalLength = endBound - beginBound;
 
             var leftPadding = isLayoutRtl ? Padding.End : Padding.Start;
 
@@ -933,7 +968,9 @@ namespace Tizen.NUI
             var LinearChildren = IterateLayoutChildren();
             int count = LinearChildren.Count<LayoutItem>();
 
-            float totalLength = 0;
+            float lastEnd = 0f;
+            float beginBound = 0f;
+            float endBound = 0f;
             int validChildCount = 0;
             foreach (var childLayout in LayoutChildren)
             {
@@ -945,11 +982,14 @@ namespace Tizen.NUI
                 var childHeightSize = childLayout.MeasuredHeight.Size.AsDecimal();
                 if (childHeightSize > 0)
                 {
+                    var lastEndPlusCellPadding = lastEnd + (validChildCount == 0 ? 0 : CellPadding.Height);
+                    beginBound = Math.Min(beginBound, lastEndPlusCellPadding);
+                    lastEnd = lastEndPlusCellPadding + childHeightSize + childLayout.Margin.Top + childLayout.Margin.Bottom;
+                    endBound = Math.Max(endBound, lastEnd);
                     validChildCount++;
-                    totalLength += childHeightSize + childLayout.Margin.Top + childLayout.Margin.Bottom;
                 }
             }
-            totalLength += CellPadding.Height * (validChildCount - 1);
+            float totalLength = endBound - beginBound;
 
             switch (VerticalAlignment)
             {
