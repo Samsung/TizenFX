@@ -267,8 +267,8 @@ namespace Tizen.NUI.BaseComponents
         public event EventHandler<GestureInfoEventArgs> AccessibilityGestureInfoReceived
         {
             // This uses DoGestureInfo signal from C++ API.
-            add => EnsureAccessibilityRareData().AddGestureInfoReceivedHandler(GetControl(), value);
-            remove => _accessibilityRareData?.RemoveGestureInfoReceivedHandler(GetControl(), value);
+            add => EnsureAccessibilityRareData().AddGestureInfoReceivedHandler(this, value);
+            remove => _accessibilityRareData?.RemoveGestureInfoReceivedHandler(this, value);
         }
 
         ///////////////////////////////////////////////////////////////////
@@ -282,8 +282,8 @@ namespace Tizen.NUI.BaseComponents
         public event EventHandler<GetDescriptionEventArgs> AccessibilityDescriptionRequested
         {
             // This uses GetDescription signal from C++ API.
-            add => EnsureAccessibilityData().AddDescriptionRequestedHandler(GetControl(), value);
-            remove => _accessibilityData?.RemoveDescriptionRequestedHandler(GetControl(), value);
+            add => EnsureAccessibilityData().AddDescriptionRequestedHandler(this, value);
+            remove => _accessibilityData?.RemoveDescriptionRequestedHandler(this, value);
         }
 
         ///////////////////////////////////////////////////////////////////
@@ -297,8 +297,8 @@ namespace Tizen.NUI.BaseComponents
         public event EventHandler<GetNameEventArgs> AccessibilityNameRequested
         {
             // This uses GetName signal from C++ API.
-            add => EnsureAccessibilityData().AddNameRequestedHandler(GetControl(), value);
-            remove => _accessibilityData?.RemoveNameRequestedHandler(GetControl(), value);
+            add => EnsureAccessibilityData().AddNameRequestedHandler(this, value);
+            remove => _accessibilityData?.RemoveNameRequestedHandler(this, value);
         }
 
         internal bool IsAccessibilityNameSignalEmpty()
@@ -332,8 +332,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityActivated
         {
-            add => EnsureAccessibilityData().AddActivatedHandler(GetControl(), value);
-            remove => _accessibilityData?.RemoveActivatedHandler(GetControl(), value);
+            add => EnsureAccessibilityData().AddActivatedHandler(this, value);
+            remove => _accessibilityData?.RemoveActivatedHandler(this, value);
         }
 
         ///////////////////////////////////////////////////////////////////
@@ -346,8 +346,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityReadingSkipped
         {
-            add => EnsureAccessibilityRareData().AddReadingSkippedHandler(GetControl(), value);
-            remove => _accessibilityRareData?.RemoveReadingSkippedHandler(GetControl(), value);
+            add => EnsureAccessibilityRareData().AddReadingSkippedHandler(this, value);
+            remove => _accessibilityRareData?.RemoveReadingSkippedHandler(this, value);
         }
 
         ///////////////////////////////////////////////////////////////////
@@ -360,8 +360,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityReadingPaused
         {
-            add => EnsureAccessibilityRareData().AddReadingPausedHandler(GetControl(), value);
-            remove => _accessibilityRareData?.RemoveReadingPausedHandler(GetControl(), value);
+            add => EnsureAccessibilityRareData().AddReadingPausedHandler(this, value);
+            remove => _accessibilityRareData?.RemoveReadingPausedHandler(this, value);
         }
 
         ///////////////////////////////////////////////////////////////////
@@ -374,8 +374,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityReadingResumed
         {
-            add => EnsureAccessibilityRareData().AddReadingResumedHandler(GetControl(), value);
-            remove => _accessibilityRareData?.RemoveReadingResumedHandler(GetControl(), value);
+            add => EnsureAccessibilityRareData().AddReadingResumedHandler(this, value);
+            remove => _accessibilityRareData?.RemoveReadingResumedHandler(this, value);
         }
 
         ///////////////////////////////////////////////////////////////////
@@ -388,8 +388,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityReadingCancelled
         {
-            add => EnsureAccessibilityRareData().AddReadingCancelledHandler(GetControl(), value);
-            remove => _accessibilityRareData?.RemoveReadingCancelledHandler(GetControl(), value);
+            add => EnsureAccessibilityRareData().AddReadingCancelledHandler(this, value);
+            remove => _accessibilityRareData?.RemoveReadingCancelledHandler(this, value);
         }
 
         ///////////////////////////////////////////////////////////////////
@@ -402,8 +402,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityReadingStopped
         {
-            add => EnsureAccessibilityRareData().AddReadingStoppedHandler(GetControl(), value);
-            remove => _accessibilityRareData?.RemoveReadingStoppedHandler(GetControl(), value);
+            add => EnsureAccessibilityRareData().AddReadingStoppedHandler(this, value);
+            remove => _accessibilityRareData?.RemoveReadingStoppedHandler(this, value);
         }
 
         ///////////////////////////////////////////////////////////////////
@@ -416,8 +416,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<AccessibilityActionReceivedEventArgs> AccessibilityActionReceived
         {
-            add => EnsureAccessibilityData().AddActionReceivedHandler(GetControl(), value);
-            remove => _accessibilityData?.RemoveActionReceivedHandler(GetControl(), value);
+            add => EnsureAccessibilityData().AddActionReceivedHandler(this, value);
+            remove => _accessibilityData?.RemoveActionReceivedHandler(this, value);
         }
 
         ///////////////////////////////////////////////////////////////////
@@ -430,8 +430,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<AccessibilityHighlightChangedEventArgs> AccessibilityHighlightChanged
         {
-            add => EnsureAccessibilityData().AddHighlightChangedHandler(GetControl(), value);
-            remove => _accessibilityData?.RemoveHighlightChangedHandler(GetControl(), value);
+            add => EnsureAccessibilityData().AddHighlightChangedHandler(this, value);
+            remove => _accessibilityData?.RemoveHighlightChangedHandler(this, value);
         }
     }
 }
