@@ -3520,6 +3520,24 @@ namespace Tizen.NUI.BaseComponents
             Object.InternalSetPropertyFloat(SwigCPtr, index, value);
         }
 
+        /// <summary>
+        /// Sets mask Effect to given view.
+        /// </summary>
+        /// <param name="control">The control to set mask effect.</param>
+        /// <note>
+        /// SetMaskEffect uses the TextLabel's camera to render both label and control.<br />
+        /// To apply the mask correctly, align the control's size and position with the TextLabel.<br />
+        /// </note>
+        /// <remarks>
+        /// After this operation, the Textlabel will be parent of the control.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetMaskEffect(View control)
+        {
+            Interop.TextLabel.SetMaskEffect(SwigCPtr, control.SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
