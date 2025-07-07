@@ -255,6 +255,8 @@ namespace Tizen.NUI
             public static extern void AsyncHeightForWidthComputedDisconnect(HandleRef textLabelRef, HandleRef handler);
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_RegisterFontVariationProperty")]
             public static extern int RegisterFontVariationProperty(HandleRef textLabelRef, string pTag);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_SetMaskEffect")]
+            public static extern void SetMaskEffect(HandleRef textLabelRef, HandleRef control);
         }
     }
 }
