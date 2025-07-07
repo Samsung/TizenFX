@@ -56,132 +56,144 @@ namespace Tizen.NUI.BaseComponents
 
         public Dictionary<string, Func<string>> DynamicAttributes => _dynamicAttributes ??= new Dictionary<string, Func<string>>(1);
 
-        public void AddGestureInfoReceivedHandler(View.ControlHandle handle, EventHandler<GestureInfoEventArgs> value)
+        public void AddGestureInfoReceivedHandler(View view, EventHandler<GestureInfoEventArgs> value)
         {
             if (_gestureInfoHandler == null)
             {
                 _gestureInfoCallback = OnAccessibilityGestureInfoEvent;
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityDoGestureConnect(handle, _gestureInfoCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }
             _gestureInfoHandler += value;
         }
 
-        public void RemoveGestureInfoReceivedHandler(View.ControlHandle handle, EventHandler<GestureInfoEventArgs> value)
+        public void RemoveGestureInfoReceivedHandler(View view, EventHandler<GestureInfoEventArgs> value)
         {
             _gestureInfoHandler -= value;
             if (_gestureInfoHandler == null && _gestureInfoCallback != null)
             {
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityDoGestureDisconnect(handle, _gestureInfoCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
                 _gestureInfoCallback = null;
             }
         }
 
-        public void AddReadingSkippedHandler(View.ControlHandle handle, EventHandler value)
+        public void AddReadingSkippedHandler(View view, EventHandler value)
         {
             if (_readingSkippedHandler == null)
             {
                 _readingSkippedCallback = OnAccessibilityReadingSkippedEvent;
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingSkippedConnect(handle, _readingSkippedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }
             _readingSkippedHandler += value;
         }
 
-        public void RemoveReadingSkippedHandler(View.ControlHandle handle, EventHandler value)
+        public void RemoveReadingSkippedHandler(View view, EventHandler value)
         {
             _readingSkippedHandler -= value;
             if (_readingSkippedHandler == null && _readingSkippedCallback != null)
             {
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingSkippedDisconnect(handle, _readingSkippedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
                 _readingSkippedCallback = null;
             }
         }
 
-        public void AddReadingPausedHandler(View.ControlHandle handle, EventHandler value)
+        public void AddReadingPausedHandler(View view, EventHandler value)
         {
             if (_readingPausedHandler == null)
             {
                 _readingPausedCallback = OnAccessibilityReadingPausedEvent;
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingPausedConnect(handle, _readingPausedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }
             _readingPausedHandler += value;
         }
 
-        public void RemoveReadingPausedHandler(View.ControlHandle handle, EventHandler value)
+        public void RemoveReadingPausedHandler(View view, EventHandler value)
         {
             _readingPausedHandler -= value;
             if (_readingPausedHandler == null && _readingPausedCallback != null)
             {
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingPausedDisconnect(handle, _readingPausedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
                 _readingPausedCallback = null;
             }
         }
 
-        public void AddReadingResumedHandler(View.ControlHandle handle, EventHandler value)
+        public void AddReadingResumedHandler(View view, EventHandler value)
         {
             if (_readingResumedHandler == null)
             {
                 _readingResumedCallback = OnAccessibilityReadingResumedEvent;
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingResumedConnect(handle, _readingResumedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }
             _readingResumedHandler += value;
         }
 
-        public void RemoveReadingResumedHandler(View.ControlHandle handle, EventHandler value)
+        public void RemoveReadingResumedHandler(View view, EventHandler value)
         {
             _readingResumedHandler -= value;
             if (_readingResumedHandler == null && _readingResumedCallback != null)
             {
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingResumedDisconnect(handle, _readingResumedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
                 _readingResumedCallback = null;
             }
         }
 
-        public void AddReadingCancelledHandler(View.ControlHandle handle, EventHandler value)
+        public void AddReadingCancelledHandler(View view, EventHandler value)
         {
             if (_readingCancelledHandler == null)
             {
                 _readingCancelledCallback = OnAccessibilityReadingCancelledEvent;
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingCancelledConnect(handle, _readingCancelledCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }
             _readingCancelledHandler += value;
         }
 
-        public void RemoveReadingCancelledHandler(View.ControlHandle handle, EventHandler value)
+        public void RemoveReadingCancelledHandler(View view, EventHandler value)
         {
             _readingCancelledHandler -= value;
             if (_readingCancelledHandler == null && _readingCancelledCallback != null)
             {
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingCancelledDisconnect(handle, _readingCancelledCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
                 _readingCancelledCallback = null;
             }
         }
 
-        public void AddReadingStoppedHandler(View.ControlHandle handle, EventHandler value)
+        public void AddReadingStoppedHandler(View view, EventHandler value)
         {
             if (_readingStoppedHandler == null)
             {
                 _readingStoppedCallback = OnAccessibilityReadingStoppedEvent;
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingStoppedConnect(handle, _readingStoppedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }
             _readingStoppedHandler += value;
         }
 
-        public void RemoveReadingStoppedHandler(View.ControlHandle handle, EventHandler value)
+        public void RemoveReadingStoppedHandler(View view, EventHandler value)
         {
             _readingStoppedHandler -= value;
             if (_readingStoppedHandler == null && _readingStoppedCallback != null)
             {
+                using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingStoppedDisconnect(handle, _readingStoppedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
                 _readingStoppedCallback = null;
