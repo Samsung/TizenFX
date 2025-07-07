@@ -70,7 +70,7 @@ namespace Tizen.NUI.Visuals
             get
             {
                 using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.GradientVisualProperty.StartPosition);
-                propretyValue.GetVector2Component(out var x, out var y);
+                propertyValue.GetVector2Component(out var x, out var y);
                 return new UIVector2(x, y);
             }
         }
@@ -89,7 +89,7 @@ namespace Tizen.NUI.Visuals
             get
             {
                 using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.GradientVisualProperty.EndPosition);
-                propretyValue.GetVector2Component(out var x, out var y);
+                propertyValue.GetVector2Component(out var x, out var y);
                 return new UIVector2(x, y);
             }
         }
@@ -108,7 +108,7 @@ namespace Tizen.NUI.Visuals
             get
             {
                 using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.GradientVisualProperty.Center);
-                propretyValue.GetVector2Component(out var x, out var y);
+                propertyValue.GetVector2Component(out var x, out var y);
                 return new UIVector2(x, y);
             }
         }
