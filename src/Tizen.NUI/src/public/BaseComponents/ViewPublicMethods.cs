@@ -340,11 +340,14 @@ namespace Tizen.NUI.BaseComponents
             IntPtr cPtr = Interop.View.GetRenderEffect(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            // We do not create new RenderEffect here.
-            RenderEffect renderEffect = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as RenderEffect;
-            Interop.BaseHandle.DeleteBaseHandle(new HandleRef(this, cPtr));
-            NDalicPINVOKE.ThrowExceptionIfExists();
-
+            RenderEffect renderEffect = null;
+            if (cPtr != IntPtr.Zero)
+            {
+                // We do not create new RenderEffect here.
+                renderEffect = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as RenderEffect;
+                Interop.BaseHandle.DeleteBaseHandle(new HandleRef(this, cPtr));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
             return renderEffect;
         }
 
