@@ -321,6 +321,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 Interop.View.SetRenderEffect(SwigCPtr, RenderEffect.getCPtr(effect));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                // Keep RenderEffect reference here, to let we allow to get RenderEffect from Registry.
+                AddToNativeHolder(effect);
             }
             else
             {
@@ -348,13 +351,22 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Clears render effect.
         /// </summary>
+        /// <param name="disposeEffect">Dispose render effect here if true.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void ClearRenderEffect()
+        public void ClearRenderEffect(bool disposeEffect = false)
         {
-            if(GetRenderEffect() != null)
+            var renderEffect = GetRenderEffect();
+            if (renderEffect != null)
             {
                 Interop.View.ClearRenderEffect(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                // Remove RenderEffect reference here.
+                RemoveFromNativeHolder(renderEffect);
+                if (disposeEffect)
+                {
+                    renderEffect.Dispose();
+                }
             }
         }
 
