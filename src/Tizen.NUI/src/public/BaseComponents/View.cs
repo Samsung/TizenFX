@@ -451,7 +451,6 @@ namespace Tizen.NUI.BaseComponents
         static internal new void Preload()
         {
             Container.Preload();
-            RegisterAccessibilityDelegate();
         }
 
         /// <summary>
@@ -507,16 +506,16 @@ namespace Tizen.NUI.BaseComponents
 
         private static IntPtr NewWithAccessibilityModeAndResizePolicyMode(ViewAccessibilityMode accessibilityMode, ViewResizePolicyMode resizePolicyMode)
         {
+            if (onceForViewAccessibilityModeCustom == false)
+            {
+                onceForViewAccessibilityModeCustom = true;
+                RegisterAccessibilityDelegate();
+            }
+
             switch (accessibilityMode)
             {
                 case ViewAccessibilityMode.Custom:
                 {
-                    if (onceForViewAccessibilityModeCustom == false)
-                    {
-                        onceForViewAccessibilityModeCustom = true;
-                        RegisterAccessibilityDelegate();
-                    }
-
                     switch (resizePolicyMode)
                     {
                         case ViewResizePolicyMode.Ignore:
