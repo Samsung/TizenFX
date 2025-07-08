@@ -511,7 +511,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 case ViewAccessibilityMode.Custom:
                 {
-                    if (onceForViewAccessibilityModeCustom == false)
+                    if (onceForViewAccessibilityModeCustom == false && NUIApplication.IsPreload == false)
                     {
                         onceForViewAccessibilityModeCustom = true;
                         RegisterAccessibilityDelegate();
@@ -533,6 +533,13 @@ namespace Tizen.NUI.BaseComponents
                 case ViewAccessibilityMode.Default:
                 default:
                 {
+#if !PROFILE_TV
+                    if (onceForViewAccessibilityModeCustom == false && NUIApplication.IsPreload == false)
+                    {
+                        onceForViewAccessibilityModeCustom = true;
+                        RegisterAccessibilityDelegate();
+                    }
+#endif
                     switch (resizePolicyMode)
                     {
                         case ViewResizePolicyMode.Ignore:
