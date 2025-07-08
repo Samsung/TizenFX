@@ -208,6 +208,22 @@ namespace Tizen.NUI.MarkdownRenderer
             }
         }
 
+        private int GetListDepth(Block block)
+        {
+            int depth = 0;
+            if (block.Parent is ListItemBlock listItem)
+            {
+                Block current = block.Parent;
+                while (current != null)
+                {
+                    if (current is ListItemBlock)
+                        depth ++;
+                    current = current.Parent;
+                }
+            }
+            return depth;
+        }
+
         private int GetIndent(Block block)
         {
             int indent = 0;
@@ -313,11 +329,11 @@ namespace Tizen.NUI.MarkdownRenderer
                         int index = listBlock.IndexOf(listItem);
                         int start = int.TryParse(listBlock.OrderedStart?.ToString(), out var s) ? s : 1;
                         int number = start + index;
-                        return new UIListItemParagraph(text, number, style.List, style.Paragraph, hash, AsyncRendering);
+                        return new UIListItemParagraph(text, isOrdered: true, numberOrDepth: number, style.List, style.Paragraph, hash, AsyncRendering);
                     }
                     else
                     {
-                        return new UIListItemParagraph(text, style.List, style.Paragraph, hash, AsyncRendering);
+                        return new UIListItemParagraph(text, isOrdered: false, numberOrDepth: GetListDepth(block), style.List, style.Paragraph, hash, AsyncRendering);
                     }
                 }
                 case ParagraphBlock when block.Parent is QuoteBlock:
