@@ -184,12 +184,12 @@ namespace Tizen.NUI.Components
                         // or Width for horizontal scrolling
                         if (scrollingDirection == Direction.Vertical)
                         {
-                            MeasureSpecification unrestrictedMeasureSpec = new MeasureSpecification(heightMeasureSpec.Size, MeasureSpecification.ModeType.Unspecified);
+                            MeasureSpecification unrestrictedMeasureSpec = new MeasureSpecification(new LayoutLength(int.MaxValue), MeasureSpecification.ModeType.AtMost);
                             MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), unrestrictedMeasureSpec, new LayoutLength(0)); // Height unrestricted by parent
                         }
                         else
                         {
-                            MeasureSpecification unrestrictedMeasureSpec = new MeasureSpecification(widthMeasureSpec.Size, MeasureSpecification.ModeType.Unspecified);
+                            MeasureSpecification unrestrictedMeasureSpec = new MeasureSpecification(new LayoutLength(int.MaxValue), MeasureSpecification.ModeType.AtMost);
                             MeasureChildWithMargins(childLayout, unrestrictedMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0)); // Width unrestricted by parent
                         }
 
