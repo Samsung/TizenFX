@@ -41,26 +41,18 @@ namespace Tizen.NUI.MarkdownRenderer
             set => uiParagraph.Text = value;
         }
 
-        public UIListItemParagraph(string text, ListStyle listStyle, ParagraphStyle paragraphStyle, string hash, bool asyncRendering) : base()
+        public UIListItemParagraph(string text, bool isOrdered, int numberOrDepth, ListStyle listStyle, ParagraphStyle paragraphStyle, string hash, bool asyncRendering) : base()
         {
             ContentHash = hash;
             list = listStyle;
             paragraph = paragraphStyle;
             SetupLayout();
 
-            Add(CreateBullet());
-            uiParagraph = new UIParagraph(text, paragraph, string.Empty, asyncRendering);
-            Add(uiParagraph);
-        }
+            if (isOrdered)
+                Add(CreateNumber(numberOrDepth, asyncRendering));
+            else
+                Add(CreateBullet(numberOrDepth));
 
-        public UIListItemParagraph(string text, int number, ListStyle listStyle, ParagraphStyle paragraphStyle, string hash, bool asyncRendering) : base()
-        {
-            ContentHash = hash;
-            list = listStyle;
-            paragraph = paragraphStyle;
-            SetupLayout();
-
-            Add(CreateNumber(number, asyncRendering));
             uiParagraph = new UIParagraph(text, paragraph, string.Empty, asyncRendering);
             Add(uiParagraph);
         }
@@ -72,7 +64,7 @@ namespace Tizen.NUI.MarkdownRenderer
             Margin = new Extents(0, 0, (ushort)list.ItemMarginTop, (ushort)list.ItemMarginBottom);
         }
 
-        private View CreateBullet()
+        private View CreateBullet(int depth)
         {
             int bulletSize = UIList.GetBulletSize(paragraph);
             ushort bulletMargin = UIList.GetBulletMargin(bulletSize, paragraph);
@@ -80,10 +72,41 @@ namespace Tizen.NUI.MarkdownRenderer
             {
                 WidthSpecification = bulletSize,
                 HeightSpecification = bulletSize,
-                BackgroundColor = new Color(paragraph.FontColor),
                 Margin = new Extents(bulletMargin),
             };
+            ApplyBulletStyle(bullet, depth);
             return bullet;
+        }
+
+        private void ApplyBulletStyle(View bullet, int depth)
+        {
+            switch (depth)
+            {
+                case 1:
+                {
+                    // Filled round bullet.
+                    bullet.BackgroundColor = new Color(paragraph.FontColor);
+                    bullet.CornerRadius = 0.5f;
+                    bullet.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
+                    break;
+                }
+                case 2:
+                {
+                    // Hollow round bullet.
+                    bullet.BackgroundColor = Color.Transparent;
+                    bullet.CornerRadius = 0.5f;
+                    bullet.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
+                    bullet.BorderlineColor = new Color(paragraph.FontColor);
+                    bullet.BorderlineWidth = Math.Clamp(paragraph.FontSize / 16, 1.0f, 2.5f);
+                    break;
+                }
+                default:
+                {
+                    // Rectangular bullet.
+                    bullet.BackgroundColor = new Color(paragraph.FontColor);
+                    break;
+                }
+            }
         }
 
         private UIParagraph CreateNumber(int number, bool asyncRendering)
@@ -136,7 +159,7 @@ namespace Tizen.NUI.MarkdownRenderer
     {
         public static int GetBulletSize(ParagraphStyle paragraph)
         {
-            return Math.Max(2, (int)Math.Round(paragraph.FontSize / 4));
+            return Math.Max(2, (int)Math.Round(paragraph.FontSize / 4 + 1));
         }
 
         public static ushort GetBulletMargin(int bulletSize, ParagraphStyle paragraph)
