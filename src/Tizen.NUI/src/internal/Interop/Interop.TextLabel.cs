@@ -227,6 +227,9 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_RequestAsyncRenderWithFixedWidth")]
             public static extern void RequestAsyncRenderWithFixedWidth(HandleRef textLabelRef, float width, float heightConstraint);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_RequestAsyncRenderWithFixedHeight")]
+            public static extern void RequestAsyncRenderWithFixedHeight(HandleRef textLabelRef, float widthConstraint, float height);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_RequestAsyncRenderWithConstraint")]
             public static extern void RequestAsyncRenderWithConstraint(HandleRef textLabelRef, float widthConstraint, float heightConstraint);
 
