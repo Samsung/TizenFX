@@ -45,6 +45,13 @@ namespace Tizen.NUI
         static public bool IsUsingXaml { get; set; } = true;
 
         /// <summary>
+        /// Set to true if NUI ThemeManager is used.
+        /// The default value is true.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool IsUsingThemeManager { get; set; } = true;
+
+        /// <summary>
         /// The instance of ResourceManager.
         /// </summary>
         private static System.Resources.ResourceManager resourceManager;
