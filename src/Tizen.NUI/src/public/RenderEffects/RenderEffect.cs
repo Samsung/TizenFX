@@ -47,8 +47,36 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RenderEffect : BaseHandle
     {
+        private WeakReference<View> _ownerView;
+
+        internal void SetOwnerView(View view)
+        {
+            if (_ownerView != null)
+            {
+                if (!_ownerView.Equals(view) && _ownerView.TryGetTarget(out View previousTarget) && previousTarget != null)
+                {
+                    previousTarget.ClearRenderEffect(false);
+                }
+            }
+            _ownerView = view ? new WeakReference<View>(view) : null;
+        }
+
         internal RenderEffect(global::System.IntPtr cPtr) : base(cPtr)
         {
+        }
+
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (!Disposed)
+            {
+                if ((_ownerView != null) && _ownerView.TryGetTarget(out View target) && target != null)
+                {
+                    target.ClearRenderEffect();
+                    _ownerView = null;
+                }
+
+                base.Dispose(type);
+            }
         }
 
         /// <summary>
