@@ -324,6 +324,7 @@ namespace Tizen.NUI.BaseComponents
 
                 // Keep RenderEffect reference here, to let we allow to get RenderEffect from Registry.
                 AddToNativeHolder(effect);
+                effect.SetOwnerView(this);
             }
             else
             {
@@ -366,6 +367,7 @@ namespace Tizen.NUI.BaseComponents
 
                 // Remove RenderEffect reference here.
                 RemoveFromNativeHolder(renderEffect);
+                renderEffect.SetOwnerView(null);
                 if (disposeEffect)
                 {
                     renderEffect.Dispose();
