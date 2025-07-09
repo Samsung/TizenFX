@@ -543,15 +543,6 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        // FIXME: DALi has a bug that setting Size property with 0 does not work.
-        //        However, setting SizeWith or SizeHeight property with 0 works.
-        //        So in NUI Layout, size is updated by setting SizeWidth and SizeHeight properties.
-        internal void SetLayoutSize(float width, float height)
-        {
-            Object.InternalSetPropertyFloat(SwigCPtr, Property.SizeWidth, width);
-            Object.InternalSetPropertyFloat(SwigCPtr, Property.SizeHeight, height);
-        }
-
         internal Vector3 GetTargetSize()
         {
 
