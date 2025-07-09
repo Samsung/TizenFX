@@ -77,13 +77,7 @@ namespace Tizen.NUI.BaseComponents
                         {
                             if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
                             {
-                                // TODO : Async Render with "Constraint Width" and "Fixed Height" is not currently supported in DALi Text.
-                                var minWidth = Owner.GetMinimumWidth();
-                                var maxWidth = Owner.GetMaximumWidth();
-                                var naturalSize = Owner.GetNaturalSize();
-                                float tempWidth = naturalSize != null ? naturalSize.Width : 0;
-                                totalWidth = Math.Max(Math.Min(tempWidth, maxWidth < 0 ? Int32.MaxValue : maxWidth), minWidth);
-                                label.RequestAsyncRenderWithFixedSize(totalWidth, totalHeight);
+                                label.RequestAsyncRenderWithFixedHeight(totalWidth, totalHeight);
                             }
                             else
                             {
@@ -428,6 +422,23 @@ namespace Tizen.NUI.BaseComponents
         public void RequestAsyncRenderWithFixedWidth(float width, float heightConstraint = float.PositiveInfinity)
         {
             Interop.TextLabel.RequestAsyncRenderWithFixedWidth(SwigCPtr, width, heightConstraint);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Requests asynchronous text rendering with a fixed height.
+        /// </summary>
+        /// <param name="widthConstraint">The maximum available width of text to render.</param>
+        /// <param name="height">The height of text to render.</param>
+        /// <remarks>
+        /// Only works when AsyncAuto and AsyncManual.<br />
+        /// The width is determined by the content of the text.<br />
+        /// The maximum width will be the widthConstraint.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RequestAsyncRenderWithFixedHeight(float widthConstraint, float height)
+        {
+            Interop.TextLabel.RequestAsyncRenderWithFixedHeight(SwigCPtr, widthConstraint, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
