@@ -612,13 +612,13 @@ namespace Tizen.NUI
                         if (!Owner.LayoutWidth.IsFixedValue || Owner.LayoutWidth != Owner.SizeWidth ||
                             !Owner.LayoutHeight.IsFixedValue || Owner.LayoutHeight != Owner.SizeHeight)
                         {
-                            Owner.SetLayoutSize(right - left, bottom - top);
+                            Owner.SetSize(right - left, bottom - top);
                             Owner.NotifyLayoutUpdated(false);
                         }
                     }
                     else
                     {
-                        Owner.SetLayoutSize(right - left, bottom - top);
+                        Owner.SetSize(right - left, bottom - top);
                         Owner.SetPosition(left, top);
                         Owner.NotifyLayoutUpdated(false);
                     }
