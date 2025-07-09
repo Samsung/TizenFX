@@ -65,6 +65,11 @@ namespace Tizen.NUI
 
         static ThemeManager()
         {
+            if (!NUIApplication.IsUsingThemeManager)
+            {
+                InitialThemeDisabled = true;
+            }
+
             if (InitialThemeDisabled) return;
 
             ExternalThemeManager.Initialize();
@@ -174,9 +179,9 @@ namespace Tizen.NUI
         internal static bool ApplicationThemeChangeSensitive { get; set; }
 
 #if PROFILE_TV
-        internal const bool InitialThemeDisabled = true;
+        internal static bool InitialThemeDisabled = true;
 #else
-        internal const bool InitialThemeDisabled = false;
+        internal static bool InitialThemeDisabled = false;
 #endif
 
         /// <summary>
