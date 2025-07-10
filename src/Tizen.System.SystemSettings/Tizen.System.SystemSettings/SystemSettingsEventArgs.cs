@@ -1213,4 +1213,37 @@ namespace Tizen.System
         /// <since_tizen> 6 </since_tizen>
         public bool Value { get; }
     }
+
+    /// <summary>
+    /// This is EventArgs type for the OobeChanged event.
+    /// </summary>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <feature>http://tizen.org/feature/systemsettings.oobe</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 6 </since_tizen>
+    public class OobeChangedEventArgs : EventArgs
+    {
+        private readonly bool _oobe;
+        internal OobeChangedEventArgs(bool val)
+        {
+            _oobe = val;
+        }
+
+        /// <summary>
+        /// Indicates whether accessibility negative color is enabled on the device or not.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        public bool Value
+        {
+            get
+            {
+                return _oobe;
+            }
+        }
+    }
 }
