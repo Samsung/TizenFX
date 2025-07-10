@@ -41,7 +41,6 @@ namespace Tizen.NUI.BaseComponents
         private LayoutExtraData layoutExtraData;
         private ThemeData themeData;
         private Dictionary<Type, object> attached;
-        private bool isThemeChanged;
 
         // Collection of image-sensitive properties, and need to update C# side cache value.
         private static readonly List<int> cachedNUIViewBackgroundImagePropertyKeyList = new List<int> {
@@ -49,8 +48,6 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.SynchronousLoading,
         };
         private string backgroundImageUrl;
-        private bool backgroundImageSynchronousLoading;
-
         private List<Renderable> renderables;
 
         // List of constraints
@@ -89,13 +86,30 @@ namespace Tizen.NUI.BaseComponents
         private Vector4 internalCurrentColor;
         private Vector4 internalCurrentWorldColor;
         private Vector2 internalCurrentScreenPosition;
-
-        /// <summary>
-        /// Indicates that this View should listen Touch event to handle its ControlState.
-        /// </summary>
-        private bool enableControlState;
-
         private static int aliveCount;
+        private ViewFlags _viewFlags = ViewFlags.Default;
+
+        [Flags]
+        private enum ViewFlags
+        {
+            None = 0,
+            DispatchTouch = 1,
+            DispatchParentTouch = 1 << 1,
+            DispatchHover = 1 << 2,
+            DispatchParentHover = 1 << 3,
+            DispatchWheel = 1 << 4,
+            DispatchParentWheel = 1 << 5,
+            DispatchGesture = 1 << 6,
+            DispatchParentGesture = 1 << 7,
+            AllowInterceptTouch = 1 << 8,
+            AllowInterceptWheel = 1 << 9,
+            ThemeChanged = 1 << 10,
+            BackgroundImageSynchronousLoading = 1 << 11,
+            EnableControlState = 1 << 12, // Indicates that this View should listen Touch event to handle its ControlState.
+            DispatchAllEvents = DispatchTouch | DispatchParentTouch | DispatchHover | DispatchParentHover | DispatchWheel | DispatchParentWheel | DispatchGesture | DispatchParentGesture,
+            AllowAllEvents = AllowInterceptTouch | AllowInterceptWheel,
+            Default =  DispatchAllEvents | AllowAllEvents
+        }
 
         static View()
         {
@@ -1249,7 +1263,8 @@ namespace Tizen.NUI.BaseComponents
                     }
                     else if (key == ImageVisualProperty.SynchronousLoading)
                     {
-                        propertyValue.Get(out backgroundImageSynchronousLoading);
+                        propertyValue.Get(out bool backgroundImageSynchronousLoading);
+                        UpdateFlags(ViewFlags.BackgroundImageSynchronousLoading, backgroundImageSynchronousLoading);
                     }
                 }
             }
@@ -2927,7 +2942,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    temp = GetInternalSize2D(); 
+                    temp = GetInternalSize2D();
                 }
                 if (this.Layout == null)
                 {
@@ -6536,20 +6551,17 @@ namespace Tizen.NUI.BaseComponents
 
         private bool InternalBackgroundImageSynchronousLoading
         {
-            get
-            {
-                return backgroundImageSynchronousLoading;
-            }
+            get => _viewFlags.HasFlag(ViewFlags.BackgroundImageSynchronousLoading);
             set
             {
-                if (backgroundImageSynchronousLoading != value)
+                if (InternalBackgroundImageSynchronousLoading != value)
                 {
-                    backgroundImageSynchronousLoading = value;
+                    UpdateFlags(ViewFlags.BackgroundImageSynchronousLoading, value);
 
                     if (!string.IsNullOrEmpty(BackgroundImage))
                     {
                         PropertyMap bgMap = this.Background;
-                        bgMap.Set(ImageVisualProperty.SynchronousLoading, backgroundImageSynchronousLoading);
+                        bgMap.Set(ImageVisualProperty.SynchronousLoading, value);
                         Background = bgMap;
                     }
                 }
@@ -6763,10 +6775,10 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalEnableControlState(bool enableControlStateArg)
         {
-            bool prev = enableControlState;
-            enableControlState = enableControlStateArg;
+            bool prev = _viewFlags.HasFlag(ViewFlags.EnableControlState);
+            UpdateFlags(ViewFlags.EnableControlState, enableControlStateArg);
 
-            if (prev != enableControlState)
+            if (prev != enableControlStateArg)
             {
                 if (prev)
                 {
@@ -6781,7 +6793,7 @@ namespace Tizen.NUI.BaseComponents
 
         private bool GetInternalEnableControlState()
         {
-            return enableControlState;
+            return _viewFlags.HasFlag(ViewFlags.EnableControlState);
         }
 
         /// <summary>
@@ -7037,10 +7049,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnThemeChanged(object sender, ThemeChangedEventArgs e)
         {
-            isThemeChanged = true;
+            UpdateFlags(ViewFlags.ThemeChanged, true);
             if (string.IsNullOrEmpty(styleName)) ApplyStyle(ThemeManager.GetUpdateStyleWithoutClone(GetType()));
             else ApplyStyle(ThemeManager.GetUpdateStyleWithoutClone(styleName));
-            isThemeChanged = false;
+            UpdateFlags(ViewFlags.ThemeChanged, false);
         }
 
         /// <summary>
@@ -7310,7 +7322,7 @@ namespace Tizen.NUI.BaseComponents
                 bindablePropertyOfView.TryGetValue(sourceProperty.PropertyName, out var destinationProperty);
 
                 // Do not set value again when theme is changed and the value has been set already.
-                if (isThemeChanged && ChangedPropertiesSetExcludingStyle != null && ChangedPropertiesSetExcludingStyle.Contains(destinationProperty.PropertyName))
+                if (_viewFlags.HasFlag(ViewFlags.ThemeChanged) && ChangedPropertiesSetExcludingStyle != null && ChangedPropertiesSetExcludingStyle.Contains(destinationProperty.PropertyName))
                 {
                     continue;
                 }
@@ -7319,6 +7331,18 @@ namespace Tizen.NUI.BaseComponents
                 {
                     InternalSetValue(destinationProperty, sourceValue);
                 }
+            }
+        }
+
+        private void UpdateFlags(ViewFlags flag, bool value)
+        {
+            if (value)
+            {
+                _viewFlags |= flag;
+            }
+            else
+            {
+                _viewFlags &= ~flag;
             }
         }
     }
