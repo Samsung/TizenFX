@@ -16,7 +16,7 @@
 
 using System;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Tizen.System
 {
@@ -39,15 +39,16 @@ namespace Tizen.System
 
         internal SubsessionEventInfoNative SessionInfo { get; set; }
 
-        internal SubsessionEventArgs(IntPtr infoNativePtr)
+        internal SubsessionEventArgs(SubsessionEventInfoNative eventInfo)
         {
-            SessionInfo = (SubsessionEventInfoNative)Marshal.PtrToStructure(infoNativePtr, typeof(SubsessionEventInfoNative));
-            SessionUID = SessionInfo.sessionUID;
+            SessionUID = eventInfo.SessionUID;
+            SessionInfo = eventInfo;
         }
+
     }
 
     /// <summary>
-    /// An event arguemnt type for AddUserWait event type
+    /// An event argument type for AddUserWait event type
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class AddUserEventArgs : SubsessionEventArgs
@@ -58,15 +59,21 @@ namespace Tizen.System
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string UserName { get; internal set; }
 
-        internal AddUserEventArgs(IntPtr infoNativePtr)
-            : base(infoNativePtr)
+        internal AddUserEventArgs(SubsessionEventInfoNative eventInfo)
+            : base(eventInfo)
         {
-            UserName = Marshal.PtrToStringAnsi(IntPtr.Add(infoNativePtr, 8), 20);
+            unsafe
+            {
+                UserName = Encoding.ASCII
+                    .GetString(eventInfo.Union.AddUser.UserName, Session.MaxUserLength)
+                    .TrimEnd('\0');
+            }
         }
+
     }
 
     /// <summary>
-    /// An event arguemnt type for RemoveUserWait event type
+    /// An event argument type for RemoveUserWait event type
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RemoveUserEventArgs : SubsessionEventArgs
@@ -77,10 +84,15 @@ namespace Tizen.System
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string UserName { get; internal set; }
 
-        internal RemoveUserEventArgs(IntPtr infoNativePtr)
-            : base(infoNativePtr)
+        internal RemoveUserEventArgs(SubsessionEventInfoNative eventInfo)
+            : base(eventInfo)
         {
-            UserName = Marshal.PtrToStringAnsi(IntPtr.Add(infoNativePtr, 8), 20);
+            unsafe
+            {
+                UserName = Encoding.ASCII
+                    .GetString(eventInfo.Union.RemoveUser.UserName, Session.MaxUserLength)
+                    .TrimEnd('\0');
+            }
         }
     }
 
@@ -108,30 +120,39 @@ namespace Tizen.System
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string UserNameNext { get; internal set; }
 
-        internal SwitchUserEventArgs(IntPtr infoNativePtr)
-            : base(infoNativePtr)
+        internal SwitchUserEventArgs(SubsessionEventInfoNative eventInfo)
+            : base(eventInfo)
         {
-            SwitchID = SessionInfo.switchID;
-            UserNamePrev = Marshal.PtrToStringAnsi(IntPtr.Add(infoNativePtr, 16), 20);
-            UserNameNext = Marshal.PtrToStringAnsi(IntPtr.Add(infoNativePtr, 36), 20);
+            SwitchID = eventInfo.Union.SwitchUser.SwitchID;
+
+            unsafe
+            {
+                UserNamePrev = Encoding.ASCII
+                    .GetString(eventInfo.Union.SwitchUser.UserNamePrev, Session.MaxUserLength)
+                    .TrimEnd('\0');
+
+                UserNameNext = Encoding.ASCII
+                    .GetString(eventInfo.Union.SwitchUser.UserNameNext, Session.MaxUserLength)
+                    .TrimEnd('\0');
+            }
         }
     }
 
     /// <summary>
-    /// An event arguemnt type for SwitchUserWait event type
+    /// An event argument type for SwitchUserWait event type
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SwitchUserWaitEventArgs : SwitchUserEventArgs
     {
-        internal SwitchUserWaitEventArgs(IntPtr infoNativePtr) : base(infoNativePtr) { }
+        internal SwitchUserWaitEventArgs(SubsessionEventInfoNative eventInfo) : base(eventInfo) { }
     }
 
     /// <summary>
-    /// An event arguemnt type for SwitchUserCompleted event type
+    /// An event argument type for SwitchUserCompleted event type
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SwitchUserCompletionEventArgs : SwitchUserEventArgs
     {
-        internal SwitchUserCompletionEventArgs(IntPtr infoNativePtr) : base(infoNativePtr) { }
+        internal SwitchUserCompletionEventArgs(SubsessionEventInfoNative eventInfo) : base(eventInfo) { }
     }
 }
