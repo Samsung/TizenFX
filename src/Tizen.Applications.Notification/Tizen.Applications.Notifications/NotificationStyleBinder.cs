@@ -317,4 +317,100 @@ namespace Tizen.Applications.Notifications
             }
         }
     }
+
+    internal static class ExtensionBinder
+    {
+        internal static void BindObject(Notification notification)
+        {
+            int applist;
+            Notification.ExtensionStyle style = (Notification.ExtensionStyle)notification.GetStyle("Extension");
+            Interop.Notification.GetApplist(notification.Handle, out applist);
+
+            if (style.IsThumbnail) {
+                Interop.Notification.SetLayout(notification.Handle, NotificationLayout.Thumbnail);
+
+                if (string.IsNullOrEmpty(style.ThumbnailImagePath) == false) {
+                    Interop.Notification.SetImage(notification.Handle, NotificationImage.Thumbnail, style.ThumbnailImagePath);
+                }
+
+                if (style.ThumbnailAction != null && style.ThumbnailAction.SafeAppControlHandle.IsInvalid == false)
+                {
+                    Interop.Notification.SetEventHandler(notification.Handle, (int)NotificationEventType.ClickOnThumbnail, style.ThumbnailAction.SafeAppControlHandle);
+                }
+            } else {
+                Interop.Notification.SetLayout(notification.Handle, NotificationLayout.Extension);
+
+                if (string.IsNullOrEmpty(style.ExtensionImagePath) == false)
+                {
+                    Interop.Notification.SetImage(notification.Handle, NotificationImage.Extension, style.ExtensionImagePath);
+                }
+                Interop.Notification.SetExtensionImageSize(notification.Handle, style.ExtensionImageSize);
+            }
+
+            if (style.IsActive)
+            {
+                applist |= (int)NotificationDisplayApplist.Active;
+                Interop.Notification.SetApplist(notification.Handle, applist);
+            }
+        }
+
+        internal static void BindSafehandle(Notification notification)
+        {
+            NotificationLayout layout;
+            bool isExisted = false;
+            SafeAppControlHandle appcontrol = null;
+            string path;
+            int appList;
+
+            Interop.Notification.GetLayout(notification.Handle, out layout);
+            Interop.Notification.GetApplist(notification.Handle, out appList);
+
+            Notification.ExtensionStyle style = new Notification.ExtensionStyle();
+            if (layout == NotificationLayout.Thumbnail)
+            {
+                appcontrol = null;
+                Interop.Notification.GetEventHandler(notification.Handle, (int)NotificationEventType.ClickOnThumbnail, out appcontrol);
+                if (appcontrol != null && appcontrol.IsInvalid == false)
+                {
+                    style.ThumbnailAction = new AppControl(appcontrol);
+                }
+
+                Interop.Notification.GetImage(notification.Handle, NotificationImage.Thumbnail, out path);
+                if (string.IsNullOrEmpty(path) == false)
+                {
+                    style.ThumbnailImagePath = path;
+                }
+                style.IsThumbnail = true;
+
+                if ((appList & (int)NotificationDisplayApplist.Active) == 0)
+                {
+                    style.IsActive = true;
+                }
+
+                isExisted = true;
+            }
+            else if (layout == NotificationLayout.Extension)
+            {
+                int size = 0;
+                Interop.Notification.GetImage(notification.Handle, NotificationImage.Extension, out path);
+                if (string.IsNullOrEmpty(path) == false)
+                {
+                    style.ExtensionImagePath = path;
+                }
+                Interop.Notification.GetExtensionImageSize(notification.Handle, out size);
+                style.ExtensionImageSize = size;
+                style.IsThumbnail = false;
+
+                if ((appList & (int)NotificationDisplayApplist.Active) == 0)
+                {
+                    style.IsActive = true;
+                }
+
+                isExisted = true;
+            }
+
+            if (isExisted)
+                notification.AddStyle(style);
+        }
+    }
 }
