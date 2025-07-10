@@ -22,31 +22,47 @@ using Tizen.Internals;
 
 namespace Tizen.System
 {
-    [NativeStruct("subsession_event_info", Include="sessiond.h", PkgConfig="libsessiond")]
-    [StructLayout(LayoutKind.Explicit)]
+    [NativeStruct("subsession_event_info", Include = "sessiond.h", PkgConfig = "libsessiond")]
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
     internal struct SubsessionEventInfoNative
     {
+        public SessionEventType EventType;
+
+        public int SessionUID;
+
+        public EventInfoUnion Union;
+    }
+
+    [StructLayout(LayoutKind.Explicit, Pack = 1)]
+    internal struct EventInfoUnion
+    {
         [FieldOffset(0)]
-        public SessionEventType eventType;
-        [FieldOffset(4)]
-        public int sessionUID;
+        public AddUserInfo AddUser;
+        [FieldOffset(0)]
+        public RemoveUserInfo RemoveUser;
+        [FieldOffset(0)]
+        public SwitchUserInfo SwitchUser;
+    }
 
-        [FieldOffset(8)]
-        public Int64 switchID;
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
+    internal unsafe struct AddUserInfo
+    {
+        public fixed byte UserName[Session.MaxUserLength];
+    }
 
-        /// The following 4 fields are here just for the record and for the NativeStruct validation
-        /// which is performed as one of the steps during build with GBS.
-        /// However, we've verified that representing the whole structure as IntPtr and accessing
-        /// individual string fields with PtrToStructure with and PtrToStringAnsi + IntPtr.Add is
-        /// the only way to make it work. That's why we do not use these fields and they shouldn't
-        /// be accessed directly.
-        [FieldOffset(8)]
-        private IntPtr AddUserPtr;
-        [FieldOffset(8)]
-        private IntPtr RemoveUserPtr;
-        [FieldOffset(16)]
-        private IntPtr PrevUserPtr;
-        [FieldOffset(36)]
-        private IntPtr NextUserPtr;
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
+    internal unsafe struct RemoveUserInfo
+    {
+        public fixed byte UserName[Session.MaxUserLength];
+    }
+
+    [StructLayout(LayoutKind.Sequential, Pack = 1)]
+    internal unsafe struct SwitchUserInfo
+    {
+        public long SwitchID;
+
+        public fixed byte UserNamePrev[Session.MaxUserLength];
+
+        public fixed byte UserNameNext[Session.MaxUserLength];
     }
 }
