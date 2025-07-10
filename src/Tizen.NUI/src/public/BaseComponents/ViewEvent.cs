@@ -112,15 +112,6 @@ namespace Tizen.NUI.BaseComponents
         private TapGestureDetector tapGestureDetector;
         private RotationGestureDetector rotationGestureDetector;
         private int configGestureCount;
-        private bool dispatchTouchEvents = true;
-        private bool dispatchParentTouchEvents = true;
-        private bool dispatchHoverEvents = true;
-        private bool dispatchParentHoverEvents = true;
-        private bool dispatchWheelEvents = true;
-        private bool dispatchParentWheelEvents = true;
-        private bool dispatchGestureEvents = true;
-        private bool dispatchParentGestureEvents = true;
-
 
         /// <summary>
         /// Event when a child is removed.
@@ -295,8 +286,11 @@ namespace Tizen.NUI.BaseComponents
         ///  This prevents the parent from intercepting touch.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool DisallowInterceptTouchEvent { get; set; }
-
+        public bool DisallowInterceptTouchEvent
+        {
+            get => !HasViewEventFlag(ViewFlags.AllowInterceptTouch);
+            set => UpdateViewEventFlag(ViewFlags.AllowInterceptTouch, !value);
+        }
 
         /// <summary>
         /// An event for the touched signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
@@ -400,7 +394,11 @@ namespace Tizen.NUI.BaseComponents
         ///  This prevents the parent from intercepting wheel event.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool DisallowInterceptWheelEvent { get; set; }
+        public bool DisallowInterceptWheelEvent
+        {
+            get => !HasViewEventFlag(ViewFlags.AllowInterceptWheel);
+            set => UpdateViewEventFlag(ViewFlags.AllowInterceptWheel, !value);
+        }
 
         /// <summary>
         /// An event for the WheelMoved signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
@@ -944,7 +942,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (interceptTouchDataEventHandler != null)
             {
-                if(NUIApplication.IsGeometryHittestEnabled())
+                if (NUIApplication.IsGeometryHittestEnabled())
                 {
                     Delegate[] delegateList = interceptTouchDataEventHandler.GetInvocationList();
                     // Oring the result of each callback.
@@ -990,7 +988,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (touchDataEventHandler != null)
             {
-                if(NUIApplication.IsGeometryHittestEnabled())
+                if (NUIApplication.IsGeometryHittestEnabled())
                 {
                     Delegate[] delegateList = touchDataEventHandler.GetInvocationList();
                     // Oring the result of each callback.
@@ -1005,7 +1003,7 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
 
-            if (enableControlState && !consumed)
+            if (_viewFlags.HasFlag(ViewFlags.EnableControlState) && !consumed)
             {
                 consumed = HandleControlStateOnTouch(e.Touch);
             }
@@ -1179,7 +1177,7 @@ namespace Tizen.NUI.BaseComponents
             if (changedViewCPtr != IntPtr.Zero)
             {
                 e.View = Registry.GetManagedBaseHandleFromNativePtr(changedViewCPtr) as View;
-                if(e.View != null)
+                if (e.View != null)
                 {
                     Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, changedViewCPtr));
                 }
@@ -1689,16 +1687,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DispatchTouchEvents
         {
-            get
-            {
-                return dispatchTouchEvents;
-            }
+            get => HasViewEventFlag(ViewFlags.DispatchTouch);
             set
             {
-                if (dispatchTouchEvents != value)
+                if (UpdateViewEventFlag(ViewFlags.DispatchTouch, value))
                 {
-                    dispatchTouchEvents = value;
-                    if (dispatchTouchEvents == false)
+                    if (!value)
                     {
                         TouchEvent += OnDispatchTouchEvent;
                     }
@@ -1726,16 +1720,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DispatchParentTouchEvents
         {
-            get
-            {
-                return dispatchParentTouchEvents;
-            }
+            get => HasViewEventFlag(ViewFlags.DispatchParentTouch);
             set
             {
-                if (dispatchParentTouchEvents != value)
+                if (UpdateViewEventFlag(ViewFlags.DispatchParentTouch, value))
                 {
-                    dispatchParentTouchEvents = value;
-                    if (dispatchParentTouchEvents == false)
+                    if (!value)
                     {
                         TouchEvent += OnDispatchParentTouchEvent;
                     }
@@ -1763,16 +1753,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DispatchHoverEvents
         {
-            get
-            {
-                return dispatchHoverEvents;
-            }
+            get => HasViewEventFlag(ViewFlags.DispatchHover);
             set
             {
-                if (dispatchHoverEvents != value)
+                if (UpdateViewEventFlag(ViewFlags.DispatchHover, value))
                 {
-                    dispatchHoverEvents = value;
-                    if (dispatchHoverEvents == false)
+                    if (!value)
                     {
                         HoverEvent += OnDispatchHoverEvent;
                     }
@@ -1800,16 +1786,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DispatchParentHoverEvents
         {
-            get
-            {
-                return dispatchParentHoverEvents;
-            }
+            get => HasViewEventFlag(ViewFlags.DispatchParentHover);
             set
             {
-                if (dispatchParentHoverEvents != value)
+                if (UpdateViewEventFlag(ViewFlags.DispatchParentHover, value))
                 {
-                    dispatchParentHoverEvents = value;
-                    if (dispatchParentHoverEvents == false)
+                    if (!value)
                     {
                         HoverEvent += OnDispatchParentHoverEvent;
                     }
@@ -1837,16 +1819,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DispatchWheelEvents
         {
-            get
-            {
-                return dispatchWheelEvents;
-            }
+            get => HasViewEventFlag(ViewFlags.DispatchWheel);
             set
             {
-                if (dispatchWheelEvents != value)
+                if (UpdateViewEventFlag(ViewFlags.DispatchWheel, value))
                 {
-                    dispatchWheelEvents = value;
-                    if (dispatchWheelEvents == false)
+                    if (!value)
                     {
                         WheelEvent += OnDispatchWheelEvent;
                     }
@@ -1874,16 +1852,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DispatchParentWheelEvents
         {
-            get
-            {
-                return dispatchParentWheelEvents;
-            }
+            get => HasViewEventFlag(ViewFlags.DispatchParentWheel);
             set
             {
-                if (dispatchParentWheelEvents != value)
+                if (UpdateViewEventFlag(ViewFlags.DispatchParentWheel, value))
                 {
-                    dispatchParentWheelEvents = value;
-                    if (dispatchParentWheelEvents == false)
+                    if (!value)
                     {
                         WheelEvent += OnDispatchParentWheelEvent;
                     }
@@ -1908,16 +1882,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DispatchGestureEvents
         {
-            get
-            {
-                return dispatchGestureEvents;
-            }
+            get => HasViewEventFlag(ViewFlags.DispatchGesture);
             set
             {
-                if (dispatchGestureEvents != value)
+                if (UpdateViewEventFlag(ViewFlags.DispatchGesture, value))
                 {
-                    dispatchGestureEvents = value;
-                    ConfigGestureDetector(dispatchGestureEvents);
+                    ConfigGestureDetector(value);
                 }
             }
         }
@@ -1930,16 +1900,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DispatchParentGestureEvents
         {
-            get
-            {
-                return dispatchParentGestureEvents;
-            }
+            get => HasViewEventFlag(ViewFlags.DispatchParentGesture);
             set
             {
-                if (dispatchParentGestureEvents != value)
+                if (UpdateViewEventFlag(ViewFlags.DispatchParentGesture, value))
                 {
-                    dispatchParentGestureEvents = value;
-                    ConfigGestureDetector(dispatchParentGestureEvents);
+                    ConfigGestureDetector(value);
                 }
             }
         }
@@ -2101,6 +2067,26 @@ namespace Tizen.NUI.BaseComponents
                 Object.InternalSetPropertyBool(SwigCPtr, View.Property.DispatchHoverMotion, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        private bool HasViewEventFlag(ViewFlags flag) => _viewFlags.HasFlag(flag);
+
+        /// <summary>
+        /// Update flag and return result whether the flag value is changed or not.
+        /// </summary>
+        private bool UpdateViewEventFlag(ViewFlags flag, bool enabling)
+        {
+            if (enabling && !HasViewEventFlag(flag))
+            {
+                _viewFlags |= flag;
+                return true;
+            }
+            else if (!enabling && HasViewEventFlag(flag))
+            {
+                _viewFlags &= ~flag;
+                return true;
+            }
+            return false;
         }
     }
 }
