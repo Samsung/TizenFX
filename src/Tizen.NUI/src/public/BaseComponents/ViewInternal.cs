@@ -1524,7 +1524,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     State = View.States.Normal;
                 }
-                if (enableControlState)
+                if (_viewFlags.HasFlag(ViewFlags.EnableControlState))
                 {
                     ControlState -= ControlState.Disabled;
                 }
@@ -1532,7 +1532,7 @@ namespace Tizen.NUI.BaseComponents
             else
             {
                 State = View.States.Disabled;
-                if (enableControlState)
+                if (_viewFlags.HasFlag(ViewFlags.EnableControlState))
                 {
                     ControlState += ControlState.Disabled;
                 }
