@@ -24,7 +24,6 @@ namespace Tizen.NUI
     {
         internal static partial class KeyInputFocusManager
         {
-
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_KeyInputFocusManager")]
             public static extern IntPtr NewKeyInputFocusManager();
 
@@ -42,9 +41,6 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_RemoveFocus")]
             public static extern void RemoveFocus(HandleRef jarg1, HandleRef jarg2);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_KeyInputFocusChangedSignal")]
-            public static extern IntPtr KeyInputFocusChangedSignal(HandleRef jarg1);
         }
     }
 }

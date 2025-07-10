@@ -55,12 +55,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetDayOfWeek")]
             public static extern int WatchTimeGetDayOfWeek(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetUtcTime")]
-            public static extern global::System.IntPtr WatchTimeGetUtcTime(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetUtcTimeStamp")]
-            public static extern global::System.IntPtr WatchTimeGetUtcTimeStamp(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetTimeZone")]
             public static extern string WatchTimeGetTimeZone(global::System.Runtime.InteropServices.HandleRef jarg1);
 
