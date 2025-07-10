@@ -215,6 +215,12 @@ namespace Tizen.Applications.Notifications
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PairingType { get; set; } = false;
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GroupTitle { get; set; } = string.Empty;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GroupContent { get; set; } = string.Empty;
+
         /// <summary>
         /// Gets or sets NotificationSafeHandle.
         /// </summary>
@@ -542,6 +548,7 @@ namespace Tizen.Applications.Notifications
             IndicatorBinder.BindSafeHandle(this);
             ActiveBinder.BindSafeHandle(this);
             LockBinder.BindSafehandle(this);
+            ExtensionBinder.BindSafehandle(this);
 
             return this;
         }

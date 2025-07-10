@@ -134,6 +134,14 @@ namespace Tizen.Applications.Notifications
             Interop.Notification.SetImage(notification.Handle, NotificationImage.Icon, notification.Icon);
             Interop.Notification.SetImage(notification.Handle, NotificationImage.SubIcon, notification.SubIcon);
             Interop.Notification.SetText(notification.Handle, NotificationText.EventCount, notification.Count.ToString(), null, -1);
+
+            if (string.IsNullOrEmpty(notification.GroupTitle) == false) {
+                Interop.Notification.SetText(notification.Handle, NotificationText.GroupTitle, notification.GroupTitle, null, -1);
+            }
+
+            if (string.IsNullOrEmpty(notification.GroupContent) == false) {
+                Interop.Notification.SetText(notification.Handle, NotificationText.GroupContent, notification.GroupContent, null, -1);
+            }
         }
 
         private static void BindNotificationTime(Notification notification)
