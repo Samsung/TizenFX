@@ -54,34 +54,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_Property_REQUIRES_SYNC_get")]
             public static extern int RequiresSyncGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_DEFAULT_SCREEN_TO_FRAMEBUFFER_FUNCTION_get")]
-            public static extern global::System.IntPtr DefaultScreenToFramebufferFunctionGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_FULLSCREEN_FRAMEBUFFER_FUNCTION_get")]
-            public static extern global::System.IntPtr FullscreenFramebufferFunctionGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_DEFAULT_EXCLUSIVE_get")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool DefaultExclusiveGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_DEFAULT_INPUT_ENABLED_get")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool DefaultInputEnabledGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_DEFAULT_CLEAR_COLOR_get")]
-            public static extern global::System.IntPtr DefaultClearColorGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_DEFAULT_CLEAR_ENABLED_get")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool DefaultClearEnabledGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_DEFAULT_CULL_MODE_get")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool DefaultCullModeGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_DEFAULT_REFRESH_RATE_get")]
-            public static extern uint DefaultRefreshRateGet();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RenderTask__SWIG_0")]
             public static extern global::System.IntPtr NewRenderTask();
 
@@ -125,12 +97,6 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_GetFrameBuffer")]
             public static extern global::System.IntPtr GetFrameBuffer(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_SetScreenToFrameBufferFunction")]
-            public static extern void SetScreenToFrameBufferFunction(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_GetScreenToFrameBufferFunction")]
-            public static extern global::System.IntPtr GetScreenToFrameBufferFunction(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_SetScreenToFrameBufferMappingActor")]
             public static extern void SetScreenToFrameBufferMappingActor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);

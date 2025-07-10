@@ -195,9 +195,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveCurrentPropertyVector2ActualVector3")]
             public static extern int RetrieveCurrentPropertyVector2ActualVector3(HandleRef actor, int propertyType, HandleRef retrievingVector2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveNaturalSize")]
-            public static extern int RetrieveNaturalSize(HandleRef actor, HandleRef retrievingVector3);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveCurrentPropertyVector4")]
             public static extern int RetrieveCurrentPropertyVector4(HandleRef actor, int propertyType, HandleRef retrievingVector4);
         }
