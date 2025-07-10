@@ -45,27 +45,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_Property_PANNING_get")]
             public static extern int PanningGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_DIRECTION_LEFT_get")]
-            public static extern global::System.IntPtr DirectionLeftGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_DIRECTION_RIGHT_get")]
-            public static extern global::System.IntPtr DirectionRightGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_DIRECTION_UP_get")]
-            public static extern global::System.IntPtr DirectionUpGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_DIRECTION_DOWN_get")]
-            public static extern global::System.IntPtr DirectionDownGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_DIRECTION_HORIZONTAL_get")]
-            public static extern global::System.IntPtr DirectionHorizontalGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_DIRECTION_VERTICAL_get")]
-            public static extern global::System.IntPtr DirectionVerticalGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_DEFAULT_THRESHOLD_get")]
-            public static extern global::System.IntPtr DefaultThresholdGet();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_New")]
             public static extern global::System.IntPtr New();
 
