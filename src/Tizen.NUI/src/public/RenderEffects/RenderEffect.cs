@@ -49,6 +49,8 @@ namespace Tizen.NUI
     {
         private WeakReference<View> _ownerView;
 
+        private static int aliveCount;
+
         internal void SetOwnerView(View view)
         {
             if (_ownerView != null)
@@ -63,21 +65,33 @@ namespace Tizen.NUI
 
         internal RenderEffect(global::System.IntPtr cPtr) : base(cPtr)
         {
+            ++aliveCount;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
-            if (!Disposed)
+            if (Disposed)
             {
-                if ((_ownerView != null) && _ownerView.TryGetTarget(out View target) && target != null)
-                {
-                    target.ClearRenderEffect();
-                    _ownerView = null;
-                }
-
-                base.Dispose(type);
+                return;
             }
+
+            if ((_ownerView != null) && _ownerView.TryGetTarget(out View target) && target != null)
+            {
+                target.ClearRenderEffect();
+                _ownerView = null;
+            }
+
+            --aliveCount;
+
+            base.Dispose(type);
         }
+
+        /// <summary>
+        /// Gets the number of currently alived RenderEffect object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         /// <summary>
         /// Activates render effect

@@ -28,6 +28,8 @@ namespace Tizen.NUI
     /// <since_tizen> 8 </since_tizen>
     public partial class VertexBuffer : BaseHandle
     {
+        private static int aliveCount;
+
         /// <summary>
         /// The constructor to creates a VertexBuffer.
         /// </summary>
@@ -41,6 +43,7 @@ namespace Tizen.NUI
 
         internal VertexBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            ++aliveCount;
         }
 
         /// <summary>
@@ -51,6 +54,12 @@ namespace Tizen.NUI
         {
             get => RetrieveSize();
         }
+
+        /// <summary>
+        /// Gets the number of currently alived VertexBuffer object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         /// <summary>
         /// Updates the whole buffer information.<br />
@@ -100,6 +109,20 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            --aliveCount;
+
+            base.Dispose(type);
         }
 
         /// This will not be public opened.

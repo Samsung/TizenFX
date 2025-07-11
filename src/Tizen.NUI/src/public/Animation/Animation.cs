@@ -74,6 +74,8 @@ namespace Tizen.NUI
 
         private List<System.Delegate> customAlphaFunctionDelegates;
 
+        private static int aliveCount;
+
         /// <summary>
         /// Creates an initialized animation.<br />
         /// The animation will not loop.<br />
@@ -92,6 +94,8 @@ namespace Tizen.NUI
         {
             animationFinishedEventCallback = OnFinished;
             finishedCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(animationFinishedEventCallback);
+
+            ++aliveCount;
         }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -695,6 +699,12 @@ namespace Tizen.NUI
                 return endTimeList;
             }
         }
+
+        /// <summary>
+        /// Gets the number of currently alived Animation object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         private bool DisableAnimation
         {
@@ -1905,6 +1915,8 @@ namespace Tizen.NUI
             }
 
             ClearCustomAlphaFunctionDelegate();
+
+            --aliveCount;
 
             base.Dispose(type);
         }

@@ -623,7 +623,7 @@ namespace Tizen.NUI.BaseComponents
                 SetVisible(false);
             }
 
-            aliveCount++;
+            ++aliveCount;
         }
 
         internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.NewViewInternal(ViewImpl.getCPtr(implementation)), true)
