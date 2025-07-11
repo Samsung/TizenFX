@@ -966,15 +966,7 @@ namespace Tizen.NUI.BaseComponents
         /// This is a hidden API(inhouse API) only for internal purpose.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void RegisterHitTestCallback()
-        {
-            if (hitTestResultDataCallback == null)
-            {
-                hitTestResultDataCallback = OnHitTestResult;
-                Interop.ActorSignal.HitTestResultConnect(SwigCPtr, hitTestResultDataCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-            }
-        }
+        protected void RegisterHitTestCallback() => EnsureViewEventRareData().RegisterHitTestCallback(OnHitTestResult);
 
         /// <summary>
         /// Unregister custom HitTest function.
@@ -983,15 +975,7 @@ namespace Tizen.NUI.BaseComponents
         /// This is a hidden API(inhouse API) only for internal purpose.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void UnregisterHitTestCallback()
-        {
-            if (hitTestResultDataCallback != null)
-            {
-                Interop.ActorSignal.HitTestResultDisconnect(SwigCPtr, hitTestResultDataCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                hitTestResultDataCallback = null;
-            }
-        }
+        protected void UnregisterHitTestCallback() => _viewEventRareData?.UnregisterHitTestCallback();
 
         /// <summary>
         /// Calculate the screen position of the view.<br />
