@@ -649,7 +649,7 @@ namespace Tizen.NUI.Extension
             {
                 return (UIColor)token;
             }
-            return Object.InternalRetrievingVisualPropertyColor(view.SwigCPtr, View.Property.BACKGROUND, ColorVisualProperty.MixColor);
+            return Object.InternalRetrievingVisualPropertyColor(view.SwigCPtr, View.Property.Background, ColorVisualProperty.MixColor);
         }
 
         /// <summary>

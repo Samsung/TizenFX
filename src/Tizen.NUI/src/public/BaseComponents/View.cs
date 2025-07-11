@@ -1068,11 +1068,11 @@ namespace Tizen.NUI.BaseComponents
             }
 
             int visualType = (int)Visual.Type.Invalid;
-            Object.InternalRetrievingVisualPropertyInt(SwigCPtr, Property.BACKGROUND, Visual.Property.Type, out visualType);
+            Object.InternalRetrievingVisualPropertyInt(SwigCPtr, Property.Background, Visual.Property.Type, out visualType);
 
             if (visualType == (int)Visual.Type.Color)
             {
-                Object.InternalRetrievingVisualPropertyVector4(SwigCPtr, Property.BACKGROUND, ColorVisualProperty.MixColor, Color.getCPtr(internalBackgroundColor));
+                Object.InternalRetrievingVisualPropertyVector4(SwigCPtr, Property.Background, ColorVisualProperty.MixColor, Color.getCPtr(internalBackgroundColor));
             }
             return internalBackgroundColor;
         }
@@ -1255,13 +1255,13 @@ namespace Tizen.NUI.BaseComponents
             }
 
             using var mapValue = new PropertyValue(map);
-            Object.SetProperty(SwigCPtr, Property.BACKGROUND, mapValue);
+            Object.SetProperty(SwigCPtr, Property.Background, mapValue);
         }
 
         private PropertyMap GetInternalBackground()
         {
             PropertyMap tmp = new PropertyMap();
-            var propertyValue = Object.GetProperty(SwigCPtr, Property.BACKGROUND);
+            var propertyValue = Object.GetProperty(SwigCPtr, Property.Background);
             propertyValue.Get(tmp);
             propertyValue.Dispose();
             propertyValue = null;
@@ -1338,7 +1338,7 @@ namespace Tizen.NUI.BaseComponents
         private ImageShadow GetInternalImageShadow()
         {
             using PropertyMap map = new PropertyMap();
-            using var shadowProperty = Object.GetProperty(SwigCPtr, Property.SHADOW);
+            using var shadowProperty = Object.GetProperty(SwigCPtr, Property.Shadow);
             shadowProperty.Get(map);
 
             var shadow = new ImageShadow(map);
@@ -1412,7 +1412,7 @@ namespace Tizen.NUI.BaseComponents
         private Shadow GetInternalBoxShadow()
         {
             using PropertyMap map = new PropertyMap();
-            using var shadowProperty = Object.GetProperty(SwigCPtr, Property.SHADOW);
+            using var shadowProperty = Object.GetProperty(SwigCPtr, Property.Shadow);
             shadowProperty.Get(map);
             var shadow = new Shadow(map);
             return shadow.IsEmpty() ? null : shadow;
@@ -1847,12 +1847,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalState(States value)
         {
-            Object.InternalSetPropertyInt(SwigCPtr, Property.STATE, (int)value);
+            Object.InternalSetPropertyInt(SwigCPtr, Property.State, (int)value);
         }
 
         private States GetInternalState()
         {
-            int temp = Object.InternalGetPropertyInt(SwigCPtr, Property.STATE);
+            int temp = Object.InternalGetPropertyInt(SwigCPtr, Property.State);
             switch (temp)
             {
                 case 0: return States.Normal;
@@ -1942,14 +1942,14 @@ namespace Tizen.NUI.BaseComponents
             if (map != null)
             {
                 using var pv = new PropertyValue(map);
-                Object.SetProperty(SwigCPtr, Property.TOOLTIP, pv);
+                Object.SetProperty(SwigCPtr, Property.Tooltip, pv);
             }
         }
 
         private PropertyMap GetInternalTooltip()
         {
             PropertyMap temp = new PropertyMap();
-            using (var pv = Object.GetProperty(SwigCPtr, Property.TOOLTIP))
+            using (var pv = Object.GetProperty(SwigCPtr, Property.Tooltip))
             {
                 pv.Get(temp);
             }
@@ -2003,7 +2003,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                using (var propertyValue = GetProperty(Property.TOOLTIP))
+                using (var propertyValue = GetProperty(Property.Tooltip))
                 {
                     using var propertyMap = new PropertyMap();
                     if (propertyValue != null && propertyValue.Get(propertyMap))
@@ -2028,7 +2028,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 var temp = new Tizen.NUI.PropertyValue(value);
-                SetProperty(View.Property.TOOLTIP, temp);
+                SetProperty(View.Property.Tooltip, temp);
                 temp.Dispose();
                 NotifyPropertyChanged();
             }
@@ -2984,7 +2984,7 @@ namespace Tizen.NUI.BaseComponents
                 RequestLayout();
             }
 
-            Object.InternalSetPropertyVector2ActualVector3(SwigCPtr, Property.SIZE, size.SwigCPtr);
+            Object.InternalSetPropertyVector2ActualVector3(SwigCPtr, Property.Size, size.SwigCPtr);
         }
 
         private Size2D GetInternalSize2D()
@@ -2993,7 +2993,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalSize2D = new Size2D(OnSize2DChanged, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector2ActualVector3(SwigCPtr, Property.SIZE, internalSize2D.SwigCPtr);
+            Object.InternalRetrievingPropertyVector2ActualVector3(SwigCPtr, Property.Size, internalSize2D.SwigCPtr);
 
             return internalSize2D;
         }
@@ -3079,7 +3079,7 @@ namespace Tizen.NUI.BaseComponents
 
         private float GetInternalOpacity()
         {
-            return Object.InternalGetPropertyFloat(SwigCPtr, Property.OPACITY);
+            return Object.InternalGetPropertyFloat(SwigCPtr, Property.Opacity);
         }
 
         /// <summary>
@@ -3133,7 +3133,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (newValue != null)
             {
-                Object.InternalSetPropertyVector2ActualVector3(SwigCPtr, Property.POSITION, newValue.SwigCPtr);
+                Object.InternalSetPropertyVector2ActualVector3(SwigCPtr, Property.Position, newValue.SwigCPtr);
             }
         }
 
@@ -3143,7 +3143,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalPosition2D = new Position2D(OnPosition2DChanged, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector2ActualVector3(SwigCPtr, Property.POSITION, internalPosition2D.SwigCPtr);
+            Object.InternalRetrievingPropertyVector2ActualVector3(SwigCPtr, Property.Position, internalPosition2D.SwigCPtr);
             return internalPosition2D;
         }
 
@@ -3734,7 +3734,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (position != null)
             {
-                Object.InternalSetPropertyVector3(SwigCPtr, Property.POSITION, position.SwigCPtr);
+                Object.InternalSetPropertyVector3(SwigCPtr, Property.Position, position.SwigCPtr);
             }
         }
 
@@ -3744,7 +3744,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalPosition = new Position(OnPositionChanged, 0, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector3(SwigCPtr, Property.POSITION, internalPosition.SwigCPtr);
+            Object.InternalRetrievingPropertyVector3(SwigCPtr, Property.Position, internalPosition.SwigCPtr);
             return internalPosition;
         }
 
@@ -3953,13 +3953,13 @@ namespace Tizen.NUI.BaseComponents
         private void SetInternalOrientation(Rotation rotation)
         {
             using var tmp = new PropertyValue(rotation);
-            Object.SetProperty(SwigCPtr, Property.ORIENTATION, tmp);
+            Object.SetProperty(SwigCPtr, Property.Orientation, tmp);
         }
 
         private Rotation GetInternalOrientation()
         {
             Rotation temp = new Rotation();
-            using (var pv = Object.GetProperty(SwigCPtr, Property.ORIENTATION))
+            using (var pv = Object.GetProperty(SwigCPtr, Property.Orientation))
             {
                 pv.Get(temp);
             }
@@ -4047,7 +4047,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalScale = new Vector3(OnScaleChanged, 0, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector3(SwigCPtr, Property.SCALE, internalScale.SwigCPtr);
+            Object.InternalRetrievingPropertyVector3(SwigCPtr, Property.Scale, internalScale.SwigCPtr);
             return internalScale;
         }
 
@@ -4230,7 +4230,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return Object.InternalGetPropertyBool(SwigCPtr, View.Property.VISIBLE);
+                return Object.InternalGetPropertyBool(SwigCPtr, View.Property.Visible);
             }
         }
 
@@ -4282,7 +4282,7 @@ namespace Tizen.NUI.BaseComponents
             if (name != null)
             {
                 internalName = name;
-                Object.InternalSetPropertyString(SwigCPtr, Property.NAME, name);
+                Object.InternalSetPropertyString(SwigCPtr, Property.Name, name);
             }
         }
 
@@ -4349,12 +4349,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalSensitive(bool sensitive)
         {
-            Object.InternalSetPropertyBool(SwigCPtr, Property.SENSITIVE, sensitive);
+            Object.InternalSetPropertyBool(SwigCPtr, Property.Sensitive, sensitive);
         }
 
         private bool GetInternalSensitive()
         {
-            return Object.InternalGetPropertyBool(SwigCPtr, Property.SENSITIVE);
+            return Object.InternalGetPropertyBool(SwigCPtr, Property.Sensitive);
         }
 
         /// <summary>
@@ -4978,14 +4978,14 @@ namespace Tizen.NUI.BaseComponents
                     {
                         using var ex = new Extents(0, 0, 0, 0);
                         using var tmp = new PropertyValue(ex);
-                        Object.SetProperty(SwigCPtr, Property.PADDING, tmp);
+                        Object.SetProperty(SwigCPtr, Property.Padding, tmp);
                     }
                     Layout.RequestLayout();
                 }
                 else
                 {
                     using var tmp = new PropertyValue(extents);
-                    Object.SetProperty(SwigCPtr, Property.PADDING, tmp);
+                    Object.SetProperty(SwigCPtr, Property.Padding, tmp);
                 }
             }
         }
@@ -5007,7 +5007,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (Layout == null || Layout.IsPaddingHandledByNative())
             {
-                var tmp = Object.GetProperty(SwigCPtr, Property.PADDING);
+                var tmp = Object.GetProperty(SwigCPtr, Property.Padding);
                 tmp?.Get(internalPadding);
                 tmp?.Dispose();
             }
@@ -5674,14 +5674,14 @@ namespace Tizen.NUI.BaseComponents
                     {
                         using var ex = new Extents(0, 0, 0, 0);
                         using var tmp = new PropertyValue(ex);
-                        Object.SetProperty(SwigCPtr, Property.MARGIN, tmp);
+                        Object.SetProperty(SwigCPtr, Property.Margin, tmp);
                     }
                     Layout.RequestLayout();
                 }
                 else
                 {
                     using var tmp = new PropertyValue(extents);
-                    Object.SetProperty(SwigCPtr, Property.MARGIN, tmp);
+                    Object.SetProperty(SwigCPtr, Property.Margin, tmp);
                 }
             }
         }
@@ -5706,7 +5706,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (Layout == null)
             {
-                using var tmp = Object.GetProperty(SwigCPtr, Property.MARGIN);
+                using var tmp = Object.GetProperty(SwigCPtr, Property.Margin);
                 tmp?.Get(internalMargin);
             }
 
@@ -6019,7 +6019,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Extents temp = new Extents(0, 0, 0, 0);
-                var pValue = GetProperty(View.Property.PADDING);
+                var pValue = GetProperty(View.Property.Padding);
                 pValue.Get(temp);
                 pValue.Dispose();
                 Extents ret = new Extents(OnPaddingEXChanged, temp.Start, temp.End, temp.Top, temp.Bottom);
@@ -6029,7 +6029,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 var temp = new Tizen.NUI.PropertyValue(value);
-                SetProperty(View.Property.PADDING, temp);
+                SetProperty(View.Property.Padding, temp);
                 temp.Dispose();
                 NotifyPropertyChanged();
                 RequestLayout();
@@ -6113,7 +6113,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalColor = new Color(OnColorChanged, 0, 0, 0, 0);
             }
-            Object.InternalRetrievingPropertyVector4(SwigCPtr, View.Property.COLOR, internalColor.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(SwigCPtr, View.Property.Color, internalColor.SwigCPtr);
             return internalColor;
         }
 
