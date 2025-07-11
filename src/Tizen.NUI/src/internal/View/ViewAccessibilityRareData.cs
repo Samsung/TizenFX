@@ -206,7 +206,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnAccessibilityGestureInfoEvent(IntPtr data)
         {
-            if (data == IntPtr.Zero)
+            if (data == IntPtr.Zero || _owner.IsDisposedOrQueued)
             {
                 return;
             }
@@ -228,26 +228,46 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnAccessibilityReadingSkippedEvent()
         {
+            if (_owner.IsDisposedOrQueued)
+            {
+                return;
+            }
             _readingSkippedHandler?.Invoke(_owner, null);
         }
 
         private void OnAccessibilityReadingPausedEvent()
         {
+            if (_owner.IsDisposedOrQueued)
+            {
+                return;
+            }
             _readingPausedHandler?.Invoke(_owner, null);
         }
 
         private void OnAccessibilityReadingResumedEvent()
         {
+            if (_owner.IsDisposedOrQueued)
+            {
+                return;
+            }
             _readingResumedHandler?.Invoke(_owner, null);
         }
 
         private void OnAccessibilityReadingCancelledEvent()
         {
+            if (_owner.IsDisposedOrQueued)
+            {
+                return;
+            }
             _readingCancelledHandler?.Invoke(_owner, null);
         }
 
         private void OnAccessibilityReadingStoppedEvent()
         {
+            if (_owner.IsDisposedOrQueued)
+            {
+                return;
+            }
             _readingStoppedHandler?.Invoke(_owner, null);
         }
 

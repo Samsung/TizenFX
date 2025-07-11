@@ -173,7 +173,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnGetAccessibilityDescriptionEvent(IntPtr data)
         {
-            if (data == IntPtr.Zero)
+            if (data == IntPtr.Zero || _owner.IsDisposedOrQueued)
             {
                 return;
             }
@@ -189,7 +189,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnGetAccessibilityNameEvent(IntPtr data)
         {
-            if (data == IntPtr.Zero)
+            if (data == IntPtr.Zero || _owner.IsDisposedOrQueued)
             {
                 return;
             }
@@ -205,11 +205,21 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnAccessibilityActivatedEvent()
         {
+            if (_owner.IsDisposedOrQueued)
+            {
+                return;
+            }
+
             _activateHandler?.Invoke(_owner, null);
         }
 
         private bool OnAccessibilityActionReceived(IntPtr data)
         {
+            if (_owner.IsDisposedOrQueued)
+            {
+                return false;
+            }
+
             var info = (AccessibilityActionInfo)Marshal.PtrToStructure(data, typeof(AccessibilityActionInfo));
             var eventArgs = new AccessibilityActionReceivedEventArgs()
             {
@@ -223,6 +233,11 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnAccessibilityHighlighed(bool data)
         {
+            if (_owner.IsDisposedOrQueued)
+            {
+                return;
+            }
+
             _accessibilityHighlightChangedHandler?.Invoke(_owner, new AccessibilityHighlightChangedEventArgs()
             {
                 IsHighlighted = data
