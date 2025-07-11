@@ -1468,9 +1468,9 @@ namespace Tizen.NUI.BaseComponents
             NUILog.Debug($"[Dispose] View.Dispose({type}) END");
             NUILog.Debug($"=============================");
 
-            base.Dispose(type);
+            --aliveCount;
 
-            aliveCount--;
+            base.Dispose(type);
         }
 
         /// This will not be public opened.

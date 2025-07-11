@@ -30,6 +30,8 @@ namespace Tizen.NUI
         private Geometry geometry;
         private Shader shader;
 
+        private static int aliveCount;
+
         /// <summary>
         /// Create an instance of Renderable without Geometry or Shader.
         /// </summary>
@@ -460,6 +462,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets the number of currently alived Renderable object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
+
+        /// <summary>
         /// Sets the geometry to be used by this renderer.
         /// </summary>
         /// <param name="geometry">The geometry to be used by this renderer.</param>
@@ -518,6 +526,21 @@ namespace Tizen.NUI
 
         internal Renderable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            ++aliveCount;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            --aliveCount;
+
+            base.Dispose(type);
         }
 
         /// This will not be public opened.

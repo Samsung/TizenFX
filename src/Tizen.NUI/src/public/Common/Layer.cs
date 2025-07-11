@@ -43,6 +43,8 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AggregatedVisibilityChangedEventCallbackType(IntPtr data, bool visibility);
 
+        private static int aliveCount;
+
         /// <summary>
         /// Default constructor of Layer class to create a Layer object.
         /// </summary>
@@ -56,6 +58,7 @@ namespace Tizen.NUI
 
         internal Layer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            ++aliveCount;
         }
 
         /// <summary>
@@ -93,6 +96,8 @@ namespace Tizen.NUI
             }
 
             LayoutCount = 0;
+
+            --aliveCount;
 
             base.Dispose(type);
         }
@@ -320,6 +325,12 @@ namespace Tizen.NUI
             set => SetInternalIgnored(value);
             get => IsInternalIgnored();
         }
+
+        /// <summary>
+        /// Gets the number of currently alived Layer object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         private void SetInternalIgnored(bool ignored)
         {

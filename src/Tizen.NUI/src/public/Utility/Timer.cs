@@ -41,6 +41,8 @@ namespace Tizen.NUI
 
         private System.IntPtr timerTickCallbackOfNative;
 
+        private static int aliveCount;
+
         /// <summary>
         /// Creates a tick timer that emits periodic signal.
         /// </summary>
@@ -66,6 +68,8 @@ namespace Tizen.NUI
         {
             timerTickCallbackDelegate = OnTick;
             timerTickCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(timerTickCallbackDelegate);
+
+            ++aliveCount;
 
             NUILog.Debug($"(0x{SwigCPtr.Handle:X})Timer() constructor!");
         }
@@ -126,6 +130,12 @@ namespace Tizen.NUI
                 SetInterval(value);
             }
         }
+
+        /// <summary>
+        /// Gets the number of currently alived Timer object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         /// <summary>
         /// Starts the timer.<br />
@@ -284,6 +294,9 @@ namespace Tizen.NUI
             }
 
             played = false;
+
+            --aliveCount;
+
             base.Dispose(type);
         }
 
