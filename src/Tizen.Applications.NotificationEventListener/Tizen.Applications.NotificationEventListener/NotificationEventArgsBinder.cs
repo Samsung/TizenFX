@@ -84,6 +84,18 @@ namespace Tizen.Applications.NotificationEventListener
                 eventargs.SubIcon = text;
             }
 
+            Interop.NotificationEventListener.GetText(eventargs.Handle, NotificationText.GroupTitle, out text);
+            if (string.IsNullOrEmpty(text) == false)
+            {
+                eventargs.GroupTitle = text;
+            }
+
+            Interop.NotificationEventListener.GetText(eventargs.Handle, NotificationText.GroupContent, out text);
+            if (string.IsNullOrEmpty(text) == false)
+            {
+                eventargs.GroupContent = text;
+            }
+
             err = Interop.NotificationEventListener.GetTime(eventargs.Handle, out time);
             if (err != Interop.NotificationEventListener.ErrorCode.None)
             {
