@@ -258,6 +258,8 @@ namespace Tizen.NUI
         private ConstraintFunctionBase Function { get; init; }
         private WeakReference<Animatable> internalTarget { get; init; }
 
+        private static int aliveCount;
+
         internal Constraint(Animatable target, int propertyIndex, ConstraintFunctionBase function, IntPtr cPtr) : this(cPtr, true)
         {
             internalTarget = new WeakReference<Animatable>(target);
@@ -271,6 +273,7 @@ namespace Tizen.NUI
 
         internal Constraint(IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
+            ++aliveCount;
         }
 
         /// <summary>
@@ -345,6 +348,12 @@ namespace Tizen.NUI
             }
             get => Interop.Constraint.GetTag(SwigCPtr);
         }
+
+        /// <summary>
+        /// Gets the number of currently alived Renderable object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         /// <summary>
         /// Add source input.
@@ -531,6 +540,9 @@ namespace Tizen.NUI
                 Remove();
                 Function?.Dispose();
             }
+
+            --aliveCount;
+
             base.Dispose(type);
         }
 

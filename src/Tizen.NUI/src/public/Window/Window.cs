@@ -47,6 +47,8 @@ namespace Tizen.NUI
         private Hover internalLastHoverEvent;
         private Timer internalHoverTimer;
 
+        private static int aliveCount;
+
         static internal bool IsSupportedMultiWindow()
         {
             bool isSupported = false;
@@ -70,6 +72,8 @@ namespace Tizen.NUI
                 localController = new LayoutController(this);
                 NUILog.Debug("layoutController id:" + localController.GetId());
             }
+
+            ++aliveCount;
         }
 
         /// <summary>
@@ -652,6 +656,12 @@ namespace Tizen.NUI
                 SetPartialUpdate(value);
             }
         }
+
+        /// <summary>
+        /// Gets the number of currently alived Window object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         internal List<Layer> LayersChildren
         {
@@ -2355,6 +2365,7 @@ namespace Tizen.NUI
                 internalHoverTimer = null;
             }
 
+            --aliveCount;
 
             base.Dispose(type);
         }

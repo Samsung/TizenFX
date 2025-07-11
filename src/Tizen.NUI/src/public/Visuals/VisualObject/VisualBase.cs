@@ -141,6 +141,8 @@ namespace Tizen.NUI.Visuals
             }
         };
         internal VisualTransformInfo transformInfo;
+
+        private static int aliveCount;
         #endregion
 
         #region Constructor
@@ -151,6 +153,7 @@ namespace Tizen.NUI.Visuals
         internal VisualBase(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
             transformInfo = new VisualTransformInfo();
+            ++aliveCount;
         }
         #endregion
 
@@ -651,6 +654,12 @@ namespace Tizen.NUI.Visuals
                 return transformInfo.extraHeight;
             }
         }
+
+        /// <summary>
+        /// Gets the number of currently alived VisualBase object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
         #endregion
 
         #region Public Methods
@@ -1069,6 +1078,8 @@ namespace Tizen.NUI.Visuals
             }
 
             visualCreationRequiredFlag = false;
+
+            --aliveCount;
 
             base.Dispose(type);
         }
