@@ -16,9 +16,7 @@
  */
 
 using System;
-using System.ComponentModel;
 using System.Runtime.InteropServices;
-using Tizen.NUI;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -36,6 +34,7 @@ namespace Tizen.NUI.BaseComponents
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool AccessibilityActionReceivedHandlerType(IntPtr data);
 
+        private View _owner;
         private SingleDataType _getDescriptionCallback;
         private EventHandler<GetDescriptionEventArgs> _getDescriptionHandler;
         private SingleDataType _getNameCallback;
@@ -46,6 +45,11 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<AccessibilityActionReceivedEventArgs> _accessibilityActionReceivedHandler;
         private BooleanDataType _accessibilityHighlightedCallback;
         private EventHandler<AccessibilityHighlightChangedEventArgs> _accessibilityHighlightChangedHandler;
+
+        public ViewAccessibilityData(View owner)
+        {
+            _owner = owner;
+        }
 
         public void AddDescriptionRequestedHandler(View view, EventHandler<GetDescriptionEventArgs> value)
         {
@@ -178,7 +182,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Description = Interop.StringToVoidSignal.GetResult(data)
             };
-            _getDescriptionHandler?.Invoke(this, arg);
+            _getDescriptionHandler?.Invoke(_owner, arg);
 
             Interop.StringToVoidSignal.SetResult(data, arg.Description ?? string.Empty);
         }
@@ -194,14 +198,14 @@ namespace Tizen.NUI.BaseComponents
             {
                 Name = Interop.StringToVoidSignal.GetResult(data)
             };
-            _getNameHandler?.Invoke(this, arg);
+            _getNameHandler?.Invoke(_owner, arg);
 
             Interop.StringToVoidSignal.SetResult(data, arg.Name ?? string.Empty);
         }
 
         private void OnAccessibilityActivatedEvent()
         {
-            _activateHandler?.Invoke(this, null);
+            _activateHandler?.Invoke(_owner, null);
         }
 
         private bool OnAccessibilityActionReceived(IntPtr data)
@@ -212,14 +216,14 @@ namespace Tizen.NUI.BaseComponents
                 ActionType = info.ActionType,
                 Handled = false
             };
-            _accessibilityActionReceivedHandler?.Invoke(this, eventArgs);
+            _accessibilityActionReceivedHandler?.Invoke(_owner, eventArgs);
 
             return eventArgs.Handled;
         }
 
         private void OnAccessibilityHighlighed(bool data)
         {
-            _accessibilityHighlightChangedHandler?.Invoke(this, new AccessibilityHighlightChangedEventArgs()
+            _accessibilityHighlightChangedHandler?.Invoke(_owner, new AccessibilityHighlightChangedEventArgs()
             {
                 IsHighlighted = data
             });
