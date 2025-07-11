@@ -106,12 +106,7 @@ namespace Tizen.NUI.BaseComponents
         private delegate void LayoutDirectionChangedEventCallbackType(IntPtr data, ViewLayoutDirectionType type);
 
         // List of dispatch Event
-        private PanGestureDetector panGestureDetector;
-        private LongPressGestureDetector longGestureDetector;
-        private PinchGestureDetector pinchGestureDetector;
-        private TapGestureDetector tapGestureDetector;
-        private RotationGestureDetector rotationGestureDetector;
-        private int configGestureCount;
+        private ViewGestureData _viewGestureData;
         private ViewEventFlags _eventFlags = ViewEventFlags.Default;
 
         [Flags]
@@ -1907,7 +1902,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (UpdateViewEventFlag(ViewEventFlags.DispatchGesture, value))
                 {
-                    ConfigGestureDetector(value);
+                    EnsureViewGestureData().ConfigGestureDetector(this, value);
                 }
             }
         }
@@ -1925,60 +1920,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (UpdateViewEventFlag(ViewEventFlags.DispatchParentGesture, value))
                 {
-                    ConfigGestureDetector(value);
+                    EnsureViewGestureData().ConfigGestureDetector(this, value);
                 }
             }
-        }
-
-        private void ConfigGestureDetector(bool dispatch)
-        {
-            if (panGestureDetector == null) panGestureDetector = new PanGestureDetector();
-            if (longGestureDetector == null) longGestureDetector = new LongPressGestureDetector();
-            if (pinchGestureDetector == null) pinchGestureDetector = new PinchGestureDetector();
-            if (tapGestureDetector == null) tapGestureDetector = new TapGestureDetector();
-            if (rotationGestureDetector == null) rotationGestureDetector = new RotationGestureDetector();
-
-            if (dispatch == true)
-            {
-                configGestureCount = configGestureCount > 0 ? configGestureCount - 1 : 0;
-                if (configGestureCount == 0)
-                {
-                    panGestureDetector.Detach(this);
-                    longGestureDetector.Detach(this);
-                    pinchGestureDetector.Detach(this);
-                    tapGestureDetector.Detach(this);
-                    rotationGestureDetector.Detach(this);
-
-                    panGestureDetector.Detected -= OnGestureDetected;
-                    longGestureDetector.Detected -= OnGestureDetected;
-                    pinchGestureDetector.Detected -= OnGestureDetected;
-                    tapGestureDetector.Detected -= OnGestureDetected;
-                    rotationGestureDetector.Detected -= OnGestureDetected;
-                }
-            }
-            else
-            {
-                if (configGestureCount == 0)
-                {
-                    panGestureDetector.Attach(this);
-                    longGestureDetector.Attach(this);
-                    pinchGestureDetector.Attach(this);
-                    tapGestureDetector.Attach(this);
-                    rotationGestureDetector.Attach(this);
-
-                    panGestureDetector.Detected += OnGestureDetected;
-                    longGestureDetector.Detected += OnGestureDetected;
-                    pinchGestureDetector.Detected += OnGestureDetected;
-                    tapGestureDetector.Detected += OnGestureDetected;
-                    rotationGestureDetector.Detected += OnGestureDetected;
-                }
-                configGestureCount++;
-            }
-        }
-
-        private void OnGestureDetected(object source, EventArgs e)
-        {
-            // Does notting. This is to consume the gesture.
         }
 
         /// <summary>
@@ -2108,5 +2052,7 @@ namespace Tizen.NUI.BaseComponents
             }
             return false;
         }
+
+        private ViewGestureData EnsureViewGestureData() => _viewGestureData ??= new ViewGestureData();
     }
 }
