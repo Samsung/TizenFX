@@ -26,8 +26,17 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RenderTask : Animatable
     {
-        internal RenderTask(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        private WeakReference<RenderTaskList> _renderTaskList { get; init; }
+
+        internal RenderTask(global::System.IntPtr cPtr, bool cMemoryOwn) : this(null, cPtr, cMemoryOwn)
         {
+        }
+        internal RenderTask(RenderTaskList list, global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        {
+            if (SwigCMemOwn && list != null)
+            {
+                _renderTaskList = new WeakReference<RenderTaskList>(list, false);
+            }
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -50,9 +59,12 @@ namespace Tizen.NUI
                 return;
             }
 
-            foreach (var window in Application.GetWindowList() ?? Enumerable.Empty<Window>())
+            if (SwigCMemOwn && HasBody())
             {
-                window.GetRenderTaskList().RemoveTask(this);
+                if (_renderTaskList != null && _renderTaskList.TryGetTarget(out RenderTaskList list) && list != null)
+                {
+                    list.RemoveTask(this);
+                }
             }
 
             base.Dispose(type);
@@ -110,18 +122,18 @@ namespace Tizen.NUI
         public View GetSourceView()
         {
             IntPtr cPtr = Interop.RenderTask.GetSourceActor(SwigCPtr);
+            NDalicPINVOKE.ThrowExceptionIfExists();
             View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
             if (ret != null)
             {
                 Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, cPtr));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                NDalicPINVOKE.ThrowExceptionIfExists();
             }
             else
             {
                 ret = new View(cPtr, true);
-                return ret;
             }
+            return ret;
         }
 
         public void SetExclusive(bool exclusive)
@@ -175,9 +187,17 @@ namespace Tizen.NUI
 
         public FrameBuffer GetFrameBuffer()
         {
-            // TODO : Fix me, to avoid memory leak issue.
-            FrameBuffer ret = new FrameBuffer(Interop.RenderTask.GetFrameBuffer(SwigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            IntPtr cPtr = Interop.RenderTask.GetFrameBuffer(SwigCPtr);
+            FrameBuffer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as FrameBuffer;
+            if (ret != null)
+            {
+                Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, cPtr));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
+            else
+            {
+                ret = new FrameBuffer(cPtr, true);
+            }
             return ret;
         }
 
@@ -189,9 +209,18 @@ namespace Tizen.NUI
 
         public View GetScreenToFrameBufferMappingView()
         {
-            // TODO : Fix me, to avoid memory leak issue.
-            View ret = new View(Interop.RenderTask.GetScreenToFrameBufferMappingActor(SwigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            IntPtr cPtr = Interop.RenderTask.GetScreenToFrameBufferMappingActor(SwigCPtr);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+            if (ret != null)
+            {
+                Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, cPtr));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
+            else
+            {
+                ret = new View(cPtr, true);
+            }
             return ret;
         }
 
@@ -296,9 +325,18 @@ namespace Tizen.NUI
 
         public View GetStopperView()
         {
-            // TODO : Fix me, to avoid memory leak issue.
-            View ret = new View(Interop.RenderTask.GetStopperView(SwigCPtr), true);
+            IntPtr cPtr = Interop.RenderTask.GetStopperView(SwigCPtr);
             NDalicPINVOKE.ThrowExceptionIfExists();
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+            if (ret != null)
+            {
+                Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, cPtr));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
+            else
+            {
+                ret = new View(cPtr, true);
+            }
             return ret;
         }
 
