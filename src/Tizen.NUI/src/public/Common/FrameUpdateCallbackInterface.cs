@@ -27,11 +27,14 @@ namespace Tizen.NUI
     {
         private uint onUpdateCallbackVersion;
 
+        private static int aliveCount;
+
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal FrameUpdateCallbackInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            ++aliveCount;
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -51,6 +54,20 @@ namespace Tizen.NUI
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            --aliveCount;
+
+            base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.FrameUpdateCallbackInterface.DeleteFrameUpdateCallbackInterface(swigCPtr);
@@ -60,6 +77,12 @@ namespace Tizen.NUI
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint UpdateCallbackVersion => onUpdateCallbackVersion;
+
+        /// <summary>
+        /// Gets the number of currently alived FrameUpdateCallbackInterface object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         private void DirectorConnect()
         {

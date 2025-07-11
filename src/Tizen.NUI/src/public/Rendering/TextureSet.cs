@@ -26,6 +26,8 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public partial class TextureSet : BaseHandle
     {
+        private static int aliveCount;
+
         /// <summary>
         /// Create an instance of TextureSet.
         /// </summary>
@@ -37,6 +39,7 @@ namespace Tizen.NUI
 
         internal TextureSet(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            ++aliveCount;
         }
 
         /// <summary>
@@ -47,6 +50,12 @@ namespace Tizen.NUI
         {
             get => RetrieveTextureCount();
         }
+
+        /// <summary>
+        /// Gets the number of currently alived TextureSet object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         /// <summary>
         /// Sets the texture at position "index".
@@ -149,6 +158,20 @@ namespace Tizen.NUI
             uint ret = Interop.TextureSet.GetTextureCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            --aliveCount;
+
+            base.Dispose(type);
         }
 
         /// This will not be public opened.
