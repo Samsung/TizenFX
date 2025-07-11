@@ -18,8 +18,6 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
-using Tizen.NUI.Components;
-using Tizen.NUI;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -252,9 +250,9 @@ namespace Tizen.NUI.BaseComponents
             return result;
         }
 
-        private ViewAccessibilityData EnsureAccessibilityData() => _accessibilityData ??= new ViewAccessibilityData();
+        private ViewAccessibilityData EnsureAccessibilityData() => _accessibilityData ??= new ViewAccessibilityData(this);
 
-        private ViewAccessibilityRareData EnsureAccessibilityRareData() => _accessibilityRareData ??= new ViewAccessibilityRareData();
+        private ViewAccessibilityRareData EnsureAccessibilityRareData() => _accessibilityRareData ??= new ViewAccessibilityRareData(this);
 
         ///////////////////////////////////////////////////////////////////
         // ***************** AccessiblityDoGestureSignal ****************//

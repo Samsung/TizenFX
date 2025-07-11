@@ -17,9 +17,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Runtime.InteropServices;
-using Tizen.NUI;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -37,6 +35,7 @@ namespace Tizen.NUI.BaseComponents
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool AccessibilityActionReceivedHandlerType(IntPtr data);
 
+        private View _owner;
         private SingleDataType _gestureInfoCallback;
         private EventHandler<GestureInfoEventArgs> _gestureInfoHandler;
         private VoidHandlerType _readingSkippedCallback;
@@ -55,6 +54,11 @@ namespace Tizen.NUI.BaseComponents
         public Dictionary<string, string> Attributes => _attributes ??= new Dictionary<string, string>(1);
 
         public Dictionary<string, Func<string>> DynamicAttributes => _dynamicAttributes ??= new Dictionary<string, Func<string>>(1);
+
+        public ViewAccessibilityRareData(View owner)
+        {
+            _owner = owner;
+        }
 
         public void AddGestureInfoReceivedHandler(View view, EventHandler<GestureInfoEventArgs> value)
         {
@@ -217,34 +221,34 @@ namespace Tizen.NUI.BaseComponents
                 Consumed = Interop.DoGestureSignal.GetResult(data),
                 GestureInfo = (GestureInfoType)Marshal.PtrToStructure(data, typeof(GestureInfoType)),
             };
-            _gestureInfoHandler?.Invoke(this, arg);
+            _gestureInfoHandler?.Invoke(_owner, arg);
 
             Interop.DoGestureSignal.SetResult(data, arg.Consumed);
         }
 
         private void OnAccessibilityReadingSkippedEvent()
         {
-            _readingSkippedHandler?.Invoke(this, null);
+            _readingSkippedHandler?.Invoke(_owner, null);
         }
 
         private void OnAccessibilityReadingPausedEvent()
         {
-            _readingPausedHandler?.Invoke(this, null);
+            _readingPausedHandler?.Invoke(_owner, null);
         }
 
         private void OnAccessibilityReadingResumedEvent()
         {
-            _readingResumedHandler?.Invoke(this, null);
+            _readingResumedHandler?.Invoke(_owner, null);
         }
 
         private void OnAccessibilityReadingCancelledEvent()
         {
-            _readingCancelledHandler?.Invoke(this, null);
+            _readingCancelledHandler?.Invoke(_owner, null);
         }
 
         private void OnAccessibilityReadingStoppedEvent()
         {
-            _readingStoppedHandler?.Invoke(this, null);
+            _readingStoppedHandler?.Invoke(_owner, null);
         }
 
         public void ClearSignal(View.ControlHandle handle)
