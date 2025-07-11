@@ -64,7 +64,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RenderTask CreateTask()
         {
-            RenderTask ret = new RenderTask(Interop.RenderTask.RenderTaskListCreateTask(SwigCPtr), true);
+            RenderTask ret = new RenderTask(this, Interop.RenderTask.RenderTaskListCreateTask(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -103,7 +103,7 @@ namespace Tizen.NUI
             }
             else
             {
-                ret = new RenderTask(cPtr, true);
+                ret = new RenderTask(this, cPtr, true);
                 return ret;
             }
         }
