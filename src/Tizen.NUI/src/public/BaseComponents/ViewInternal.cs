@@ -1544,6 +1544,8 @@ namespace Tizen.NUI.BaseComponents
             NUILog.Debug($"[Dispose] View.DisConnectFromSignals() type:{GetType()} copyNativeHandle:{GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
             NUILog.Debug($"[Dispose] ID:{Interop.Actor.GetId(GetBaseHandleCPtrHandleRef)} Name:{Interop.Actor.GetName(GetBaseHandleCPtrHandleRef)}");
 
+            _viewEventRareData?.ClearSignal();
+
             if (onRelayoutEventCallback != null)
             {
                 NUILog.Debug($"[Dispose] onRelayoutEventCallback");
@@ -1571,23 +1573,6 @@ namespace Tizen.NUI.BaseComponents
                 onWindowEventCallback = null;
             }
 
-            if (interceptWheelCallback != null)
-            {
-                NUILog.Debug($"[Dispose] interceptWheelCallback");
-
-                Interop.ActorSignal.InterceptWheelDisconnect(GetBaseHandleCPtrHandleRef, interceptWheelCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                interceptWheelCallback = null;
-            }
-
-            if (wheelEventCallback != null)
-            {
-                NUILog.Debug($"[Dispose] wheelEventCallback");
-
-                Interop.ActorSignal.WheelEventDisconnect(GetBaseHandleCPtrHandleRef, wheelEventCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                wheelEventCallback = null;
-            }
 
             if (hoverEventCallback != null)
             {
@@ -1598,15 +1583,6 @@ namespace Tizen.NUI.BaseComponents
                 hoverEventCallback = null;
             }
 
-            if (hitTestResultDataCallback != null)
-            {
-                NUILog.Debug($"[Dispose] hitTestResultDataCallback");
-
-                Interop.ActorSignal.HitTestResultDisconnect(GetBaseHandleCPtrHandleRef, hitTestResultDataCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                hitTestResultDataCallback = null;
-            }
-
             if (visibilityChangedEventCallback != null)
             {
                 NUILog.Debug($"[Dispose] visibilityChangedEventCallback");
@@ -1614,24 +1590,6 @@ namespace Tizen.NUI.BaseComponents
                 Interop.ActorSignal.VisibilityChangedDisconnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
                 visibilityChangedEventCallback = null;
-            }
-
-            if (interceptTouchDataCallback != null)
-            {
-                NUILog.Debug($"[Dispose] interceptTouchDataCallback");
-
-                Interop.ActorSignal.InterceptTouchDisconnect(GetBaseHandleCPtrHandleRef, interceptTouchDataCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                interceptTouchDataCallback = null;
-            }
-
-            if (layoutDirectionChangedEventCallback != null)
-            {
-                NUILog.Debug($"[Dispose] layoutDirectionChangedEventCallback");
-
-                Interop.ActorSignal.LayoutDirectionChangedDisconnect(SwigCPtr, layoutDirectionChangedEventCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExists();
-                layoutDirectionChangedEventCallback = null;
             }
 
             if (touchDataCallback != null)
