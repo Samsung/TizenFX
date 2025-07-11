@@ -29,14 +29,8 @@ namespace Tizen.NUI.BaseComponents
     {
         private EventHandler offWindowEventHandler;
         private OffWindowEventCallbackType offWindowEventCallback;
-        private EventHandlerWithReturnType<object, WheelEventArgs, bool> interceptWheelHandler;
-        private WheelEventCallbackType interceptWheelCallback;
-        private EventHandlerWithReturnType<object, WheelEventArgs, bool> wheelEventHandler;
-        private WheelEventCallbackType wheelEventCallback;
         private EventHandlerWithReturnType<object, KeyEventArgs, bool> keyEventHandler;
         private KeyCallbackType keyCallback;
-        private EventHandlerWithReturnType<object, TouchEventArgs, bool> interceptTouchDataEventHandler;
-        private TouchDataCallbackType interceptTouchDataCallback;
         private EventHandlerWithReturnType<object, TouchEventArgs, bool> touchDataEventHandler;
         private TouchDataCallbackType touchDataCallback;
         private EventHandlerWithReturnType<object, HoverEventArgs, bool> hoverEventHandler;
@@ -47,33 +41,26 @@ namespace Tizen.NUI.BaseComponents
         private AggregatedVisibilityChangedEventCallbackType aggregatedVisibilityChangedEventCallback;
         private EventHandler keyInputFocusGainedEventHandler;
         private KeyInputFocusGainedCallbackType keyInputFocusGainedCallback;
-
         private EventHandler keyInputFocusLostEventHandler;
         private KeyInputFocusLostCallbackType keyInputFocusLostCallback;
         private EventHandler onRelayoutEventHandler;
         private OnRelayoutEventCallbackType onRelayoutEventCallback;
         private EventHandler onWindowEventHandler;
         private OnWindowEventCallbackType onWindowEventCallback;
-        private EventHandler<LayoutDirectionChangedEventArgs> layoutDirectionChangedEventHandler;
-        private LayoutDirectionChangedEventCallbackType layoutDirectionChangedEventCallback;
         // Resource Ready Signal
         private EventHandler resourcesLoadedEventHandler;
         private ResourcesLoadedCallbackType resourcesLoadedCallback;
         private EventHandler<BackgroundResourceLoadedEventArgs> backgroundResourceLoadedEventHandler;
         private _backgroundResourceLoadedCallbackType backgroundResourceLoadedCallback;
-        private TouchDataCallbackType hitTestResultDataCallback;
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void OffWindowEventCallbackType(IntPtr control);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate bool WheelEventCallbackType(IntPtr view, IntPtr wheelEvent);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool KeyCallbackType(IntPtr control, IntPtr keyEvent);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate bool TouchDataCallbackType(IntPtr view, IntPtr touchData);
+        internal delegate bool TouchDataCallbackType(IntPtr view, IntPtr touchData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool HoverEventCallbackType(IntPtr view, IntPtr hoverEvent);
@@ -102,10 +89,7 @@ namespace Tizen.NUI.BaseComponents
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void OnWindowEventCallbackType(IntPtr control);
 
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        private delegate void LayoutDirectionChangedEventCallbackType(IntPtr data, ViewLayoutDirectionType type);
-
-        // List of dispatch Event
+        private ViewEventRareData _viewEventRareData; // NOTE Consider reuse data by using pool
         private ViewGestureData _viewGestureData;
 
         /// <summary>
@@ -248,25 +232,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, TouchEventArgs, bool> InterceptTouchEvent
         {
-            add
-            {
-                if (interceptTouchDataEventHandler == null)
-                {
-                    interceptTouchDataCallback = OnInterceptTouch;
-                    Interop.ActorSignal.InterceptTouchConnect(SwigCPtr, interceptTouchDataCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                }
-                interceptTouchDataEventHandler += value;
-            }
-
+            add => EnsureViewEventRareData().InterceptTouchEvent += value;
             remove
             {
-                interceptTouchDataEventHandler -= value;
-                if (interceptTouchDataEventHandler == null && interceptTouchDataCallback != null)
+                if (_viewEventRareData != null)
                 {
-                    Interop.ActorSignal.InterceptTouchDisconnect(SwigCPtr, interceptTouchDataCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                    interceptTouchDataCallback = null;
+                    _viewEventRareData.InterceptTouchEvent -= value;
                 }
             }
         }
@@ -356,25 +327,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, WheelEventArgs, bool> InterceptWheelEvent
         {
-            add
-            {
-                if (interceptWheelHandler == null)
-                {
-                    interceptWheelCallback = OnInterceptWheel;
-                    Interop.ActorSignal.InterceptWheelConnect(SwigCPtr, interceptWheelCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                }
-                interceptWheelHandler += value;
-            }
-
+            add => EnsureViewEventRareData().InterceptWheelEvent += value;
             remove
             {
-                interceptWheelHandler -= value;
-                if (interceptWheelHandler == null && interceptWheelCallback != null)
+                if (_viewEventRareData != null)
                 {
-                    Interop.ActorSignal.InterceptWheelDisconnect(SwigCPtr, interceptWheelCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                    interceptWheelCallback = null;
+                    _viewEventRareData.InterceptWheelEvent -= value;
                 }
             }
         }
@@ -402,25 +360,12 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelEvent
         {
-            add
-            {
-                if (wheelEventHandler == null)
-                {
-                    wheelEventCallback = OnWheelEvent;
-                    Interop.ActorSignal.WheelEventConnect(SwigCPtr, wheelEventCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                }
-                wheelEventHandler += value;
-            }
-
+            add => EnsureViewEventRareData().WheelEvent += value;
             remove
             {
-                wheelEventHandler -= value;
-                if (wheelEventHandler == null && wheelEventCallback != null)
+                if (_viewEventRareData != null)
                 {
-                    Interop.ActorSignal.WheelEventDisconnect(SwigCPtr, wheelEventCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                    wheelEventCallback = null;
+                    _viewEventRareData.WheelEvent -= value;
                 }
             }
         }
@@ -570,27 +515,12 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<LayoutDirectionChangedEventArgs> LayoutDirectionChanged
         {
-            add
-            {
-                if (layoutDirectionChangedEventHandler == null)
-                {
-                    layoutDirectionChangedEventCallback = OnLayoutDirectionChanged;
-                    Interop.ActorSignal.LayoutDirectionChangedConnect(SwigCPtr, layoutDirectionChangedEventCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                }
-
-                layoutDirectionChangedEventHandler += value;
-            }
-
+            add => EnsureViewEventRareData().LayoutDirectionChanged += value;
             remove
             {
-                layoutDirectionChangedEventHandler -= value;
-
-                if (layoutDirectionChangedEventHandler == null && layoutDirectionChangedEventCallback != null)
+                if (_viewEventRareData != null)
                 {
-                    Interop.ActorSignal.LayoutDirectionChangedDisconnect(SwigCPtr, layoutDirectionChangedEventCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                    layoutDirectionChangedEventCallback = null;
+                    _viewEventRareData.LayoutDirectionChanged -= value;
                 }
             }
         }
@@ -669,7 +599,6 @@ namespace Tizen.NUI.BaseComponents
                 }
                 backgroundResourceLoadedEventHandler += value;
             }
-
             remove
             {
                 backgroundResourceLoadedEventHandler -= value;
@@ -679,7 +608,7 @@ namespace Tizen.NUI.BaseComponents
                     NDalicPINVOKE.ThrowExceptionIfExists();
                     backgroundResourceLoadedCallback = null;
                 }
-            }
+             }
         }
 
         private void OnColorChanged(float r, float g, float b, float a)
@@ -910,52 +839,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         // Callback for View TouchSignal
-        private bool OnInterceptTouch(IntPtr view, IntPtr touchData)
-        {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return false;
-            }
-
-            if (touchData == global::System.IntPtr.Zero)
-            {
-                NUILog.Error("touchData should not be null!");
-                return true;
-            }
-
-            // DisallowInterceptTouchEvent prevents the parent from intercepting touch.
-            if (DisallowInterceptTouchEvent)
-            {
-                return false;
-            }
-
-            TouchEventArgs e = new TouchEventArgs();
-            e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
-
-            bool consumed = false;
-
-            if (interceptTouchDataEventHandler != null)
-            {
-                if (NUIApplication.IsGeometryHittestEnabled())
-                {
-                    Delegate[] delegateList = interceptTouchDataEventHandler.GetInvocationList();
-                    // Oring the result of each callback.
-                    foreach (EventHandlerWithReturnType<object, TouchEventArgs, bool> del in delegateList)
-                    {
-                        consumed |= del(this, e);
-                    }
-                }
-                else
-                {
-                    consumed = interceptTouchDataEventHandler(this, e);
-                }
-            }
-
-            return consumed;
-        }
-
-        // Callback for View TouchSignal
         private bool OnTouch(IntPtr view, IntPtr touchData)
         {
             if (Disposed || IsDisposeQueued)
@@ -1052,82 +935,6 @@ namespace Tizen.NUI.BaseComponents
             return consumed;
         }
 
-        // Callback for View InterceptWheel signal
-        private bool OnInterceptWheel(IntPtr view, IntPtr wheelEvent)
-        {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return false;
-            }
-
-            if (wheelEvent == global::System.IntPtr.Zero)
-            {
-                NUILog.Error("wheelEvent should not be null!");
-                return true;
-            }
-
-            // DisallowInterceptWheelEvent prevents the parent from intercepting wheel.
-            if (DisallowInterceptWheelEvent)
-            {
-                return false;
-            }
-
-            WheelEventArgs e = new WheelEventArgs();
-
-            e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(wheelEvent);
-
-            bool consumed = false;
-
-            if (interceptWheelHandler != null)
-            {
-                consumed = interceptWheelHandler(this, e);
-            }
-
-            return consumed;
-        }
-
-        // Callback for View Wheel signal
-        private bool OnWheelEvent(IntPtr view, IntPtr wheelEvent)
-        {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return false;
-            }
-
-            if (wheelEvent == global::System.IntPtr.Zero)
-            {
-                NUILog.Error("wheelEvent should not be null!");
-                return true;
-            }
-
-            if (DispatchWheelEvents == false)
-            {
-                NUILog.Debug("If DispatchWheelEvents is false, it can not dispatch.");
-                return true;
-            }
-
-            WheelEventArgs e = new WheelEventArgs();
-
-            e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(wheelEvent);
-
-            bool consumed = false;
-
-            if (wheelEventHandler != null)
-            {
-                consumed = wheelEventHandler(this, e);
-            }
-
-            if (DispatchParentWheelEvents == false && consumed == false)
-            {
-                NUILog.Debug("If DispatchParentWheelEvents is false, it can not dispatch to parent.");
-                return true;
-            }
-
-            return consumed;
-        }
-
         // Callback for View OnWindow signal
         private void OnWindow(IntPtr data)
         {
@@ -1205,28 +1012,6 @@ namespace Tizen.NUI.BaseComponents
             if (aggregatedVisibilityChangedEventHandler != null)
             {
                 aggregatedVisibilityChangedEventHandler(this, e);
-            }
-        }
-
-        // Callback for View layout direction change signal
-        private void OnLayoutDirectionChanged(IntPtr data, ViewLayoutDirectionType type)
-        {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
-            LayoutDirectionChangedEventArgs e = new LayoutDirectionChangedEventArgs();
-            if (data != IntPtr.Zero)
-            {
-                e.View = Registry.GetManagedBaseHandleFromNativePtr(data) as View;
-            }
-            e.Type = type;
-
-            if (layoutDirectionChangedEventHandler != null)
-            {
-                layoutDirectionChangedEventHandler(this, e);
             }
         }
 
@@ -2034,5 +1819,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         private ViewGestureData EnsureViewGestureData() => _viewGestureData ??= new ViewGestureData();
+
+        private ViewEventRareData EnsureViewEventRareData() => _viewEventRareData ??= new ViewEventRareData(this);
     }
 }
