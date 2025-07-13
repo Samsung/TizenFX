@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net6.0</TargetFramework>
+        <AssemblyName>PenWaveSample</AssemblyName>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DebugType>portable</DebugType>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <DebugType>None</DebugType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Remove="tests/**" />
+        <Compile Remove="tests/**" />
+        <EmbeddedResource Remove="tests/**" />
+        <None Remove="tests/**" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Tizen.NUI.XamlBuild" Version="1.0.30" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Tizen.NET.Sdk" Version="1.0.9" />
+        <ProjectReference Include="../../src/Tizen/Tizen.csproj" />
+        <ProjectReference Include="../../src/Tizen.Applications.Common/Tizen.Applications.Common.csproj" />
+        <ProjectReference Include="../../src/Tizen.Account.AccountManager/Tizen.Account.AccountManager.csproj"/>
+        <ProjectReference Include="../../src/Tizen.Log/Tizen.Log.csproj" />
+        <ProjectReference Include="../../src/Tizen.System.SystemSettings/Tizen.System.SystemSettings.csproj" />
+        <ProjectReference Include="../../src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
+        <ProjectReference Include="../../src/Tizen.NUI.PenWave/Tizen.NUI.PenWave.csproj" />
+        <ProjectReference Include="../../src/Tizen.NUI/Tizen.NUI.csproj" />
+        <ProjectReference Include="../../src/Tizen.NUI.Scene3D/Tizen.NUI.Scene3D.csproj"/>
+    </ItemGroup>
+
+    <PropertyGroup>
+        <NeedInjection>True</NeedInjection>
+    </PropertyGroup>
+</Project>
