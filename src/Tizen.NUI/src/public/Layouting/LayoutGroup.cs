@@ -337,8 +337,11 @@ namespace Tizen.NUI
                         }
                         else
                         {
-                            // Child wants a specific size... so be it
-                            resultSize = childDimension;
+                            // Child wants a specific size. It can't be bigger than us.
+                            if (childDimension.AsDecimal() < resultSize.AsDecimal())
+                            {
+                                resultSize = childDimension;
+                            }
                             resultMode = MeasureSpecification.ModeType.Exactly;
                         }
 
