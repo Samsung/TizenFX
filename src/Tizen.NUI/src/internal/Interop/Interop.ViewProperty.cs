@@ -36,6 +36,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_PADDING_get")]
             public static extern int PaddingGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_View_Property_Get_Index")]
+            public static extern int GetIndex(int property);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_View_Property_TOOLTIP_get")]
             public static extern int TooltipGet();
 
