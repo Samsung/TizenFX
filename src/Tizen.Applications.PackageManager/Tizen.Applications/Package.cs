@@ -224,6 +224,7 @@ namespace Tizen.Applications
             {
                 Log.Warn(LogTag, string.Format("Failed to application info of {0}. err = {1}", Id, err));
             }
+            GC.KeepAlive(cb);
 
             err = Interop.Package.PackageInfoDestroy(packageInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
@@ -291,7 +292,9 @@ namespace Tizen.Applications
             {
                 tcs.TrySetException(PackageManagerErrorFactory.GetException(err, "Failed to get total package size info of " + Id));
             }
-            return await tcs.Task.ConfigureAwait(false);
+            var result = await tcs.Task.ConfigureAwait(false);
+            GC.KeepAlive(sizeInfoCb);
+            return result;
         }
 
         /// <summary>
@@ -490,6 +493,7 @@ namespace Tizen.Applications
             {
                 Log.Warn(LogTag, string.Format("Failed to get dependency info. err = {0}", err));
             }
+            GC.KeepAlive(dependencyInfoCb);
             return dependencies;
         }
 
@@ -506,6 +510,7 @@ namespace Tizen.Applications
             {
                 Log.Warn(LogTag, string.Format("Failed to get dependency info. err = {0}", err));
             }
+            GC.KeepAlive(dependencyInfoCb);
             return dependencies;
         }
 
@@ -530,6 +535,7 @@ namespace Tizen.Applications
                 {
                     allowedPackagesAndPrivileges.Add(allowedPackage, requiredPrivilegesList);
                 }
+                GC.KeepAlive(requiredPrivCallback);
                 return true;
             };
 
@@ -538,6 +544,7 @@ namespace Tizen.Applications
             {
                 Log.Warn(LogTag, string.Format("Failed to get allowed packages info. err = {0}", err));
             }
+            GC.KeepAlive(allowedPackageCallback);
             return allowedPackagesAndPrivileges;
         }
 

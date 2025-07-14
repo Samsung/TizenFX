@@ -508,6 +508,7 @@ namespace Tizen.Applications
                 {
                     Log.Warn(LogTag, string.Format("Failed to get package Informations. err = {0}", err));
                 }
+                GC.KeepAlive(cb);
             }
 
             err = Interop.PackageManager.PackageManagerFilterDestroy(filterHandle);
@@ -553,7 +554,9 @@ namespace Tizen.Applications
             {
                 tcs.TrySetException(PackageManagerErrorFactory.GetException(err, "Failed to get total package size info"));
             }
-            return await tcs.Task.ConfigureAwait(false);
+            var result = await tcs.Task.ConfigureAwait(false);
+            GC.KeepAlive(cb);
+            return result;
         }
 
         /// <summary>
