@@ -61,7 +61,7 @@ namespace Tizen.NUI
             // Note : PixelBuffer don't need to be register in Registry default. So we can create this class from worker thread.
         }
 
-        internal PixelBuffer(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        internal PixelBuffer(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister, cRegister)
         {
         }
 

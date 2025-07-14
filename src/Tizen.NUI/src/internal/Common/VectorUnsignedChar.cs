@@ -19,7 +19,7 @@ namespace Tizen.NUI
 {
     internal class VectorUnsignedChar : Disposable
     {
-        internal VectorUnsignedChar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal VectorUnsignedChar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 

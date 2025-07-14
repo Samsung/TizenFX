@@ -35,7 +35,7 @@ namespace Tizen.NUI
         /// The default constructor of PanGesture class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public PanGesture() : this(Interop.PanGestureDetector.PanGestureNew(0), true)
+        public PanGesture() : this(Interop.PanGestureDetector.PanGestureNew(0), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -44,7 +44,7 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <param name="state">The state of the gesture</param>
-        internal PanGesture(Gesture.StateType state) : this(Interop.PanGestureDetector.PanGestureNew((int)state), true)
+        internal PanGesture(Gesture.StateType state) : this(Interop.PanGestureDetector.PanGestureNew((int)state), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -53,7 +53,7 @@ namespace Tizen.NUI
         {
         }
 
-        internal PanGesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(Interop.PanGestureDetector.PanGestureUpcast(cPtr), cMemoryOwn, cRegister)
+        internal PanGesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(Interop.PanGestureDetector.PanGestureUpcast(cPtr), cMemoryOwn, cRegister, cRegister)
         {
         }
 

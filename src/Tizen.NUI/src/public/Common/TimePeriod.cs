@@ -27,7 +27,7 @@ namespace Tizen.NUI
     /// <since_tizen> 9 </since_tizen>
     public class TimePeriod : Disposable
     {
-        internal TimePeriod(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal TimePeriod(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 
