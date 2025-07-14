@@ -31,7 +31,7 @@ namespace Tizen.NUI
         /// Default constructor to creates a TapGesture.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TapGesture() : this(Interop.TapGesture.New(0), true)
+        public TapGesture() : this(Interop.TapGesture.New(0), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -40,7 +40,7 @@ namespace Tizen.NUI
         {
         }
 
-        internal TapGesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        internal TapGesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister, cRegister)
         {
         }
 

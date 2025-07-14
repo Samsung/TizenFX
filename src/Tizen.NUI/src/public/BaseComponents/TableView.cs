@@ -785,7 +785,7 @@ namespace Tizen.NUI.BaseComponents
             /// <param name="rowSpan">The row span initialized.</param>
             /// <param name="columnSpan">The column span initialized.</param>
             /// <since_tizen> 3 </since_tizen>
-            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan, uint columnSpan) : this(Interop.TableView.NewTableViewCellPosition(rowIndex, columnIndex, rowSpan, columnSpan), true)
+            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan, uint columnSpan) : this(Interop.TableView.NewTableViewCellPosition(rowIndex, columnIndex, rowSpan, columnSpan), true, false)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -797,7 +797,7 @@ namespace Tizen.NUI.BaseComponents
             /// <param name="columnIndex">The column index initialized.</param>
             /// <param name="rowSpan">The row span initialized.</param>
             /// <since_tizen> 3 </since_tizen>
-            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan) : this(Interop.TableView.NewTableViewCellPosition(rowIndex, columnIndex, rowSpan), true)
+            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan) : this(Interop.TableView.NewTableViewCellPosition(rowIndex, columnIndex, rowSpan), true, false)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -808,7 +808,7 @@ namespace Tizen.NUI.BaseComponents
             /// <param name="rowIndex">The row index initialized.</param>
             /// <param name="columnIndex">The column index initialized.</param>
             /// <since_tizen> 3 </since_tizen>
-            public CellPosition(uint rowIndex, uint columnIndex) : this(Interop.TableView.NewTableViewCellPosition(rowIndex, columnIndex), true)
+            public CellPosition(uint rowIndex, uint columnIndex) : this(Interop.TableView.NewTableViewCellPosition(rowIndex, columnIndex), true, false)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -818,7 +818,7 @@ namespace Tizen.NUI.BaseComponents
             /// </summary>
             /// <param name="rowIndex">The row index initialized.</param>
             /// <since_tizen> 3 </since_tizen>
-            public CellPosition(uint rowIndex) : this(Interop.TableView.NewTableViewCellPosition(rowIndex), true)
+            public CellPosition(uint rowIndex) : this(Interop.TableView.NewTableViewCellPosition(rowIndex), true, false)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -828,12 +828,16 @@ namespace Tizen.NUI.BaseComponents
             /// Initializes the cell position with default values.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public CellPosition() : this(Interop.TableView.NewTableViewCellPosition(), true)
+            public CellPosition() : this(Interop.TableView.NewTableViewCellPosition(), true, false)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
-            internal CellPosition(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+            internal CellPosition(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, cMemoryOwn)
+            {
+            }
+
+            internal CellPosition(global::System.IntPtr cPtr, bool cMemoryOwn, bool disposableOnlyMainThread) : base(cPtr, cMemoryOwn, disposableOnlyMainThread)
             {
             }
 

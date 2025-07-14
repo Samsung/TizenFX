@@ -30,7 +30,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="state">The state of the gesture</param>
         /// <since_tizen> 3 </since_tizen>
-        public LongPressGesture(Gesture.StateType state) : this(Interop.LongPressGesture.New((int)state), true)
+        public LongPressGesture(Gesture.StateType state) : this(Interop.LongPressGesture.New((int)state), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
