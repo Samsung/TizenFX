@@ -111,6 +111,63 @@ namespace Tizen.Applications.NotificationEventListener
                 Interop.NotificationEventListener.GetText(eventargs.Handle, NotificationText.FirstMainText, out path);
                 indicatorStyle.SubText = path;
             }
-       }
+
+            /* for extension */
+            bool isExisted = false;
+            int size = 0;
+            NotificationLayout layout;
+            NotificationEventArgs.ExtensionStyleArgs extensionStyle = new NotificationEventArgs.ExtensionStyleArgs();
+
+            Interop.NotificationEventListener.GetLayout(eventargs.Handle, out layout);
+            if (layout == NotificationLayout.Thumbnail)
+            {
+                appcontrol = null;
+                Interop.NotificationEventListener.GetEventHandler(eventargs.Handle, (int)ClickEventType.Thumbnail, out appcontrol);
+                if (appcontrol != null && appcontrol.IsInvalid == false)
+                {
+                    extensionStyle.ThumbnailAction = new AppControl(appcontrol);
+                }
+
+                Interop.NotificationEventListener.GetImage(eventargs.Handle, NotificationImage.Thumbnail, out path);
+                if (string.IsNullOrEmpty(path) == false)
+                {
+                    extensionStyle.ThumbnailImagePath = path;
+                }
+
+                extensionStyle.IsThumbnail = true;
+
+                if ((styleList & (int)NotificationDisplayApplist.Active) != 0)
+                {
+                    extensionStyle.IsActive = true;
+                }
+
+                isExisted = true;
+            }
+            else if (layout == NotificationLayout.Extension)
+            {
+                Interop.NotificationEventListener.GetImage(eventargs.Handle, NotificationImage.Extension, out path);
+                if (string.IsNullOrEmpty(path) == false)
+                {
+                    extensionStyle.ExtensionImagePath = path;
+                }
+
+                Interop.NotificationEventListener.GetExtensionImageSize(eventargs.Handle, out size);
+                extensionStyle.ExtensionImageSize = size;
+                extensionStyle.IsThumbnail = false;
+
+                if ((styleList & (int)NotificationDisplayApplist.Active) != 0)
+                {
+                    extensionStyle.IsActive = true;
+                }
+
+                isExisted = true;
+            }
+
+            if (isExisted)
+            {
+                eventargs.Style.Add(extensionStyle.Key, extensionStyle);
+            }
+            /* for extension end */
+        }
     }
 }
