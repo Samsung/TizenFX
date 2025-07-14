@@ -63,6 +63,8 @@ namespace Tizen.NUI
         //The flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued;
 
+        private bool _disposeOnlyMainThread;
+
         /// <summary>
         /// Create an instance of BaseHandle.
         /// </summary>
@@ -84,7 +86,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister)
+        internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister, bool disposableOnlyMainThread)
         {
             //to catch derived classes dali native exceptions
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -102,42 +104,20 @@ namespace Tizen.NUI
                     registerMe = false;
                 }
             }
+
+            // We must dispose BaseHandle at main thread if register successed.
+            _disposeOnlyMainThread = disposableOnlyMainThread || registerMe;
+        }
+        internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : this(cPtr, cMemoryOwn, cRegister, true)
+        {
         }
 
-        internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
-            //to catch derived classes dali native exceptions
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            registerMe = swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            if (registerMe)
-            {
-                // Register this instance of BaseHandle in the registry.
-                if (!Registry.Register(this))
-                {
-                    registerMe = false;
-                }
-            }
         }
 
-        internal BaseHandle(global::System.IntPtr cPtr)
+        internal BaseHandle(global::System.IntPtr cPtr) : this(cPtr, true)
         {
-            registerMe = swigCMemOwn = true;
-
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            if (registerMe)
-            {
-                // Register this instance of BaseHandle in the registry.
-                if (!Registry.Register(this))
-                {
-                    registerMe = false;
-                }
-            }
         }
 
         /// <summary>
@@ -383,7 +363,7 @@ namespace Tizen.NUI
                 // Explicit call. user calls Dispose()
 
                 //Throw exception if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
+                if (DisposeOnlyMainThread && !Window.IsInstalled())
                 {
                     using var process = global::System.Diagnostics.Process.GetCurrentProcess();
                     var processId = process.Id;
@@ -414,10 +394,17 @@ namespace Tizen.NUI
             else
             {
                 // Implicit call. user doesn't call Dispose(), so this object is added into DisposeQueue to be disposed automatically.
-                if (!isDisposeQueued)
+                if (_disposeOnlyMainThread)
                 {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
+                    if (!isDisposeQueued)
+                    {
+                        isDisposeQueued = true;
+                        DisposeQueue.Instance.Add(this);
+                    }
+                }
+                else
+                {
+                    Dispose(DisposeTypes.Implicit);
                 }
             }
 
@@ -754,6 +741,12 @@ namespace Tizen.NUI
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal bool IsDisposedOrQueued => disposed || isDisposeQueued;
+
+        /// <summary>
+        /// The flag to check if it must be disposed at main thread or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal bool DisposeOnlyMainThread => _disposeOnlyMainThread;
 
         static private void ClearHolder(IntPtr handle)
         {

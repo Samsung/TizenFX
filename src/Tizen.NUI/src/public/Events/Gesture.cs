@@ -41,7 +41,11 @@ namespace Tizen.NUI
         {
         }
 
-        internal Gesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        internal Gesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister, cRegister)
+        {
+        }
+
+        internal Gesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister, bool disposableOnlyMainThread) : base(cPtr, cMemoryOwn, cRegister, disposableOnlyMainThread)
         {
         }
 

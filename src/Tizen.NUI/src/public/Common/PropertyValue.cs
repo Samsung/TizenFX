@@ -223,7 +223,7 @@ namespace Tizen.NUI
         internal PropertyValue(Size vectorValue) : this(vectorValue.Width, vectorValue.Height, vectorValue.Depth)
         {
         }
-        internal PropertyValue(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal PropertyValue(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 

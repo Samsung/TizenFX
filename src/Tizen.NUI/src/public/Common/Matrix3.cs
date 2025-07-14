@@ -35,7 +35,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Matrix3 : Disposable
     {
-        internal Matrix3(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Matrix3(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 
