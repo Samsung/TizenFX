@@ -78,7 +78,7 @@ namespace Tizen.NUI
             // Note : PixelData don't need to be register in Registry default. So we can create this class from worker thread.
         }
 
-        internal PixelData(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        internal PixelData(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister, cRegister)
         {
         }
 

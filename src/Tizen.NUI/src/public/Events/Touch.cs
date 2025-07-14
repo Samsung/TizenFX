@@ -32,7 +32,7 @@ namespace Tizen.NUI
         /// Calling member functions with an uninitialized touch handle is not allowed.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Touch() : this(Interop.Touch.NewTouch(), true, false)
+        public Touch() : this(Interop.Touch.NewTouch(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -41,7 +41,7 @@ namespace Tizen.NUI
         {
         }
 
-        internal Touch(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        internal Touch(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister, cRegister)
         {
         }
 
