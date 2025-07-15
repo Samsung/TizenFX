@@ -5079,7 +5079,7 @@ namespace Tizen.NUI.BaseComponents
                 var maxHeight = Owner.GetMaximumHeight();
                 var naturalSize = Owner.GetNaturalSize();
 
-                if (((TextField)Owner).Text.Length == 0)
+                if (((TextField)Owner).Text.Length == 0 && ((TextField)Owner).PlaceholderText.Length == 0)
                 {
                     // Calculate height of TextField by setting Text with " ".
                     // By calling SetTextWithoutTextChanged, TextChanged callback is not called for this.
