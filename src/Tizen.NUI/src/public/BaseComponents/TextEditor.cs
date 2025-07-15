@@ -5113,7 +5113,7 @@ namespace Tizen.NUI.BaseComponents
                 var maxHeight = Owner.GetMaximumHeight();
                 var naturalSize = Owner.GetNaturalSize();
 
-                if (((TextEditor)Owner).Text.Length == 0)
+                if (((TextEditor)Owner).Text.Length == 0 && ((TextEditor)Owner).PlaceholderText.Length == 0)
                 {
                     // Calculate height of TextEditor by setting Text with " ".
                     // By calling SetTextWithoutTextChanged, TextChanged callback is not called for this.
