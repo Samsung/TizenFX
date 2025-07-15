@@ -468,6 +468,8 @@ namespace Tizen.Applications
                         }
                     }
 
+                    GC.KeepAlive(_resControlCallback);
+
                     return resourceControls;
                 }
             }
