@@ -313,7 +313,7 @@ namespace DRGLApplication
 
             // Note that we should use view port position always (0,0), since it depend on window size
             setViewport(0, 0, localWindowPositionSize.Width, localWindowPositionSize.Height);
-            setSize(input.Size.Width, input.Size.Height);
+            setSize((int)input.Size.Width, (int)input.Size.Height);
             setWorldColor(input.WorldColor.R, input.WorldColor.G, input.WorldColor.B, input.WorldColor.A);
 
             // Note that input.ClippingBox's (0,0) is left-bottom of window (not include rotation!).
