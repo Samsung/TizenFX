@@ -362,8 +362,8 @@ class VisualTestExample : NUIApplication
         };
         */
 
-        view.AddVisual(imageVisual);
-        //view.AddVisual(textVisual);
+        view.AddVisual(imageVisual, ViewVisualContainerRange.Content);
+        //view.AddVisual(textVisual, ViewVisualContainerRange.Content);
 
         TextLabel textLabel = new TextLabel()
         {
@@ -402,7 +402,7 @@ class VisualTestExample : NUIApplication
             ExtraWidth = mViewSize * 0.15f,
             ExtraHeight = -mViewSize * 0.05f,
         };
-        view.AddVisual(colorVisual);
+        view.AddVisual(colorVisual, ViewVisualContainerRange.Content);
         #endregion
 
         #region ImageVisual
@@ -421,7 +421,7 @@ class VisualTestExample : NUIApplication
             WidthPolicy = VisualTransformPolicyType.Absolute,
             HeightPolicy = VisualTransformPolicyType.Absolute,
         };
-        view.AddVisual(imageVisual);
+        view.AddVisual(imageVisual, ViewVisualContainerRange.Content);
         #endregion
 
         #region TextVisual
@@ -442,7 +442,7 @@ class VisualTestExample : NUIApplication
             HeightPolicy = VisualTransformPolicyType.Absolute,
             OffsetYPolicy = VisualTransformPolicyType.Absolute,
         };
-        view.AddVisual(textVisual);
+        view.AddVisual(textVisual, ViewVisualContainerRange.Content);
         #endregion
 
         #region BorderVisual
@@ -452,7 +452,7 @@ class VisualTestExample : NUIApplication
             BorderWidth = mViewSize * 0.05f,
             AntiAliasing = false, // For speed up
         };
-        view.AddVisual(borderVisual);
+        view.AddVisual(borderVisual, ViewVisualContainerRange.Content);
         #endregion
     }
 
