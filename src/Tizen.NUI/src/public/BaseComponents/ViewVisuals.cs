@@ -77,10 +77,10 @@ namespace Tizen.NUI.BaseComponents
         /// visual will be detached from old view and added to this view.
         /// </remarks>
         /// <param name="visualBase">The visual to add.</param>
-        /// <param name="range">The range of visuals to be added. Default is ViewVisualContainerRange.Content</param>
+        /// <param name="range">The range of visuals to be added.</param>
         /// <returns>True if the visual was added successfully, false otherwise.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool AddVisual(Tizen.NUI.Visuals.VisualBase visualBase, ViewVisualContainerRange range = ViewVisualContainerRange.Content)
+        public bool AddVisual(Tizen.NUI.Visuals.VisualBase visualBase, ViewVisualContainerRange range)
         {
             return AddVisualInternal(visualBase, ConvertRangeToType(range));
         }
@@ -138,17 +138,17 @@ namespace Tizen.NUI.BaseComponents
         /// <returns>Get visual base by sibling index</returns>
         /// <exception cref="InvalidOperationException"> Thrown when index is out of bounds. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Tizen.NUI.Visuals.VisualBase GetVisualAt(uint index, ViewVisualContainerRange range = ViewVisualContainerRange.Content)
+        public Tizen.NUI.Visuals.VisualBase GetVisualAt(uint index, ViewVisualContainerRange range)
         {
             return GetVisualAtInternal(index, ConvertRangeToType(range));
         }
 
         /// <summary>
-        /// Get total number of Tizen.NUI.Visuals.VisualBase which we added using <see cref="AddVisual"/>.
+        /// Get total number of Tizen.NUI.Visuals.VisualBase which we added using <see cref="AddVisual(Tizen.NUI.Visuals.VisualBase, ViewVisualContainerRange)"/>.
         /// </summary>
         /// <returns>Get the number of visual base.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint GetVisualsCount(ViewVisualContainerRange range = ViewVisualContainerRange.Content)
+        public uint GetVisualsCount(ViewVisualContainerRange range)
         {
             return GetVisualsCountInternal(ConvertRangeToType(range));
         }
@@ -176,6 +176,40 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
             return ret;
+        }
+        #endregion
+
+        #region Public Methods legacy
+        /// <summary>
+        /// Add a Tizen.NUI.Visuals.VisualBase to the view at Content.
+        /// </summary>
+        /// <param name="visualBase">The visual to add.</param>
+        /// <returns>True if the visual was added successfully, false otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool AddVisual(Tizen.NUI.Visuals.VisualBase visualBase)
+        {
+            return AddVisual(visualBase, ViewVisualContainerRange.Content);
+        }
+
+        /// <summary>
+        /// Get a Tizen.NUI.Visuals.VisualBase by sibling index at Content.
+        /// </summary>
+        /// <returns>Get visual base by sibling index at Content</returns>
+        /// <exception cref="InvalidOperationException"> Thrown when index is out of bounds. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Tizen.NUI.Visuals.VisualBase GetVisualAt(uint index)
+        {
+            return GetVisualAt(index, ViewVisualContainerRange.Content);
+        }
+
+        /// <summary>
+        /// Get total number of Tizen.NUI.Visuals.VisualBase which we added using <see cref="AddVisual(Tizen.NUI.Visuals.VisualBase)"/>.
+        /// </summary>
+        /// <returns>Get the number of visual base at Content</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetVisualsCount()
+        {
+            return GetVisualsCount(ViewVisualContainerRange.Content);
         }
         #endregion
 
