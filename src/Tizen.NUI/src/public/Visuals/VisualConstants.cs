@@ -1081,6 +1081,25 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int FrameSpeedFactor = NDalic.ImageVisualOrientationCorrection + 19;
+
+        /// <summary>
+        /// @brief Whether to redraw the image when the visual is scaled up.
+        /// @details Name "redrawInScalingUp", type Property::BOOLEAN.
+        /// @note It is used in the AnimatedVectorImageVisual.The default is true.
+        /// </summary>
+        /// <remarks>
+        /// Inhouse API
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int RedrawInScalingUp = NDalic.ImageVisualOrientationCorrection + 20;
+
+        /// <summary>
+        /// @brief Renders a texture at a given scale.
+        /// @details Name "renderScale", type Property::FLOAT.
+        /// @note It is used when scaling up AnimatedVectorImageVisual. The default is 1.0f.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int RenderScale = NDalic.ImageVisualOrientationCorrection + 21;
     }
 
     /// <summary>
