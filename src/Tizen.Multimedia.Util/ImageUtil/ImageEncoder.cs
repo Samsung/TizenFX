@@ -99,7 +99,7 @@ namespace Tizen.Multimedia.Util
         /// Sets the color-space of the output image.
         /// </summary>
         /// <param name="colorSpace">The target color-space.</param>
-        /// <value>The default color space is <see cref="ColorSpace.Rgba8888"/>
+        /// <value>The default color space is <see cref="ColorSpace.Rgba8888"/></value>
         /// <exception cref="ArgumentException"><paramref name="colorSpace"/> is invalid.</exception>
         /// <exception cref="NotSupportedException"><paramref name="colorSpace"/> is not supported by the encoder.</exception>
         /// <seealso cref="ImageUtil.GetSupportedColorSpaces(ImageFormat)"/>
