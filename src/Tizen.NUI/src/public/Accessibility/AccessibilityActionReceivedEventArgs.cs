@@ -33,6 +33,11 @@ namespace Tizen.NUI.BaseComponents
         public AccessibilityAction ActionType { get; set; }
 
         /// <summary>
+        /// Gets or sets the accessibility target view.
+        /// </summary>
+        public View Target { get; set; }
+
+        /// <summary>
         /// Gets or sets a value indicating whether the event has been handled.
         /// </summary>
         public bool Handled { get; set; }
