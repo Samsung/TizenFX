@@ -99,9 +99,14 @@ namespace Tizen.NUI
 
             if (initialized && eventThreadCallback != null)
             {
-                if (!eventThreadCallbackTriggered)
+                bool triggerRequired;
+                lock (listLock)
                 {
+                    triggerRequired = !eventThreadCallbackTriggered;
                     eventThreadCallbackTriggered = true;
+                }
+                if (triggerRequired)
+                {
                     eventThreadCallback.Trigger();
                 }
             }
@@ -121,9 +126,14 @@ namespace Tizen.NUI
 
             if (initialized && eventThreadCallback != null)
             {
-                if (!eventThreadCallbackTriggered)
+                bool triggerRequired;
+                lock (listLock)
                 {
+                    triggerRequired = !eventThreadCallbackTriggered;
                     eventThreadCallbackTriggered = true;
+                }
+                if (triggerRequired)
+                {
                     eventThreadCallback.Trigger();
                 }
             }
@@ -139,10 +149,10 @@ namespace Tizen.NUI
 
         public void ProcessDisposables()
         {
-            eventThreadCallbackTriggered = false;
 
             lock (listLock)
             {
+                eventThreadCallbackTriggered = false;
                 if (disposables.Count > 0)
                 {
                     // Move item from end, due to the performance issue.
