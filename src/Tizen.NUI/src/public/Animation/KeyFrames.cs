@@ -15,6 +15,7 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -77,6 +78,7 @@ namespace Tizen.NUI
         /// <param name="value">A value</param>
         /// <param name="alpha">The alpha function used to blend to the next keyframe.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API13, will be removed in API15. Use AnimateBetween() alpha function instead.")]
         public void Add(float progress, object value, AlphaFunction alpha)
         {
             PropertyValue val = PropertyValue.CreateFromObject(value);
@@ -117,9 +119,10 @@ namespace Tizen.NUI
         /// <param name="value">A value.</param>
         /// <param name="alpha">The alpha function used to blend to the next keyframe.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API13, will be removed in API15. Use AnimateBetween() alpha function instead.")]
         public void Add(float progress, PropertyValue value, AlphaFunction alpha)
         {
-            Interop.KeyFrames.Add(SwigCPtr, progress, PropertyValue.getCPtr(value), AlphaFunction.getCPtr(alpha));
+            Interop.KeyFrames.Add(SwigCPtr, progress, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
