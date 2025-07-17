@@ -369,8 +369,14 @@ namespace Tizen.NUI
                 {
                     layoutGroup.RequestLayout();
                 }
-            }
 
+                // FlexLayout requires MarkDirty if child layout's layout properties are changed.
+                // e.g. MarkDirty is required if child layout's Width/HeightSpecification is changed.
+                if (parent is FlexLayout)
+                {
+                    FlexLayout.MarkDirty(Owner);
+                }
+            }
         }
 
         /// <summary>

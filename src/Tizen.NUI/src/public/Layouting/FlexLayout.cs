@@ -999,6 +999,11 @@ namespace Tizen.NUI
                 Interop.FlexLayout.SetFlexBasis(childHandleRef, flexBasis);
                 Interop.FlexLayout.SetFlexShrink(childHandleRef, flexShrink);
                 Interop.FlexLayout.SetFlexGrow(childHandleRef, flexGrow);
+
+                if (child.GetAttached<LayoutParams>()?.MarkDirty ?? false)
+                {
+                    Interop.FlexLayout.MarkDirty(childHandleRef);
+                }
             }
 
             Interop.FlexLayout.CalculateLayout(swigCPtr, width, height, isLayoutRtl);
@@ -1068,6 +1073,20 @@ namespace Tizen.NUI
             }
         }
 
+        internal static void MarkDirty(View view)
+        {
+            _ = view ?? throw new ArgumentNullException(nameof(view));
+            var layoutParams = view.GetAttached<LayoutParams>();
+            if (layoutParams != null)
+            {
+                layoutParams.MarkDirty = true;
+            }
+            else
+            {
+                view.SetAttached(new LayoutParams() { MarkDirty = true });
+            }
+        }
+
         private class LayoutParams
         {
             /// <summary>
@@ -1130,6 +1149,15 @@ namespace Tizen.NUI
                 get;
                 set;
             } = new HandleRef();
+
+            /// <summary>
+            /// Gets or sets the mark dirty of the flex layout item.
+            /// </summary>
+            public bool MarkDirty
+            {
+                get;
+                set;
+            } = false;
         }
     } // FLexlayout
 } // namesspace Tizen.NUI
