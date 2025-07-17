@@ -44,6 +44,8 @@ class VisualTestExample : NUIApplication
 
     private global::System.Random mRandom = new global::System.Random();
 
+    private global::System.Collections.Generic.List<Tizen.NUI.Visuals.VisualBase> visuals = new();
+
     protected void CreateScene()
     {
         mWindow = Window.Instance;
@@ -193,6 +195,11 @@ class VisualTestExample : NUIApplication
 
                         rootView?.Unparent();
                         rootView?.DisposeRecursively();
+                        foreach (var visual in visuals)
+                        {
+                            visual?.Dispose();
+                        }
+                        visuals.Clear();
                         rootView = new View()
                         {
                             SizeWidth = mWindowSize.X,
@@ -341,6 +348,7 @@ class VisualTestExample : NUIApplication
             WidthPolicy = VisualTransformPolicyType.Absolute,
             HeightPolicy = VisualTransformPolicyType.Absolute,
         };
+        visuals.Add(imageVisual);
 
         /*
         Tizen.NUI.Visuals.TextVisual textVisual = new Tizen.NUI.Visuals.TextVisual()
@@ -402,6 +410,7 @@ class VisualTestExample : NUIApplication
             ExtraWidth = mViewSize * 0.15f,
             ExtraHeight = -mViewSize * 0.05f,
         };
+        visuals.Add(colorVisual);
         view.AddVisual(colorVisual, ViewVisualContainerRange.Content);
         #endregion
 
@@ -421,6 +430,7 @@ class VisualTestExample : NUIApplication
             WidthPolicy = VisualTransformPolicyType.Absolute,
             HeightPolicy = VisualTransformPolicyType.Absolute,
         };
+        visuals.Add(imageVisual);
         view.AddVisual(imageVisual, ViewVisualContainerRange.Content);
         #endregion
 
@@ -442,6 +452,7 @@ class VisualTestExample : NUIApplication
             HeightPolicy = VisualTransformPolicyType.Absolute,
             OffsetYPolicy = VisualTransformPolicyType.Absolute,
         };
+        visuals.Add(textVisual);
         view.AddVisual(textVisual, ViewVisualContainerRange.Content);
         #endregion
 
@@ -452,6 +463,7 @@ class VisualTestExample : NUIApplication
             BorderWidth = mViewSize * 0.05f,
             AntiAliasing = false, // For speed up
         };
+        visuals.Add(borderVisual);
         view.AddVisual(borderVisual, ViewVisualContainerRange.Content);
         #endregion
     }
