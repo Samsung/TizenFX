@@ -22,7 +22,7 @@ namespace Tizen.NUI.BaseComponents
         /// NOTE This can replace SetBackgroundColor(NUI.Color) after sufficient verification
         internal void SetBackgroundColor(UIColor color)
         {
-            themeData?.selectorData?.ClearBackground(this);
+            GetThemeData()?.selectorData?.ClearBackground(this);
 
             // Background property will be Color after now. Remove background image url information.
             backgroundImageUrl = null;
@@ -53,7 +53,7 @@ namespace Tizen.NUI.BaseComponents
         /// NOTE This can replace SetInternalBoxShadowProperty() after sufficient verification
         internal void SetBoxShadow(UIShadow shadow)
         {
-            themeData?.selectorData?.ClearShadow(this);
+            GetThemeData()?.selectorData?.ClearShadow(this);
 
             backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Shadow;
 
