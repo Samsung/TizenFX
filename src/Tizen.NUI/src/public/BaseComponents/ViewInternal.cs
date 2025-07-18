@@ -1296,7 +1296,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetThemeApplied()
         {
-            if (themeData == null) themeData = new ThemeData();
+            var themeData = EnsureThemeData();
             themeData.ThemeApplied = true;
 
             if (ThemeChangeSensitive && !themeData.ListeningThemeChangeEvent)
@@ -1427,6 +1427,7 @@ namespace Tizen.NUI.BaseComponents
                     }
                 }
 
+                var themeData = GetThemeData();
                 if (themeData != null)
                 {
                     themeData.selectorData?.Reset(this);
@@ -1769,7 +1770,7 @@ namespace Tizen.NUI.BaseComponents
 
         private ViewSelectorData EnsureSelectorData()
         {
-            if (themeData == null) themeData = new ThemeData();
+            var themeData = EnsureThemeData();
 
             return themeData.selectorData ?? (themeData.selectorData = new ViewSelectorData());
         }
