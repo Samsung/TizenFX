@@ -275,7 +275,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called when the owning view's size is animated, for example, using Animation::AnimateTo( Property ( view, View::Property::SIZE ), ... ).
+        /// Called when the owning view's size is animated, for example, using Animation.AnimateTo( view, "Size", ... ).
         /// </summary>
         /// <param name="animation">The object which is animating the owning view.</param>
         /// <param name="targetSize">The target size.</param>

@@ -205,7 +205,7 @@ namespace Tizen.NUI
             get
             {
                 float temp = 0.0f;
-                var pValue = GetProperty(View.Property.OPACITY);
+                var pValue = GetProperty(View.Property.Opacity);
                 pValue.Get(out temp);
                 pValue.Dispose();
                 return temp;
@@ -213,7 +213,7 @@ namespace Tizen.NUI
             set
             {
                 var temp = new Tizen.NUI.PropertyValue(value);
-                SetProperty(View.Property.OPACITY, temp);
+                SetProperty(View.Property.Opacity, temp);
                 temp.Dispose();
             }
         }
@@ -227,7 +227,7 @@ namespace Tizen.NUI
             get
             {
                 bool temp = false;
-                var pValue = GetProperty(View.Property.VISIBLE);
+                var pValue = GetProperty(View.Property.Visible);
                 pValue.Get(out temp);
                 pValue.Dispose();
                 return temp;
@@ -235,7 +235,7 @@ namespace Tizen.NUI
             set
             {
                 var temp = new Tizen.NUI.PropertyValue(value);
-                SetProperty(View.Property.VISIBLE, temp);
+                SetProperty(View.Property.Visible, temp);
                 temp.Dispose();
             }
         }
