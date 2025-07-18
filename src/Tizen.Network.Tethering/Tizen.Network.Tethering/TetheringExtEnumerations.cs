@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel;
 
 
-namespace Tizen.Network.Tethering
+namespace Tizen.Network.TetheringExt
 {
     public enum TetheringType
     {

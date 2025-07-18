@@ -4,41 +4,41 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
-namespace Tizen.Network.Tethering
+namespace Tizen.Network.TetheringExt
 {
     static internal class Globals
     {
-        internal const string LogTag = "Tizen.Network.Tethering";
+        internal const string LogTag = "Tizen.Network.TetheringExt";
     }
 
     internal class HandleHolder
     {
-        private SafeTetheringManagerHandle _handle;
+        private SafeTetheringExtManagerHandle _handle;
 
         internal HandleHolder()
         {
-            _handle = TetheringManagerImpl.Instance.Initialize();
+            _handle = TetheringExtManagerImpl.Instance.Initialize();
             Log.Info(Globals.LogTag, "Handle: " + _handle);
         }
 
-        internal SafeTetheringManagerHandle GetSafeHandle()
+        internal SafeTetheringExtManagerHandle GetSafeHandle()
         {
             Log.Debug(Globals.LogTag, "HandleHolder safehandle = " +  _handle);
             return _handle;
         }
     }
 
-    internal partial class TetheringManagerImpl
+    internal partial class TetheringExtManagerImpl
     {
-        private static readonly Lazy<TetheringManagerImpl> _instance =
-            new Lazy<TetheringManagerImpl>(() => new TetheringManagerImpl());
+        private static readonly Lazy<TetheringExtManagerImpl> _instance =
+            new Lazy<TetheringExtManagerImpl>(() => new TetheringExtManagerImpl());
 
         private bool _enabled = false;
         private int _ssid;
         private string _passphrase;
         private int _channel;
 
-        internal static TetheringManagerImpl Instance
+        internal static TetheringExtManagerImpl Instance
         {
             get
             {
@@ -48,17 +48,17 @@ namespace Tizen.Network.Tethering
 
         private static HandleHolder _handle = new HandleHolder();
 
-        private TetheringManagerImpl()
+        private TetheringExtManagerImpl()
         {
-            Log.Info(Globals.LogTag, "TetheringManagerImpl constructor");
+            Log.Info(Globals.LogTag, "TetheringExtManagerImpl constructor");
         }
 
-        internal SafeTetheringManagerHandle GetSafeHandle()
+        internal SafeTetheringExtManagerHandle GetSafeHandle()
         {
             return _handle.GetSafeHandle();
         }
 
-        internal SafeTetheringManagerHandle Initialize()
+        internal SafeTetheringExtManagerHandle Initialize()
         {
             return null;
         }

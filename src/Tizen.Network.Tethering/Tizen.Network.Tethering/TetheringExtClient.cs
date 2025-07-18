@@ -1,21 +1,21 @@
 using System;
 
-namespace Tizen.Network.Tethering
+namespace Tizen.Network.TetheringExt
 {
     // TODO: Impelement IDisposable Interface 
-    public class TetheringClient
+    public class TetheringExtClient
     {
         private TetheringType _interface;
-        private string _ip_addr;
-        private string _mac_addr;
+        private string _ipAddr;
+        private string _macAddr;
         private string _hostname;
 
-        public TetheringClient Clone()
+        public TetheringExtClient Clone()
         {
-            TetheringClient clone = new TetheringClient();
+            TetheringExtClient clone = new TetheringExtClient();
             clone._interface = this._interface;
-            clone._ip_addr = this._ip_addr;
-            clone._mac_addr = this._mac_addr;
+            clone._ipAddr = this._ipAddr;
+            clone._macAddr = this._macAddr;
             clone._hostname = this._hostname;
             return clone;
         }
@@ -24,7 +24,7 @@ namespace Tizen.Network.Tethering
         {
             get
             {
-                return _ip_addr;
+                return _ipAddr;
             }
         }
 
@@ -32,7 +32,7 @@ namespace Tizen.Network.Tethering
         {
             get
             {
-                return _ip_addr;
+                return _macAddr;
             }
         }
 

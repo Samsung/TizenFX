@@ -20,19 +20,19 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace Tizen.Network.Tethering
+namespace Tizen.Network.TetheringExt
 {
 
     /// <summary>
-    /// A class for managing the Tethering handle.
+    /// A class for managing the TetheringExt handle.
     /// </summary>
     /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public sealed class SafeTetheringManagerHandle : SafeHandle
+    public sealed class SafeTetheringExtManagerHandle : SafeHandle
     {
         private int _tid;
 
-        internal SafeTetheringManagerHandle() : base(IntPtr.Zero, true)
+        internal SafeTetheringExtManagerHandle() : base(IntPtr.Zero, true)
         {
         }
 
@@ -66,17 +66,17 @@ namespace Tizen.Network.Tethering
 
     /// <summary>
     /// A manager class that enables applications to create and manage a Wi-Fi hotspot, allowing devices to share an internet connection over a Wireless Local Area Network (WLAN).
-    /// The Tethering Manager provides functionality to activate and deactivate a Wi-Fi hotspot, configure hotspot settings, and manage connected devices.
+    /// The TetheringExt Manager provides functionality to activate and deactivate a Wi-Fi hotspot, configure hotspot settings, and manage connected devices.
     /// </summary>
     /// <since_tizen> 13 </since_tizen>
-    static public class TetheringManager
+    static public class TetheringExtManager
     {
         /// <summary>
-        /// TetheringEnabled is raised when the tethering is successfully enabled.
+        /// TetheringExtEnabled is raised when the tethering is successfully enabled.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public event EventHandler<TetheringEnabledEventArgs> TetheringEnabled
+        static public event EventHandler<TetheringExtEnabledEventArgs> TetheringExtEnabled
         {
             add
             {
@@ -87,11 +87,11 @@ namespace Tizen.Network.Tethering
         }
 
         /// <summary>
-        /// TetheringDisabled is raised when the tethering is successfully disabled.
+        /// TetheringExtDisabled is raised when the tethering is successfully disabled.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public event EventHandler<TetheringDisabledEventArgs> TetheringDisabled
+        static public event EventHandler<TetheringExtDisabledEventArgs> TetheringExtDisabled
         {
             add
             {
@@ -120,35 +120,35 @@ namespace Tizen.Network.Tethering
         /// Gets the tethering safe handle.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        /// <returns>The instance of the SafeTetheringManagerHandle.</returns>
+        /// <returns>The instance of the SafeTetheringExtManagerHandle.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static SafeTetheringManagerHandle GetTetheringHandle()
+        public static SafeTetheringExtManagerHandle GetTetheringExtHandle()
         {
             return null;
         }
 
         /// <summary>
-        /// Activates the Tethering.
+        /// Activates the TetheringExt.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public void ActivateTethering()
+        static public void ActivateTetheringExt()
         {
 
         }
 
         /// <summary>
-        /// Deactivates the Tethering.
+        /// Deactivates the TetheringExt.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public void DeactivateTethering()
+        static public void DeactivateTetheringExt()
         {
 
         }
 
         /// <summary>
-        /// Returns whethers Tethering is enabled or not.
+        /// Returns whethers TetheringExt is enabled or not.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -161,7 +161,7 @@ namespace Tizen.Network.Tethering
         }
 
         /// <summary>
-        /// Retrieves and Set the Service Set Identifier (SSID) of the Wi-Fi hotspot managed by the Tethering Manager.
+        /// Retrieves and Set the Service Set Identifier (SSID) of the Wi-Fi hotspot managed by the TetheringExt Manager.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -178,7 +178,7 @@ namespace Tizen.Network.Tethering
         }
 
         /// <summary>
-        /// Retrieves and Set the Passphrase of the Wi-Fi hotspot managed by the Tethering Manager.
+        /// Retrieves and Set the Passphrase of the Wi-Fi hotspot managed by the TetheringExt Manager.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -195,7 +195,7 @@ namespace Tizen.Network.Tethering
         }
 
         /// <summary>
-        /// Retrieves and Set the Channel of the Wi-Fi hotspot managed by the Tethering Manager.
+        /// Retrieves and Set the Channel of the Wi-Fi hotspot managed by the TetheringExt Manager.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -212,17 +212,17 @@ namespace Tizen.Network.Tethering
         }
 
         /// <summary>
-        /// Returns the Tethering Info of the Wi-Fi hotspot managed by the Tethering Manager.
+        /// Returns the TetheringExt Info of the Wi-Fi hotspot managed by the TetheringExt Manager.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public TetheringInfo TetheringInfo()
+        static public TetheringExtInfo TetheringExtInfo()
         {
             return null;
         }
 
         /// <summary>
-        /// Returns the Security type of the Wi-Fi hotspot managed by the Tethering Manager.
+        /// Returns the Security type of the Wi-Fi hotspot managed by the TetheringExt Manager.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -235,7 +235,7 @@ namespace Tizen.Network.Tethering
         }
 
         /// <summary>
-        /// Returns the Visibility of the Wi-Fi hotspot managed by the Tethering Manager.
+        /// Returns the Visibility of the Wi-Fi hotspot managed by the TetheringExt Manager.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -248,7 +248,7 @@ namespace Tizen.Network.Tethering
         }
 
         /// <summary>
-        /// Returns whehter Wi-Fi hotspot managed by the Tethering Manager is sharing or not.
+        /// Returns whehter Wi-Fi hotspot managed by the TetheringExt Manager is sharing or not.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
