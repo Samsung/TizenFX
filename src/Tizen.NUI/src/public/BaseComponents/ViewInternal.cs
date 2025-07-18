@@ -1378,7 +1378,7 @@ namespace Tizen.NUI.BaseComponents
                 internalSize2D?.Dispose();
                 internalSize2D = null;
 
-                _viewGestureData?.Clear();
+                GetViewGestureData()?.Clear();
 
                 internalCurrentParentOrigin?.Dispose();
                 internalCurrentParentOrigin = null;
