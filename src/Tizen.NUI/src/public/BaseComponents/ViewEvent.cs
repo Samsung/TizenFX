@@ -90,7 +90,6 @@ namespace Tizen.NUI.BaseComponents
         private delegate void OnWindowEventCallbackType(IntPtr control);
 
         private ViewEventRareData _viewEventRareData; // NOTE Consider reuse data by using pool
-        private ViewGestureData _viewGestureData;
 
         /// <summary>
         /// Event when a child is removed.
@@ -1818,7 +1817,17 @@ namespace Tizen.NUI.BaseComponents
             return false;
         }
 
-        private ViewGestureData EnsureViewGestureData() => _viewGestureData ??= new ViewGestureData();
+        private ViewGestureData EnsureViewGestureData()
+        {
+            var viewGestureData = GetAttached<ViewGestureData>();
+            if (viewGestureData == null)
+            {
+                SetAttached(viewGestureData = new ViewGestureData());
+            }
+            return viewGestureData;
+        }
+
+        private ViewGestureData GetViewGestureData() => GetAttached<ViewGestureData>();
 
         private ViewEventRareData EnsureViewEventRareData() => _viewEventRareData ??= new ViewEventRareData(this);
     }
