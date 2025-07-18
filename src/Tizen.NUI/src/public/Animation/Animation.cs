@@ -1908,7 +1908,7 @@ namespace Tizen.NUI
             // It will guard the case that suddenly stopped animation if it be GC,
             // so the value of animatables becomes unexpectable.
             // TODO : Couldn't we call Clear(); always?
-            if (Looping || Math.Abs(SpeedFactor) <= 0.0001f)
+            if (HasBody() && (Looping || Math.Abs(SpeedFactor) <= 0.0001f))
             {
                 Tizen.Log.Info("NUI", $"Clear Animation[{ID}] now to avoid hanging managed memory\n");
                 Clear();
