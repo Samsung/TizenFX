@@ -39,7 +39,6 @@ namespace Tizen.NUI.BaseComponents
         private int widthPolicy = LayoutParamPolicies.WrapContent;
         private int heightPolicy = LayoutParamPolicies.WrapContent;
         private LayoutExtraData layoutExtraData;
-        private ThemeData themeData;
         private Dictionary<Type, object> attached;
 
         // Collection of image-sensitive properties, and need to update C# side cache value.
@@ -108,7 +107,7 @@ namespace Tizen.NUI.BaseComponents
             EnableControlState = 1 << 12, // Indicates that this View should listen Touch event to handle its ControlState.
             DispatchAllEvents = DispatchTouch | DispatchParentTouch | DispatchHover | DispatchParentHover | DispatchWheel | DispatchParentWheel | DispatchGesture | DispatchParentGesture,
             AllowAllEvents = AllowInterceptTouch | AllowInterceptWheel,
-            Default =  DispatchAllEvents | AllowAllEvents
+            Default = DispatchAllEvents | AllowAllEvents
         }
 
         static View()
@@ -706,8 +705,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (themeData == null) themeData = new ThemeData();
-
+                var themeData = EnsureThemeData();
                 if (themeData.viewStyle == null)
                 {
                     ApplyStyle(CreateViewStyle());
@@ -729,7 +727,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return themeData == null ? ControlState.Normal : themeData.controlStates;
+                return GetThemeData()?.controlStates ?? ControlState.Normal;
             }
             protected set
             {
@@ -744,7 +742,7 @@ namespace Tizen.NUI.BaseComponents
 
                 var prevState = ControlState;
 
-                if (themeData == null) themeData = new ThemeData();
+                var themeData = EnsureThemeData();
                 themeData.controlStates = value;
 
                 var changeInfo = new ControlStateChangedEventArgs(prevState, value);
@@ -1057,7 +1055,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetInternalBackgroundColor(Selector<Color> selector)
         {
-            themeData?.selectorData?.ClearBackground(this);
+            GetThemeData()?.selectorData?.ClearBackground(this);
             if (selector.HasAll())
             {
                 SetBackgroundColor(selector.All);
@@ -1070,7 +1068,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalBackgroundColor(Color color)
         {
-            themeData?.selectorData?.ClearBackground(this);
+            GetThemeData()?.selectorData?.ClearBackground(this);
             SetBackgroundColor(color);
         }
 
@@ -1125,6 +1123,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetInternalBackgroundImage(Selector<string> selector)
         {
+            var themeData = GetThemeData();
             if (themeData?.selectorData != null)
             {
                 themeData.selectorData.BackgroundColor?.Reset(this);
@@ -1143,6 +1142,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalBackgroundImage(string imageUrl)
         {
+            var themeData = GetThemeData();
             if (themeData?.selectorData != null)
             {
                 themeData.selectorData.BackgroundColor?.Reset(this);
@@ -1190,7 +1190,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetInternalBackgroundImageBorder(Selector<Rectangle> selector)
         {
-            themeData?.selectorData?.BackgroundImageBorder?.Reset(this);
+            GetThemeData()?.selectorData?.BackgroundImageBorder?.Reset(this);
 
             if (selector.HasAll())
             {
@@ -1204,7 +1204,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalBackgroundImageBorder(Rectangle border)
         {
-            themeData?.selectorData?.BackgroundImageBorder?.Reset(this);
+            GetThemeData()?.selectorData?.BackgroundImageBorder?.Reset(this);
             SetBackgroundImageBorder(border);
         }
 
@@ -1333,7 +1333,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetInternalImageShadow(Selector<ImageShadow> shadow)
         {
-            themeData?.selectorData?.ClearShadow(this);
+            GetThemeData()?.selectorData?.ClearShadow(this);
             if (shadow.HasAll())
             {
                 SetShadow(shadow.All);
@@ -1346,7 +1346,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalImageShadow(ImageShadow shadow)
         {
-            themeData?.selectorData?.ClearShadow(this);
+            GetThemeData()?.selectorData?.ClearShadow(this);
             SetShadow(shadow);
         }
 
@@ -1407,7 +1407,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetInternalBoxShadow(Selector<Shadow> shadow)
         {
-            themeData?.selectorData?.ClearShadow(this);
+            GetThemeData()?.selectorData?.ClearShadow(this);
             if (shadow.HasAll())
             {
                 SetShadow(shadow.All);
@@ -1420,7 +1420,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalBoxShadow(Shadow shadow)
         {
-            themeData?.selectorData?.ClearShadow(this);
+            GetThemeData()?.selectorData?.ClearShadow(this);
             SetShadow(shadow);
         }
 
@@ -1713,7 +1713,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetInternalBorderlineColor(Selector<Color> selector)
         {
-            themeData?.selectorData?.BorderlineColor?.Reset(this);
+            GetThemeData()?.selectorData?.BorderlineColor?.Reset(this);
             if (selector.HasAll())
             {
                 SetBorderlineColor(selector.All);
@@ -1726,7 +1726,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalBorderlineColor(Color color)
         {
-            themeData?.selectorData?.BorderlineColor?.Reset(this);
+            GetThemeData()?.selectorData?.BorderlineColor?.Reset(this);
             SetBorderlineColor(color);
         }
 
@@ -1771,7 +1771,7 @@ namespace Tizen.NUI.BaseComponents
 
         private Selector<Color> GetInternalBorderlineColorSelector()
         {
-            var selector = themeData?.selectorData?.BorderlineColor?.Get();
+            var selector = GetThemeData()?.selectorData?.BorderlineColor?.Get();
             return (null != selector) ? selector : new Selector<Color>();
         }
 
@@ -3073,7 +3073,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetInternalOpacity(Selector<float?> selector)
         {
-            themeData?.selectorData?.Opacity?.Reset(this);
+            GetThemeData()?.selectorData?.Opacity?.Reset(this);
             if (selector.HasAll())
             {
                 SetOpacity(selector.All);
@@ -3086,7 +3086,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalOpacity(float opacity)
         {
-            themeData?.selectorData?.Opacity?.Reset(this);
+            GetThemeData()?.selectorData?.Opacity?.Reset(this);
 
             //Selector using code has been removed because the Selector is not used when IsUsingXaml is false
             SetOpacity(opacity);
@@ -6105,7 +6105,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetInternalColor(Selector<Color> selector)
         {
-            themeData?.selectorData?.Color?.Reset(this);
+            GetThemeData()?.selectorData?.Color?.Reset(this);
             if (selector.HasAll())
             {
                 SetColor(selector.All);
@@ -6118,7 +6118,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalColor(Color color)
         {
-            themeData?.selectorData?.Color?.Reset(this);
+            GetThemeData()?.selectorData?.Color?.Reset(this);
             SetColor(color);
         }
 
@@ -6672,13 +6672,12 @@ namespace Tizen.NUI.BaseComponents
 
         private bool InternalEnableControlStatePropagation
         {
-            get => themeData?.ControlStatePropagation ?? false;
+            get => GetThemeData()?.ControlStatePropagation ?? false;
             set
             {
                 if (InternalEnableControlStatePropagation == value) return;
 
-                if (themeData == null) themeData = new ThemeData();
-
+                var themeData = EnsureThemeData();
                 themeData.ControlStatePropagation = value;
 
                 foreach (View child in Children)
@@ -7005,7 +7004,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (ThemeChangeSensitive == themeChangeSensitive) return;
 
-            if (themeData == null) themeData = new ThemeData();
+            var themeData = EnsureThemeData();
 
             themeData.ThemeChangeSensitive = themeChangeSensitive;
 
@@ -7023,7 +7022,7 @@ namespace Tizen.NUI.BaseComponents
 
         private bool GetInternalThemeChangeSensitive()
         {
-            return themeData?.ThemeChangeSensitive ?? ThemeManager.ApplicationThemeChangeSensitive;
+            return GetThemeData()?.ThemeChangeSensitive ?? ThemeManager.ApplicationThemeChangeSensitive;
         }
 
         /// <summary>
@@ -7062,9 +7061,9 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public virtual void ApplyStyle(ViewStyle viewStyle)
         {
-            if (viewStyle == null || themeData?.viewStyle == viewStyle) return;
+            if (viewStyle == null || GetThemeData()?.viewStyle == viewStyle) return;
 
-            if (themeData == null) themeData = new ThemeData();
+            var themeData = EnsureThemeData();
 
             themeData.viewStyle = viewStyle;
 
@@ -7345,5 +7344,17 @@ namespace Tizen.NUI.BaseComponents
                 _viewFlags &= ~flag;
             }
         }
+
+        private ThemeData EnsureThemeData()
+        {
+            var themeData = GetAttached<ThemeData>();
+            if (themeData == null)
+            {
+                SetAttached(themeData = new ThemeData());
+            }
+            return themeData;
+        }
+
+        private ThemeData GetThemeData() => GetAttached<ThemeData>();
     }
 }
