@@ -84,11 +84,13 @@ namespace Tizen.NUI.BaseComponents
             currentStates.totalFrame = -1;
             currentStates.scale = scale;
             currentStates.redrawInScalingDown = true;
+            currentStates.redrawInScalingUp = true;
             currentStates.desiredWidth = 0;
             currentStates.desiredHeight = 0;
             currentStates.synchronousLoading = true;
             currentStates.enableFrameCache = false;
             currentStates.notifyAfterRasterization = false;
+            currentStates.renderScale = 1.0f;
 
             // Notify to base ImageView cache that default synchronousLoading for lottie file is true.
             base.SynchronousLoading = currentStates.synchronousLoading;
@@ -224,10 +226,12 @@ namespace Tizen.NUI.BaseComponents
                     .Add(ImageVisualProperty.StopBehavior, (int)currentStates.stopEndAction)
                     .Add(ImageVisualProperty.LoopingMode, (int)currentStates.loopMode)
                     .Add(ImageVisualProperty.RedrawInScalingDown, currentStates.redrawInScalingDown)
+                    .Add(ImageVisualProperty.RedrawInScalingUp, currentStates.redrawInScalingUp)
                     .Add(ImageVisualProperty.SynchronousLoading, currentStates.synchronousLoading)
                     .Add(ImageVisualProperty.EnableFrameCache, currentStates.enableFrameCache)
                     .Add(ImageVisualProperty.NotifyAfterRasterization, currentStates.notifyAfterRasterization)
-                    .Add(ImageVisualProperty.FrameSpeedFactor, currentStates.frameSpeedFactor);
+                    .Add(ImageVisualProperty.FrameSpeedFactor, currentStates.frameSpeedFactor)
+                    .Add(ImageVisualProperty.RenderScale, currentStates.renderScale);
 
                 if (currentStates.desiredWidth > 0)
                 {
@@ -659,6 +663,48 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Whether to redraw the image when the visual is scaled up.
+        /// </summary>
+        /// <remarks>
+        /// Inhouse API.
+        /// It is used in the AnimatedVectorImageVisual.The default is true.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RedrawInScalingUp
+        {
+            get
+            {
+                return InternalRedrawInScalingUp;
+            }
+            set
+            {
+                InternalRedrawInScalingUp = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool InternalRedrawInScalingUp
+        {
+            set
+            {
+                if (currentStates.redrawInScalingUp != value)
+                {
+                    currentStates.changed = true;
+                    currentStates.redrawInScalingUp = value;
+
+                    NUILog.Debug($"<[{GetId()}]SET currentStates.redrawInScalingUp={currentStates.redrawInScalingUp}>");
+
+                    _ = Interop.View.InternalUpdateVisualPropertyBool(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.RedrawInScalingUp, currentStates.redrawInScalingUp);
+                }
+            }
+            get
+            {
+                NUILog.Debug($"RedrawInScalingUp get! {currentStates.redrawInScalingUp}");
+                return currentStates.redrawInScalingUp;
+            }
+        }
+
+        /// <summary>
         /// Whether to AnimatedVectorImageVisual fixed cache or not.
         /// </summary>
         /// <remarks>
@@ -822,6 +868,48 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"FrameSpeedFactor get! {currentStates.frameSpeedFactor}");
                 return currentStates.frameSpeedFactor;
+            }
+        }
+
+        /// <summary>
+        /// Renders a texture at a given scale.
+        /// </summary>
+        /// <remarks>
+        /// Inhouse API.
+        /// The default is 1.0f.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float RenderScale
+        {
+            get
+            {
+                return InternalRenderScale;
+            }
+            set
+            {
+                InternalRenderScale = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private float InternalRenderScale
+        {
+            set
+            {
+                if (currentStates.renderScale != value)
+                {
+                    currentStates.changed = true;
+                    currentStates.renderScale = value;
+
+                    NUILog.Debug($"<[{GetId()}]SET currentStates.RenderScale={currentStates.renderScale}>");
+
+                    _ = Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.RenderScale, currentStates.renderScale);
+                }
+            }
+            get
+            {
+                NUILog.Debug($"RenderScale get! {currentStates.renderScale}");
+                return currentStates.renderScale;
             }
         }
         #endregion Property
@@ -1175,6 +1263,8 @@ namespace Tizen.NUI.BaseComponents
                     UpdateImage(ImageVisualProperty.LoopingMode, pv, false);
                 using (var pv = new PropertyValue(currentStates.redrawInScalingDown))
                     UpdateImage(ImageVisualProperty.RedrawInScalingDown, pv, false);
+                using (var pv = new PropertyValue(currentStates.redrawInScalingUp))
+                    UpdateImage(ImageVisualProperty.RedrawInScalingUp, pv, false);
                 using (var pv = new PropertyValue(currentStates.synchronousLoading))
                     UpdateImage(ImageVisualProperty.SynchronousLoading, pv, false);
                 using (var pv = new PropertyValue(currentStates.enableFrameCache))
@@ -1183,6 +1273,8 @@ namespace Tizen.NUI.BaseComponents
                     UpdateImage(ImageVisualProperty.NotifyAfterRasterization, pv, false);
                 using (var pv = new PropertyValue(currentStates.frameSpeedFactor))
                     UpdateImage(ImageVisualProperty.FrameSpeedFactor, pv, false);
+                using (var pv = new PropertyValue(currentStates.renderScale))
+                    UpdateImage(ImageVisualProperty.RenderScale, pv, false);
 
                 // Do not cache PlayRange and TotalFrameNumber into cachedImagePropertyMap.
                 // (To keep legacy implements behaviour)
@@ -1592,9 +1684,11 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.StopBehavior,
             ImageVisualProperty.LoopingMode,
             ImageVisualProperty.RedrawInScalingDown,
+            ImageVisualProperty.RedrawInScalingUp,
             ImageVisualProperty.EnableFrameCache,
             ImageVisualProperty.NotifyAfterRasterization,
             ImageVisualProperty.FrameSpeedFactor,
+            ImageVisualProperty.RenderScale,
         };
 
         private struct states
@@ -1604,6 +1698,7 @@ namespace Tizen.NUI.BaseComponents
             internal LoopingModeType loopMode;
             internal StopBehaviorType stopEndAction;
             internal float frameSpeedFactor;
+            internal float renderScale;
             internal int framePlayRangeMin;
             internal int framePlayRangeMax;
             internal int totalFrame;
@@ -1612,7 +1707,7 @@ namespace Tizen.NUI.BaseComponents
             internal List<Tuple<string, int, int>> contentInfo;
             internal List<Tuple<string, int, int>> markerInfo;
             internal string mark1, mark2;
-            internal bool redrawInScalingDown;
+            internal bool redrawInScalingDown, redrawInScalingUp;
             internal int desiredWidth, desiredHeight;
             internal bool synchronousLoading;
             internal bool enableFrameCache;
@@ -1673,7 +1768,7 @@ namespace Tizen.NUI.BaseComponents
             NUILog.Debug($"===================================");
             NUILog.Debug($"<[{GetId()}] get currentStates : url={currentStates.url}, loopCount={currentStates.loopCount}, \nframePlayRangeMin/Max({currentStates.framePlayRangeMin},{currentStates.framePlayRangeMax}) ");
             NUILog.Debug($"  get from Property : StopBehavior={StopBehavior}, LoopMode={LoopingMode}, LoopCount={LoopCount}, PlayState={PlayState}");
-            NUILog.Debug($"  RedrawInScalingDown={RedrawInScalingDown} >");
+            NUILog.Debug($"  RedrawInScalingDown={RedrawInScalingDown} RedrawInScalingUp={RedrawInScalingUp} RenderScale={RenderScale} >");
             NUILog.Debug($"===================================");
         }
 
