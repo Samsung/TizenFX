@@ -18,6 +18,7 @@
 using System;
 using System.ComponentModel;
 using System.Text;
+using System.Globalization;
 
 using Markdig;
 using Markdig.Syntax;
@@ -81,7 +82,7 @@ namespace Tizen.NUI.MarkdownRenderer
                             if (listItem.Parent is ListBlock listBlock && listBlock.IsOrdered)
                             {
                                 int index = listBlock.IndexOf(listItem);
-                                int start = int.TryParse(listBlock.OrderedStart?.ToString(), out var s) ? s : 1;
+                                int start = int.TryParse(listBlock.OrderedStart?.ToString(), NumberStyles.Integer, CultureInfo.InvariantCulture, out var s) ? s : 1;
                                 int number = start + index;
                                 sb.Append(number).Append(". ").Append(GetInlinePlainText(leaf.Inline));
                             }
