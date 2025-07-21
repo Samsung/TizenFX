@@ -44,7 +44,7 @@ namespace Tizen.NUI.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new void Play(string emotion)
         {
-            if (expressionIdByCategory.TryGetValue(emotion.ToLower(), out List<uint> expressionList))
+            if (expressionIdByCategory.TryGetValue(emotion.ToLowerInvariant(), out List<uint> expressionList))
             {
                 int randomIndex = new Random().Next(0, expressionList.Count);
                 base.Play(expressionList[randomIndex]);
