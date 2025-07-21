@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace Tizen.Network.TetheringExt
+namespace Tizen.Network.Tethering
 {
 
     /// <summary>
@@ -54,9 +54,12 @@ namespace Tizen.Network.TetheringExt
         /// </summary>
         protected override bool ReleaseHandle()
         {
-            return false;
+            Interop.TetheringExt.Deinitialize(this.handle);
+            this.SetHandle(IntPtr.Zero);
+            return true;
         }
 
+        // TODO: need not to implement thread safe, can remove this
         internal void SetTID(int id)
         {
             _tid = id;
@@ -80,9 +83,11 @@ namespace Tizen.Network.TetheringExt
         {
             add
             {
+                TetheringExtManagerImpl.Instance.TetheringExtEnabled += value;
             }
             remove
             {
+                TetheringExtManagerImpl.Instance.TetheringExtEnabled -= value;
             }
         }
 
@@ -95,9 +100,11 @@ namespace Tizen.Network.TetheringExt
         {
             add
             {
+                TetheringExtManagerImpl.Instance.TetheringExtDisabled += value;
             }
             remove
             {
+                TetheringExtManagerImpl.Instance.TetheringExtDisabled -= value;
             }
         }
 
@@ -110,9 +117,11 @@ namespace Tizen.Network.TetheringExt
         {
             add
             {
+                TetheringExtManagerImpl.Instance.ConnectionStateChanged += value;
             }
             remove
             {
+                TetheringExtManagerImpl.Instance.ConnectionStateChanged -= value;
             }
         }
 
@@ -124,7 +133,7 @@ namespace Tizen.Network.TetheringExt
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static SafeTetheringExtManagerHandle GetTetheringExtHandle()
         {
-            return null;
+            return TetheringExtManagerImpl.Instance.GetSafeHandle();
         }
 
         /// <summary>
@@ -132,9 +141,9 @@ namespace Tizen.Network.TetheringExt
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public void ActivateTetheringExt()
+        static public void Activate()
         {
-
+            TetheringExtManagerImpl.Instance.Activate();
         }
 
         /// <summary>
@@ -142,9 +151,9 @@ namespace Tizen.Network.TetheringExt
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public void DeactivateTetheringExt()
+        static public void Deactivate()
         {
-
+            TetheringExtManagerImpl.Instance.DeActivate();
         }
 
         /// <summary>
@@ -156,7 +165,7 @@ namespace Tizen.Network.TetheringExt
         {
             get
             {
-                return false;
+                return TetheringExtManagerImpl.Instance.Enabled;
             }
         }
 
@@ -165,16 +174,9 @@ namespace Tizen.Network.TetheringExt
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public string SSID
+        static public void SetSSID(string ssid)
         {
-            get
-            {
-                return "";
-            }
-
-            set
-            {
-            }
+            TetheringExtManagerImpl.Instance.SetSSID(ssid);
         }
 
         /// <summary>
@@ -182,16 +184,9 @@ namespace Tizen.Network.TetheringExt
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public string Passphrase
+        static public void SetPassphrase(string passphrase)
         {
-            get
-            {
-                return "";
-            }
-
-            set
-            {
-            }
+            TetheringExtManagerImpl.Instance.SetPassphrase(passphrase);
         }
 
         /// <summary>
@@ -203,11 +198,11 @@ namespace Tizen.Network.TetheringExt
         {
             get
             {
-                return -1;
+                return TetheringExtManagerImpl.Instance.Channel;
             }
-
             set
             {
+                TetheringExtManagerImpl.Instance.Channel = value;
             }
         }
 
@@ -216,9 +211,9 @@ namespace Tizen.Network.TetheringExt
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public TetheringExtInfo TetheringExtInfo()
+        static public TetheringInfo GetTetheringInfo()
         {
-            return null;
+            return TetheringExtManagerImpl.Instance.GetTetheringInfo();
         }
 
         /// <summary>
@@ -230,7 +225,7 @@ namespace Tizen.Network.TetheringExt
         {
             get
             {
-                return -1;
+                return TetheringExtManagerImpl.Instance.Security;
             }
         }
 
@@ -243,7 +238,7 @@ namespace Tizen.Network.TetheringExt
         {
             get
             {
-                return -1;
+                return TetheringExtManagerImpl.Instance.Visibility;
             }
         }
 
@@ -256,7 +251,7 @@ namespace Tizen.Network.TetheringExt
         {
             get
             {
-                return false;
+                return TetheringExtManagerImpl.Instance.Sharing;
             }
         }
     } 

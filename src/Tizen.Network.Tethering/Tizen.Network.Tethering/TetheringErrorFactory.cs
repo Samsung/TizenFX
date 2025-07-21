@@ -17,7 +17,7 @@
 using System;
 using Tizen.Internals.Errors;
 
-namespace Tizen.Network.TetheringExt
+namespace Tizen.Network.Tethering
 {
 
     internal enum TetheringExtError
@@ -78,17 +78,32 @@ namespace Tizen.Network.TetheringExt
         static private void ThrowException(int e, bool isHandle1Null, bool isHandle2Null, string message)
         {
             TetheringExtError err = (TetheringExtError)e;
-            // TODO: based on different values of err, throw exception
-            // switch (err) {}
+            switch (err) {
+                case TetheringExtError.AccessDenied:
+                    throw new UnauthorizedAccessException("Access denied: " + message);
+                case TetheringExtError.OperationAborted:
+                    throw new OperationCanceledException("Operation aborted: " + message);
+                case TetheringExtError.InvalidParam:
+                    throw new ArgumentException("Invalid param: " + message);
+                case TetheringExtError.NotSupported:
+                    throw new NotSupportedException("Not supported: " + message);
+                case TetheringExtError.Timeout:
+                    throw new TimeoutException("Timeout: "+ message);
+                case TetheringExtError.OutOfMemory:
+                    throw new OutOfMemoryException("Out of memory " + message);
+                case TetheringExtError.OperationFailed:
+                    throw new Exception("Operation failed: " + message);
+                default:
+                    throw new InvalidOperationException(err.ToString() + ": " +  message);
+            }
         }
 
         // Used in callback
-        static internal Exception GetException(int e, string message)
-        {
-            TetheringExtError err = (TetheringExtError)e;
-            // TODO: based on different values of err, throw different exceptions
-            // switch (err) {}
-            return new InvalidOperationException(message + " " + err.ToString());
-        }
+        // static internal Exception GetException(int e, string message)
+        // {
+        //     TetheringExtError err = (TetheringExtError)e;
+        //     // switch (err) {}
+        //     return new InvalidOperationException(message + " " + err.ToString());
+        // }
     }
 }
