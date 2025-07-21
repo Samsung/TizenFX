@@ -4991,16 +4991,13 @@ namespace Tizen.NUI.BaseComponents
                     Layout.Padding = new Extents((Extents)extents);
                     if ((Padding.Start != 0) || (Padding.End != 0) || (Padding.Top != 0) || (Padding.Bottom != 0))
                     {
-                        using var ex = new Extents(0, 0, 0, 0);
-                        using var tmp = new PropertyValue(ex);
-                        Object.SetProperty(SwigCPtr, Property.PADDING, tmp);
+                        Object.InternalSetPropertyExtents(SwigCPtr, Property.PADDING, Extents.Zero);
                     }
                     Layout.RequestLayout();
                 }
                 else
                 {
-                    using var tmp = new PropertyValue(extents);
-                    Object.SetProperty(SwigCPtr, Property.PADDING, tmp);
+                    Object.InternalSetPropertyExtents(SwigCPtr, Property.PADDING, extents);
                 }
             }
         }
@@ -5022,9 +5019,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (Layout == null || Layout.IsPaddingHandledByNative())
             {
-                var tmp = Object.GetProperty(SwigCPtr, Property.PADDING);
-                tmp?.Get(internalPadding);
-                tmp?.Dispose();
+                Object.InternalRetrievingPropertyExtents(SwigCPtr, Property.PADDING, internalPadding.SwigCPtr);
             }
 
             return internalPadding;
@@ -5687,16 +5682,13 @@ namespace Tizen.NUI.BaseComponents
                     Layout.Margin = new Extents((Extents)extents);
                     if ((Margin.Start != 0) || (Margin.End != 0) || (Margin.Top != 0) || (Margin.Bottom != 0))
                     {
-                        using var ex = new Extents(0, 0, 0, 0);
-                        using var tmp = new PropertyValue(ex);
-                        Object.SetProperty(SwigCPtr, Property.MARGIN, tmp);
+                        Object.InternalSetPropertyExtents(SwigCPtr, Property.MARGIN, Extents.Zero);
                     }
                     Layout.RequestLayout();
                 }
                 else
                 {
-                    using var tmp = new PropertyValue(extents);
-                    Object.SetProperty(SwigCPtr, Property.MARGIN, tmp);
+                    Object.InternalSetPropertyExtents(SwigCPtr, Property.MARGIN, extents);
                 }
             }
         }
@@ -5721,8 +5713,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (Layout == null)
             {
-                using var tmp = Object.GetProperty(SwigCPtr, Property.MARGIN);
-                tmp?.Get(internalMargin);
+                Object.InternalRetrievingPropertyExtents(SwigCPtr, Property.MARGIN, internalMargin.SwigCPtr);
             }
 
             return internalMargin;
@@ -6387,7 +6378,7 @@ namespace Tizen.NUI.BaseComponents
                         {
                             // If View already has a margin set then store it in Layout instead.
                             value.Margin = margin;
-                            using var extents = new Extents(0, 0, 0, 0);
+                            using var extents = Extents.Zero;
                             if (NUIApplication.IsUsingXaml)
                             {
                                 SetValue(MarginProperty, extents);
@@ -6405,7 +6396,7 @@ namespace Tizen.NUI.BaseComponents
                         {
                             // If View already has a padding set then store it in Layout instead.
                             value.Padding = padding;
-                            using var tmpPadding = new Extents(0, 0, 0, 0);
+                            using var tmpPadding = Extents.Zero;
                             if (NUIApplication.IsUsingXaml)
                             {
                                 SetValue(PaddingProperty, tmpPadding);
