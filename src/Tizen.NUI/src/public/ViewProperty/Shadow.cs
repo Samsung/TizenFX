@@ -28,9 +28,9 @@ namespace Tizen.NUI
     [Tizen.NUI.Binding.TypeConverter(typeof(Tizen.NUI.Binding.ShadowTypeConverter))]
     public class Shadow : ShadowBase, ICloneable
     {
-        private static readonly Color noColor = new Color(0, 0, 0, 0);
+        internal static readonly Color noColor = new Color(0, 0, 0, 0);
 
-        private static readonly Color defaultColor = new Color(0, 0, 0, 0.5f);
+        internal static readonly Color defaultColor = new Color(0, 0, 0, 0.5f);
 
         /// <summary>
         /// Create a Shadow with default values.
