@@ -838,7 +838,10 @@ namespace Tizen.NUI.BaseComponents
         {
             _ = value ?? throw new ArgumentNullException(nameof(value));
             var newStyle = value.Clone() as TOut;
-
+            if (newStyle == null)
+            {
+                throw new InvalidCastException($"Failed to cast to {typeof(TOut)}");
+            }
             newStyle.CopyFrom(other);
 
             return newStyle;
