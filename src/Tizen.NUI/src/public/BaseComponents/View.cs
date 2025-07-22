@@ -1510,10 +1510,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalCornerRadius(Vector4 cornerRadius)
         {
-            // Set for animation. Will be soon deprecated.
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerRadius = cornerRadius;
-            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
-
             Object.InternalSetPropertyVector4(SwigCPtr, Property.CornerRadius, cornerRadius.SwigCPtr);
         }
 
@@ -1558,13 +1554,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalCornerRadiusPolicy(VisualTransformPolicyType cornerRadiusPolicy)
         {
-            // Set for animation. Will be soon deprecated.
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerRadiusPolicy = cornerRadiusPolicy;
-            if (backgroundExtraData.CornerRadius != null)
-            {
-                UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
-            }
-
             Object.InternalSetPropertyInt(SwigCPtr, Property.CornerRadiusPolicy, (int)cornerRadiusPolicy);
         }
 
@@ -1608,10 +1597,6 @@ namespace Tizen.NUI.BaseComponents
         }
         internal void SetInternalCornerSqureness(Vector4 cornerSquareness)
         {
-            // Set for animation. Will be soon deprecated.
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerSquareness = cornerSquareness;
-            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
-
             Object.InternalSetPropertyVector4(SwigCPtr, Property.CornerSquareness, cornerSquareness.SwigCPtr);
         }
         internal Vector4 GetInternalCornerSqureness()
