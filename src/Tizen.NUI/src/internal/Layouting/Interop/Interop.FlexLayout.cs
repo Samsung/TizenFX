@@ -116,6 +116,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_GetFlexGrow")]
             public static extern float GetFlexGrow(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexLayout_MarkDirty")]
+            public static extern void MarkDirty(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }
