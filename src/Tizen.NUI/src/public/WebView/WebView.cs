@@ -3131,27 +3131,6 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal override void ApplyCornerRadius()
-        {
-            base.ApplyCornerRadius();
-
-            if (backgroundExtraData == null) 
-            {
-                return;
-            }
-
-            // Update corner radius properties to webView by ActionUpdateProperty
-            if (backgroundExtraData.CornerRadius != null)
-            {
-                _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
-            }
-            if (backgroundExtraData.CornerSquareness != null)
-            {
-                _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
-            }
-            _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
-        }
-
         private void OnPageLoadStarted(string pageUrl)
         {
             WebViewPageLoadEventArgs e = new WebViewPageLoadEventArgs();
