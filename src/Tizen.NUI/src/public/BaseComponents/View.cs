@@ -6378,14 +6378,13 @@ namespace Tizen.NUI.BaseComponents
                         {
                             // If View already has a margin set then store it in Layout instead.
                             value.Margin = margin;
-                            using var extents = Extents.Zero;
                             if (NUIApplication.IsUsingXaml)
                             {
-                                SetValue(MarginProperty, extents);
+                                SetValue(MarginProperty, Extents.Zero);
                             }
                             else
                             {
-                                SetInternalMargin(extents);
+                                SetInternalMargin(Extents.Zero);
                             }
                             setMargin = true;
                         }
@@ -6396,14 +6395,13 @@ namespace Tizen.NUI.BaseComponents
                         {
                             // If View already has a padding set then store it in Layout instead.
                             value.Padding = padding;
-                            using var tmpPadding = Extents.Zero;
                             if (NUIApplication.IsUsingXaml)
                             {
-                                SetValue(PaddingProperty, tmpPadding);
+                                SetValue(PaddingProperty, Extents.Zero);
                             }
                             else
                             {
-                                SetInternalPadding(tmpPadding);
+                                SetInternalPadding(Extents.Zero);
                             }
                             setPadding = true;
                         }
