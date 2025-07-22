@@ -29,16 +29,16 @@ namespace Tizen.Multimedia
         L16 = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1010),
 
         /// <summary>
-        /// AlAW.
+        /// A-law algorithm.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        AlAW = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1020),
+        Alaw = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1020),
 
         /// <summary>
-        /// UlAW.
+        /// U-law algorithm.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        UlAW = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1030),
+        Ulaw = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1030),
 
         /// <summary>
         /// AMR, alias for <see cref="AmrNB"/>.
