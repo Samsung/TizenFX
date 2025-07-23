@@ -438,6 +438,25 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }
 
+        public Vector4 CornerRadius
+        {
+            get
+            {
+                return base.CornerRadius;
+            }
+            set
+            {
+                base.CornerRadius = value;
+                SetInternalCornerRadius(value);
+            }
+        }
+
+        private void SetInternalCornerRadius(Vector4 newValue)
+        {
+            using var pv = new PropertyValue(newValue);
+            Object.SetProperty(SwigCPtr, Property.CORNER_RADIUS, pv);
+        }
+
         /// <summary>
         /// Video rendering by underlay, true or false.<br />
         /// This shows video composited underneath the window by the system. This means it may ignore rotation of the video-view.
@@ -745,6 +764,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int MUTED = Interop.VideoView.MutedGet();
             internal static readonly int VOLUME = Interop.VideoView.VolumeGet();
             internal static readonly int UNDERLAY = Interop.VideoView.UnderlayGet();
+            internal static readonly int CORNER_RADIUS = Interop.VideoView.CornerRadiusGet();
         }
 
         internal System.IntPtr GetNativePlayerHandle()
