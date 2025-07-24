@@ -26,6 +26,7 @@ namespace Tizen.Telephony
     /// to gain insights into aspects like the call handle ID, number, type, status, direction, and whether it is a conference call or not.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    /// [Obsolete("Deprecated since API13, will be removed in API15.")]
     public class CallHandle
     {
         private IntPtr _callHandle;
@@ -34,6 +35,7 @@ namespace Tizen.Telephony
         /// Enumeration for the call status.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
         public enum CallStatus
         {
             /// <summary>
@@ -70,6 +72,7 @@ namespace Tizen.Telephony
         /// Enumeration for the call type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
         public enum CallType
         {
             /// <summary>
@@ -94,6 +97,7 @@ namespace Tizen.Telephony
         /// Enumeration for the call direction.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
         public enum CallDirection
         {
             /// <summary>
@@ -118,6 +122,7 @@ namespace Tizen.Telephony
         /// The ID of the call handle.
         /// 0 if unable to complete the operation.
         /// </value>
+        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
         public uint HandleId
         {
             get
@@ -142,6 +147,7 @@ namespace Tizen.Telephony
         /// The number of the call.
         /// Empty string if unable to complete the operation.
         /// </value>
+        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
         public string Number
         {
             get
@@ -165,6 +171,7 @@ namespace Tizen.Telephony
         /// <value>
         /// The type of the call.
         /// </value>
+        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
         public CallType Type
         {
             get
@@ -188,6 +195,7 @@ namespace Tizen.Telephony
         /// <value>
         /// The status of the call.
         /// </value>
+        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
         public CallStatus Status
         {
             get
@@ -215,6 +223,7 @@ namespace Tizen.Telephony
         /// This Exception can occur due to:
         /// 1. Operation Not Supported.
         /// </exception>
+        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
         public CallDirection Direction
         {
             get
@@ -239,6 +248,7 @@ namespace Tizen.Telephony
         /// <value>
         /// The value whether the call is a conference call or not (true: Conference call, false: Single call).
         /// </value>
+        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
         public bool ConferenceStatus
         {
             get

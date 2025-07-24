@@ -28,12 +28,12 @@ internal static partial class Interop
     internal static partial class Modem
     {
         [DllImport(Libraries.Telephony, EntryPoint = "telephony_modem_get_imei")]
-        internal static extern Telephony.TelephonyError GetImei(IntPtr handle, out string imei);
+        internal static extern Telephony.TelephonyError GetImei(IntPtr handle, out string imei); // Deprecated since API13
 
         [DllImport(Libraries.Telephony, EntryPoint = "telephony_modem_get_power_status")]
-        internal static extern Telephony.TelephonyError GetPowerStatus(IntPtr handle, out Tizen.Telephony.Modem.PowerStatus status);
+        internal static extern Telephony.TelephonyError GetPowerStatus(IntPtr handle, out Tizen.Telephony.Modem.PowerStatus status); // Deprecated since API13
 
         [DllImport(Libraries.Telephony, EntryPoint = "telephony_modem_get_meid")]
-        internal static extern Telephony.TelephonyError GetMeid(IntPtr handle, out string meid);
+        internal static extern Telephony.TelephonyError GetMeid(IntPtr handle, out string meid); // Deprecated since API13
     }
 }
