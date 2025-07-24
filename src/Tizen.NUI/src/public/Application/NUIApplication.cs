@@ -799,6 +799,10 @@ namespace Tizen.NUI
             Color.Preload();
             NUIConstants.Preload();
 
+            // Initialize some static instance
+            _ = FocusManager.Instance;
+            _ = ThemeManager.PlatformThemeId;
+
             // Initialize exception tasks. It must be called end of Preload()
             NDalicPINVOKE.Preload();
 

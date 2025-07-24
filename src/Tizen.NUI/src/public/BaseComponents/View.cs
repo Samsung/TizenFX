@@ -464,6 +464,7 @@ namespace Tizen.NUI.BaseComponents
         static internal new void Preload()
         {
             Container.Preload();
+            using var temp = new View();
             RegisterAccessibilityDelegate();
         }
 

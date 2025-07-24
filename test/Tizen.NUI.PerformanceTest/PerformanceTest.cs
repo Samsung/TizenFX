@@ -154,7 +154,8 @@ class PerformanceTestExample : NUIApplication
 
         mSize = new Vector2(mWindowSize.X / mColumnsCount, mWindowSize.Y / mRowsCount);
 
-        Timer timer = new Timer(mDurationPerColumns);
+        //Timer timer = new Timer(mDurationPerColumns);
+        Timer timer = new Timer(5000);
         timer.Tick += OnTick;
         mTimerList.AddLast(timer);
 
@@ -521,13 +522,48 @@ class PerformanceTestExample : NUIApplication
         Activate();
     }
 
+    //static async global::System.Threading.Tasks.Task PreloadApplcation(string[] args)
+    static void PreloadApplcation(string[] args)
+    {
+        Tizen.Log.Info("NUI", "PreloadApplcation()\n");
+        //if (!NUIApplication.IsPreload)
+        {
+            Tizen.Log.Info("NUI", "Preload start\n");
+            NUIApplication.Preload();
+            Tizen.Log.Info("NUI", "Preload done\n");
+
+            Tizen.Log.Info("NUI", "Preload view creation\n");
+            using var tempView = new View();
+            using var tempImageView = new ImageView();
+            using var tempTextLabel = new TextLabel();
+            Tizen.Log.Info("NUI", "Preload view creation done\n");
+            //await global::System.Threading.Tasks.Task.Delay(1000);
+            //Tizen.Log.Info("NUI", "Wait 1 seconds done\n");
+        }
+
+        Tizen.Log.Info("NUI", "PerformanceTestExample\n");
+        PerformanceTestExample example = new PerformanceTestExample();
+        Tizen.Log.Info("NUI", "PerformanceTestExample\n");
+        example.Run(args);
+        Tizen.Log.Info("NUI", "PerformanceTestExample\n");
+    }
+    static void NormalApplication(string[] args)
+    {
+        Tizen.Log.Info("NUI", "NormalApplication()\n");
+        Tizen.Log.Info("NUI", "PerformanceTestExample\n");
+        PerformanceTestExample example = new PerformanceTestExample();
+        Tizen.Log.Info("NUI", "PerformanceTestExample\n");
+        example.Run(args);
+        Tizen.Log.Info("NUI", "PerformanceTestExample\n");
+    }
+
     /// <summary>
     /// The main entry point for the application.
     /// </summary>
     [STAThread] // Forces app to use one thread to access NUI
     static void Main(string[] args)
     {
-        PerformanceTestExample example = new PerformanceTestExample();
-        example.Run(args);
+        PreloadApplcation(args); /// Test for Ubuntu
+        //NormalApplication(args);
     }
 }
