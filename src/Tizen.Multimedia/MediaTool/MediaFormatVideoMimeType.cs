@@ -56,13 +56,13 @@ namespace Tizen.Multimedia
         H263BCP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2024),
 
         /// <summary>
-        /// H263 the version 2 Interactive and Streaming Wireless Profile.
+        /// H263 version 2 Interactive and Streaming Wireless Profile.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         H263ISW2P = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2025),
 
         /// <summary>
-        /// H263 the version 3 Interactive and Streaming Wireless Profile.
+        /// H263 version 3 Interactive and Streaming Wireless Profile.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         H263ISW3P = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2026),
