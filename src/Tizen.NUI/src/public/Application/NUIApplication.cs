@@ -65,6 +65,11 @@ namespace Tizen.NUI
         private static string currentLoadedXaml;
 
         /// <summary>
+        /// Whether current system support to create view at Preload time.
+        /// </summary>
+        internal static bool SupportPreInitializedCreation { get; private set; } = Interop.Application.IsSupportPreInitializedCreation();
+
+        /// <summary>
         /// The border window
         /// </summary>
         private bool borderEnabled;
@@ -784,6 +789,7 @@ namespace Tizen.NUI
         static public void Preload()
         {
             Interop.Application.PreInitialize();
+            Tizen.Log.Info("NUI", $"Support preload time view creation? {SupportPreInitializedCreation}\n");
 
             // Initialize some static utility
             var disposalbeQueue = DisposeQueue.Instance;
@@ -798,6 +804,13 @@ namespace Tizen.NUI
             Disposable.Preload();
             Color.Preload();
             NUIConstants.Preload();
+
+            // Initialize some static instance
+            if (SupportPreInitializedCreation)
+            {
+                _ = FocusManager.Instance;
+                _ = ThemeManager.PlatformThemeId;
+            }
 
             // Initialize exception tasks. It must be called end of Preload()
             NDalicPINVOKE.Preload();
