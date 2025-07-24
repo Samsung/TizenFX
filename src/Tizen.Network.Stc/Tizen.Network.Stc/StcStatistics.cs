@@ -24,7 +24,7 @@ namespace Tizen.Network.Stc
     /// A class for managing the Stc statistics information.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-
+    [Obsolete("Deprecated since API level 13")]
     public class NetworkStatistics : IDisposable
     {
         private Interop.Stc.SafeStatsHandle _infoHandle;
@@ -79,6 +79,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>Application ID.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string AppId
         {
             get
@@ -99,6 +100,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>Interface name.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string InterfaceName
         {
             get
@@ -119,6 +121,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>from(start) of time interval.</value>
+        [Obsolete("Deprecated since API level 13")]
         public DateTime From
         {
             get
@@ -139,6 +142,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>to(end) of time interval.</value>
+        [Obsolete("Deprecated since API level 13")]
         public DateTime To
         {
             get
@@ -159,6 +163,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>Interface type.</value>
+        [Obsolete("Deprecated since API level 13")]
         public NetworkInterface InterfaceType
         {
             get
@@ -178,6 +183,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>incoming counter.</value>
+        [Obsolete("Deprecated since API level 13")]
         public long IncomingCounter
         {
             get
@@ -198,6 +204,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>outgoing counter.</value>
+        [Obsolete("Deprecated since API level 13")]
         public long OutgoingCounter
         {
             get
@@ -218,6 +225,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>IsRoaming.</value>
+        [Obsolete("Deprecated since API level 13")]
         public bool IsRoaming
         {
             get
@@ -238,6 +246,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>Network Protocol type.</value>
+        [Obsolete("Deprecated since API level 13")]
         public NetworkProtocol Protocol
         {
             get
@@ -257,6 +266,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>Monitored application state.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ApplicationStateType ApplicationState
         {
             get

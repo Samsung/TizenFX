@@ -27,6 +27,7 @@ internal static partial class Interop
     /// <summary>
     /// The Stc native APIs.
     /// </summary>
+    // Deprecated since API13
     internal static class Stc
     {
         // Callback for Statistics Information
