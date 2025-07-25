@@ -23,6 +23,24 @@ namespace Tizen.Multimedia
     public enum MediaFormatAudioMimeType
     {
         /// <summary>
+        /// L16.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        L16 = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1010),
+
+        /// <summary>
+        /// A-law algorithm.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        Alaw = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1020),
+
+        /// <summary>
+        /// U-law algorithm.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        Ulaw = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1030),
+
+        /// <summary>
         /// AMR, alias for <see cref="AmrNB"/>.
         /// </summary>
         Amr = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1040),
@@ -36,6 +54,12 @@ namespace Tizen.Multimedia
         /// AMR-WB.
         /// </summary>
         AmrWB = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1041),
+
+        /// <summary>
+        /// G729.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        G729 = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1050),
 
         /// <summary>
         /// AAC, alias for <see cref="AacLC"/>.
@@ -61,6 +85,12 @@ namespace Tizen.Multimedia
         /// MP3.
         /// </summary>
         MP3 = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1070),
+
+        /// <summary>
+        /// MP2.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        MP2 = (MediaFormatType.Audio | MediaFormatDataType.Encoded | 0x1071),
 
         /// <summary>
         /// VORBIS.
@@ -120,5 +150,101 @@ namespace Tizen.Multimedia
         /// PCM.
         /// </summary>
         Pcm = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1510),
+
+        /// <summary>
+        /// PCM signed 16-bit little endian.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        PcmS16le = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1510),
+
+        /// <summary>
+        /// PCM signed 24-bit little endian.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        PcmS24le = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1511),
+
+        /// <summary>
+        /// PCM signed 32-bit little endian.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        PcmS32le = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1512),
+
+        /// <summary>
+        /// PCM signed 16-bit big endian.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        PcmS16be = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1513),
+
+        /// <summary>
+        /// PCM signed 24-bit big endian.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        PcmS24be = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1514),
+
+        /// <summary>
+        /// PCM signed 32-bit big endian.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        PcmS32be = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1515),
+
+        /// <summary>
+        /// PCM 32-bit floating point little endian.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        PcmF32le = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1516),
+
+        /// <summary>
+        /// PCM 32-bit floating point big endian.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        PcmF32be = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1517),
+
+        /// <summary>
+        /// PCM unsigned 16-bit little endian.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        PcmU16le = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1518),
+
+        /// <summary>
+        /// PCM unsigned 24-bit little endian.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        PcmU24le = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1519),
+
+        /// <summary>
+        /// PCM unsigned 32-bit little endian.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        PcmU32le = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x151A),
+
+        /// <summary>
+        /// PCM unsigned 16-bit big endian.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        PcmU16be = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x151B),
+
+        /// <summary>
+        /// PCM unsigned 24-bit big endian.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        PcmU24be = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x151C),
+
+        /// <summary>
+        /// PCM unsigned 32-bit big endian.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        PcmU32be = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x151D),
+
+        /// <summary>
+        /// PCM A-law.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        PcmA = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1520),
+
+        /// <summary>
+        /// PCM U-law.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        PcmU = (MediaFormatType.Audio | MediaFormatDataType.Raw | 0x1530)
     }
 }
