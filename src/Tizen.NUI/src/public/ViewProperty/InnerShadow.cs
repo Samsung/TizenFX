@@ -82,7 +82,7 @@ namespace Tizen.NUI
             }
 
             // Override the MixColor
-            Color = Color.Transparent;
+            Color = new Color(Shadow.noColor);;
             using (PropertyValue borderlineColorValue = propertyMap.Find(Visual.Property.BorderlineColor))
             {
                 borderlineColorValue?.Get(Color);

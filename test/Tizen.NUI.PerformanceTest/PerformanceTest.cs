@@ -309,6 +309,7 @@ class PerformanceTestExample : NUIApplication
         }
 
         // Dereference animation safety
+        mCreatingAnimationList.First.Value.Dispose();
         mCreatingAnimationList.RemoveFirst();
 
         mRemovingControlList.AddLast(currentControl);
@@ -337,6 +338,7 @@ class PerformanceTestExample : NUIApplication
         currentControl.DisposeRecursively();
 
         // Dereference animation safety
+        mRemovingAnimationList.First.Value.Dispose();
         mRemovingAnimationList.RemoveFirst();
 
         mDeleteCount++;

@@ -1296,7 +1296,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetThemeApplied()
         {
-            if (themeData == null) themeData = new ThemeData();
+            var themeData = EnsureThemeData();
             themeData.ThemeApplied = true;
 
             if (ThemeChangeSensitive && !themeData.ListeningThemeChangeEvent)
@@ -1378,16 +1378,7 @@ namespace Tizen.NUI.BaseComponents
                 internalSize2D?.Dispose();
                 internalSize2D = null;
 
-                panGestureDetector?.Dispose();
-                panGestureDetector = null;
-                longGestureDetector?.Dispose();
-                longGestureDetector = null;
-                pinchGestureDetector?.Dispose();
-                pinchGestureDetector = null;
-                tapGestureDetector?.Dispose();
-                tapGestureDetector = null;
-                rotationGestureDetector?.Dispose();
-                rotationGestureDetector = null;
+                GetViewGestureData()?.Clear();
 
                 internalCurrentParentOrigin?.Dispose();
                 internalCurrentParentOrigin = null;
@@ -1436,6 +1427,7 @@ namespace Tizen.NUI.BaseComponents
                     }
                 }
 
+                var themeData = GetThemeData();
                 if (themeData != null)
                 {
                     themeData.selectorData?.Reset(this);
@@ -1524,7 +1516,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     State = View.States.Normal;
                 }
-                if (enableControlState)
+                if (_viewFlags.HasFlag(ViewFlags.EnableControlState))
                 {
                     ControlState -= ControlState.Disabled;
                 }
@@ -1532,7 +1524,7 @@ namespace Tizen.NUI.BaseComponents
             else
             {
                 State = View.States.Disabled;
-                if (enableControlState)
+                if (_viewFlags.HasFlag(ViewFlags.EnableControlState))
                 {
                     ControlState += ControlState.Disabled;
                 }
@@ -1552,6 +1544,8 @@ namespace Tizen.NUI.BaseComponents
             NUILog.Debug($"[Dispose] DisConnectFromSignals START");
             NUILog.Debug($"[Dispose] View.DisConnectFromSignals() type:{GetType()} copyNativeHandle:{GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
             NUILog.Debug($"[Dispose] ID:{Interop.Actor.GetId(GetBaseHandleCPtrHandleRef)} Name:{Interop.Actor.GetName(GetBaseHandleCPtrHandleRef)}");
+
+            _viewEventRareData?.ClearSignal();
 
             if (onRelayoutEventCallback != null)
             {
@@ -1580,23 +1574,6 @@ namespace Tizen.NUI.BaseComponents
                 onWindowEventCallback = null;
             }
 
-            if (interceptWheelCallback != null)
-            {
-                NUILog.Debug($"[Dispose] interceptWheelCallback");
-
-                Interop.ActorSignal.InterceptWheelDisconnect(GetBaseHandleCPtrHandleRef, interceptWheelCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                interceptWheelCallback = null;
-            }
-
-            if (wheelEventCallback != null)
-            {
-                NUILog.Debug($"[Dispose] wheelEventCallback");
-
-                Interop.ActorSignal.WheelEventDisconnect(GetBaseHandleCPtrHandleRef, wheelEventCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                wheelEventCallback = null;
-            }
 
             if (hoverEventCallback != null)
             {
@@ -1607,15 +1584,6 @@ namespace Tizen.NUI.BaseComponents
                 hoverEventCallback = null;
             }
 
-            if (hitTestResultDataCallback != null)
-            {
-                NUILog.Debug($"[Dispose] hitTestResultDataCallback");
-
-                Interop.ActorSignal.HitTestResultDisconnect(GetBaseHandleCPtrHandleRef, hitTestResultDataCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                hitTestResultDataCallback = null;
-            }
-
             if (visibilityChangedEventCallback != null)
             {
                 NUILog.Debug($"[Dispose] visibilityChangedEventCallback");
@@ -1623,24 +1591,6 @@ namespace Tizen.NUI.BaseComponents
                 Interop.ActorSignal.VisibilityChangedDisconnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
                 visibilityChangedEventCallback = null;
-            }
-
-            if (interceptTouchDataCallback != null)
-            {
-                NUILog.Debug($"[Dispose] interceptTouchDataCallback");
-
-                Interop.ActorSignal.InterceptTouchDisconnect(GetBaseHandleCPtrHandleRef, interceptTouchDataCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                interceptTouchDataCallback = null;
-            }
-
-            if (layoutDirectionChangedEventCallback != null)
-            {
-                NUILog.Debug($"[Dispose] layoutDirectionChangedEventCallback");
-
-                Interop.ActorSignal.LayoutDirectionChangedDisconnect(SwigCPtr, layoutDirectionChangedEventCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExists();
-                layoutDirectionChangedEventCallback = null;
             }
 
             if (touchDataCallback != null)
@@ -1820,7 +1770,7 @@ namespace Tizen.NUI.BaseComponents
 
         private ViewSelectorData EnsureSelectorData()
         {
-            if (themeData == null) themeData = new ThemeData();
+            var themeData = EnsureThemeData();
 
             return themeData.selectorData ?? (themeData.selectorData = new ViewSelectorData());
         }

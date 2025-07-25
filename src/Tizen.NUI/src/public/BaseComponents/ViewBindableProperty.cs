@@ -2191,7 +2191,7 @@ namespace Tizen.NUI.BaseComponents
             backgroundImageUrl = value;
 
             // Fast return for usual cases.
-            if (backgroundExtraData == null && !backgroundImageSynchronousLoading)
+            if (backgroundExtraData == null && !_viewFlags.HasFlag(ViewFlags.BackgroundImageSynchronousLoading))
             {
                 Object.InternalSetPropertyString(SwigCPtr, View.Property.BACKGROUND, value);
                 return;
@@ -2200,7 +2200,7 @@ namespace Tizen.NUI.BaseComponents
             using var map = new PropertyMap();
 
             map.Add(ImageVisualProperty.URL, value)
-               .Add(ImageVisualProperty.SynchronousLoading, backgroundImageSynchronousLoading);
+               .Add(ImageVisualProperty.SynchronousLoading, _viewFlags.HasFlag(ViewFlags.BackgroundImageSynchronousLoading));
 
             if ((backgroundExtraData?.BackgroundImageBorder) != null)
             {

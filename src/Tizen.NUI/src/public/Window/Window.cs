@@ -1276,6 +1276,10 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void FeedKey(Key keyEvent)
         {
+            if (keyEvent != null)
+            {
+                Tizen.Log.Info("NUI", $"FeedKey KeyPressedName : {keyEvent.KeyPressedName}, KeyString : {keyEvent.KeyString}, KeyPressed : {keyEvent.KeyPressed}, KeyCode : {keyEvent.KeyCode}, State : {keyEvent.State}, Time : {keyEvent.Time}");
+            }
             Interop.Window.FeedKeyEvent(SwigCPtr, Key.getCPtr(keyEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1317,6 +1321,10 @@ namespace Tizen.NUI
         /// <param name="timeStamp">The timeStamp.</param>
         internal void FeedTouch(TouchPoint touchPoint, int timeStamp)
         {
+            if (touchPoint != null)
+            {
+                Tizen.Log.Info("NUI", $"FeedTouch {touchPoint.Screen.X}, {touchPoint.Screen.Y}, State : {touchPoint.State}, timeStamp : {timeStamp}");
+            }
             Interop.Window.FeedTouchPoint(SwigCPtr, TouchPoint.getCPtr(touchPoint), timeStamp);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1327,6 +1335,10 @@ namespace Tizen.NUI
         /// <param name="wheelEvent">The wheel event to feed.</param>
         internal void FeedWheel(Wheel wheelEvent)
         {
+            if (wheelEvent != null)
+            {
+                Tizen.Log.Info("NUI", $"FeedWheel {wheelEvent.Point.X}, {wheelEvent.Point.Y}, Type : {wheelEvent.Type}, Direction : {wheelEvent.Direction}");
+            }
             Interop.Window.FeedWheelEvent(SwigCPtr, Wheel.getCPtr(wheelEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1348,6 +1360,8 @@ namespace Tizen.NUI
                 using Vector2 screenPosition = hover.GetScreenPosition(0);
                 touchPoint = new TouchPoint(hover.GetDeviceId(0), TouchPoint.StateType.Motion, screenPosition.X, screenPosition.Y);
             }
+
+            Tizen.Log.Info("NUI", $"FeedHover {touchPoint.Screen.X}, {touchPoint.Screen.Y}, State : {touchPoint.State}");
             Interop.Window.FeedHoverEvent(SwigCPtr, TouchPoint.getCPtr(touchPoint));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             touchPoint.Dispose();
@@ -2641,8 +2655,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets or gets the window blur using window blur information.
-        /// 
-        /// It is designed to apply a blur effect to a window based on specified parameters. 
+        ///
+        /// It is designed to apply a blur effect to a window based on specified parameters.
         /// This supports different types of blurring effects, including blurring the window's background only.
         /// Or blurring the area surrounding the window while keeping the window itself clear.
         /// The more information is written WindowBlurInfo struct.
@@ -2676,7 +2690,7 @@ namespace Tizen.NUI
                 finally {
                     Interop.WindowBlurInfo.DeleteWindowBlurInfo(internalBlurInfo);
                 }
-            }            
+            }
         }
 
         /// <summary>

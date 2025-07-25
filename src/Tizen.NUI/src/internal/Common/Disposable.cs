@@ -48,24 +48,21 @@ namespace Tizen.NUI
         /// Create an instance of Disposable.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public Disposable()
+        public Disposable() : this(global::System.IntPtr.Zero, false)
         {
-            swigCMemOwn = false;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            _disposeOnlyMainThread = false;
         }
 
         /// This will not be public.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Disposable(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, true)
+        public Disposable(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
         }
 
         internal Disposable(global::System.IntPtr cPtr, bool cMemoryOwn, bool disposableOnlyMainThread)
         {
             swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             _disposeOnlyMainThread = disposableOnlyMainThread;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(cPtr == global::System.IntPtr.Zero ? null : this, cPtr);
         }
 
         /// <summary>

@@ -41,12 +41,12 @@ namespace Tizen.NUI.BaseComponents
         {
             Matrix mvp;
             Matrix projection;
-            Size2D size;
+            Vector2 size;
             Color worldColor;
             Rectangle clippingBox;
             ReadOnlyCollection<int> textureBindings;
 
-            public RenderCallbackInput(Matrix mvp, Matrix projection, Size2D size, Color worldColor, Rectangle clippingBox, int[] textureBindings)
+            public RenderCallbackInput(Matrix mvp, Matrix projection, Vector2 size, Color worldColor, Rectangle clippingBox, int[] textureBindings)
             {
                 this.mvp = mvp;
                 this.projection = projection;
@@ -75,7 +75,7 @@ namespace Tizen.NUI.BaseComponents
             /// <summary>
             /// The size of the DirectRenderingGLView
             /// </summary>
-            public Size2D Size
+            public Vector2 Size
             {
                 get { return size; }
             }
@@ -354,7 +354,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Matrix mvp = Matrix.GetMatrixFromPtr(Interop.GLView.GlViewGetRednerCallbackInputMvp(cPtr));
                 Matrix projection = Matrix.GetMatrixFromPtr(Interop.GLView.GlViewGetRednerCallbackInputProjection(cPtr));
-                Size2D size = Size2D.GetSize2DFromPtr(Interop.GLView.GlViewGetRednerCallbackInputSize(cPtr), false);
+                Vector2 size = Vector2.GetVector2FromPtr(Interop.GLView.GlViewGetRednerCallbackInputSize(cPtr));
                 Color worldColor = Color.GetColorFromPtr(Interop.GLView.GlViewGetRednerCallbackInputWorldColor(cPtr));
                 Rectangle clippingBox = Rectangle.GetRectangleFromPtr(Interop.GLView.GlViewGetRednerCallbackInputClipplingBox(cPtr), false);
                 int[] textureBindings = GetTextureBindings(cPtr);

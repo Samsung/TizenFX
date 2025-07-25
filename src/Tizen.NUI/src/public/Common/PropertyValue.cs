@@ -572,8 +572,14 @@ namespace Tizen.NUI
             }
             else if (type.Equals(typeof(Size)))
             {
-                var size = obj as Size;
-                value = Interop.PropertyValue.NewPropertyValueVector3Componentwise(size.Width, size.Height, size.Depth);
+                if (obj is Size size)
+                {
+                    value = Interop.PropertyValue.NewPropertyValueVector3Componentwise(size.Width, size.Height, size.Depth);
+                }
+                else
+                {
+                    throw new InvalidCastException("Object is not of type Size");
+                }
             }
             else if (type.Equals(typeof(Size2D)))
             {
