@@ -398,9 +398,8 @@ namespace Tizen.NUI
                     LayoutLength childWidth = new LayoutLength(childLayout.MeasuredWidth.Size);
                     LayoutLength childHeight = new LayoutLength(childLayout.MeasuredHeight.Size);
 
-                    Extents childMargin = childLayout.Margin;
-                    measuredWidth = new LayoutLength(Math.Max(measuredWidth.AsDecimal(), childWidth.AsDecimal() + childMargin.Start + childMargin.End));
-                    measuredHeight = new LayoutLength(Math.Max(measuredHeight.AsDecimal(), childHeight.AsDecimal() + childMargin.Top + childMargin.Bottom));
+                    measuredWidth = new LayoutLength(Math.Max(measuredWidth.AsDecimal(), childWidth.AsDecimal() + childLayout.MarginStart + childLayout.MarginEnd));
+                    measuredHeight = new LayoutLength(Math.Max(measuredHeight.AsDecimal(), childHeight.AsDecimal() + childLayout.MarginTop + childLayout.MarginBottom));
                 }
             }
 
@@ -453,8 +452,8 @@ namespace Tizen.NUI
                         // Margin and Padding only supported when child anchor point is TOP_LEFT.
                         if (owner.PivotPoint == PivotPoint.TopLeft || (owner.PositionUsesPivotPoint == false))
                         {
-                            childLeft = childLeft + owner.Padding.Start + childLayout.Margin.Start;
-                            childTop = childTop + owner.Padding.Top + childLayout.Margin.Top;
+                            childLeft = new (childLeft.AsDecimal() + owner.GetPadding().Start + childLayout.MarginStart);
+                            childTop = new (childTop.AsDecimal() + owner.GetPadding().Top + childLayout.MarginTop);
                         }
                     }
                     childLayout.Layout(childLeft, childTop, childLeft + childLayout.MeasuredWidth.Size, childTop + childLayout.MeasuredHeight.Size);
@@ -570,12 +569,12 @@ namespace Tizen.NUI
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(new LayoutLength(parentWidthMeasureSpec.Size), parentWidthMeasureSpec.Mode),
-                        new LayoutLength(Padding.Start + Padding.End),
+                        new LayoutLength(PaddingStart + PaddingEnd),
                         new LayoutLength(CalculateChildSpecSizeWidth(childOwner)));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(new LayoutLength(parentHeightMeasureSpec.Size), parentHeightMeasureSpec.Mode),
-                        new LayoutLength(Padding.Top + Padding.Bottom),
+                        new LayoutLength(PaddingTop + PaddingBottom),
                         new LayoutLength(CalculateChildSpecSizeHeight(childOwner)));
 
             child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
@@ -601,20 +600,20 @@ namespace Tizen.NUI
             }
 
             View childOwner = child.Owner;
-            Extents margin = childOwner.Margin;
+            UIExtents margin = childOwner.GetMargin();
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(
-                            new LayoutLength(parentWidthMeasureSpec.Size + widthUsed - (margin.Start + margin.End)),
+                            new LayoutLength(parentWidthMeasureSpec.Size.AsDecimal() + widthUsed.AsDecimal() - (margin.Start + margin.End)),
                             parentWidthMeasureSpec.Mode),
-                        new LayoutLength(Padding.Start + Padding.End),
+                        new LayoutLength(PaddingStart + PaddingEnd),
                         new LayoutLength(CalculateChildSpecSizeWidth(childOwner)));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(
-                            new LayoutLength(parentHeightMeasureSpec.Size + heightUsed - (margin.Top + margin.Bottom)),
+                            new LayoutLength(parentHeightMeasureSpec.Size.AsDecimal() + heightUsed.AsDecimal() - (margin.Top + margin.Bottom)),
                             parentHeightMeasureSpec.Mode),
-                        new LayoutLength(Padding.Top + Padding.Bottom),
+                        new LayoutLength(PaddingTop + PaddingBottom),
                         new LayoutLength(CalculateChildSpecSizeHeight(childOwner)));
             child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
 

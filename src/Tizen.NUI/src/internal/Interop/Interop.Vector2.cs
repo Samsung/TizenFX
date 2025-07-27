@@ -124,6 +124,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Vector2")]
             public static extern void DeleteVector2(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector2_set_all")]
+            public static extern void SetAll(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
         }
     }
 }

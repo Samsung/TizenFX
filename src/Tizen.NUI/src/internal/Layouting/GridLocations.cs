@@ -260,8 +260,8 @@ namespace Tizen.NUI
 
                 MeasureChildWithMargins(item, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
                 gridChildren.Add(new GridChild(item,
-                                               new Node(column, columnSpan, item.MeasuredWidth.Size.AsDecimal() + item.Owner.Margin.Start + item.Owner.Margin.End, horizontalStretch),
-                                               new Node(row, rowSpan, item.MeasuredHeight.Size.AsDecimal() + item.Owner.Margin.Top + item.Owner.Margin.Bottom, verticalStretch)));
+                                               new Node(column, columnSpan, item.MeasuredWidth.Size.AsDecimal() + item.Owner.GetMargin().Start + item.Owner.GetMargin().End, horizontalStretch),
+                                               new Node(row, rowSpan, item.MeasuredHeight.Size.AsDecimal() + item.Owner.GetMargin().Top + item.Owner.GetMargin().Bottom, verticalStretch)));
             }
         }
 

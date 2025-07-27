@@ -51,6 +51,8 @@ namespace Tizen.NUI
 
         private Extents padding;
         private Extents margin;
+        private UIExtents _uipadding;
+        private UIExtents _uimargin;
 
         private bool parentReplacement;
         private bool setPositionByLayout = true;
@@ -107,11 +109,16 @@ namespace Tizen.NUI
         {
             get
             {
-                return margin;
+                if (_uimargin == UIExtents.Zero)
+                {
+                    return Extents.Zero;
+                }
+                return margin ??= _uimargin.ToReferenceType();
             }
             set
             {
                 margin = value;
+                _uimargin = new(margin.Start, margin.End, margin.Top, margin.Bottom);
                 RequestLayout();
             }
         }
@@ -124,13 +131,108 @@ namespace Tizen.NUI
         {
             get
             {
-                return padding;
+                if (_uipadding == UIExtents.Zero)
+                {
+                    return Extents.Zero;
+                }
+                return padding ??= _uipadding.ToReferenceType();
             }
             set
             {
                 padding = value;
+                _uipadding = new(padding.Start, padding.End, padding.Top, padding.Bottom);
                 RequestLayout();
             }
+        }
+
+        /// <summary>
+        /// Gets margin in value type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float MarginStart => _uimargin.Start;
+
+        /// <summary>
+        /// Gets margin in value type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float MarginEnd => _uimargin.End;
+
+        /// <summary>
+        /// Gets margin in value type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float MarginTop => _uimargin.Top;
+
+        /// <summary>
+        /// Gets margin in value type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float MarginBottom => _uimargin.Bottom;
+
+        /// <summary>
+        /// Gets padding in value type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float PaddingStart => _uipadding.Start;
+
+        /// <summary>
+        /// Gets padding in value type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float PaddingEnd => _uipadding.End;
+
+        /// <summary>
+        /// Gets padding in value type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float PaddingTop => _uipadding.Top;
+
+        /// <summary>
+        /// Gets padding in value type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float PaddingBottom => _uipadding.Bottom;
+
+        /// <summary>
+        /// Gets margin in value type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public UIExtents GetMargin() => _uimargin;
+
+        /// <summary>
+        /// Sets margin in value type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetMargin(UIExtents value)
+        {
+            if (_uimargin == value)
+            {
+                return;
+            }
+            _uimargin = value;
+            margin = null;
+            RequestLayout();
+        }
+
+        /// <summary>
+        /// Gets padding in value type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public UIExtents GetPadding() => _uipadding;
+
+        /// <summary>
+        /// Sets padding in value type.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetPadding(UIExtents value)
+        {
+            if (_uipadding == value)
+            {
+                return;
+            }
+            _uipadding = value;
+            padding = null;
+            RequestLayout();
         }
 
         /// <summary>
@@ -173,8 +275,6 @@ namespace Tizen.NUI
         {
             LayoutWithTransition = false;
             layoutPositionData = new LayoutData(this, TransitionCondition.Unspecified, 0, 0, 0, 0);
-            padding = Extents.Zero;
-            margin = Extents.Zero;
         }
 
         /// <summary>
@@ -687,6 +787,25 @@ namespace Tizen.NUI
         public virtual bool IsPaddingHandledByNative()
         {
             return false;
+        }
+    }
+
+    internal static class LayoutExtensions
+    {
+        public static UIExtents Margin(this LayoutItem layoutItem) => layoutItem.GetMargin();
+
+        public static T Margin<T>(this T layoutItem, UIExtents value) where T : LayoutItem
+        {
+            layoutItem.SetMargin(value);
+            return layoutItem;
+        }
+
+        public static UIExtents Padding(this LayoutItem layoutItem) => layoutItem.GetPadding();
+
+        public static T Padding<T>(this T layoutItem, UIExtents value) where T : LayoutItem
+        {
+            layoutItem.SetPadding(value);
+            return layoutItem;
         }
     }
 }

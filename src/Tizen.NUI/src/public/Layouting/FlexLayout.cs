@@ -499,7 +499,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Dispose. 
+        /// Dispose.
         /// </summary>
         /// <remarks>
         /// Following the guide of https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose.
@@ -850,20 +850,20 @@ namespace Tizen.NUI
             }
 
             LayoutItem childLayout = child.Layout;
-            Extents margin = child.Margin;
+            UIExtents margin = child.GetMargin();
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                                     new MeasureSpecification(
-                                        new LayoutLength(parentMeasureSpecificationWidth.Size - (margin.Start + margin.End)),
+                                        new LayoutLength(parentMeasureSpecificationWidth.Size.AsDecimal() - (margin.Start + margin.End)),
                                         parentMeasureSpecificationWidth.Mode),
-                                    new LayoutLength(Padding.Start + Padding.End),
+                                    new LayoutLength(PaddingStart + PaddingEnd),
                                     new LayoutLength(child.LayoutWidth));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                                     new MeasureSpecification(
-                                        new LayoutLength(parentMeasureSpecificationHeight.Size - (margin.Top + margin.Bottom)),
+                                        new LayoutLength(parentMeasureSpecificationHeight.Size.AsDecimal() - (margin.Top + margin.Bottom)),
                                         parentMeasureSpecificationHeight.Mode),
-                                    new LayoutLength(Padding.Top + Padding.Bottom),
+                                    new LayoutLength(PaddingTop + PaddingBottom),
                                     new LayoutLength(child.LayoutHeight));
 
             childLayout?.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
@@ -875,7 +875,16 @@ namespace Tizen.NUI
         void InsertChild(LayoutItem child)
         {
             // Store created node for child
-            IntPtr childPtr = Interop.FlexLayout.AddChildWithMargin(swigCPtr, View.getCPtr(child.Owner), Extents.getCPtr(child.Owner.Margin), measureChildDelegate, LayoutChildren.Count - 1);
+            UIExtents margin = child.Owner.GetMargin();
+
+            IntPtr childPtr = ReusablePool<Extents>.GetOne((extents, ptr, childOwnerPtr, childMargin, measureChild, childrenCount) =>
+            {
+                extents.Reset(childMargin);
+                IntPtr childPtr = Interop.FlexLayout.AddChildWithMargin(ptr, childOwnerPtr, extents.SwigCPtr, measureChild, childrenCount);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                return childPtr;
+            }, swigCPtr, View.getCPtr(child.Owner), child.Owner.GetMargin(), measureChildDelegate, LayoutChildren.Count - 1);
+
             HandleRef childHandleRef = new HandleRef(child.Owner, childPtr);
             if (NUIApplication.IsUsingXaml)
             {
@@ -937,9 +946,14 @@ namespace Tizen.NUI
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
             bool isLayoutRtl = Owner.LayoutDirection == ViewLayoutDirectionType.RTL;
-            Extents padding = Owner.Padding;
+            UIExtents padding = Owner.GetPadding();
 
-            Interop.FlexLayout.SetPadding(swigCPtr, Extents.getCPtr(padding));
+            ReusablePool<Extents>.GetOne((extents, ptr, padding) =>
+            {
+                extents.Reset(padding);
+                Interop.FlexLayout.SetPadding(ptr, extents.SwigCPtr);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }, swigCPtr, Owner.GetPadding());
 
             float width = FlexUndefined; // Behaves as WrapContent (Flex Auto)
             float height = FlexUndefined; // Behaves as WrapContent (Flex Auto)
@@ -959,8 +973,6 @@ namespace Tizen.NUI
             // because measurChild function is called by native callback.
             parentMeasureSpecificationWidth = widthMeasureSpec;
             parentMeasureSpecificationHeight = heightMeasureSpec;
-
-            Extents zeroMargin = new Extents();
 
             // Assign child properties
             for (int i = 0; i < LayoutChildren.Count; i++)
@@ -990,9 +1002,15 @@ namespace Tizen.NUI
                 float flexBasis = GetFlexBasis(child);
                 float flexShrink = GetFlexShrink(child);
                 float flexGrow = GetFlexGrow(child);
-                Extents childMargin = child.ExcludeLayouting ? zeroMargin : childLayout.Margin;
+                UIExtents childMargin = child.ExcludeLayouting ? UIExtents.Zero : childLayout.GetMargin();
 
-                Interop.FlexLayout.SetMargin(childHandleRef, Extents.getCPtr(childMargin));
+                ReusablePool<Extents>.GetOne((extents, ptr, margin) =>
+                {
+                    extents.Reset(margin);
+                    Interop.FlexLayout.SetMargin(ptr, extents.SwigCPtr);
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }, childHandleRef, childMargin);
+
                 Interop.FlexLayout.SetFlexAlignmentSelf(childHandleRef, (int)flexAlignemnt);
                 Interop.FlexLayout.SetFlexPositionType(childHandleRef, (int)positionType);
                 Interop.FlexLayout.SetFlexAspectRatio(childHandleRef, flexAspectRatio);
@@ -1002,7 +1020,6 @@ namespace Tizen.NUI
             }
 
             Interop.FlexLayout.CalculateLayout(swigCPtr, width, height, isLayoutRtl);
-            zeroMargin.Dispose();
 
             LayoutLength flexLayoutWidth = new LayoutLength(Interop.FlexLayout.GetWidth(swigCPtr));
             LayoutLength flexLayoutHeight = new LayoutLength(Interop.FlexLayout.GetHeight(swigCPtr));

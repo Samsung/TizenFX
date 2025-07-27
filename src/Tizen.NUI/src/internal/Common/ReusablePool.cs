@@ -169,6 +169,25 @@ namespace Tizen.NUI
             return result;
         }
 
+        /// <summary>
+        /// Get available instance from pool or create new one.
+        /// The passed instance only valid in action scope.
+        /// </summary>
+        /// <remarks>
+        /// This method is to avoid generating closure and action instance every time when using lambda expression.
+        /// It's better to use this method when possible.
+        /// </remarks>
+        public static R GetOne<TArg1, TArg2, TArg3, TArgs4, TArg5, R>(Func<T, TArg1, TArg2, TArg3, TArgs4, TArg5, R> action, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArgs4 arg4, TArg5 arg5)
+        {
+            if (!pool.TryPop(out T value))
+            {
+                value = new T();
+            }
+            R result = action(value, arg1, arg2, arg3, arg4, arg5);
+            Push(value);
+            return result;
+        }
+
         static void Push(T value)
         {
             if (value == null || value.IsDisposeQueued)
