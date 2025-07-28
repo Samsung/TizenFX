@@ -408,10 +408,7 @@ namespace Tizen.NUI
 
             ReusablePool<Extents>.GetOne((extents, actor, propertyType, value) =>
             {
-                extents.Start = (ushort)value.Start;
-                extents.End = (ushort)value.End;
-                extents.Top = (ushort)value.Top;
-                extents.Bottom = (ushort)value.Bottom;
+                extents.Reset(value);
                 _ = Interop.Actor.InternalSetPropertyExtents(actor, propertyType, extents.SwigCPtr);
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }, actor, propertyType, value);
