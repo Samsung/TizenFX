@@ -4989,20 +4989,22 @@ namespace Tizen.NUI.BaseComponents
 
         private Extents GetInternalPadding()
         {
-            if (internalPadding == null || (Layout != null && !Layout.IsPaddingHandledByNative()))
+            bool shouldUseLayoutPadding = Layout != null && !Layout.IsPaddingHandledByNative();
+
+            if (internalPadding == null || shouldUseLayoutPadding)
             {
                 ushort start = 0, end = 0, top = 0, bottom = 0;
-                if (Layout != null && !Layout.IsPaddingHandledByNative() && Layout.Padding != null)
+                if (shouldUseLayoutPadding)
                 {
-                    start = Layout.Padding.Start;
-                    end = Layout.Padding.End;
-                    top = Layout.Padding.Top;
-                    bottom = Layout.Padding.Bottom;
+                    start = (ushort)Layout.PaddingStart;
+                    end = (ushort)Layout.PaddingEnd;
+                    top = (ushort)Layout.PaddingTop;
+                    bottom = (ushort)Layout.PaddingBottom;
                 }
                 internalPadding = new Extents(OnPaddingChanged, start, end, top, bottom);
             }
 
-            if (Layout == null || Layout.IsPaddingHandledByNative())
+            if (!shouldUseLayoutPadding)
             {
                 Object.InternalRetrievingPropertyExtents(SwigCPtr, Property.PADDING, internalPadding.SwigCPtr);
             }
@@ -5685,13 +5687,10 @@ namespace Tizen.NUI.BaseComponents
                 ushort start = 0, end = 0, top = 0, bottom = 0;
                 if (Layout != null)
                 {
-                    if (Layout.Margin != null)
-                    {
-                        start = Layout.Margin.Start;
-                        end = Layout.Margin.End;
-                        top = Layout.Margin.Top;
-                        bottom = Layout.Margin.Bottom;
-                    }
+                    start = (ushort)Layout.MarginStart;
+                    end = (ushort)Layout.MarginEnd;
+                    top = (ushort)Layout.MarginTop;
+                    bottom = (ushort)Layout.MarginBottom;
                 }
                 internalMargin = new Extents(OnMarginChanged, start, end, top, bottom);
             }
@@ -6311,12 +6310,8 @@ namespace Tizen.NUI.BaseComponents
                 if (value?.Owner != null)
                 {
                     // Previous owner of the layout gets a default layout as a replacement.
-                    value.Owner.Layout = new AbsoluteLayout()
-                    {
-                        // Copy Margin and Padding to replacement LayoutGroup.
-                        Margin = value.Margin,
-                        Padding = value.Padding,
-                    };
+                    // Copy Margin and Padding to replacement LayoutGroup.
+                    value.Owner.Layout = new AbsoluteLayout().Padding(value.Padding()).Margin(value.Margin());
                 }
 
                 // Copy Margin and Padding to new layout being set or restore padding and margin back to
@@ -6327,8 +6322,8 @@ namespace Tizen.NUI.BaseComponents
                     if (value != null)
                     {
                         // Existing layout being replaced so copy over margin and padding values.
-                        value.Margin = layoutExtraData.Layout.Margin;
-                        value.Padding = layoutExtraData.Layout.Padding;
+                        value.SetMargin(layoutExtraData.Layout.GetMargin());
+                        value.SetPadding(layoutExtraData.Layout.GetPadding());
                         value.SetPositionByLayout = !layoutExtraData.ExcludeLayouting;
                     }
                     else
@@ -6341,8 +6336,8 @@ namespace Tizen.NUI.BaseComponents
                         }
                         else
                         {
-                            SetInternalMargin(layoutExtraData.Layout.Margin);
-                            SetInternalPadding(layoutExtraData.Layout.Padding);
+                            SetMargin(layoutExtraData.Layout.GetMargin(), true);
+                            SetPadding(layoutExtraData.Layout.GetPadding(), true);
                         }
                         NotifyPropertyChanged();
                     }
@@ -6354,39 +6349,39 @@ namespace Tizen.NUI.BaseComponents
                     // Do not try to set Margins or Padding on a null Layout (when a layout is being removed from a View)
                     if (value != null)
                     {
-                        Extents margin = Margin;
-                        Extents padding = Padding;
+                        UIExtents margin = GetInternalMarginValue();
+                        UIExtents padding = GetInternalPaddingValue();
                         bool setMargin = false;
                         bool setPadding = false;
 
-                        if (margin.Top != 0 || margin.Bottom != 0 || margin.Start != 0 || margin.End != 0)
+                        if (margin != UIExtents.Zero)
                         {
                             // If View already has a margin set then store it in Layout instead.
-                            value.Margin = margin;
+                            value.SetMargin(margin);
                             if (NUIApplication.IsUsingXaml)
                             {
                                 SetValue(MarginProperty, Extents.Zero);
                             }
                             else
                             {
-                                SetInternalMargin(Extents.Zero);
+                                SetMargin(UIExtents.Zero, true);
                             }
                             setMargin = true;
                         }
 
                         // The calculation of the native size of the text component requires padding.
                         // Don't overwrite the zero padding.
-                        if (!value.IsPaddingHandledByNative() && (padding.Top != 0 || padding.Bottom != 0 || padding.Start != 0 || padding.End != 0))
+                        if (!value.IsPaddingHandledByNative() && padding != UIExtents.Zero)
                         {
                             // If View already has a padding set then store it in Layout instead.
-                            value.Padding = padding;
+                            value.SetPadding(padding);
                             if (NUIApplication.IsUsingXaml)
                             {
                                 SetValue(PaddingProperty, Extents.Zero);
                             }
                             else
                             {
-                                SetInternalPadding(Extents.Zero);
+                                SetPadding(UIExtents.Zero, true);
                             }
                             setPadding = true;
                         }
@@ -7255,8 +7250,8 @@ namespace Tizen.NUI.BaseComponents
                 layoutExtraData.MaximumWidth = MaximumSize.Width;
                 layoutExtraData.MaximumHeight = MaximumSize.Height;
 
-                layoutExtraData.Margin = new UIExtents(Margin.Start, Margin.End, Margin.Top, Margin.End);
-                layoutExtraData.Padding = new UIExtents(Padding.Start, Padding.End, Padding.Top, Padding.End);
+                layoutExtraData.Margin = GetInternalMarginValue();
+                layoutExtraData.Padding = GetInternalPaddingValue();
             }
 
             return layoutExtraData;

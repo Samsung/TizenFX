@@ -682,8 +682,8 @@ namespace Tizen.NUI
             else
                 heightSize = (int)(vLocations[maxRowCount] - vLocations[0] - rowSpacing);
 
-            LayoutLength widthLength = new LayoutLength(widthSize + Padding.Start + Padding.End);
-            LayoutLength heightLenght = new LayoutLength(heightSize + Padding.Top + Padding.Bottom);
+            LayoutLength widthLength = new LayoutLength(widthSize + PaddingStart + PaddingEnd);
+            LayoutLength heightLenght = new LayoutLength(heightSize + PaddingTop + PaddingBottom);
 
             MeasuredSize widthMeasuredSize = ResolveSizeAndState(widthLength, widthMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
             MeasuredSize heightMeasuredSize = ResolveSizeAndState(heightLenght, heightMeasureSpec, MeasuredSize.StateType.MeasuredSizeOK);
@@ -702,7 +702,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            InitChildrenWithExpand(MeasuredWidth.Size - Padding.Start - Padding.End, MeasuredHeight.Size - Padding.Top - Padding.Bottom);
+            InitChildrenWithExpand(new (MeasuredWidth.Size.AsDecimal() - PaddingStart - PaddingEnd), new (MeasuredHeight.Size.AsDecimal() - PaddingTop - PaddingBottom));
 
             for (int i = 0; i < gridChildren.Count; i++)
             {
@@ -718,10 +718,10 @@ namespace Tizen.NUI
                 int row = child.Row.Start;
                 int columnEnd = child.Column.End;
                 int rowEnd = child.Row.End;
-                float childLeft = hLocations[column] + Padding.Start + view.Margin.Start;
-                float childTop = vLocations[row] + Padding.Top + view.Margin.Top;
-                float width = hLocations[columnEnd] - hLocations[column] - ColumnSpacing - view.Margin.Start - view.Margin.End;
-                float height = vLocations[rowEnd] - vLocations[row] - RowSpacing - view.Margin.Top - view.Margin.Bottom;
+                float childLeft = hLocations[column] + PaddingStart + view.GetMargin().Start;
+                float childTop = vLocations[row] + PaddingTop + view.GetMargin().Top;
+                float width = hLocations[columnEnd] - hLocations[column] - ColumnSpacing - view.GetMargin().Start - view.GetMargin().End;
+                float height = vLocations[rowEnd] - vLocations[row] - RowSpacing - view.GetMargin().Top - view.GetMargin().Bottom;
                 bool needMeasuredWidth = false;
                 bool needMeasuredHeight = false;
 

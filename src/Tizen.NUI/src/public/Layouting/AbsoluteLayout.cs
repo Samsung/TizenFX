@@ -172,8 +172,6 @@ namespace Tizen.NUI
                 }
 
                 var isBoundsSet = childLayout.Owner.GetAttached<LayoutParams>() != null;
-
-                Extents childMargin = childLayout.Margin;
                 var rect = GetLayoutBounds(childLayout.Owner);
                 var flags = GetLayoutFlags(childLayout.Owner);
 
@@ -188,13 +186,13 @@ namespace Tizen.NUI
                     var isHeightProportional = flags.HasFlag(AbsoluteLayoutFlags.HeightProportional);
 
                     var measuredWidth = MeasureBoundsSize(rect.Width, isWidthProportional,
-                                            widthMeasureSpec.GetSize().AsDecimal() - (Padding.Start + Padding.End),
-                                            childMargin.Start + childMargin.End,
+                                            widthMeasureSpec.GetSize().AsDecimal() - (PaddingStart + PaddingEnd),
+                                            childLayout.MarginStart + childLayout.MarginEnd,
                                             childLayout.Owner.GetMinimumWidth(),
                                             childLayout.Owner.GetMaximumWidth());
                     var measuredHeight = MeasureBoundsSize(rect.Height, isHeightProportional,
-                                            heightMeasureSpec.GetSize().AsDecimal() - (Padding.Top + Padding.Bottom),
-                                            childMargin.Top + childMargin.Bottom,
+                                            heightMeasureSpec.GetSize().AsDecimal() - (PaddingTop + PaddingBottom),
+                                            childLayout.MarginTop + childLayout.MarginBottom,
                                             childLayout.Owner.GetMinimumHeight(),
                                             childLayout.Owner.GetMaximumHeight());
 
@@ -207,9 +205,9 @@ namespace Tizen.NUI
                     {
                         childWidthSpec = GetChildMeasureSpecification(
                             new MeasureSpecification(
-                                new LayoutLength(widthMeasureSpec.Size) - (childMargin.Start + childMargin.End),
+                                new LayoutLength(widthMeasureSpec.Size.AsDecimal() - childLayout.MarginStart + childLayout.MarginEnd),
                                 widthMeasureSpec.Mode),
-                            new LayoutLength(Padding.Start + Padding.End),
+                            new LayoutLength(PaddingStart + PaddingEnd),
                             new LayoutLength(CalculateChildSpecSizeWidth(childLayout.Owner)));
                     }
 
@@ -222,9 +220,9 @@ namespace Tizen.NUI
                     {
                         childHeightSpec = GetChildMeasureSpecification(
                             new MeasureSpecification(
-                                new LayoutLength(heightMeasureSpec.Size) - (childMargin.Top + childMargin.Bottom),
+                                new LayoutLength(heightMeasureSpec.Size.AsDecimal() - childLayout.MarginTop + childLayout.MarginBottom),
                                 heightMeasureSpec.Mode),
-                            new LayoutLength(Padding.Top + Padding.Bottom),
+                            new LayoutLength(PaddingTop + PaddingBottom),
                             new LayoutLength(CalculateChildSpecSizeHeight(childLayout.Owner)));
                     }
 
@@ -247,14 +245,14 @@ namespace Tizen.NUI
                 else
                 {
                     if (flags.HasFlag(AbsoluteLayoutFlags.XProportional))
-                        childRight = childLayout.MeasuredWidth.Size.AsDecimal() + Padding.Start + Padding.End + childMargin.Start + childMargin.End;
+                        childRight = childLayout.MeasuredWidth.Size.AsDecimal() + PaddingStart + PaddingEnd + childLayout.MarginStart + childLayout.MarginEnd;
                     else
-                        childRight = childLayout.MeasuredWidth.Size.AsDecimal() + Padding.Start + Padding.End + childMargin.Start + childMargin.End + rect.X;
+                        childRight = childLayout.MeasuredWidth.Size.AsDecimal() + PaddingStart + PaddingEnd + childLayout.MarginStart + childLayout.MarginEnd + rect.X;
 
                     if (flags.HasFlag(AbsoluteLayoutFlags.YProportional))
-                        childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + Padding.Top + Padding.Bottom + childMargin.Top + childMargin.Bottom;
+                        childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + PaddingTop + PaddingBottom + childLayout.MarginTop + childLayout.MarginBottom;
                     else
-                        childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + Padding.Top + Padding.Bottom + childMargin.Top + childMargin.Bottom + rect.Y;
+                        childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + PaddingTop + PaddingBottom + childLayout.MarginTop + childLayout.MarginBottom + rect.Y;
                 }
 
                 if (maxWidth < childRight)
@@ -303,8 +301,6 @@ namespace Tizen.NUI
 
                 var isBoundsSet = childLayout.Owner.GetAttached<LayoutParams>() != null;
 
-                Extents childMargin = childLayout.Margin;
-
                 LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                 LayoutLength childHeight = childLayout.MeasuredHeight.Size;
 
@@ -326,14 +322,14 @@ namespace Tizen.NUI
                     var isYProportional = flags.HasFlag(AbsoluteLayoutFlags.YProportional);
 
                     var childX = MeasureBoundsPosition(rect.X, isXProportional,
-                                MeasuredWidth.Size.AsDecimal() - (Padding.Start + Padding.End),
-                                childWidth.AsDecimal() + (childMargin.Start + childMargin.End),
-                                Padding.Start, childMargin.Start);
+                                MeasuredWidth.Size.AsDecimal() - (PaddingStart + PaddingEnd),
+                                childWidth.AsDecimal() + (childLayout.MarginStart + childLayout.MarginEnd),
+                                PaddingStart, childLayout.MarginStart);
 
                     var childY = MeasureBoundsPosition(rect.Y, isYProportional,
-                                MeasuredHeight.Size.AsDecimal() - (Padding.Top + Padding.Bottom),
-                                childHeight.AsDecimal() + (childMargin.Top + childMargin.Bottom),
-                                Padding.Top, childMargin.Bottom);
+                                MeasuredHeight.Size.AsDecimal() - (PaddingTop + PaddingBottom),
+                                childHeight.AsDecimal() + (childLayout.MarginTop + childLayout.MarginBottom),
+                                PaddingTop, childLayout.MarginBottom);
 
                     childLeft = new LayoutLength(childX);
                     childTop = new LayoutLength(childY);

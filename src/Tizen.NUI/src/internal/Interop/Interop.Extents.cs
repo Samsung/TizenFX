@@ -41,6 +41,9 @@ namespace Tizen.NUI
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool NotEqualTo(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_set_all")]
+            public static extern void SetAll(global::System.Runtime.InteropServices.HandleRef jarg1, ushort jarg2, ushort jarg3, ushort jarg4, ushort jarg5);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_start_set")]
             public static extern void StartSet(global::System.Runtime.InteropServices.HandleRef jarg1, ushort jarg2);
 

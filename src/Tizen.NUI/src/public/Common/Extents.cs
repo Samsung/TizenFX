@@ -260,6 +260,16 @@ namespace Tizen.NUI
             }
         }
 
+        internal void Reset() => Reset(0, 0, 0, 0);
+
+        internal void Reset(UIExtents extents) => Reset((ushort)extents.Start, (ushort)extents.End, (ushort)extents.Top, (ushort)extents.Bottom);
+
+        internal void Reset(ushort start, ushort end, ushort top, ushort bottom)
+        {
+            Interop.Extents.SetAll(SwigCPtr, start, end, top, bottom);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
         /// <summary>
         /// Equality operator.
         /// </summary>
