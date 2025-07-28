@@ -188,6 +188,31 @@ namespace Tizen.NUI.BaseComponents
           RefreshAlways,
         };
 
+        /// <summary>
+        /// The policy of children depth index generate.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum ChildrenDepthIndexPolicyType
+        {
+          /// <summary>
+          /// Increase depth index automatically.
+          /// </summary>
+          [EditorBrowsable(EditorBrowsableState.Never)]
+          Increase,
+
+          /// <summary>
+          /// Has same depth index for all children.
+          /// </summary>
+          [EditorBrowsable(EditorBrowsableState.Never)]
+          Equal,
+
+          /// <summary>
+          /// Default policy.
+          /// </summary>
+          [EditorBrowsable(EditorBrowsableState.Never)]
+          Default = Increase,
+        };
+
 
         /// <summary>
         /// Actions property value to update visual property.
@@ -296,6 +321,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int UpdateAreaHint = Interop.ActorProperty.UpdateAreaHintGet();
             internal static readonly int DispatchTouchMotion = Interop.ActorProperty.DispatchTouchMotionGet();
             internal static readonly int DispatchHoverMotion = Interop.ActorProperty.DispatchHoverMotionGet();
+            internal static readonly int ChildrenDepthIndexPolicy = Interop.ActorProperty.ChildrenDepthIndexPolicyGet();
             internal static readonly int OffScreenRendering = Interop.ViewProperty.OffScreenRenderingGet();
             internal static readonly int InnerShadow = Interop.ViewProperty.InnerShadowGet();
             internal static readonly int Borderline = Interop.ViewProperty.BorderlineGet();

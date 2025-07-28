@@ -7241,6 +7241,38 @@ namespace Tizen.NUI.BaseComponents
             return isIgnored;
         }
 
+        /// <summary>
+        /// The policy of children depth index generate.
+        /// </summary>
+        /// <remarks>
+        /// Depth index of children determine the order of rendering. But for micro optimization, we could set
+        /// all children of the view has the same rendering order. If then, we can set <see cref='ChildrenDepthIndexPolicyType.Equal'/>.
+        /// Usually if we know that every childrens are not overlapps each other, and has multiple rendering options. (e.g InnerShadow, Shadow, BorderlineWidth).
+        /// Default is <see cref='ChildrenDepthIndexPolicyType.Increase'/>.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ChildrenDepthIndexPolicyType ChildrenDepthIndexPolicy
+        {
+            set => SetInternalChildrenDepthIndexPolicy(value);
+            get => GetInternalChildrenDepthIndexPolicy();
+        }
+
+        private void SetInternalChildrenDepthIndexPolicy(ChildrenDepthIndexPolicyType value)
+        {
+            Object.InternalSetPropertyInt(SwigCPtr, Property.ChildrenDepthIndexPolicy, (int)value);
+        }
+
+        private ChildrenDepthIndexPolicyType GetInternalChildrenDepthIndexPolicy()
+        {
+            int temp = Object.InternalGetPropertyInt(SwigCPtr, Property.ChildrenDepthIndexPolicy);
+            switch (temp)
+            {
+                case 0: return ChildrenDepthIndexPolicyType.Increase;
+                case 1: return ChildrenDepthIndexPolicyType.Equal;
+                default: return ChildrenDepthIndexPolicyType.Default;
+            }
+        }
+
         private LayoutExtraData EnsureLayoutExtraData()
         {
             if (layoutExtraData == null)
