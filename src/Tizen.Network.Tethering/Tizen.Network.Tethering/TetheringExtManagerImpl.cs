@@ -4,11 +4,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 
-namespace Tizen.Network.TetheringExt
+namespace Tizen.Network.Tethering
 {
     static internal class Globals
     {
-        internal const string LogTag = "Tizen.Network.TetheringExt";
+        internal const string LogTag = "Tizen.Network.Tethering";
     }
 
     internal class HandleHolder

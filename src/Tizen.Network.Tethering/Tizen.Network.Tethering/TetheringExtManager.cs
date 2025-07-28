@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.ComponentModel;
 
-namespace Tizen.Network.TetheringExt
+namespace Tizen.Network.Tethering
 {
 
     /// <summary>
@@ -132,7 +132,7 @@ namespace Tizen.Network.TetheringExt
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public void ActivateTetheringExt()
+        static public void Activate()
         {
 
         }
@@ -142,7 +142,7 @@ namespace Tizen.Network.TetheringExt
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public void DeactivateTetheringExt()
+        static public void Deactivate()
         {
 
         }

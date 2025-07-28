@@ -1,6 +1,6 @@
 using System;
 
-namespace Tizen.Network.TetheringExt
+namespace Tizen.Network.Tethering
 {
     public class TetheringExtDisabledEventArgs : EventArgs
     {
