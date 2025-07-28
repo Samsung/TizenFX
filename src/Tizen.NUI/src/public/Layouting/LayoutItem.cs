@@ -688,5 +688,11 @@ namespace Tizen.NUI
         {
             return false;
         }
+
+        /// <summary>
+        /// The flag to check if it is already disposed of.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal bool Disposed => disposed;
     }
 }
