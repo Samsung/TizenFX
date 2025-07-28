@@ -41,6 +41,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_GenerateUrl")]
             public static extern IntPtr GenerateUrl(IntPtr handle);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_GenerateUrl_With_PreMultiplied")]
+            public static extern IntPtr GenerateUrl(IntPtr handle, bool preMultiplied);
+
             // Platform dependency methods
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_New_Handle_With_TbmSurface")]
             public static extern IntPtr NewHandleWithTbmSurface(IntPtr csTbmSurface);
