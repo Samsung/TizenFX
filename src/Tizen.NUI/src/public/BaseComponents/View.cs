@@ -33,7 +33,6 @@ namespace Tizen.NUI.BaseComponents
         private static HashSet<BindableProperty> scalePropertyGroup = new HashSet<BindableProperty>();
         private static bool defaultGrabTouchAfterLeave;
         private static bool defaultAllowOnlyOwnTouch;
-        private static bool onceForViewAccessibilityModeCustom = false;
 
         internal BackgroundExtraData backgroundExtraData;
         private int widthPolicy = LayoutParamPolicies.WrapContent;
@@ -524,9 +523,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 case ViewAccessibilityMode.Custom:
                 {
-                    if (onceForViewAccessibilityModeCustom == false && NUIApplication.IsPreload == false)
+                    if (_accessibilityDeletageRegisterted == false && NUIApplication.IsPreload == false)
                     {
-                        onceForViewAccessibilityModeCustom = true;
                         RegisterAccessibilityDelegate();
                     }
 
@@ -547,9 +545,8 @@ namespace Tizen.NUI.BaseComponents
                 default:
                 {
 #if !PROFILE_TV
-                    if (onceForViewAccessibilityModeCustom == false && NUIApplication.IsPreload == false)
+                    if (_accessibilityDeletageRegisterted == false && NUIApplication.IsPreload == false)
                     {
-                        onceForViewAccessibilityModeCustom = true;
                         RegisterAccessibilityDelegate();
                     }
 #endif
