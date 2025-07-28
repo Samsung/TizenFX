@@ -141,6 +141,8 @@ namespace Tizen.NUI.Samples
 
                 WidthResizePolicy = ResizePolicyType.FillToParent,
                 HeightResizePolicy = ResizePolicyType.FillToParent,
+
+                ChildrenDepthIndexPolicy = View.ChildrenDepthIndexPolicyType.Equal,
             };
 
             window.Add(rootView);
