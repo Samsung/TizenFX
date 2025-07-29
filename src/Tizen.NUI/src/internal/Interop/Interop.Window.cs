@@ -405,6 +405,12 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetBlur")]
             public static extern global::System.IntPtr GetBlur(global::System.Runtime.InteropServices.HandleRef window);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetInsets__SWIG_0")]
+            public static extern global::System.IntPtr GetInsets(global::System.Runtime.InteropServices.HandleRef window);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetInsets__SWIG_1")]
+            public static extern global::System.IntPtr GetInsets(global::System.Runtime.InteropServices.HandleRef window, int insetsFlags);
         }
     }
 }

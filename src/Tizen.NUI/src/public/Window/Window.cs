@@ -460,6 +460,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The flags of insets part to specify which window insets parts to include.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum InsetsPartFlags
+        {
+            None = 0,
+            StatusBar = 1 << 0,
+            Keyboard = 1 << 1,
+            Clipboard = 1 << 2
+        }
+
+        /// <summary>
         /// The stage instance property (read-only).<br />
         /// Gets the current window.<br />
         /// </summary>
@@ -2716,6 +2728,31 @@ namespace Tizen.NUI
                     });
                 }
             });
+        }
+
+        /// <summary>
+        /// Gets the window insets for all parts of the system UI.
+        /// </summary>
+        /// <returns>The window insets from all parts.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Extents GetInsets()
+        {
+            Extents ret = new Extents(Interop.Window.GetInsets(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the combined window insets for the specified parts of the system UI.
+        /// </summary>
+        /// <param name="insetsFlags">A bitwise combination of <see cref="InsetsPartFlags"/> values specifying which window insets parts to include.</param>
+        /// <returns>The combined window insets from the specified parts.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Extents GetInsets(InsetsPartFlags insetsFlags)
+        {
+            Extents ret = new Extents(Interop.Window.GetInsets(SwigCPtr, (int)insetsFlags), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         IntPtr IWindowProvider.WindowHandle => GetNativeWindowHandler();
