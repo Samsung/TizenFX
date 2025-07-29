@@ -2729,7 +2729,7 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private Dictionary<int, JavaScriptMessageHandler> _evaluateJavaScriptHandlerMap = new Dictionary<int, JavaScriptMessageHandler>();
+        private Dictionary<int, HandleRef> _evaluateJavaScriptHandlerMap = new Dictionary<int, HandleRef>();
         private int _evaluateJavaScriptCallbackId;
 
         /// <summary>
@@ -2746,9 +2746,10 @@ namespace Tizen.NUI.BaseComponents
                 handler(msg);
                 _evaluateJavaScriptHandlerMap.Remove(id);
             };
-            _evaluateJavaScriptHandlerMap.Add(id, wrapper);
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(wrapper);
-            Interop.WebView.EvaluateJavaScript(SwigCPtr, script, new global::System.Runtime.InteropServices.HandleRef(this, ip));
+            System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(wrapper);
+            HandleRef handleRef = new HandleRef(this, ip);
+            _evaluateJavaScriptHandlerMap.Add(id, handleRef);
+            Interop.WebView.EvaluateJavaScript(SwigCPtr, script, handleRef);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
