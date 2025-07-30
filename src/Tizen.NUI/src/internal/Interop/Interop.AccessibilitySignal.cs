@@ -120,6 +120,18 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingStoppedSignal_Emit")]
             public static extern void AccessibilityReadingStoppedEmit(BaseComponents.View.ControlHandle jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActionSignal_Connect")]
+            public static extern void AccessibilityActionConnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActionSignal_Disconnect")]
+            public static extern void AccessibilityActionDisconnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityHighlightedSignal_Connect")]
+            public static extern void AccessibilityHighlightedConnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityHighlightedSignal_Disconnect")]
+            public static extern void AccessibilityHighlightedDisconnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
         }
     }
 }

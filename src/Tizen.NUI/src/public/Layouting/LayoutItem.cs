@@ -173,8 +173,8 @@ namespace Tizen.NUI
         {
             LayoutWithTransition = false;
             layoutPositionData = new LayoutData(this, TransitionCondition.Unspecified, 0, 0, 0, 0);
-            padding = new Extents(0, 0, 0, 0);
-            margin = new Extents(0, 0, 0, 0);
+            padding = Extents.Zero;
+            margin = Extents.Zero;
         }
 
         /// <summary>

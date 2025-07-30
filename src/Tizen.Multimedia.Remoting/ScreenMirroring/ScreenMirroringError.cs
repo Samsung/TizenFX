@@ -72,6 +72,18 @@ namespace Tizen.Multimedia.Remoting
                     return new InvalidOperationException($"Unknown error : {err.ToString()}.");
             }
         }
+
+        internal static ScreenMirroringError ToCsharp(this ScreenMirroringErrorCode err)
+        {
+            switch (err)
+            {
+                case ScreenMirroringErrorCode.InvalidOperation:
+                    return ScreenMirroringError.InvalidOperation;
+
+                default:
+                    throw new InvalidOperationException($"Unknown error : {err.ToString()}.");
+            }
+        }
     }
 }
 

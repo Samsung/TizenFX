@@ -47,6 +47,8 @@ namespace Tizen.NUI
         private Hover internalLastHoverEvent;
         private Timer internalHoverTimer;
 
+        private static int aliveCount;
+
         static internal bool IsSupportedMultiWindow()
         {
             bool isSupported = false;
@@ -70,6 +72,8 @@ namespace Tizen.NUI
                 localController = new LayoutController(this);
                 NUILog.Debug("layoutController id:" + localController.GetId());
             }
+
+            ++aliveCount;
         }
 
         /// <summary>
@@ -653,27 +657,11 @@ namespace Tizen.NUI
             }
         }
 
-        internal static Vector4 DEFAULT_BACKGROUND_COLOR
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Stage.DefaultBackgroundColorGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        internal static Vector4 DEBUG_BACKGROUND_COLOR
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Stage.DebugBackgroundColorGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
+        /// <summary>
+        /// Gets the number of currently alived Window object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         internal List<Layer> LayersChildren
         {
@@ -1288,6 +1276,10 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void FeedKey(Key keyEvent)
         {
+            if (keyEvent != null)
+            {
+                Tizen.Log.Info("NUI", $"FeedKey KeyPressedName : {keyEvent.KeyPressedName}, KeyString : {keyEvent.KeyString}, KeyPressed : {keyEvent.KeyPressed}, KeyCode : {keyEvent.KeyCode}, State : {keyEvent.State}, Time : {keyEvent.Time}");
+            }
             Interop.Window.FeedKeyEvent(SwigCPtr, Key.getCPtr(keyEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1329,6 +1321,10 @@ namespace Tizen.NUI
         /// <param name="timeStamp">The timeStamp.</param>
         internal void FeedTouch(TouchPoint touchPoint, int timeStamp)
         {
+            if (touchPoint != null)
+            {
+                Tizen.Log.Info("NUI", $"FeedTouch {touchPoint.Screen.X}, {touchPoint.Screen.Y}, State : {touchPoint.State}, timeStamp : {timeStamp}");
+            }
             Interop.Window.FeedTouchPoint(SwigCPtr, TouchPoint.getCPtr(touchPoint), timeStamp);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1339,6 +1335,10 @@ namespace Tizen.NUI
         /// <param name="wheelEvent">The wheel event to feed.</param>
         internal void FeedWheel(Wheel wheelEvent)
         {
+            if (wheelEvent != null)
+            {
+                Tizen.Log.Info("NUI", $"FeedWheel {wheelEvent.Point.X}, {wheelEvent.Point.Y}, Type : {wheelEvent.Type}, Direction : {wheelEvent.Direction}");
+            }
             Interop.Window.FeedWheelEvent(SwigCPtr, Wheel.getCPtr(wheelEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1360,6 +1360,8 @@ namespace Tizen.NUI
                 using Vector2 screenPosition = hover.GetScreenPosition(0);
                 touchPoint = new TouchPoint(hover.GetDeviceId(0), TouchPoint.StateType.Motion, screenPosition.X, screenPosition.Y);
             }
+
+            Tizen.Log.Info("NUI", $"FeedHover {touchPoint.Screen.X}, {touchPoint.Screen.Y}, State : {touchPoint.State}");
             Interop.Window.FeedHoverEvent(SwigCPtr, TouchPoint.getCPtr(touchPoint));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             touchPoint.Dispose();
@@ -2377,6 +2379,7 @@ namespace Tizen.NUI
                 internalHoverTimer = null;
             }
 
+            --aliveCount;
 
             base.Dispose(type);
         }
@@ -2652,8 +2655,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets or gets the window blur using window blur information.
-        /// 
-        /// It is designed to apply a blur effect to a window based on specified parameters. 
+        ///
+        /// It is designed to apply a blur effect to a window based on specified parameters.
         /// This supports different types of blurring effects, including blurring the window's background only.
         /// Or blurring the area surrounding the window while keeping the window itself clear.
         /// The more information is written WindowBlurInfo struct.
@@ -2687,7 +2690,32 @@ namespace Tizen.NUI
                 finally {
                     Interop.WindowBlurInfo.DeleteWindowBlurInfo(internalBlurInfo);
                 }
-            }            
+            }
+        }
+
+        /// <summary>
+        /// Calculates sizes and positions of views in all layers if the view's layout is required to be updated.
+        /// e.g. RequestLayout() is called for the view.
+        /// Since UpdateLayout calculates sizes and positions of views manually right now, do not abuse calling it.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void UpdateLayout()
+        {
+            using var size = GetSize();
+
+            LayersChildren?.ForEach(layer =>
+            {
+                if (layer?.LayoutCount > 0)
+                {
+                    layer?.Children?.ForEach(view =>
+                    {
+                        if (view != null)
+                        {
+                            LayoutController.FindRootLayouts(view, size.Width, size.Height);
+                        }
+                    });
+                }
+            });
         }
 
         IntPtr IWindowProvider.WindowHandle => GetNativeWindowHandler();

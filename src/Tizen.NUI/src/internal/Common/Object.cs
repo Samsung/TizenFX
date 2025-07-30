@@ -365,6 +365,79 @@ namespace Tizen.NUI
             }, actor, visualIndex, visualPropertyIndex);
         }
 
+        /// <summary>
+        /// Sets extents value to actor.
+        /// </summary>
+        internal static void InternalSetPropertyExtents(HandleRef actor, int propertyType, Extents value)
+        {
+            if (actor.Handle == System.IntPtr.Zero)
+            {
+                throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+            }
+
+            _ = Interop.Actor.InternalSetPropertyExtents(actor, propertyType, value.SwigCPtr);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Gets extents value from actor.
+        /// </summary>
+        internal static void InternalRetrievingPropertyExtents(HandleRef actor, int propertyType, HandleRef retrievingValue)
+        {
+            if (actor.Handle == System.IntPtr.Zero)
+            {
+                throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+            }
+
+            _ = Interop.Actor.InternalRetrievingPropertyExtents(actor, propertyType, retrievingValue);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Sets extents value to actor.
+        /// </summary>
+        /// <remark>
+        /// This is not thread safe.
+        /// </remark>
+        internal static void InternalSetPropertyUIExtents(HandleRef actor, int propertyType, UIExtents value)
+        {
+            if (actor.Handle == System.IntPtr.Zero)
+            {
+                throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+            }
+
+            ReusablePool<Extents>.GetOne((extents, actor, propertyType, value) =>
+            {
+                extents.Start = (ushort)value.Start;
+                extents.End = (ushort)value.End;
+                extents.Top = (ushort)value.Top;
+                extents.Bottom = (ushort)value.Bottom;
+                _ = Interop.Actor.InternalSetPropertyExtents(actor, propertyType, extents.SwigCPtr);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }, actor, propertyType, value);
+        }
+
+        /// <summary>
+        /// Gets extents value from actor.
+        /// </summary>
+        /// <remark>
+        /// This is not thread safe.
+        /// </remark>
+        internal static UIExtents InternalRetrievingPropertyUIExtents(HandleRef actor, int propertyType)
+        {
+            if (actor.Handle == System.IntPtr.Zero)
+            {
+                throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+            }
+
+            return ReusablePool<Extents>.GetOne((extents, actor, propertyType) =>
+            {
+                _ = Interop.Actor.InternalRetrievingPropertyExtents(actor, propertyType, extents.SwigCPtr);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                return new UIExtents(extents.Start, extents.End, extents.Top, extents.Bottom);
+            }, actor, propertyType);
+        }
+
         internal static void InternalSetPropertyMap(HandleRef actor, int propertyType, HandleRef map)
         {
             if (actor.Handle == System.IntPtr.Zero)

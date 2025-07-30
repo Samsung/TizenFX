@@ -39,11 +39,23 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_GetBlurRadius")]
             public static extern uint GetBlurRadius(HandleRef effect);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_SetBlurDownscaleFactor")]
+            public static extern void SetBlurDownscaleFactor(HandleRef effect, float blurDownscaleFactor);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_GetBlurDownscaleFactor")]
+            public static extern float GetBlurDownscaleFactor(HandleRef effect);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_AddBlurStrengthAnimation")]
             public static extern void AddBlurStrengthAnimation(HandleRef effect, HandleRef animation, HandleRef alphaFunction, HandleRef timePeriod, float fromValue, float toValue);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_AddBlurOpacityAnimation")]
             public static extern void AddBlurOpacityAnimation(HandleRef effect, HandleRef animation, HandleRef alphaFunction, HandleRef timePeriod, float fromValue, float toValue);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_FinishedSignal_Connect")]
+            public static extern void FinishedSignalConnect(HandleRef effect, HandleRef callback);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BackgroundBlurEffect_FinishedSignal_Disconnect")]
+            public static extern void FinishedSignalDisconnect(HandleRef effect, HandleRef callback);
         }
     }
 }

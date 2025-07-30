@@ -25,6 +25,8 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public partial class Geometry : BaseHandle
     {
+        private static int aliveCount;
+
         /// <summary>
         /// Create an instance of Geometry.
         /// </summary>
@@ -36,6 +38,7 @@ namespace Tizen.NUI
 
         internal Geometry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            ++aliveCount;
         }
 
         /// <summary>,
@@ -56,6 +59,12 @@ namespace Tizen.NUI
                 SetPrimitiveType(value);
             }
         }
+
+        /// <summary>
+        /// Gets the number of currently alived Geometry object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         /// <summary>
         /// Adds a VertexBuffer to be used as source of geometry vertices.
@@ -128,6 +137,20 @@ namespace Tizen.NUI
             PrimitiveType ret = (PrimitiveType)Interop.Geometry.GetType(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            --aliveCount;
+
+            base.Dispose(type);
         }
 
         /// This will not be public opened.

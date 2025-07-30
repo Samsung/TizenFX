@@ -45,6 +45,20 @@ namespace Tizen.NUI
         static public bool IsUsingXaml { get; set; } = true;
 
         /// <summary>
+        /// Set to true if NUI ThemeManager is used.
+        /// The default value is true.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool IsUsingThemeManager { get; set; } = true;
+
+        /// <summary>
+        /// Set to true if NUI DisposeQueue dispose items incrementally.
+        /// The default value is false.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool IsUsingIncrementalDispose => DisposeQueue.Instance.IncrementalDisposeSupported;
+
+        /// <summary>
         /// The instance of ResourceManager.
         /// </summary>
         private static System.Resources.ResourceManager resourceManager;

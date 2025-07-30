@@ -35,24 +35,11 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WindowBlurInfo")]
             public static extern void DeleteWindowBlurInfo(global::System.IntPtr nuiWindowBlurInfo);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowBlurInfo_EqualTo")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool EqualTo(global::System.IntPtr nuiWindowBlurInfo1, global::System.IntPtr nuiWindowBlurInfo2);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowBlurInfo_SetBlurType")]
-            public static extern void SetBlurType(global::System.IntPtr nuiWindowBlurInfo, int nuiWindowBlurType);
-
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowBlurInfo_GetBlurType")]
             public static extern int GetBlurType(global::System.IntPtr nuiWindowBlurInfo);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowBlurInfo_SetBlurRadius")]
-            public static extern void SetBlurRadius(global::System.IntPtr nuiWindowBlurInfo, int nuiWindowBlurRadius);
-
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowBlurInfo_GetBlurRadius")]
             public static extern int GetBlurRadius(global::System.IntPtr nuiWindowBlurInfo);
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowBlurInfo_SetBackgroundCornerRadius")]
-            public static extern void SetBackgroundCornerRadius(global::System.IntPtr nuiWindowBlurInfo, int nuiCornerRadius);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowBlurInfo_GetBackgroundCornerRadius")]
             public static extern int GetBackgroundCornerRadius(global::System.IntPtr nuiWindowBlurInfo);

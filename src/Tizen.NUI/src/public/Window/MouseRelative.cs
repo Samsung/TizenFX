@@ -29,7 +29,7 @@ namespace Tizen.NUI
         /// The default constructor.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public MouseRelative() : this(Interop.MouseRelative.NewMouseRelative((int)MouseRelative.StateType.None, 0, 0, Vector2.getCPtr(Vector2.Zero), Vector2.getCPtr(Vector2.Zero)), true)
+        public MouseRelative() : this(Interop.MouseRelative.NewMouseRelative((int)MouseRelative.StateType.None, 0, 0, Vector2.getCPtr(Vector2.Zero), Vector2.getCPtr(Vector2.Zero)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -43,12 +43,16 @@ namespace Tizen.NUI
         /// <param name="diffPosition">The coordinates of the cursor relative to the top-left of the screen.</param>
         /// <param name="unaccelatedPosition">The coordinates of the cursor relative to the top-left of the screen.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public MouseRelative(MouseRelative.StateType state, uint modifiers, uint timeStamp, Vector2 diffPosition, Vector2 unaccelatedPosition) : this(Interop.MouseRelative.NewMouseRelative((int)state, modifiers, timeStamp, Vector2.getCPtr(diffPosition), Vector2.getCPtr(unaccelatedPosition)), true)
+        public MouseRelative(MouseRelative.StateType state, uint modifiers, uint timeStamp, Vector2 diffPosition, Vector2 unaccelatedPosition) : this(Interop.MouseRelative.NewMouseRelative((int)state, modifiers, timeStamp, Vector2.getCPtr(diffPosition), Vector2.getCPtr(unaccelatedPosition)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal MouseRelative(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal MouseRelative(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal MouseRelative(global::System.IntPtr cPtr, bool cMemoryOwn, bool disposableOnlyMainThread) : base(cPtr, cMemoryOwn, disposableOnlyMainThread)
         {
         }
 

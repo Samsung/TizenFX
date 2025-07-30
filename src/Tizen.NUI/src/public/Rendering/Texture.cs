@@ -25,6 +25,7 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public partial class Texture : BaseHandle
     {
+        private static int aliveCount;
 
         /// <summary>
         /// Creates a new Texture object.
@@ -52,7 +53,14 @@ namespace Tizen.NUI
 
         internal Texture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            ++aliveCount;
         }
+
+        /// <summary>
+        /// Gets the number of currently alived Texture object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         /// <summary>
         /// Uploads data to the texture from a PixelData object.
@@ -114,6 +122,20 @@ namespace Tizen.NUI
             uint ret = Interop.Texture.GetHeight(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            --aliveCount;
+
+            base.Dispose(type);
         }
 
         /// This will not be public opened.

@@ -26,6 +26,8 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public partial class TextureSet : BaseHandle
     {
+        private static int aliveCount;
+
         /// <summary>
         /// Create an instance of TextureSet.
         /// </summary>
@@ -37,6 +39,7 @@ namespace Tizen.NUI
 
         internal TextureSet(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            ++aliveCount;
         }
 
         /// <summary>
@@ -49,6 +52,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets the number of currently alived TextureSet object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
+
+        /// <summary>
         /// Sets the texture at position "index".
         /// </summary>
         /// <param name="index">The position in the texture set of the texture.</param>
@@ -57,6 +66,17 @@ namespace Tizen.NUI
         public void SetTexture(uint index, Texture texture)
         {
             Interop.TextureSet.SetTexture(SwigCPtr, index, Texture.getCPtr(texture));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Removes the texture at position "index".
+        /// </summary>
+        /// <param name="index">The position in the texture set of the texture.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveTexture(uint index)
+        {
+            Interop.TextureSet.RemoveTexture(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -96,6 +116,17 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Removes the sampler at position "index".
+        /// </summary>
+        /// <param name="index">The position in the texture set of the sampler.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveSampler(uint index)
+        {
+            Interop.TextureSet.RemoveSampler(SwigCPtr, index);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Sets the sampler to be used by the image at position "index".
         /// </summary>
         /// <param name="index">The position in the texture set of the image.</param>
@@ -127,6 +158,20 @@ namespace Tizen.NUI
             uint ret = Interop.TextureSet.GetTextureCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            --aliveCount;
+
+            base.Dispose(type);
         }
 
         /// This will not be public opened.

@@ -136,6 +136,12 @@ namespace Tizen.Applications.NotificationEventListener
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CheckedValue { get; internal set; } = false;
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GroupTitle { get; internal set; } = string.Empty;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GroupContent { get; internal set; } = string.Empty;
+
         /// <summary>
         /// Gets the AppControl, which is invoked when notification is clicked.
         /// </summary>

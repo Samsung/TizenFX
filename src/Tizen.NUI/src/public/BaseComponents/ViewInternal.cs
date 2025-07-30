@@ -1037,7 +1037,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal uint GetRendererCount()
+        internal uint GetEffectiveRenderableCount()
         {
             uint ret = Interop.Actor.GetRendererCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -1296,7 +1296,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetThemeApplied()
         {
-            if (themeData == null) themeData = new ThemeData();
+            var themeData = EnsureThemeData();
             themeData.ThemeApplied = true;
 
             if (ThemeChangeSensitive && !themeData.ListeningThemeChangeEvent)
@@ -1378,16 +1378,7 @@ namespace Tizen.NUI.BaseComponents
                 internalSize2D?.Dispose();
                 internalSize2D = null;
 
-                panGestureDetector?.Dispose();
-                panGestureDetector = null;
-                longGestureDetector?.Dispose();
-                longGestureDetector = null;
-                pinchGestureDetector?.Dispose();
-                pinchGestureDetector = null;
-                tapGestureDetector?.Dispose();
-                tapGestureDetector = null;
-                rotationGestureDetector?.Dispose();
-                rotationGestureDetector = null;
+                GetViewGestureData()?.Clear();
 
                 internalCurrentParentOrigin?.Dispose();
                 internalCurrentParentOrigin = null;
@@ -1436,6 +1427,7 @@ namespace Tizen.NUI.BaseComponents
                     }
                 }
 
+                var themeData = GetThemeData();
                 if (themeData != null)
                 {
                     themeData.selectorData?.Reset(this);
@@ -1468,9 +1460,9 @@ namespace Tizen.NUI.BaseComponents
             NUILog.Debug($"[Dispose] View.Dispose({type}) END");
             NUILog.Debug($"=============================");
 
-            base.Dispose(type);
+            --aliveCount;
 
-            aliveCount--;
+            base.Dispose(type);
         }
 
         /// This will not be public opened.
@@ -1524,7 +1516,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     State = View.States.Normal;
                 }
-                if (enableControlState)
+                if (_viewFlags.HasFlag(ViewFlags.EnableControlState))
                 {
                     ControlState -= ControlState.Disabled;
                 }
@@ -1532,7 +1524,7 @@ namespace Tizen.NUI.BaseComponents
             else
             {
                 State = View.States.Disabled;
-                if (enableControlState)
+                if (_viewFlags.HasFlag(ViewFlags.EnableControlState))
                 {
                     ControlState += ControlState.Disabled;
                 }
@@ -1552,6 +1544,8 @@ namespace Tizen.NUI.BaseComponents
             NUILog.Debug($"[Dispose] DisConnectFromSignals START");
             NUILog.Debug($"[Dispose] View.DisConnectFromSignals() type:{GetType()} copyNativeHandle:{GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
             NUILog.Debug($"[Dispose] ID:{Interop.Actor.GetId(GetBaseHandleCPtrHandleRef)} Name:{Interop.Actor.GetName(GetBaseHandleCPtrHandleRef)}");
+
+            _viewEventRareData?.ClearSignal();
 
             if (onRelayoutEventCallback != null)
             {
@@ -1580,23 +1574,6 @@ namespace Tizen.NUI.BaseComponents
                 onWindowEventCallback = null;
             }
 
-            if (interceptWheelCallback != null)
-            {
-                NUILog.Debug($"[Dispose] interceptWheelCallback");
-
-                Interop.ActorSignal.InterceptWheelDisconnect(GetBaseHandleCPtrHandleRef, interceptWheelCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                interceptWheelCallback = null;
-            }
-
-            if (wheelEventCallback != null)
-            {
-                NUILog.Debug($"[Dispose] wheelEventCallback");
-
-                Interop.ActorSignal.WheelEventDisconnect(GetBaseHandleCPtrHandleRef, wheelEventCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                wheelEventCallback = null;
-            }
 
             if (hoverEventCallback != null)
             {
@@ -1607,15 +1584,6 @@ namespace Tizen.NUI.BaseComponents
                 hoverEventCallback = null;
             }
 
-            if (hitTestResultDataCallback != null)
-            {
-                NUILog.Debug($"[Dispose] hitTestResultDataCallback");
-
-                Interop.ActorSignal.HitTestResultDisconnect(GetBaseHandleCPtrHandleRef, hitTestResultDataCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                hitTestResultDataCallback = null;
-            }
-
             if (visibilityChangedEventCallback != null)
             {
                 NUILog.Debug($"[Dispose] visibilityChangedEventCallback");
@@ -1623,24 +1591,6 @@ namespace Tizen.NUI.BaseComponents
                 Interop.ActorSignal.VisibilityChangedDisconnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
                 visibilityChangedEventCallback = null;
-            }
-
-            if (interceptTouchDataCallback != null)
-            {
-                NUILog.Debug($"[Dispose] interceptTouchDataCallback");
-
-                Interop.ActorSignal.InterceptTouchDisconnect(GetBaseHandleCPtrHandleRef, interceptTouchDataCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                interceptTouchDataCallback = null;
-            }
-
-            if (layoutDirectionChangedEventCallback != null)
-            {
-                NUILog.Debug($"[Dispose] layoutDirectionChangedEventCallback");
-
-                Interop.ActorSignal.LayoutDirectionChangedDisconnect(SwigCPtr, layoutDirectionChangedEventCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExists();
-                layoutDirectionChangedEventCallback = null;
             }
 
             if (touchDataCallback != null)
@@ -1699,96 +1649,8 @@ namespace Tizen.NUI.BaseComponents
                 backgroundResourceLoadedCallback = null;
             }
 
-            // For ViewAccessibility
-            if (gestureInfoCallback != null)
-            {
-                NUILog.Debug($"[Dispose] gestureInfoCallback");
-
-                using var handle = GetControl();
-                Interop.AccessibilitySignal.AccessibilityDoGestureDisconnect(handle, gestureInfoCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExists();
-                gestureInfoCallback = null;
-            }
-
-            if (getDescriptionCallback != null)
-            {
-                NUILog.Debug($"[Dispose] getDescriptionCallback");
-
-                using var handle = GetControl();
-                Interop.AccessibilitySignal.AccessibilityGetDescriptionDisconnect(handle, getDescriptionCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExists();
-                getDescriptionCallback = null;
-            }
-
-            if (getNameCallback != null)
-            {
-                NUILog.Debug($"[Dispose] getNameCallback");
-
-                using var handle = GetControl();
-                Interop.AccessibilitySignal.AccessibilityGetNameDisconnect(handle, getNameCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExists();
-                getNameCallback = null;
-            }
-
-            if (activateCallback != null)
-            {
-                NUILog.Debug($"[Dispose] activateCallback");
-
-                using var handle = GetControl();
-                Interop.AccessibilitySignal.AccessibilityActivateDisconnect(handle, activateCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExists();
-                activateCallback = null;
-            }
-
-            if (readingSkippedCallback != null)
-            {
-                NUILog.Debug($"[Dispose] readingSkippedCallback");
-
-                using var handle = GetControl();
-                Interop.AccessibilitySignal.AccessibilityReadingSkippedDisconnect(handle, readingSkippedCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExists();
-                readingSkippedCallback = null;
-            }
-
-            if (readingPausedCallback != null)
-            {
-                NUILog.Debug($"[Dispose] readingPausedCallback");
-
-                using var handle = GetControl();
-                Interop.AccessibilitySignal.AccessibilityReadingPausedDisconnect(handle, readingPausedCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExists();
-                readingPausedCallback = null;
-            }
-
-            if (readingResumedCallback != null)
-            {
-                NUILog.Debug($"[Dispose] readingResumedCallback");
-
-                using var handle = GetControl();
-                Interop.AccessibilitySignal.AccessibilityReadingResumedDisconnect(handle, readingResumedCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExists();
-                readingResumedCallback = null;
-            }
-
-            if (readingCancelledCallback != null)
-            {
-                NUILog.Debug($"[Dispose] readingCancelledCallback");
-
-                using var handle = GetControl();
-                Interop.AccessibilitySignal.AccessibilityReadingCancelledDisconnect(handle, readingCancelledCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExists();
-                readingCancelledCallback = null;
-            }
-
-            if (readingStoppedCallback != null)
-            {
-                NUILog.Debug($"[Dispose] readingStoppedCallback");
-
-                using var handle = GetControl();
-                Interop.AccessibilitySignal.AccessibilityReadingStoppedDisconnect(handle, readingStoppedCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExists();
-                readingStoppedCallback = null;
-            }
+            _accessibilityData?.ClearSignal(GetControl());
+            _accessibilityRareData?.ClearSignal(GetControl());
 
             NDalicPINVOKE.ThrowExceptionIfExists();
             NUILog.Debug($"[Dispose] DisConnectFromSignals END");
@@ -1908,7 +1770,7 @@ namespace Tizen.NUI.BaseComponents
 
         private ViewSelectorData EnsureSelectorData()
         {
-            if (themeData == null) themeData = new ThemeData();
+            var themeData = EnsureThemeData();
 
             return themeData.selectorData ?? (themeData.selectorData = new ViewSelectorData());
         }

@@ -19,7 +19,7 @@ namespace Tizen.NUI
 {
     internal class DaliException : Disposable
     {
-        internal DaliException(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal DaliException(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 

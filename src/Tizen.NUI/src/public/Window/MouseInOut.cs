@@ -29,7 +29,7 @@ namespace Tizen.NUI
         /// The default constructor.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public MouseInOut() : this(Interop.MouseInOut.NewMouseInOut((int)MouseInOut.StateType.None, 0, Vector2.getCPtr(Vector2.Zero), 0), true)
+        public MouseInOut() : this(Interop.MouseInOut.NewMouseInOut((int)MouseInOut.StateType.None, 0, Vector2.getCPtr(Vector2.Zero), 0), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -42,12 +42,16 @@ namespace Tizen.NUI
         /// <param name="point">The coordinates of the cursor relative to the top-left of the screen.</param>
         /// <param name="timeStamp">The time the event is being started.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public MouseInOut(MouseInOut.StateType state, uint modifiers, Vector2 point, uint timeStamp) : this(Interop.MouseInOut.NewMouseInOut((int)state, modifiers, Vector2.getCPtr(point), timeStamp), true)
+        public MouseInOut(MouseInOut.StateType state, uint modifiers, Vector2 point, uint timeStamp) : this(Interop.MouseInOut.NewMouseInOut((int)state, modifiers, Vector2.getCPtr(point), timeStamp), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal MouseInOut(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal MouseInOut(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal MouseInOut(global::System.IntPtr cPtr, bool cMemoryOwn, bool disposableOnlyMainThread) : base(cPtr, cMemoryOwn, disposableOnlyMainThread)
         {
         }
 

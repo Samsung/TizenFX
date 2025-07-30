@@ -17,10 +17,11 @@ namespace Tizen.NUI.Samples
         };
 
         const float viewGap = 24.0f;
-        const float defaultCornerRadius = 16.0f / 320.0f;
+        const float defaultCornerRadius = 16.0f;
         const float defaultViewSizeWidth = 400.0f;
         const float defaultViewSizeHeight = 200.0f;
         const float defaultBorderlineWidth = 10.0f;
+        const float defaultInnerShadowExtents = 20.0f;
         const float defaultInnerShadowBlurRadius = 16.0f;
         const float defaultShadowBlurRadius = 24.0f;
 
@@ -32,17 +33,18 @@ namespace Tizen.NUI.Samples
         static private readonly UIExtents[] shadowExtentsList = new UIExtents[]
         {
             // begin, end, top, bottom
-            new UIExtents(defaultBorderlineWidth * 2.0f, 0.0f, defaultBorderlineWidth * 2.0f, 0.0f),
-            new UIExtents(0.0f, defaultBorderlineWidth * 2.0f, 0.0f, defaultBorderlineWidth * 2.0f),
-            new UIExtents(defaultBorderlineWidth * 2.0f, 0.0f),
-            new UIExtents(0.0f, defaultBorderlineWidth * 2.0f),
-            new UIExtents(defaultBorderlineWidth * 2.0f),
-            new UIExtents(defaultBorderlineWidth * 4.0f),
-            new UIExtents(defaultBorderlineWidth * 4.0f, 0.0f, 0.0f, 0.0f),
-            new UIExtents(0.0f, defaultBorderlineWidth * 4.0f, 0.0f, 0.0f),
-            new UIExtents(0.0f, 0.0f, defaultBorderlineWidth * 4.0f, 0.0f),
-            new UIExtents(0.0f, 0.0f, 0.0f, defaultBorderlineWidth * 4.0f),
+            new UIExtents(defaultInnerShadowExtents, -defaultInnerShadowExtents, defaultInnerShadowExtents, -defaultInnerShadowExtents),
+            new UIExtents(-defaultInnerShadowExtents, defaultInnerShadowExtents, -defaultInnerShadowExtents, defaultInnerShadowExtents),
+            new UIExtents(defaultInnerShadowExtents, -defaultInnerShadowExtents),
+            new UIExtents(-defaultInnerShadowExtents, defaultInnerShadowExtents),
+            new UIExtents(defaultInnerShadowExtents),
+            new UIExtents(defaultInnerShadowExtents * 2.0f),
+            new UIExtents(defaultInnerShadowExtents * 2.0f, 0.0f, 0.0f, 0.0f),
+            new UIExtents(0.0f, defaultInnerShadowExtents * 2.0f, 0.0f, 0.0f),
+            new UIExtents(0.0f, 0.0f, defaultInnerShadowExtents * 2.0f, 0.0f),
+            new UIExtents(0.0f, 0.0f, 0.0f, defaultInnerShadowExtents * 2.0f),
             new UIExtents(0.0f),
+            new UIExtents(-defaultInnerShadowBlurRadius * 0.5f),
         };
 
         uint extentsIndex;
@@ -99,7 +101,7 @@ namespace Tizen.NUI.Samples
                 else if(e.Key.KeyPressedName == "3")
                 {
                     cornerRadius += defaultCornerRadius;
-                    if(cornerRadius > 0.5001f)
+                    if(cornerRadius > 160.0001f)
                     {
                         cornerRadius = defaultCornerRadius;
                         cornerSquareness = 0.6f - cornerSquareness;
@@ -181,7 +183,7 @@ namespace Tizen.NUI.Samples
                 BorderlineOffset = -0.875f,
 
                 CornerRadius = cornerRadius,
-                CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+                CornerRadiusPolicy = VisualTransformPolicyType.Absolute,
                 CornerSquareness = cornerSquareness,
             };
 

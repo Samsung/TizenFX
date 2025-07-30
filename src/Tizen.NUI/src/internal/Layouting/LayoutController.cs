@@ -202,7 +202,7 @@ namespace Tizen.NUI
 
         // Traverse the tree looking for a root node that is a layout.
         // Once found, it's children can be assigned Layouts and the Measure process started.
-        private void FindRootLayouts(View rootNode, float parentWidth, float parentHeight)
+        internal void FindRootLayouts(View rootNode, float parentWidth, float parentHeight)
         {
             if (rootNode.Layout != null)
             {

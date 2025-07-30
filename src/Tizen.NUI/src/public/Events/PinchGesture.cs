@@ -29,7 +29,7 @@ namespace Tizen.NUI
         {
         }
 
-        internal PinchGesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        internal PinchGesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister, cRegister)
         {
         }
 
@@ -91,18 +91,13 @@ namespace Tizen.NUI
         /// <param name="state">The state of the gesture.</param>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PinchGesture(Gesture.StateType state) : this(Interop.PinchGesture.New((int)state), true)
+        public PinchGesture(Gesture.StateType state) : this(Interop.PinchGesture.New((int)state), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private float scale
         {
-            set
-            {
-                Interop.PinchGesture.ScaleSet(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 float ret = Interop.PinchGesture.ScaleGet(SwigCPtr);
@@ -113,11 +108,6 @@ namespace Tizen.NUI
 
         private float speed
         {
-            set
-            {
-                Interop.PinchGesture.SpeedSet(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 float ret = Interop.PinchGesture.SpeedGet(SwigCPtr);
@@ -128,11 +118,6 @@ namespace Tizen.NUI
 
         private Vector2 screenCenterPoint
         {
-            set
-            {
-                Interop.PinchGesture.ScreenCenterPointSet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.PinchGesture.ScreenCenterPointGet(SwigCPtr);
@@ -144,11 +129,6 @@ namespace Tizen.NUI
 
         private Vector2 localCenterPoint
         {
-            set
-            {
-                Interop.PinchGesture.LocalCenterPointSet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.PinchGesture.LocalCenterPointGet(SwigCPtr);

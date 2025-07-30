@@ -15,8 +15,9 @@
  *
  */
 
-using System.ComponentModel;
 using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
@@ -55,6 +56,45 @@ namespace Tizen.NUI
             }
         }
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void BlurFinishedEventCallbackType(IntPtr renderTask);
+        private event EventHandler blurFinishedEventHandler;
+        private BlurFinishedEventCallbackType blurFinishedCallback;
+
+        /// <summary>
+        /// Event when blur once finishes rendering. Does nothing when blur once is set to false(which redraws every frame).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler Finished
+        {
+            add
+            {
+                if (blurFinishedEventHandler == null)
+                {
+                    blurFinishedCallback = OnFinished;
+                    Interop.BackgroundBlurEffect.FinishedSignalConnect(SwigCPtr, blurFinishedCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                blurFinishedEventHandler += value;
+            }
+            remove
+            {
+                blurFinishedEventHandler -= value;
+                if (blurFinishedEventHandler == null && blurFinishedCallback != null)
+                {
+                    Interop.BackgroundBlurEffect.FinishedSignalDisconnect(SwigCPtr, blurFinishedCallback.ToHandleRef(this));
+                    blurFinishedCallback = null;
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+
+            }
+        }
+
+        private void OnFinished(IntPtr renderTask)
+        {
+            blurFinishedEventHandler?.Invoke(this, null);
+        }
+
         /// <summary>
         /// The property is blur radius value.
         /// The unit is pixel, but the property is in float type since many other platforms use float for blur effect radius.
@@ -72,6 +112,27 @@ namespace Tizen.NUI
             set
             {
                 Interop.BackgroundBlurEffect.SetBlurRadius(SwigCPtr, (uint)Math.Round(value, 0));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// The property downscales input texture's width and height to enhance performance.
+        /// The value should be bigger than 0.0f and lower than 1.0f. Note that values near zero may ignore blur calculation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float BlurDownscaleFactor
+        {
+            get
+            {
+                float downscaleFactor = Interop.BackgroundBlurEffect.GetBlurDownscaleFactor(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return downscaleFactor;
+            }
+
+            set
+            {
+                Interop.BackgroundBlurEffect.SetBlurDownscaleFactor(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }

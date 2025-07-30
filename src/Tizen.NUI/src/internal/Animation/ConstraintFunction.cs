@@ -148,8 +148,15 @@ namespace Tizen.NUI
         private void OnCallback(ref bool current, uint id, IntPtr inputContainerCPtr)
         {
             using PropertyInputContainer container = new PropertyInputContainer(inputContainerCPtr);
-            bool ret = (Callback as Constraint.ConstraintBooleanFunctionCallbackType).Invoke(current, id, in container);
-            current = ret;
+            if (Callback is Constraint.ConstraintBooleanFunctionCallbackType callback)
+            {
+                bool ret = callback.Invoke(current, id, in container);
+                current = ret;
+            }
+            else
+            {
+                throw new InvalidOperationException("Callback is not of type ConstraintBooleanFunctionCallbackType");
+            }
         }
     }
 
@@ -177,8 +184,15 @@ namespace Tizen.NUI
         private void OnCallback(ref float current, uint id, IntPtr inputContainerCPtr)
         {
             using PropertyInputContainer container = new PropertyInputContainer(inputContainerCPtr);
-            float ret = (Callback as Constraint.ConstraintFloatFunctionCallbackType).Invoke(current, id, in container);
-            current = ret;
+            if (Callback is Constraint.ConstraintFloatFunctionCallbackType callback)
+            {
+                float ret = callback.Invoke(current, id, in container);
+                current = ret;
+            }
+            else
+            {
+                throw new InvalidOperationException("Callback is not of type ConstraintFloatFunctionCallbackType");
+            }
         }
     }
 
@@ -206,8 +220,15 @@ namespace Tizen.NUI
         private void OnCallback(ref int current, uint id, IntPtr inputContainerCPtr)
         {
             using PropertyInputContainer container = new PropertyInputContainer(inputContainerCPtr);
-            int ret = (Callback as Constraint.ConstraintIntegerFunctionCallbackType).Invoke(current, id, in container);
-            current = ret;
+            if (Callback is Constraint.ConstraintIntegerFunctionCallbackType callback)
+            {
+                int ret = callback.Invoke(current, id, in container);
+                current = ret;
+            }
+            else
+            {
+                throw new InvalidOperationException("Callback is not of type ConstraintIntegerFunctionCallbackType");
+            }
         }
     }
 
@@ -238,10 +259,16 @@ namespace Tizen.NUI
             using PropertyInputContainer container = new PropertyInputContainer(inputContainerCPtr);
 
             UIVector2 realCurrent = new UIVector2(tempVector2.X, tempVector2.Y);
-            UIVector2 ret = (Callback as Constraint.ConstraintVector2FunctionCallbackType).Invoke(realCurrent, id, in container);
-
-            Interop.Vector2.XSet(Vector2.getCPtr(tempVector2), ret.X);
-            Interop.Vector2.YSet(Vector2.getCPtr(tempVector2), ret.Y);
+            if (Callback is Constraint.ConstraintVector2FunctionCallbackType callback)
+            {
+                UIVector2 ret = callback.Invoke(realCurrent, id, in container);
+                Interop.Vector2.XSet(Vector2.getCPtr(tempVector2), ret.X);
+                Interop.Vector2.YSet(Vector2.getCPtr(tempVector2), ret.Y);
+            }
+            else
+            {
+                throw new InvalidOperationException("Callback is not of type ConstraintVector2FunctionCallbackType");
+            }
         }
     }
 
@@ -272,11 +299,17 @@ namespace Tizen.NUI
             using PropertyInputContainer container = new PropertyInputContainer(inputContainerCPtr);
 
             UIVector3 realCurrent = new UIVector3(tempVector3.X, tempVector3.Y, tempVector3.Z);
-            UIVector3 ret = (Callback as Constraint.ConstraintVector3FunctionCallbackType).Invoke(realCurrent, id, in container);
-
-            Interop.Vector3.XSet(Vector3.getCPtr(tempVector3), ret.X);
-            Interop.Vector3.YSet(Vector3.getCPtr(tempVector3), ret.Y);
-            Interop.Vector3.ZSet(Vector3.getCPtr(tempVector3), ret.Z);
+            if (Callback is Constraint.ConstraintVector3FunctionCallbackType callback)
+            {
+                UIVector3 ret = callback.Invoke(realCurrent, id, in container);
+                Interop.Vector3.XSet(Vector3.getCPtr(tempVector3), ret.X);
+                Interop.Vector3.YSet(Vector3.getCPtr(tempVector3), ret.Y);
+                Interop.Vector3.ZSet(Vector3.getCPtr(tempVector3), ret.Z);
+            }
+            else
+            {
+                throw new InvalidOperationException("Callback is not of type ConstraintVector3FunctionCallbackType");
+            }
         }
     }
 
@@ -307,12 +340,18 @@ namespace Tizen.NUI
             using PropertyInputContainer container = new PropertyInputContainer(inputContainerCPtr);
 
             UIColor realCurrent = new UIColor(tempVector4.X, tempVector4.Y, tempVector4.Z, tempVector4.W);
-            UIColor ret = (Callback as Constraint.ConstraintColorFunctionCallbackType).Invoke(realCurrent, id, in container);
-
-            Interop.Vector4.XSet(Vector3.getCPtr(tempVector4), ret.R);
-            Interop.Vector4.YSet(Vector3.getCPtr(tempVector4), ret.G);
-            Interop.Vector4.ZSet(Vector3.getCPtr(tempVector4), ret.B);
-            Interop.Vector4.WSet(Vector3.getCPtr(tempVector4), ret.A);
+            if (Callback is Constraint.ConstraintColorFunctionCallbackType callback)
+            {
+                UIColor ret = callback.Invoke(realCurrent, id, in container);
+                Interop.Vector4.XSet(Vector3.getCPtr(tempVector4), ret.R);
+                Interop.Vector4.YSet(Vector3.getCPtr(tempVector4), ret.G);
+                Interop.Vector4.ZSet(Vector3.getCPtr(tempVector4), ret.B);
+                Interop.Vector4.WSet(Vector3.getCPtr(tempVector4), ret.A);
+            }
+            else
+            {
+                throw new InvalidOperationException("Callback is not of type ConstraintColorFunctionCallbackType");
+            }
         }
     }
 
@@ -343,14 +382,20 @@ namespace Tizen.NUI
             using PropertyInputContainer container = new PropertyInputContainer(inputContainerCPtr);
 
             // TODO : Chane below logic if UIVector4 Implemented.
-            using Vector4 ret = (Callback as Constraint.ConstraintVector4FunctionCallbackType).Invoke(in tempVector4, id, in container);
-
-            if (ret != null)
+            if (Callback is Constraint.ConstraintVector4FunctionCallbackType callback)
             {
-                Interop.Vector4.XSet(Vector4.getCPtr(tempVector4), ret.X);
-                Interop.Vector4.YSet(Vector4.getCPtr(tempVector4), ret.Y);
-                Interop.Vector4.ZSet(Vector4.getCPtr(tempVector4), ret.Z);
-                Interop.Vector4.WSet(Vector4.getCPtr(tempVector4), ret.W);
+                using Vector4 ret = callback.Invoke(in tempVector4, id, in container);
+                if (ret != null)
+                {
+                    Interop.Vector4.XSet(Vector4.getCPtr(tempVector4), ret.X);
+                    Interop.Vector4.YSet(Vector4.getCPtr(tempVector4), ret.Y);
+                    Interop.Vector4.ZSet(Vector4.getCPtr(tempVector4), ret.Z);
+                    Interop.Vector4.WSet(Vector4.getCPtr(tempVector4), ret.W);
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException("Callback is not of type ConstraintVector4FunctionCallbackType");
             }
         }
     }
@@ -381,12 +426,18 @@ namespace Tizen.NUI
             using Matrix3 tempMatix3 = new Matrix3(current, false);
             using PropertyInputContainer container = new PropertyInputContainer(inputContainerCPtr);
 
-            using Matrix3 ret = (Callback as Constraint.ConstraintMatrix3FunctionCallbackType).Invoke(in tempMatix3, id, in container);
-
-            if (ret != null)
+            if (Callback is Constraint.ConstraintMatrix3FunctionCallbackType callback)
             {
-                // Copy to native result. TODO : Can we optimize here?
-                tempMatix3.Assign(ret);
+                using Matrix3 ret = callback.Invoke(in tempMatix3, id, in container);
+                if (ret != null)
+                {
+                    // Copy to native result. TODO : Can we optimize here?
+                    tempMatix3.Assign(ret);
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException("Callback is not of type ConstraintMatrix3FunctionCallbackType");
             }
         }
     }
@@ -417,12 +468,18 @@ namespace Tizen.NUI
             using Matrix tempMatix = new Matrix(current, false);
             using PropertyInputContainer container = new PropertyInputContainer(inputContainerCPtr);
 
-            using Matrix ret = (Callback as Constraint.ConstraintMatrixFunctionCallbackType).Invoke(in tempMatix, id, in container);
-
-            if (ret != null)
+            if (Callback is Constraint.ConstraintMatrixFunctionCallbackType callback)
             {
-                // Copy to native result. TODO : Can we optimize here?
-                tempMatix.Assign(ret);
+                using Matrix ret = callback.Invoke(in tempMatix, id, in container);
+                if (ret != null)
+                {
+                    // Copy to native result. TODO : Can we optimize here?
+                    tempMatix.Assign(ret);
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException("Callback is not of type ConstraintMatrixFunctionCallbackType");
             }
         }
     }
@@ -453,12 +510,18 @@ namespace Tizen.NUI
             using Rotation tempRotation = new Rotation(current, false);
             using PropertyInputContainer container = new PropertyInputContainer(inputContainerCPtr);
 
-            using Rotation ret = (Callback as Constraint.ConstraintRotationFunctionCallbackType).Invoke(in tempRotation, id, in container);
-
-            if (ret != null)
+            if (Callback is Constraint.ConstraintRotationFunctionCallbackType callback)
             {
-                // Copy to native result. TODO : Can we optimize here?
-                tempRotation.Assign(ret);
+                using Rotation ret = callback.Invoke(in tempRotation, id, in container);
+                if (ret != null)
+                {
+                    // Copy to native result. TODO : Can we optimize here?
+                    tempRotation.Assign(ret);
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException("Callback is not of type ConstraintRotationFunctionCallbackType");
             }
         }
     }

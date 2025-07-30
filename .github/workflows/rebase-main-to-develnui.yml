@@ -1,0 +1,45 @@
+name: Rebase main to DevelNUI
+
+on:
+  workflow_dispatch:
+
+jobs:
+  rebase:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Git config
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+    - name: Set up upstream and fetch
+      run: |
+        git remote add upstream https://github.com/Samsung/TizenFX.git
+        git fetch upstream
+
+    - name: Delete remote rebase branch if exists
+      run: |
+        git push origin --delete rebase-main || echo "No existing branch"
+
+    - name: Rebase main onto DevelNUI
+      run: |
+        git checkout -b rebase-main upstream/main
+        git rebase upstream/DevelNUI
+        git push origin rebase-main --force-with-lease
+
+    - name: Create PR
+      env:
+        GH_TOKEN: ${{ secrets.MY_PAT }}
+      run: |
+        gh pr create \
+          --title "Rebase main to DevelNUI" \
+          --body "This PR rebases \`main\` onto \`DevelNUI\`.\n\nPlease use **Rebase and merge** when merging." \
+          --base DevelNUI \
+          --head ${{ github.repository_owner }}:rebase-main \
+          --repo Samsung/TizenFX

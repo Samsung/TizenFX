@@ -75,11 +75,16 @@ namespace Tizen.NUI
             var layoutParams = view.GetAttached<LayoutParams>();
             if (layoutParams != null)
             {
-                layoutParams.LayoutBounds = rect;
+                if (layoutParams.LayoutBounds != rect)
+                {
+                    layoutParams.LayoutBounds = rect;
+                    view.Layout?.RequestLayout();
+                }
             }
             else
             {
                 view.SetAttached(new LayoutParams() { LayoutBounds = rect });
+                view.Layout?.RequestLayout();
             }
         }
 
@@ -117,11 +122,16 @@ namespace Tizen.NUI
             var layoutParams = view.GetAttached<LayoutParams>();
             if (layoutParams != null)
             {
-                layoutParams.LayoutFlags = flags;
+                if (layoutParams.LayoutFlags != flags)
+                {
+                    layoutParams.LayoutFlags = flags;
+                    view.Layout?.RequestLayout();
+                }
             }
             else
             {
                 view.SetAttached(new LayoutParams() { LayoutFlags = flags });
+                view.Layout?.RequestLayout();
             }
         }
 

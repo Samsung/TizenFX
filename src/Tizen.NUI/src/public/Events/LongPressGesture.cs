@@ -30,7 +30,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="state">The state of the gesture</param>
         /// <since_tizen> 3 </since_tizen>
-        public LongPressGesture(Gesture.StateType state) : this(Interop.LongPressGesture.New((int)state), true)
+        public LongPressGesture(Gesture.StateType state) : this(Interop.LongPressGesture.New((int)state), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -85,11 +85,6 @@ namespace Tizen.NUI
 
         private uint numberOfTouches
         {
-            set
-            {
-                Interop.LongPressGesture.NumberOfTouchesSet(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 uint ret = Interop.LongPressGesture.NumberOfTouchesGet(SwigCPtr);
@@ -100,11 +95,6 @@ namespace Tizen.NUI
 
         private Vector2 screenPoint
         {
-            set
-            {
-                Interop.LongPressGesture.ScreenPointSet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.LongPressGesture.ScreenPointGet(SwigCPtr);
@@ -116,11 +106,6 @@ namespace Tizen.NUI
 
         private Vector2 localPoint
         {
-            set
-            {
-                Interop.LongPressGesture.LocalPointSet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.LongPressGesture.LocalPointGet(SwigCPtr);

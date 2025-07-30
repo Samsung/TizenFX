@@ -31,19 +31,6 @@ namespace Tizen.NUI
             throw new global::System.MethodAccessException("C++ destructor does not have public access");
         }
 
-        public virtual bool GlExtensionCreate()
-        {
-            bool ret = Interop.NativeImageInterface.GlExtensionCreate(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public virtual void GlExtensionDestroy()
-        {
-            Interop.NativeImageInterface.GlExtensionDestroy(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         public virtual uint TargetTexture()
         {
             uint ret = Interop.NativeImageInterface.TargetTexture(SwigCPtr);

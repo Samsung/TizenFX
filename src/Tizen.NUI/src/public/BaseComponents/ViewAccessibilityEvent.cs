@@ -18,8 +18,6 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
-using Tizen.NUI.Components;
-using Tizen.NUI;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -194,6 +192,9 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
+        private ViewAccessibilityData _accessibilityData;
+        private ViewAccessibilityRareData _accessibilityRareData;
+
         internal class ControlHandle : SafeHandle
         {
             public ControlHandle() : base(IntPtr.Zero, true) { }
@@ -249,35 +250,13 @@ namespace Tizen.NUI.BaseComponents
             return result;
         }
 
+        private ViewAccessibilityData EnsureAccessibilityData() => _accessibilityData ??= new ViewAccessibilityData(this);
+
+        private ViewAccessibilityRareData EnsureAccessibilityRareData() => _accessibilityRareData ??= new ViewAccessibilityRareData(this);
+
         ///////////////////////////////////////////////////////////////////
         // ***************** AccessiblityDoGestureSignal ****************//
         ///////////////////////////////////////////////////////////////////
-
-        private delegate void GestureInfoHandlerType(IntPtr data);
-        private GestureInfoHandlerType gestureInfoCallback;
-        private EventHandler<GestureInfoEventArgs> gestureInfoHandler;
-
-        private void OnAccessibilityGestureInfoEvent(IntPtr data)
-        {
-            if (data == IntPtr.Zero)
-            {
-                return;
-            }
-
-            if (Marshal.SizeOf<GestureInfoType>() != Interop.DoGestureSignal.GetSizeOfGestureInfo())
-            {
-                throw new global::System.ApplicationException("ABI mismatch SizeOf(C# GestureInfo) != SizeOf(c++ GestureInfo)");
-            }
-
-            var arg = new GestureInfoEventArgs()
-            {
-                Consumed = Interop.DoGestureSignal.GetResult(data),
-                GestureInfo = (GestureInfoType)Marshal.PtrToStructure(data, typeof(GestureInfoType)),
-            };
-            gestureInfoHandler?.Invoke(this, arg);
-
-            Interop.DoGestureSignal.SetResult(data, arg.Consumed);
-        }
 
         /// <summary>
         /// AccessibilityGestureInfo is received.
@@ -286,53 +265,13 @@ namespace Tizen.NUI.BaseComponents
         public event EventHandler<GestureInfoEventArgs> AccessibilityGestureInfoReceived
         {
             // This uses DoGestureInfo signal from C++ API.
-            add
-            {
-                if (gestureInfoHandler == null)
-                {
-                    gestureInfoCallback = OnAccessibilityGestureInfoEvent;
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityDoGestureConnect(handle, gestureInfoCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                }
-                gestureInfoHandler += value;
-            }
-            remove
-            {
-                gestureInfoHandler -= value;
-                if (gestureInfoHandler == null && gestureInfoCallback != null)
-                {
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityDoGestureDisconnect(handle, gestureInfoCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                    gestureInfoCallback = null;
-                }
-            }
+            add => EnsureAccessibilityRareData().AddGestureInfoReceivedHandler(this, value);
+            remove => _accessibilityRareData?.RemoveGestureInfoReceivedHandler(this, value);
         }
 
         ///////////////////////////////////////////////////////////////////
         // ************** AccessiblityGetDescriptionSignal ************* //
         ///////////////////////////////////////////////////////////////////
-
-        private delegate void GetDescriptionHandlerType(IntPtr data);
-        private GetDescriptionHandlerType getDescriptionCallback;
-        private EventHandler<GetDescriptionEventArgs> getDescriptionHandler;
-
-        private void OnGetAccessibilityDescriptionEvent(IntPtr data)
-        {
-            if (data == IntPtr.Zero)
-            {
-                return;
-            }
-
-            var arg = new GetDescriptionEventArgs()
-            {
-                Description = Interop.StringToVoidSignal.GetResult(data)
-            };
-            getDescriptionHandler?.Invoke(this, arg);
-
-            Interop.StringToVoidSignal.SetResult(data, arg.Description);
-        }
 
         /// <summary>
         /// AccessibilityDescription is requested.
@@ -341,53 +280,13 @@ namespace Tizen.NUI.BaseComponents
         public event EventHandler<GetDescriptionEventArgs> AccessibilityDescriptionRequested
         {
             // This uses GetDescription signal from C++ API.
-            add
-            {
-                if (getDescriptionHandler == null)
-                {
-                    getDescriptionCallback = OnGetAccessibilityDescriptionEvent;
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityGetDescriptionConnect(handle, getDescriptionCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                }
-                getDescriptionHandler += value;
-            }
-            remove
-            {
-                getDescriptionHandler -= value;
-                if (getDescriptionHandler == null && getDescriptionCallback != null)
-                {
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityGetDescriptionDisconnect(handle, getDescriptionCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                    getDescriptionCallback = null;
-                }
-            }
+            add => EnsureAccessibilityData().AddDescriptionRequestedHandler(this, value);
+            remove => _accessibilityData?.RemoveDescriptionRequestedHandler(this, value);
         }
 
         ///////////////////////////////////////////////////////////////////
         // ***************** AccessiblityGetNameSignal ***************** //
         ///////////////////////////////////////////////////////////////////
-
-        private delegate void GetNameHandlerType(IntPtr data);
-        private GetNameHandlerType getNameCallback;
-        private EventHandler<GetNameEventArgs> getNameHandler;
-
-        private void OnGetAccessibilityNameEvent(IntPtr data)
-        {
-            if (data == IntPtr.Zero)
-            {
-                return;
-            }
-
-            var arg = new GetNameEventArgs()
-            {
-                Name = Interop.StringToVoidSignal.GetResult(data)
-            };
-            getNameHandler?.Invoke(this, arg);
-
-            Interop.StringToVoidSignal.SetResult(data, arg.Name);
-        }
 
         /// <summary>
         /// AccessibilityName is requested.
@@ -396,28 +295,8 @@ namespace Tizen.NUI.BaseComponents
         public event EventHandler<GetNameEventArgs> AccessibilityNameRequested
         {
             // This uses GetName signal from C++ API.
-            add
-            {
-                if (getNameHandler == null)
-                {
-                    getNameCallback = OnGetAccessibilityNameEvent;
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityGetNameConnect(handle, getNameCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                }
-                getNameHandler += value;
-            }
-            remove
-            {
-                getNameHandler -= value;
-                if (getNameHandler == null && getNameCallback != null)
-                {
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityGetNameDisconnect(handle, getNameCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                    getNameCallback = null;
-                }
-            }
+            add => EnsureAccessibilityData().AddNameRequestedHandler(this, value);
+            remove => _accessibilityData?.RemoveNameRequestedHandler(this, value);
         }
 
         internal bool IsAccessibilityNameSignalEmpty()
@@ -445,56 +324,19 @@ namespace Tizen.NUI.BaseComponents
         // **************** AccessibilityActivatedSignal **************** //
         ///////////////////////////////////////////////////////////////////
 
-        private delegate void VoidHandlerType();
-        private VoidHandlerType activateCallback;
-        private EventHandler activateHandler;
-
-        private void OnAccessibilityActivatedEvent()
-        {
-            activateHandler?.Invoke(this, null);
-        }
-
         /// <summary>
         /// Accessibility is activated.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityActivated
         {
-            add
-            {
-                if (activateHandler == null)
-                {
-                    activateCallback = OnAccessibilityActivatedEvent;
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityActivateConnect(handle, activateCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                }
-                activateHandler += value;
-            }
-            remove
-            {
-                activateHandler -= value;
-                if (activateHandler == null && activateCallback != null)
-                {
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityActivateDisconnect(handle, activateCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                    activateCallback = null;
-                }
-            }
+            add => EnsureAccessibilityData().AddActivatedHandler(this, value);
+            remove => _accessibilityData?.RemoveActivatedHandler(this, value);
         }
 
         ///////////////////////////////////////////////////////////////////
         // ************ AccessibilityReadingSkippedSignal ************** //
         ///////////////////////////////////////////////////////////////////
-
-        private VoidHandlerType readingSkippedCallback;
-        private EventHandler readingSkippedHandler;
-
-        private void OnAccessibilityReadingSkippedEvent()
-        {
-            readingSkippedHandler?.Invoke(this, null);
-        }
 
         /// <summary>
         /// AccessibilityReading is skipped.
@@ -502,41 +344,13 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityReadingSkipped
         {
-            add
-            {
-                if (readingSkippedHandler == null)
-                {
-                    readingSkippedCallback = OnAccessibilityReadingSkippedEvent;
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityReadingSkippedConnect(handle, readingSkippedCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                }
-                readingSkippedHandler += value;
-            }
-            remove
-            {
-                readingSkippedHandler -= value;
-                if (readingSkippedHandler == null && readingSkippedCallback != null)
-                {
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityReadingSkippedDisconnect(handle, readingSkippedCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                    readingSkippedCallback = null;
-                }
-            }
+            add => EnsureAccessibilityRareData().AddReadingSkippedHandler(this, value);
+            remove => _accessibilityRareData?.RemoveReadingSkippedHandler(this, value);
         }
 
         ///////////////////////////////////////////////////////////////////
         // ************* AccessibilityReadingPausedSignal ************** //
         ///////////////////////////////////////////////////////////////////
-
-        private VoidHandlerType readingPausedCallback;
-        private EventHandler readingPausedHandler;
-
-        private void OnAccessibilityReadingPausedEvent()
-        {
-            readingPausedHandler?.Invoke(this, null);
-        }
 
         /// <summary>
         /// AccessibilityReading is paused.
@@ -544,41 +358,13 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityReadingPaused
         {
-            add
-            {
-                if (readingPausedHandler == null)
-                {
-                    readingPausedCallback = OnAccessibilityReadingPausedEvent;
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityReadingPausedConnect(handle, readingPausedCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                }
-                readingPausedHandler += value;
-            }
-            remove
-            {
-                readingPausedHandler -= value;
-                if (readingPausedHandler == null && readingPausedCallback != null)
-                {
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityReadingPausedDisconnect(handle, readingPausedCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                    readingPausedCallback = null;
-                }
-            }
+            add => EnsureAccessibilityRareData().AddReadingPausedHandler(this, value);
+            remove => _accessibilityRareData?.RemoveReadingPausedHandler(this, value);
         }
 
         ///////////////////////////////////////////////////////////////////
         // ************* AccessibilityReadingResumedSignal ************* //
         ///////////////////////////////////////////////////////////////////
-
-        private VoidHandlerType readingResumedCallback;
-        private EventHandler readingResumedHandler;
-
-        private void OnAccessibilityReadingResumedEvent()
-        {
-            readingResumedHandler?.Invoke(this, null);
-        }
 
         /// <summary>
         /// AccessibilityReading is resumed.
@@ -586,41 +372,13 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityReadingResumed
         {
-            add
-            {
-                if (readingResumedHandler == null)
-                {
-                    readingResumedCallback = OnAccessibilityReadingResumedEvent;
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityReadingResumedConnect(handle, readingResumedCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                }
-                readingResumedHandler += value;
-            }
-            remove
-            {
-                readingResumedHandler -= value;
-                if (readingResumedHandler == null && readingResumedCallback != null)
-                {
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityReadingResumedDisconnect(handle, readingResumedCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                    readingResumedCallback = null;
-                }
-            }
+            add => EnsureAccessibilityRareData().AddReadingResumedHandler(this, value);
+            remove => _accessibilityRareData?.RemoveReadingResumedHandler(this, value);
         }
 
         ///////////////////////////////////////////////////////////////////
         // ************ AccessibilityReadingCancelledSignal ************ //
         ///////////////////////////////////////////////////////////////////
-
-        private VoidHandlerType readingCancelledCallback;
-        private EventHandler readingCancelledHandler;
-
-        private void OnAccessibilityReadingCancelledEvent()
-        {
-            readingCancelledHandler?.Invoke(this, null);
-        }
 
         /// <summary>
         /// AccessibilityReading is cancelled.
@@ -628,41 +386,13 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityReadingCancelled
         {
-            add
-            {
-                if (readingCancelledHandler == null)
-                {
-                    readingCancelledCallback = OnAccessibilityReadingCancelledEvent;
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityReadingCancelledConnect(handle, readingCancelledCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                }
-                readingCancelledHandler += value;
-            }
-            remove
-            {
-                readingCancelledHandler -= value;
-                if (readingCancelledHandler == null && readingCancelledCallback != null)
-                {
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityReadingCancelledDisconnect(handle, readingCancelledCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                    readingCancelledCallback = null;
-                }
-            }
+            add => EnsureAccessibilityRareData().AddReadingCancelledHandler(this, value);
+            remove => _accessibilityRareData?.RemoveReadingCancelledHandler(this, value);
         }
 
         ///////////////////////////////////////////////////////////////////
         // ************* AccessibilityReadingStoppedSignal ************* //
         ///////////////////////////////////////////////////////////////////
-
-        private VoidHandlerType readingStoppedCallback;
-        private EventHandler readingStoppedHandler;
-
-        private void OnAccessibilityReadingStoppedEvent()
-        {
-            readingStoppedHandler?.Invoke(this, null);
-        }
 
         /// <summary>
         /// AccessibilityReading is stopped.
@@ -670,28 +400,36 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler AccessibilityReadingStopped
         {
-            add
-            {
-                if (readingStoppedHandler == null)
-                {
-                    readingStoppedCallback = OnAccessibilityReadingStoppedEvent;
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityReadingStoppedConnect(handle, readingStoppedCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                }
-                readingStoppedHandler += value;
-            }
-            remove
-            {
-                readingStoppedHandler -= value;
-                if (readingStoppedHandler == null && readingStoppedCallback != null)
-                {
-                    using var handle = GetControl();
-                    Interop.AccessibilitySignal.AccessibilityReadingStoppedDisconnect(handle, readingStoppedCallback.ToHandleRef(this));
-                    NDalicPINVOKE.ThrowExceptionIfExists();
-                    readingStoppedCallback = null;
-                }
-            }
+            add => EnsureAccessibilityRareData().AddReadingStoppedHandler(this, value);
+            remove => _accessibilityRareData?.RemoveReadingStoppedHandler(this, value);
+        }
+
+        ///////////////////////////////////////////////////////////////////
+        // ***************** AccessibilityActionSignal ***************** //
+        ///////////////////////////////////////////////////////////////////
+
+        /// <summary>
+        /// Occurs when the view receives an accessibility action.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AccessibilityActionReceivedEventArgs> AccessibilityActionReceived
+        {
+            add => EnsureAccessibilityData().AddActionReceivedHandler(this, value);
+            remove => _accessibilityData?.RemoveActionReceivedHandler(this, value);
+        }
+
+        ///////////////////////////////////////////////////////////////////
+        // ************** AccessibilityHighlightedSignal *************** //
+        ///////////////////////////////////////////////////////////////////
+
+        /// <summary>
+        /// Occurs when the view gets or losts an accessibility highlight.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AccessibilityHighlightChangedEventArgs> AccessibilityHighlightChanged
+        {
+            add => EnsureAccessibilityData().AddHighlightChangedHandler(this, value);
+            remove => _accessibilityData?.RemoveHighlightChangedHandler(this, value);
         }
     }
 }

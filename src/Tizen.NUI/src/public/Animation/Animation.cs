@@ -74,6 +74,8 @@ namespace Tizen.NUI
 
         private List<System.Delegate> customAlphaFunctionDelegates;
 
+        private static int aliveCount;
+
         /// <summary>
         /// Creates an initialized animation.<br />
         /// The animation will not loop.<br />
@@ -92,6 +94,8 @@ namespace Tizen.NUI
         {
             animationFinishedEventCallback = OnFinished;
             finishedCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(animationFinishedEventCallback);
+
+            ++aliveCount;
         }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -695,6 +699,12 @@ namespace Tizen.NUI
                 return endTimeList;
             }
         }
+
+        /// <summary>
+        /// Gets the number of currently alived Animation object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         private bool DisableAnimation
         {
@@ -1894,7 +1904,19 @@ namespace Tizen.NUI
                 animationProgressReachedEventCallback = null;
             }
 
+            // Let we clear the animation only if Looping case OR SpeedFactor is small.
+            // It will guard the case that suddenly stopped animation if it be GC,
+            // so the value of animatables becomes unexpectable.
+            // TODO : Couldn't we call Clear(); always?
+            if (HasBody() && (Looping || Math.Abs(SpeedFactor) <= 0.0001f))
+            {
+                Tizen.Log.Info("NUI", $"Clear Animation[{ID}] now to avoid hanging managed memory\n");
+                Clear();
+            }
+
             ClearCustomAlphaFunctionDelegate();
+
+            --aliveCount;
 
             base.Dispose(type);
         }

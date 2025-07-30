@@ -17,8 +17,10 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using static Interop;
 
 namespace Tizen.Applications
 {
@@ -38,7 +40,7 @@ namespace Tizen.Applications
         private PackageType _type;
         private Interop.PackageManager.StorageType _installedStorageType;
         private string _rootPath = string.Empty;
-        private string _expansionPackageName = string.Empty;
+        private string _expansionPackageName = null;
         private bool _isSystemPackage;
         private bool _isRemovable;
         private bool _isPreloaded;
@@ -107,7 +109,21 @@ namespace Tizen.Applications
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
         /// <since_tizen> 3 </since_tizen>
-        public string TizenExpansionPackageName { get { return _expansionPackageName; } }
+        public string TizenExpansionPackageName
+        {
+            get
+            {
+                if (_expansionPackageName == null)
+                {
+                    _expansionPackageName = GetExpansionPackageName(_id);
+                    if (_expansionPackageName == null)
+                    {
+                        return string.Empty;
+                    }
+                }
+                return _expansionPackageName;
+            }
+        }
 
         /// <summary>
         /// Checks whether the package is a system package.
@@ -208,6 +224,7 @@ namespace Tizen.Applications
             {
                 Log.Warn(LogTag, string.Format("Failed to application info of {0}. err = {1}", Id, err));
             }
+            GC.KeepAlive(cb);
 
             err = Interop.Package.PackageInfoDestroy(packageInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
@@ -275,7 +292,9 @@ namespace Tizen.Applications
             {
                 tcs.TrySetException(PackageManagerErrorFactory.GetException(err, "Failed to get total package size info of " + Id));
             }
-            return await tcs.Task.ConfigureAwait(false);
+            var result = await tcs.Task.ConfigureAwait(false);
+            GC.KeepAlive(sizeInfoCb);
+            return result;
         }
 
         /// <summary>
@@ -346,13 +365,6 @@ namespace Tizen.Applications
             {
                 Log.Warn(LogTag, "Failed to get package root directory of " + pkgId);
             }
-            err = Interop.Package.PackageInfoGetTepName(handle, out package._expansionPackageName);
-            if (err != Interop.PackageManager.ErrorCode.None)
-            {
-                // Do not print warning log because most packages do not have tep.
-                package._expansionPackageName = string.Empty;
-            }
-
             err = Interop.Package.PackageInfoGetInstalledStorage(handle, out package._installedStorageType);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
@@ -481,6 +493,7 @@ namespace Tizen.Applications
             {
                 Log.Warn(LogTag, string.Format("Failed to get dependency info. err = {0}", err));
             }
+            GC.KeepAlive(dependencyInfoCb);
             return dependencies;
         }
 
@@ -497,6 +510,7 @@ namespace Tizen.Applications
             {
                 Log.Warn(LogTag, string.Format("Failed to get dependency info. err = {0}", err));
             }
+            GC.KeepAlive(dependencyInfoCb);
             return dependencies;
         }
 
@@ -521,6 +535,7 @@ namespace Tizen.Applications
                 {
                     allowedPackagesAndPrivileges.Add(allowedPackage, requiredPrivilegesList);
                 }
+                GC.KeepAlive(requiredPrivCallback);
                 return true;
             };
 
@@ -529,7 +544,34 @@ namespace Tizen.Applications
             {
                 Log.Warn(LogTag, string.Format("Failed to get allowed packages info. err = {0}", err));
             }
+            GC.KeepAlive(allowedPackageCallback);
             return allowedPackagesAndPrivileges;
+        }
+
+        private string GetExpansionPackageName(string packageId)
+        {
+            IntPtr packageInfoHandle;
+            Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoCreate(packageId, out packageInfoHandle);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Log.Error(LogTag, string.Format("Failed to create native handle for package info of {0}", packageId));
+                return null;
+            }
+
+            err = Interop.Package.PackageInfoGetTepName(packageInfoHandle, out string expansionPackageName);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                // Do not print warning log because most packages do not have tep.
+                expansionPackageName = string.Empty;
+            }
+
+            err = Interop.Package.PackageInfoDestroy(packageInfoHandle);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to destroy native handle for package info of {0}. err = {1}", packageId, err));
+            }
+
+            return expansionPackageName;
         }
     }
 }

@@ -113,6 +113,8 @@ namespace Tizen.NUI.Samples
 
         // Per each view
         private View[] subView = new View[totalSubViewCounts];
+        private Renderable[] subViewRenderable = new Renderable[totalSubViewCounts];
+        private Texture[] subViewTexture = new Texture[totalSubViewCounts];
         private TextureSet[] subViewTextureSet = new TextureSet[totalSubViewCounts];
         private uint[] subViewLoadId = new uint[totalSubViewCounts];
 
@@ -182,6 +184,13 @@ namespace Tizen.NUI.Samples
             root?.Unparent();
             root?.DisposeRecursively();
 
+            for(uint i = 0u; i < totalSubViewCounts; ++i)
+            {
+                subViewRenderable[i]?.Dispose();
+                subViewTexture[i]?.Dispose();
+                subViewTextureSet[i]?.Dispose();
+            }
+
             win.KeyEvent -= WindowKeyEvent;
         }
 
@@ -238,8 +247,11 @@ namespace Tizen.NUI.Samples
 
                     uint viewIndex = i * numberOfImagesPerEachType + j;
 
+                    subViewRenderable[viewIndex] = renderable;
+
                     subView[viewIndex] = view;
                     subViewTextureSet[viewIndex] = renderable.TextureSet;
+                    subViewTexture[viewIndex] = renderable.TextureSet.GetTexture(0u);
                     subViewLoadId[viewIndex] = InvalidLoadId;
                 }
                 subViewUrlIndex[i] = (uint)(ImageUrlList.Length - 1);
@@ -316,7 +328,9 @@ namespace Tizen.NUI.Samples
             Texture texture = new Texture(TextureType.TEXTURE_2D, pixelFormat, width, height);
             texture.Upload(e.PixelData);
 
+            subViewTexture[viewIndex]?.Dispose();
             subViewTextureSet[viewIndex].SetTexture(0u, texture);
+            subViewTexture[viewIndex] = texture;
         }
 
         private void OnPixelBufferLoaded(object o, AsyncImageLoader.PixelBufferLoadedEventArgs e)
@@ -357,7 +371,9 @@ namespace Tizen.NUI.Samples
             Texture texture = new Texture(TextureType.TEXTURE_2D, pixelFormat, width, height);
             texture.Upload(pixelData);
 
+            subViewTexture[viewIndex]?.Dispose();
             subViewTextureSet[viewIndex].SetTexture(0u, texture);
+            subViewTexture[viewIndex] = texture;
         }
 
         private void OnPixelBufferLoadedWithCustom(object o, AsyncImageLoader.PixelBufferLoadedEventArgs e)
@@ -403,7 +419,9 @@ namespace Tizen.NUI.Samples
             Texture texture = new Texture(TextureType.TEXTURE_2D, pixelFormat, width, height);
             texture.Upload(pixelData);
 
+            subViewTexture[viewIndex]?.Dispose();
             subViewTextureSet[viewIndex].SetTexture(0u, texture);
+            subViewTexture[viewIndex] = texture;
         }
 
         private void OnPixelBufferLoadedWithColorPalette(object o, AsyncImageLoader.PixelBufferLoadedEventArgs e)
@@ -452,7 +470,9 @@ namespace Tizen.NUI.Samples
             Texture texture = new Texture(TextureType.TEXTURE_2D, pixelFormat, width, height);
             texture.Upload(pixelData);
 
+            subViewTexture[viewIndex]?.Dispose();
             subViewTextureSet[viewIndex].SetTexture(0u, texture);
+            subViewTexture[viewIndex] = texture;
 
             if(colorPick)
             {

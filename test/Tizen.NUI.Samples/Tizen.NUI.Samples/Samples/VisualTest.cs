@@ -511,13 +511,13 @@ namespace Tizen.NUI.Samples
                 HeightPolicy = VisualTransformPolicyType.Absolute,
             };
 
-            view.AddVisual(backgroundVisual);
-            view.AddVisual(imageVisual);
-            view.AddVisual(foregroundVisual);
-            view.AddVisual(textVisual);
-            view.AddVisual(subTextVisual);
-            view.AddVisual(thumbnailShadow);
-            view.AddVisual(thumbnailVisual);
+            view.AddVisual(backgroundVisual, ViewVisualContainerRange.Content);
+            view.AddVisual(imageVisual, ViewVisualContainerRange.Content);
+            view.AddVisual(foregroundVisual, ViewVisualContainerRange.Content);
+            view.AddVisual(textVisual, ViewVisualContainerRange.Content);
+            view.AddVisual(subTextVisual, ViewVisualContainerRange.Content);
+            view.AddVisual(thumbnailShadow, ViewVisualContainerRange.Content);
+            view.AddVisual(thumbnailVisual, ViewVisualContainerRange.Content);
 
             view.FocusGained += (s, e) =>
             {
@@ -526,24 +526,24 @@ namespace Tizen.NUI.Samples
                 {
                     Tizen.Log.Error("NUI", $"View {me.ID} focus gained.\n");
 
-                    me.AddVisual(focusIndicatorBorderVisual);
-                    me.AddVisual(focusIndicatorInnerShadowVisual1);
-                    me.AddVisual(focusIndicatorInnerShadowVisual2);
-                    me.AddVisual(shadowVisual1);
-                    me.AddVisual(shadowVisual2);
+                    me.AddVisual(focusIndicatorInnerShadowVisual1, ViewVisualContainerRange.Decoration);
+                    me.AddVisual(focusIndicatorInnerShadowVisual2, ViewVisualContainerRange.Decoration);
+                    me.AddVisual(focusIndicatorBorderVisual, ViewVisualContainerRange.Decoration);
+                    me.AddVisual(shadowVisual1, ViewVisualContainerRange.Background);
+                    me.AddVisual(shadowVisual2, ViewVisualContainerRange.Background);
 
-                    focusIndicatorInnerShadowVisual1.RaiseToTop();
-                    focusIndicatorInnerShadowVisual2.RaiseAbove(focusIndicatorInnerShadowVisual1);
-                    focusIndicatorBorderVisual.RaiseAbove(focusIndicatorInnerShadowVisual2);
-                    shadowVisual1.LowerToBottom();
-                    shadowVisual2.LowerBelow(shadowVisual1);
+                    // focusIndicatorInnerShadowVisual1.RaiseToTop();
+                    // focusIndicatorInnerShadowVisual2.RaiseAbove(focusIndicatorInnerShadowVisual1);
+                    // focusIndicatorBorderVisual.RaiseAbove(focusIndicatorInnerShadowVisual2);
+                    // shadowVisual1.LowerToBottom();
+                    // shadowVisual2.LowerBelow(shadowVisual1);
 
                     var visual = me.FindVisualByName("foreground");
                     visual.Color = Color.LightGray;
                     visual.Opacity = 0.5f;
 
                     //visual = me.FindVisualByName("background");
-                    visual = me.GetVisualAt(2u); // Should be background
+                    visual = me.GetVisualAt(0u, ViewVisualContainerRange.Content); // Should be background
                     visual.Color = Color.White;
 
                     visual = me.FindVisualByName("thumbnailShadow");
@@ -578,7 +578,7 @@ namespace Tizen.NUI.Samples
                     visual.Opacity = 0.5f;
 
                     //visual = me.FindVisualByName("background");
-                    visual = me.GetVisualAt(0u); // Should be background
+                    visual = me.GetVisualAt(0u, ViewVisualContainerRange.Content); // Should be background
                     visual.Color = Color.Gray;
 
                     visual = me.FindVisualByName("thumbnailShadow");

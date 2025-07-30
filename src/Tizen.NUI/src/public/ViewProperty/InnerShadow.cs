@@ -82,7 +82,7 @@ namespace Tizen.NUI
             }
 
             // Override the MixColor
-            Color = Color.Transparent;
+            Color = new Color(Shadow.noColor);;
             using (PropertyValue borderlineColorValue = propertyMap.Find(Visual.Property.BorderlineColor))
             {
                 borderlineColorValue?.Get(Color);
@@ -148,24 +148,25 @@ namespace Tizen.NUI
         /// </summary>
         internal static float CalculateShadowWidthByExtents(UIExtents insetExtents, float blurRadius)
         {
-            return Math.Max(insetExtents.Start, Math.Max(insetExtents.End, Math.Max(insetExtents.Top, insetExtents.Bottom))) + blurRadius;
+            // Extra margin due to shadow alpha blending.
+            const float margin = 1.0f;
+            return Math.Max(insetExtents.Start, Math.Max(insetExtents.End, Math.Max(insetExtents.Top, insetExtents.Bottom))) + (blurRadius + margin) * 2.0f;
         }
         internal static Vector2 CalculateOffsetByExtents(UIExtents insetExtents)
         {
             // Offset from center of view.
             return new Vector2((insetExtents.Start - insetExtents.End) * 0.5f, (insetExtents.Top - insetExtents.Bottom) * 0.5f);
         }
-        internal static Vector2 CalculateExtraSizeByExtents(UIExtents insetExtents, float shadowWidth)
+        internal static Vector2 CalculateExtraSizeByExtents(UIExtents insetExtents, float shadowWidth, float blurRadius)
         {
-            const float margin = 0.5f;
-            return new Vector2(shadowWidth * 2.0f - insetExtents.Start - insetExtents.End + 2.0f * margin, shadowWidth * 2.0f - insetExtents.Top - insetExtents.Bottom + 2.0f * margin);
+            return new Vector2(shadowWidth * 2.0f - insetExtents.Start - insetExtents.End - blurRadius * 2.0f, shadowWidth * 2.0f - insetExtents.Top - insetExtents.Bottom - blurRadius * 2.0f);
         }
 
         internal static InnerShadow GenerateInnerShadowByExtents(UIExtents insetExtents, float blurRadius, Color color, ColorVisualCutoutPolicyType cutoutPolicy)
         {
             var shadowWidth = CalculateShadowWidthByExtents(insetExtents, blurRadius);
-            var offset = CalculateOffsetByExtents(insetExtents);
-            var extents = CalculateExtraSizeByExtents(insetExtents, shadowWidth);
+            using var offset = CalculateOffsetByExtents(insetExtents);
+            using var extents = CalculateExtraSizeByExtents(insetExtents, shadowWidth, blurRadius);
 
             return new InnerShadow(shadowWidth, blurRadius, cutoutPolicy, color, offset, extents);
         }

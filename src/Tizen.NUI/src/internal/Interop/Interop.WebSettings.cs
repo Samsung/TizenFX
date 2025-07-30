@@ -190,6 +190,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_SetDefaultAudioInputDevice")]
             public static extern void SetDefaultAudioInputDevice(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_EnableDragAndDrop")]
+            public static extern void EnableDragAndDrop(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
         }
     }
 }
