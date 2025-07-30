@@ -31,13 +31,6 @@ namespace Tizen.Applications
         private IntPtr _infoHandle = IntPtr.Zero;
         private string _applicationId = string.Empty;
         private Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
-        private Interop.ApplicationManager.AppInfoMetadataCallback _metadataCallback;
-        private Interop.ApplicationManager.AppInfoCategoryCallback _categoryCallback;
-        private Interop.ApplicationManager.AppInfoResControlCallback _resControlCallback;
-
-        private readonly object _metadataLock = new object();
-        private readonly object _categoryLock = new object();
-        private readonly object _resControlLock = new object();
 
         internal ApplicationInfo(IntPtr infoHandle)
         {
@@ -231,34 +224,31 @@ namespace Tizen.Applications
         {
             get
             {
-                lock (_metadataLock)
+                IDictionary<string, string> metadata = new Dictionary<String, String>();
+
+                Interop.ApplicationManager.AppInfoMetadataCallback cb = (string key, string value, IntPtr userData) =>
                 {
-                    Dictionary<string, string> metadata = new Dictionary<String, String>();
-
-                    _metadataCallback = (string key, string value, IntPtr userData) =>
+                    if (key.Length != 0)
                     {
-                        if (key.Length != 0)
-                        {
-                            if (!metadata.ContainsKey(key))
-                                metadata.Add(key, value);
-                        }
-                        return true;
-                    };
-
-                    IntPtr infoHandle = GetInfoHandle();
-                    if (infoHandle != IntPtr.Zero)
-                    {
-                        err = Interop.ApplicationManager.AppInfoForeachMetadata(infoHandle, _metadataCallback, IntPtr.Zero);
-                        if (err != Interop.ApplicationManager.ErrorCode.None)
-                        {
-                            Log.Warn(LogTag, "Failed to get application metadata of " + _applicationId + ". err = " + err);
-                        }
+                        if (!metadata.ContainsKey(key))
+                            metadata.Add(key, value);
                     }
+                    return true;
+                };
 
-                    GC.KeepAlive(_metadataCallback);
-
-                    return metadata;
+                IntPtr infoHandle = GetInfoHandle();
+                if (infoHandle != IntPtr.Zero)
+                {
+                    err = Interop.ApplicationManager.AppInfoForeachMetadata(infoHandle, cb, IntPtr.Zero);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get application metadata of " + _applicationId + ". err = " + err);
+                    }
                 }
+
+                GC.KeepAlive(cb);
+
+                return metadata;
             }
         }
 
@@ -339,30 +329,27 @@ namespace Tizen.Applications
         {
             get
             {
-                lock (_categoryLock)
+                List<string> categories = new List<string>();
+
+                Interop.ApplicationManager.AppInfoCategoryCallback cb = (string category, IntPtr userData) =>
                 {
-                    List<string> categories = new List<string>();
+                    categories.Add(category);
+                    return true;
+                };
 
-                    _categoryCallback = (string category, IntPtr userData) =>
+                IntPtr infoHandle = GetInfoHandle();
+                if (infoHandle != IntPtr.Zero)
+                {
+                    err = Interop.ApplicationManager.AppInfoForeachCategory(infoHandle, cb, IntPtr.Zero);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
                     {
-                        categories.Add(category);
-                        return true;
-                    };
-
-                    IntPtr infoHandle = GetInfoHandle();
-                    if (infoHandle != IntPtr.Zero)
-                    {
-                        err = Interop.ApplicationManager.AppInfoForeachCategory(infoHandle, _categoryCallback, IntPtr.Zero);
-                        if (err != Interop.ApplicationManager.ErrorCode.None)
-                        {
-                            Log.Warn(LogTag, "Failed to get application category of " + _applicationId + ". err = " + err);
-                        }
+                        Log.Warn(LogTag, "Failed to get application category of " + _applicationId + ". err = " + err);
                     }
-
-                    GC.KeepAlive(_categoryCallback);
-
-                    return categories;
                 }
+
+                GC.KeepAlive(cb);
+
+                return categories;
             }
         }
 
@@ -449,29 +436,26 @@ namespace Tizen.Applications
         {
             get
             {
-                lock (_resControlLock)
+                List<ResourceControl> resourceControls = new List<ResourceControl>();
+                Interop.ApplicationManager.AppInfoResControlCallback cb = (string resType, string minResourceVersion, string maxResourceVersion, string isAutoClose, IntPtr userData) =>
                 {
-                    List<ResourceControl> resourceControls = new List<ResourceControl>();
-                    _resControlCallback = (string resType, string minResourceVersion, string maxResourceVersion, string isAutoClose, IntPtr userData) =>
-                    {
-                        resourceControls.Add(new ResourceControl(resType, minResourceVersion, maxResourceVersion, isAutoClose == "true"));
-                        return true;
-                    };
+                    resourceControls.Add(new ResourceControl(resType, minResourceVersion, maxResourceVersion, isAutoClose == "true"));
+                    return true;
+                };
 
-                    IntPtr infoHandle = GetInfoHandle();
-                    if (infoHandle != IntPtr.Zero)
+                IntPtr infoHandle = GetInfoHandle();
+                if (infoHandle != IntPtr.Zero)
+                {
+                    err = Interop.ApplicationManager.AppInfoForeachResControl(infoHandle, cb, IntPtr.Zero);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
                     {
-                        err = Interop.ApplicationManager.AppInfoForeachResControl(infoHandle, _resControlCallback, IntPtr.Zero);
-                        if (err != Interop.ApplicationManager.ErrorCode.None)
-                        {
-                            Log.Warn(LogTag, "Failed to get the resource controls of " + _applicationId + ". err = " + err);
-                        }
+                        Log.Warn(LogTag, "Failed to get the resource controls of " + _applicationId + ". err = " + err);
                     }
-
-                    GC.KeepAlive(_resControlCallback);
-
-                    return resourceControls;
                 }
+
+                GC.KeepAlive(cb);
+
+                return resourceControls;
             }
         }
 
