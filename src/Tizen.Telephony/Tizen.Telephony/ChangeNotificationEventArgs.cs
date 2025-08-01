@@ -24,7 +24,7 @@ namespace Tizen.Telephony
     /// real-time awareness of critical telephony and network conditions, enhancing overall user experience.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public class ChangeNotificationEventArgs : EventArgs
     {
         internal ChangeNotificationEventArgs(Notification noti, object data)
@@ -37,7 +37,7 @@ namespace Tizen.Telephony
         /// Enumeration for the Telephony Notification.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public enum Notification
         {
             /// <summary>
@@ -307,7 +307,7 @@ namespace Tizen.Telephony
         /// The Telephony Notification type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public Notification NotificationType
         {
             get;
@@ -318,7 +318,7 @@ namespace Tizen.Telephony
         /// The data as per the Notification type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public object NotificationData
         {
             get;

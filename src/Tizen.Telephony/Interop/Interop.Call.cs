@@ -26,35 +26,36 @@ internal static partial class Interop
 {
     /// <summary>
     /// The Call Interop class.
+    /// Deprecated since API13.
     /// </summary>
     internal static partial class Call
     {
         [DllImport(Libraries.Telephony, EntryPoint = "telephony_call_get_preferred_voice_subscription")]
-        internal static extern Telephony.TelephonyError GetPreferredVoiceSubscription(IntPtr handle, out CallPreferredVoiceSubscription callSub); // Deprecated since API13
+        internal static extern Telephony.TelephonyError GetPreferredVoiceSubscription(IntPtr handle, out CallPreferredVoiceSubscription callSub);
 
         [DllImport(Libraries.Telephony, EntryPoint = "telephony_call_get_call_list")]
-        internal static extern Telephony.TelephonyError GetCallList(IntPtr handle, out uint count, out IntPtr callList); // Deprecated since API13
+        internal static extern Telephony.TelephonyError GetCallList(IntPtr handle, out uint count, out IntPtr callList);
 
         [DllImport(Libraries.Telephony, EntryPoint = "telephony_call_release_call_list")]
-        internal static extern Telephony.TelephonyError ReleaseCallList(uint count, ref IntPtr callList); // Deprecated since API13
+        internal static extern Telephony.TelephonyError ReleaseCallList(uint count, ref IntPtr callList);
 
         [DllImport(Libraries.Telephony, EntryPoint = "telephony_call_get_handle_id")]
-        internal static extern Telephony.TelephonyError GetHandleId(IntPtr callHandle, out uint handleId); // Deprecated since API13
+        internal static extern Telephony.TelephonyError GetHandleId(IntPtr callHandle, out uint handleId);
 
         [DllImport(Libraries.Telephony, EntryPoint = "telephony_call_get_number")]
-        internal static extern Telephony.TelephonyError GetNumber(IntPtr callHandle, out string number); // Deprecated since API13
+        internal static extern Telephony.TelephonyError GetNumber(IntPtr callHandle, out string number);
 
         [DllImport(Libraries.Telephony, EntryPoint = "telephony_call_get_type")]
-        internal static extern Telephony.TelephonyError GetType(IntPtr callHandle, out CallType type); // Deprecated since API13
+        internal static extern Telephony.TelephonyError GetType(IntPtr callHandle, out CallType type);
 
         [DllImport(Libraries.Telephony, EntryPoint = "telephony_call_get_status")]
-        internal static extern Telephony.TelephonyError GetStatus(IntPtr callHandle, out CallStatus status); // Deprecated since API13
+        internal static extern Telephony.TelephonyError GetStatus(IntPtr callHandle, out CallStatus status);
 
         [DllImport(Libraries.Telephony, EntryPoint = "telephony_call_get_direction")]
-        internal static extern Telephony.TelephonyError GetDirection(IntPtr callHandle, out CallDirection direction); // Deprecated since API13
+        internal static extern Telephony.TelephonyError GetDirection(IntPtr callHandle, out CallDirection direction);
 
         [DllImport(Libraries.Telephony, EntryPoint = "telephony_call_get_conference_status")]
-        internal static extern Telephony.TelephonyError GetConferenceStatus(IntPtr callHandle, out bool conferenceStatus); // Deprecated since API13
+        internal static extern Telephony.TelephonyError GetConferenceStatus(IntPtr callHandle, out bool conferenceStatus);
 
         internal sealed class SafeCallList : SafeHandle
         {

@@ -24,43 +24,44 @@ internal static partial class Interop
 {
     /// <summary>
     /// The SIM Interop class.
+    /// Deprecated since API13.
     /// </summary>
     internal static partial class Sim
   {
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_sim_get_icc_id")]
-    internal static extern Telephony.TelephonyError GetIccId(IntPtr handle, out string iccId); // Deprecated since API13
+    internal static extern Telephony.TelephonyError GetIccId(IntPtr handle, out string iccId);
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_sim_get_operator")]
-    internal static extern Telephony.TelephonyError GetOperator(IntPtr handle, out string simOperator); // Deprecated since API13
+    internal static extern Telephony.TelephonyError GetOperator(IntPtr handle, out string simOperator);
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_sim_get_msin")]
-    internal static extern Telephony.TelephonyError GetMsin(IntPtr handle, out string msin); // Deprecated since API13
+    internal static extern Telephony.TelephonyError GetMsin(IntPtr handle, out string msin);
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_sim_get_spn")]
-    internal static extern Telephony.TelephonyError GetSpn(IntPtr handle, out string spn); // Deprecated since API13
+    internal static extern Telephony.TelephonyError GetSpn(IntPtr handle, out string spn);
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_sim_is_changed")]
-    internal static extern Telephony.TelephonyError IsChanged(IntPtr handle, out int isChanged); // Deprecated since API13
+    internal static extern Telephony.TelephonyError IsChanged(IntPtr handle, out int isChanged);
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_sim_get_state")]
-    internal static extern Telephony.TelephonyError GetState(IntPtr handle, out Tizen.Telephony.Sim.State simState); // Deprecated since API13
+    internal static extern Telephony.TelephonyError GetState(IntPtr handle, out Tizen.Telephony.Sim.State simState);
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_sim_get_application_list")]
-    internal static extern Telephony.TelephonyError GetApplicationList(IntPtr handle, out uint appList); // Deprecated since API13
+    internal static extern Telephony.TelephonyError GetApplicationList(IntPtr handle, out uint appList);
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_sim_get_subscriber_number")]
-    internal static extern Telephony.TelephonyError GetSubscriberNumber(IntPtr handle, out string subscriberNumber); // Deprecated since API13
+    internal static extern Telephony.TelephonyError GetSubscriberNumber(IntPtr handle, out string subscriberNumber);
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_sim_get_subscriber_id")]
-    internal static extern Telephony.TelephonyError GetSubscriberId(IntPtr handle, out string subscriberId); // Deprecated since API13
+    internal static extern Telephony.TelephonyError GetSubscriberId(IntPtr handle, out string subscriberId);
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_sim_get_lock_state")]
-    internal static extern Telephony.TelephonyError GetLockState(IntPtr handle, out Tizen.Telephony.Sim.LockState lockState); // Deprecated since API13
+    internal static extern Telephony.TelephonyError GetLockState(IntPtr handle, out Tizen.Telephony.Sim.LockState lockState);
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_sim_get_group_id1")]
-    internal static extern Telephony.TelephonyError GetGroupId1(IntPtr handle, out string gid1); // Deprecated since API13
+    internal static extern Telephony.TelephonyError GetGroupId1(IntPtr handle, out string gid1);
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_sim_get_call_forwarding_indicator_state")]
-    internal static extern Telephony.TelephonyError GetCallForwardingIndicatorState(IntPtr handle, out bool state); // Deprecated since API13
+    internal static extern Telephony.TelephonyError GetCallForwardingIndicatorState(IntPtr handle, out bool state);
   }
 }

@@ -26,7 +26,7 @@ namespace Tizen.Telephony
     /// developers can gather valuable information about the SIM card and incorporate it into their applications effectively.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public class Sim
     {
         internal IntPtr _handle;
@@ -43,7 +43,7 @@ namespace Tizen.Telephony
         /// <exception cref="ArgumentNullException">
         /// This exception occurs if the handle provided is null.
         /// </exception>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public Sim(SlotHandle handle)
         {
             if (handle == null)
@@ -58,7 +58,7 @@ namespace Tizen.Telephony
         /// Enumeration for the state of the SIM card.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public enum State
         {
             /// <summary>
@@ -83,7 +83,7 @@ namespace Tizen.Telephony
         /// Enumeration for the lock state of the SIM card.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public enum LockState
         {
             /// <summary>
@@ -112,7 +112,7 @@ namespace Tizen.Telephony
         /// Enumeration for the type of the SIM card.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public enum ApplicationType
         {
             /// <summary>
@@ -152,7 +152,7 @@ namespace Tizen.Telephony
         /// <precondition>
         /// The SIM state must be Available.
         /// </precondition>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public string IccId
         {
             get
@@ -182,7 +182,7 @@ namespace Tizen.Telephony
         /// <precondition>
         /// The SIM state must be Available.
         /// </precondition>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public string Operator
         {
             get
@@ -211,7 +211,7 @@ namespace Tizen.Telephony
         /// <precondition>
         /// The SIM state must be Available.
         /// </precondition>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public string Msin
         {
             get
@@ -241,7 +241,7 @@ namespace Tizen.Telephony
         /// <precondition>
         /// The SIM state must be Available.
         /// </precondition>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public string Spn
         {
             get
@@ -269,7 +269,7 @@ namespace Tizen.Telephony
         /// <precondition>
         /// The SIM state must be Available.
         /// </precondition>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public bool IsChanged
         {
             get
@@ -300,7 +300,7 @@ namespace Tizen.Telephony
         /// <value>
         /// The current state of the SIM.
         /// </value>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public State CurrentState
         {
             get
@@ -329,7 +329,7 @@ namespace Tizen.Telephony
         /// <precondition>
         /// The SIM state must be Available.
         /// </precondition>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public uint ApplicationList
         {
             get
@@ -359,7 +359,7 @@ namespace Tizen.Telephony
         /// <precondition>
         /// The SIM state must be Available.
         /// </precondition>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public string SubscriberNumber
         {
             get
@@ -388,7 +388,7 @@ namespace Tizen.Telephony
         /// <precondition>
         /// The SIM state must be Available.
         /// </precondition>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public string SubscriberId
         {
             get
@@ -416,7 +416,7 @@ namespace Tizen.Telephony
         /// <precondition>
         /// The SIM state must be Available.
         /// </precondition>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public LockState CurrentLockState
         {
             get
@@ -446,7 +446,7 @@ namespace Tizen.Telephony
         /// <precondition>
         /// The SIM state must be Available.
         /// </precondition>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public string GroupId1
         {
             get
@@ -475,7 +475,7 @@ namespace Tizen.Telephony
         /// <precondition>
         /// The SIM state must be Available.
         /// </precondition>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public bool CallForwardingIndicatorState
         {
             get

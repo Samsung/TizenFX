@@ -21,7 +21,7 @@ namespace Tizen.Telephony
     /// This class contains the data related to the State changed event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public class StateEventArgs : EventArgs
     {
         internal StateEventArgs(State s)
@@ -33,7 +33,7 @@ namespace Tizen.Telephony
         /// The Current State.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// [Obsolete("Deprecated since API13, will be removed in API15.")]
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public State CurrentState
         {
             get;

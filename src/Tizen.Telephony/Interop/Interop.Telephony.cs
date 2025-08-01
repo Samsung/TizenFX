@@ -26,6 +26,7 @@ internal static partial class Interop
 {
     /// <summary>
     /// The Telephony Interop class.
+    /// Deprecated since API13.
     /// </summary>
     internal static class Telephony
   {
@@ -53,25 +54,25 @@ internal static partial class Interop
     };
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_set_noti_cb")]
-    internal static extern TelephonyError TelephonySetNotiCb(IntPtr handle, Tizen.Telephony.ChangeNotificationEventArgs.Notification notiId, NotificationCallback cb, IntPtr userData); // Deprecated since API13
+    internal static extern TelephonyError TelephonySetNotiCb(IntPtr handle, Tizen.Telephony.ChangeNotificationEventArgs.Notification notiId, NotificationCallback cb, IntPtr userData);
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_unset_noti_cb")]
-    internal static extern TelephonyError TelephonyUnsetNotiCb(IntPtr handle, Tizen.Telephony.ChangeNotificationEventArgs.Notification notiId); // Deprecated since API13
+    internal static extern TelephonyError TelephonyUnsetNotiCb(IntPtr handle, Tizen.Telephony.ChangeNotificationEventArgs.Notification notiId);
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_init")]
-    internal static extern TelephonyError TelephonyInit(out HandleList list); // Deprecated since API13
+    internal static extern TelephonyError TelephonyInit(out HandleList list);
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_deinit")]
-    internal static extern TelephonyError TelephonyDeinit(ref HandleList list); // Deprecated since API13
+    internal static extern TelephonyError TelephonyDeinit(ref HandleList list);
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_get_state")]
-    internal static extern TelephonyError TelephonyGetState(out State state); // Deprecated since API13
+    internal static extern TelephonyError TelephonyGetState(out State state);
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_set_state_changed_cb")]
-    internal static extern TelephonyError TelephonySetStateChangedCb(StateChangedCallback callback, IntPtr userData); // Deprecated since API13
+    internal static extern TelephonyError TelephonySetStateChangedCb(StateChangedCallback callback, IntPtr userData);
 
     [DllImport(Libraries.Telephony, EntryPoint = "telephony_unset_state_changed_cb")]
-    internal static extern TelephonyError TelephonyUnsetStateChangedCb(StateChangedCallback callback); // Deprecated since API13
+    internal static extern TelephonyError TelephonyUnsetStateChangedCb(StateChangedCallback callback);
 
     [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
     internal delegate void NotificationCallback(IntPtr handle, ChangeNotificationEventArgs.Notification notiId, IntPtr data, IntPtr userData);
