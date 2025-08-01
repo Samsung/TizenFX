@@ -46,7 +46,7 @@ namespace Tizen.NUI
         private Touch internalLastTouchEvent;
         private Hover internalLastHoverEvent;
         private Timer internalHoverTimer;
-
+        private Dictionary<Type, object> _attached;
         private static int aliveCount;
 
         static internal bool IsSupportedMultiWindow()
@@ -2753,6 +2753,24 @@ namespace Tizen.NUI
             Extents ret = new Extents(Interop.Window.GetInsets(SwigCPtr, (int)insetsFlags), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        internal T GetAttached<T>()
+        {
+            if (_attached != null && _attached.ContainsKey(typeof(T)))
+                return (T)_attached[typeof(T)];
+            return default;
+        }
+
+        internal void ClearAttached<T>()
+        {
+            _attached?.Remove(typeof(T));
+        }
+
+        internal void SetAttached<T>(T value)
+        {
+            _attached ??= new Dictionary<Type, object>();
+            _attached[typeof(T)] = value;
         }
 
         IntPtr IWindowProvider.WindowHandle => GetNativeWindowHandler();
