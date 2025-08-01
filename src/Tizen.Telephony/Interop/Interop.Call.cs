@@ -26,6 +26,7 @@ internal static partial class Interop
 {
     /// <summary>
     /// The Call Interop class.
+    /// Deprecated since API13.
     /// </summary>
     internal static partial class Call
     {
