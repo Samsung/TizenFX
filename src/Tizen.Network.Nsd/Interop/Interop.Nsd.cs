@@ -77,6 +77,8 @@ internal static partial class Interop
             internal static extern int GetAllTxtRecord(uint service, out ushort length, out IntPtr value);
         }
 
+        // Deprecated since API13
+        // ssdp
         internal static class Ssdp
         {
             //Callback for event
