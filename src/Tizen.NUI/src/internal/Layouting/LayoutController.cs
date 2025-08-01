@@ -50,6 +50,36 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Invoked when the layouting is finished.
+        /// </summary>
+        public event EventHandler Finished;
+
+        /// <summary>
+        /// Gets the owner window.
+        /// </summary>
+        public Window Owner => window;
+
+        /// <summary>
+        /// Gets or sets the extra width of root.
+        /// </summary>
+        public float ExtraWidth { get; set; }
+
+        /// <summary>
+        /// Gets or sets the extra height of root.
+        /// </summary>
+        public float ExtraHeight { get; set; }
+
+        /// <summary>
+        /// Gets or sets the offset x of root.
+        /// </summary>
+        public float OffsetX { get; set; }
+
+        /// <summary>
+        /// Gets or sets the offset y of root.
+        /// </summary>
+        public float OffsetY { get; set; }
+
+        /// <summary>
         /// Dispose Explicit or Implicit
         /// </summary>
         protected override void Dispose(DisposeTypes type)
@@ -126,19 +156,21 @@ namespace Tizen.NUI
         {
             window.LayersChildren?.ForEach(layer =>
             {
-                if(layer?.LayoutCount > 0)
+                if (layer?.LayoutCount > 0)
                 {
                     layer?.Children?.ForEach(view =>
                     {
                         if (view != null)
                         {
-                            FindRootLayouts(view, windowWidth, windowHeight);
+                            FindRootLayouts(view, windowWidth + ExtraWidth, windowHeight + ExtraHeight);
                         }
                     });
                 }
             });
 
             transitionManager.SetupCoreAndPlayAnimation();
+
+            Finished?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -250,8 +282,8 @@ namespace Tizen.NUI
                     MeasureHierarchy(root, widthSpec, heightSpec);
                 }
 
-                float positionX = root.PositionX;
-                float positionY = root.PositionY;
+                float positionX = root.PositionX + OffsetX;
+                float positionY = root.PositionY + OffsetY;
                 // Start at root which was just measured.
                 PerformLayout(root, new LayoutLength(positionX),
                                      new LayoutLength(positionY),
