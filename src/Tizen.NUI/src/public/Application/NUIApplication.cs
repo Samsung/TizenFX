@@ -33,6 +33,8 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class NUIApplication : CoreApplication
     {
+        private static bool _isUsingXaml = true;
+
         /// <summary>
         /// Set to true if XAML is used.
         /// This must be called before or immediately after the NUIApplication constructor is called.
@@ -42,7 +44,21 @@ namespace Tizen.NUI
         /// This must be called before or immediately after the NUIApplication constructor is called.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public bool IsUsingXaml { get; set; } = true;
+        static public bool IsUsingXaml
+        {
+            get
+            {
+                return _isUsingXaml;
+            }
+            set
+            {
+                if (_isUsingXaml != value)
+                {
+                    Tizen.Log.Info("NUI", $"IsUsingXaml changed to {value}");
+                    _isUsingXaml = value;
+                }
+            }
+        }
 
         /// <summary>
         /// Set to true if NUI ThemeManager is used.
