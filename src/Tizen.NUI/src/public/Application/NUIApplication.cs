@@ -83,7 +83,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Whether current system support to create view at Preload time.
         /// </summary>
-        internal static bool SupportPreInitializedCreation { get; private set; } = Interop.Application.IsSupportPreInitializedCreation();
+        internal static bool SupportPreInitializedCreation { get; private set; }
 
         /// <summary>
         /// The border window
@@ -805,6 +805,7 @@ namespace Tizen.NUI
         static public void Preload()
         {
             Interop.Application.PreInitialize();
+            SupportPreInitializedCreation = Interop.Application.IsSupportPreInitializedCreation();
             Tizen.Log.Info("NUI", $"Support preload time view creation? {SupportPreInitializedCreation}\n");
 
             // Initialize some static utility
