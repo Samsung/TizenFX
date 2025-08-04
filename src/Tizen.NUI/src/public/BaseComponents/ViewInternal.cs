@@ -1539,6 +1539,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void InitializeStyle(ViewStyle style = null)
         {
+            if (!NUIApplication.IsPreload && NUIApplication.SupportPreInitializedCreation)
+            {
+                // TODO : Since we should not call ThemeManager at Preload timing, we should return here.
+                return;
+            }
+
             if (style == null && ThemeManager.InitialThemeDisabled)
             {
                 // Fast return in most TV cases.
