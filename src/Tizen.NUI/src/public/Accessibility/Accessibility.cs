@@ -202,6 +202,32 @@ namespace Tizen.NUI.Accessibility
         }
 
         /// <summary>
+        /// Sets a custom highlight overlay at the specified position and size.
+        /// This functionality is only applicable when the CustomHighlight Overlay is a child of the scene-view.  
+        /// In other words, the position and size of the highlight indicator can only be set if the CustomHighlight Overlay is part of the scene-view. 
+        /// </summary>
+        /// <param name="position">A Position2D representing the position of the overlay</param>
+        /// <param name="size">A Size2D representing the size of the overlay</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetCustomHighlightOverlay(View view, Position2D position, Size2D size)
+        {
+            Interop.ControlDevel.SetCustomHighlightOverlay(View.getCPtr(view), Position2D.getCPtr(position), Position2D.getCPtr(size));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Resets the custom highlight overlay
+        /// This functionality is only applicable when the CustomHighlight Overlay is a child of the scene-view.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void ResetCustomHighlightOverlay(View view)
+        {
+            Interop.ControlDevel.ResetCustomHighlightOverlay(View.getCPtr(view));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        /// <summary>
         ///  Get highligted View.
         /// </summary>
         /// <returns>The currently highlighted view.</returns>
