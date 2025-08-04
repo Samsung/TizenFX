@@ -21,6 +21,7 @@ using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 using Tizen.NUI.Scene3D;
 using System.Collections.Generic;
+using Tizen.NUI.Accessibility;
 
 class Scene3DSample : NUIApplication
 {
@@ -34,6 +35,7 @@ class Scene3DSample : NUIApplication
     Model mModel;
     Animation mModelAnimation;
     bool mModelLoadFinished;
+    bool mIsCustomOverlay = false;
 
     // Note : This motion data works well only if model is MorthStressTest!
     MotionData mStaticMotionData;
@@ -159,6 +161,7 @@ class Scene3DSample : NUIApplication
         SetupSceneViewCamera(mSceneView);
 
         mWindow.Add(mSceneView);
+
     }
     private void SetupSceneViewCamera(SceneView sceneView)
     {
@@ -229,7 +232,11 @@ class Scene3DSample : NUIApplication
         mModel = new Model(MODEL_DIR + modelUrl)
         {
             Name = modelUrl,
+            AccessibilityName = "Model",
+            AccessibilityRole = Role.Image,
+            AccessibilityHighlightable = true,
         };
+
         mModel.ResourcesLoaded += (s, e) =>
         {
             Model model = s as Model;
@@ -471,6 +478,21 @@ class Scene3DSample : NUIApplication
                             }
                         }
                     }
+                    break;
+                }
+                case "a":
+                {
+                    if (!mIsCustomOverlay)
+                    {
+                        var newSize = new Size2D(500, 500);
+                        var newPosition = new Position2D(100, 100);
+                        Accessibility.SetCustomHighlightOverlay(mModel, newPosition, newSize);
+                    } 
+                    else
+                    {
+                        Accessibility.ResetCustomHighlightOverlay(mModel);
+                    }
+                    mIsCustomOverlay = !mIsCustomOverlay;
                     break;
                 }
             }
