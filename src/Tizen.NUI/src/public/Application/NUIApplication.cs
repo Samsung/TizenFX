@@ -556,8 +556,8 @@ namespace Tizen.NUI
         public override void Run(string[] args)
         {
             Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
-            Backend.AddEventHandler(EventType.Resumed, OnResume);
-            Backend.AddEventHandler(EventType.Paused, OnPause);
+            Backend.AddEventHandler(EventType.Resumed, ResumeHandler);
+            Backend.AddEventHandler(EventType.Paused, PauseHandler);
             base.Run(args);
         }
 
@@ -736,8 +736,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPause()
         {
-            currentState = States.Paused;
-            Paused?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -746,8 +744,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnResume()
         {
-            currentState = States.Resumed;
-            Resumed?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -858,6 +854,20 @@ namespace Tizen.NUI
         {
             borderEnabled = true;
             this.borderInterface = borderInterface;
+        }
+
+        private void ResumeHandler()
+        {
+            currentState = States.Resumed;
+            OnResume();
+            Resumed?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void PauseHandler()
+        {
+            currentState = States.Paused;
+            OnPause();
+            Paused?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
