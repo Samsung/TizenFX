@@ -212,7 +212,8 @@ namespace Tizen.NUI.BaseComponents
             // Do not call View.Preload(), since we already call it
             if (NUIApplication.SupportPreInitializedCreation)
             {
-                using var temp = new TextEditor();
+                using var temp = new TextEditor(Interop.TextEditor.New(true), true);
+                using var temp2 = new TextEditor(Interop.TextEditor.New(false), true);
             }
 
             Property.Preload();

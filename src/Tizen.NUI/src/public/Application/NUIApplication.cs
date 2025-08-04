@@ -812,6 +812,8 @@ namespace Tizen.NUI
             // Initialize some BaseComponent static variables now
             BaseComponents.View.Preload();
             BaseComponents.ImageView.Preload();
+            BaseComponents.LottieAnimationView.Preload();
+            BaseComponents.AnimatedVectorImageView.Preload();
             BaseComponents.TextLabel.Preload();
             BaseComponents.TextEditor.Preload();
             BaseComponents.TextField.Preload();
@@ -823,7 +825,6 @@ namespace Tizen.NUI
             if (SupportPreInitializedCreation)
             {
                 _ = FocusManager.Instance;
-                _ = ThemeManager.PlatformThemeId;
             }
 
             // Initialize exception tasks. It must be called end of Preload()

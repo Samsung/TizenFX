@@ -295,7 +295,8 @@ namespace Tizen.NUI.BaseComponents
             // Do not call View.Preload(), since we already call it
             if (NUIApplication.SupportPreInitializedCreation)
             {
-                using var temp = new TextLabel();
+                using var temp = new TextLabel(Interop.TextLabel.New(true), true);
+                using var temp2 = new TextLabel(Interop.TextLabel.New(false), true);
             }
 
             Property.Preload();
