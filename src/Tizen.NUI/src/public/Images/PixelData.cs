@@ -110,8 +110,21 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageUrl GenerateUrl()
         {
-            ImageUrl ret = new ImageUrl(Interop.PixelData.GenerateUrl(this.SwigCPtr.Handle), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+            return GenerateUrl(false);
+        }
+
+        /// <summary>
+        /// Generate Url from pixel data with pre-multiplied by alpha information.
+        /// </summary>
+        /// <remarks>
+        /// This API should not be called at worker thread.
+        /// </remarks>
+        /// <param name="preMultiplied">The raw pixel data pre-multiplied by alpha.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageUrl GenerateUrl(bool preMultiplied)
+        {
+            ImageUrl ret = new ImageUrl(Interop.PixelData.GenerateUrl(this.SwigCPtr.Handle, preMultiplied), true);
+            NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
 

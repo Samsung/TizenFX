@@ -133,8 +133,22 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override ImageUrl GenerateUrl()
         {
-            ImageUrl ret = new ImageUrl(Interop.NativeImageQueue.GenerateUrl(this.SwigCPtr.Handle), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return GenerateUrl(false);
+        }
+
+        /// <summary>
+        /// Generate Url from native image queue with pre-multiplied by alpha information.
+        /// </summary>
+        /// <remarks>
+        /// This API should not be called at worker thread.
+        /// </remarks>
+        /// <param name="preMultiplied">The raw pixel data pre-multiplied by alpha.</param>
+        /// <returns>The ImageUrl of NativeImageQueue.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override ImageUrl GenerateUrl(bool preMultiplied)
+        {
+            ImageUrl ret = new ImageUrl(Interop.NativeImageQueue.GenerateUrl(this.SwigCPtr.Handle, preMultiplied), true);
+            NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
 

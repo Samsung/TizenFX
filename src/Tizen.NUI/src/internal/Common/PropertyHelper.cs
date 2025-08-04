@@ -38,12 +38,6 @@ namespace Tizen.NUI
             { "boxShadow.CornerSquareness", new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerSquareness, ObjectIntToFloat) },
             { "boxShadow.Offset",           new VisualPropertyData(View.Property.SHADOW, (int)VisualTransformPropertyType.Offset) },
             { "boxShadow.Opacity",          new VisualPropertyData(View.Property.SHADOW, Visual.Property.Opacity, ObjectIntToFloat) },
-            { "cornerRadius",               new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.CornerRadius, null, null,
-                                            new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, null, null,
-                                            new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.CornerRadius, null, null))) },
-            { "cornerSquareness",           new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.CornerSquareness, null, null,
-                                            new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerSquareness, null, null,
-                                            new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.CornerSquareness, null, null))) },
             { "borderlineWidth",            new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.BorderlineWidth, ObjectIntToFloat, null,
                                             new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.BorderlineWidth, ObjectIntToFloat, null)) },
             { "borderlineColor",            new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.BorderlineColor, null, null,
@@ -65,12 +59,6 @@ namespace Tizen.NUI
             { "BoxShadow.CornerSquareness", new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerSquareness, ObjectIntToFloat) },
             { "BoxShadow.Offset",           new VisualPropertyData(View.Property.SHADOW, (int)VisualTransformPropertyType.Offset) },
             { "BoxShadow.Opacity",          new VisualPropertyData(View.Property.SHADOW, Visual.Property.Opacity, ObjectIntToFloat) },
-            { "CornerRadius",               new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.CornerRadius, null, null,
-                                            new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, null, null,
-                                            new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.CornerRadius, null, null))) },
-            { "CornerSquareness",           new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.CornerSquareness, null, null,
-                                            new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerSquareness, null, null,
-                                            new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.CornerSquareness, null, null))) },
             { "BorderlineWidth",            new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.BorderlineWidth, ObjectIntToFloat, null,
                                             new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.BorderlineWidth, ObjectIntToFloat, null)) },
             { "BorderlineColor",            new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.BorderlineColor, null, null,
@@ -81,6 +69,13 @@ namespace Tizen.NUI
             { "Shadow.CornerRadius",        new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
             { "Shadow.CornerSquareness",    new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerSquareness, ObjectIntToFloat) },
             { "Gradient.StartOffset",       new VisualPropertyData(View.Property.BACKGROUND, GradientVisualProperty.StartOffset, ObjectIntToFloat) },
+        };
+        private static readonly Dictionary<string, string> viewPropertySynonymTable = new Dictionary<string, string>()
+        {
+            { "cornerRadius", "viewCornerRadius" },
+            { "CornerRadius", "viewCornerRadius" },
+            { "cornerSquareness", "viewCornerSquareness" },
+            { "CornerSquareness", "viewCornerSquareness" },
         };
 
         static PropertyHelper() { }
@@ -106,6 +101,11 @@ namespace Tizen.NUI
         {
             if(animatable is View)
             {
+                if (viewPropertySynonymTable.TryGetValue(stringProperty, out var stringSynonym))
+                {
+                    stringProperty = stringSynonym;
+                }
+
                 View view = animatable as View;
                 return SearchProperty(view, stringProperty) ?? SearchVisualProperty(view, stringProperty);
             }
