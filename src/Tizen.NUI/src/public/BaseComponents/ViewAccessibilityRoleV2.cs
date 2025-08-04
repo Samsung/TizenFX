@@ -167,5 +167,15 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Toolbar,
+        /// <summary>
+        /// a Scene3D
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Scene3D,
+        /// <summary>
+        /// a model
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Model
     }
 }
