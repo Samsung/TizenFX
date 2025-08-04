@@ -165,6 +165,14 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Accessible_SetHighlightActor")]
             public static extern void DaliAccessibilityAccessibleSetHighlightActor(HandleRef arg1);
 
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_SetCustomHighlightOverlay")]
+            public static extern void SetCustomHighlightOverlay(global::System.Runtime.InteropServices.HandleRef control, global::System.Runtime.InteropServices.HandleRef position, global::System.Runtime.InteropServices.HandleRef size);
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_ResetCustomHighlightOverlay")]
+            public static extern void ResetCustomHighlightOverlay(global::System.Runtime.InteropServices.HandleRef control);
+
             // Keep this structure layout binary compatible with the respective C++ structure!
             [EditorBrowsable(EditorBrowsableState.Never)]
             [StructLayout(LayoutKind.Sequential)]
