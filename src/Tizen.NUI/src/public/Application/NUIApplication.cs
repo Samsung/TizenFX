@@ -808,7 +808,8 @@ namespace Tizen.NUI
             Tizen.Log.Info("NUI", $"Support preload time view creation? {SupportPreInitializedCreation}\n");
 
             // Initialize some static utility
-            var disposalbeQueue = DisposeQueue.Instance;
+            var disposableQueue = DisposeQueue.Instance;
+            var processorController = ProcessorController.Instance;
             var registry = Registry.Instance;
 
             // Initialize some BaseComponent static variables now
