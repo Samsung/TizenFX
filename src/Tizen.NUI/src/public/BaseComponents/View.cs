@@ -464,7 +464,13 @@ namespace Tizen.NUI.BaseComponents
         {
             if (NUIApplication.SupportPreInitializedCreation)
             {
-                using var temp = new View();
+                using var temp = new View()
+                {
+                    BackgroundColor = Color.Transparent,
+                };
+#if !PROFILE_TV
+                using var temp2 = new View(ViewResizePolicyMode.Ignore);
+#endif
             }
 
             Container.Preload();

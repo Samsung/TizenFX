@@ -541,7 +541,7 @@ namespace Tizen.NUI
         {
             PropertySet?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-            if (!ThemeManager.InitialThemeDisabled && ChangedPropertiesSetExcludingStyle != null)
+            if (ChangedPropertiesSetExcludingStyle != null && !ThemeManager.InitialThemeDisabled)
             {
                 ChangedPropertiesSetExcludingStyle.Add(propertyName);
             }
