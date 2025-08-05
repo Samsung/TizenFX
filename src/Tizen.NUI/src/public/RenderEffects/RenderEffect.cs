@@ -135,6 +135,10 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="blurRadius">The blur radius value. The unit is pixel for standard cases.</param>
         /// <returns>Background blur effect with given blur radius.</returns>
+        /// <remarks>
+        /// For performance, blur radius is internally recalculated. It should be greater than or equal to (4 / downscale factor).
+        /// As default downscale factor is set to 0.25, minimum initial blurRadius is 16u.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static BackgroundBlurEffect CreateBackgroundBlurEffect(float blurRadius)
         {
@@ -146,6 +150,10 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="blurRadius">The blur radius value. The unit is pixel for standard cases.</param>
         /// <returns>Blur effect with given blur radius.</returns>
+        /// <remarks>
+        /// For performance, blur radius is internally recalculated. It should be greater than or equal to (4 / downscale factor).
+        /// As default downscale factor is set to 0.25, minimum initial blurRadius is 16u.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static GaussianBlurEffect CreateGaussianBlurEffect(float blurRadius)
         {
