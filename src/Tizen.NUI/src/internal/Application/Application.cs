@@ -731,6 +731,8 @@ namespace Tizen.NUI
         // Callback for Application InitSignal
         private void OnApplicationInit(IntPtr data)
         {
+            Log.Info("NUI", $"[NUI] Preload : {NUIApplication.IsPreload} Support preload time view creation : {NUIApplication.SupportPreInitializedCreation}\n");
+
             Log.Info("NUI", "[NUI] OnApplicationInit: ProcessorController Initialize");
             Tizen.Tracer.Begin("[NUI] OnApplicationInit: ProcessorController Initialize");
             ProcessorController.Instance.Initialize();

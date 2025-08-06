@@ -802,7 +802,6 @@ namespace Tizen.NUI
         {
             Interop.Application.PreInitialize();
             SupportPreInitializedCreation = Interop.Application.IsSupportPreInitializedCreation();
-            Tizen.Log.Info("NUI", $"Support preload time view creation? {SupportPreInitializedCreation}\n");
 
             // Initialize some static utility
             var disposableQueue = DisposeQueue.Instance;
