@@ -90,10 +90,6 @@ namespace Tizen.NUI.BaseComponents
         static internal new void Preload()
         {
             // Do not call View.Preload(), since we already call it
-            if (NUIApplication.SupportPreInitializedCreation)
-            {
-                using var temp = new ImageView();
-            }
 
             Property.Preload();
             // Do nothing. Just call for load static values.
