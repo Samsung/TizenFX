@@ -32,27 +32,27 @@ namespace Tizen.NUI.BaseComponents
         /// Indicates whether the view is enabled or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Enabled = 0,
+        Enabled = 1 << 0,
         /// <summary>
         /// Indicates whether a selectable element is currently selected or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Selected = 1,
+        Selected = 1 << 1,
         /// <summary>
         /// Indicates the state of a checkable element.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Checked = 1 << 1,
+        Checked = 1 << 2,
         /// <summary>
         /// Indicates whether an element is currently busy or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Busy = 1 << 2,
+        Busy = 1 << 3,
         /// <summary>
         /// Indicates whether an expandable element is currently expanded or collapsed.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Expanded = 1 << 3
+        Expanded = 1 << 4
     }
 
     /// <summary>
