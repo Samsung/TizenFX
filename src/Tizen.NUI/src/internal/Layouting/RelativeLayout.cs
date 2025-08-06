@@ -38,7 +38,7 @@ namespace Tizen.NUI
             GetRelativeOffsetTo = GetRightRelativeOffset,
             GetAlignment = GetHorizontalAlignment,
             GetFill = GetFillHorizontal,
-            GetMeasuredSize = (item) => item.MeasuredWidth.Size.AsDecimal() + item.Margin.Start + item.Margin.End
+            GetMeasuredSize = (item) => item.MeasuredWidth.Size.AsDecimal() + item.MarginStart + item.MarginEnd
         };
         private static readonly RelativePropertyGetters RelativeVerticalPropertyGetters = new RelativePropertyGetters
         {
@@ -49,7 +49,7 @@ namespace Tizen.NUI
             GetRelativeOffsetTo = GetBottomRelativeOffset,
             GetAlignment = GetVerticalAlignment,
             GetFill = GetFillVertical,
-            GetMeasuredSize = (item) => item.MeasuredHeight.Size.AsDecimal() + item.Margin.Top + item.Margin.Bottom
+            GetMeasuredSize = (item) => item.MeasuredHeight.Size.AsDecimal() + item.MarginTop + item.MarginBottom
         };
 
         delegate Relative GetRelative(View view, in float layoutSize);
@@ -192,8 +192,8 @@ namespace Tizen.NUI
 
         private (float, float) CalculateChildrenSize(float parentWidth, float parentHeight)
         {
-            int horizontalPadding = Padding.Start + Padding.End;
-            int verticalPadding = Padding.Top + Padding.Bottom;
+            int horizontalPadding = (int)(PaddingStart + PaddingEnd);
+            int verticalPadding = (int)(PaddingTop + PaddingBottom);
             int minWidth = (int)SuggestedMinimumWidth.AsDecimal() - horizontalPadding;
             int maxWidth = (int)parentWidth - verticalPadding;
             int minHeight = (int)SuggestedMinimumHeight.AsDecimal() - verticalPadding;
@@ -233,13 +233,13 @@ namespace Tizen.NUI
             return (ChildrenWidth, ChildrenHeight);
         }
 
-        private Geometry GetHorizontalSpace(View view) => GetHorizontalRelative(view, MeasuredWidth.Size.AsDecimal() - (Padding.Start + Padding.End)).spaceGeometry;
+        private Geometry GetHorizontalSpace(View view) => GetHorizontalRelative(view, MeasuredWidth.Size.AsDecimal() - (PaddingStart + PaddingEnd)).spaceGeometry;
 
-        private Geometry GetVerticalSpace(View view) => GetVerticalRelative(view, MeasuredHeight.Size.AsDecimal() - (Padding.Top + Padding.Bottom)).spaceGeometry;
+        private Geometry GetVerticalSpace(View view) => GetVerticalRelative(view, MeasuredHeight.Size.AsDecimal() - (PaddingTop + PaddingBottom)).spaceGeometry;
 
-        private Geometry GetHorizontalLayout(View view) => GetHorizontalRelative(view, MeasuredWidth.Size.AsDecimal() - (Padding.Start + Padding.End)).viewGeometry;
+        private Geometry GetHorizontalLayout(View view) => GetHorizontalRelative(view, MeasuredWidth.Size.AsDecimal() - (PaddingStart + PaddingEnd)).viewGeometry;
 
-        private Geometry GetVerticalLayout(View view) => GetVerticalRelative(view, MeasuredHeight.Size.AsDecimal() - (Padding.Top + Padding.Bottom)).viewGeometry;
+        private Geometry GetVerticalLayout(View view) => GetVerticalRelative(view, MeasuredHeight.Size.AsDecimal() - (PaddingTop + PaddingBottom)).viewGeometry;
 
         private struct Geometry
         {

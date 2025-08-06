@@ -261,7 +261,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal UIExtents GetMargin()
         {
-            return layoutExtraData?.Margin ?? 0;
+            return layoutExtraData?.Margin ?? UIExtents.Zero;
         }
 
         internal void SetMargin(UIExtents margin, bool updateMargin)
@@ -276,7 +276,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (updateMargin)
                 {
-                    Margin = new Extents(margin);
+                    SetInternalMarginValue(margin);
                 }
                 layoutExtraData.Margin = margin;
                 layoutExtraData.Layout?.RequestLayout();
@@ -285,7 +285,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal UIExtents GetPadding()
         {
-            return layoutExtraData?.Padding ?? 0;
+            return layoutExtraData?.Padding ?? UIExtents.Zero;
         }
 
         internal void SetPadding(UIExtents padding, bool updatePadding)
@@ -300,11 +300,50 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (updatePadding)
                 {
-                    Padding = new Extents(padding);
+                    SetInternalPaddingValue(padding);
                 }
                 layoutExtraData.Padding = padding;
                 layoutExtraData.Layout?.RequestLayout();
             }
         }
+
+        private UIExtents GetInternalMarginValue()
+        {
+            return Layout?.GetMargin() ?? Object.InternalRetrievingPropertyUIExtents(SwigCPtr, Property.MARGIN);
+        }
+
+        private void SetInternalMarginValue(UIExtents extents)
+        {
+            if (Layout != null)
+            {
+                Object.InternalSetPropertyUIExtents(SwigCPtr, Property.MARGIN, UIExtents.Zero);
+                Layout.SetMargin(extents);
+            }
+            else
+            {
+                Object.InternalSetPropertyUIExtents(SwigCPtr, Property.MARGIN, extents);
+            }
+        }
+
+        private UIExtents GetInternalPaddingValue()
+        {
+            return ShouldUseLayoutPadding() ? Layout.GetPadding() : Object.InternalRetrievingPropertyUIExtents(SwigCPtr, Property.PADDING);
+        }
+
+        private void SetInternalPaddingValue(UIExtents extents)
+        {
+            if (ShouldUseLayoutPadding())
+            {
+                Object.InternalSetPropertyUIExtents(SwigCPtr, Property.PADDING, UIExtents.Zero);
+                Layout.SetPadding(extents);
+            }
+            else
+            {
+                Object.InternalSetPropertyUIExtents(SwigCPtr, Property.PADDING, extents);
+                Layout?.SetPadding(UIExtents.Zero);
+            }
+        }
+
+        private bool ShouldUseLayoutPadding() => Layout != null && !Layout.IsPaddingHandledByNative();
     }
 }
