@@ -57,10 +57,6 @@ namespace Tizen.NUI.BaseComponents
         static internal new void Preload()
         {
             // Do not call ImageView.Preload(), since we already call it
-            if (NUIApplication.SupportPreInitializedCreation)
-            {
-                using var temp = new LottieAnimationView();
-            }
 
             // Do nothing. Just call for load static values.
         }
