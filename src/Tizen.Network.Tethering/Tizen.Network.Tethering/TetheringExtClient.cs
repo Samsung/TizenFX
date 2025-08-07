@@ -2,7 +2,10 @@ using System;
 
 namespace Tizen.Network.Tethering
 {
-    // TODO: Impelement IDisposable Interface 
+    /// <summary>
+    /// This class contains information related to the connected/disconnected client.
+    /// </summary>
+    /// <since_tizen> 13 </since_tizen>
     public class TetheringExtClient : IDisposable
     {
         IntPtr _client;
@@ -21,11 +24,19 @@ namespace Tizen.Network.Tethering
             _client = clonedClient;
         }
 
+        /// <summary>
+        /// Destructor function for the class.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         ~TetheringExtClient()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// This function destroys the current instance of the class.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -46,6 +57,10 @@ namespace Tizen.Network.Tethering
             _disposed = true;
         }
 
+        /// <summary>
+        /// This function returns the IP Address of the connected/disconnected client.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         public string IPAddress
         {
             get
@@ -66,6 +81,10 @@ namespace Tizen.Network.Tethering
             }
         }
 
+        /// <summary>
+        /// This function returns the MAC Address of the connected/disconnected client.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         public string MacAddress
         {
             get
@@ -85,6 +104,10 @@ namespace Tizen.Network.Tethering
             }
         }
 
+        /// <summary>
+        /// This function returns the Hostname of the connected/disconnected client.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         public string Hostname
         {
             get

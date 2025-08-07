@@ -3,28 +3,6 @@ using System;
 
 namespace Tizen.Network.Tethering
 {
-
-    internal static class EventHandlerExtension
-    {
-        internal static void SafeInvoke(this EventHandler evt, object sender, EventArgs e)
-        {
-            var handler = evt;
-            if (handler != null)
-            {
-                handler(sender, e);
-            }
-        }
-
-        internal static void SafeInvoke<T>(this EventHandler<T> evt, object sender, T e) where T : EventArgs
-        {
-            var handler = evt;
-            if (handler != null)
-            {
-                handler(sender, e);
-            }
-        }
-    }
-
     internal partial class TetheringExtManagerImpl {
         private event EventHandler<TetheringExtEnabledEventArgs> _tetheringExtEnabled;
         private event EventHandler<TetheringExtDisabledEventArgs> _tetheringExtDisabled;
@@ -146,7 +124,7 @@ namespace Tizen.Network.Tethering
             _enabledCallback = (int result, bool isRequested, IntPtr userData) =>
             {
                 TetheringExtEnabledEventArgs e = new TetheringExtEnabledEventArgs(result, isRequested);
-                _tetheringExtEnabled.SafeInvoke(null, e);
+                _tetheringExtEnabled?.Invoke(this, e);
             };
 
             int ret = Interop.TetheringExt.SetEnabledCallback(GetHandle(), _enabledCallback, IntPtr.Zero);
@@ -172,7 +150,7 @@ namespace Tizen.Network.Tethering
             _disabledCallback = (int result, TetheringDisabledCause cause, IntPtr userData) =>
             {
                 TetheringExtDisabledEventArgs e = new TetheringExtDisabledEventArgs(result, cause);
-                _tetheringExtDisabled.SafeInvoke(null, e);
+                _tetheringExtDisabled?.Invoke(this, e);
             };
 
             int ret = Interop.TetheringExt.SetDisabledCallback(GetHandle(), _disabledCallback, IntPtr.Zero);
@@ -198,7 +176,7 @@ namespace Tizen.Network.Tethering
             {
                 TetheringExtClient tetheringExtClient = new TetheringExtClient(client);
                 ConnectionStateChangedEventArgs e = new ConnectionStateChangedEventArgs(tetheringExtClient, opened);
-                _connectionStateChanged.SafeInvoke(null, e);
+                _connectionStateChanged?.Invoke(this, e);
             };
 
             int ret = Interop.TetheringExt.SetConnectionStateChangedCallback(GetHandle(), _connectionStateChangedCallback, IntPtr.Zero);

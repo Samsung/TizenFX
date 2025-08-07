@@ -18,7 +18,7 @@ namespace Tizen.Network.Tethering
         }
 
         /// <summary>
-        /// This method returs TetheringExtClient which contains information of the connected or disconected client
+        /// This method returs TetheringExtClient which contains information of the connected or disconected client.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         public TetheringExtClient Client {
@@ -29,7 +29,7 @@ namespace Tizen.Network.Tethering
         }
 
         /// <summary>
-        /// This method contains information of the connected or disconected client
+        /// This method returs whether the connection is opened or not.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         public bool isOpened {

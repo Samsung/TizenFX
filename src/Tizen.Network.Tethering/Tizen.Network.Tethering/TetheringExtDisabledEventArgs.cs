@@ -2,6 +2,10 @@ using System;
 
 namespace Tizen.Network.Tethering
 {
+    /// <summary>
+    /// This class contains Tethering disabled event data.
+    /// </summary>
+    /// <since_tizen> 13 </since_tizen>
     public class TetheringExtDisabledEventArgs : EventArgs
     {
         private int _result;
@@ -13,6 +17,10 @@ namespace Tizen.Network.Tethering
             _cause = cause;
         }
 
+        /// <summary>
+        /// This function returns wether tethering was successfully disabled or not.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         public int Result
         {
             get
@@ -21,6 +29,10 @@ namespace Tizen.Network.Tethering
             }
         }
 
+        /// <summary>
+        /// This function returns the cause for disabling of Tethering.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         public TetheringDisabledCause Cause
         {
             get
