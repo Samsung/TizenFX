@@ -224,7 +224,7 @@ namespace Tizen.NUI.BaseComponents
             var eventArgs = new AccessibilityActionReceivedEventArgs()
             {
                 ActionType = info.ActionType,
-                Target = Registry.GetManagedBaseHandleFromNativePtr(info.target) as View,
+                Target = Registry.GetManagedBaseHandleFromRefObject(info.target) as View,
                 Handled = false
             };
             _accessibilityActionReceivedHandler?.Invoke(_owner, eventArgs);
