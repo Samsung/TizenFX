@@ -22,6 +22,7 @@ namespace Tizen.Network.Nsd
     /// This class is used for managing the network service discovery using SSDP.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class SsdpBrowser : INsdBrowser
     {
         private string _target;
@@ -33,6 +34,7 @@ namespace Tizen.Network.Nsd
         /// This event is raised when the service has become available or unavailable during a service discovery using SSDP.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API level 13")]
         public event EventHandler<SsdpServiceFoundEventArgs> ServiceFound
         {
             add
@@ -54,6 +56,7 @@ namespace Tizen.Network.Nsd
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="ArgumentException">Thrown when the target is null.</exception>
         /// <exception cref="NotSupportedException">Thrown when SSDP is not supported.</exception>
+        [Obsolete("Deprecated since API level 13")]
         public SsdpBrowser(string target)
         {
             SsdpInitializer ssdpInit = Globals.s_threadSsd.Value;
@@ -78,6 +81,7 @@ namespace Tizen.Network.Nsd
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="InvalidOperationException">Thrown when any other error occured.</exception>
         /// <exception cref="NotSupportedException">Thrown when SSDP is not supported.</exception>
+        [Obsolete("Deprecated since API level 13")]
         public void StartDiscovery()
         {
             SsdpInitializer ssdpInit = Globals.s_threadSsd.Value;
@@ -110,6 +114,7 @@ namespace Tizen.Network.Nsd
         /// <exception cref="InvalidOperationException">Thrown when any other error occured.</exception>
         /// <exception cref="NotSupportedException">Thrown when SSDP is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
+        [Obsolete("Deprecated since API level 13")]
         public void StopDiscovery()
         {
             int ret = Interop.Nsd.Ssdp.StopBrowsing(_browserHandle);
