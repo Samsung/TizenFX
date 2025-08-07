@@ -731,9 +731,14 @@ namespace Tizen.NUI
         // Callback for Application InitSignal
         private void OnApplicationInit(IntPtr data)
         {
+            Log.Info("NUI", "[NUI] OnApplicationInit: ProcessorController Initialize");
+            Tizen.Tracer.Begin("[NUI] OnApplicationInit: ProcessorController Initialize");
+            ProcessorController.Instance.Initialize();
+            Tizen.Tracer.End();
+
+            // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
             Log.Info("NUI", "[NUI] OnApplicationInit: DisposeQueue Initialize");
             Tizen.Tracer.Begin("[NUI] OnApplicationInit: DisposeQueue Initialize");
-            // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
             DisposeQueue.Instance.Initialize();
             Tizen.Tracer.End();
 
@@ -742,6 +747,7 @@ namespace Tizen.NUI
             Window.Instance = Window.Default = GetWindow();
 
 #if !PROFILE_TV
+            Log.Info("NUI", "[NUI] OnApplicationInit: FocusManager.Instance");
             //tv profile never use default focus indicator, so this is not needed!
             _ = FocusManager.Instance;
 #endif

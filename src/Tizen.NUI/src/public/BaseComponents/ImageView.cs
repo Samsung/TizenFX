@@ -90,6 +90,10 @@ namespace Tizen.NUI.BaseComponents
         static internal new void Preload()
         {
             // Do not call View.Preload(), since we already call it
+            if (NUIApplication.SupportPreInitializedCreation)
+            {
+                using var temp = new ImageView();
+            }
 
             Property.Preload();
             // Do nothing. Just call for load static values.
@@ -263,15 +267,11 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(cPtr, cMemoryOwn, viewStyle)
+        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : this(cPtr, cMemoryOwn, null, shown)
         {
-            if (!shown)
-            {
-                SetVisible(false);
-            }
         }
 
-        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn, null)
+        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(cPtr, cMemoryOwn, viewStyle)
         {
             if (!shown)
             {
