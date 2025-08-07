@@ -1215,7 +1215,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// This is EventArgs type for the OobeChanged event.
+    /// This is EventArgs type for the <see cref="OobeChanged"/> event.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
     /// <privlevel>platform</privlevel>
@@ -1228,21 +1228,21 @@ namespace Tizen.System
     /// <since_tizen> 6 </since_tizen>
     public class OobeChangedEventArgs : EventArgs
     {
-        private readonly bool _oobe;
+        private readonly bool _oobeEnabled;
         internal OobeChangedEventArgs(bool val)
         {
-            _oobe = val;
+            _oobeEnabled = val;
         }
 
         /// <summary>
-        /// Indicates whether accessibility negative color is enabled on the device or not.
+        /// Indicates whether OOBE(Out Of Box Experience) is enabled on the device.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         public bool Value
         {
             get
             {
-                return _oobe;
+                return _oobeEnabled;
             }
         }
     }

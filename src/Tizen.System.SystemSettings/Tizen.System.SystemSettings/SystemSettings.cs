@@ -1192,7 +1192,7 @@ namespace Tizen.System
         /// <exception cref="InvalidOperationException">Invalid operation</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
         /// <remarks>
-        /// http://tizen.org/privilege/systemsettings.admin is needed only for setting value. When getting the value, it isn't needed.
+        /// http://tizen.org/privilege/systemsettings.admin is needed only for setting value. It is not required to get the value.
         /// </remarks>
         /// <since_tizen> 13 </since_tizen>
         public static bool Oobe
@@ -3370,7 +3370,7 @@ namespace Tizen.System
         private static event EventHandler<OobeChangedEventArgs> s_oobeChanged;
         private static readonly object s_oobeChangedLockObj = new object();
         /// <summary>
-        /// The OobeChanged event is triggered when the Oobe value is changed.
+        /// The OobeChanged event is triggered when the OOBE value is changed.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
