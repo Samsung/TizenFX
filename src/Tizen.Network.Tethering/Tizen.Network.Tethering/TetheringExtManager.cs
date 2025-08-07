@@ -15,57 +15,10 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 using System.ComponentModel;
 
 namespace Tizen.Network.Tethering
 {
-
-    /// <summary>
-    /// A class for managing the TetheringExt handle.
-    /// </summary>
-    /// <since_tizen> 13 </since_tizen>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public sealed class SafeTetheringExtManagerHandle : SafeHandle
-    {
-        private int _tid;
-
-        internal SafeTetheringExtManagerHandle() : base(IntPtr.Zero, true)
-        {
-        }
-
-        /// <summary>
-        /// Checks the validity of the handle.
-        /// </summary>
-        /// <value>Represents the validity of the handle.</value>
-        /// <since_tizen> 13 </since_tizen>
-        public override bool IsInvalid
-        {
-            get
-            {
-                return this.handle == IntPtr.Zero;
-            }
-        }
-
-        /// <summary>
-        /// Release the handle
-        /// </summary>
-        protected override bool ReleaseHandle()
-        {
-            Interop.TetheringExt.Deinitialize(this.handle);
-            this.SetHandle(IntPtr.Zero);
-            return true;
-        }
-
-        // TODO: need not to implement thread safe, can remove this
-        internal void SetTID(int id)
-        {
-            _tid = id;
-            Log.Info(Globals.LogTag, "New Handle for Thread " + _tid);
-        }
-    }
 
     /// <summary>
     /// A manager class that enables applications to create and manage a Wi-Fi hotspot, allowing devices to share an internet connection over a Wireless Local Area Network (WLAN).
@@ -126,14 +79,12 @@ namespace Tizen.Network.Tethering
         }
 
         /// <summary>
-        /// Gets the tethering safe handle.
+        /// Initializes the TetheringExt handle.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        /// <returns>The instance of the SafeTetheringExtManagerHandle.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static SafeTetheringExtManagerHandle GetTetheringExtHandle()
+        static public void Initialize()
         {
-            return TetheringExtManagerImpl.Instance.GetSafeHandle();
+            TetheringExtManagerImpl.Instance.Initialize();
         }
 
         /// <summary>
@@ -174,9 +125,12 @@ namespace Tizen.Network.Tethering
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public void SetSSID(string ssid)
+        static public string Ssid
         {
-            TetheringExtManagerImpl.Instance.SetSSID(ssid);
+            set
+            {
+                TetheringExtManagerImpl.Instance.Ssid = value;
+            }
         }
 
         /// <summary>
@@ -184,9 +138,12 @@ namespace Tizen.Network.Tethering
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public void SetPassphrase(string passphrase)
+        static public string Passphrase
         {
-            TetheringExtManagerImpl.Instance.SetPassphrase(passphrase);
+            set
+            {
+                TetheringExtManagerImpl.Instance.Passphrase = value;
+            }
         }
 
         /// <summary>

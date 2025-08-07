@@ -2,6 +2,10 @@ using System;
 
 namespace Tizen.Network.Tethering
 {
+    /// <summary>
+    /// This class contains information related to Connection State.
+    /// </summary>
+    /// <since_tizen> 13 </since_tizen>
     public class ConnectionStateChangedEventArgs : EventArgs
     {
         private TetheringExtClient _client;
@@ -13,6 +17,10 @@ namespace Tizen.Network.Tethering
             _opened = opened;
         }
 
+        /// <summary>
+        /// This method returs TetheringExtClient which contains information of the connected or disconected client
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         public TetheringExtClient Client {
             get
             {
@@ -20,6 +28,10 @@ namespace Tizen.Network.Tethering
             }
         }
 
+        /// <summary>
+        /// This method contains information of the connected or disconected client
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         public bool isOpened {
             get
             {

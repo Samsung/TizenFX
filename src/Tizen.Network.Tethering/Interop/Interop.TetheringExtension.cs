@@ -34,72 +34,72 @@ internal static partial class Interop
 
         // Tethering Manager
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_initialize")]
-        internal static extern int Initialize(out SafeTetheringExtManagerHandle tethering);
+        internal static extern int Initialize(out IntPtr tethering);
 
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_deinitialize")]
         internal static extern int Deinitialize(IntPtr tethering);
 
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_set_enabled_cb")]
-        internal static extern int SetEnabledCallback(SafeTetheringExtManagerHandle tethering, EnabledCallback callback, IntPtr userData);
+        internal static extern int SetEnabledCallback(IntPtr tethering, EnabledCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_unset_enabled_cb")]
-        internal static extern int UnsetEnabledCallback(SafeTetheringExtManagerHandle tethering);
+        internal static extern int UnsetEnabledCallback(IntPtr tethering);
 
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_set_disabled_cb")]
-        internal static extern int SetDisabledCallback(SafeTetheringExtManagerHandle tethering, DisabledCallback callback, IntPtr userData);
+        internal static extern int SetDisabledCallback(IntPtr tethering, DisabledCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_unset_disabled_cb")]
-        internal static extern int UnsetDisabledCallback(SafeTetheringExtManagerHandle tethering);
+        internal static extern int UnsetDisabledCallback(IntPtr tethering);
 
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_set_connection_state_changed_cb")]
-        internal static extern int SetConnectionStateChangedCallback(SafeTetheringExtManagerHandle tethering, ConnectionStateChangedCallback callback, IntPtr userData);
+        internal static extern int SetConnectionStateChangedCallback(IntPtr tethering, ConnectionStateChangedCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_unset_connection_state_changed_cb")]
-        internal static extern int UnsetConnectionStateChangedCallback(SafeTetheringExtManagerHandle tethering);
+        internal static extern int UnsetConnectionStateChangedCallback(IntPtr tethering);
 
-        [DllImport(Libraries.Tethering, EntryPoint = "tetheirng_ext_activate")]
-        internal static extern int Activate(SafeTetheringExtManagerHandle tethering);
+        [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_activate")]
+        internal static extern int Activate(IntPtr tethering);
 
-        [DllImport(Libraries.Tethering, EntryPoint = "tetheirng_ext_deactivate")]
-        internal static extern int DeActivate(SafeTetheringExtManagerHandle tethering);
+        [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_deactivate")]
+        internal static extern int DeActivate(IntPtr tethering);
 
-        [DllImport(Libraries.Tethering, EntryPoint = "tetheirng_ext_is_enabled")]
-        internal static extern int IsEnabled(SafeTetheringExtManagerHandle tethering, out bool enabled);
+        [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_is_enabled")]
+        internal static extern int IsEnabled(IntPtr tethering, out bool enabled);
 
-        [DllImport(Libraries.Tethering, EntryPoint = "tetheirng_ext_set_ssid")]
-        internal static extern int SetSSID(SafeTetheringExtManagerHandle tethering, string ssid);
+        [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_set_ssid")]
+        internal static extern int SetSSID(IntPtr tethering, string ssid);
 
-        [DllImport(Libraries.Tethering, EntryPoint = "tetheirng_ext_set_passphrase")]
-        internal static extern int SetPassphrase(SafeTetheringExtManagerHandle tethering, string ssid);
+        [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_set_passphrase")]
+        internal static extern int SetPassphrase(IntPtr tethering, string ssid);
 
-        [DllImport(Libraries.Tethering, EntryPoint = "tetheirng_ext_set_channel")]
-        internal static extern int SetChannel(SafeTetheringExtManagerHandle tethering, int channel);
+        [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_set_channel")]
+        internal static extern int SetChannel(IntPtr tethering, int channel);
 
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_get_tethering_info")]
-        internal static extern int GetTetheringInfo(SafeTetheringExtManagerHandle tethering, out IntPtr tethering_info);
+        internal static extern int GetTetheringInfo(IntPtr tethering, out IntPtr tethering_info);
 
-        [DllImport(Libraries.Tethering, EntryPoint = "tethring_ext_get_channel")]
-        internal static extern int GetChannel(SafeTetheringExtManagerHandle tethering, out int channel);
+        [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_get_channel")]
+        internal static extern int GetChannel(IntPtr tethering, out int channel);
 
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_get_security")]
-        internal static extern int GetSecurity(SafeTetheringExtManagerHandle tethering, out int security);
+        internal static extern int GetSecurity(IntPtr tethering, out int security);
 
-        [DllImport(Libraries.Tethering, EntryPoint = "tetheirng_ext_get_visibility")]
-        internal static extern int GetVisibility(SafeTetheringExtManagerHandle tethering, out int visibility);
+        [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_get_visibility")]
+        internal static extern int GetVisibility(IntPtr tethering, out int visibility);
 
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_get_sharing")]
-        internal static extern int GetSharing(SafeTetheringExtManagerHandle tetheirng, out bool sharing);
+        internal static extern int GetSharing(IntPtr tethering, out bool sharing);
 
-        [DllImport(Libraries.Tethering, EntryPoint = "tethring_ext_client_clone")]
+        [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_client_clone")]
         internal static extern int CloneClient(out IntPtr cloned, IntPtr original);
 
-        [DllImport(Libraries.Tethering, EntryPoint = "tethring_ext_client_get_name")]
+        [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_client_get_name")]
         internal static extern int ClientGetName(IntPtr client, out string name);
 
-        [DllImport(Libraries.Tethering, EntryPoint = "tethring_ext_client_get_ip_address")]
+        [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_client_get_ip_address")]
         internal static extern int ClientGetIPAddr(IntPtr client, out string ipAddr);
 
-        [DllImport(Libraries.Tethering, EntryPoint = "tethring_ext_client_get_mac_address")]
+        [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_client_get_mac_address")]
         internal static extern int ClientGetMacAddr(IntPtr client, out string macAddr);
 
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_client_destroy")]

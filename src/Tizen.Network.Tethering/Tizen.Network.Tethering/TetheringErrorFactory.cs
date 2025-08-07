@@ -15,78 +15,34 @@
  */
 
 using System;
-using Tizen.Internals.Errors;
 
 namespace Tizen.Network.Tethering
 {
 
-    internal enum TetheringError
-    {
-        None = ErrorCode.None,
-        OpeartionNotPermitted = ErrorCode.NotPermitted,
-        InvalidParam = ErrorCode.InvalidParameter,
-        OutOfMemory = ErrorCode.OutOfMemory,
-        ResourceBusy = ErrorCode.ResourceBusy,
-        NotEnabled = -0x01C40000 | 0x0501,
-        OperationFailed = -0x01C40000 | 0x0502,
-        InvalidOperation = ErrorCode.InvalidOperation,
-        ApiNotSupported = ErrorCode.NotSupported,
-        PermissionDenied = ErrorCode.PermissionDenied,
-    }
-
     internal static class TetheringErrorFactory
     {
-        static internal void ThrowTetheringException(int e, IntPtr handle)
-        {
-            ThrowException(e, (handle == IntPtr.Zero), false, "");
-        }
-
-        static internal void ThrowTetheringException(int e, IntPtr handle1, IntPtr handle2)
-        {
-            ThrowException(e, (handle1 == IntPtr.Zero), (handle2 == IntPtr.Zero), "");
-        }
-
         static internal void ThrowTetheringException(int e, string message)
         {
-            ThrowException(e, false, false, message);
+            ThrowException(e, message);
         }
 
-        static internal void ThrowTetheringException(int e, IntPtr handle, string message)
-        {
-            ThrowException(e, (handle == IntPtr.Zero), false, message);
-        }
-
-        static internal void ThrowTetheringException(int e, IntPtr handle1, IntPtr handle2, string message)
-        {
-            ThrowException(e, (handle1 == IntPtr.Zero), (handle2 == IntPtr.Zero), message);
-        }
-
-        // Used for return value of native API
-        static private void ThrowException(int e, bool isHandle1Null, bool isHandle2Null, string message)
+        static private void ThrowException(int e, string message)
         {
             TetheringError err = (TetheringError)e;
             switch (err) {
-                case TetheringError.PermissionDenied:
-                    throw new UnauthorizedAccessException("Access denied: " + message);
                 case TetheringError.InvalidParam:
                     throw new ArgumentException("Invalid param: " + message);
-                case TetheringError.InvalidOperation:
-                    throw new NotSupportedException("Not supported: " + message);
                 case TetheringError.OutOfMemory:
                     throw new OutOfMemoryException("Out of memory " + message);
                 case TetheringError.OperationFailed:
                     throw new Exception("Operation failed: " + message);
+                case TetheringError.PermissionDenied:
+                    throw new UnauthorizedAccessException("Access denied: " + message);
+                case TetheringError.InvalidOperation:
+                    throw new NotSupportedException("Not supported: " + message);
                 default:
                     throw new InvalidOperationException(err.ToString() + ": " +  message);
             }
         }
-
-        // Used in callback
-        // static internal Exception GetException(int e, string message)
-        // {
-        //     TetheringError err = (TetheringError)e;
-        //     // switch (err) {}
-        //     return new InvalidOperationException(message + " " + err.ToString());
-        // }
     }
 }
