@@ -24,6 +24,7 @@ namespace Tizen.Telephony
     /// the current location. Another property, CellId, enables users to obtain the cell identification number.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public class Network
     {
         internal IntPtr _handle;
@@ -40,6 +41,7 @@ namespace Tizen.Telephony
         /// <exception cref="ArgumentNullException">
         /// This exception occurs if the handle provided is null.
         /// </exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public Network(SlotHandle handle)
         {
             if (handle == null)
@@ -55,6 +57,7 @@ namespace Tizen.Telephony
         /// Rssi6 indicates the highest strength.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public enum Rssi
         {
             /// <summary>
@@ -95,6 +98,7 @@ namespace Tizen.Telephony
         /// Enumeration for the network types.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public enum Type
         {
             /// <summary>
@@ -163,6 +167,7 @@ namespace Tizen.Telephony
         /// Enumeration for the PS types.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public enum PsType
         {
             /// <summary>
@@ -191,6 +196,7 @@ namespace Tizen.Telephony
         /// Enumeration for the network service states.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public enum ServiceState
         {
             /// <summary>
@@ -215,6 +221,7 @@ namespace Tizen.Telephony
         /// Enumeration for the network name priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public enum NameOption
         {
             /// <summary>
@@ -239,6 +246,7 @@ namespace Tizen.Telephony
         /// Enumeration for the possible 'default' Data Subscriptions for the Packet Switched(PS).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public enum DefaultDataSubscription
         {
             /// <summary>
@@ -259,6 +267,7 @@ namespace Tizen.Telephony
         /// Enumeration for defining the possible 'default' Subscriptions for the Circuit Switched(CS).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public enum DefaultSubscription
         {
             /// <summary>
@@ -279,6 +288,7 @@ namespace Tizen.Telephony
         /// Enumeration for the network selection modes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public enum SelectionMode
         {
             /// <summary>
@@ -306,6 +316,7 @@ namespace Tizen.Telephony
         /// <value>
         /// The Location Area Code, -1 if unknown.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public int Lac
         {
             get
@@ -335,6 +346,7 @@ namespace Tizen.Telephony
         /// <value>
         /// The cell identification number, -1 if unknown.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public int CellId
         {
             get
@@ -361,6 +373,7 @@ namespace Tizen.Telephony
         /// The Received Signal Strength Indicator.
         /// Higher the received number, the stronger the signal strength.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public Rssi CurrentRssi
         {
             get
@@ -386,6 +399,7 @@ namespace Tizen.Telephony
         /// <value>
         /// true if roaming, otherwise false if not roaming.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public bool RoamingStatus
         {
             get
@@ -414,6 +428,7 @@ namespace Tizen.Telephony
         /// The Mobile Country Code (three digits). The Mobile Country Code (MCC) identifies the country where the cell is being used.
         /// Empty string if unknown.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public string Mcc
         {
             get
@@ -442,6 +457,7 @@ namespace Tizen.Telephony
         /// The Mobile Network Code (three digits). The Mobile Network Code (MNC) identifies the mobile phone operator and the network provider.
         /// Empty string if unknown.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public string Mnc
         {
             get
@@ -470,6 +486,7 @@ namespace Tizen.Telephony
         /// The name of the current registered network.
         /// Empty string if unknown.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public string NetworkName
         {
             get
@@ -497,6 +514,7 @@ namespace Tizen.Telephony
         /// <value>
         /// The network service type.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public Type NetworkType
         {
             get
@@ -524,6 +542,7 @@ namespace Tizen.Telephony
         /// <value>
         /// The type of the packet service.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public PsType NetworkPsType
         {
             get
@@ -549,6 +568,7 @@ namespace Tizen.Telephony
         /// <value>
         /// The network name display option.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public NameOption NetworkNameOption
         {
             get
@@ -574,6 +594,7 @@ namespace Tizen.Telephony
         /// <value>
         /// The current network state.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public ServiceState NetworkServiceState
         {
             get
@@ -599,6 +620,7 @@ namespace Tizen.Telephony
         /// <value>
         /// The current default data subscription.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public DefaultDataSubscription NetworkDefaultDataSubscription
         {
             get
@@ -624,6 +646,7 @@ namespace Tizen.Telephony
         /// <value>
         /// The current default voice subscription.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public DefaultSubscription NetworkDefaultSubscription
         {
             get
@@ -649,6 +672,7 @@ namespace Tizen.Telephony
         /// <value>
         /// The network selection mode.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public SelectionMode NetworkSelectionMode
         {
             get
@@ -678,6 +702,7 @@ namespace Tizen.Telephony
         /// The Tracking Area Code.
         /// -1 if unknown.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public int Tac
         {
             get
@@ -707,6 +732,7 @@ namespace Tizen.Telephony
         /// The system ID.
         /// -1 if unknown.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public int SystemId
         {
             get
@@ -736,6 +762,7 @@ namespace Tizen.Telephony
         /// The network ID.
         /// -1 if unknown.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public int NetworkId
         {
             get
@@ -765,7 +792,7 @@ namespace Tizen.Telephony
         /// The base station ID.
         /// -1 if unknown.
         /// </value>
-
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public int BaseStationId
         {
             get
@@ -795,6 +822,7 @@ namespace Tizen.Telephony
         /// The base station latitude.
         /// 0x7FFFFFFF if unknown.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public int BaseStationLatitude
         {
             get
@@ -823,6 +851,7 @@ namespace Tizen.Telephony
         /// The base station latitude.
         /// 0x7FFFFFFF if unknown.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public int BaseStationLongitude
         {
             get

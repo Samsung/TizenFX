@@ -25,6 +25,7 @@ namespace Tizen.Telephony
     /// Enumeration for the telephony states.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public enum State
     {
         /// <summary>
@@ -45,6 +46,7 @@ namespace Tizen.Telephony
     /// Enumeration for the preferred voice call subscription.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public enum CallPreferredVoiceSubscription
     {
         /// <summary>
@@ -74,6 +76,7 @@ namespace Tizen.Telephony
     /// It also provides APIs to get the SlotHandles, which can then be used to get other Network/Sim/Call/Modem information.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public static class Manager
     {
         internal static List<SlotHandle> _telephonyHandle = new List<SlotHandle>();
@@ -90,6 +93,7 @@ namespace Tizen.Telephony
         /// The event handler to be invoked when the telephony state changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public static event EventHandler<StateEventArgs> StateChanged
         {
             add
@@ -131,6 +135,7 @@ namespace Tizen.Telephony
         /// <value>
         /// The state value of telephony.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public static State CurrentState
         {
             get
@@ -164,6 +169,7 @@ namespace Tizen.Telephony
         /// 2. If the operation is not supported on the device.
         /// 3. If the operation failed.
         /// </exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public static IEnumerable<SlotHandle> Init()
         {
             //DeInitialize Previous Handles if present
@@ -208,6 +214,7 @@ namespace Tizen.Telephony
         /// 1. If the operation is not supported on the device.
         /// 2. If the operation failed.
         /// </exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public static void Deinit()
         {
             TelephonyError error = Interop.Telephony.TelephonyDeinit(ref _handleList);
