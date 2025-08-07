@@ -27,12 +27,13 @@ namespace Tizen.NUI.BaseComponents
     /// (via touch) or automatically.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     [Obsolete("This has been deprecated in API12")]
     public class Scrollable : View
     {
         static Scrollable()
         {
-            if(NUIApplication.IsUsingXaml)
+            if (NUIApplication.IsUsingXaml)
             {
                 OvershootEffectColorProperty = BindableProperty.Create(nameof(OvershootEffectColor), typeof(Vector4), typeof(Scrollable), null, propertyChanged: SetInternalOvershootEffectColorProperty, defaultValueCreator: GetInternalOvershootEffectColorProperty);
 
@@ -40,7 +41,7 @@ namespace Tizen.NUI.BaseComponents
 
                 OvershootEnabledProperty = BindableProperty.Create(nameof(OvershootEnabled), typeof(bool), typeof(Scrollable), false, propertyChanged: SetInternalOvershootEnabledProperty, defaultValueCreator: GetInternalOvershootEnabledProperty);
 
-                OvershootSizeProperty = BindableProperty.Create(nameof(OvershootSize), typeof(Vector2), typeof(Scrollable), null, propertyChanged: SetInternalOvershootSizeProperty, defaultValueCreator: GetInternalOvershootSizeProperty );
+                OvershootSizeProperty = BindableProperty.Create(nameof(OvershootSize), typeof(Vector2), typeof(Scrollable), null, propertyChanged: SetInternalOvershootSizeProperty, defaultValueCreator: GetInternalOvershootSizeProperty);
 
                 ScrollToAlphaFunctionProperty = BindableProperty.Create(nameof(ScrollToAlphaFunction), typeof(int), typeof(Scrollable), default(int), propertyChanged: SetInternalScrollToAlphaFunctionProperty, defaultValueCreator: GetInternalScrollToAlphaFunctionProperty);
 
@@ -64,19 +65,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalOvershootEffectColorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.OvershootEffectColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
+                var scrollable = (Scrollable)bindable;
+                scrollable.SetInternalOvershootEffectColor((Color)newValue);
             }
         }
-
         internal static object GetInternalOvershootEffectColorProperty(BindableObject bindable)
         {
             var scrollable = (Scrollable)bindable;
-            Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.OvershootEffectColor).Get(temp);
-            return temp;
+            return scrollable.GetInternalOvershootEffectColor();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -86,19 +84,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalOvershootAnimationSpeedProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.OvershootAnimationSpeed, new Tizen.NUI.PropertyValue((float)newValue));
+                var scrollable = (Scrollable)bindable;
+                scrollable.SetInternalOvershootAnimationSpeed((float)newValue);
             }
         }
-
         internal static object GetInternalOvershootAnimationSpeedProperty(BindableObject bindable)
         {
             var scrollable = (Scrollable)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.OvershootAnimationSpeed).Get(out temp);
-            return temp;
+            return scrollable.GetInternalOvershootAnimationSpeed();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -108,19 +103,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalOvershootEnabledProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.OvershootEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
+                var scrollable = (Scrollable)bindable;
+                scrollable.SetInternalOvershootEnabled((bool)newValue);
             }
         }
-        
         internal static object GetInternalOvershootEnabledProperty(BindableObject bindable)
         {
             var scrollable = (Scrollable)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.OvershootEnabled).Get(out temp);
-            return temp;
+            return scrollable.GetInternalOvershootEnabled();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -130,19 +122,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalOvershootSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.OvershootSize, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                var scrollable = (Scrollable)bindable;
+                scrollable.SetInternalOvershootSize((Vector2)newValue);
             }
         }
-        
         internal static object GetInternalOvershootSizeProperty(BindableObject bindable)
         {
             var scrollable = (Scrollable)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.OvershootSize).Get(temp);
-            return temp;
+            return scrollable.GetInternalOvershootSize();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -150,21 +139,18 @@ namespace Tizen.NUI.BaseComponents
         [Obsolete("This has been deprecated in API12")]
         public static readonly BindableProperty ScrollToAlphaFunctionProperty = null;
 
-        internal static void SetInternalScrollToAlphaFunctionProperty(BindableObject bindable, object oldValue, object newValue) 
+        internal static void SetInternalScrollToAlphaFunctionProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollToAlphaFunction, new Tizen.NUI.PropertyValue((int)newValue));
+                var scrollable = (Scrollable)bindable;
+                scrollable.SetInternalScrollToAlphaFunction((int)newValue);
             }
         }
-        
         internal static object GetInternalScrollToAlphaFunctionProperty(BindableObject bindable)
         {
             var scrollable = (Scrollable)bindable;
-            int temp = 0;
-            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollToAlphaFunction).Get(out temp);
-            return temp;
+            return scrollable.GetInternalScrollToAlphaFunction();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -174,19 +160,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalScrollRelativePositionProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollRelativePosition, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                var scrollable = (Scrollable)bindable;
+                scrollable.SetInternalScrollRelativePosition((Vector2)newValue);
             }
         }
-        
         internal static object GetInternalScrollRelativePositionProperty(BindableObject bindable)
         {
             var scrollable = (Scrollable)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollRelativePosition).Get(temp);
-            return temp;
+            return scrollable.GetInternalScrollRelativePosition();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -196,19 +179,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalScrollPositionMinProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollPositionMin, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                var scrollable = (Scrollable)bindable;
+                scrollable.SetInternalScrollPositionMin((Vector2)newValue);
             }
         }
-        
         internal static object GetInternalScrollPositionMinProperty(BindableObject bindable)
         {
             var scrollable = (Scrollable)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollPositionMin).Get(temp);
-            return temp;
+            return scrollable.GetInternalScrollPositionMin();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -218,19 +198,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalScrollPositionMaxProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollPositionMax, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                var scrollable = (Scrollable)bindable;
+                scrollable.SetInternalScrollPositionMax((Vector2)newValue);
             }
         }
-        
         internal static object GetInternalScrollPositionMaxProperty(BindableObject bindable)
         {
             var scrollable = (Scrollable)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.ScrollPositionMax).Get(temp);
-            return temp;
+            return scrollable.GetInternalScrollPositionMax();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -240,19 +217,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalCanScrollVerticalProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.CanScrollVertical, new Tizen.NUI.PropertyValue((bool)newValue));
+                var scrollable = (Scrollable)bindable;
+                scrollable.SetInternalCanScrollVertical((bool)newValue);
             }
         }
-
         internal static object GetInternalCanScrollVerticalProperty(BindableObject bindable)
         {
             var scrollable = (Scrollable)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.CanScrollVertical).Get(out temp);
-            return temp;
+            return scrollable.GetInternalCanScrollVertical();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -262,19 +236,16 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalCanScrollHorizontalProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var scrollable = (Scrollable)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.CanScrollHorizontal, new Tizen.NUI.PropertyValue((bool)newValue));
+                var scrollable = (Scrollable)bindable;
+                scrollable.SetInternalCanScrollHorizontal((bool)newValue);
             }
         }
-        
         internal static object GetInternalCanScrollHorizontalProperty(BindableObject bindable)
         {
             var scrollable = (Scrollable)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty((HandleRef)scrollable.SwigCPtr, Scrollable.Property.CanScrollHorizontal).Get(out temp);
-            return temp;
+            return scrollable.GetInternalCanScrollHorizontal();
         }
 
         private DaliEventHandler<object, StartedEventArgs> scrollableStartedEventHandler;
@@ -288,6 +259,7 @@ namespace Tizen.NUI.BaseComponents
         /// Create an instance of scrollable.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         public Scrollable() : this(Interop.Scrollable.NewScrollable(), true)
         {
@@ -311,6 +283,7 @@ namespace Tizen.NUI.BaseComponents
         /// The ScrollStarted event emitted when the Scrollable has moved (whether by touch or animation).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         public event DaliEventHandler<object, StartedEventArgs> ScrollStarted
         {
@@ -322,7 +295,8 @@ namespace Tizen.NUI.BaseComponents
                     scrollableStartedEventHandler += value;
 
                     scrollableStartedCallbackDelegate = new StartedCallbackDelegate(OnStarted);
-                    this.ScrollStartedSignal().Connect(scrollableStartedCallbackDelegate);
+                    using var signal = ScrollStartedSignal();
+                    signal.Connect(scrollableStartedCallbackDelegate);
                 }
             }
 
@@ -330,7 +304,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (scrollableStartedEventHandler != null)
                 {
-                    this.ScrollStartedSignal().Disconnect(scrollableStartedCallbackDelegate);
+                    using var signal = ScrollStartedSignal();
+                    signal.Disconnect(scrollableStartedCallbackDelegate);
                 }
 
                 scrollableStartedEventHandler -= value;
@@ -341,6 +316,7 @@ namespace Tizen.NUI.BaseComponents
         /// The ScrollUpdated event emitted when the Scrollable has moved (whether by touch or animation).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         public event DaliEventHandler<object, UpdatedEventArgs> ScrollUpdated
         {
@@ -352,7 +328,8 @@ namespace Tizen.NUI.BaseComponents
                     scrollableUpdatedEventHandler += value;
 
                     scrollableUpdatedCallbackDelegate = new UpdatedCallbackDelegate(OnUpdated);
-                    this.ScrollUpdatedSignal().Connect(scrollableUpdatedCallbackDelegate);
+                    using var signal = ScrollUpdatedSignal();
+                    signal.Connect(scrollableUpdatedCallbackDelegate);
                 }
             }
 
@@ -360,7 +337,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (scrollableUpdatedEventHandler != null)
                 {
-                    this.ScrollUpdatedSignal().Disconnect(scrollableUpdatedCallbackDelegate);
+                    using var signal = ScrollUpdatedSignal();
+                    signal.Disconnect(scrollableUpdatedCallbackDelegate);
                 }
 
                 scrollableUpdatedEventHandler -= value;
@@ -372,6 +350,7 @@ namespace Tizen.NUI.BaseComponents
         /// (whether by touch or animation).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         public event DaliEventHandler<object, CompletedEventArgs> ScrollCompleted
         {
@@ -383,7 +362,8 @@ namespace Tizen.NUI.BaseComponents
                     scrollableCompletedEventHandler += value;
 
                     scrollableCompletedCallbackDelegate = new CompletedCallbackDelegate(OnCompleted);
-                    this.ScrollCompletedSignal().Connect(scrollableCompletedCallbackDelegate);
+                    using var signal = ScrollCompletedSignal();
+                    signal.Connect(scrollableCompletedCallbackDelegate);
                 }
             }
 
@@ -391,7 +371,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (scrollableCompletedEventHandler != null)
                 {
-                    this.ScrollCompletedSignal().Disconnect(scrollableCompletedCallbackDelegate);
+                    using var signal = ScrollCompletedSignal();
+                    signal.Disconnect(scrollableCompletedCallbackDelegate);
                 }
 
                 scrollableCompletedEventHandler -= value;
@@ -402,6 +383,7 @@ namespace Tizen.NUI.BaseComponents
         /// Sets and Gets the color of the overshoot effect.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         public Vector4 OvershootEffectColor
         {
@@ -413,7 +395,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (Vector4)GetInternalOvershootEffectColorProperty(this);
+                    return GetInternalOvershootEffectColor();
                 }
             }
             set
@@ -424,16 +406,36 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalOvershootEffectColorProperty(this, null, value);
+                    SetInternalOvershootEffectColor(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalOvershootEffectColor(Vector4 color)
+        {
+            if (color != null)
+            {
+                using var pv = new PropertyValue(color);
+                Object.SetProperty(SwigCPtr, Property.OvershootEffectColor, pv);
+            }
+        }
+
+        private Vector4 GetInternalOvershootEffectColor()
+        {
+            Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.OvershootEffectColor))
+            {
+                prop.Get(temp);
+            }
+            return temp;
         }
 
         /// <summary>
         /// Sets and Gets the speed of overshoot animation in pixels per second.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         public float OvershootAnimationSpeed
         {
@@ -445,7 +447,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (float)GetInternalOvershootAnimationSpeedProperty(this);
+                    return GetInternalOvershootAnimationSpeed();
                 }
             }
             set
@@ -456,16 +458,31 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalOvershootAnimationSpeedProperty(this, null, value);
+                    SetInternalOvershootAnimationSpeed(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalOvershootAnimationSpeed(float speed)
+        {
+            using var pv = new PropertyValue(speed);
+            Object.SetProperty(SwigCPtr, Property.OvershootAnimationSpeed, pv);
+        }
+
+        private float GetInternalOvershootAnimationSpeed()
+        {
+            float temp = 0.0f;
+            using var prop = Object.GetProperty(SwigCPtr, Property.OvershootAnimationSpeed);
+            prop.Get(out temp);
+            return temp;
         }
 
         /// <summary>
         /// Checks if scroll overshoot has been enabled or not.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         public bool OvershootEnabled
         {
@@ -477,7 +494,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalOvershootEnabledProperty(this);
+                    return GetInternalOvershootEnabled();
                 }
             }
             set
@@ -488,16 +505,31 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalOvershootEnabledProperty(this, null, value);
+                    SetInternalOvershootEnabled(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalOvershootEnabled(bool enabled)
+        {
+            using var pv = new PropertyValue(enabled);
+            Object.SetProperty(SwigCPtr, Property.OvershootEnabled, pv);
+        }
+
+        private bool GetInternalOvershootEnabled()
+        {
+            bool temp = false;
+            using var prop = Object.GetProperty(SwigCPtr, Property.OvershootEnabled);
+            prop.Get(out temp);
+            return temp;
         }
 
         /// <summary>
         /// Gets and Sets OvershootSize property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         public Vector2 OvershootSize
         {
@@ -509,7 +541,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (Vector2)GetInternalOvershootSizeProperty(this);
+                    return GetInternalOvershootSize();
                 }
             }
             set
@@ -520,16 +552,36 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalOvershootSizeProperty(this, null, value);
+                    SetInternalOvershootSize(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalOvershootSize(Vector2 size)
+        {
+            if (size != null)
+            {
+                using var pv = new PropertyValue(size);
+                Object.SetProperty(SwigCPtr, Property.OvershootSize, pv);
+            }
+        }
+
+        private Vector2 GetInternalOvershootSize()
+        {
+            Vector2 temp = new Vector2(0.0f, 0.0f);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.OvershootSize))
+            {
+                prop.Get(temp);
+            }
+            return temp;
         }
 
         /// <summary>
         /// Gets and Sets ScrollToAlphaFunction property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         public int ScrollToAlphaFunction
         {
@@ -541,7 +593,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalScrollToAlphaFunctionProperty(this);
+                    return GetInternalScrollToAlphaFunction();
                 }
             }
             set
@@ -552,16 +604,31 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalScrollToAlphaFunctionProperty(this, null, value);
+                    SetInternalScrollToAlphaFunction(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalScrollToAlphaFunction(int func)
+        {
+            using var pv = new PropertyValue(func);
+            Object.SetProperty(SwigCPtr, Property.ScrollToAlphaFunction, pv);
+        }
+
+        private int GetInternalScrollToAlphaFunction()
+        {
+            int temp = 0;
+            using var prop = Object.GetProperty(SwigCPtr, Property.ScrollToAlphaFunction);
+            prop.Get(out temp);
+            return temp;
         }
 
         /// <summary>
         /// Gets and Sets ScrollRelativePosition property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         public Vector2 ScrollRelativePosition
         {
@@ -573,7 +640,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (Vector2)GetInternalScrollRelativePositionProperty(this);
+                    return GetInternalScrollRelativePosition();
                 }
             }
             set
@@ -584,16 +651,36 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalScrollRelativePositionProperty(this, null, value);
+                    SetInternalScrollRelativePosition(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalScrollRelativePosition(Vector2 pos)
+        {
+            if (pos != null)
+            {
+                using var pv = new PropertyValue(pos);
+                Object.SetProperty(SwigCPtr, Property.ScrollRelativePosition, pv);
+            }
+        }
+
+        private Vector2 GetInternalScrollRelativePosition()
+        {
+            Vector2 temp = new Vector2(0.0f, 0.0f);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.ScrollRelativePosition))
+            {
+                prop.Get(temp);
+            }
+            return temp;
         }
 
         /// <summary>
         /// Gets and Sets ScrollPositionMin property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         public Vector2 ScrollPositionMin
         {
@@ -605,7 +692,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (Vector2)GetInternalScrollPositionMinProperty(this);
+                    return GetInternalScrollPositionMin();
                 }
             }
             set
@@ -616,16 +703,36 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalScrollPositionMinProperty(this, null, value);
+                    SetInternalScrollPositionMin(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalScrollPositionMin(Vector2 pos)
+        {
+            if (pos != null)
+            {
+                using var pv = new PropertyValue(pos);
+                Object.SetProperty(SwigCPtr, Property.ScrollPositionMin, pv);
+            }
+        }
+
+        private Vector2 GetInternalScrollPositionMin()
+        {
+            Vector2 temp = new Vector2(0.0f, 0.0f);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.ScrollPositionMin))
+            {
+                prop.Get(temp);
+            }
+            return temp;
         }
 
         /// <summary>
         /// Gets and Sets ScrollPositionMax property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         public Vector2 ScrollPositionMax
         {
@@ -637,7 +744,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (Vector2)GetInternalScrollPositionMaxProperty(this);
+                    return GetInternalScrollPositionMax();
                 }
             }
             set
@@ -648,16 +755,36 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalScrollPositionMaxProperty(this, null, value);
+                    SetInternalScrollPositionMax(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalScrollPositionMax(Vector2 pos)
+        {
+            if (pos != null)
+            {
+                using var pv = new PropertyValue(pos);
+                Object.SetProperty(SwigCPtr, Property.ScrollPositionMax, pv);
+            }
+        }
+
+        private Vector2 GetInternalScrollPositionMax()
+        {
+            Vector2 temp = new Vector2(0.0f, 0.0f);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.ScrollPositionMax))
+            {
+                prop?.Get(temp);
+            }
+            return temp;
         }
 
         /// <summary>
         /// Gets and Sets CanScrollVertical property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         public bool CanScrollVertical
         {
@@ -669,7 +796,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalCanScrollVerticalProperty(this);
+                    return GetInternalCanScrollVertical();
                 }
             }
             set
@@ -680,16 +807,31 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalCanScrollVerticalProperty(this, null, value);
+                    SetInternalCanScrollVertical(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalCanScrollVertical(bool scroll)
+        {
+            using var pv = new PropertyValue(scroll);
+            Object.SetProperty(SwigCPtr, Property.CanScrollVertical, pv);
+        }
+
+        private bool GetInternalCanScrollVertical()
+        {
+            bool temp = false;
+            using var prop = Object.GetProperty(SwigCPtr, Property.CanScrollVertical);
+            prop.Get(out temp);
+            return temp;
         }
 
         /// <summary>
         /// Gets and Sets CanScrollHorizontal property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         public bool CanScrollHorizontal
         {
@@ -701,7 +843,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalCanScrollHorizontalProperty(this);
+                    return GetInternalCanScrollHorizontal();
                 }
             }
             set
@@ -712,10 +854,24 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalCanScrollHorizontalProperty(this, null, value);
+                    SetInternalCanScrollHorizontal(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalCanScrollHorizontal(bool scroll)
+        {
+            using var pv = new PropertyValue((bool)scroll);
+            Object.SetProperty(SwigCPtr, Property.CanScrollHorizontal, pv);
+        }
+
+        private bool GetInternalCanScrollHorizontal()
+        {
+            bool temp = false;
+            using var prop = Object.GetProperty(SwigCPtr, Property.CanScrollHorizontal);
+            prop.Get(out temp);
+            return temp;
         }
 
         internal ScrollableSignal ScrollStartedSignal()
@@ -744,6 +900,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="type">DisposeTypes</param>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         protected override void Dispose(DisposeTypes type)
         {
@@ -880,6 +1037,7 @@ namespace Tizen.NUI.BaseComponents
         /// The scroll animation started event arguments.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         public class StartedEventArgs : EventArgs
         {
@@ -906,6 +1064,7 @@ namespace Tizen.NUI.BaseComponents
         /// The scrollable updated event arguments.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         public class UpdatedEventArgs : EventArgs
         {
@@ -932,6 +1091,7 @@ namespace Tizen.NUI.BaseComponents
         /// The scroll animation completed event arguments.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API12")]
         public class CompletedEventArgs : EventArgs
         {

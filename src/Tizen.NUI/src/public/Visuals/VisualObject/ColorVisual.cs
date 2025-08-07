@@ -58,12 +58,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ColorVisualProperty.BlurRadius, new PropertyValue(value), false);
+                UpdateVisualProperty((int)Tizen.NUI.ColorVisualProperty.BlurRadius, value, false);
             }
             get
             {
                 float ret = 0.0f;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ColorVisualProperty.BlurRadius);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ColorVisualProperty.BlurRadius);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -77,12 +77,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ColorVisualProperty.CutoutPolicy, new PropertyValue((int)value));
+                UpdateVisualProperty((int)Tizen.NUI.ColorVisualProperty.CutoutPolicy, value);
             }
             get
             {
                 int ret = (int)ColorVisualCutoutPolicyType.None;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ColorVisualProperty.CutoutPolicy);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ColorVisualProperty.CutoutPolicy);
                 propertyValue?.Get(out ret);
                 return (ColorVisualCutoutPolicyType)ret;
             }
@@ -100,13 +100,15 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.CornerRadius, new PropertyValue(value), false);
+                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.CornerRadius, value, false);
             }
             get
             {
                 Vector4 ret = new Vector4();
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.CornerRadius);
-                propertyValue?.Get(ret);
+                using (var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.CornerRadius))
+                {
+                    propertyValue?.Get(ret);
+                }
                 return ret;
             }
         }
@@ -121,14 +123,37 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.CornerRadiusPolicy, new PropertyValue((int)value), false);
+                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.CornerRadiusPolicy, value, false);
             }
             get
             {
                 int ret = (int)VisualTransformPolicyType.Absolute;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.CornerRadiusPolicy);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.CornerRadiusPolicy);
                 propertyValue?.Get(out ret);
                 return (VisualTransformPolicyType)ret;
+            }
+        }
+
+        /// <summary>
+        /// The squareness for the rounded corners of the visual.
+        /// The values in Vector4 are used in clockwise order from top-left to bottom-left : Vector4(top-left-corner, top-right-corner, bottom-right-corner, bottom-left-corner).
+        /// Each radius will clamp internally between 0.0 and 1.0.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector4 CornerSquareness
+        {
+            set
+            {
+                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.CornerSquareness, value, false);
+            }
+            get
+            {
+                Vector4 ret = new Vector4();
+                using (var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.CornerSquareness))
+                {
+                    propertyValue?.Get(ret);
+                }
+                return ret;
             }
         }
 
@@ -140,12 +165,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineWidth, new PropertyValue(value), false);
+                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineWidth, value, false);
             }
             get
             {
                 float ret = 0.0f;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineWidth);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineWidth);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -160,13 +185,15 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineColor, new PropertyValue(value), false);
+                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineColor, value, false);
             }
             get
             {
                 Color ret = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineColor);
-                propertyValue?.Get(ret);
+                using (var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineColor))
+                {
+                    propertyValue?.Get(ret);
+                }
                 return ret;
             }
         }
@@ -184,12 +211,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineOffset, new PropertyValue(value), false);
+                UpdateVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineOffset, value, false);
             }
             get
             {
                 float ret = 0.0f;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineOffset);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.Visual.Property.BorderlineOffset);
                 propertyValue?.Get(out ret);
                 return ret;
             }

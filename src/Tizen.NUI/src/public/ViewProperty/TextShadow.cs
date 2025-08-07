@@ -26,8 +26,8 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TextShadow : ICloneable, IDisposable
     {
-        private bool disposed = false;
-        private readonly PropertyMap propertyMap = null;
+        private bool disposed;
+        private readonly PropertyMap propertyMap;
 
         internal delegate void PropertyChangedCallback(TextShadow instance);
 
@@ -40,13 +40,13 @@ namespace Tizen.NUI
             propertyMap = new PropertyMap();
 
             Color = color;
-            propertyMap["color"] = PropertyValue.CreateWithGuard(Color);
+            propertyMap.Set("color", Color);
 
             Offset = offset;
-            propertyMap["offset"] = PropertyValue.CreateWithGuard(Offset);
+            propertyMap.Set("offset", Offset);
 
             BlurRadius = blurRadius;
-            propertyMap["blurRadius"] = new PropertyValue(BlurRadius);
+            propertyMap.Set("blurRadius", BlurRadius);
         }
 
         /// <summary>
@@ -96,13 +96,13 @@ namespace Tizen.NUI
             propertyMap = new PropertyMap();
 
             Color = other.Color;
-            propertyMap["color"] = PropertyValue.CreateWithGuard(Color);
+            propertyMap.Set("color", Color);
 
             Offset = other.Offset;
-            propertyMap["offset"] = PropertyValue.CreateWithGuard(Offset);
+            propertyMap.Set("offset", Offset);
 
             BlurRadius = other.BlurRadius;
-            propertyMap["blurRadius"] = new PropertyValue(BlurRadius);
+            propertyMap.Set("blurRadius", BlurRadius);
         }
 
         static internal PropertyValue ToPropertyValue(TextShadow instance)

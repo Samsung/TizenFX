@@ -132,9 +132,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_delete_WidgetViewSignal")]
             public static extern void DeleteWidgetViewSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_PauseWidget")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool WidgetView_PauseWidget(global::System.Runtime.InteropServices.HandleRef jarg1);

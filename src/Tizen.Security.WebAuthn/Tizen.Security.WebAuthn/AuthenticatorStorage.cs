@@ -17,77 +17,62 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using static Interop;
-using static Tizen.Security.WebAuthn.ErrorFactory;
 
 namespace Tizen.Security.WebAuthn
 {
-    internal static class AuthenticatorStorage
+    internal abstract class AuthenticatorStorage : IDisposable
     {
         #region Internal unmanaged memory
-        private static UnmanagedMemory[] _credentialsIdUnmanagedDataArray;
-        private static UnmanagedMemory[] _credentialsIdUnmanagedConstBufferArray;
-        private static UnmanagedMemory[] _attestationFormatsUnmanagedDataArray;
-        private static UnmanagedMemory[] _attestationFormatsUnmanagedConstBufferArray;
-        private static UnmanagedMemory[] _extensionIdUnmanagedDataArray;
-        private static UnmanagedMemory[] _extensionIdUnmanagedConstBufferArray;
-        private static UnmanagedMemory[] _extensionValueUnmanagedDataArray;
-        private static UnmanagedMemory[] _extensionValueUnmanagedConstBufferArray;
-        private static UnmanagedMemory _jsonDataUnmanaged = new();
-        private static UnmanagedMemory _jsonDataConstBufferUnmanaged = new();
-        private static UnmanagedMemory _rpNameUnmanaged = new();
-        private static UnmanagedMemory _rpIdUnmanaged = new();
-        private static UnmanagedMemory _rpUnmanaged = new();
-        private static UnmanagedMemory _userNameUnmanaged = new();
-        private static UnmanagedMemory _userIdDataUnmanaged = new();
-        private static UnmanagedMemory _userIdConstBufferUnmanaged = new();
-        private static UnmanagedMemory _userDisplayNameUnmanaged = new();
-        private static UnmanagedMemory _userUnmanaged = new();
-        private static UnmanagedMemory _pubkeyCredParamsParametersUnmanaged = new();
-        private static UnmanagedMemory _pubkeyCredParamsUnmanaged = new();
-        private static UnmanagedMemory _credentialsDescriptorsUnmanaged = new();
-        private static UnmanagedMemory _credentialsUnmanaged = new();
-        private static UnmanagedMemory _authenticatorSelectionUnmanaged = new();
-        private static UnmanagedMemory _hintsArrayUnmanaged = new();
-        private static UnmanagedMemory _hintsUnmanaged = new();
-        private static UnmanagedMemory _attestationFormatsArrayUnmanaged = new();
-        private static UnmanagedMemory _attestationFormatsUnmanaged = new();
-        private static UnmanagedMemory _extensionsArrayUnmanaged = new();
-        private static UnmanagedMemory _extensionsUnmanaged = new();
-        private static UnmanagedMemory _contactIdDataUnmanaged = new();
-        private static UnmanagedMemory _contactIdUnmanaged = new();
-        private static UnmanagedMemory _linkIdDataUnmanaged = new();
-        private static UnmanagedMemory _linkIdUnmanaged = new();
-        private static UnmanagedMemory _linkSecretDataUnmanaged = new();
-        private static UnmanagedMemory _linkSecretUnmanaged = new();
-        private static UnmanagedMemory _authenticatorPubkeyDataUnmanaged = new();
-        private static UnmanagedMemory _authenticatorPubkeyUnmanaged = new();
-        private static UnmanagedMemory _authenticatorNameDataUnmanaged = new();
-        private static UnmanagedMemory _authenticatorNameUnmanaged = new();
-        private static UnmanagedMemory _signatureDataUnmanaged = new();
-        private static UnmanagedMemory _signatureUnmanaged = new();
-        private static UnmanagedMemory _tunnelServerDomainDataUnmanaged = new();
-        private static UnmanagedMemory _tunnelServerDomainUnmanaged = new();
-        private static UnmanagedMemory _identityKeyDataUnmanaged = new();
-        private static UnmanagedMemory _identityKeyUnmanaged = new();
-        private static UnmanagedMemory _linkedDeviceUnmanaged = new();
+        protected UnmanagedMemory _credentialsUnmanaged = new();
+        protected UnmanagedMemory _hintsUnmanaged = new();
+        protected UnmanagedMemory _attestationFormatsUnmanaged = new();
+        protected UnmanagedMemory _extensionsUnmanaged = new();
+        protected UnmanagedMemory _linkedDeviceUnmanaged = new();
+
+        protected WauthnDisplayQrcodeCallback _qrcodeCallback;
+        protected WauthnUpdateLinkedDataCallback _linkedDataCallback;
+
+        private UnmanagedMemory[] _credentialsIdUnmanagedDataArray;
+        private UnmanagedMemory[] _credentialsIdUnmanagedConstBufferArray;
+        private UnmanagedMemory[] _attestationFormatsUnmanagedDataArray;
+        private UnmanagedMemory[] _attestationFormatsUnmanagedConstBufferArray;
+        private UnmanagedMemory[] _extensionIdUnmanagedDataArray;
+        private UnmanagedMemory[] _extensionIdUnmanagedConstBufferArray;
+        private UnmanagedMemory[] _extensionValueUnmanagedDataArray;
+        private UnmanagedMemory[] _extensionValueUnmanagedConstBufferArray;
+
+        private UnmanagedMemory _jsonDataUnmanaged = new();
+        private UnmanagedMemory _jsonDataConstBufferUnmanaged = new();
+        private UnmanagedMemory _credentialsDescriptorsUnmanaged = new();
+        private UnmanagedMemory _hintsArrayUnmanaged = new();
+        private UnmanagedMemory _attestationFormatsArrayUnmanaged = new();
+        private UnmanagedMemory _extensionsArrayUnmanaged = new();
+        private UnmanagedMemory _contactIdDataUnmanaged = new();
+        private UnmanagedMemory _contactIdUnmanaged = new();
+        private UnmanagedMemory _linkIdDataUnmanaged = new();
+        private UnmanagedMemory _linkIdUnmanaged = new();
+        private UnmanagedMemory _linkSecretDataUnmanaged = new();
+        private UnmanagedMemory _linkSecretUnmanaged = new();
+        private UnmanagedMemory _authenticatorPubkeyDataUnmanaged = new();
+        private UnmanagedMemory _authenticatorPubkeyUnmanaged = new();
+        private UnmanagedMemory _authenticatorNameDataUnmanaged = new();
+        private UnmanagedMemory _authenticatorNameUnmanaged = new();
+        private UnmanagedMemory _signatureDataUnmanaged = new();
+        private UnmanagedMemory _signatureUnmanaged = new();
+        private UnmanagedMemory _tunnelServerDomainDataUnmanaged = new();
+        private UnmanagedMemory _tunnelServerDomainUnmanaged = new();
+        private UnmanagedMemory _identityKeyDataUnmanaged = new();
+        private UnmanagedMemory _identityKeyUnmanaged = new();
         #endregion
 
-        public static void SetDataForMakeCredential(ClientData clientData, PubkeyCredCreationOptions options)
-        {
-            CopyClientData(clientData);
-            CopyCredCreationOptions(options);
-        }
+        private bool _disposed = false;
 
-        public static void SetDataForGetAssertion(ClientData clientData, PubkeyCredRequestOptions options)
+        public virtual void Dispose()
         {
-            CopyClientData(clientData);
-            CopyCredRequestOptions(options);
-        }
+            if (_disposed)
+                return;
 
-        public static void Cleanup()
-        {
             CleanupArray(_credentialsIdUnmanagedDataArray);
             CleanupArray(_credentialsIdUnmanagedConstBufferArray);
             CleanupArray(_attestationFormatsUnmanagedDataArray);
@@ -99,18 +84,8 @@ namespace Tizen.Security.WebAuthn
 
             _jsonDataUnmanaged.Dispose();
             _jsonDataConstBufferUnmanaged.Dispose();
-            _rpNameUnmanaged.Dispose();
-            _rpIdUnmanaged.Dispose();
-            _rpUnmanaged.Dispose();
-            _userNameUnmanaged.Dispose();
-            _userIdConstBufferUnmanaged.Dispose();
-            _userDisplayNameUnmanaged.Dispose();
-            _userUnmanaged.Dispose();
-            _pubkeyCredParamsParametersUnmanaged.Dispose();
-            _pubkeyCredParamsUnmanaged.Dispose();
             _credentialsDescriptorsUnmanaged.Dispose();
             _credentialsUnmanaged.Dispose();
-            _authenticatorSelectionUnmanaged.Dispose();
             _hintsArrayUnmanaged.Dispose();
             _hintsUnmanaged.Dispose();
             _attestationFormatsArrayUnmanaged.Dispose();
@@ -134,90 +109,19 @@ namespace Tizen.Security.WebAuthn
             _identityKeyDataUnmanaged.Dispose();
             _identityKeyUnmanaged.Dispose();
             _linkedDeviceUnmanaged.Dispose();
+
+            _disposed = true;
         }
 
-        private static void CopyClientData(ClientData clientData)
+        #region Data marshalling
+        protected void CopyClientData(ClientData clientData)
         {
             _jsonDataUnmanaged = UnmanagedMemory.PinArray(clientData.JsonData);
             _jsonDataConstBufferUnmanaged = new UnmanagedMemory(new WauthnConstBuffer(_jsonDataUnmanaged, (nuint)clientData.JsonData.Length));
             WauthnClientData = new WauthnClientData(_jsonDataConstBufferUnmanaged, clientData.HashAlgo);
         }
 
-        private static void CopyCredCreationOptions(PubkeyCredCreationOptions options)
-        {
-            CopyRp(options.Rp);
-            CopyUser(options.User);
-            CopyCredParams(options.PubkeyCredParams);
-            CopyCredentials(options.ExcludeCredentials);
-            CopyAuthenticatorSelection(options.AuthenticatorSelection);
-            CopyHints(options.Hints);
-            CopyAttestationFormats(options.AttestationFormats);
-            CopyExtensions(options.Extensions);
-            CopyLinkedDevice(options.LinkedDevice);
-
-            WauthnPubkeyCredCreationOptions = new WauthnPubkeyCredCreationOptions(
-                    _rpUnmanaged,
-                    _userUnmanaged,
-                    _pubkeyCredParamsUnmanaged,
-                    (nuint)options.Timeout,
-                    _credentialsUnmanaged,
-                    _authenticatorSelectionUnmanaged,
-                    _hintsUnmanaged,
-                    options.Attestation,
-                    _attestationFormatsUnmanaged,
-                    _extensionsUnmanaged,
-                    _linkedDeviceUnmanaged);
-        }
-
-        private static void CopyCredRequestOptions(PubkeyCredRequestOptions options)
-        {
-            CopyCredentials(options.AllowCredentials);
-            CopyHints(options.Hints);
-            CopyAttestationFormats(options.AttestationFormats);
-            CopyExtensions(options.Extensions);
-            CopyLinkedDevice(options.LinkedDevice);
-            WauthnPubkeyCredRequestOptions = new WauthnPubkeyCredRequestOptions(
-                (nuint)options.Timeout,
-                options.RpId,
-                _credentialsUnmanaged,
-                options.UserVerification,
-                _hintsUnmanaged,
-                options.Attestation,
-                _attestationFormatsUnmanaged,
-                _extensionsUnmanaged,
-                _linkedDeviceUnmanaged);
-        }
-
-        private static void CopyRp(RelyingPartyEntity rp)
-        {
-            _rpNameUnmanaged = new UnmanagedMemory(rp.Name);
-            _rpIdUnmanaged = new UnmanagedMemory(rp.Id);
-            _rpUnmanaged = new UnmanagedMemory(new WauthnRpEntity(_rpNameUnmanaged, _rpIdUnmanaged));
-        }
-
-        private static void CopyUser(UserEntity user)
-        {
-                _userNameUnmanaged = new UnmanagedMemory(user.Name);
-                _userIdDataUnmanaged = UnmanagedMemory.PinArray(user.Id);
-                _userIdConstBufferUnmanaged = new UnmanagedMemory(new WauthnConstBuffer(_userIdDataUnmanaged, (nuint)user.Id.Length));
-                _userDisplayNameUnmanaged = new UnmanagedMemory(user.DisplayName);
-                _userUnmanaged = new UnmanagedMemory(new WauthnUserEntity(
-                    _userNameUnmanaged,
-                    _userIdConstBufferUnmanaged,
-                    _userDisplayNameUnmanaged));
-        }
-
-        private static void CopyCredParams(IEnumerable<PubkeyCredParam> credParams)
-        {
-            if (credParams is null || !credParams.Any())
-                return;
-
-            WauthnPubkeyCredParam[] pubkeyCredParamStructArray = credParams.Select((PubkeyCredParam param) => new WauthnPubkeyCredParam(param.Type, param.Alg)).ToArray();
-            _pubkeyCredParamsParametersUnmanaged = UnmanagedMemory.PinArray(pubkeyCredParamStructArray);
-            _pubkeyCredParamsUnmanaged = new UnmanagedMemory(new WauthnPubkeyCredParams((nuint)pubkeyCredParamStructArray.Length, _pubkeyCredParamsParametersUnmanaged));
-        }
-
-        private static void CopyCredentials(IEnumerable<PubkeyCredDescriptor> credentials)
+        protected void CopyCredentials(IEnumerable<PubkeyCredDescriptor> credentials)
         {
             if (credentials is null || !credentials.Any())
                 return;
@@ -239,19 +143,7 @@ namespace Tizen.Security.WebAuthn
             _credentialsUnmanaged = new UnmanagedMemory(new WauthnPubkeyCredDescriptors((nuint)credentialsCount, _credentialsDescriptorsUnmanaged));
         }
 
-        private static void CopyAuthenticatorSelection(AuthenticationSelectionCriteria selection)
-        {
-            if (selection is null)
-                return;
-
-            _authenticatorSelectionUnmanaged = new UnmanagedMemory(new WauthnAuthenticationSelCri(
-                selection.Attachment,
-                selection.ResidentKey,
-                (byte)(selection.RequireResidentKey ? 1 : 0),
-                selection.UserVerification));
-        }
-
-        private static void CopyHints(IEnumerable<PubkeyCredHint> hints)
+        protected void CopyHints(IEnumerable<PubkeyCredHint> hints)
         {
             if (hints is null || !hints.Any())
                 return;
@@ -261,7 +153,7 @@ namespace Tizen.Security.WebAuthn
             _hintsUnmanaged = new UnmanagedMemory(new WauthnPubkeyCredHints((nuint)hintsArray.Length, _hintsArrayUnmanaged));
         }
 
-        private static void CopyAttestationFormats(IEnumerable<byte[]> attestationFormats)
+        protected void CopyAttestationFormats(IEnumerable<byte[]> attestationFormats)
         {
             if (attestationFormats is null || !attestationFormats.Any())
                 return;
@@ -283,7 +175,7 @@ namespace Tizen.Security.WebAuthn
             _attestationFormatsUnmanaged = new UnmanagedMemory(new WauthnAttestationFormats((nuint)attestationFormatsCount, _attestationFormatsArrayUnmanaged));
         }
 
-        private static void CopyExtensions(IEnumerable<AuthenticationExtension> extensions)
+        protected void CopyExtensions(IEnumerable<AuthenticationExtension> extensions)
         {
             if (extensions is null || !extensions.Any())
                 return;
@@ -312,7 +204,7 @@ namespace Tizen.Security.WebAuthn
             _extensionsUnmanaged = new UnmanagedMemory(new WauthnAuthenticationExts((nuint)extensionCount, _extensionsArrayUnmanaged));
         }
 
-        private static void CopyLinkedDevice(HybridLinkedData linkedDevice)
+        protected void CopyLinkedDevice(HybridLinkedData linkedDevice)
         {
             if (linkedDevice is null)
                 return;
@@ -350,12 +242,10 @@ namespace Tizen.Security.WebAuthn
                 _signatureUnmanaged,
                 _tunnelServerDomainUnmanaged,
                 _identityKeyUnmanaged));
-
-            if (_linkedDeviceUnmanaged == IntPtr.Zero)
-                throw new TimeoutException("linked null");
         }
+        #endregion
 
-        public static void CleanupArray(UnmanagedMemory[] array)
+        protected static void CleanupArray(UnmanagedMemory[] array)
         {
             if (array is null)
                 return;
@@ -363,8 +253,6 @@ namespace Tizen.Security.WebAuthn
                 memory.Dispose();
         }
 
-        public static WauthnClientData WauthnClientData { get; private set; }
-        public static WauthnPubkeyCredCreationOptions WauthnPubkeyCredCreationOptions { get; private set; }
-        public static WauthnPubkeyCredRequestOptions WauthnPubkeyCredRequestOptions { get; private set; }
+        public WauthnClientData WauthnClientData { get; private set; }
     }
 }

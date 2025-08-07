@@ -16,7 +16,10 @@
  */
 
 using System;
+using System.Linq;
 using System.ComponentModel;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
@@ -69,14 +72,14 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public Animation AnimateColor(string targetVisual, object destinationColor, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialColor = null)
         {
+            if (targetVisual == null)
+            {
+                throw new ArgumentNullException(nameof(targetVisual), "targetVisual is null.");
+            }
             Animation animation = null;
             using (PropertyMap animator = new PropertyMap())
             using (PropertyMap timePeriod = new PropertyMap())
-            using (PropertyValue pvDuration = new PropertyValue((endTime - startTime) / 1000.0f))
-            using (PropertyValue pvDelay = new PropertyValue(startTime / 1000.0f))
             using (PropertyMap transition = new PropertyMap())
-            using (PropertyValue pvTarget = new PropertyValue(targetVisual))
-            using (PropertyValue pvProperty = new PropertyValue("mixColor"))
             using (PropertyValue destValue = PropertyValue.CreateFromObject(destinationColor))
             {
                 if (alphaFunction != null)
@@ -87,18 +90,12 @@ namespace Tizen.NUI.BaseComponents
                     }
                 }
 
-                timePeriod.Add("duration", pvDuration);
-                timePeriod.Add("delay", pvDelay);
-                using (PropertyValue pvTimePeriod = new PropertyValue(timePeriod))
-                {
-                    animator.Add("timePeriod", pvTimePeriod);
-                }
-                using (PropertyValue pvAnimator = new PropertyValue(animator))
-                {
-                    transition.Add("animator", pvAnimator);
-                }
-                transition.Add("target", pvTarget);
-                transition.Add("property", pvProperty);
+                timePeriod.Add("duration", (endTime - startTime) / 1000.0f);
+                timePeriod.Add("delay", startTime / 1000.0f);
+                animator.Add("timePeriod", timePeriod);
+                transition.Add("animator", animator);
+                transition.Add("target", targetVisual);
+                transition.Add("property", "mixColor");
 
                 if (initialColor != null)
                 {
@@ -127,8 +124,6 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
-            bool hasLayout = (layout != null);
-
             if (null == child)
             {
                 Tizen.Log.Fatal("NUI", "Child is null");
@@ -186,14 +181,12 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            bool hasLayout = (layout != null);
-
             // If View has a layout then do a deferred child removal
             // Actual child removal is performed by the layouting system so
             // transitions can be completed.
-            if (hasLayout)
+            if (Layout != null)
             {
-                (layout as LayoutGroup)?.RemoveChildFromLayoutGroup(child);
+                (Layout as LayoutGroup)?.RemoveChildFromLayoutGroup(child);
             }
 
             RemoveChild(child);
@@ -310,28 +303,76 @@ namespace Tizen.NUI.BaseComponents
         {
             Interop.View.ClearBackground(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            NotifyBackgroundChanged();
         }
 
         /// <summary>
         /// Sets render effect to the view. The effect is applied to at most one view.
         /// </summary>
         /// <param name="effect">A render effect to set.</param>
+        /// <remarks>
+        /// This call works only if no render effect is set in advance. So if you do, clear before set.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetRenderEffect(RenderEffect effect)
         {
-            Interop.View.SetRenderEffect(SwigCPtr, RenderEffect.getCPtr(effect));
+            if((effect != null) && (GetRenderEffect() == null))
+            {
+                Interop.View.SetRenderEffect(SwigCPtr, RenderEffect.getCPtr(effect));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                // Keep RenderEffect reference here, to let we allow to get RenderEffect from Registry.
+                AddToNativeHolder(effect);
+                effect.SetOwnerView(this);
+            }
+            else
+            {
+                Tizen.Log.Error("NUI", "This View is already taken. ClearRenderEffect() before setting something new.\n");
+            }
+        }
+
+        /// <summary>
+        /// Gets render effect.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public RenderEffect GetRenderEffect()
+        {
+            IntPtr cPtr = Interop.View.GetRenderEffect(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            RenderEffect renderEffect = null;
+            if (cPtr != IntPtr.Zero)
+            {
+                // We do not create new RenderEffect here.
+                renderEffect = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as RenderEffect;
+                Interop.BaseHandle.DeleteBaseHandle(new HandleRef(this, cPtr));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
+            return renderEffect;
         }
 
         /// <summary>
         /// Clears render effect.
         /// </summary>
+        /// <param name="disposeEffect">Dispose render effect here if true.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void ClearRenderEffect()
+        public void ClearRenderEffect(bool disposeEffect = false)
         {
-            Interop.View.ClearRenderEffect(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            var renderEffect = GetRenderEffect();
+            if (renderEffect != null)
+            {
+                Interop.View.ClearRenderEffect(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
+                // Remove RenderEffect reference here.
+                RemoveFromNativeHolder(renderEffect);
+                renderEffect.SetOwnerView(null);
+                if (disposeEffect)
+                {
+                    renderEffect.Dispose();
+                }
+            }
         }
 
         /// <summary>
@@ -388,23 +429,10 @@ namespace Tizen.NUI.BaseComponents
         /// Once a raise or lower API is used, that view will then have an exclusive sibling order independent of insertion.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Method used to raise the object, not event")]
         public void RaiseToTop()
         {
-            var parentChildren = GetParent()?.Children;
-
-            if (parentChildren != null)
-            {
-                parentChildren.Remove(this);
-                parentChildren.Add(this);
-
-                LayoutGroup layout = Layout as LayoutGroup;
-                layout?.ChangeLayoutSiblingOrder(parentChildren.Count - 1);
-
-                Interop.NDalic.RaiseToTop(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
+            OnRaiseToTop();
         }
 
         /// <summary>
@@ -417,20 +445,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void LowerToBottom()
         {
-            var parentChildren = GetParent()?.Children;
-
-            if (parentChildren != null)
-            {
-                parentChildren.Remove(this);
-                parentChildren.Insert(0, this);
-
-                LayoutGroup layout = Layout as LayoutGroup;
-                layout?.ChangeLayoutSiblingOrder(0);
-
-                Interop.NDalic.LowerToBottom(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
+            OnLowerToBelow();
         }
 
         /// <summary>
@@ -507,6 +522,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 // Register new camera into Registry.
                 ret = new Animatable(cPtr, true);
+                return ret;
             }
             else
             {
@@ -514,9 +530,9 @@ namespace Tizen.NUI.BaseComponents
                 HandleRef handle = new HandleRef(this, cPtr);
                 Interop.Actor.DeleteActor(handle);
                 handle = new HandleRef(null, IntPtr.Zero);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -626,66 +642,107 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Adds a renderer to the view.
+        /// Adds a renderable to the view.
         /// </summary>
-        /// <param name="renderer">The renderer to add.</param>
-        /// <returns>The index of the Renderer that was added to the view.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public uint AddRenderer(Renderer renderer)
+        /// <param name="renderable">The renderable to add.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddRenderable(Renderable renderable)
         {
-            uint ret = Interop.Actor.AddRenderer(SwigCPtr, Renderer.getCPtr(renderer));
+            uint ret = Interop.Actor.AddRenderer(SwigCPtr, Renderable.getCPtr(renderable));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            if (renderables == null)
+            {
+                renderables = new List<Renderable>();
+            }
+            renderables.Add(renderable);
         }
 
         /// <summary>
-        /// Retrieves the renderer at the specified index.
+        /// Retrieves the renderable at the specified index.
         /// </summary>
-        /// <param name="index">The index of the renderer to retrieve.</param>
-        /// <returns>A Renderer object at the specified index.</returns>
+        /// <param name="index">The index of the renderable to retrieve.</param>
+        /// <returns>A Renderable object at the specified index.</returns>
         /// <remarks>
-        /// The index must be between 0 and GetRendererCount()-1
+        /// The index must be within the valid range: 0 (inclusive) to RenderableCount (exclusive)
         /// </remarks>
-        /// <since_tizen> 3 </since_tizen>
-        public Renderer GetRendererAt(uint index)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Renderable GetRenderableAt(uint index)
+        {
+            if (renderables != null && index < renderables.Count)
+            {
+                return renderables[(int)index];
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Removes the specified renderable from the view.
+        /// </summary>
+        /// <param name="renderable">The renderable to remove.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveRenderable(Renderable renderable)
+        {
+            if (renderables == null || renderables.Any() == false)
+            {
+                return;
+            }
+
+            bool isRemoved = renderables.Remove(renderable);
+            if (!isRemoved)
+            {
+                return;
+            }
+
+            Interop.Actor.RemoveRenderer(SwigCPtr, Renderable.getCPtr(renderable));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Removes a renderable at the specified index from the view.
+        /// </summary>
+        /// <param name="index">The index of the renderable to remove.</param>
+        /// <remarks>
+        /// The index must be within the valid range: 0 (inclusive) to RenderableCount (exclusive)
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveRenderable(uint index)
+        {
+            if (renderables == null || renderables.Any() == false)
+            {
+                return;
+            }
+
+            Renderable renderable = renderables[(int)index];
+            RemoveRenderable(renderable);
+        }
+
+        /// <summary>
+        /// Retrieves the renderable at the specified index from the View,
+        /// including both user-defined and system-generated renderables
+        /// </summary>
+        /// <param name="index">The zero-based index of the effective renderable to retrieve.</param>
+        /// <returns>A Renderable object at the specified index.</returns>
+        /// <remarks>
+        /// The index must be within the valid range: 0 (inclusive) to EffectiveRenderableCount (exclusive)
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Renderable GetEffectiveRenderableAt(uint index)
         {
             IntPtr cPtr = Interop.Actor.GetRendererAt(SwigCPtr, index);
-            Renderer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Renderer;
+            Renderable ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Renderable;
             if (ret != null)
             {
                 Interop.BaseHandle.DeleteBaseHandle(new HandleRef(this, cPtr));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                return ret;
             }
             else
             {
-                ret = new Renderer(cPtr, true);
+                ret = new Renderable(cPtr, true);
+                return ret;
             }
-            NDalicPINVOKE.ThrowExceptionIfExists();
-            return ret;
-        }
-
-        /// <summary>
-        /// Removes the specified renderer from the view.
-        /// </summary>
-        /// <param name="renderer">The renderer to remove.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void RemoveRenderer(Renderer renderer)
-        {
-            Interop.Actor.RemoveRenderer(SwigCPtr, Renderer.getCPtr(renderer));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Removes a renderer at the specified index from the view.
-        /// </summary>
-        /// <param name="index">The index of the renderer to remove.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void RemoveRenderer(uint index)
-        {
-            Interop.Actor.RemoveRenderer(SwigCPtr, index);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -806,26 +863,10 @@ namespace Tizen.NUI.BaseComponents
         /// Raise view above the next sibling view.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Method used to raise the object, not event")]
         public void Raise()
         {
-            var parentChildren = GetParent()?.Children;
-
-            if (parentChildren != null)
-            {
-                int currentIndex = parentChildren.IndexOf(this);
-
-                // If the view is not already the last item in the list.
-                if (currentIndex >= 0 && currentIndex < parentChildren.Count - 1)
-                {
-                    View temp = parentChildren[currentIndex + 1];
-                    parentChildren[currentIndex + 1] = this;
-                    parentChildren[currentIndex] = temp;
-
-                    Interop.NDalic.Raise(SwigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending)
-                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-            }
+            OnRaise();
         }
 
         /// <summary>
@@ -834,24 +875,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public void Lower()
         {
-            var parentChildren = GetParent()?.Children;
-
-            if (parentChildren != null)
-            {
-                int currentIndex = parentChildren.IndexOf(this);
-
-                // If the view is not already the first item in the list.
-                if (currentIndex > 0 && currentIndex < parentChildren.Count)
-                {
-                    View temp = parentChildren[currentIndex - 1];
-                    parentChildren[currentIndex - 1] = this;
-                    parentChildren[currentIndex] = temp;
-
-                    Interop.NDalic.Lower(SwigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending)
-                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-            }
+            OnLower();
         }
 
         /// <summary>
@@ -863,33 +887,10 @@ namespace Tizen.NUI.BaseComponents
         /// </remarks>
         /// <param name="target">Will be raised above this view.</param>
         /// <since_tizen> 9 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Method used to raise the object, not event")]
         public void RaiseAbove(View target)
         {
-            var parentChildren = GetParent()?.Children;
-
-            if (parentChildren != null)
-            {
-                int currentIndex = parentChildren.IndexOf(this);
-                int targetIndex = parentChildren.IndexOf(target);
-
-                if (currentIndex < 0 || targetIndex < 0 ||
-                    currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
-                {
-                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
-                    return;
-                }
-                // If the currentIndex is less than the target index and the target has the same parent.
-                if (currentIndex < targetIndex)
-                {
-                    parentChildren.Remove(this);
-                    parentChildren.Insert(targetIndex, this);
-
-                    Interop.NDalic.RaiseAbove(SwigCPtr, View.getCPtr(target));
-                    if (NDalicPINVOKE.SWIGPendingException.Pending)
-                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-            }
-
+            OnRaiseAbove(target);
         }
 
         /// <summary>
@@ -902,32 +903,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public void LowerBelow(View target)
         {
-            var parentChildren = GetParent()?.Children;
-
-            if (parentChildren != null)
-            {
-                int currentIndex = parentChildren.IndexOf(this);
-                int targetIndex = parentChildren.IndexOf(target);
-                if (currentIndex < 0 || targetIndex < 0 ||
-                   currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
-                {
-                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
-                    return;
-                }
-
-                // If the currentIndex is not already the 0th index and the target has the same parent.
-                if ((currentIndex != 0) && (targetIndex != -1) &&
-                    (currentIndex > targetIndex))
-                {
-                    parentChildren.Remove(this);
-                    parentChildren.Insert(targetIndex, this);
-
-                    Interop.NDalic.LowerBelow(SwigCPtr, View.getCPtr(target));
-                    if (NDalicPINVOKE.SWIGPendingException.Pending)
-                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-            }
-
+            OnLowerBelow(target);
         }
 
         /// <summary>
@@ -990,15 +966,7 @@ namespace Tizen.NUI.BaseComponents
         /// This is a hidden API(inhouse API) only for internal purpose.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void RegisterHitTestCallback()
-        {
-            if (hitTestResultDataCallback == null)
-            {
-                hitTestResultDataCallback = OnHitTestResult;
-                Interop.ActorSignal.HitTestResultConnect(SwigCPtr, hitTestResultDataCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-            }
-        }
+        protected void RegisterHitTestCallback() => EnsureViewEventRareData().RegisterHitTestCallback(OnHitTestResult);
 
         /// <summary>
         /// Unregister custom HitTest function.
@@ -1007,15 +975,7 @@ namespace Tizen.NUI.BaseComponents
         /// This is a hidden API(inhouse API) only for internal purpose.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void UnregisterHitTestCallback()
-        {
-            if (hitTestResultDataCallback != null)
-            {
-                Interop.ActorSignal.HitTestResultDisconnect(SwigCPtr, hitTestResultDataCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                hitTestResultDataCallback = null;
-            }
-        }
+        protected void UnregisterHitTestCallback() => _viewEventRareData?.UnregisterHitTestCallback();
 
         /// <summary>
         /// Calculate the screen position of the view.<br />
@@ -1048,6 +1008,173 @@ namespace Tizen.NUI.BaseComponents
             Vector4 ret = new Vector4(Interop.Actor.CalculateScreenExtents(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Called during the execution of <see cref="RaiseToTop"/>.
+        /// Override this method to customize behavior when <c>RaiseToTop</c> is invoked.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnRaiseToTop()
+        {
+            var parentChildren = GetParent()?.Children;
+
+            if (parentChildren != null)
+            {
+                parentChildren.Remove(this);
+                parentChildren.Add(this);
+
+                Layout?.ChangeLayoutSiblingOrder(parentChildren.Count - 1);
+
+                Interop.NDalic.RaiseToTop(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Called during the execution of <see cref="LowerToBottom"/>.
+        /// Override this method to customize behavior when <c>LowerToBottom</c> is invoked.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnLowerToBelow()
+        {
+            var parentChildren = GetParent()?.Children;
+
+            if (parentChildren != null)
+            {
+                parentChildren.Remove(this);
+                parentChildren.Insert(0, this);
+
+                Layout?.ChangeLayoutSiblingOrder(0);
+
+                Interop.NDalic.LowerToBottom(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Called during the execution of <see cref="Raise"/>.
+        /// Override this method to customize behavior when <c>Raise</c> is invoked.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnRaise()
+        {
+            var parentChildren = GetParent()?.Children;
+
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+
+                // If the view is not already the last item in the list.
+                if (currentIndex >= 0 && currentIndex < parentChildren.Count - 1)
+                {
+                    View temp = parentChildren[currentIndex + 1];
+                    parentChildren[currentIndex + 1] = this;
+                    parentChildren[currentIndex] = temp;
+
+                    Interop.NDalic.Raise(SwigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called during the execution of <see cref="Lower"/>.
+        /// Override this method to customize behavior when <c>Lower</c> is invoked.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnLower()
+        {
+            var parentChildren = GetParent()?.Children;
+
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+
+                // If the view is not already the first item in the list.
+                if (currentIndex > 0 && currentIndex < parentChildren.Count)
+                {
+                    View temp = parentChildren[currentIndex - 1];
+                    parentChildren[currentIndex - 1] = this;
+                    parentChildren[currentIndex] = temp;
+
+                    Interop.NDalic.Lower(SwigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called during the execution of <see cref="RaiseAbove"/>.
+        /// Override this method to customize behavior when <c>RaiseAbove</c> is invoked.
+        /// </summary>
+        /// <param name="target">Will be raised above this view.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnRaiseAbove(View target)
+        {
+            var parentChildren = GetParent()?.Children;
+
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+                int targetIndex = parentChildren.IndexOf(target);
+
+                if (currentIndex < 0 || targetIndex < 0 ||
+                    currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
+                {
+                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
+                    return;
+                }
+                // If the currentIndex is less than the target index and the target has the same parent.
+                if (currentIndex < targetIndex)
+                {
+                    parentChildren.Remove(this);
+                    parentChildren.Insert(targetIndex, this);
+
+                    Interop.NDalic.RaiseAbove(SwigCPtr, View.getCPtr(target));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called during the execution of <see cref="LowerBelow"/>.
+        /// Override this method to customize behavior when <c>LowerBelow</c> is invoked.
+        /// </summary>
+        /// <param name="target">Will be lowered below this view.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnLowerBelow(View target)
+        {
+            var parentChildren = GetParent()?.Children;
+
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+                int targetIndex = parentChildren.IndexOf(target);
+                if (currentIndex < 0 || targetIndex < 0 ||
+                    currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
+                {
+                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
+                    return;
+                }
+
+                // If the currentIndex is not already the 0th index and the target has the same parent.
+                if ((currentIndex != 0) && (targetIndex != -1) &&
+                    (currentIndex > targetIndex))
+                {
+                    parentChildren.Remove(this);
+                    parentChildren.Insert(targetIndex, this);
+
+                    Interop.NDalic.LowerBelow(SwigCPtr, View.getCPtr(target));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
         }
     }
 }

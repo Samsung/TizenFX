@@ -121,6 +121,32 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Handles the event for a given view and touch input.
+        /// This method should only be called when SetGeometryHittestEnabled is set to true.
+        /// It processes the touch input and attempts to recognize gestures based on the provided view and touch data.
+        /// </summary>
+        /// <param name="view">The view associated with the gesture detector.</param>
+        /// <param name="touch">The touch input data to analyze for gestures.</param>
+        /// <returns>True if the event was handled successfully, otherwise false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool HandleEvent(View view, Touch touch)
+        {
+            bool ret = Interop.GestureDetector.HandleEvent(SwigCPtr, View.getCPtr(view), Touch.getCPtr(touch));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
+        /// <summary>
+        /// Cancels all other gesture detectors that are currently recognizing gestures by HandleEvent(View view, Touch touch) api
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void CancelAllOtherGestureDetectors()
+        {
+            Interop.GestureDetector.CancelAllOtherGestureDetectors(SwigCPtr);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
         internal GestureDetector Assign(GestureDetector rhs)
         {
             GestureDetector ret = new GestureDetector(Interop.GestureDetector.Assign(SwigCPtr, GestureDetector.getCPtr(rhs)), false);

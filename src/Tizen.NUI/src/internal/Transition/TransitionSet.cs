@@ -123,13 +123,14 @@ namespace Tizen.NUI
             if (ret != null)
             {
                 Interop.BaseHandle.DeleteBaseHandle(new HandleRef(this, cPtr));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                return ret;
             }
             else
             {
                 ret = new TransitionItemBase(cPtr, true);
+                return ret;
             }
-            NDalicPINVOKE.ThrowExceptionIfExists();
-            return ret;
         }
 
         public uint GetTransitionCount()

@@ -30,8 +30,8 @@ namespace Tizen.Security.WebAuthn
         /// Initializes a new instance of the <see cref="RelyingPartyEntity"/> class.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
-        /// <param name="name">The name of RP.</param>
-        /// <param name="id">The RPID.</param>
+        /// <param name="name">The name of the Relying Party.</param>
+        /// <param name="id">The ID of the Relying Party.</param>
         public RelyingPartyEntity(string name, string id)
         {
             Name = name;
@@ -39,12 +39,20 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// The name of RP.
+        /// Gets the name of the Relying Party.
         /// </summary>
+        /// <value>
+        /// The name of the Relying Party.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public string Name { get; init; }
         /// <summary>
-        /// The RPID.
+        /// Gets the ID of the Relying Party.
         /// </summary>
+        /// <value>
+        /// The ID of the Relying Party.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public string Id { get; init; }
     }
 }

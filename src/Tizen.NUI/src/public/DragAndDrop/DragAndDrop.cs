@@ -44,10 +44,10 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="targetView">The view where the drag event occurred.</param>
         /// <param name="nativeDragEvent">The native drag event containing details about the drag operation.</param>
-        public delegate void DragAndDropEventHandler(View targetView, DragEvent navtiveDragEvent);
+        public delegate void DragAndDropEventHandler(View targetView, DragEvent nativeDragEvent);
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void DragAndDropWindowEventHandler(Window targetWindow, DragEvent navtiveDragEvent);
-        private delegate void InternalDragAndDropEventHandler(global::System.IntPtr navtiveDragEvent);
+        public delegate void DragAndDropWindowEventHandler(Window targetWindow, DragEvent nativeDragEvent);
+        private delegate void InternalDragAndDropEventHandler(global::System.IntPtr nativeDragEvent);
         private InternalSourceEventHandler sourceEventCb;
         private Dictionary<View, InternalDragAndDropEventHandler> targetEventDictionary = new Dictionary<View, InternalDragAndDropEventHandler>();
         private Dictionary<Window, InternalDragAndDropEventHandler> targetWindowEventDictionary = new Dictionary<Window, InternalDragAndDropEventHandler>();
@@ -55,22 +55,22 @@ namespace Tizen.NUI
         private Window mDragWindow;
         private int shadowWidth;
         private int shadowHeight;
-        private int dragWindowOffsetX = 0;
-        private int dragWindowOffsetY = 0;
+        private int dragWindowOffsetX;
+        private int dragWindowOffsetY;
 
         private const int MinDragWindowWidth = 100;
         private const int MinDragWindowHeight = 100;
 
-        private void ProcessDragEventTargetCallback(IntPtr navtiveDragEvent, View targetView, DragAndDropEventHandler callback)
+        private void ProcessDragEventTargetCallback(IntPtr nativeDragEvent, View targetView, DragAndDropEventHandler callback)
         {
-            DragType type = (DragType)Interop.DragAndDrop.GetAction(navtiveDragEvent);
+            DragType type = (DragType)Interop.DragAndDrop.GetAction(nativeDragEvent);
             DragEvent dragEvent = new DragEvent();
-            global::System.IntPtr cPtr = Interop.DragAndDrop.GetPosition(navtiveDragEvent);
+            global::System.IntPtr cPtr = Interop.DragAndDrop.GetPosition(nativeDragEvent);
             dragEvent.Position = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, true);
 
             IntPtr nativeMimeTypes;
             int count;
-            Interop.DragAndDrop.GetMimeTypes(navtiveDragEvent, out nativeMimeTypes, out count);
+            Interop.DragAndDrop.GetMimeTypes(nativeDragEvent, out nativeMimeTypes, out count);
             if (count > 0)
             {
                 IntPtr [] nativeMimeTypesArrary = new IntPtr[count];
@@ -105,21 +105,21 @@ namespace Tizen.NUI
             else if (type == DragType.Drop)
             {
                 dragEvent.DragType = type;
-                dragEvent.Data = Interop.DragAndDrop.GetData(navtiveDragEvent);
+                dragEvent.Data = Interop.DragAndDrop.GetData(nativeDragEvent);
                 callback(targetView, dragEvent);
             }
         }
 
-        private void ProcessDragEventWindowCallback(IntPtr navtiveDragEvent, Window targetWindow, DragAndDropWindowEventHandler callback)
+        private void ProcessDragEventWindowCallback(IntPtr nativeDragEvent, Window targetWindow, DragAndDropWindowEventHandler callback)
         {
-            DragType type = (DragType)Interop.DragAndDrop.GetAction(navtiveDragEvent);
+            DragType type = (DragType)Interop.DragAndDrop.GetAction(nativeDragEvent);
             DragEvent dragEvent = new DragEvent();
-            global::System.IntPtr cPtr = Interop.DragAndDrop.GetPosition(navtiveDragEvent);
+            global::System.IntPtr cPtr = Interop.DragAndDrop.GetPosition(nativeDragEvent);
             dragEvent.Position = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
 
             IntPtr nativeMimeTypes;
             int count;
-            Interop.DragAndDrop.GetMimeTypes(navtiveDragEvent, out nativeMimeTypes, out count);
+            Interop.DragAndDrop.GetMimeTypes(nativeDragEvent, out nativeMimeTypes, out count);
             if (count > 0)
             {
                 IntPtr [] nativeMimeTypesArrary = new IntPtr[count];
@@ -154,7 +154,7 @@ namespace Tizen.NUI
             else if (type == DragType.Drop)
             {
                 dragEvent.DragType = type;
-                dragEvent.Data = Interop.DragAndDrop.GetData(navtiveDragEvent);
+                dragEvent.Data = Interop.DragAndDrop.GetData(nativeDragEvent);
                 callback(targetWindow, dragEvent);
             }
         }
@@ -311,7 +311,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddListener(View targetView, string mimeType, DragAndDropEventHandler callback)
         {
-            InternalDragAndDropEventHandler cb = (navtiveDragEvent) => ProcessDragEventTargetCallback(navtiveDragEvent, targetView, callback);
+            InternalDragAndDropEventHandler cb = (nativeDragEvent) => ProcessDragEventTargetCallback(nativeDragEvent, targetView, callback);
 
             targetEventDictionary.Add(targetView, cb);
 
@@ -364,7 +364,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddListener(Window targetWindow, string mimeType, DragAndDropWindowEventHandler callback)
         {
-            InternalDragAndDropEventHandler cb = (navtiveDragEvent) => ProcessDragEventWindowCallback(navtiveDragEvent, targetWindow, callback);
+            InternalDragAndDropEventHandler cb = (nativeDragEvent) => ProcessDragEventWindowCallback(nativeDragEvent, targetWindow, callback);
 
             targetWindowEventDictionary.Add(targetWindow, cb);
 

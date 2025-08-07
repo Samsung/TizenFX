@@ -27,7 +27,7 @@ internal static partial class Interop
         public delegate void SubsessionReplyCallback(int result, IntPtr cb_data);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate void SubsessionEventCallback(IntPtr info, IntPtr cb_data);
+        public delegate void SubsessionEventCallback(SubsessionEventInfoNative info, IntPtr cb_data);
 
         [DllImport(Libraries.Session, EntryPoint = "subsession_add_user", CallingConvention = CallingConvention.Cdecl)]
         public static extern SessionError SubsessionAddUser(int session_uid, string user, SubsessionReplyCallback cb, IntPtr data);

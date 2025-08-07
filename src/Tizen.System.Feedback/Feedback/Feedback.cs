@@ -413,6 +413,7 @@ namespace Tizen.System
         /// bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, "Tap");
         /// </code>
         /// </example>
+        /// <seealso cref="FeedbackType"/>
         public bool IsSupportedPattern(FeedbackType type, String pattern)
         {
             bool supported = false;
@@ -446,7 +447,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Plays a specific feedback pattern.
+        /// Plays specific type of reactions that are pre-defined feedback pattern.
         /// </summary>
         /// <remarks>
         /// To play Vibration type, app should have http://tizen.org/privilege/haptic privilege.
@@ -469,6 +470,8 @@ namespace Tizen.System
         /// feedback.Play(FeedbackType.All, "Tap");
         /// </code>
         /// </example>
+        /// <seealso cref="FeedbackType"/>
+        /// <seealso cref="Feedback.Stop()"/>
         public void Play(FeedbackType type, String pattern)
         {
             int number;
@@ -503,7 +506,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Stops to play the feedback.
+        /// Stops various types of reactions from the feedback module.
         /// </summary>
         /// <remarks>
         /// To stop vibration, the application should have http://tizen.org/privilege/haptic privilege.
@@ -524,6 +527,7 @@ namespace Tizen.System
         /// Feedback1.Stop();
         /// </code>
         /// </example>
+        /// <seealso cref="Feedback.Play(FeedbackType,String)"/>
         public void Stop()
         {
             Interop.Feedback.FeedbackError res = (Interop.Feedback.FeedbackError)Interop.Feedback.Stop();
@@ -549,7 +553,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the count of theme can be used according to feedback type.
+        /// Gets the number of themes supported as described in the configuration.
         /// </summary>
         /// <remarks>
         /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
@@ -568,6 +572,7 @@ namespace Tizen.System
         /// uint coundOfTheme = feedback.GetCountOfThemeInternal(FeedbackType.Sound);
         /// </code>
         /// </example>
+        /// <seealso cref="FeedbackType"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetCountOfThemeInternal(FeedbackType type)
         {
@@ -596,7 +601,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the id of theme selected.
+        /// Gets the current id of the theme selected from available themes described in the conf file.
         /// </summary>
         /// <remarks>
         /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
@@ -614,6 +619,7 @@ namespace Tizen.System
         /// uint idOfTheme = feedback.GetThemeIdInternal(FeedbackType.Sound);
         /// </code>
         /// </example>
+        /// <seealso cref="FeedbackType"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetThemeIdInternal(FeedbackType type)
         {
@@ -640,7 +646,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Sets the id of theme according to feedback type.
+        /// Sets the current id of the theme from available themes described in the conf file.
         /// </summary>
         /// <remarks>
         /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
@@ -661,6 +667,7 @@ namespace Tizen.System
         /// feedback.SetThemeIdInternal(FeedbackType.Sound, idOfTheme);
         /// </code>
         /// </example>
+        /// <seealso cref="FeedbackType"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetThemeIdInternal(FeedbackType type, uint idOfTheme)
         {
@@ -687,7 +694,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Stops the current feedback playing by feedback type
+        /// Stops reactions of various types according to the feedback type.
         /// </summary>
         /// <remarks>
         /// To stop vibration, the application should have http://tizen.org/privilege/haptic privilege.
@@ -706,6 +713,7 @@ namespace Tizen.System
         /// feedback.StopTypeInternal(FeedbackType.Vibration);
         /// </code>
         /// </example>
+        /// <seealso cref="FeedbackType"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void StopTypeInternal(FeedbackType type)
         {
@@ -734,11 +742,12 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the id array of theme supported.
+        /// Gets the array of theme ids supported described in the conf file.
         /// </summary>
         /// <remarks>
         /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
         /// The theme id is positive value as defined in the conf file.
+        /// Gets all theme ids as defined in the conf file.
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         /// <param name="type">The feedback type.</param>
@@ -752,6 +761,7 @@ namespace Tizen.System
         /// uint[] getThemeIds = feedback.GetThemeIdsInternal(FeedbackType.Sound);
         /// </code>
         /// </example>
+        /// <seealso cref="FeedbackType"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint[] GetThemeIdsInternal(FeedbackType type)
         {

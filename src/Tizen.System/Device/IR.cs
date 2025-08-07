@@ -38,7 +38,18 @@ namespace Tizen.System
         /// <summary>
         /// Gets the information whether the IR module is available.
         /// </summary>
+        /// <remarks>
+        /// Gets the boolean value whether the IR module is available on the device.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <value>true if the IR module is available, otherwise false.</value>
+        /// <example>
+        /// <code>
+        /// using Tizen.System;
+        /// ...
+        /// Console.WriteLine("IR availability for this device is: {0}", IR.IsAvailable);
+        /// </code>
+        /// </example>
         public static bool IsAvailable
         {
             get
@@ -54,7 +65,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Transmits the IR command.
+        /// Transmits IR command with the specified carrier frequency and pattern.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="carrierFreequency">
@@ -81,6 +92,7 @@ namespace Tizen.System
         ///    }
         /// </code>
         /// </example>
+        /// <seealso cref="IR.IsAvailable"/>
         public static void Transmit(int carrierFreequency, IList<int> pattern)
         {
             int[] patternArray = pattern.ToArray();

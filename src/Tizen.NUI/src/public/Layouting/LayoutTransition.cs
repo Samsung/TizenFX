@@ -105,7 +105,7 @@ namespace Tizen.NUI
     /// <since_tizen> 6 </since_tizen>
     public class TransitionComponents : IDisposable
     {
-        private bool disposed = false;
+        private bool disposed;
         /// <summary>
         /// TransitionComponents default constructor.
         /// </summary>

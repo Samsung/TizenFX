@@ -53,7 +53,7 @@ namespace Tizen.NUI
         {
         }
 
-        internal Key(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        internal Key(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister, cRegister)
         {
         }
 

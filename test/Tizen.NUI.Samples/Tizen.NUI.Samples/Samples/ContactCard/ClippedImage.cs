@@ -18,20 +18,32 @@ namespace Tizen.NUI.Samples
         static Geometry geometry = null;
 
         private static readonly string VERTEX_SHADER =
-            "attribute vec2  aPositionCircle;\n" +
-            "attribute vec2  aPositionQuad;\n" +
-            "uniform  float uDelta;\n" +
-            "uniform mat4 uMvpMatrix;\n" + 
-            "uniform vec3    uSize;\n" + 
-            "\n" + 
-            "void main()\n" + 
-            "{\n" + 
-            "   vec4 vertexPosition = vec4(mix(aPositionCircle, aPositionQuad, uDelta), 0.0, 1.0);\n" +
-            "   vertexPosition.xyz *= uSize;\n" +
-            "   gl_Position = uMvpMatrix * vertexPosition;\n" +
-            "}\n";
+        "//@name ClippedImage.vert\n" +
+        "\n" +
+        "//@version 100\n" +
+        "\n" +
+        "INPUT highp vec2 aPositionCircle;\n" +
+        "INPUT highp vec2 aPositionQuad;\n" +
+        "\n" +
+        "UNIFORM_BLOCK VertBlock\n" +
+        "{\n" +
+        "  UNIFORM highp mat4  uMvpMatrix;\n" + 
+        "  UNIFORM highp vec3  uSize;\n" + 
+        "  UNIFORM highp float uDelta;\n" +
+        "};\n" +
+        "\n" + 
+        "void main()\n" + 
+        "{\n" + 
+        "   vec4 vertexPosition = vec4(mix(aPositionCircle, aPositionQuad, uDelta), 0.0, 1.0);\n" +
+        "   vertexPosition.xyz *= uSize;\n" +
+        "   gl_Position = uMvpMatrix * vertexPosition;\n" +
+        "}\n";
 
         private static readonly string FRAGMENT_SHADER =
+        "//@name ClippedImage.frag\n" +
+        "\n" +
+        "//@version 100\n" +
+        "\n" +
         "precision mediump float;\n" +
         "void main()\n" +
         "{\n" +
@@ -44,12 +56,16 @@ namespace Tizen.NUI.Samples
             View clippedImage = new View();
             clippedImage.ClippingMode = ClippingModeType.ClipChildren;
 
-            // Create the required renderer and add to the clipped image view
+            // Create the required renderable and add to the clipped image view
             Shader shader = CreateShader();
             CreateGeometry();
-            Renderer renderer = new Renderer(geometry, shader);
-            renderer.BlendMode = 2;
-            clippedImage.AddRenderer(renderer);
+            Renderable renderable = new Renderable()
+            {
+                Geometry = geometry,
+                Shader = shader,
+                BlendMode = BlendMode.On,
+            };
+            clippedImage.AddRenderable(renderable);
 
             // Register the property on the clipped image view which will allow animations between a circle and a quad
             int propertyIndex = clippedImage.RegisterProperty("uDelta", new PropertyValue(0.0f));
@@ -68,7 +84,7 @@ namespace Tizen.NUI.Samples
 
         private static Shader CreateShader()
         {
-            Shader shader = new Shader(VERTEX_SHADER, FRAGMENT_SHADER);
+            Shader shader = new Shader(VERTEX_SHADER, FRAGMENT_SHADER, "ClippedImageShader");
 
             return shader;
         }

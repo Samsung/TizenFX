@@ -42,6 +42,10 @@ namespace Tizen.NUI
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsPropertyAnimatable(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_IsPropertyAConstraintInput")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool IsPropertyAConstraintInput(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_GetPropertyType")]
             public static extern int GetPropertyType(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 

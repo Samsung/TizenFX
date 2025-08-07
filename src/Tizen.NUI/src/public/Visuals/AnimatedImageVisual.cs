@@ -24,11 +24,11 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class AnimatedImageVisual : VisualMap
     {
-        private List<string> urls = null;
-        private int? batchSize = null;
-        private int? cacheSize = null;
-        private float? frameDelay = null;
-        private float? loopCount = null;
+        private List<string> urls;
+        private int? batchSize;
+        private int? cacheSize;
+        private float? frameDelay;
+        private float? loopCount;
 
         /// <summary>
         /// Default constructor of AnimatedImageVisual class.
@@ -165,50 +165,42 @@ namespace Tizen.NUI
             if (urls != null)
             {
                 _outputVisualMap = new PropertyMap();
-                PropertyValue temp = new PropertyValue((int)Visual.Type.AnimatedImage);
-                _outputVisualMap.Add(Visual.Property.Type, temp);
-                temp.Dispose();
+                _outputVisualMap.Add(Visual.Property.Type, (int)Visual.Type.AnimatedImage);
+
                 if (urls.Count == 1)
                 {
-                    temp = new PropertyValue(urls[0]);
-                    _outputVisualMap.Add(ImageVisualProperty.URL, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.URL, urls[0]);
                 }
                 else
                 {
-                    var urlArray = new PropertyArray();
+                    using var urlArray = new PropertyArray();
                     foreach (var url in urls)
                     {
-                        urlArray.Add(new PropertyValue(url));
+                        using (var pv = new PropertyValue(url))
+                        {
+                            using var _ = urlArray.Add(pv);
+                        }
                     }
-                    temp = new PropertyValue(urlArray);
-                    _outputVisualMap.Add(ImageVisualProperty.URL, temp);
-                    temp.Dispose();
-                    urlArray.Dispose();
+                    using (var temp = new PropertyValue(urlArray))
+                    {
+                        _outputVisualMap.Add(ImageVisualProperty.URL, temp);
+                    }
                 }
                 if (batchSize != null)
                 {
-                    temp = new PropertyValue((int)batchSize);
-                    _outputVisualMap.Add(ImageVisualProperty.BatchSize, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.BatchSize, batchSize.Value);
                 }
                 if (cacheSize != null)
                 {
-                    temp = new PropertyValue((int)cacheSize);
-                    _outputVisualMap.Add(ImageVisualProperty.CacheSize, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.CacheSize, cacheSize.Value);
                 }
                 if (frameDelay != null)
                 {
-                    temp = new PropertyValue((float)frameDelay);
-                    _outputVisualMap.Add(ImageVisualProperty.FrameDelay, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.FrameDelay, frameDelay.Value);
                 }
                 if (loopCount != null)
                 {
-                    temp = new PropertyValue((int)loopCount);
-                    _outputVisualMap.Add(ImageVisualProperty.LoopCount, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(ImageVisualProperty.LoopCount, loopCount.Value);
                 }
                 base.ComposingPropertyMap();
             }

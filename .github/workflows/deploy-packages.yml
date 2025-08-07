@@ -6,7 +6,7 @@ on:
       target:
         description: 'Branch to deploy'
         required: true
-        default: 'master'
+        default: 'main'
       deploy_to_gpr:
         description: 'Deploy packages to Github Packages Registry?'
         required: true
@@ -25,7 +25,7 @@ env:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3
       with:

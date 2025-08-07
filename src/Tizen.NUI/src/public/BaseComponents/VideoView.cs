@@ -29,121 +29,108 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty VideoProperty = null;
+        public static readonly BindableProperty VideoProperty = null;
         internal static void SetInternalVideoProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var videoView = (VideoView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VIDEO, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                var videoView = (VideoView)bindable;
+                videoView.SetInternalVideo((PropertyMap)newValue);
             }
         }
         internal static object GetInternalVideoProperty(BindableObject bindable)
         {
             var videoView = (VideoView)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VIDEO).Get(temp);
-            return temp;
+            return videoView.GetInternalVideo();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty LoopingProperty = null;
+        public static readonly BindableProperty LoopingProperty = null;
         internal static void SetInternalLoopingProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var videoView = (VideoView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.LOOPING, new Tizen.NUI.PropertyValue((bool)newValue));
+                var videoView = (VideoView)bindable;
+                videoView.SetInternalLooping((bool)newValue);
             }
         }
         internal static object GetInternalLoopingProperty(BindableObject bindable)
         {
             var videoView = (VideoView)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.LOOPING).Get(out temp);
-            return temp;
+            return videoView.GetInternalLooping();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty MutedProperty = null;
+        public static readonly BindableProperty MutedProperty = null;
         internal static void SetInternalMutedProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var videoView = (VideoView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.MUTED, new Tizen.NUI.PropertyValue((bool)newValue));
+                var videoView = (VideoView)bindable;
+                videoView.SetInternalMuted((bool)newValue);
             }
         }
         internal static object GetInternalMutedProperty(BindableObject bindable)
         {
             var videoView = (VideoView)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.MUTED).Get(out temp);
-            return temp;
+            return videoView.GetInternalMuted();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty VolumeProperty = null;
+        public static readonly BindableProperty VolumeProperty = null;
         internal static void SetInternalVolumeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var videoView = (VideoView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VOLUME, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                var videoView = (VideoView)bindable;
+                videoView.SetInternalVolume((PropertyMap)newValue);
             }
         }
         internal static object GetInternalVolumeProperty(BindableObject bindable)
         {
             var videoView = (VideoView)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VOLUME).Get(temp);
-            return temp;
+            return videoView.GetInternalVolume();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty UnderlayProperty = null;
+        public static readonly BindableProperty UnderlayProperty = null;
         internal static void SetInternalUnderlayProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var videoView = (VideoView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.UNDERLAY, new Tizen.NUI.PropertyValue((bool)newValue));
+                var videoView = (VideoView)bindable;
+                videoView.SetInternalUnderlay((bool)newValue);
             }
         }
         internal static object GetInternalUnderlayProperty(BindableObject bindable)
         {
             var videoView = (VideoView)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.UNDERLAY).Get(out temp);
-            return temp;
+            return videoView.GetInternalUnderlay();
         }
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty ResourceUrlProperty = null;
+        public static readonly BindableProperty ResourceUrlProperty = null;
         internal static void SetInternalResourceUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var videoView = (VideoView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VIDEO, new Tizen.NUI.PropertyValue((string)newValue));
+                var videoView = (VideoView)bindable;
+                videoView.SetInternalResourceUrl((string)newValue);
             }
         }
         internal static object GetInternalResourceUrlProperty(BindableObject bindable)
         {
             var videoView = (VideoView)bindable;
-            string temp;
-            Tizen.NUI.Object.GetProperty((HandleRef)videoView.SwigCPtr, VideoView.Property.VIDEO).Get(out temp);
-            return temp;
+            return videoView.GetInternalResourceUrl();
         }
 
         private FinishedCallbackDelegate videoViewFinishedCallbackDelegate;
         private EventHandler<FinishedEventArgs> videoViewFinishedEventHandler;
-
 
         static VideoView()
         {
@@ -245,16 +232,18 @@ namespace Tizen.NUI.BaseComponents
                 if (videoViewFinishedEventHandler == null)
                 {
                     videoViewFinishedCallbackDelegate = (OnFinished);
-                    FinishedSignal().Connect(videoViewFinishedCallbackDelegate);
+                    using var signal = FinishedSignal();
+                    signal.Connect(videoViewFinishedCallbackDelegate);
                 }
                 videoViewFinishedEventHandler += value;
             }
             remove
             {
                 videoViewFinishedEventHandler -= value;
-                if (videoViewFinishedEventHandler == null && FinishedSignal().Empty() == false)
+                using var signal = FinishedSignal();
+                if (videoViewFinishedEventHandler == null && signal.Empty() == false)
                 {
-                    FinishedSignal().Disconnect(videoViewFinishedCallbackDelegate);
+                    signal.Disconnect(videoViewFinishedCallbackDelegate);
                 }
             }
         }
@@ -273,7 +262,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (PropertyMap)GetInternalVideoProperty(this);
+                    return GetInternalVideo();
                 }
             }
             set
@@ -284,10 +273,29 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalVideoProperty(this, null, value);
+                    SetInternalVideo(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalVideo(PropertyMap newValue)
+        {
+            if (newValue != null)
+            {
+                using var pv = new PropertyValue(newValue);
+                Object.SetProperty(SwigCPtr, Property.VIDEO, pv);
+            }
+        }
+
+        private PropertyMap GetInternalVideo()
+        {
+            PropertyMap temp = new PropertyMap();
+            using (var prop = Object.GetProperty(SwigCPtr, Property.VIDEO))
+            {
+                prop.Get(temp);
+            }
+            return temp;
         }
 
         /// <summary>
@@ -304,7 +312,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalLoopingProperty(this);
+                    return GetInternalLooping();
                 }
             }
             set
@@ -315,10 +323,24 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalLoopingProperty(this, null, value);
+                    SetInternalLooping(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalLooping(bool newValue)
+        {
+            using var pv = new PropertyValue(newValue);
+            Object.SetProperty(SwigCPtr, Property.LOOPING, pv);
+        }
+
+        private bool GetInternalLooping()
+        {
+            bool temp = false;
+            using var prop = Object.GetProperty(SwigCPtr, Property.LOOPING);
+            prop.Get(out temp);
+            return temp;
         }
 
         /// <summary>
@@ -335,7 +357,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalMutedProperty(this);
+                    return GetInternalMuted();
                 }
             }
             set
@@ -346,10 +368,24 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalMutedProperty(this, null, value);
+                    SetInternalMuted(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalMuted(bool newValue)
+        {
+            using var pv = new PropertyValue(newValue);
+            Object.SetProperty(SwigCPtr, Property.MUTED, pv);
+        }
+
+        private bool GetInternalMuted()
+        {
+            bool temp = false;
+            using var prop = Object.GetProperty(SwigCPtr, Property.MUTED);
+            prop.Get(out temp);
+            return temp;
         }
 
         /// <summary>
@@ -366,7 +402,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (PropertyMap)GetInternalVolumeProperty(this);
+                    return GetInternalVolume();
                 }
             }
             set
@@ -377,10 +413,29 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalVolumeProperty(this, null, value);
+                    SetInternalVolume(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalVolume(PropertyMap newValue)
+        {
+            if (newValue != null)
+            {
+                using var pv = new PropertyValue(newValue);
+                Object.SetProperty(SwigCPtr, Property.VOLUME, pv);
+            }
+        }
+
+        private PropertyMap GetInternalVolume()
+        {
+            PropertyMap temp = new PropertyMap();
+            using (var prop = Object.GetProperty(SwigCPtr, Property.VOLUME))
+            {
+                prop.Get(temp);
+            }
+            return temp;
         }
 
         /// <summary>
@@ -399,7 +454,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalUnderlayProperty(this);
+                    return GetInternalUnderlay();
                 }
             }
             set
@@ -410,10 +465,24 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalUnderlayProperty(this, null, value);
+                    SetInternalUnderlay(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalUnderlay(bool newValue)
+        {
+            using var pv = new PropertyValue(newValue);
+            Object.SetProperty(SwigCPtr, Property.UNDERLAY, pv);
+        }
+
+        private bool GetInternalUnderlay()
+        {
+            bool temp = false;
+            using var prop = Object.GetProperty(SwigCPtr, Property.UNDERLAY);
+            prop.Get(out temp);
+            return temp;
         }
 
         /// <summary>
@@ -430,7 +499,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (string)GetInternalResourceUrlProperty(this);
+                    return GetInternalResourceUrl();
                 }
             }
             set
@@ -441,9 +510,72 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalResourceUrlProperty(this, null, value);
+                    SetInternalResourceUrl(value);
                 }
                 NotifyPropertyChanged();
+            }
+        }
+
+        private void SetInternalResourceUrl(string newValue)
+        {
+            if (newValue != null)
+            {
+                using var pv = new PropertyValue(newValue);
+                Object.SetProperty(SwigCPtr, Property.VIDEO, pv);
+            }
+        }
+
+        private string GetInternalResourceUrl()
+        {
+            string temp;
+            using var prop = Object.GetProperty(SwigCPtr, Property.VIDEO);
+            prop.Get(out temp);
+            return temp;
+        }
+
+        /// <summary>
+        /// Enables auto rotation of the video based on the orientation of the video contents.
+        /// </summary>
+        /// <note>
+        /// This feature is supported only when underlay is false.
+        /// So This property will not be set to true unless you first set underlay to false.
+        /// </note>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsAutoRotationEnabled
+        {
+            get
+            {
+                bool ret = (bool)Interop.VideoView.IsAutoRotationEnabled(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set
+            {
+                Interop.VideoView.SetAutoRotationEnabled(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Enables letter box of the video based on the aspect of the video contents.
+        /// </summary>
+        /// <note>
+        /// This property is supported only when underlay is false.
+        /// So This property will not be set to true unless you first set underlay to false.
+        /// </note>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsLetterBoxEnabled
+        {
+            get
+            {
+                bool ret = (bool)Interop.VideoView.IsLetterBoxEnabled(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set
+            {
+                Interop.VideoView.SetLetterBoxEnabled(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -553,7 +685,8 @@ namespace Tizen.NUI.BaseComponents
 
             if (this != null && videoViewFinishedCallbackDelegate != null)
             {
-                FinishedSignal().Disconnect(videoViewFinishedCallbackDelegate);
+                using var signal = FinishedSignal();
+                signal.Disconnect(videoViewFinishedCallbackDelegate);
             }
 
             base.Dispose(type);

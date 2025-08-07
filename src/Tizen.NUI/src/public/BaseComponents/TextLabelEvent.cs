@@ -90,6 +90,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnAsyncHeightForWidthComputed(IntPtr textLabel, float width, float height)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             AsyncTextSizeComputedEventArgs e = new AsyncTextSizeComputedEventArgs(width, height);
 
             if (textLabelAsyncHeightForWidthComputedEventHandler != null)
@@ -128,6 +134,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnAsyncNaturalSizeComputed(IntPtr textLabel, float width, float height)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             AsyncTextSizeComputedEventArgs e = new AsyncTextSizeComputedEventArgs(width, height);
 
             if (textLabelAsyncNaturalSizeComputedEventHandler != null)
@@ -166,6 +178,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnAsyncTextRendered(IntPtr textLabel, float width, float height)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             AsyncTextRenderedEventArgs e = new AsyncTextRenderedEventArgs(width, height);
 
             if (textLabelAsyncTextRenderedEventHandler != null)
@@ -185,16 +203,18 @@ namespace Tizen.NUI.BaseComponents
                 if (textLabelAnchorClickedEventHandler == null)
                 {
                     textLabelAnchorClickedCallbackDelegate = (OnAnchorClicked);
-                    AnchorClickedSignal().Connect(textLabelAnchorClickedCallbackDelegate);
+                    using var signal = AnchorClickedSignal();
+                    signal.Connect(textLabelAnchorClickedCallbackDelegate);
                 }
                 textLabelAnchorClickedEventHandler += value;
             }
             remove
             {
                 textLabelAnchorClickedEventHandler -= value;
-                if (textLabelAnchorClickedEventHandler == null && AnchorClickedSignal().Empty() == false)
+                using var signal = AnchorClickedSignal();
+                if (textLabelAnchorClickedEventHandler == null && signal.Empty() == false)
                 {
-                    AnchorClickedSignal().Disconnect(textLabelAnchorClickedCallbackDelegate);
+                    signal.Disconnect(textLabelAnchorClickedCallbackDelegate);
                 }
             }
         }
@@ -208,6 +228,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnAnchorClicked(IntPtr textLabel, IntPtr href, uint hrefLength)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             // Note: hrefLength is useful for get the length of a const char* (href) in dali-toolkit.
             // But NUI can get the length of string (href), so hrefLength is not necessary in NUI.
             AnchorClickedEventArgs e = new AnchorClickedEventArgs();
@@ -230,16 +256,18 @@ namespace Tizen.NUI.BaseComponents
                 if (textLabelTextFitChangedEventHandler == null)
                 {
                     textLabelTextFitChangedCallbackDelegate = (OnTextFitChanged);
-                    TextFitChangedSignal().Connect(textLabelTextFitChangedCallbackDelegate);
+                    using var signal = TextFitChangedSignal();
+                    signal.Connect(textLabelTextFitChangedCallbackDelegate);
                 }
                 textLabelTextFitChangedEventHandler += value;
             }
             remove
             {
                 textLabelTextFitChangedEventHandler -= value;
-                if (textLabelTextFitChangedEventHandler == null && TextFitChangedSignal().Empty() == false)
+                using var signal = TextFitChangedSignal();
+                if (textLabelTextFitChangedEventHandler == null && signal.Empty() == false)
                 {
-                    TextFitChangedSignal().Disconnect(textLabelTextFitChangedCallbackDelegate);
+                    signal.Disconnect(textLabelTextFitChangedCallbackDelegate);
                 }
             }
         }
@@ -253,6 +281,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnTextFitChanged(IntPtr textLabel)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             // no data to be sent to the user, as in NUI there is no event provide old values.
             textLabelTextFitChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }

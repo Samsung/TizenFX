@@ -91,43 +91,81 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// Specifies a time, in milliseconds, that the Relying Party is willing to wait for the
+        /// Gets the timeout requested by the Relying Party.
+        /// </summary>
+        /// <value>
+        /// The time, in milliseconds, that the Relying Party is willing to wait for the
         /// call to complete. This is treated as a hint, and MAY be overridden by the client.
         /// The value, '0', means no timeout is set.
-        /// </summary>
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public ulong Timeout { get; init; }
         /// <summary>
-        /// Specifies the RP ID claimed by the Relying Party.
+        /// Gets the Relying Party ID.
         /// </summary>
+        /// <value>
+        /// Specifies the RP ID claimed by the Relying Party.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public string RpId { get; init; }
         /// <summary>
-        /// Used by the client to find authenticators eligible for this authentication ceremony.
+        /// Gets the list of allowed credentials.
         /// </summary>
+        /// <value>
+        /// Used by the client to find authenticators eligible for this authentication ceremony.
+        /// The list is ordered in descending order of preference.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public IEnumerable<PubkeyCredDescriptor> AllowCredentials { get; init; }
         /// <summary>
-        /// Specifies the Relying Party's requirements regarding user verification for the GetAssertion() operation.
+        /// Gets the user verification requirements.
         /// </summary>
+        /// <value>
+        /// The Relying Party's requirements regarding user verification for the
+        /// <see cref="Authenticator.GetAssertion"/> operation.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public UserVerificationRequirement UserVerification { get; init; }
         /// <summary>
+        /// Gets hints used to guide the user agent in interacting with the user.
+        /// </summary>
+        /// <value>
         /// Contains zero or more elements from <see cref="PubkeyCredHint"/> to
         /// guide the user agent in interacting with the user.
-        /// </summary>
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public IEnumerable<PubkeyCredHint> Hints { get; init; }
         /// <summary>
-        /// Specifies a preference regarding attestation conveyance.
+        /// Gets the attestation conveyance preference.
         /// </summary>
+        /// <value>
+        /// Specifies a preference regarding attestation conveyance.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public AttestationPref Attestation { get; init; }
         /// <summary>
-        /// Specifies a preference regarding the attestation statement format used by the authenticator.
+        /// Gets the attestation format preference.
         /// </summary>
+        /// <value>
+        /// Specifies a preference regarding the attestation statement format used by the authenticator.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public IEnumerable<byte[]> AttestationFormats { get; init; }
         /// <summary>
-        /// Client extension inputs requesting additional processing by the client and authenticator.
+        /// Gets the client extension inputs.
         /// </summary>
+        /// <value>
+        /// Client extension inputs requesting additional processing by the client and authenticator.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public IEnumerable<AuthenticationExtension> Extensions { get; init; }
         /// <summary>
-        /// Linked Device Connection Info. If not null, the state assisted transaction will start.
+        /// Gets the Linked Device Connection Info.
         /// </summary>
+        /// <value>
+        /// Linked Device Connection Info. If not null, the state assisted transaction will start.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public HybridLinkedData LinkedDevice { get; init; }
     }
 }

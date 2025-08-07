@@ -1,6 +1,7 @@
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
+using System;
 using System.Threading;
 
 namespace Tizen.NUI.Samples
@@ -21,6 +22,21 @@ namespace Tizen.NUI.Samples
         {
             Tizen.Log.Error("NUITEST", $"GetCurrentApplication {application}\n");
             return application;
+        }
+
+        private delegate void FuncDelegate();
+        private FuncDelegate FuncDelegater = null;
+
+        private void Func()
+        {
+            Tizen.Log.Error("NUITEST", "Idle callback comes!\n");
+            FuncDelegater = null;
+        }
+        private void Func2()
+        {
+            Tizen.Log.Error("NUITEST", "Idle callback comes! Register idle once again!\n");
+            FuncDelegater = Func;
+            GetCurrentApplication()?.AddIdle(FuncDelegater);
         }
 
         public void Activate()
@@ -55,14 +71,91 @@ namespace Tizen.NUI.Samples
             Tizen.Log.Error("NUITEST", "Sleep done\n");
 
             textLabel.Text = "Sleep done!\n";
+
+            window.KeyEvent += WinKeyEvent;
         }
 
         public void Deactivate()
         {
             if (root != null)
             {
-                NUIApplication.GetDefaultWindow().Remove(root);
+                Window window = NUIApplication.GetDefaultWindow();
+                window.Remove(root);
+                window.KeyEvent -= WinKeyEvent;
                 root.Dispose();
+
+                if (FuncDelegater != null)
+                {
+                    GetCurrentApplication()?.RemoveIdle(FuncDelegater);
+                }
+            }
+        }
+
+        private void WinKeyEvent(object sender, Window.KeyEventArgs e)
+        {
+            if (e.Key.State == Key.StateType.Down)
+            {
+                if (e.Key.KeyPressedName == "1")
+                {
+                    Tizen.Log.Error("NUITEST", "Add idle callback\n");
+                    if (FuncDelegater == null)
+                    {
+                        FuncDelegater = Func;
+                    }
+
+                    GetCurrentApplication()?.AddIdle(FuncDelegater);
+                }
+                else if (e.Key.KeyPressedName == "2")
+                {
+                    Tizen.Log.Error("NUITEST", "Add idle callback, and remove immediately\n");
+                    if (FuncDelegater == null)
+                    {
+                        FuncDelegater = Func;
+                    }
+
+                    GetCurrentApplication()?.AddIdle(FuncDelegater);
+                    GetCurrentApplication()?.RemoveIdle(FuncDelegater);
+                    GetCurrentApplication()?.AddIdle(FuncDelegater);
+                    GetCurrentApplication()?.RemoveIdle(FuncDelegater);
+                    FuncDelegater = null;
+                }
+                else if (e.Key.KeyPressedName == "3")
+                {
+                    Tizen.Log.Error("NUITEST", "Add idle callback during idle callback execute\n");
+                    if (FuncDelegater == null)
+                    {
+                        FuncDelegater = Func2;
+                    }
+
+                    GetCurrentApplication()?.AddIdle(FuncDelegater);
+                }
+                else if (e.Key.KeyPressedName == "4")
+                {
+                    Tizen.Log.Error("NUITEST", "Add multiple idle callback times\n");
+                    if (FuncDelegater == null)
+                    {
+                        FuncDelegater = Func;
+                    }
+
+                    GetCurrentApplication()?.AddIdle(FuncDelegater);
+                    GetCurrentApplication()?.AddIdle(FuncDelegater);
+                    GetCurrentApplication()?.RemoveIdle(FuncDelegater);
+                    GetCurrentApplication()?.AddIdle(FuncDelegater);
+
+                    FuncDelegater = Func2;
+                    GetCurrentApplication()?.AddIdle(FuncDelegater);
+                }
+                else if (e.Key.KeyPressedName == "5")
+                {
+                    Tizen.Log.Error("NUITEST", "Self dispose after add idle callback\n");
+                    if (FuncDelegater == null)
+                    {
+                        FuncDelegater = Func;
+                    }
+
+                    GetCurrentApplication()?.AddIdle(FuncDelegater);
+                    GetCurrentApplication()?.Dispose();
+                }
             }
         }
     }

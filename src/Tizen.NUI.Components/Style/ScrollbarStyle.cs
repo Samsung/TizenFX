@@ -27,91 +27,13 @@ namespace Tizen.NUI.Components
     public class ScrollbarStyle : ControlStyle
     {
         #region Fields
-
-        /// <summary>Bindable property of TrackThickness</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(float?), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((ScrollbarStyle)bindable).trackThickness = (float?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((ScrollbarStyle)bindable).trackThickness;
-        });
-
-        /// <summary>Bindable property of ThumbThickness</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbThicknessProperty = BindableProperty.Create(nameof(ThumbThickness), typeof(float?), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((ScrollbarStyle)bindable).thumbThickness = (float?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((ScrollbarStyle)bindable).thumbThickness;
-        });
-
-        /// <summary>Bindable property of TrackColor</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((ScrollbarStyle)bindable).trackColor = new Color((Color)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((ScrollbarStyle)bindable).trackColor;
-        });
-
-        /// <summary>Bindable property of ThumbColor</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((ScrollbarStyle)bindable).thumbColor = new Color((Color)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((ScrollbarStyle)bindable).thumbColor;
-        });
-
-        /// <summary>Bindable property of TrackPadding</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((ScrollbarStyle)bindable).trackPadding = new Extents((Extents)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((ScrollbarStyle)bindable).trackPadding;
-        });
-
-        /// <summary>Bindable property of ThumbBackgroundImageVertical</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbVerticalImageUrlProperty = BindableProperty.Create(nameof(ThumbVerticalImageUrl), typeof(string), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((ScrollbarStyle)bindable).thumbVerticalImageUrl = ((string)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((ScrollbarStyle)bindable).thumbVerticalImageUrl;
-        });
-
-        /// <summary>Bindable property of ThumbBackgroundImageUrl</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbHorizontalImageUrlProperty = BindableProperty.Create(nameof(ThumbHorizontalImageUrl), typeof(string), typeof(ScrollbarStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((ScrollbarStyle)bindable).thumbHorizontalImageUrl = ((string)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((ScrollbarStyle)bindable).thumbHorizontalImageUrl;
-        });
-
-        private float? trackThickness;
-        private float? thumbThickness;
-        private Color trackColor;
-        private Color thumbColor;
-        private Extents trackPadding;
-        private string thumbVerticalImageUrl;
-        private string thumbHorizontalImageUrl;
+        static readonly IStyleProperty TrackThicknessProperty = new StyleProperty<Scrollbar, float>((v, o) => v.TrackThickness = o);
+        static readonly IStyleProperty ThumbThicknessProperty = new StyleProperty<Scrollbar, float>((v, o) => v.ThumbThickness = o);
+        static readonly IStyleProperty TrackColorProperty = new StyleProperty<Scrollbar, Color>((v, o) => v.TrackColor = o);
+        static readonly IStyleProperty ThumbColorProperty = new StyleProperty<Scrollbar, Color>((v, o) => v.ThumbColor = o);
+        static readonly IStyleProperty TrackPaddingProperty = new StyleProperty<Scrollbar, Extents>((v, o) => v.TrackPadding = o);
+        static readonly IStyleProperty ThumbVerticalImageUrlProperty = new StyleProperty<Scrollbar, string>((v, o) => v.ThumbVerticalImageUrl = o);
+        static readonly IStyleProperty ThumbHorizontalImageUrlProperty = new StyleProperty<Scrollbar, string>((v, o) => v.ThumbHorizontalImageUrl = o);
 
         #endregion Fields
 

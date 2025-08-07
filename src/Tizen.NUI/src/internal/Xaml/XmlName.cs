@@ -29,7 +29,7 @@ namespace Tizen.NUI.Xaml
         public static readonly XmlName xArguments = new XmlName("x", "Arguments");
         public static readonly XmlName xFactoryMethod = new XmlName("x", "FactoryMethod");
         public static readonly XmlName xDataType = new XmlName("x", "DataType");
-        public static readonly XmlName Empty = new XmlName();
+        public static readonly XmlName Empty;
 
         public string NamespaceURI { get; }
         public string LocalName { get; }

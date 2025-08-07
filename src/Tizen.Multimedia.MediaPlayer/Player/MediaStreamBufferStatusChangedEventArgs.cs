@@ -36,7 +36,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the status.
+        /// Gets the current buffer status.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public MediaStreamBufferStatus Status { get; }

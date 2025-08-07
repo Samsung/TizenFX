@@ -13,6 +13,7 @@
 // limitations under the License.
 
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI
 {
@@ -403,6 +404,7 @@ namespace Tizen.NUI
     /// This specifies visual types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct Visual
     {
         /// <summary>
@@ -482,7 +484,8 @@ namespace Tizen.NUI
         /// This specifies visual properties.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1716: Identifiers should not match keywords")]
+        [SuppressMessage("Naming", "CA1716: Identifiers should not match keywords")]
+        [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
         public struct Property
         {
             /// <summary>
@@ -550,12 +553,20 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int BorderlineOffset = NDalic.VisualPropertyMixColor + 7;
+
+            /// <summary>
+            /// The corner squareness of the visual.
+            /// Internally clamped between [0.0f to 1.0f]
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int CornerSquareness = NDalic.VisualPropertyMixColor + 8;
         }
 
         /// <summary>
         /// This specifies shader properties.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
         public struct ShaderProperty
         {
             /// <summary>
@@ -643,6 +654,7 @@ namespace Tizen.NUI
     /// This specifies properties of the BorderVisual.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct BorderVisualProperty
     {
         /// <summary>
@@ -666,6 +678,7 @@ namespace Tizen.NUI
     /// This specifies properties of the ColorVisual.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct ColorVisualProperty
     {
         /// <summary>
@@ -697,6 +710,7 @@ namespace Tizen.NUI
     /// This specifies properties of the GradientVisual.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct GradientVisualProperty
     {
         /// <summary>
@@ -710,7 +724,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static readonly int EndPosition = NDalic.GradientVisualEndPosition;
         /// <summary>
-        /// The center point of a radial gradient.
+        /// The center point of a radial and conic gradient.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int Center = NDalic.GradientVisualCenter;
@@ -739,12 +753,23 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int SpreadMethod = NDalic.GradientVisualSpreadMethod;
+        /// <summary>
+        /// Sets the gradient's start position offset.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int StartOffset = NDalic.GradientVisualStartOffset;
+        /// <summary>
+        /// Sets the gradient's start angle of a conic gradiant.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int StartAngle = NDalic.GradientVisualStartAngle;
     }
 
     /// <summary>
     /// This specifies properties of the ImageVisual.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct ImageVisualProperty
     {
         /// <summary>
@@ -1056,12 +1081,32 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int FrameSpeedFactor = NDalic.ImageVisualOrientationCorrection + 19;
+
+        /// <summary>
+        /// @brief Whether to redraw the image when the visual is scaled up.
+        /// @details Name "redrawInScalingUp", type Property::BOOLEAN.
+        /// @note It is used in the AnimatedVectorImageVisual.The default is true.
+        /// </summary>
+        /// <remarks>
+        /// Inhouse API
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int RedrawInScalingUp = NDalic.ImageVisualOrientationCorrection + 20;
+
+        /// <summary>
+        /// @brief Renders a texture at a given scale.
+        /// @details Name "renderScale", type Property::FLOAT.
+        /// @note It is used when scaling up AnimatedVectorImageVisual. The default is 1.0f.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int RenderScale = NDalic.ImageVisualOrientationCorrection + 21;
     }
 
     /// <summary>
     /// This specifies properties of the MeshVisual.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct MeshVisualProperty
     {
         /// <summary>
@@ -1110,6 +1155,7 @@ namespace Tizen.NUI
     /// This specifies properties of the PrimitiveVisual.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct PrimitiveVisualProperty
     {
         /// <summary>
@@ -1178,6 +1224,7 @@ namespace Tizen.NUI
     /// This specifies properties of the TextVisual.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct TextVisualProperty
     {
         /// <summary>
@@ -1251,6 +1298,7 @@ namespace Tizen.NUI
     /// This specifies properties of the NpatchImageVisual.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct NpatchImageVisualProperty
     {
         /// <summary>
@@ -1313,6 +1361,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This specifies properties of the ArcVisual.
     /// </summary>
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     internal struct ArcVisualProperty
     {
         /// <summary>
@@ -1424,11 +1473,13 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         None,
+
         /// <summary>
         /// Cutout as bounding box of view
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         CutoutView,
+
         /// <summary>
         /// Cutout as bounding box of view, include corner radius.
         /// </summary>
@@ -1439,5 +1490,22 @@ namespace Tizen.NUI
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         CutoutViewWithCornerRadius,
+
+        /// <summary>
+        /// Cutout as outside of bounding box of view.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        CutoutOutside,
+
+        /// <summary>
+        /// Cutout as outside of bounding box of view, include corner radius.
+        /// </summary>
+        /// <remarks>
+        /// The CornerRadius and CornerRadiusPolicy will be used color visual itself's value.
+        /// If you are using this policy at Tizen.NUI.Visuals.ColorVisual, please be careful that CornerRadius value
+        /// is not same as View.CornerRadius.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        CutoutOutsideWithCornerRadius,
     };
 }

@@ -179,11 +179,6 @@ namespace Tizen.NUI.ParticleSystem
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint ActiveParticleLimit
         {
-            get{
-                var value = Interop.ParticleEmitter.GetActiveParticlesLimit(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return value;
-            }
             set 
             {
                 Interop.ParticleEmitter.SetActiveParticlesLimit(SwigCPtr, value);
@@ -223,12 +218,13 @@ namespace Tizen.NUI.ParticleSystem
         {
             set
             {
-                var pixelBuffer = ImageLoader.LoadImageFromFile(value);
+                using var pixelBuffer = ImageLoader.LoadImageFromFile(value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                Texture tex = new Texture(TextureType.TEXTURE_2D, PixelFormat.RGBA8888, pixelBuffer.GetWidth(),
+                using Texture tex = new Texture(TextureType.TEXTURE_2D, PixelFormat.RGBA8888, pixelBuffer.GetWidth(),
                         pixelBuffer.GetHeight());
-                tex.Upload(pixelBuffer.CreatePixelData());
+                using var pd = pixelBuffer.CreatePixelData();
+                tex.Upload(pd);
 
                 Interop.ParticleEmitter.SetTexture(SwigCPtr, tex.SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -264,20 +260,6 @@ namespace Tizen.NUI.ParticleSystem
             IntPtr cPtr = Interop.ParticleEmitter.GetSource(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             ParticleSource<T> ret = (cPtr == IntPtr.Zero) ? null : Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ParticleSource<T>;
-            return ret;
-        }
-
-        /// <summary>
-        /// Returns modifier at specified index
-        /// </summary>
-        /// <param name="index">Index within modifier stack</param>
-        /// <returns>Valid ParticleModifier object or null</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ParticleModifier<ParticleModifierInterface> GetModifierAt(uint index)
-        {
-            IntPtr cPtr = Interop.ParticleEmitter.GetModifierAt(SwigCPtr, index);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            ParticleModifier<ParticleModifierInterface> ret = (cPtr == IntPtr.Zero) ? null : Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ParticleModifier<ParticleModifierInterface>;
             return ret;
         }
 
@@ -367,7 +349,7 @@ namespace Tizen.NUI.ParticleSystem
 
         // Internal proxy object to be used on the update thread
         internal ParticleEmitterProxy EmitterProxy => mProxy;
-        private ParticleEmitterProxy mProxy = null;
+        private ParticleEmitterProxy mProxy;
     }
     
     /// <summary>

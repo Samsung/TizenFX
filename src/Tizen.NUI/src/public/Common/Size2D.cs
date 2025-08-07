@@ -28,7 +28,7 @@ namespace Tizen.NUI
     public class Size2D : Disposable, ICloneable
     {
 
-        private Size2DChangedCallback callback = null;
+        private Size2DChangedCallback callback;
 
         /// <summary>
         /// The constructor.
@@ -377,10 +377,11 @@ namespace Tizen.NUI
         /// Gets the size from the pointer.
         /// </summary>
         /// <param name="cPtr">The pointer of the size.</param>
+        /// <param name="isMemoryOwned">The memory is allocated by csharp-binder or not.</param>
         /// <returns>Size</returns>
-        internal static Size2D GetSize2DFromPtr(global::System.IntPtr cPtr)
+        internal static Size2D GetSize2DFromPtr(global::System.IntPtr cPtr, bool isMemoryOwned)
         {
-            Size2D ret = new Size2D(cPtr, false);
+            Size2D ret = new Size2D(cPtr, isMemoryOwned);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -391,7 +392,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Size2D(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Size2D(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 

@@ -22,10 +22,10 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class InputMethod
     {
-        private PanelLayoutType? panelLayout = null;
-        private ActionButtonTitleType? actionButton = null;
-        private AutoCapitalType? autoCapital = null;
-        private int? variation = null;
+        private PanelLayoutType? panelLayout;
+        private ActionButtonTitleType? actionButton;
+        private AutoCapitalType? autoCapital;
+        private int? variation;
 
         /// <summary>
         /// The default constructor of InputMethod.
@@ -389,12 +389,9 @@ namespace Tizen.NUI
         private PropertyMap ComposingInputMethodMap()
         {
             PropertyMap outputMap = new PropertyMap();
-            PropertyValue temp;
             if (panelLayout != null)
             {
-                temp = new PropertyValue((int)panelLayout);
-                outputMap.Add("PANEL_LAYOUT", temp);
-                temp.Dispose();
+                outputMap.Add("PANEL_LAYOUT", (int)panelLayout);
             }
             if (actionButton != null)
             {
@@ -403,21 +400,15 @@ namespace Tizen.NUI
                 else if (actionButton == InputMethod.ActionButtonTitleType.Send) actionButton = (InputMethod.ActionButtonTitleType.Send - 1); // 7
                 else if (actionButton == InputMethod.ActionButtonTitleType.SignIn) actionButton = (InputMethod.ActionButtonTitleType.SignIn - 1); // 8
                 else if (actionButton == InputMethod.ActionButtonTitleType.Unspecified || actionButton == InputMethod.ActionButtonTitleType.None) actionButton = InputMethod.ActionButtonTitleType.Default;
-                temp = new PropertyValue((int)actionButton);
-                outputMap.Add("BUTTON_ACTION", temp);
-                temp.Dispose();
+                outputMap.Add("BUTTON_ACTION", (int)actionButton);
             }
             if (autoCapital != null)
             {
-                temp = new PropertyValue((int)autoCapital);
-                outputMap.Add("AUTO_CAPITALIZE", temp);
-                temp.Dispose();
+                outputMap.Add("AUTO_CAPITALIZE", (int)autoCapital);
             }
             if (variation != null)
             {
-                temp = new PropertyValue((int)variation);
-                outputMap.Add("VARIATION", temp);
-                temp.Dispose();
+                outputMap.Add("VARIATION", (int)variation);
             }
             return outputMap;
         }

@@ -1,3 +1,4 @@
+using System.Drawing;
 using System;
 using System.Threading.Tasks;
 using Tizen.NUI;
@@ -20,43 +21,43 @@ namespace Tizen.NUI.Samples
 
         private static string resourcePath = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
         private static string[] BACKGROUND_IMAGE_PATH = {
-      resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_02_nor.png",
-      resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_03_nor.png",
-      resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_04_nor.png",
-      resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_05_nor.png",
-      resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_06_nor.png",
-      resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_apps_nor.png"
-    };
+            resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_02_nor.png",
+            resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_03_nor.png",
+            resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_04_nor.png",
+            resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_05_nor.png",
+            resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_06_nor.png",
+            resourcePath + "/images/FrameUpdateCallbackTest/launcher_bg_apps_nor.png"
+        };
 
         private static string[] APPS_IMAGE_PATH = {
-      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_culinary_nor.png",
-      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_family_nor.png",
-      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_ent_nor.png",
-      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_homecare_nor.png"
-    };
+            resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_culinary_nor.png",
+            resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_family_nor.png",
+            resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_ent_nor.png",
+            resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_homecare_nor.png"
+        };
 
         private static string[] APPS_ICON_NAME = {
-      "Culinary",
-      "Family",
-      "Entertainment",
-      "Homecare"
-    };
+            "Culinary",
+            "Family",
+            "Entertainment",
+            "Homecare"
+        };
 
         private static string[] CONTROL_IMAGE_PATH = {
-      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_apps_nor.png",
-      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_settings_nor.png",
-      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_viewinside_nor.png",
-      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_timer_nor.png",
-      resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_internet_nor.png"
-    };
+            resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_apps_nor.png",
+            resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_settings_nor.png",
+            resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_viewinside_nor.png",
+            resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_timer_nor.png",
+            resourcePath + "/images/FrameUpdateCallbackTest/launcher_ic_internet_nor.png"
+        };
 
         private static string[] CONTROL_ICON_NAME = {
-      "Apps",
-      "Settings",
-      "ViewInside",
-      "Timer",
-      "Internet"
-    };
+            "Apps",
+            "Settings",
+            "ViewInside",
+            "Timer",
+            "Internet"
+        };
 
         private const int FRAME_RATE = 60;
         private const int OBJECT_DELAY = 30;
@@ -66,6 +67,8 @@ namespace Tizen.NUI.Samples
         private const int DEVIDE_BAR_SIZE = 4;
 
         private const float DEGREE_PER_POSITION = 0.05f;
+        private const float HEIGHT_PER_POSITION = 0.5f;
+        private const float OPACITY_PER_POSITION = 0.01f;
 
         private const uint FRAME_UPDATE_CALLBACK_VERSION = 1u;
 
@@ -225,6 +228,18 @@ namespace Tizen.NUI.Samples
                 bool isStillMoving = true;
                 for (int i = 0; i < viewId.Count; ++i)
                 {
+                    // Reset size and color
+                    {
+                        if(GetSize(viewId[i], out UIVector2 size))
+                        {
+                            BakeSize(viewId[i], new UIVector2(size.X, OBJECT_SIZE));
+                        }
+                        if(GetColor(viewId[i], out UIColor color))
+                        {
+                            BakeColor(viewId[i], new UIColor(color.R, color.G, color.B, 1.0f));
+                        }
+                    }
+
                     if (i == touchedViewIndex)
                     {
                         continue;
@@ -273,8 +288,7 @@ namespace Tizen.NUI.Samples
                     float positionDiff = 0.0f;
                     if (i >= leftIndex && i <= rightIndex)
                     {
-                        Vector3 previousPosition = new Vector3();
-                        GetPosition(viewId[i], previousPosition);
+                        GetPosition(viewId[i], out UIVector2 previousPosition);
                         positionDiff = newPosition - previousPosition.X;
                         if (Math.Abs(positionDiff) >= 1.0f)
                         {
@@ -282,7 +296,20 @@ namespace Tizen.NUI.Samples
                         }
                     }
                     // update new position and rotiation
-                    SetPosition(viewId[i], new Vector3(newPosition, 0.0f, 0.0f));
+                    //BakePosition(viewId[i], new Vector3(newPosition, 0.0f, 0.0f));
+                    BakePosition(viewId[i], new UIVector2(newPosition, 0.0f)); // We can use UIVector2 instead of Vector3.
+
+                    {
+                        if(GetSize(viewId[i], out UIVector2 size))
+                        {
+                            BakeSize(viewId[i], new UIVector2(size.X, OBJECT_SIZE + Math.Abs(positionDiff * HEIGHT_PER_POSITION)));
+                        }
+                        if(GetColor(viewId[i], out UIColor color))
+                        {
+                            BakeColor(viewId[i], new UIColor(color.R, color.G, color.B, 1.0f - Math.Abs(positionDiff * OPACITY_PER_POSITION)));
+                        }
+                    }
+
                     SetOrientation(viewId[i], new Rotation(new Radian(new Degree(positionDiff * DEGREE_PER_POSITION)), Vector3.ZAxis));
                     positionChanged = true;
                 }
@@ -302,8 +329,7 @@ namespace Tizen.NUI.Samples
                 // second -> millisecond
                 totalAnimationTime += elapsedSeconds * 1000.0f;
 
-                Vector3 currentPosition = new Vector3();
-                GetPosition(containerId, currentPosition);
+                GetPosition(containerId, out UIVector2 currentPosition);
 
                 // Add new Movement, if there is change in position.
                 // 1. if dirty(there is reserved event)
@@ -755,10 +781,13 @@ namespace Tizen.NUI.Samples
             finishAnimation.Clear();
             customScrollAlphaFunction = new UserAlphaFunctionDelegate(CustomScrollAlphaFunction);
             finishAnimation.DefaultAlphaFunction = new AlphaFunction(customScrollAlphaFunction);
-            GC.KeepAlive(customScrollAlphaFunction);
             finishAnimation.Duration = (int)finishAnimationDuration;
-            finishAnimation.AnimateTo(controlView, "PositionX", destination);
+            finishAnimation.AnimateTo(controlView, "PositionX", destination, finishAnimation.DefaultAlphaFunction);
             finishAnimation.Play();
+
+            // Remove alpha function now, for test UserAlphaFunctionDelegate alived. 
+            customScrollAlphaFunction = null;
+            finishAnimation.DefaultAlphaFunction?.Dispose();
         }
 
         private float CustomScrollAlphaFunction(float progress)

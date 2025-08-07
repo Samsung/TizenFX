@@ -3,13 +3,13 @@ name: "Check API Level"
 on:
   pull_request_target:
     branches:
-    - master
+    - main
     - DevelNUI
     - API*
 
 jobs:
   add-labels:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
 
     - name: Get Branch Metadata

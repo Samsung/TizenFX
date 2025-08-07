@@ -35,7 +35,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class EncodedImageBuffer : BaseHandle
     {
-        private VectorUnsignedChar mCachedBuffer = null; // cached encoded raw buffer
+        private VectorUnsignedChar mCachedBuffer; // cached encoded raw buffer
 
         /// <summary>
         /// The list of type of encoded image buffer.
@@ -106,7 +106,7 @@ namespace Tizen.NUI
             // Note : EncodedImageBuffer don't need to be register in Registry default. So we can create this class from worker thread.
         }
 
-        internal EncodedImageBuffer(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        internal EncodedImageBuffer(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister, cRegister)
         {
         }
 

@@ -23,15 +23,15 @@ namespace Tizen.Security.SecureRepository.Crypto
     internal enum SignatureParameterName : int
     {
         /// <summary>
-        /// The signature algorithm type.
+        /// Signature algorithm type.
         /// </summary>
         AlgorithmType = 0x01,
         /// <summary>
-        /// The hash algorithm type.
+        /// Hash algorithm type.
         /// </summary>
         HashAlgorithm,
         /// <summary>
-        /// The RSA padding algorithm type.
+        /// RSA padding algorithm type.
         /// </summary>
         RsaPaddingAlgorithm
     }

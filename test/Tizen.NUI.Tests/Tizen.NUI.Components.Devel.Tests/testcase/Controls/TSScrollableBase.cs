@@ -316,44 +316,6 @@ namespace Tizen.NUI.Components.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("ScrollableBase OnAccessibilityPan")]
-        [Property("SPEC", "Tizen.NUI.Components.ScrollableBase.OnAccessibilityPan M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ScrollableBaseOnAccessibilityPan()
-        {
-            tlog.Debug(tag, $"ScrollableBaseOnAccessibilityPan START");
-
-            var testingTarget = new ScrollableBase()
-            {
-                Size = new Size(100, 2),
-                BackgroundColor = Color.Cyan,
-                ScrollingDirection = ScrollableBase.Direction.Vertical,
-            };
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
-
-            using (PanGesture gesture = new PanGesture())
-            {
-                try
-                {
-                    testingTarget.OnAccessibilityPan(gesture);
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception : Failed!");
-                }
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ScrollableBaseOnAccessibilityPan END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("ScrollableBase Decelerating")]
         [Property("SPEC", "Tizen.NUI.Components.ScrollableBase.Decelerating M")]
         [Property("SPEC_URL", "-")]

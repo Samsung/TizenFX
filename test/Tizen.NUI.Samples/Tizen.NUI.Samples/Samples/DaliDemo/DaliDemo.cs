@@ -14,6 +14,7 @@ namespace Tizen.NUI.Samples
         {
         }
 
+        private string curAppName;
         private IExample curExample = null;
 
         private void FullGC()
@@ -71,6 +72,13 @@ namespace Tizen.NUI.Samples
 
             if (null != example)
             {
+                curAppName = name ?? "(null)";
+                Tizen.Log.Info("NUI", $"Before activate app[{curAppName}] :\n");
+                Tizen.Log.Info("NUI", $"  View:{View.AliveCount}, Window:{Window.AliveCount}, Layer:{Layer.AliveCount}\n");
+                Tizen.Log.Info("NUI", $"  Animation:{Animation.AliveCount}, Timer:{Timer.AliveCount}, Constraint:{Constraint.AliveCount}n");
+                Tizen.Log.Info("NUI", $"  FrameUpdateCallbackInterface:{FrameUpdateCallbackInterface.AliveCount}, VisualBase:{Visuals.VisualBase.AliveCount}, RenderEffect:{RenderEffect.AliveCount}\n");
+                Tizen.Log.Info("NUI", $"  Renderable:{Renderable.AliveCount}, Geometry:{Geometry.AliveCount}, Shader:{Shader.AliveCount}\n");
+                Tizen.Log.Info("NUI", $"  Texture:{Texture.AliveCount}, TextureSet:{TextureSet.AliveCount}, VertexBuffer:{VertexBuffer.AliveCount}\n");
                 DeleteDaliDemo();
                 int exceptNum = 0;
                 string exceptionMessage = "Unknown!";
@@ -107,6 +115,7 @@ namespace Tizen.NUI.Samples
                     case 2:
                         example.Deactivate();
                         var errorPage = assembly?.CreateInstance("Tizen.NUI.Samples.ShowErrorPage") as ShowErrorPage;
+                        curAppName = "Tizen.NUI.Samples.ShowErrorPage";
                         errorPage.Activate();
                         errorPage.ShowExcpetionText(exceptionMessage);
                         example = errorPage;
@@ -122,6 +131,15 @@ namespace Tizen.NUI.Samples
             curExample = null;
 
             FullGC();
+
+            Tizen.Log.Info("NUI", $"After deactivate app[{curAppName}] :\n");
+            Tizen.Log.Info("NUI", $"  View:{View.AliveCount}, Window:{Window.AliveCount}, Layer:{Layer.AliveCount}\n");
+            Tizen.Log.Info("NUI", $"  Animation:{Animation.AliveCount}, Timer:{Timer.AliveCount}, Constraint:{Constraint.AliveCount}n");
+            Tizen.Log.Info("NUI", $"  FrameUpdateCallbackInterface:{FrameUpdateCallbackInterface.AliveCount}, VisualBase:{Visuals.VisualBase.AliveCount}, RenderEffect:{RenderEffect.AliveCount}\n");
+            Tizen.Log.Info("NUI", $"  Renderable:{Renderable.AliveCount}, Geometry:{Geometry.AliveCount}, Shader:{Shader.AliveCount}\n");
+            Tizen.Log.Info("NUI", $"  Texture:{Texture.AliveCount}, TextureSet:{TextureSet.AliveCount}, VertexBuffer:{VertexBuffer.AliveCount}\n");
+
+            curAppName = "";
 
             CreateDaliDemo();
         }

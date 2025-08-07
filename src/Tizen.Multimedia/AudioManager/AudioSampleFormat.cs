@@ -19,26 +19,42 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the audio sample formats.
     /// </summary>
+    /// <summary>
+    /// Enumerates the various audio sample formats that are supported in the audio
+    /// processing system. Each format represents a different way that audio signal
+    /// data can be encoded and represented in memory.
+    /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public enum AudioSampleFormat
     {
         /// <summary>
-        /// Unsigned 8 bit samples.
+        /// Represents audio samples encoded as unsigned 8-bit integers.
+        /// This format is often used in low-quality audio files and
+        /// applications where bandwidth or storage space is limited.
         /// </summary>
         U8,
 
         /// <summary>
-        /// Signed 16 bit samples.
+        /// Represents audio samples encoded as signed 16-bit integers in
+        /// little-endian format. This format is commonly used in CD-quality
+        /// audio, providing a good balance between audio fidelity and file size.
         /// </summary>
         S16LE,
 
         /// <summary>
-        /// Signed 24 bit samples.
+        /// Represents audio samples encoded as signed 24-bit integers in
+        /// little-endian format. This high-resolution format allows for greater
+        /// dynamic range and fidelity, making it suitable for professional audio
+        /// applications and high-quality sound recordings.
         /// </summary>
         S24LE,
 
         /// <summary>
-        /// Signed 24 bit(packed in 32 bit) samples.
+        /// Represents audio samples encoded as signed 24-bit integers,
+        /// packed into 32-bit containers in little-endian format. This format
+        /// can be used for applications that require compatibility with 32-bit
+        /// processing, allowing for easier manipulation of samples at the cost of
+        /// additional space.
         /// </summary>
         S24PackedIn32LE,
     }

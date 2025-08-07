@@ -113,6 +113,8 @@ internal static partial class Interop
         internal static extern int GetConnectedPeers(ConnectedPeerCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_create_group")]
         internal static extern int CreateGroup();
+        [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_create_group_with_ssid")]
+        internal static extern int CreateGroupWithSsid(string ssid);
         [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_destroy_group")]
         internal static extern int DestroyGroup();
         [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_is_group_owner")]
@@ -227,5 +229,19 @@ internal static partial class Interop
         internal static extern int SetSessionTimer(int seconds);
         [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_auto_group_removal")]
         internal static extern int SetAutoGroupRemoval(bool enable);
+        [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_add_vsie")]
+        internal static extern int AddVsie(WiFiDirectVsieFrameType frameType, string vsie);
+        [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_get_vsie")]
+        internal static extern int GetVsie(WiFiDirectVsieFrameType frameType, out string vsie);
+        [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_remove_vsie")]
+        internal static extern int RemoveVsie(WiFiDirectVsieFrameType frameType, string vsie);
+        [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_get_connecting_peer_info")]
+        internal static extern int GetConnectingPeerInfo(out IntPtr peer);
+        [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_get_peer_vsie")]
+        internal static extern int GetPeerVsie(string macAddress, out string vsie);
+        [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_accept_connection")]
+        internal static extern int AcceptConnection(string macAddress);
+        [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_reject_connection")]
+        internal static extern int RejectConnection(string macAddress);
     }
 }

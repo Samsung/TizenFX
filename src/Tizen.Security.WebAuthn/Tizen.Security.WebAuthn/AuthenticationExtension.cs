@@ -15,7 +15,6 @@
  */
 
 using static Interop;
-using static Tizen.Security.WebAuthn.ErrorFactory;
 
 namespace Tizen.Security.WebAuthn
 {
@@ -47,12 +46,20 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// Extension identifier.
+        /// Gets the extension identifier.
         /// </summary>
+        /// <value>
+        /// The binary data of the extension indentifier.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public byte[] ExtensionId { get; init; }
         /// <summary>
-        /// Extension value.
+        /// Gets the extension value.
         /// </summary>
+        /// <value>
+        /// The binary data of the extension value.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public byte[] ExtensionValue { get; init; }
     }
 }

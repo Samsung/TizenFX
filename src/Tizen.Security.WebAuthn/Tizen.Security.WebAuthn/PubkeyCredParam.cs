@@ -38,12 +38,20 @@ namespace Tizen.Security.WebAuthn
             Alg = alg;
         }
         /// <summary>
-        /// Well-known credential type specifying a credential to create.
+        /// Gets the type of the credential to create.
         /// </summary>
+        /// <value>
+        /// Well-known credential type specifying the credential to create.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public PubkeyCredType Type { get; init; }
         /// <summary>
-        /// Well-known COSE algorithm specifying the algorithm to use for the credential.
+        /// Gets the algotithm used for the credential.
         /// </summary>
+        /// <value>
+        /// Well-known COSE algorithm specifying the algorithm to use for the credential.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public CoseAlgorithm Alg { get; init; }
     }
 }

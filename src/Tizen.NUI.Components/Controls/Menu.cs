@@ -18,6 +18,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -38,6 +39,19 @@ namespace Tizen.NUI.Components
         private RelativePosition verticalPosition = RelativePosition.Center;
         private MenuStyle menuStyle = null;
         private bool styleApplied = false;
+
+        static Menu()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                AnchorProperty = BindableProperty.Create(nameof(Anchor), typeof(View), typeof(Menu), null,
+                    propertyChanged: SetInternalAnchorProperty, defaultValueCreator: GetInternalAnchorProperty);
+                HorizontalPositionToAnchorProperty = BindableProperty.Create(nameof(HorizontalPositionToAnchor), typeof(Tizen.NUI.Components.Menu.RelativePosition), typeof(Menu), default(RelativePosition),
+                    propertyChanged: SetInternalHorizontalPositionToAnchorProperty, defaultValueCreator: GetInternalHorizontalPositionToAnchorProperty);
+                VerticalPositionToAnchorProperty = BindableProperty.Create(nameof(VerticalPositionToAnchor), typeof(Tizen.NUI.Components.Menu.RelativePosition), typeof(Menu), default(RelativePosition),
+                    propertyChanged: SetInternalVerticalPositionToAnchorProperty, defaultValueCreator: GetInternalVerticalPositionToAnchorProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of Menu.
@@ -217,11 +231,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(AnchorProperty) as View;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(AnchorProperty) as View;
+                }
+                else
+                {
+                    return InternalAnchor;
+                }
             }
             set
             {
-                SetValue(AnchorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(AnchorProperty, value);
+                }
+                else
+                {
+                    InternalAnchor =  value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -263,11 +291,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (RelativePosition)GetValue(HorizontalPositionToAnchorProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (RelativePosition)GetValue(HorizontalPositionToAnchorProperty);
+                }
+                else
+                {
+                    return InternalHorizontalPositionToAnchor;
+                }
             }
             set
             {
-                SetValue(HorizontalPositionToAnchorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(HorizontalPositionToAnchorProperty, value);
+                }
+                else
+                {
+                    InternalHorizontalPositionToAnchor = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -305,11 +347,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (RelativePosition)GetValue(VerticalPositionToAnchorProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (RelativePosition)GetValue(VerticalPositionToAnchorProperty);
+                }
+                else
+                {
+                    return InternalVerticalPositionToAnchor;
+                }
             }
             set
             {
-                SetValue(VerticalPositionToAnchorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(VerticalPositionToAnchorProperty, value);
+                }
+                else
+                {
+                    InternalVerticalPositionToAnchor = value;
+                }
                 NotifyPropertyChanged();
             }
         }

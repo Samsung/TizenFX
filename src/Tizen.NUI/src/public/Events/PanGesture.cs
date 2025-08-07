@@ -35,7 +35,7 @@ namespace Tizen.NUI
         /// The default constructor of PanGesture class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public PanGesture() : this(Interop.PanGestureDetector.PanGestureNew(0), true)
+        public PanGesture() : this(Interop.PanGestureDetector.PanGestureNew(0), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -44,7 +44,7 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <param name="state">The state of the gesture</param>
-        internal PanGesture(Gesture.StateType state) : this(Interop.PanGestureDetector.PanGestureNew((int)state), true)
+        internal PanGesture(Gesture.StateType state) : this(Interop.PanGestureDetector.PanGestureNew((int)state), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -53,7 +53,7 @@ namespace Tizen.NUI
         {
         }
 
-        internal PanGesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(Interop.PanGestureDetector.PanGestureUpcast(cPtr), cMemoryOwn, cRegister)
+        internal PanGesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(Interop.PanGestureDetector.PanGestureUpcast(cPtr), cMemoryOwn, cRegister, cRegister)
         {
         }
 
@@ -158,11 +158,6 @@ namespace Tizen.NUI
 
         private Vector2 velocity
         {
-            set
-            {
-                Interop.PanGestureDetector.PanGestureVelocitySet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.PanGestureDetector.PanGestureVelocityGet(SwigCPtr);
@@ -174,11 +169,6 @@ namespace Tizen.NUI
 
         private Vector2 displacement
         {
-            set
-            {
-                Interop.PanGestureDetector.PanGestureDisplacementSet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.PanGestureDetector.PanGestureDisplacementGet(SwigCPtr);
@@ -190,11 +180,6 @@ namespace Tizen.NUI
 
         private Vector2 position
         {
-            set
-            {
-                Interop.PanGestureDetector.PanGesturePositionSet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.PanGestureDetector.PanGesturePositionGet(SwigCPtr);
@@ -206,11 +191,6 @@ namespace Tizen.NUI
 
         private Vector2 screenVelocity
         {
-            set
-            {
-                Interop.PanGestureDetector.PanGestureScreenVelocitySet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.PanGestureDetector.PanGestureScreenVelocityGet(SwigCPtr);
@@ -222,11 +202,6 @@ namespace Tizen.NUI
 
         private Vector2 screenDisplacement
         {
-            set
-            {
-                Interop.PanGestureDetector.PanGestureScreenDisplacementSet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.PanGestureDetector.PanGestureScreenDisplacementGet(SwigCPtr);
@@ -238,11 +213,6 @@ namespace Tizen.NUI
 
         private Vector2 screenPosition
         {
-            set
-            {
-                Interop.PanGestureDetector.PanGestureScreenPositionSet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.PanGestureDetector.PanGestureScreenPositionGet(SwigCPtr);
@@ -254,11 +224,6 @@ namespace Tizen.NUI
 
         private uint numberOfTouches
         {
-            set
-            {
-                Interop.PanGestureDetector.PanGestureNumberOfTouchesSet(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 uint ret = Interop.PanGestureDetector.PanGestureNumberOfTouchesGet(SwigCPtr);

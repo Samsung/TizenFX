@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,8 +23,9 @@ namespace Tizen.NUI
     /// Shader allows custom vertex and color transformations in the GPU.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class Shader : Animatable
+    public partial class Shader : Animatable
     {
+        private static int aliveCount;
 
         /// <summary>
         /// Creates Shader object.
@@ -32,10 +33,9 @@ namespace Tizen.NUI
         /// <param name="vertexShader">The vertex shader code for the effect.</param>
         /// <param name="fragmentShader">The fragment Shader code for the effect.</param>
         /// <param name="hints">The hints to define the geometry of the rendered object.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public Shader(string vertexShader, string fragmentShader, Shader.Hint.Value hints) : this(Interop.Shader.New(vertexShader, fragmentShader, (int)hints), true)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Shader(string vertexShader, string fragmentShader, ShaderHint hints) : this(vertexShader, fragmentShader, hints, "")
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -44,8 +44,32 @@ namespace Tizen.NUI
         /// <param name="vertexShader">The vertex shader code for the effect.</param>
         /// <param name="fragmentShader">The fragment Shader code for the effect.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Shader(string vertexShader, string fragmentShader) : this(Interop.Shader.New(vertexShader, fragmentShader), true)
+        public Shader(string vertexShader, string fragmentShader) : this(vertexShader, fragmentShader, ShaderHint.None, "")
         {
+        }
+
+        /// <summary>
+        /// Creates Shader object with name
+        /// </summary>
+        /// <param name="vertexShader">The vertex shader code for the effect.</param>
+        /// <param name="fragmentShader">The fragment Shader code for the effect.</param>
+        /// <param name="shaderName">The name of this shader object.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Shader(string vertexShader, string fragmentShader, string shaderName) : this(vertexShader, fragmentShader, ShaderHint.None, shaderName)
+        {
+        }
+
+        /// <summary>
+        /// Creates Shader object with hints and name
+        /// </summary>
+        /// <param name="vertexShader">The vertex shader code for the effect.</param>
+        /// <param name="fragmentShader">The fragment Shader code for the effect.</param>
+        /// <param name="hints">The hints to define the geometry of the rendered object.</param>
+        /// <param name="shaderName">The name of this shader object.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Shader(string vertexShader, string fragmentShader, ShaderHint hints, string shaderName) : this(Interop.Shader.New(vertexShader, fragmentShader, (int)hints, shaderName ?? ""), true)
+        {
+            Name = shaderName ?? "";
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -67,12 +91,50 @@ namespace Tizen.NUI
             {
                 var temp = new Tizen.NUI.PropertyValue(value);
                 Tizen.NUI.Object.SetProperty(SwigCPtr, Shader.Property.PROGRAM, temp);
+
+                // Update shader name
+                Name = "";
+                if (value != null)
+                {
+                    using var nameValue = value.Find("name");
+                    if (nameValue?.Get(out string name) ?? false)
+                    {
+                        Name = name ?? "";
+                    }
+                }
                 temp.Dispose();
             }
         }
 
+        /// <summary>
+        /// Gets the name of program.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Name { get; private set; }
+
+        /// <summary>
+        /// Gets the number of currently alived Shader object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
+
         internal Shader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            ++aliveCount;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            --aliveCount;
+
+            base.Dispose(type);
         }
 
         /// This will not be public opened.
@@ -80,38 +142,6 @@ namespace Tizen.NUI
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.Shader.DeleteShader(swigCPtr);
-        }
-
-        /// <summary>
-        /// The Hint class is used to provide additional information to the shader.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public sealed class Hint
-        {
-            /// <summary>
-            /// Enumeration for the hint value.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public enum Value
-            {
-                /// <summary>
-                /// No hints.
-                /// </summary>
-                /// <since_tizen> 3 </since_tizen>
-                NONE = 0x00,
-
-                /// <summary>
-                /// Might generate transparent alpha from opaque inputs
-                /// </summary>
-                /// <since_tizen> 3 </since_tizen>
-                OUTPUT_IS_TRANSPARENT = 0x01,
-
-                /// <summary>
-                /// Might change position of vertices, this option disables any culling optimizations
-                /// </summary>
-                /// <since_tizen> 3 </since_tizen>
-                MODIFIES_GEOMETRY = 0x02
-            }
         }
 
         /// <summary>

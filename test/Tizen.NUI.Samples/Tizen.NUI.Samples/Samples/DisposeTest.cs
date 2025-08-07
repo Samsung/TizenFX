@@ -57,15 +57,25 @@ namespace Tizen.NUI.Samples
         }
 
         static readonly string VERTEX_SHADER =
-        "attribute mediump vec3 aPosition;\n" +
-        "attribute mediump vec3 aNormal;\n" +
-        "attribute mediump vec2 aTexCoord;\n" +
-        "uniform mediump mat4 uMvpMatrix;\n" +
-        "uniform mediump mat3 uNormalMatrix;\n" +
-        "uniform mediump vec3 uSize;\n" +
-        "varying mediump vec3 vNormal;\n" +
-        "varying mediump vec2 vTexCoord;\n" +
-        "varying mediump vec3 vPosition;\n" +
+        "//@name DisposeTest.vert\n" +
+        "\n" +
+        "//@version 100\n" +
+        "\n" +
+        "precision mediump float;\n"+
+        "INPUT highp vec3 aPosition;\n" +
+        "INPUT highp vec3 aNormal;\n" +
+        "INPUT highp vec2 aTexCoord;\n" +
+        "\n" +
+        "OUTPUT highp vec3 vNormal;\n" +
+        "OUTPUT highp vec2 vTexCoord;\n" +
+        "OUTPUT highp vec3 vPosition;\n" +
+        "\n" +
+        "UNIFORM_BLOCK VertBlock\n" +
+        "{\n" +
+        "  UNIFORM highp mat4 uMvpMatrix;\n" +
+        "  UNIFORM highp mat3 uNormalMatrix;\n" +
+        "  UNIFORM highp vec3 uSize;\n" +
+        "};\n" +
         "void main()\n" +
         "{\n" +
         "    vec4 pos = vec4(aPosition, 1.0)*vec4(uSize,1.0);\n"+
@@ -76,11 +86,21 @@ namespace Tizen.NUI.Samples
         "}\n";
 
         static readonly string FRAGMENT_SHADER =
-        "uniform lowp vec4 uColor;\n" +
-        "uniform sampler2D sTexture;\n" +
-        "varying mediump vec3 vNormal;\n" +
-        "varying mediump vec2 vTexCoord;\n" +
-        "varying mediump vec3 vPosition;\n" +
+        "//@name DisposeTest.frag\n" +
+        "\n" +
+        "//@version 100\n" +
+        "\n" +
+        "precision mediump float;\n"+
+        "INPUT highp vec3 vNormal;\n" +
+        "INPUT highp vec2 vTexCoord;\n" +
+        "INPUT highp vec3 vPosition;\n" +
+        "\n" +
+        "UNIFORM_BLOCK FragBlock\n" +
+        "{\n" +
+        "  UNIFORM lowp vec4 uColor;\n" +
+        "};\n" +
+        "UNIFORM sampler2D sTexture;\n" +
+        "\n" +
         "mediump vec3 uLightDir = vec3(2.0, 0.5, 1.0);\n" + // constant light dir
         "mediump vec3 uViewDir  = vec3(0.0, 0.0, 1.0);\n" + // constant view dir.
         "mediump vec3 uAmbientColor = vec3(0.2, 0.2, 0.2);\n" +
@@ -214,7 +234,7 @@ namespace Tizen.NUI.Samples
         private string resource;
         private List<Custom3DView> views;
         private List<Custom3DView> depthViews; // List of tree-formed views. 0 indexes view is root.
-        private List<Renderer> renderers;
+        private List<Renderable> renderables;
         private Animation rotateAnimation;
 
         private Dictionary<string, Texture> textureDictionary = new();
@@ -235,7 +255,7 @@ namespace Tizen.NUI.Samples
 
             views = new List<Custom3DView>();
             depthViews = new List<Custom3DView>();
-            renderers = new List<Renderer>();
+            renderables = new List<Renderable>();
             rotateAnimation = new Animation(1500); //1.5s
 
             AddManyViews();
@@ -305,11 +325,11 @@ namespace Tizen.NUI.Samples
 
         private Shader GenerateShader()
         {
-            Shader shader = new Shader(VERTEX_SHADER, FRAGMENT_SHADER);
+            Shader shader = new Shader(VERTEX_SHADER, FRAGMENT_SHADER, "DisposeTestShader");
             return shader;
         }
 
-        private Renderer GenerateRenderer(string textureUrl)
+        private Renderable GenerateRenderable(string textureUrl)
         {
             Texture texture;
             if (!textureDictionary.TryGetValue(textureUrl, out texture))
@@ -336,12 +356,16 @@ namespace Tizen.NUI.Samples
             TextureSet textureSet = new TextureSet();
             textureSet.SetTexture(0u, texture);
 
-            Renderer renderer = new Renderer(GenerateGeometry(), GenerateShader());
-            renderer.SetTextures(textureSet);
+            Renderable renderable = new Renderable()
+            {
+                Geometry = GenerateGeometry(),
+                Shader = GenerateShader(),
+            };
+            renderable.TextureSet = textureSet;
 
-            renderers.Add(renderer);
+            renderables.Add(renderable);
 
-            return renderer;
+            return renderable;
         }
 
         private void AddManyViews()
@@ -362,7 +386,7 @@ namespace Tizen.NUI.Samples
                     Name = "Auto_" + i.ToString(),
                 };
                 root.Add(view);
-                view.AddRenderer(GenerateRenderer(resource + "/images/PopupTest/circle.jpg"));
+                view.AddRenderable(GenerateRenderable(resource + "/images/PopupTest/circle.jpg"));
 
                 rotateAnimation.AnimateBy(view, "Orientation", new Rotation(new Radian(new Degree(360.0f)), Vector3.YAxis));
             }
@@ -383,7 +407,7 @@ namespace Tizen.NUI.Samples
                 root.Add(view);
                 views.Add(view);
 
-                view.AddRenderer(GenerateRenderer(resource + "/images/PaletteTest/red2.jpg"));
+                view.AddRenderable(GenerateRenderable(resource + "/images/PaletteTest/red2.jpg"));
 
                 rotateAnimation.AnimateBy(view, "Orientation", new Rotation(new Radian(new Degree(-360.0f)), Vector3.YAxis));
             }
@@ -420,7 +444,7 @@ namespace Tizen.NUI.Samples
                 }
                 depthViews.Add(view);
 
-                view.AddRenderer(GenerateRenderer(resource + "/images/PaletteTest/rock.jpg"));
+                view.AddRenderable(GenerateRenderable(resource + "/images/PaletteTest/rock.jpg"));
 
                 //rotateAnimation.AnimateBy(view, "Orientation", new Rotation(new Radian(new Degree(360.0f)), Vector3.ZAxis));
             }
@@ -438,12 +462,12 @@ namespace Tizen.NUI.Samples
             {
                 view?.Dispose();
             }
-            foreach (var renderer in renderers)
+            foreach (var renderable in renderables)
             {
-                renderer?.GetGeometry()?.Dispose();
-                renderer?.GetShader()?.Dispose();
-                renderer?.GetTextures()?.Dispose();
-                renderer?.Dispose();
+                renderable?.Geometry?.Dispose();
+                renderable?.Shader?.Dispose();
+                renderable?.TextureSet?.Dispose();
+                renderable?.Dispose();
             }
             if (depthViews?.Count > 0)
             {
@@ -452,7 +476,7 @@ namespace Tizen.NUI.Samples
 
             views.Clear();
             depthViews.Clear();
-            renderers.Clear();
+            renderables.Clear();
 
             rotateAnimation.Clear();
         }

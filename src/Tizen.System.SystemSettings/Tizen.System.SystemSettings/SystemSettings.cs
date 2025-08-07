@@ -29,7 +29,7 @@ namespace Tizen.System
     public static class SystemSettings
     {
         /// <summary>
-        /// The file path of the current ringtone.
+        /// This static member variable indicates file path of the current ringtone.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -63,7 +63,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The file path of the current home-screen wallpaper.
+        /// This static member variable indicates file path of the current home-screen wallpaper.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -97,7 +97,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The file path of the current lock-screen wallpaper.
+        /// This static member variable indicates file path of the current lock-screen wallpaper.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -131,7 +131,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The current system font size.
+        /// This static member variable indicates current system font size.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -165,7 +165,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The current system font type.
+        /// This static member variable indicates current system font type.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -199,7 +199,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the motion service is activated.
+        /// This static member variable indicates whether the motion service is activated.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -232,7 +232,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The file path of the current email alert ringtone.
+        /// This static member variable indicates file path of the current email alert ringtone.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -265,7 +265,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Indicates whether the USB debugging is enabled.
+        /// This static member variable indicates whether the USB debugging is enabled.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -298,7 +298,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the 3G data network is enabled.
+        /// This static member variable indicates whether the 3G data network is enabled.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -331,7 +331,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the lock-screen application package name.
+        /// This static member variable indicates the lock-screen application package name.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -391,7 +391,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the current country setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
+        /// This static member variable indicates the current country setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
         /// The country setting is in the ISO 639-2 format,
         /// and the region setting is in the ISO 3166-1 alpha-2 format.
         /// </summary>
@@ -426,7 +426,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the current language setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
+        /// This static member variable indicates the current language setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
         /// The language setting is in the ISO 639-2 format,
         /// and the region setting is in the ISO 3166-1 alpha-2 format.
         /// </summary>
@@ -461,7 +461,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the 24-hour clock is used.
+        /// This static member variable indicates whether the 24-hour clock is used.
         /// If the value is false, the 12-hour clock is used.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
@@ -495,7 +495,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the current time zone, for example, Pacific/Tahiti.
+        /// This static member variable indicates the current time zone, for example, Pacific/Tahiti.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -552,7 +552,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Indicates whether the screen lock sound is enabled on the device, for example, the LCD on or off sound.
+        /// This static member variable indicates whether the screen lock sound is enabled on the device, for example, the LCD on or off sound.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -577,7 +577,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the device is in the silent mode.
+        /// This static member variable indicates whether the device is in the silent mode.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -602,7 +602,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the screen touch sound is enabled on the device.
+        /// This static member variable indicates whether the screen touch sound is enabled on the device.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -627,7 +627,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the rotation control is automatic.
+        /// This static member variable indicates whether the rotation control is automatic.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -652,7 +652,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the device name.
+        /// This static member variable indicates the device name.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -676,7 +676,7 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Indicates whether the device user has enabled the motion feature.
+        /// This static member variable indicates whether the device user has enabled the motion feature.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -701,7 +701,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether Wi-Fi related notifications are enabled on the device.
+        /// This static member variable indicates whether Wi-Fi related notifications are enabled on the device.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -727,7 +727,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the device is in the flight mode.
+        /// This static member variable indicates whether the device is in the flight mode.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -752,7 +752,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the backlight time (in seconds). The following values can be used: 15, 30, 60, 120, 300, and 600.
+        /// This static member variable indicates the backlight time (in seconds). The following values can be used: 15, 30, 60, 120, 300, and 600.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -785,7 +785,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the file path of the current notification tone set by the user.
+        /// This static member variable indicates the file path of the current notification tone set by the user.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -819,7 +819,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the time period for notification repetitions.
+        /// This static member variable indicates the time period for notification repetitions.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -852,7 +852,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates the current lock state.
+        /// This static member variable indicates the current lock state.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -919,7 +919,7 @@ namespace Tizen.System
 
 
         /// <summary>
-        /// Indicates the time period for notification repetitions.
+        /// This static member variable indicates the time period for notification repetitions.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -945,7 +945,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the accessibility TTS is enabled on the device.
+        /// This static member variable indicates whether the accessibility TTS is enabled on the device.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -978,7 +978,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the vibration is enabled on the device or not.
+        /// This static member variable indicates whether the vibration is enabled on the device or not.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -1011,7 +1011,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the automatic time update is enabled on the device or not.
+        /// This static member variable indicates whether the automatic time update is enabled on the device or not.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -1045,7 +1045,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the developer option state is enabled on the device or not.
+        /// This static member variable indicates whether the developer option state is enabled on the device or not.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -1078,7 +1078,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether accessibility grayscale is enabled on the device or not.
+        /// This static member variable indicates whether accessibility grayscale is enabled on the device or not.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -1112,7 +1112,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether accessibility negative color is enabled on the device or not.
+        /// This static member variable indicates whether accessibility negative color is enabled on the device or not.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -1146,7 +1146,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether rotary event is enabled on the device.
+        /// This static member variable indicates whether rotary event is enabled on the device.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>

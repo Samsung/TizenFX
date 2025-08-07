@@ -63,27 +63,29 @@ namespace Tizen.NUI.Visuals
         public Tizen.NUI.BaseComponents.View GetView()
         {
             global::System.IntPtr cPtr = Interop.VisualObjectsContainer.GetOwner(SwigCPtr);
-            
-            Tizen.NUI.BaseComponents.View ret = null;
+
             if (Interop.RefObject.GetRefObjectPtr(cPtr) == global::System.IntPtr.Zero)
             {
                 // Visual container don't have owner. Return null.
                 Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, cPtr));
+                NDalicPINVOKE.ThrowExceptionIfExists();
             }
             else
             {
-                ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Tizen.NUI.BaseComponents.View;
+                Tizen.NUI.BaseComponents.View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Tizen.NUI.BaseComponents.View;
                 if (ret != null)
                 {
                     Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, cPtr));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    return ret;
                 }
                 else
                 {
                     ret = new Tizen.NUI.BaseComponents.View(cPtr, true);
+                    return ret;
                 }
             }
-            NDalicPINVOKE.ThrowExceptionIfExists();
-            return ret;
+            return null;
         }
 
         public int GetContainerRangeType()

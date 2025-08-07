@@ -32,7 +32,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the packet containing the decoded frame.
+        /// Gets the media packet containing the audio decoded frame.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public MediaPacket Packet { get; }

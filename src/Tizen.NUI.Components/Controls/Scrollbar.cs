@@ -35,53 +35,88 @@ namespace Tizen.NUI.Components
 
         /// <summary>Bindable property of TrackThickness</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(float), typeof(Scrollbar), default(float),
-            propertyChanged: (bindable, oldValue, newValue) => ((Scrollbar)bindable).UpdateTrackThickness((float?)newValue ?? 0),
-            defaultValueCreator: (bindable) => ((Scrollbar)bindable).trackThickness
-        );
+        public static readonly BindableProperty TrackThicknessProperty = null;
+        internal static void SetInternalTrackThicknessProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((Scrollbar)bindable).UpdateTrackThickness((float?)newValue ?? 0);
+        }
+        internal static object GetInternalTrackThicknessProperty(BindableObject bindable)
+        {
+            return ((Scrollbar)bindable).trackThickness;
+        }
 
         /// <summary>Bindable property of ThumbThickness</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbThicknessProperty = BindableProperty.Create(nameof(ThumbThickness), typeof(float), typeof(Scrollbar), default(float),
-            propertyChanged: (bindable, oldValue, newValue) => ((Scrollbar)bindable).UpdateThumbThickness((float?)newValue ?? 0),
-            defaultValueCreator: (bindable) => ((Scrollbar)bindable).thumbThickness
-        );
+        public static readonly BindableProperty ThumbThicknessProperty = null;
+        internal static void SetInternalThumbThicknessProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((Scrollbar)bindable).UpdateThumbThickness((float?)newValue ?? 0);
+        }
+        internal static object GetInternalThumbThicknessProperty(BindableObject bindable)
+        {
+            return ((Scrollbar)bindable).thumbThickness;
+        }
 
         /// <summary>Bindable property of TrackColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(Scrollbar), null,
-            propertyChanged: (bindable, oldValue, newValue) => ((Scrollbar)bindable).trackView.BackgroundColor = (Color)newValue,
-            defaultValueCreator: (bindable) => ((Scrollbar)bindable).trackView.BackgroundColor
-        );
+        public static readonly BindableProperty TrackColorProperty = null;
+        internal static void SetInternalTrackColorProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((Scrollbar)bindable).trackView.BackgroundColor = (Color)newValue;
+        }
+        internal static object GetInternalTrackColorProperty(BindableObject bindable)
+        {
+            return ((Scrollbar)bindable).trackView.BackgroundColor;
+        }
 
         /// <summary>Bindable property of ThumbColor</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(Scrollbar), null,
-            propertyChanged: (bindable, oldValue, newValue) => ((Scrollbar)bindable).UpdateThumbColor((Color)newValue),
-            defaultValueCreator: (bindable) => ((Scrollbar)bindable).thumbColor
-        );
+        public static readonly BindableProperty ThumbColorProperty = null;
+        internal static void SetInternalThumbColorProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((Scrollbar)bindable).UpdateThumbColor((Color)newValue);
+        }
+        internal static object GetInternalThumbColorProperty(BindableObject bindable)
+        {
+            return ((Scrollbar)bindable).thumbColor;
+        }
 
         /// <summary>Bindable property of TrackPadding</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(Scrollbar), null,
-            propertyChanged: (bindable, oldValue, newValue) => ((Scrollbar)bindable).UpdateTrackPadding((Extents)newValue),
-            defaultValueCreator: (bindable) => ((Scrollbar)bindable).trackPadding
-        );
+        public static readonly BindableProperty TrackPaddingProperty = null;
+        internal static void SetInternalTrackPaddingProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((Scrollbar)bindable).UpdateTrackPadding((Extents)newValue);
+        }
+        internal static object GetInternalTrackPaddingProperty(BindableObject bindable)
+        {
+            //NOTE: the type of trackPadding is not Extents.
+            return ((Scrollbar)bindable).trackPadding;
+        }
 
         /// <summary>Bindable property of ThumbVerticalImageUrl</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbVerticalImageUrlProperty = BindableProperty.Create(nameof(ThumbVerticalImageUrl), typeof(string), typeof(Scrollbar), null,
-            propertyChanged: (bindable, oldValue, newValue) => ((Scrollbar)bindable).UpdateThumbImage((string)newValue, false),
-            defaultValueCreator: (bindable) => ((Scrollbar)bindable).thumbVerticalImageUrl
-        );
+        public static readonly BindableProperty ThumbVerticalImageUrlProperty = null;
+        internal static void SetInternalThumbVerticalImageUrlProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((Scrollbar)bindable).UpdateThumbImage((string)newValue, false);
+        }
+        internal static object GetInternalThumbVerticalImageUrlProperty(BindableObject bindable)
+        {
+            return ((Scrollbar)bindable).thumbVerticalImageUrl;
+        }
 
         /// <summary>Bindable property of ThumbHorizontalImageUrl</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbHorizontalImageUrlProperty = BindableProperty.Create(nameof(ThumbHorizontalImageUrl), typeof(string), typeof(Scrollbar), null,
-            propertyChanged: (bindable, oldValue, newValue) => ((Scrollbar)bindable).UpdateThumbImage((string)newValue, true),
-            defaultValueCreator: (bindable) => ((Scrollbar)bindable).thumbHorizontalImageUrl
-        );
-
+        public static readonly BindableProperty ThumbHorizontalImageUrlProperty = null;
+        internal static void SetInternalThumbHorizontalImageUrlProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            ((Scrollbar)bindable).UpdateThumbImage((string)newValue, true);
+        }
+        internal static object GetInternalThumbHorizontalImageUrlProperty(BindableObject bindable)
+        {
+            return ((Scrollbar)bindable).thumbHorizontalImageUrl;
+        }
 
         private View trackView;
         private ImageView thumbView;
@@ -140,6 +175,23 @@ namespace Tizen.NUI.Components
         /// </summary>
         static Scrollbar()
         {
+            if (NUIApplication.IsUsingXaml)
+            {
+                TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(float), typeof(Scrollbar), default(float),
+                    propertyChanged: SetInternalTrackThicknessProperty, defaultValueCreator: GetInternalTrackThicknessProperty);
+                ThumbThicknessProperty = BindableProperty.Create(nameof(ThumbThickness), typeof(float), typeof(Scrollbar), default(float),
+                    propertyChanged: SetInternalThumbThicknessProperty, defaultValueCreator: GetInternalThumbThicknessProperty);
+                TrackColorProperty = BindableProperty.Create(nameof(TrackColor), typeof(Color), typeof(Scrollbar), null,
+                    propertyChanged: SetInternalTrackColorProperty, defaultValueCreator: GetInternalTrackColorProperty);
+                ThumbColorProperty = BindableProperty.Create(nameof(ThumbColor), typeof(Color), typeof(Scrollbar), null,
+                    propertyChanged: SetInternalThumbColorProperty, defaultValueCreator: GetInternalThumbColorProperty);
+                TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(Scrollbar), null,
+                    propertyChanged: SetInternalTrackPaddingProperty, defaultValueCreator: GetInternalTrackPaddingProperty);
+                ThumbVerticalImageUrlProperty = BindableProperty.Create(nameof(ThumbVerticalImageUrl), typeof(string), typeof(Scrollbar), null,
+                    propertyChanged: SetInternalThumbVerticalImageUrlProperty, defaultValueCreator: GetInternalThumbVerticalImageUrlProperty);
+                ThumbHorizontalImageUrlProperty = BindableProperty.Create(nameof(ThumbHorizontalImageUrl), typeof(string), typeof(Scrollbar), null,
+                    propertyChanged: SetInternalThumbHorizontalImageUrlProperty, defaultValueCreator: GetInternalThumbHorizontalImageUrlProperty);
+            }
         }
 
         #endregion Constructors
@@ -153,8 +205,28 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float TrackThickness
         {
-            get => (float)GetValue(TrackThicknessProperty);
-            set => SetValue(TrackThicknessProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(TrackThicknessProperty);
+                }
+                else
+                {
+                    return trackThickness;
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TrackThicknessProperty, value);
+                }
+                else
+                {
+                    UpdateTrackThickness(value);
+                }
+            }
         }
 
         /// <summary>
@@ -163,8 +235,28 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float ThumbThickness
         {
-            get => (float)GetValue(ThumbThicknessProperty);
-            set => SetValue(ThumbThicknessProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(ThumbThicknessProperty);
+                }
+                else
+                {
+                    return thumbThickness;
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ThumbThicknessProperty, value);
+                }
+                else
+                {
+                    UpdateThumbThickness(value);
+                }
+            }
         }
 
         /// <summary>
@@ -173,8 +265,28 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color TrackColor
         {
-            get => (Color)GetValue(TrackColorProperty);
-            set => SetValue(TrackColorProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Color)GetValue(TrackColorProperty);
+                }
+                else
+                {
+                    return trackView.BackgroundColor;
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TrackColorProperty, value);
+                }
+                else
+                {
+                    trackView.BackgroundColor = value;
+                }
+            }
         }
 
         /// <summary>
@@ -183,8 +295,28 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ThumbColor
         {
-            get => (Color)GetValue(ThumbColorProperty);
-            set => SetValue(ThumbColorProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Color)GetValue(ThumbColorProperty);
+                }
+                else
+                {
+                    return thumbColor;
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ThumbColorProperty, value);
+                }
+                else
+                {
+                    UpdateThumbColor(value);
+                }
+            }
         }
 
         /// <summary>
@@ -195,8 +327,28 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents TrackPadding
         {
-            get => (Extents)GetValue(TrackPaddingProperty);
-            set => SetValue(TrackPaddingProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (Extents)GetValue(TrackPaddingProperty);
+                }
+                else
+                {
+                    return new Extents(trackPadding.Item1, trackPadding.Item2, trackPadding.Item3, trackPadding.Item4);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TrackPaddingProperty, value);
+                }
+                else
+                {
+                    UpdateTrackPadding(value);
+                }
+            }
         }
 
         /// <summary>
@@ -205,8 +357,28 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ThumbVerticalImageUrl
         {
-            get => (string)GetValue(ThumbVerticalImageUrlProperty);
-            set => SetValue(ThumbVerticalImageUrlProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(ThumbVerticalImageUrlProperty);
+                }
+                else
+                {
+                    return thumbVerticalImageUrl;
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ThumbVerticalImageUrlProperty, value);
+                }
+                else
+                {
+                    UpdateThumbImage(value, false);
+                }
+            }
         }
 
         /// <summary>
@@ -215,8 +387,28 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ThumbHorizontalImageUrl
         {
-            get => (string)GetValue(ThumbHorizontalImageUrlProperty);
-            set => SetValue(ThumbHorizontalImageUrlProperty, value);
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(ThumbHorizontalImageUrlProperty);
+                }
+                else
+                {
+                    return thumbHorizontalImageUrl;
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ThumbHorizontalImageUrlProperty, value);
+                }
+                else
+                {
+                    UpdateThumbImage(value, true);
+                }
+            }
         }
 
         /// <inheritdoc/>

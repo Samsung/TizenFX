@@ -19,26 +19,28 @@ using System;
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
-    /// A class for holding parameters for the AES algorithm with the counter mode.
+    /// Holds parameters for the AES algorithm with the counter mode.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class AesCtrCipherParameters : AesCipherParameters
     {
         /// <summary>
-        /// A default constructor.
+        /// Initializes an instance of AesCtrCipherParameters class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <remarks>The CipherAlgorithmType in CipherParameters is set to CipherAlgorithmType.AesCtr.</remarks>
+        /// <remarks>CipherAlgorithmType in CipherParameters is set to CipherAlgorithmType.AesCtr.</remarks>
         public AesCtrCipherParameters() : base(CipherAlgorithmType.AesCtr)
         {
         }
 
         /// <summary>
-        /// Length of the counter block in bits.
+        /// Gets and sets the length of the counter block in bits.
         /// </summary>
+        /// <value>
+        /// Length of the counter block in bits. Optional, only 128b is supported at the moment.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
-        /// <remarks>Optional, only 128b is supported at the moment.</remarks>
-        /// <exception cref="ArgumentOutOfRangeException">The value should be positive.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when value is not positive.</exception>
         public long CounterLength
         {
             get

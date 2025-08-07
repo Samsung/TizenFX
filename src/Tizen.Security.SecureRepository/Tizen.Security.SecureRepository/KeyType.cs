@@ -27,31 +27,31 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         None = 0,
         /// <summary>
-        /// The RSA public key.
+        /// RSA public key.
         /// </summary>
         RsaPublic,
         /// <summary>
-        /// The RSA private key.
+        /// RSA private key.
         /// </summary>
         RsaPrivate,
         /// <summary>
-        /// The ECDSA public key.
+        /// ECDSA public key.
         /// </summary>
         EcdsaPublic,
         /// <summary>
-        /// The ECDSA private key.
+        /// ECDSA private key.
         /// </summary>
         EcdsaPrivate,
         /// <summary>
-        /// The DSA public key.
+        /// DSA public key.
         /// </summary>
         DsaPublic,
         /// <summary>
-        /// The DSA private key.
+        /// DSA private key.
         /// </summary>
         DsaPrivate,
         /// <summary>
-        /// The AES key.
+        /// AES key.
         /// </summary>
         Aes
     }

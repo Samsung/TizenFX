@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,8 +33,10 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class NUIApplication : CoreApplication
     {
+        private static bool _isUsingXaml = true;
+
         /// <summary>
-        /// Set to true if XAML is used. 
+        /// Set to true if XAML is used.
         /// This must be called before or immediately after the NUIApplication constructor is called.
         /// The default value is true.
         /// </summary>
@@ -42,19 +44,52 @@ namespace Tizen.NUI
         /// This must be called before or immediately after the NUIApplication constructor is called.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public bool IsUsingXaml { get; set; } = true;
+        static public bool IsUsingXaml
+        {
+            get
+            {
+                return _isUsingXaml;
+            }
+            set
+            {
+                if (_isUsingXaml != value)
+                {
+                    Tizen.Log.Info("NUI", $"IsUsingXaml changed to {value}");
+                    _isUsingXaml = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Set to true if NUI ThemeManager is used.
+        /// The default value is true.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool IsUsingThemeManager { get; set; } = true;
+
+        /// <summary>
+        /// Set to true if NUI DisposeQueue dispose items incrementally.
+        /// The default value is false.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool IsUsingIncrementalDispose => DisposeQueue.Instance.IncrementalDisposeSupported;
 
         /// <summary>
         /// The instance of ResourceManager.
         /// </summary>
-        private static System.Resources.ResourceManager resourceManager = null;
-        private static string currentLoadedXaml = null;
+        private static System.Resources.ResourceManager resourceManager;
+        private static string currentLoadedXaml;
+
+        /// <summary>
+        /// Whether current system support to create view at Preload time.
+        /// </summary>
+        internal static bool SupportPreInitializedCreation { get; private set; }
 
         /// <summary>
         /// The border window
         /// </summary>
-        private bool borderEnabled = false;
-        private IBorderInterface borderInterface = null;
+        private bool borderEnabled;
+        private IBorderInterface borderInterface;
 
         private States currentState = States.Invalid;
 
@@ -521,8 +556,8 @@ namespace Tizen.NUI
         public override void Run(string[] args)
         {
             Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
-            Backend.AddEventHandler(EventType.Resumed, OnResume);
-            Backend.AddEventHandler(EventType.Paused, OnPause);
+            Backend.AddEventHandler(EventType.Resumed, ResumeHandler);
+            Backend.AddEventHandler(EventType.Paused, PauseHandler);
             base.Run(args);
         }
 
@@ -545,6 +580,16 @@ namespace Tizen.NUI
         public bool AddIdle(System.Delegate func)
         {
             return ((NUICoreBackend)this.Backend).AddIdle(func);
+        }
+
+        /// <summary>
+        /// Remove delegate what we added by AddIdle.
+        /// </summary>
+        /// <param name="func">The function to remove</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveIdle(System.Delegate func)
+        {
+            ((NUICoreBackend)this.Backend).RemoveIdle(func);
         }
 
         /// <summary>
@@ -591,6 +636,30 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        /// <summary>
+        /// Sets the geometry hit-testing enabled or disabled for the application.
+        /// </summary>
+        /// <param name="enable">True to enable geometry hit-testing, false otherwise.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public void SetGeometryHittestEnabled(bool enable)
+        {
+            Interop.Application.SetGeometryHittestEnabled(enable);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Checks whether geometry hit-testing is enabled for the application.
+        /// </summary>
+        /// <returns>True if geometry hit-testing is enabled, false otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public bool IsGeometryHittestEnabled()
+        {
+            bool ret = Interop.Application.IsGeometryHittestEnabled();
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
 
         /// <summary>
         /// The OnLocaleChanged method is called when the system locale settings have changed.
@@ -667,8 +736,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPause()
         {
-            currentState = States.Paused;
-            Paused?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -677,8 +744,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnResume()
         {
-            currentState = States.Resumed;
-            Resumed?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -736,18 +801,31 @@ namespace Tizen.NUI
         static public void Preload()
         {
             Interop.Application.PreInitialize();
+            SupportPreInitializedCreation = Interop.Application.IsSupportPreInitializedCreation();
+            Tizen.Log.Info("NUI", $"Support preload time view creation? {SupportPreInitializedCreation}\n");
 
             // Initialize some static utility
-            var disposalbeQueue = DisposeQueue.Instance;
+            var disposableQueue = DisposeQueue.Instance;
+            var processorController = ProcessorController.Instance;
             var registry = Registry.Instance;
 
             // Initialize some BaseComponent static variables now
             BaseComponents.View.Preload();
             BaseComponents.ImageView.Preload();
+            BaseComponents.LottieAnimationView.Preload();
+            BaseComponents.AnimatedVectorImageView.Preload();
             BaseComponents.TextLabel.Preload();
             BaseComponents.TextEditor.Preload();
             BaseComponents.TextField.Preload();
             Disposable.Preload();
+            Color.Preload();
+            NUIConstants.Preload();
+
+            // Initialize some static instance
+            if (SupportPreInitializedCreation)
+            {
+                _ = FocusManager.Instance;
+            }
 
             // Initialize exception tasks. It must be called end of Preload()
             NDalicPINVOKE.Preload();
@@ -777,6 +855,20 @@ namespace Tizen.NUI
         {
             borderEnabled = true;
             this.borderInterface = borderInterface;
+        }
+
+        private void ResumeHandler()
+        {
+            currentState = States.Resumed;
+            OnResume();
+            Resumed?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void PauseHandler()
+        {
+            currentState = States.Paused;
+            OnPause();
+            Paused?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>

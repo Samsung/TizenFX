@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Multimedia.Remoting
 {
@@ -149,5 +150,307 @@ namespace Tizen.Multimedia.Remoting
         /// Invalid operation.
         /// </summary>
         InvalidOperation = ScreenMirroringErrorCode.InvalidOperation
+    }
+
+    /// <summary>
+    /// Specifies the display mode for <see cref="ScreenMirroring"/>.
+    /// </summary>
+    /// <since_tizen> 13 </since_tizen>
+    public enum ScreenMirroringDisplayMode
+    {
+        /// <summary>
+        /// Letter box.
+        /// </summary>
+        LetterBox,
+
+        /// <summary>
+        /// Original size.
+        /// </summary>
+        OriginSize,
+
+        /// <summary>
+        /// Full screen.
+        /// </summary>
+        Full,
+
+        /// <summary>
+        /// Cropped full screen.
+        /// </summary>
+        CroppedFull,
+
+        /// <summary>
+        /// Original size or letter box.
+        /// </summary>
+        OriginOrLetterBox,
+
+        /// <summary>
+        /// Custom ROI.
+        /// </summary>
+        CustomRoi
+    }
+
+    /// <summary>
+    /// Specifies the device type for <see cref="ScreenMirroring"/>.
+    /// </summary>
+    /// <since_tizen> 13 </since_tizen>
+    public enum ScreenMirroringDeviceType
+    {
+        /// <summary>
+        /// All other devices except TV and Mobile.
+        /// </summary>
+        Generic,
+
+        /// <summary>
+        /// TV device.
+        /// </summary>
+        Tv,
+
+        /// <summary>
+        /// Mobile device.
+        /// </summary>
+        Mobile
+    }
+
+    /// <summary>
+    /// Specifies the UIBC(User Input Back Channel) display orientation for <see cref="ScreenMirroring"/>.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum ScreenMirroringDisplayOrientation
+    {
+        /// <summary>
+        /// None
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Portrait display
+        /// </summary>
+        PortraitDisplay,
+
+        /// <summary>
+        /// Portrait
+        /// </summary>
+        Portrait,
+
+        /// <summary>
+        /// Landscape
+        /// </summary>
+        Landscape
+    }
+
+    /// <summary>
+    /// Specifies the UIBC(User Input Back Channel) input type for <see cref="ScreenMirroring"/>.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum ScreenMirroringUibcInputType
+    {
+        /// <summary>
+        /// Unknown
+        /// </summary>
+        Unknown,
+
+        /// <summary>
+        /// Keyboard
+        /// </summary>
+        Keyboard = (1 << 0),
+
+        /// <summary>
+        /// Mouse
+        /// </summary>
+        Mouse = (1 << 1),
+
+        /// <summary>
+        /// Single touch
+        /// </summary>
+        SingleTouch = (1 << 2),
+
+        /// <summary>
+        /// Multi touch
+        /// </summary>
+        MultiTouch = (1 << 3),
+
+        /// <summary>
+        /// Joystick
+        /// </summary>
+        Joystick = (1 << 4),
+
+        /// <summary>
+        /// Camera
+        /// </summary>
+        Camera = (1 << 5),
+
+        /// <summary>
+        /// Gesture
+        /// </summary>
+        Gesture = (1 << 6),
+
+        /// <summary>
+        /// Remote control
+        /// </summary>
+        RemoteControl = (1 << 7),
+    }
+
+    /// <summary>
+    /// Specifies the UIBC(User Input Back Channel) input path for <see cref="ScreenMirroring"/>.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum ScreenMirroringUibcInputPath
+    {
+        /// <summary>
+        /// Unknown
+        /// </summary>
+        Unknown,
+
+        /// <summary>
+        /// Infrared
+        /// </summary>
+        Infrared = (1 << 0),
+
+        /// <summary>
+        /// Usb
+        /// </summary>
+        Usb = (1 << 1),
+
+        /// <summary>
+        /// Bluetooth
+        /// </summary>
+        Bt = (1 << 2),
+
+        /// <summary>
+        /// Zigbee
+        /// </summary>
+        Zigbee = (1 << 3),
+
+        /// <summary>
+        /// Wifi
+        /// </summary>
+        Wifi = (1 << 4),
+
+        /// <summary>
+        /// Nosp
+        /// </summary>
+        Nosp = (1 << 5),
+    }
+
+    /// <summary>
+    /// Specifies the UIBC(User Input Back Channel) capture mode for <see cref="ScreenMirroring"/>.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum ScreenMirroringCaptureMode
+    {
+        /// <summary>
+        /// Application
+        /// </summary>
+        Application,
+
+        /// <summary>
+        /// Raw interface
+        /// </summary>
+        RawInterface
+    }
+
+    /// <summary>
+    /// Specifies the UIBC(User Input Back Channel) mouse event type for <see cref="ScreenMirroring"/>.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum ScreenMirroringMouseEventType
+    {
+        /// <summary>
+        /// Left button is pressed
+        /// </summary>
+        LeftButtonPressed,
+
+        /// <summary>
+        /// Left button is released
+        /// </summary>
+        LeftButtonReleased,
+
+        /// <summary>
+        /// Mouse is moved
+        /// </summary>
+        Move
+    }
+
+    /// <summary>
+    /// Specifies the UIBC(User Input Back Channel) key event type for <see cref="ScreenMirroring"/>.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum ScreenMirroringKeyEventType
+    {
+        /// <summary>
+        /// Key is pressed
+        /// </summary>
+        KeyPressed,
+
+        /// <summary>
+        /// Key is released
+        /// </summary>
+        KeyReleased
+    }
+
+    /// <summary>
+    /// Specifies the UIBC(User Input Back Channel) inputs for <see cref="ScreenMirroring"/>.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public readonly struct UibcInputs
+    {
+        internal UibcInputs(ScreenMirroringUibcInputType type, ScreenMirroringUibcInputPath path)
+        {
+            Type = type;
+            Path = path;
+        }
+
+        /// <summary>
+        /// Gets the type of UIBC input.
+        /// </summary>
+        /// <value>The UIBC input type</value>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScreenMirroringUibcInputType Type { get; }
+
+        /// <summary>
+        /// Gets the path of UIBC input.
+        /// </summary>
+        /// <value>The UIBC input path</value>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScreenMirroringUibcInputPath Path { get; }
+    }
+
+    /// <summary>
+    /// Specifies the UIBC(User Input Back Channel) mount event.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct UibcMouseInfo
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UibcMouseInfo"/> class.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public UibcMouseInfo(ushort id, ushort x, ushort y)
+        {
+            Id = id;
+            X = x;
+            Y = y;
+        }
+
+        /// <summary>
+        /// Gets the ID for pointer.
+        /// </summary>
+        /// <value>The UIBC input type</value>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ushort Id { get; set; }
+
+        /// <summary>
+        /// Gets the X coordinates of mouse.
+        /// </summary>
+        /// <value>The X coordinates</value>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ushort X { get; set; }
+
+        /// <summary>
+        /// Gets the Y coordinates of mouse.
+        /// </summary>
+        /// <value>The Y coordinates</value>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ushort Y { get; set; }
     }
 }

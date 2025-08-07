@@ -146,7 +146,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Size is to use the actor's natural size.
         /// </summary>
-        /// <see cref="ViewImpl.GetNaturalSize"/>
         [Description("USE_NATURAL_SIZE")]
         UseNaturalSize,
         /// <summary>
@@ -985,6 +984,23 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// Enumeration for the ellipsis mode of text.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum EllipsisMode
+    {
+        /// <summary>
+        /// When the text is long, it will be truncated with ellipsis.
+        /// </summary>
+        Truncate,
+
+        /// <summary>
+        /// When the text is long, it will automatically scroll with animation.
+        /// </summary>
+        AutoScroll
+    }
+
+    /// <summary>
     /// Enumeration type for the font's slant.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
@@ -1216,6 +1232,7 @@ namespace Tizen.NUI
     /// The HiddenInput property.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct HiddenInputProperty
     {
         /// <summary>
@@ -1244,6 +1261,7 @@ namespace Tizen.NUI
     /// The SelectionPopupStyle property.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct SelectionPopupStyleProperty
     {
         /// <summary>
@@ -1321,502 +1339,255 @@ namespace Tizen.NUI
     /// ParentOrigin constants.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct ParentOrigin
     {
+        private static readonly Position topLeft = new Position(Left, Top, Middle);
+        private static readonly Position topCenter = new Position(Middle, Top, Middle);
+        private static readonly Position topRight = new Position(Right, Top, Middle);
+        private static readonly Position centerLeft = new Position(Left, Middle, Middle);
+        private static readonly Position center = new Position(Middle, Middle, Middle);
+        private static readonly Position centerRight = new Position(Right, Middle, Middle);
+        private static readonly Position bottomLeft = new Position(Left, Bottom, Middle);
+        private static readonly Position bottomCenter = new Position(Middle, Bottom, Middle);
+        private static readonly Position bottomRight = new Position(Right, Bottom, Middle);
+
+        internal static void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
         /// Top
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float Top
-        {
-            get
-            {
-                float ret = Interop.NDalicParentOrigin.ParentOriginTopGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float Top => 0.0f;
 
         /// <summary>
         /// Bottom
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float Bottom
-        {
-            get
-            {
-                float ret = Interop.NDalicParentOrigin.ParentOriginBottomGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float Bottom => 1.0f;
 
         /// <summary>
         /// Left
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float Left
-        {
-            get
-            {
-                float ret = Interop.NDalicParentOrigin.ParentOriginLeftGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float Left => 0.0f;
 
         /// <summary>
         /// Right
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float Right
-        {
-            get
-            {
-                float ret = Interop.NDalicParentOrigin.ParentOriginRightGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float Right => 1.0f;
 
         /// <summary>
         /// Middle
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float Middle
-        {
-            get
-            {
-                float ret = Interop.NDalicParentOrigin.ParentOriginMiddleGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float Middle => 0.5f;
 
         /// <summary>
         /// TopLeft
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position TopLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginTopLeftGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position TopLeft => topLeft;
 
         /// <summary>
         /// TopCenter
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position TopCenter
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginTopCenterGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position TopCenter => topCenter;
 
         /// <summary>
         /// TopRight
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position TopRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginTopRightGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position TopRight => topRight;
 
         /// <summary>
         /// CenterLeft
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position CenterLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginCenterLeftGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position CenterLeft => centerLeft;
 
         /// <summary>
         /// Center
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position Center
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginCenterGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position Center => center;
 
         /// <summary>
         /// CenterRight
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position CenterRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginCenterRightGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position CenterRight => centerRight;
 
         /// <summary>
         /// BottomLeft
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position BottomLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginBottomLeftGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position BottomLeft => bottomLeft;
 
         /// <summary>
         /// BottomCenter
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position BottomCenter
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginBottomCenterGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position BottomCenter => bottomCenter;
 
         /// <summary>
         /// BottomRight
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position BottomRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicParentOrigin.ParentOriginBottomRightGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position BottomRight => bottomRight;
     }
 
     /// <summary>
     /// PivotPoint constants.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct PivotPoint
     {
         /// <summary>
         /// Top
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float Top
-        {
-            get
-            {
-                float ret = Interop.NDalicAnchorPoint.AnchorPointTopGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float Top => ParentOrigin.Top;
+
         /// <summary>
         /// Bottom
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float Bottom
-        {
-            get
-            {
-                float ret = Interop.NDalicAnchorPoint.AnchorPointBottomGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float Bottom => ParentOrigin.Bottom;
+
         /// <summary>
         /// Left
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float Left
-        {
-            get
-            {
-                float ret = Interop.NDalicAnchorPoint.AnchorPointLeftGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float Left => ParentOrigin.Left;
+
         /// <summary>
         /// Right
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float Right
-        {
-            get
-            {
-                float ret = Interop.NDalicAnchorPoint.AnchorPointRightGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float Right => ParentOrigin.Right;
+
         /// <summary>
         /// Middle
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float Middle
-        {
-            get
-            {
-                float ret = Interop.NDalicAnchorPoint.AnchorPointMiddleGet();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static float Middle => ParentOrigin.Middle;
+
         /// <summary>
         /// TopLeft
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position TopLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopLeftGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position TopLeft => ParentOrigin.TopLeft;
+
         /// <summary>
         /// TopCenter
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position TopCenter
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopCenterGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position TopCenter => ParentOrigin.TopCenter;
+
         /// <summary>
         /// TopRight
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position TopRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointTopRightGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position TopRight => ParentOrigin.TopRight;
+
         /// <summary>
         /// CenterLeft
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position CenterLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenterLeftGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position CenterLeft => ParentOrigin.CenterLeft;
+
         /// <summary>
         /// Center
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position Center
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenterGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position Center => ParentOrigin.Center;
+
         /// <summary>
         /// CenterRight
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position CenterRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointCenterRightGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position CenterRight => ParentOrigin.CenterRight;
+
         /// <summary>
         /// BottomLeft
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position BottomLeft
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomLeftGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position BottomLeft => ParentOrigin.BottomLeft;
+
         /// <summary>
         /// BottomCenter
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position BottomCenter
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomCenterGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position BottomCenter => ParentOrigin.BottomCenter;
+
         /// <summary>
         /// BottomRight
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position BottomRight
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.NDalicAnchorPoint.AnchorPointBottomRightGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position BottomRight => ParentOrigin.BottomRight;
     }
+
     /// <summary>
     /// PositionAxis constants.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct PositionAxis
     {
+        private static readonly Position xaxis = new Position(1.0f, 0.0f, 0.0f);
+        private static readonly Position yaxis = new Position(0.0f, 1.0f, 0.0f);
+        private static readonly Position zaxis = new Position(0.0f, 0.0f, 1.0f);
+        private static readonly Position negativeXaxis = new Position(-1.0f, 0.0f, 0.0f);
+        private static readonly Position negativeYaxis = new Position(0.0f, -1.0f, 0.0f);
+        private static readonly Position negativeZaxis = new Position(0.0f, 0.0f, -1.0f);
+
+        internal static void Preload()
+        {
+            // Do nothing. Jsut call for load static values.
+        }
+
         /// <summary>
         /// The X axis
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position X
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.XaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position X => xaxis;
+
         /// <summary>
         /// The Y axis
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position Y
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.YaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position Y => yaxis;
+
         /// <summary>
         /// The Z axis
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position Z
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.ZaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position Z => zaxis;
+
         /// <summary>
         /// The Negative X axis
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position NegativeX
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeXaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position NegativeX => negativeXaxis;
+
         /// <summary>
         /// The Negative Y axis
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position NegativeY
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeYaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position NegativeY => negativeYaxis;
+
         /// <summary>
         /// The Negative Z axis
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position NegativeZ
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeZaxisGet();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Position NegativeZ => negativeZaxis;
     }
 
     /// <summary>
@@ -1825,162 +1596,92 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     [Obsolete("Do not use this, that will be deprecated. Use as PivotPoint instead.")]
     [EditorBrowsable(EditorBrowsableState.Never)]
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct AnchorPoint
     {
         /// <summary>
         /// Top
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float Top
-        {
-            get
-            {
-                return PivotPoint.Top;
-            }
-        }
+        public static float Top => ParentOrigin.Top;
+
         /// <summary>
         /// Bottom
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float Bottom
-        {
-            get
-            {
-                return PivotPoint.Bottom;
-            }
-        }
+        public static float Bottom => ParentOrigin.Bottom;
+
         /// <summary>
         /// Left
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float Left
-        {
-            get
-            {
-                return PivotPoint.Left;
-            }
-        }
+        public static float Left => ParentOrigin.Left;
+
         /// <summary>
         /// Right
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float Right
-        {
-            get
-            {
-                return PivotPoint.Right;
-            }
-        }
+        public static float Right => ParentOrigin.Right;
+
         /// <summary>
         /// Middle
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static float Middle
-        {
-            get
-            {
-                return PivotPoint.Middle;
-            }
-        }
+        public static float Middle => ParentOrigin.Middle;
+
         /// <summary>
         /// TopLeft
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position TopLeft
-        {
-            get
-            {
-                return PivotPoint.TopLeft;
-            }
-        }
+        public static Position TopLeft => ParentOrigin.TopLeft;
+
         /// <summary>
         /// TopCenter
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position TopCenter
-        {
-            get
-            {
-                return PivotPoint.TopCenter;
-            }
-        }
+        public static Position TopCenter => ParentOrigin.TopCenter;
+
         /// <summary>
         /// TopRight
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position TopRight
-        {
-            get
-            {
-                return PivotPoint.TopRight;
-            }
-        }
+        public static Position TopRight => ParentOrigin.TopRight;
+
         /// <summary>
         /// CenterLeft
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position CenterLeft
-        {
-            get
-            {
-                return PivotPoint.CenterLeft;
-            }
-        }
+        public static Position CenterLeft => ParentOrigin.CenterLeft;
+
         /// <summary>
         /// Center
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position Center
-        {
-            get
-            {
-                return PivotPoint.Center;
-            }
-        }
+        public static Position Center => ParentOrigin.Center;
+
         /// <summary>
         /// CenterRight
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position CenterRight
-        {
-            get
-            {
-                return PivotPoint.CenterRight;
-            }
-        }
+        public static Position CenterRight => ParentOrigin.CenterRight;
+
         /// <summary>
         /// BottomLeft
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position BottomLeft
-        {
-            get
-            {
-                return PivotPoint.BottomLeft;
-            }
-        }
+        public static Position BottomLeft => ParentOrigin.BottomLeft;
+
         /// <summary>
         /// BottomCenter
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position BottomCenter
-        {
-            get
-            {
-                return PivotPoint.BottomCenter;
-            }
-        }
+        public static Position BottomCenter => ParentOrigin.BottomCenter;
+
         /// <summary>
         /// BottomRight
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Position BottomRight
-        {
-            get
-            {
-                return PivotPoint.BottomRight;
-            }
-        }
+        public static Position BottomRight => ParentOrigin.BottomRight;
     }
 
     /// <summary>
@@ -2027,6 +1728,7 @@ namespace Tizen.NUI
     /// FontSizeScale constant.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct FontSizeScale
     {
         /// <summary>
@@ -2040,6 +1742,7 @@ namespace Tizen.NUI
     /// FontFamily constant.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct FontFamily
     {
         /// <summary>
@@ -2053,6 +1756,7 @@ namespace Tizen.NUI
     /// Offset has left, right, bottom, top value.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct Offset
     {
         /// <summary>
@@ -2094,7 +1798,6 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int Top {get; set;}
-
     }
 
     /// <summary>
@@ -2103,7 +1806,7 @@ namespace Tizen.NUI
     /// </summary>
     internal struct FrameworkInformation
     {
-        public readonly static string ResourcePath = "/usr/share/dotnet.tizen/framework/res/";
+        public const string ResourcePath = "/usr/share/dotnet.tizen/framework/res/";
     }
 
     /// <summary>
@@ -2182,6 +1885,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The double underline type.
         /// </summary>
+        [SuppressMessage("Naming", "CA1720: Identifiers should not contain type names", Justification = "This is not a type name.")]
         Double
     }
 
@@ -2230,69 +1934,67 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// Enumeration for the layout direction policy of text.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum TextLayoutDirectionPolicy
+    {
+        /// <summary>
+        /// The text layout direction is inherited. If you change the layout direction, it will be aligned with the changed layout direction.
+        /// </summary>
+        Inherit,
+
+        /// <summary>
+        /// The text layout direction is determined by the locale of the system language.
+        /// </summary>
+        Locale,
+
+        /// <summary>
+        /// The text layout direction is determined by the text itself.
+        /// </summary>
+        Contents
+    }
+
+    /// <summary>
     /// Pre-defined SlideTransition Direction
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct SlideTransitionDirection
     {
+        private static readonly Vector2 top = new Vector2(0, -1);
+        private static readonly Vector2 bottom = new Vector2(0, 1);
+        private static readonly Vector2 left = new Vector2(-1, 0);
+        private static readonly Vector2 right = new Vector2(1, 0);
+
+        internal static void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
         /// Top
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Vector2 Top
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionTopGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector2 Top => top;
+
         /// <summary>
         /// Bottom
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Vector2 Bottom
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionBottomGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector2 Bottom => bottom;
 
         /// <summary>
         /// Right
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Vector2 Right
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionRightGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector2 Right => right;
 
         /// <summary>
         /// Left
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Vector2 Left
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.SlideTransitionDirection.SlideTransitionDirectionLeftGet();
-                Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector2 Left => left;
     }
 
     /// <summary>
@@ -2318,5 +2020,19 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Behind = 2,        
+    }
+
+    internal struct NUIConstants
+    {
+        internal static void Preload()
+        {
+            ParentOrigin.Preload();
+            SlideTransitionDirection.Preload();
+            PositionAxis.Preload();
+            Position.Preload();
+            Vector2.Preload();
+            Vector3.Preload();
+            Vector4.Preload();
+        }
     }
 }

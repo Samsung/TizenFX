@@ -77,7 +77,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         internal delegate void RelativeVector4ChangedCallback(float x, float y, float z, float w);
-        private RelativeVector4ChangedCallback callback = null;
+        private RelativeVector4ChangedCallback callback;
 
         /// <summary>
         /// The x component.
@@ -388,7 +388,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal RelativeVector4(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal RelativeVector4(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 

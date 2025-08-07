@@ -17,6 +17,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
@@ -31,7 +32,8 @@ namespace Tizen.NUI.Components
         /// ItemsSourceProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(RecyclerView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ItemsSourceProperty = null;
+        internal static void SetInternalItemsSourceProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = bindable as RecyclerView;
             if (instance == null)
@@ -42,8 +44,8 @@ namespace Tizen.NUI.Components
             {
                 instance.InternalItemsSource = newValue as IEnumerable;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalItemsSourceProperty(BindableObject bindable)
         {
             var instance = bindable as RecyclerView;
             if (instance == null)
@@ -51,13 +53,14 @@ namespace Tizen.NUI.Components
                 throw new Exception("Bindable object is not RecyclerView.");
             }
             return instance.InternalItemsSource;
-        });
+        }
 
         /// <summary>
         /// ItemTemplateProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ItemTemplateProperty = BindableProperty.Create(nameof(ItemTemplate), typeof(DataTemplate), typeof(RecyclerView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ItemTemplateProperty = null;
+        internal static void SetInternalItemTemplateProperty(BindableObject bindable, object oldValue, object newValue)
         {
             var instance = bindable as RecyclerView;
             if (instance == null)
@@ -68,8 +71,8 @@ namespace Tizen.NUI.Components
             {
                 instance.InternalItemTemplate = newValue as DataTemplate;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalItemTemplateProperty(BindableObject bindable)
         {
             var instance = bindable as RecyclerView;
             if (instance == null)
@@ -77,11 +80,22 @@ namespace Tizen.NUI.Components
                 throw new Exception("Bindable object is not RecyclerView.");
             }
             return instance.InternalItemTemplate;
-        });
+        }
 
         private void Initialize()
         {
             Scrolling += OnScrolling;
+        }
+
+        static RecyclerView()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(RecyclerView), null,
+                    propertyChanged: SetInternalItemsSourceProperty, defaultValueCreator: GetInternalItemsSourceProperty);
+                ItemTemplateProperty = BindableProperty.Create(nameof(ItemTemplate), typeof(DataTemplate), typeof(RecyclerView), null,
+                    propertyChanged: SetInternalItemTemplateProperty, defaultValueCreator: GetInternalItemTemplateProperty);
+            }
         }
 
         /// <summary>
@@ -111,14 +125,29 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ItemsSourceProperty) as IEnumerable;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ItemsSourceProperty) as IEnumerable;
+                }
+                else
+                {
+                    return InternalItemsSource;
+                }
             }
             set
             {
-                SetValue(ItemsSourceProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ItemsSourceProperty, value);
+                }
+                else
+                {
+                    InternalItemsSource = value;
+                }
                 NotifyPropertyChanged();
             }
         }
+
         internal virtual IEnumerable InternalItemsSource { get; set; }
 
         /// <summary>
@@ -129,11 +158,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ItemTemplateProperty) as DataTemplate;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ItemTemplateProperty) as DataTemplate;
+                }
+                else
+                {
+                    return InternalItemTemplate;
+                }
             }
             set
             {
-                SetValue(ItemTemplateProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ItemTemplateProperty, value);
+                }
+                else
+                {
+                    InternalItemTemplate = value;
+                }
                 NotifyPropertyChanged();
             }
         }

@@ -17,7 +17,7 @@
 namespace Tizen.System
 {
     /// <summary>
-    /// Enumeration for all the available system settings.
+    /// This is enumeration for all the available system settings.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum SystemSettingsKeys : int
@@ -194,7 +194,7 @@ namespace Tizen.System
         Oobe
     }
     /// <summary>
-    /// Enumeration for the Idle Lock State.
+    /// This is enumeration for the Idle Lock State.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum SystemSettingsIdleLockState : int
@@ -213,7 +213,7 @@ namespace Tizen.System
         LaunchingLock
     }
     /// <summary>
-    /// Enumeration for the font size.
+    /// This is enumeration for the font size.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum SystemSettingsFontSize : int
@@ -246,15 +246,15 @@ namespace Tizen.System
     public enum SystemSettingsUdsState : int
     {
         /// <summary>
-        /// UDS Off.
+        /// UDS(Ultra Data Save) Off.
         /// </summary>
         UdsOff = 0,
         /// <summary>
-        /// UDS On.
+        /// UDS(Ultra Data Save) On.
         /// </summary>
         UdsOn,
         /// <summary>
-        /// UDS On and the application is whitelisted.
+        /// UDS(Ultra Data Save) On and the application is whitelisted.
         /// </summary>
         UdsOnWhitelisted,
     }

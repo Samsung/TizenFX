@@ -421,7 +421,7 @@ namespace Tizen.NUI.Text
         /// If not provided then the offset is not enabled. <br />
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2? Offset { get; set; }
+        public Vector2 Offset { get; set; }
 
         /// <summary>
         /// The radius of blurring effect applied to the outline of the text. A higher value results in a more blurred outline. <br />

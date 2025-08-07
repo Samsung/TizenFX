@@ -30,6 +30,11 @@ namespace Tizen.NUI
 
         internal ViewWrapper(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            // TODO : We need to find more good way to call this API
+            if (NUIApplication.IsPreload == false)
+            {
+                RegisterAccessibilityDelegate();
+            }
         }
 
         internal ViewWrapper(string typeName, ViewWrapperImpl implementation) : this(Interop.ViewWrapper.New(typeName, ViewWrapperImpl.getCPtr(implementation)), true)
@@ -83,9 +88,6 @@ namespace Tizen.NUI
                     viewWrapperImpl.OnLayoutNegotiated = null;
                     viewWrapperImpl.OnStyleChange = null;
                     viewWrapperImpl.OnAccessibilityActivated = null;
-                    viewWrapperImpl.OnAccessibilityPan = null;
-                    viewWrapperImpl.OnAccessibilityValueChange = null;
-                    viewWrapperImpl.OnAccessibilityZoom = null;
                     viewWrapperImpl.OnFocusGained = null;
                     viewWrapperImpl.OnFocusLost = null;
                     viewWrapperImpl.GetNextFocusableView = null;

@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Tizen.Applications;
@@ -70,6 +71,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets the gadget resource path of the gadget.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        public string GadgetResourcePath
+        {
+            get; private set;
+        }
+
+        /// <summary>
         /// Gets the executable file of the gadget.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
@@ -85,7 +95,11 @@ namespace Tizen.NUI
 
         internal string ResourceClassName { get; set; }
 
-        internal Assembly Assembly { get; set; }
+        /// <summary>
+        /// Gets the assembly of the gadget.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        public Assembly Assembly { get; internal set; }
 
         /// <summary>
         /// Gets the assembly of the gadget.
@@ -93,37 +107,69 @@ namespace Tizen.NUI
         /// <since_tizen> 12 </since_tizen>
         public NUIGadgetAssembly NUIGadgetAssembly { get; set; }
 
-        internal static NUIGadgetInfo CreateNUIGadgetInfo(string packageId)
+        private static void SetGadgetResourcePath(NUIGadgetInfo info)
         {
-            Interop.PackageManagerInfo.ErrorCode errorCode = Interop.PackageManagerInfo.PackageInfoGet(packageId, out IntPtr handle);
-            if (errorCode != Interop.PackageManagerInfo.ErrorCode.None)
+            info.GadgetResourcePath = info.ResourcePath + info.ResourceType + "/";
+            if (!Directory.Exists(info.GadgetResourcePath))
             {
-                Log.Error("Failed to get package info. error = " + errorCode);
-                return null;
+                info.GadgetResourcePath = info.ResourcePath;
             }
+        }
 
-            NUIGadgetInfo info = new NUIGadgetInfo(packageId);
-
-            errorCode = Interop.PackageManagerInfo.PackageInfoGetResourceType(handle, out IntPtr resourceTypePtr);
-            if (errorCode != Interop.PackageManagerInfo.ErrorCode.None)
+        private static void SetResourcePath(NUIGadgetInfo info)
+        {
+            info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/.res_mount/gadget/";
+            if (!Directory.Exists(info.ResourcePath))
             {
-                Log.Error("Failed to get resource type. error = " + errorCode);
+                info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/.res_mount/";
+                if (!Directory.Exists(info.ResourcePath))
+                {
+                    info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/";
+                }
+            }
+        }
+
+        private static void SetResourceClassName(NUIGadgetInfo info)
+        {
+            if (info.Metadata.TryGetValue(MetadataUIGadgetResourceClassName, out string resourceClassName))
+            {
+                info.ResourceClassName = resourceClassName;
+                Log.Info("LocaleClassName: " + info.ResourceClassName);
             }
             else
             {
-                info.ResourceType = Marshal.PtrToStringAnsi(resourceTypePtr);
+                Log.Warn("There is no locale class");
             }
+        }
 
-            errorCode = Interop.PackageManagerInfo.PackageInfoGetResourceVersion(handle, out IntPtr resourceVersionPtr);
-            if (errorCode != Interop.PackageManagerInfo.ErrorCode.None)
+        private static void SetResourceFile(NUIGadgetInfo info)
+        {
+            if (info.Metadata.TryGetValue(MetadataUIGadgetResourceDll, out string resourceFile))
             {
-                Log.Error("Failed to get resource version. error = " + errorCode);
+                info.ResourceFile = resourceFile;
+                Log.Info("LocaleFile: " + info.ResourceFile);
             }
             else
             {
-                info.ResourceVersion = Marshal.PtrToStringAnsi(resourceVersionPtr);
+                Log.Warn("There is no locale dll");
             }
+        }
 
+        private static void SetExecutableFile(NUIGadgetInfo info)
+        {
+            if (info.Metadata.TryGetValue(MetadataUIGadgetDll, out string executableFile))
+            {
+                info.ExecutableFile = executableFile;
+                Log.Info("ExecutableFile: " + info.ExecutableFile);
+            }
+            else
+            {
+                Log.Error("Failed to find metadata. " + MetadataUIGadgetDll);
+            }
+        }
+
+        private static void SetMetadata(NUIGadgetInfo info, IntPtr handle)
+        {
             Dictionary<string, string> metadata = new Dictionary<string, string>();
             int callback(string key, string value, IntPtr userData)
             {
@@ -138,43 +184,55 @@ namespace Tizen.NUI
                 return 0;
             }
 
-            errorCode = Interop.PackageManagerInfo.PackageInfoForeachMetadata(handle, callback, IntPtr.Zero);
+            Interop.PackageManagerInfo.ErrorCode errorCode = Interop.PackageManagerInfo.PackageInfoForeachMetadata(handle, callback, IntPtr.Zero);
             if (errorCode != Interop.PackageManagerInfo.ErrorCode.None)
             {
                 Log.Error("Failed to retrieve meatadata. error = " + errorCode);
             }
 
             info.Metadata = metadata;
+        }
 
-            if (info.Metadata.TryGetValue(MetadataUIGadgetDll, out string executableFile))
+        private static void SetResourceVersion(NUIGadgetInfo info, IntPtr handle)
+        {
+            Interop.PackageManagerInfo.ErrorCode errorCode = Interop.PackageManagerInfo.PackageInfoGetResourceVersion(handle, out IntPtr resourceVersionPtr);
+            if (errorCode != Interop.PackageManagerInfo.ErrorCode.None)
             {
-                info.ExecutableFile = executableFile;
-                Log.Info("ExecutableFile: " + info.ExecutableFile);
+                Log.Error("Failed to get resource version. error = " + errorCode);
             }
             else
             {
-                Log.Error("Failed to find metadata. " + MetadataUIGadgetDll);
+                info.ResourceVersion = Marshal.PtrToStringAnsi(resourceVersionPtr);
             }
+        }
 
-            if (info.Metadata.TryGetValue(MetadataUIGadgetResourceDll, out string resourceFile))
+        private static void SetResourceType(NUIGadgetInfo info, IntPtr handle)
+        {
+            Interop.PackageManagerInfo.ErrorCode errorCode = Interop.PackageManagerInfo.PackageInfoGetResourceType(handle, out IntPtr resourceTypePtr);
+            if (errorCode != Interop.PackageManagerInfo.ErrorCode.None)
             {
-                info.ResourceFile = resourceFile;
-                Log.Info("LocaleFile: " + info.ResourceFile);
+                Log.Error("Failed to get resource type. error = " + errorCode);
             }
             else
             {
-                Log.Warn("There is no locale dll");
+                info.ResourceType = Marshal.PtrToStringAnsi(resourceTypePtr);
+            }
+        }
+
+        internal static NUIGadgetInfo CreateNUIGadgetInfo(string packageId)
+        {
+            Interop.PackageManagerInfo.ErrorCode errorCode = Interop.PackageManagerInfo.PackageInfoGet(packageId, out IntPtr handle);
+            if (errorCode != Interop.PackageManagerInfo.ErrorCode.None)
+            {
+                Log.Error("Failed to get package info. error = " + errorCode);
+                return null;
             }
 
-            if (info.Metadata.TryGetValue(MetadataUIGadgetResourceClassName, out string resourceClassName))
-            {
-                info.ResourceClassName = resourceClassName;
-                Log.Info("LocaleClassName: " + info.ResourceClassName);
-            }
-            else
-            {
-                Log.Warn("There is no locale class");
-            }
+            NUIGadgetInfo info = new NUIGadgetInfo(packageId);
+
+            SetResourceType(info, handle);
+            SetResourceVersion(info, handle);
+            SetMetadata(info, handle);
 
             errorCode = Interop.PackageManagerInfo.PackageInfoDestroy(handle);
             if (errorCode != Interop.PackageManagerInfo.ErrorCode.None)
@@ -182,7 +240,11 @@ namespace Tizen.NUI
                 Log.Warn("Failed to destroy package info. error = " + errorCode);
             }
 
-            info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/";
+            SetExecutableFile(info);
+            SetResourceFile(info);
+            SetResourceClassName(info);
+            SetResourcePath(info);
+            SetGadgetResourcePath(info);
             return info;
         }
     }

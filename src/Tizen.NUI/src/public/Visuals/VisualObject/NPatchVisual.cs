@@ -66,12 +66,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.NpatchImageVisualProperty.BorderOnly, new PropertyValue(value));
+                UpdateVisualProperty((int)Tizen.NUI.NpatchImageVisualProperty.BorderOnly, value);
             }
             get
             {
                 bool ret = false;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.NpatchImageVisualProperty.BorderOnly);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.NpatchImageVisualProperty.BorderOnly);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -88,13 +88,15 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.NpatchImageVisualProperty.Border, (value == null) ? null : new PropertyValue(value));
+                UpdateVisualProperty((int)Tizen.NUI.NpatchImageVisualProperty.Border, (value == null) ? null : value);
             }
             get
             {
                 Rectangle ret = new Rectangle();
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.NpatchImageVisualProperty.Border);
-                propertyValue?.Get(ret);
+                using (var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.NpatchImageVisualProperty.Border))
+                {
+                    propertyValue?.Get(ret);
+                }
                 return ret;
             }
         }
@@ -108,12 +110,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.AuxiliaryImageURL, string.IsNullOrEmpty(value) ? null : new PropertyValue(value));
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.AuxiliaryImageURL, string.IsNullOrEmpty(value) ? null : value);
             }
             get
             {
                 string ret = "";
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.AuxiliaryImageURL);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.AuxiliaryImageURL);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -127,12 +129,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.AuxiliaryImageAlpha, new PropertyValue(value));
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.AuxiliaryImageAlpha, value);
             }
             get
             {
                 float ret = 1.0f;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.AuxiliaryImageAlpha);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.AuxiliaryImageAlpha);
                 propertyValue?.Get(out ret);
                 return ret;
             }

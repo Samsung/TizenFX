@@ -84,16 +84,18 @@ namespace Tizen.NUI.BaseComponents
                 if (textFieldTextChangedEventHandler == null)
                 {
                     textFieldTextChangedCallbackDelegate = (OnTextChanged);
-                    TextChangedSignal().Connect(textFieldTextChangedCallbackDelegate);
+                    using var signal = TextChangedSignal();
+                    signal.Connect(textFieldTextChangedCallbackDelegate);
                 }
                 textFieldTextChangedEventHandler += value;
             }
             remove
             {
                 textFieldTextChangedEventHandler -= value;
-                if (textFieldTextChangedEventHandler == null && TextChangedSignal().Empty() == false)
+                using var signal = TextChangedSignal();
+                if (textFieldTextChangedEventHandler == null && signal.Empty() == false)
                 {
-                    TextChangedSignal().Disconnect(textFieldTextChangedCallbackDelegate);
+                    signal.Disconnect(textFieldTextChangedCallbackDelegate);
                 }
             }
         }
@@ -109,15 +111,17 @@ namespace Tizen.NUI.BaseComponents
                 if (textFieldCursorPositionChangedEventHandler == null)
                 {
                     textFieldCursorPositionChangedCallbackDelegate = (OnCursorPositionChanged);
-                    CursorPositionChangedSignal().Connect(textFieldCursorPositionChangedCallbackDelegate);
+                    using var signal = CursorPositionChangedSignal();
+                    signal.Connect(textFieldCursorPositionChangedCallbackDelegate);
                 }
                 textFieldCursorPositionChangedEventHandler += value;
             }
             remove
             {
-                if (textFieldCursorPositionChangedEventHandler == null && CursorPositionChangedSignal().Empty() == false)
+                using var signal = CursorPositionChangedSignal();
+                if (textFieldCursorPositionChangedEventHandler == null && signal.Empty() == false)
                 {
-                    this.CursorPositionChangedSignal().Disconnect(textFieldCursorPositionChangedCallbackDelegate);
+                    signal.Disconnect(textFieldCursorPositionChangedCallbackDelegate);
                 }
                 textFieldCursorPositionChangedEventHandler -= value;
             }
@@ -134,15 +138,17 @@ namespace Tizen.NUI.BaseComponents
                 if (textFieldMaxLengthReachedEventHandler == null)
                 {
                     textFieldMaxLengthReachedCallbackDelegate = (OnMaxLengthReached);
-                    MaxLengthReachedSignal().Connect(textFieldMaxLengthReachedCallbackDelegate);
+                    using var signal = MaxLengthReachedSignal();
+                    signal.Connect(textFieldMaxLengthReachedCallbackDelegate);
                 }
                 textFieldMaxLengthReachedEventHandler += value;
             }
             remove
             {
-                if (textFieldMaxLengthReachedEventHandler == null && MaxLengthReachedSignal().Empty() == false)
+                using var signal = MaxLengthReachedSignal();
+                if (textFieldMaxLengthReachedEventHandler == null && signal.Empty() == false)
                 {
-                    this.MaxLengthReachedSignal().Disconnect(textFieldMaxLengthReachedCallbackDelegate);
+                    signal.Disconnect(textFieldMaxLengthReachedCallbackDelegate);
                 }
                 textFieldMaxLengthReachedEventHandler -= value;
             }
@@ -159,15 +165,17 @@ namespace Tizen.NUI.BaseComponents
                 if (textFieldSelectionStartedEventHandler == null)
                 {
                     textFieldSelectionStartedCallbackDelegate = (OnSelectionStarted);
-                    SelectionStartedSignal().Connect(textFieldSelectionStartedCallbackDelegate);
+                    using var signal = SelectionStartedSignal();
+                    signal.Connect(textFieldSelectionStartedCallbackDelegate);
                 }
                 textFieldSelectionStartedEventHandler += value;
             }
             remove
             {
-                if (textFieldSelectionStartedEventHandler == null && SelectionStartedSignal().Empty() == false)
+                using var signal = SelectionStartedSignal();
+                if (textFieldSelectionStartedEventHandler == null && signal.Empty() == false)
                 {
-                    this.SelectionStartedSignal().Disconnect(textFieldSelectionStartedCallbackDelegate);
+                    signal.Disconnect(textFieldSelectionStartedCallbackDelegate);
                 }
                 textFieldSelectionStartedEventHandler -= value;
             }
@@ -184,15 +192,17 @@ namespace Tizen.NUI.BaseComponents
                 if (textFieldSelectionClearedEventHandler == null)
                 {
                     textFieldSelectionClearedCallbackDelegate = (OnSelectionCleared);
-                    SelectionClearedSignal().Connect(textFieldSelectionClearedCallbackDelegate);
+                    using var signal = SelectionClearedSignal();
+                    signal.Connect(textFieldSelectionClearedCallbackDelegate);
                 }
                 textFieldSelectionClearedEventHandler += value;
             }
             remove
             {
-                if (textFieldSelectionClearedEventHandler == null && SelectionClearedSignal().Empty() == false)
+                using var signal = SelectionClearedSignal();
+                if (textFieldSelectionClearedEventHandler == null && signal.Empty() == false)
                 {
-                    this.SelectionClearedSignal().Disconnect(textFieldSelectionClearedCallbackDelegate);
+                    signal.Disconnect(textFieldSelectionClearedCallbackDelegate);
                 }
                 textFieldSelectionClearedEventHandler -= value;
             }
@@ -209,16 +219,18 @@ namespace Tizen.NUI.BaseComponents
                 if (textFieldAnchorClickedEventHandler == null)
                 {
                     textFieldAnchorClickedCallbackDelegate = (OnAnchorClicked);
-                    AnchorClickedSignal().Connect(textFieldAnchorClickedCallbackDelegate);
+                    using var signal = AnchorClickedSignal();
+                    signal.Connect(textFieldAnchorClickedCallbackDelegate);
                 }
                 textFieldAnchorClickedEventHandler += value;
             }
             remove
             {
                 textFieldAnchorClickedEventHandler -= value;
-                if (textFieldAnchorClickedEventHandler == null && AnchorClickedSignal().Empty() == false)
+                using var signal = AnchorClickedSignal();
+                if (textFieldAnchorClickedEventHandler == null && signal.Empty() == false)
                 {
-                    AnchorClickedSignal().Disconnect(textFieldAnchorClickedCallbackDelegate);
+                    signal.Disconnect(textFieldAnchorClickedCallbackDelegate);
                 }
             }
         }
@@ -234,15 +246,17 @@ namespace Tizen.NUI.BaseComponents
                 if (textFieldSelectionChangedEventHandler == null)
                 {
                     textFieldSelectionChangedCallbackDelegate = (OnSelectionChanged);
-                    SelectionChangedSignal().Connect(textFieldSelectionChangedCallbackDelegate);
+                    using var signal = SelectionChangedSignal();
+                    signal.Connect(textFieldSelectionChangedCallbackDelegate);
                 }
                 textFieldSelectionChangedEventHandler += value;
             }
             remove
             {
-                if (textFieldSelectionChangedEventHandler == null && SelectionChangedSignal().Empty() == false)
+                using var signal = SelectionChangedSignal();
+                if (textFieldSelectionChangedEventHandler == null && signal.Empty() == false)
                 {
-                    this.SelectionChangedSignal().Disconnect(textFieldSelectionChangedCallbackDelegate);
+                    signal.Disconnect(textFieldSelectionChangedCallbackDelegate);
                 }
                 textFieldSelectionChangedEventHandler -= value;
             }
@@ -278,16 +292,18 @@ namespace Tizen.NUI.BaseComponents
                 if (textFieldInputFilteredEventHandler == null)
                 {
                     textFieldInputFilteredCallbackDelegate = (OnInputFiltered);
-                    InputFilteredSignal().Connect(textFieldInputFilteredCallbackDelegate);
+                    using var signal = InputFilteredSignal();
+                    signal.Connect(textFieldInputFilteredCallbackDelegate);
                 }
                 textFieldInputFilteredEventHandler += value;
             }
             remove
             {
                 textFieldInputFilteredEventHandler -= value;
-                if (textFieldInputFilteredEventHandler == null && InputFilteredSignal().Empty() == false)
+                using var signal = InputFilteredSignal();
+                if (textFieldInputFilteredEventHandler == null && signal.Empty() == false)
                 {
-                    InputFilteredSignal().Disconnect(textFieldInputFilteredCallbackDelegate);
+                    signal.Disconnect(textFieldInputFilteredCallbackDelegate);
                 }
             }
         }
@@ -350,18 +366,36 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnSelectionStarted(IntPtr textField)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             //no data to be sent to the user
             textFieldSelectionStartedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnSelectionCleared(IntPtr textField)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             //no data to be sent to the user
             textFieldSelectionClearedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnTextChanged(IntPtr textField)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (textFieldTextChangedEventHandler != null && invokeTextChanged)
             {
                 TextChangedEventArgs e = new TextChangedEventArgs();
@@ -375,12 +409,24 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnCursorPositionChanged(IntPtr textField, uint oldPosition)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             // no data to be sent to the user, as in NUI there is no event provide old values.
             textFieldCursorPositionChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnMaxLengthReached(IntPtr textField)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (textFieldMaxLengthReachedEventHandler != null)
             {
                 MaxLengthReachedEventArgs e = new MaxLengthReachedEventArgs();
@@ -394,6 +440,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnAnchorClicked(IntPtr textField, IntPtr href, uint hrefLength)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             // Note: hrefLength is useful for get the length of a const char* (href) in dali-toolkit.
             // But NUI can get the length of string (href), so hrefLength is not necessary in NUI.
             AnchorClickedEventArgs e = new AnchorClickedEventArgs();
@@ -406,12 +458,24 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnSelectionChanged(IntPtr textField, uint oldStart, uint oldEnd)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             // no data to be sent to the user, as in NUI there is no event provide old values.
             textFieldSelectionChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnInputFiltered(IntPtr textField, InputFilterType type)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             InputFilteredEventArgs e = new InputFilteredEventArgs();
 
             // Populate all members of "e" (InputFilteredEventArgs) with real data

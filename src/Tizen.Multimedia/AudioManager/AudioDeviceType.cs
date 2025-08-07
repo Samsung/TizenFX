@@ -17,58 +17,75 @@
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Specifies the audio device types.
+    /// Represents the various types of audio devices available in the system.
+    /// This enumeration categorizes audio devices based on their functionality and
+    /// connection type, enabling developers to easily identify and utilize
+    /// the appropriate audio device for their applications. The types include
+    /// built-in speakers and microphones, external connections like audio jacks,
+    /// Bluetooth, HDMI, USB audio, and network audio devices, facilitating
+    /// effective audio management in diverse scenarios.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum AudioDeviceType
     {
         /// <summary>
-        /// Built-in speaker.
+        /// Represents the built-in speaker of the device, typically used for
+        /// playback of audio through the device's internal audio output.
         /// </summary>
         BuiltinSpeaker,
 
         /// <summary>
-        /// Built-in receiver.
+        /// Represents the built-in receiver, usually utilized for phone calls
+        /// and communication through the device, providing audio input and output.
         /// </summary>
         BuiltinReceiver,
 
         /// <summary>
-        /// Built-in microphone.
+        /// Represents the built-in microphone, used for capturing audio input
+        /// from the environment, such as for voice commands, calls, or recordings.
         /// </summary>
         BuiltinMic,
 
         /// <summary>
-        /// Audio jack that can be connected to wired accessories such as headphones and headsets.
+        /// Indicates an audio jack that allows the connection of wired accessories
+        /// such as headphones and headsets, providing a physical interface for
+        /// audio playback and recording.
         /// </summary>
         AudioJack,
 
         /// <summary>
-        /// Bluetooth media (A2DP).
+        /// Represents Bluetooth media devices using the A2DP (Advanced Audio
+        /// Distribution Profile) standard for streaming high-quality audio wirelessly.
         /// </summary>
         BluetoothMedia,
 
         /// <summary>
-        /// HDMI.
+        /// Represents HDMI audio output, allowing the transmission of high-fidelity
+        /// audio and video to external displays or audio receivers through an HDMI cable.
         /// </summary>
         Hdmi,
 
         /// <summary>
-        /// Device for forwarding.
+        /// Represents devices used for forwarding audio data, which may involve
+        /// relaying audio signals to other devices or systems for processing or playback.
         /// </summary>
         Forwarding,
 
         /// <summary>
-        /// USB audio.
+        /// Represents USB audio devices, which connect through USB ports to provide
+        /// audio input and output, such as external sound cards or USB microphones.
         /// </summary>
         UsbAudio,
 
         /// <summary>
-        /// Bluetooth voice (SCO).
+        /// Represents Bluetooth voice devices using the SCO (Synchronous Connection
+        /// Oriented) profile, primarily used for voice communication over Bluetooth.
         /// </summary>
         BluetoothVoice,
 
         /// <summary>
-        /// Device for the transmission of audio data over a network
+        /// Represents devices that transmit audio data over a network, enabling audio
+        /// streaming or communication over internet or local networks.
         /// </summary>
         Network
     }

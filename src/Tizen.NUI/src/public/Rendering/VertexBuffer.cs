@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,8 +26,9 @@ namespace Tizen.NUI
     /// VertexBuffers can be used to provide data to Geometry objects.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
-    public class VertexBuffer : BaseHandle
+    public partial class VertexBuffer : BaseHandle
     {
+        private static int aliveCount;
 
         /// <summary>
         /// The constructor to creates a VertexBuffer.
@@ -42,7 +43,23 @@ namespace Tizen.NUI
 
         internal VertexBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            ++aliveCount;
         }
+
+        /// <summary>
+        /// Gets the number of elements in the buffer.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint Size
+        {
+            get => RetrieveSize();
+        }
+
+        /// <summary>
+        /// Gets the number of currently alived VertexBuffer object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         /// <summary>
         /// Updates the whole buffer information.<br />
@@ -86,13 +103,26 @@ namespace Tizen.NUI
         /// Gets the number of elements in the buffer.
         /// </summary>
         /// <returns>Number of elements in the buffer.</returns>
-        /// <since_tizen> 8 </since_tizen>
-        public uint GetSize()
+        private uint RetrieveSize()
         {
             uint ret = Interop.VertexBuffer.GetSize(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            --aliveCount;
+
+            base.Dispose(type);
         }
 
         /// This will not be public opened.

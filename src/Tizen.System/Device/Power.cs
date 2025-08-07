@@ -362,6 +362,9 @@ namespace Tizen.System
         /// <remarks>
         /// If the process dies, then every lock will be removed.
         /// </remarks>
+        /// <privilege>
+        /// http://tizen.org/privilege/display.state
+        /// </privilege>
         /// <since_tizen> 5 </since_tizen>
         /// <param name="type">
         /// The power type to request lock.
@@ -378,6 +381,8 @@ namespace Tizen.System
         /// Tizen.System.Power.RequestLock(Tizen.System.Power.PowerLock.Cpu, 2000);
         /// </code>
         /// </example>
+        /// <seealso cref="Power.ReleaseLock(PowerLock)"/>
+        /// <seealso cref="PowerLock"/>
         public static void RequestLock(PowerLock type, int timeout)
         {
             DeviceError res = (DeviceError)Interop.Device.DevicePowerRequestLock((Interop.Device.PowerLock)type, timeout);
@@ -387,8 +392,14 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Releases the lock state.
+        /// Releases the given specific power lock type which was locked before.
         /// </summary>
+        /// <remarks>
+        /// Releases the lock of specific power lock type that was previously acquired using Power.RequestLock(PowerLock,int).
+        /// </remarks>
+        /// <privilege>
+        /// http://tizen.org/privilege/display.state
+        /// </privilege>
         /// <since_tizen> 5 </since_tizen>
         /// <param name="type">
         /// The power type to request lock.
@@ -401,6 +412,8 @@ namespace Tizen.System
         /// Tizen.System.Power.ReleaseLock(Tizen.System.Power.PowerLock.Cpu);
         /// </code>
         /// </example>
+        /// <seealso cref="Power.RequestLock(PowerLock,int)"/>
+        /// <seealso cref="PowerLock"/>
         public static void ReleaseLock(PowerLock type)
         {
             DeviceError res = (DeviceError)Interop.Device.DevicePowerReleaseLock((Interop.Device.PowerLock)type);
@@ -410,8 +423,11 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Power off the device.
+        /// Requests the current device's power state change to be changed to powered off.
         /// </summary>
+        /// <remarks>
+        /// It operates synchronously and powers off the current device.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/reboot</privilege>
         /// <privlevel>platform</privlevel>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
@@ -421,6 +437,7 @@ namespace Tizen.System
         /// Tizen.System.Power.PowerOff();
         /// </code>
         /// </example>
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void PowerOff()
         {
@@ -431,8 +448,11 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Reboot the device.
+        /// Sends a request to the deviced Rebooting the current device.
         /// </summary>
+        /// <remarks>
+        /// It operates asynchronously.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/reboot</privilege>
         /// <privlevel>platform</privlevel>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
@@ -442,6 +462,8 @@ namespace Tizen.System
         /// Tizen.System.Power.Reboot(null);
         /// </code>
         /// </example>
+        /// <seealso cref="Power.CheckRebootAllowed()"/> 
+        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Reboot(string reason)
         {
@@ -472,6 +494,9 @@ namespace Tizen.System
         /// }
         /// </code>
         /// </example>
+        /// <seealso cref="PowerStateWaitEventArgs"/>
+        /// <seealso cref="PowerTransientStateWaitEventArgs"/>
+        /// <seealso cref="Power.CancelWaitCallback(UInt64)"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ConfirmWaitCallback(UInt64 wait_callback_id)
         {
@@ -508,6 +533,9 @@ namespace Tizen.System
         /// }
         /// </code>
         /// </example>
+        /// <seealso cref="PowerStateWaitEventArgs"/>
+        /// <seealso cref="PowerTransientStateWaitEventArgs"/>
+        /// <seealso cref="Power.ConfirmWaitCallback(UInt64)"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void CancelWaitCallback(UInt64 wait_callback_id)
         {
@@ -555,6 +583,8 @@ namespace Tizen.System
         ///
         /// </code>
         /// </example>
+        /// <seealso cref="PowerStateChangeRequestEventArgs"/>
+        /// <seealso cref="PowerState"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ChangeState(PowerState state, int timeout_sec)
         {
@@ -590,7 +620,7 @@ namespace Tizen.System
 
         #if !PROFILE_TV
         /// <summary>
-        /// Get wakeup reason.
+        /// Gets the reason for the last device wakeup based on the scenario.
         /// </summary>
         /// <remarks>
         /// This api is not supported at TV profile.
@@ -603,6 +633,7 @@ namespace Tizen.System
         /// PowerTransitionReason transition_reason = Power.GetWakeupReason();
         /// </code>
         /// </example>
+        /// <seealso cref="PowerTransitionReason"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PowerTransitionReason GetWakeupReason()
         {
@@ -627,8 +658,11 @@ namespace Tizen.System
         #endif
 
         /// <summary>
-        /// Gets the status of power lock.
+        /// Gets the status of power lock is locked or not based on specific power lock type.
         /// </summary>
+        /// <remarks>
+        /// Retrieves the status of a power lock.
+        /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         /// <param name="type"> Type of power lock. </param>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
@@ -638,6 +672,8 @@ namespace Tizen.System
         /// PowerLockState lock_state = Power.GetLockState(PowerLock.Cpu);
         /// </code>
         /// </example>
+        /// <seealso cref="PowerLock"/>
+        /// <seealso cref="PowerLockState"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PowerLockState GetLockState(PowerLock type)
         {
@@ -672,6 +708,7 @@ namespace Tizen.System
         /// Power.StartStateChangeRequestCallback += PowerStateChangeRequestCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerStateChangeRequestEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerStateChangeRequestEventArgs> StartStateChangeRequestCallback
         {
@@ -738,6 +775,7 @@ namespace Tizen.System
         /// Power.SleepStateChangeRequestCallback += PowerStateChangeRequestCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerStateChangeRequestEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerStateChangeRequestEventArgs> SleepStateChangeRequestCallback
         {
@@ -772,6 +810,7 @@ namespace Tizen.System
         /// Power.PoweroffStateChangeRequestCallback += PowerStateChangeRequestCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerStateChangeRequestEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerStateChangeRequestEventArgs> PoweroffStateChangeRequestCallback
         {
@@ -805,6 +844,7 @@ namespace Tizen.System
         /// Power.RebootStateChangeRequestCallback += PowerStateChangeRequestCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerStateChangeRequestEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerStateChangeRequestEventArgs> RebootStateChangeRequestCallback
         {
@@ -838,6 +878,7 @@ namespace Tizen.System
         /// Power.ExitStateChangeRequestCallback += PowerStateChangeRequestCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerStateChangeRequestEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerStateChangeRequestEventArgs> ExitStateChangeRequestCallback
         {
@@ -977,6 +1018,7 @@ namespace Tizen.System
         /// Power.StartStateWaitCallback += PowerStateWaitCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerStateWaitEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerStateWaitEventArgs> StartStateWaitCallback
         {
@@ -1020,6 +1062,7 @@ namespace Tizen.System
         /// Power.NormalStateWaitCallback += PowerStateWaitCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerStateWaitEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerStateWaitEventArgs> NormalStateWaitCallback
         {
@@ -1063,6 +1106,7 @@ namespace Tizen.System
         /// Power.SleepStateWaitCallback += PowerStateWaitCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerStateWaitEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerStateWaitEventArgs> SleepStateWaitCallback
         {
@@ -1107,6 +1151,7 @@ namespace Tizen.System
         /// Power.PoweroffStateWaitCallback += PowerStateWaitCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerStateWaitEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerStateWaitEventArgs> PoweroffStateWaitCallback
         {
@@ -1150,6 +1195,7 @@ namespace Tizen.System
         /// Power.RebootStateWaitCallback += PowerStateWaitCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerStateWaitEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerStateWaitEventArgs> RebootStateWaitCallback
         {
@@ -1193,6 +1239,7 @@ namespace Tizen.System
         /// Power.ExitStateWaitCallback += PowerStateWaitCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerStateWaitEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerStateWaitEventArgs> ExitStateWaitCallback
         {
@@ -1367,6 +1414,7 @@ namespace Tizen.System
         /// Power.TransientResumingEarlyStateWaitCallback += PowerTransientStateWaitCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerTransientStateWaitEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerTransientStateWaitEventArgs> TransientResumingEarlyStateWaitCallback
         {
@@ -1409,6 +1457,7 @@ namespace Tizen.System
         /// Power.TransientResumingStateWaitCallback += PowerTransientStateWaitCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerTransientStateWaitEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerTransientStateWaitEventArgs> TransientResumingStateWaitCallback
         {
@@ -1451,6 +1500,7 @@ namespace Tizen.System
         /// Power.TransientResumingLateStateWaitCallback += PowerTransientStateWaitCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerTransientStateWaitEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerTransientStateWaitEventArgs> TransientResumingLateStateWaitCallback
         {
@@ -1493,6 +1543,7 @@ namespace Tizen.System
         /// Power.TransientSuspendingEarlyStateWaitCallback += PowerTransientStateWaitCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerTransientStateWaitEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerTransientStateWaitEventArgs> TransientSuspendingEarlyStateWaitCallback
         {
@@ -1535,6 +1586,7 @@ namespace Tizen.System
         /// Power.TransientSuspendingStateWaitCallback += PowerTransientStateWaitCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerTransientStateWaitEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerTransientStateWaitEventArgs> TransientSuspendingStateWaitCallback
         {
@@ -1577,6 +1629,7 @@ namespace Tizen.System
         /// Power.TransientSuspendingLateStateWaitCallback += PowerTransientStateWaitCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerTransientStateWaitEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerTransientStateWaitEventArgs> TransientSuspendingLateStateWaitCallback
         {
@@ -1744,6 +1797,7 @@ namespace Tizen.System
         /// Power.CpuLockStateChangedCallback += PowerLockStateChangeCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerLockStateChangedEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerLockStateChangedEventArgs> CpuLockStateChangedCallback
         {
@@ -1785,6 +1839,7 @@ namespace Tizen.System
         /// Power.DisplayNormalLockStateChangedCallback += PowerLockStateChangeCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerLockStateChangedEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerLockStateChangedEventArgs> DisplayNormalLockStateChangedCallback
         {
@@ -1826,6 +1881,7 @@ namespace Tizen.System
         /// Power.DisplayDimLockStateChangedCallback += PowerLockStateChangeCallback;
         /// </code>
         /// </example>
+        /// <seealso cref="PowerLockStateChangedEventArgs"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler<PowerLockStateChangedEventArgs> DisplayDimLockStateChangedCallback
         {

@@ -19,7 +19,7 @@ using static Interop;
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
-    /// The response of GetAssertion().
+    /// The authenticator's response of <see cref="Authenticator.GetAssertion"/>.
     /// </summary>
     /// <remarks>
     /// Refer to the following W3C specification for more information.
@@ -31,35 +31,55 @@ namespace Tizen.Security.WebAuthn
         internal AuthenticatorAssertionResponse(WauthnAuthenticatorAssertionResponse wauthnResponse)
         {
             ClientDataJson = NullSafeMarshal.PtrToArray(wauthnResponse.clientDataJson);
-            AuthenticatorData = NullSafeMarshal.PtrToArray(wauthnResponse.attestationObject);
+            AuthenticatorData = NullSafeMarshal.PtrToArray(wauthnResponse.authenticatorData);
             Signature = NullSafeMarshal.PtrToArray(wauthnResponse.signature);
             UserHandle = NullSafeMarshal.PtrToArray(wauthnResponse.userHandle);
             AttestationObject = NullSafeMarshal.PtrToArray(wauthnResponse.attestationObject);
         }
 
         /// <summary>
-        /// JSON-compatible serialization of client data.
+        /// Gets the serialized client data json.
         /// </summary>
+        /// <value>
+        /// A JSON-compatible serialization of client data.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public byte[] ClientDataJson { get; init; }
         /// <summary>
-        /// The authenticator data contained within attestation_object.
-        /// For more information, refer to https://www.w3.org/TR/webauthn-3/#sctn-authenticator-data
+        /// Gets the authenticator data contained within the Attestation Object.
         /// </summary>
+        /// <value>
+        /// Authenticator data contained within the Attestation Object.
+        /// For more information, refer to https://www.w3.org/TR/webauthn-3/#sctn-authenticator-data
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public byte[] AuthenticatorData { get; init; }
         /// <summary>
-        /// The raw signature returned from the authenticator.
-        /// For more information, refer to https://www.w3.org/TR/webauthn-3/#sctn-op-get-assertion
+        /// Gets the signature returned from the authenticator.
         /// </summary>
+        /// <value>
+        /// The signature returned from the authenticator.
+        /// For more information, refer to https://www.w3.org/TR/webauthn-3/#sctn-op-get-assertion
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public byte[] Signature { get; init; }
         /// <summary>
+        /// Gets the user handle returned from the authenticator.
+        /// </summary>
+        /// <value>
         /// The user handle returned from the authenticator,
         /// or null if the authenticator did not return a user handle.
-        /// </summary>
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public byte[] UserHandle { get; init; }
         /// <summary>
-        /// This OPTIONAL attribute contains an attestation object,
-        /// if the authenticator supports attestation in assertions.
+        /// Gets the attestation object.
         /// </summary>
+        /// <value>
+        /// An OPTIONAL property that contains an attestation object,
+        /// if the authenticator supports attestation in assertions.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public byte[] AttestationObject { get; init; }
     }
 }

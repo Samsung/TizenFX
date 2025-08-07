@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class ColorVisual : VisualMap
     {
-        private Color mixColorForColorVisual = null;
+        private Color mixColorForColorVisual;
         private bool? renderIfTransparent = false;
 
         /// <summary>
@@ -84,13 +84,8 @@ namespace Tizen.NUI
 
                 base.ComposingPropertyMap();
 
-                PropertyValue temp = new PropertyValue((int)Visual.Type.Color);
-                _outputVisualMap.Add(Visual.Property.Type, temp);
-                temp.Dispose();
-
-                temp = new PropertyValue(color);
-                _outputVisualMap.Add(ColorVisualProperty.MixColor, temp);
-                temp.Dispose();
+                _outputVisualMap.Add(Visual.Property.Type, (int)Visual.Type.Color);
+                _outputVisualMap.Add(ColorVisualProperty.MixColor, color);
             }
             else
             {

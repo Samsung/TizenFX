@@ -164,8 +164,6 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 PrintParam(@"XamlC_Log.txt", "ReferencePath is " + ReferencePath);
             }
 
-            LoggingHelper.LogWarning("Assembly is " + Assembly);
-
             thrownExceptions = null;
 
             LoggingHelper.LogMessage(Normal, $"{new string(' ', 0)}Compiling Xaml, assembly: {Assembly}");
@@ -222,7 +220,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 XamlOptimization = 1;
             }
 
-            LoggingHelper.LogWarning($"XamlOptimization is {XamlOptimization}.");
+            LoggingHelper.LogMessage(Normal, $"XamlOptimization is {XamlOptimization}.");
 
             using (var assemblyDefinition = AssemblyDefinition.ReadAssembly(System.IO.Path.GetFullPath(Assembly), readerParameters))
             {

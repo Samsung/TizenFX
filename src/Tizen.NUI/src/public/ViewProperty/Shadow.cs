@@ -28,9 +28,9 @@ namespace Tizen.NUI
     [Tizen.NUI.Binding.TypeConverter(typeof(Tizen.NUI.Binding.ShadowTypeConverter))]
     public class Shadow : ShadowBase, ICloneable
     {
-        private static readonly Color noColor = new Color(0, 0, 0, 0);
+        internal static readonly Color noColor = new Color(0, 0, 0, 0);
 
-        private static readonly Color defaultColor = new Color(0, 0, 0, 0.5f);
+        internal static readonly Color defaultColor = new Color(0, 0, 0, 0.5f);
 
         /// <summary>
         /// Create a Shadow with default values.
@@ -97,6 +97,13 @@ namespace Tizen.NUI
                 blurRadiusValue?.Get(out blurRadius);
             }
             BlurRadius = blurRadius;
+
+            int cutoutPolicy = (int)ColorVisualCutoutPolicyType.None;
+            using (PropertyValue cutoutPolicyValue = propertyMap.Find(ColorVisualProperty.CutoutPolicy))
+            {
+                cutoutPolicyValue?.Get(out cutoutPolicy);
+            }
+            CutoutPolicy = (ColorVisualCutoutPolicyType)cutoutPolicy;
         }
 
         /// <summary>
@@ -161,7 +168,15 @@ namespace Tizen.NUI
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public object Clone() => new Shadow(this);
+        public object Clone()
+        {
+            return OnClone();
+        }
+
+        internal virtual object OnClone()
+        {
+            return new Shadow(this);
+        }
 
         internal override bool IsEmpty()
         {
@@ -174,13 +189,13 @@ namespace Tizen.NUI
         {
             var map = base.GetPropertyMap();
 
-            map[Visual.Property.Type] = new PropertyValue((int)Visual.Type.Color);
+            map.Set(Visual.Property.Type, (int)Visual.Type.Color);
 
-            map[ColorVisualProperty.MixColor] = new PropertyValue(Color ?? noColor);
+            map.Set(ColorVisualProperty.MixColor, Color ?? noColor);
 
-            map[ColorVisualProperty.BlurRadius] = new PropertyValue(BlurRadius < 0 ? 0 : BlurRadius);
+            map.Set(ColorVisualProperty.BlurRadius, BlurRadius < 0 ? 0 : BlurRadius);
 
-            map[ColorVisualProperty.CutoutPolicy] = new PropertyValue((int)CutoutPolicy);
+            map.Set(ColorVisualProperty.CutoutPolicy, (int)CutoutPolicy);
 
             return map;
         }

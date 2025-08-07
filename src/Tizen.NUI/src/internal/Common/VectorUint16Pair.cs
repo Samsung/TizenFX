@@ -19,7 +19,7 @@ namespace Tizen.NUI
 {
     internal class VectorUint16Pair : Disposable
     {
-        internal VectorUint16Pair(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal VectorUint16Pair(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 

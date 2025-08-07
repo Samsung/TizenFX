@@ -41,7 +41,6 @@ namespace Tizen.NUI
         private delegate void QuitEventCallbackDelegate();
         private DaliEventHandler<object, QuitEventArgs> builderQuitEventHandler;
         private QuitEventCallbackDelegate builderQuitEventCallbackDelegate;
-        private VoidSignal quitSignal;
 
         public event DaliEventHandler<object, QuitEventArgs> Quit
         {
@@ -51,9 +50,9 @@ namespace Tizen.NUI
                 if (builderQuitEventHandler == null)
                 {
                     builderQuitEventHandler += value;
-                    builderQuitEventCallbackDelegate = new QuitEventCallbackDelegate(OnQuit);
-                    quitSignal = this.QuitSignal();
-                    quitSignal?.Connect(builderQuitEventCallbackDelegate);
+                    builderQuitEventCallbackDelegate = OnQuit;
+                    Interop.Builder.QuitConnect(SwigCPtr, builderQuitEventCallbackDelegate.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 else
                 {
@@ -68,7 +67,8 @@ namespace Tizen.NUI
                     builderQuitEventHandler -= value;
                     if (builderQuitEventHandler == null)
                     {
-                        quitSignal?.Disconnect(builderQuitEventCallbackDelegate);
+                        Interop.Builder.QuitDisconnect(SwigCPtr, builderQuitEventCallbackDelegate.ToHandleRef(this));
+                        NDalicPINVOKE.ThrowExceptionIfExists();
                         builderQuitEventCallbackDelegate = null;
                     }
                 }
@@ -251,14 +251,14 @@ namespace Tizen.NUI
                 global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
                 Interop.BaseHandle.DeleteBaseHandle(CPtr);
                 CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
             else
             {
                 ret = new PathConstrainer(cPtr, true);
+                return ret;
             }
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         internal LinearConstrainer GetLinearConstrainer(string linearConstrainerName)
@@ -271,21 +271,14 @@ namespace Tizen.NUI
                 global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
                 Interop.BaseHandle.DeleteBaseHandle(CPtr);
                 CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
             else
             {
                 ret = new LinearConstrainer(cPtr, true);
+                return ret;
             }
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal VoidSignal QuitSignal()
-        {
-            VoidSignal ret = new VoidSignal(Interop.Builder.QuitSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         public enum UIFormat

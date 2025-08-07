@@ -30,12 +30,12 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalResourceURLProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
+            var instance = (AnimatedVectorImageView)bindable;
             instance.InternalResourceURL = (string)newValue;
         }
         internal static object GetInternalResourceURLProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
+            var instance = (AnimatedVectorImageView)bindable;
             return instance.InternalResourceURL;
         }
 
@@ -51,12 +51,12 @@ namespace Tizen.NUI.BaseComponents
 
         internal static new void SetInternalResourceUrlProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
+            var instance = (AnimatedVectorImageView)bindable;
             instance.InternalResourceUrl = (string)newValue;
         }
         internal static new object GetInternalResourceUrlProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
+            var instance = (AnimatedVectorImageView)bindable;
             return instance.InternalResourceUrl;
         }
 
@@ -68,7 +68,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal static void SetInternalRepeatCountProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
+            var instance = (AnimatedVectorImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalRepeatCount = (int)newValue;
@@ -76,7 +76,7 @@ namespace Tizen.NUI.BaseComponents
         }
         internal static object GetInternalRepeatCountProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
+            var instance = (AnimatedVectorImageView)bindable;
             return instance.InternalRepeatCount;
         }
 
@@ -92,7 +92,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal static new void SetInternalCurrentFrameProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
+            var instance = (AnimatedVectorImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalCurrentFrame = (int)newValue;
@@ -100,7 +100,7 @@ namespace Tizen.NUI.BaseComponents
         }
         internal static new object GetInternalCurrentFrameProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
+            var instance = (AnimatedVectorImageView)bindable;
             return instance.InternalCurrentFrame;
         }
 
@@ -112,15 +112,15 @@ namespace Tizen.NUI.BaseComponents
 
         static internal void SetInternalRepeatModeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
+            var instance = (AnimatedVectorImageView)bindable;
             if (newValue != null)
             {
-                instance.InternalRepeatMode = (Tizen.NUI.BaseComponents.AnimatedVectorImageView.RepeatModes)newValue;
+                instance.InternalRepeatMode = (RepeatModes)newValue;
             }
         }
         static internal object GetInternalRepeatModeProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
+            var instance = (AnimatedVectorImageView)bindable;
             return instance.InternalRepeatMode;
         }
     }

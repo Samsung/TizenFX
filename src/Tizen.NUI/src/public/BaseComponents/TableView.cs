@@ -33,104 +33,93 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty RowsProperty = null;
+        public static readonly BindableProperty RowsProperty = null;
         internal static void SetInternalRowsProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var tableView = (TableView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.ROWS, new Tizen.NUI.PropertyValue((int)newValue));
+                var tableView = (TableView)bindable;
+                tableView.SetInternalRows((int)newValue);
             }
         }
         internal static object GetInternalRowsProperty(BindableObject bindable)
         {
             var tableView = (TableView)bindable;
-            int temp = 0;
-            Tizen.NUI.Object.GetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.ROWS).Get(out temp);
-            return temp;
+            return tableView.GetInternalRows();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty ColumnsProperty = null;
+        public static readonly BindableProperty ColumnsProperty = null;
         internal static void SetInternalColumnsProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var tableView = (TableView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.COLUMNS, new Tizen.NUI.PropertyValue((int)newValue));
+                var tableView = (TableView)bindable;
+                tableView.SetInternalColumns((int)newValue);
             }
         }
         internal static object GetInternalColumnsProperty(BindableObject bindable)
         {
             var tableView = (TableView)bindable;
-            int temp = 0;
-            Tizen.NUI.Object.GetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.COLUMNS).Get(out temp);
-            return temp;
+            return tableView.GetInternalColumns();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty CellPaddingProperty = null;
+        public static readonly BindableProperty CellPaddingProperty = null;
         internal static void SetInternalCellPaddingProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var tableView = (TableView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.CellPadding, new Tizen.NUI.PropertyValue((Vector2)newValue));
+                var tableView = (TableView)bindable;
+                tableView.SetInternalCellPadding((Vector2)newValue);
             }
         }
         internal static object GetInternalCellPaddingProperty(BindableObject bindable)
         {
             var tableView = (TableView)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.CellPadding).Get(temp);
-            return temp;
+            return tableView.GetInternalCellPadding();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty LayoutRowsProperty = null;
+        public static readonly BindableProperty LayoutRowsProperty = null;
         internal static void SetInternalLayoutRowsProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var tableView = (TableView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.LayoutRows, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                var tableView = (TableView)bindable;
+                tableView.SetInternalLayoutRows((PropertyMap)newValue);
             }
         }
         internal static object GetInternalLayoutRowsProperty(BindableObject bindable)
         {
             var tableView = (TableView)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.LayoutRows).Get(temp);
-            return temp;
+            return tableView.GetInternalLayoutRows();
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static BindableProperty LayoutColumnsProperty = null;
+        public static readonly BindableProperty LayoutColumnsProperty = null;
         internal static void SetInternalLayoutColumnsProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var tableView = (TableView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.LayoutColumns, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                var tableView = (TableView)bindable;
+                tableView.SetInternalLayoutColumns((PropertyMap)newValue);
             }
         }
         internal static object GetInternalLayoutColumnsProperty(BindableObject bindable)
         {
             var tableView = (TableView)bindable;
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((HandleRef)tableView.SwigCPtr, TableView.Property.LayoutColumns).Get(temp);
-            return temp;
+            return tableView.GetInternalLayoutColumns();
         }
 
         static TableView()
         {
             if (NUIApplication.IsUsingXaml)
             {
-
                 RowsProperty = BindableProperty.Create(nameof(Rows), typeof(int), typeof(TableView), default(int),
                     propertyChanged: SetInternalRowsProperty, defaultValueCreator: GetInternalRowsProperty);
 
@@ -228,7 +217,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalRowsProperty(this);
+                    return GetInternalRows();
                 }
             }
             set
@@ -239,11 +228,26 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalRowsProperty(this, null, value);
+                    SetInternalRows(value);
                 }
                 NotifyPropertyChanged();
             }
         }
+
+        private void SetInternalRows(int newValue)
+        {
+            using var pv = new PropertyValue(newValue);
+            Object.SetProperty(SwigCPtr, Property.ROWS, pv);
+        }
+
+        private int GetInternalRows()
+        {
+            int temp = 0;
+            using var prop = Object.GetProperty(SwigCPtr, Property.ROWS);
+            prop.Get(out temp);
+            return temp;
+        }
+
         /// <summary>
         /// The amount of columns in the table.
         /// </summary>
@@ -258,7 +262,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalColumnsProperty(this);
+                    return GetInternalColumns();
                 }
             }
             set
@@ -269,11 +273,26 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalColumnsProperty(this, null, value);
+                    SetInternalColumns(value);
                 }
                 NotifyPropertyChanged();
             }
         }
+
+        private void SetInternalColumns(int columns)
+        {
+            using var pv = new PropertyValue(columns);
+            Object.SetProperty(SwigCPtr, Property.COLUMNS, pv);
+        }
+
+        private int GetInternalColumns()
+        {
+            int temp = 0;
+            using var prop = Object.GetProperty(SwigCPtr, Property.COLUMNS);
+            prop.Get(out temp);
+            return temp;
+        }
+
         /// <summary>
         /// Gets or sets the padding between cells in the TableView.
         /// The padding vector specifying the horizontal and vertical padding.
@@ -289,7 +308,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (Vector2)GetInternalCellPaddingProperty(this);
+                    return GetInternalCellPadding();
                 }
             }
             set
@@ -300,10 +319,29 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalCellPaddingProperty(this, null, value);
+                    SetInternalCellPadding(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalCellPadding(Vector2 padding)
+        {
+            if (padding != null)
+            {
+                using var pv = new PropertyValue(padding);
+                Object.SetProperty(SwigCPtr, Property.CellPadding, pv);
+            }
+        }
+
+        private Vector2 GetInternalCellPadding()
+        {
+            Vector2 temp = new Vector2(0.0f, 0.0f);
+            using (var prop = Object.GetProperty(SwigCPtr, Property.CellPadding))
+            {
+                prop.Get(temp);
+            }
+            return temp;
         }
 
         /// <summary>
@@ -320,7 +358,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (PropertyMap)GetInternalLayoutRowsProperty(this);
+                    return GetInternalLayoutRows();
                 }
             }
             set
@@ -331,10 +369,29 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalLayoutRowsProperty(this, null, value);
+                    SetInternalLayoutRows(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalLayoutRows(PropertyMap map)
+        {
+            if (map != null)
+            {
+                using var pv = new PropertyValue(map);
+                Object.SetProperty(SwigCPtr, Property.LayoutRows, pv);
+            }
+        }
+
+        private PropertyMap GetInternalLayoutRows()
+        {
+            PropertyMap temp = new PropertyMap();
+            using (var prop = Object.GetProperty(SwigCPtr, Property.LayoutRows))
+            {
+                prop.Get(temp);
+            }
+            return temp;
         }
 
         /// <summary>
@@ -351,7 +408,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (PropertyMap)GetInternalLayoutColumnsProperty(this);
+                    return GetInternalLayoutColumns();
                 }
             }
             set
@@ -362,12 +419,30 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalLayoutColumnsProperty(this, null, value);
+                    SetInternalLayoutColumns(value);
                 }
                 NotifyPropertyChanged();
             }
         }
 
+        private void SetInternalLayoutColumns(PropertyMap map)
+        {
+            if (map != null)
+            {
+                using var pv = new PropertyValue(map);
+                Object.SetProperty(SwigCPtr, Property.LayoutColumns, pv);
+            }
+        }
+
+        private PropertyMap GetInternalLayoutColumns()
+        {
+            PropertyMap temp = new PropertyMap();
+            using (var prop = Object.GetProperty(SwigCPtr, Property.LayoutColumns))
+            {
+                prop.Get(temp);
+            }
+            return temp;
+        }
 
         /// <summary>
         /// Adds a child to the table.<br />
@@ -499,6 +574,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="padding">Width and height.</param>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API9 and will be removed in API11. Use CellPadding property instead.")]
         public void SetCellPadding(Size2D padding)
         {
@@ -511,6 +587,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <returns>The current padding as width and height.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("This has been deprecated in API9 and will be removed in API11. Use CellPadding property instead.")]
         public Vector2 GetCellPadding()
         {
@@ -708,7 +785,7 @@ namespace Tizen.NUI.BaseComponents
             /// <param name="rowSpan">The row span initialized.</param>
             /// <param name="columnSpan">The column span initialized.</param>
             /// <since_tizen> 3 </since_tizen>
-            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan, uint columnSpan) : this(Interop.TableView.NewTableViewCellPosition(rowIndex, columnIndex, rowSpan, columnSpan), true)
+            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan, uint columnSpan) : this(Interop.TableView.NewTableViewCellPosition(rowIndex, columnIndex, rowSpan, columnSpan), true, false)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -720,7 +797,7 @@ namespace Tizen.NUI.BaseComponents
             /// <param name="columnIndex">The column index initialized.</param>
             /// <param name="rowSpan">The row span initialized.</param>
             /// <since_tizen> 3 </since_tizen>
-            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan) : this(Interop.TableView.NewTableViewCellPosition(rowIndex, columnIndex, rowSpan), true)
+            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan) : this(Interop.TableView.NewTableViewCellPosition(rowIndex, columnIndex, rowSpan), true, false)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -731,7 +808,7 @@ namespace Tizen.NUI.BaseComponents
             /// <param name="rowIndex">The row index initialized.</param>
             /// <param name="columnIndex">The column index initialized.</param>
             /// <since_tizen> 3 </since_tizen>
-            public CellPosition(uint rowIndex, uint columnIndex) : this(Interop.TableView.NewTableViewCellPosition(rowIndex, columnIndex), true)
+            public CellPosition(uint rowIndex, uint columnIndex) : this(Interop.TableView.NewTableViewCellPosition(rowIndex, columnIndex), true, false)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -741,7 +818,7 @@ namespace Tizen.NUI.BaseComponents
             /// </summary>
             /// <param name="rowIndex">The row index initialized.</param>
             /// <since_tizen> 3 </since_tizen>
-            public CellPosition(uint rowIndex) : this(Interop.TableView.NewTableViewCellPosition(rowIndex), true)
+            public CellPosition(uint rowIndex) : this(Interop.TableView.NewTableViewCellPosition(rowIndex), true, false)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -751,12 +828,16 @@ namespace Tizen.NUI.BaseComponents
             /// Initializes the cell position with default values.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            public CellPosition() : this(Interop.TableView.NewTableViewCellPosition(), true)
+            public CellPosition() : this(Interop.TableView.NewTableViewCellPosition(), true, false)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
-            internal CellPosition(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+            internal CellPosition(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, cMemoryOwn)
+            {
+            }
+
+            internal CellPosition(global::System.IntPtr cPtr, bool cMemoryOwn, bool disposableOnlyMainThread) : base(cPtr, cMemoryOwn, disposableOnlyMainThread)
             {
             }
 

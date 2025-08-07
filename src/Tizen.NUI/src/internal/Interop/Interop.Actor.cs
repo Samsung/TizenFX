@@ -92,6 +92,13 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetRelayoutSize")]
             public static extern float GetRelayoutSize(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetIgnored")]
+            public static extern void SetIgnored(global::System.Runtime.InteropServices.HandleRef actor, bool ignored);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsIgnored")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool IsIgnored(global::System.Runtime.InteropServices.HandleRef actor);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetPadding")]
             public static extern void SetPadding(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
@@ -155,14 +162,17 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalSetPropertyVector4")]
             public static extern int InternalSetPropertyVector4(HandleRef actor, int propertyType, HandleRef vector4);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingPropertyExtents")]
+            public static extern int InternalRetrievingPropertyExtents(HandleRef actor, int propertyType, HandleRef extents);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalSetPropertyExtents")]
+            public static extern int InternalSetPropertyExtents(HandleRef actor, int propertyType, HandleRef extents);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingPropertyVector2ActualVector3")]
             public static extern int InternalRetrievingPropertyVector2ActualVector3(HandleRef actor, int propertyType, HandleRef retrievingVector2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalSetPropertyVector2ActualVector3")]
             public static extern int InternalSetPropertyVector2ActualVector3(HandleRef actor, int propertyType, HandleRef vector2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingPropertyFloat")]
-            public static extern int InternalRetrievingPropertyFloat(HandleRef actor, int propertyType, out float valFloat);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalGetPropertyFloat")]
             public static extern float InternalGetPropertyFloat(HandleRef actor, int propertyType);
@@ -188,6 +198,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalSetPropertyInt")]
             public static extern int InternalSetPropertyInt(HandleRef actor, int propertyType, int valInt);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalSetPropertyMap")]
+            public static extern int InternalSetPropertyMap(HandleRef actor, int propertyType, HandleRef valInt);
         }
     }
 }

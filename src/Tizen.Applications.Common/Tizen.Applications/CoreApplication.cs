@@ -331,6 +331,7 @@ namespace Tizen.Applications
         /// <since_tizen> 11 </since_tizen>
         protected virtual void OnTimeZoneChanged(TimeZoneChangedEventArgs e)
         {
+            CultureInfo.CurrentCulture.ClearCachedData();
             TimeZoneChanged?.Invoke(this, e);
         }
 

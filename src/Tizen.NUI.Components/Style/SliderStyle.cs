@@ -27,78 +27,10 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     public class SliderStyle : ControlStyle
     {
-        /// <summary>
-        /// IndicatorTypeProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorTypeProperty = BindableProperty.Create(nameof(IndicatorType), typeof(IndicatorType?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (SliderStyle)bindable;
-            if (newValue != null)
-            {
-                instance.privateIndicatorType = (IndicatorType)newValue;
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (SliderStyle)bindable;
-            return instance.privateIndicatorType;
-        });
-
-        /// <summary>
-        /// SpaceBetweenTrackAndIndicatorProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SpaceBetweenTrackAndIndicatorProperty = BindableProperty.Create(nameof(SpaceBetweenTrackAndIndicator), typeof(uint?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (SliderStyle)bindable;
-            if (newValue != null)
-            {
-                instance.privateSpaceBetweenTrackAndIndicator = (uint?)newValue;
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (SliderStyle)bindable;
-            return instance.privateSpaceBetweenTrackAndIndicator;
-        });
-
-        /// <summary>
-        /// TrackThicknessProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackThicknessProperty = BindableProperty.Create(nameof(TrackThickness), typeof(uint?), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (SliderStyle)bindable;
-            if (newValue != null)
-            {
-                instance.privateTrackThickness = (uint?)newValue;
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (SliderStyle)bindable;
-            return instance.privateTrackThickness;
-        });
-
-        /// <summary>
-        /// TrackPaddingProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackPaddingProperty = BindableProperty.Create(nameof(TrackPadding), typeof(Extents), typeof(SliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((SliderStyle)bindable).trackPadding = newValue == null ? null : new Extents((Extents)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (SliderStyle)bindable;
-            return instance.trackPadding;
-        });
-
-        private IndicatorType? privateIndicatorType = Slider.IndicatorType.None;
-        private uint? privateTrackThickness;
-        private uint? privateSpaceBetweenTrackAndIndicator;
-        private Extents trackPadding;
+        static readonly IStyleProperty IndicatorTypeProperty = new StyleProperty<Slider, IndicatorType>((v, o) => v.Indicator = o);
+        static readonly IStyleProperty TrackThicknessProperty = new StyleProperty<Slider, uint>((v, o) => v.TrackThickness = o);
+        static readonly IStyleProperty SpaceBetweenTrackAndIndicatorProperty = new StyleProperty<Slider, uint>((v, o) => v.SpaceBetweenTrackAndIndicator = o);
+        static readonly IStyleProperty TrackPaddingProperty = new StyleProperty<Slider, Extents>((v, o) => v.SpaceBetweenTrackAndIndicator = o.Start);
 
         static SliderStyle() { }
 
@@ -223,7 +155,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Extents TrackPadding
         {
-            get => ((Extents)GetValue(TrackPaddingProperty)) ?? (trackPadding = new Extents(0, 0, 0, 0));
+            get => GetOrCreateValue<Extents>(TrackPaddingProperty);
             set => SetValue(TrackPaddingProperty, value);
         }
 
@@ -258,7 +190,6 @@ namespace Tizen.NUI.Components
         {
             if (disposing)
             {
-                trackPadding?.Dispose();
             }
 
             base.Dispose(disposing);

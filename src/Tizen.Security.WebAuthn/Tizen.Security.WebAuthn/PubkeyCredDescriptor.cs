@@ -14,8 +14,6 @@
  *  limitations under the License
  */
 
-using static Tizen.Security.WebAuthn.ErrorFactory;
-
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
@@ -33,7 +31,7 @@ namespace Tizen.Security.WebAuthn
         /// </summary>
         /// <param name="type">The type of the public key credential.</param>
         /// <param name="id">The credential ID of the public key credential.</param>
-        /// <param name="transport">To represent multiple transports, this enum can be ORed multiple times.</param>
+        /// <param name="transport">Transport types. To represent multiple transports, this enum can be ORed multiple times.</param>
         public PubkeyCredDescriptor(PubkeyCredType type, byte[] id, AuthenticatorTransport transport)
         {
             Type = type;
@@ -41,16 +39,29 @@ namespace Tizen.Security.WebAuthn
             Transport = transport;
         }
         /// <summary>
-        /// The type of the public key credential.
+        /// Gets the type of the public key credential.
         /// </summary>
+        /// <value>
+        /// The type of the public key credential.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public PubkeyCredType Type { get; init; }
         /// <summary>
-        /// The credential ID of the public key credential.
+        /// Gets the ID of the public key credential.
         /// </summary>
+        /// <value>
+        /// The binary ID of the public key credential.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public byte[] Id { get; init; }
         /// <summary>
-        /// Transport types.
+        /// Gets the transport types.
         /// </summary>
+        /// <value>
+        /// The transport types describing communication between the client and the authenticator.
+        /// To represent multiple transports, this enum can be ORed multiple times.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public AuthenticatorTransport Transport { get; init; }
     }
 }

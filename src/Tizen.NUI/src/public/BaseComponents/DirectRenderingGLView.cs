@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+ 
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
@@ -24,15 +41,17 @@ namespace Tizen.NUI.BaseComponents
         {
             Matrix mvp;
             Matrix projection;
-            Size2D size;
+            Vector2 size;
+            Color worldColor;
             Rectangle clippingBox;
             ReadOnlyCollection<int> textureBindings;
 
-            public RenderCallbackInput(Matrix mvp, Matrix projection, Size2D size, Rectangle clippingBox, int[] textureBindings)
+            public RenderCallbackInput(Matrix mvp, Matrix projection, Vector2 size, Color worldColor, Rectangle clippingBox, int[] textureBindings)
             {
                 this.mvp = mvp;
                 this.projection = projection;
                 this.size = size;
+                this.worldColor = worldColor;
                 this.clippingBox = clippingBox;
                 this.textureBindings = new ReadOnlyCollection<int>(textureBindings);
             }
@@ -56,9 +75,17 @@ namespace Tizen.NUI.BaseComponents
             /// <summary>
             /// The size of the DirectRenderingGLView
             /// </summary>
-            public Size2D Size
+            public Vector2 Size
             {
                 get { return size; }
+            }
+
+            /// <summary>
+            /// The World color of the DirectRenderingGLView
+            /// </summary>
+            public Color WorldColor
+            {
+                get { return worldColor; }
             }
 
             /// <summary>
@@ -291,17 +318,48 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// you can override it to clean-up your own resources.
+        /// </summary>
+        /// <param name="type">DisposeTypes</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+                // Keep delegate life ownership until next frame rendered.
+                RenderThreadObjectHolder.RegisterDelegate(glInitializeCallback);
+                RenderThreadObjectHolder.RegisterDelegate(glRenderFrameCallback);
+                RenderThreadObjectHolder.RegisterDelegate(glTerminateCallback);
+                RenderThreadObjectHolder.RegisterDelegate(internalRenderFrameCallback);
+
+                // DevNote : Do not make glRenderFrameCallback as null here, to avoid race condition or lock overhead.
+            }
+
+            base.Dispose(type);
+        }
+
         private int OnRenderFrame(global::System.IntPtr cPtr)
         {
             if (glRenderFrameCallback != null)
             {
                 Matrix mvp = Matrix.GetMatrixFromPtr(Interop.GLView.GlViewGetRednerCallbackInputMvp(cPtr));
                 Matrix projection = Matrix.GetMatrixFromPtr(Interop.GLView.GlViewGetRednerCallbackInputProjection(cPtr));
-                Size2D size = Size2D.GetSize2DFromPtr(Interop.GLView.GlViewGetRednerCallbackInputSize(cPtr));
-                Rectangle clippingBox = Rectangle.GetRectangleFromPtr(Interop.GLView.GlViewGetRednerCallbackInputClipplingBox(cPtr));
+                Vector2 size = Vector2.GetVector2FromPtr(Interop.GLView.GlViewGetRednerCallbackInputSize(cPtr));
+                Color worldColor = Color.GetColorFromPtr(Interop.GLView.GlViewGetRednerCallbackInputWorldColor(cPtr));
+                Rectangle clippingBox = Rectangle.GetRectangleFromPtr(Interop.GLView.GlViewGetRednerCallbackInputClipplingBox(cPtr), false);
                 int[] textureBindings = GetTextureBindings(cPtr);
 
-                RenderCallbackInput input = new RenderCallbackInput(mvp, projection, size, clippingBox, textureBindings);
+                RenderCallbackInput input = new RenderCallbackInput(mvp, projection, size, worldColor, clippingBox, textureBindings);
 
                 return glRenderFrameCallback(input);
             }

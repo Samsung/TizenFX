@@ -49,9 +49,9 @@ namespace Tizen.Security.WebAuthn
                 unsafe
                 {
                     var extPtr = (WauthnAuthenticationExt*)wauthnExts.descriptors;
-                    for (int i = 0; i < (int)wauthnExts.size; i++)
+                    for (ulong i = 0; i < wauthnExts.size; i++)
                     {
-                        var wauthnExt = Marshal.PtrToStructure<WauthnAuthenticationExt>(new IntPtr(extPtr + i * sizeof(WauthnAuthenticationExt)));
+                        var wauthnExt = Marshal.PtrToStructure<WauthnAuthenticationExt>(new IntPtr(extPtr + i * (ulong)sizeof(WauthnAuthenticationExt)));
                         extensionsArray[i] = new AuthenticationExtension(wauthnExt);
                     }
                 }
@@ -68,35 +68,63 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// The base64url encoding of credential’s identifier.
+        /// Gets the credential’s identifier.
         /// </summary>
+        /// <value>
+        /// The base64url encoding of credential’s identifier.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public byte[] Id { get; init; }
         /// <summary>
-        /// The credential’s type.
+        /// Gets the credential’s type.
         /// </summary>
+        /// <value>
+        /// The credential’s type.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public PubkeyCredType Type { get; init; }
         /// <summary>
-        /// The raw value of credential’s identifier.
+        /// Gets the credential’s raw identifier.
         /// </summary>
+        /// <value>
+        /// The raw value of the credential’s identifier.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public byte[] RawId { get; init; }
         /// <summary>
-        /// Authenticator's response.
+        /// Gets the authenticator's response.
         /// </summary>
+        /// <value>
+        /// The authenticator's response data.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public AuthenticatorAssertionResponse Response { get; init; }
         /// <summary>
-        /// Authenticator attachment modality.
+        /// Gets the authenticator attachment modality.
         /// </summary>
+        /// <value>
+        /// The attachment modality - the usage of platform or roaming authenticators.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public AuthenticatorAttachment AuthenticatorAttachment { get; init; }
         /// <summary>
-        /// The results of processing client extensions requested by the Relying Party
-        /// upon the Relying Party's invocation of GetAssertion(). (optional)
+        /// Gets the results of processing client extensions.
         /// </summary>
+        /// <value>
+        /// The results of processing client extensions requested by the Relying Party
+        /// upon the Relying Party's invocation of <see cref="Authenticator.GetAssertion"/>. (optional)
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public IEnumerable<AuthenticationExtension> Extensions { get; init; }
         /// <summary>
-        /// Linked Device Connection Info (optional).
+        /// Gets the linked Device Connection Info.
+        /// </summary>
+        /// <value>
+        /// The linked Device Connection Info (optional).
         /// If not null, the caller has to store this value and use this
         /// in the next transaction to invoke state assisted transaction.
-        /// </summary>
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public HybridLinkedData LinkedDevice { get; init; }
     }
 }

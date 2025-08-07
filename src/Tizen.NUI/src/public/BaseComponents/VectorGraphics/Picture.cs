@@ -90,7 +90,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         {
             global::System.IntPtr cPtr = Interop.Picture.GetSize(View.getCPtr(this));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return Size2D.GetSize2DFromPtr(cPtr);
+            return Size2D.GetSize2DFromPtr(cPtr, true);
         }
     }
 }

@@ -458,8 +458,20 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal Rotation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Rotation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
+        }
+
+        /// <summary>
+        /// Assign.
+        /// </summary>
+        /// <param name="rhs">A reference to the copied handle.</param>
+        /// <returns>A reference to this.</returns>
+        internal Rotation Assign(Rotation rhs)
+        {
+            Rotation ret = new Rotation(Interop.Rotation.RotationAssign(SwigCPtr, Rotation.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// This will not be public opened.

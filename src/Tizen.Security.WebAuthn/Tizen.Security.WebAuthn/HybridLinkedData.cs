@@ -89,35 +89,35 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// CBOR:"1".
+        /// Gets the contact id (CBOR:"1").
         /// </summary>
         public byte[] ContactId { get; init; }
         /// <summary>
-        /// CBOR:"3".
+        /// Gets the link id (CBOR:"3").
         /// </summary>
         public byte[] LinkId { get; init; }
         /// <summary>
-        /// CBOR:"3".
+        /// Gets the link secret (CBOR:"3").
         /// </summary>
         public byte[] LinkSecret { get; init; }
         /// <summary>
-        /// CBOR:"4".
+        /// Gets the authenticator public key (CBOR:"4").
         /// </summary>
         public byte[] AuthenticatorPubkey { get; init; }
         /// <summary>
-        /// CBOR:"5".
+        /// Gets the authenticator name (CBOR:"5").
         /// </summary>
         public byte[] AuthenticatorName { get; init; }
         /// <summary>
-        /// CBOR:"6".
+        /// Gets the signature (CBOR:"6").
         /// </summary>
         public byte[] Signature { get; init; }
         /// <summary>
-        /// Domain String of tunnel server.
+        /// Gets the Domain String of tunnel server.
         /// </summary>
         public byte[] TunnelServerDomain { get; init; }
         /// <summary>
-        /// Identity Key created during QR initiated transaction.
+        /// Gets the identity Key created during QR initiated transaction.
         /// </summary>
         public byte[] IdentityKey { get; init; }
     }

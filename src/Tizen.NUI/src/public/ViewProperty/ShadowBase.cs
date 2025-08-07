@@ -60,7 +60,7 @@ namespace Tizen.NUI
             Offset = new Vector2(noOffset);
             Extents = new Vector2(noExtents);
 
-            var transformProperty = propertyMap.Find(Visual.Property.Transform);
+            var transformProperty = propertyMap?.Find(Visual.Property.Transform);
 
             if (transformProperty == null)
             {
@@ -162,12 +162,6 @@ namespace Tizen.NUI
 
             var map = GetPropertyMap();
 
-            if (attachedView.CornerRadius != null)
-            {
-                map[Visual.Property.CornerRadius] = attachedView.CornerRadius == null ? new PropertyValue() : new PropertyValue(attachedView.CornerRadius);
-                map[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)attachedView.CornerRadiusPolicy);
-            }
-
             return new PropertyValue(map);
         }
 
@@ -191,18 +185,18 @@ namespace Tizen.NUI
             if (!noOffset.Equals(Offset))
             {
                 var temp = new Vector2((int)VisualTransformPolicyType.Absolute, (int)VisualTransformPolicyType.Absolute);
-                transformMap[(int)VisualTransformPropertyType.OffsetPolicy] = new PropertyValue(temp);
-                transformMap[(int)VisualTransformPropertyType.Offset] = PropertyValue.CreateWithGuard(Offset);
+                transformMap.Set((int)VisualTransformPropertyType.OffsetPolicy, temp);
+                transformMap.Set((int)VisualTransformPropertyType.Offset, Offset);
                 temp.Dispose();
             }
 
             if (!noExtents.Equals(Extents))
             {
-                transformMap[(int)VisualTransformPropertyType.ExtraSize] = PropertyValue.CreateWithGuard(Extents);
+                transformMap.Set((int)VisualTransformPropertyType.ExtraSize, Extents);
             }
 
-            transformMap[(int)VisualTransformPropertyType.Origin] = new PropertyValue((int)Visual.AlignType.Center);
-            transformMap[(int)VisualTransformPropertyType.AnchorPoint] = new PropertyValue((int)Visual.AlignType.Center);
+            transformMap.Set((int)VisualTransformPropertyType.Origin, (int)Visual.AlignType.Center);
+            transformMap.Set((int)VisualTransformPropertyType.AnchorPoint, (int)Visual.AlignType.Center);
 
             var ret = new PropertyValue(transformMap);
             transformMap.Dispose();

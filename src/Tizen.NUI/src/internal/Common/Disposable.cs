@@ -40,24 +40,29 @@ namespace Tizen.NUI
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private bool swigCMemOwn { get; set; }
-        private bool isDisposeQueued = false;
+        private bool isDisposeQueued;
+
+        private bool _disposeOnlyMainThread;
 
         /// <summary>
         /// Create an instance of Disposable.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public Disposable()
+        public Disposable() : this(global::System.IntPtr.Zero, false)
         {
-            swigCMemOwn = false;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
         }
 
         /// This will not be public.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Disposable(global::System.IntPtr cPtr, bool cMemoryOwn)
+        public Disposable(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal Disposable(global::System.IntPtr cPtr, bool cMemoryOwn, bool disposableOnlyMainThread)
         {
             swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            _disposeOnlyMainThread = disposableOnlyMainThread;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(cPtr == global::System.IntPtr.Zero ? null : this, cPtr);
         }
 
         /// <summary>
@@ -111,6 +116,22 @@ namespace Tizen.NUI
                 // TODO: dispose managed state (managed objects).
                 // Explicit call. user calls Dispose()
 
+                //Throw exception if Dispose() is called in separate thread.
+                if (DisposeOnlyMainThread && !Window.IsInstalled())
+                {
+                    using var process = global::System.Diagnostics.Process.GetCurrentProcess();
+                    var processId = process.Id;
+                    var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+                    var me = this.GetType().FullName;
+
+                    Tizen.Log.Fatal("NUI", $"[NUI][Disposable] This API called from separate thread. This API must be called from MainThread. \n" +
+                        $" process:{processId} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
+
+                    //to fix ArtApp black screen issue. this will be enabled after talking with ArtApp team and fixing it.
+                    // throw new global::System.InvalidOperationException("[NUI][Disposable] This API called from separate thread. This API must be called from MainThread. \n" +
+                    //     $" process:{process} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
+                }
+
                 if (isDisposeQueued)
                 {
                     Tizen.Log.Fatal("NUI", $"[Disposable]should not be here! (dead code) this will be removed!");
@@ -127,10 +148,17 @@ namespace Tizen.NUI
             else
             {
                 // Implicit call. user doesn't call Dispose(), so this object is added into DisposeQueue to be disposed automatically.
-                if (!isDisposeQueued)
+                if (_disposeOnlyMainThread)
                 {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
+                    if (!isDisposeQueued)
+                    {
+                        isDisposeQueued = true;
+                        DisposeQueue.Instance.Add(this);
+                    }
+                }
+                else
+                {
+                    Dispose(DisposeTypes.Implicit);
                 }
             }
 
@@ -205,6 +233,12 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal bool IsDisposeQueued => isDisposeQueued;
+
+        /// <summary>
+        /// The flag to check if it must be disposed at main thread or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal bool DisposeOnlyMainThread => _disposeOnlyMainThread;
     }
 
     internal static class DisposableExtension

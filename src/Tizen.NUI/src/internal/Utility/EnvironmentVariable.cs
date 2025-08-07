@@ -29,6 +29,7 @@ namespace Tizen.NUI
         private static extern string EnvironmentVariable_GetEnvironmentVariable(string jarg1);
 
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SetEnvironmentVariable")]
+        [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
         private static extern bool EnvironmentVariable_SetEnvironmentVariable(string jarg1, string jarg2);
 
         /// <summary>

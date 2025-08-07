@@ -897,7 +897,7 @@ namespace Tizen.NUI.Components
             IndicatorType type = IndicatorType.None;
             if (ViewStyle is SliderStyle sliderStyle)
             {
-                type = (IndicatorType)sliderStyle.IndicatorType;
+                type = sliderStyle.IndicatorType ?? IndicatorType.None;
             }
             return type;
         }

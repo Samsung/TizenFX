@@ -78,8 +78,8 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebBackForwardList : Disposable
     {
-        private WebBackForwardSubList backwardItemList = null;
-        private WebBackForwardSubList forwardItemList = null;
+        private WebBackForwardSubList backwardItemList;
+        private WebBackForwardSubList forwardItemList;
 
         internal WebBackForwardList(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

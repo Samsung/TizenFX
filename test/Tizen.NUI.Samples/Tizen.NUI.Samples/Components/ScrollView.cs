@@ -1242,6 +1242,12 @@ namespace Tizen.NUI.Samples
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        internal void ApplyConstraintToChildren(Constraint constraint)
+        {
+            Tizen.NUI.Interop.ScrollView.ApplyConstraintToChildren(SwigCPtr, constraint.SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         /// <summary>
         /// Set ruler X
         /// </summary>
@@ -1260,12 +1266,6 @@ namespace Tizen.NUI.Samples
         public void SetRulerY(RulerPtr ruler)
         {
             Tizen.NUI.Interop.ScrollView.SetRulerY(SwigCPtr, RulerPtr.getCPtr(ruler));
-        }
-
-        internal void ApplyConstraintToChildren(Constraint constraint)
-        {
-            Tizen.NUI.Interop.ScrollView.ApplyConstraintToChildren(SwigCPtr, constraint.SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>

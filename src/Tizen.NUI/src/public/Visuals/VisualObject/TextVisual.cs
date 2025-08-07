@@ -56,12 +56,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.TextVisualProperty.Text, new PropertyValue(string.IsNullOrEmpty(value) ? "" : value));
+                UpdateVisualProperty((int)Tizen.NUI.TextVisualProperty.Text, string.IsNullOrEmpty(value) ? "" : value);
             }
             get
             {
                 string ret = "";
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.Text);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.Text);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -75,12 +75,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.TextVisualProperty.FontFamily, new PropertyValue(string.IsNullOrEmpty(value) ? "" : value));
+                UpdateVisualProperty((int)Tizen.NUI.TextVisualProperty.FontFamily, string.IsNullOrEmpty(value) ? "" : value);
             }
             get
             {
                 string ret = "";
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.FontFamily);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.FontFamily);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -94,12 +94,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.TextVisualProperty.PointSize, new PropertyValue(value));
+                UpdateVisualProperty((int)Tizen.NUI.TextVisualProperty.PointSize, value);
             }
             get
             {
                 float ret = 0.0f;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.PointSize);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.PointSize);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -113,12 +113,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.TextVisualProperty.MultiLine, new PropertyValue(value));
+                UpdateVisualProperty((int)Tizen.NUI.TextVisualProperty.MultiLine, value);
             }
             get
             {
                 bool ret = false;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.MultiLine);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.MultiLine);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -132,12 +132,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.TextVisualProperty.HorizontalAlignment, new PropertyValue((int)value));
+                UpdateVisualProperty((int)Tizen.NUI.TextVisualProperty.HorizontalAlignment, value);
             }
             get
             {
                 int ret = (int)Tizen.NUI.HorizontalAlignment.Begin;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.HorizontalAlignment);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.HorizontalAlignment);
                 propertyValue?.Get(out ret);
                 return (Tizen.NUI.HorizontalAlignment)ret;
             }
@@ -151,12 +151,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.TextVisualProperty.VerticalAlignment, new PropertyValue((int)value));
+                UpdateVisualProperty((int)Tizen.NUI.TextVisualProperty.VerticalAlignment, value);
             }
             get
             {
                 int ret = (int)Tizen.NUI.VerticalAlignment.Top;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.VerticalAlignment);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.VerticalAlignment);
                 propertyValue?.Get(out ret);
                 return (Tizen.NUI.VerticalAlignment)ret;
             }
@@ -170,13 +170,15 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.TextVisualProperty.TextColor, new PropertyValue(value));
+                UpdateVisualProperty((int)Tizen.NUI.TextVisualProperty.TextColor, value);
             }
             get
             {
                 Tizen.NUI.Color ret = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.TextColor);
-                propertyValue?.Get(ret);
+                using (var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.TextColor))
+                {
+                    propertyValue?.Get(ret);
+                }
                 return ret;
             }
         }
@@ -189,12 +191,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.TextVisualProperty.EnableMarkup, new PropertyValue(value));
+                UpdateVisualProperty((int)Tizen.NUI.TextVisualProperty.EnableMarkup, value);
             }
             get
             {
                 bool ret = false;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.EnableMarkup);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.TextVisualProperty.EnableMarkup);
                 propertyValue?.Get(out ret);
                 return ret;
             }

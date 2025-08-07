@@ -37,7 +37,7 @@ namespace Tizen.Multimedia
         private static List<MediaFormatVideoMimeType> _supportedVideoFormats;
 
         /// <summary>
-        /// Gets all supported audio types.
+        /// Gets the supported audio types of the media stream source.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static IEnumerable<MediaFormatAudioMimeType> SupportedAudioTypes
@@ -50,7 +50,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets all supported video types.
+        /// Gets the supported video types of the media stream source.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static IEnumerable<MediaFormatVideoMimeType> SupportedVideoTypes
@@ -214,7 +214,7 @@ namespace Tizen.Multimedia
         public MediaStreamConfiguration VideoConfiguration { get; }
 
         /// <summary>
-        /// Pushes elementary stream to decode audio or video.
+        /// Pushes elementary stream to decode audio or video packet.
         /// </summary>
         /// <remarks>This source must be set as a source to a player and the player must be in the <see cref="PlayerState.Ready"/>,
         /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.</remarks>

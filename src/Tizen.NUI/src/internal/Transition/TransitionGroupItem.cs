@@ -28,13 +28,13 @@ namespace Tizen.NUI
     /// </summary>
     internal class TransitionGroupItem : TransitionItemBase
     {
-        private List<TransitionItemBase> transitionItemList = null;
+        private List<TransitionItemBase> transitionItemList;
 
-        private bool useGroupTimePeriod = false;
-        private bool stepTransition = false;
-        private bool useGroupAlphaFunction = false;
+        private bool useGroupTimePeriod;
+        private bool stepTransition;
+        private bool useGroupAlphaFunction;
 
-        private View transitionView = null;
+        private View transitionView;
 
         /// <summary>
         /// Creates an initialized fade.<br />
@@ -53,7 +53,7 @@ namespace Tizen.NUI
             transitionItemList = new List<TransitionItemBase>();
             for (int index = 0; index < transitionList.Count; ++index)
             {
-                TimePeriod localTimePeriod = new TimePeriod(transitionList[index].GetTimePeriod().DelayMilliseconds, transitionList[index].GetTimePeriod().DurationMilliseconds);
+                using TimePeriod localTimePeriod = new TimePeriod(transitionList[index].GetTimePeriod().DelayMilliseconds, transitionList[index].GetTimePeriod().DurationMilliseconds);
                 AlphaFunction localAlphaFunction = transitionList[index].GetAlphaFunction();
                 if (useGroupTimePeriod)
                 {

@@ -23,17 +23,19 @@ namespace Tizen.Security.SecureRepository
     public enum DataFormat : int
     {
         /// <summary>
-        /// The DER format base64 encoded data.
+        /// DER format base64 encoded data.
         /// </summary>
         DerBase64 = 0,
         /// <summary>
-        /// The DER encoded data.
+        /// DER encoded data.
         /// </summary>
         Der,
         /// <summary>
-        /// The PEM encoded data. It consists of the DER format base64 encoded
-        /// with additional header and footer lines.
+        /// PEM encoded data.
         /// </summary>
+        /// <remarks>
+        /// Consists of the DER format base64 encoded with additional header and footer lines.
+        /// </remarks>
         Pem
     }
 }

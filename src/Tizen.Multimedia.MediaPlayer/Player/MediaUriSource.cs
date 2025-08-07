@@ -20,7 +20,7 @@ using static Interop;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Represents a media source with a uri.
+    /// Represents a media source with a URI.
     /// </summary>
     /// <remarks>
     /// The internet privilege(http://tizen.org/privilege/internet) must be added if any URLs are used to play from a network.
@@ -31,9 +31,10 @@ namespace Tizen.Multimedia
     /// <since_tizen> 3 </since_tizen>
     public sealed class MediaUriSource : MediaSource
     {
-        // TODO consider using Uri class.
+        // TODO consider using URI class.
         /// <summary>
-        /// Initializes a new instance of the MediaUriSource class with the specified uri.</summary>
+        /// Initializes a new instance of the MediaUriSource class with the specified URI.
+        /// </summary>
         /// <param name="uri">The uri string.</param>
         /// <remarks>For HTTP or RSTP, uri should start with "http://" or "rtsp://".
         /// The default protocol is "file://".
@@ -57,4 +58,3 @@ namespace Tizen.Multimedia
         }
     }
 }
-

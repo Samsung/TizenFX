@@ -7,11 +7,11 @@ on:
   workflow_dispatch:
 
 env:
-  TARGET_BRANCHES: 'master API11 API10'
+  TARGET_BRANCHES: 'main API12 API11'
 
 jobs:
   nightly:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v3
       with:
@@ -53,7 +53,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: workflow.id,
-              ref: 'master',
+              ref: 'main',
               inputs: { target, deploy_to_gpr: 'true', deploy_to_myget: 'true', deploy_to_tizen: 'true' }
             })
             console.log(`Event dispatch for ${target} : ${dispatchResp.status}`)

@@ -55,13 +55,15 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.BorderVisualProperty.Color, new PropertyValue(value));
+                UpdateVisualProperty((int)Tizen.NUI.BorderVisualProperty.Color, value);
             }
             get
             {
                 Tizen.NUI.Color ret = new Tizen.NUI.Color();
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.BorderVisualProperty.Color);
-                propertyValue?.Get(ret);
+                using (var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.BorderVisualProperty.Color))
+                {
+                    propertyValue?.Get(ret);
+                }
                 return ret;
             }
         }
@@ -74,12 +76,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.BorderVisualProperty.Size, new PropertyValue(value));
+                UpdateVisualProperty((int)Tizen.NUI.BorderVisualProperty.Size, value);
             }
             get
             {
                 float ret = 0.0f;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.BorderVisualProperty.Size);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.BorderVisualProperty.Size);
                 propertyValue?.Get(out ret);
                 return ret;
             }
@@ -93,12 +95,12 @@ namespace Tizen.NUI.Visuals
         {
             set
             {
-                UpdateVisualProperty((int)Tizen.NUI.BorderVisualProperty.AntiAliasing, new PropertyValue(value));
+                UpdateVisualProperty((int)Tizen.NUI.BorderVisualProperty.AntiAliasing, value);
             }
             get
             {
                 bool ret = false;
-                var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.BorderVisualProperty.AntiAliasing);
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.BorderVisualProperty.AntiAliasing);
                 propertyValue?.Get(out ret);
                 return ret;
             }

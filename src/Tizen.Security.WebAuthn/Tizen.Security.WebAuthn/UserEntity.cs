@@ -14,8 +14,6 @@
  *  limitations under the License
  */
 
-using static Tizen.Security.WebAuthn.ErrorFactory;
-
 namespace Tizen.Security.WebAuthn
 {
     /// <summary>
@@ -46,16 +44,28 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// A human-palatable name for the entity.
+        /// Gets the name of the user entity.
         /// </summary>
+        /// <value>
+        /// A human-palatable name for the entity.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public string Name { get; init; }
         /// <summary>
-        /// The ID of the user account.
+        /// Gets the user ID.
         /// </summary>
+        /// <value>
+        /// The ID of the user account.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public byte[] Id { get; init; }
         /// <summary>
-        /// A human-palatable name for the user account, intended only for display.
+        /// Gets the dispay name of the user entity.
         /// </summary>
+        /// <value>
+        /// A human-palatable name for the user account, intended only for display.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public string DisplayName { get; init; }
     }
 }

@@ -22,112 +22,137 @@ namespace Tizen.NUI.BaseComponents
 {
     public partial class AnimatedImageView
     {
+        static AnimatedImageView()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                BatchSizeProperty = BindableProperty.Create(nameof(BatchSize), typeof(int), typeof(AnimatedImageView), 0,
+                    propertyChanged: SetInternalBatchSizeProperty, defaultValueCreator: GetInternalBatchSizeProperty);
+                CacheSizeProperty = BindableProperty.Create(nameof(CacheSize), typeof(int), typeof(AnimatedImageView), 0,
+                    propertyChanged: SetInternalCacheSizeProperty, defaultValueCreator: GetInternalCacheSizeProperty);
+                FrameDelayProperty = BindableProperty.Create(nameof(FrameDelay), typeof(int), typeof(AnimatedImageView), 0,
+                    propertyChanged: SetInternalFrameDelayProperty, defaultValueCreator: GetInternalFrameDelayProperty);
+                LoopCountProperty = BindableProperty.Create(nameof(LoopCount), typeof(int), typeof(AnimatedImageView), 0,
+                    propertyChanged: SetInternalLoopCountProperty, defaultValueCreator: GetInternalLoopCountProperty);
+                StopBehaviorProperty = BindableProperty.Create(nameof(StopBehavior), typeof(StopBehaviorType), typeof(AnimatedImageView), default(StopBehaviorType),
+                    propertyChanged: SetInternalStopBehaviorProperty, defaultValueCreator: GetInternalStopBehaviorProperty);
+                CurrentFrameProperty = BindableProperty.Create(nameof(CurrentFrame), typeof(int), typeof(AnimatedImageView), 0,
+                    propertyChanged: SetInternalCurrentFrameProperty, defaultValueCreator: GetInternalCurrentFrameProperty);
+            }
+        }
+
         /// <summary>
         /// BatchSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BatchSizeProperty = BindableProperty.Create(nameof(BatchSize), typeof(int), typeof(AnimatedImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BatchSizeProperty = null;
+        internal static void SetInternalBatchSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalBatchSize = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalBatchSizeProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             return instance.InternalBatchSize;
-        });
+        }
 
         /// <summary>
         /// CacheSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CacheSizeProperty = BindableProperty.Create(nameof(CacheSize), typeof(int), typeof(AnimatedImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CacheSizeProperty = null;
+        internal static void SetInternalCacheSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalCacheSize = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalCacheSizeProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             return instance.InternalCacheSize;
-        });
+        }
 
         /// <summary>
         /// FrameDelayProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FrameDelayProperty = BindableProperty.Create(nameof(FrameDelay), typeof(int), typeof(AnimatedImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FrameDelayProperty = null;
+        internal static void SetInternalFrameDelayProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalFrameDelay = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalFrameDelayProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             return instance.InternalFrameDelay;
-        });
+        }
 
         /// <summary>
         /// LoopCountProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LoopCountProperty = BindableProperty.Create(nameof(LoopCount), typeof(int), typeof(AnimatedImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LoopCountProperty = null;
+        internal static void SetInternalLoopCountProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalLoopCount = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalLoopCountProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             return instance.InternalLoopCount;
-        });
+        }
 
         /// <summary>
         /// StopBehaviorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty StopBehaviorProperty = BindableProperty.Create(nameof(StopBehavior), typeof(StopBehaviorType), typeof(AnimatedImageView), default(StopBehaviorType), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty StopBehaviorProperty = null;
+        internal static void SetInternalStopBehaviorProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             if (newValue != null)
             {
-                instance.InternalStopBehavior = (Tizen.NUI.BaseComponents.AnimatedImageView.StopBehaviorType)newValue;
+                instance.InternalStopBehavior = (StopBehaviorType)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalStopBehaviorProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             return instance.InternalStopBehavior;
-        });
+        }
 
         /// <summary>
         /// CurrentFrameProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentFrameProperty = BindableProperty.Create(nameof(CurrentFrame), typeof(int), typeof(AnimatedImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CurrentFrameProperty = null;
+        internal static void SetInternalCurrentFrameProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             if (newValue != null)
             {
                 instance.InternalCurrentFrame = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalCurrentFrameProperty(BindableObject bindable)
         {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
+            var instance = (AnimatedImageView)bindable;
             return instance.InternalCurrentFrame;
-        });
+        }
     }
 }

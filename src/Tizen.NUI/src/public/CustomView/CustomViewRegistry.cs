@@ -192,7 +192,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ViewRegistry is a singleton.
         /// </summary>
-        private static CustomViewRegistry instance = null;
+        private static CustomViewRegistry instance;
 
         private CreateControlDelegate createCallback;
         private SetPropertyDelegate setPropertyCallback;
@@ -406,7 +406,7 @@ namespace Tizen.NUI
             View view = Registry.GetManagedBaseHandleFromRefObject(refObjectPtr) as View;
             if (view != null)
             {
-                System.Reflection.PropertyInfo propertyInfo = view.GetType().GetProperty(propertyName);
+                System.Reflection.PropertyInfo propertyInfo = view.GetType().GetProperty(propertyName) ?? throw new global::System.InvalidOperationException("propertyInfo is null! can not set any value!");
                 // We know the property name, we know it's type, we just need to convert from a DALi property value to native C# type
                 System.Type type = propertyInfo?.PropertyType;
                 bool ok = false;

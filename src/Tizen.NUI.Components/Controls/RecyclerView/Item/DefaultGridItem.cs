@@ -17,6 +17,7 @@ using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Accessibility;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -35,7 +36,20 @@ namespace Tizen.NUI.Components
 
         private DefaultGridItemStyle ItemStyle => ViewStyle as DefaultGridItemStyle;
 
-        static DefaultGridItem() { }
+        static DefaultGridItem()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                BadgeProperty = BindableProperty.Create(nameof(Badge), typeof(View), typeof(DefaultGridItem), null,
+                    propertyChanged: SetInternalBadgeProperty, defaultValueCreator: GetInternalBadgeProperty);
+                TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(DefaultGridItem), default(string),
+                    propertyChanged: SetInternalTextProperty, defaultValueCreator: GetInternalTextProperty);
+                ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(DefaultGridItem), default(string),
+                    propertyChanged: SetInternalResourceUrlProperty, defaultValueCreator: GetInternalResourceUrlProperty);
+                LabelOrientationTypeProperty = BindableProperty.Create(nameof(LabelOrientationType), typeof(Tizen.NUI.Components.DefaultGridItem.LabelOrientation), typeof(DefaultGridItem), default(LabelOrientation),
+                    propertyChanged: SetInternalLabelOrientationTypeProperty, defaultValueCreator: GetInternalLabelOrientationTypeProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of DefaultGridItem.
@@ -135,11 +149,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(BadgeProperty) as View;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(BadgeProperty) as View;
+                }
+                else
+                {
+                    return InternalBadge;
+                }
             }
             set
             {
-                SetValue(BadgeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(BadgeProperty, value);
+                }
+                else
+                {
+                    InternalBadge = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -148,7 +176,6 @@ namespace Tizen.NUI.Components
             get
             {
                 return itemBadge;
-
             }
             set
             {
@@ -170,10 +197,27 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ResourceUrl
         {
-            get => GetValue(ResourceUrlProperty) as string;
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ResourceUrlProperty) as string;
+                }
+                else
+                {
+                    return InternalResourceUrl;
+                }
+            }
             set
             {
-                SetValue(ResourceUrlProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ResourceUrlProperty, value);
+                }
+                else
+                {
+                    InternalResourceUrl = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -225,11 +269,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TextProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TextProperty) as string;
+                }
+                else
+                {
+                    return InternalText;
+                }
             }
             set
             {
-                SetValue(TextProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TextProperty, value);
+                }
+                else
+                {
+                    InternalText = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -253,15 +311,29 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (Tizen.NUI.Components.DefaultGridItem.LabelOrientation)GetValue(LabelOrientationTypeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (LabelOrientation)GetValue(LabelOrientationTypeProperty);
+                }
+                else
+                {
+                    return InternalLabelOrientationType;
+                }
             }
             set
             {
-                SetValue(LabelOrientationTypeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LabelOrientationTypeProperty, value);
+                }
+                else
+                {
+                    InternalLabelOrientationType = value;
+                }
                 NotifyPropertyChanged();
             }
         }
-        private Tizen.NUI.Components.DefaultGridItem.LabelOrientation InternalLabelOrientationType
+        private LabelOrientation InternalLabelOrientationType
         {
             get
             {

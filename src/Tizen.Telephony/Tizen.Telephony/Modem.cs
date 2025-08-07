@@ -20,8 +20,12 @@ namespace Tizen.Telephony
 {
     /// <summary>
     /// This class provides APIs to obtain information from the modem.
+    /// It includes properties such as Imei, which allows users to retrieve the International
+    /// Mobile Station Equipment Identity (IMEI) of a mobile phone. By utilizing these features,
+    /// developers can gather valuable information about the modem and incorporate it into their applications effectively.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public class Modem
     {
         internal IntPtr _handle;
@@ -38,6 +42,7 @@ namespace Tizen.Telephony
         /// <exception cref="ArgumentNullException">
         /// This exception occurs if the handle provided is null.
         /// </exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public Modem(SlotHandle handle)
         {
             if (handle == null)
@@ -52,6 +57,7 @@ namespace Tizen.Telephony
         /// Enumeration for the Modem Power Status.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public enum PowerStatus
         {
             /// <summary>
@@ -92,6 +98,7 @@ namespace Tizen.Telephony
         /// The International Mobile Station Equipment Identity.
         /// Empty string if unable to complete the operation.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public string Imei
         {
             get
@@ -116,6 +123,7 @@ namespace Tizen.Telephony
         /// <value>
         /// The Modem power status (0=on,1=off,2=reset,3=low).
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public PowerStatus CurrentPowerStatus
         {
             get
@@ -148,6 +156,7 @@ namespace Tizen.Telephony
         /// The Mobile Equipment Identifier.
         /// Empty string if unable to complete the operation.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public string Meid
         {
             get

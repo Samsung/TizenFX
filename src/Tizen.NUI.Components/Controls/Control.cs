@@ -36,36 +36,67 @@ namespace Tizen.NUI.Components
         /// FeedbackProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FeedbackProperty = BindableProperty.Create(nameof(Feedback), typeof(bool), typeof(Control), default(bool), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FeedbackProperty = null;
+        internal static void SetInternalFeedbackProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (Control)bindable;
             if (newValue != null)
             {
+                var instance = (Control)bindable;
                 instance.InternalFeedback = (bool)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalFeedbackProperty(BindableObject bindable)
         {
             var instance = (Control)bindable;
             return instance.InternalFeedback;
-        });
+        }
 
         /// Internal used.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(Control), null, propertyChanged: (bo, o, n) => ((Control)bo).OnCommandChanged());
+        public static readonly BindableProperty CommandProperty = null;
+        internal static void SetInternalCommandProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var instance = (Control)bindable;
+            instance.SetInternalCommand((ICommand)newValue);
+        }
+        internal static object GetInternalCommandProperty(BindableObject bindable)
+        {
+            var instance = (Control)bindable;
+            return instance.GetInternalCommand();
+        }
 
         /// Internal used.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(Button), null,
-            propertyChanged: (bindable, oldvalue, newvalue) => ((Button)bindable).CommandCanExecuteChanged(bindable, EventArgs.Empty));
+        public static readonly BindableProperty CommandParameterProperty = null;
+        internal static void SetInternalCommandParameterProperty(BindableObject bindable, object oldValue, object newValue)
+        {
+            var instance = (Control)bindable;
+            instance.commandParameter = newValue;
+            instance.CommandCanExecuteChanged(bindable, EventArgs.Empty);
+        }
+        internal static object GetInternalCommandParameterProperty(BindableObject bindable)
+        {
+            return ((Control)bindable).commandParameter;
+        }
 
         private bool onThemeChangedEventOverrideChecker;
 
         private Feedback feedback = null;
+        private ICommand command = null;
+        private object commandParameter = null;
 
         static Control()
         {
             ThemeManager.AddPackageTheme(DefaultThemeCreator.Instance);
+            if (NUIApplication.IsUsingXaml)
+            {
+                FeedbackProperty = BindableProperty.Create(nameof(Feedback), typeof(bool), typeof(Control), default(bool),
+                    propertyChanged: SetInternalFeedbackProperty, defaultValueCreator: GetInternalFeedbackProperty);
+                CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(Control), null,
+                    propertyChanged: SetInternalCommandProperty, defaultValueCreator: GetInternalCommandProperty);
+                CommandParameterProperty = BindableProperty.Create(nameof(CommandParameter), typeof(object), typeof(Button), null,
+                    propertyChanged: SetInternalCommandParameterProperty, defaultValueCreator: GetInternalCommandParameterProperty);
+            }
         }
 
         /// <summary>
@@ -120,14 +151,29 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (bool)GetValue(FeedbackProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(FeedbackProperty);
+                }
+                else
+                {
+                    return InternalFeedback;
+                }
             }
             set
             {
-                SetValue(FeedbackProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FeedbackProperty, value);
+                }
+                else
+                {
+                    InternalFeedback = value;
+                }
                 NotifyPropertyChanged();
             }
         }
+
         private bool InternalFeedback
         {
             get => feedback != null;
@@ -189,16 +235,67 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ICommand Command
         {
-            get { return (ICommand)GetValue(CommandProperty); }
-            set { SetValue(CommandProperty, value); }
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (ICommand)GetValue(CommandProperty);
+                }
+                else
+                {
+                    return GetInternalCommand();
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CommandProperty, value);
+                }
+                else
+                {
+                    SetInternalCommand(value);
+                }
+            }
+        }
+
+        private void SetInternalCommand(ICommand newValue)
+        {
+            command = newValue;
+            OnCommandChanged();
+        }
+
+        private ICommand GetInternalCommand()
+        {
+            return command;
         }
 
         /// Internal used.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object CommandParameter
         {
-            get { return GetValue(CommandParameterProperty); }
-            set { SetValue(CommandParameterProperty, value); }
+            get
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(CommandParameterProperty);
+                }
+                else
+                {
+                    return GetInternalCommandParameterProperty(this);
+                }
+            }
+            set
+            {
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CommandParameterProperty, value);
+                }
+                else
+                {
+                    SetInternalCommandParameterProperty(this, null, value);
+                }
+            }
         }
 
         /// <summary>
@@ -367,6 +464,5 @@ namespace Tizen.NUI.Components
         {
             return this;
         }
-
     }
 }

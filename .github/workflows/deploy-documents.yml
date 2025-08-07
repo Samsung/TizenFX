@@ -8,13 +8,13 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     container:
       image: tizendotnet/tizenfx-build-worker:2.5
       options: --ulimit nofile=10240:10240
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         repository: TizenAPI/TizenFX-Docs
 
@@ -23,7 +23,7 @@ jobs:
         ./build.sh clone
     - name: Cache DocFX output
       id: cache-site
-      uses: actions/cache@v2
+      uses: actions/cache@v4
       with:
         path: _site
         key: docfx-gh-pages-site-${{ hashFiles('repos/commits') }}
@@ -37,19 +37,21 @@ jobs:
     - name: Archive Artifacts
       run: |
         tar cfz site.tar.gz _site/
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: documents
         path: site.tar.gz
+        overwrite: true
 
   deploy:
     needs: [build]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/download-artifact@v3
+    - uses: actions/download-artifact@v4
       with:
         name: documents
+        overwrite: true
 
     - name: Extract Artifacts
       run: |

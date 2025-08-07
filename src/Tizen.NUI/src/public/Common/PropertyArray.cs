@@ -38,7 +38,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PropertyArray(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal PropertyArray(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 
@@ -173,7 +173,6 @@ namespace Tizen.NUI
         public PropertyArray Add(PropertyValue value)
         {
             PropertyArray ret = new PropertyArray(Interop.Property.ArrayAdd(SwigCPtr, PropertyValue.getCPtr(value)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

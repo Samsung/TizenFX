@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,8 +24,9 @@ namespace Tizen.NUI
     /// The images have to be ordered in the same order they are declared in the shader.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class TextureSet : BaseHandle
+    public partial class TextureSet : BaseHandle
     {
+        private static int aliveCount;
 
         /// <summary>
         /// Create an instance of TextureSet.
@@ -38,7 +39,23 @@ namespace Tizen.NUI
 
         internal TextureSet(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            ++aliveCount;
         }
+
+        /// <summary>
+        /// Gets texture count.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint TextureCount
+        {
+            get => RetrieveTextureCount();
+        }
+
+        /// <summary>
+        /// Gets the number of currently alived TextureSet object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         /// <summary>
         /// Sets the texture at position "index".
@@ -49,6 +66,17 @@ namespace Tizen.NUI
         public void SetTexture(uint index, Texture texture)
         {
             Interop.TextureSet.SetTexture(SwigCPtr, index, Texture.getCPtr(texture));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Removes the texture at position "index".
+        /// </summary>
+        /// <param name="index">The position in the texture set of the texture.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveTexture(uint index)
+        {
+            Interop.TextureSet.RemoveTexture(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -65,13 +93,14 @@ namespace Tizen.NUI
             if (ret != null)
             {
                 Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, cPtr));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                return ret;
             }
             else
             {
                 ret = new Texture(cPtr, true);
+                return ret;
             }
-            NDalicPINVOKE.ThrowExceptionIfExists();
-            return ret;
         }
 
         /// <summary>
@@ -83,6 +112,17 @@ namespace Tizen.NUI
         public void SetSampler(uint index, Sampler sampler)
         {
             Interop.TextureSet.SetSampler(SwigCPtr, index, Sampler.getCPtr(sampler));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Removes the sampler at position "index".
+        /// </summary>
+        /// <param name="index">The position in the texture set of the sampler.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveSampler(uint index)
+        {
+            Interop.TextureSet.RemoveSampler(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -99,25 +139,39 @@ namespace Tizen.NUI
             if (ret != null)
             {
                 Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, cPtr));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                return ret;
             }
             else
             {
                 ret = new Sampler(cPtr, true);
+                return ret;
             }
-            NDalicPINVOKE.ThrowExceptionIfExists();
-            return ret;
         }
 
         /// <summary>
         /// Gets the number of textures present in the TextureSet.
         /// </summary>
         /// <returns>The number of textures in the TextureSet.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public uint GetTextureCount()
+        private uint RetrieveTextureCount()
         {
             uint ret = Interop.TextureSet.GetTextureCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            --aliveCount;
+
+            base.Dispose(type);
         }
 
         /// This will not be public opened.

@@ -11,9 +11,11 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
   </PropertyGroup>
-
+  
   <ItemGroup>
-     <ProjectReference Include="..\..\src\Tizen.AIAvatar\Tizen.AIAvatar.csproj" />
-     <ProjectReference Include="../../src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
+    <ProjectReference Include="..\..\src\Tizen.AIAvatar\Tizen.AIAvatar.csproj" />
+    <ProjectReference Include="..\..\src\Tizen.NUI.AIAvatar\Tizen.NUI.AIAvatar.csproj" />
+    <ProjectReference Include="..\..\src\Tizen.NUI.Components\Tizen.NUI.Components.csproj" />
   </ItemGroup>
+  
 </Project>

@@ -24,19 +24,19 @@ namespace Tizen.NUI
     public class TextVisual : VisualMap
     {
         static private float defaultPointSize = 18;
-        private string text = null;
-        private string fontFamily = null;
-        private PropertyMap fontStyle = null;
+        private string text;
+        private string fontFamily;
+        private PropertyMap fontStyle;
         private float pointSize = defaultPointSize;
-        private bool? multiLine = null;
-        private string horizontalAlignment = null;
-        private string verticalAlignment = null;
-        private Color textColor = null;
-        private bool? enableMarkup = null;
-        private PropertyMap shadow = null;
-        private PropertyMap underline = null;
-        private PropertyMap outline = null;
-        private PropertyMap background = null;
+        private bool? multiLine;
+        private string horizontalAlignment;
+        private string verticalAlignment;
+        private Color textColor;
+        private bool? enableMarkup;
+        private PropertyMap shadow;
+        private PropertyMap underline;
+        private PropertyMap outline;
+        private PropertyMap background;
 
         /// <summary>
         /// Default constructor of TextVisual class.
@@ -353,83 +353,53 @@ namespace Tizen.NUI
 
             if (text != null)
             {
-                PropertyValue temp = new PropertyValue((int)Visual.Type.Text);
-                _outputVisualMap.Add(Visual.Property.Type, temp);
-                temp.Dispose();
-
-                temp = new PropertyValue(text);
-                _outputVisualMap.Add(TextVisualProperty.Text, temp);
-                temp.Dispose();
-
-                temp = new PropertyValue((float)pointSize);
-                _outputVisualMap.Add(TextVisualProperty.PointSize, temp);
-                temp.Dispose();
+                _outputVisualMap.Add(Visual.Property.Type, (int)Visual.Type.Text);
+                _outputVisualMap.Add(TextVisualProperty.Text, text);
+                _outputVisualMap.Add(TextVisualProperty.PointSize, pointSize);
 
                 if (fontFamily != null)
                 {
-                    temp = new PropertyValue(fontFamily);
-                    _outputVisualMap.Add(TextVisualProperty.FontFamily, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(TextVisualProperty.FontFamily, fontFamily);
                 }
                 if (fontStyle != null)
                 {
-                    temp = new PropertyValue(fontStyle);
-                    _outputVisualMap.Add(TextVisualProperty.FontStyle, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(TextVisualProperty.FontStyle, fontStyle);
                 }
                 if (multiLine != null)
                 {
-                    temp = new PropertyValue((bool)multiLine);
-                    _outputVisualMap.Add(TextVisualProperty.MultiLine, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(TextVisualProperty.MultiLine, (bool)multiLine);
                 }
                 if (horizontalAlignment != null)
                 {
-                    temp = new PropertyValue(horizontalAlignment);
-                    _outputVisualMap.Add(TextVisualProperty.HorizontalAlignment, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(TextVisualProperty.HorizontalAlignment, horizontalAlignment);
                 }
                 if (verticalAlignment != null)
                 {
-                    temp = new PropertyValue(verticalAlignment);
-                    _outputVisualMap.Add(TextVisualProperty.VerticalAlignment, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(TextVisualProperty.VerticalAlignment, verticalAlignment);
                 }
                 if (textColor != null)
                 {
-                    temp = new PropertyValue(textColor);
-                    _outputVisualMap.Add(TextVisualProperty.TextColor, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(TextVisualProperty.TextColor, textColor);
                 }
                 if (enableMarkup != null)
                 {
-                    temp = new PropertyValue((bool)enableMarkup);
-                    _outputVisualMap.Add(TextVisualProperty.EnableMarkup, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(TextVisualProperty.EnableMarkup, (bool)enableMarkup);
                 }
                 if (shadow != null)
                 {
-                    temp = new PropertyValue(shadow);
-                    _outputVisualMap.Add(TextVisualProperty.Shadow, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(TextVisualProperty.Shadow, shadow);
                 }
                 if (underline != null)
                 {
-                    temp = new PropertyValue(underline);
-                    _outputVisualMap.Add(TextVisualProperty.Underline, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(TextVisualProperty.Underline, underline);
                 }
                 if (outline != null)
                 {
-                    temp = new PropertyValue(outline);
-                    _outputVisualMap.Add(TextVisualProperty.Outline, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(TextVisualProperty.Outline, outline);
                 }
                 if (background != null)
                 {
-                    temp = new PropertyValue(background);
-                    _outputVisualMap.Add(TextVisualProperty.Background, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(TextVisualProperty.Background, background);
                 }
                 base.ComposingPropertyMap();
             }

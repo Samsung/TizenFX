@@ -19,7 +19,10 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Specifies the flags for the audio stream focus options.
+    /// Defines the flags for configuring audio stream focus options.
+    /// This enumeration allows developers to specify different behaviors
+    /// regarding how audio focus should be managed within an application
+    /// or among multiple audio streams.
     /// <para>
     /// This enumeration has a <see cref="FlagsAttribute"/> attribute that allows a bitwise combination of its member values.
     /// </para>

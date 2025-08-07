@@ -19,7 +19,7 @@ namespace Tizen.NUI
 {
     internal class VectorBase : Disposable
     {
-        internal VectorBase(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal VectorBase(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 

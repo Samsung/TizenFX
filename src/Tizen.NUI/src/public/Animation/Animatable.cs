@@ -98,7 +98,9 @@ namespace Tizen.NUI
             /// New properties are registered by calling RegisterProperty() with an unused property name.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+#pragma warning disable CA1707 // Identifiers should not contain underscores
             DYNAMIC_PROPERTIES = 0x01
+#pragma warning restore CA1707 // Identifiers should not contain underscores
         }
 
         /// <summary>
@@ -123,11 +125,7 @@ namespace Tizen.NUI
         public int GetPropertyIndex(string name)
         {
             // Convert property string to be lowercase
-            StringBuilder sb = new StringBuilder(name);
-            sb[0] = (char)(sb[0] | 0x20);
-            string str = sb.ToString();
-
-            int ret = Interop.Handle.GetPropertyIndex(SwigCPtr, str);
+            int ret = Interop.Handle.GetPropertyIndex(SwigCPtr, name);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -155,6 +153,19 @@ namespace Tizen.NUI
         {
             bool ret = Interop.Handle.IsPropertyAnimatable(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// whether a writable property can be the source of an constraint.
+        /// </summary>
+        /// <param name="index">The index of the property.</param>
+        /// <returns>True if the property is a constraint input.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal bool IsPropertyAConstraintInput(int index)
+        {
+            bool ret = Interop.Handle.IsPropertyAConstraintInput(SwigCPtr, index);
+            NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
 
@@ -191,8 +202,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetProperty(string name, PropertyValue propertyValue)
         {
-            var propertyName = LowerFirstLetter(name);
-            Property property = new Property(this, propertyName);
+            Property property = new Property(this, name);
             if (property.PropertyIndex == Property.InvalidIndex)
             {
                 Tizen.Log.Error("NUI", "Invalid property name\n");
@@ -318,13 +328,6 @@ namespace Tizen.NUI
         {
             Interop.HandleInternal.HandleRemoveConstraints(SwigCPtr, tag);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        private static string LowerFirstLetter(string original)
-        {
-            StringBuilder sb = new StringBuilder(original);
-            sb[0] = (char)(sb[0] | 0x20);
-            return sb.ToString();
         }
 
         /// This will not be public opened.

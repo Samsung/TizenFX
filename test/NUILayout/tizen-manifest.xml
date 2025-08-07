@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="7" package="org.tizen.example.NUILayout" version="1.0.2">
+  <profile name="common" />
+  <ui-application appid="org.tizen.example.NUILayout"
+					exec="NUILayout.dll"
+					type="dotnet-nui"
+					multiple="false"
+					taskmanage="true"
+					nodisplay="false"
+					launch_mode="single"
+          >
+    <label>NUILayout</label>
+    <icon>NUILayout.png</icon>
+    <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+  </ui-application>
+  <privileges>
+    <privilege>http://tizen.org/privilege/internet</privilege>
+  </privileges>
+</manifest>

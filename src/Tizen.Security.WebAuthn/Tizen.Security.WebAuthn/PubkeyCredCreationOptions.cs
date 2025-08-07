@@ -15,7 +15,6 @@
  */
 
 using System.Collections.Generic;
-using static Tizen.Security.WebAuthn.ErrorFactory;
 
 namespace Tizen.Security.WebAuthn
 {
@@ -101,53 +100,97 @@ namespace Tizen.Security.WebAuthn
         }
 
         /// <summary>
-        /// Contains a name and an identifier for the Relying Party responsible for the request.
+        /// Gets the Relying Party data.
         /// </summary>
+        /// <value>
+        /// The name and identifier for the Relying Party responsible for the request.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public RelyingPartyEntity Rp { get; init; }
         /// <summary>
-        /// Contains names and an identifier for the user account performing the registration.
+        /// Gets user account data.
         /// </summary>
+        /// <value>
+        /// The names and identifier for the user account performing the registration.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public UserEntity User { get; init; }
         /// <summary>
-        /// Lists the key types and signature algorithms the Relying Party supports,
-        /// ordered from most preferred to least preferred.
+        /// Gets the key parameters the Relying Party supports.
         /// </summary>
+        /// <value>
+        /// The key types and signature algorithms the Relying Party supports,
+        /// ordered from most preferred to least preferred.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public IEnumerable<PubkeyCredParam> PubkeyCredParams { get; init; }
         /// <summary>
-        /// Specifies a time, in milliseconds, that the Relying Party is willing to wait for the
+        /// Gets the timeout requested by the Relying Party.
+        /// </summary>
+        /// <value>
+        /// The time, in milliseconds, that the Relying Party is willing to wait for the
         /// call to complete. This is treated as a hint, and MAY be overridden by the client.
         /// The value, '0', means no timeout is set.
-        /// </summary>
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public ulong Timeout { get; init; }
         /// <summary>
-        /// Lists any existing credentials mapped to this user account (as identified by user.id).
+        /// Gets the existing credentials mapped to this user account.
         /// </summary>
+        /// <value>
+        /// Any existing credentials mapped to this user account (as identified by user.id).
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public IEnumerable<PubkeyCredDescriptor> ExcludeCredentials { get; init; }
         /// <summary>
-        /// Specifies capabilities and settings that the authenticator MUST or SHOULD satisfy
-        /// to participate in this operation.
+        /// Gets the criteria for authenticator selection.
         /// </summary>
+        /// <value>
+        /// The capabilities and settings that the authenticator MUST or SHOULD satisfy
+        /// to participate in this operation.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public AuthenticationSelectionCriteria AuthenticatorSelection { get; init; }
         /// <summary>
+        /// Gets hints used to guide the user agent in interacting with the user.
+        /// </summary>
+        /// <value>
         /// Contains zero or more elements from <see cref="PubkeyCredHint"/> to
         /// guide the user agent in interacting with the user.
-        /// </summary>
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public IEnumerable<PubkeyCredHint> Hints { get; init; }
         /// <summary>
-        /// Specifies a preference regarding attestation conveyance.
+        /// Gets the attestation conveyance preference.
         /// </summary>
+        /// <value>
+        /// Specifies a preference regarding attestation conveyance.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public AttestationPref Attestation { get; init; }
         /// <summary>
-        /// Specifies a preference regarding the attestation statement format used by the authenticator.
+        /// Gets the attestation format preference.
         /// </summary>
+        /// <value>
+        /// Specifies a preference regarding the attestation statement format used by the authenticator.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public IEnumerable<byte[]> AttestationFormats { get; init; }
         /// <summary>
-        /// Client extension inputs requesting additional processing by the client and authenticator.
+        /// Gets the client extension inputs.
         /// </summary>
+        /// <value>
+        /// Client extension inputs requesting additional processing by the client and authenticator.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public IEnumerable<AuthenticationExtension> Extensions { get; init; }
         /// <summary>
-        /// Linked Device Connection Info. If not null, the state assisted transaction will start.
+        /// Gets the Linked Device Connection Info.
         /// </summary>
+        /// <value>
+        /// Linked Device Connection Info. If not null, the state assisted transaction will start.
+        /// </value>
+        /// <since_tizen> 12 </since_tizen>
         public HybridLinkedData LinkedDevice { get; init; }
     }
 }

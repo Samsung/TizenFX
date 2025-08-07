@@ -17,14 +17,17 @@
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
-    /// An abstract class for holding parameters for the AES algorithm.
+    /// Holds parameters for the AES algorithm.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public abstract class AesCipherParameters : CipherParameters
     {
         /// <summary>
-        /// An initialization vector.
+        /// Gets and sets initialization vector.
         /// </summary>
+        /// <value>
+        /// Initialization vector for AES cipher.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public byte[] IV
         {

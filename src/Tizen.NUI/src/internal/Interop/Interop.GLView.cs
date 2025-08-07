@@ -45,9 +45,6 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_GetRenderingMode")]
             public static extern global::System.IntPtr GlViewGetRenderingMode(HandleRef nuiGlView);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_GetBackendMode")]
-            public static extern global::System.IntPtr GlViewGetBackendMode(HandleRef nuiGlView);
-
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_RenderOnce")]
             public static extern void GlViewRenderOnce(HandleRef nuiGlView);
 
@@ -68,6 +65,9 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_TextureBindings_get")]
             public static extern global::System.IntPtr GlViewGetRednerCallbackInputTextureBindings(global::System.IntPtr renderInput, ref int size);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_WorldColor_get")]
+            public static extern global::System.IntPtr GlViewGetRednerCallbackInputWorldColor(global::System.IntPtr renderInput);
         }
     }
 }

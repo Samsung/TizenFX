@@ -111,58 +111,8 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("RenderTask DEFAULT_SCREEN_TO_FRAMEBUFFER_FUNCTION.")]
-        [Property("SPEC", "Tizen.NUI.RenderTask.DEFAULT_SCREEN_TO_FRAMEBUFFER_FUNCTION A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void RenderTaskDefaultScreenToFrameBufferFunction()
-        {
-            tlog.Debug(tag, $"RenderTaskDefaultScreenToFrameBufferFunction START");
-
-            try
-            {
-                var result = RenderTask.DEFAULT_SCREEN_TO_FRAMEBUFFER_FUNCTION;
-                tlog.Debug(tag, "DEFAULT_SCREEN_TO_FRAMEBUFFER_FUNCTION : " + result);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            tlog.Debug(tag, $"RenderTaskDefaultScreenToFrameBufferFunction END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("RenderTask FULLSCREEN_FRAMEBUFFER_FUNCTION.")]
-        [Property("SPEC", "Tizen.NUI.RenderTask.FULLSCREEN_FRAMEBUFFER_FUNCTION A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void RenderTaskFullScreenFrameBufferFunction()
-        {
-            tlog.Debug(tag, $"RenderTaskFullScreenFrameBufferFunction START");
-
-            try
-            {
-                var result = RenderTask.FULLSCREEN_FRAMEBUFFER_FUNCTION;
-                tlog.Debug(tag, "FULLSCREEN_FRAMEBUFFER_FUNCTION : " + result);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            tlog.Debug(tag, $"RenderTaskFullScreenFrameBufferFunction END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("RenderTask DEFAULT_EXCLUSIVE.")]
-        [Property("SPEC", "Tizen.NUI.RenderTask.DEFAULT_EXCLUSIVE A")]
+        [Description("RenderTask DefaultExclusive.")]
+        [Property("SPEC", "Tizen.NUI.RenderTask.DefaultExclusive A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
@@ -172,8 +122,8 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                var result = RenderTask.DEFAULT_EXCLUSIVE;
-                tlog.Debug(tag, "DEFAULT_EXCLUSIVE : " + result);
+                var result = RenderTask.DefaultExclusive;
+                tlog.Debug(tag, "DefaultExclusive : " + result);
             }
             catch (Exception e)
             {
@@ -186,8 +136,8 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("RenderTask DEFAULT_INPUT_ENABLED.")]
-        [Property("SPEC", "Tizen.NUI.RenderTask.DEFAULT_INPUT_ENABLED A")]
+        [Description("RenderTask DefaultInputEnabled.")]
+        [Property("SPEC", "Tizen.NUI.RenderTask.DefaultInputEnabled A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
@@ -197,8 +147,8 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                var result = RenderTask.DEFAULT_INPUT_ENABLED;
-                tlog.Debug(tag, "DEFAULT_INPUT_ENABLED : " + result);
+                var result = RenderTask.DefaultInputEnabled;
+                tlog.Debug(tag, "DefaultInputEnabled : " + result);
             }
             catch (Exception e)
             {
@@ -211,8 +161,8 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("RenderTask DEFAULT_CLEAR_COLOR.")]
-        [Property("SPEC", "Tizen.NUI.RenderTask.DEFAULT_CLEAR_COLOR A")]
+        [Description("RenderTask DefaultClearColor.")]
+        [Property("SPEC", "Tizen.NUI.RenderTask.DefaultClearColor A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
@@ -222,8 +172,8 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                var result = RenderTask.DEFAULT_CLEAR_COLOR;
-                tlog.Debug(tag, "DEFAULT_CLEAR_COLOR : " + result);
+                var result = RenderTask.DefaultClearColor;
+                tlog.Debug(tag, "DefaultClearColor : " + result);
             }
             catch (Exception e)
             {
@@ -236,8 +186,8 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("RenderTask DEFAULT_CLEAR_ENABLED.")]
-        [Property("SPEC", "Tizen.NUI.RenderTask.DEFAULT_CLEAR_ENABLED A")]
+        [Description("RenderTask DefaultClearEnabled.")]
+        [Property("SPEC", "Tizen.NUI.RenderTask.DefaultClearEnabled A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
@@ -247,8 +197,8 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                var result = RenderTask.DEFAULT_CLEAR_ENABLED;
-                tlog.Debug(tag, "DEFAULT_CLEAR_ENABLED : " + result);
+                var result = RenderTask.DefaultClearEnabled;
+                tlog.Debug(tag, "DefaultClearEnabled : " + result);
             }
             catch (Exception e)
             {
@@ -261,8 +211,8 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("RenderTask DEFAULT_CULL_MODE.")]
-        [Property("SPEC", "Tizen.NUI.RenderTask.DEFAULT_CULL_MODE A")]
+        [Description("RenderTask DefaultCullMode.")]
+        [Property("SPEC", "Tizen.NUI.RenderTask.DefaultCullMode A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
@@ -272,8 +222,8 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                var result = RenderTask.DEFAULT_CULL_MODE;
-                tlog.Debug(tag, "DEFAULT_CULL_MODE : " + result);
+                var result = RenderTask.DefaultCullMode;
+                tlog.Debug(tag, "DefaultCullMode : " + result);
             }
             catch (Exception e)
             {
@@ -286,8 +236,8 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("RenderTask DEFAULT_REFRESH_RATE.")]
-        [Property("SPEC", "Tizen.NUI.RenderTask.DEFAULT_REFRESH_RATE A")]
+        [Description("RenderTask DefaultRefreshRate.")]
+        [Property("SPEC", "Tizen.NUI.RenderTask.DefaultRefreshRate A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
@@ -297,8 +247,8 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                var result = RenderTask.DEFAULT_REFRESH_RATE;
-                tlog.Debug(tag, "DEFAULT_REFRESH_RATE : " + result);
+                var result = RenderTask.DefaultRefreshRate;
+                tlog.Debug(tag, "DefaultRefreshRate : " + result);
             }
             catch (Exception e)
             {
