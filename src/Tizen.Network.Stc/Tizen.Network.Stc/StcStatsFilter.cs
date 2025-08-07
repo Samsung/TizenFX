@@ -24,6 +24,7 @@ namespace Tizen.Network.Stc
     /// A class for managing the Statistics Filters to match applications.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class StatisticsFilter
     {
         /// <summary>
@@ -31,6 +32,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>Application id.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string AppId { get; set; }
 
         /// <summary>
@@ -38,6 +40,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>from(start) of time interval.</value>
+        [Obsolete("Deprecated since API level 13")]
         public DateTime? From { get; set; }
 
         /// <summary>
@@ -45,6 +48,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>to(end) of time interval.</value>
+        [Obsolete("Deprecated since API level 13")]
         public DateTime? To { get; set; }
 
         /// <summary>
@@ -52,6 +56,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>Interface type.</value>
+        [Obsolete("Deprecated since API level 13")]
         public NetworkInterface? InterfaceType { get; set; }
 
         /// <summary>
@@ -59,6 +64,7 @@ namespace Tizen.Network.Stc
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <value>Time period.</value>
+        [Obsolete("Deprecated since API level 13")]
         public TimePeriodType? TimePeriod { get; set; }
 
         internal Interop.Stc.SafeFilterHandle ConvertToNativeFilter()

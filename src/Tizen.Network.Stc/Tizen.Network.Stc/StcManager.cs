@@ -64,6 +64,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// A class which is used to manage Smart Traffic control (Stc).<br/>
     /// </summary>
+    [Obsolete("Deprecated since API level 13")]
     public static class StcManager
     {
         /// <summary>
@@ -94,6 +95,7 @@ namespace Tizen.Network.Stc
         /// <exception cref="ArgumentException">Thrown when the method is provided with invalid argument.</exception>
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
+        [Obsolete("Deprecated since API level 13")]
         public static Task<IEnumerable<NetworkStatistics>> GetStatisticsAsync(StatisticsFilter filter)
         {
             return StcManagerImpl.Instance.GetStatisticsAsync(filter);
