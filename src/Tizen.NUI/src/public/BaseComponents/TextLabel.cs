@@ -31,7 +31,7 @@ namespace Tizen.NUI.BaseComponents
     /// Text labels are lightweight, non-editable, and do not respond to the user input.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public partial class TextLabel : View
+    public partial class TextLabel : View, IPropertyProvider
     {
         internal class TextLabelLayout : LayoutItem
         {
@@ -387,6 +387,19 @@ namespace Tizen.NUI.BaseComponents
         {
             return ThemeManager.GetStyle(this.GetType()) == null ? false : true;
         }
+
+        // IPropertyProvider
+        /// <summary>
+        /// Gets a string property by name.
+        /// </summary>
+        /// <param name="propertyName">The name of the property to retrieve.</param>
+        /// <returns>The string value of the property, or null if not found.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GetStringProperty(string propertyName) => propertyName switch
+        {
+            nameof(TranslatableText) => TranslatableText,
+            _ => null
+        };
 
         /// <summary>
         /// Requests asynchronous rendering of text with a fixed size.
