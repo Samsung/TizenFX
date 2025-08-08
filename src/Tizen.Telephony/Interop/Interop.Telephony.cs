@@ -26,6 +26,7 @@ internal static partial class Interop
 {
     /// <summary>
     /// The Telephony Interop class.
+    /// Deprecated since API13.
     /// </summary>
     internal static class Telephony
   {

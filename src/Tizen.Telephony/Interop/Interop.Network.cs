@@ -24,6 +24,7 @@ internal static partial class Interop
 {
     /// <summary>
     /// The Network Interop class.
+    /// Deprecated since API13.
     /// </summary>
     internal static partial class Network
     {
