@@ -14,6 +14,6 @@
 # limitations under the License.
 
 uid: Tizen.Context.AppHistory
-summary: The Tizen.Context.AppHistory namespace provides classes to retrieve the user's application usage patterns.
+summary: The Tizen.Context.AppHistory namespace provides classes to retrieve the user's application usage patterns. (deprecated)
 sinceTizen: 4
 ---
