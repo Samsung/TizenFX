@@ -307,6 +307,7 @@ namespace Tizen.NUI
                     realWindowSize.Width >= screenWidth && realWindowSize.Height >= screenHeight &&
                     IsMaximized() == false)
                 {
+                    borderLineThickness = borderInterface.BorderLineThickness;
                     Maximize(true);
                     borderInterface.OnMaximize(true);
                     ResizedEventArgs e = new ResizedEventArgs();
