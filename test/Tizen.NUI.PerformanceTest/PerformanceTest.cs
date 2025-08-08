@@ -154,7 +154,7 @@ class PerformanceTestExample : NUIApplication
 
         mSize = new Vector2(mWindowSize.X / mColumnsCount, mWindowSize.Y / mRowsCount);
 
-        Timer timer = new Timer(5000);
+        Timer timer = new Timer(mDurationPerColumns);
         timer.Tick += OnTick;
         mTimerList.AddLast(timer);
 
@@ -527,12 +527,6 @@ class PerformanceTestExample : NUIApplication
     [STAThread] // Forces app to use one thread to access NUI
     static void Main(string[] args)
     {
-        NUIApplication.Preload();
-        {
-            using var tl = new TextLabel();
-            using var te = new TextEditor();
-            Tizen.Log.Error("NUI", $"WindowSize : {Window.Default.WindowSize.Width} x {Window.Default.WindowSize.Height}");
-        }
         PerformanceTestExample example = new PerformanceTestExample();
         example.Run(args);
     }
