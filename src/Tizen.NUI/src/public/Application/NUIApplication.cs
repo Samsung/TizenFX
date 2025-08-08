@@ -75,15 +75,16 @@ namespace Tizen.NUI
         public static bool IsUsingIncrementalDispose => DisposeQueue.Instance.IncrementalDisposeSupported;
 
         /// <summary>
+        /// Whether current system support to create view at Preload time.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool SupportPreInitializedCreation { get; private set; }
+
+        /// <summary>
         /// The instance of ResourceManager.
         /// </summary>
         private static System.Resources.ResourceManager resourceManager;
         private static string currentLoadedXaml;
-
-        /// <summary>
-        /// Whether current system support to create view at Preload time.
-        /// </summary>
-        internal static bool SupportPreInitializedCreation { get; private set; }
 
         /// <summary>
         /// The border window
