@@ -808,6 +808,13 @@ namespace Tizen.NUI
             var processorController = ProcessorController.Instance;
             var registry = Registry.Instance;
 
+            // Get default window
+            Log.Info("NUI", "[NUI] Preload: GetWindow");
+            Tizen.Tracer.Begin("[NUI] Preload: GetWindow");
+            var nativeWindow = Interop.Application.GetPreInitializeWindow();
+            Window.Instance = Window.Default = new Window(nativeWindow, true);
+            Tizen.Tracer.End();
+
             // Initialize some BaseComponent static variables now
             BaseComponents.View.Preload();
             BaseComponents.ImageView.Preload();
