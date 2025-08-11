@@ -66,7 +66,8 @@ SsdpBrowser
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class SsdpBrowser : INsdBrowser</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public class SsdpBrowser : INsdBrowser</code></pre>
   </div>
 
 
@@ -96,7 +97,7 @@ SsdpBrowser
   <a id="Tizen_Network_Nsd_SsdpBrowser__ctor_" data-uid="Tizen.Network.Nsd.SsdpBrowser.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Nsd/Tizen.Network.Nsd/SsdpBrowser.cs/#L57">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Nsd/Tizen.Network.Nsd/SsdpBrowser.cs/#L59">View Source</a>
     </span>
     <h4 id="Tizen_Network_Nsd_SsdpBrowser__ctor_System_String_" data-uid="Tizen.Network.Nsd.SsdpBrowser.#ctor(System.String)">SsdpBrowser(string)</h4>
     <section>
@@ -107,7 +108,8 @@ SsdpBrowser
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SsdpBrowser(string target)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public SsdpBrowser(string target)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -156,7 +158,7 @@ SsdpBrowser
   <a id="Tizen_Network_Nsd_SsdpBrowser_StartDiscovery_" data-uid="Tizen.Network.Nsd.SsdpBrowser.StartDiscovery*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Nsd/Tizen.Network.Nsd/SsdpBrowser.cs/#L81">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Nsd/Tizen.Network.Nsd/SsdpBrowser.cs/#L84">View Source</a>
     </span>
     <h4 id="Tizen_Network_Nsd_SsdpBrowser_StartDiscovery" data-uid="Tizen.Network.Nsd.SsdpBrowser.StartDiscovery">StartDiscovery()</h4>
     <section>
@@ -167,7 +169,8 @@ SsdpBrowser
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void StartDiscovery()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public void StartDiscovery()</code></pre>
   </div>
   <h5 id="Tizen_Network_Nsd_SsdpBrowser_StartDiscovery_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>If there are any services available, the ServiceFound event will be invoked.
@@ -200,7 +203,7 @@ The application will keep browsing for the available or unavailable services unt
   <a id="Tizen_Network_Nsd_SsdpBrowser_StopDiscovery_" data-uid="Tizen.Network.Nsd.SsdpBrowser.StopDiscovery*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Nsd/Tizen.Network.Nsd/SsdpBrowser.cs/#L113">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Nsd/Tizen.Network.Nsd/SsdpBrowser.cs/#L117">View Source</a>
     </span>
     <h4 id="Tizen_Network_Nsd_SsdpBrowser_StopDiscovery" data-uid="Tizen.Network.Nsd.SsdpBrowser.StopDiscovery">StopDiscovery()</h4>
     <section>
@@ -211,7 +214,8 @@ The application will keep browsing for the available or unavailable services unt
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void StopDiscovery()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public void StopDiscovery()</code></pre>
   </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
@@ -246,7 +250,7 @@ The application will keep browsing for the available or unavailable services unt
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Nsd/Tizen.Network.Nsd/SsdpBrowser.cs/#L36">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.Nsd/Tizen.Network.Nsd/SsdpBrowser.cs/#L37">View Source</a>
     </span>
     <h4 id="Tizen_Network_Nsd_SsdpBrowser_ServiceFound" data-uid="Tizen.Network.Nsd.SsdpBrowser.ServiceFound">ServiceFound</h4>
     <section>
@@ -257,7 +261,8 @@ The application will keep browsing for the available or unavailable services unt
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;SsdpServiceFoundEventArgs&gt; ServiceFound</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public event EventHandler&lt;SsdpServiceFoundEventArgs&gt; ServiceFound</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
