@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 using Tizen.Internals.Errors;
 
 namespace Tizen.Network.Nsd
@@ -55,6 +56,7 @@ namespace Tizen.Network.Nsd
     /// Enumeration for the SSDP service states.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public enum SsdpServiceState
     {
         /// <summary>
@@ -85,6 +87,7 @@ namespace Tizen.Network.Nsd
         OperationFailed = -0x01CA0000 | 0x06
     }
 
+    [Obsolete("Deprecated since API level 13")]
     internal enum SsdpError
     {
         None = ErrorCode.None,
