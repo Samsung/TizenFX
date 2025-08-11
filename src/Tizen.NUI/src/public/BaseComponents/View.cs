@@ -33,7 +33,6 @@ namespace Tizen.NUI.BaseComponents
         private static HashSet<BindableProperty> scalePropertyGroup = new HashSet<BindableProperty>();
         private static bool defaultGrabTouchAfterLeave;
         private static bool defaultAllowOnlyOwnTouch;
-        private static bool onceForViewAccessibilityModeCustom = false;
 
         internal BackgroundExtraData backgroundExtraData;
         private int widthPolicy = LayoutParamPolicies.WrapContent;
@@ -463,6 +462,17 @@ namespace Tizen.NUI.BaseComponents
 
         static internal new void Preload()
         {
+            if (NUIApplication.SupportPreInitializedCreation)
+            {
+                using var temp = new View()
+                {
+                    BackgroundColor = Color.Transparent,
+                };
+#if !PROFILE_TV
+                using var temp2 = new View(ViewResizePolicyMode.Ignore);
+#endif
+            }
+
             Container.Preload();
             RegisterAccessibilityDelegate();
         }
@@ -524,9 +534,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 case ViewAccessibilityMode.Custom:
                 {
-                    if (onceForViewAccessibilityModeCustom == false && NUIApplication.IsPreload == false)
+                    if (_accessibilityDeletageRegisterted == false && NUIApplication.IsPreload == false)
                     {
-                        onceForViewAccessibilityModeCustom = true;
                         RegisterAccessibilityDelegate();
                     }
 
@@ -547,9 +556,8 @@ namespace Tizen.NUI.BaseComponents
                 default:
                 {
 #if !PROFILE_TV
-                    if (onceForViewAccessibilityModeCustom == false && NUIApplication.IsPreload == false)
+                    if (_accessibilityDeletageRegisterted == false && NUIApplication.IsPreload == false)
                     {
-                        onceForViewAccessibilityModeCustom = true;
                         RegisterAccessibilityDelegate();
                     }
 #endif
@@ -1510,10 +1518,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalCornerRadius(Vector4 cornerRadius)
         {
-            // Set for animation. Will be soon deprecated.
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerRadius = cornerRadius;
-            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
-
             Object.InternalSetPropertyVector4(SwigCPtr, Property.CornerRadius, cornerRadius.SwigCPtr);
         }
 
@@ -1558,13 +1562,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalCornerRadiusPolicy(VisualTransformPolicyType cornerRadiusPolicy)
         {
-            // Set for animation. Will be soon deprecated.
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerRadiusPolicy = cornerRadiusPolicy;
-            if (backgroundExtraData.CornerRadius != null)
-            {
-                UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
-            }
-
             Object.InternalSetPropertyInt(SwigCPtr, Property.CornerRadiusPolicy, (int)cornerRadiusPolicy);
         }
 
@@ -1608,10 +1605,6 @@ namespace Tizen.NUI.BaseComponents
         }
         internal void SetInternalCornerSqureness(Vector4 cornerSquareness)
         {
-            // Set for animation. Will be soon deprecated.
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerSquareness = cornerSquareness;
-            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
-
             Object.InternalSetPropertyVector4(SwigCPtr, Property.CornerSquareness, cornerSquareness.SwigCPtr);
         }
         internal Vector4 GetInternalCornerSqureness()
@@ -7254,6 +7247,38 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return isIgnored;
+        }
+
+        /// <summary>
+        /// The policy of children depth index generate.
+        /// </summary>
+        /// <remarks>
+        /// Depth index of children determine the order of rendering. But for micro optimization, we could set
+        /// all children of the view has the same rendering order. If then, we can set <see cref='ChildrenDepthIndexPolicyType.Equal'/>.
+        /// Usually if we know that every childrens are not overlapps each other, and has multiple rendering options. (e.g InnerShadow, Shadow, BorderlineWidth).
+        /// Default is <see cref='ChildrenDepthIndexPolicyType.Increase'/>.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ChildrenDepthIndexPolicyType ChildrenDepthIndexPolicy
+        {
+            set => SetInternalChildrenDepthIndexPolicy(value);
+            get => GetInternalChildrenDepthIndexPolicy();
+        }
+
+        private void SetInternalChildrenDepthIndexPolicy(ChildrenDepthIndexPolicyType value)
+        {
+            Object.InternalSetPropertyInt(SwigCPtr, Property.ChildrenDepthIndexPolicy, (int)value);
+        }
+
+        private ChildrenDepthIndexPolicyType GetInternalChildrenDepthIndexPolicy()
+        {
+            int temp = Object.InternalGetPropertyInt(SwigCPtr, Property.ChildrenDepthIndexPolicy);
+            switch (temp)
+            {
+                case 0: return ChildrenDepthIndexPolicyType.Increase;
+                case 1: return ChildrenDepthIndexPolicyType.Equal;
+                default: return ChildrenDepthIndexPolicyType.Default;
+            }
         }
 
         private LayoutExtraData EnsureLayoutExtraData()

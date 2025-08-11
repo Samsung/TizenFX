@@ -90,6 +90,10 @@ namespace Tizen.NUI.BaseComponents
         static internal new void Preload()
         {
             // Do not call View.Preload(), since we already call it
+            if (NUIApplication.SupportPreInitializedCreation)
+            {
+                using var temp = new ImageView();
+            }
 
             Property.Preload();
             // Do nothing. Just call for load static values.
@@ -263,15 +267,11 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(cPtr, cMemoryOwn, viewStyle)
+        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : this(cPtr, cMemoryOwn, null, shown)
         {
-            if (!shown)
-            {
-                SetVisible(false);
-            }
         }
 
-        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn, null)
+        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(cPtr, cMemoryOwn, viewStyle)
         {
             if (!shown)
             {
@@ -2232,28 +2232,6 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        [Obsolete("Do not use this, that is deprecated in API13.")]
-        internal override void ApplyCornerRadius()
-        {
-            base.ApplyCornerRadius();
-
-            if (backgroundExtraData == null) return;
-
-            // Update corner radius properties to image by ActionUpdateProperty
-            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ContentsCornerRadius))
-            {
-                if (backgroundExtraData.CornerRadius != null)
-                {
-                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
-                }
-                if (backgroundExtraData.CornerSquareness != null)
-                {
-                    _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
-                }
-                _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
-            }
-        }
-
         internal ResourceLoadingStatusType GetResourceStatus()
         {
             return (ResourceLoadingStatusType)Interop.View.GetVisualResourceStatus(this.SwigCPtr, Property.IMAGE);
@@ -2548,20 +2526,6 @@ namespace Tizen.NUI.BaseComponents
                     cachedImagePropertyMap.Set(NpatchImageVisualProperty.Border, _border);
                 }
             }
-
-            if (backgroundExtraData != null && backgroundExtraData.CornerRadius != null)
-            {
-                cachedImagePropertyMap.Set(Visual.Property.CornerRadius, backgroundExtraData.CornerRadius);
-                cachedImagePropertyMap.Set(Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
-
-                if (backgroundExtraData.CornerSquareness != null)
-                {
-                    cachedImagePropertyMap.Set(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness);
-                }
-            }
-
-            // We already applied background extra data now.
-            backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.ContentsCornerRadius;
 
             UpdateImageMap();
         }

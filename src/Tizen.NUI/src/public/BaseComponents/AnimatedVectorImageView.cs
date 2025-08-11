@@ -52,6 +52,17 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        static internal new void Preload()
+        {
+            // Do not call LottieAnimationView.Preload(), since we already call it
+            if (NUIApplication.SupportPreInitializedCreation)
+            {
+                using var temp = new AnimatedVectorImageView();
+            }
+
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
         /// Construct VectorAnimationView.
         /// </summary>

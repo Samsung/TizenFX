@@ -54,6 +54,17 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        static internal new void Preload()
+        {
+            // Do not call ImageView.Preload(), since we already call it
+            if (NUIApplication.SupportPreInitializedCreation)
+            {
+                using var temp = new LottieAnimationView();
+            }
+
+            // Do nothing. Just call for load static values.
+        }
+
         #region Constructor, Destructor, Dispose
         /// <summary>
         /// LottieAnimationView constructor
@@ -243,14 +254,6 @@ namespace Tizen.NUI.BaseComponents
                 }
 
                 Image = map;
-
-                if (backgroundExtraData != null)
-                {
-                    if (backgroundExtraData.CornerRadius != null || backgroundExtraData.CornerSquareness != null)
-                    {
-                        UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.ContentsCornerRadius);
-                    }
-                }
 
                 // All states applied well.
                 currentStates.changed = false;
