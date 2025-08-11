@@ -266,6 +266,11 @@ namespace Tizen.NUI.BaseComponents
         static internal new void Preload()
         {
             // Do not call View.Preload(), since we already call it
+            if (NUIApplication.SupportPreInitializedCreation)
+            {
+                using var temp = new TextField(Interop.TextField.New(true), true);
+                using var temp2 = new TextField(Interop.TextField.New(false), true);
+            }
 
             Property.Preload();
             // Do nothing. Just call for load static values.

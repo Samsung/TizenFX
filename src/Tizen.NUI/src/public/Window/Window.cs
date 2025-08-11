@@ -46,7 +46,7 @@ namespace Tizen.NUI
         private Touch internalLastTouchEvent;
         private Hover internalLastHoverEvent;
         private Timer internalHoverTimer;
-
+        private Dictionary<Type, object> _attached;
         private static int aliveCount;
 
         static internal bool IsSupportedMultiWindow()
@@ -457,6 +457,18 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             Left = 4,
 
+        }
+
+        /// <summary>
+        /// The flags of insets part to specify which window insets parts to include.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum InsetsPartFlags
+        {
+            None = 0,
+            StatusBar = 1 << 0,
+            Keyboard = 1 << 1,
+            Clipboard = 1 << 2
         }
 
         /// <summary>
@@ -2716,6 +2728,49 @@ namespace Tizen.NUI
                     });
                 }
             });
+        }
+
+        /// <summary>
+        /// Gets the window insets for all parts of the system UI.
+        /// </summary>
+        /// <returns>The window insets from all parts.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Extents GetInsets()
+        {
+            Extents ret = new Extents(Interop.Window.GetInsets(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the combined window insets for the specified parts of the system UI.
+        /// </summary>
+        /// <param name="insetsFlags">A bitwise combination of <see cref="InsetsPartFlags"/> values specifying which window insets parts to include.</param>
+        /// <returns>The combined window insets from the specified parts.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Extents GetInsets(InsetsPartFlags insetsFlags)
+        {
+            Extents ret = new Extents(Interop.Window.GetInsets(SwigCPtr, (int)insetsFlags), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal T GetAttached<T>()
+        {
+            if (_attached != null && _attached.ContainsKey(typeof(T)))
+                return (T)_attached[typeof(T)];
+            return default;
+        }
+
+        internal void ClearAttached<T>()
+        {
+            _attached?.Remove(typeof(T));
+        }
+
+        internal void SetAttached<T>(T value)
+        {
+            _attached ??= new Dictionary<Type, object>();
+            _attached[typeof(T)] = value;
         }
 
         IntPtr IWindowProvider.WindowHandle => GetNativeWindowHandler();

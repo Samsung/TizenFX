@@ -22,8 +22,55 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
+    /// <summary>
+    /// Loader class to loading image asynchronously.
+    /// Request to load image, and get result as PixelData or PixelBuffer
+    /// </summary>
+    /// <remarks>
+    /// Request image loading by Load().
+    /// Each Load API return their specific id, which can be used at
+    /// ImageLoaded / PixelBufferLoaded signal, or Cancel.
+    ///
+    /// We can create multiple loader. But load task id are not be shared.
+    /// All API should be called at main thread.
+    /// </remarks>
+    /// <example>
+    /// Here is some demo codes to get color picking by Palette
+    /// <code>
+    /// AsyncImageLoader loader = new AsyncImageLoader();
+    /// loader.PixelBufferLoaded += OnPixelBufferLoaded;
+    /// uint taskId = loader.Load("some_image.jpg");
+    /// ...
+    /// private async void OnPixelBufferLoadedWithColorPalette(object o, AsyncImageLoader.PixelBufferLoadedEventArgs e)
+    /// {
+    ///   if (taskId == e.LoadingTaskId)
+    ///   {
+    ///     PixelBuffer pixelBuffer = e.PixelBuffers[0];
+    ///
+    ///     // Copy the pixelData if we need to color picking.
+    ///     PixelData pixelData = pixelBuffer.CreatePixelData();
+    ///     ImageUrl imageUrl = pixelData.GenerateUrl();
+    ///     imageView.ResourceUrl = imageUrl.ToString();
+    ///
+    ///     // We need to create new class due to the PixelBuffer become invalidated after callback finished.
+    ///     var task = Palette.GenerateAsync(new PixelBuffer(pixelBuffer));
+    ///     var palette = await task;
+    ///
+    ///     // Get palette result.
+    ///     paletteSwatch = palette.GetDominantSwatch();
+    ///   }
+    /// }
+    /// ...
+    /// if (paletteSwatch != null)
+    /// {
+    ///   swatchInfo.BackgroundColor = paletteSwatch.GetRgb();
+    ///   titleLabel.TextColor = paletteSwatch.GetTitleTextColor();
+    ///   bodyLabel.TextColor = paletteSwatch.GetBodyTextColor();
+    /// }
+    /// </code>
+    /// </example>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class AsyncImageLoader : BaseHandle
+    public class AsyncImageLoader : BaseHandle
     {
         private EventHandler<ImageLoadedEventArgs> imageLoadedEventHandler;
         private EventHandler<PixelBufferLoadedEventArgs> pixelBufferLoadedEventHandler;
@@ -55,22 +102,19 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint Load(string url)
         {
-            uint ret = Interop.AsyncImageLoader.Load(SwigCPtr, url);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return Load(url, 0u, 0u);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint Load(string url, Uint16Pair dimensions)
+        public uint Load(string url, uint desiredWidth, uint desiredHeight)
         {
-            uint ret = Interop.AsyncImageLoader.Load(SwigCPtr, url, Uint16Pair.getCPtr(dimensions));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return Load(url, desiredWidth, desiredHeight, FittingModeType.ShrinkToFit, SamplingModeType.BoxThenLinear, true);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint Load(string url, Uint16Pair dimensions, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
+        public uint Load(string url, uint desiredWidth, uint desiredHeight, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
         {
+            using Uint16Pair dimensions = new Uint16Pair(desiredWidth, desiredHeight);
             uint ret = Interop.AsyncImageLoader.Load(SwigCPtr, url, Uint16Pair.getCPtr(dimensions), (int)fittingMode, (int)samplingMode, orientationCorrection);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

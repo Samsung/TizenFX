@@ -26,6 +26,7 @@ namespace Tizen.Telephony
     /// It provides the list of CallHandle which can be used to get the information about call related actions.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public class Call
     {
         internal IntPtr _handle;
@@ -46,6 +47,7 @@ namespace Tizen.Telephony
         /// <exception cref="ArgumentNullException">
         /// This exception occurs if the handle provided is null.
         /// </exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public Call(SlotHandle handle)
         {
             if (handle == null)
@@ -64,6 +66,7 @@ namespace Tizen.Telephony
         /// <value>
         /// The currently set preferred voicecall subscription value.
         /// </value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public CallPreferredVoiceSubscription PreferredVoiceSubscription
         {
             get
@@ -94,6 +97,7 @@ namespace Tizen.Telephony
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="UnauthorizedAccessException">In case of privileges not defined.</exception>
         /// <exception cref="OutOfMemoryException">In case of out of memory.</exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public IEnumerable<CallHandle> GetCallHandleList()
         {
             uint count;

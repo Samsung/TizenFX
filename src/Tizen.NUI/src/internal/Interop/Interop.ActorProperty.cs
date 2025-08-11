@@ -212,6 +212,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Actor_Property_DISPATCH_HOVER_MOTION_get")]
             public static extern int DispatchHoverMotionGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Actor_Property_CHILDREN_DEPTH_INDEX_POLICY_get")]
+            public static extern int ChildrenDepthIndexPolicyGet();
         }
     }
 }
