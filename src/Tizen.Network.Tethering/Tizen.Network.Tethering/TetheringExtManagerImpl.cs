@@ -28,24 +28,18 @@ namespace Tizen.Network.Tethering
             }
         }
 
-        internal string Ssid
+        internal void Ssid(string ssid)
         {
-            set
-            {
-                Log.Info(Globals.LogTag, "SetSSID");
-                int ret = Interop.TetheringExt.SetSSID(GetHandle(), value);
-                CheckReturnValue(ret, "SetSSID", PrivilegeNetworkProfile);
-            }
+            Log.Info(Globals.LogTag, "SetSSID");
+            int ret = Interop.TetheringExt.SetSSID(GetHandle(), ssid);
+            CheckReturnValue(ret, "SetSSID", PrivilegeNetworkProfile);
         }
 
-        internal string Passphrase
+        internal void Passphrase(string passphrase)
         {
-            set
-            {
-                Log.Info(Globals.LogTag, "SetPassphrase");
-                int ret = Interop.TetheringExt.SetPassphrase(GetHandle(), value);
-                CheckReturnValue(ret, "SetPassphrase", PrivilegeNetworkProfile);
-            }
+            Log.Info(Globals.LogTag, "SetPassphrase");
+            int ret = Interop.TetheringExt.SetPassphrase(GetHandle(), passphrase);
+            CheckReturnValue(ret, "SetPassphrase", PrivilegeNetworkProfile);
         }
 
         internal int Channel
@@ -79,6 +73,7 @@ namespace Tizen.Network.Tethering
         {
             Log.Info(Globals.LogTag, "TetheringExtManagerImpl constructor");
             _handle = IntPtr.Zero;
+            Initialize();
         }
 
         ~TetheringExtManagerImpl()
@@ -147,7 +142,7 @@ namespace Tizen.Network.Tethering
             return tetheringInfo;
         }
 
-        public int Security
+        public TetheringSecurityType Security
         {
             get
             {
@@ -155,7 +150,7 @@ namespace Tizen.Network.Tethering
                 int security = 0;
                 int ret = Interop.TetheringExt.GetSecurity(GetHandle(), out security);
                 CheckReturnValue(ret, "Security", PrivilegeNetworkGet);
-                return security;
+                return (TetheringSecurityType)security;
             }
         }
 

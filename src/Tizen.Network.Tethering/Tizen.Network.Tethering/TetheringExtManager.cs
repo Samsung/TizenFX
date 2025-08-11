@@ -22,8 +22,10 @@ namespace Tizen.Network.Tethering
 
     /// <summary>
     /// A manager class that enables applications to create and manage a Wi-Fi hotspot, allowing devices to share an internet connection over a Wireless Local Area Network (WLAN).
-    /// The TetheringExt Manager provides functionality to activate and deactivate a Wi-Fi hotspot, configure hotspot settings, and manage connected devices.
     /// </summary>
+    /// <remarks>
+    /// The TetheringExt Manager provides functionality to activate and deactivate a Wi-Fi hotspot, configure hotspot settings, and manage connected devices.
+    /// </remarks>
     /// <since_tizen> 13 </since_tizen>
     static public class TetheringExtManager
     {
@@ -32,7 +34,7 @@ namespace Tizen.Network.Tethering
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public event EventHandler<TetheringExtEnabledEventArgs> TetheringExtEnabled
+        static public event EventHandler<TetheringExtEnabledEventArgs> Enabled
         {
             add
             {
@@ -49,7 +51,7 @@ namespace Tizen.Network.Tethering
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public event EventHandler<TetheringExtDisabledEventArgs> TetheringExtDisabled
+        static public event EventHandler<TetheringExtDisabledEventArgs> Disabled
         {
             add
             {
@@ -76,15 +78,6 @@ namespace Tizen.Network.Tethering
             {
                 TetheringExtManagerImpl.Instance.ConnectionStateChanged -= value;
             }
-        }
-
-        /// <summary>
-        /// Initializes the TetheringExt handle.
-        /// </summary>
-        /// <since_tizen> 13 </since_tizen>
-        static public void Initialize()
-        {
-            TetheringExtManagerImpl.Instance.Initialize();
         }
 
         /// <summary>
@@ -121,29 +114,23 @@ namespace Tizen.Network.Tethering
         }
 
         /// <summary>
-        /// Retrieves and Set the Service Set Identifier (SSID) of the Wi-Fi hotspot managed by the TetheringExt Manager.
+        /// Sets the Service Set Identifier (SSID) of the Wi-Fi hotspot managed by the TetheringExt Manager.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public string Ssid
+        static public void SetSsid(string ssid)
         {
-            set
-            {
-                TetheringExtManagerImpl.Instance.Ssid = value;
-            }
+            TetheringExtManagerImpl.Instance.Ssid(ssid);
         }
 
         /// <summary>
-        /// Retrieves and Set the Passphrase of the Wi-Fi hotspot managed by the TetheringExt Manager.
+        /// Sets the Passphrase of the Wi-Fi hotspot managed by the TetheringExt Manager.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public string Passphrase
+        static public void SetPassphrase(string passhprase)
         {
-            set
-            {
-                TetheringExtManagerImpl.Instance.Passphrase = value;
-            }
+            TetheringExtManagerImpl.Instance.Passphrase(passhprase);
         }
 
         /// <summary>
@@ -178,7 +165,7 @@ namespace Tizen.Network.Tethering
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public int Security
+        static public TetheringSecurityType Security
         {
             get
             {

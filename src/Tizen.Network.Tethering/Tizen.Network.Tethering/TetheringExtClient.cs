@@ -34,7 +34,7 @@ namespace Tizen.Network.Tethering
         }
 
         /// <summary>
-        /// This function destroys the current instance of the class.
+        /// This method releases unmanage resources and do other clean up opearations.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         public void Dispose()
