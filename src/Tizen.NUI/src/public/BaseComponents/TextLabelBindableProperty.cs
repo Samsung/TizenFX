@@ -455,7 +455,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 var textLabel = (TextLabel)bindable;
-                textLabel.SetInternalEmboss((string)newValue);
+                textLabel.SetInternalEmboss((PropertyMap)newValue);
             }
         }
         internal static object GetInternalEmbossProperty(BindableObject bindable)

@@ -225,7 +225,7 @@ namespace Tizen.NUI.BaseComponents
                 TextShadowProperty = BindableProperty.Create(nameof(TextShadow), typeof(TextShadow), typeof(TextLabel), null, 
                     propertyChanged: SetInternalTextShadowProperty, defaultValueCreator: GetInternalTextShadowProperty);
 
-                EmbossProperty = BindableProperty.Create(nameof(Emboss), typeof(string), typeof(TextLabel), string.Empty, 
+                EmbossProperty = BindableProperty.Create(nameof(Emboss), typeof(PropertyMap), typeof(TextLabel), null,
                     propertyChanged: SetInternalEmbossProperty, defaultValueCreator: GetInternalEmbossProperty);
 
                 OutlineProperty = BindableProperty.Create(nameof(Outline), typeof(PropertyMap), typeof(TextLabel), null, 
@@ -2004,13 +2004,13 @@ namespace Tizen.NUI.BaseComponents
         /// The default emboss parameters.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public string Emboss
+        public PropertyMap Emboss
         {
             get
             {
                 if (NUIApplication.IsUsingXaml)
                 {
-                    return (string)GetValue(EmbossProperty);
+                    return (PropertyMap)GetValue(EmbossProperty);
                 }
                 else
                 {
@@ -2031,17 +2031,23 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private void SetInternalEmboss(string newValue)
+        private void SetInternalEmboss(PropertyMap newValue)
         {
             if (newValue != null)
             {
-                Object.InternalSetPropertyString(SwigCPtr, Property.EMBOSS, newValue);
+                using var pv = new PropertyValue(newValue);
+                Object.SetProperty(SwigCPtr, Property.EMBOSS, pv);
             }
         }
 
-        private string GetInternalEmboss()
+        private PropertyMap GetInternalEmboss()
         {
-            return Object.InternalGetPropertyString(SwigCPtr, Property.EMBOSS);
+            PropertyMap temp = new PropertyMap();
+            using (var prop = Object.GetProperty(SwigCPtr, Property.EMBOSS))
+            {
+                prop.Get(temp);
+            }
+            return temp;
         }
 
         /// <summary>

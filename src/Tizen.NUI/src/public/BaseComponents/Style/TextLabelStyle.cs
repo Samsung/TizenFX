@@ -37,7 +37,7 @@ namespace Tizen.NUI.BaseComponents
         static readonly IStyleProperty AutoScrollGapProperty = new StyleProperty<TextLabel, float>((v, o) => v.AutoScrollGap = o);
         static readonly IStyleProperty LineSpacingProperty = new StyleProperty<TextLabel, float>((v, o) => v.LineSpacing = o);
         static readonly IStyleProperty RelativeLineHeightProperty = new StyleProperty<TextLabel, float>((v, o) => v.RelativeLineHeight = o);
-        static readonly IStyleProperty EmbossProperty = new StyleProperty<TextLabel, string>((v, o) => v.Emboss = o);
+        static readonly IStyleProperty EmbossProperty = new StyleProperty<TextLabel, PropertyMap>((v, o) => v.Emboss = o);
         static readonly IStyleProperty PixelSizeSelectorProperty = new StyleProperty<TextLabel, Selector<float?>>((v, o) => v.PixelSizeSelector = o);
         static readonly IStyleProperty EllipsisProperty = new StyleProperty<TextLabel, bool>((v, o) => v.Ellipsis = o);
         static readonly IStyleProperty AutoScrollLoopDelayProperty = new StyleProperty<TextLabel, float>((v, o) => v.AutoScrollLoopDelay = o);
@@ -166,9 +166,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Emboss
+        public PropertyMap Emboss
         {
-            get => (string)GetValue(EmbossProperty);
+            get => (PropertyMap)GetValue(EmbossProperty);
             set => SetValue(EmbossProperty, value);
         }
 
