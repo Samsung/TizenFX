@@ -1349,7 +1349,7 @@ namespace Tizen.NUI
         {
             if (wheelEvent != null)
             {
-                Tizen.Log.Info("NUI", $"FeedWheel {wheelEvent.Point.X}, {wheelEvent.Point.Y}, Type : {wheelEvent.Type}, Direction : {wheelEvent.Direction}");
+                Tizen.Log.Info("NUI", $"FeedWheel {wheelEvent.Point?.X}, {wheelEvent.Point?.Y}, Type : {wheelEvent.Type}, Direction : {wheelEvent.Direction}");
             }
             Interop.Window.FeedWheelEvent(SwigCPtr, Wheel.getCPtr(wheelEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
