@@ -22,6 +22,7 @@ namespace Tizen.Context.AppHistory
     /// The Base class for application statistics.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public abstract class AppStatistics
     {
         internal const string AppStatsQueryResult = "QueryResult";

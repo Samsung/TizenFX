@@ -22,6 +22,7 @@ namespace Tizen.Context.AppHistory
     /// This class contains the application usage statistics information retrieved by UsageStatistics.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public class UsageStatisticsData : AppStatisticsData
     {
         internal UsageStatisticsData(string appId, int duration, int launchCount, DateTime lastLaunchTime)
@@ -37,6 +38,7 @@ namespace Tizen.Context.AppHistory
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <value>Duration when the application is used in the foreground in seconds.</value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public int Duration { get; private set; }
 
         /// <summary>
@@ -44,6 +46,7 @@ namespace Tizen.Context.AppHistory
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <value>How many times the application is used in the foreground.</value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public int LaunchCount { get; private set; }
 
         /// <summary>
@@ -51,6 +54,7 @@ namespace Tizen.Context.AppHistory
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <value>The last time when the application has been used.</value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public DateTime LastLaunchTime { get; private set; }
     }
 }
