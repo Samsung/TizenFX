@@ -37,54 +37,51 @@ namespace Tizen.NUI.BaseComponents
         {
             protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
             {
-                // Padding will be automatically applied by DALi TextLabel.
-                float totalWidth = widthMeasureSpec.Size.AsDecimal();
-                float totalHeight = heightMeasureSpec.Size.AsDecimal();
-
-                if (widthMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
+                var widthSpecSize = widthMeasureSpec.GetSize().AsDecimal();
+                var newWidthSpecSize = Math.Max(Math.Min(widthSpecSize, Owner.MaximumSize.Width), Owner.MinimumSize.Width);
+                if (widthSpecSize != newWidthSpecSize)
                 {
-                    if (heightMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
-                    {
-                        var padding = Owner.Padding;
-                        totalHeight = Owner.GetHeightForWidth(totalWidth - (padding.Start + padding.End));
-                        heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
-                    }
+                    widthMeasureSpec.SetSize(new LayoutLength(newWidthSpecSize));
                 }
-                else
+
+                var heightSpecSize = heightMeasureSpec.GetSize().AsDecimal();
+                var newHeightSpecSize = Math.Max(Math.Min(heightSpecSize, Owner.MaximumSize.Height), Owner.MinimumSize.Height);
+                if (heightSpecSize != newHeightSpecSize)
                 {
-                    var minSize = Owner.MinimumSize;
-                    var maxSize = Owner.MaximumSize;
+                    heightMeasureSpec.SetSize(new LayoutLength(newHeightSpecSize));
+                }
+
+                // Padding will be automatically applied by DALi TextLabel.
+                float totalWidth = newWidthSpecSize;
+                float totalHeight = newHeightSpecSize;
+
+                if (widthMeasureSpec.GetMode() != MeasureSpecification.ModeType.Exactly)
+                {
+                    var minWidth = Owner.MinimumSize.Width;
+                    var maxWidth = widthMeasureSpec.GetMode() == MeasureSpecification.ModeType.Unspecified ? Owner.MaximumSize.Width : Math.Min(Owner.MaximumSize.Width, newWidthSpecSize);
                     var naturalSize = Owner.GetNaturalSize();
 
-                    if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
-                    {
-                        // GetWidthForHeight is not implemented.
-                        float width = naturalSize != null ? naturalSize.Width : 0;
-                        totalWidth = Math.Min(Math.Max(width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
-                        widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
-                    }
-                    else
-                    {
-                        float width = naturalSize?.Width ?? 0;
-                        width = Math.Min(width, totalWidth);
+                    float width = naturalSize != null ? naturalSize.Width : 0;
+                    // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+                    totalWidth = Math.Max(Math.Min(width, maxWidth), minWidth);
+                }
 
-                        // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
-                        totalWidth = Math.Min(Math.Max(width, minSize.Width), (maxSize.Width < 0 ? Int32.MaxValue : maxSize.Width));
+                if (heightMeasureSpec.GetMode() != MeasureSpecification.ModeType.Exactly)
+                {
+                    var minHeight = Owner.MinimumSize.Height;
+                    var maxHeight = heightMeasureSpec.GetMode() == MeasureSpecification.ModeType.Unspecified ? Owner.MaximumSize.Height : Math.Min(Owner.MaximumSize.Height, newHeightSpecSize);
+                    var padding = Owner.Padding;
 
-                        var padding = Owner.Padding;
-                        float height = Owner.GetHeightForWidth(totalWidth - (padding.Start + padding.End));
-                        totalHeight = Math.Min(Math.Max(height, minSize.Height), (maxSize.Height < 0 ? Int32.MaxValue : maxSize.Height));
-
-                        heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
-                        widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
-                    }
+                    float height = Owner.GetHeightForWidth(totalWidth - (padding.Start + padding.End));
+                    // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+                    totalHeight = Math.Max(Math.Min(height, maxHeight), minHeight);
                 }
 
                 MeasuredSize.StateType childWidthState = MeasuredSize.StateType.MeasuredSizeOK;
                 MeasuredSize.StateType childHeightState = MeasuredSize.StateType.MeasuredSizeOK;
 
                 SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, childWidthState),
-                                       ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, childHeightState));
+                                        ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, childHeightState));
             }
         }
 
