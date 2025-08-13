@@ -2045,9 +2045,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The TextEmboss property.<br />
-        /// The default emboss parameters.<br />
-        /// The emboss map contains the following keys :<br />
+        /// Set Emboss to TextLabel.<br />
+        /// <param name="textEmboss">The text emboss</param>
         /// <list type="table">
         /// <item><term>enable (bool)</term><description>Whether the emboss is enabled (the default value is false)</description></item>
         /// <item><term>direction (Vector2)</term><description>The emboss direction in texture space. (the default value is (0.0f, 0.0f).)</description></item>
@@ -2057,26 +2056,80 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PropertyMap TextEmboss
+        public void SetEmboss(TextEmboss textEmboss)
         {
-            get
+            using var map = new PropertyMap();
+            map.Add("enable", new PropertyValue(textEmboss.Enable));
+            map.Add("direction", new PropertyValue(textEmboss.Direction));
+            map.Add("strength", new PropertyValue(textEmboss.Strength));
+            map.Add("lightColor", new PropertyValue(textEmboss.LightColor));
+            map.Add("shadowColor", new PropertyValue(textEmboss.ShadowColor));
+
+            Object.SetProperty(SwigCPtr, Property.EMBOSS, new PropertyValue(map));
+        }
+
+        /// <summary>
+        /// Get Emboss from TextLabel.<br />
+        /// <list type="table">
+        /// <item><term>enable (bool)</term><description>Whether the emboss is enabled (the default value is false)</description></item>
+        /// <item><term>direction (Vector2)</term><description>The emboss direction in texture space. (the default value is (0.0f, 0.0f).)</description></item>
+        /// <item><term>strength (float)</term><description>The strength of emboss in pixels. (the default value is 0.0f.)</description></item>
+        /// <item><term>lightColor (Color)</term><description>The highlight color for raised areas. (the default value is transparent.)</description></item>
+        /// <item><term>shadowColor (Color)</term><description>The shadow color for recessed areas. (the default value is transparent.)</description></item>
+        /// </list>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextEmboss GetEmboss()
+        {
+            var result = new TextEmboss();
+            using var val = Object.GetProperty(SwigCPtr, Property.EMBOSS);
+            PropertyMap map = new PropertyMap();
+            val.Get(map);
+
+            if (map != null)
             {
-                PropertyMap temp = new PropertyMap();
-                using (var prop = Object.GetProperty(SwigCPtr, Property.EMBOSS))
+                using var enablePv = map.Find("enable");
+                if (enablePv != null)
                 {
-                    prop.Get(temp);
+                    bool enable;
+                    enablePv.Get(out enable);
+                    result.Enable = enable;
                 }
-                return temp;
-            }
-            set
-            {
-                if (value != null)
+
+                using var directionPv = map.Find("direction");
+                if (directionPv != null)
                 {
-                    using var pv = new PropertyValue(value);
-                    Object.SetProperty(SwigCPtr, Property.EMBOSS, pv);
+                    Vector2 direction = new Vector2();
+                    directionPv.Get(direction);
+                    result.Direction = direction;
                 }
-                NotifyPropertyChanged();
+
+                using var strengthPv = map.Find("strength");
+                if (strengthPv != null)
+                {
+                    float strength;
+                    strengthPv.Get(out strength);
+                    result.Strength = strength;
+                }
+
+                using var lightColorPv = map.Find("lightColor");
+                if (lightColorPv != null)
+                {
+                    Color lightColor = new Color();
+                    lightColorPv.Get(lightColor);
+                    result.LightColor = lightColor;
+                }
+
+                using var shadowColorPv = map.Find("shadowColor");
+                if (shadowColorPv != null)
+                {
+                    Color shadowColor = new Color();
+                    lightColorPv.Get(shadowColor);
+                    result.LightColor = shadowColor;
+                }
             }
+
+            return result;
         }
 
         /// <summary>

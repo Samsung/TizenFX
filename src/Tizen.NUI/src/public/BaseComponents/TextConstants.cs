@@ -262,7 +262,7 @@ namespace Tizen.NUI.Text
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? Height { get; set; }
-        
+
         /// <summary>
         /// The width of the dashes of the dashed underline (if null, the default value is 2.0f). <br />
         /// Only valid when "UnderlineType.Dashed" type is used.
@@ -952,5 +952,46 @@ namespace Tizen.NUI.Text
         /// <returns>The hash code.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => (Family, Path, Style).GetHashCode();
+    }
+
+    /// <summary>
+    /// A struct to pass data of SetTextEmboss and GetTextEmboss methods.
+    /// </summary>
+    /// <remarks>
+    /// The TextFitArray struct is used as an argument to SetTextEmboss and GetTextEmboss methods. <br />
+    /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetTextEmboss"/> and <see cref="Tizen.NUI.BaseComponents.TextLabel.GetTextEmboss"/>.
+    /// </remarks>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct TextEmboss
+    {
+        /// <summary>
+        /// Whether the emboss is enabled (the default value is false).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Enable { get; set; }
+
+        /// <summary>
+        /// The emboss direction in texture space. (the default value is (0.0f, 0.0f).)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector2 Direction { get; set; }
+
+        /// <summary>
+        /// The strength of emboss in pixels. (the default value is 0.0f.)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float Strength { get; set; }
+
+        /// <summary>
+        /// The highlight color for raised areas. (the default value is transparent.)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color LightColor { get; set; }
+
+        /// <summary>
+        /// The shadow color for recessed areas. (the default value is transparent.)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color ShadowColor { get; set; }
     }
 }
