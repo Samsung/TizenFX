@@ -103,6 +103,7 @@ namespace Tizen.NUI.BaseComponents
             }
             if (disposing)
             {
+                Layout?.Dispose();
                 TransitionOptions?.Dispose();
             }
             disposed = true;
