@@ -866,8 +866,8 @@ namespace Tizen.NUI
                     }
 
                     // Padding sizes are added because Padding sizes will be subtracted in MeasureChild().
-                    MeasureSpecification childWidthMeasureSpec = new MeasureSpecification(new LayoutLength(width + Padding.Start + Padding.End), MeasureSpecification.ModeType.Exactly);
-                    MeasureSpecification childHeightMeasureSpec = new MeasureSpecification(new LayoutLength(height + Padding.Top + Padding.Bottom), MeasureSpecification.ModeType.Exactly);
+                    MeasureSpecification childWidthMeasureSpec = new MeasureSpecification(new LayoutLength(width + PaddingStart + PaddingEnd), MeasureSpecification.ModeType.Exactly);
+                    MeasureSpecification childHeightMeasureSpec = new MeasureSpecification(new LayoutLength(height + PaddingTop + PaddingBottom), MeasureSpecification.ModeType.Exactly);
 
                     // To calculate the grand children's Measure() with the mode type Exactly,
                     // children's Measure() is called with MatchParent if the children have WrapContent.
@@ -922,10 +922,10 @@ namespace Tizen.NUI
                     Geometry horizontalGeometry = GetHorizontalLayout(childLayout.Owner);
                     Geometry verticalGeometry = GetVerticalLayout(childLayout.Owner);
 
-                    LayoutLength childLeft = new LayoutLength(horizontalGeometry.Position + Padding.Start + childLayout.Margin.Start);
-                    LayoutLength childRight = new LayoutLength(horizontalGeometry.Position + horizontalGeometry.Size + Padding.Start - childLayout.Margin.End);
-                    LayoutLength childTop = new LayoutLength(verticalGeometry.Position + Padding.Top + childLayout.Margin.Top);
-                    LayoutLength childBottom = new LayoutLength(verticalGeometry.Position + verticalGeometry.Size + Padding.Top - childLayout.Margin.Bottom);
+                    LayoutLength childLeft = new LayoutLength(horizontalGeometry.Position + PaddingStart + childLayout.MarginStart);
+                    LayoutLength childRight = new LayoutLength(horizontalGeometry.Position + horizontalGeometry.Size + PaddingStart - childLayout.MarginEnd);
+                    LayoutLength childTop = new LayoutLength(verticalGeometry.Position + PaddingTop + childLayout.MarginTop);
+                    LayoutLength childBottom = new LayoutLength(verticalGeometry.Position + verticalGeometry.Size + PaddingTop - childLayout.MarginBottom);
 
                     childLayout.Layout(childLeft, childTop, childRight, childBottom);
                 }
