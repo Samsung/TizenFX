@@ -2045,6 +2045,41 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The TextEmboss property.<br />
+        /// The default emboss parameters.<br />
+        /// The emboss map contains the following keys :<br />
+        /// <list type="table">
+        /// <item><term>enable (bool)</term><description>Whether the emboss is enabled (the default value is false)</description></item>
+        /// <item><term>direction (Vector2)</term><description>The emboss direction in texture space. (the default value is (0.0f, 0.0f).)</description></item>
+        /// <item><term>strength (float)</term><description>The strength of emboss in pixels. (the default value is 0.0f.)</description></item>
+        /// <item><term>lightColor (Color)</term><description>The highlight color for raised areas. (the default value is transparent.)</description></item>
+        /// <item><term>shadowColor (Color)</term><description>The shadow color for recessed areas. (the default value is transparent.)</description></item>
+        /// </list>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap TextEmboss
+        {
+            get
+            {
+                PropertyMap temp = new PropertyMap();
+                using (var prop = Object.GetProperty(SwigCPtr, Property.EMBOSS))
+                {
+                    prop.Get(temp);
+                }
+                return temp;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    using var pv = new PropertyValue(value);
+                    Object.SetProperty(SwigCPtr, Property.EMBOSS, pv);
+                }
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The Outline property.<br />
         /// The default outline parameters.<br />
         /// The outline map contains the following keys :<br />
