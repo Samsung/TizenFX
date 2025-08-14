@@ -2056,16 +2056,10 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetEmboss(TextEmboss textEmboss)
+        public void SetTextEmboss(TextEmboss textEmboss)
         {
-            using var map = new PropertyMap();
-            map.Add("enable", new PropertyValue(textEmboss.Enable));
-            map.Add("direction", new PropertyValue(textEmboss.Direction));
-            map.Add("strength", new PropertyValue(textEmboss.Strength));
-            map.Add("lightColor", new PropertyValue(textEmboss.LightColor));
-            map.Add("shadowColor", new PropertyValue(textEmboss.ShadowColor));
-
-            Object.SetProperty(SwigCPtr, Property.EMBOSS, new PropertyValue(map));
+            var embossMap = TextMapHelper.GetTextEmbossMap(textEmboss);
+            SetInternalTextEmboss(embossMap);
         }
 
         /// <summary>
@@ -2079,57 +2073,29 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextEmboss GetEmboss()
+        public TextEmboss GetTextEmboss()
         {
-            var result = new TextEmboss();
-            using var val = Object.GetProperty(SwigCPtr, Property.EMBOSS);
-            PropertyMap map = new PropertyMap();
-            val.Get(map);
-
-            if (map != null)
+            TextEmboss textEmboss;
+            using (var textEmbossMap = (PropertyMap)GetInternalTextEmboss())
             {
-                using var enablePv = map.Find("enable");
-                if (enablePv != null)
-                {
-                    bool enable;
-                    enablePv.Get(out enable);
-                    result.Enable = enable;
-                }
-
-                using var directionPv = map.Find("direction");
-                if (directionPv != null)
-                {
-                    Vector2 direction = new Vector2();
-                    directionPv.Get(direction);
-                    result.Direction = direction;
-                }
-
-                using var strengthPv = map.Find("strength");
-                if (strengthPv != null)
-                {
-                    float strength;
-                    strengthPv.Get(out strength);
-                    result.Strength = strength;
-                }
-
-                using var lightColorPv = map.Find("lightColor");
-                if (lightColorPv != null)
-                {
-                    Color lightColor = new Color();
-                    lightColorPv.Get(lightColor);
-                    result.LightColor = lightColor;
-                }
-
-                using var shadowColorPv = map.Find("shadowColor");
-                if (shadowColorPv != null)
-                {
-                    Color shadowColor = new Color();
-                    lightColorPv.Get(shadowColor);
-                    result.LightColor = shadowColor;
-                }
+                textEmboss = TextMapHelper.GetTextEmbossStruct(textEmbossMap);
             }
+            return textEmboss;
+        }
 
-            return result;
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private void SetInternalTextEmboss(PropertyMap embossMap)
+        {
+            Object.SetProperty(SwigCPtr, Property.EMBOSS, new PropertyValue(embossMap));
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private PropertyMap GetInternalTextEmboss()
+        {
+            var temp = new PropertyMap();
+            using var prop = Object.GetProperty(SwigCPtr, Property.EMBOSS);
+            prop.Get(temp);
+            return temp;
         }
 
         /// <summary>
