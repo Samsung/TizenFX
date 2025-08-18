@@ -629,7 +629,7 @@ namespace Tizen.NUI.BaseComponents
         /// <returns> A PropertyMap for Emboss property. </returns>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static PropertyMap GetTextEmbossMap(Emboss emboss)
+        public static PropertyMap GetEmbossMap(Emboss emboss)
         {
             var map = new PropertyMap();
             map.Add("enable", new PropertyValue(emboss.Enable));
@@ -656,7 +656,7 @@ namespace Tizen.NUI.BaseComponents
         /// <returns> A Emboss struct. </returns>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Emboss GetTextEmbossStruct(PropertyMap map)
+        public static Emboss GetEmbossStruct(PropertyMap map)
         {
             var result = new Emboss();
 

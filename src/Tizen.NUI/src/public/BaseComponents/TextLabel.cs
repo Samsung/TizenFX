@@ -2056,9 +2056,9 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetTextEmboss(Emboss emboss)
+        public void SetEmboss(Emboss emboss)
         {
-            var embossMap = TextMapHelper.GetTextEmbossMap(emboss);
+            var embossMap = TextMapHelper.GetEmbossMap(emboss);
             SetInternalTextEmboss(embossMap);
         }
 
@@ -2073,12 +2073,12 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Emboss GetTextEmboss()
+        public Emboss GetEmboss()
         {
             Emboss emboss;
             using (var textEmbossMap = (PropertyMap)GetInternalTextEmboss())
             {
-                emboss = TextMapHelper.GetTextEmbossStruct(textEmbossMap);
+                emboss = TextMapHelper.GetEmbossStruct(textEmbossMap);
             }
             return emboss;
         }
