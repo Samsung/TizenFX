@@ -2046,7 +2046,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Set Emboss to TextLabel.<br />
-        /// <param name="textEmboss">The text emboss</param>
+        /// <param name="emboss">The text emboss</param>
         /// <list type="table">
         /// <item><term>enable (bool)</term><description>Whether the emboss is enabled (the default value is false)</description></item>
         /// <item><term>direction (Vector2)</term><description>The emboss direction in texture space. (the default value is (0.0f, 0.0f).)</description></item>
@@ -2056,9 +2056,9 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetTextEmboss(TextEmboss textEmboss)
+        public void SetTextEmboss(Emboss emboss)
         {
-            var embossMap = TextMapHelper.GetTextEmbossMap(textEmboss);
+            var embossMap = TextMapHelper.GetTextEmbossMap(emboss);
             SetInternalTextEmboss(embossMap);
         }
 
@@ -2073,14 +2073,14 @@ namespace Tizen.NUI.BaseComponents
         /// </list>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextEmboss GetTextEmboss()
+        public Emboss GetTextEmboss()
         {
-            TextEmboss textEmboss;
+            Emboss emboss;
             using (var textEmbossMap = (PropertyMap)GetInternalTextEmboss())
             {
-                textEmboss = TextMapHelper.GetTextEmbossStruct(textEmbossMap);
+                emboss = TextMapHelper.GetTextEmbossStruct(textEmbossMap);
             }
-            return textEmboss;
+            return emboss;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
