@@ -110,6 +110,8 @@ namespace Tizen.NUI.BaseComponents
         private GLTerminateDelegate glTerminateCallback;
         private InternalGLRenderFrameDelegate internalRenderFrameCallback;
 
+        private bool _terminated;
+
         /// <summary>
         /// Type of callback to initialize OpenGLES.
         /// </summary>
@@ -235,6 +237,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Registers GL callback functions to render with OpenGL ES
         /// </summary>
+        /// <remarks>
+        /// Registered callback could be called after disposed.
+        /// </remarks>
         /// <param name="glInit">The callback function for GL initialization</param>
         /// <param name="glRenderFrame">The callback function to render the frame</param>
         /// <param name="glTerminate">The callback function to clean up GL resources</param>
@@ -319,6 +324,23 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Terminate gl calls forcibly.
+        /// </summary>
+        /// <remarks>
+        /// All API after Terminate don't have any efforts.
+        /// </remarks>
+        public void Terminate()
+        {
+            if (!_terminated)
+            {
+                Tizen.Log.Info("NUI", "DirectRenderingGLView Terminate called\n");
+                _terminated = true;
+                Interop.GLView.GlViewTerminate(SwigCPtr);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
+        }
+
+        /// <summary>
         /// you can override it to clean-up your own resources.
         /// </summary>
         /// <param name="type">DisposeTypes</param>
@@ -344,6 +366,8 @@ namespace Tizen.NUI.BaseComponents
 
                 // DevNote : Do not make glRenderFrameCallback as null here, to avoid race condition or lock overhead.
             }
+
+            Terminate();
 
             base.Dispose(type);
         }
