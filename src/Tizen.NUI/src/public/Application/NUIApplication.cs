@@ -628,6 +628,21 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Set the maximum value of frames per seconds.
+        /// </summary>
+        /// <param name="maximumRenderFrameRate">The maximum fps for this adaptor system.</param>
+        /// <remarks>
+        /// Each frame will render multiple of given maximum render frame rate.
+        /// For example, if maximumRenderFrameRate = 50.0f, each elapse time could be 20ms, 40ms, 60ms, and so on.
+        ///</remarks>
+        /// Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetMaximumRenderFrameRate(float maximumRenderFrameRate)
+        {
+            Adaptor.Instance.SetMaximumRenderFrameRate(maximumRenderFrameRate);
+        }
+
+        /// <summary>
         /// Gets the screen size
         /// </summary>
         /// <returns>Screen size</returns>
