@@ -958,11 +958,11 @@ namespace Tizen.NUI.Text
     /// A struct to pass data of SetTextEmboss and GetTextEmboss methods.
     /// </summary>
     /// <remarks>
-    /// The TextFitArray struct is used as an argument to SetTextEmboss and GetTextEmboss methods. <br />
+    /// The Emboss struct is used as an argument to SetTextEmboss and GetTextEmboss methods. <br />
     /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetTextEmboss"/> and <see cref="Tizen.NUI.BaseComponents.TextLabel.GetTextEmboss"/>.
     /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct TextEmboss : IEquatable<TextEmboss>
+    public struct Emboss : IEquatable<Emboss>
     {
         /// <summary>
         /// Whether the emboss is enabled (the default value is false).
@@ -998,38 +998,38 @@ namespace Tizen.NUI.Text
         /// Determines whether the specified object is equal to the current object.
         /// </summary>
         /// <param name="obj">The object to compare with the current object.</param>
-        /// <returns>true if equal TextEmboss, else false.</returns>
+        /// <returns>true if equal Emboss, else false.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool Equals(object obj) => obj is TextEmboss other && this.Equals(other);
+        public override bool Equals(object obj) => obj is Emboss other && this.Equals(other);
 
         /// <summary>
         /// Determines whether the specified object is equal to the current object.
         /// </summary>
-        /// <param name="other">The TextEmboss to compare with the current TextEmboss.</param>
-        /// <returns>true if equal TextEmboss, else false.</returns>
+        /// <param name="other">The Emboss to compare with the current Emboss.</param>
+        /// <returns>true if equal Emboss, else false.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Equals(TextEmboss other) => Enable == other.Enable && Direction == other.Direction && Strength == other.Strength && LightColor == other.LightColor && ShadowColor == other.ShadowColor;
+        public bool Equals(Emboss other) => Enable == other.Enable && Direction == other.Direction && Strength == other.Strength && LightColor == other.LightColor && ShadowColor == other.ShadowColor;
 
         /// <summary>
         /// The == operator.
         /// </summary>
-        /// <param name="lhsTextEmboss">TextEmboss to compare</param>
-        /// <param name="rhsTextEmboss">TextEmboss to be compared</param>
-        /// <returns>true if TextEmboss are equal</returns>
+        /// <param name="lhsEmboss">Emboss to compare</param>
+        /// <param name="rhsEmboss">Emboss to be compared</param>
+        /// <returns>true if Emboss are equal</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool operator ==(TextEmboss lhsTextEmboss, TextEmboss rhsTextEmboss) => lhsTextEmboss.Equals(rhsTextEmboss);
+        public static bool operator ==(Emboss lhsEmboss, Emboss rhsEmboss) => lhsEmboss.Equals(rhsEmboss);
 
         /// <summary>
         /// The != operator.
         /// </summary>
-        /// <param name="lhsTextEmboss">FontInfo to compare</param>
-        /// <param name="rhsTextEmboss">FontInfo to be compared</param>
-        /// <returns>true if FontInfos are not equal</returns>
+        /// <param name="lhsEmboss">Emboss to compare</param>
+        /// <param name="rhsEmboss">Emboss to be compared</param>
+        /// <returns>true if Emboss are not equal</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool operator !=(TextEmboss lhsTextEmboss, TextEmboss rhsTextEmboss) => !lhsTextEmboss.Equals(rhsTextEmboss);
+        public static bool operator !=(Emboss lhsEmboss, Emboss rhsEmboss) => !lhsEmboss.Equals(rhsEmboss);
 
         /// <summary>
-        /// Gets the hash code of this FontInfo.
+        /// Gets the hash code of this Emboss.
         /// </summary>
         /// <returns>The hash code.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]

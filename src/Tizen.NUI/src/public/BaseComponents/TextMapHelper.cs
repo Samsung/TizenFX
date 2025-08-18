@@ -623,42 +623,42 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// This method converts a TextEmboss struct to a PropertyMap and returns it.
-        /// The returned map can be used for set TextEmboss PropertyMap in the SetTextEmboss method.
-        /// <param name="textEmboss">The TextEmboss struct value.</param>
-        /// <returns> A PropertyMap for TextEmboss property. </returns>
+        /// This method converts a Emboss struct to a PropertyMap and returns it.
+        /// The returned map can be used for set Emboss PropertyMap in the SetTextEmboss method.
+        /// <param name="emboss">The Emboss struct value.</param>
+        /// <returns> A PropertyMap for Emboss property. </returns>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static PropertyMap GetTextEmbossMap(TextEmboss textEmboss)
+        public static PropertyMap GetEmbossMap(Emboss emboss)
         {
             var map = new PropertyMap();
-            map.Add("enable", new PropertyValue(textEmboss.Enable));
+            map.Add("enable", new PropertyValue(emboss.Enable));
 
-            if (textEmboss.Direction != null)
-                map.Add("direction", new PropertyValue(textEmboss.Direction));
+            if (emboss.Direction != null)
+                map.Add("direction", new PropertyValue(emboss.Direction));
 
-            if (textEmboss.Strength != null)
-                map.Add("strength", new PropertyValue(textEmboss.Strength.Value));
+            if (emboss.Strength != null)
+                map.Add("strength", new PropertyValue(emboss.Strength.Value));
 
-            if (textEmboss.LightColor != null)
-                map.Add("lightColor", new PropertyValue(textEmboss.LightColor));
+            if (emboss.LightColor != null)
+                map.Add("lightColor", new PropertyValue(emboss.LightColor));
 
-            if (textEmboss.ShadowColor != null)
-                map.Add("shadowColor", new PropertyValue(textEmboss.ShadowColor));
+            if (emboss.ShadowColor != null)
+                map.Add("shadowColor", new PropertyValue(emboss.ShadowColor));
 
             return map;
         }
 
         /// <summary>
-        /// This method converts a TextEmboss map to a struct and returns it.
-        /// The returned struct can be returned to the user as a TextEmboss in the GetTextEmboss method.
-        /// <param name="map">The TextEmboss PropertyMap.</param>
-        /// <returns> A TextEmboss struct. </returns>
+        /// This method converts a Emboss map to a struct and returns it.
+        /// The returned struct can be returned to the user as a Emboss in the GetTextEmboss method.
+        /// <param name="map">The Emboss PropertyMap.</param>
+        /// <returns> A Emboss struct. </returns>
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static TextEmboss GetTextEmbossStruct(PropertyMap map)
+        public static Emboss GetEmbossStruct(PropertyMap map)
         {
-            var result = new TextEmboss();
+            var result = new Emboss();
 
             if (map != null)
             {
