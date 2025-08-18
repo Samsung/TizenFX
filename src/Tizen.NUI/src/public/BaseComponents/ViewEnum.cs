@@ -178,94 +178,192 @@ namespace Tizen.NUI.BaseComponents
 
         internal class Property
         {
-            internal static readonly int TOOLTIP = Interop.ViewProperty.TooltipGet();
-            internal static readonly int STATE = Interop.ViewProperty.StateGet();
-            internal static readonly int SubState = Interop.ViewProperty.SubStateGet();
-            internal static readonly int LeftFocusableViewId = Interop.ViewProperty.LeftFocusableActorIdGet();
-            internal static readonly int RightFocusableViewId = Interop.ViewProperty.RightFocusableActorIdGet();
-            internal static readonly int UpFocusableViewId = Interop.ViewProperty.UpFocusableActorIdGet();
-            internal static readonly int DownFocusableViewId = Interop.ViewProperty.DownFocusableActorIdGet();
-            internal static readonly int ClockwiseFocusableViewId = Interop.ViewProperty.ClockwiseFocusableActorIdGet();
-            internal static readonly int CounterClockwiseFocusableViewId = Interop.ViewProperty.CounterClockwiseFocusableActorIdGet();
-            internal static readonly int StyleName = Interop.ViewProperty.StyleNameGet();
-            internal static readonly int KeyInputFocus = Interop.ViewProperty.KeyInputFocusGet();
-            internal static readonly int BACKGROUND = Interop.ViewProperty.BackgroundGet();
-            internal static readonly int SiblingOrder = Interop.ActorProperty.SiblingOrderGet();
-            internal static readonly int OPACITY = Interop.ActorProperty.OpacityGet();
-            internal static readonly int ScreenPosition = Interop.ActorProperty.ScreenPositionGet();
-            internal static readonly int PositionUsesAnchorPoint = Interop.ActorProperty.PositionUsesAnchorPointGet();
-            internal static readonly int ParentOrigin = Interop.ActorProperty.ParentOriginGet();
-            internal static readonly int ParentOriginX = Interop.ActorProperty.ParentOriginXGet();
-            internal static readonly int ParentOriginY = Interop.ActorProperty.ParentOriginYGet();
-            internal static readonly int ParentOriginZ = Interop.ActorProperty.ParentOriginZGet();
-            internal static readonly int AnchorPoint = Interop.ActorProperty.AnchorPointGet();
-            internal static readonly int AnchorPointX = Interop.ActorProperty.AnchorPointXGet();
-            internal static readonly int AnchorPointY = Interop.ActorProperty.AnchorPointYGet();
-            internal static readonly int AnchorPointZ = Interop.ActorProperty.AnchorPointZGet();
-            internal static readonly int SIZE = Interop.ActorProperty.SizeGet();
-            internal static readonly int SizeWidth = Interop.ActorProperty.SizeWidthGet();
-            internal static readonly int SizeHeight = Interop.ActorProperty.SizeHeightGet();
-            internal static readonly int SizeDepth = Interop.ActorProperty.SizeDepthGet();
-            internal static readonly int POSITION = Interop.ActorProperty.PositionGet();
-            internal static readonly int PositionX = Interop.ActorProperty.PositionXGet();
-            internal static readonly int PositionY = Interop.ActorProperty.PositionYGet();
-            internal static readonly int PositionZ = Interop.ActorProperty.PositionZGet();
-            internal static readonly int WorldPosition = Interop.ActorProperty.WorldPositionGet();
-            internal static readonly int WorldPositionX = Interop.ActorProperty.WorldPositionXGet();
-            internal static readonly int WorldPositionY = Interop.ActorProperty.WorldPositionYGet();
-            internal static readonly int WorldPositionZ = Interop.ActorProperty.WorldPositionZGet();
-            internal static readonly int ORIENTATION = Interop.ActorProperty.OrientationGet();
-            internal static readonly int WorldOrientation = Interop.ActorProperty.WorldOrientationGet();
-            internal static readonly int SCALE = Interop.ActorProperty.ScaleGet();
-            internal static readonly int ScaleX = Interop.ActorProperty.ScaleXGet();
-            internal static readonly int ScaleY = Interop.ActorProperty.ScaleYGet();
-            internal static readonly int ScaleZ = Interop.ActorProperty.ScaleZGet();
-            internal static readonly int WorldScale = Interop.ActorProperty.WorldScaleGet();
-            internal static readonly int VISIBLE = Interop.ActorProperty.VisibleGet();
-            internal static readonly int COLOR = Interop.ActorProperty.ColorGet();
-            internal static readonly int ColorRed = Interop.ActorProperty.ColorRedGet();
-            internal static readonly int ColorGreen = Interop.ActorProperty.ColorGreenGet();
-            internal static readonly int ColorBlue = Interop.ActorProperty.ColorBlueGet();
-            internal static readonly int WorldColor = Interop.ActorProperty.WorldColorGet();
-            internal static readonly int WorldMatrix = Interop.ActorProperty.WorldMatrixGet();
-            internal static readonly int NAME = Interop.ActorProperty.NameGet();
-            internal static readonly int SENSITIVE = Interop.ActorProperty.SensitiveGet();
-            internal static readonly int UserInteractionEnabled = Interop.ActorProperty.UserInteractionEnabledGet();
-            internal static readonly int LeaveRequired = Interop.ActorProperty.LeaveRequiredGet();
-            internal static readonly int InheritOrientation = Interop.ActorProperty.InheritOrientationGet();
-            internal static readonly int InheritScale = Interop.ActorProperty.InheritScaleGet();
-            internal static readonly int DrawMode = Interop.ActorProperty.DrawModeGet();
-            internal static readonly int SizeModeFactor = Interop.ActorProperty.SizeModeFactorGet();
-            internal static readonly int WidthResizePolicy = Interop.ActorProperty.WidthResizePolicyGet();
-            internal static readonly int HeightResizePolicy = Interop.ActorProperty.HeightResizePolicyGet();
-            internal static readonly int SizeScalePolicy = Interop.ActorProperty.SizeScalePolicyGet();
-            internal static readonly int WidthForHeight = Interop.ActorProperty.WidthForHeightGet();
-            internal static readonly int HeightForWidth = Interop.ActorProperty.HeightForWidthGet();
-            internal static readonly int MinimumSize = Interop.ActorProperty.MinimumSizeGet();
-            internal static readonly int MaximumSize = Interop.ActorProperty.MaximumSizeGet();
-            internal static readonly int InheritPosition = Interop.ActorProperty.InheritPositionGet();
-            internal static readonly int ClippingMode = Interop.ActorProperty.ClippingModeGet();
-            internal static readonly int InheritLayoutDirection = Interop.ActorProperty.InheritLayoutDirectionGet();
-            internal static readonly int LayoutDirection = Interop.ActorProperty.LayoutDirectionGet();
-            internal static readonly int MARGIN = Interop.ViewProperty.MarginGet();
-            internal static readonly int PADDING = Interop.ViewProperty.PaddingGet();
-            internal static readonly int SHADOW = Interop.ViewProperty.ShadowGet();
-            internal static readonly int CaptureAllTouchAfterStart = Interop.ActorProperty.CaptureAllTouchAfterStartGet();
-            internal static readonly int AllowOnlyOwnTouch = Interop.ActorProperty.AllowOnlyOwnTouchGet();
-            internal static readonly int BlendEquation = Interop.ActorProperty.BlendEquationGet();
-            internal static readonly int Culled = Interop.ActorProperty.CulledGet();
-            internal static readonly int AccessibilityName = Interop.ViewProperty.AccessibilityNameGet();
-            internal static readonly int AccessibilityDescription = Interop.ViewProperty.AccessibilityDescriptionGet();
-            internal static readonly int AccessibilityTranslationDomain = Interop.ViewProperty.AccessibilityTranslationDomainGet();
-            internal static readonly int AccessibilityRole = Interop.ViewProperty.AccessibilityRoleGet();
-            internal static readonly int AccessibilityHighlightable = Interop.ViewProperty.AccessibilityHighlightableGet();
-            internal static readonly int AccessibilityAttributes = Interop.ViewProperty.AccessibilityAttributesGet();
-            internal static readonly int DispatchKeyEvents = Interop.ViewProperty.DispatchKeyEventsGet();
-            internal static readonly int AccessibilityHidden = Interop.ViewProperty.AccessibilityHiddenGet();
-            internal static readonly int AutomationId = Interop.ViewProperty.AutomationIdGet();
-            internal static readonly int UpdateAreaHint = Interop.ActorProperty.UpdateAreaHintGet();
-            internal static readonly int DispatchTouchMotion = Interop.ActorProperty.DispatchTouchMotionGet();
-            internal static readonly int DispatchHoverMotion = Interop.ActorProperty.DispatchHoverMotionGet();
+            /// <summary>
+            /// Property index to match native index.
+            /// </summary>
+            /// <remarks>
+            /// When we need to add or remove property, native index should also be modified together.
+            /// </remarks>
+            private enum Index
+            {
+                TOOLTIPIndex = 0,
+                STATEIndex,
+                SubStateIndex,
+                LeftFocusableViewIdIndex,
+                RightFocusableViewIdIndex,
+                UpFocusableViewIdIndex,
+                DownFocusableViewIdIndex,
+                ClockwiseFocusableViewIdIndex,
+                CounterClockwiseFocusableViewIdIndex,
+                StyleNameIndex,
+                KeyInputFocusIndex,
+                BACKGROUNDIndex,
+                SiblingOrderIndex,
+                OPACITYIndex,
+                ScreenPositionIndex,
+                PositionUsesAnchorPointIndex,
+                ParentOriginIndex,
+                ParentOriginXIndex,
+                ParentOriginYIndex,
+                ParentOriginZIndex,
+                AnchorPointIndex,
+                AnchorPointXIndex,
+                AnchorPointYIndex,
+                AnchorPointZIndex,
+                SIZEIndex,
+                SizeWidthIndex,
+                SizeHeightIndex,
+                SizeDepthIndex,
+                POSITIONIndex,
+                PositionXIndex,
+                PositionYIndex,
+                PositionZIndex,
+                WorldPositionIndex,
+                WorldPositionXIndex,
+                WorldPositionYIndex,
+                WorldPositionZIndex,
+                ORIENTATIONIndex,
+                WorldOrientationIndex,
+                SCALEIndex,
+                ScaleXIndex,
+                ScaleYIndex,
+                ScaleZIndex,
+                WorldScaleIndex,
+                VISIBLEIndex,
+                COLORIndex,
+                ColorRedIndex,
+                ColorGreenIndex,
+                ColorBlueIndex,
+                WorldColorIndex,
+                WorldMatrixIndex,
+                NAMEIndex,
+                SENSITIVEIndex,
+                UserInteractionEnabledIndex,
+                LeaveRequiredIndex,
+                InheritOrientationIndex,
+                InheritScaleIndex,
+                DrawModeIndex,
+                SizeModeFactorIndex,
+                WidthResizePolicyIndex,
+                HeightResizePolicyIndex,
+                SizeScalePolicyIndex,
+                WidthForHeightIndex,
+                HeightForWidthIndex,
+                MinimumSizeIndex,
+                MaximumSizeIndex,
+                InheritPositionIndex,
+                ClippingModeIndex,
+                InheritLayoutDirectionIndex,
+                LayoutDirectionIndex,
+                MARGINIndex,
+                PADDINGIndex,
+                SHADOWIndex,
+                CaptureAllTouchAfterStartIndex,
+                AllowOnlyOwnTouchIndex,
+                BlendEquationIndex,
+                CulledIndex,
+                AccessibilityNameIndex,
+                AccessibilityDescriptionIndex,
+                AccessibilityTranslationDomainIndex,
+                AccessibilityRoleIndex,
+                AccessibilityHighlightableIndex,
+                AccessibilityAttributesIndex,
+                DispatchKeyEventsIndex,
+                AccessibilityHiddenIndex,
+                AutomationIdIndex,
+                UpdateAreaHintIndex,
+                DispatchTouchMotionIndex,
+                DispatchHoverMotionIndex,
+            };
+
+            internal static readonly int TOOLTIP = Interop.ViewProperty.GetIndex((int)Index.TOOLTIPIndex);
+            internal static readonly int STATE = Interop.ViewProperty.GetIndex((int)Index.STATEIndex);
+            internal static readonly int SubState = Interop.ViewProperty.GetIndex((int)Index.SubStateIndex);
+            internal static readonly int LeftFocusableViewId = Interop.ViewProperty.GetIndex((int)Index.LeftFocusableViewIdIndex);
+            internal static readonly int RightFocusableViewId = Interop.ViewProperty.GetIndex((int)Index.RightFocusableViewIdIndex);
+            internal static readonly int UpFocusableViewId = Interop.ViewProperty.GetIndex((int)Index.UpFocusableViewIdIndex);
+            internal static readonly int DownFocusableViewId = Interop.ViewProperty.GetIndex((int)Index.DownFocusableViewIdIndex);
+            internal static readonly int ClockwiseFocusableViewId = Interop.ViewProperty.GetIndex((int)Index.ClockwiseFocusableViewIdIndex);
+            internal static readonly int CounterClockwiseFocusableViewId = Interop.ViewProperty.GetIndex((int)Index.CounterClockwiseFocusableViewIdIndex);
+            internal static readonly int StyleName = Interop.ViewProperty.GetIndex((int)Index.StyleNameIndex);
+            internal static readonly int KeyInputFocus = Interop.ViewProperty.GetIndex((int)Index.KeyInputFocusIndex);
+            internal static readonly int BACKGROUND = Interop.ViewProperty.GetIndex((int)Index.BACKGROUNDIndex);
+            internal static readonly int SiblingOrder = Interop.ViewProperty.GetIndex((int)Index.SiblingOrderIndex);
+            internal static readonly int OPACITY = Interop.ViewProperty.GetIndex((int)Index.OPACITYIndex);
+            internal static readonly int ScreenPosition = Interop.ViewProperty.GetIndex((int)Index.ScreenPositionIndex);
+            internal static readonly int PositionUsesAnchorPoint = Interop.ViewProperty.GetIndex((int)Index.PositionUsesAnchorPointIndex);
+            internal static readonly int ParentOrigin = Interop.ViewProperty.GetIndex((int)Index.ParentOriginIndex);
+            internal static readonly int ParentOriginX = Interop.ViewProperty.GetIndex((int)Index.ParentOriginXIndex);
+            internal static readonly int ParentOriginY = Interop.ViewProperty.GetIndex((int)Index.ParentOriginYIndex);
+            internal static readonly int ParentOriginZ = Interop.ViewProperty.GetIndex((int)Index.ParentOriginZIndex);
+            internal static readonly int AnchorPoint = Interop.ViewProperty.GetIndex((int)Index.AnchorPointIndex);
+            internal static readonly int AnchorPointX = Interop.ViewProperty.GetIndex((int)Index.AnchorPointXIndex);
+            internal static readonly int AnchorPointY = Interop.ViewProperty.GetIndex((int)Index.AnchorPointYIndex);
+            internal static readonly int AnchorPointZ = Interop.ViewProperty.GetIndex((int)Index.AnchorPointZIndex);
+            internal static readonly int SIZE = Interop.ViewProperty.GetIndex((int)Index.SIZEIndex);
+            internal static readonly int SizeWidth = Interop.ViewProperty.GetIndex((int)Index.SizeWidthIndex);
+            internal static readonly int SizeHeight = Interop.ViewProperty.GetIndex((int)Index.SizeHeightIndex);
+            internal static readonly int SizeDepth = Interop.ViewProperty.GetIndex((int)Index.SizeDepthIndex);
+            internal static readonly int POSITION = Interop.ViewProperty.GetIndex((int)Index.POSITIONIndex);
+            internal static readonly int PositionX = Interop.ViewProperty.GetIndex((int)Index.PositionXIndex);
+            internal static readonly int PositionY = Interop.ViewProperty.GetIndex((int)Index.PositionYIndex);
+            internal static readonly int PositionZ = Interop.ViewProperty.GetIndex((int)Index.PositionZIndex);
+            internal static readonly int WorldPosition = Interop.ViewProperty.GetIndex((int)Index.WorldPositionIndex);
+            internal static readonly int WorldPositionX = Interop.ViewProperty.GetIndex((int)Index.WorldPositionXIndex);
+            internal static readonly int WorldPositionY = Interop.ViewProperty.GetIndex((int)Index.WorldPositionYIndex);
+            internal static readonly int WorldPositionZ = Interop.ViewProperty.GetIndex((int)Index.WorldPositionZIndex);
+            internal static readonly int ORIENTATION = Interop.ViewProperty.GetIndex((int)Index.ORIENTATIONIndex);
+            internal static readonly int WorldOrientation = Interop.ViewProperty.GetIndex((int)Index.WorldOrientationIndex);
+            internal static readonly int SCALE = Interop.ViewProperty.GetIndex((int)Index.SCALEIndex);
+            internal static readonly int ScaleX = Interop.ViewProperty.GetIndex((int)Index.ScaleXIndex);
+            internal static readonly int ScaleY = Interop.ViewProperty.GetIndex((int)Index.ScaleYIndex);
+            internal static readonly int ScaleZ = Interop.ViewProperty.GetIndex((int)Index.ScaleZIndex);
+            internal static readonly int WorldScale = Interop.ViewProperty.GetIndex((int)Index.WorldScaleIndex);
+            internal static readonly int VISIBLE = Interop.ViewProperty.GetIndex((int)Index.VISIBLEIndex);
+            internal static readonly int COLOR = Interop.ViewProperty.GetIndex((int)Index.COLORIndex);
+            internal static readonly int ColorRed = Interop.ViewProperty.GetIndex((int)Index.ColorRedIndex);
+            internal static readonly int ColorGreen = Interop.ViewProperty.GetIndex((int)Index.ColorGreenIndex);
+            internal static readonly int ColorBlue = Interop.ViewProperty.GetIndex((int)Index.ColorBlueIndex);
+            internal static readonly int WorldColor = Interop.ViewProperty.GetIndex((int)Index.WorldColorIndex);
+            internal static readonly int WorldMatrix = Interop.ViewProperty.GetIndex((int)Index.WorldMatrixIndex);
+            internal static readonly int NAME = Interop.ViewProperty.GetIndex((int)Index.NAMEIndex);
+            internal static readonly int SENSITIVE = Interop.ViewProperty.GetIndex((int)Index.SENSITIVEIndex);
+            internal static readonly int UserInteractionEnabled = Interop.ViewProperty.GetIndex((int)Index.UserInteractionEnabledIndex);
+            internal static readonly int LeaveRequired = Interop.ViewProperty.GetIndex((int)Index.LeaveRequiredIndex);
+            internal static readonly int InheritOrientation = Interop.ViewProperty.GetIndex((int)Index.InheritOrientationIndex);
+            internal static readonly int InheritScale = Interop.ViewProperty.GetIndex((int)Index.InheritScaleIndex);
+            internal static readonly int DrawMode = Interop.ViewProperty.GetIndex((int)Index.DrawModeIndex);
+            internal static readonly int SizeModeFactor = Interop.ViewProperty.GetIndex((int)Index.SizeModeFactorIndex);
+            internal static readonly int WidthResizePolicy = Interop.ViewProperty.GetIndex((int)Index.WidthResizePolicyIndex);
+            internal static readonly int HeightResizePolicy = Interop.ViewProperty.GetIndex((int)Index.HeightResizePolicyIndex);
+            internal static readonly int SizeScalePolicy = Interop.ViewProperty.GetIndex((int)Index.SizeScalePolicyIndex);
+            internal static readonly int WidthForHeight = Interop.ViewProperty.GetIndex((int)Index.WidthForHeightIndex);
+            internal static readonly int HeightForWidth = Interop.ViewProperty.GetIndex((int)Index.HeightForWidthIndex);
+            internal static readonly int MinimumSize = Interop.ViewProperty.GetIndex((int)Index.MinimumSizeIndex);
+            internal static readonly int MaximumSize = Interop.ViewProperty.GetIndex((int)Index.MaximumSizeIndex);
+            internal static readonly int InheritPosition = Interop.ViewProperty.GetIndex((int)Index.InheritPositionIndex);
+            internal static readonly int ClippingMode = Interop.ViewProperty.GetIndex((int)Index.ClippingModeIndex);
+            internal static readonly int InheritLayoutDirection = Interop.ViewProperty.GetIndex((int)Index.InheritLayoutDirectionIndex);
+            internal static readonly int LayoutDirection = Interop.ViewProperty.GetIndex((int)Index.LayoutDirectionIndex);
+            internal static readonly int MARGIN = Interop.ViewProperty.GetIndex((int)Index.MARGINIndex);
+            internal static readonly int PADDING = Interop.ViewProperty.GetIndex((int)Index.PADDINGIndex);
+            internal static readonly int SHADOW = Interop.ViewProperty.GetIndex((int)Index.SHADOWIndex);
+            internal static readonly int CaptureAllTouchAfterStart = Interop.ViewProperty.GetIndex((int)Index.CaptureAllTouchAfterStartIndex);
+            internal static readonly int AllowOnlyOwnTouch = Interop.ViewProperty.GetIndex((int)Index.AllowOnlyOwnTouchIndex);
+            internal static readonly int BlendEquation = Interop.ViewProperty.GetIndex((int)Index.BlendEquationIndex);
+            internal static readonly int Culled = Interop.ViewProperty.GetIndex((int)Index.CulledIndex);
+            internal static readonly int AccessibilityName = Interop.ViewProperty.GetIndex((int)Index.AccessibilityNameIndex);
+            internal static readonly int AccessibilityDescription = Interop.ViewProperty.GetIndex((int)Index.AccessibilityDescriptionIndex);
+            internal static readonly int AccessibilityTranslationDomain = Interop.ViewProperty.GetIndex((int)Index.AccessibilityTranslationDomainIndex);
+            internal static readonly int AccessibilityRole = Interop.ViewProperty.GetIndex((int)Index.AccessibilityRoleIndex);
+            internal static readonly int AccessibilityHighlightable = Interop.ViewProperty.GetIndex((int)Index.AccessibilityHighlightableIndex);
+            internal static readonly int AccessibilityAttributes = Interop.ViewProperty.GetIndex((int)Index.AccessibilityAttributesIndex);
+            internal static readonly int DispatchKeyEvents = Interop.ViewProperty.GetIndex((int)Index.DispatchKeyEventsIndex);
+            internal static readonly int AccessibilityHidden = Interop.ViewProperty.GetIndex((int)Index.AccessibilityHiddenIndex);
+            internal static readonly int AutomationId = Interop.ViewProperty.GetIndex((int)Index.AutomationIdIndex);
+            internal static readonly int UpdateAreaHint = Interop.ViewProperty.GetIndex((int)Index.UpdateAreaHintIndex);
+            internal static readonly int DispatchTouchMotion = Interop.ViewProperty.GetIndex((int)Index.DispatchTouchMotionIndex);
+            internal static readonly int DispatchHoverMotion = Interop.ViewProperty.GetIndex((int)Index.DispatchHoverMotionIndex);
         }
     }
 }
