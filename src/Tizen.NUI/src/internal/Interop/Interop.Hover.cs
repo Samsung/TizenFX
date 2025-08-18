@@ -52,6 +52,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetDeviceSubclass")]
             public static extern int GetDeviceSubClass(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetDeviceName")]
+            public static extern string GetDeviceName(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Hover")]
             public static extern void DeleteHover(global::System.Runtime.InteropServices.HandleRef jarg1);
         }

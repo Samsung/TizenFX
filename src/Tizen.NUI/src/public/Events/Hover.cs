@@ -176,6 +176,19 @@ namespace Tizen.NUI
             return (DeviceSubClassType)ret;
         }
 
+        /// <summary>
+        /// Gets the device name from which the mouse/Hover event is originated.
+        /// </summary>
+        /// <param name="point">The index of a Hover point.</param>
+        /// <returns>Device name</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GetDeviceName(uint point)
+        {
+            string ret = Interop.Hover.GetDeviceName(SwigCPtr, point);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal static Hover GetHoverFromPtr(global::System.IntPtr cPtr)
         {
             Hover ret = new Hover(cPtr, false);
