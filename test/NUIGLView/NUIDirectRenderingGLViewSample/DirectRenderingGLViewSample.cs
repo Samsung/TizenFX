@@ -54,7 +54,9 @@ namespace DRGLApplication
 
         private DirectRenderingGLView glView;
         private View glViewLayout;
-        private Button textButton;
+        private View buttonLayout;
+        private Button stopButton;
+        private Button regenerateButton;
 
         private object windowLock = new object();
         private Rectangle windowPositionSize;
@@ -65,6 +67,10 @@ namespace DRGLApplication
         private int mNumTouched = 0;
 
         private Animation opacityAnimation;
+
+        private bool _useUnsafeMode = true;
+
+        private bool _useLibrary = true;
 
         protected override void OnCreate()
         {
@@ -135,15 +141,7 @@ namespace DRGLApplication
             glViewLayout.WidthSpecification = LayoutParamPolicies.MatchParent;
             glViewLayout.HeightSpecification = LayoutParamPolicies.MatchParent;
 
-            glView = new DirectRenderingGLView(DirectRenderingGLView.ColorFormat.RGBA8888, DirectRenderingGLView.BackendMode.DirectRendering);
-            glView.Weight = 0.7f;
-            glView.WidthSpecification = LayoutParamPolicies.MatchParent;
-            glView.HeightSpecification = LayoutParamPolicies.MatchParent;
-
-            glView.SetGraphicsConfig(true, true, 0, GLESVersion.Version20);
-            glView.RenderingMode = GLRenderingMode.Continuous;
-            glView.RegisterGLCallbacks(initializeGL, OnRender, terminateGL);
-            glView.TouchEvent += OnTouchEvent;
+            CreateDRGLView();
 
             TextLabel dummyLeft = new TextLabel("Dummy Left")
             {
@@ -166,29 +164,56 @@ namespace DRGLApplication
                 VerticalAlignment = VerticalAlignment.Center,
             };
             glViewLayout.Add(dummyLeft);
-            glViewLayout.Add(glView);
             glViewLayout.Add(dummyRight);
+            glViewLayout.Add(glView);
+            glView.SiblingOrder = 1;
 
-            textButton = new Button();
-            textButton.BackgroundColor = Color.MidnightBlue;
-            textButton.TextLabel.TextColor = Color.White;
-            textButton.TextLabel.Text = "Stop";
-            textButton.Weight = 0.1f;
-            textButton.WidthSpecification = LayoutParamPolicies.MatchParent;
-            textButton.HeightSpecification = LayoutParamPolicies.MatchParent;
-            textButton.Clicked += OnClicked;
+            buttonLayout = new View();
+            var buttonViewLinearLayout = new LinearLayout();
+            buttonViewLinearLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
+            buttonViewLinearLayout.CellPadding = new Size(10, 0);
+            buttonLayout.Layout = buttonViewLinearLayout;
+            buttonLayout.Weight = 0.1f;
+            buttonLayout.WidthSpecification = LayoutParamPolicies.MatchParent;
+            buttonLayout.HeightSpecification = LayoutParamPolicies.MatchParent;
+
+            stopButton = new Button();
+            stopButton.BackgroundColor = Color.MidnightBlue;
+            stopButton.TextLabel.TextColor = Color.White;
+            stopButton.TextLabel.Text = "Stop";
+            stopButton.Weight = 0.5f;
+            stopButton.WidthSpecification = LayoutParamPolicies.MatchParent;
+            stopButton.HeightSpecification = LayoutParamPolicies.MatchParent;
+            stopButton.Clicked += OnStopClicked;
+
+            regenerateButton = new Button();
+            regenerateButton.BackgroundColor = Color.MidnightBlue;
+            regenerateButton.TextLabel.TextColor = Color.White;
+            if (_useUnsafeMode)
+            {
+                regenerateButton.TextLabel.Text = "Change BackendMode = DirectRendering";
+            }
+            else
+            {
+                regenerateButton.TextLabel.Text = "Change BackendMode = UnsafeDirectRendering";
+            }
+            regenerateButton.Weight = 0.5f;
+            regenerateButton.WidthSpecification = LayoutParamPolicies.MatchParent;
+            regenerateButton.HeightSpecification = LayoutParamPolicies.MatchParent;
+            regenerateButton.Clicked += OnRegenerateClicked;
+
+            buttonLayout.Add(stopButton);
+            buttonLayout.Add(regenerateButton);
 
             layoutView.Add(label);
             layoutView.Add(glViewLayout);
-            layoutView.Add(textButton);
+            layoutView.Add(buttonLayout);
 
             opacityAnimation = new Animation(10000);
             opacityAnimation.LoopingMode = Animation.LoopingModes.AutoReverse;
             opacityAnimation.Looping = true;
             opacityAnimation.AnimateTo(layoutView, "Opacity", 0.25f, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOutSine));
             opacityAnimation.Play();
-
-            LoadTexture();
 
             TextLabel labelz = new TextLabel("Hello World!");
             labelz.BackgroundColor = new Color(1.0f, 1.0f, 0.0f, 0.5f);
@@ -222,6 +247,39 @@ namespace DRGLApplication
         {
             Window.WindowOrientation orientation = e.WindowOrientation;
             log.Info(TAG, $"OnWindowOrientationChangedEvent() called!, orientation:{orientation}\n");
+        }
+
+        private void CreateDRGLView()
+        {
+            glView = new DirectRenderingGLView(DirectRenderingGLView.ColorFormat.RGBA8888, _useUnsafeMode ? DirectRenderingGLView.BackendMode.UnsafeDirectRendering : DirectRenderingGLView.BackendMode.DirectRendering);
+            glView.Weight = 0.7f;
+            glView.WidthSpecification = LayoutParamPolicies.MatchParent;
+            glView.HeightSpecification = LayoutParamPolicies.MatchParent;
+
+            glView.SetGraphicsConfig(true, true, 0, GLESVersion.Version20);
+            glView.RenderingMode = GLRenderingMode.Continuous;
+
+            _useLibrary = true;
+            try
+            {
+                _ = getAngle();
+                glView.RegisterGLCallbacks(initializeGL, OnRender, terminateGL);
+            }
+            catch(Exception ex)
+            {
+                log.Error(TAG, $"Exception occurred: {ex.Message}");
+                _useLibrary = false;
+                glView.RegisterGLCallbacks(OnInitializeCSharp, OnRenderCSharp, OnTerminateCSharp);
+            }
+            glView.TouchEvent += OnTouchEvent;
+
+            LoadTexture();
+
+            if (stopButton != null)
+            {
+                stopButton.TextLabel.Text = "Stop";
+            }
+            opacityAnimation?.Play();
         }
 
         private void LoadTexture()
@@ -270,6 +328,67 @@ namespace DRGLApplication
                     break;
                 }
             }
+        }
+
+        // GLView Callbacks if library link error occured (For example, Ubunut backend)
+        public void OnInitializeCSharp()
+        {
+            log.Error(TAG, $"OnInitializeCSharp\n");
+        }
+
+        public int OnRenderCSharp(in DirectRenderingGLView.RenderCallbackInput input)
+        {
+            log.Error(TAG, $"OnRenderCSharp\n");
+
+            Rectangle localWindowPositionSize;
+            lock (windowLock)
+            {
+                localWindowPositionSize = new Rectangle(windowPositionSize.X, windowPositionSize.Y, windowPositionSize.Width, windowPositionSize.Height);
+            }
+
+            if (input.TextureBindings.Count > 0u)
+            {
+                log.Error(TAG, $"  TextureBindings {input.TextureBindings.Count}\n");
+                int[] bindings = new int[input.TextureBindings.Count];
+                for (int i = 0; i < input.TextureBindings.Count; i++)
+                {
+                    bindings[i] = input.TextureBindings[i];
+                    log.Error(TAG, $"   [{i}] : {bindings[i]}\n");
+                }
+            }
+
+            // Trick to check window rotated or not.
+            // For now, just consider 90 degree cases.
+            bool isRotated = Math.Abs(input.Projection.ValueOfIndex(0, 0)) + Math.Abs(input.Projection.ValueOfIndex(1, 1)) < Math.Abs(input.Projection.ValueOfIndex(0, 1)) + Math.Abs(input.Projection.ValueOfIndex(1, 0));
+
+            log.Error(TAG, $"  Window Rotated? : {isRotated}\n");
+            log.Error(TAG, $"  Window PositionSize : {localWindowPositionSize.X},{localWindowPositionSize.Y} : {localWindowPositionSize.Width}x{localWindowPositionSize.Height}\n");
+            log.Error(TAG, $"  Size : {input.Size.Width}, {input.Size.Height}\n");
+            log.Error(TAG, $"  WorldColor : {input.WorldColor.R}, {input.WorldColor.G} {input.WorldColor.B} {input.WorldColor.A}\n");
+            log.Error(TAG, $"  Clipping : {input.ClippingBox.X},{input.ClippingBox.Y} : {input.ClippingBox.Width}x{input.ClippingBox.Height}\n");
+
+            int mAngle = 0;
+            Matrix local = new Matrix(new Rotation(new Radian(new Degree(mAngle)), new Vector3(1.0f, 1.0f, 0.0f)));
+            Matrix mvp = new Matrix();
+            Matrix.Multiply(mvp, local, input.Mvp);
+            log.Error(TAG, $"  Local angle : {mAngle}\n");
+
+            float[] mvpArray = new float[16];
+            for (uint i = 0; i < mvpArray.Length; i++)
+            {
+                mvpArray[i] = mvp[i];
+            }
+            log.Error(TAG, $"  Local mvp :\n");
+            for (uint i = 0; i < 4; i++)
+            {
+                log.Error(TAG, $"  {mvpArray[i]}, {mvpArray[4 + i]}, {mvpArray[8 + i]}, {mvpArray[12 + i]}\n");
+            }
+            return 1;
+        }
+
+        public void OnTerminateCSharp()
+        {
+            log.Error(TAG, $"OnTerminateCSharp\n");
         }
 
         // GLView Callbacks
@@ -361,20 +480,49 @@ namespace DRGLApplication
             return renderFrameGL();
         }
 
-        private void OnClicked(object sender, ClickedEventArgs e)
+        private void OnStopClicked(object sender, ClickedEventArgs e)
         {
             if (glView.RenderingMode == GLRenderingMode.Continuous)
             {
-                textButton.TextLabel.Text = "Start";
+                stopButton.TextLabel.Text = "Start";
                 glView.RenderingMode = GLRenderingMode.OnDemand;
                 opacityAnimation.Pause();
             }
             else
             {
-                textButton.TextLabel.Text = "Stop";
+                stopButton.TextLabel.Text = "Stop";
                 glView.RenderingMode = GLRenderingMode.Continuous;
                 opacityAnimation.Play();
             }
+        }
+
+        private void OnRegenerateClicked(object sender, ClickedEventArgs e)
+        {
+            if (glView != null)
+            {
+                glView.Terminate();
+                glView.TouchEvent -= OnTouchEvent;
+                glView.Dispose();
+                glView = null;
+            }
+
+            _useUnsafeMode = !_useUnsafeMode;
+            if (_useUnsafeMode)
+            {
+                regenerateButton.TextLabel.Text = "Change BackendMode = DirectRendering";
+            }
+            else
+            {
+                regenerateButton.TextLabel.Text = "Change BackendMode = UnsafeDirectRendering";
+            }
+
+            // Note : For this sample, we can assume that old glView's terminateGL() will be called before new glView's initializeGL().
+            // So we can use same function pointer.
+            // But the order of function call could not be guaranteed in real world scenarios. Be careful!
+
+            CreateDRGLView();
+            glViewLayout.Add(glView);
+            glView.SiblingOrder = 1;
         }
 
         public void OnKeyEvent(object sender, Window.KeyEventArgs e)
