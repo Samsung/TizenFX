@@ -959,9 +959,10 @@ namespace Tizen.NUI.Text
     /// </summary>
     /// <remarks>
     /// The Emboss struct is used as an argument to SetTextEmboss and GetTextEmboss methods. <br />
-    /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetTextEmboss"/> and <see cref="Tizen.NUI.BaseComponents.TextLabel.GetTextEmboss"/>.
+    /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetEmboss"/> and <see cref="Tizen.NUI.BaseComponents.TextLabel.GetEmboss"/>.
     /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
+#nullable enable
     public struct Emboss : IEquatable<Emboss>
     {
         /// <summary>
@@ -1035,4 +1036,5 @@ namespace Tizen.NUI.Text
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => (Enable, Direction, Strength, LightColor, ShadowColor).GetHashCode();
     }
+#nullable disable
 }
