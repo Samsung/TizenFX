@@ -962,7 +962,6 @@ namespace Tizen.NUI.Text
     /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetEmboss"/> and <see cref="Tizen.NUI.BaseComponents.TextLabel.GetEmboss"/>.
     /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
-#nullable enable
     public struct Emboss : IEquatable<Emboss>
     {
         /// <summary>
@@ -975,7 +974,7 @@ namespace Tizen.NUI.Text
         /// The emboss direction in texture space. (the default value is (0.0f, 0.0f).)
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2? Direction { get; set; }
+        public Vector2 Direction { get; set; }
 
         /// <summary>
         /// The strength of emboss in pixels. (the default value is 0.0f.)
@@ -987,13 +986,13 @@ namespace Tizen.NUI.Text
         /// The highlight color for raised areas. (the default value is transparent.)
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color? LightColor { get; set; }
+        public Color LightColor { get; set; }
 
         /// <summary>
         /// The shadow color for recessed areas. (the default value is transparent.)
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Color? ShadowColor { get; set; }
+        public Color ShadowColor { get; set; }
 
         /// <summary>
         /// Determines whether the specified object is equal to the current object.
@@ -1036,5 +1035,4 @@ namespace Tizen.NUI.Text
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => (Enable, Direction, Strength, LightColor, ShadowColor).GetHashCode();
     }
-#nullable disable
 }
