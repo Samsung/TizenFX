@@ -206,6 +206,7 @@ namespace Tizen.NUI.Accessibility
         /// This functionality is only applicable when the CustomHighlight Overlay is a child of the scene-view.  
         /// In other words, the position and size of the highlight indicator can only be set if the CustomHighlight Overlay is part of the scene-view. 
         /// </summary>
+        /// <param name="view">The view to set the overlay</param>
         /// <param name="position">A Position2D representing the position of the overlay</param>
         /// <param name="size">A Size2D representing the size of the overlay</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
