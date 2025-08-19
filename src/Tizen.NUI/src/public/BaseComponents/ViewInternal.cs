@@ -1539,9 +1539,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void InitializeStyle(ViewStyle style = null)
         {
-            if (!NUIApplication.IsPreload && NUIApplication.SupportPreInitializedCreation)
+            if (!ProcessorController.Initialized && NUIApplication.SupportPreInitializedCreation)
             {
-                // TODO : Since we should not call ThemeManager at Preload timing, we should return here.
+                // Note : Since we should not call ThemeManager at Preload timing, we should return here.
+                // ProcessorController.Initialized become true very early of Application initialize.
                 return;
             }
 

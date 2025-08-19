@@ -75,15 +75,16 @@ namespace Tizen.NUI
         public static bool IsUsingIncrementalDispose => DisposeQueue.Instance.IncrementalDisposeSupported;
 
         /// <summary>
+        /// Whether current system support to create view at Preload time.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool SupportPreInitializedCreation { get; private set; }
+
+        /// <summary>
         /// The instance of ResourceManager.
         /// </summary>
         private static System.Resources.ResourceManager resourceManager;
         private static string currentLoadedXaml;
-
-        /// <summary>
-        /// Whether current system support to create view at Preload time.
-        /// </summary>
-        internal static bool SupportPreInitializedCreation { get; private set; }
 
         /// <summary>
         /// The border window
@@ -802,12 +803,21 @@ namespace Tizen.NUI
         {
             Interop.Application.PreInitialize();
             SupportPreInitializedCreation = Interop.Application.IsSupportPreInitializedCreation();
-            Tizen.Log.Info("NUI", $"Support preload time view creation? {SupportPreInitializedCreation}\n");
 
             // Initialize some static utility
             var disposableQueue = DisposeQueue.Instance;
             var processorController = ProcessorController.Instance;
             var registry = Registry.Instance;
+
+            // Get default window only if pre initialize creation supported.
+            if (SupportPreInitializedCreation)
+            {
+                Log.Info("NUI", "[NUI] Preload: GetWindow");
+                Tizen.Tracer.Begin("[NUI] Preload: GetWindow");
+                var nativeWindow = Interop.Application.GetPreInitializeWindow();
+                Window.Instance = Window.Default = new Window(nativeWindow, true);
+                Tizen.Tracer.End();
+            }
 
             // Initialize some BaseComponent static variables now
             BaseComponents.View.Preload();
@@ -820,12 +830,6 @@ namespace Tizen.NUI
             Disposable.Preload();
             Color.Preload();
             NUIConstants.Preload();
-
-            // Initialize some static instance
-            if (SupportPreInitializedCreation)
-            {
-                _ = FocusManager.Instance;
-            }
 
             // Initialize exception tasks. It must be called end of Preload()
             NDalicPINVOKE.Preload();

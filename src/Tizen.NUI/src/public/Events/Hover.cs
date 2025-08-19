@@ -152,6 +152,30 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets the device class type from which the mouse/Hover event is originated.
+        /// </summary>
+        /// <param name="point">The index of a Hover point.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public DeviceClassType GetDeviceClass(uint point)
+        {
+            int ret = Interop.Hover.GetDeviceClass(SwigCPtr, point);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return (DeviceClassType)ret;
+        }
+
+        /// <summary>
+        /// Gets the subclass type of the device from which the mouse/Hover event is originated.
+        /// </summary>
+        /// <param name="point">The index of a Hover point.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public DeviceSubClassType GetDeviceSubClass(uint point)
+        {
+            int ret = Interop.Hover.GetDeviceSubClass(SwigCPtr, point);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return (DeviceSubClassType)ret;
+        }
+
         internal static Hover GetHoverFromPtr(global::System.IntPtr cPtr)
         {
             Hover ret = new Hover(cPtr, false);
