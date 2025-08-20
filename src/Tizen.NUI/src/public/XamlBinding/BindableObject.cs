@@ -30,6 +30,8 @@ namespace Tizen.NUI.Binding
     /// Provides a mechanism by which application developers can propagate changes that are made to data in one object to another.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
+    [Obsolete("Deprecated in API13")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class BindableObject : INotifyPropertyChanged, IDynamicResourceHandler
     {
         /// <summary>
@@ -37,7 +39,7 @@ namespace Tizen.NUI.Binding
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BindingContextProperty =
-            BindableProperty.Create(nameof(BindingContext), typeof(object), typeof(BindableObject),  default(object), BindingMode.OneWay, null, BindingContextPropertyChanged,
+            BindableProperty.Create(nameof(BindingContext), typeof(object), typeof(BindableObject), default(object), BindingMode.OneWay, null, BindingContextPropertyChanged,
             null, null, BindingContextPropertyBindingChanging);
 
         private Dictionary<BindableProperty, BindablePropertyContext> properties;
