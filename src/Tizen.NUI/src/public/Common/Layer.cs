@@ -37,11 +37,16 @@ namespace Tizen.NUI
         private EventHandler<AggregatedVisibilityChangedEventArgs> aggregatedVisibilityChangedEventHandler;
         private AggregatedVisibilityChangedEventCallbackType aggregatedVisibilityChangedEventCallback;
 
+        private LayoutDirectionChangedEventCallbackType _layoutDirectionChangedEventCallback;
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void VisibilityChangedEventCallbackType(IntPtr data, bool visibility, VisibilityChangeType type);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AggregatedVisibilityChangedEventCallbackType(IntPtr data, bool visibility);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void LayoutDirectionChangedEventCallbackType(IntPtr data, ViewLayoutDirectionType type);
 
         private static int aliveCount;
 
@@ -59,6 +64,13 @@ namespace Tizen.NUI
         internal Layer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             ++aliveCount;
+
+            if (_layoutDirectionChangedEventCallback == null)
+            {
+                _layoutDirectionChangedEventCallback = OnLayoutDirectionChanged;
+                Interop.ActorSignal.LayoutDirectionChangedConnect(SwigCPtr, _layoutDirectionChangedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
         }
 
         /// <summary>
@@ -93,6 +105,15 @@ namespace Tizen.NUI
                 Interop.ActorSignal.AggregatedVisibilityChangedDisconnect(GetBaseHandleCPtrHandleRef, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 aggregatedVisibilityChangedEventCallback = null;
+            }
+
+            if (_layoutDirectionChangedEventCallback != null)
+            {
+                NUILog.Debug($"[Dispose] layoutDirectionChangedEventCallback");
+
+                Interop.ActorSignal.LayoutDirectionChangedDisconnect(GetBaseHandleCPtrHandleRef, _layoutDirectionChangedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                _layoutDirectionChangedEventCallback = null;
             }
 
             LayoutCount = 0;
@@ -991,6 +1012,19 @@ namespace Tizen.NUI
             if (aggregatedVisibilityChangedEventHandler != null)
             {
                 aggregatedVisibilityChangedEventHandler(this, e);
+            }
+        }
+
+        private void OnLayoutDirectionChanged(IntPtr data, ViewLayoutDirectionType type)
+        {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            foreach (var child in Children)
+            {
+                child.RequestLayoutForInheritLayoutDirection();
             }
         }
     }
