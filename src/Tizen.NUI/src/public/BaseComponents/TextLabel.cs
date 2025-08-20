@@ -2045,6 +2045,60 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set Emboss to TextLabel.<br />
+        /// <param name="emboss">The text emboss</param>
+        /// <list type="table">
+        /// <item><term>enable (bool)</term><description>Whether the emboss is enabled (the default value is false)</description></item>
+        /// <item><term>direction (Vector2)</term><description>The emboss direction in texture space. (the default value is (0.0f, 0.0f).)</description></item>
+        /// <item><term>strength (float)</term><description>The strength of emboss in pixels. (the default value is 0.0f.)</description></item>
+        /// <item><term>lightColor (Color)</term><description>The highlight color for raised areas. (the default value is transparent.)</description></item>
+        /// <item><term>shadowColor (Color)</term><description>The shadow color for recessed areas. (the default value is transparent.)</description></item>
+        /// </list>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetEmboss(Emboss emboss)
+        {
+            var embossMap = TextMapHelper.GetEmbossMap(emboss);
+            SetInternalTextEmboss(embossMap);
+        }
+
+        /// <summary>
+        /// Get Emboss from TextLabel.<br />
+        /// <list type="table">
+        /// <item><term>enable (bool)</term><description>Whether the emboss is enabled (the default value is false)</description></item>
+        /// <item><term>direction (Vector2)</term><description>The emboss direction in texture space. (the default value is (0.0f, 0.0f).)</description></item>
+        /// <item><term>strength (float)</term><description>The strength of emboss in pixels. (the default value is 0.0f.)</description></item>
+        /// <item><term>lightColor (Color)</term><description>The highlight color for raised areas. (the default value is transparent.)</description></item>
+        /// <item><term>shadowColor (Color)</term><description>The shadow color for recessed areas. (the default value is transparent.)</description></item>
+        /// </list>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Emboss GetEmboss()
+        {
+            Emboss emboss;
+            using (var textEmbossMap = (PropertyMap)GetInternalTextEmboss())
+            {
+                emboss = TextMapHelper.GetEmbossStruct(textEmbossMap);
+            }
+            return emboss;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private void SetInternalTextEmboss(PropertyMap embossMap)
+        {
+            Object.SetProperty(SwigCPtr, Property.EMBOSS, new PropertyValue(embossMap));
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private PropertyMap GetInternalTextEmboss()
+        {
+            var temp = new PropertyMap();
+            using var prop = Object.GetProperty(SwigCPtr, Property.EMBOSS);
+            prop.Get(temp);
+            return temp;
+        }
+
+        /// <summary>
         /// The Outline property.<br />
         /// The default outline parameters.<br />
         /// The outline map contains the following keys :<br />

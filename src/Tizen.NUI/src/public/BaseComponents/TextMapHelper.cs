@@ -622,6 +622,56 @@ namespace Tizen.NUI.BaseComponents
             return selectionHandleImage;
         }
 
+        /// <summary>
+        /// This method converts a Emboss struct to a PropertyMap and returns it.
+        /// The returned map can be used for set Emboss PropertyMap in the SetTextEmboss method.
+        /// <param name="emboss">The Emboss struct value.</param>
+        /// <returns> A PropertyMap for Emboss property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetEmbossMap(Emboss emboss)
+        {
+            var map = new PropertyMap();
+            map.Add("enable", new PropertyValue(emboss.Enable));
+
+            if (emboss.Direction != null)
+                map.Add("direction", new PropertyValue(emboss.Direction));
+
+            if (emboss.Strength != null)
+                map.Add("strength", new PropertyValue(emboss.Strength.Value));
+
+            if (emboss.LightColor != null)
+                map.Add("lightColor", new PropertyValue(emboss.LightColor));
+
+            if (emboss.ShadowColor != null)
+                map.Add("shadowColor", new PropertyValue(emboss.ShadowColor));
+
+            return map;
+        }
+
+        /// <summary>
+        /// This method converts a Emboss map to a struct and returns it.
+        /// The returned struct can be returned to the user as a Emboss in the GetTextEmboss method.
+        /// <param name="map">The Emboss PropertyMap.</param>
+        /// <returns> A Emboss struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Emboss GetEmbossStruct(PropertyMap map)
+        {
+            var result = new Emboss();
+
+            if (map != null)
+            {
+                result.Enable = GetBoolFromMap(map, "enable", false);
+                result.Direction = GetVector2FromMap(map, "direction");
+                result.Strength = GetFloatFromMap(map, "strength", 0.0f);
+                result.LightColor = GetColorFromMap(map, "lightColor");
+                result.ShadowColor = GetColorFromMap(map, "shadowColor");
+            }
+
+            return result;
+        }
+
         internal static string GetCamelCase(string pascalCase)
         {
             if (!string.IsNullOrEmpty(pascalCase))

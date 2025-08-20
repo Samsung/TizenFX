@@ -151,7 +151,7 @@ namespace Tizen.NUI.MarkdownRenderer
                             if (emphasis.DelimiterCount == 2)
                                 sb.Append("<s height='").Append(style.Paragraph.StrikethroughThickness).Append("'>").Append(content).Append("</s>");
                             else
-                                sb.Append(content);
+                                sb.Append("~").Append(content).Append("~");
                         }
                         else // '*', '**', '__'
                         {
