@@ -5581,7 +5581,7 @@ namespace Tizen.NUI.BaseComponents
             return (ViewLayoutDirectionType)Object.InternalGetPropertyInt(SwigCPtr, Property.LayoutDirection);
         }
 
-        private void RequestLayoutForInheritLayoutDirection()
+        internal void RequestLayoutForInheritLayoutDirection()
         {
             bool existInheritChild = false;
             foreach (var child in Children)
