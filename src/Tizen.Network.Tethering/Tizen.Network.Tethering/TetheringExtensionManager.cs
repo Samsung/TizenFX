@@ -178,7 +178,7 @@ namespace Tizen.Network.Tethering
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public int Visibility
+        static public bool Visibility
         {
             get
             {

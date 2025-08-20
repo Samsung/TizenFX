@@ -156,7 +156,7 @@ namespace Tizen.Network.Tethering
             }
         }
 
-        public int Visibility
+        public bool Visibility
         {
             get
             {
@@ -164,7 +164,12 @@ namespace Tizen.Network.Tethering
                 int visibility = 0;
                 int ret = Interop.TetheringExtension.GetVisibility(GetHandle(), out visibility);
                 CheckReturnValue(ret, "Visibility", PrivilegeNetworkGet);
-                return visibility;
+                bool isVisible = false;
+                if (visibility == 1) 
+                {
+                    isVisible = true;
+                }
+                return isVisible;
             }
         }
 
