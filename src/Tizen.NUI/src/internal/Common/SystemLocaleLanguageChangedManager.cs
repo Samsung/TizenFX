@@ -20,6 +20,7 @@ using TizenSystemSettings.Tizen.System;
 
 using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 
 namespace Tizen.NUI
 {
@@ -30,7 +31,7 @@ namespace Tizen.NUI
     internal static class SystemLocaleLanguageChangedManager
     {
         private static string localeLanguage = string.Empty;
-        private static string defaultLocaleLanguage = "en_US";
+        private static string defaultLocaleLanguage = CultureInfo.CurrentUICulture.Name;
         private static WeakEvent<EventHandler<LocaleLanguageChangedEventArgs>> proxy = new WeakEvent<EventHandler<LocaleLanguageChangedEventArgs>>();
 
         static SystemLocaleLanguageChangedManager()
@@ -86,6 +87,10 @@ namespace Tizen.NUI
                     try
                     {
                         localeLanguage = SystemSettings.LocaleLanguage;
+                        if (string.IsNullOrEmpty(localeLanguage))
+                        {
+                            localeLanguage = defaultLocaleLanguage;
+                        }
                     }
                     catch (Exception e)
                     {
