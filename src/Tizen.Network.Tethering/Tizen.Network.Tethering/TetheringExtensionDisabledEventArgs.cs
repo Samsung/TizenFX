@@ -3,22 +3,22 @@ using System;
 namespace Tizen.Network.Tethering
 {
     /// <summary>
-    /// This class contains Tethering enabled event data.
+    /// This class contains Tethering disabled event data.
     /// </summary>
     /// <since_tizen> 13 </since_tizen>
-    public class TetheringExtEnabledEventArgs : EventArgs
+    public class TetheringExtensionDisabledEventArgs : EventArgs
     {
         private int _result;
-        private bool _isRequested;
+        private TetheringDisabledCause _cause;
 
-        internal TetheringExtEnabledEventArgs(int result, bool isRequested)
+        internal TetheringExtensionDisabledEventArgs(int result, TetheringDisabledCause cause)
         {
             _result = result;
-            _isRequested = isRequested;
+            _cause = cause;
         }
 
         /// <summary>
-        /// This function returns wether tethering was successfully enabled or not.
+        /// This function returns wether tethering was successfully disabled or not.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         public int Result
@@ -30,14 +30,14 @@ namespace Tizen.Network.Tethering
         }
 
         /// <summary>
-        /// This function returns wether Requested or not.
+        /// This function returns the cause for disabling of Tethering.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public bool Requested
+        public TetheringDisabledCause Cause
         {
             get
             {
-                return _isRequested;
+                return _cause;
             }
         }
     } 

@@ -21,7 +21,7 @@ using Tizen.Network.Tethering;
 
 internal static partial class Interop
 {
-    internal static partial class TetheringExt
+    internal static partial class TetheringExtension
     {
         // Callback for event
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

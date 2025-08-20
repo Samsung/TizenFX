@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Network.Tethering
 {
@@ -7,10 +8,10 @@ namespace Tizen.Network.Tethering
         internal const string LogTag = "Tizen.Network.Tethering";
     }
 
-    internal partial class TetheringExtManagerImpl : IDisposable
+    internal partial class TetheringExtensionManagerImpl : IDisposable
     {
-        private static readonly Lazy<TetheringExtManagerImpl> _instance =
-            new Lazy<TetheringExtManagerImpl>(() => new TetheringExtManagerImpl());
+        private static readonly Lazy<TetheringExtensionManagerImpl> _instance =
+            new Lazy<TetheringExtensionManagerImpl>(() => new TetheringExtensionManagerImpl());
 
         private string PrivilegeNetworkGet = "http://tizen.org/privilege/network.get";
         private string PrivilegeNetworkProfile = "http://tizen.org/privilege/tethering.admin";
@@ -22,7 +23,7 @@ namespace Tizen.Network.Tethering
             get
             {
                 bool enabled = false;
-                int ret = Interop.TetheringExt.IsEnabled(GetHandle(), out enabled);
+                int ret = Interop.TetheringExtension.IsEnabled(GetHandle(), out enabled);
                 CheckReturnValue(ret, "Enabled", PrivilegeNetworkProfile);
                 return enabled;
             }
@@ -31,14 +32,14 @@ namespace Tizen.Network.Tethering
         internal void Ssid(string ssid)
         {
             Log.Info(Globals.LogTag, "SetSSID");
-            int ret = Interop.TetheringExt.SetSSID(GetHandle(), ssid);
+            int ret = Interop.TetheringExtension.SetSSID(GetHandle(), ssid);
             CheckReturnValue(ret, "SetSSID", PrivilegeNetworkProfile);
         }
 
         internal void Passphrase(string passphrase)
         {
             Log.Info(Globals.LogTag, "SetPassphrase");
-            int ret = Interop.TetheringExt.SetPassphrase(GetHandle(), passphrase);
+            int ret = Interop.TetheringExtension.SetPassphrase(GetHandle(), passphrase);
             CheckReturnValue(ret, "SetPassphrase", PrivilegeNetworkProfile);
         }
 
@@ -48,7 +49,7 @@ namespace Tizen.Network.Tethering
             {
                 Log.Info(Globals.LogTag, "GetChannel");
                 int channel = 0;
-                int ret = Interop.TetheringExt.GetChannel(GetHandle(), out channel);
+                int ret = Interop.TetheringExtension.GetChannel(GetHandle(), out channel);
                 CheckReturnValue(ret, "GetChannel", PrivilegeNetworkGet);
                 return channel;
             }
@@ -56,12 +57,12 @@ namespace Tizen.Network.Tethering
             set
             {
                 Log.Info(Globals.LogTag, "SetChannel");
-                int ret = Interop.TetheringExt.SetChannel(GetHandle(), value);
+                int ret = Interop.TetheringExtension.SetChannel(GetHandle(), value);
                 CheckReturnValue(ret, "SetChannel", PrivilegeNetworkProfile);
             }
         }
 
-        internal static TetheringExtManagerImpl Instance
+        internal static TetheringExtensionManagerImpl Instance
         {
             get
             {
@@ -69,14 +70,14 @@ namespace Tizen.Network.Tethering
             }
         }
 
-        private TetheringExtManagerImpl()
+        private TetheringExtensionManagerImpl()
         {
-            Log.Info(Globals.LogTag, "TetheringExtManagerImpl constructor");
+            Log.Info(Globals.LogTag, "TetheringExtensionManagerImpl constructor");
             _handle = IntPtr.Zero;
             Initialize();
         }
 
-        ~TetheringExtManagerImpl()
+        ~TetheringExtensionManagerImpl()
         {
             Dispose(false);
         }
@@ -91,8 +92,8 @@ namespace Tizen.Network.Tethering
         {
             if (_disposed)
                 return;
-            Log.Info(Globals.LogTag, "TetheringExtManagerImpl Handle HashCode: " + _handle.GetHashCode());
-            int ret = Interop.TetheringExt.Deinitialize(_handle);
+            Log.Info(Globals.LogTag, "TetheringExtensionManagerImpl Handle HashCode: " + _handle.GetHashCode());
+            int ret = Interop.TetheringExtension.Deinitialize(_handle);
             if (ret == (int)TetheringError.None)
             {
                 _handle = IntPtr.Zero;
@@ -113,7 +114,7 @@ namespace Tizen.Network.Tethering
         {
             IntPtr handle;
             Log.Info(Globals.LogTag, "PInvoke tethering_ext_initialize");
-            int ret = Interop.TetheringExt.Initialize(out handle);
+            int ret = Interop.TetheringExtension.Initialize(out handle);
             CheckReturnValue(ret, "Initialize", PrivilegeNetworkProfile);
             _handle = handle;
         }
@@ -121,14 +122,14 @@ namespace Tizen.Network.Tethering
         internal void Activate()
         {
             Log.Info(Globals.LogTag, "Activate");
-            int ret = Interop.TetheringExt.Activate(GetHandle());
+            int ret = Interop.TetheringExtension.Activate(GetHandle());
             CheckReturnValue(ret, "Activate", PrivilegeNetworkProfile);
         }
 
         internal void DeActivate()
         {
             Log.Info(Globals.LogTag, "DeActivate");
-            int ret = Interop.TetheringExt.DeActivate(GetHandle());
+            int ret = Interop.TetheringExtension.DeActivate(GetHandle());
             CheckReturnValue(ret, "DeActivate", PrivilegeNetworkProfile);
         }
 
@@ -136,7 +137,7 @@ namespace Tizen.Network.Tethering
         {
             Log.Info(Globals.LogTag, "GetTetheringInfo");
             IntPtr tetheringInfoPtr;
-            int ret = Interop.TetheringExt.GetTetheringInfo(GetHandle(), out tetheringInfoPtr);
+            int ret = Interop.TetheringExtension.GetTetheringInfo(GetHandle(), out tetheringInfoPtr);
             CheckReturnValue(ret, "GetTetheringInfo", PrivilegeNetworkGet);
             TetheringInfo tetheringInfo = new TetheringInfo(tetheringInfoPtr);
             return tetheringInfo;
@@ -148,7 +149,7 @@ namespace Tizen.Network.Tethering
             {
                 Log.Info(Globals.LogTag, "Security");
                 int security = 0;
-                int ret = Interop.TetheringExt.GetSecurity(GetHandle(), out security);
+                int ret = Interop.TetheringExtension.GetSecurity(GetHandle(), out security);
                 CheckReturnValue(ret, "Security", PrivilegeNetworkGet);
                 return (TetheringSecurityType)security;
             }
@@ -160,7 +161,7 @@ namespace Tizen.Network.Tethering
             {
                 Log.Info(Globals.LogTag, "Visibility");
                 int visibility = 0;
-                int ret = Interop.TetheringExt.GetVisibility(GetHandle(), out visibility);
+                int ret = Interop.TetheringExtension.GetVisibility(GetHandle(), out visibility);
                 CheckReturnValue(ret, "Visibility", PrivilegeNetworkGet);
                 return visibility;
             }
@@ -172,7 +173,7 @@ namespace Tizen.Network.Tethering
             {
                 Log.Info(Globals.LogTag, "Sharing");
                 bool sharing = false;
-                int ret = Interop.TetheringExt.GetSharing(GetHandle(), out sharing);
+                int ret = Interop.TetheringExtension.GetSharing(GetHandle(), out sharing);
                 CheckReturnValue(ret, "Sharing", PrivilegeNetworkGet);
                 return sharing;
             }

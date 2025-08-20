@@ -3,16 +3,16 @@ using System;
 
 namespace Tizen.Network.Tethering
 {
-    internal partial class TetheringExtManagerImpl {
-        private event EventHandler<TetheringExtEnabledEventArgs> _tetheringExtEnabled;
-        private event EventHandler<TetheringExtDisabledEventArgs> _tetheringExtDisabled;
+    internal partial class TetheringExtensionManagerImpl {
+        private event EventHandler<TetheringExtensionEnabledEventArgs> _tetheringExtEnabled;
+        private event EventHandler<TetheringExtensionDisabledEventArgs> _tetheringExtDisabled;
         private event EventHandler<ConnectionStateChangedEventArgs> _connectionStateChanged;
 
-        private Interop.TetheringExt.EnabledCallback _enabledCallback;
-        private Interop.TetheringExt.DisabledCallback _disabledCallback;
-        private Interop.TetheringExt.ConnectionStateChangedCallback _connectionStateChangedCallback;
+        private Interop.TetheringExtension.EnabledCallback _enabledCallback;
+        private Interop.TetheringExtension.DisabledCallback _disabledCallback;
+        private Interop.TetheringExtension.ConnectionStateChangedCallback _connectionStateChangedCallback;
 
-        internal event EventHandler<TetheringExtEnabledEventArgs> TetheringExtEnabled
+        internal event EventHandler<TetheringExtensionEnabledEventArgs> TetheringExtensionEnabled
         {
             add
             {
@@ -24,7 +24,7 @@ namespace Tizen.Network.Tethering
                     }
                     catch (Exception e)
                     {
-                        Log.Error(Globals.LogTag, "Exception on adding TetheringExtEnabled\n" + e);
+                        Log.Error(Globals.LogTag, "Exception on adding TetheringExtensionEnabled\n" + e);
                         return;
                     }
                 }
@@ -41,13 +41,13 @@ namespace Tizen.Network.Tethering
                     }
                     catch (Exception e) 
                     {
-                        Log.Error(Globals.LogTag, "Exception on removing TetheringExtEnabled\n" + e);
+                        Log.Error(Globals.LogTag, "Exception on removing TetheringExtensionEnabled\n" + e);
                     }
                 }
             }
         }
 
-        internal event EventHandler<TetheringExtDisabledEventArgs> TetheringExtDisabled
+        internal event EventHandler<TetheringExtensionDisabledEventArgs> TetheringExtensionDisabled
         {
             add
             {
@@ -59,7 +59,7 @@ namespace Tizen.Network.Tethering
                     }
                     catch (Exception e)
                     {
-                        Log.Error(Globals.LogTag, "Exception on adding TetheringExtDisabled\n" + e);
+                        Log.Error(Globals.LogTag, "Exception on adding TetheringExtensionDisabled\n" + e);
                         return;
                     }
                 }
@@ -76,7 +76,7 @@ namespace Tizen.Network.Tethering
                     }
                     catch (Exception e) 
                     {
-                        Log.Error(Globals.LogTag, "Exception on removing TetheringExtDisabled\n" + e);
+                        Log.Error(Globals.LogTag, "Exception on removing TetheringExtensionDisabled\n" + e);
                     }
                 }
             }
@@ -123,11 +123,11 @@ namespace Tizen.Network.Tethering
             Log.Info(Globals.LogTag, "RegisterEnabledEvent");
             _enabledCallback = (int result, bool isRequested, IntPtr userData) =>
             {
-                TetheringExtEnabledEventArgs e = new TetheringExtEnabledEventArgs(result, isRequested);
+                TetheringExtensionEnabledEventArgs e = new TetheringExtensionEnabledEventArgs(result, isRequested);
                 _tetheringExtEnabled?.Invoke(this, e);
             };
 
-            int ret = Interop.TetheringExt.SetEnabledCallback(GetHandle(), _enabledCallback, IntPtr.Zero);
+            int ret = Interop.TetheringExtension.SetEnabledCallback(GetHandle(), _enabledCallback, IntPtr.Zero);
             if (ret != (int)TetheringError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set tethering extension enabled callback, Error - " + (TetheringError)ret);
@@ -137,7 +137,7 @@ namespace Tizen.Network.Tethering
         private void UnregisterEnabledEvent()
         {
             Log.Info(Globals.LogTag, "UnregisterTetheringEnabledEvent");
-            int ret = Interop.TetheringExt.UnsetEnabledCallback(GetHandle());
+            int ret = Interop.TetheringExtension.UnsetEnabledCallback(GetHandle());
             if (ret != (int)TetheringError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to unset tethering extension enabled callback, Error - " + (TetheringError)ret);
@@ -149,11 +149,11 @@ namespace Tizen.Network.Tethering
             Log.Info(Globals.LogTag, "RegisterDisabledEvent");
             _disabledCallback = (int result, TetheringDisabledCause cause, IntPtr userData) =>
             {
-                TetheringExtDisabledEventArgs e = new TetheringExtDisabledEventArgs(result, cause);
+                TetheringExtensionDisabledEventArgs e = new TetheringExtensionDisabledEventArgs(result, cause);
                 _tetheringExtDisabled?.Invoke(this, e);
             };
 
-            int ret = Interop.TetheringExt.SetDisabledCallback(GetHandle(), _disabledCallback, IntPtr.Zero);
+            int ret = Interop.TetheringExtension.SetDisabledCallback(GetHandle(), _disabledCallback, IntPtr.Zero);
             if (ret != (int)TetheringError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set tethering extension disabled callback, Error - " + (TetheringError)ret);
@@ -163,7 +163,7 @@ namespace Tizen.Network.Tethering
         private void UnregisterDisabledEvent()
         {
             Log.Info(Globals.LogTag, "UnregisterTetheringDisabledEvent");
-            int ret = Interop.TetheringExt.UnsetDisabledCallback(GetHandle());
+            int ret = Interop.TetheringExtension.UnsetDisabledCallback(GetHandle());
             if (ret != (int)TetheringError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to unset tethering extension disabled callback, Error - " + (TetheringError)ret);
@@ -174,12 +174,12 @@ namespace Tizen.Network.Tethering
         {
             _connectionStateChangedCallback = (IntPtr client, bool opened, IntPtr userData) =>
             {
-                TetheringExtClient tetheringExtClient = new TetheringExtClient(client);
+                TetheringExtensionClient tetheringExtClient = new TetheringExtensionClient(client);
                 ConnectionStateChangedEventArgs e = new ConnectionStateChangedEventArgs(tetheringExtClient, opened);
                 _connectionStateChanged?.Invoke(this, e);
             };
 
-            int ret = Interop.TetheringExt.SetConnectionStateChangedCallback(GetHandle(), _connectionStateChangedCallback, IntPtr.Zero);
+            int ret = Interop.TetheringExtension.SetConnectionStateChangedCallback(GetHandle(), _connectionStateChangedCallback, IntPtr.Zero);
             if (ret != (int)TetheringError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set connection state changed callback, Error - " + (TetheringError)ret);
@@ -189,7 +189,7 @@ namespace Tizen.Network.Tethering
         private void UnregisterConnectionStatechangedEvent()
         {
             Log.Info(Globals.LogTag, "UnregisterConnectionStatechangedEvent");
-            int ret = Interop.TetheringExt.UnsetConnectionStateChangedCallback(GetHandle());
+            int ret = Interop.TetheringExtension.UnsetConnectionStateChangedCallback(GetHandle());
             if (ret != (int)TetheringError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to unset connection state changed callback, Error - " + (TetheringError)ret);

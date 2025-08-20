@@ -6,7 +6,7 @@ namespace Tizen.Network.Tethering
     /// This class contains information related to the connected/disconnected client.
     /// </summary>
     /// <since_tizen> 13 </since_tizen>
-    public class TetheringExtClient : IDisposable
+    public class TetheringExtensionClient : IDisposable
     {
         IntPtr _client;
         private string _ipAddr;
@@ -14,10 +14,10 @@ namespace Tizen.Network.Tethering
         private string _hostname;
         private bool _disposed = false;
 
-        internal TetheringExtClient(IntPtr client)
+        internal TetheringExtensionClient(IntPtr client)
         {
             IntPtr clonedClient;
-            int ret = Interop.TetheringExt.CloneClient(out clonedClient, client);
+            int ret = Interop.TetheringExtension.CloneClient(out clonedClient, client);
             if (ret != (int)TetheringError.None) {
                 Log.Error(Globals.LogTag, "Error cloning tethering ext client: " + (TetheringError)ret);
             }
@@ -28,7 +28,7 @@ namespace Tizen.Network.Tethering
         /// Destructor function for the class.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        ~TetheringExtClient()
+        ~TetheringExtensionClient()
         {
             Dispose(false);
         }
@@ -48,8 +48,8 @@ namespace Tizen.Network.Tethering
             if (_disposed)
                 return;
 
-            Log.Info(Globals.LogTag, "TetheringExtClient Handle HashCode: " + _client.GetHashCode());
-            int ret = Interop.TetheringExt.ClientDestroy(_client);
+            Log.Info(Globals.LogTag, "TetheringExtensionClient Handle HashCode: " + _client.GetHashCode());
+            int ret = Interop.TetheringExtension.ClientDestroy(_client);
             if (ret == (int)TetheringError.None)
             {
                 _client = IntPtr.Zero;
@@ -58,7 +58,7 @@ namespace Tizen.Network.Tethering
         }
 
         /// <summary>
-        /// This function returns the IP Address of the connected/disconnected client.
+        /// Gets the IP Address of the connected/disconnected client.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         public string IPAddress
@@ -67,10 +67,10 @@ namespace Tizen.Network.Tethering
             {
                 if (_disposed)
                 {
-                    throw new ObjectDisposedException("Invalid TetheringExt client instance(Object may have been disposed or released)");
+                    throw new ObjectDisposedException("Invalid TetheringExtension client instance(Object may have been disposed or released)");
                 }
                 string ipAddr;
-                int ret = Interop.TetheringExt.ClientGetIPAddr(_client, out ipAddr);
+                int ret = Interop.TetheringExtension.ClientGetIPAddr(_client, out ipAddr);
                 if (ret != (int)TetheringError.None)
                 {
                     Log.Error(Globals.LogTag, "Error getting IP Address from client: " + (TetheringError)ret);
@@ -82,7 +82,7 @@ namespace Tizen.Network.Tethering
         }
 
         /// <summary>
-        /// This function returns the MAC Address of the connected/disconnected client.
+        /// Gets the MAC Address of the connected/disconnected client.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         public string MacAddress
@@ -91,10 +91,10 @@ namespace Tizen.Network.Tethering
             {
                 if (_disposed)
                 {
-                    throw new ObjectDisposedException("Invalid TetheringExt client instance(Object may have been disposed or released)");
+                    throw new ObjectDisposedException("Invalid TetheringExtension client instance(Object may have been disposed or released)");
                 }
                 string macAddr;
-                int ret = Interop.TetheringExt.ClientGetMacAddr(_client, out macAddr);
+                int ret = Interop.TetheringExtension.ClientGetMacAddr(_client, out macAddr);
                 if (ret != (int)TetheringError.None) {
                     Log.Error(Globals.LogTag, "Error getting Mac Address from client: " + (TetheringError)ret);
                     TetheringErrorFactory.ThrowTetheringException(ret, "Error getting Mac Address from client");
@@ -105,7 +105,7 @@ namespace Tizen.Network.Tethering
         }
 
         /// <summary>
-        /// This function returns the Hostname of the connected/disconnected client.
+        /// Gets the Hostname of the connected/disconnected client.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         public string Hostname
@@ -114,10 +114,10 @@ namespace Tizen.Network.Tethering
             {
                 if (_disposed)
                 {
-                    throw new ObjectDisposedException("Invalid TetheringExt client instance(Object may have been disposed or released)");
+                    throw new ObjectDisposedException("Invalid TetheringExtension client instance(Object may have been disposed or released)");
                 }
                 string hostname;
-                int ret = Interop.TetheringExt.ClientGetName(_client, out hostname);
+                int ret = Interop.TetheringExtension.ClientGetName(_client, out hostname);
                 if (ret != (int)TetheringError.None) {
                     Log.Error(Globals.LogTag, "Error getting hostname from client: " + (TetheringError)ret);
                     TetheringErrorFactory.ThrowTetheringException(ret, "Error getting hostname from client");
