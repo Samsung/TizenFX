@@ -76,7 +76,7 @@ internal static partial class Interop
         internal static extern int SetChannel(IntPtr tethering, int channel);
 
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_get_tethering_info")]
-        internal static extern int GetTetheringInfo(IntPtr tethering, out IntPtr tethering_info);
+        internal static extern int GetTetheringInfo(IntPtr tethering, IntPtr tethering_info);
 
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_get_channel")]
         internal static extern int GetChannel(IntPtr tethering, out int channel);

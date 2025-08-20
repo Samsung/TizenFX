@@ -136,10 +136,11 @@ namespace Tizen.Network.Tethering
         public TetheringInfo GetTetheringInfo()
         {
             Log.Info(Globals.LogTag, "GetTetheringInfo");
-            IntPtr tetheringInfoPtr;
-            int ret = Interop.TetheringExtension.GetTetheringInfo(GetHandle(), out tetheringInfoPtr);
+            IntPtr tetheringInfoPtr = Marshal.AllocHGlobal(Marshal.SizeOf<TetheringInfoStruct>());
+            int ret = Interop.TetheringExtension.GetTetheringInfo(GetHandle(), tetheringInfoPtr);
             CheckReturnValue(ret, "GetTetheringInfo", PrivilegeNetworkGet);
             TetheringInfo tetheringInfo = new TetheringInfo(tetheringInfoPtr);
+            Marshal.FreeHGlobal(tetheringInfoPtr);
             return tetheringInfo;
         }
 
