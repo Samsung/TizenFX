@@ -25,6 +25,8 @@ namespace Tizen.NUI.Binding
     /// Selects DataTemplate objects by data type and container.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
+    [Obsolete("Deprecated in API13")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class DataTemplateSelector : DataTemplate
     {
         Dictionary<Type, DataTemplate> _dataTemplates = new Dictionary<Type, DataTemplate>();
