@@ -21,7 +21,7 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
-    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+    [Obsolete("Deprecated in API13")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public delegate void CollectionSynchronizationCallback(IEnumerable collection, object context, Action accessMethod, bool writeAccess);
 }

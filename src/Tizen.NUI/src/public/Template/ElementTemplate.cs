@@ -24,7 +24,7 @@ namespace Tizen.NUI.Binding
     /// <summary>
     /// Base class for DataTemplate and ControlTemplate classes.
     /// </summary>
-     /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 9 </since_tizen>
     public class ElementTemplate : IElement, IDataTemplate
     {
         List<Action<object, ResourcesChangedEventArgs>> changeHandlers;
