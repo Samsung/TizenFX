@@ -23,6 +23,7 @@ namespace Tizen.Network.IoTConnectivity
     /// Enumeration for the policy, which can be held in a resource.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public enum ResourcePolicy
     {
         /// <summary>

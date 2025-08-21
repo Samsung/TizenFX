@@ -21,6 +21,7 @@ namespace Tizen.Network.IoTConnectivity
     /// This class represents event arguments of the DeviceInformationFound event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class DeviceInformationFoundEventArgs
     {
         internal DeviceInformationFoundEventArgs() { }
@@ -30,6 +31,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The request ID.</value>
+        [Obsolete("Deprecated since API level 13")]
         public int RequestId { get; internal set; }
 
         /// <summary>
@@ -37,6 +39,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Continuously receive the event for finding device information.</value>
+        [Obsolete("Deprecated since API level 13")]
         public bool EventContinue { get; set; }
 
         /// <summary>
@@ -44,6 +47,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Human friendly name for device.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string Name { get; internal set; }
 
         /// <summary>
@@ -51,6 +55,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Spec version of the core specification.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string SpecVersion { get; internal set; }
 
         /// <summary>
@@ -58,6 +63,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Unique identifier for OIC device.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string DeviceId { get; internal set; }
 
         /// <summary>
@@ -65,6 +71,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Version of the specs this device data model is implemented to.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string DataModelVersion { get; internal set; }
     }
 }

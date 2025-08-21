@@ -45,6 +45,7 @@ namespace Tizen.Network.IoTConnectivity
         /// PresenceReceived event. This event occurs when server starts sending presence of a resource.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 13")]
         public static event EventHandler<PresenceReceivedEventArgs> PresenceReceived;
 
         /// <summary>
@@ -52,6 +53,7 @@ namespace Tizen.Network.IoTConnectivity
         /// after sending request using API StartFindingResource().
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 13")]
         public static event EventHandler<ResourceFoundEventArgs> ResourceFound;
 
         /// <summary>
@@ -59,6 +61,7 @@ namespace Tizen.Network.IoTConnectivity
         /// after sending request using API StartFindingPlatformInformation().
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 13")]
         public static event EventHandler<PlatformInformationFoundEventArgs> PlatformInformationFound;
 
         /// <summary>
@@ -66,12 +69,14 @@ namespace Tizen.Network.IoTConnectivity
         /// after sending request using API StartFindingDeviceInformation().
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 13")]
         public static event EventHandler<DeviceInformationFoundEventArgs> DeviceInformationFound;
 
         /// <summary>
         /// FindingError event. This event occurs when an error is found.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 13")]
         public static event EventHandler<FindingErrorOccurredEventArgs> FindingErrorOccurred;
 
         /// <summary>
@@ -91,6 +96,7 @@ namespace Tizen.Network.IoTConnectivity
         /// IoTConnectivityClientManager.Initialize();
         /// IoTConnectivityClientManager.TimeOut = 120;
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public static int TimeOut
         {
             get
@@ -133,6 +139,7 @@ namespace Tizen.Network.IoTConnectivity
         /// IoTConnectivityClientManager.Initialize();
         /// IoTConnectivityClientManager.PollingInterval = 100;
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public static int PollingInterval
         {
             get
@@ -183,6 +190,7 @@ namespace Tizen.Network.IoTConnectivity
         /// string filePath = "../../res/iotcon-test-svr-db-client.dat";
         /// IoTConnectivityClientManager.Initialize(filePath);
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public static void Initialize(string filePath)
         {
             int ret = Interop.IoTConnectivity.Client.IoTCon.Initialize(filePath);
@@ -208,6 +216,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <example><code>
         /// IoTConnectivityClientManager.Deinitialize();
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public static void Deinitialize()
         {
             s_presenceListenerId = 1;
@@ -244,6 +253,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <example><code>
         /// IoTConnectivityClientManager.InvokePolling();
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public static void InvokePolling()
         {
             int ret = Interop.IoTConnectivity.Client.IoTCon.InvokePolling();
@@ -299,6 +309,7 @@ namespace Tizen.Network.IoTConnectivity
         /// // Do not forget to remove these event handlers when they are not required any more.
         /// int id = IoTConnectivityClientManager.StartReceivingPresence(IoTConnectivityClientManager.MulticastAddress, "oic.iot.door");
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public static int StartReceivingPresence(string hostAddress, string resourceType)
         {
             Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.Ip;
@@ -400,6 +411,7 @@ namespace Tizen.Network.IoTConnectivity
         /// IoTConnectivityClientManager.FindingErrorOccurred -= errorHandler;
         /// IoTConnectivityClientManager.StopReceivingPresence(id);
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public static void StopReceivingPresence(int presenceId)
         {
             if (!s_presenceHandlesMap.ContainsKey((IntPtr)presenceId))
@@ -473,6 +485,7 @@ namespace Tizen.Network.IoTConnectivity
         /// // Do not forget to remove these event handlers when they are not required any more.
         /// int id = IoTConnectivityClientManager.StartFindingResource(null, query);
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public static int StartFindingResource(string hostAddress, ResourceQuery query = null)
         {
             Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.Ip;
@@ -582,6 +595,7 @@ namespace Tizen.Network.IoTConnectivity
         /// // Do not forget to remove these event handlers when they are not required any more.
         /// int id = IoTConnectivityClientManager.StartFindingDeviceInformation(IoTConnectivityClientManager.MulticastAddress);
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public static int StartFindingDeviceInformation(string hostAddress, ResourceQuery query = null)
         {
             Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.Ip;
@@ -682,6 +696,7 @@ namespace Tizen.Network.IoTConnectivity
         /// // Do not forget to remove these event handlers when they are not required any more.
         /// int id = IoTConnectivityClientManager.StartFindingPlatformInformation(IoTConnectivityClientManager.MulticastAddress);
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public static int StartFindingPlatformInformation(string hostAddress, ResourceQuery query = null)
         {
             Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType connectivityType = Interop.IoTConnectivity.Client.RemoteResource.ConnectivityType.Ip;

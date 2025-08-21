@@ -21,6 +21,7 @@ namespace Tizen.Network.IoTConnectivity
     /// Enumeration for operation of presence response.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public enum PresenceEventType
     {
         /// <summary>

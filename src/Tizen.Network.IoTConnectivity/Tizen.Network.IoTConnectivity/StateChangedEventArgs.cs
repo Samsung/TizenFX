@@ -23,6 +23,7 @@ namespace Tizen.Network.IoTConnectivity
     /// This class represents event arguments of the StateChanged event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class StateChangedEventArgs : EventArgs
     {
         internal StateChangedEventArgs() { }
@@ -32,6 +33,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The new state of the resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceState State { get; internal set; }
     }
 }
