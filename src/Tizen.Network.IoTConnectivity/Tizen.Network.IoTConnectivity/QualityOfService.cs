@@ -21,6 +21,7 @@ namespace Tizen.Network.IoTConnectivity
     /// Enumeration for states of remote resource.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public enum QualityOfService
     {
         /// <summary>

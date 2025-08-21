@@ -24,6 +24,7 @@ namespace Tizen.Network.IoTConnectivity
     /// It provides APIs to manage client's request.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class Request : IDisposable
     {
         private bool _disposed = false;
@@ -45,6 +46,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The host address of the request.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string HostAddress { get; internal set; }
 
         /// <summary>
@@ -52,6 +54,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The representation of the request.</value>
+        [Obsolete("Deprecated since API level 13")]
         public Representation Representation { get; internal set; }
 
         /// <summary>
@@ -59,6 +62,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The query of the request.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceQuery Query { get; internal set; }
 
         /// <summary>
@@ -66,6 +70,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The options related to the request.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceOptions Options { get; internal set; }
 
         /// <summary>
@@ -73,6 +78,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         public void Dispose()
         {
             Dispose(true);

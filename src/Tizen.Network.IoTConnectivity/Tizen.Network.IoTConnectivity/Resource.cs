@@ -108,6 +108,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Type details of the resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceTypes Types { get; internal set; }
 
         /// <summary>
@@ -115,6 +116,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Interface details of the resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceInterfaces Interfaces { get; internal set; }
 
         /// <summary>
@@ -122,6 +124,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The policies of the resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ResourcePolicy Policy { get; internal set; }
 
         /// <summary>
@@ -129,6 +132,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>URI path of the resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string UriPath { get; internal set; }
 
         /// <summary>
@@ -136,6 +140,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>List of Child resources.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ICollection<Resource> Children
         {
             get
@@ -144,6 +149,7 @@ namespace Tizen.Network.IoTConnectivity
             }
         }
 
+        [Obsolete("Deprecated since API level 13")]
         internal IntPtr ResourceHandle
         {
             get
@@ -187,6 +193,7 @@ namespace Tizen.Network.IoTConnectivity
         /// };
         /// resource.Notify(repr, QualityOfService.High);
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public void Notify(Representation representation, QualityOfService qos)
         {
             int ret = (int)IoTConnectivityError.None;

@@ -20,6 +20,7 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
+    // Deprecated since API13
     internal static partial class IoTConnectivity
     {
         internal static partial class Client
