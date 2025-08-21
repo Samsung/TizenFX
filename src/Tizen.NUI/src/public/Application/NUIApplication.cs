@@ -103,6 +103,7 @@ namespace Tizen.NUI
         static NUIApplication()
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+            PropertyBridge.RegisterStringGetter();
         }
 
         /// <summary>
