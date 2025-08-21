@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 
 namespace Tizen.Network.IoTConnectivity
 {
@@ -21,6 +22,7 @@ namespace Tizen.Network.IoTConnectivity
     /// This class represents event arguments of the PlatformInformationFound event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class PlatformInformationFoundEventArgs
     {
         internal PlatformInformationFoundEventArgs() { }
@@ -30,6 +32,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The request ID.</value>
+        [Obsolete("Deprecated since API level 13")]
         public int RequestId { get; internal set; }
 
         /// <summary>
@@ -37,6 +40,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Continuously receive the event for finding the platform information.</value>
+        [Obsolete("Deprecated since API level 13")]
         public bool EventContinue { get; set; }
 
         /// <summary>
@@ -44,6 +48,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The platform identifier.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string PlatformId { get; internal set; }
 
         /// <summary>
@@ -51,6 +56,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The name of the manufacturer.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string ManufacturerName { get; internal set; }
 
         /// <summary>
@@ -58,6 +64,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The URL of the manufacturer.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string ManufacturerURL { get; internal set; }
 
         /// <summary>
@@ -65,6 +72,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The model number as designated by the manufacturer.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string ModelNumber { get; internal set; }
 
         /// <summary>
@@ -72,6 +80,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The manufacturing date of the device.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string DateOfManufacture { get; internal set; }
 
         /// <summary>
@@ -79,6 +88,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The version of platfrom defined by manufacturer.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string PlatformVersion { get; internal set; }
 
         /// <summary>
@@ -86,6 +96,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The version of the platfrom resident OS.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string OsVersion { get; internal set; }
 
         /// <summary>
@@ -93,6 +104,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The version of the platform Hardware.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string HardwareVersion { get; internal set; }
 
         /// <summary>
@@ -100,6 +112,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The version of the device firmware.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string FirmwareVersion { get; internal set; }
 
         /// <summary>
@@ -107,6 +120,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The URL that points to support information from the manufacturer.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string SupportUrl { get; internal set; }
 
         /// <summary>
@@ -114,6 +128,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The reference time of the device.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string SystemTime { get; internal set; }
     }
 }

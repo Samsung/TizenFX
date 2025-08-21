@@ -23,6 +23,7 @@ namespace Tizen.Network.IoTConnectivity
     /// This class represents event arguments of the ObserverNotified event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class ObserverNotifiedEventArgs : EventArgs
     {
         internal ObserverNotifiedEventArgs() { }
@@ -32,6 +33,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Result of the observe response.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ResponseCode Result { get; internal set; }
 
         /// <summary>
@@ -39,6 +41,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Representation of the resource being observed.</value>
+        [Obsolete("Deprecated since API level 13")]
         public Representation Representation { get; internal set; }
     }
 }

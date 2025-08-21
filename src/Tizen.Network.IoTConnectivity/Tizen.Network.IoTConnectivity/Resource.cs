@@ -78,6 +78,7 @@ namespace Tizen.Network.IoTConnectivity
         /// ResourceTypes types = new ResourceTypes(new List<string>(){ "oic.iot.door.new" });
         /// Resource resource = new DoorResource("/door/uri1", types, ifaces, ResourcePolicy.Discoverable | ResourcePolicy.Observable);
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         protected Resource(string uri, ResourceTypes types, ResourceInterfaces interfaces, ResourcePolicy policy)
         {
             UriPath = uri;
@@ -108,6 +109,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Type details of the resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceTypes Types { get; internal set; }
 
         /// <summary>
@@ -115,6 +117,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Interface details of the resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceInterfaces Interfaces { get; internal set; }
 
         /// <summary>
@@ -122,6 +125,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The policies of the resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ResourcePolicy Policy { get; internal set; }
 
         /// <summary>
@@ -129,6 +133,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>URI path of the resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string UriPath { get; internal set; }
 
         /// <summary>
@@ -136,6 +141,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>List of Child resources.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ICollection<Resource> Children
         {
             get
@@ -144,6 +150,7 @@ namespace Tizen.Network.IoTConnectivity
             }
         }
 
+        [Obsolete("Deprecated since API level 13")]
         internal IntPtr ResourceHandle
         {
             get
@@ -187,6 +194,7 @@ namespace Tizen.Network.IoTConnectivity
         /// };
         /// resource.Notify(repr, QualityOfService.High);
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public void Notify(Representation representation, QualityOfService qos)
         {
             int ret = (int)IoTConnectivityError.None;
@@ -257,6 +265,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
