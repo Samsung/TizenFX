@@ -25,12 +25,8 @@ namespace Tizen.NUI
     {
         private static StringGetterDelegate _stringGetterDelegate;
 
-        static PropertyBridge()
-        {
-        }
-
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate string StringGetterDelegate(IntPtr obj, [MarshalAs(UnmanagedType.LPStr)] string propertyName);
+        public delegate void StringGetterDelegate(IntPtr obj, [MarshalAs(UnmanagedType.LPUTF8Str)] string propertyName, IntPtr result);
 
         public static void RegisterStringGetter()
         {
@@ -40,17 +36,20 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private static string InternalStringGetter(IntPtr obj, string propertyName)
+        private static void InternalStringGetter(IntPtr obj, string propertyName, IntPtr result)
         {
-            if (obj != IntPtr.Zero)
-            {
-                View view = Registry.GetManagedBaseHandleFromNativePtr(obj) as View;
-                if (view != null && view is IPropertyProvider provider)
-                {
-                    return provider.GetStringProperty(propertyName);
-                }
-            }
-            return null;
+            if (obj == IntPtr.Zero || string.IsNullOrEmpty(propertyName))
+                return;
+
+            if (Registry.GetManagedBaseHandleFromRefObject(obj) is not View view)
+                return;
+
+            if (view is not IPropertyProvider provider)
+                return;
+
+            string value = provider.GetStringProperty(propertyName);
+            Tizen.Log.Info("NUI", $"Property:{propertyName}, value:{value}");
+            Interop.StringToVoidSignal.SetResult(result, value ?? string.Empty);
         }
     }
 }
