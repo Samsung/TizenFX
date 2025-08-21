@@ -113,6 +113,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         None,
         /// <summary>
+        /// A notification
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Notification,
+        /// <summary>
         /// A password text
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
