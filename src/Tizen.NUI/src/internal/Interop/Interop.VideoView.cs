@@ -108,6 +108,15 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_GetNativePlayerHandle")]
             public static extern global::System.IntPtr GetNativePlayerHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_SetFrameInterpolationInterval")]
+            public static extern void SetFrameInterpolationInterval(global::System.Runtime.InteropServices.HandleRef view, float intervalSeconds);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_GetFrameInterpolationInterval")]
+            public static extern float GetFrameInterpolationInterval(global::System.Runtime.InteropServices.HandleRef view);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_SetNativeImageSourceForCurrentFrame")]
+            public static extern void SetNativeImageSourceForCurrentFrame(global::System.Runtime.InteropServices.HandleRef view, global::System.Runtime.InteropServices.HandleRef nativeImageSource);
+
         }
     }
 }
