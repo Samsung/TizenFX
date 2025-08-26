@@ -25,6 +25,8 @@ namespace Tizen.NUI.Binding
     /// A template for multiple bindings, commonly used by RecylerView and CollectionView.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
+    [Obsolete("Deprecated in API13")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class DataTemplate : ElementTemplate
     {
         /// <summary>

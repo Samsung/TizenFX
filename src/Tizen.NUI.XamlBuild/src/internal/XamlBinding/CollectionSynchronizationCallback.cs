@@ -19,6 +19,8 @@ using System.Collections;
 
 namespace Tizen.NUI.Binding
 {
+    [Obsolete("Deprecated in API13")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public delegate void CollectionSynchronizationCallback(IEnumerable collection, object context, Action accessMethod, bool writeAccess);
 }
  
