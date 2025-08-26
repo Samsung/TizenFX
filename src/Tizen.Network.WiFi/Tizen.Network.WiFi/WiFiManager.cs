@@ -325,6 +325,22 @@ namespace Tizen.Network.WiFi
         {
             WiFiManagerImpl.Instance.SaveWiFiNetworkConfiguration(configuration);
         }
+        /// <summary>
+        /// Removes the Wi-Fi configuration of the access point.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        /// <param name="configuration">The configuration to be removed.</param>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.profile</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when WiFiConfiguration is passed as null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        static public void RemoveWiFiConfiguration(WiFiConfiguration configuration)
+        {
+            WiFiManagerImpl.Instance.RemoveWiFiNetworkConfiguration(configuration);
+        }
 
         /// <summary>
         /// Gets the object of the connected WiFiAP.
