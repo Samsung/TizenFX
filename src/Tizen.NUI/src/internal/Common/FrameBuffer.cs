@@ -66,7 +66,40 @@ namespace Tizen.NUI
 
         public Texture GetColorTexture()
         {
-            global::System.IntPtr cPtr = Interop.FrameBuffer.GetColorTexture(SwigCPtr);
+            return GetColorTexture(0u);
+        }
+
+        public Texture GetColorTexture(uint index)
+        {
+            global::System.IntPtr cPtr = Interop.FrameBuffer.GetColorTextureByIndex(SwigCPtr, index);
+            Texture ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Texture;
+            if (ret != null)
+            {
+                Interop.BaseHandle.DeleteBaseHandle(new global::System.Runtime.InteropServices.HandleRef(this, cPtr));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                return ret;
+            }
+            else
+            {
+                ret = new Texture(cPtr, true);
+                return ret;
+            }
+        }
+
+        public void AttachDepthTexture(Texture texture)
+        {
+            AttachDepthTexture(texture, 0u);
+        }
+
+        public void AttachDepthTexture(Texture texture, uint mipmapLevel)
+        {
+            Interop.FrameBuffer.AttachDepthTexture(SwigCPtr, Texture.getCPtr(texture), mipmapLevel);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public Texture GetDepthTexture()
+        {
+            global::System.IntPtr cPtr = Interop.FrameBuffer.GetDepthTexture(SwigCPtr);
             Texture ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Texture;
             if (ret != null)
             {
@@ -90,6 +123,31 @@ namespace Tizen.NUI
         public ImageUrl GenerateUrl(PixelFormat pixelFormat, int width, int height)
         {
             return new ImageUrl(Interop.FrameBuffer.GenerateUrl(this.SwigCPtr.Handle, (int)pixelFormat, width, height), true);
+        }
+
+        /// <summary>
+        /// Generate URI from current buffer.
+        /// </summary>
+        public ImageUrl GenerateUrl()
+        {
+            return GenerateUrl(0u);
+        }
+
+        /// <summary>
+        /// Generate URI from current buffer.
+        /// </summary>
+        /// <param name="index">The index of attached color texture</param>
+        public ImageUrl GenerateUrl(uint index)
+        {
+            return new ImageUrl(Interop.FrameBuffer.GenerateUrlByIndex(this.SwigCPtr.Handle, index), true);
+        }
+
+        /// <summary>
+        /// Generate URI from current depth buffer.
+        /// </summary>
+        public ImageUrl GenerateDepthUrl()
+        {
+            return new ImageUrl(Interop.FrameBuffer.GenerateDepthUrl(this.SwigCPtr.Handle), true);
         }
     }
 }
