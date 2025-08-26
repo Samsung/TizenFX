@@ -28,6 +28,9 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ImageUrl_Copy")]
             public static extern global::System.IntPtr NewImageUrl(global::System.Runtime.InteropServices.HandleRef csImageUrl);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageUrl_New")]
+            public static extern global::System.IntPtr New(HandleRef texture, bool preMultiplied);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ImageUrl")]
             public static extern void Delete(HandleRef jarg1);
 
