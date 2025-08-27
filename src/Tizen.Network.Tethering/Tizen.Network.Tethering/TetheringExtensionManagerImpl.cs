@@ -17,6 +17,11 @@ namespace Tizen.Network.Tethering
         private string PrivilegeNetworkProfile = "http://tizen.org/privilege/tethering.admin";
         private IntPtr _handle;
         private bool _disposed = false;
+        private bool _enabled = false;
+        private int _channel = 0;
+        private bool _sharing = false;
+        private TetheringSecurityType _security = TetheringSecurityType.None;
+        private bool _visibility = false; 
 
         internal bool Enabled
         {
@@ -24,8 +29,16 @@ namespace Tizen.Network.Tethering
             {
                 bool enabled = false;
                 int ret = Interop.TetheringExtension.IsEnabled(GetHandle(), out enabled);
-                CheckReturnValue(ret, "Enabled", PrivilegeNetworkProfile);
-                return enabled;
+                if (ret != (int)TetheringError.None)
+                {
+                    _enabled = false;
+                    Log.Error(Globals.LogTag, "Failed to get is enabled, Error - " + (TetheringError)ret);
+                }
+                else
+                {
+                    _enabled = enabled;
+                }
+                return _enabled;
             }
         }
 
@@ -50,8 +63,16 @@ namespace Tizen.Network.Tethering
                 Log.Info(Globals.LogTag, "GetChannel");
                 int channel = 0;
                 int ret = Interop.TetheringExtension.GetChannel(GetHandle(), out channel);
-                CheckReturnValue(ret, "GetChannel", PrivilegeNetworkGet);
-                return channel;
+                if (ret != (int)TetheringError.None)
+                {
+                    channel = 0;
+                    Log.Error(Globals.LogTag, "Failed to get channel, Error - " + (TetheringError)ret);
+                }
+                else
+                {
+                    _channel = channel;
+                }
+                return _channel;
             }
 
             set
@@ -151,8 +172,16 @@ namespace Tizen.Network.Tethering
                 Log.Info(Globals.LogTag, "Security");
                 int security = 0;
                 int ret = Interop.TetheringExtension.GetSecurity(GetHandle(), out security);
-                CheckReturnValue(ret, "Security", PrivilegeNetworkGet);
-                return (TetheringSecurityType)security;
+                if (ret != (int)TetheringError.None)
+                {
+                    _security = TetheringSecurityType.None;
+                    Log.Error(Globals.LogTag, "Failed to get security, Error - " + (TetheringError)ret);
+                }
+                else
+                {
+                    _security = (TetheringSecurityType)security;
+                }
+                return _security;
             }
         }
 
@@ -163,13 +192,23 @@ namespace Tizen.Network.Tethering
                 Log.Info(Globals.LogTag, "Visibility");
                 int visibility = 0;
                 int ret = Interop.TetheringExtension.GetVisibility(GetHandle(), out visibility);
-                CheckReturnValue(ret, "Visibility", PrivilegeNetworkGet);
-                bool isVisible = false;
-                if (visibility == 1) 
+                if (ret != (int)TetheringError.None)
                 {
-                    isVisible = true;
+                    _visibility = false;
+                    Log.Error(Globals.LogTag, "Failed to get visibility, Error - " + (TetheringError)ret);
                 }
-                return isVisible;
+                else
+                {
+                    if (visibility == 1) 
+                    {
+                        _visibility = true;
+                    }
+                    else
+                    {
+                        _visibility = false;
+                    }
+                }
+                return _visibility;
             }
         }
 
@@ -180,8 +219,16 @@ namespace Tizen.Network.Tethering
                 Log.Info(Globals.LogTag, "Sharing");
                 bool sharing = false;
                 int ret = Interop.TetheringExtension.GetSharing(GetHandle(), out sharing);
-                CheckReturnValue(ret, "Sharing", PrivilegeNetworkGet);
-                return sharing;
+                if (ret != (int)TetheringError.None)
+                {
+                    _sharing = false;
+                    Log.Error(Globals.LogTag, "Failed to get sharing, Error - " + (TetheringError)ret);
+                }
+                else
+                {
+                    _sharing = sharing;
+                }
+                return _sharing;
             }
         }
 
