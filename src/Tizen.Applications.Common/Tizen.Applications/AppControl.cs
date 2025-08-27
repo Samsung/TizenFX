@@ -60,6 +60,7 @@ namespace Tizen.Applications
         private string _applicationId = null;
         private ExtraDataCollection _extraData = null;
         private string _componentId = null;
+        private string _screenName = null;
 
         /// <summary>
         /// Initializes the instance of the AppControl class.
@@ -514,6 +515,50 @@ namespace Tizen.Applications
                 else
                 {
                     Log.Warn(LogTag, "Failed to set the component id to the AppControl. Err = " + err);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets and sets the screen name of the application.
+        /// </summary>
+        /// <value>
+        /// This property returns the explicitly set screen name. If no explicit screen name is set, it will return null.
+        /// (Setting this property to null will clear any previously set explicit screen name.)
+        /// </value>
+        /// <example>
+        /// <code>
+        /// AppControl appControl = new AppControl();
+        /// appControl.ScreenName = "main_screen";
+        /// Log.Debug(LogTag, "ScreenName: " + appControl.ScreenName);
+        /// </code>
+        /// </example>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string ScreenName
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(_screenName))
+                {
+                    Interop.AppControl.ErrorCode err = Interop.AppControl.GetScreenName(_handle, out _screenName);
+                    if (err != Interop.AppControl.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the screen name from the AppControl. Err = " + err);
+                    }
+                }
+                return _screenName;
+            }
+            set
+            {
+                Interop.AppControl.ErrorCode err = Interop.AppControl.SetScreenName(_handle, value);
+                if (err == Interop.AppControl.ErrorCode.None)
+                {
+                    _screenName = value;
+                }
+                else
+                {
+                    Log.Warn(LogTag, "Failed to set the screen name to the AppControl. Err = " + err);
                 }
             }
         }
