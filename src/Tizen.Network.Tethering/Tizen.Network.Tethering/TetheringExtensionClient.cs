@@ -61,6 +61,11 @@ namespace Tizen.Network.Tethering
         /// This method returns the IP Address of the connected/disconnected client.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="TetheringError.OutOfMemory">Thrown when system is out of memory.</exception>
         public string GetIPAddress()
         {
             if (_disposed)
@@ -82,6 +87,11 @@ namespace Tizen.Network.Tethering
         /// This method returns the MAC Address of the connected/disconnected client.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="TetheringError.OutOfMemory">Thrown when system is out of memory.</exception>
         public string GetMacAddress()
         {
             if (_disposed)
@@ -102,6 +112,11 @@ namespace Tizen.Network.Tethering
         /// This method returns the Hostname of the connected/disconnected client.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="TetheringError.OutOfMemory">Thrown when system is out of memory.</exception>
         public string GetHostname()
         {
             if (_disposed)

@@ -33,6 +33,11 @@ namespace Tizen.Network.Tethering
         /// Enabled is raised when the tethering is successfully enabled.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="TetheringError.InvalidOperation">Thrown when the method failed due to an invalid operation.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public event EventHandler<TetheringExtensionEnabledEventArgs> Enabled
         {
@@ -50,6 +55,11 @@ namespace Tizen.Network.Tethering
         /// Disabled is raised when the tethering is successfully disabled.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="TetheringError.InvalidOperation">Thrown when the method failed due to an invalid operation.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public event EventHandler<TetheringExtensionDisabledEventArgs> Disabled
         {
@@ -67,6 +77,11 @@ namespace Tizen.Network.Tethering
         /// ConnectionStateChanged is raised when the connection state is changed.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="TetheringError.InvalidOperation">Thrown when the method failed due to an invalid operation.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public event EventHandler<ConnectionStateChangedEventArgs> ConnectionStateChanged
         {
@@ -84,6 +99,12 @@ namespace Tizen.Network.Tethering
         /// Activates the TetheringExtension.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.PermissionDenied">Thrown when the permission is denied.</exception>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="TetheringError.InvalidOperation">Thrown when the method failed due to an invalid operation.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public void Activate()
         {
@@ -94,6 +115,12 @@ namespace Tizen.Network.Tethering
         /// Deactivates the TetheringExtension.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.PermissionDenied">Thrown when the permission is denied.</exception>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="TetheringError.InvalidOperation">Thrown when the method failed due to an invalid operation.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public void Deactivate()
         {
@@ -104,6 +131,10 @@ namespace Tizen.Network.Tethering
         /// Returns whethers TetheringExtension is enabled or not.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public bool IsEnabled
         {
@@ -117,6 +148,10 @@ namespace Tizen.Network.Tethering
         /// Sets the Service Set Identifier (SSID) of the Wi-Fi hotspot managed by the TetheringExtension Manager.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public void SetSsid(string ssid)
         {
@@ -127,6 +162,10 @@ namespace Tizen.Network.Tethering
         /// Sets the Passphrase of the Wi-Fi hotspot managed by the TetheringExtension Manager.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public void SetPassphrase(string passhprase)
         {
@@ -137,6 +176,11 @@ namespace Tizen.Network.Tethering
         /// Retrieves and Set the Channel of the Wi-Fi hotspot managed by the TetheringExtension Manager.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="TetheringError.OperationFailed">Thrown when the opeartion failed.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public int Channel
         {
@@ -154,6 +198,12 @@ namespace Tizen.Network.Tethering
         /// Returns the TetheringExtension Info of the Wi-Fi hotspot managed by the TetheringExtension Manager.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.PermissionDenied">Thrown when the permission is denied.</exception>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="TetheringError.OperationFailed">Thrown when the opeartion failed.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public TetheringInfo GetTetheringInfo()
         {
@@ -164,6 +214,11 @@ namespace Tizen.Network.Tethering
         /// Returns the Security type of the Wi-Fi hotspot managed by the TetheringExtension Manager.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="TetheringError.OperationFailed">Thrown when the opeartion failed.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public TetheringSecurityType Security
         {
@@ -177,6 +232,11 @@ namespace Tizen.Network.Tethering
         /// Returns the Visibility of the Wi-Fi hotspot managed by the TetheringExtension Manager.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="TetheringError.OperationFailed">Thrown when the opeartion failed.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public bool Visibility
         {
@@ -190,6 +250,11 @@ namespace Tizen.Network.Tethering
         /// Returns whehter Wi-Fi hotspot managed by the TetheringExtension Manager is sharing or not.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
+        /// <privilege>
+        /// http://tizen.org/privilege/tethering.admin
+        /// </privilege>
+        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="TetheringError.OperationFailed">Thrown when the opeartion failed.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public bool Sharing
         {
