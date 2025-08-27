@@ -533,7 +533,7 @@ namespace Tizen.Applications
         /// Log.Debug(LogTag, "ScreenName: " + appControl.ScreenName);
         /// </code>
         /// </example>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ScreenName
         {
