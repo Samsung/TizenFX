@@ -17,8 +17,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
-
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -111,7 +109,7 @@ namespace Tizen.NUI
             }
             set
             {
-                margin = value;
+                margin = new Extents(value);
                 RequestLayout();
             }
         }
@@ -128,7 +126,7 @@ namespace Tizen.NUI
             }
             set
             {
-                padding = value;
+                padding = new Extents(value);
                 RequestLayout();
             }
         }
@@ -173,8 +171,8 @@ namespace Tizen.NUI
         {
             LayoutWithTransition = false;
             layoutPositionData = new LayoutData(this, TransitionCondition.Unspecified, 0, 0, 0, 0);
-            padding = new Extents(0, 0, 0, 0);
-            margin = new Extents(0, 0, 0, 0);
+            padding = new Extents(Extents.Zero);
+            margin = new Extents(Extents.Zero);
         }
 
         /// <summary>
@@ -369,8 +367,14 @@ namespace Tizen.NUI
                 {
                     layoutGroup.RequestLayout();
                 }
-            }
 
+                // FlexLayout requires MarkDirty if child layout's layout properties are changed.
+                // e.g. MarkDirty is required if child layout's Width/HeightSpecification is changed.
+                if (parent is FlexLayout)
+                {
+                    FlexLayout.MarkDirty(Owner);
+                }
+            }
         }
 
         /// <summary>
@@ -688,5 +692,11 @@ namespace Tizen.NUI
         {
             return false;
         }
+
+        /// <summary>
+        /// The flag to check if it is already disposed of.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal bool Disposed => disposed;
     }
 }

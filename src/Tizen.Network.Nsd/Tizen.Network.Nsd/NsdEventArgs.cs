@@ -62,6 +62,7 @@ namespace Tizen.Network.Nsd
     /// An extended EventArgs class, which contains the changed service state during a service discovery using SSDP.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class SsdpServiceFoundEventArgs : EventArgs
     {
         private SsdpServiceState _state;

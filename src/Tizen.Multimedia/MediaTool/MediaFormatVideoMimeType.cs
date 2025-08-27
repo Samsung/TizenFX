@@ -38,6 +38,60 @@ namespace Tizen.Multimedia
         H263P = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2021),
 
         /// <summary>
+        /// H263 Baseline Profile.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        H263BLP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2022),
+
+        /// <summary>
+        /// H263 H.320 Coding Efficiency Profile.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        H263H320CEP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2023),
+
+        /// <summary>
+        /// H263 Backward-Compatibility Profile.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        H263BCP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2024),
+
+        /// <summary>
+        /// H263 version 2 Interactive and Streaming Wireless Profile.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        H263ISW2P = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2025),
+
+        /// <summary>
+        /// H263 version 3 Interactive and Streaming Wireless Profile.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        H263ISW3P = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2026),
+
+        /// <summary>
+        /// H263 Conversation High Compression Profile.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        H263CHCP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2027),
+
+        /// <summary>
+        /// H263 Conversational Internet Profile.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        H263CInternetP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2028),
+
+        /// <summary>
+        /// H263 Conversational Interlace Profile.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        H263CInterlaceP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2029),
+
+        /// <summary>
+        /// H263 High Latency Profile.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        H263HLP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x202A),
+
+        /// <summary>
         /// H264_SP.
         /// </summary>
         H264SP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2030),
@@ -51,6 +105,36 @@ namespace Tizen.Multimedia
         /// H264_HP.
         /// </summary>
         H264HP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2032),
+
+        /// <summary>
+        /// H264 Extended Profile.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        H264ExtP = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2033),
+
+        /// <summary>
+        /// H264 High10 Profile.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        H264H10P = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2034),
+
+        /// <summary>
+        /// H264 High422 Profile.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        H264H422P = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2035),
+
+        /// <summary>
+        /// H264 High444 Profile.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        H264H444P = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2036),
+
+        /// <summary>
+        /// H264 CAVLC444 Profile.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        H264C444P = (MediaFormatType.Video | MediaFormatDataType.Encoded | 0x2037),
 
         /// <summary>
         /// MJPEG
@@ -203,6 +287,12 @@ namespace Tizen.Multimedia
         Rgb888 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25B0),
 
         /// <summary>
+        /// BGR888.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        Bgr888 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25B1),
+
+        /// <summary>
         /// RGBA.
         /// </summary>
         Rgba = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25C0),
@@ -222,5 +312,11 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         Y8 = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x25F0),
+
+        /// <summary>
+        /// HW dependent video.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        Native = (MediaFormatType.Video | MediaFormatDataType.Raw | 0x7000),
     }
 }

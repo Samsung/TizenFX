@@ -109,6 +109,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Set the maximum value of frames per seconds.
+        /// </summary>
+        /// <param name="maximumRenderFrameRate">The maximum fps for this adaptor system.</param>
+        /// <remarks>
+        /// Each frame will render multiple of given maximum render frame rate.
+        /// For example, if maximumRenderFrameRate = 50.0f, each elapse time could be 20ms, 40ms, 60ms, and so on.
+        ///</remarks>
+        internal void SetMaximumRenderFrameRate(float maximumRenderFrameRate)
+        {
+            Interop.Adaptor.SetMaximumRenderFrameRate(SwigCPtr, maximumRenderFrameRate);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// ReleaseSwigCPtr
         /// </summary>
         /// <param name="swigCPtr"></param>

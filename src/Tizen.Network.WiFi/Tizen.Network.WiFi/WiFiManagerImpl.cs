@@ -282,6 +282,18 @@ namespace Tizen.Network.WiFi
             CheckReturnValue(ret, "SaveConfiguration", PrivilegeNetworkProfile);
        }
 
+        internal void RemoveWiFiNetworkConfiguration(WiFiConfiguration config)
+        {
+            Log.Debug(Globals.LogTag, "RemoveWiFiNetworkConfiguration");
+            if (config == null)
+            {
+                throw new ArgumentNullException("WiFi configuraiton is null");
+            }
+            IntPtr configHandle = config.GetHandle();
+            int ret = Interop.WiFi.Config.RemoveConfiguration(GetSafeHandle(), configHandle);
+            CheckReturnValue(ret, "RemoveConfiguration", PrivilegeNetworkProfile);
+        }
+
         internal WiFiAP GetConnectedAP()
         {
             Log.Info(Globals.LogTag, "GetConnectedAP");

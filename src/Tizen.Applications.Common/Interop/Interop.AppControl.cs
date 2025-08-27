@@ -172,5 +172,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.AppControl, EntryPoint = "app_control_unset_auto_restart")]
         internal static extern ErrorCode UnsetAutoRestart();
+
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_set_screen_name")]
+        internal static extern ErrorCode SetScreenName(SafeAppControlHandle handle, string screen_name);
+
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_get_screen_name")]
+        internal static extern ErrorCode GetScreenName(SafeAppControlHandle handle, out string screen_name);
     }
 }

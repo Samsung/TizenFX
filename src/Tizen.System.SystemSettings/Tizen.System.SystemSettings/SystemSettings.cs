@@ -1180,6 +1180,43 @@ namespace Tizen.System
             }
         }
 
+        /// <summary>
+        /// This static member variable indicates whether OOBE(Out Of Box Experience) is enabled on the device.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <feature>http://tizen.org/feature/systemsetting.oobe</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <remarks>
+        /// http://tizen.org/privilege/systemsettings.admin is needed only for setting value. It is not required to get the value.
+        /// </remarks>
+        /// <since_tizen> 13 </since_tizen>
+        public static bool Oobe
+        {
+            get
+            {
+                bool isOobe;
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.Oobe, out isOobe);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get isOobe system setting.");
+                }
+                return isOobe;
+            }
+            set
+            {
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.Oobe, value);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set isOobe system setting.");
+                }
+            }
+        }
+
         private static readonly Interop.Settings.SystemSettingsChangedCallback s_incomingCallRingtoneChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
             string path = SystemSettings.IncomingCallRingtone;
@@ -3316,6 +3353,63 @@ namespace Tizen.System
                     if (s_rotaryEventEnabledChanged == null)
                     {
                         SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.RotaryEventEnabled, s_rotaryEventEnabledChangedCallback);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
+                    }
+                }
+            }
+        }
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_oobeChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        {
+            bool oobe = SystemSettings.Oobe;
+            OobeChangedEventArgs eventArgs = new OobeChangedEventArgs(oobe);
+            s_oobeChanged?.Invoke(null, eventArgs);
+        };
+        private static event EventHandler<OobeChangedEventArgs> s_oobeChanged;
+        private static readonly object s_oobeChangedLockObj = new object();
+        /// <summary>
+        /// The OobeChanged event is triggered when the OOBE value is changed.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <feature>http://tizen.org/feature/systemsetting.oobe</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <remarks>
+        /// http://tizen.org/privilege/systemsettings.admin is needed only for setting value. When getting the value, it isn't needed.
+        /// </remarks>
+        /// <since_tizen> 13 </since_tizen>
+        public static event EventHandler<OobeChangedEventArgs> OobeChanged
+        {
+            add
+            {
+                lock (s_oobeChangedLockObj)
+                {
+                    if (s_oobeChanged == null)
+                    {
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.Oobe, s_oobeChangedCallback, IntPtr.Zero);
+                        if (ret != SystemSettingsError.None)
+                        {
+                            throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                        }
+                    }
+                    s_oobeChanged += value;
+                }
+            }
+
+            remove
+            {
+                lock (s_oobeChangedLockObj)
+                {
+                    s_oobeChanged -= value;
+                    if (s_oobeChanged == null)
+                    {
+                        SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.Oobe, s_oobeChangedCallback);
                         if (ret != SystemSettingsError.None)
                         {
                             throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");

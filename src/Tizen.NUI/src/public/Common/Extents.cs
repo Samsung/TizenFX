@@ -28,7 +28,11 @@ namespace Tizen.NUI
     [Binding.TypeConverter(typeof(ExtentsTypeConverter))]
     public class Extents : Disposable, ICloneable
     {
-
+        /// <summary>
+        /// Extents with all zero values.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly Extents Zero = new Extents(0, 0, 0, 0);
 
         /// <summary>
         /// Default constructor of Extents class.
@@ -133,7 +137,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Extents extents = new Extents();
-        /// extents.Start = 1; 
+        /// extents.Start = 1;
         /// // USE like this
         /// ushort start = 1, end = 2, top = 3, bottom = 4;
         /// Extents extents = new Extents(start, end, top, bottom);
@@ -166,7 +170,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Extents extents = new Extents();
-        /// extents.End = 2; 
+        /// extents.End = 2;
         /// // USE like this
         /// ushort start = 1, end = 2, top = 3, bottom = 4;
         /// Extents extents = new Extents(start, end, top, bottom);
@@ -199,7 +203,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Extents extents = new Extents();
-        /// extents.Top = 3; 
+        /// extents.Top = 3;
         /// // USE like this
         /// ushort start = 1, end = 2, top = 3, bottom = 4;
         /// Extents extents = new Extents(start, end, top, bottom);
@@ -232,7 +236,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Extents extents = new Extents();
-        /// extents.Bottom = 4; 
+        /// extents.Bottom = 4;
         /// // USE like this
         /// ushort start = 1, end = 2, top = 3, bottom = 4;
         /// Extents extents = new Extents(start, end, top, bottom);
@@ -254,6 +258,16 @@ namespace Tizen.NUI
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
+        }
+
+        internal void Reset() => Reset(0, 0, 0, 0);
+
+        internal void Reset(UIExtents extents) => Reset((ushort)extents.Start, (ushort)extents.End, (ushort)extents.Top, (ushort)extents.Bottom);
+
+        internal void Reset(ushort start, ushort end, ushort top, ushort bottom)
+        {
+            Interop.Extents.SetAll(SwigCPtr, start, end, top, bottom);
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
 
         /// <summary>

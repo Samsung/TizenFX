@@ -18,6 +18,7 @@
 using System;
 using System.ComponentModel;
 using System.Text;
+using System.Globalization;
 
 using Tizen.NUI.BaseComponents;
 
@@ -150,7 +151,7 @@ namespace Tizen.NUI.MarkdownRenderer
                             if (emphasis.DelimiterCount == 2)
                                 sb.Append("<s height='").Append(style.Paragraph.StrikethroughThickness).Append("'>").Append(content).Append("</s>");
                             else
-                                sb.Append(content);
+                                sb.Append("~").Append(content).Append("~");
                         }
                         else // '*', '**', '__'
                         {
@@ -327,7 +328,7 @@ namespace Tizen.NUI.MarkdownRenderer
                     if (listItem.Parent is ListBlock listBlock && listBlock.IsOrdered)
                     {
                         int index = listBlock.IndexOf(listItem);
-                        int start = int.TryParse(listBlock.OrderedStart?.ToString(), out var s) ? s : 1;
+                        int start = int.TryParse(listBlock.OrderedStart?.ToString(), NumberStyles.Integer, CultureInfo.InvariantCulture, out var s) ? s : 1;
                         int number = start + index;
                         return new UIListItemParagraph(text, isOrdered: true, numberOrDepth: number, style.List, style.Paragraph, hash, AsyncRendering);
                     }

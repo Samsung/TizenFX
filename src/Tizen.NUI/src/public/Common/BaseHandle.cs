@@ -541,7 +541,7 @@ namespace Tizen.NUI
         {
             PropertySet?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-            if (!ThemeManager.InitialThemeDisabled && ChangedPropertiesSetExcludingStyle != null)
+            if (ChangedPropertiesSetExcludingStyle != null && !ThemeManager.InitialThemeDisabled)
             {
                 ChangedPropertiesSetExcludingStyle.Add(propertyName);
             }
@@ -751,6 +751,55 @@ namespace Tizen.NUI
         static private void ClearHolder(IntPtr handle)
         {
             nativeBindedHolder.Remove(handle);
+        }
+
+        /// <summary>
+        /// Get memory ownership and registry information of the native pointer.
+        /// Please be aware enough about this action before use this method.
+        /// </summary>
+        internal void AcquireOwnership(IntPtr pointer)
+        {
+            if (swigCMemOwn || registerMe || IsDisposedOrQueued)
+            {
+                throw new InvalidOperationException("This should not have ownership of other native handle.");
+            }
+
+            swigCPtr = new System.Runtime.InteropServices.HandleRef(this, pointer);
+            swigCMemOwn = true;
+            registerMe = true;
+
+            if (!Registry.Register(this))
+            {
+                throw new InvalidOperationException("This destination base handle should not have ownership of other native handle.");
+            }
+            _disposeOnlyMainThread = true;
+        }
+
+        /// <summary>
+        /// Remove memory ownership and registry information of this handle.
+        /// Please be aware enough about this action before use this method.
+        /// </summary>
+        internal void RemoveOwnership()
+        {
+            if (!swigCMemOwn || !registerMe || !_disposeOnlyMainThread || IsDisposedOrQueued)
+            {
+                throw new InvalidOperationException("This base handle does not have ownership of the native handle.");
+            }
+
+            UnregisterFromRegistry();
+            swigCMemOwn = false;
+            _disposeOnlyMainThread = false;
+        }
+
+        /// <summary>
+        /// Get memory ownership and registry information of the native pointer.
+        /// Please be aware enough about this action before use this method.
+        /// </summary>
+        internal void MoveOwnership(BaseHandle handle)
+        {
+            IntPtr pointer = swigCPtr.Handle;
+            RemoveOwnership();
+            handle.AcquireOwnership(pointer);
         }
     }
 }

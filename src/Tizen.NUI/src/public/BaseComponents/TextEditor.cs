@@ -30,7 +30,7 @@ namespace Tizen.NUI.BaseComponents
     /// A control which provides a multi-line editable text editor.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public partial class TextEditor : View
+    public partial class TextEditor : View, IPropertyProvider
     {
         static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextEditor";
         static private string defaultFontFamily = "BreezeSans";
@@ -259,6 +259,20 @@ namespace Tizen.NUI.BaseComponents
         {
             return ThemeManager.GetStyle(this.GetType()) == null ? false : true;
         }
+
+        // IPropertyProvider
+        /// <summary>
+        /// Gets a string property by name.
+        /// </summary>
+        /// <param name="propertyName">The name of the property to retrieve.</param>
+        /// <returns>The string value of the property, or null if not found.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GetStringProperty(string propertyName) => propertyName switch
+        {
+            nameof(TranslatableText) => TranslatableText,
+            nameof(TranslatablePlaceholderText) => TranslatablePlaceholderText,
+            _ => null
+        };
 
         /// <summary>
         /// The TranslatableText property.<br />
@@ -5113,7 +5127,7 @@ namespace Tizen.NUI.BaseComponents
                 var maxHeight = Owner.GetMaximumHeight();
                 var naturalSize = Owner.GetNaturalSize();
 
-                if (((TextEditor)Owner).Text.Length == 0)
+                if (((TextEditor)Owner).Text.Length == 0 && ((TextEditor)Owner).PlaceholderText.Length == 0)
                 {
                     // Calculate height of TextEditor by setting Text with " ".
                     // By calling SetTextWithoutTextChanged, TextChanged callback is not called for this.

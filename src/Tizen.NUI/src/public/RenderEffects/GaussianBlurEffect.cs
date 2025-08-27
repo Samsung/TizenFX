@@ -99,6 +99,10 @@ namespace Tizen.NUI
         /// The property is blur radius value.
         /// The unit is pixel, but the property is in float type since many other platforms use float for blur effect radius.
         /// </summary>
+        /// <remarks>
+        /// For performance, blur radius is internally recalculated. It should be greater than or equal to (4 / downscale factor).
+        /// Note that BlurDownscaleFactor is set to 0.25 as default.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float BlurRadius
         {

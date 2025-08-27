@@ -2191,7 +2191,7 @@ namespace Tizen.NUI.BaseComponents
             backgroundImageUrl = value;
 
             // Fast return for usual cases.
-            if (backgroundExtraData == null && !backgroundImageSynchronousLoading)
+            if (backgroundExtraData == null && !_viewFlags.HasFlag(ViewFlags.BackgroundImageSynchronousLoading))
             {
                 Object.InternalSetPropertyString(SwigCPtr, View.Property.BACKGROUND, value);
                 return;
@@ -2200,7 +2200,7 @@ namespace Tizen.NUI.BaseComponents
             using var map = new PropertyMap();
 
             map.Add(ImageVisualProperty.URL, value)
-               .Add(ImageVisualProperty.SynchronousLoading, backgroundImageSynchronousLoading);
+               .Add(ImageVisualProperty.SynchronousLoading, _viewFlags.HasFlag(ViewFlags.BackgroundImageSynchronousLoading));
 
             if ((backgroundExtraData?.BackgroundImageBorder) != null)
             {
@@ -2211,15 +2211,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 map.Add(Visual.Property.Type, (int)Visual.Type.Image);
             }
-
-            if (backgroundExtraData != null)
-            {
-                map.Add(Visual.Property.CornerRadius, backgroundExtraData.CornerRadius)
-                   .Add(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness)
-                   .Add(Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
-            }
-
-            backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
 
             using var mapValue = new PropertyValue(map);
             Object.SetProperty(SwigCPtr, Property.BACKGROUND, mapValue);
@@ -2285,25 +2276,7 @@ namespace Tizen.NUI.BaseComponents
             // Background property will be Color after now. Remove background image url information.
             backgroundImageUrl = null;
 
-            if (backgroundExtraData == null)
-            {
-                Object.InternalSetPropertyVector4(SwigCPtr, View.Property.BACKGROUND, ((Color)value).SwigCPtr);
-                return;
-            }
-
-            using var map = new PropertyMap();
-
-            map.Add(Visual.Property.Type, (int)Visual.Type.Color)
-               .Add(ColorVisualProperty.MixColor, value);
-
-            map.Add(Visual.Property.CornerRadius, backgroundExtraData.CornerRadius)
-               .Add(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness)
-               .Add(Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
-
-            backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
-
-            using var mapValue = new PropertyValue(map);
-            Object.SetProperty(SwigCPtr, Property.BACKGROUND, mapValue);
+            Object.InternalSetPropertyVector4(SwigCPtr, View.Property.BACKGROUND, ((Color)value).SwigCPtr);
         }
 
         private void SetColor(Color value)
@@ -2366,8 +2339,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetShadow(ShadowBase value)
         {
-            backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Shadow;
-
             using var pv = value == null ? new PropertyValue() : value.ToPropertyValue(this);
             Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.SHADOW, pv);
         }

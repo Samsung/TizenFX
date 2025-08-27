@@ -33,6 +33,8 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class NUIApplication : CoreApplication
     {
+        private static bool _isUsingXaml = true;
+
         /// <summary>
         /// Set to true if XAML is used.
         /// This must be called before or immediately after the NUIApplication constructor is called.
@@ -42,7 +44,21 @@ namespace Tizen.NUI
         /// This must be called before or immediately after the NUIApplication constructor is called.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public bool IsUsingXaml { get; set; } = true;
+        static public bool IsUsingXaml
+        {
+            get
+            {
+                return _isUsingXaml;
+            }
+            set
+            {
+                if (_isUsingXaml != value)
+                {
+                    Tizen.Log.Info("NUI", $"IsUsingXaml changed to {value}");
+                    _isUsingXaml = value;
+                }
+            }
+        }
 
         /// <summary>
         /// Set to true if NUI ThemeManager is used.
@@ -50,6 +66,19 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool IsUsingThemeManager { get; set; } = true;
+
+        /// <summary>
+        /// Set to true if NUI DisposeQueue dispose items incrementally.
+        /// The default value is false.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool IsUsingIncrementalDispose => DisposeQueue.Instance.IncrementalDisposeSupported;
+
+        /// <summary>
+        /// Whether current system support to create view at Preload time.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool SupportPreInitializedCreation { get; private set; }
 
         /// <summary>
         /// The instance of ResourceManager.
@@ -74,6 +103,7 @@ namespace Tizen.NUI
         static NUIApplication()
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+            PropertyBridge.RegisterStringGetter();
         }
 
         /// <summary>
@@ -528,8 +558,8 @@ namespace Tizen.NUI
         public override void Run(string[] args)
         {
             Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
-            Backend.AddEventHandler(EventType.Resumed, OnResume);
-            Backend.AddEventHandler(EventType.Paused, OnPause);
+            Backend.AddEventHandler(EventType.Resumed, ResumeHandler);
+            Backend.AddEventHandler(EventType.Paused, PauseHandler);
             base.Run(args);
         }
 
@@ -595,6 +625,21 @@ namespace Tizen.NUI
         public static void SetRenderRefreshRate(uint numberOfVSyncsPerRender)
         {
             Adaptor.Instance.SetRenderRefreshRate(numberOfVSyncsPerRender);
+        }
+
+        /// <summary>
+        /// Set the maximum value of frames per seconds.
+        /// </summary>
+        /// <param name="maximumRenderFrameRate">The maximum fps for this adaptor system.</param>
+        /// <remarks>
+        /// Each frame will render multiple of given maximum render frame rate.
+        /// For example, if maximumRenderFrameRate = 50.0f, each elapse time could be 20ms, 40ms, 60ms, and so on.
+        ///</remarks>
+        /// Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetMaximumRenderFrameRate(float maximumRenderFrameRate)
+        {
+            Adaptor.Instance.SetMaximumRenderFrameRate(maximumRenderFrameRate);
         }
 
         /// <summary>
@@ -708,8 +753,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPause()
         {
-            currentState = States.Paused;
-            Paused?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -718,8 +761,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnResume()
         {
-            currentState = States.Resumed;
-            Resumed?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -777,14 +818,28 @@ namespace Tizen.NUI
         static public void Preload()
         {
             Interop.Application.PreInitialize();
+            SupportPreInitializedCreation = Interop.Application.IsSupportPreInitializedCreation();
 
             // Initialize some static utility
-            var disposalbeQueue = DisposeQueue.Instance;
+            var disposableQueue = DisposeQueue.Instance;
+            var processorController = ProcessorController.Instance;
             var registry = Registry.Instance;
+
+            // Get default window only if pre initialize creation supported.
+            if (SupportPreInitializedCreation)
+            {
+                Log.Info("NUI", "[NUI] Preload: GetWindow");
+                Tizen.Tracer.Begin("[NUI] Preload: GetWindow");
+                var nativeWindow = Interop.Application.GetPreInitializeWindow();
+                Window.Instance = Window.Default = new Window(nativeWindow, true);
+                Tizen.Tracer.End();
+            }
 
             // Initialize some BaseComponent static variables now
             BaseComponents.View.Preload();
             BaseComponents.ImageView.Preload();
+            BaseComponents.LottieAnimationView.Preload();
+            BaseComponents.AnimatedVectorImageView.Preload();
             BaseComponents.TextLabel.Preload();
             BaseComponents.TextEditor.Preload();
             BaseComponents.TextField.Preload();
@@ -820,6 +875,20 @@ namespace Tizen.NUI
         {
             borderEnabled = true;
             this.borderInterface = borderInterface;
+        }
+
+        private void ResumeHandler()
+        {
+            currentState = States.Resumed;
+            OnResume();
+            Resumed?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void PauseHandler()
+        {
+            currentState = States.Paused;
+            OnPause();
+            Paused?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>

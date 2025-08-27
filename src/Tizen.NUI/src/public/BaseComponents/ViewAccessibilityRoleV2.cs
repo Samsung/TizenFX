@@ -113,6 +113,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         None,
         /// <summary>
+        /// A notification
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Notification,
+        /// <summary>
         /// A password text
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -167,5 +172,15 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Toolbar,
+        /// <summary>
+        /// a Scene3D
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Scene3D,
+        /// <summary>
+        /// a model
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Model
     }
 }

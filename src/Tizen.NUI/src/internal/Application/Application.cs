@@ -731,30 +731,38 @@ namespace Tizen.NUI
         // Callback for Application InitSignal
         private void OnApplicationInit(IntPtr data)
         {
+            Log.Info("NUI", $"[NUI] Preload : {NUIApplication.IsPreload} Support preload time view creation : {NUIApplication.SupportPreInitializedCreation}\n");
+
+            Log.Info("NUI", "[NUI] OnApplicationInit: ProcessorController Initialize");
+            Tizen.Tracer.Begin("[NUI] OnApplicationInit: ProcessorController Initialize");
+            ProcessorController.Instance.Initialize();
+            Tizen.Tracer.End();
+
+            // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
             Log.Info("NUI", "[NUI] OnApplicationInit: DisposeQueue Initialize");
             Tizen.Tracer.Begin("[NUI] OnApplicationInit: DisposeQueue Initialize");
-            // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
             DisposeQueue.Instance.Initialize();
             Tizen.Tracer.End();
 
+            // Note : Preload window might not be changed after application created. GetWindow again.
             Log.Info("NUI", "[NUI] OnApplicationInit: GetWindow");
             Tizen.Tracer.Begin("[NUI] OnApplicationInit: GetWindow");
             Window.Instance = Window.Default = GetWindow();
 
 #if !PROFILE_TV
+            Log.Info("NUI", "[NUI] OnApplicationInit: FocusManager.Instance");
             //tv profile never use default focus indicator, so this is not needed!
             _ = FocusManager.Instance;
 #endif
             Tizen.Tracer.End();
-
-            Log.Info("NUI", "[NUI] OnApplicationInit: Window Show");
-            Tizen.Tracer.Begin("[NUI] OnApplicationInit: Window Show");
             // Notify that the window is displayed to the app core.
             if (NUIApplication.IsPreload)
             {
-                Window.Instance.Show();
+                Log.Info("NUI", "[NUI] OnApplicationInit: Window Show");
+                Tizen.Tracer.Begin("[NUI] OnApplicationInit: Window Show");
+                Window.Default.Show();
+                Tizen.Tracer.End();
             }
-            Tizen.Tracer.End();
 
             Log.Info("NUI", "[NUI] OnApplicationInit: applicationInitEventHandler Invoke");
             Tizen.Tracer.Begin("[NUI] OnApplicationInit: applicationInitEventHandler Invoke");
@@ -2044,12 +2052,14 @@ namespace Tizen.NUI
             window = Registry.GetManagedBaseHandleFromNativePtr(nativeWindow) as Window;
             if (window != null)
             {
+                Log.Info("NUI", "[NUI] Use pre-initialized Window\n");
                 HandleRef CPtr = new HandleRef(this, nativeWindow);
                 Interop.BaseHandle.DeleteBaseHandle(CPtr);
                 CPtr = new HandleRef(null, IntPtr.Zero);
             }
             else
             {
+                Log.Info("NUI", "[NUI] Use standalone Window\n");
                 window = new Window(nativeWindow, true);
             }
 

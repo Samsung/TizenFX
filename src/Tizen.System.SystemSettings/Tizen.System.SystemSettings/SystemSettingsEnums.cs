@@ -186,7 +186,12 @@ namespace Tizen.System
         /// GET (bool) Indicates whether rotary event is enabled on the device.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        RotaryEventEnabled
+        RotaryEventEnabled,
+        /// <summary>
+        /// GET (bool) Indicates whether OOBE(Out Of Box Experience) is enabled on the device.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        Oobe
     }
     /// <summary>
     /// This is enumeration for the Idle Lock State.
