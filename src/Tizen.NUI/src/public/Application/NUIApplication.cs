@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
 using System.Reflection;
@@ -677,6 +678,48 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets the multiple screen information
+        /// </summary>
+        /// <returns>The array of screen information</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public ScreenInformation[] GetMultipleScreenInformations()
+        {
+            using PropertyArray propertyArray = new PropertyArray(Interop.Application.GetMultipleScreenInformations(), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            ScreenInformation[] screenInformationArray = null;
+            if (propertyArray != null)
+            {
+                uint count = propertyArray.Count();
+                screenInformationArray = new ScreenInformation[count];
+                for (uint i = 0; i < count; i++)
+                {
+                    using (var screenInfoMap = new PropertyMap())
+                    {
+                        using (var propertyValue = propertyArray[i])
+                        {
+                            propertyValue.Get(screenInfoMap);
+                            if (screenInfoMap.Count() > 0)
+                            {
+                                string name = "";
+                                int width = 0;
+                                int height = 0;
+
+                                screenInfoMap["name"].Get(out name);
+                                screenInfoMap["width"].Get(out width);
+                                screenInfoMap["height"].Get(out height);
+
+                                var screenInfo = new ScreenInformation(name, width, height);
+
+                                screenInformationArray[i] = screenInfo;
+                            }
+                        }
+                    }
+                }
+            }
+            return screenInformationArray;
+        }
 
         /// <summary>
         /// The OnLocaleChanged method is called when the system locale settings have changed.
