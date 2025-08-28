@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2023 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -210,6 +210,19 @@ namespace Tizen.NUI.Scene3D
             set
             {
                 ReceiveShadow(value);
+            }
+        }
+
+        /// <summary>
+        /// Gets the loading state of the visual resource.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ModelLoadingStatusType LoadingStatus
+        {
+            get
+            {
+                return (ModelLoadingStatusType)Interop.Model.GetLoadingStatus(SwigCPtr);
             }
         }
 
