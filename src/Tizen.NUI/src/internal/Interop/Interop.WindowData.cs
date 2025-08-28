@@ -54,6 +54,13 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_GetFrontBufferRendering")]
             [return: MarshalAs(UnmanagedType.U1)]
             public static extern bool GetFrontBufferRendering(HandleRef nuiWindowData);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_SetCurrentScreen")]
+            public static extern void SetCurrentScreen(HandleRef nuiWindowData, string screenName);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_GetCurrentScreen")]
+            public static extern string GetCurrentScreen(HandleRef nuiWindowData);
+
         }
     }
 }
