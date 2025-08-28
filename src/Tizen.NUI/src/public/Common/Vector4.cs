@@ -753,6 +753,65 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Calculates the dot product of this vector and a Vector3.
+        /// The W component of this vector is not used in the calculation.
+        /// </summary>
+        /// <param name="other">The other Vector3.</param>
+        /// <returns>The dot product of the two vectors.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float Dot(Vector3 other)
+        {
+            float ret = Interop.Vector4.DotWithVector3(SwigCPtr, Vector3.getCPtr(other));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Calculates the dot product of this vector and another Vector4.
+        /// </summary>
+        /// <param name="other">The other Vector4.</param>
+        /// <returns>The dot product of the two vectors.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float Dot(Vector4 other)
+        {
+            float ret = Interop.Vector4.Dot(SwigCPtr, Vector4.getCPtr(other));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Calculates the 3D dot product of this vector and another Vector4 using only the x, y, and z components.
+        /// a.x*b.x + a.y*b.y + a.z*b.z (without w)
+        /// </summary>
+        /// <param name="other">The other Vector4.</param>
+        /// <returns>The 3D dot product of the two vectors.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float Dot3(Vector4 other)
+        {
+            float ret = Interop.Vector4.Dot3(SwigCPtr, Vector4.getCPtr(other));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Calculates the cross product of this vector and another Vector4.
+        /// The W component is treated as 0.0f for the calculation, and the resulting vector's W component will be 0.0f.
+        /// </summary>
+        /// <param name="other">The other Vector4.</param>
+        /// <returns>The cross product of the two vectors.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector4 Cross(Vector4 other)
+        {
+            Vector4 ret = new Vector4(Interop.Vector4.Cross(SwigCPtr, Vector4.getCPtr(other)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Clone() => new Vector4(X, Y, Z, W);
@@ -769,39 +828,6 @@ namespace Tizen.NUI
             NDalicPINVOKE.ThrowExceptionIfExists();
         }
 
-        internal float Dot(Vector3 other)
-        {
-            float ret = Interop.Vector4.DotWithVector3(SwigCPtr, Vector3.getCPtr(other));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal float Dot(Vector4 other)
-        {
-            float ret = Interop.Vector4.Dot(SwigCPtr, Vector4.getCPtr(other));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        [Obsolete("Do not use this, that will be deprecated. Use Vector4.Dot() instead.")]
-        internal float Dot4(Vector4 other)
-        {
-            return Dot(other);
-        }
-
-        internal float Dot3(Vector4 other)
-        {
-            float ret = Interop.Vector4.Dot3(SwigCPtr, Vector4.getCPtr(other));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal Vector4 Cross(Vector4 other)
-        {
-            Vector4 ret = new Vector4(Interop.Vector4.Cross(SwigCPtr, Vector4.getCPtr(other)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
