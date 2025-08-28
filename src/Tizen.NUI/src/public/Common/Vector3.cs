@@ -647,6 +647,35 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Calculates the dot product of this vector and another vector.
+        /// </summary>
+        /// <param name="other">The other vector.</param>
+        /// <returns>The dot product of the two vectors.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float Dot(Vector3 other)
+        {
+            float ret = Interop.Vector3.Dot(SwigCPtr, Vector3.getCPtr(other));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Calculates the cross product of this vector and another vector.
+        /// The result is a vector that is perpendicular to the two input vectors.
+        /// </summary>
+        /// <param name="other">The other vector.</param>
+        /// <returns>The cross product of the two vectors.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector3 Cross(Vector3 other)
+        {
+            Vector3 ret = new Vector3(Interop.Vector3.Cross(SwigCPtr, Vector3.getCPtr(other)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Clone() => new Vector3(X, Y, Z);
@@ -794,19 +823,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal float Dot(Vector3 other)
-        {
-            float ret = Interop.Vector3.Dot(SwigCPtr, Vector3.getCPtr(other));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal Vector3 Cross(Vector3 other)
-        {
-            Vector3 ret = new Vector3(Interop.Vector3.Cross(SwigCPtr, Vector3.getCPtr(other)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
     }
 
