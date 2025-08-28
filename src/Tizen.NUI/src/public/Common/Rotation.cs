@@ -56,6 +56,7 @@ namespace Tizen.NUI
         /// <remarks>
         /// v0 and v1 should be normalized.
         /// </remarks>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Rotation(Vector3 v0, Vector3 v1) : this(Interop.Rotation.NewRotation2(Vector3.getCPtr(v0), Vector3.getCPtr(v1)), true)
         {
@@ -68,6 +69,7 @@ namespace Tizen.NUI
         /// <param name="pitch">Pitch value as Radian.</param>
         /// <param name="yaw">Yaw value as Radian</param>
         /// <param name="roll">Roll value as Radian</param>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Rotation(Radian pitch, Radian yaw, Radian roll) : this(Interop.Rotation.NewRotation3(Radian.getCPtr(pitch), Radian.getCPtr(yaw), Radian.getCPtr(roll)), true)
         {
@@ -78,6 +80,7 @@ namespace Tizen.NUI
         /// The constructor of Rotation from Quaternion Vector4.
         /// </summary>
         /// <param name="vector">Quaternion vector for Rotation.</param>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Rotation(Vector4 vector) : this(Interop.Rotation.NewRotation4(Vector4.getCPtr(vector)), true)
         {
@@ -291,6 +294,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="vector">The vector of vector3 to be rotated with this Rotation</param>
         /// <returns>Vector3 that is the rotation result of this rotation.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 Rotate(Vector3 vector)
         {
@@ -306,6 +310,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="vector">The vector of vector4 to be rotated with this Rotation</param>
         /// <returns>Vector4 that is the rotation result of this rotation.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 Rotate(Vector4 vector)
         {
@@ -346,6 +351,7 @@ namespace Tizen.NUI
         /// <param name="pitch">Pitch value as Radian.</param>
         /// <param name="yaw">Yaw value as Radian</param>
         /// <param name="roll">Roll value as Radian</param>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetEulerAngle(Radian pitch, Radian yaw, Radian roll)
         {
@@ -359,6 +365,7 @@ namespace Tizen.NUI
         /// <param name="pitch">The result of pitch value as Radian.</param>
         /// <param name="yaw">The result of yaw value as Radian</param>
         /// <param name="roll">The result of roll value as Radian</param>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void GetEulerAngle(Radian pitch, Radian yaw, Radian roll)
         {
