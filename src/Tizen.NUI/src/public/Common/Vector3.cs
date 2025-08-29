@@ -676,6 +676,61 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Calculates the Euclidean distance between two vectors.
+        /// </summary>
+        /// <param name="a">The first vector.</param>
+        /// <param name="b">The second vector.</param>
+        /// <returns>The distance between vector a and b.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float Distance(Vector3 a, Vector3 b)
+        {
+            // (a-b).Length()
+            float dx = a.X - b.X;
+            float dy = a.Y - b.Y;
+            float dz = a.Z - b.Z;
+            return (float)System.Math.Sqrt(dx * dx + dy * dy + dz * dz);
+        }
+
+        /// <summary>
+        /// Returns a new vector that is the normalized version of the specified vector.
+        /// The original vector remains unchanged.
+        /// </summary>
+        /// <param name="vector">The vector to normalize.</param>
+        /// <returns>A new Vector3 with a magnitude of 1 in the same direction.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector3 Normalize(Vector3 vector)
+        {
+            float length = vector.Length();
+            if (length > 1e-6f) // Epsilon to avoid division by zero
+            {
+                return new Vector3(vector.X / length, vector.Y / length, vector.Z / length);
+            }
+            return Vector3.Zero;
+        }
+
+        /// <summary>
+        /// Calculates the reflection vector given an incident vector and a surface normal.
+        /// The normal vector should be normalized.
+        /// </summary>
+        /// <param name="incident">The incident vector.</param>
+        /// <param name="normal">The surface normal vector.</param>
+        /// <returns>The reflection vector.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector3 Reflect(Vector3 incident, Vector3 normal)
+        {
+            // R = I - 2 * (I.N) * N
+            float dotProduct = incident.Dot(normal);
+            return new Vector3(
+                incident.X - 2.0f * dotProduct * normal.X,
+                incident.Y - 2.0f * dotProduct * normal.Y,
+                incident.Z - 2.0f * dotProduct * normal.Z
+            );
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Clone() => new Vector3(X, Y, Z);
