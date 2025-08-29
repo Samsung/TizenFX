@@ -812,6 +812,76 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Calculates the Euclidean distance between two 4D vectors.
+        /// </summary>
+        /// <param name="a">The first vector.</param>
+        /// <param name="b">The second vector.</param>
+        /// <returns>The distance between vector a and b.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float Distance(Vector4 a, Vector4 b)
+        {
+            float dx = a.X - b.X;
+            float dy = a.Y - b.Y;
+            float dz = a.Z - b.Z;
+            float dw = a.W - b.W;
+            return (float)System.Math.Sqrt(dx * dx + dy * dy + dz * dz + dw * dw);
+        }
+
+        /// <summary>
+        /// Calculates the 3D Euclidean distance between the xyz components of two 4D vectors.
+        /// The W component is ignored.
+        /// </summary>
+        /// <param name="a">The first vector.</param>
+        /// <param name="b">The second vector.</param>
+        /// <returns>The 3D distance between the xyz components of vector a and b.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float Distance3(Vector4 a, Vector4 b)
+        {
+            float dx = a.X - b.X;
+            float dy = a.Y - b.Y;
+            float dz = a.Z - b.Z;
+            return (float)System.Math.Sqrt(dx * dx + dy * dy + dz * dz);
+        }
+
+        /// <summary>
+        /// Returns a new vector that is the normalized version of the specified 4D vector.
+        /// The original vector remains unchanged.
+        /// </summary>
+        /// <param name="vector">The vector to normalize.</param>
+        /// <returns>A new Vector4 with a magnitude of 1 in the same direction.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector4 Normalize(Vector4 vector)
+        {
+            float length = vector.Length();
+            if (length > 1e-6f) // Epsilon to avoid division by zero
+            {
+                return new Vector4(vector.X / length, vector.Y / length, vector.Z / length, vector.W / length);
+            }
+            return Vector4.Zero;
+        }
+
+        /// <summary>
+        /// Returns a new vector that is the normalized version of the xyz components of the specified 4D vector.
+        /// The original vector remains unchanged. The W component of the result is the same as the original vector's W component.
+        /// </summary>
+        /// <param name="vector">The vector whose xyz components are to be normalized.</param>
+        /// <returns>A new Vector4 with xyz components of magnitude 1 and the original W component.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector4 Normalize3(Vector4 vector)
+        {
+            float length3 = vector.Length3();
+            if (length3 > 1e-6f) // Epsilon to avoid division by zero
+            {
+                return new Vector4(vector.X / length3, vector.Y / length3, vector.Z / length3, vector.W);
+            }
+            return new Vector4(0, 0, 0, vector.W);
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Clone() => new Vector4(X, Y, Z, W);

@@ -88,6 +88,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The copy constructor.
+        /// </summary>
+        /// <param name="rotation">The Rotation to copy from.</param>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rotation(Rotation rotation) : this()
+        {
+            if (null != rotation)
+            {
+                Assign(rotation);
+            }
+        }
+
+        /// <summary>
         /// The identity rotation, which represents no rotation. Actual value is (0.0f,0.0f,0.0f,1.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -285,6 +299,38 @@ namespace Tizen.NUI
             float ret = Interop.Rotation.AngleBetween(Rotation.getCPtr(q1), Rotation.getCPtr(q2));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Returns a new rotation that is the normalized version of the specified rotation.
+        /// The original rotation remains unchanged.
+        /// </summary>
+        /// <param name="rotation">The rotation to normalize.</param>
+        /// <returns>A new Rotation with a magnitude of 1.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Rotation Normalize(Rotation rotation)
+        {
+            // Create a copy and normalize it
+            Rotation newRotation = new Rotation(rotation);
+            newRotation.Normalize();
+            return newRotation;
+        }
+
+        /// <summary>
+        /// Returns a new rotation that is the inverse of the specified rotation.
+        /// The original rotation remains unchanged.
+        /// </summary>
+        /// <param name="rotation">The rotation to invert.</param>
+        /// <returns>A new Rotation representing the inverse.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Rotation Inverse(Rotation rotation)
+        {
+            // Create a copy and invert it
+            Rotation newRotation = new Rotation(rotation);
+            newRotation.Invert();
+            return newRotation;
         }
 
         /// <summary>
