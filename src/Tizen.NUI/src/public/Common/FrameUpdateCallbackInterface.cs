@@ -325,6 +325,33 @@ namespace Tizen.NUI
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool SetIgnored(uint id, bool ignored)
+        {
+            if (proxyIntPtr == IntPtr.Zero)
+            {
+                return false;
+            }
+            bool ret = Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceSetIgnored(proxyIntPtr, id, ignored);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool GetIgnored(uint id, out bool ignored)
+        {
+            ignored = false;
+            if (proxyIntPtr == IntPtr.Zero)
+            {
+                return false;
+            }
+            bool ret = Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceGetIgnored(proxyIntPtr, id, out ignored);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool GetPositionAndSize(uint id, Vector3 Position, Vector3 Size)
         {
             if (proxyIntPtr == IntPtr.Zero)
