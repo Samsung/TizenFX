@@ -191,9 +191,16 @@ namespace Tizen.Applications
 
             if (!GlobalizationMode.Invariant)
             {
-                string locale = ULocale.GetDefaultLocale();
-                ChangeCurrentUICultureInfo(locale);
-                ChangeCurrentCultureInfo(locale);
+                string locale = LocaleManager.GetSystemLocale();
+                if (string.IsNullOrEmpty(locale))
+                {
+                    CultureInfo defaultCultureInfo = CultureInfo.CreateSpecificCulture("en-US");
+                    LocaleManager.SetApplicationLocale(defaultCultureInfo);
+                    locale = LocaleManager.GetSystemLocale();
+                }
+
+                LocaleManager.SetCurrentUICultureInfo(locale);
+                LocaleManager.SetCurrentCultureInfo(locale);
             }
             else
             {
@@ -284,7 +291,7 @@ namespace Tizen.Applications
 
             if (!GlobalizationMode.Invariant)
             {
-                ChangeCurrentUICultureInfo(e.Locale);
+                LocaleManager.SetCurrentUICultureInfo(e.Locale);
             }
 
             LocaleChanged?.Invoke(this, e);
@@ -306,7 +313,7 @@ namespace Tizen.Applications
 
             if (!GlobalizationMode.Invariant)
             {
-                ChangeCurrentCultureInfo(e.Region);
+                LocaleManager.SetCurrentCultureInfo(e.Region);
             }
 
             RegionFormatChanged?.Invoke(this, e);
@@ -399,143 +406,6 @@ namespace Tizen.Applications
             }
             base.Dispose(disposing);
         }
-
-        private CultureInfo ConvertCultureInfo(string locale)
-        {
-            ULocale pLocale = new ULocale(locale);
-            string cultureName = CultureInfoHelper.GetCultureName(pLocale.Locale.Replace("_", "-"));
-
-            if (!string.IsNullOrEmpty(cultureName))
-            {
-                try
-                {
-                    return new CultureInfo(cultureName);
-                }
-                catch (CultureNotFoundException)
-                {
-                    Log.Error(LogTag, "CultureNotFoundException occurs. CultureName: " + cultureName);
-                }
-            }
-
-            try
-            {
-                return new CultureInfo(pLocale.LCID);
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-                return GetFallbackCultureInfo(pLocale);
-            }
-            catch (CultureNotFoundException)
-            {
-                return GetFallbackCultureInfo(pLocale);
-            }
-        }
-
-        private void ChangeCurrentCultureInfo(string locale)
-        {
-            CultureInfo cultureInfo = ConvertCultureInfo(locale);
-            if (cultureInfo != null)
-            {
-                CultureInfo.CurrentCulture = cultureInfo;
-            }
-            else
-            {
-                Log.Error(LogTag, "CultureInfo is null. locale: " + locale);
-            }
-        }
-
-        private void ChangeCurrentUICultureInfo(string locale)
-        {
-            CultureInfo cultureInfo = ConvertCultureInfo(locale);
-            if (cultureInfo != null)
-            {
-                CultureInfo.CurrentUICulture = cultureInfo;
-            }
-            else
-            {
-                Log.Error(LogTag, "CultureInfo is null. locale: " + locale);
-            }
-        }
-
-        private bool ExistCultureInfo(string locale)
-        {
-            foreach (var cultureInfo in CultureInfo.GetCultures(CultureTypes.AllCultures))
-            {
-                if (cultureInfo.Name == locale)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        private CultureInfo GetCultureInfo(string locale)
-        {
-            if (!ExistCultureInfo(locale))
-            {
-                return null;
-            }
-
-            try
-            {
-                return new CultureInfo(locale);
-            }
-            catch (CultureNotFoundException)
-            {
-                return null;
-            }
-        }
-
-        private CultureInfo GetFallbackCultureInfo(ULocale uLocale)
-        {
-            CultureInfo fallbackCultureInfo = null;
-            string locale = string.Empty;
-
-            if (uLocale.Locale != null)
-            {
-                locale = uLocale.Locale.Replace("_", "-");
-                fallbackCultureInfo = GetCultureInfo(locale);
-            }
-
-            if (fallbackCultureInfo == null && uLocale.Language != null && uLocale.Script != null && uLocale.Country != null)
-            {
-                locale = uLocale.Language + "-" + uLocale.Script + "-" + uLocale.Country;
-                fallbackCultureInfo = GetCultureInfo(locale);
-            }
-
-            if (fallbackCultureInfo == null && uLocale.Language != null && uLocale.Script != null)
-            {
-                locale = uLocale.Language + "-" + uLocale.Script;
-                fallbackCultureInfo = GetCultureInfo(locale);
-            }
-
-            if (fallbackCultureInfo == null && uLocale.Language != null && uLocale.Country != null)
-            {
-                locale = uLocale.Language + "-" + uLocale.Country;
-                fallbackCultureInfo = GetCultureInfo(locale);
-            }
-
-            if (fallbackCultureInfo == null && uLocale.Language != null)
-            {
-                locale = uLocale.Language;
-                fallbackCultureInfo = GetCultureInfo(locale);
-            }
-
-            if (fallbackCultureInfo == null)
-            {
-                try
-                {
-                    fallbackCultureInfo = new CultureInfo("en");
-                }
-                catch (CultureNotFoundException e)
-                {
-                    Log.Error(LogTag, "Failed to create CultureInfo. err = " + e.Message);
-                }
-            }
-
-            return fallbackCultureInfo;
-        }
     }
 
     internal static class GlobalizationMode
@@ -554,112 +424,6 @@ namespace Tizen.Applications
 
                 return _invariant != 0;
             }
-        }
-    }
-
-    internal class ULocale
-    {
-        private const int ULOC_FULLNAME_CAPACITY = 157;
-        private const int ULOC_LANG_CAPACITY = 12;
-        private const int ULOC_SCRIPT_CAPACITY = 6;
-        private const int ULOC_COUNTRY_CAPACITY = 4;
-        private const int ULOC_VARIANT_CAPACITY = ULOC_FULLNAME_CAPACITY;
-
-        internal ULocale(string locale)
-        {
-            Locale = Canonicalize(locale);
-            Language = GetLanguage(Locale);
-            Script = GetScript(Locale);
-            Country = GetCountry(Locale);
-            Variant = GetVariant(Locale);
-            LCID = GetLCID(Locale);
-        }
-
-        internal string Locale { get; private set; }
-        internal string Language { get; private set; }
-        internal string Script { get; private set; }
-        internal string Country { get; private set; }
-        internal string Variant { get; private set; }
-        internal int LCID { get; private set; }
-
-        private string Canonicalize(string localeName)
-        {
-            // Get the locale name from ICU
-            StringBuilder sb = new StringBuilder(ULOC_FULLNAME_CAPACITY);
-            if (Interop.BaseUtilsi18n.Canonicalize(localeName, sb, sb.Capacity) <= 0)
-            {
-                return null;
-            }
-
-            return sb.ToString();
-        }
-
-        private string GetLanguage(string locale)
-        {
-            // Get the language name from ICU
-            StringBuilder sb = new StringBuilder(ULOC_LANG_CAPACITY);
-            if (Interop.BaseUtilsi18n.GetLanguage(locale, sb, sb.Capacity, out int bufSizeLanguage) != 0)
-            {
-                return null;
-            }
-
-            return sb.ToString();
-        }
-
-        private string GetScript(string locale)
-        {
-            // Get the script name from ICU
-            StringBuilder sb = new StringBuilder(ULOC_SCRIPT_CAPACITY);
-            if (Interop.BaseUtilsi18n.GetScript(locale, sb, sb.Capacity) <= 0)
-            {
-                return null;
-            }
-
-            return sb.ToString();
-        }
-
-        private string GetCountry(string locale)
-        {
-            int err = 0;
-
-            // Get the country name from ICU
-            StringBuilder sb = new StringBuilder(ULOC_COUNTRY_CAPACITY);
-            if (Interop.BaseUtilsi18n.GetCountry(locale, sb, sb.Capacity, out err) <= 0)
-            {
-                return null;
-            }
-
-            return sb.ToString();
-        }
-
-        private string GetVariant(string locale)
-        {
-            // Get the variant name from ICU
-            StringBuilder sb = new StringBuilder(ULOC_VARIANT_CAPACITY);
-            if (Interop.BaseUtilsi18n.GetVariant(locale, sb, sb.Capacity) <= 0)
-            {
-                return null;
-            }
-
-            return sb.ToString();
-        }
-
-        private int GetLCID(string locale)
-        {
-            // Get the LCID from ICU
-            uint lcid = Interop.BaseUtilsi18n.GetLCID(locale);
-            return (int)lcid;
-        }
-
-        internal static string GetDefaultLocale()
-        {
-            IntPtr stringPtr = Interop.Libc.GetEnvironmentVariable("LANG");
-            if (stringPtr == IntPtr.Zero)
-            {
-                return string.Empty;
-            }
-
-            return Marshal.PtrToStringAnsi(stringPtr);
         }
     }
 }
