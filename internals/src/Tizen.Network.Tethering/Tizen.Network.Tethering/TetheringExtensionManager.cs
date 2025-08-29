@@ -38,7 +38,6 @@ namespace Tizen.Network.Tethering
         /// </privilege>
         /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="TetheringError.InvalidOperation">Thrown when the method failed due to an invalid operation.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         static public event EventHandler<TetheringExtensionEnabledEventArgs> Enabled
         {
             add
@@ -60,7 +59,6 @@ namespace Tizen.Network.Tethering
         /// </privilege>
         /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="TetheringError.InvalidOperation">Thrown when the method failed due to an invalid operation.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         static public event EventHandler<TetheringExtensionDisabledEventArgs> Disabled
         {
             add
@@ -82,7 +80,6 @@ namespace Tizen.Network.Tethering
         /// </privilege>
         /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="TetheringError.InvalidOperation">Thrown when the method failed due to an invalid operation.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         static public event EventHandler<ConnectionStateChangedEventArgs> ConnectionStateChanged
         {
             add
@@ -105,7 +102,6 @@ namespace Tizen.Network.Tethering
         /// <exception cref="TetheringError.PermissionDenied">Thrown when the permission is denied.</exception>
         /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="TetheringError.InvalidOperation">Thrown when the method failed due to an invalid operation.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         static public void Activate()
         {
             TetheringExtensionManagerImpl.Instance.Activate();
@@ -121,7 +117,6 @@ namespace Tizen.Network.Tethering
         /// <exception cref="TetheringError.PermissionDenied">Thrown when the permission is denied.</exception>
         /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="TetheringError.InvalidOperation">Thrown when the method failed due to an invalid operation.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         static public void Deactivate()
         {
             TetheringExtensionManagerImpl.Instance.DeActivate();
@@ -135,7 +130,6 @@ namespace Tizen.Network.Tethering
         /// http://tizen.org/privilege/tethering.admin
         /// </privilege>
         /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         static public bool IsEnabled
         {
             get
@@ -152,7 +146,6 @@ namespace Tizen.Network.Tethering
         /// http://tizen.org/privilege/tethering.admin
         /// </privilege>
         /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         static public void SetSsid(string ssid)
         {
             TetheringExtensionManagerImpl.Instance.Ssid(ssid);
@@ -166,7 +159,6 @@ namespace Tizen.Network.Tethering
         /// http://tizen.org/privilege/tethering.admin
         /// </privilege>
         /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         static public void SetPassphrase(string passhprase)
         {
             TetheringExtensionManagerImpl.Instance.Passphrase(passhprase);
@@ -181,7 +173,6 @@ namespace Tizen.Network.Tethering
         /// </privilege>
         /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="TetheringError.OperationFailed">Thrown when the opeartion failed.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         static public int Channel
         {
             get
@@ -204,7 +195,6 @@ namespace Tizen.Network.Tethering
         /// <exception cref="TetheringError.PermissionDenied">Thrown when the permission is denied.</exception>
         /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="TetheringError.OperationFailed">Thrown when the opeartion failed.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         static public TetheringInfo GetTetheringInfo()
         {
             return TetheringExtensionManagerImpl.Instance.GetTetheringInfo();
@@ -219,7 +209,6 @@ namespace Tizen.Network.Tethering
         /// </privilege>
         /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="TetheringError.OperationFailed">Thrown when the opeartion failed.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         static public TetheringSecurityType Security
         {
             get
@@ -237,7 +226,6 @@ namespace Tizen.Network.Tethering
         /// </privilege>
         /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="TetheringError.OperationFailed">Thrown when the opeartion failed.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         static public bool Visibility
         {
             get
@@ -255,7 +243,6 @@ namespace Tizen.Network.Tethering
         /// </privilege>
         /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="TetheringError.OperationFailed">Thrown when the opeartion failed.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         static public bool Sharing
         {
             get
