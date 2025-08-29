@@ -25,6 +25,7 @@ namespace Tizen.Network.IoTConnectivity
     /// This class is accessed by using a constructor to create a new instance of this object.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class LiteResource : Resource
     {
         /// <summary>
@@ -56,6 +57,7 @@ namespace Tizen.Network.IoTConnectivity
         /// };
         /// LiteResource res = new LiteResource("/light/1", new ResourceTypes(list), ResourcePolicy.Discoverable, attributes);
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public LiteResource(string uri, ResourceTypes types, ResourcePolicy policy, Attributes attribs = null)
             : base(uri, types, new ResourceInterfaces(new string[] { ResourceInterfaces.DefaultInterface }), policy)
         {
@@ -79,6 +81,7 @@ namespace Tizen.Network.IoTConnectivity
         ///     Console.WriteLine("key : {0}, value : {1}", pair.Key, pair.Value);
         /// }
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public Attributes Attributes { get; set; }
 
         /// <summary>
