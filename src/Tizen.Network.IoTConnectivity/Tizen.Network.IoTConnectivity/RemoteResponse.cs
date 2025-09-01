@@ -22,6 +22,7 @@ namespace Tizen.Network.IoTConnectivity
     /// It represents the response of all CRUD operations.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class RemoteResponse
     {
         internal RemoteResponse() { }
@@ -31,6 +32,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The result of the response.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ResponseCode Result { get; internal set; }
 
         /// <summary>
@@ -38,6 +40,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Representation of the response.</value>
+        [Obsolete("Deprecated since API level 13")]
         public Representation Representation { get; internal set; }
 
         /// <summary>
@@ -45,6 +48,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Header options of the response.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceOptions Options { get; internal set; }
     }
 }

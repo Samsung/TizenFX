@@ -26,6 +26,7 @@ namespace Tizen.Network.IoTConnectivity
     /// This class provides APIs to manage the query of request.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class ResourceQuery : IDictionary<string, string>, IDisposable
     {
         internal const int QueryMaxLenth = 64;
@@ -45,6 +46,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <example><code>
         /// ResourceQuery query = new ResourceQuery();
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceQuery()
         {
             int ret = Interop.IoTConnectivity.Common.Query.Create(out _resourceQueryHandle);
@@ -99,6 +101,7 @@ namespace Tizen.Network.IoTConnectivity
         /// query.Type = "org.tizen.light";
         /// Console.WriteLine("Type of query : {0}", query.Type);
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public string Type
         {
             get
@@ -141,6 +144,7 @@ namespace Tizen.Network.IoTConnectivity
         /// ResourceQuery query = new ResourceQuery();
         /// query.Interface = ResourceInterfaces.LinkInterface;
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public string Interface
         {
             get
@@ -180,6 +184,7 @@ namespace Tizen.Network.IoTConnectivity
         /// var keys = query.Keys;
         /// Console.WriteLine("Resource query contains keys {0} and {1}", keys.ElementAt(0), keys.ElementAt(1));
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public ICollection<string> Keys
         {
             get
@@ -200,6 +205,7 @@ namespace Tizen.Network.IoTConnectivity
         /// var values = query.Values;
         /// Console.WriteLine("Resource query contains values {0} and {1}", values.ElementAt(0), values.ElementAt(1));
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public ICollection<string> Values
         {
             get
@@ -220,6 +226,7 @@ namespace Tizen.Network.IoTConnectivity
         /// var count = query.Count;
         /// Console.WriteLine("There are {0} keys in the query object", count);
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public int Count
         {
             get
@@ -238,6 +245,7 @@ namespace Tizen.Network.IoTConnectivity
         /// if (query.IsReadOnly)
         ///     Console.WriteLine("Read only query");
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public bool IsReadOnly
         {
             get
@@ -258,6 +266,7 @@ namespace Tizen.Network.IoTConnectivity
         /// query["key1"] = "sample-data";
         /// Console.WriteLine("query has : {0}", query["key1"]);
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public string this[string key]
         {
             get
@@ -283,6 +292,7 @@ namespace Tizen.Network.IoTConnectivity
         /// if (query.ContainsKey("key1"))
         ///     Console.WriteLine("query conatins key : key1");
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public bool ContainsKey(string key)
         {
             return _query.ContainsKey(key);
@@ -306,6 +316,7 @@ namespace Tizen.Network.IoTConnectivity
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add("key1", "value1");
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public void Add(string key, string value)
         {
             if (CanAddQuery(key, value))
@@ -341,6 +352,7 @@ namespace Tizen.Network.IoTConnectivity
         /// query.Add("key1", "value1");
         /// var result = query.Remove("key1");
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public bool Remove(string key)
         {
             int ret = Interop.IoTConnectivity.Common.Query.Remove(_resourceQueryHandle, key);
@@ -370,6 +382,7 @@ namespace Tizen.Network.IoTConnectivity
         /// if (isPresent)
         ///     Console.WriteLine("value : {0}", value);
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public bool TryGetValue(string key, out string value)
         {
             return _query.TryGetValue(key, out value);
@@ -386,6 +399,7 @@ namespace Tizen.Network.IoTConnectivity
         /// ResourceQuery query = new ResourceQuery();
         /// query.Add(new KeyValuePair<string, string>("key1", "value1"));
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public void Add(KeyValuePair<string, string> item)
         {
             Add(item.Key, item.Value);
@@ -404,6 +418,7 @@ namespace Tizen.Network.IoTConnectivity
         /// query.Add("key2", "value2");
         /// query.Clear();
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public void Clear()
         {
             foreach (string key in _query.Keys)
@@ -431,6 +446,7 @@ namespace Tizen.Network.IoTConnectivity
         /// if (isPresent)
         ///     Console.WriteLine("Key value pair is present");
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public bool Contains(KeyValuePair<string, string> item)
         {
             return _query.Contains(item);
@@ -449,6 +465,7 @@ namespace Tizen.Network.IoTConnectivity
         /// query.CopyTo(dest, 0);
         /// Console.WriteLine("Dest conatins ({0}, {1})", dest[0].Key, dest[0].Value);
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public void CopyTo(KeyValuePair<string, string>[] array, int arrayIndex)
         {
             _query.CopyTo(array, arrayIndex);
@@ -468,6 +485,7 @@ namespace Tizen.Network.IoTConnectivity
         /// query.Add(new KeyValuePair<string, string>("key1", "value1"));
         /// var result = query.Remove(new KeyValuePair<string, string>("key1", "value1"));
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public bool Remove(KeyValuePair<string, string> item)
         {
             return Remove(item.Key);
@@ -487,6 +505,7 @@ namespace Tizen.Network.IoTConnectivity
         ///     Console.WriteLine("key : {0}, value : {1}", pair.Key, pair.Value);
         /// }
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
         {
             return _query.GetEnumerator();
@@ -516,6 +535,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         public void Dispose()
         {
             Dispose(true);
@@ -528,6 +548,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
