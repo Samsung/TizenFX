@@ -135,15 +135,15 @@ internal static partial class Interop
         [DllImport(Libraries.AppCommon, EntryPoint = "app_watchdog_timer_kick")]
         internal static extern AppCommonErrorCode AppWatchdogTimerKick();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_locale_manager_set_language")]
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_core_locale_manager_set_language")]
         internal static extern AppCommonErrorCode AppLocaleManagerSetLanguage(string lang);
         // int app_locale_manager_set_language(const char* lang)
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_locale_manager_get_language")]
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_core_locale_manager_get_language")]
         internal static extern AppCommonErrorCode AppLocaleManagerGetLanguage(out IntPtr langPtr);
         // int app_locale_manager_get_language(const char** lang)
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_locale_manager_get_system_language")]
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_core_locale_manager_get_system_language")]
         internal static extern AppCommonErrorCode AppLocaleManagerGetSystemLanguage(out IntPtr langPtr);
         // int app_locale_manager_get_system_language(const char** lang)
     }
