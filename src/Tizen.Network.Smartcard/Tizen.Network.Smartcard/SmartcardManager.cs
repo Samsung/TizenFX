@@ -25,6 +25,7 @@ namespace Tizen.Network.Smartcard
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/secureelement</privilege>
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     static public class SmartcardManager
     {
         /// <summary>
@@ -32,6 +33,7 @@ namespace Tizen.Network.Smartcard
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>List of SmartcardReader objects.</returns>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         static public IEnumerable<SmartcardReader> GetReaders()
         {
             try
