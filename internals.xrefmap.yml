@@ -761,19 +761,6 @@ references:
   isSpec: "True"
   fullName: Tizen.Network.Tethering.TetheringExtensionManager.SetSsid
   nameWithType: TetheringExtensionManager.SetSsid
-- uid: Tizen.Network.Tethering.TetheringExtensionManager.Sharing
-  name: Sharing
-  href: internals/api/Tizen.Network.Tethering.TetheringExtensionManager.html#Tizen_Network_Tethering_TetheringExtensionManager_Sharing
-  commentId: P:Tizen.Network.Tethering.TetheringExtensionManager.Sharing
-  fullName: Tizen.Network.Tethering.TetheringExtensionManager.Sharing
-  nameWithType: TetheringExtensionManager.Sharing
-- uid: Tizen.Network.Tethering.TetheringExtensionManager.Sharing*
-  name: Sharing
-  href: internals/api/Tizen.Network.Tethering.TetheringExtensionManager.html#Tizen_Network_Tethering_TetheringExtensionManager_Sharing_
-  commentId: Overload:Tizen.Network.Tethering.TetheringExtensionManager.Sharing
-  isSpec: "True"
-  fullName: Tizen.Network.Tethering.TetheringExtensionManager.Sharing
-  nameWithType: TetheringExtensionManager.Sharing
 - uid: Tizen.Network.Tethering.TetheringExtensionManager.Visibility
   name: Visibility
   href: internals/api/Tizen.Network.Tethering.TetheringExtensionManager.html#Tizen_Network_Tethering_TetheringExtensionManager_Visibility
