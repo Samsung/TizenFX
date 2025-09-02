@@ -238,12 +238,10 @@ namespace Tizen.NUI.Devel.Tests
         {
             /* TEST CODE */
             var testView = new View();
-            var expectedStates = new AccessibilityStatesV2();
-            expectedStates[AccessibilityStateV2.Enabled] = true;
-            testView.SetAccessibilityStatesV2(expectedStates);
+            testView.SetAccessibilityStatesV2(AccessibilityStatesV2.Enabled);
 
             var actualStates = testView.GetAccessibilityStatesV2();
-            Assert.AreEqual(true, actualStates[AccessibilityStateV2.Enabled], "View AccessibilityStateV2.Enabled should be true.");
+            Assert.AreEqual(AccessibilityStatesV2.Enabled, actualStates, "View AccessibilityStatesV2.Enabled should be true.");
 
             testView.Dispose();
         }
