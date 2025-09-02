@@ -17,7 +17,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using static Interop.ApplicationManager;
 
@@ -817,6 +816,52 @@ namespace Tizen.Applications
             Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
 
             err = Interop.ApplicationManager.AppManagerAttachWindowBelow(parentAppId, childAppId);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.ApplicationManager.ErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid argument.");
+                    case Interop.ApplicationManager.ErrorCode.PermissionDenied:
+                        throw new UnauthorizedAccessException("Permission denied.");
+                    case Interop.ApplicationManager.ErrorCode.IoError:
+                        throw new InvalidOperationException("IO error at unmanaged code.");
+                    case Interop.ApplicationManager.ErrorCode.OutOfMemory:
+                        throw new InvalidOperationException("Out-of-memory at unmanaged code.");
+                    case Interop.ApplicationManager.ErrorCode.NoSuchApp:
+                        throw new InvalidOperationException("No such application.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Requests to remount the application path for the specified subsession to reflect user changes.
+        /// </summary>
+        /// <details>
+        /// This method unmounts and remounts the application's root path for the specified subsession,
+        /// updating the mount source to correspond to the current user context.
+        /// The application path itself remains unchanged, but the underlying source is replaced to reflect
+        /// the user switch. This is typically used to ensure data isolation and consistency when the user
+        /// changes while the application is running.
+        /// </details>
+        /// <remarks>
+        /// This method is only available for platform level signed applications.
+        /// </remarks>
+        /// <param name="subsessionId">The subsession identifier.</param>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <privilege>http://tizen.org/privilege/internal/default/platform</privilege>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void RemountSubsession(string subsessionId)
+        {
+            if (string.IsNullOrEmpty(subsessionId))
+            {
+                throw new ArgumentException("Invalid argument.");
+            }
+
+            Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppManagerRequestRemountSubsession(subsessionId);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
                 switch (err)

@@ -272,6 +272,8 @@ internal static partial class Interop
             internal static extern int Destroy(IntPtr config);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_save")]
             internal static extern int SaveConfiguration(SafeWiFiManagerHandle wifi, IntPtr config);
+            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_remove")]
+            internal static extern int RemoveConfiguration(SafeWiFiManagerHandle wifi, IntPtr config);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_foreach_configuration")]
             internal static extern int GetForeachConfiguration(SafeWiFiManagerHandle wifi, HandleCallback callback, IntPtr userData);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_get_name")]
