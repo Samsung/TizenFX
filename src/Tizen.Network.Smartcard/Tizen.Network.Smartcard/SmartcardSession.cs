@@ -25,6 +25,7 @@ namespace Tizen.Network.Smartcard
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/secureelement</privilege>
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public class SmartcardSession : IDisposable
     {
         private int _sessionHandle = -1;
@@ -39,6 +40,7 @@ namespace Tizen.Network.Smartcard
         /// The reader object that provides the given session.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public SmartcardReader Reader
         {
             get
@@ -63,6 +65,7 @@ namespace Tizen.Network.Smartcard
         /// The Answer to Reset (ATR) of this secure element.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public byte[] Atr
         {
             get
@@ -90,6 +93,7 @@ namespace Tizen.Network.Smartcard
         /// Whether the session is closed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public bool IsClosed
         {
             get
@@ -122,6 +126,7 @@ namespace Tizen.Network.Smartcard
         /// Dispose
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public void Dispose()
         {
             Dispose(true);
@@ -163,6 +168,7 @@ namespace Tizen.Network.Smartcard
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="NotSupportedException">Thrown when the Smartcard is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public void Close()
         {
             int ret = Interop.Smartcard.Session.SessionClose(_sessionHandle);
@@ -180,6 +186,7 @@ namespace Tizen.Network.Smartcard
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="NotSupportedException">Thrown when the Smartcard is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public void CloseChannels()
         {
             int ret = Interop.Smartcard.Session.SessionCloseChannels(_sessionHandle);
@@ -209,6 +216,7 @@ namespace Tizen.Network.Smartcard
         /// <param name="p2">P2 byte of the SELECT command if executed.</param>
         /// <exception cref="NotSupportedException">Thrown when the Smartcard is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public SmartcardChannel OpenBasicChannel(byte[] aid, byte p2)
         {
             int aidLen = (aid == null ? 0 : aid.Length);
@@ -233,6 +241,7 @@ namespace Tizen.Network.Smartcard
         /// <param name="p2">P2 byte of the SELECT command if executed.</param>
         /// <exception cref="NotSupportedException">Thrown when the Smartcard is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public SmartcardChannel OpenLogicalChannel(byte[] aid, byte p2)
         {
             int aidLen = (aid == null ? 0 : aid.Length);
