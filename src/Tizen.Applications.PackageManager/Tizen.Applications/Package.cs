@@ -48,6 +48,7 @@ namespace Tizen.Applications
         private bool _isAccessible;
         private Lazy<IReadOnlyDictionary<CertificateType, PackageCertificate>> _certificates;
         private List<string> _privileges;
+        private long _firstInstalledTime;
         private int _installedTime;
 
         private Dictionary<IntPtr, Interop.PackageManager.PackageManagerSizeInfoCallback> _packageManagerSizeInfoCallbackDict = new Dictionary<IntPtr, Interop.PackageManager.PackageManagerSizeInfoCallback>();
@@ -167,6 +168,12 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public IEnumerable<string> Privileges { get { return _privileges; } }
+
+        /// <summary>
+        /// First installed time of the package.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        public long FirstInstalledTime { get { return _firstInstalledTime; } }
 
         /// <summary>
         /// Installed time of the package.
@@ -394,6 +401,19 @@ namespace Tizen.Applications
             if (err != Interop.PackageManager.ErrorCode.None)
             {
                 Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is accessible or not");
+            }
+            try
+            {
+                err = Interop.Package.PackageInfoGetFirstInstalledTime(handle, out package._firstInstalledTime);
+                if (err != Interop.PackageManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to get first installed time of " + pkgId);
+                }
+            }
+            catch (TypeLoadException)
+            {
+                // To support in API vesion 10.0
+                package._firstInstalledTime = 0;
             }
             try
             {
