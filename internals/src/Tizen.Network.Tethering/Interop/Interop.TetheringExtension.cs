@@ -87,9 +87,6 @@ internal static partial class Interop
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_get_visibility")]
         internal static extern int GetVisibility(IntPtr tethering, out int visibility);
 
-        [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_get_sharing")]
-        internal static extern int GetSharing(IntPtr tethering, out bool sharing);
-
         [DllImport(Libraries.Tethering, EntryPoint = "tethering_ext_client_clone")]
         internal static extern int CloneClient(out IntPtr cloned, IntPtr original);
 

@@ -233,22 +233,5 @@ namespace Tizen.Network.Tethering
                 return TetheringExtensionManagerImpl.Instance.Visibility;
             }
         }
-
-        /// <summary>
-        /// Returns whehter Wi-Fi hotspot managed by the TetheringExtension Manager is sharing or not.
-        /// </summary>
-        /// <since_tizen> 13 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/tethering.admin
-        /// </privilege>
-        /// <exception cref="TetheringError.InvalidParam">Thrown when the method failed due to an invalid parameter.</exception>
-        /// <exception cref="TetheringError.OperationFailed">Thrown when the opeartion failed.</exception>
-        static public bool Sharing
-        {
-            get
-            {
-                return TetheringExtensionManagerImpl.Instance.Sharing;
-            }
-        }
     } 
 }
