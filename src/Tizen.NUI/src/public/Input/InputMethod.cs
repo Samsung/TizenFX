@@ -13,6 +13,7 @@
 // limitations under the License.
 //
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -140,7 +141,12 @@ namespace Tizen.NUI
             /// <summary>
             /// Emoticon layout.
             /// </summary>
-            Emoticon
+            Emoticon,
+            /// <summary>
+            /// Voice layout.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Voice
         }
 
         /// <summary>
