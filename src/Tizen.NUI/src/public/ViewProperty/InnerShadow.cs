@@ -148,9 +148,9 @@ namespace Tizen.NUI
         /// </summary>
         internal static float CalculateShadowWidthByExtents(UIExtents insetExtents, float blurRadius)
         {
-            // Extra margin due to shadow alpha blending.
             const float margin = 1.0f;
-            return Math.Max(insetExtents.Start, Math.Max(insetExtents.End, Math.Max(insetExtents.Top, insetExtents.Bottom))) + (blurRadius + margin) * 2.0f;
+            float maxInset = Math.Max(insetExtents.Start, Math.Max(insetExtents.End, Math.Max(insetExtents.Top, insetExtents.Bottom)));
+            return Math.Max(maxInset, 0.0f) + blurRadius + margin;
         }
         internal static Vector2 CalculateOffsetByExtents(UIExtents insetExtents)
         {
@@ -159,7 +159,7 @@ namespace Tizen.NUI
         }
         internal static Vector2 CalculateExtraSizeByExtents(UIExtents insetExtents, float shadowWidth, float blurRadius)
         {
-            return new Vector2(shadowWidth * 2.0f - insetExtents.Start - insetExtents.End - blurRadius * 2.0f, shadowWidth * 2.0f - insetExtents.Top - insetExtents.Bottom - blurRadius * 2.0f);
+            return new Vector2(shadowWidth * 2.0f - insetExtents.Start - insetExtents.End, shadowWidth * 2.0f - insetExtents.Top - insetExtents.Bottom);
         }
 
         internal static InnerShadow GenerateInnerShadowByExtents(UIExtents insetExtents, float blurRadius, Color color, ColorVisualCutoutPolicyType cutoutPolicy)
