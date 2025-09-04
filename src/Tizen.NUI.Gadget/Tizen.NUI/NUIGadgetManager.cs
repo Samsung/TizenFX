@@ -319,7 +319,7 @@ namespace Tizen.NUI
         /// Executes the pre-creation process of the NUIGadget.
         /// </summary>
         /// <param name="gadget">The NUIGadget object to perform the pre-creation process.</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
         /// <since_tizen> 13 </since_tizen>
         public static void PreCreate(NUIGadget gadget)
         {
