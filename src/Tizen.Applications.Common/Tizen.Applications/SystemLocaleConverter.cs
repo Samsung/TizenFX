@@ -142,28 +142,112 @@ namespace Tizen.Applications
             private const int ULOC_SCRIPT_CAPACITY = 6;
             private const int ULOC_COUNTRY_CAPACITY = 4;
             private const int ULOC_VARIANT_CAPACITY = ULOC_FULLNAME_CAPACITY;
+            private string locale;
+            private string _locale;
+            private string _language;
+            private string _script;
+            private string _country;
+            private string _variant;
+            private int _lcid;
 
             internal ULocale(string locale)
             {
-                Locale = Canonicalize(locale);
-                Language = GetLanguage(Locale);
-                Script = GetScript(Locale);
-                Country = GetCountry(Locale);
-                Variant = GetVariant(Locale);
-                LCID = GetLCID(Locale);
+                this.locale = locale;
+                _locale = _language = _script = _country = _variant = null;
+                _lcid = -1;
             }
 
-            internal string Locale { get; private set; }
-            internal string Language { get; private set; }
-            internal string Script { get; private set; }
-            internal string Country { get; private set; }
-            internal string Variant { get; private set; }
-            internal int LCID { get; private set; }
+            internal string Locale
+            {
+                get
+                {
+                    if (string.IsNullOrEmpty(_locale))
+                    {
+                        _locale = Canonicalize(locale);
+                    }
+                    return _locale;
+                }
+                private set 
+                {
+                    _locale = value;
+                } 
+            }
+            internal string Language {
+                get
+                {
+                    if (string.IsNullOrEmpty(_language))
+                    {
+                        _language = GetLanguage(locale);
+                    }
+                    return _language;
+                }
+                private set
+                {
+                    _language = value;
+                } 
+            }
+            internal string Script
+            {
+                get
+                {
+                    if (string.IsNullOrEmpty(_script))
+                    {
+                        _script = GetScript(locale);
+                    }
+                    return _script;
+                }
+                private set
+                {
+                    _script = value;
+                }
+            }
+            internal string Country {
+                get
+                {
+                    if (string.IsNullOrEmpty(_country))
+                    {
+                        _country = GetCountry(locale);
+                    }
+                    return _country;
+                }
+                private set
+                {
+                    _country = value;
+                }
+            }
+            internal string Variant
+            {
+                get
+                {
+                    if (string.IsNullOrEmpty(_variant))
+                    {
+                        _variant = GetVariant(locale);
+                    }
+                    return _variant;
+                }
+                private set
+                {
+                    _variant = value;
+                }
+            }
+            internal int LCID { 
+                get
+                {
+                    if (_lcid == -1) {
+                        _lcid = GetLCID(locale);
+                    }
+                    return _lcid;
+                }
+                private set {
+                    _lcid = value;
+                }
+            }
 
             private string Canonicalize(string localeName)
             {
                 // Get the locale name from ICU
                 StringBuilder sb = new StringBuilder(ULOC_FULLNAME_CAPACITY);
+
                 if (Interop.BaseUtilsi18n.Canonicalize(localeName, sb, sb.Capacity) <= 0)
                 {
                     return null;
