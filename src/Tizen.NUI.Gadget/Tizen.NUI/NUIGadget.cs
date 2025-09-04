@@ -46,7 +46,6 @@ namespace Tizen.NUI
         {
             Type = type;
             State = NUIGadgetLifecycleState.Initialized;
-            NotifyLifecycleChanged();
         }
 
         internal event EventHandler<NUIGadgetLifecycleChangedEventArgs> LifecycleChanged;
