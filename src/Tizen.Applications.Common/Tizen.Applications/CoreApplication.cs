@@ -395,6 +395,7 @@ namespace Tizen.Applications
         /// If a device does not support the language , It will be set to the default language(en_US.UTF-8)
         /// </remarks>
         /// <param name="cultureInfo">The locale to set language</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetApplicationLanguage(CultureInfo cultureInfo)
         {
             LocaleManager.SetApplicationLocale(cultureInfo);
