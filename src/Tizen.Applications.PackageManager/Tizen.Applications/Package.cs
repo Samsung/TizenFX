@@ -170,8 +170,12 @@ namespace Tizen.Applications
         public IEnumerable<string> Privileges { get { return _privileges; } }
 
         /// <summary>
-        /// First installed time of the package.
+        /// The timestamp the package was installed for the first time
         /// </summary>
+        /// <remarks>
+        /// This timestamp is not changed when application is updated, unlike the <see cref="InstalledTime"/>.
+        /// When the application is uninstalled, this information is lost / not preserved.
+        /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         public long FirstInstalledTime { get { return _firstInstalledTime; } }
 
