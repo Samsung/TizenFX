@@ -249,11 +249,8 @@ namespace Tizen.NUI
             var gadget = CreateInstance(resourceType, className, useDefaultContext);
             if (gadget != null)
             {
-                gadget.PreCreate();
-                if (!gadget.Create())
-                {
-                    throw new InvalidOperationException("The View MUST be created");
-                }
+                PreCreate(gadget);
+                Create(gadget);
             }
             return gadget;
         }
@@ -311,7 +308,6 @@ namespace Tizen.NUI
             gadget.ClassName = className;
             gadget.NUIGadgetResourceManager = new NUIGadgetResourceManager(info);
             gadget.LifecycleChanged += OnNUIGadgetLifecycleChanged;
-            _gadgets.TryAdd(gadget, 0);
             return gadget;
         }
 
@@ -326,11 +322,6 @@ namespace Tizen.NUI
             if (gadget == null)
             {
                 throw new ArgumentNullException(nameof(gadget));
-            }
-
-            if (!_gadgets.ContainsKey(gadget))
-            {
-                return;
             }
 
             Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
@@ -351,8 +342,9 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(gadget));
             }
 
-            if (!_gadgets.ContainsKey(gadget))
+            if (_gadgets.ContainsKey(gadget))
             {
+                Log.Error("Already exists. ResourceType:" + gadget.NUIGadgetInfo.ResourceType);
                 return;
             }
 
@@ -361,6 +353,7 @@ namespace Tizen.NUI
             {
                 throw new InvalidOperationException("The View MUST be created");
             }
+            _gadgets.TryAdd(gadget, 0);
         }
 
         /// <summary>
