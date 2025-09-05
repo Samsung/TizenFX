@@ -28,11 +28,7 @@ namespace Tizen.Applications
             if (VerifySupportedLocale(convertedLocale))
             {
                 Interop.AppCommon.AppCommonErrorCode ret = Interop.AppCommon.AppLocaleManagerSetLanguage(convertedLocale);
-                if (ret == Interop.AppCommon.AppCommonErrorCode.None)
-                {
-                    SetCurrentUICultureInfo(convertedLocale);
-                }
-                else
+                if (ret != Interop.AppCommon.AppCommonErrorCode.None)
                 {
                     Interop.AppCommon.AppLocaleManagerSetLanguage("en_US.UTF-8");
                 }
