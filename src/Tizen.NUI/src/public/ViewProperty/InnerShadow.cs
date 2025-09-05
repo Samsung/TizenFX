@@ -82,7 +82,7 @@ namespace Tizen.NUI
             }
 
             // Override the MixColor
-            Color = new Color(Shadow.noColor);;
+            Color = new Color(Shadow.noColor);
             using (PropertyValue borderlineColorValue = propertyMap.Find(Visual.Property.BorderlineColor))
             {
                 borderlineColorValue?.Get(Color);
@@ -150,7 +150,7 @@ namespace Tizen.NUI
         {
             const float margin = 1.0f;
             float maxInset = Math.Max(insetExtents.Start, Math.Max(insetExtents.End, Math.Max(insetExtents.Top, insetExtents.Bottom)));
-            return Math.Max(maxInset, 0.0f) + blurRadius + margin;
+            return 2.0f * (Math.Max(maxInset, 0.0f) + blurRadius + margin);
         }
         internal static Vector2 CalculateOffsetByExtents(UIExtents insetExtents)
         {
