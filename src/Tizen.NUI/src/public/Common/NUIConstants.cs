@@ -437,7 +437,17 @@ namespace Tizen.NUI
         /// A virtual keyboard
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        VirtualKeyboard
+        VirtualKeyboard,
+        /// <summary>
+        /// A virtual remocon
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        VirtualRemocon,
+        /// <summary>
+        /// A virtual mouse
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        VirtualMouse
     }
 
     /// <summary>
@@ -2019,7 +2029,7 @@ namespace Tizen.NUI
         /// It has a blur effect ot th beind area of except the window background.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Behind = 2,        
+        Behind = 2,
     }
 
     internal struct NUIConstants

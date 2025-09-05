@@ -25,9 +25,18 @@ namespace Tizen.NUI.BaseComponents
     public partial class View
     {
         private static AccessibilityStates AccessibilityInitialStates = new AccessibilityStates();
+        private static bool _accessibilityDeletageRegisterted;
 
-        private static void RegisterAccessibilityDelegate()
+        internal static void RegisterAccessibilityDelegate()
         {
+            if (_accessibilityDeletageRegisterted)
+            {
+                return;
+            }
+
+            Log.Info("NUI", "[NUI] RegisterAccessibilityDelegate()");
+            _accessibilityDeletageRegisterted = true;
+
             InitializeAccessibilityDelegateAccessibleInterface();
             InitializeAccessibilityDelegateActionInterface();
             InitializeAccessibilityDelegateComponentInterface();
@@ -48,6 +57,7 @@ namespace Tizen.NUI.BaseComponents
 
             // Do not free AllocHGlobal memory, for performance. It will be used for native side very frequencly.
             // Note that Marshal.AllocHGlobal memory will be freed after process terminated.
+            Log.Info("NUI", "[NUI] RegisterAccessibilityDelegate() done");
         }
 
         private static View GetViewFromRefObject(IntPtr refObjectPtr)

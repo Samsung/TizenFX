@@ -19,7 +19,7 @@ namespace Tizen.NUI
 {
     internal class AngleAxis : Disposable
     {
-        internal AngleAxis(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal AngleAxis(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 

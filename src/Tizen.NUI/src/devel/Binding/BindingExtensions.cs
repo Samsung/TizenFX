@@ -86,7 +86,7 @@ namespace Tizen.NUI.Binding
                     return;
                 }
                 var prop = view.GetType().GetProperty(targetPath, BindingFlags.Public | BindingFlags.Instance);
-                prop.SetValue(view, session.GetValue(srcPath));
+                prop?.SetValue(view, session.GetValue(srcPath));
             });
             session.AddBinding(setter, srcPath);
             return view;

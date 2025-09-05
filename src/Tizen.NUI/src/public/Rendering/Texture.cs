@@ -25,6 +25,7 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public partial class Texture : BaseHandle
     {
+        private static int aliveCount;
 
         /// <summary>
         /// Creates a new Texture object.
@@ -52,7 +53,14 @@ namespace Tizen.NUI
 
         internal Texture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            ++aliveCount;
         }
+
+        /// <summary>
+        /// Gets the number of currently alived Texture object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         /// <summary>
         /// Uploads data to the texture from a PixelData object.
@@ -114,6 +122,47 @@ namespace Tizen.NUI
             uint ret = Interop.Texture.GetHeight(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Generate Url from texture. For default, we assume that texture is pre-multiplied by alpha.
+        /// </summary>
+        /// <remarks>
+        /// This API should not be called at worker thread.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageUrl GenerateUrl()
+        {
+            return GenerateUrl(true);
+        }
+
+        /// <summary>
+        /// Generate Url from texture with pre-multiplied by alpha information.
+        /// </summary>
+        /// <remarks>
+        /// This API should not be called at worker thread.
+        /// </remarks>
+        /// <param name="preMultiplied">The raw pixel data pre-multiplied by alpha.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageUrl GenerateUrl(bool preMultiplied)
+        {
+            ImageUrl ret = new ImageUrl(Interop.ImageUrl.New(SwigCPtr, preMultiplied), true);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            --aliveCount;
+
+            base.Dispose(type);
         }
 
         /// This will not be public opened.

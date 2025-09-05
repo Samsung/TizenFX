@@ -28,6 +28,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_SetRenderRefreshRate")]
             public static extern void SetRenderRefreshRate(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_SetMaximumRenderFrameRate")]
+            public static extern void SetMaximumRenderFrameRate(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_Get")]
             public static extern global::System.IntPtr Get();
 

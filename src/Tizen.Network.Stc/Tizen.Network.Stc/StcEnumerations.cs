@@ -49,6 +49,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// Enumeration for Stc time period.
     /// </summary>
+    [Obsolete("Deprecated since API level 13")]
     public enum TimePeriodType
     {
         /// <summary>
@@ -72,6 +73,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// Enumeration for network interface type.
     /// </summary>
+    [Obsolete("Deprecated since API level 13")]
     public enum NetworkInterface
     {
         /// <summary>
@@ -118,6 +120,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// Enumeration for hardware network protocol type.
     /// </summary>
+    [Obsolete("Deprecated since API level 13")]
     public enum NetworkProtocol
     {
         /// <summary>
@@ -165,6 +168,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// Enumeration for monitored application state.
     /// </summary>
+    [Obsolete("Deprecated since API level 13")]
     public enum ApplicationStateType
     {
         /// <summary>

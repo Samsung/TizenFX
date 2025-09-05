@@ -146,6 +146,11 @@ namespace Tizen.Applications.NotificationEventListener
         ClickOnButton3,
 
         /// <summary>
+        /// Event type : Click on thumbnail.
+        /// </summary>
+        ClickOnThumbnail = 7,
+
+        /// <summary>
         /// Event type : Click on text_input button.
         /// </summary>
         ClickOnReplyButton = 8,
@@ -243,6 +248,16 @@ namespace Tizen.Applications.NotificationEventListener
         SecondSubText,
 
         /// <summary>
+        /// Group title
+        /// </summary>
+        GroupTitle = 10,
+
+        /// <summary>
+        /// Group contents
+        /// </summary>
+        GroupContent = 11,
+
+        /// <summary>
         /// Text on button 1.
         /// </summary>
         FirstButton = 13,
@@ -327,6 +342,11 @@ namespace Tizen.Applications.NotificationEventListener
         /// Image for message reply.
         /// </summary>
         TextInputButton = 18,
+
+        /// <summary>
+        /// Image for Extension.
+        /// </summary>
+        Extension = 19,
     }
 
     /// <summary>
@@ -358,6 +378,11 @@ namespace Tizen.Applications.NotificationEventListener
         /// Layout for ongoing notification. Used to display progress.
         /// </summary>
         OngoingProgress = 5,
+
+        /// <summary>
+        /// Layout for extension.
+        /// </summary>
+        Extension = 6
     }
 
     /// <summary>

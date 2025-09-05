@@ -28,7 +28,6 @@ namespace Tizen.NUI.MarkdownRenderer
     internal class UICode : View
     {
         private readonly CodeStyle code;
-        private readonly CommonStyle common;
 
         private UICodeText uiCodeTitle;
         private UICodeText uiCodeText;
@@ -47,11 +46,10 @@ namespace Tizen.NUI.MarkdownRenderer
             set => uiCodeText.Text = value;
         }
 
-        public UICode(string language, string text, int indent, CodeStyle codeStyle, CommonStyle commonStyle, string hash, bool asyncRendering) : base()
+        public UICode(string language, string text, int indent, CodeStyle codeStyle, string hash, bool asyncRendering) : base()
         {
             ContentHash = hash;
             code = codeStyle;
-            common = commonStyle;
             SetupLayout(indent);
 
             Add(CreateTitle(language, asyncRendering));
@@ -65,7 +63,7 @@ namespace Tizen.NUI.MarkdownRenderer
                 LinearOrientation = LinearLayout.Orientation.Vertical,
             };
             WidthSpecification = LayoutParamPolicies.MatchParent;
-            Margin = new Extents((ushort)indent, 0, (ushort)common.Margin, (ushort)common.Margin);
+            Margin = new Extents((ushort)indent, 0, 0, 0);
             LayoutDirection = ViewLayoutDirectionType.LTR;
         }
 

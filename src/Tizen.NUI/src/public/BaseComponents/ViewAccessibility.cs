@@ -59,13 +59,47 @@ namespace Tizen.NUI.BaseComponents
         /// Dictionary of accessibility attributes (key-value pairs of strings).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Dictionary<string, string> AccessibilityAttributes { get; } = new Dictionary<string, string>();
+        public Dictionary<string, string> AccessibilityAttributes => EnsureAccessibilityRareData().Attributes;
 
         /// <summary>
         /// Dictionary of dynamically-evaluated accessibility attributes (key-value pairs of strings).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Dictionary<string, Func<string>> AccessibilityDynamicAttributes { get; } = new Dictionary<string, Func<string>>();
+        public Dictionary<string, Func<string>> AccessibilityDynamicAttributes => EnsureAccessibilityRareData().DynamicAttributes;
+
+        /// <summary>
+        /// Appends an accessibility attribute with a given key and value.
+        /// This attribute is stored in the native layer and can be used by accessibility logic.
+        /// </summary>
+        /// <param name="key">The key of the attribute.</param>
+        /// <param name="value">The value of the attribute.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the key is null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AppendAccessibilityAttribute(string key, string value)
+        {
+            if (key is null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            Interop.ControlDevel.DaliToolkitDevelControlAppendAccessibilityAttribute(SwigCPtr, key, value ?? "");
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Removes an accessibility attribute with a given key.
+        /// </summary>
+        /// <param name="key">The key of the attribute to remove.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the key is null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveAccessibilityAttribute(string key)
+        {
+            if (key is null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            Interop.ControlDevel.DaliToolkitDevelControlRemoveAccessibilityAttribute(SwigCPtr, key);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
         ///////////////////////////////////////////////////////////////////
         // ************************** Highlight ************************ //

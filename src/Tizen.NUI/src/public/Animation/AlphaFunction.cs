@@ -56,7 +56,7 @@ namespace Tizen.NUI
         /// Given function might be invoked even if animation class or alpha functoin itself disposed.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction(global::System.Delegate func) : this(Interop.AlphaFunction.NewAlphaFunction(new global::System.Runtime.InteropServices.HandleRef(dummyObject, System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func))), true)
+        public AlphaFunction(global::System.Delegate func) : this(Interop.AlphaFunction.NewAlphaFunction(new global::System.Runtime.InteropServices.HandleRef(dummyObject, System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func))), true, true)
         {
             CustomAlphaFunctionDelegate = func;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -67,7 +67,7 @@ namespace Tizen.NUI
         /// Creates an alpha function object with the default built-in alpha function.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction() : this(Interop.AlphaFunction.NewAlphaFunction(), true)
+        public AlphaFunction() : this(Interop.AlphaFunction.NewAlphaFunction(), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -78,7 +78,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="function">One of the built-in alpha functions.</param>
         /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction(AlphaFunction.BuiltinFunctions function) : this(Interop.AlphaFunction.NewAlphaFunction((int)function), true)
+        public AlphaFunction(AlphaFunction.BuiltinFunctions function) : this(Interop.AlphaFunction.NewAlphaFunction((int)function), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -91,7 +91,7 @@ namespace Tizen.NUI
         /// <param name="controlPoint0">A Vector2 which will be used as the first control point of the curve.</param>
         /// <param name="controlPoint1">A Vector2 which will be used as the second control point of the curve.</param>
         /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction(Vector2 controlPoint0, Vector2 controlPoint1) : this(Interop.AlphaFunction.NewAlphaFunction(Vector2.getCPtr(controlPoint0), Vector2.getCPtr(controlPoint1)), true)
+        public AlphaFunction(Vector2 controlPoint0, Vector2 controlPoint1) : this(Interop.AlphaFunction.NewAlphaFunction(Vector2.getCPtr(controlPoint0), Vector2.getCPtr(controlPoint1)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -101,7 +101,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="springType">The spring preset type to use (e.g., Gentle, Quick, etc.).</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AlphaFunction(AlphaFunctionSpringType springType) : this(Interop.AlphaFunction.NewAlphaFunctionSpringType((int)springType), true)
+        public AlphaFunction(AlphaFunctionSpringType springType) : this(Interop.AlphaFunction.NewAlphaFunctionSpringType((int)springType), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -112,12 +112,16 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="springData"> The custom spring configuration (stiffness, damping, mass)</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AlphaFunction(AlphaFunctionSpringData springData) : this(Interop.AlphaFunction.NewAlphaFunctionSpringData(springData.Stiffness, springData.Damping, springData.Mass), true)
+        public AlphaFunction(AlphaFunctionSpringData springData) : this(Interop.AlphaFunction.NewAlphaFunctionSpringData(springData.Stiffness, springData.Damping, springData.Mass), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal AlphaFunction(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal AlphaFunction(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
+        {
+        }
+
+        internal AlphaFunction(global::System.IntPtr cPtr, bool cMemoryOwn, bool disposableOnlyMainThread) : base(cPtr, cMemoryOwn, disposableOnlyMainThread)
         {
         }
 

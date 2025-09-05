@@ -69,6 +69,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetDeviceSubclass")]
             public static extern int GetDeviceSubClass(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetDeviceName")]
+            public static extern string GetDeviceName(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Touch")]
             public static extern void DeleteTouch(global::System.Runtime.InteropServices.HandleRef jarg1);
         }

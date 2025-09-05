@@ -842,7 +842,7 @@ namespace Tizen.NUI
             // We need to measure child layout
             View child = Registry.GetManagedBaseHandleFromNativePtr(childPtr) as View;
             // independent child will be measured in LayoutGroup.OnMeasureIndependentChildren().
-            if ((child == null) || (child?.ExcludeLayouting ?? true))
+            if (child == null || child.ExcludeLayouting || !child.Visibility )
             {
                 measureSize.width = 0;
                 measureSize.height = 0;
@@ -965,30 +965,32 @@ namespace Tizen.NUI
             // Assign child properties
             for (int i = 0; i < LayoutChildren.Count; i++)
             {
-                LayoutItem layoutItem = LayoutChildren[i];
-                View Child = layoutItem?.Owner;
-                if (Child == null)
+                LayoutItem childLayout = LayoutChildren[i];
+                View child = childLayout?.Owner;
+                if (child == null || child.ExcludeLayouting || !child.Visibility)
+                {
                     continue;
+                }
 
                 HandleRef childHandleRef;
                 if (NUIApplication.IsUsingXaml)
                 {
-                    childHandleRef = (HandleRef)Child.GetValue(FlexItemProperty);
+                    childHandleRef = (HandleRef)child.GetValue(FlexItemProperty);
                 }
                 else
                 {
-                    childHandleRef = Child.GetAttached<LayoutParams>()?.FlexItem ?? new HandleRef();
+                    childHandleRef = child.GetAttached<LayoutParams>()?.FlexItem ?? new HandleRef();
                 }
                 if (childHandleRef.Handle == IntPtr.Zero)
                     continue;
 
-                AlignmentType flexAlignemnt = GetFlexAlignmentSelf(Child);
-                PositionType positionType = GetFlexPositionType(Child);
-                float flexAspectRatio = GetFlexAspectRatio(Child);
-                float flexBasis = GetFlexBasis(Child);
-                float flexShrink = GetFlexShrink(Child);
-                float flexGrow = GetFlexGrow(Child);
-                Extents childMargin = Child.ExcludeLayouting ? zeroMargin : layoutItem.Margin;
+                AlignmentType flexAlignemnt = GetFlexAlignmentSelf(child);
+                PositionType positionType = GetFlexPositionType(child);
+                float flexAspectRatio = GetFlexAspectRatio(child);
+                float flexBasis = GetFlexBasis(child);
+                float flexShrink = GetFlexShrink(child);
+                float flexGrow = GetFlexGrow(child);
+                Extents childMargin = child.ExcludeLayouting ? zeroMargin : childLayout.Margin;
 
                 Interop.FlexLayout.SetMargin(childHandleRef, Extents.getCPtr(childMargin));
                 Interop.FlexLayout.SetFlexAlignmentSelf(childHandleRef, (int)flexAlignemnt);
@@ -997,6 +999,11 @@ namespace Tizen.NUI
                 Interop.FlexLayout.SetFlexBasis(childHandleRef, flexBasis);
                 Interop.FlexLayout.SetFlexShrink(childHandleRef, flexShrink);
                 Interop.FlexLayout.SetFlexGrow(childHandleRef, flexGrow);
+
+                if (child.GetAttached<LayoutParams>()?.MarkDirty ?? false)
+                {
+                    Interop.FlexLayout.MarkDirty(childHandleRef);
+                }
             }
 
             Interop.FlexLayout.CalculateLayout(swigCPtr, width, height, isLayoutRtl);
@@ -1041,25 +1048,42 @@ namespace Tizen.NUI
             for (int childIndex = 0; childIndex < LayoutChildren.Count; childIndex++)
             {
                 LayoutItem childLayout = LayoutChildren[childIndex];
-                if (!childLayout?.Owner?.ExcludeLayouting ?? false)
+                View child = childLayout?.Owner;
+                if (child == null || child.ExcludeLayouting || !child.Visibility)
                 {
-                    // Get the frame for the child, start, top, end, bottom.
-                    Vector4 frame = new Vector4(Interop.FlexLayout.GetNodeFrame(swigCPtr, childIndex), true);
-
-                    // Child view's size is calculated in OnLayout() without considering child layout's measured size unlike other layouts' OnLayout().
-                    // This causes that the grand child view's size is calculated incorrectly if the child and grand child have MatchParent Specification.
-                    // e.g. Let parent view's width be 200 and parent has 2 children.
-                    //      Then, child layout's measured width becomes 200 and child view's width becomes 100. (by dali-toolkit's YOGA APIs)
-                    //      Then, grand child layout's measured width becomes 200 and grand child view's width becomes 200. (by NUI Layout)
-                    //
-                    // To resolve the above issue, child layout's measured size is set with the child view's size calculated by dali-toolkit's YOGA APIs.
-                    MeasureSpecification widthSpec = new MeasureSpecification(new LayoutLength(frame.Z - frame.X), MeasureSpecification.ModeType.Exactly);
-                    MeasureSpecification heightSpec = new MeasureSpecification(new LayoutLength(frame.W - frame.Y), MeasureSpecification.ModeType.Exactly);
-                    MeasureChildWithoutPadding(childLayout, widthSpec, heightSpec);
-
-                    childLayout.Layout(new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W));
-                    frame.Dispose();
+                    continue;
                 }
+
+                // Get the frame for the child, start, top, end, bottom.
+                Vector4 frame = new Vector4(Interop.FlexLayout.GetNodeFrame(swigCPtr, childIndex), true);
+
+                // Child view's size is calculated in OnLayout() without considering child layout's measured size unlike other layouts' OnLayout().
+                // This causes that the grand child view's size is calculated incorrectly if the child and grand child have MatchParent Specification.
+                // e.g. Let parent view's width be 200 and parent has 2 children.
+                //      Then, child layout's measured width becomes 200 and child view's width becomes 100. (by dali-toolkit's YOGA APIs)
+                //      Then, grand child layout's measured width becomes 200 and grand child view's width becomes 200. (by NUI Layout)
+                //
+                // To resolve the above issue, child layout's measured size is set with the child view's size calculated by dali-toolkit's YOGA APIs.
+                MeasureSpecification widthSpec = new MeasureSpecification(new LayoutLength(frame.Z - frame.X), MeasureSpecification.ModeType.Exactly);
+                MeasureSpecification heightSpec = new MeasureSpecification(new LayoutLength(frame.W - frame.Y), MeasureSpecification.ModeType.Exactly);
+                MeasureChildWithoutPadding(childLayout, widthSpec, heightSpec);
+
+                childLayout.Layout(new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W));
+                frame.Dispose();
+            }
+        }
+
+        internal static void MarkDirty(View view)
+        {
+            _ = view ?? throw new ArgumentNullException(nameof(view));
+            var layoutParams = view.GetAttached<LayoutParams>();
+            if (layoutParams != null)
+            {
+                layoutParams.MarkDirty = true;
+            }
+            else
+            {
+                view.SetAttached(new LayoutParams() { MarkDirty = true });
             }
         }
 
@@ -1125,6 +1149,15 @@ namespace Tizen.NUI
                 get;
                 set;
             } = new HandleRef();
+
+            /// <summary>
+            /// Gets or sets the mark dirty of the flex layout item.
+            /// </summary>
+            public bool MarkDirty
+            {
+                get;
+                set;
+            } = false;
         }
     } // FLexlayout
 } // namesspace Tizen.NUI

@@ -107,9 +107,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector3_Clamp")]
             public static extern void Clamp(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector3_AsFloat__SWIG_0")]
-            public static extern global::System.IntPtr AsFloat(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector3_GetVectorXY__SWIG_0")]
             public static extern global::System.IntPtr GetVectorXY(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -172,6 +169,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Vector3")]
             public static extern void DeleteVector3(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Vector3_set_all")]
+            public static extern void SetAll(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4);
         }
     }
 }

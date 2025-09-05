@@ -22,29 +22,12 @@ namespace Tizen.NUI.BaseComponents
         /// NOTE This can replace SetBackgroundColor(NUI.Color) after sufficient verification
         internal void SetBackgroundColor(UIColor color)
         {
-            themeData?.selectorData?.ClearBackground(this);
+            GetThemeData()?.selectorData?.ClearBackground(this);
 
             // Background property will be Color after now. Remove background image url information.
             backgroundImageUrl = null;
 
-
-            if (backgroundExtraData == null)
-            {
-                Object.InternalSetPropertyColor(SwigCPtr, Property.BACKGROUND, color);
-            }
-            else
-            {
-                using var map = new PropertyMap()
-                    .Append(Visual.Property.Type, (int)Visual.Type.Color)
-                    .Append(ColorVisualProperty.MixColor, color)
-                    .Append(Visual.Property.CornerRadius, backgroundExtraData.CornerRadius)
-                    .Append(Visual.Property.CornerSquareness, backgroundExtraData.CornerSquareness)
-                    .Append(Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
-
-                backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
-
-                Object.InternalSetPropertyMap(SwigCPtr, Property.BACKGROUND, map.SwigCPtr);
-            }
+            Object.InternalSetPropertyColor(SwigCPtr, Property.BACKGROUND, color);
 
             NotifyPropertyChanged(nameof(BackgroundColor));
             NotifyBackgroundChanged();
@@ -53,9 +36,7 @@ namespace Tizen.NUI.BaseComponents
         /// NOTE This can replace SetInternalBoxShadowProperty() after sufficient verification
         internal void SetBoxShadow(UIShadow shadow)
         {
-            themeData?.selectorData?.ClearShadow(this);
-
-            backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Shadow;
+            GetThemeData()?.selectorData?.ClearShadow(this);
 
             using var map = shadow.BuildMap(this);
 

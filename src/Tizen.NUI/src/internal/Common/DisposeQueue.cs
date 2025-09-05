@@ -17,8 +17,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI
 {
@@ -36,6 +38,8 @@ namespace Tizen.NUI
 
         private EventThreadCallback eventThreadCallback;
         private EventThreadCallback.CallbackDelegate disposeQueueProcessDisposablesDelegate;
+
+        private Dictionary<string, uint> typeCounter; // Only be used for debug
 
         private bool initialized;
         private bool processorRegistered;
@@ -95,9 +99,14 @@ namespace Tizen.NUI
 
             if (initialized && eventThreadCallback != null)
             {
-                if (!eventThreadCallbackTriggered)
+                bool triggerRequired;
+                lock (listLock)
                 {
+                    triggerRequired = !eventThreadCallbackTriggered;
                     eventThreadCallbackTriggered = true;
+                }
+                if (triggerRequired)
+                {
                     eventThreadCallback.Trigger();
                 }
             }
@@ -117,9 +126,14 @@ namespace Tizen.NUI
 
             if (initialized && eventThreadCallback != null)
             {
-                if (!eventThreadCallbackTriggered)
+                bool triggerRequired;
+                lock (listLock)
                 {
+                    triggerRequired = !eventThreadCallbackTriggered;
                     eventThreadCallbackTriggered = true;
+                }
+                if (triggerRequired)
+                {
                     eventThreadCallback.Trigger();
                 }
             }
@@ -135,10 +149,10 @@ namespace Tizen.NUI
 
         public void ProcessDisposables()
         {
-            eventThreadCallbackTriggered = false;
 
             lock (listLock)
             {
+                eventThreadCallbackTriggered = false;
                 if (disposables.Count > 0)
                 {
                     // Move item from end, due to the performance issue.
@@ -169,6 +183,8 @@ namespace Tizen.NUI
             var disposeCount = fullCollectRequested ? incrementallyDisposedQueue.Count
                                                     : Math.Min(incrementallyDisposedQueue.Count, Math.Max(minimumIncrementalCount, incrementallyDisposedQueue.Count * minimumIncrementalRate / 100));
 
+            NUILog.Debug($"DisposeCount : {disposeCount} FullGC required : {fullCollectRequested}");
+
             fullCollectRequested = false;
 
             // Dispose item from end, due to the performance issue.
@@ -177,8 +193,11 @@ namespace Tizen.NUI
                 --disposeCount;
                 var disposable = incrementallyDisposedQueue.Last();
                 incrementallyDisposedQueue.RemoveAt(incrementallyDisposedQueue.Count - 1);
+
+                AppendTypeCounter(disposable.GetType().FullName);
                 disposable.Dispose();
             }
+            PrintAndResetTypeCounter();
 
             if (incrementallyDisposedQueue.Count > 0)
             {
@@ -189,6 +208,34 @@ namespace Tizen.NUI
                     ProcessorController.Instance.Awake();
                 }
             }
+        }
+
+        [Conditional("NUI_DEBUG_ON")]
+        private void AppendTypeCounter(string typeName)
+        {
+            if (typeCounter == null)
+            {
+                typeCounter = new();
+            }
+
+            if (typeCounter.TryGetValue(typeName, out uint counter))
+            {
+                typeCounter[typeName] = ++counter;
+            }
+            else
+            {
+                typeCounter.Add(typeName, 1u);
+            }
+        }
+
+        [Conditional("NUI_DEBUG_ON")]
+        private void PrintAndResetTypeCounter()
+        {
+            foreach (var keyvalue in typeCounter)
+            {
+                Tizen.Log.Debug("NUI", $" --- Type [{keyvalue.Key}] dispose [{keyvalue.Value}] times");
+            }
+            typeCounter = null;
         }
     }
 }

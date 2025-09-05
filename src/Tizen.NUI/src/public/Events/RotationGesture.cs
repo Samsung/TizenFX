@@ -30,7 +30,7 @@ namespace Tizen.NUI
         {
         }
 
-        internal RotationGesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        internal RotationGesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister, cRegister)
         {
         }
 
@@ -80,7 +80,7 @@ namespace Tizen.NUI
         /// <param name="state">The state of the gesture.</param>
         /// This will be made public in the next tizen release after an ACR is done. Till then, it needs to be hidden as an inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RotationGesture(Gesture.StateType state) : this(Interop.RotationGesture.New((int)state), true)
+        public RotationGesture(Gesture.StateType state) : this(Interop.RotationGesture.New((int)state), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

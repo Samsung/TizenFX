@@ -100,7 +100,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Vector2(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Vector2(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 
@@ -164,7 +164,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector2 vector2 = new Vector2();
-        /// vector2.X = 0.1f; 
+        /// vector2.X = 0.1f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f;
         /// Vector2 vector2 = new Vector2(x, y);
@@ -197,7 +197,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector2 vector2 = new Vector2();
-        /// vector2.Width = 1.0f; 
+        /// vector2.Width = 1.0f;
         /// // USE like this
         /// float width = 1.0f, height = 2.0f;
         /// Vector2 vector2 = new Vector2(x, y);
@@ -230,7 +230,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector2 vector2 = new Vector2();
-        /// vector2.Y = 0.5f; 
+        /// vector2.Y = 0.5f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f;
         /// Vector2 vector2 = new Vector2(x, y);
@@ -263,7 +263,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector2 vector2 = new Vector2();
-        /// vector2.Height = 2.0f; 
+        /// vector2.Height = 2.0f;
         /// // USE like this
         /// float width = 1.0f, height = 2.0f;
         /// Vector2 vector2 = new Vector2(x, y);
@@ -449,6 +449,16 @@ namespace Tizen.NUI
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Clone() => new Vector2(this);
+
+        internal void Reset() => Reset(0, 0);
+
+        internal void Reset(UIVector2 value) => Reset(value.X, value.Y);
+
+        internal void Reset(float x, float y)
+        {
+            Interop.Vector2.SetAll(SwigCPtr, x, y);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
 
         /// <summary>
         /// Clamps the vector between minimum and maximum vectors.

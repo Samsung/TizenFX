@@ -38,9 +38,7 @@ namespace Tizen.NUI.BaseComponents
         private int widthPolicy = LayoutParamPolicies.WrapContent;
         private int heightPolicy = LayoutParamPolicies.WrapContent;
         private LayoutExtraData layoutExtraData;
-        private ThemeData themeData;
         private Dictionary<Type, object> attached;
-        private bool isThemeChanged;
 
         // Collection of image-sensitive properties, and need to update C# side cache value.
         private static readonly List<int> cachedNUIViewBackgroundImagePropertyKeyList = new List<int> {
@@ -48,8 +46,6 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.SynchronousLoading,
         };
         private string backgroundImageUrl;
-        private bool backgroundImageSynchronousLoading;
-
         private List<Renderable> renderables;
 
         // List of constraints
@@ -88,13 +84,30 @@ namespace Tizen.NUI.BaseComponents
         private Vector4 internalCurrentColor;
         private Vector4 internalCurrentWorldColor;
         private Vector2 internalCurrentScreenPosition;
-
-        /// <summary>
-        /// Indicates that this View should listen Touch event to handle its ControlState.
-        /// </summary>
-        private bool enableControlState;
-
         private static int aliveCount;
+        private ViewFlags _viewFlags = ViewFlags.Default;
+
+        [Flags]
+        private enum ViewFlags
+        {
+            None = 0,
+            DispatchTouch = 1,
+            DispatchParentTouch = 1 << 1,
+            DispatchHover = 1 << 2,
+            DispatchParentHover = 1 << 3,
+            DispatchWheel = 1 << 4,
+            DispatchParentWheel = 1 << 5,
+            DispatchGesture = 1 << 6,
+            DispatchParentGesture = 1 << 7,
+            AllowInterceptTouch = 1 << 8,
+            AllowInterceptWheel = 1 << 9,
+            ThemeChanged = 1 << 10,
+            BackgroundImageSynchronousLoading = 1 << 11,
+            EnableControlState = 1 << 12, // Indicates that this View should listen Touch event to handle its ControlState.
+            DispatchAllEvents = DispatchTouch | DispatchParentTouch | DispatchHover | DispatchParentHover | DispatchWheel | DispatchParentWheel | DispatchGesture | DispatchParentGesture,
+            AllowAllEvents = AllowInterceptTouch | AllowInterceptWheel,
+            Default = DispatchAllEvents | AllowAllEvents
+        }
 
         static View()
         {
@@ -445,12 +458,12 @@ namespace Tizen.NUI.BaseComponents
                 RegisterPropertyGroup(ScaleYProperty, scalePropertyGroup);
                 RegisterPropertyGroup(ScaleZProperty, scalePropertyGroup);
             }
-            RegisterAccessibilityDelegate();
         }
 
         static internal new void Preload()
         {
             Container.Preload();
+            RegisterAccessibilityDelegate();
         }
 
         /// <summary>
@@ -510,6 +523,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 case ViewAccessibilityMode.Custom:
                 {
+                    if (_accessibilityDeletageRegisterted == false && NUIApplication.IsPreload == false)
+                    {
+                        RegisterAccessibilityDelegate();
+                    }
+
                     switch (resizePolicyMode)
                     {
                         case ViewResizePolicyMode.Ignore:
@@ -526,6 +544,12 @@ namespace Tizen.NUI.BaseComponents
                 case ViewAccessibilityMode.Default:
                 default:
                 {
+#if !PROFILE_TV
+                    if (_accessibilityDeletageRegisterted == false && NUIApplication.IsPreload == false)
+                    {
+                        RegisterAccessibilityDelegate();
+                    }
+#endif
                     switch (resizePolicyMode)
                     {
                         case ViewResizePolicyMode.Ignore:
@@ -609,7 +633,7 @@ namespace Tizen.NUI.BaseComponents
                 SetVisible(false);
             }
 
-            aliveCount++;
+            ++aliveCount;
         }
 
         internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.NewViewInternal(ViewImpl.getCPtr(implementation)), true)
@@ -678,8 +702,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                if (themeData == null) themeData = new ThemeData();
-
+                var themeData = EnsureThemeData();
                 if (themeData.viewStyle == null)
                 {
                     ApplyStyle(CreateViewStyle());
@@ -701,7 +724,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return themeData == null ? ControlState.Normal : themeData.controlStates;
+                return GetThemeData()?.controlStates ?? ControlState.Normal;
             }
             protected set
             {
@@ -716,7 +739,7 @@ namespace Tizen.NUI.BaseComponents
 
                 var prevState = ControlState;
 
-                if (themeData == null) themeData = new ThemeData();
+                var themeData = EnsureThemeData();
                 themeData.controlStates = value;
 
                 var changeInfo = new ControlStateChangedEventArgs(prevState, value);
@@ -1029,7 +1052,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetInternalBackgroundColor(Selector<Color> selector)
         {
-            themeData?.selectorData?.ClearBackground(this);
+            GetThemeData()?.selectorData?.ClearBackground(this);
             if (selector.HasAll())
             {
                 SetBackgroundColor(selector.All);
@@ -1042,7 +1065,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalBackgroundColor(Color color)
         {
-            themeData?.selectorData?.ClearBackground(this);
+            GetThemeData()?.selectorData?.ClearBackground(this);
             SetBackgroundColor(color);
         }
 
@@ -1097,6 +1120,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetInternalBackgroundImage(Selector<string> selector)
         {
+            var themeData = GetThemeData();
             if (themeData?.selectorData != null)
             {
                 themeData.selectorData.BackgroundColor?.Reset(this);
@@ -1115,6 +1139,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalBackgroundImage(string imageUrl)
         {
+            var themeData = GetThemeData();
             if (themeData?.selectorData != null)
             {
                 themeData.selectorData.BackgroundColor?.Reset(this);
@@ -1162,7 +1187,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetInternalBackgroundImageBorder(Selector<Rectangle> selector)
         {
-            themeData?.selectorData?.BackgroundImageBorder?.Reset(this);
+            GetThemeData()?.selectorData?.BackgroundImageBorder?.Reset(this);
 
             if (selector.HasAll())
             {
@@ -1176,7 +1201,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalBackgroundImageBorder(Rectangle border)
         {
-            themeData?.selectorData?.BackgroundImageBorder?.Reset(this);
+            GetThemeData()?.selectorData?.BackgroundImageBorder?.Reset(this);
             SetBackgroundImageBorder(border);
         }
 
@@ -1235,7 +1260,8 @@ namespace Tizen.NUI.BaseComponents
                     }
                     else if (key == ImageVisualProperty.SynchronousLoading)
                     {
-                        propertyValue.Get(out backgroundImageSynchronousLoading);
+                        propertyValue.Get(out bool backgroundImageSynchronousLoading);
+                        UpdateFlags(ViewFlags.BackgroundImageSynchronousLoading, backgroundImageSynchronousLoading);
                     }
                 }
             }
@@ -1304,7 +1330,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetInternalImageShadow(Selector<ImageShadow> shadow)
         {
-            themeData?.selectorData?.ClearShadow(this);
+            GetThemeData()?.selectorData?.ClearShadow(this);
             if (shadow.HasAll())
             {
                 SetShadow(shadow.All);
@@ -1317,7 +1343,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalImageShadow(ImageShadow shadow)
         {
-            themeData?.selectorData?.ClearShadow(this);
+            GetThemeData()?.selectorData?.ClearShadow(this);
             SetShadow(shadow);
         }
 
@@ -1378,7 +1404,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetInternalBoxShadow(Selector<Shadow> shadow)
         {
-            themeData?.selectorData?.ClearShadow(this);
+            GetThemeData()?.selectorData?.ClearShadow(this);
             if (shadow.HasAll())
             {
                 SetShadow(shadow.All);
@@ -1391,7 +1417,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalBoxShadow(Shadow shadow)
         {
-            themeData?.selectorData?.ClearShadow(this);
+            GetThemeData()?.selectorData?.ClearShadow(this);
             SetShadow(shadow);
         }
 
@@ -1481,10 +1507,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalCornerRadius(Vector4 cornerRadius)
         {
-            // Set for animation. Will be soon deprecated.
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerRadius = cornerRadius;
-            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
-
             Object.InternalSetPropertyVector4(SwigCPtr, Property.CornerRadius, cornerRadius.SwigCPtr);
         }
 
@@ -1529,13 +1551,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalCornerRadiusPolicy(VisualTransformPolicyType cornerRadiusPolicy)
         {
-            // Set for animation. Will be soon deprecated.
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerRadiusPolicy = cornerRadiusPolicy;
-            if (backgroundExtraData.CornerRadius != null)
-            {
-                UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
-            }
-
             Object.InternalSetPropertyInt(SwigCPtr, Property.CornerRadiusPolicy, (int)cornerRadiusPolicy);
         }
 
@@ -1579,10 +1594,6 @@ namespace Tizen.NUI.BaseComponents
         }
         internal void SetInternalCornerSqureness(Vector4 cornerSquareness)
         {
-            // Set for animation. Will be soon deprecated.
-            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).CornerSquareness = cornerSquareness;
-            UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag.CornerRadius);
-
             Object.InternalSetPropertyVector4(SwigCPtr, Property.CornerSquareness, cornerSquareness.SwigCPtr);
         }
         internal Vector4 GetInternalCornerSqureness()
@@ -1684,7 +1695,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetInternalBorderlineColor(Selector<Color> selector)
         {
-            themeData?.selectorData?.BorderlineColor?.Reset(this);
+            GetThemeData()?.selectorData?.BorderlineColor?.Reset(this);
             if (selector.HasAll())
             {
                 SetBorderlineColor(selector.All);
@@ -1697,7 +1708,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalBorderlineColor(Color color)
         {
-            themeData?.selectorData?.BorderlineColor?.Reset(this);
+            GetThemeData()?.selectorData?.BorderlineColor?.Reset(this);
             SetBorderlineColor(color);
         }
 
@@ -1742,7 +1753,7 @@ namespace Tizen.NUI.BaseComponents
 
         private Selector<Color> GetInternalBorderlineColorSelector()
         {
-            var selector = themeData?.selectorData?.BorderlineColor?.Get();
+            var selector = GetThemeData()?.selectorData?.BorderlineColor?.Get();
             return (null != selector) ? selector : new Selector<Color>();
         }
 
@@ -2913,7 +2924,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    temp = GetInternalSize2D(); 
+                    temp = GetInternalSize2D();
                 }
                 if (this.Layout == null)
                 {
@@ -3044,7 +3055,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetInternalOpacity(Selector<float?> selector)
         {
-            themeData?.selectorData?.Opacity?.Reset(this);
+            GetThemeData()?.selectorData?.Opacity?.Reset(this);
             if (selector.HasAll())
             {
                 SetOpacity(selector.All);
@@ -3057,7 +3068,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalOpacity(float opacity)
         {
-            themeData?.selectorData?.Opacity?.Reset(this);
+            GetThemeData()?.selectorData?.Opacity?.Reset(this);
 
             //Selector using code has been removed because the Selector is not used when IsUsingXaml is false
             SetOpacity(opacity);
@@ -4962,16 +4973,13 @@ namespace Tizen.NUI.BaseComponents
                     Layout.Padding = new Extents((Extents)extents);
                     if ((Padding.Start != 0) || (Padding.End != 0) || (Padding.Top != 0) || (Padding.Bottom != 0))
                     {
-                        using var ex = new Extents(0, 0, 0, 0);
-                        using var tmp = new PropertyValue(ex);
-                        Object.SetProperty(SwigCPtr, Property.PADDING, tmp);
+                        Object.InternalSetPropertyExtents(SwigCPtr, Property.PADDING, Extents.Zero);
                     }
                     Layout.RequestLayout();
                 }
                 else
                 {
-                    using var tmp = new PropertyValue(extents);
-                    Object.SetProperty(SwigCPtr, Property.PADDING, tmp);
+                    Object.InternalSetPropertyExtents(SwigCPtr, Property.PADDING, extents);
                 }
             }
         }
@@ -4993,9 +5001,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (Layout == null || Layout.IsPaddingHandledByNative())
             {
-                var tmp = Object.GetProperty(SwigCPtr, Property.PADDING);
-                tmp?.Get(internalPadding);
-                tmp?.Dispose();
+                Object.InternalRetrievingPropertyExtents(SwigCPtr, Property.PADDING, internalPadding.SwigCPtr);
             }
 
             return internalPadding;
@@ -5546,14 +5552,22 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (NUIApplication.IsUsingXaml)
                 {
+                    if (value == (ViewLayoutDirectionType)GetValue(LayoutDirectionProperty))
+                    {
+                        return;
+                    }
                     SetValue(LayoutDirectionProperty, value);
                 }
                 else
                 {
+                    if (value == GetInternalLayoutDirection())
+                    {
+                        return;
+                    }
                     SetInternalLayoutDirection(value);
                 }
                 NotifyPropertyChanged();
-                RequestLayout();
+                RequestLayoutForInheritLayoutDirection();
             }
         }
 
@@ -5565,6 +5579,28 @@ namespace Tizen.NUI.BaseComponents
         private ViewLayoutDirectionType GetInternalLayoutDirection()
         {
             return (ViewLayoutDirectionType)Object.InternalGetPropertyInt(SwigCPtr, Property.LayoutDirection);
+        }
+
+        internal void RequestLayoutForInheritLayoutDirection()
+        {
+            bool existInheritChild = false;
+            foreach (var child in Children)
+            {
+                if (child.InheritLayoutDirection)
+                {
+                    child.RequestLayoutForInheritLayoutDirection();
+
+                    if (!existInheritChild)
+                    {
+                        existInheritChild = true;
+                    }
+                }
+            }
+
+            if (!existInheritChild)
+            {
+                RequestLayout();
+            }
         }
 
         /// <summary>
@@ -5628,16 +5664,13 @@ namespace Tizen.NUI.BaseComponents
                     Layout.Margin = new Extents((Extents)extents);
                     if ((Margin.Start != 0) || (Margin.End != 0) || (Margin.Top != 0) || (Margin.Bottom != 0))
                     {
-                        using var ex = new Extents(0, 0, 0, 0);
-                        using var tmp = new PropertyValue(ex);
-                        Object.SetProperty(SwigCPtr, Property.MARGIN, tmp);
+                        Object.InternalSetPropertyExtents(SwigCPtr, Property.MARGIN, Extents.Zero);
                     }
                     Layout.RequestLayout();
                 }
                 else
                 {
-                    using var tmp = new PropertyValue(extents);
-                    Object.SetProperty(SwigCPtr, Property.MARGIN, tmp);
+                    Object.InternalSetPropertyExtents(SwigCPtr, Property.MARGIN, extents);
                 }
             }
         }
@@ -5662,8 +5695,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (Layout == null)
             {
-                using var tmp = Object.GetProperty(SwigCPtr, Property.MARGIN);
-                tmp?.Get(internalMargin);
+                Object.InternalRetrievingPropertyExtents(SwigCPtr, Property.MARGIN, internalMargin.SwigCPtr);
             }
 
             return internalMargin;
@@ -6046,7 +6078,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetInternalColor(Selector<Color> selector)
         {
-            themeData?.selectorData?.Color?.Reset(this);
+            GetThemeData()?.selectorData?.Color?.Reset(this);
             if (selector.HasAll())
             {
                 SetColor(selector.All);
@@ -6059,7 +6091,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalColor(Color color)
         {
-            themeData?.selectorData?.Color?.Reset(this);
+            GetThemeData()?.selectorData?.Color?.Reset(this);
             SetColor(color);
         }
 
@@ -6328,14 +6360,13 @@ namespace Tizen.NUI.BaseComponents
                         {
                             // If View already has a margin set then store it in Layout instead.
                             value.Margin = margin;
-                            using var extents = new Extents(0, 0, 0, 0);
                             if (NUIApplication.IsUsingXaml)
                             {
-                                SetValue(MarginProperty, extents);
+                                SetValue(MarginProperty, Extents.Zero);
                             }
                             else
                             {
-                                SetInternalMargin(extents);
+                                SetInternalMargin(Extents.Zero);
                             }
                             setMargin = true;
                         }
@@ -6346,14 +6377,13 @@ namespace Tizen.NUI.BaseComponents
                         {
                             // If View already has a padding set then store it in Layout instead.
                             value.Padding = padding;
-                            using var tmpPadding = new Extents(0, 0, 0, 0);
                             if (NUIApplication.IsUsingXaml)
                             {
-                                SetValue(PaddingProperty, tmpPadding);
+                                SetValue(PaddingProperty, Extents.Zero);
                             }
                             else
                             {
-                                SetInternalPadding(tmpPadding);
+                                SetInternalPadding(Extents.Zero);
                             }
                             setPadding = true;
                         }
@@ -6492,20 +6522,17 @@ namespace Tizen.NUI.BaseComponents
 
         private bool InternalBackgroundImageSynchronousLoading
         {
-            get
-            {
-                return backgroundImageSynchronousLoading;
-            }
+            get => _viewFlags.HasFlag(ViewFlags.BackgroundImageSynchronousLoading);
             set
             {
-                if (backgroundImageSynchronousLoading != value)
+                if (InternalBackgroundImageSynchronousLoading != value)
                 {
-                    backgroundImageSynchronousLoading = value;
+                    UpdateFlags(ViewFlags.BackgroundImageSynchronousLoading, value);
 
                     if (!string.IsNullOrEmpty(BackgroundImage))
                     {
                         PropertyMap bgMap = this.Background;
-                        bgMap.Set(ImageVisualProperty.SynchronousLoading, backgroundImageSynchronousLoading);
+                        bgMap.Set(ImageVisualProperty.SynchronousLoading, value);
                         Background = bgMap;
                     }
                 }
@@ -6616,13 +6643,12 @@ namespace Tizen.NUI.BaseComponents
 
         private bool InternalEnableControlStatePropagation
         {
-            get => themeData?.ControlStatePropagation ?? false;
+            get => GetThemeData()?.ControlStatePropagation ?? false;
             set
             {
                 if (InternalEnableControlStatePropagation == value) return;
 
-                if (themeData == null) themeData = new ThemeData();
-
+                var themeData = EnsureThemeData();
                 themeData.ControlStatePropagation = value;
 
                 foreach (View child in Children)
@@ -6719,10 +6745,10 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalEnableControlState(bool enableControlStateArg)
         {
-            bool prev = enableControlState;
-            enableControlState = enableControlStateArg;
+            bool prev = _viewFlags.HasFlag(ViewFlags.EnableControlState);
+            UpdateFlags(ViewFlags.EnableControlState, enableControlStateArg);
 
-            if (prev != enableControlState)
+            if (prev != enableControlStateArg)
             {
                 if (prev)
                 {
@@ -6737,7 +6763,7 @@ namespace Tizen.NUI.BaseComponents
 
         private bool GetInternalEnableControlState()
         {
-            return enableControlState;
+            return _viewFlags.HasFlag(ViewFlags.EnableControlState);
         }
 
         /// <summary>
@@ -6949,7 +6975,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (ThemeChangeSensitive == themeChangeSensitive) return;
 
-            if (themeData == null) themeData = new ThemeData();
+            var themeData = EnsureThemeData();
 
             themeData.ThemeChangeSensitive = themeChangeSensitive;
 
@@ -6967,7 +6993,7 @@ namespace Tizen.NUI.BaseComponents
 
         private bool GetInternalThemeChangeSensitive()
         {
-            return themeData?.ThemeChangeSensitive ?? ThemeManager.ApplicationThemeChangeSensitive;
+            return GetThemeData()?.ThemeChangeSensitive ?? ThemeManager.ApplicationThemeChangeSensitive;
         }
 
         /// <summary>
@@ -6993,10 +7019,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnThemeChanged(object sender, ThemeChangedEventArgs e)
         {
-            isThemeChanged = true;
+            UpdateFlags(ViewFlags.ThemeChanged, true);
             if (string.IsNullOrEmpty(styleName)) ApplyStyle(ThemeManager.GetUpdateStyleWithoutClone(GetType()));
             else ApplyStyle(ThemeManager.GetUpdateStyleWithoutClone(styleName));
-            isThemeChanged = false;
+            UpdateFlags(ViewFlags.ThemeChanged, false);
         }
 
         /// <summary>
@@ -7006,9 +7032,9 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public virtual void ApplyStyle(ViewStyle viewStyle)
         {
-            if (viewStyle == null || themeData?.viewStyle == viewStyle) return;
+            if (viewStyle == null || GetThemeData()?.viewStyle == viewStyle) return;
 
-            if (themeData == null) themeData = new ThemeData();
+            var themeData = EnsureThemeData();
 
             themeData.viewStyle = viewStyle;
 
@@ -7212,6 +7238,38 @@ namespace Tizen.NUI.BaseComponents
             return isIgnored;
         }
 
+        /// <summary>
+        /// The policy of children depth index generate.
+        /// </summary>
+        /// <remarks>
+        /// Depth index of children determine the order of rendering. But for micro optimization, we could set
+        /// all children of the view has the same rendering order. If then, we can set <see cref='ChildrenDepthIndexPolicyType.Equal'/>.
+        /// Usually if we know that every childrens are not overlapps each other, and has multiple rendering options. (e.g InnerShadow, Shadow, BorderlineWidth).
+        /// Default is <see cref='ChildrenDepthIndexPolicyType.Increase'/>.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ChildrenDepthIndexPolicyType ChildrenDepthIndexPolicy
+        {
+            set => SetInternalChildrenDepthIndexPolicy(value);
+            get => GetInternalChildrenDepthIndexPolicy();
+        }
+
+        private void SetInternalChildrenDepthIndexPolicy(ChildrenDepthIndexPolicyType value)
+        {
+            Object.InternalSetPropertyInt(SwigCPtr, Property.ChildrenDepthIndexPolicy, (int)value);
+        }
+
+        private ChildrenDepthIndexPolicyType GetInternalChildrenDepthIndexPolicy()
+        {
+            int temp = Object.InternalGetPropertyInt(SwigCPtr, Property.ChildrenDepthIndexPolicy);
+            switch (temp)
+            {
+                case 0: return ChildrenDepthIndexPolicyType.Increase;
+                case 1: return ChildrenDepthIndexPolicyType.Equal;
+                default: return ChildrenDepthIndexPolicyType.Default;
+            }
+        }
+
         private LayoutExtraData EnsureLayoutExtraData()
         {
             if (layoutExtraData == null)
@@ -7266,7 +7324,7 @@ namespace Tizen.NUI.BaseComponents
                 bindablePropertyOfView.TryGetValue(sourceProperty.PropertyName, out var destinationProperty);
 
                 // Do not set value again when theme is changed and the value has been set already.
-                if (isThemeChanged && ChangedPropertiesSetExcludingStyle != null && ChangedPropertiesSetExcludingStyle.Contains(destinationProperty.PropertyName))
+                if (_viewFlags.HasFlag(ViewFlags.ThemeChanged) && ChangedPropertiesSetExcludingStyle != null && ChangedPropertiesSetExcludingStyle.Contains(destinationProperty.PropertyName))
                 {
                     continue;
                 }
@@ -7277,5 +7335,29 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
+
+        private void UpdateFlags(ViewFlags flag, bool value)
+        {
+            if (value)
+            {
+                _viewFlags |= flag;
+            }
+            else
+            {
+                _viewFlags &= ~flag;
+            }
+        }
+
+        private ThemeData EnsureThemeData()
+        {
+            var themeData = GetAttached<ThemeData>();
+            if (themeData == null)
+            {
+                SetAttached(themeData = new ThemeData());
+            }
+            return themeData;
+        }
+
+        private ThemeData GetThemeData() => GetAttached<ThemeData>();
     }
 }

@@ -21,7 +21,6 @@ namespace Tizen.NUI
     {
         internal static partial class ProcessorController
         {
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ProcessorController_Without_Initialize")]
             public static extern global::System.IntPtr NewWithoutInitialize();
 
@@ -34,14 +33,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProcessorController_SetCallback")]
             public static extern void SetCallback(global::System.Runtime.InteropServices.HandleRef processorController, Tizen.NUI.ProcessorController.ProcessorEventHandler processorCallback);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProcessorController_SetPostCallback")]
-            public static extern void SetPostCallback(global::System.Runtime.InteropServices.HandleRef processorController, Tizen.NUI.ProcessorController.ProcessorEventHandler processorCallback);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProcessorController_RemoveCallback")]
             public static extern void RemoveCallback(global::System.Runtime.InteropServices.HandleRef processorController, Tizen.NUI.ProcessorController.ProcessorEventHandler processorCallback);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProcessorController_RemovePostCallback")]
-            public static extern void RemovePostCallback(global::System.Runtime.InteropServices.HandleRef processorController, Tizen.NUI.ProcessorController.ProcessorEventHandler processorCallback);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProcessorController_Awake")]
             public static extern void Awake(global::System.Runtime.InteropServices.HandleRef processorController);

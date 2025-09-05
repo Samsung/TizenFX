@@ -180,7 +180,8 @@ internal static partial class Interop
         [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_send_event")]
         internal static extern ErrorCode SendEventWithNotification(NotificationSafeHandle handle, int evnetType);
 
-
+        [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_get_extension_image_size")]
+        internal static extern ErrorCode GetExtensionImageSize(NotificationSafeHandle handle, out int height);
 
         internal static ErrorCode GetAppId(NotificationSafeHandle handle, out string appid)
         {

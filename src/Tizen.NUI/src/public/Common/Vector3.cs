@@ -93,7 +93,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Vector3(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Vector3(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 
@@ -164,7 +164,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.X = 0.1f; 
+        /// vector3.X = 0.1f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f;
         /// Vector3 vector3 = new Vector3(x, y, z);
@@ -197,7 +197,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.Width = 1.0f; 
+        /// vector3.Width = 1.0f;
         /// // USE like this
         /// float width = 1.0f, height = 2.0f, depth = 3.0f;
         /// Vector3 vector3 = new Vector3(width, height, depth);
@@ -230,7 +230,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.R = 0.1f; 
+        /// vector3.R = 0.1f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f;
         /// Vector3 vector3 = new Vector3(r, g, b);
@@ -263,7 +263,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.Y = 0.5f; 
+        /// vector3.Y = 0.5f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f;
         /// Vector3 vector3 = new Vector3(x, y, z);
@@ -296,7 +296,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.Height = 2.0f; 
+        /// vector3.Height = 2.0f;
         /// // USE like this
         /// float width = 1.0f, height = 2.0f, depth = 3.0f;
         /// Vector3 vector3 = new Vector3(width, height, depth);
@@ -329,7 +329,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.G = 0.5f; 
+        /// vector3.G = 0.5f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f;
         /// Vector3 vector3 = new Vector3(r, g, b);
@@ -362,7 +362,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.Z = 0.9f; 
+        /// vector3.Z = 0.9f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f;
         /// Vector3 vector3 = new Vector3(x, y, z);
@@ -395,7 +395,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.Depth = 3.0f; 
+        /// vector3.Depth = 3.0f;
         /// // USE like this
         /// float width = 1.0f, height = 2.0f, depth = 3.0f;
         /// Vector3 vector3 = new Vector3(width, height, depth);
@@ -428,7 +428,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.B = 0.9f; 
+        /// vector3.B = 0.9f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f;
         /// Vector3 vector3 = new Vector3(r, g, b);
@@ -647,9 +647,103 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Calculates the dot product of this vector and another vector.
+        /// </summary>
+        /// <param name="other">The other vector.</param>
+        /// <returns>The dot product of the two vectors.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float Dot(Vector3 other)
+        {
+            float ret = Interop.Vector3.Dot(SwigCPtr, Vector3.getCPtr(other));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Calculates the cross product of this vector and another vector.
+        /// The result is a vector that is perpendicular to the two input vectors.
+        /// </summary>
+        /// <param name="other">The other vector.</param>
+        /// <returns>The cross product of the two vectors.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector3 Cross(Vector3 other)
+        {
+            Vector3 ret = new Vector3(Interop.Vector3.Cross(SwigCPtr, Vector3.getCPtr(other)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Calculates the Euclidean distance between two vectors.
+        /// </summary>
+        /// <param name="a">The first vector.</param>
+        /// <param name="b">The second vector.</param>
+        /// <returns>The distance between vector a and b.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float Distance(Vector3 a, Vector3 b)
+        {
+            // (a-b).Length()
+            float dx = a.X - b.X;
+            float dy = a.Y - b.Y;
+            float dz = a.Z - b.Z;
+            return (float)System.Math.Sqrt(dx * dx + dy * dy + dz * dz);
+        }
+
+        /// <summary>
+        /// Returns a new vector that is the normalized version of the specified vector.
+        /// The original vector remains unchanged.
+        /// </summary>
+        /// <param name="vector">The vector to normalize.</param>
+        /// <returns>A new Vector3 with a magnitude of 1 in the same direction.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector3 Normalize(Vector3 vector)
+        {
+            float length = vector.Length();
+            if (length > 1e-6f) // Epsilon to avoid division by zero
+            {
+                return new Vector3(vector.X / length, vector.Y / length, vector.Z / length);
+            }
+            return Vector3.Zero;
+        }
+
+        /// <summary>
+        /// Calculates the reflection vector given an incident vector and a surface normal.
+        /// The normal vector should be normalized.
+        /// </summary>
+        /// <param name="incident">The incident vector.</param>
+        /// <param name="normal">The surface normal vector.</param>
+        /// <returns>The reflection vector.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector3 Reflect(Vector3 incident, Vector3 normal)
+        {
+            // R = I - 2 * (I.N) * N
+            float dotProduct = incident.Dot(normal);
+            return new Vector3(
+                incident.X - 2.0f * dotProduct * normal.X,
+                incident.Y - 2.0f * dotProduct * normal.Y,
+                incident.Z - 2.0f * dotProduct * normal.Z
+            );
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Clone() => new Vector3(X, Y, Z);
+
+        internal void Reset() => Reset(0, 0, 0);
+
+        internal void Reset(UIVector3 value) => Reset(value.X, value.Y, value.Z);
+
+        internal void Reset(float x, float y, float z)
+        {
+            Interop.Vector3.SetAll(SwigCPtr, x, y, z);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
 
         internal static Vector3 GetVector3FromPtr(global::System.IntPtr cPtr)
         {
@@ -784,19 +878,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal float Dot(Vector3 other)
-        {
-            float ret = Interop.Vector3.Dot(SwigCPtr, Vector3.getCPtr(other));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal Vector3 Cross(Vector3 other)
-        {
-            Vector3 ret = new Vector3(Interop.Vector3.Cross(SwigCPtr, Vector3.getCPtr(other)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
     }
 

@@ -46,6 +46,8 @@ namespace Tizen.NUI
         private Touch internalLastTouchEvent;
         private Hover internalLastHoverEvent;
         private Timer internalHoverTimer;
+        private Dictionary<Type, object> _attached;
+        private static int aliveCount;
 
         static internal bool IsSupportedMultiWindow()
         {
@@ -70,6 +72,8 @@ namespace Tizen.NUI
                 localController = new LayoutController(this);
                 NUILog.Debug("layoutController id:" + localController.GetId());
             }
+
+            ++aliveCount;
         }
 
         /// <summary>
@@ -456,6 +460,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The flags of insets part to specify which window insets parts to include.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum InsetsPartFlags
+        {
+            None = 0,
+            StatusBar = 1 << 0,
+            Keyboard = 1 << 1,
+            Clipboard = 1 << 2
+        }
+
+        /// <summary>
         /// The stage instance property (read-only).<br />
         /// Gets the current window.<br />
         /// </summary>
@@ -652,6 +668,12 @@ namespace Tizen.NUI
                 SetPartialUpdate(value);
             }
         }
+
+        /// <summary>
+        /// Gets the number of currently alived Window object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         internal List<Layer> LayersChildren
         {
@@ -1266,6 +1288,10 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void FeedKey(Key keyEvent)
         {
+            if (keyEvent != null)
+            {
+                Tizen.Log.Info("NUI", $"FeedKey KeyPressedName : {keyEvent.KeyPressedName}, KeyString : {keyEvent.KeyString}, KeyPressed : {keyEvent.KeyPressed}, KeyCode : {keyEvent.KeyCode}, State : {keyEvent.State}, Time : {keyEvent.Time}");
+            }
             Interop.Window.FeedKeyEvent(SwigCPtr, Key.getCPtr(keyEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1307,6 +1333,10 @@ namespace Tizen.NUI
         /// <param name="timeStamp">The timeStamp.</param>
         internal void FeedTouch(TouchPoint touchPoint, int timeStamp)
         {
+            if (touchPoint != null)
+            {
+                Tizen.Log.Info("NUI", $"FeedTouch {touchPoint.Screen.X}, {touchPoint.Screen.Y}, State : {touchPoint.State}, timeStamp : {timeStamp}");
+            }
             Interop.Window.FeedTouchPoint(SwigCPtr, TouchPoint.getCPtr(touchPoint), timeStamp);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1317,6 +1347,10 @@ namespace Tizen.NUI
         /// <param name="wheelEvent">The wheel event to feed.</param>
         internal void FeedWheel(Wheel wheelEvent)
         {
+            if (wheelEvent != null)
+            {
+                Tizen.Log.Info("NUI", $"FeedWheel {wheelEvent.Point?.X}, {wheelEvent.Point?.Y}, Type : {wheelEvent.Type}, Direction : {wheelEvent.Direction}");
+            }
             Interop.Window.FeedWheelEvent(SwigCPtr, Wheel.getCPtr(wheelEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1338,6 +1372,8 @@ namespace Tizen.NUI
                 using Vector2 screenPosition = hover.GetScreenPosition(0);
                 touchPoint = new TouchPoint(hover.GetDeviceId(0), TouchPoint.StateType.Motion, screenPosition.X, screenPosition.Y);
             }
+
+            Tizen.Log.Info("NUI", $"FeedHover {touchPoint.Screen.X}, {touchPoint.Screen.Y}, State : {touchPoint.State}");
             Interop.Window.FeedHoverEvent(SwigCPtr, TouchPoint.getCPtr(touchPoint));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             touchPoint.Dispose();
@@ -2355,6 +2391,7 @@ namespace Tizen.NUI
                 internalHoverTimer = null;
             }
 
+            --aliveCount;
 
             base.Dispose(type);
         }
@@ -2630,8 +2667,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets or gets the window blur using window blur information.
-        /// 
-        /// It is designed to apply a blur effect to a window based on specified parameters. 
+        ///
+        /// It is designed to apply a blur effect to a window based on specified parameters.
         /// This supports different types of blurring effects, including blurring the window's background only.
         /// Or blurring the area surrounding the window while keeping the window itself clear.
         /// The more information is written WindowBlurInfo struct.
@@ -2665,7 +2702,75 @@ namespace Tizen.NUI
                 finally {
                     Interop.WindowBlurInfo.DeleteWindowBlurInfo(internalBlurInfo);
                 }
-            }            
+            }
+        }
+
+        /// <summary>
+        /// Calculates sizes and positions of views in all layers if the view's layout is required to be updated.
+        /// e.g. RequestLayout() is called for the view.
+        /// Since UpdateLayout calculates sizes and positions of views manually right now, do not abuse calling it.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void UpdateLayout()
+        {
+            using var size = GetSize();
+
+            LayersChildren?.ForEach(layer =>
+            {
+                if (layer?.LayoutCount > 0)
+                {
+                    layer?.Children?.ForEach(view =>
+                    {
+                        if (view != null)
+                        {
+                            LayoutController.FindRootLayouts(view, size.Width, size.Height);
+                        }
+                    });
+                }
+            });
+        }
+
+        /// <summary>
+        /// Gets the window insets for all parts of the system UI.
+        /// </summary>
+        /// <returns>The window insets from all parts.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Extents GetInsets()
+        {
+            Extents ret = new Extents(Interop.Window.GetInsets(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the combined window insets for the specified parts of the system UI.
+        /// </summary>
+        /// <param name="insetsFlags">A bitwise combination of <see cref="InsetsPartFlags"/> values specifying which window insets parts to include.</param>
+        /// <returns>The combined window insets from the specified parts.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Extents GetInsets(InsetsPartFlags insetsFlags)
+        {
+            Extents ret = new Extents(Interop.Window.GetInsets(SwigCPtr, (int)insetsFlags), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal T GetAttached<T>()
+        {
+            if (_attached != null && _attached.ContainsKey(typeof(T)))
+                return (T)_attached[typeof(T)];
+            return default;
+        }
+
+        internal void ClearAttached<T>()
+        {
+            _attached?.Remove(typeof(T));
+        }
+
+        internal void SetAttached<T>(T value)
+        {
+            _attached ??= new Dictionary<Type, object>();
+            _attached[typeof(T)] = value;
         }
 
         IntPtr IWindowProvider.WindowHandle => GetNativeWindowHandler();

@@ -2729,26 +2729,25 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private Dictionary<int, JavaScriptMessageHandler> _evaluateJavaScriptHandlerMap = new Dictionary<int, JavaScriptMessageHandler>();
-        private int _evaluateJavaScriptCallbackId;
+        private JavaScriptMessageHandler _javaScriptMessageHandler;
 
         /// <summary>
         /// Evaluates JavaScript code represented as a string.
+        /// If EvaluateJavaScript is called many times, its argument 'handler' callback would be called not sequentially.
+        /// A possible call sequence is like:
+        /// 1) webview.EvaluateJavaScript("abc", handler1),
+        /// 2) webview.EvaluateJavaScript("def", handler2),
+        /// 3) handle2 would be called,
+        /// 4) handle2 would be called, handler1 would not be called any more.
         /// </summary>
         /// <param name="script">The JavaScript code</param>
         /// <param name="handler">The callback for result of JavaScript code evaluation</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void EvaluateJavaScript(string script, JavaScriptMessageHandler handler)
         {
-            var id = ++_evaluateJavaScriptCallbackId;
-            JavaScriptMessageHandler wrapper = (msg) =>
-            {
-                handler(msg);
-                _evaluateJavaScriptHandlerMap.Remove(id);
-            };
-            _evaluateJavaScriptHandlerMap.Add(id, wrapper);
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(wrapper);
-            Interop.WebView.EvaluateJavaScript(SwigCPtr, script, new global::System.Runtime.InteropServices.HandleRef(this, ip));
+            _javaScriptMessageHandler = new JavaScriptMessageHandler(handler);
+            System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(_javaScriptMessageHandler);
+            Interop.WebView.EvaluateJavaScript(SwigCPtr, script, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -3129,27 +3128,6 @@ namespace Tizen.NUI.BaseComponents
             WebView ret = new WebView(Interop.WebView.Assign(SwigCPtr, WebView.getCPtr(webView)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal override void ApplyCornerRadius()
-        {
-            base.ApplyCornerRadius();
-
-            if (backgroundExtraData == null) 
-            {
-                return;
-            }
-
-            // Update corner radius properties to webView by ActionUpdateProperty
-            if (backgroundExtraData.CornerRadius != null)
-            {
-                _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
-            }
-            if (backgroundExtraData.CornerSquareness != null)
-            {
-                _ = Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerSquareness, Vector4.getCPtr(backgroundExtraData.CornerSquareness));
-            }
-            _ = Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, WebView.Property.Url, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
         }
 
         private void OnPageLoadStarted(string pageUrl)

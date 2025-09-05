@@ -649,23 +649,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("NDalic NewItemLayout.")]
-        [Property("SPEC", "Tizen.NUI.NDalic.NewItemLayout M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void NDalicNewItemLayout()
-        {
-            tlog.Debug(tag, $"NDalicNewItemLayout START");
-
-            var result = NDalic.NewItemLayout(DefaultItemLayoutType.GRID);
-            tlog.Debug(tag, "New item layout :" + result);
-
-            tlog.Debug(tag, $"NDalicNewItemLayout END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("NDalic GetAlphaOffsetAndMask.")]
         [Property("SPEC", "Tizen.NUI.NDalic.GetAlphaOffsetAndMask M")]
         [Property("SPEC_URL", "-")]

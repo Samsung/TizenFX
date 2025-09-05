@@ -162,14 +162,17 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalSetPropertyVector4")]
             public static extern int InternalSetPropertyVector4(HandleRef actor, int propertyType, HandleRef vector4);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingPropertyExtents")]
+            public static extern int InternalRetrievingPropertyExtents(HandleRef actor, int propertyType, HandleRef extents);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalSetPropertyExtents")]
+            public static extern int InternalSetPropertyExtents(HandleRef actor, int propertyType, HandleRef extents);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingPropertyVector2ActualVector3")]
             public static extern int InternalRetrievingPropertyVector2ActualVector3(HandleRef actor, int propertyType, HandleRef retrievingVector2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalSetPropertyVector2ActualVector3")]
             public static extern int InternalSetPropertyVector2ActualVector3(HandleRef actor, int propertyType, HandleRef vector2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingPropertyFloat")]
-            public static extern int InternalRetrievingPropertyFloat(HandleRef actor, int propertyType, out float valFloat);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalGetPropertyFloat")]
             public static extern float InternalGetPropertyFloat(HandleRef actor, int propertyType);

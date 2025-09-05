@@ -25,6 +25,7 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public partial class Shader : Animatable
     {
+        private static int aliveCount;
 
         /// <summary>
         /// Creates Shader object.
@@ -56,6 +57,20 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Shader(string vertexShader, string fragmentShader, string shaderName) : this(vertexShader, fragmentShader, ShaderHint.None, shaderName)
         {
+        }
+
+        /// <summary>
+        /// Creates Shader object with hints and name
+        /// </summary>
+        /// <param name="vertexShader">The vertex shader code for the effect.</param>
+        /// <param name="fragmentShader">The fragment Shader code for the effect.</param>
+        /// <param name="hints">The hints to define the geometry of the rendered object.</param>
+        /// <param name="shaderName">The name of this shader object.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Shader(string vertexShader, string fragmentShader, ShaderHint hints, string shaderName) : this(Interop.Shader.New(vertexShader, fragmentShader, (int)hints, shaderName ?? ""), true)
+        {
+            Name = shaderName ?? "";
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -97,14 +112,29 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Name { get; private set; }
 
-        internal Shader(string vertexShader, string fragmentShader, ShaderHint hints, string shaderName) : this(Interop.Shader.New(vertexShader, fragmentShader, (int)hints, shaderName ?? ""), true)
-        {
-            Name = shaderName ?? "";
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
+        /// <summary>
+        /// Gets the number of currently alived Shader object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         internal Shader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            ++aliveCount;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            --aliveCount;
+
+            base.Dispose(type);
         }
 
         /// This will not be public opened.

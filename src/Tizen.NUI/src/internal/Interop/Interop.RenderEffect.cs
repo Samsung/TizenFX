@@ -29,6 +29,12 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderEffect_Deactivate")]
             public static extern void Deactivate(HandleRef effect);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderEffect_Refresh")]
+            public static extern void Refresh(HandleRef effect);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderEffect_IsActivated")]
+            public static extern bool IsActivated(HandleRef effect);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Tizen.NUI.BaseComponents
     /// Text labels are lightweight, non-editable, and do not respond to the user input.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public partial class TextLabel : View
+    public partial class TextLabel : View, IPropertyProvider
     {
         internal class TextLabelLayout : LayoutItem
         {
@@ -77,13 +77,7 @@ namespace Tizen.NUI.BaseComponents
                         {
                             if (heightMeasureSpec.Mode == MeasureSpecification.ModeType.Exactly)
                             {
-                                // TODO : Async Render with "Constraint Width" and "Fixed Height" is not currently supported in DALi Text.
-                                var minWidth = Owner.GetMinimumWidth();
-                                var maxWidth = Owner.GetMaximumWidth();
-                                var naturalSize = Owner.GetNaturalSize();
-                                float tempWidth = naturalSize != null ? naturalSize.Width : 0;
-                                totalWidth = Math.Max(Math.Min(tempWidth, maxWidth < 0 ? Int32.MaxValue : maxWidth), minWidth);
-                                label.RequestAsyncRenderWithFixedSize(totalWidth, totalHeight);
+                                label.RequestAsyncRenderWithFixedHeight(totalWidth, totalHeight);
                             }
                             else
                             {
@@ -394,6 +388,19 @@ namespace Tizen.NUI.BaseComponents
             return ThemeManager.GetStyle(this.GetType()) == null ? false : true;
         }
 
+        // IPropertyProvider
+        /// <summary>
+        /// Gets a string property by name.
+        /// </summary>
+        /// <param name="propertyName">The name of the property to retrieve.</param>
+        /// <returns>The string value of the property, or null if not found.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GetStringProperty(string propertyName) => propertyName switch
+        {
+            nameof(TranslatableText) => TranslatableText,
+            _ => null
+        };
+
         /// <summary>
         /// Requests asynchronous rendering of text with a fixed size.
         /// </summary>
@@ -428,6 +435,23 @@ namespace Tizen.NUI.BaseComponents
         public void RequestAsyncRenderWithFixedWidth(float width, float heightConstraint = float.PositiveInfinity)
         {
             Interop.TextLabel.RequestAsyncRenderWithFixedWidth(SwigCPtr, width, heightConstraint);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Requests asynchronous text rendering with a fixed height.
+        /// </summary>
+        /// <param name="widthConstraint">The maximum available width of text to render.</param>
+        /// <param name="height">The height of text to render.</param>
+        /// <remarks>
+        /// Only works when AsyncAuto and AsyncManual.<br />
+        /// The width is determined by the content of the text.<br />
+        /// The maximum width will be the widthConstraint.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RequestAsyncRenderWithFixedHeight(float widthConstraint, float height)
+        {
+            Interop.TextLabel.RequestAsyncRenderWithFixedHeight(SwigCPtr, widthConstraint, height);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -2021,6 +2045,60 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set Emboss to TextLabel.<br />
+        /// <param name="emboss">The text emboss</param>
+        /// <list type="table">
+        /// <item><term>enable (bool)</term><description>Whether the emboss is enabled (the default value is false)</description></item>
+        /// <item><term>direction (Vector2)</term><description>The emboss direction in texture space. (the default value is (0.0f, 0.0f).)</description></item>
+        /// <item><term>strength (float)</term><description>The strength of emboss in pixels. (the default value is 0.0f.)</description></item>
+        /// <item><term>lightColor (Color)</term><description>The highlight color for raised areas. (the default value is transparent.)</description></item>
+        /// <item><term>shadowColor (Color)</term><description>The shadow color for recessed areas. (the default value is transparent.)</description></item>
+        /// </list>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetEmboss(Emboss emboss)
+        {
+            var embossMap = TextMapHelper.GetEmbossMap(emboss);
+            SetInternalTextEmboss(embossMap);
+        }
+
+        /// <summary>
+        /// Get Emboss from TextLabel.<br />
+        /// <list type="table">
+        /// <item><term>enable (bool)</term><description>Whether the emboss is enabled (the default value is false)</description></item>
+        /// <item><term>direction (Vector2)</term><description>The emboss direction in texture space. (the default value is (0.0f, 0.0f).)</description></item>
+        /// <item><term>strength (float)</term><description>The strength of emboss in pixels. (the default value is 0.0f.)</description></item>
+        /// <item><term>lightColor (Color)</term><description>The highlight color for raised areas. (the default value is transparent.)</description></item>
+        /// <item><term>shadowColor (Color)</term><description>The shadow color for recessed areas. (the default value is transparent.)</description></item>
+        /// </list>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Emboss GetEmboss()
+        {
+            Emboss emboss;
+            using (var textEmbossMap = (PropertyMap)GetInternalTextEmboss())
+            {
+                emboss = TextMapHelper.GetEmbossStruct(textEmbossMap);
+            }
+            return emboss;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private void SetInternalTextEmboss(PropertyMap embossMap)
+        {
+            Object.SetProperty(SwigCPtr, Property.EMBOSS, new PropertyValue(embossMap));
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private PropertyMap GetInternalTextEmboss()
+        {
+            var temp = new PropertyMap();
+            using var prop = Object.GetProperty(SwigCPtr, Property.EMBOSS);
+            prop.Get(temp);
+            return temp;
+        }
+
+        /// <summary>
         /// The Outline property.<br />
         /// The default outline parameters.<br />
         /// The outline map contains the following keys :<br />
@@ -3518,6 +3596,24 @@ namespace Tizen.NUI.BaseComponents
         public void SetFontVariation(int index, float value)
         {
             Object.InternalSetPropertyFloat(SwigCPtr, index, value);
+        }
+
+        /// <summary>
+        /// Sets mask Effect to given view.
+        /// </summary>
+        /// <param name="control">The control to set mask effect.</param>
+        /// <note>
+        /// SetMaskEffect uses the TextLabel's camera to render both label and control.<br />
+        /// To apply the mask correctly, align the control's size and position with the TextLabel.<br />
+        /// </note>
+        /// <remarks>
+        /// After this operation, the Textlabel will be parent of the control.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetMaskEffect(View control)
+        {
+            Interop.TextLabel.SetMaskEffect(SwigCPtr, control.SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <inheritdoc/>

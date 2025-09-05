@@ -37,11 +37,18 @@ namespace Tizen.NUI
         private EventHandler<AggregatedVisibilityChangedEventArgs> aggregatedVisibilityChangedEventHandler;
         private AggregatedVisibilityChangedEventCallbackType aggregatedVisibilityChangedEventCallback;
 
+        private LayoutDirectionChangedEventCallbackType _layoutDirectionChangedEventCallback;
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void VisibilityChangedEventCallbackType(IntPtr data, bool visibility, VisibilityChangeType type);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AggregatedVisibilityChangedEventCallbackType(IntPtr data, bool visibility);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void LayoutDirectionChangedEventCallbackType(IntPtr data, ViewLayoutDirectionType type);
+
+        private static int aliveCount;
 
         /// <summary>
         /// Default constructor of Layer class to create a Layer object.
@@ -56,6 +63,14 @@ namespace Tizen.NUI
 
         internal Layer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            ++aliveCount;
+
+            if (_layoutDirectionChangedEventCallback == null)
+            {
+                _layoutDirectionChangedEventCallback = OnLayoutDirectionChanged;
+                Interop.ActorSignal.LayoutDirectionChangedConnect(SwigCPtr, _layoutDirectionChangedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
         }
 
         /// <summary>
@@ -92,7 +107,18 @@ namespace Tizen.NUI
                 aggregatedVisibilityChangedEventCallback = null;
             }
 
+            if (_layoutDirectionChangedEventCallback != null)
+            {
+                NUILog.Debug($"[Dispose] layoutDirectionChangedEventCallback");
+
+                Interop.ActorSignal.LayoutDirectionChangedDisconnect(GetBaseHandleCPtrHandleRef, _layoutDirectionChangedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                _layoutDirectionChangedEventCallback = null;
+            }
+
             LayoutCount = 0;
+
+            --aliveCount;
 
             base.Dispose(type);
         }
@@ -320,6 +346,12 @@ namespace Tizen.NUI
             set => SetInternalIgnored(value);
             get => IsInternalIgnored();
         }
+
+        /// <summary>
+        /// Gets the number of currently alived Layer object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         private void SetInternalIgnored(bool ignored)
         {
@@ -980,6 +1012,19 @@ namespace Tizen.NUI
             if (aggregatedVisibilityChangedEventHandler != null)
             {
                 aggregatedVisibilityChangedEventHandler(this, e);
+            }
+        }
+
+        private void OnLayoutDirectionChanged(IntPtr data, ViewLayoutDirectionType type)
+        {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            foreach (var child in Children)
+            {
+                child.RequestLayoutForInheritLayoutDirection();
             }
         }
     }
