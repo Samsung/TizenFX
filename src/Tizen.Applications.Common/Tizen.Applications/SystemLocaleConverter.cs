@@ -247,7 +247,6 @@ namespace Tizen.Applications
             {
                 // Get the locale name from ICU
                 StringBuilder sb = new StringBuilder(ULOC_FULLNAME_CAPACITY);
-
                 if (Interop.BaseUtilsi18n.Canonicalize(localeName, sb, sb.Capacity) <= 0)
                 {
                     return null;
