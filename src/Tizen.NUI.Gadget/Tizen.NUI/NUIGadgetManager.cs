@@ -246,30 +246,12 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         public static NUIGadget Add(string resourceType, string className, bool useDefaultContext)
         {
-            if (string.IsNullOrWhiteSpace(resourceType) || string.IsNullOrWhiteSpace(className))
+            var gadget = CreateInstance(resourceType, className, useDefaultContext);
+            if (gadget != null)
             {
-                throw new ArgumentException("Invalid argument");
+                PreCreate(gadget);
+                Create(gadget);
             }
-
-            NUIGadgetInfo info = Find(resourceType);
-            LoadInternal(info, useDefaultContext);
-
-            NUIGadget gadget = useDefaultContext ? info.Assembly.CreateInstance(className, true) as NUIGadget : info.NUIGadgetAssembly.CreateInstance(className);
-            if (gadget == null)
-            {
-                throw new InvalidOperationException("Failed to create instance. className: " + className);
-            }
-
-            gadget.NUIGadgetInfo = info;
-            gadget.ClassName = className;
-            gadget.NUIGadgetResourceManager = new NUIGadgetResourceManager(info);
-            gadget.LifecycleChanged += OnNUIGadgetLifecycleChanged;
-            if (!gadget.Create())
-            {
-                throw new InvalidOperationException("The View MUST be created");
-            }
-
-            _gadgets.TryAdd(gadget, 0);
             return gadget;
         }
 
@@ -291,6 +273,88 @@ namespace Tizen.NUI
         /// <returns>An enumerable list of NUIGadgetInfo objects.</returns>
         /// <since_tizen> 10 </since_tizen>
         public static IEnumerable<NUIGadgetInfo> GetGadgetInfos() => _gadgetInfos.Values;
+
+
+        /// <summary>
+        /// Creates a new NUIGadget instance.
+        /// </summary>
+        /// <remarks>
+        /// To use Unload() method, the useDefaultContext must be'false'.
+        /// </remarks>
+        /// <param name="resourceType">The resource type of the NUIGadget package.</param>
+        /// <param name="className">The class name of the NUIGadget.</param>
+        /// <param name="useDefaultContext">The flag it true, use a default context. Otherwise, use a new load context.</param>
+        /// <returns>The NUIGadget object.</returns>
+        /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        public static NUIGadget CreateInstance(string resourceType, string className, bool useDefaultContext)
+        {
+            if (string.IsNullOrWhiteSpace(resourceType) || string.IsNullOrWhiteSpace(className))
+            {
+                throw new ArgumentException("Invalid argument");
+            }
+
+            NUIGadgetInfo info = Find(resourceType);
+            LoadInternal(info, useDefaultContext);
+
+            NUIGadget gadget = useDefaultContext ? info.Assembly.CreateInstance(className, true) as NUIGadget : info.NUIGadgetAssembly.CreateInstance(className);
+            if (gadget == null)
+            {
+                throw new InvalidOperationException("Failed to create instance. className: " + className);
+            }
+
+            gadget.NUIGadgetInfo = info;
+            gadget.ClassName = className;
+            gadget.NUIGadgetResourceManager = new NUIGadgetResourceManager(info);
+            gadget.LifecycleChanged += OnNUIGadgetLifecycleChanged;
+            return gadget;
+        }
+
+        /// <summary>
+        /// Executes the pre-creation process of the NUIGadget.
+        /// </summary>
+        /// <param name="gadget">The NUIGadget object to perform the pre-creation process.</param>
+        /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        public static void PreCreate(NUIGadget gadget)
+        {
+            if (gadget == null)
+            {
+                throw new ArgumentNullException(nameof(gadget));
+            }
+
+            Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
+            gadget.PreCreate();
+        }
+
+        /// <summary>
+        /// Executes the creation process of the NUIGadget.
+        /// </summary>
+        /// <param name="gadget">The NUIGadget object to perform the creation process.</param>
+        /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        public static void Create(NUIGadget gadget)
+        {
+            if (gadget == null)
+            {
+                throw new ArgumentNullException(nameof(gadget));
+            }
+
+            if (_gadgets.ContainsKey(gadget))
+            {
+                Log.Error("Already exists. ResourceType:" + gadget.NUIGadgetInfo.ResourceType);
+                return;
+            }
+
+            Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
+            if (!gadget.Create())
+            {
+                throw new InvalidOperationException("The View MUST be created");
+            }
+            _gadgets.TryAdd(gadget, 0);
+        }
 
         /// <summary>
         /// Removes the specified NUIGadget from the NUIGadgetManager.
@@ -343,17 +407,6 @@ namespace Tizen.NUI
         /// </remarks>
         /// <param name="gadget">The NUIGadget object whose execution needs to be resumed.</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
-        /// <example>
-        /// To resume the execution of a specific NUIGadget named 'MyGadget', you can call the following code snippet:
-        ///
-        /// <code>
-        /// // Get the reference to the NUIGadget object
-        /// NUIGadget MyGadget = ...;
-        ///
-        /// // Resume its execution
-        /// GadgetResume(MyGadget);
-        /// </code>
-        /// </example>
         /// <since_tizen> 10 </since_tizen>
         public static void Resume(NUIGadget gadget)
         {

@@ -33,31 +33,38 @@ namespace Tizen.NUI
         Initialized = 0,
 
         /// <summary>
+        /// The pre-created state.
+        /// This state is set when the gadget is pre-created. The 'OnPreCreate()' method of the NUIGadget is called.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        PreCreated = 1,
+
+        /// <summary>
         /// The created state.
         /// This state is set when the gadget is created. The 'OnCreate()' method of the NUIGadget is called.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
-        Created = 1,
+        Created = 2,
 
         /// <summary>
         /// The resumed state.
         /// This state is set when the gadget is resumed. The 'OnResume()' method of the NUIGadget is called.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
-        Resumed = 2,
+        Resumed = 3,
 
         /// <summary>
         /// The paused state.
         /// This state is set when the gadget is paused. The 'OnPause()' method of the NUIGadget is called.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
-        Paused = 3,
+        Paused = 4,
 
         /// <summary>
         /// The destroyed state.
         /// This state is set when the gadget is destroyed. The 'OnDestroy()' method of the NUIGadget is called.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
-        Destroyed = 4,
+        Destroyed = 5,
     }
 }
