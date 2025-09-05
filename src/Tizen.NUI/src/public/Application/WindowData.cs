@@ -104,6 +104,26 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets or sets the screen of window data.
+        /// </summary>
+        /// <value>The screen name of the default window.</value>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Screen
+        {
+            set
+            {
+                Interop.WindowData.SetScreen(SwigCPtr, (string)value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                string ret = (string)Interop.WindowData.GetScreen(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                return ret;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the front buffer rendering of the default window.
         /// The default value is false.
         /// </summary>
