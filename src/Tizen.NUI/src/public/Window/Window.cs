@@ -2773,6 +2773,27 @@ namespace Tizen.NUI
             _attached[typeof(T)] = value;
         }
 
+        /// <summary>
+        /// Gets or sets the screen that has this window is in whether screeen.
+        /// It is for supporting mulitple screen.
+        /// If this window's environment is multple screen, the window can move the other screen by this property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Screen
+        {
+            get
+            {
+                string ret = Interop.Window.GetScreen(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set
+            {
+                Interop.Window.SetScreen(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
         IntPtr IWindowProvider.WindowHandle => GetNativeWindowHandler();
         float IWindowProvider.X => WindowPosition.X;
         float IWindowProvider.Y => WindowPosition.Y;
