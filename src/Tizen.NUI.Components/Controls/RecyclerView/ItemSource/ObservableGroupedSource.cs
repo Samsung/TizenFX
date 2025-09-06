@@ -462,12 +462,12 @@ namespace Tizen.NUI.Components
 
         int AdjustIndexForHeader(int index)
         {
-            return index - (HasHeader ? 1 : 0);
+            return index >= 0 ? index - (HasHeader ? 1 : 0) : -1;
         }
 
         int AdjustPositionForHeader(int position)
         {
-            return position + (HasHeader ? 1 : 0);
+            return position >= 0 ? position + (HasHeader ? 1 : 0) : -1;
         }
 
         int CountItemsInGroups(int groupStartIndex, int groupCount)
