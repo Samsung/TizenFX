@@ -176,7 +176,7 @@ namespace Tizen.Applications
         /// This timestamp is not changed when application is updated, unlike the <see cref="InstalledTime"/>.
         /// When the application is uninstalled, this information is lost / not preserved.
         /// </remarks>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public long FirstInstalledTime { get { return _firstInstalledTime; } }
 
         /// <summary>
@@ -416,7 +416,6 @@ namespace Tizen.Applications
             }
             catch (TypeLoadException)
             {
-                // To support in API vesion 10.0
                 package._firstInstalledTime = 0;
             }
             try
