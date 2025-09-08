@@ -19,7 +19,6 @@ namespace Tizen.Network.Tethering
         private bool _disposed = false;
         private bool _enabled = false;
         private int _channel = 0;
-        private bool _sharing = false;
         private TetheringSecurityType _security = TetheringSecurityType.None;
         private bool _visibility = false; 
 
@@ -209,26 +208,6 @@ namespace Tizen.Network.Tethering
                     }
                 }
                 return _visibility;
-            }
-        }
-
-        public bool Sharing
-        {
-            get
-            {
-                Log.Info(Globals.LogTag, "Sharing");
-                bool sharing = false;
-                int ret = Interop.TetheringExtension.GetSharing(GetHandle(), out sharing);
-                if (ret != (int)TetheringError.None)
-                {
-                    _sharing = false;
-                    Log.Error(Globals.LogTag, "Failed to get sharing, Error - " + (TetheringError)ret);
-                }
-                else
-                {
-                    _sharing = sharing;
-                }
-                return _sharing;
             }
         }
 
