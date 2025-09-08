@@ -191,10 +191,10 @@ namespace Tizen.Applications
 
             if (!GlobalizationMode.Invariant)
             {
-                CultureInfo locale = LocaleManager.GetSystemLocale();
+                string locale = SystemLocaleConverter.ULocale.GetDefaultLocale();
 
-                LocaleManager.SetCurrentUICultureInfo(locale.Name);
-                LocaleManager.SetCurrentCultureInfo(locale.Name);
+                LocaleManager.SetCurrentUICultureInfo(locale);
+                LocaleManager.SetCurrentCultureInfo(locale);
             }
             else
             {
