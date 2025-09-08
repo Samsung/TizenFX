@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Net;
+using System.Net.Http;
 using System.IO;
 using System.Text;
 
@@ -141,16 +142,14 @@ namespace NUnit.Framework.TUnit
 
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-
                 //Reference
                 // https://msdn.microsoft.com/en-us/library/czdt10d3(v=vs.110).aspx
+                // https://learn.microsoft.com/ko-kr/dotnet/fundamentals/networking/http/httpclient-migrate-from-httpwebrequest
 
-                WebProxy proxyObject = new WebProxy(_server, true);
-                request.Proxy = proxyObject;
+                var handler = new SocketsHttpHandler() {Proxy = new WebProxy(_server, true), UseProxy = true};
+                using var client  = new HttpClient(handler);
 
-
-                IWebProxy proxy = request.Proxy;
+                IWebProxy proxy = handler.Proxy;
 
                 if (proxy != null)
                 {
@@ -161,10 +160,10 @@ namespace NUnit.Framework.TUnit
                     Console.WriteLine("[TUnitTest] - " + "Proxy is null; no proxy will be used");
                 }
 
-                Task<WebResponse> res = request.GetResponseAsync();
+                Task<HttpResponseMessage> res = client.GetAsync(url);
                 res.Wait();
-                WebResponse response = res.Result;
-                Stream stream = response.GetResponseStream();
+                HttpResponseMessage response = res.Result;
+                Stream stream = response.Content.ReadAsStream();
                 StreamReader reader = new StreamReader(stream);
                 result = reader.ReadToEnd();
                 Console.WriteLine("[TUnitTest] - " + "RequestGET Result : " + result);
@@ -193,16 +192,14 @@ namespace NUnit.Framework.TUnit
 
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-
                 //Reference
                 // https://msdn.microsoft.com/en-us/library/czdt10d3(v=vs.110).aspx
+                // https://learn.microsoft.com/ko-kr/dotnet/fundamentals/networking/http/httpclient-migrate-from-httpwebrequest
 
-                WebProxy proxyObject = new WebProxy(_server, true);
-                request.Proxy = proxyObject;
+                var handler = new SocketsHttpHandler() {Proxy = new WebProxy(_server, true), UseProxy = true};
+                using var client  = new HttpClient(handler);
 
-
-                IWebProxy proxy = request.Proxy;
+                IWebProxy proxy = handler.Proxy;
 
                 if (proxy != null)
                 {
@@ -213,10 +210,10 @@ namespace NUnit.Framework.TUnit
                     Console.WriteLine("[TUnitTest] - " + "Proxy is null; no proxy will be used");
                 }
 
-                Task<WebResponse> res = request.GetResponseAsync();
+                Task<HttpResponseMessage> res = client.GetAsync(url);
                 res.Wait();
-                WebResponse response = res.Result;
-                Stream stream = response.GetResponseStream();
+                HttpResponseMessage response = res.Result;
+                Stream stream = response.Content.ReadAsStream();
                 StreamReader reader = new StreamReader(stream);
                 result = reader.ReadToEnd();
                 Console.WriteLine("[TUnitTest] - " + "RequestGET Result: " + result);
@@ -393,17 +390,14 @@ namespace NUnit.Framework.TUnit
 
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url); // WebRequest 객체 형성 및 HttpWebRequest 로 형변환
-
-
                 //Reference
                 // https://msdn.microsoft.com/en-us/library/czdt10d3(v=vs.110).aspx
+                // https://learn.microsoft.com/ko-kr/dotnet/fundamentals/networking/http/httpclient-migrate-from-httpwebrequest
 
-                WebProxy proxyObject = new WebProxy(_server, true);
-                request.Proxy = proxyObject;
+                var handler = new SocketsHttpHandler() {Proxy = new WebProxy(_server, true), UseProxy = true};
+                using var client  = new HttpClient(handler);
 
-
-                IWebProxy proxy = request.Proxy;
+                IWebProxy proxy = handler.Proxy;
 
                 if (proxy != null)
                 {
@@ -414,24 +408,11 @@ namespace NUnit.Framework.TUnit
                     Console.WriteLine("[TUnitTest] - " + "Proxy is null; no proxy will be used");
                 }
 
-                request.Method = "POST"; // 전송 방법 "GET" or "POST"
-                request.ContentType = "application/json";
-
-                byte[] byteArray = Encoding.UTF8.GetBytes(json);
-
-                Task<Stream> dataAsync = request.GetRequestStreamAsync();
-                dataAsync.Wait();
-                Stream dataStream = dataAsync.Result;
-                dataStream.Write(byteArray, 0, byteArray.Length);
-                dataStream.Dispose();
-
-                Task<WebResponse> resAsync = request.GetResponseAsync();
-                resAsync.Wait();
-
-                WebResponse response = resAsync.Result;
-
-                Stream respPostStream = response.GetResponseStream();
-                StreamReader reader = new StreamReader(respPostStream);
+                Task<HttpResponseMessage> res = client.PostAsync(url, new StringContent(json, Encoding.UTF8, "application/json"));
+                res.Wait();
+                HttpResponseMessage response = res.Result;
+                Stream stream = response.Content.ReadAsStream();
+                StreamReader reader = new StreamReader(stream);
                 result = reader.ReadToEnd();
 
                 Console.WriteLine("[TUnitTest] - " + "###############Asavin############### RequestPOST Result :" + result);
