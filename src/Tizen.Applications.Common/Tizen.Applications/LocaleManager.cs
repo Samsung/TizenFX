@@ -9,6 +9,7 @@ using System.Text;
 
 namespace Tizen.Applications
 {
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public static class LocaleManager
     {
         private static readonly string LogTag = "Tizen.Applications";
