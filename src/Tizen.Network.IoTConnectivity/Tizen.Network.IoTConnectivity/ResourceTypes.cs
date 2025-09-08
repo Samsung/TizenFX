@@ -27,6 +27,7 @@ namespace Tizen.Network.IoTConnectivity
     /// A resource type indicates a class or a category of resources.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class ResourceTypes : IEnumerable<string>, IDisposable
     {
         internal const int MaxLength = 61;
@@ -46,6 +47,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <example><code>
         /// ResourceTypes types = new ResourceTypes();
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceTypes()
         {
             int ret = Interop.IoTConnectivity.Common.ResourceTypes.Create(out _resourceTypeHandle);
@@ -66,6 +68,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <example><code><![CDATA[
         /// ResourceTypes types = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceTypes(IEnumerable<string> types)
         {
             int ret = Interop.IoTConnectivity.Common.ResourceTypes.Create(out _resourceTypeHandle);
@@ -121,6 +124,7 @@ namespace Tizen.Network.IoTConnectivity
         /// ResourceTypes types = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// Console.WriteLine("There are {0} items", types.Count);
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public int Count
         {
             get
@@ -149,6 +153,7 @@ namespace Tizen.Network.IoTConnectivity
         /// ResourceTypes resourceTypes = new ResourceTypes();
         /// resourceTypes.Add("org.tizen.light");
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public void Add(string item)
         {
             if (IsValid(item))
@@ -182,6 +187,7 @@ namespace Tizen.Network.IoTConnectivity
         /// ResourceTypes resourceTypes = new ResourceTypes(new List<string>() { "org.tizen.light", "oic.if.room" });
         /// resourceTypes.Remove("oic.if.room");
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public void Remove(string item)
         {
             int ret = Interop.IoTConnectivity.Common.ResourceTypes.Remove(_resourceTypeHandle, item);
@@ -206,6 +212,7 @@ namespace Tizen.Network.IoTConnectivity
         ///     Console.WriteLine("Type : {0}", item);
         /// }
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public IEnumerator<string> GetEnumerator()
         {
             return _resourceTypes.GetEnumerator();
@@ -233,6 +240,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         public void Dispose()
         {
             Dispose(true);
@@ -251,6 +259,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

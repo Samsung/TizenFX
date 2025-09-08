@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 
 namespace Tizen.Network.IoTConnectivity
 {
@@ -21,6 +22,7 @@ namespace Tizen.Network.IoTConnectivity
     /// Enumeration for the result of response.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public enum ResponseCode
     {
         /// <summary>
