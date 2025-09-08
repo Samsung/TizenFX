@@ -76,7 +76,7 @@ namespace Tizen.Applications
         }
         
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static string GetSystemLocale()
+        public static CultureInfo GetSystemLocale()
         {
             IntPtr langPtr = IntPtr.Zero;
 
@@ -97,7 +97,8 @@ namespace Tizen.Applications
                     return null;
                 }
 
-                return language;
+                var converter = new SystemLocaleConverter();
+                return converter.Convert(language);
             }
             finally
             {
