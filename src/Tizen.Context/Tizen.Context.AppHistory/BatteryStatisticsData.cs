@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
+ using System;
+
 namespace Tizen.Context.AppHistory
 {
     /// <summary>
     /// This class contains the battery statistics information retrieved by BatteryStatistics.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public class BatteryStatisticsData : AppStatisticsData
     {
         internal BatteryStatisticsData(string appId, double consumption)
@@ -33,6 +36,7 @@ namespace Tizen.Context.AppHistory
         /// </summary>
         /// <value>Battery consumption used by the application.</value>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public double Consumption { get; private set; }
     }
 }
