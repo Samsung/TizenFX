@@ -262,7 +262,7 @@ namespace Tizen.NUI.Text
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? Height { get; set; }
-        
+
         /// <summary>
         /// The width of the dashes of the dashed underline (if null, the default value is 2.0f). <br />
         /// Only valid when "UnderlineType.Dashed" type is used.
@@ -952,5 +952,87 @@ namespace Tizen.NUI.Text
         /// <returns>The hash code.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => (Family, Path, Style).GetHashCode();
+    }
+
+    /// <summary>
+    /// A struct to pass data of SetTextEmboss and GetTextEmboss methods.
+    /// </summary>
+    /// <remarks>
+    /// The Emboss struct is used as an argument to SetTextEmboss and GetTextEmboss methods. <br />
+    /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetEmboss"/> and <see cref="Tizen.NUI.BaseComponents.TextLabel.GetEmboss"/>.
+    /// </remarks>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct Emboss : IEquatable<Emboss>
+    {
+        /// <summary>
+        /// Whether the emboss is enabled (the default value is false).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Enable { get; set; }
+
+        /// <summary>
+        /// The emboss direction in texture space. (the default value is (0.0f, 0.0f).)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector2 Direction { get; set; }
+
+        /// <summary>
+        /// The strength of emboss in pixels. (the default value is 0.0f.)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? Strength { get; set; }
+
+        /// <summary>
+        /// The highlight color for raised areas. (the default value is transparent.)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color LightColor { get; set; }
+
+        /// <summary>
+        /// The shadow color for recessed areas. (the default value is transparent.)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color ShadowColor { get; set; }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if equal Emboss, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj) => obj is Emboss other && this.Equals(other);
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The Emboss to compare with the current Emboss.</param>
+        /// <returns>true if equal Emboss, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Equals(Emboss other) => Enable == other.Enable && Direction == other.Direction && Strength == other.Strength && LightColor == other.LightColor && ShadowColor == other.ShadowColor;
+
+        /// <summary>
+        /// The == operator.
+        /// </summary>
+        /// <param name="lhsEmboss">Emboss to compare</param>
+        /// <param name="rhsEmboss">Emboss to be compared</param>
+        /// <returns>true if Emboss are equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(Emboss lhsEmboss, Emboss rhsEmboss) => lhsEmboss.Equals(rhsEmboss);
+
+        /// <summary>
+        /// The != operator.
+        /// </summary>
+        /// <param name="lhsEmboss">Emboss to compare</param>
+        /// <param name="rhsEmboss">Emboss to be compared</param>
+        /// <returns>true if Emboss are not equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(Emboss lhsEmboss, Emboss rhsEmboss) => !lhsEmboss.Equals(rhsEmboss);
+
+        /// <summary>
+        /// Gets the hash code of this Emboss.
+        /// </summary>
+        /// <returns>The hash code.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => (Enable, Direction, Strength, LightColor, ShadowColor).GetHashCode();
     }
 }

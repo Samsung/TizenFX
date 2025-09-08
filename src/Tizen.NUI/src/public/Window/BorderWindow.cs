@@ -318,7 +318,6 @@ namespace Tizen.NUI
                     borderInterface.OnMaximize(IsMaximized());
                     if (borderHeight > 0)
                     {
-                        borderLineThickness = borderInterface.BorderLineThickness;
                         WindowSize += new Size2D((int)borderLineThickness * 2, (int)(borderHeight + borderLineThickness * 2));
                     }
                 }
@@ -362,7 +361,8 @@ namespace Tizen.NUI
                 BackgroundColor = Color.Transparent,
             };
 
-            ushort padding = (ushort) borderLineThickness;
+            borderLineThickness = borderInterface.BorderLineThickness;
+            ushort padding = (ushort)borderLineThickness;
             borderView = new BorderView()
             {
                 GrabTouchAfterLeave = true,

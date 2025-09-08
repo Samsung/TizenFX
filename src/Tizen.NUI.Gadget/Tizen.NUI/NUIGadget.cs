@@ -124,12 +124,23 @@ namespace Tizen.NUI
             get;
         }
 
+        internal void PreCreate()
+        {
+            if (State == NUIGadgetLifecycleState.Initialized)
+            {
+                OnPreCreate();
+            }
+        }
+
         internal bool Create()
         {
-            MainView = OnCreate();
-            if (MainView == null)
+            if (State == NUIGadgetLifecycleState.PreCreated)
             {
-                return false;
+                MainView = OnCreate();
+                if (MainView == null)
+                {
+                    return false;
+                }
             }
 
             return true;
@@ -138,19 +149,25 @@ namespace Tizen.NUI
         internal void Resume()
         {
             if (State == NUIGadgetLifecycleState.Created || State == NUIGadgetLifecycleState.Paused)
+            {
                 OnResume();
+            }
         }
 
         internal void Pause()
         {
             if (State == NUIGadgetLifecycleState.Resumed)
+            {
                 OnPause();
+            }
         }
 
         internal void Destroy()
         {
             if (State == NUIGadgetLifecycleState.Created || State == NUIGadgetLifecycleState.Paused)
+            {
                 OnDestroy();
+            }
         }
 
         internal void HandleAppControlReceivedEvent(AppControlReceivedEventArgs args)
@@ -189,6 +206,17 @@ namespace Tizen.NUI
             args.State = State;
             args.Gadget = this;
             LifecycleChanged?.Invoke(null, args);
+        }
+
+        /// <summary>
+        /// Override this method to define the behavior when the gadget is pre-created.
+        /// Calling 'base.OnPreCreate()' is necessary in order to emit the 'NUIGadgetLifecycleChanged' event with the 'NUIGadgetLifecycleState.PreCreated' state.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        protected virtual void OnPreCreate()
+        {
+            State = NUIGadgetLifecycleState.PreCreated;
+            NotifyLifecycleChanged();
         }
 
         /// <summary>

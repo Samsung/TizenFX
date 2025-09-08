@@ -236,6 +236,19 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets the device name from which the mouse/touch event is originated.
+        /// </summary>
+        /// <param name="point">The index of a touch point.</param>
+        /// <returns>Device name</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GetDeviceName(uint point)
+        {
+            string ret = Interop.Touch.GetDeviceName(SwigCPtr, point);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// sets the time (in ms) that the touch event occurred.
         /// </summary>
         /// <param name="time">The time (in ms)</param>

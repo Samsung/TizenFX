@@ -135,6 +135,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="blurRadius">The blur radius value. The unit is pixel for standard cases.</param>
         /// <returns>Background blur effect with given blur radius.</returns>
+        /// <remarks>
+        /// The blurRadius parameter is adjusted due to downscaling and kernel compression, resulting in a smaller effective value.
+        /// This means the blur intensity changes in discrete steps rather than continuously, with the step size determined by (2 / downscale factor).
+        /// For example, with a default BlurDownscaleFactor of 0.25, the step size is 8.
+        /// To ensure proper functionality, a minimum blurRadius value of 2 steps is required, with intensity updates occurring at every step size increment.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static BackgroundBlurEffect CreateBackgroundBlurEffect(float blurRadius)
         {
@@ -146,6 +152,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="blurRadius">The blur radius value. The unit is pixel for standard cases.</param>
         /// <returns>Blur effect with given blur radius.</returns>
+        /// <remarks>
+        /// The blurRadius parameter is adjusted due to downscaling and kernel compression, resulting in a smaller effective value.
+        /// This means the blur intensity changes in discrete steps rather than continuously, with the step size determined by (2 / downscale factor).
+        /// For example, with a default BlurDownscaleFactor of 0.25, the step size is 8.
+        /// To ensure proper functionality, a minimum blurRadius value of 2 steps is required, with intensity updates occurring at every step size increment.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static GaussianBlurEffect CreateGaussianBlurEffect(float blurRadius)
         {

@@ -46,6 +46,11 @@ namespace Tizen.NUI
             {
                 Initialize();
             }
+
+            onceEventIndex = 0u;
+            internalProcessorOnceEvent = new EventHandler[2];
+            internalProcessorOnceEvent[0] = null;
+            internalProcessorOnceEvent[1] = null;
         }
 
         internal ProcessorController(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -107,11 +112,6 @@ namespace Tizen.NUI
 
                 Interop.ProcessorController.Initialize(SwigCPtr);
 
-                onceEventIndex = 0u;
-                internalProcessorOnceEvent = new EventHandler[2];
-                internalProcessorOnceEvent[0] = null;
-                internalProcessorOnceEvent[1] = null;
-
                 processorCallback = new ProcessorEventHandler(Process);
                 Interop.ProcessorController.SetCallback(SwigCPtr, processorCallback);
                 NDalicPINVOKE.ThrowExceptionIfExists();
@@ -142,9 +142,12 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
-            Interop.ProcessorController.RemoveCallback(SwigCPtr, processorCallback);
             internalProcessorOnceEvent[0] = null;
             internalProcessorOnceEvent[1] = null;
+            if (initialized)
+            {
+                Interop.ProcessorController.RemoveCallback(SwigCPtr, processorCallback);
+            }
             ProcessorEvent = null;
             LayoutProcessorEvent = null;
             initialized = false;

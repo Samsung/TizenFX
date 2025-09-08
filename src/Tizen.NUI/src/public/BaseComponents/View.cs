@@ -462,17 +462,6 @@ namespace Tizen.NUI.BaseComponents
 
         static internal new void Preload()
         {
-            if (NUIApplication.SupportPreInitializedCreation)
-            {
-                using var temp = new View()
-                {
-                    BackgroundColor = Color.Transparent,
-                };
-#if !PROFILE_TV
-                using var temp2 = new View(ViewResizePolicyMode.Ignore);
-#endif
-            }
-
             Container.Preload();
             RegisterAccessibilityDelegate();
         }
@@ -5592,7 +5581,7 @@ namespace Tizen.NUI.BaseComponents
             return (ViewLayoutDirectionType)Object.InternalGetPropertyInt(SwigCPtr, Property.LayoutDirection);
         }
 
-        private void RequestLayoutForInheritLayoutDirection()
+        internal void RequestLayoutForInheritLayoutDirection()
         {
             bool existInheritChild = false;
             foreach (var child in Children)

@@ -29,7 +29,7 @@ namespace Tizen.NUI.BaseComponents
     /// A control which provides a single line editable text field.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public partial class TextField : View
+    public partial class TextField : View, IPropertyProvider
     {
         static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextField";
         static private string defaultFontFamily = "BreezeSans";
@@ -266,11 +266,6 @@ namespace Tizen.NUI.BaseComponents
         static internal new void Preload()
         {
             // Do not call View.Preload(), since we already call it
-            if (NUIApplication.SupportPreInitializedCreation)
-            {
-                using var temp = new TextField(Interop.TextField.New(true), true);
-                using var temp2 = new TextField(Interop.TextField.New(false), true);
-            }
 
             Property.Preload();
             // Do nothing. Just call for load static values.
@@ -336,6 +331,21 @@ namespace Tizen.NUI.BaseComponents
         {
             return ThemeManager.GetStyle(this.GetType()) == null ? false : true;
         }
+
+        // IPropertyProvider
+        /// <summary>
+        /// Gets a string property by name.
+        /// </summary>
+        /// <param name="propertyName">The name of the property to retrieve.</param>
+        /// <returns>The string value of the property, or null if not found.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GetStringProperty(string propertyName) => propertyName switch
+        {
+            nameof(TranslatableText) => TranslatableText,
+            nameof(TranslatablePlaceholderText) => TranslatablePlaceholderText,
+            nameof(TranslatablePlaceholderTextFocused) => TranslatablePlaceholderTextFocused,
+            _ => null
+        };
 
         /// <summary>
         /// The TranslatableText property.<br />
@@ -5069,7 +5079,7 @@ namespace Tizen.NUI.BaseComponents
                 var maxHeight = Owner.GetMaximumHeight();
                 var naturalSize = Owner.GetNaturalSize();
 
-                if (((TextField)Owner).Text.Length == 0)
+                if (((TextField)Owner).Text.Length == 0 && ((TextField)Owner).PlaceholderText.Length == 0)
                 {
                     // Calculate height of TextField by setting Text with " ".
                     // By calling SetTextWithoutTextChanged, TextChanged callback is not called for this.

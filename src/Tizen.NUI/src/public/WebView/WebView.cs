@@ -2725,31 +2725,34 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void EvaluateJavaScript(string script)
         {
-            Interop.WebView.EvaluateJavaScript(SwigCPtr, script, new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero));
+            if (SwigCPtr.Handle == IntPtr.Zero || IsDisposedOrQueued)
+            {
+                Log.Fatal("NUI", $"[ERROR] WebView has been disposed! IntPtr=0x{SwigCPtr.Handle:X} IsDisposedOrQueued={IsDisposedOrQueued}");
+                return;
+            }
+            Interop.WebView.EvaluateJavaScript(SwigCPtr, script, new HandleRef(null, IntPtr.Zero));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private Dictionary<int, HandleRef> _evaluateJavaScriptHandlerMap = new Dictionary<int, HandleRef>();
-        private int _evaluateJavaScriptCallbackId;
+        private JavaScriptMessageHandler _javaScriptMessageHandler;
 
         /// <summary>
         /// Evaluates JavaScript code represented as a string.
+        /// If EvaluateJavaScript is called many times, its argument 'handler' callback would be called not sequentially.
+        /// A possible call sequence is like:
+        /// 1) webview.EvaluateJavaScript("abc", handler1),
+        /// 2) webview.EvaluateJavaScript("def", handler2),
+        /// 3) handle2 would be called,
+        /// 4) handle2 would be called, handler1 would not be called any more.
         /// </summary>
         /// <param name="script">The JavaScript code</param>
         /// <param name="handler">The callback for result of JavaScript code evaluation</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void EvaluateJavaScript(string script, JavaScriptMessageHandler handler)
         {
-            var id = ++_evaluateJavaScriptCallbackId;
-            JavaScriptMessageHandler wrapper = (msg) =>
-            {
-                handler(msg);
-                _evaluateJavaScriptHandlerMap.Remove(id);
-            };
-            System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(wrapper);
-            HandleRef handleRef = new HandleRef(this, ip);
-            _evaluateJavaScriptHandlerMap.Add(id, handleRef);
-            Interop.WebView.EvaluateJavaScript(SwigCPtr, script, handleRef);
+            _javaScriptMessageHandler = new JavaScriptMessageHandler(handler);
+            System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(_javaScriptMessageHandler);
+            Interop.WebView.EvaluateJavaScript(SwigCPtr, script, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

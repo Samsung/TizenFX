@@ -75,15 +75,16 @@ namespace Tizen.NUI
         public static bool IsUsingIncrementalDispose => DisposeQueue.Instance.IncrementalDisposeSupported;
 
         /// <summary>
+        /// Whether current system support to create view at Preload time.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool SupportPreInitializedCreation { get; private set; }
+
+        /// <summary>
         /// The instance of ResourceManager.
         /// </summary>
         private static System.Resources.ResourceManager resourceManager;
         private static string currentLoadedXaml;
-
-        /// <summary>
-        /// Whether current system support to create view at Preload time.
-        /// </summary>
-        internal static bool SupportPreInitializedCreation { get; private set; }
 
         /// <summary>
         /// The border window
@@ -102,6 +103,7 @@ namespace Tizen.NUI
         static NUIApplication()
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+            PropertyBridge.RegisterStringGetter();
         }
 
         /// <summary>
@@ -565,6 +567,12 @@ namespace Tizen.NUI
         /// Exits the NUIApplication.
         /// This method causes the application to terminate gracefully.
         /// </summary>
+        /// <remarks>
+        /// This method does not quit the application immediately.
+        /// It waits until all pending events are completely processed,
+        /// then registers a termination request during the main loop's idle state
+        /// and executes the termination at that time.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public override void Exit()
         {
@@ -623,6 +631,21 @@ namespace Tizen.NUI
         public static void SetRenderRefreshRate(uint numberOfVSyncsPerRender)
         {
             Adaptor.Instance.SetRenderRefreshRate(numberOfVSyncsPerRender);
+        }
+
+        /// <summary>
+        /// Set the maximum value of frames per seconds.
+        /// </summary>
+        /// <param name="maximumRenderFrameRate">The maximum fps for this adaptor system.</param>
+        /// <remarks>
+        /// Each frame will render multiple of given maximum render frame rate.
+        /// For example, if maximumRenderFrameRate = 50.0f, each elapse time could be 20ms, 40ms, 60ms, and so on.
+        ///</remarks>
+        /// Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetMaximumRenderFrameRate(float maximumRenderFrameRate)
+        {
+            Adaptor.Instance.SetMaximumRenderFrameRate(maximumRenderFrameRate);
         }
 
         /// <summary>
@@ -802,12 +825,21 @@ namespace Tizen.NUI
         {
             Interop.Application.PreInitialize();
             SupportPreInitializedCreation = Interop.Application.IsSupportPreInitializedCreation();
-            Tizen.Log.Info("NUI", $"Support preload time view creation? {SupportPreInitializedCreation}\n");
 
             // Initialize some static utility
             var disposableQueue = DisposeQueue.Instance;
             var processorController = ProcessorController.Instance;
             var registry = Registry.Instance;
+
+            // Get default window only if pre initialize creation supported.
+            if (SupportPreInitializedCreation)
+            {
+                Log.Info("NUI", "[NUI] Preload: GetWindow");
+                Tizen.Tracer.Begin("[NUI] Preload: GetWindow");
+                var nativeWindow = Interop.Application.GetPreInitializeWindow();
+                Window.Instance = Window.Default = new Window(nativeWindow, true);
+                Tizen.Tracer.End();
+            }
 
             // Initialize some BaseComponent static variables now
             BaseComponents.View.Preload();
@@ -820,12 +852,6 @@ namespace Tizen.NUI
             Disposable.Preload();
             Color.Preload();
             NUIConstants.Preload();
-
-            // Initialize some static instance
-            if (SupportPreInitializedCreation)
-            {
-                _ = FocusManager.Instance;
-            }
 
             // Initialize exception tasks. It must be called end of Preload()
             NDalicPINVOKE.Preload();

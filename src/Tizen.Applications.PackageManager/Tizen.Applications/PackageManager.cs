@@ -36,8 +36,6 @@ namespace Tizen.Applications
         private const string LogTag = "Tizen.Applications.PackageManager";
 
         private static SafePackageManagerHandle s_handle = new SafePackageManagerHandle();
-        private static Interop.PackageManager.EventStatus s_eventStatus = Interop.PackageManager.EventStatus.All;
-        private static Interop.PackageManager.EventStatus s_registered_eventStatus = Interop.PackageManager.EventStatus.All;
         private static event EventHandler<PackageManagerEventArgs> s_installEventHandler;
         private static event EventHandler<PackageManagerEventArgs> s_uninstallEventHandler;
         private static event EventHandler<PackageManagerEventArgs> s_updateEventHandler;
@@ -106,7 +104,6 @@ namespace Tizen.Applications
             {
                 lock (s_pkgEventLock)
                 {
-                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Install);
                     RegisterPackageManagerEventIfNeeded();
                     s_installEventHandler += value;
                 }
@@ -117,7 +114,6 @@ namespace Tizen.Applications
                 {
                     s_installEventHandler -= value;
                     UnregisterPackageManagerEventIfNeeded();
-                    UnsetPackageManagerEventStatus();
                 }
             }
         }
@@ -133,7 +129,6 @@ namespace Tizen.Applications
             {
                 lock (s_pkgEventLock)
                 {
-                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Uninstall);
                     RegisterPackageManagerEventIfNeeded();
                     s_uninstallEventHandler += value;
                 }
@@ -144,7 +139,6 @@ namespace Tizen.Applications
                 {
                     s_uninstallEventHandler -= value;
                     UnregisterPackageManagerEventIfNeeded();
-                    UnsetPackageManagerEventStatus();
                 }
             }
         }
@@ -160,7 +154,6 @@ namespace Tizen.Applications
             {
                 lock (s_pkgEventLock)
                 {
-                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Upgrade);
                     RegisterPackageManagerEventIfNeeded();
                     s_updateEventHandler += value;
                 }
@@ -171,7 +164,6 @@ namespace Tizen.Applications
                 {
                     s_updateEventHandler -= value;
                     UnregisterPackageManagerEventIfNeeded();
-                    UnsetPackageManagerEventStatus();
                 }
             }
         }
@@ -187,7 +179,6 @@ namespace Tizen.Applications
             {
                 lock (s_pkgEventLock)
                 {
-                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Move);
                     RegisterPackageManagerEventIfNeeded();
                     s_moveEventHandler += value;
                 }
@@ -198,7 +189,6 @@ namespace Tizen.Applications
                 {
                     s_moveEventHandler -= value;
                     UnregisterPackageManagerEventIfNeeded();
-                    UnsetPackageManagerEventStatus();
                 }
             }
         }
@@ -214,7 +204,6 @@ namespace Tizen.Applications
             {
                 lock (s_pkgEventLock)
                 {
-                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.ClearData);
                     RegisterPackageManagerEventIfNeeded();
                     s_clearDataEventHandler += value;
                 }
@@ -225,7 +214,6 @@ namespace Tizen.Applications
                 {
                     s_clearDataEventHandler -= value;
                     UnregisterPackageManagerEventIfNeeded();
-                    UnsetPackageManagerEventStatus();
                 }
             }
         }
@@ -242,7 +230,6 @@ namespace Tizen.Applications
             {
                 lock (s_pkgEventLock)
                 {
-                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.ClearCache);
                     RegisterPackageManagerEventIfNeeded();
                     s_clearCacheEventHandler += value;
                 }
@@ -253,7 +240,6 @@ namespace Tizen.Applications
                 {
                     s_clearCacheEventHandler -= value;
                     UnregisterPackageManagerEventIfNeeded();
-                    UnsetPackageManagerEventStatus();
                 }
             }
         }
@@ -1388,64 +1374,12 @@ namespace Tizen.Applications
             }
         }
 
-        private static void SetPackageManagerEventStatus(Interop.PackageManager.EventStatus status)
-        {
-            if (Handle.IsInvalid) return;
-
-            Interop.PackageManager.EventStatus eventStatus = s_eventStatus;
-            eventStatus |= status;
-            if (eventStatus != Interop.PackageManager.EventStatus.All)
-                eventStatus |= Interop.PackageManager.EventStatus.Progress;
-
-            var err = Interop.PackageManager.ErrorCode.None;
-            if (s_eventStatus != eventStatus)
-            {
-                err = Interop.PackageManager.PackageManagerSetEventStatus(Handle, eventStatus);
-                if (err == Interop.PackageManager.ErrorCode.None)
-                {
-                    s_eventStatus = eventStatus;
-                    Log.Debug(LogTag, string.Format("New Event Status flag: {0}", s_eventStatus));
-                    return;
-                }
-                Log.Debug(LogTag, string.Format("Failed to set flag for {0} event. err = {1}", eventStatus, err));
-            }
-        }
-
-        private static void UnsetPackageManagerEventStatus()
-        {
-            if (Handle.IsInvalid) return;
-
-            Interop.PackageManager.EventStatus eventStatus = Interop.PackageManager.EventStatus.All;
-            if (s_installEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Install;
-            if (s_uninstallEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Uninstall;
-            if (s_updateEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Upgrade;
-            if (s_moveEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Move;
-            if (s_clearDataEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.ClearData;
-            if (s_clearCacheEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.ClearCache;
-            if (eventStatus != Interop.PackageManager.EventStatus.All)
-                eventStatus |= Interop.PackageManager.EventStatus.Progress;
-
-            var err = Interop.PackageManager.ErrorCode.None;
-            if (s_eventStatus != eventStatus)
-            {
-                err = Interop.PackageManager.PackageManagerSetEventStatus(Handle, eventStatus);
-                if (err == Interop.PackageManager.ErrorCode.None)
-                {
-                    s_eventStatus = eventStatus;
-                    Log.Debug(LogTag, string.Format("New Event Status flag: {0}", s_eventStatus));
-                    return;
-                }
-                Log.Debug(LogTag, string.Format("Failed to set flag for {0} event. err = {1}", eventStatus, err));
-            }
-        }
-
         private static void RegisterPackageManagerEventIfNeeded()
         {
-            if (s_installEventHandler != null && s_uninstallEventHandler != null && s_updateEventHandler != null && s_moveEventHandler != null && s_clearDataEventHandler != null && s_clearCacheEventHandler != null)
+            if (s_installEventHandler != null || s_uninstallEventHandler != null || s_updateEventHandler != null || s_moveEventHandler != null || s_clearDataEventHandler != null || s_clearCacheEventHandler != null)
+            {
                 return;
-
-            if ((s_registered_eventStatus & s_eventStatus) == s_eventStatus)
-                return;
+            }
 
             var err = Interop.PackageManager.ErrorCode.None;
 
@@ -1458,11 +1392,8 @@ namespace Tizen.Applications
             }
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                s_registered_eventStatus = Interop.PackageManager.EventStatus.All;
                 Log.Warn(LogTag, string.Format("Failed to register callback for package manager event. err = {0}", err));
                 throw PackageManagerErrorFactory.GetException(err, "Failed to register package manager event.");
-            } else {
-                s_registered_eventStatus = s_eventStatus;
             }
         }
 
@@ -1551,7 +1482,6 @@ namespace Tizen.Applications
                 {
                     throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
                 }
-                s_registered_eventStatus = Interop.PackageManager.EventStatus.All;
             }
         }
     }

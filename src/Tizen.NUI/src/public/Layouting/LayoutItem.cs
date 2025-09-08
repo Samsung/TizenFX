@@ -17,8 +17,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
-
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -111,7 +109,7 @@ namespace Tizen.NUI
             }
             set
             {
-                margin = value;
+                margin = new Extents(value);
                 RequestLayout();
             }
         }
@@ -128,7 +126,7 @@ namespace Tizen.NUI
             }
             set
             {
-                padding = value;
+                padding = new Extents(value);
                 RequestLayout();
             }
         }
@@ -173,8 +171,8 @@ namespace Tizen.NUI
         {
             LayoutWithTransition = false;
             layoutPositionData = new LayoutData(this, TransitionCondition.Unspecified, 0, 0, 0, 0);
-            padding = Extents.Zero;
-            margin = Extents.Zero;
+            padding = new Extents(Extents.Zero);
+            margin = new Extents(Extents.Zero);
         }
 
         /// <summary>

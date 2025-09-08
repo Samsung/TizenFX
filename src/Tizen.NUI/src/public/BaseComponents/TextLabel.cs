@@ -31,7 +31,7 @@ namespace Tizen.NUI.BaseComponents
     /// Text labels are lightweight, non-editable, and do not respond to the user input.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public partial class TextLabel : View
+    public partial class TextLabel : View, IPropertyProvider
     {
         internal class TextLabelLayout : LayoutItem
         {
@@ -293,11 +293,6 @@ namespace Tizen.NUI.BaseComponents
         static internal new void Preload()
         {
             // Do not call View.Preload(), since we already call it
-            if (NUIApplication.SupportPreInitializedCreation)
-            {
-                using var temp = new TextLabel(Interop.TextLabel.New(true), true);
-                using var temp2 = new TextLabel(Interop.TextLabel.New(false), true);
-            }
 
             Property.Preload();
             // Do nothing. Just call for load static values.
@@ -392,6 +387,19 @@ namespace Tizen.NUI.BaseComponents
         {
             return ThemeManager.GetStyle(this.GetType()) == null ? false : true;
         }
+
+        // IPropertyProvider
+        /// <summary>
+        /// Gets a string property by name.
+        /// </summary>
+        /// <param name="propertyName">The name of the property to retrieve.</param>
+        /// <returns>The string value of the property, or null if not found.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GetStringProperty(string propertyName) => propertyName switch
+        {
+            nameof(TranslatableText) => TranslatableText,
+            _ => null
+        };
 
         /// <summary>
         /// Requests asynchronous rendering of text with a fixed size.
@@ -2034,6 +2042,60 @@ namespace Tizen.NUI.BaseComponents
         private string GetInternalEmboss()
         {
             return Object.InternalGetPropertyString(SwigCPtr, Property.EMBOSS);
+        }
+
+        /// <summary>
+        /// Set Emboss to TextLabel.<br />
+        /// <param name="emboss">The text emboss</param>
+        /// <list type="table">
+        /// <item><term>enable (bool)</term><description>Whether the emboss is enabled (the default value is false)</description></item>
+        /// <item><term>direction (Vector2)</term><description>The emboss direction in texture space. (the default value is (0.0f, 0.0f).)</description></item>
+        /// <item><term>strength (float)</term><description>The strength of emboss in pixels. (the default value is 0.0f.)</description></item>
+        /// <item><term>lightColor (Color)</term><description>The highlight color for raised areas. (the default value is transparent.)</description></item>
+        /// <item><term>shadowColor (Color)</term><description>The shadow color for recessed areas. (the default value is transparent.)</description></item>
+        /// </list>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetEmboss(Emboss emboss)
+        {
+            var embossMap = TextMapHelper.GetEmbossMap(emboss);
+            SetInternalTextEmboss(embossMap);
+        }
+
+        /// <summary>
+        /// Get Emboss from TextLabel.<br />
+        /// <list type="table">
+        /// <item><term>enable (bool)</term><description>Whether the emboss is enabled (the default value is false)</description></item>
+        /// <item><term>direction (Vector2)</term><description>The emboss direction in texture space. (the default value is (0.0f, 0.0f).)</description></item>
+        /// <item><term>strength (float)</term><description>The strength of emboss in pixels. (the default value is 0.0f.)</description></item>
+        /// <item><term>lightColor (Color)</term><description>The highlight color for raised areas. (the default value is transparent.)</description></item>
+        /// <item><term>shadowColor (Color)</term><description>The shadow color for recessed areas. (the default value is transparent.)</description></item>
+        /// </list>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Emboss GetEmboss()
+        {
+            Emboss emboss;
+            using (var textEmbossMap = (PropertyMap)GetInternalTextEmboss())
+            {
+                emboss = TextMapHelper.GetEmbossStruct(textEmbossMap);
+            }
+            return emboss;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private void SetInternalTextEmboss(PropertyMap embossMap)
+        {
+            Object.SetProperty(SwigCPtr, Property.EMBOSS, new PropertyValue(embossMap));
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private PropertyMap GetInternalTextEmboss()
+        {
+            var temp = new PropertyMap();
+            using var prop = Object.GetProperty(SwigCPtr, Property.EMBOSS);
+            prop.Get(temp);
+            return temp;
         }
 
         /// <summary>
