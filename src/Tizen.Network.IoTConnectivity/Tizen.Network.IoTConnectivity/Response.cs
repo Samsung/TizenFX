@@ -24,6 +24,7 @@ namespace Tizen.Network.IoTConnectivity
     /// It provides APIs to manage response.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class Response : IDisposable
     {
         private bool _disposed = false;
@@ -35,6 +36,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <example><code>
         /// Response response = new Response();
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public Response() { }
 
         /// <summary>
@@ -50,6 +52,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The result from/into the response.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ResponseCode Result { get; set; }
 
         /// <summary>
@@ -57,6 +60,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The representation from/into the response.</value>
+        [Obsolete("Deprecated since API level 13")]
         public Representation Representation { get; set; }
 
         /// <summary>
@@ -64,12 +68,14 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The options from/into the response.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceOptions Options { get; set; }
 
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 13")]
         public void Dispose()
         {
             Dispose(true);
@@ -133,6 +139,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        [Obsolete("Deprecated since API level 13")]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

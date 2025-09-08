@@ -22,7 +22,8 @@ namespace Tizen.Network.IoTConnectivity
     /// <summary>
     /// IoT connectivity server manager consists of server side APIs.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+
+    [Obsolete("Deprecated since API level 13")]
     public static class IoTConnectivityServerManager
     {
         private static int s_requestId = 1;
@@ -53,6 +54,7 @@ namespace Tizen.Network.IoTConnectivity
         /// string filePath = "../../res/iotcon-test-svr-db-server.dat";
         /// IoTConnectivityServerManager.Initialize(filePath);
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public static void Initialize(string filePath)
         {
             int ret = Interop.IoTConnectivity.Client.IoTCon.Initialize(filePath);
@@ -78,6 +80,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <example><code>
         /// IoTConnectivityServerManager.Deinitialize();
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public static void Deinitialize()
         {
             _resources.Clear();
@@ -115,6 +118,7 @@ namespace Tizen.Network.IoTConnectivity
         ///     Console.Log("Exception caught : " + ex.Message);
         /// }
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public static void RegisterResource(Resource resource)
         {
             Log.Info(IoTConnectivityErrorFactory.LogTag, "...");
@@ -183,6 +187,7 @@ namespace Tizen.Network.IoTConnectivity
         ///     Console.Log("Exception caught : " + ex.Message);
         /// }
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public static void UnregisterResource(Resource resource)
         {
             if (resource != null)
@@ -228,6 +233,7 @@ namespace Tizen.Network.IoTConnectivity
         ///     Console.Log("Exception caught : " + ex.Message);
         /// }
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public static void StartSendingPresence(uint time)
         {
             int ret = Interop.IoTConnectivity.Server.IoTCon.StartPresence(time);
@@ -262,6 +268,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <example><code>
         /// IoTConnectivityServerManager.StopSendingPresence();
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public static void StopSendingPresence()
         {
             int ret = Interop.IoTConnectivity.Server.IoTCon.StopPresence();
@@ -291,6 +298,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <example><code>
         /// IoTConnectivityServerManager.SetDeviceName("my-tizen");
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public static void SetDeviceName(string deviceName)
         {
             int ret = Interop.IoTConnectivity.Server.IoTCon.SetDeviceName(deviceName);
