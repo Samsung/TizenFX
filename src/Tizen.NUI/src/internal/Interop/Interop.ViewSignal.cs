@@ -45,6 +45,12 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_ResourceReadySignal_Disconnect")]
             public static extern void ResourceReadyDisconnect(HandleRef view, HandleRef handler);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_OffScreenRenderingFinishedSignal_Connect")]
+            public static extern void OffScreenRenderingFinishedConnect(HandleRef view, HandleRef handler);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_OffScreenRenderingFinishedSignal_Disconnect")]
+            public static extern void OffScreenRenderingFinishedDisconnect(HandleRef view, HandleRef handler);
         }
     }
 }

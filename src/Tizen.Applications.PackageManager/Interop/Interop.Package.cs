@@ -115,6 +115,9 @@ internal static partial class Interop
         [DllImport(Libraries.PackageManager, EntryPoint = "package_info_is_accessible")]
         internal static extern ErrorCode PackageInfoIsAccessible(IntPtr handle, out bool accessible);
 
+        [DllImport(Libraries.PackageManager, EntryPoint = "package_info_get_first_installed_time")]
+        internal static extern ErrorCode PackageInfoGetFirstInstalledTime(IntPtr handle, out long firstinstalledTime);
+
         [DllImport(Libraries.PackageManager, EntryPoint = "package_info_get_installed_time")]
         internal static extern ErrorCode PackageInfoGetInstalledTime(IntPtr handle, out int installedTime);
 

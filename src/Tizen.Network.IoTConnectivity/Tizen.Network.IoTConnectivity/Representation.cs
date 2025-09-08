@@ -27,6 +27,7 @@ namespace Tizen.Network.IoTConnectivity
     /// A representation is a payload of a request or a response.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class Representation : IDisposable
     {
         internal IntPtr _representationHandle = IntPtr.Zero;
@@ -45,6 +46,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <example><code>
         /// Representation repr = new Representation();
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public Representation()
         {
             int ret = Interop.IoTConnectivity.Common.Representation.Create(out _representationHandle);
@@ -98,6 +100,7 @@ namespace Tizen.Network.IoTConnectivity
         /// repr.UriPath = "/a/light";
         /// Console.WriteLine("URI is {0}", repr.UriPath);  //Getter
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public string UriPath
         {
             get
@@ -143,6 +146,7 @@ namespace Tizen.Network.IoTConnectivity
         ///     Console.WriteLine("Type is {0}", item);
         /// }
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceTypes Type
         {
             get
@@ -188,6 +192,7 @@ namespace Tizen.Network.IoTConnectivity
         ///     Console.WriteLine("Interface is {0}", iface);
         /// }
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceInterfaces Interface
         {
             get
@@ -235,6 +240,7 @@ namespace Tizen.Network.IoTConnectivity
         /// int intval = (int)newAttributes["dim"];
         /// Console.WriteLine("attributes are {0} and {1}", strval, intval);
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public Attributes Attributes
         {
             get
@@ -285,6 +291,7 @@ namespace Tizen.Network.IoTConnectivity
         ///     Console.WriteLine("Exception caught : " + ex.Message);
         /// }
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public ICollection<Representation> Children
         {
             get
@@ -298,6 +305,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         public void Dispose()
         {
             Dispose(true);
@@ -310,6 +318,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

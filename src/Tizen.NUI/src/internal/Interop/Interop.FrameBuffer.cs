@@ -34,11 +34,26 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_AttachColorTexture__SWIG_1")]
             public static extern void AttachColorTexture(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, uint jarg3, uint jarg4);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_AttachDepthTexture")]
+            public static extern void AttachDepthTexture(global::System.Runtime.InteropServices.HandleRef frameBuffer, global::System.Runtime.InteropServices.HandleRef depthTexture, uint mipmapLevel);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GetColorTexture")]
             public static extern global::System.IntPtr GetColorTexture(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GetColorTexture_Index")]
+            public static extern global::System.IntPtr GetColorTextureByIndex(global::System.Runtime.InteropServices.HandleRef frameBuffer, uint index);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GetDepthTexture")]
+            public static extern global::System.IntPtr GetDepthTexture(global::System.Runtime.InteropServices.HandleRef frameBuffer);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GenerateUrl")]
             public static extern global::System.IntPtr GenerateUrl(global::System.IntPtr frameBuffer, int pixelFormat, int width, int height);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GenerateUrl_Index")]
+            public static extern global::System.IntPtr GenerateUrlByIndex(global::System.IntPtr frameBuffer, uint index);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GenerateDepthUrl")]
+            public static extern global::System.IntPtr GenerateDepthUrl(global::System.IntPtr frameBuffer);
         }
     }
 }

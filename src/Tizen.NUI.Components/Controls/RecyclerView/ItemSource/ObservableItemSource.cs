@@ -143,7 +143,7 @@ namespace Tizen.NUI.Components
 
         void Move(NotifyCollectionChangedEventArgs args)
         {
-            var count = args.NewItems.Count;
+            var count = args.NewItems?.Count ?? 0;
 
             if (count == 1)
             {
@@ -159,9 +159,9 @@ namespace Tizen.NUI.Components
 
         void Add(NotifyCollectionChangedEventArgs args)
         {
-            var startIndex = args.NewStartingIndex > -1 ? args.NewStartingIndex : IndexOf(args.NewItems[0]);
+            var count = args.NewItems?.Count ?? 0;
+            var startIndex = args.NewStartingIndex > -1 ? args.NewStartingIndex : (count > 0 ? IndexOf(args.NewItems[0]) : -1);
             startIndex = AdjustPositionForHeader(startIndex);
-            var count = args.NewItems.Count;
 
             if (count == 1)
             {

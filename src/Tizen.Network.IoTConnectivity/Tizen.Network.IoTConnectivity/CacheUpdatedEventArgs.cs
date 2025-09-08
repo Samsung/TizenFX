@@ -23,6 +23,7 @@ namespace Tizen.Network.IoTConnectivity
     /// This class represents event arguments of the CacheUpdated event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class CacheUpdatedEventArgs : EventArgs
     {
         internal CacheUpdatedEventArgs() { }
@@ -32,6 +33,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The updated representation of the resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public Representation Representation { get; internal set; }
     }
 }

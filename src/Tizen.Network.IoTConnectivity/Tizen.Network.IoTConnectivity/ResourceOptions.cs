@@ -28,6 +28,7 @@ namespace Tizen.Network.IoTConnectivity
     /// <para>See more about coap packet in http://tools.ietf.org/html/rfc7252.</para>
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class ResourceOptions : IDictionary<ushort, string>, IDisposable
     {
         internal const int MaxSize = 2;
@@ -51,6 +52,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <example><code>
         /// ResourceOptions options = new ResourceOptions();
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceOptions()
         {
             int ret = Interop.IoTConnectivity.Common.Options.Create(out _resourceOptionsHandle);
@@ -105,6 +107,7 @@ namespace Tizen.Network.IoTConnectivity
         /// var keys = options.Keys;
         /// Console.WriteLine("Resource options contains keys {0} and {1}", keys.ElementAt(0), keys.ElementAt(1));
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public ICollection<ushort> Keys
         {
             get
@@ -125,6 +128,7 @@ namespace Tizen.Network.IoTConnectivity
         /// var values = options.Values;
         /// Console.WriteLine("Resource options contains values {0} and {1}", values.ElementAt(0), values.ElementAt(1));
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public ICollection<string> Values
         {
             get
@@ -145,6 +149,7 @@ namespace Tizen.Network.IoTConnectivity
         /// var count = options.Count;
         /// Console.WriteLine("There are {0} keys in the options object", count);
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public int Count
         {
             get
@@ -163,6 +168,7 @@ namespace Tizen.Network.IoTConnectivity
         /// if (options.IsReadOnly)
         ///     Console.WriteLine("Read only options");
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public bool IsReadOnly
         {
             get
@@ -183,6 +189,7 @@ namespace Tizen.Network.IoTConnectivity
         /// options[2055] = "sample-data";
         /// Console.WriteLine("Option has : {0}", options[2055]);
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public string this[ushort key]
         {
             get
@@ -207,6 +214,7 @@ namespace Tizen.Network.IoTConnectivity
         /// if (options.ContainsKey(2050))
         ///     Console.WriteLine("options conatins key : 2050");
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public bool ContainsKey(ushort key)
         {
             return _options.ContainsKey(key);
@@ -231,6 +239,7 @@ namespace Tizen.Network.IoTConnectivity
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(2050, "sample-data");
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public void Add(ushort key, string value)
         {
             int ret = (int)IoTConnectivityError.InvalidParameter;
@@ -266,6 +275,7 @@ namespace Tizen.Network.IoTConnectivity
         /// options.Add(2050, "12345");
         /// var result = options.Remove(2050);
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public bool Remove(ushort key)
         {
             int ret = Interop.IoTConnectivity.Common.Options.Remove(_resourceOptionsHandle, key);
@@ -295,6 +305,7 @@ namespace Tizen.Network.IoTConnectivity
         /// if (isPresent)
         ///     Console.WriteLine("value : {0}", value);
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public bool TryGetValue(ushort key, out string value)
         {
             return _options.TryGetValue(key, out value);
@@ -311,6 +322,7 @@ namespace Tizen.Network.IoTConnectivity
         /// ResourceOptions options = new ResourceOptions();
         /// options.Add(new KeyValuePair<ushort, string>(2050, "12345"));
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public void Add(KeyValuePair<ushort, string> item)
         {
             Add(item.Key, item.Value);
@@ -328,6 +340,7 @@ namespace Tizen.Network.IoTConnectivity
         /// options.Add(2055, "sample");
         /// options.Clear();
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public void Clear()
         {
             foreach (ushort key in Keys)
@@ -355,6 +368,7 @@ namespace Tizen.Network.IoTConnectivity
         /// if (isPresent)
         ///     Console.WriteLine("Key value pair is present");
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public bool Contains(KeyValuePair<ushort, string> item)
         {
             return _options.Contains(item);
@@ -373,6 +387,7 @@ namespace Tizen.Network.IoTConnectivity
         /// options.CopyTo(dest, 0);
         /// Console.WriteLine("Dest conatins ({0}, {1})", dest[0].Key, dest[0].Value);
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public void CopyTo(KeyValuePair<ushort, string>[] array, int arrayIndex)
         {
             _options.CopyTo(array, arrayIndex);
@@ -392,6 +407,7 @@ namespace Tizen.Network.IoTConnectivity
         /// options.Add(new KeyValuePair<ushort, string>(2050, "12345"));
         /// var result = options.Remove(new KeyValuePair<ushort, string>(2050, "12345"));
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public bool Remove(KeyValuePair<ushort, string> item)
         {
             return Remove(item.Key);
@@ -411,6 +427,7 @@ namespace Tizen.Network.IoTConnectivity
         ///     Console.WriteLine("key : {0}, value : {1}", pair.Key, pair.Value);
         /// }
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public IEnumerator<KeyValuePair<ushort, string>> GetEnumerator()
         {
             return _options.GetEnumerator();
@@ -421,6 +438,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         public void Dispose()
         {
             Dispose(true);
@@ -452,6 +470,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

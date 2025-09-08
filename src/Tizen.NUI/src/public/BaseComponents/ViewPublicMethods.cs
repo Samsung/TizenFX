@@ -376,6 +376,32 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Retrieves ImageUrl of View's offscreen rendering result.
+        /// </summary>
+        /// <remarks>
+        /// Returns valid url only when View.OffScreenRendering is set to View.OffScreenRenderingType.RenderOnce
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageUrl GetOffScreenImageUrl()
+        {
+            IntPtr cPtr = Interop.View.GetOffScreenRenderingOutput(SwigCPtr);
+            if (cPtr == IntPtr.Zero)
+            {
+                return null;
+            }
+
+            ImageUrl url = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ImageUrl;
+            if (url != null)
+            {
+                Interop.BaseHandle.DeleteBaseHandle(new HandleRef(this, cPtr));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                return url;
+            }
+            url = new ImageUrl(cPtr, true);
+            return url;
+        }
+
+        /// <summary>
         /// Shows the view.
         /// </summary>
         /// <remarks>

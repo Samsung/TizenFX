@@ -100,8 +100,10 @@ namespace Tizen.NUI
         /// The unit is pixel, but the property is in float type since many other platforms use float for blur effect radius.
         /// </summary>
         /// <remarks>
-        /// For performance, blur radius is internally recalculated. It should be greater than or equal to (4 / downscale factor).
-        /// Note that BlurDownscaleFactor is set to 0.25 as default.
+        /// The blurRadius parameter is adjusted due to downscaling and kernel compression, resulting in a smaller effective value.
+        /// This means the blur intensity changes in discrete steps rather than continuously, with the step size determined by (2 / downscale factor).
+        /// For example, with a default BlurDownscaleFactor of 0.25, the step size is 8.
+        /// To ensure proper functionality, a minimum blurRadius value of 2 steps is required, with intensity updates occurring at every step size increment.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float BlurRadius

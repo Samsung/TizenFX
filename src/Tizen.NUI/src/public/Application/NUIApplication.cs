@@ -567,6 +567,12 @@ namespace Tizen.NUI
         /// Exits the NUIApplication.
         /// This method causes the application to terminate gracefully.
         /// </summary>
+        /// <remarks>
+        /// This method does not quit the application immediately.
+        /// It waits until all pending events are completely processed,
+        /// then registers a termination request during the main loop's idle state
+        /// and executes the termination at that time.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public override void Exit()
         {

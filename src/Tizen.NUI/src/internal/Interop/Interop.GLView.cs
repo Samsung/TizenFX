@@ -48,6 +48,9 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_RenderOnce")]
             public static extern void GlViewRenderOnce(HandleRef nuiGlView);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_Terminate")]
+            public static extern void GlViewTerminate(HandleRef nuiGlView);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_BindTextureResources")]
             public static extern void GlViewBindTextureResources(HandleRef nuiGlView, global::System.IntPtr textures, int size);
 

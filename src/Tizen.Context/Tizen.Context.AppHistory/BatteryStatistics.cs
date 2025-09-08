@@ -23,6 +23,7 @@ namespace Tizen.Context.AppHistory
     /// This class provides APIs to query the battery consumption per application.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public class BatteryStatistics : AppStatistics
     {
         private const string AppStatsConsumption = "TotalAmount";
@@ -35,6 +36,7 @@ namespace Tizen.Context.AppHistory
         /// <feature>http://tizen.org/feature/battery</feature>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an internal error.</exception>
         /// <exception cref="NotSupportedException">Thrown when the features are not supported.</exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public BatteryStatistics()
         {
             SortOrder = SortOrderType.ConsumptionMost;
@@ -63,6 +65,7 @@ namespace Tizen.Context.AppHistory
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an internal error.</exception>
         /// <exception cref="NotSupportedException">Thrown when the features are not supported.</exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public BatteryStatistics(SortOrderType order)
         {
             SortOrder = order;
@@ -100,6 +103,7 @@ namespace Tizen.Context.AppHistory
         /// <exception cref="InvalidOperationException">Thrown when invalid operation occurs.</exception>
         /// <exception cref="NotSupportedException">Thrown when the features are not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to retrieve the application history.</exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public IReadOnlyList<BatteryStatisticsData> Query(DateTime startTime, DateTime endTime)
         {
             CheckTimeSpan(startTime, endTime);
@@ -122,6 +126,7 @@ namespace Tizen.Context.AppHistory
         /// <exception cref="InvalidOperationException">Thrown when an invalid operation occurs.</exception>
         /// <exception cref="NotSupportedException">Thrown when the features are not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to retrieve the application history.</exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public IReadOnlyList<BatteryStatisticsData> Query(DateTime startTime, DateTime endTime, uint resultSize)
         {
             CheckTimeSpan(startTime, endTime);
@@ -163,6 +168,7 @@ namespace Tizen.Context.AppHistory
         /// <feature>http://tizen.org/feature/app_history</feature>
         /// <feature>http://tizen.org/feature/battery</feature>
         /// <exception cref="NotSupportedException">Thrown when the statistics is not supported.</exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public static DateTime GetLastFullyChargedTime()
         {
             Int64 timestamp;
@@ -203,18 +209,21 @@ namespace Tizen.Context.AppHistory
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <value>The criteria of battery statistics sorted by.</value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public SortOrderType SortOrder { get; private set; }
 
         /// <summary>
         /// Sorts the order type of battery statistics.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public enum SortOrderType
         {
             /// <summary>
             /// Sorts the apps by consumption, the most battery consuming apps appear first (default).
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
+            [Obsolete("Deprecated since API13, will be removed in API15.")]
             ConsumptionMost = 0
         }
     }

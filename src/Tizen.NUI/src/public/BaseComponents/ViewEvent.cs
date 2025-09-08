@@ -47,6 +47,8 @@ namespace Tizen.NUI.BaseComponents
         private OnRelayoutEventCallbackType onRelayoutEventCallback;
         private EventHandler onWindowEventHandler;
         private OnWindowEventCallbackType onWindowEventCallback;
+        private EventHandler offScreenRenderingFinishedEventHandler;
+        private OnOffScreenRenderingFinishedCallbackType offScreenRenderingFinishedCallback;
         // Resource Ready Signal
         private EventHandler resourcesLoadedEventHandler;
         private ResourcesLoadedCallbackType resourcesLoadedCallback;
@@ -88,6 +90,9 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void OnWindowEventCallbackType(IntPtr control);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void OnOffScreenRenderingFinishedCallbackType(IntPtr control);
 
         private ViewEventRareData _viewEventRareData; // NOTE Consider reuse data by using pool
 
@@ -425,6 +430,39 @@ namespace Tizen.NUI.BaseComponents
                     Interop.ActorSignal.OffSceneDisconnect(SwigCPtr, offWindowEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                     offWindowEventCallback = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// The OffScreenRenderingFinished event is emitted when the off-screen rendering of the view is finished.
+        /// </summary>
+        /// <remarks>
+        /// This event is sent only when View.OffScreenRendering is set to View.OffScreenRenderingType.RefreshOnce.
+        /// </remarks>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler OffScreenRenderingFinished
+        {
+            add
+            {
+                if (offScreenRenderingFinishedEventHandler == null)
+                {
+                    offScreenRenderingFinishedCallback = OnOffScreenRenderingFinished;
+                    Interop.ViewSignal.OffScreenRenderingFinishedConnect(SwigCPtr, offScreenRenderingFinishedCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                offScreenRenderingFinishedEventHandler += value;
+            }
+
+            remove
+            {
+                offScreenRenderingFinishedEventHandler -= value;
+                if (offScreenRenderingFinishedEventHandler == null && offScreenRenderingFinishedCallback != null)
+                {
+                    Interop.ViewSignal.OffScreenRenderingFinishedDisconnect(SwigCPtr, offScreenRenderingFinishedCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    offScreenRenderingFinishedCallback = null;
                 }
             }
         }
@@ -962,6 +1000,17 @@ namespace Tizen.NUI.BaseComponents
             {
                 offWindowEventHandler(this, null);
             }
+        }
+
+        // Callback for the OffScreenRenderingFinished signal
+        private void OnOffScreenRenderingFinished(IntPtr control)
+        {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+            offScreenRenderingFinishedEventHandler?.Invoke(this, null);
         }
 
         // Callback for View visibility change signal

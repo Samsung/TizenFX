@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ namespace Tizen.NUI.Scene3D
     internal static partial class Interop
     {
         internal static partial class Model
-        {            
+        {
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_New_SWIG_0")]
             public static extern global::System.IntPtr ModelNew(string modelUrl, string resourcePasth);
 
@@ -114,6 +114,9 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_MeshHitSignal_Disconnect")]
             public static extern void MeshHitSignalDisconnect(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef handler);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_GetLoadingStatus")]
+            public static extern int GetLoadingStatus(global::System.Runtime.InteropServices.HandleRef model);
         }
     }
 }

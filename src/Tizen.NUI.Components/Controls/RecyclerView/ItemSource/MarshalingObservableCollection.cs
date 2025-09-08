@@ -137,24 +137,28 @@ namespace Tizen.NUI.Components
         void Replace(NotifyCollectionChangedEventArgs args)
         {
             var startIndex = args.NewStartingIndex;
-            foreach (var item in args.NewItems)
+            if (args.NewItems != null)
             {
-                this[startIndex] = item;
-                startIndex += 1;
+                foreach (var item in args.NewItems)
+                {
+                    this[startIndex] = item;
+                    startIndex += 1;
+                }
             }
-
             OnCollectionChanged(args);
         }
 
         void Add(NotifyCollectionChangedEventArgs args)
         {
             var startIndex = args.NewStartingIndex;
-            foreach (var item in args.NewItems)
+            if (args.NewItems != null)
             {
-                Insert(startIndex, item);
-                startIndex += 1;
+                foreach (var item in args.NewItems)
+                {
+                    Insert(startIndex, item);
+                    startIndex += 1;
+                }
             }
-
             OnCollectionChanged(args);
         }
 

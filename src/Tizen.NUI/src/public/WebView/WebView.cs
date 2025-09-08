@@ -2725,7 +2725,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void EvaluateJavaScript(string script)
         {
-            Interop.WebView.EvaluateJavaScript(SwigCPtr, script, new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero));
+            if (SwigCPtr.Handle == IntPtr.Zero || IsDisposedOrQueued)
+            {
+                Log.Fatal("NUI", $"[ERROR] WebView has been disposed! IntPtr=0x{SwigCPtr.Handle:X} IsDisposedOrQueued={IsDisposedOrQueued}");
+                return;
+            }
+            Interop.WebView.EvaluateJavaScript(SwigCPtr, script, new HandleRef(null, IntPtr.Zero));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

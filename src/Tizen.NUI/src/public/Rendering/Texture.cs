@@ -124,6 +124,33 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Generate Url from texture. For default, we assume that texture is pre-multiplied by alpha.
+        /// </summary>
+        /// <remarks>
+        /// This API should not be called at worker thread.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageUrl GenerateUrl()
+        {
+            return GenerateUrl(true);
+        }
+
+        /// <summary>
+        /// Generate Url from texture with pre-multiplied by alpha information.
+        /// </summary>
+        /// <remarks>
+        /// This API should not be called at worker thread.
+        /// </remarks>
+        /// <param name="preMultiplied">The raw pixel data pre-multiplied by alpha.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageUrl GenerateUrl(bool preMultiplied)
+        {
+            ImageUrl ret = new ImageUrl(Interop.ImageUrl.New(SwigCPtr, preMultiplied), true);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)

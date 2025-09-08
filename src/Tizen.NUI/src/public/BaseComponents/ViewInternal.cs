@@ -1424,6 +1424,15 @@ namespace Tizen.NUI.BaseComponents
 
             _viewEventRareData?.ClearSignal();
 
+            if (offScreenRenderingFinishedCallback != null)
+            {
+                NUILog.Debug($"[Dispose] offScreenRenderingFinishedCallback");
+
+                Interop.ViewSignal.OffScreenRenderingFinishedDisconnect(GetBaseHandleCPtrHandleRef, offScreenRenderingFinishedCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                offScreenRenderingFinishedCallback = null;
+            }
+
             if (onRelayoutEventCallback != null)
             {
                 NUILog.Debug($"[Dispose] onRelayoutEventCallback");

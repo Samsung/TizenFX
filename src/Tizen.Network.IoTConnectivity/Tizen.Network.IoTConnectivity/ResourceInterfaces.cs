@@ -27,6 +27,7 @@ namespace Tizen.Network.IoTConnectivity
     /// A resource interface indicates a class or category of resources.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class ResourceInterfaces : IEnumerable<string>, IDisposable
     {
         /// <summary>
@@ -76,6 +77,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <example><code>
         /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces();
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceInterfaces()
         {
             int ret = Interop.IoTConnectivity.Common.ResourceInterfaces.Create(out _resourceInterfacesHandle);
@@ -99,6 +101,7 @@ namespace Tizen.Network.IoTConnectivity
         /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List<string>()
         ///     { ResourceInterfaces.LinkInterface, ResourceInterfaces.ReadonlyInterface });
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceInterfaces(IEnumerable<string> ifaces)
         {
             int ret = Interop.IoTConnectivity.Common.ResourceInterfaces.Create(out _resourceInterfacesHandle);
@@ -162,6 +165,7 @@ namespace Tizen.Network.IoTConnectivity
         ///     { ResourceInterfaces.LinkInterface, ResourceInterfaces.ReadonlyInterface });
         /// Console.WriteLine("There are {0} interfaces", resourceInterfaces.Count);
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public int Count
         {
             get
@@ -187,6 +191,7 @@ namespace Tizen.Network.IoTConnectivity
         /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces();
         /// resourceInterfaces.Add(ResourceInterfaces.BatchInterface);
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         public void Add(string item)
         {
             if (IsValid(item))
@@ -220,6 +225,7 @@ namespace Tizen.Network.IoTConnectivity
         /// ResourceInterfaces resourceInterfaces = new ResourceInterfaces(new List<string>(){ ResourceInterfaces.BatchInterface });
         /// resourceInterfaces.Add(ResourceInterfaces.BatchInterface);
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public void Remove(string item)
         {
             bool isRemoved = _resourceInterfaces.Remove(item);
@@ -249,6 +255,7 @@ namespace Tizen.Network.IoTConnectivity
         ///     Console.WriteLine("Interface : {0}", item);
         /// }
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public IEnumerator<string> GetEnumerator()
         {
             return _resourceInterfaces.GetEnumerator();
@@ -277,6 +284,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         public void Dispose()
         {
             Dispose(true);
@@ -295,6 +303,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

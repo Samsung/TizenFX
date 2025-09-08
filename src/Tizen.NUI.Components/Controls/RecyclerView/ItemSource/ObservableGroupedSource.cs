@@ -306,8 +306,8 @@ namespace Tizen.NUI.Components
 
         void Add(NotifyCollectionChangedEventArgs args)
         {
-            var groupIndex = args.NewStartingIndex > -1 ? args.NewStartingIndex : groupSource.IndexOf(args.NewItems[0]);
-            var groupCount = args.NewItems.Count;
+            var groupCount = args.NewItems?.Count ?? 0;
+            var groupIndex = args.NewStartingIndex > -1 ? args.NewStartingIndex : (groupCount > 0 ? groupSource.IndexOf(args.NewItems[0]) : -1);
 
             UpdateGroupTracking();
 

@@ -25,6 +25,7 @@ namespace Tizen.Network.IoTConnectivity
     /// This class is accessed by using a constructor to create a new instance of this object.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class LiteResource : Resource
     {
         /// <summary>
@@ -56,6 +57,7 @@ namespace Tizen.Network.IoTConnectivity
         /// };
         /// LiteResource res = new LiteResource("/light/1", new ResourceTypes(list), ResourcePolicy.Discoverable, attributes);
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public LiteResource(string uri, ResourceTypes types, ResourcePolicy policy, Attributes attribs = null)
             : base(uri, types, new ResourceInterfaces(new string[] { ResourceInterfaces.DefaultInterface }), policy)
         {
@@ -79,6 +81,7 @@ namespace Tizen.Network.IoTConnectivity
         ///     Console.WriteLine("key : {0}, value : {1}", pair.Key, pair.Value);
         /// }
         /// ]]></code></example>
+        [Obsolete("Deprecated since API level 13")]
         public Attributes Attributes { get; set; }
 
         /// <summary>
@@ -103,6 +106,7 @@ namespace Tizen.Network.IoTConnectivity
         ///     }
         /// }
         /// </code></example>
+        [Obsolete("Deprecated since API level 13")]
         protected virtual bool OnPost(Attributes attribs)
         {
             return true;
@@ -115,6 +119,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="request">A request from client.</param>
         /// <returns>A response having the representation and the result.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API level 13")]
         protected sealed override Response OnGet(Request request)
         {
             Representation representation = new Representation()
