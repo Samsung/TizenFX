@@ -383,19 +383,6 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Set a unique language for system-independent applications
-        /// </summary>
-        /// <remarks>
-        /// If a device does not support the language , It will be set to the default language(en_US.UTF-8)
-        /// </remarks>
-        /// <param name="cultureInfo">The locale to set language</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void SetApplicationLanguage(CultureInfo cultureInfo)
-        {
-            LocaleManager.SetApplicationLocale(cultureInfo);
-        }
-
-        /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
