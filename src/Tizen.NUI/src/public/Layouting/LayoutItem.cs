@@ -109,7 +109,7 @@ namespace Tizen.NUI
             }
             set
             {
-                margin = new Extents(value);
+                margin = value;
                 RequestLayout();
             }
         }
@@ -126,7 +126,7 @@ namespace Tizen.NUI
             }
             set
             {
-                padding = new Extents(value);
+                padding = value;
                 RequestLayout();
             }
         }
@@ -171,8 +171,8 @@ namespace Tizen.NUI
         {
             LayoutWithTransition = false;
             layoutPositionData = new LayoutData(this, TransitionCondition.Unspecified, 0, 0, 0, 0);
-            padding = new Extents(Extents.Zero);
-            margin = new Extents(Extents.Zero);
+            padding = Extents.Zero;
+            margin = Extents.Zero;
         }
 
         /// <summary>
@@ -643,11 +643,6 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (disposing)
-            {
-                margin?.Dispose();
-                padding?.Dispose();
-            }
             disposed = true;
         }
 
