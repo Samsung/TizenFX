@@ -26,6 +26,10 @@ using System.Text;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// The class for managing the app's locale.
+    /// </summary>
+    /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class LocaleManager
     {
@@ -34,6 +38,14 @@ namespace Tizen.Applications
         private static bool _fileExists = File.Exists(SupportedLocalesFilePath);
         private static HashSet<string> _supportedLocales;
 
+        /// <summary>
+        /// Set the application's language independently of the system language.
+        /// </summary>
+        /// <remarks>
+        /// If a device does not support the language , It will be set to the default language(en_US.UTF-8)
+        /// </remarks>
+        /// <param name="info">The locale to set language</param>
+        /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetApplicationLocale(CultureInfo info)
         {
@@ -59,6 +71,11 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Get the application's language
+        /// </summary>
+        /// <returns>CultureInfo corresponding to the application language</returns>
+        /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static CultureInfo GetApplicationLocale()
         {
@@ -92,7 +109,12 @@ namespace Tizen.Applications
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Get the system's language
+        /// </summary>
+        /// <returns>CultureInfo corresponding to the system language</returns>
+        /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static CultureInfo GetSystemLocale()
         {
