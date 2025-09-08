@@ -29,6 +29,7 @@ namespace Tizen.Network.IoTConnectivity
     /// It provides APIs to manage remote resource.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class RemoteResource : IDisposable
     {
         internal const int TimeOutMax = 3600;
@@ -71,6 +72,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
+        [Obsolete("Deprecated since API level 13")]
         public RemoteResource(string hostAddress, string uriPath, ResourcePolicy policy, ResourceTypes resourceTypes, ResourceInterfaces resourceInterfaces)
         {
             if (hostAddress == null || uriPath == null || resourceTypes == null || resourceInterfaces == null)
@@ -112,18 +114,21 @@ namespace Tizen.Network.IoTConnectivity
         /// The event is invoked with cached resource attributes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 13")]
         public event EventHandler<CacheUpdatedEventArgs> CacheUpdated;
 
         /// <summary>
         /// Observe an event on the resource sent by the server.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 13")]
         public event EventHandler<ObserverNotifiedEventArgs> ObserverNotified;
 
         /// <summary>
         /// The event is called when remote resource's state are changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 13")]
         public event EventHandler<StateChangedEventArgs> StateChanged
         {
             add
@@ -149,6 +154,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The host address of the resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string HostAddress { get; private set; }
 
         /// <summary>
@@ -156,6 +162,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The URI path of the resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string UriPath { get; private set; }
 
         /// <summary>
@@ -163,6 +170,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The resource types of the remote resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public IEnumerable<string> Types { get; private set; }
 
         /// <summary>
@@ -170,6 +178,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The interfaces of the resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public IEnumerable<string> Interfaces { get; private set; }
 
         /// <summary>
@@ -177,6 +186,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The policy of the resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public ResourcePolicy Policy { get; private set; }
 
         /// <summary>
@@ -186,6 +196,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <value>The header options of the resource.</value>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
+        [Obsolete("Deprecated since API level 13")]
         public ResourceOptions Options
         {
             get
@@ -219,6 +230,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
+        [Obsolete("Deprecated since API level 13")]
         public bool CacheEnabled
         {
             get
@@ -245,6 +257,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </value>
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when there is an invalid parameter.</exception>
+        [Obsolete("Deprecated since API level 13")]
         public int TimeInterval
         {
             get
@@ -278,6 +291,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The device ID of the resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string DeviceId { get; private set; }
 
         /// <summary>
@@ -286,6 +300,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <returns>cached representation from the remote resource.</returns>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         public Representation CachedRepresentation()
         {
             IntPtr handle;
@@ -316,6 +331,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory.</exception>
+        [Obsolete("Deprecated since API level 13")]
         public void StartObserving(ObservePolicy policy, ResourceQuery query = null)
         {
             _observeCallback = (IntPtr resource, int err, int sequenceNumber, IntPtr response, IntPtr userData) =>
@@ -379,6 +395,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <exception cref="NotSupportedException">Thrown when the iotcon is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have privilege to access.</exception>
+        [Obsolete("Deprecated since API level 13")]
         public void StopObserving()
         {
             int ret = Interop.IoTConnectivity.Client.RemoteResource.DeregisterObserve(_remoteResourceHandle);
@@ -398,6 +415,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="query">The ResourceQuery to send to server.</param>
         /// <returns>Remote response with result and representation.</returns>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         public async Task<RemoteResponse> GetAsync(ResourceQuery query = null)
         {
             TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>();
@@ -461,6 +479,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="query">The ResourceQuery to send to server.</param>
         /// <returns>Remote response with result and representation.</returns>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         public async Task<RemoteResponse> PutAsync(Representation representation, ResourceQuery query = null)
         {
             TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>();
@@ -531,6 +550,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <param name="query">The ResourceQuery to send to server.</param>
         /// <returns>Remote response with result and representation.</returns>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         public async Task<RemoteResponse> PostAsync(Representation representation, ResourceQuery query = null)
         {
             TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>();
@@ -592,6 +612,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <privlevel>public</privlevel>
         /// <returns>Remote response with result and representation.</returns>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         public async Task<RemoteResponse> DeleteAsync()
         {
             TaskCompletionSource<RemoteResponse> tcsRemoteResponse = new TaskCompletionSource<RemoteResponse>();
@@ -656,6 +677,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         public void Dispose()
         {
             Dispose(true);
@@ -730,6 +752,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <since_tizen> 3 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         /// <feature>http://tizen.org/feature/iot.ocf</feature>
+        [Obsolete("Deprecated since API level 13")]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

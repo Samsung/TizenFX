@@ -23,6 +23,7 @@ namespace Tizen.Network.IoTConnectivity
     /// This class represents event arguments of the PresenceReceived event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class PresenceReceivedEventArgs : EventArgs
     {
         internal PresenceReceivedEventArgs() { }
@@ -32,6 +33,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The request ID of the presence event.</value>
+        [Obsolete("Deprecated since API level 13")]
         public int PresenceId { get; internal set; }
 
         /// <summary>
@@ -39,6 +41,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The event type.</value>
+        [Obsolete("Deprecated since API level 13")]
         public PresenceEventType EventType { get; internal set; }
 
         /// <summary>
@@ -46,6 +49,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The host address of resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string HostAddress { get; internal set; }
 
         /// <summary>
@@ -53,6 +57,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The type of the resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public string Type { get; internal set; }
     }
 }
