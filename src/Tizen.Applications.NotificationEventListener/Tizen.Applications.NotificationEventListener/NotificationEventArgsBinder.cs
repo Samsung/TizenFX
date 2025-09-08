@@ -84,6 +84,18 @@ namespace Tizen.Applications.NotificationEventListener
                 eventargs.SubIcon = text;
             }
 
+            Interop.NotificationEventListener.GetText(eventargs.Handle, NotificationText.GroupTitle, out text);
+            if (string.IsNullOrEmpty(text) == false)
+            {
+                eventargs.GroupTitle = text;
+            }
+
+            Interop.NotificationEventListener.GetText(eventargs.Handle, NotificationText.GroupContent, out text);
+            if (string.IsNullOrEmpty(text) == false)
+            {
+                eventargs.GroupContent = text;
+            }
+
             err = Interop.NotificationEventListener.GetTime(eventargs.Handle, out time);
             if (err != Interop.NotificationEventListener.ErrorCode.None)
             {
@@ -172,7 +184,7 @@ namespace Tizen.Applications.NotificationEventListener
                 Bundle bundle = new Bundle(new SafeBundleHandle(extension, false));
                 foreach (string key in bundle.Keys)
                 {
-                    if (key.StartsWith("_NOTIFICATION_EXTENSION_EVENT_"))
+                    if (key.StartsWith("_NOTIFICATION_EXTENSION_EVENT_") || key.StartsWith("_NOTIFICATION_TYPE_PAIRING_"))
                         continue;
 
                     SafeBundleHandle sbh;

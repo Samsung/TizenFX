@@ -16,10 +16,13 @@
 
 namespace Tizen.Applications.Shortcut
 {
+    using System;
+
     /// <summary>
     /// Enumeration for the sizes of the shortcut widget.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public enum ShortcutWidgetSize
     {
         /// <summary>
@@ -96,6 +99,7 @@ namespace Tizen.Applications.Shortcut
     /// <summary>
     /// Enumeration for the shortcut types.
     /// </summary>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     internal enum ShortcutType
     {
         /// <summary>

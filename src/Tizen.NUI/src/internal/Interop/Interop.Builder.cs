@@ -93,8 +93,11 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_GetLinearConstrainer")]
             public static extern global::System.IntPtr GetLinearConstrainer(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_QuitSignal")]
-            public static extern global::System.IntPtr QuitSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_QuitSignal_Connect")]
+            public static extern global::System.IntPtr QuitConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_QuitSignal_Disconnect")]
+            public static extern global::System.IntPtr QuitDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
         }
     }
 }

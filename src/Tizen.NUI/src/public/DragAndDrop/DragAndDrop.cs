@@ -18,6 +18,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
+using System.Linq;
 using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
 
@@ -30,12 +31,23 @@ namespace Tizen.NUI
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000: Dispose objects before losing scope", Justification = "It does not have ownership.")]
     public class DragAndDrop : BaseHandle
     {
+        /// <summary>
+        /// A delegate representing the method that will handle the drag source event.
+        /// </summary>
+        /// <param name="sourceEventType">The type of the drag source event.</param>
         public delegate void SourceEventHandler(DragSourceEventType sourceEventType);
+        
         private delegate void InternalSourceEventHandler(int sourceEventType);
-        public delegate void DragAndDropEventHandler(View targetView, DragEvent dragEvent);
+        
+        /// <summary>
+        /// Delegate representing the method that will handle drag and drop events.
+        /// </summary>
+        /// <param name="targetView">The view where the drag event occurred.</param>
+        /// <param name="nativeDragEvent">The native drag event containing details about the drag operation.</param>
+        public delegate void DragAndDropEventHandler(View targetView, DragEvent nativeDragEvent);
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void DragAndDropWindowEventHandler(Window targetWindow, DragEvent dragEvent);
-        private delegate void InternalDragAndDropEventHandler(global::System.IntPtr dragEvent);
+        public delegate void DragAndDropWindowEventHandler(Window targetWindow, DragEvent nativeDragEvent);
+        private delegate void InternalDragAndDropEventHandler(global::System.IntPtr nativeDragEvent);
         private InternalSourceEventHandler sourceEventCb;
         private Dictionary<View, InternalDragAndDropEventHandler> targetEventDictionary = new Dictionary<View, InternalDragAndDropEventHandler>();
         private Dictionary<Window, InternalDragAndDropEventHandler> targetWindowEventDictionary = new Dictionary<Window, InternalDragAndDropEventHandler>();
@@ -43,13 +55,109 @@ namespace Tizen.NUI
         private Window mDragWindow;
         private int shadowWidth;
         private int shadowHeight;
-        private int dragWindowOffsetX = 0;
-        private int dragWindowOffsetY = 0;
-
-        private bool initDrag = false;
+        private int dragWindowOffsetX;
+        private int dragWindowOffsetY;
 
         private const int MinDragWindowWidth = 100;
         private const int MinDragWindowHeight = 100;
+
+        private void ProcessDragEventTargetCallback(IntPtr nativeDragEvent, View targetView, DragAndDropEventHandler callback)
+        {
+            DragType type = (DragType)Interop.DragAndDrop.GetAction(nativeDragEvent);
+            DragEvent dragEvent = new DragEvent();
+            global::System.IntPtr cPtr = Interop.DragAndDrop.GetPosition(nativeDragEvent);
+            dragEvent.Position = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, true);
+
+            IntPtr nativeMimeTypes;
+            int count;
+            Interop.DragAndDrop.GetMimeTypes(nativeDragEvent, out nativeMimeTypes, out count);
+            if (count > 0)
+            {
+                IntPtr [] nativeMimeTypesArrary = new IntPtr[count];
+                Marshal.Copy(nativeMimeTypes, nativeMimeTypesArrary, 0, count);
+
+                string [] managedMimeTypes = new string[count];
+
+                for (int iterator = 0; iterator < count; iterator++)
+                {
+                managedMimeTypes[iterator] = Marshal.PtrToStringAnsi(nativeMimeTypesArrary[iterator]);
+                }
+
+                dragEvent.MimeType = managedMimeTypes[0];
+                dragEvent.MimeTypes = managedMimeTypes;
+            }
+
+            if (type == DragType.Enter)
+            {
+                dragEvent.DragType = type;
+                callback(targetView, dragEvent);
+            }
+            else if (type == DragType.Leave)
+            {
+                dragEvent.DragType = type;
+                callback(targetView, dragEvent);
+            }
+            else if (type == DragType.Move)
+            {
+                dragEvent.DragType = type;
+                callback(targetView, dragEvent);
+            }
+            else if (type == DragType.Drop)
+            {
+                dragEvent.DragType = type;
+                dragEvent.Data = Interop.DragAndDrop.GetData(nativeDragEvent);
+                callback(targetView, dragEvent);
+            }
+        }
+
+        private void ProcessDragEventWindowCallback(IntPtr nativeDragEvent, Window targetWindow, DragAndDropWindowEventHandler callback)
+        {
+            DragType type = (DragType)Interop.DragAndDrop.GetAction(nativeDragEvent);
+            DragEvent dragEvent = new DragEvent();
+            global::System.IntPtr cPtr = Interop.DragAndDrop.GetPosition(nativeDragEvent);
+            dragEvent.Position = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+
+            IntPtr nativeMimeTypes;
+            int count;
+            Interop.DragAndDrop.GetMimeTypes(nativeDragEvent, out nativeMimeTypes, out count);
+            if (count > 0)
+            {
+                IntPtr [] nativeMimeTypesArrary = new IntPtr[count];
+                Marshal.Copy(nativeMimeTypes, nativeMimeTypesArrary, 0, count);
+
+                string [] managedMimeTypes = new string[count];
+
+                for (int iterator = 0; iterator < count; iterator++)
+                {
+                managedMimeTypes[iterator] = Marshal.PtrToStringAnsi(nativeMimeTypesArrary[iterator]);
+                }
+
+                dragEvent.MimeType = managedMimeTypes[0];
+                dragEvent.MimeTypes = managedMimeTypes;
+            }
+
+            if (type == DragType.Enter)
+            {
+                dragEvent.DragType = type;
+                callback(targetWindow, dragEvent);
+            }
+            else if (type == DragType.Leave)
+            {
+                dragEvent.DragType = type;
+                callback(targetWindow, dragEvent);
+            }
+            else if (type == DragType.Move)
+            {
+                dragEvent.DragType = type;
+                callback(targetWindow, dragEvent);
+            }
+            else if (type == DragType.Drop)
+            {
+                dragEvent.DragType = type;
+                dragEvent.Data = Interop.DragAndDrop.GetData(nativeDragEvent);
+                callback(targetWindow, dragEvent);
+            }
+        }
 
         private DragAndDrop() : this(Interop.DragAndDrop.New(), true)
         {
@@ -92,14 +200,7 @@ namespace Tizen.NUI
         /// <param name="callback">The source event callback</param>
         /// <since_tizen> 10 </since_tizen>
         public void StartDragAndDrop(View sourceView, View shadowView, DragData dragData, SourceEventHandler callback)
-        {            
-            if (initDrag)
-            {
-                 Tizen.Log.Fatal("NUI", "Start Drag And Drop Initializing...");
-                 return;
-            }
-            initDrag = true;
-
+        {
             if (Window.IsSupportedMultiWindow() == false)
             {
                 throw new NotSupportedException("This device does not support surfaceless_context. So Window cannot be created.");
@@ -155,7 +256,7 @@ namespace Tizen.NUI
                 {   
                     if ((DragSourceEventType)sourceEventType != DragSourceEventType.Start)
                     {     
-                        Tizen.Log.Fatal("NUI", "DnD Source Event is Called");  
+                        Tizen.Log.Fatal("NUI", "DnD Source Event is Called");
                         ReleaseDragWindow();                
                     }
 
@@ -165,15 +266,29 @@ namespace Tizen.NUI
                 //Show Drag Window before StartDragAndDrop
                 mDragWindow.Show();
 
-                if (!Interop.DragAndDrop.StartDragAndDrop(SwigCPtr, View.getCPtr(sourceView), Window.getCPtr(mDragWindow), dragData.MimeType, dragData.Data,
+                string [] mimeTypes;
+                string [] dataSet;
+
+                if (string.IsNullOrEmpty(dragData.MimeType) && dragData.DataMap != null)
+                {
+                    mimeTypes = dragData.DataMap.Keys.ToArray();
+                    dataSet = dragData.DataMap.Values.ToArray();
+                }
+                else
+                {
+                    mimeTypes = new string[1];
+                    mimeTypes[0] = dragData.MimeType;
+
+                    dataSet = new string[1];
+                    dataSet[0] = dragData.Data;
+                }
+
+                if (!Interop.DragAndDrop.StartDragAndDrop(SwigCPtr, View.getCPtr(sourceView), Window.getCPtr(mDragWindow), mimeTypes, mimeTypes.Length, dataSet, dataSet.Length,
                                                         new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(sourceEventCb))))
                 {
                     throw new InvalidOperationException("Fail to StartDragAndDrop");
                 }
-
-            }         
-            
-            initDrag = false;
+            }
         }
 
         /// <summary>
@@ -184,42 +299,23 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         public void AddListener(View targetView, DragAndDropEventHandler callback)
         {
-            InternalDragAndDropEventHandler cb = (dragEvent) =>
-            {
-                DragType type = (DragType)Interop.DragAndDrop.GetAction(dragEvent);
-                DragEvent ev = new DragEvent();
-                global::System.IntPtr cPtr = Interop.DragAndDrop.GetPosition(dragEvent);
-                ev.Position = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, true);
+            AddListener(targetView, "*/*", callback);
+        }
 
-                if (type == DragType.Enter)
-                {
-                    ev.DragType = type;
-                    ev.MimeType = Interop.DragAndDrop.GetMimeType(dragEvent);
-                    callback(targetView, ev);
-                }
-                else if (type == DragType.Leave)
-                {
-                    ev.DragType = type;
-                    callback(targetView, ev);
-                }
-                else if (type == DragType.Move)
-                {
-                    ev.DragType = type;
-                    ev.MimeType = Interop.DragAndDrop.GetMimeType(dragEvent);
-                    callback(targetView, ev);
-                }
-                else if (type == DragType.Drop)
-                {
-                    ev.DragType = type;
-                    ev.MimeType = Interop.DragAndDrop.GetMimeType(dragEvent);
-                    ev.Data = Interop.DragAndDrop.GetData(dragEvent);
-                    callback(targetView, ev);
-                }
-            };
+        /// <summary>
+        /// Adds listener for drop targets
+        /// </summary>
+        /// <param name="targetView">The target view</param>
+        /// <param name="mimeType">The mime type for target view</param>
+        /// <param name="callback">The callback function to get drag event when the drag source enters, moves, leaves and drops on the drop target</param> 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddListener(View targetView, string mimeType, DragAndDropEventHandler callback)
+        {
+            InternalDragAndDropEventHandler cb = (nativeDragEvent) => ProcessDragEventTargetCallback(nativeDragEvent, targetView, callback);
 
             targetEventDictionary.Add(targetView, cb);
 
-            if (!Interop.DragAndDrop.AddListener(SwigCPtr, View.getCPtr(targetView),
+            if (!Interop.DragAndDrop.AddListener(SwigCPtr, View.getCPtr(targetView), mimeType,
                                                  new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(cb))))
             {
                  throw new InvalidOperationException("Fail to AddListener for View");
@@ -256,40 +352,23 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddListener(Window targetWindow, DragAndDropWindowEventHandler callback)
         {
-            InternalDragAndDropEventHandler cb = (dragEvent) =>
-            {
-                DragType type = (DragType)Interop.DragAndDrop.GetAction(dragEvent);
-                DragEvent ev = new DragEvent();
-                global::System.IntPtr cPtr = Interop.DragAndDrop.GetPosition(dragEvent);
-                ev.Position = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+            AddListener(targetWindow, "*/*", callback);
+        }
 
-                if (type == DragType.Enter)
-                {
-                    ev.DragType = type;
-                    callback(targetWindow, ev);
-                }
-                else if (type == DragType.Leave)
-                {
-                    ev.DragType = type;
-                    callback(targetWindow, ev);
-                }
-                else if (type == DragType.Move)
-                {
-                    ev.DragType = type;
-                    callback(targetWindow, ev);
-                }
-                else if (type == DragType.Drop)
-                {
-                    ev.DragType = type;
-                    ev.MimeType = Interop.DragAndDrop.GetMimeType(dragEvent);
-                    ev.Data = Interop.DragAndDrop.GetData(dragEvent);
-                    callback(targetWindow, ev);
-                }
-            };
+        /// <summary>
+        /// Adds listener for drop targets
+        /// </summary>
+        /// <param name="targetWindow">The target Window</param>
+        /// <param name="mimeType">The mime type for target view</param>
+        /// <param name="callback">The callback function to get drag event when the drag source enters, moves, leaves and drops on the drop target</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddListener(Window targetWindow, string mimeType, DragAndDropWindowEventHandler callback)
+        {
+            InternalDragAndDropEventHandler cb = (nativeDragEvent) => ProcessDragEventWindowCallback(nativeDragEvent, targetWindow, callback);
 
             targetWindowEventDictionary.Add(targetWindow, cb);
 
-            if (!Interop.DragAndDrop.WindowAddListener(SwigCPtr, Window.getCPtr(targetWindow),
+            if (!Interop.DragAndDrop.WindowAddListener(SwigCPtr, Window.getCPtr(targetWindow), mimeType,
                                                        new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(cb))))
             {
                  throw new InvalidOperationException("Fail to AddListener for Window");

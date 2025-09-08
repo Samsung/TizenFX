@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -363,6 +363,47 @@ namespace Tizen.NUI
                 OnResourcesChanged(changedResources);
         }
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void RootIdleCallbackType();
+
+        private RootIdleCallbackType rootIdleCallback;
+        private Dictionary<System.Delegate, bool> idleCallbackMap = new Dictionary<System.Delegate, bool>();
+
+        private void RootIdleCallback()
+        {
+            if (idleCallbackMap == null || IsDisposedOrQueued)
+            {
+                Tizen.Log.Error("NUI", $"[Error] Application disposed! Fail to execute idle callback!\n");
+                return;
+            }
+
+            Tizen.Log.Debug("NUI", $"Application RootIdleCallback comes\n");
+            // Reset root idle callback as null now, since we could call AddIdle during delegate function invoke
+            rootIdleCallback = null;
+
+            // Copy key list of idle callback map
+            // (Since idle callback could change the dictionary itself during iteration, we need to make a copy of keys first)
+            List<System.Delegate> delegateList = new List<System.Delegate>();
+            foreach (var func in idleCallbackMap.Keys)
+            {
+                delegateList.Add(func);
+            }
+
+            foreach (var func in delegateList)
+            {
+                // Remove delegate at map first, and then invoke it.
+                bool isValid = false;
+                if (idleCallbackMap?.Remove(func, out isValid) ?? false)
+                {
+                    if (isValid)
+                    {
+                        func.DynamicInvoke();
+                    }
+                }
+            }
+            Tizen.Log.Debug("NUI", $"Application RootIdleCallback finished\n");
+        }
+
         internal Application(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             SetCurrentApplication(this);
@@ -376,145 +417,150 @@ namespace Tizen.NUI
                 return;
             }
 
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-            if (applicationInitEventCallbackDelegate != null)
+            if (type == DisposeTypes.Explicit)
             {
-                initSignal?.Disconnect(applicationInitEventCallbackDelegate);
-                initSignal?.Dispose();
-                initSignal = null;
+                //Release your own unmanaged resources here.
+                //You should not access any managed member here except static instance.
+                //because the execution order of Finalizes is non-deterministic.
+                if (applicationInitEventCallbackDelegate != null)
+                {
+                    initSignal?.Disconnect(applicationInitEventCallbackDelegate);
+                    initSignal?.Dispose();
+                    initSignal = null;
+                }
+
+                if (applicationTerminateEventCallbackDelegate != null)
+                {
+                    terminateSignal?.Disconnect(applicationTerminateEventCallbackDelegate);
+                    terminateSignal?.Dispose();
+                    terminateSignal = null;
+                }
+
+                if (applicationPauseEventCallbackDelegate != null)
+                {
+                    pauseSignal?.Disconnect(applicationPauseEventCallbackDelegate);
+                    pauseSignal?.Dispose();
+                    pauseSignal = null;
+                }
+
+                if (applicationResumeEventCallbackDelegate != null)
+                {
+                    resumeSignal?.Disconnect(applicationResumeEventCallbackDelegate);
+                    resumeSignal?.Dispose();
+                    resumeSignal = null;
+                }
+
+                if (applicationResetEventCallbackDelegate != null)
+                {
+                    resetSignal?.Disconnect(applicationResetEventCallbackDelegate);
+                    resetSignal?.Dispose();
+                    resetSignal = null;
+                }
+
+                if (applicationLanguageChangedEventCallbackDelegate != null)
+                {
+                    languageChangedSignal?.Disconnect(applicationLanguageChangedEventCallbackDelegate);
+                    languageChangedSignal?.Dispose();
+                    languageChangedSignal = null;
+                }
+
+                if (applicationRegionChangedEventCallbackDelegate != null)
+                {
+                    regionChangedSignal?.Disconnect(applicationRegionChangedEventCallbackDelegate);
+                    regionChangedSignal?.Dispose();
+                    regionChangedSignal = null;
+                }
+
+                if (applicationBatteryLowEventCallbackDelegate != null)
+                {
+                    batteryLowSignal?.Disconnect(applicationBatteryLowEventCallbackDelegate);
+                    batteryLowSignal?.Dispose();
+                    batteryLowSignal = null;
+                }
+
+                if (applicationMemoryLowEventCallbackDelegate != null)
+                {
+                    memoryLowSignal?.Disconnect(applicationMemoryLowEventCallbackDelegate);
+                    memoryLowSignal?.Dispose();
+                    memoryLowSignal = null;
+                }
+
+                if (applicationDeviceOrientationChangedEventCallback != null)
+                {
+                    deviceOrientationChangedSignal?.Disconnect(applicationDeviceOrientationChangedEventCallback);
+                    deviceOrientationChangedSignal?.Dispose();
+                    deviceOrientationChangedSignal = null;
+                }
+
+                if (applicationAppControlEventCallbackDelegate != null)
+                {
+                    appControlSignal?.Disconnect(applicationAppControlEventCallbackDelegate);
+                    appControlSignal?.Dispose();
+                    appControlSignal = null;
+                }
+
+                //Task
+                if (applicationTaskInitEventCallbackDelegate != null)
+                {
+                    taskInitSignal?.Disconnect(applicationTaskInitEventCallbackDelegate);
+                    taskInitSignal?.Dispose();
+                    taskInitSignal = null;
+                }
+
+                if (applicationTaskTerminateEventCallbackDelegate != null)
+                {
+                    taskTerminateSignal?.Disconnect(applicationTaskTerminateEventCallbackDelegate);
+                    taskTerminateSignal?.Dispose();
+                    taskTerminateSignal = null;
+                }
+
+                if (applicationTaskLanguageChangedEventCallbackDelegate != null)
+                {
+                    taskLanguageChangedSignal?.Disconnect(applicationTaskLanguageChangedEventCallbackDelegate);
+                    taskLanguageChangedSignal?.Dispose();
+                    taskLanguageChangedSignal = null;
+                }
+
+                if (applicationTaskRegionChangedEventCallbackDelegate != null)
+                {
+                    taskRegionChangedSignal?.Disconnect(applicationTaskRegionChangedEventCallbackDelegate);
+                    taskRegionChangedSignal?.Dispose();
+                    taskRegionChangedSignal = null;
+                }
+
+                if (applicationTaskBatteryLowEventCallbackDelegate != null)
+                {
+                    taskBatteryLowSignal?.Disconnect(applicationTaskBatteryLowEventCallbackDelegate);
+                    taskBatteryLowSignal?.Dispose();
+                    taskBatteryLowSignal = null;
+                }
+
+                if (applicationTaskMemoryLowEventCallbackDelegate != null)
+                {
+                    taskMemoryLowSignal?.Disconnect(applicationTaskMemoryLowEventCallbackDelegate);
+                    taskMemoryLowSignal?.Dispose();
+                    taskMemoryLowSignal = null;
+                }
+
+                if (applicationTaskDeviceOrientationChangedEventCallback != null)
+                {
+                    taskDeviceOrientationChangedSignal?.Disconnect(applicationTaskDeviceOrientationChangedEventCallback);
+                    taskDeviceOrientationChangedSignal?.Dispose();
+                    taskDeviceOrientationChangedSignal = null;
+                }
+
+                if (applicationTaskAppControlEventCallbackDelegate != null)
+                {
+                    taskAppControlSignal?.Disconnect(applicationTaskAppControlEventCallbackDelegate);
+                    taskAppControlSignal?.Dispose();
+                    taskAppControlSignal = null;
+                }
+
+                window?.Dispose();
+                window = null;
             }
 
-            if (applicationTerminateEventCallbackDelegate != null)
-            {
-                terminateSignal?.Disconnect(applicationTerminateEventCallbackDelegate);
-                terminateSignal?.Dispose();
-                terminateSignal = null;
-            }
-
-            if (applicationPauseEventCallbackDelegate != null)
-            {
-                pauseSignal?.Disconnect(applicationPauseEventCallbackDelegate);
-                pauseSignal?.Dispose();
-                pauseSignal = null;
-            }
-
-            if (applicationResumeEventCallbackDelegate != null)
-            {
-                resumeSignal?.Disconnect(applicationResumeEventCallbackDelegate);
-                resumeSignal?.Dispose();
-                resumeSignal = null;
-            }
-
-            if (applicationResetEventCallbackDelegate != null)
-            {
-                resetSignal?.Disconnect(applicationResetEventCallbackDelegate);
-                resetSignal?.Dispose();
-                resetSignal = null;
-            }
-
-            if (applicationLanguageChangedEventCallbackDelegate != null)
-            {
-                languageChangedSignal?.Disconnect(applicationLanguageChangedEventCallbackDelegate);
-                languageChangedSignal?.Dispose();
-                languageChangedSignal = null;
-            }
-
-            if (applicationRegionChangedEventCallbackDelegate != null)
-            {
-                regionChangedSignal?.Disconnect(applicationRegionChangedEventCallbackDelegate);
-                regionChangedSignal?.Dispose();
-                regionChangedSignal = null;
-            }
-
-            if (applicationBatteryLowEventCallbackDelegate != null)
-            {
-                batteryLowSignal?.Disconnect(applicationBatteryLowEventCallbackDelegate);
-                batteryLowSignal?.Dispose();
-                batteryLowSignal = null;
-            }
-
-            if (applicationMemoryLowEventCallbackDelegate != null)
-            {
-                memoryLowSignal?.Disconnect(applicationMemoryLowEventCallbackDelegate);
-                memoryLowSignal?.Dispose();
-                memoryLowSignal = null;
-            }
-
-            if (applicationDeviceOrientationChangedEventCallback != null)
-            {
-                deviceOrientationChangedSignal?.Disconnect(applicationDeviceOrientationChangedEventCallback);
-                deviceOrientationChangedSignal?.Dispose();
-                deviceOrientationChangedSignal = null;
-            }
-
-            if (applicationAppControlEventCallbackDelegate != null)
-            {
-                appControlSignal?.Disconnect(applicationAppControlEventCallbackDelegate);
-                appControlSignal?.Dispose();
-                appControlSignal = null;
-            }
-
-            //Task
-            if (applicationTaskInitEventCallbackDelegate != null)
-            {
-                taskInitSignal?.Disconnect(applicationTaskInitEventCallbackDelegate);
-                taskInitSignal?.Dispose();
-                taskInitSignal = null;
-            }
-
-            if (applicationTaskTerminateEventCallbackDelegate != null)
-            {
-                taskTerminateSignal?.Disconnect(applicationTaskTerminateEventCallbackDelegate);
-                taskTerminateSignal?.Dispose();
-                taskTerminateSignal = null;
-            }
-
-            if (applicationTaskLanguageChangedEventCallbackDelegate != null)
-            {
-                taskLanguageChangedSignal?.Disconnect(applicationTaskLanguageChangedEventCallbackDelegate);
-                taskLanguageChangedSignal?.Dispose();
-                taskLanguageChangedSignal = null;
-            }
-
-            if (applicationTaskRegionChangedEventCallbackDelegate != null)
-            {
-                taskRegionChangedSignal?.Disconnect(applicationTaskRegionChangedEventCallbackDelegate);
-                taskRegionChangedSignal?.Dispose();
-                taskRegionChangedSignal = null;
-            }
-
-            if (applicationTaskBatteryLowEventCallbackDelegate != null)
-            {
-                taskBatteryLowSignal?.Disconnect(applicationTaskBatteryLowEventCallbackDelegate);
-                taskBatteryLowSignal?.Dispose();
-                taskBatteryLowSignal = null;
-            }
-
-            if (applicationTaskMemoryLowEventCallbackDelegate != null)
-            {
-                taskMemoryLowSignal?.Disconnect(applicationTaskMemoryLowEventCallbackDelegate);
-                taskMemoryLowSignal?.Dispose();
-                taskMemoryLowSignal = null;
-            }
-
-            if (applicationTaskDeviceOrientationChangedEventCallback != null)
-            {
-                taskDeviceOrientationChangedSignal?.Disconnect(applicationTaskDeviceOrientationChangedEventCallback);
-                taskDeviceOrientationChangedSignal?.Dispose();
-                taskDeviceOrientationChangedSignal = null;
-            }
-
-            if (applicationTaskAppControlEventCallbackDelegate != null)
-            {
-                taskAppControlSignal?.Disconnect(applicationTaskAppControlEventCallbackDelegate);
-                taskAppControlSignal?.Dispose();
-                taskAppControlSignal = null;
-            }
-
-            window?.Dispose();
-            window = null;
+            idleCallbackMap = null;
 
             base.Dispose(type);
         }
@@ -685,30 +731,38 @@ namespace Tizen.NUI
         // Callback for Application InitSignal
         private void OnApplicationInit(IntPtr data)
         {
+            Log.Info("NUI", $"[NUI] Preload : {NUIApplication.IsPreload} Support preload time view creation : {NUIApplication.SupportPreInitializedCreation}\n");
+
+            Log.Info("NUI", "[NUI] OnApplicationInit: ProcessorController Initialize");
+            Tizen.Tracer.Begin("[NUI] OnApplicationInit: ProcessorController Initialize");
+            ProcessorController.Instance.Initialize();
+            Tizen.Tracer.End();
+
+            // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
             Log.Info("NUI", "[NUI] OnApplicationInit: DisposeQueue Initialize");
             Tizen.Tracer.Begin("[NUI] OnApplicationInit: DisposeQueue Initialize");
-            // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
             DisposeQueue.Instance.Initialize();
             Tizen.Tracer.End();
 
+            // Note : Preload window might not be changed after application created. GetWindow again.
             Log.Info("NUI", "[NUI] OnApplicationInit: GetWindow");
             Tizen.Tracer.Begin("[NUI] OnApplicationInit: GetWindow");
             Window.Instance = Window.Default = GetWindow();
 
 #if !PROFILE_TV
+            Log.Info("NUI", "[NUI] OnApplicationInit: FocusManager.Instance");
             //tv profile never use default focus indicator, so this is not needed!
             _ = FocusManager.Instance;
 #endif
             Tizen.Tracer.End();
-
-            Log.Info("NUI", "[NUI] OnApplicationInit: Window Show");
-            Tizen.Tracer.Begin("[NUI] OnApplicationInit: Window Show");
             // Notify that the window is displayed to the app core.
             if (NUIApplication.IsPreload)
             {
-                Window.Instance.Show();
+                Log.Info("NUI", "[NUI] OnApplicationInit: Window Show");
+                Tizen.Tracer.Begin("[NUI] OnApplicationInit: Window Show");
+                Window.Default.Show();
+                Tizen.Tracer.End();
             }
-            Tizen.Tracer.End();
 
             Log.Info("NUI", "[NUI] OnApplicationInit: applicationInitEventHandler Invoke");
             Tizen.Tracer.Begin("[NUI] OnApplicationInit: applicationInitEventHandler Invoke");
@@ -1721,13 +1775,76 @@ namespace Tizen.NUI
         /// </remarks>
         public bool AddIdle(System.Delegate func)
         {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
-            System.IntPtr ip2 = Interop.Application.MakeCallback(new System.Runtime.InteropServices.HandleRef(this, ip));
+            bool idleAdded = false; // default value is false
 
-            bool ret = Interop.Application.AddIdle(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip2));
+            if (idleCallbackMap == null || IsDisposedOrQueued)
+            {
+                Tizen.Log.Error("NUI", $"[Error] Application disposed! failed to add idle {func}\n");
+                return false;
+            }
 
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            // Register root idle callback for Tizen.NUI.Application
+            if (rootIdleCallback == null)
+            {
+                rootIdleCallback = RootIdleCallback;
+                System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(rootIdleCallback);
+                System.IntPtr ip2 = Interop.Application.MakeCallback(new System.Runtime.InteropServices.HandleRef(this, ip));
+
+                bool ret = Interop.Application.AddIdle(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip2));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                if (!ret)
+                {
+                    rootIdleCallback = null;
+                    Tizen.Log.Error("NUI", $"[Error] failed to add idle {func}\n");
+                    return false;
+                }
+            }
+
+            if (idleCallbackMap.TryGetValue(func, out bool isValid))
+            {
+                idleAdded = true; // success case
+                if (!isValid)
+                {
+                    idleCallbackMap[func] = true;
+                }
+                else
+                {
+                    Tizen.Log.Debug("NUI", $"Already added idle {func}\n");
+                }
+            }
+            else if (idleCallbackMap.TryAdd(func, true))
+            {
+                idleAdded = true; // success case
+            }
+
+            if (!idleAdded)
+            {
+                Tizen.Log.Error("NUI", $"[Error] failed to add idle {func}\n");
+            }
+
+            return idleAdded;
+        }
+
+        /// <summary>
+        /// Remove delegate what we added by AddIdle.
+        /// </summary>
+        /// <param name="func">The function to remove</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveIdle(System.Delegate func)
+        {
+            if (idleCallbackMap == null || IsDisposedOrQueued)
+            {
+                Tizen.Log.Error("NUI", $"[Error] Application disposed! failed to remove idle {func}\n");
+                return;
+            }
+
+            if (idleCallbackMap.TryGetValue(func, out bool isValid))
+            {
+                if (isValid)
+                {
+                    idleCallbackMap[func] = false;
+                }
+            }
         }
 
         /**
@@ -1835,10 +1952,9 @@ namespace Tizen.NUI
             }
 
             // It will be removed until dali APIs are prepared.
-            Rectangle initRectangle = new Rectangle(0, 0, 0, 0);
+            using Rectangle initRectangle = new Rectangle(0, 0, 0, 0);
 
             Application ret = new Application(Interop.Application.New(argc, argvStr, stylesheet, (int)windowMode, Rectangle.getCPtr(initRectangle), (int)type), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1925,13 +2041,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal bool AddIdle(SWIGTYPE_p_Dali__CallbackBase callback)
-        {
-            bool ret = Interop.Application.AddIdle(SwigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public Window GetWindow()
         {
             if (window != null)
@@ -1943,12 +2052,14 @@ namespace Tizen.NUI
             window = Registry.GetManagedBaseHandleFromNativePtr(nativeWindow) as Window;
             if (window != null)
             {
+                Log.Info("NUI", "[NUI] Use pre-initialized Window\n");
                 HandleRef CPtr = new HandleRef(this, nativeWindow);
                 Interop.BaseHandle.DeleteBaseHandle(CPtr);
                 CPtr = new HandleRef(null, IntPtr.Zero);
             }
             else
             {
+                Log.Info("NUI", "[NUI] Use standalone Window\n");
                 window = new Window(nativeWindow, true);
             }
 

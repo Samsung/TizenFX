@@ -21,7 +21,7 @@ using static Interop;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Provides the ability to control audio/video track.
+    /// Provides the ability to control audio or video track from peer.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
     public sealed class MediaStreamTrack : IDisplayable<WebRTCErrorCode>
@@ -38,7 +38,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets the the of media stream track.
+        /// Gets the type of media stream track.
         /// </summary>
         /// <value><see cref="MediaType"/></value>
         /// <since_tizen> 9 </since_tizen>
@@ -55,7 +55,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets or sets the display to show remote video.
+        /// Gets or sets the display to show video data from peer.
         /// </summary>
         /// <value>A <see cref="Multimedia.Display"/> that specifies the display.</value>
         /// <remarks>

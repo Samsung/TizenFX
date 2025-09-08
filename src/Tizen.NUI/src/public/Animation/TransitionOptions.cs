@@ -29,7 +29,7 @@ namespace Tizen.NUI
     /// <since_tizen> 9 </since_tizen>
     public class TransitionOptions : IDisposable
     {
-        private bool disposed = false;
+        private bool disposed;
 
         /// <summary>
         /// Initializes the TransitionOptions class.
@@ -46,7 +46,7 @@ namespace Tizen.NUI
         /// This is property for Page Transition.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public string TransitionTag { set; get; } = null;
+        public string TransitionTag { set; get; }
 
         /// <summary>
         /// Property for Page transition.
@@ -54,13 +54,13 @@ namespace Tizen.NUI
         /// Default value is false
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public bool TransitionWithChild { set; get; } = false;
+        public bool TransitionWithChild { set; get; }
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Dispose.
+        /// Releases unmanaged and optionally managed resources.
         /// </summary>
-        /// <param name="disposing"></param>
+        /// <param name="disposing">true to release both managed and unmanaged resources. false to release only unmanaged resources.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {

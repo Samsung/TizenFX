@@ -60,37 +60,39 @@ namespace Tizen.NUI.Components
         /// TimeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TimeProperty = BindableProperty.Create(nameof(Time), typeof(DateTime), typeof(TimePicker), default(DateTime), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TimeProperty = null;
+        internal static void SetInternalTimeProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (TimePicker)bindable;
             if (newValue != null)
             {
+                var instance = (TimePicker)bindable;
                 instance.InternalTime = (DateTime)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalTimeProperty(BindableObject bindable)
         {
             var instance = (TimePicker)bindable;
             return instance.InternalTime;
-        });
+        }
 
         /// <summary>
         /// Is24HourViewProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty Is24HourViewProperty = BindableProperty.Create(nameof(Is24HourView), typeof(bool), typeof(TimePicker), default(bool), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty Is24HourViewProperty = null;
+        internal static void SetInternalIs24HourViewProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (TimePicker)bindable;
             if (newValue != null)
             {
+                var instance = (TimePicker)bindable;
                 instance.InternalIs24HourView = (bool)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalIs24HourViewProperty(BindableObject bindable)
         {
             var instance = (TimePicker)bindable;
             return instance.InternalIs24HourView;
-        });
+        }
 
         private bool isAm;
         private bool is24HourView;
@@ -99,6 +101,17 @@ namespace Tizen.NUI.Components
         private Picker hourPicker;
         private Picker minutePicker;
         private Picker ampmPicker;
+
+        static TimePicker()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                TimeProperty = BindableProperty.Create(nameof(Time), typeof(DateTime), typeof(TimePicker), default(DateTime),
+                    propertyChanged: SetInternalTimeProperty, defaultValueCreator: GetInternalTimeProperty);
+                Is24HourViewProperty = BindableProperty.Create(nameof(Is24HourView), typeof(bool), typeof(TimePicker), default(bool),
+                    propertyChanged: SetInternalIs24HourViewProperty, defaultValueCreator: GetInternalIs24HourViewProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of TimePicker.
@@ -171,11 +184,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (DateTime)GetValue(TimeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (DateTime)GetValue(TimeProperty);
+                }
+                else
+                {
+                    return InternalTime;
+                }
             }
             set
             {
-                SetValue(TimeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TimeProperty, value);
+                }
+                else
+                {
+                    InternalTime = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -219,11 +246,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (bool)GetValue(Is24HourViewProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(Is24HourViewProperty);
+                }
+                else
+                {
+                    return InternalIs24HourView;
+                }
             }
             set
             {
-                SetValue(Is24HourViewProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(Is24HourViewProperty, value);
+                }
+                else
+                {
+                    InternalIs24HourView = value;
+                }
                 NotifyPropertyChanged();
             }
         }

@@ -17,8 +17,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI
 {
@@ -37,12 +39,14 @@ namespace Tizen.NUI
         private EventThreadCallback eventThreadCallback;
         private EventThreadCallback.CallbackDelegate disposeQueueProcessDisposablesDelegate;
 
-        private bool initialized = false;
-        private bool processorRegistered = false;
-        private bool eventThreadCallbackTriggered = false;
+        private Dictionary<string, uint> typeCounter; // Only be used for debug
 
-        private bool incrementalDisposeSupported = false;
-        private bool fullCollectRequested = false;
+        private bool initialized;
+        private bool processorRegistered;
+        private bool eventThreadCallbackTriggered;
+
+        private bool incrementalDisposeSupported;
+        private bool fullCollectRequested;
 
         private DisposeQueue()
         {
@@ -83,8 +87,6 @@ namespace Tizen.NUI
                 disposeQueueProcessDisposablesDelegate = new EventThreadCallback.CallbackDelegate(ProcessDisposables);
                 eventThreadCallback = new EventThreadCallback(disposeQueueProcessDisposablesDelegate);
                 initialized = true;
-
-                DebugFileLogging.Instance.WriteLog("DiposeTest START");
             }
         }
 
@@ -97,9 +99,14 @@ namespace Tizen.NUI
 
             if (initialized && eventThreadCallback != null)
             {
-                if (!eventThreadCallbackTriggered)
+                bool triggerRequired;
+                lock (listLock)
                 {
+                    triggerRequired = !eventThreadCallbackTriggered;
                     eventThreadCallbackTriggered = true;
+                }
+                if (triggerRequired)
+                {
                     eventThreadCallback.Trigger();
                 }
             }
@@ -119,9 +126,14 @@ namespace Tizen.NUI
 
             if (initialized && eventThreadCallback != null)
             {
-                if (!eventThreadCallbackTriggered)
+                bool triggerRequired;
+                lock (listLock)
                 {
+                    triggerRequired = !eventThreadCallbackTriggered;
                     eventThreadCallbackTriggered = true;
+                }
+                if (triggerRequired)
+                {
                     eventThreadCallback.Trigger();
                 }
             }
@@ -137,13 +149,12 @@ namespace Tizen.NUI
 
         public void ProcessDisposables()
         {
-            eventThreadCallbackTriggered = false;
 
             lock (listLock)
             {
+                eventThreadCallbackTriggered = false;
                 if (disposables.Count > 0)
                 {
-                    DebugFileLogging.Instance.WriteLog($"Newly add {disposables.Count} count of disposables. Total disposables count is {incrementallyDisposedQueue.Count + disposables.Count}.\n");
                     // Move item from end, due to the performance issue.
                     while (disposables.Count > 0)
                     {
@@ -172,7 +183,7 @@ namespace Tizen.NUI
             var disposeCount = fullCollectRequested ? incrementallyDisposedQueue.Count
                                                     : Math.Min(incrementallyDisposedQueue.Count, Math.Max(minimumIncrementalCount, incrementallyDisposedQueue.Count * minimumIncrementalRate / 100));
 
-            DebugFileLogging.Instance.WriteLog((fullCollectRequested ? "Fully" : "Incrementally") + $" dispose {disposeCount} disposables. Will remained disposables count is {incrementallyDisposedQueue.Count - disposeCount}.\n");
+            NUILog.Debug($"DisposeCount : {disposeCount} FullGC required : {fullCollectRequested}");
 
             fullCollectRequested = false;
 
@@ -183,9 +194,10 @@ namespace Tizen.NUI
                 var disposable = incrementallyDisposedQueue.Last();
                 incrementallyDisposedQueue.RemoveAt(incrementallyDisposedQueue.Count - 1);
 
-                DebugFileLogging.Instance.WriteLog($"disposable.Dispose(); type={disposable.GetType().FullName}, hash={disposable.GetHashCode()}");
+                AppendTypeCounter(disposable.GetType().FullName);
                 disposable.Dispose();
             }
+            PrintAndResetTypeCounter();
 
             if (incrementallyDisposedQueue.Count > 0)
             {
@@ -196,8 +208,34 @@ namespace Tizen.NUI
                     ProcessorController.Instance.Awake();
                 }
             }
+        }
 
-            DebugFileLogging.Instance.WriteLog($"Incrementally dispose finished.\n");
+        [Conditional("NUI_DEBUG_ON")]
+        private void AppendTypeCounter(string typeName)
+        {
+            if (typeCounter == null)
+            {
+                typeCounter = new();
+            }
+
+            if (typeCounter.TryGetValue(typeName, out uint counter))
+            {
+                typeCounter[typeName] = ++counter;
+            }
+            else
+            {
+                typeCounter.Add(typeName, 1u);
+            }
+        }
+
+        [Conditional("NUI_DEBUG_ON")]
+        private void PrintAndResetTypeCounter()
+        {
+            foreach (var keyvalue in typeCounter)
+            {
+                Tizen.Log.Debug("NUI", $" --- Type [{keyvalue.Key}] dispose [{keyvalue.Value}] times");
+            }
+            typeCounter = null;
         }
     }
 }

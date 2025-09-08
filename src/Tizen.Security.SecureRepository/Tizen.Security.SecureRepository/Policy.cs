@@ -20,16 +20,16 @@ using static Interop;
 namespace Tizen.Security.SecureRepository
 {
     /// <summary>
-    /// A class for a policy for storing key, certificate, and binary data.
+    /// Stores policy for key, certificate, and binary data.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Policy
     {
         /// <summary>
-        /// A default constructor of Policy with default policy.
+        /// Initializes an instance of Policy class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <remarks>The default value for Password is null and the default value for Extractabl is false.</remarks>
+        /// <remarks>Default value for Password is null and default value for Extractable is false.</remarks>
         public Policy()
         {
             Password = null;
@@ -37,10 +37,10 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// A constructor of Key that takes the password and the flag for extractable.
+        /// Initializes an instance of Policy class with password and extractable flag.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="password">Used to encrypt data secure repository.</param>
+        /// <param name="password">Used to encrypt data in secure repository.</param>
         /// <param name="extractable">If true, key may be extracted from the secure repository.</param>
         public Policy(String password, bool extractable)
         {
@@ -49,9 +49,12 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// Used to encrypt data secure repository. If it is not null, the data
-        /// (or key, or certificate) is stored encrypted with this password inside secure repository.
+        /// Gets and sets password.
         /// </summary>
+        /// <value>
+        /// Used to encrypt data in secure repository. If it is not null, the data
+        /// (or key, or certificate) is stored encrypted with this password inside secure repository.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public String Password
         {
@@ -59,8 +62,11 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// If true, key may be extracted from the secure repository.
+        /// Gets and sets Extractable flag.
         /// </summary>
+        /// <value>
+        /// Extractable flag. If true, key may be extracted from the secure repository.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public bool Extractable
         {

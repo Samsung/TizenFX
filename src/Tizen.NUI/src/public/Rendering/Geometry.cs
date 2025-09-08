@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,10 +20,13 @@ namespace Tizen.NUI
 {
     /// <summary>
     /// Geometry is handle to an object that can be used to define a geometric elements.
+    /// The geometry is defined by VertexBuffer and IndexBuffer.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class Geometry : BaseHandle
+    public partial class Geometry : BaseHandle
     {
+        private static int aliveCount;
+
         /// <summary>
         /// Create an instance of Geometry.
         /// </summary>
@@ -35,64 +38,33 @@ namespace Tizen.NUI
 
         internal Geometry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            ++aliveCount;
+        }
+
+        /// <summary>,
+        /// Sets and gets PrimitiveType
+        /// </summary>
+        /// <remarks>
+        /// The PremitiveType should be matched with Vertex and Index Buffer.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PrimitiveType PrimitiveType
+        {
+            get
+            {
+                return GetPrimitiveType();
+            }
+            set
+            {
+                SetPrimitiveType(value);
+            }
         }
 
         /// <summary>
-        /// Enumeration for the description of the type of geometry,
-        /// used to determine how the coordinates will be used.
+        /// Gets the number of currently alived Geometry object.
         /// </summary>
-        /// <returns>Type of primitives this geometry contains.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public enum Type
-        {
-            /// <summary>
-            /// Individual points.
-            /// </summary>
-            POINTS,
-
-            /// <summary>
-            /// Individual lines (made of 2 points each).
-            /// </summary>
-            LINES,
-
-            /// <summary>
-            /// A strip of lines (made of 1 point each) which also joins the first and last point.
-            /// </summary>
-            LINE_LOOP,
-
-            /// <summary>
-            /// A strip of lines (made of 1 point each).
-            /// </summary>
-            LINE_STRIP,
-
-            /// <summary>
-            /// Individual triangles (made of 3 points each).
-            /// </summary>
-            TRIANGLES,
-
-            /// <summary>
-            /// A fan of triangles around a centre point (after the first triangle, following triangles need only 1 point).
-            /// </summary>
-            TRIANGLE_FAN,
-
-            /// <summary>
-            /// A strip of triangles (after the first triangle, following triangles need only 1 point).
-            /// </summary>
-            TRIANGLE_STRIP
-        }
-
-        /// <summary>
-        /// Adds a PropertyBuffer to be used as source of geometry vertices.
-        /// </summary>
-        /// <param name="vertexBuffer">PropertyBuffer to be used as source of geometry vertices.</param>
-        /// <returns>Index of the newly added buffer.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public uint AddVertexBuffer(PropertyBuffer vertexBuffer)
-        {
-            uint ret = Interop.Geometry.AddVertexBuffer(SwigCPtr, PropertyBuffer.getCPtr(vertexBuffer));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         /// <summary>
         /// Adds a VertexBuffer to be used as source of geometry vertices.
@@ -147,11 +119,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets the type of primitives this geometry contains.
         /// </summary>
-        /// <param name="geometryType">Array of indices.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void SetType(Geometry.Type geometryType)
+        /// <param name="primitiveType">Array of indices.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private void SetPrimitiveType(PrimitiveType primitiveType)
         {
-            Interop.Geometry.SetType(SwigCPtr, (int)geometryType);
+            Interop.Geometry.SetType(SwigCPtr, (int)primitiveType);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -159,12 +131,26 @@ namespace Tizen.NUI
         /// Gets the type of primitives this geometry contains.
         /// </summary>
         /// <returns>Type of primitives this geometry contains.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public new Geometry.Type GetType()
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private PrimitiveType GetPrimitiveType()
         {
-            Geometry.Type ret = (Geometry.Type)Interop.Geometry.GetType(SwigCPtr);
+            PrimitiveType ret = (PrimitiveType)Interop.Geometry.GetType(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            --aliveCount;
+
+            base.Dispose(type);
         }
 
         /// This will not be public opened.

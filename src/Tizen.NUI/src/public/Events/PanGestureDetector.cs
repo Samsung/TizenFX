@@ -36,7 +36,6 @@ namespace Tizen.NUI
         public PanGestureDetector() : this(Interop.PanGestureDetector.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
         /// <summary>
@@ -52,10 +51,28 @@ namespace Tizen.NUI
 
         internal PanGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
+            Initialized();
         }
 
         internal PanGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
+            Initialized();
+        }
+
+        private void Initialized()
+        {
+            if (HasBody())
+            {
+                if (GestureOptions.Instance.GetPanGestureMinimumTouchesRequired() > 0)
+                {
+                    SetMinimumTouchesRequired(GestureOptions.Instance.GetPanGestureMinimumTouchesRequired());
+                }
+
+                if (GestureOptions.Instance.GetPanGestureMaximumTouchesRequired() > 0)
+                {
+                    SetMaximumTouchesRequired(GestureOptions.Instance.GetPanGestureMaximumTouchesRequired());
+                }
+            }
         }
 
         private DaliEventHandler<object, DetectedEventArgs> detectedEventHandler;
@@ -98,6 +115,7 @@ namespace Tizen.NUI
             }
         }
 
+        private static Radian directionLeft;
         /// <summary>
         /// For a left pan (-PI Radians).
         /// </summary>
@@ -107,13 +125,16 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.PanGestureDetector.DirectionLeftGet();
-                Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::PanGestureDetector::DIRECTION_LEFT(-Math::PI)
+                if (null == directionLeft)
+                {
+                    directionLeft = new Radian((float)-Math.PI);
+                }
+                return directionLeft;
             }
         }
 
+        private static Radian directionRight;
         /// <summary>
         /// For a right pan (0 Radians).
         /// </summary>
@@ -123,13 +144,16 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.PanGestureDetector.DirectionRightGet();
-                Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::PanGestureDetector::DIRECTION_RIGHT(0.0f)
+                if (null == directionRight)
+                {
+                    directionRight = new Radian(0);
+                }
+                return directionRight;
             }
         }
 
+        private static Radian directionUp;
         /// <summary>
         /// For an up pan (-0.5 * PI Radians).
         /// </summary>
@@ -139,13 +163,16 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.PanGestureDetector.DirectionUpGet();
-                Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::PanGestureDetector::DIRECTION_UP(-0.5f * Math::PI)
+                if (null == directionUp)
+                {
+                    directionUp = new Radian(-0.5f * (float)Math.PI);
+                }
+                return directionUp;
             }
         }
 
+        private static Radian directionDown;
         /// <summary>
         /// For a down pan (0.5 * PI Radians).
         /// </summary>
@@ -155,13 +182,16 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.PanGestureDetector.DirectionDownGet();
-                Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::PanGestureDetector::DIRECTION_DOWN(0.5f * Math::PI)
+                if (null == directionDown)
+                {
+                    directionDown = new Radian(0.5f * (float)Math.PI);
+                }
+                return directionDown;
             }
         }
 
+        private static Radian directionHorizontal;
         /// <summary>
         /// For a left and right pan (PI Radians). Useful for AddDirection().
         /// </summary>
@@ -171,13 +201,16 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.PanGestureDetector.DirectionHorizontalGet();
-                Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::PanGestureDetector::DIRECTION_HORIZONTAL(-Math::PI)
+                if (null == directionHorizontal)
+                {
+                    directionHorizontal = new Radian((float)-Math.PI);
+                }
+                return directionHorizontal;
             }
         }
 
+        private static Radian directionVertical;
         /// <summary>
         /// For an up and down pan (-0.5 * PI Radians). Useful for AddDirection().
         /// </summary>
@@ -187,13 +220,16 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.PanGestureDetector.DirectionVerticalGet();
-                Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::PanGestureDetector::DIRECTION_VERTICAL(-0.5f * Math::PI)
+                if (null == directionVertical)
+                {
+                    directionVertical = new Radian(-0.5f * (float)Math.PI);
+                }
+                return directionVertical;
             }
         }
 
+        private static Radian defaultThreshold;
         /// <summary>
         /// The default threshold is PI * 0.25 radians (or 45 degrees).
         /// </summary>
@@ -203,10 +239,12 @@ namespace Tizen.NUI
         {
             get
             {
-                global::System.IntPtr cPtr = Interop.PanGestureDetector.DefaultThresholdGet();
-                Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
+                //this originates to Dali::PanGestureDetector::DEFAULT_THRESHOLD(0.25f * Math::PI)
+                if (null == defaultThreshold)
+                {
+                    defaultThreshold = new Radian(0.25f * (float)Math.PI);
+                }
+                return defaultThreshold;
             }
         }
 

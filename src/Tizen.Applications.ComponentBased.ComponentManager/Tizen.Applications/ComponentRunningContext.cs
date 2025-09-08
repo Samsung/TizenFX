@@ -23,7 +23,8 @@ using System.Threading.Tasks;
 namespace Tizen.Applications.ComponentBased
 {
     /// <summary>
-    /// This class provides methods and properties to get information of the running component.
+    /// Represents the context of a running component, providing methods and properties
+    /// to retrieve information about the component's state and behavior.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class ComponentRunningContext : IDisposable
@@ -39,13 +40,14 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// A constructor of ComponentRunningContext that takes the component ID.
+        /// Initializes a new instance of the <see cref="ComponentRunningContext"/> class
+        /// with a specified component ID, retrieving the context handle associated with it.
         /// </summary>
-        /// <param name="componentId">Component ID.</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of the "component not exist" error or the system error.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <param name="componentId">The ID of the component.</param>
+        /// <exception cref="ArgumentException">Thrown when the component ID is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the component does not exist or a system error occurs.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when memory allocation fails.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied to access the component.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         /// <since_tizen> 6 </since_tizen>
         public ComponentRunningContext(string componentId)
@@ -61,7 +63,7 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Destructor of the class.
+        /// Finalizes an instance of the <see cref="ComponentRunningContext"/> class.
         /// </summary>
         ~ComponentRunningContext()
         {
@@ -69,7 +71,7 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Enumeration for the component state.
+        /// Represents the possible states of a component.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public enum ComponentState
@@ -108,6 +110,7 @@ namespace Tizen.Applications.ComponentBased
         /// <summary>
         /// Gets the ID of the component.
         /// </summary>
+        /// <returns>The component ID as a string.</returns>
         /// <since_tizen> 6 </since_tizen>
         public string ComponentId
         {
@@ -129,7 +132,7 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Gets the application ID of the component.
+        /// Gets the application ID associated with the component.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string ApplicationId
@@ -146,7 +149,7 @@ namespace Tizen.Applications.ComponentBased
                 return appId;
             }
         }
-        
+
         /// <summary>
         /// Gets the instance ID of the component.
         /// </summary>
@@ -167,7 +170,7 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Gets the state of the component.
+        /// Gets the current state of the component.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public ComponentState State
@@ -186,8 +189,9 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Checks whether the component is terminated or not.
+        /// Checks whether the component has been terminated.
         /// </summary>
+        /// <returns><c>true</c> if the component is terminated; otherwise, <c>false</c>.</returns>
         /// <since_tizen> 6 </since_tizen>
         public bool IsTerminated
         {
@@ -205,8 +209,9 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Checks whether the component is running as sub component of the group.
+        /// Checks whether the component is running as a sub-component of a group.
         /// </summary>
+        /// <returns><c>true</c> if the component is a sub-component; otherwise, <c>false</c>.</returns>
         /// <since_tizen> 6 </since_tizen>
         public bool IsSubComponent
         {
@@ -224,12 +229,12 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Resumes the running component.
+        /// Resumes the execution of the running component.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of the system error.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when a system error occurs.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when memory allocation fails.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied to resume the component.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <since_tizen> 6 </since_tizen>
         public void Resume()
@@ -237,17 +242,17 @@ namespace Tizen.Applications.ComponentBased
             Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentManagerResumeComponent(_contextHandle);
             if (err != Interop.ComponentManager.ErrorCode.None)
             {
-                throw ComponentManager.ComponentManagerErrorFactory.GetException(err, "Failed to Send the resume request.");
+                throw ComponentManager.ComponentManagerErrorFactory.GetException(err, "Failed to send the resume request.");
             }
         }
 
         /// <summary>
-        /// Pauses the running component.
+        /// Pauses the execution of the running component.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of the system error.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when a system error occurs.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when memory allocation fails.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied to pause the component.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <since_tizen> 6 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -261,12 +266,12 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Terminates the running component.
+        /// Terminates the execution of the running component.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of the system error.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when a system error occurs.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when memory allocation fails.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied to terminate the component.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <since_tizen> 6 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -280,7 +285,7 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Releases all resources used by the ComponentInfo class.
+        /// Releases all resources used by the <see cref="ComponentRunningContext"/> class.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public void Dispose()
@@ -290,9 +295,9 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Releases all resources used by the ComponentInfo class.
+        /// Releases all resources used by the <see cref="ComponentRunningContext"/> class.
         /// </summary>
-        /// <param name="disposing">Disposing</param>
+        /// <param name="disposing"><c>true</c> to release managed resources; otherwise, <c>false</c>.</param>
         /// <since_tizen> 6 </since_tizen>
         private void Dispose(bool disposing)
         {

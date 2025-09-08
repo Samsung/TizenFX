@@ -27,14 +27,14 @@ namespace Tizen.Sensor
         private static string ActivityDetectorKey = "http://tizen.org/feature/sensor.activity_recognition";
 
         /// <summary>
-        /// Gets the state of the walking activity detector.
+        /// Get the state of the walking activity detector as enum <see cref="DetectorState"/> type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The walking state. </value>
+        /// <value> The walking state, <seealso cref="DetectorState"/>. </value>
         public DetectorState Walking { get; private set; } = DetectorState.Unknown;
 
         /// <summary>
-        /// Returns true or false based on whether the walking activity detector is supported by the device.
+        /// Return true or false based on whether the walking activity detector is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
@@ -48,7 +48,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Returns the number of walking activity detectors available on the device.
+        /// Return the number of walking activity detectors available on the system.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The count of walking activity detectors. </value>
@@ -62,7 +62,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tizen.Sensor.WalkingActivityDetector"/> class.
+        /// Initialize a new instance of the <see cref="Tizen.Sensor.WalkingActivityDetector"/> class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.activity_recognition</feature>
@@ -70,7 +70,8 @@ namespace Tizen.Sensor
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular walking activity detector in case of multiple sensors.
+        /// Index refers to a particular walking activity detector in case of multiple sensors.
+        /// Default value is 0.
         /// </param>
         public WalkingActivityDetector(uint index = 0) : base(index)
         {

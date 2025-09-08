@@ -28,6 +28,16 @@ namespace Tizen.NUI
     [Binding.TypeConverter(typeof(Vector4TypeConverter))]
     public class Vector4 : Disposable, ICloneable
     {
+        private static readonly Vector4 one = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
+        private static readonly Vector4 zero = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+        private static readonly Vector4 xaxis = new Vector4(1.0f, 0.0f, 0.0f, 0.0f);
+        private static readonly Vector4 yaxis = new Vector4(0.0f, 1.0f, 0.0f, 0.0f);
+        private static readonly Vector4 zaxis = new Vector4(0.0f, 0.0f, 1.0f, 0.0f);
+
+        internal static new void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
 
         /// <summary>
         /// The default constructor initializes the vector to 0.
@@ -81,7 +91,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Vector4(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Vector4(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 
@@ -91,82 +101,41 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         internal delegate void Vector4ChangedCallback(float x, float y, float z, float w);
-        private Vector4ChangedCallback callback = null;
+        private Vector4ChangedCallback callback;
 
         /// <summary>
-        /// (1.0f,1.0f,1.0f,1.0f).
+        /// Returns a Vector2 instance where both the x and y components are set to 1.0f.
+        /// Actual value is (1.0f,1.0f,1.0f,1.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector4 One
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector4.OneGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector4 One => one;
 
         /// <summary>
-        /// (1.0f,0.0f,0.0f,0.0f).
+        /// The vector representing the x-axis.
+        /// Actual value is (1.0f,0.0f,0.0f,0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector4 XAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector4.XaxisGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector4 XAxis => xaxis;
 
         /// <summary>
-        /// (0.0f,1.0f,0.0f,0.0f).
+        /// The vector representing the y-axis.
+        /// Actual value is (0.0f,1.0f,0.0f,0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector4 YAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector4.YaxisGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector4 YAxis => yaxis;
 
         /// <summary>
-        /// (0.0f,0.0f,1.0f,0.0f).
+        /// The vector representing the z-axis.
+        /// Actual value is (0.0f,0.0f,1.0f,0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector4 ZAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector4.ZaxisGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
-
+        public static Vector4 ZAxis => zaxis;
         /// <summary>
-        /// (0.0f, 0.0f, 0.0f, 0.0f).
+        /// A Vector2 object representing the zero vector.
+        /// Actual value is (0.0f, 0.0f, 0.0f, 0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector4 Zero
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector4.ZeroGet();
-                Vector4 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector4(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector4 Zero => zero;
 
         /// <summary>
         /// The x component.
@@ -177,7 +146,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.X = 0.1f; 
+        /// vector4.X = 0.1f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// Vector4 vector4 = new Vector4(x, y, z, w);
@@ -210,7 +179,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.R = 0.1f; 
+        /// vector4.R = 0.1f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
         /// Vector4 vector4 = new Vector4(r, g, b, a);
@@ -243,7 +212,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.S = 0.1f; 
+        /// vector4.S = 0.1f;
         /// // USE like this
         /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
         /// Vector4 vector4 = new Vector4(s, t, p, q);
@@ -276,7 +245,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.Y = 0.5f; 
+        /// vector4.Y = 0.5f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// Vector4 vector4 = new Vector4(x, y, z, w);
@@ -309,7 +278,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.G = 0.5f; 
+        /// vector4.G = 0.5f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
         /// Vector4 vector4 = new Vector4(r, g, b, a);
@@ -342,7 +311,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.T = 0.5f; 
+        /// vector4.T = 0.5f;
         /// // USE like this
         /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
         /// Vector4 vector4 = new Vector4(s, t, p, q);
@@ -375,7 +344,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.Z = 0.9f; 
+        /// vector4.Z = 0.9f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// Vector4 vector4 = new Vector4(x, y, z, w);
@@ -408,7 +377,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.B = 0.9f; 
+        /// vector4.B = 0.9f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
         /// Vector4 vector4 = new Vector4(r, g, b, a);
@@ -441,7 +410,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.P = 0.9f; 
+        /// vector4.P = 0.9f;
         /// // USE like this
         /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
         /// Vector4 vector4 = new Vector4(s, t, p, q);
@@ -474,7 +443,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.W = 1.0f; 
+        /// vector4.W = 1.0f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// Vector4 vector4 = new Vector4(x, y, z, w);
@@ -507,7 +476,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.A = 1.0f; 
+        /// vector4.A = 1.0f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
         /// Vector4 vector4 = new Vector4(r, g, b, a);
@@ -540,7 +509,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
-        /// vector4.Q = 1.0f; 
+        /// vector4.Q = 1.0f;
         /// // USE like this
         /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
         /// Vector4 vector4 = new Vector4(s, t, p, q);
@@ -711,6 +680,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Returns the length of the xyz components of vector.
+        /// </summary>
+        /// <returns>The length of xyz components.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float Length3()
+        {
+            float ret = Interop.Vector4.Length3(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Returns the length of the vector squared.<br />
         /// This is faster than using Length() when performing
         /// threshold checks as it avoids use of the square root.<br />
@@ -720,6 +701,20 @@ namespace Tizen.NUI
         public float LengthSquared()
         {
             float ret = Interop.Vector4.LengthSquared(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Returns the length of the vector squared.<br />
+        /// This is faster than using Length() when performing
+        /// threshold checks as it avoids use of the square root.<br />
+        /// </summary>
+        /// <returns>The length of xyz components vector squared.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float LengthSquared3()
+        {
+            float ret = Interop.Vector4.LengthSquared3(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -736,6 +731,17 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Normalizes the vector of xyz components.<br />
+        /// Sets the vector to unit length whilst maintaining its direction.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Normalize3()
+        {
+            Interop.Vector4.Normalize3(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Clamps the vector between minimum and maximum vectors.
         /// </summary>
         /// <param name="min">The minimum vector.</param>
@@ -747,52 +753,151 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Calculates the dot product of this vector and a Vector3.
+        /// The W component of this vector is not used in the calculation.
+        /// </summary>
+        /// <param name="other">The other Vector3.</param>
+        /// <returns>The dot product of the two vectors.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public object Clone() => new Vector4(X, Y, Z, W);
-
-        internal static Vector4 GetVector4FromPtr(global::System.IntPtr cPtr)
-        {
-            Vector4 ret = new Vector4(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal SWIGTYPE_p_float AsFloat()
-        {
-            global::System.IntPtr cPtr = Interop.Vector4.AsFloat(SwigCPtr);
-            SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal float Dot(Vector3 other)
+        public float Dot(Vector3 other)
         {
             float ret = Interop.Vector4.DotWithVector3(SwigCPtr, Vector3.getCPtr(other));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal float Dot(Vector4 other)
+        /// <summary>
+        /// Calculates the dot product of this vector and another Vector4.
+        /// </summary>
+        /// <param name="other">The other Vector4.</param>
+        /// <returns>The dot product of the two vectors.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float Dot(Vector4 other)
         {
             float ret = Interop.Vector4.Dot(SwigCPtr, Vector4.getCPtr(other));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal float Dot4(Vector4 other)
+        /// <summary>
+        /// Calculates the 3D dot product of this vector and another Vector4 using only the x, y, and z components.
+        /// a.x*b.x + a.y*b.y + a.z*b.z (without w)
+        /// </summary>
+        /// <param name="other">The other Vector4.</param>
+        /// <returns>The 3D dot product of the two vectors.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float Dot3(Vector4 other)
         {
-            float ret = Interop.Vector4.Dot4(SwigCPtr, Vector4.getCPtr(other));
+            float ret = Interop.Vector4.Dot3(SwigCPtr, Vector4.getCPtr(other));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal Vector4 Cross(Vector4 other)
+        /// <summary>
+        /// Calculates the cross product of this vector and another Vector4.
+        /// The W component is treated as 0.0f for the calculation, and the resulting vector's W component will be 0.0f.
+        /// </summary>
+        /// <param name="other">The other Vector4.</param>
+        /// <returns>The cross product of the two vectors.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector4 Cross(Vector4 other)
         {
             Vector4 ret = new Vector4(Interop.Vector4.Cross(SwigCPtr, Vector4.getCPtr(other)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        /// <summary>
+        /// Calculates the Euclidean distance between two 4D vectors.
+        /// </summary>
+        /// <param name="a">The first vector.</param>
+        /// <param name="b">The second vector.</param>
+        /// <returns>The distance between vector a and b.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float Distance(Vector4 a, Vector4 b)
+        {
+            float dx = a.X - b.X;
+            float dy = a.Y - b.Y;
+            float dz = a.Z - b.Z;
+            float dw = a.W - b.W;
+            return (float)System.Math.Sqrt(dx * dx + dy * dy + dz * dz + dw * dw);
+        }
+
+        /// <summary>
+        /// Calculates the 3D Euclidean distance between the xyz components of two 4D vectors.
+        /// The W component is ignored.
+        /// </summary>
+        /// <param name="a">The first vector.</param>
+        /// <param name="b">The second vector.</param>
+        /// <returns>The 3D distance between the xyz components of vector a and b.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float Distance3(Vector4 a, Vector4 b)
+        {
+            float dx = a.X - b.X;
+            float dy = a.Y - b.Y;
+            float dz = a.Z - b.Z;
+            return (float)System.Math.Sqrt(dx * dx + dy * dy + dz * dz);
+        }
+
+        /// <summary>
+        /// Returns a new vector that is the normalized version of the specified 4D vector.
+        /// The original vector remains unchanged.
+        /// </summary>
+        /// <param name="vector">The vector to normalize.</param>
+        /// <returns>A new Vector4 with a magnitude of 1 in the same direction.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector4 Normalize(Vector4 vector)
+        {
+            float length = vector.Length();
+            if (length > 1e-6f) // Epsilon to avoid division by zero
+            {
+                return new Vector4(vector.X / length, vector.Y / length, vector.Z / length, vector.W / length);
+            }
+            return Vector4.Zero;
+        }
+
+        /// <summary>
+        /// Returns a new vector that is the normalized version of the xyz components of the specified 4D vector.
+        /// The original vector remains unchanged. The W component of the result is the same as the original vector's W component.
+        /// </summary>
+        /// <param name="vector">The vector whose xyz components are to be normalized.</param>
+        /// <returns>A new Vector4 with xyz components of magnitude 1 and the original W component.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector4 Normalize3(Vector4 vector)
+        {
+            float length3 = vector.Length3();
+            if (length3 > 1e-6f) // Epsilon to avoid division by zero
+            {
+                return new Vector4(vector.X / length3, vector.Y / length3, vector.Z / length3, vector.W);
+            }
+            return new Vector4(0, 0, 0, vector.W);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new Vector4(X, Y, Z, W);
+
+        internal void Reset() => Reset(0, 0, 0, 0);
+
+        internal void Reset(UIColor color) => Reset(color.R, color.G, color.B, color.A);
+
+        internal void Reset(UICorner corner) => Reset(corner.TopLeft, corner.TopRight, corner.BottomRight, corner.BottomLeft);
+
+        internal void Reset(float x, float y, float z, float w)
+        {
+            Interop.Vector4.SetAll(SwigCPtr, x, y, z, w);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]

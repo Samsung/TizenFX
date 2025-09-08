@@ -357,65 +357,6 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"ImageViewIsResourceReady END (OK)");
         }
-
-		[Test]
-        [Category("P1")]
-        [Description("ImageView ApplyCornerRadius.")]
-        [Property("SPEC", "Tizen.NUI.ImageView.ApplyCornerRadius M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ImageViewApplyCornerRadius()
-        {
-            tlog.Debug(tag, $"ImageViewApplyCornerRadius START");
-
-            var testingTarget = new ImageView();
-            Assert.IsNotNull(testingTarget, "Can't create success object ImageView");
-            Assert.IsInstanceOf<ImageView>(testingTarget, "Should be an instance of ImageView type.");
-            
-            try
-            {
-                testingTarget.ApplyCornerRadius();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ImageViewApplyCornerRadius END (OK)");
-        }
-		[Test]
-        [Category("P1")]
-        [Description("ImageView ApplyCornerRadius.")]
-        [Property("SPEC", "Tizen.NUI.ImageView.ApplyCornerRadius M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ImageViewApplyCornerRadiusWithBackgroundExtraData()
-        {
-            tlog.Debug(tag, $"ImageViewApplyCornerRadiusWithBackgroundExtraData START");
-
-            var testingTarget = new ImageView();
-            Assert.IsNotNull(testingTarget, "Can't create success object ImageView");
-            Assert.IsInstanceOf<ImageView>(testingTarget, "Should be an instance of ImageView type.");
-
-            testingTarget.CornerRadius = new Vector4(0.3f, 0.8f, 0.6f, 1.0f);
-            
-            try
-            {
-                testingTarget.ApplyCornerRadius();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ImageViewApplyCornerRadiusWithBackgroundExtraData END (OK)");
-        }
        
 	   	[Test]
         [Category("P1")]

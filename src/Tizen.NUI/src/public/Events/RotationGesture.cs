@@ -30,7 +30,7 @@ namespace Tizen.NUI
         {
         }
 
-        internal RotationGesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        internal RotationGesture(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister, cRegister)
         {
         }
 
@@ -80,18 +80,13 @@ namespace Tizen.NUI
         /// <param name="state">The state of the gesture.</param>
         /// This will be made public in the next tizen release after an ACR is done. Till then, it needs to be hidden as an inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RotationGesture(Gesture.StateType state) : this(Interop.RotationGesture.New((int)state), true)
+        public RotationGesture(Gesture.StateType state) : this(Interop.RotationGesture.New((int)state), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         private float rotation
         {
-            set
-            {
-                Interop.RotationGesture.RotationSet(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 float ret = Interop.RotationGesture.RotationGet(SwigCPtr);
@@ -102,11 +97,6 @@ namespace Tizen.NUI
 
         private Vector2 screenCenterPoint
         {
-            set
-            {
-                Interop.RotationGesture.ScreenCenterPointSet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.RotationGesture.ScreenCenterPointGet(SwigCPtr);
@@ -118,11 +108,6 @@ namespace Tizen.NUI
 
         private Vector2 localCenterPoint
         {
-            set
-            {
-                Interop.RotationGesture.LocalCenterPointSet(SwigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
             get
             {
                 global::System.IntPtr cPtr = Interop.RotationGesture.LocalCenterPointGet(SwigCPtr);

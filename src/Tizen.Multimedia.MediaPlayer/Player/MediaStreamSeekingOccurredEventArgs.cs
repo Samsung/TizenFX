@@ -35,8 +35,14 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the offset.
+        /// Gets the next new play position as a result of seeking operation.
         /// </summary>
+        /// <remarks>
+        /// The next playback position after SetPlayPositionAsync could be a little bit different with its input position.<br/>
+        /// So user should push the next media data using this time offset in nanoseconds.
+        /// </remarks>
+        /// <seealso cref="Player.SetPlayPositionAsync"/>
+        /// <seealso cref="Player.SetPlayPositionNanosecondsAsync"/>
         /// <since_tizen> 3 </since_tizen>
         public ulong Offset { get; }
 

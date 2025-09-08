@@ -16,7 +16,7 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Accessibility;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -34,7 +34,16 @@ namespace Tizen.NUI.Components
         private Size prevSize;
         private DefaultTitleItemStyle ItemStyle => ViewStyle as DefaultTitleItemStyle;
 
-        static DefaultTitleItem() { }
+        static DefaultTitleItem()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                IconProperty = BindableProperty.Create(nameof(Icon), typeof(View), typeof(DefaultTitleItem), null,
+                    propertyChanged: SetInternalIconProperty, defaultValueCreator: GetInternalIconProperty);
+                TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(DefaultTitleItem), default(string),
+                    propertyChanged: SetInternalTextProperty, defaultValueCreator: GetInternalTextProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of DefaultTitleItem.
@@ -70,11 +79,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(IconProperty) as View;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(IconProperty) as View;
+                }
+                else
+                {
+                    return InternalIcon;
+                }
             }
             set
             {
-                SetValue(IconProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IconProperty, value);
+                }
+                else
+                {
+                    InternalIcon = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -127,7 +150,7 @@ namespace Tizen.NUI.Components
                     // Tizen.Log.Error("IconUrl only can set Icon is ImageView");
                     return;
                 }
-                (Icon as ImageView).ResourceUrl = value; 
+                (Icon as ImageView).ResourceUrl = value;
             }
         }
         */
@@ -154,7 +177,6 @@ namespace Tizen.NUI.Components
             internal set
             {
                 itemLabel = value;
-                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Label, itemLabel.Text);
             }
         }
 
@@ -166,11 +188,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TextProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TextProperty) as string;
+                }
+                else
+                {
+                    return InternalText;
+                }
             }
             set
             {
-                SetValue(TextProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TextProperty, value);
+                }
+                else
+                {
+                    InternalText = value;
+                }
                 NotifyPropertyChanged();
             }
         }

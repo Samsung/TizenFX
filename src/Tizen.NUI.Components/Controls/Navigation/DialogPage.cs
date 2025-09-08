@@ -18,6 +18,7 @@
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using System.Diagnostics.CodeAnalysis;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -45,6 +46,21 @@ namespace Tizen.NUI.Components
             EnableControlState = false;
 
             Scrim = CreateDefaultScrim();
+        }
+
+        static DialogPage()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(DialogPage), null,
+                    propertyChanged: SetInternalContentProperty, defaultValueCreator: GetInternalContentProperty);
+                EnableScrimProperty = BindableProperty.Create(nameof(EnableScrim), typeof(bool), typeof(DialogPage), default(bool),
+                    propertyChanged: SetInternalEnableScrimProperty, defaultValueCreator: GetInternalEnableScrimProperty);
+                EnableDismissOnScrimProperty = BindableProperty.Create(nameof(EnableDismissOnScrim), typeof(bool), typeof(DialogPage), default(bool),
+                    propertyChanged: SetInternalEnableDismissOnScrimProperty, defaultValueCreator: GetInternalEnableDismissOnScrimProperty);
+                ScrimColorProperty = BindableProperty.Create(nameof(ScrimColor), typeof(Color), typeof(DialogPage), null,
+                    propertyChanged: SetInternalScrimColorProperty, defaultValueCreator: GetInternalScrimColorProperty);
+            }
         }
 
         /// <summary>
@@ -114,11 +130,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ContentProperty) as View;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ContentProperty) as View;
+                }
+                else
+                {
+                    return InternalContent;
+                }
             }
             set
             {
-                SetValue(ContentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ContentProperty, value);
+                }
+                else
+                {
+                    InternalContent =  value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -225,11 +255,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (bool)GetValue(EnableScrimProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EnableScrimProperty);
+                }
+                else
+                {
+                    return InternalEnableScrim;
+                }
             }
             set
             {
-                SetValue(EnableScrimProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EnableScrimProperty, value);
+                }
+                else
+                {
+                    InternalEnableScrim = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -270,11 +314,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (bool)GetValue(EnableDismissOnScrimProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (bool)GetValue(EnableDismissOnScrimProperty);
+                }
+                else
+                {
+                    return InternalEnableDismissOnScrim;
+                }
             }
             set
             {
-                SetValue(EnableDismissOnScrimProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(EnableDismissOnScrimProperty, value);
+                }
+                else
+                {
+                    InternalEnableDismissOnScrim = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -288,11 +346,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ScrimColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ScrimColorProperty) as Color;
+                }
+                else
+                {
+                    return InternalScrimColor;
+                }
             }
             set
             {
-                SetValue(ScrimColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ScrimColorProperty, value);
+                }
+                else
+                {
+                    InternalScrimColor = value;
+                }
                 NotifyPropertyChanged();
             }
         }

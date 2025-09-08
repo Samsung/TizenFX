@@ -75,8 +75,8 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void FocusedViewEnterKeyEventCallback2(IntPtr view);
 
-        private View internalFocusIndicator = null;
-        private View nullFocusIndicator = null;
+        private View internalFocusIndicator;
+        private View nullFocusIndicator;
 
         /// <summary>
         /// PreFocusChange will be triggered before the focus is going to be changed.<br />
@@ -629,19 +629,24 @@ namespace Tizen.NUI
                 global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(dummyObect, cPtr);
                 Interop.BaseHandle.DeleteBaseHandle(CPtr);
                 CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+#if !PROFILE_TV
+                //tv profile never use default focus indicator, so this is not needed!
+                ret.FocusIndicator = ret.GetDefaultFocusIndicator();
+#endif
+                return ret;
             }
             else
             {
                 ret = new FocusManager(cPtr, true);
-            }
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
 #if !PROFILE_TV
-            //tv profile never use default focus indicator, so this is not needed!
-            ret.FocusIndicator = ret.GetDefaultFocusIndicator();
+                //tv profile never use default focus indicator, so this is not needed!
+                ret.FocusIndicator = ret.GetDefaultFocusIndicator();
 #endif
-            return ret;
+                return ret;
+            }
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,8 +33,10 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class NUIApplication : CoreApplication
     {
+        private static bool _isUsingXaml = true;
+
         /// <summary>
-        /// Set to true if XAML is used. 
+        /// Set to true if XAML is used.
         /// This must be called before or immediately after the NUIApplication constructor is called.
         /// The default value is true.
         /// </summary>
@@ -42,19 +44,53 @@ namespace Tizen.NUI
         /// This must be called before or immediately after the NUIApplication constructor is called.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public bool IsUsingXaml { get; set; } = true;
+        static public bool IsUsingXaml
+        {
+            get
+            {
+                return _isUsingXaml;
+            }
+            set
+            {
+                if (_isUsingXaml != value)
+                {
+                    Tizen.Log.Info("NUI", $"IsUsingXaml changed to {value}");
+                    _isUsingXaml = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Set to true if NUI ThemeManager is used.
+        /// The default value is true.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool IsUsingThemeManager { get; set; } = true;
+
+        /// <summary>
+        /// Set to true if NUI DisposeQueue dispose items incrementally.
+        /// The default value is false.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool IsUsingIncrementalDispose => DisposeQueue.Instance.IncrementalDisposeSupported;
+
+        /// <summary>
+        /// Whether current system support to create view at Preload time.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool SupportPreInitializedCreation { get; private set; }
 
         /// <summary>
         /// The instance of ResourceManager.
         /// </summary>
-        private static System.Resources.ResourceManager resourceManager = null;
-        private static string currentLoadedXaml = null;
+        private static System.Resources.ResourceManager resourceManager;
+        private static string currentLoadedXaml;
 
         /// <summary>
         /// The border window
         /// </summary>
-        private bool borderEnabled = false;
-        private IBorderInterface borderInterface = null;
+        private bool borderEnabled;
+        private IBorderInterface borderInterface;
 
         private States currentState = States.Invalid;
 
@@ -67,10 +103,12 @@ namespace Tizen.NUI
         static NUIApplication()
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+            PropertyBridge.RegisterStringGetter();
         }
 
         /// <summary>
-        /// The default constructor.
+        /// Initializes a new instance of the <see cref="NUIApplication"/> class.
+        /// This is the default constructor that initializes the NUI application using the NUICoreBackend.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
@@ -84,8 +122,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="windowSize">The window size.</param>
         /// <param name="windowPosition">The window position.</param>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in the future after ACR done. Before ACR, need to be hidden as inhouse API.
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend("", NUIApplication.WindowMode.Opaque, windowSize, windowPosition))
@@ -95,8 +132,9 @@ namespace Tizen.NUI
 
         /// <summary>
         /// The constructor with a stylesheet.
+        /// This constructor initializes a new instance of the Tizen.NUI.NUIApplication class with the specified stylesheet.
         /// </summary>
-        /// <param name="styleSheet">The styleSheet url.</param>
+        /// <param name="styleSheet">The URL of the stylesheet to apply to the application.</param>
         /// <since_tizen> 3 </since_tizen>
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet) : base(new NUICoreBackend(styleSheet))
@@ -110,8 +148,7 @@ namespace Tizen.NUI
         /// <param name="styleSheet">The styleSheet URL.</param>
         /// <param name="windowSize">The window size.</param>
         /// <param name="windowPosition">The window position.</param>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in the future after ACR done. Before ACR, need to be hidden as inhouse API.
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(string styleSheet, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, WindowMode.Opaque, windowSize, windowPosition))
@@ -121,6 +158,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// The constructor with a stylesheet and window mode.
+        /// This constructor initializes the NUIApplication with a specified stylesheet and window mode.
         /// </summary>
         /// <param name="styleSheet">The styleSheet url.</param>
         /// <param name="windowMode">The windowMode.</param>
@@ -138,8 +176,7 @@ namespace Tizen.NUI
         /// <param name="windowMode">The windowMode.</param>
         /// <param name="windowSize">The window size.</param>
         /// <param name="windowPosition">The window position.</param>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in the future after ACR done. Before ACR, need to be hidden as inhouse API.
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(string styleSheet, WindowMode windowMode, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
@@ -309,14 +346,39 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Occurs whenever the application is resumed.
+        /// The Resumed event handler.
+        /// This event is triggered when the application resumes from being paused or stopped.
+        /// It can be used to perform actions that need to be executed when the application becomes active again.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// NUIApplication app = new NUIApplication();
+        /// app.Resumed += OnAppResumed;
+        ///
+        /// void OnAppResumed(object sender, EventArgs e)
+        /// {
+        ///     // Perform actions when the application is resumed
+        /// }
+        /// </code>
+        /// </example>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler Resumed;
 
         /// <summary>
-        /// Occurs whenever the application is paused.
+        /// The event handler that gets called when the application is paused.
+        /// This event is triggered when the application transitions to a paused state.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// NUIApplication app = new NUIApplication();
+        /// app.Paused += OnAppPaused;
+        ///
+        /// void OnAppPaused(object sender, EventArgs e)
+        /// {
+        ///     // Perform actions when the application is paused
+        /// }
+        /// </code>
+        /// </example>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler Paused;
 
@@ -393,7 +455,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// ResourceManager to handle multilingual.
+        /// The MultilingualResourceManager property provides access to a System.Resources.ResourceManager instance that can be used to manage resources for different languages.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static System.Resources.ResourceManager MultilingualResourceManager
@@ -470,8 +532,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Register the assembly to XAML.
+        /// Registers the specified assembly to XAML, allowing types within the assembly to be used in XAML files.
         /// </summary>
+        /// <param name="assembly">The assembly to register.</param>
         /// <since_tizen> 5 </since_tizen>
         public static void RegisterAssembly(Assembly assembly)
         {
@@ -479,21 +542,37 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Runs the NUIApplication.
+        /// This method starts the main loop of the application, allowing it to receive events and run its lifecycle.
         /// </summary>
-        /// <param name="args">Arguments from commandline.</param>
+        /// <param name="args">Arguments from commandline. These arguments can be used to customize the application behavior at startup.</param>
+        /// <example>
+        /// <code>
+        /// static void Main(string[] args)
+        /// {
+        ///     NUIApplication app = new NUIApplication();
+        ///     app.Run(args);
+        /// }
+        /// </code>
+        /// </example>
         /// <since_tizen> 4 </since_tizen>
         public override void Run(string[] args)
         {
             Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
-            Backend.AddEventHandler(EventType.Resumed, OnResume);
-            Backend.AddEventHandler(EventType.Paused, OnPause);
+            Backend.AddEventHandler(EventType.Resumed, ResumeHandler);
+            Backend.AddEventHandler(EventType.Paused, PauseHandler);
             base.Run(args);
         }
 
         /// <summary>
         /// Exits the NUIApplication.
+        /// This method causes the application to terminate gracefully.
         /// </summary>
+        /// <remarks>
+        /// This method does not quit the application immediately.
+        /// It waits until all pending events are completely processed,
+        /// then registers a termination request during the main loop's idle state
+        /// and executes the termination at that time.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public override void Exit()
         {
@@ -509,6 +588,16 @@ namespace Tizen.NUI
         public bool AddIdle(System.Delegate func)
         {
             return ((NUICoreBackend)this.Backend).AddIdle(func);
+        }
+
+        /// <summary>
+        /// Remove delegate what we added by AddIdle.
+        /// </summary>
+        /// <param name="func">The function to remove</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveIdle(System.Delegate func)
+        {
+            ((NUICoreBackend)this.Backend).RemoveIdle(func);
         }
 
         /// <summary>
@@ -545,6 +634,21 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Set the maximum value of frames per seconds.
+        /// </summary>
+        /// <param name="maximumRenderFrameRate">The maximum fps for this adaptor system.</param>
+        /// <remarks>
+        /// Each frame will render multiple of given maximum render frame rate.
+        /// For example, if maximumRenderFrameRate = 50.0f, each elapse time could be 20ms, 40ms, 60ms, and so on.
+        ///</remarks>
+        /// Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetMaximumRenderFrameRate(float maximumRenderFrameRate)
+        {
+            Adaptor.Instance.SetMaximumRenderFrameRate(maximumRenderFrameRate);
+        }
+
+        /// <summary>
         /// Gets the screen size
         /// </summary>
         /// <returns>Screen size</returns>
@@ -557,8 +661,34 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets the geometry hit-testing enabled or disabled for the application.
+        /// </summary>
+        /// <param name="enable">True to enable geometry hit-testing, false otherwise.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public void SetGeometryHittestEnabled(bool enable)
+        {
+            Interop.Application.SetGeometryHittestEnabled(enable);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Checks whether geometry hit-testing is enabled for the application.
+        /// </summary>
+        /// <returns>True if geometry hit-testing is enabled, false otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public bool IsGeometryHittestEnabled()
+        {
+            bool ret = Interop.Application.IsGeometryHittestEnabled();
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
+
+        /// <summary>
+        /// The OnLocaleChanged method is called when the system locale settings have changed.
         /// Overrides this method if you want to handle behavior.
         /// </summary>
+        /// <param name="e">The event arguments containing the new locale information.</param>
         /// <since_tizen> 3 </since_tizen>
         protected override void OnLocaleChanged(LocaleChangedEventArgs e)
         {
@@ -566,8 +696,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The OnLowBattery method is called when the system is under Low Battery status.
         /// Overrides this method if you want to handle behavior.
         /// </summary>
+        /// <param name="e">The event arguments containing the battery status.</param>
         /// <since_tizen> 3 </since_tizen>
         protected override void OnLowBattery(LowBatteryEventArgs e)
         {
@@ -575,8 +707,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The OnLowMemory method is called when the system is under Low Memory status.
         /// Overrides this method if you want to handle behavior.
         /// </summary>
+        /// <param name="e">The event arguments containing low memory status information.</param>
         /// <since_tizen> 3 </since_tizen>
         protected override void OnLowMemory(LowMemoryEventArgs e)
         {
@@ -584,8 +718,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// This method is called when the system's region format settings have changed.
+        /// It provides an opportunity to handle any necessary adjustments or updates based on the new region format.
         /// Overrides this method if you want to handle behavior.
         /// </summary>
+        /// <param name="e">The event arguments containing information about the region format change.</param>
         /// <since_tizen> 3 </since_tizen>
         protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
@@ -594,7 +731,6 @@ namespace Tizen.NUI
 
         /// <summary>
         /// This method is to handle behavior when the device orientation is changed.
-        ///
         /// When device is rotated to ccw or cw, this event occurs.
         /// In addition, this event is different to window orientation changed event.
         /// The window orientation event is for per a window and occurs when some flags should be set before.
@@ -607,6 +743,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// This method is called when the application is terminated.
         /// Overrides this method if you want to handle behavior.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -617,27 +754,24 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if you want to handle behavior.
+        /// Overrides this method if you want to handle behavior when the application is paused.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPause()
         {
-            currentState = States.Paused;
-            Paused?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
-        /// Overrides this method if you want to handle behavior.
+        /// Overrides this method if you want to handle behavior when the application is resumed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnResume()
         {
-            currentState = States.Resumed;
-            Resumed?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
-        /// Overrides this method if you want to handle behavior.
+        /// Overrides this method if you want to handle behavior before the application is created.
+        /// This method is guaranteed to be called before <see cref="OnCreate"/> is called.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPreCreate()
@@ -653,8 +787,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if you want to handle behavior.
+        /// This method is overridden to handle the application control event received.
         /// </summary>
+        /// <param name="e">The event arguments containing the received application control.</param>
         /// <since_tizen> 3 </since_tizen>
         protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
@@ -667,7 +802,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if you want to handle behavior.
+        /// The OnCreate method of NUIApplication class.
+        /// This method is called when the application is created.
+        /// Override this method to handle custom initialization logic.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected override void OnCreate()
@@ -687,18 +824,34 @@ namespace Tizen.NUI
         static public void Preload()
         {
             Interop.Application.PreInitialize();
+            SupportPreInitializedCreation = Interop.Application.IsSupportPreInitializedCreation();
 
             // Initialize some static utility
-            var disposalbeQueue = DisposeQueue.Instance;
+            var disposableQueue = DisposeQueue.Instance;
+            var processorController = ProcessorController.Instance;
             var registry = Registry.Instance;
+
+            // Get default window only if pre initialize creation supported.
+            if (SupportPreInitializedCreation)
+            {
+                Log.Info("NUI", "[NUI] Preload: GetWindow");
+                Tizen.Tracer.Begin("[NUI] Preload: GetWindow");
+                var nativeWindow = Interop.Application.GetPreInitializeWindow();
+                Window.Instance = Window.Default = new Window(nativeWindow, true);
+                Tizen.Tracer.End();
+            }
 
             // Initialize some BaseComponent static variables now
             BaseComponents.View.Preload();
             BaseComponents.ImageView.Preload();
+            BaseComponents.LottieAnimationView.Preload();
+            BaseComponents.AnimatedVectorImageView.Preload();
             BaseComponents.TextLabel.Preload();
             BaseComponents.TextEditor.Preload();
             BaseComponents.TextField.Preload();
             Disposable.Preload();
+            Color.Preload();
+            NUIConstants.Preload();
 
             // Initialize exception tasks. It must be called end of Preload()
             NDalicPINVOKE.Preload();
@@ -728,6 +881,20 @@ namespace Tizen.NUI
         {
             borderEnabled = true;
             this.borderInterface = borderInterface;
+        }
+
+        private void ResumeHandler()
+        {
+            currentState = States.Resumed;
+            OnResume();
+            Resumed?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void PauseHandler()
+        {
+            currentState = States.Paused;
+            OnPause();
+            Paused?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>

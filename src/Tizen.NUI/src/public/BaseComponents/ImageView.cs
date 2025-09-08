@@ -33,7 +33,7 @@ namespace Tizen.NUI.BaseComponents
     {
         static ImageView()
         {
-            if(NUIApplication.IsUsingXaml)
+            if (NUIApplication.IsUsingXaml)
             {
                 ResourceUrlProperty = BindableProperty.Create(nameof(ImageView.ResourceUrl), typeof(string), typeof(ImageView), string.Empty, propertyChanged: SetInternalResourceUrlProperty, defaultValueCreator: GetInternalResourceUrlProperty);
 
@@ -125,6 +125,7 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.AlphaMaskURL,
             ImageVisualProperty.CropToMask,
             Visual.Property.VisualFittingMode,
+            ImageVisualProperty.SamplingMode,
             ImageVisualProperty.DesiredWidth,
             ImageVisualProperty.DesiredHeight,
             ImageVisualProperty.ReleasePolicy,
@@ -144,21 +145,23 @@ namespace Tizen.NUI.BaseComponents
         // Collection of image-sensitive properties, and need to update C# side cache value.
         private static readonly List<int> cachedNUIImageViewPropertyKeyList = new List<int> {
             ImageVisualProperty.URL,
+            ImageVisualProperty.AlphaMaskURL,
             ImageVisualProperty.DesiredWidth,
             ImageVisualProperty.DesiredHeight,
             ImageVisualProperty.FastTrackUploading,
         };
         internal PropertyMap cachedImagePropertyMap;
-        internal bool imagePropertyUpdatedFlag = false;
+        internal bool imagePropertyUpdatedFlag;
 
-        private bool imagePropertyUpdateProcessAttachedFlag = false;
+        private bool imagePropertyUpdateProcessAttachedFlag;
         private Rectangle _border;
 
-        // Development Guide : Please make ensure that these 4 values are matched with current image.
+        // Development Guide : Please make ensure that these 5 values are matched with current image.
         private string _resourceUrl = "";
+        private string _alphaMaskUrl = "";
         private int _desired_width = -1;
         private int _desired_height = -1;
-        private bool _fastTrackUploading = false;
+        private bool _fastTrackUploading;
 
         private TriggerableSelector<string> resourceUrlSelector;
         private TriggerableSelector<Rectangle> borderSelector;
@@ -260,15 +263,11 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(cPtr, cMemoryOwn, viewStyle)
+        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : this(cPtr, cMemoryOwn, null, shown)
         {
-            if (!shown)
-            {
-                SetVisible(false);
-            }
         }
 
-        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn, null)
+        internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(cPtr, cMemoryOwn, viewStyle)
         {
             if (!shown)
             {
@@ -398,7 +397,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return GetInternalResourceUrlProperty(this) as string;
+                    return GetInternalResourceUrl();
                 }
             }
             set
@@ -409,10 +408,29 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalResourceUrlProperty(this, null, value);
+                    SetInternalResourceUrl(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        internal void SetInternalResourceUrl(Selector<string> selector)
+        {
+            if (selector != null)
+            {
+                ResourceUrlSelector = selector;
+            }
+        }
+
+        private void SetInternalResourceUrl(string url)
+        {
+            resourceUrlSelector?.Reset(this);
+            SetResourceUrl(url);
+        }
+
+        private string GetInternalResourceUrl()
+        {
+            return _resourceUrl ?? "";
         }
 
         /// <summary>
@@ -432,7 +450,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return GetInternalImageMapProperty(this) as PropertyMap;
+                    return InternalImageMap;
                 }
             }
             set
@@ -443,11 +461,12 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalImageMapProperty(this, null, value);
+                    InternalImageMap = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private PropertyMap InternalImageMap
         {
             get
@@ -459,7 +478,7 @@ namespace Tizen.NUI.BaseComponents
 
                     // Get current properties force.
                     PropertyMap returnValue = new PropertyMap();
-                    PropertyValue image = GetProperty(ImageView.Property.IMAGE);
+                    PropertyValue image = GetProperty(Property.IMAGE);
                     image?.Get(returnValue);
                     image?.Dispose();
 
@@ -518,7 +537,7 @@ namespace Tizen.NUI.BaseComponents
                     }
                     else
                     {
-                        return GetInternalImageProperty(this) as PropertyMap;
+                        return GetInternalImage();
                     }
                 }
                 else
@@ -536,10 +555,95 @@ namespace Tizen.NUI.BaseComponents
                     }
                     else
                     {
-                        SetInternalImageProperty(this, null, value);
+                        SetInternalImage(value);
                     }
                     NotifyPropertyChanged();
                 }
+            }
+        }
+
+        private void SetInternalImage(PropertyMap propMap)
+        {
+            if (propMap != null)
+            {
+                PropertyMap map = propMap;
+                if (IsCreateByXaml)
+                {
+                    string url = "", alphaMaskURL = "", auxiliaryImageURL = "";
+                    string resource = Applications.Application.Current.DirectoryInfo.Resource;
+                    using PropertyValue urlValue = map.Find(NDalic.ImageVisualUrl);
+                    bool ret = false;
+                    if (urlValue != null)
+                    {
+                        ret = urlValue.Get(out url);
+                    }
+                    using PropertyMap mmap = new PropertyMap();
+                    if (ret && url.StartsWith("*Resource*"))
+                    {
+                        url = url.Replace("*Resource*", resource);
+                        using var pv = new PropertyValue(url);
+                        mmap.Insert(NDalic.ImageVisualUrl, pv);
+                    }
+
+                    ret = false;
+                    using PropertyValue alphaMaskUrlValue = map.Find(NDalic.ImageVisualAlphaMaskUrl);
+                    if (alphaMaskUrlValue != null)
+                    {
+                        ret = alphaMaskUrlValue.Get(out alphaMaskURL);
+                    }
+                    if (ret && alphaMaskURL.StartsWith("*Resource*"))
+                    {
+                        alphaMaskURL = alphaMaskURL.Replace("*Resource*", resource);
+                        using var pv = new PropertyValue(alphaMaskURL);
+                        mmap.Insert(NDalic.ImageVisualAlphaMaskUrl, pv);
+                    }
+
+                    ret = false;
+                    using PropertyValue auxiliaryImageURLValue = map.Find(NDalic.ImageVisualAuxiliaryImageUrl);
+                    if (auxiliaryImageURLValue != null)
+                    {
+                        ret = auxiliaryImageURLValue.Get(out auxiliaryImageURL);
+                    }
+                    if (ret && auxiliaryImageURL.StartsWith("*Resource*"))
+                    {
+                        auxiliaryImageURL = auxiliaryImageURL.Replace("*Resource*", resource);
+                        using var pv = new PropertyValue(auxiliaryImageURL);
+                        mmap.Insert(NDalic.ImageVisualAuxiliaryImageUrl, pv);
+                    }
+
+                    map.Merge(mmap);
+                }
+                if (_border == null)
+                {
+                    SetImageByPropertyMap(map);
+                }
+            }
+        }
+
+        private PropertyMap GetInternalImage()
+        {
+            if (_border == null)
+            {
+                // Sync as current properties
+                UpdateImage();
+
+                // Get current properties force.
+                PropertyMap returnValue = new PropertyMap();
+                using (var prop = Object.GetProperty(SwigCPtr, Property.IMAGE))
+                {
+                    prop.Get(returnValue);
+                }
+
+                // Update cached property map
+                if (returnValue != null)
+                {
+                    MergeCachedImageVisualProperty(returnValue);
+                }
+                return returnValue;
+            }
+            else
+            {
+                return null;
             }
         }
 
@@ -558,7 +662,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool) GetInternalPreMultipliedAlphaProperty(this);
+                    return GetInternalPreMultipliedAlpha();
                 }
             }
             set
@@ -569,10 +673,42 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalPreMultipliedAlphaProperty(this, null, value);
+                    SetInternalPreMultipliedAlpha(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalPreMultipliedAlpha(bool alpha)
+        {
+            if (imagePropertyUpdatedFlag)
+            {
+                // If imageView Property still not send to the dali, Append cached property.
+                using var pv = new PropertyValue(alpha);
+                UpdateImage(Visual.Property.PremultipliedAlpha, pv);
+            }
+            else
+            {
+                // Else, we don't need to re-create view. Get value from current ImageView.
+                Object.InternalSetPropertyBool(SwigCPtr, Property.PreMultipliedAlpha, alpha);
+            }
+        }
+
+        private bool GetInternalPreMultipliedAlpha()
+        {
+            bool temp = false;
+
+            if (imagePropertyUpdatedFlag)
+            {
+                // If imageView Property still not send to the dali, just get cached property.
+                GetCachedImageVisualProperty(Visual.Property.PremultipliedAlpha)?.Get(out temp);
+            }
+            else
+            {
+                // Else, PremultipliedAlpha may not setuped in cached property. Get value from current ImageView.
+                temp = Object.InternalGetPropertyBool(SwigCPtr, Property.PreMultipliedAlpha);
+            }
+            return temp;
         }
 
         /// <summary>
@@ -593,7 +729,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return GetInternalPixelAreaProperty(this) as RelativeVector4;
+                    return GetInternalPixelArea();
                 }
             }
             set
@@ -604,10 +740,28 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalPixelAreaProperty(this, null, value);
+                    SetInternalPixelArea(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalPixelArea(RelativeVector4 area)
+        {
+            if (area != null)
+            {
+                Object.InternalSetPropertyVector4(SwigCPtr, Property.PixelArea, area.SwigCPtr);
+            }
+        }
+
+        private RelativeVector4 GetInternalPixelArea()
+        {
+            if (internalPixelArea == null)
+            {
+                internalPixelArea = new RelativeVector4(OnPixelAreaChanged, 0, 0, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector4(SwigCPtr, Property.PixelArea, internalPixelArea.SwigCPtr);
+            return internalPixelArea;
         }
 
         /// <summary>
@@ -631,7 +785,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    temp = GetInternalBorderProperty(this) as Rectangle;
+                    temp = GetInternalBorder();
                 }
                 if (null == temp)
                 {
@@ -650,10 +804,40 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalBorderProperty(this, null, value);
+                    SetInternalBorder(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        internal void SetInternalBorder(Selector<Rectangle> selector)
+        {
+            if (selector == null)
+                return;
+
+            borderSelector?.Reset(this);
+            if (selector.HasAll())
+            {
+                SetBorder(selector.All);
+            }
+            else
+            {
+                borderSelector = new TriggerableSelector<Rectangle>(this, selector, SetBorder, true);
+            }
+        }
+
+        private void SetInternalBorder(Rectangle border)
+        {
+            if (border == null)
+                return;
+
+            borderSelector?.Reset(this);
+            SetBorder(border);
+        }
+
+        private Rectangle GetInternalBorder()
+        {
+            return _border;
         }
 
         /// <summary>
@@ -673,7 +857,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalBorderOnlyProperty(this);
+                    return GetInternalBorderOnly();
                 }
             }
             set
@@ -684,10 +868,23 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalBorderOnlyProperty(this, null, value);
+                    SetInternalBorderOnly(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalBorderOnly(bool isBorder)
+        {
+            using var pv = new PropertyValue(isBorder);
+            UpdateImage(NpatchImageVisualProperty.BorderOnly, pv);
+        }
+
+        private bool GetInternalBorderOnly()
+        {
+            bool ret = false;
+            GetCachedImageVisualProperty(NpatchImageVisualProperty.BorderOnly)?.Get(out ret);
+            return ret;
         }
 
         /// <summary>
@@ -695,6 +892,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("This has been deprecated since API9 and will be removed in API11. Use SynchronousLoading instead.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SynchronosLoading
         {
             get
@@ -726,7 +924,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalSynchronousLoadingProperty(this);
+                    return GetInternalSynchronousLoading();
                 }
             }
             set
@@ -737,10 +935,24 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalSynchronousLoadingProperty(this, null, value);
+                    SetInternalSynchronousLoading(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalSynchronousLoading(bool isSync)
+        {
+            // Note : We need to create new visual if previous visual was async, and now we set value as sync.
+            using var pv = new PropertyValue(isSync);
+            UpdateImage(ImageVisualProperty.SynchronousLoading, pv, isSync);
+        }
+
+        private bool GetInternalSynchronousLoading()
+        {
+            bool ret = false;
+            GetCachedImageVisualProperty(ImageVisualProperty.SynchronousLoading)?.Get(out ret);
+            return ret;
         }
 
         /// <summary>
@@ -757,7 +969,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalOrientationCorrectionProperty(this);
+                    return GetInternalOrientationCorrection();
                 }
             }
             set
@@ -768,10 +980,23 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalOrientationCorrectionProperty(this, null, value);
+                    SetInternalOrientationCorrection(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalOrientationCorrection(bool correction)
+        {
+            using var pv = new PropertyValue(correction);
+            UpdateImage(ImageVisualProperty.OrientationCorrection, pv);
+        }
+
+        private bool GetInternalOrientationCorrection()
+        {
+            bool ret = false;
+            GetCachedImageVisualProperty(ImageVisualProperty.OrientationCorrection)?.Get(out ret);
+            return ret;
         }
 
         /// <summary>
@@ -786,13 +1011,26 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetInternalSynchronousSizingProperty(this);
+                return GetInternalSynchronousSizing();
             }
             set
             {
-                SetInternalSynchronousSizingProperty(this, value);
+                SetInternalSynchronousSizing(value);
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalSynchronousSizing(bool newValue)
+        {
+            using var pv = new PropertyValue(newValue);
+            UpdateImage(ImageVisualProperty.SynchronousSizing, pv);
+        }
+
+        private bool GetInternalSynchronousSizing()
+        {
+            bool ret = false;
+            GetCachedImageVisualProperty(ImageVisualProperty.SynchronousSizing)?.Get(out ret);
+            return ret;
         }
 
         /// <summary>
@@ -809,7 +1047,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (MaskingModeType)GetInternalMaskingModeProperty(this);
+                    return InternalMaskingMode;
                 }
             }
             set
@@ -820,7 +1058,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalMaskingModeProperty(this, null, value);
+                    InternalMaskingMode = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -832,18 +1070,16 @@ namespace Tizen.NUI.BaseComponents
             {
                 int ret = (int)MaskingModeType.MaskingOnLoading;
 
-                PropertyValue maskingMode = GetCachedImageVisualProperty(ImageVisualProperty.MaskingMode);
+                using PropertyValue maskingMode = GetCachedImageVisualProperty(ImageVisualProperty.MaskingMode);
                 maskingMode?.Get(out ret);
-                maskingMode?.Dispose();
 
                 return (MaskingModeType)ret;
             }
             set
             {
                 MaskingModeType ret = value;
-                PropertyValue setValue = new PropertyValue((int)ret);
+                using PropertyValue setValue = new PropertyValue((int)ret);
                 UpdateImage(ImageVisualProperty.MaskingMode, setValue);
-                setValue?.Dispose();
             }
         }
 
@@ -857,6 +1093,7 @@ namespace Tizen.NUI.BaseComponents
         ///  - Seamless visual change didn't supported.<br />
         ///  - Alpha masking didn't supported. If you try, It will load as normal case.<br />
         ///  - Synchronous loading didn't supported. If you try, It will load as normal case.<br />
+        ///  - Synchronous sizing didn't supported. If you try, It will load as normal case.<br />
         ///  - Reload action didn't supported. If you try, It will load as normal case.<br />
         ///  - Atlas loading didn't supported. If you try, It will load as normal case.<br />
         ///  - Custom shader didn't supported. If you try, It will load as normal case.
@@ -872,7 +1109,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalFastTrackUploadingProperty(this);
+                    return InternalFastTrackUploading;
                 }
             }
             set
@@ -883,7 +1120,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalFastTrackUploadingProperty(this, null, value);
+                    InternalFastTrackUploading = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -909,7 +1146,7 @@ namespace Tizen.NUI.BaseComponents
                     UpdateImage(ImageVisualProperty.FastTrackUploading, setValue);
                     setValue?.Dispose();
 
-                    if (_fastTrackUploading && !string.IsNullOrEmpty(_resourceUrl))
+                    if (SynchronousVisualCreationRequired())
                     {
                         // Special case. If user set FastTrackUploading mean, user want to upload image As-Soon-As-Possible.
                         // Create ImageVisual synchronously.
@@ -981,6 +1218,36 @@ namespace Tizen.NUI.BaseComponents
             using (PropertyValue urlValue = new PropertyValue(_resourceUrl))
             {
                 UpdateImage(ImageVisualProperty.URL, urlValue, false);
+            }
+            if (_desired_width != -1)
+            {
+                _desired_width = -1;
+                using (PropertyValue desiredWidthValue = new PropertyValue(_desired_width))
+                {
+                    UpdateImage(ImageVisualProperty.DesiredWidth, desiredWidthValue, false);
+                }
+            }
+            if (_desired_height != -1)
+            {
+                _desired_height = -1;
+                using (PropertyValue desiredHeightValue = new PropertyValue(_desired_height))
+                {
+                    UpdateImage(ImageVisualProperty.DesiredHeight, desiredHeightValue, false);
+                }
+            }
+            if (_fastTrackUploading)
+            {
+                _fastTrackUploading = false;
+                using (PropertyValue fastTrackUploadingValue = new PropertyValue(_fastTrackUploading))
+                {
+                    UpdateImage(ImageVisualProperty.FastTrackUploading, fastTrackUploadingValue, false);
+                }
+            }
+            if (!string.IsNullOrEmpty(_alphaMaskUrl))
+            {
+                _alphaMaskUrl = "";
+                using PropertyValue emptyValue = new PropertyValue();
+                UpdateImage(ImageVisualProperty.AlphaMaskURL, emptyValue, false);
             }
             imagePropertyUpdatedFlag = false;
         }
@@ -1068,7 +1335,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return GetInternalAlphaMaskURLProperty(this) as string;
+                    return InternalAlphaMaskURL;
                 }
             }
             set
@@ -1079,7 +1346,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalAlphaMaskURLProperty(this, null, value);
+                    InternalAlphaMaskURL = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1089,17 +1356,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string ret = "";
-
-                PropertyValue maskUrl = GetCachedImageVisualProperty(ImageVisualProperty.AlphaMaskURL);
-                maskUrl?.Get(out ret);
-                maskUrl?.Dispose();
-
-                return ret;
+                return _alphaMaskUrl;
             }
             set
             {
-                PropertyValue setValue = new PropertyValue(value ?? "");
+                _alphaMaskUrl = value ?? "";
+
+                using PropertyValue setValue = new PropertyValue(_alphaMaskUrl);
                 UpdateImage(ImageVisualProperty.AlphaMaskURL, setValue);
                 // When we never set CropToMask property before, we should set default value as true.
                 using (PropertyValue cropToMask = GetCachedImageVisualProperty(ImageVisualProperty.CropToMask))
@@ -1110,7 +1373,11 @@ namespace Tizen.NUI.BaseComponents
                         UpdateImage(ImageVisualProperty.CropToMask, setCropValue);
                     }
                 }
-                setValue?.Dispose();
+
+                if (SynchronousVisualCreationRequired())
+                {
+                    UpdateImage();
+                }
             }
         }
 
@@ -1129,7 +1396,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalCropToMaskProperty(this);
+                    return InternalCropToMask;
                 }
             }
             set
@@ -1140,11 +1407,12 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalCropToMaskProperty(this, null, value);
+                    InternalCropToMask = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private bool InternalCropToMask
         {
             get
@@ -1159,9 +1427,8 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                PropertyValue setValue = new PropertyValue(value);
+                using PropertyValue setValue = new PropertyValue(value);
                 UpdateImage(ImageVisualProperty.CropToMask, setValue);
-                setValue?.Dispose();
             }
         }
 
@@ -1250,7 +1517,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (FittingModeType)GetInternalFittingModeProperty(this);
+                    return InternalFittingMode;
                 }
             }
             set
@@ -1261,7 +1528,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalFittingModeProperty(this, null, value);
+                    InternalFittingMode = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1273,18 +1540,42 @@ namespace Tizen.NUI.BaseComponents
             {
                 int ret = (int)VisualFittingModeType.Fill;
 
-                PropertyValue fittingMode = GetCachedImageVisualProperty(Visual.Property.VisualFittingMode);
+                using PropertyValue fittingMode = GetCachedImageVisualProperty(Visual.Property.VisualFittingMode);
                 fittingMode?.Get(out ret);
-                fittingMode?.Dispose();
 
                 return ConvertVisualFittingModetoFittingMode((VisualFittingModeType)ret);
             }
             set
             {
                 VisualFittingModeType ret = ConvertFittingModetoVisualFittingMode(value);
-                PropertyValue setValue = new PropertyValue((int)ret);
+                using PropertyValue setValue = new PropertyValue((int)ret);
                 UpdateImage(Visual.Property.VisualFittingMode, setValue);
-                setValue?.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets filtering options used when resizing images to the sample original pixels.<br />
+        /// If not supplied, the default is SamplingModeType.BoxThenLinear.<br />
+        /// For normal quad images only.<br />
+        /// Optional.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SamplingModeType SamplingMode
+        {
+            get
+            {
+                int ret = (int)SamplingModeType.BoxThenLinear;
+
+                using PropertyValue samplingMode = GetCachedImageVisualProperty(ImageVisualProperty.SamplingMode);
+                samplingMode?.Get(out ret);
+
+                return (SamplingModeType)ret;
+            }
+            set
+            {
+                using PropertyValue setValue = new PropertyValue((int)value);
+                UpdateImage(ImageVisualProperty.SamplingMode, setValue);
+                NotifyPropertyChanged();
             }
         }
 
@@ -1303,43 +1594,28 @@ namespace Tizen.NUI.BaseComponents
             using (PropertyMap timePeriod = new PropertyMap())
             using (PropertyValue initValue = PropertyValue.CreateFromObject(initialImageAlpha))
             using (PropertyValue destValue = PropertyValue.CreateFromObject(destinationImageAlpha))
-            using (PropertyValue pvDelay = new PropertyValue(delay))
-            using (PropertyValue pvSpeed = new PropertyValue(speed))
-            using (PropertyValue pvProperty = new PropertyValue("opacity"))
-            using (PropertyValue pvAnimationType = new PropertyValue("BETWEEN"))
             using (PropertyMap transition = new PropertyMap())
             {
                 if (alphaFunction != null)
                 {
-                    using (PropertyValue pvAlpha = new PropertyValue(AlphaFunction.BuiltinToPropertyKey(alphaFunction)))
-                    {
-                        animator.Add("alphaFunction", pvAlpha);
-                    }
+                    animator.Add("alphaFunction", AlphaFunction.BuiltinToPropertyKey(alphaFunction));
                 }
 
-                timePeriod.Add("duration", pvSpeed);
-                timePeriod.Add("delay", pvDelay);
-                using (PropertyValue pvTimePeriod = new PropertyValue(timePeriod))
-                {
-                    animator.Add("timePeriod", pvTimePeriod);
-                }
+                timePeriod.Add("duration", speed);
+                timePeriod.Add("delay", delay);
+                animator.Add("timePeriod", timePeriod);
 
-                animator.Add("animationType", pvAnimationType);
+                animator.Add("animationType", "BETWEEN");
 
-                using (PropertyValue pvAnimator = new PropertyValue(animator))
-                {
-                    transition.Add("animator", pvAnimator);
-                }
-                using(PropertyValue pvTarget = new PropertyValue("image"))
-                {
-                    transition.Add("target", pvTarget);
-                }
+                transition.Add("animator", animator);
 
-                transition.Add("property", pvProperty);
+                transition.Add("target", "image");
+                transition.Add("property", "opacity");
                 transition.Add("initialValue", initValue);
                 transition.Add("targetValue", destValue);
 
-                SetProperty(ImageView.Property.TransitionEffectOption, new Tizen.NUI.PropertyValue(transition));
+                using var pv = new Tizen.NUI.PropertyValue(transition);
+                SetProperty(ImageView.Property.TransitionEffectOption, pv);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -1363,7 +1639,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalDesiredWidthProperty(this);
+                    return InternalDesiredWidth;
                 }
             }
             set
@@ -1374,11 +1650,12 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalDesiredWidthProperty(this, null, value);
+                    InternalDesiredWidth = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private int InternalDesiredWidth
         {
             get
@@ -1388,9 +1665,8 @@ namespace Tizen.NUI.BaseComponents
                 {
                     UpdateImage();
                 }
-                PropertyValue desirewidth = GetCachedImageVisualProperty(ImageVisualProperty.DesiredWidth);
+                using PropertyValue desirewidth = GetCachedImageVisualProperty(ImageVisualProperty.DesiredWidth);
                 desirewidth?.Get(out _desired_width);
-                desirewidth?.Dispose();
 
                 return _desired_width;
             }
@@ -1399,9 +1675,8 @@ namespace Tizen.NUI.BaseComponents
                 if (_desired_width != value)
                 {
                     _desired_width = value;
-                    PropertyValue setValue = new PropertyValue(value);
-                    UpdateImage(ImageVisualProperty.DesiredWidth, setValue, false);
-                    setValue?.Dispose();
+                    using PropertyValue setValue = new PropertyValue(value);
+                    UpdateImage(ImageVisualProperty.DesiredWidth, setValue);
                 }
             }
         }
@@ -1424,7 +1699,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalDesiredHeightProperty(this);
+                    return InternalDesiredHeight;
                 }
             }
             set
@@ -1435,11 +1710,12 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalDesiredHeightProperty(this, null, value);
+                    InternalDesiredHeight = value;
                 }
                 NotifyPropertyChanged();
             }
         }
+
         private int InternalDesiredHeight
         {
             get
@@ -1449,9 +1725,8 @@ namespace Tizen.NUI.BaseComponents
                 {
                     UpdateImage();
                 }
-                PropertyValue desireheight = GetCachedImageVisualProperty(ImageVisualProperty.DesiredHeight);
+                using PropertyValue desireheight = GetCachedImageVisualProperty(ImageVisualProperty.DesiredHeight);
                 desireheight?.Get(out _desired_height);
-                desireheight?.Dispose();
 
                 return _desired_height;
             }
@@ -1460,9 +1735,8 @@ namespace Tizen.NUI.BaseComponents
                 if (_desired_height != value)
                 {
                     _desired_height = value;
-                    PropertyValue setValue = new PropertyValue(value);
-                    UpdateImage(ImageVisualProperty.DesiredHeight, setValue, false);
-                    setValue?.Dispose();
+                    using PropertyValue setValue = new PropertyValue(value);
+                    UpdateImage(ImageVisualProperty.DesiredHeight, setValue);
                 }
             }
         }
@@ -1482,7 +1756,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (ReleasePolicyType)GetInternalReleasePolicyProperty(this);
+                    return InternalReleasePolicy;
                 }
             }
             set
@@ -1493,7 +1767,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalReleasePolicyProperty(this, null, value);
+                    InternalReleasePolicy = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1538,7 +1812,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (WrapModeType)GetInternalWrapModeUProperty(this);
+                    return InternalWrapModeU;
                 }
             }
             set
@@ -1549,7 +1823,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalWrapModeUProperty(this, null, value);
+                    InternalWrapModeU = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1595,7 +1869,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (WrapModeType)GetInternalWrapModeVProperty(this);
+                    return InternalWrapModeV;
                 }
             }
             set
@@ -1606,7 +1880,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalWrapModeVProperty(this, null, value);
+                    InternalWrapModeV = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1654,7 +1928,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalAdjustViewSizeProperty(this);
+                    return adjustViewSize;
                 }
             }
             set
@@ -1665,12 +1939,12 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalAdjustViewSizeProperty(this, null, value);
+                    adjustViewSize = value;
                 }
                 NotifyPropertyChanged();
             }
         }
-        private bool adjustViewSize = false;
+        private bool adjustViewSize;
 
         /// <summary>
         /// ImageView PlaceHolderUrl, type string.
@@ -1690,7 +1964,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return GetInternalPlaceHolderUrlProperty(this) as string;
+                    return GetInternalPlaceHolderUrl();
                 }
             }
             set
@@ -1701,11 +1975,24 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalPlaceHolderUrlProperty(this, null, value);
+                    SetInternalPlaceHolderUrl(value);
                 }
 
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalPlaceHolderUrl(string url)
+        {
+            if (url != null)
+            {
+                Object.InternalSetPropertyString(SwigCPtr, Property.PlaceHolderUrl, url);
+            }
+        }
+
+        private string GetInternalPlaceHolderUrl()
+        {
+            return Object.InternalGetPropertyString(SwigCPtr, Property.PlaceHolderUrl);
         }
 
         /// <summary>
@@ -1723,7 +2010,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (bool)GetInternalTransitionEffectProperty(this);
+                    return GetInternalTransitionEffect();
                 }
             }
             set
@@ -1734,10 +2021,20 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalTransitionEffectProperty(this, null, value);
+                    SetInternalTransitionEffect(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalTransitionEffect(bool effect)
+        {
+            Object.InternalSetPropertyBool(SwigCPtr, Property.TransitionEffect, effect);
+        }
+
+        private bool GetInternalTransitionEffect()
+        {
+            return Object.InternalGetPropertyBool(SwigCPtr, Property.TransitionEffect);
         }
 
         /// <summary>
@@ -1754,7 +2051,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return GetInternalTransitionEffectOptionProperty(this) as PropertyMap;
+                    return InternalTransitionEffectOption;
                 }
             }
             set
@@ -1765,7 +2062,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalTransitionEffectOptionProperty(this, null, value);
+                    InternalTransitionEffectOption = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -1819,7 +2116,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return GetInternalImageColorProperty(this) as Color;
+                    return GetInternalImageColor();
                 }
             }
             set
@@ -1830,10 +2127,31 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalImageColorProperty(this, null, value);
+                    SetInternalImageColor(value);
                 }
                 NotifyPropertyChanged();
             }
+        }
+
+        private void SetInternalImageColor(Color color)
+        {
+            if (color != null)
+            {
+                using var opacity = new PropertyValue(color.A);
+                UpdateImage(Visual.Property.Opacity, opacity, false);
+                using var mixColor = new PropertyValue(color);
+                UpdateImage(Visual.Property.MixColor, mixColor, false);
+
+                // Update property
+                _ = Interop.View.InternalUpdateVisualPropertyVector4(SwigCPtr, Property.IMAGE, Visual.Property.MixColor, Vector4.getCPtr(color));
+            }
+        }
+
+        private Color GetInternalImageColor()
+        {
+            Color ret = new Color();
+            GetCachedImageVisualProperty(Visual.Property.MixColor)?.Get(ret);
+            return ret;
         }
 
         internal Selector<string> ResourceUrlSelector
@@ -1884,7 +2202,21 @@ namespace Tizen.NUI.BaseComponents
             }
             using (PropertyValue desiredHeightValue = new PropertyValue(_desired_height))
             {
-                UpdateImage(ImageVisualProperty.DesiredWidth, desiredHeightValue, false);
+                UpdateImage(ImageVisualProperty.DesiredHeight, desiredHeightValue, false);
+            }
+            if (_fastTrackUploading)
+            {
+                _fastTrackUploading = false;
+                using (PropertyValue fastTrackUploadingValue = new PropertyValue(_fastTrackUploading))
+                {
+                    UpdateImage(ImageVisualProperty.FastTrackUploading, fastTrackUploadingValue, false);
+                }
+            }
+            if (!string.IsNullOrEmpty(_alphaMaskUrl))
+            {
+                _alphaMaskUrl = "";
+                using PropertyValue emptyValue = new PropertyValue();
+                UpdateImage(ImageVisualProperty.AlphaMaskURL, emptyValue, false);
             }
             imagePropertyUpdatedFlag = false;
         }
@@ -1894,38 +2226,6 @@ namespace Tizen.NUI.BaseComponents
             ViewResourceReadySignal ret = new ViewResourceReadySignal(Interop.View.ResourceReadySignal(View.getCPtr(view)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal override void ApplyCornerRadius()
-        {
-            base.ApplyCornerRadius();
-
-            if (backgroundExtraData == null) return;
-
-            // Update corner radius properties to image by ActionUpdateProperty
-            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ContentsCornerRadius))
-            {
-                if (backgroundExtraData.CornerRadius != null)
-                {
-                    Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
-                }
-                Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
-            }
-        }
-
-        internal override void ApplyBorderline()
-        {
-            base.ApplyBorderline();
-
-            if (backgroundExtraData == null) return;
-
-            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ContentsBorderline))
-            {
-                // Update borderline properties to image by ActionUpdateProperty
-                Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth);
-                Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineColor, Vector4.getCPtr(backgroundExtraData.BorderlineColor ?? Color.Black));
-                Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
-            }
         }
 
         internal ResourceLoadingStatusType GetResourceStatus()
@@ -1974,6 +2274,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View ResourceReady signal
         private void OnResourceReady(IntPtr data)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (!CheckResourceReady())
             {
                 return;
@@ -2007,8 +2313,8 @@ namespace Tizen.NUI.BaseComponents
                     {
                         UpdateImage(ImageVisualProperty.URL, setValue);
                     }
-                    // Special case. If we set GeneratedUrl, or FastTrackUploading, Create ImageVisual synchronously.
-                    if (value.StartsWith("dali://") || value.StartsWith("enbuf://") || _fastTrackUploading)
+
+                    if (SynchronousVisualCreationRequired())
                     {
                         UpdateImage();
                     }
@@ -2025,7 +2331,8 @@ namespace Tizen.NUI.BaseComponents
             if (_border != value)
             {
                 _border = new Rectangle(value);
-                UpdateImage(NpatchImageVisualProperty.Border, new PropertyValue(_border));
+                using var pv = new PropertyValue(_border);
+                UpdateImage(NpatchImageVisualProperty.Border, pv);
             }
         }
 
@@ -2038,7 +2345,7 @@ namespace Tizen.NUI.BaseComponents
             // Unregist and detach process only if previous resourceUrl was not empty
             if (!string.IsNullOrEmpty(_resourceUrl))
             {
-                PropertyValue emptyValue = new PropertyValue();
+                using PropertyValue emptyValue = new PropertyValue();
 
                 // Remove current registed Image.
                 SetProperty(ImageView.Property.IMAGE, emptyValue);
@@ -2048,7 +2355,10 @@ namespace Tizen.NUI.BaseComponents
 
                 // Update resourceUrl as empty value
                 _resourceUrl = "";
-                cachedImagePropertyMap[ImageVisualProperty.URL] = emptyValue;
+                if (cachedImagePropertyMap != null)
+                {
+                    cachedImagePropertyMap.SetNone(ImageVisualProperty.URL);
+                }
             }
         }
 
@@ -2060,7 +2370,7 @@ namespace Tizen.NUI.BaseComponents
             cachedImagePropertyMap = null;
             MergeCachedImageVisualProperty(map);
 
-            // Update _resourceUrl, _desired_width, _desired_height, _fastTrackUploading here.
+            // Update _resourceUrl, _alphaMaskUrl, _desired_width, _desired_height, _fastTrackUploading here.
             // Those values are C# side cached value.
             _desired_width = _desired_height = -1;
             _fastTrackUploading = false;
@@ -2068,14 +2378,20 @@ namespace Tizen.NUI.BaseComponents
             if (map != null)
             {
                 _resourceUrl = "";
+                _alphaMaskUrl = "";
                 foreach (int key in cachedNUIImageViewPropertyKeyList)
                 {
                     using PropertyValue propertyValue = map.Find(key);
                     if (propertyValue != null)
                     {
+                        // Note : Since ImageVisualProperty is not a constant value, we cannot use switch-case here.
                         if (key == ImageVisualProperty.URL)
                         {
                             propertyValue.Get(out _resourceUrl);
+                        }
+                        else if (key == ImageVisualProperty.AlphaMaskURL)
+                        {
+                            propertyValue.Get(out _alphaMaskUrl);
                         }
                         else if (key == ImageVisualProperty.DesiredWidth)
                         {
@@ -2092,7 +2408,8 @@ namespace Tizen.NUI.BaseComponents
                     }
                 }
 
-                SetProperty(ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(map));
+                using var pv = new Tizen.NUI.PropertyValue(map);
+                SetProperty(ImageView.Property.IMAGE, pv);
             }
             else
             {
@@ -2197,46 +2514,14 @@ namespace Tizen.NUI.BaseComponents
                 }
                 if (_border == null)
                 {
-                    PropertyValue image = new PropertyValue((int)Visual.Type.Image);
-                    cachedImagePropertyMap[Visual.Property.Type] = image;
-                    image?.Dispose();
+                    cachedImagePropertyMap.Set(Visual.Property.Type, (int)Visual.Type.Image);
                 }
                 else
                 {
-                    PropertyValue nPatch = new PropertyValue((int)Visual.Type.NPatch);
-                    cachedImagePropertyMap[Visual.Property.Type] = nPatch;
-                    nPatch?.Dispose();
-                    PropertyValue border = new PropertyValue(_border);
-                    cachedImagePropertyMap[NpatchImageVisualProperty.Border] = border;
-                    border?.Dispose();
+                    cachedImagePropertyMap.Set(Visual.Property.Type, (int)Visual.Type.NPatch);
+                    cachedImagePropertyMap.Set(NpatchImageVisualProperty.Border, _border);
                 }
             }
-
-            if (backgroundExtraData != null && backgroundExtraData.CornerRadius != null)
-            {
-                using (var cornerRadius = new PropertyValue(backgroundExtraData.CornerRadius))
-                using (var cornerRadiusPolicy = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy))
-                {
-                    cachedImagePropertyMap[Visual.Property.CornerRadius] = cornerRadius;
-                    cachedImagePropertyMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
-                }
-            }
-
-            if (backgroundExtraData != null && backgroundExtraData.BorderlineWidth > 0.0f)
-            {
-                using (var borderlineWidth = new PropertyValue(backgroundExtraData.BorderlineWidth))
-                using (var borderlineColor = new PropertyValue(backgroundExtraData.BorderlineColor))
-                using (var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset))
-                {
-                    cachedImagePropertyMap[Visual.Property.BorderlineWidth] = borderlineWidth;
-                    cachedImagePropertyMap[Visual.Property.BorderlineColor] = borderlineColor;
-                    cachedImagePropertyMap[Visual.Property.BorderlineOffset] = borderlineOffset;
-                }
-            }
-
-            // We already applied background extra data now.
-            backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.ContentsCornerRadius;
-            backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.ContentsBorderline;
 
             UpdateImageMap();
         }
@@ -2341,6 +2626,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnResourceLoaded(IntPtr view)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
             if (!CheckResourceReady())
             {
                 return;
@@ -2352,6 +2643,27 @@ namespace Tizen.NUI.BaseComponents
             {
                 _resourceLoadedEventHandler(this, e);
             }
+        }
+
+        private bool SynchronousVisualCreationRequired()
+        {
+            // Special case. If we set GeneratedUrl, or FastTrackUploading, Create ImageVisual synchronously.
+            if (!string.IsNullOrEmpty(_resourceUrl))
+            {
+                if (_fastTrackUploading)
+                {
+                    return true;
+                }
+                if (_resourceUrl.StartsWith("dali://") || _resourceUrl.StartsWith("enbuf://"))
+                {
+                    return true;
+                }
+                if (!string.IsNullOrEmpty(_alphaMaskUrl) && (_alphaMaskUrl.StartsWith("dali://") || _alphaMaskUrl.StartsWith("enbuf://")))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
@@ -2471,15 +2783,16 @@ namespace Tizen.NUI.BaseComponents
                 float specHeight = heightMeasureSpec.Size.AsDecimal();
                 float naturalWidth = Owner.NaturalSize.Width;
                 float naturalHeight = Owner.NaturalSize.Height;
-                float minWidth = Owner.MinimumSize.Width;
-                float maxWidth = Owner.MaximumSize.Width;
-                float minHeight = Owner.MinimumSize.Height;
-                float maxHeight = Owner.MaximumSize.Height;
+                var minWidth = Owner.GetMinimumWidth();
+                var minHeight = Owner.GetMinimumHeight();
+                var maxWidth = Owner.GetMaximumWidth();
+                var maxHeight = Owner.GetMaximumHeight();
                 float aspectRatio = (naturalWidth > 0) ? (naturalHeight / naturalWidth) : 0;
 
                 // Assume that the new width and height are given from the view's suggested size by default.
-                float newWidth = Math.Min(Math.Max(naturalWidth, minWidth), (maxWidth < 0 ? Int32.MaxValue : maxWidth));
-                float newHeight = Math.Min(Math.Max(naturalHeight, minHeight), (maxHeight < 0 ? Int32.MaxValue : maxHeight));
+                // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+                float newWidth = Math.Max(Math.Min(naturalWidth, maxWidth < 0 ? Int32.MaxValue : maxWidth), minWidth);
+                float newHeight = Math.Max(Math.Min(naturalHeight, maxHeight < 0 ? Int32.MaxValue : maxHeight), minHeight);
 
                 // The width and height measure specs are going to be used to set measured size.
                 // Mark that the measure specs are changed by default to update measure specs later.

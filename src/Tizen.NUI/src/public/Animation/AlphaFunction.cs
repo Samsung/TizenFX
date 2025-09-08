@@ -25,18 +25,40 @@ namespace Tizen.NUI
     /// Understanding an animation as a parametric function over time, the alpha function is applied to the parameter of
     /// the animation before computing the final animation value.
     /// </summary>
+    /// <example><code>
+    /// View view = new View()
+    /// {
+    ///     Size2D = new Size2D(100, 100),
+    ///     Position2D = new Position2D(100, 100),
+    ///     BackgroundColor = Color.Red,
+    /// };
+    /// Window.Default.Add(view);
+    /// Animation animation = new Animation();
+    /// const float destinationValue = 300.0f;
+    /// const int startTime = 0; // animation starts at 0 second point. no delay.
+    /// const int endTime = 5000; // animation ends at 5 second point.
+    /// animation.AnimateTo(view, "PositionX", destinationValue, startTime, endTime, new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn));
+    /// animation.Play();
+    /// </code></example>
     /// <since_tizen> 3 </since_tizen>
     public class AlphaFunction : Disposable
     {
+        private static readonly object dummyObject = new object();
 
         /// <summary>
         /// The constructor.<br />
         /// Creates an alpha function object with the user-defined alpha function.<br />
         /// </summary>
         /// <param name="func">User defined function. It must be a method formatted as float alphafunction(float progress)</param>
+        /// <remarks>
+        /// Alpha function called at seperated thread with main thread.
+        /// Due to the disposed infomation is not send to seperated thread,
+        /// Given function might be invoked even if animation class or alpha functoin itself disposed.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction(global::System.Delegate func) : this(Interop.AlphaFunction.NewAlphaFunction(SWIGTYPE_p_f_float__float.getCPtr(new SWIGTYPE_p_f_float__float(System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func)))), true)
+        public AlphaFunction(global::System.Delegate func) : this(Interop.AlphaFunction.NewAlphaFunction(new global::System.Runtime.InteropServices.HandleRef(dummyObject, System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func))), true, true)
         {
+            CustomAlphaFunctionDelegate = func;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -45,7 +67,7 @@ namespace Tizen.NUI
         /// Creates an alpha function object with the default built-in alpha function.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction() : this(Interop.AlphaFunction.NewAlphaFunction(), true)
+        public AlphaFunction() : this(Interop.AlphaFunction.NewAlphaFunction(), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -56,7 +78,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="function">One of the built-in alpha functions.</param>
         /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction(AlphaFunction.BuiltinFunctions function) : this(Interop.AlphaFunction.NewAlphaFunction((int)function), true)
+        public AlphaFunction(AlphaFunction.BuiltinFunctions function) : this(Interop.AlphaFunction.NewAlphaFunction((int)function), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -69,40 +91,59 @@ namespace Tizen.NUI
         /// <param name="controlPoint0">A Vector2 which will be used as the first control point of the curve.</param>
         /// <param name="controlPoint1">A Vector2 which will be used as the second control point of the curve.</param>
         /// <since_tizen> 3 </since_tizen>
-        public AlphaFunction(Vector2 controlPoint0, Vector2 controlPoint1) : this(Interop.AlphaFunction.NewAlphaFunction(Vector2.getCPtr(controlPoint0), Vector2.getCPtr(controlPoint1)), true)
+        public AlphaFunction(Vector2 controlPoint0, Vector2 controlPoint1) : this(Interop.AlphaFunction.NewAlphaFunction(Vector2.getCPtr(controlPoint0), Vector2.getCPtr(controlPoint1)), true, false)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal AlphaFunction(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        /// <summary>
+        /// Constructor for spring-based AlphaFunction using a predefined SpringType.
+        /// </summary>
+        /// <param name="springType">The spring preset type to use (e.g., Gentle, Quick, etc.).</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AlphaFunction(AlphaFunctionSpringType springType) : this(Interop.AlphaFunction.NewAlphaFunctionSpringType((int)springType), true, false)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Constructor for spring-based AlphaFunction using custom spring parameters.
+        /// This allows creating a spring easing function with fully customizable physics behavior.
+        /// </summary>
+        /// <param name="springData"> The custom spring configuration (stiffness, damping, mass)</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AlphaFunction(AlphaFunctionSpringData springData) : this(Interop.AlphaFunction.NewAlphaFunctionSpringData(springData.Stiffness, springData.Damping, springData.Mass), true, false)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal AlphaFunction(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
         }
 
-        // Not used : This will be remained by 2021-05-30 to check side effect. After 2021-05-30 this will be removed cleanly
-        // internal AlphaFunction(SWIGTYPE_p_f_float__float function) : this(Interop.AlphaFunction.NewAlphaFunction(SWIGTYPE_p_f_float__float.getCPtr(function)), true)
-        // {
-        //     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        // }
+        internal AlphaFunction(global::System.IntPtr cPtr, bool cMemoryOwn, bool disposableOnlyMainThread) : base(cPtr, cMemoryOwn, disposableOnlyMainThread)
+        {
+        }
 
         /// <summary>
-        /// This specifies the various types of BuiltinFunctions.
+        /// This specifies the various types of built-in alpha functions available for animations.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names")]
         public enum BuiltinFunctions
         {
             /// <summary>
-            /// Linear.
+            /// Default alpha function. Linear alpha function.
             /// </summary>
             [Description("DEFAULT")]
             Default,
             /// <summary>
-            /// No transformation.
+            /// Linear alpha function. (No transformation)
             /// </summary>
             [Description("LINEAR")]
             Linear,
             /// <summary>
-            /// Reverse linear.
+            /// Reverse linear alpha function.
             /// </summary>
             [Description("REVERSE")]
             Reverse,
@@ -183,11 +224,26 @@ namespace Tizen.NUI
             /// The user has provided a custom function.
             /// </summary>
             CustomFunction,
+
             /// <summary>
             /// The user has provided the control points of a bezier curve.
             /// </summary>
-            Bezier
+            Bezier,
+
+            /// <summary>
+            /// The user has provided the spring type.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Spring,
+
+            /// <summary>
+            /// The user has provided the spring data.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            CustomSpring
         }
+
+        internal global::System.Delegate CustomAlphaFunctionDelegate { get; private set; }
 
         /// <summary>
         /// Retrieves the control points of the alpha function.<br />
@@ -197,7 +253,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void GetBezierControlPoints(out Vector2 controlPoint0, out Vector2 controlPoint1)
         {
-            Vector4 ret = new Vector4(Interop.AlphaFunction.GetBezierControlPoints(SwigCPtr), true);
+            using Vector4 ret = new Vector4(Interop.AlphaFunction.GetBezierControlPoints(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             controlPoint0 = new Vector2(ret.X, ret.Y);
@@ -310,15 +366,6 @@ namespace Tizen.NUI
             }
             return propertyKey;
         }
-
-        // Not used : This will be remained by 2021-05-30 to check side effect. After 2021-05-30 this will be removed cleanly
-        // internal SWIGTYPE_p_f_float__float GetCustomFunction()
-        // {
-        //     global::System.IntPtr cPtr = Interop.AlphaFunction.GetCustomFunction(SwigCPtr);
-        //     SWIGTYPE_p_f_float__float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_float__float(cPtr);
-        //     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        //     return ret;
-        // }
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]

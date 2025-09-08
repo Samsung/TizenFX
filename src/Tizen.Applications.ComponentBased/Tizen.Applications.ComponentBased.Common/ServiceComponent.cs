@@ -19,29 +19,33 @@ using System;
 namespace Tizen.Applications.ComponentBased.Common
 {
     /// <summary>
-    /// The class for showing service module
+    /// Represents a base class for service components in the component-based application model.
+    /// This class provides methods for handling the lifecycle and state of service components.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public abstract class ServiceComponent : BaseComponent
     {
         /// <summary>
-        /// Overrides this method to handle behavior when the component is created.
+        /// Called when the service component is created. Override this method to implement custom creation behavior.
         /// </summary>
-        /// <returns>True if a service component is successfully created</returns>
+        /// <returns>
+        /// <c>true</c> if the service component is successfully created; otherwise, <c>false</c>.
+        /// </returns>
+        /// <since_tizen> 6 </since_tizen>
         public abstract bool OnCreate();
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the component receives the start command message.
+        /// Called when the service component receives a start command message. Override this method to handle start command behavior.
         /// </summary>
-        /// <param name="appControl">appcontrol object</param>
-        /// <param name="restarted">True if it was restarted</param>
+        /// <param name="appControl">The <see cref="AppControl"/> object containing the app control data.</param>
+        /// <param name="restarted"><c>true</c> if the component was restarted; otherwise, <c>false</c>.</param>
         /// <since_tizen> 6 </since_tizen>
         public virtual void OnStartCommand(AppControl appControl, bool restarted)
         {
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the component is destroyed.
+        /// Called when the service component is destroyed. Override this method to handle destruction behavior.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public virtual void OnDestroy()
@@ -49,3 +53,4 @@ namespace Tizen.Applications.ComponentBased.Common
         }
     }
 }
+

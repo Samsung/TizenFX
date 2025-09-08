@@ -25,12 +25,12 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class VisualAnimator : VisualMap
     {
-        private string alphaFunction = null;
-        private int startTime = 0;
-        private int endTime = 0;
-        private string target = null;
-        private string propertyIndex = null;
-        private object destinationValue = null;
+        private string alphaFunction;
+        private int startTime;
+        private int endTime;
+        private string target;
+        private string propertyIndex;
+        private object destinationValue;
 
         /// <summary>
         /// Create VisualAnimator object.
@@ -143,22 +143,13 @@ namespace Tizen.NUI
         protected override void ComposingPropertyMap()
         {
             PropertyMap animator = new PropertyMap();
-            PropertyValue temp = new PropertyValue(alphaFunction);
-            animator.Add("alphaFunction", temp);
-            temp.Dispose();
+            animator.Add("alphaFunction", alphaFunction);
 
             PropertyMap timePeriod = new PropertyMap();
-            temp = new PropertyValue((endTime - startTime) / 1000.0f);
-            timePeriod.Add("duration", temp);
-            temp.Dispose();
+            timePeriod.Add("duration", (endTime - startTime) / 1000.0f);
+            timePeriod.Add("delay", startTime / 1000.0f);
 
-            temp = new PropertyValue(startTime / 1000.0f);
-            timePeriod.Add("delay", temp);
-            temp.Dispose();
-
-            temp = new PropertyValue(timePeriod);
-            animator.Add("timePeriod", temp);
-            temp.Dispose();
+            animator.Add("timePeriod", animator);
 
             StringBuilder sb = new StringBuilder(propertyIndex);
             sb[0] = (char)(sb[0] | 0x20);
@@ -167,18 +158,11 @@ namespace Tizen.NUI
             PropertyValue val = PropertyValue.CreateFromObject(destinationValue);
 
             PropertyMap transition = new PropertyMap();
-            temp = new PropertyValue(target);
-            transition.Add("target", temp);
-            temp.Dispose();
-
-            temp = new PropertyValue(str);
-            transition.Add("property", temp);
-            temp.Dispose();
+            transition.Add("target", target);
+            transition.Add("property", str);
 
             transition.Add("targetValue", val);
-            temp = new PropertyValue(animator);
-            transition.Add("animator", temp);
-            temp.Dispose();
+            transition.Add("animator", transition);
 
             _outputVisualMap = transition;
             base.ComposingPropertyMap();

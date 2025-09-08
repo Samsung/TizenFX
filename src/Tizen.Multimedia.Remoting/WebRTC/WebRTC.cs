@@ -129,7 +129,7 @@ namespace Tizen.Multimedia.Remoting
         #endregion
 
         /// <summary>
-        /// Starts the WebRTC.
+        /// Starts the WebRTC with specific media source.
         /// </summary>
         /// <remarks>
         /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state.<br/>
@@ -150,7 +150,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Starts the WebRTC asynchronously.
+        /// Starts the WebRTC asynchronously with specific media source.
         /// </summary>
         /// <remarks>
         /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state.<br/>
@@ -228,7 +228,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Creates SDP offer asynchronously to start a new WebRTC connection to a remote peer.
+        /// Creates SDP(Session Description Protocol) offer asynchronously to start a new WebRTC connection to a remote peer.
         /// </summary>
         /// <remarks>
         /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/> or <see cref="WebRTCState.Playing"/>(Since API Level 12)
@@ -267,7 +267,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Creates SDP answer asynchronously with option to an offer received from a remote peer.
+        /// Creates SDP(Session Description Protocol) answer asynchronously with option to an offer received from a remote peer.
         /// </summary>
         /// <remarks>
         /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/> or <see cref="WebRTCState.Playing"/>(Since API Level 12)
@@ -318,6 +318,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="CreateOfferAsync()"/>
         /// <seealso cref="CreateAnswerAsync()"/>
+        /// <seealso cref="GetLocalDescription()"/>
         /// <since_tizen> 9 </since_tizen>
         public void SetLocalDescription(string description)
         {
@@ -325,11 +326,35 @@ namespace Tizen.Multimedia.Remoting
 
             ValidationUtil.ValidateIsNullOrEmpty(description, nameof(description));
 
-            NativeWebRTC.SetLocalDescription(Handle, description).ThrowIfFailed("Failed to set description.");
+            NativeWebRTC.SetLocalDescription(Handle, description).ThrowIfFailed("Failed to set local description.");
         }
 
         /// <summary>
-        /// Sets the session description of the remote peer's current offer or answer.
+        /// Gets the session description for a local peer.
+        /// </summary>
+        /// <returns>The local session description string</returns>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <seealso cref="SetLocalDescription()"/>
+        /// <since_tizen> 12 </since_tizen>
+        public string GetLocalDescription()
+        {
+            ValidateNotDisposed();
+
+            IntPtr description = IntPtr.Zero;
+            try
+            {
+                NativeWebRTC.GetLocalDescription(Handle, out description).ThrowIfFailed("Failed to get local description.");
+
+                return Marshal.PtrToStringAnsi(description);
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(description);
+            }
+        }
+
+        /// <summary>
+        /// Sets the offer or answer session description from the current remote peer.
         /// </summary>
         /// <remarks>
         /// The WebRTC must be in the <see cref="WebRTCState.Negotiating"/> or <see cref="WebRTCState.Playing"/>(Since API Level 12)
@@ -341,6 +366,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="CreateOfferAsync()"/>
         /// <seealso cref="CreateAnswerAsync()"/>
+        /// <seealso cref="GetRemoteDescription()"/>
         /// <since_tizen> 9 </since_tizen>
         public void SetRemoteDescription(string description)
         {
@@ -348,7 +374,31 @@ namespace Tizen.Multimedia.Remoting
 
             ValidationUtil.ValidateIsNullOrEmpty(description, nameof(description));
 
-            NativeWebRTC.SetRemoteDescription(Handle, description).ThrowIfFailed("Failed to set description.");
+            NativeWebRTC.SetRemoteDescription(Handle, description).ThrowIfFailed("Failed to set remote description.");
+        }
+
+        /// <summary>
+        /// Gets the offer or answer session description from the current remote peer.
+        /// </summary>
+        /// <value>The remote session description string</value>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <seealso cref="SetRemoteDescription"/>
+        /// <since_tizen> 12 </since_tizen>
+        public string GetRemoteDescription()
+        {
+            ValidateNotDisposed();
+
+            IntPtr description = IntPtr.Zero;
+            try
+            {
+                NativeWebRTC.GetRemoteDescription(Handle, out description).ThrowIfFailed("Failed to get remote description.");
+
+                return Marshal.PtrToStringAnsi(description);
+            }
+            finally
+            {
+                Marshal.FreeHGlobal(description);
+            }
         }
 
         /// <summary>
@@ -395,7 +445,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Adds media source.
+        /// Adds media source to the current WebRTC.
         /// </summary>
         /// <remarks>
         /// This method does not throw state exception anymore(Since API Level 12). It can be called in any state.<br/>
@@ -441,7 +491,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Adds media sources.
+        /// Adds media sources from the current WebRTC.
         /// </summary>
         /// <remarks>
         /// This method does not throw state exception anymore(Since API Level 12). It can be called in any state.<br/>
@@ -488,7 +538,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Removes media source.
+        /// Removes media source from the current WebRTC.
         /// </summary>
         /// <remarks>
         /// This method does not throw state exception anymore(Since API Level 12). It can be called in any state.<br/>
@@ -521,7 +571,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Removes media sources.
+        /// Removes media sources from the current WebRTC.
         /// </summary>
         /// <remarks>
         /// This method does not throw state exception anymore(Since API Level 12). It can be called in any state.<br/>
@@ -548,7 +598,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Sets a turn server.
+        /// Sets a turn server for signalling with remote peer which cannot be connected directly.
         /// </summary>
         /// <exception cref="ArgumentNullException">The <paramref name="turnServer"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
@@ -567,7 +617,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Sets turn servers.
+        /// Sets turn servers for signalling with remote peer which cannot be connected directly.
         /// </summary>
         /// <exception cref="ArgumentNullException">The one of <paramref name="turnServers"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>

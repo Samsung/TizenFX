@@ -148,6 +148,12 @@ internal static partial class Interop
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_transceiver_codec")]
         internal static extern WebRTCErrorCode GetTransceiverCodec(IntPtr handle, uint sourceId, MediaType type, out TransceiverCodec codec);
 
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_payload_type")]
+        internal static extern WebRTCErrorCode SetPaylodType(IntPtr handle, uint sourceId, TransceiverCodec codec, uint payloadType);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_payload_type")]
+        internal static extern WebRTCErrorCode GetPaylodType(IntPtr handle, uint sourceId, TransceiverCodec codec, out uint payloadType);
+
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_pause")]
         internal static extern WebRTCErrorCode SetPause(IntPtr handle, uint sourceId, MediaType type, bool pause);
 
@@ -256,8 +262,14 @@ internal static partial class Interop
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_local_description")]
         internal static extern WebRTCErrorCode SetLocalDescription(IntPtr handle, string description);
 
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_local_description")]
+        internal static extern WebRTCErrorCode GetLocalDescription(IntPtr handle, out IntPtr description);
+
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_remote_description")]
         internal static extern WebRTCErrorCode SetRemoteDescription(IntPtr handle, string description);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_remote_description")]
+        internal static extern WebRTCErrorCode GetRemoteDescription(IntPtr handle, out IntPtr description);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_add_ice_candidate")]
         internal static extern WebRTCErrorCode AddIceCandidate(IntPtr handle, string candidate);
@@ -267,7 +279,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_foreach_stats")]
         internal static extern WebRTCErrorCode ForeachStats(IntPtr handle, int typeMask, RetrieveStatsCallback callback, IntPtr userData = default);
-
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_error_cb")]
         internal static extern WebRTCErrorCode SetErrorOccurredCb(IntPtr handle, ErrorOccurredCallback callback, IntPtr userData = default);
@@ -383,7 +394,9 @@ internal static partial class Interop
 
         protected override bool ReleaseHandle()
         {
+            Log.Info(WebRTCLog.Tag, "[Start] Native destroy");
             var ret = NativeWebRTC.Destroy(handle);
+            Log.Info(WebRTCLog.Tag, "[End] Native destroy");
             if (ret != WebRTCErrorCode.None)
             {
                 Log.Debug(GetType().FullName, $"Failed to release native {GetType().Name}");

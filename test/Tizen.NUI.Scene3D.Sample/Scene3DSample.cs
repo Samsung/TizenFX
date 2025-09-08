@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 using Tizen.NUI.Scene3D;
 using System.Collections.Generic;
+using Tizen.NUI.Accessibility;
 
 class Scene3DSample : NUIApplication
 {
@@ -30,10 +31,13 @@ class Scene3DSample : NUIApplication
     Window mWindow;
     Vector2 mWindowSize;
 
+    private float mSceneViewSizeRate = 0.95f; // The scene view size relation as window size.
+
     SceneView mSceneView;
     Model mModel;
     Animation mModelAnimation;
     bool mModelLoadFinished;
+    bool mIsCustomOverlay = false;
 
     // Note : This motion data works well only if model is MorthStressTest!
     MotionData mStaticMotionData;
@@ -130,13 +134,16 @@ class Scene3DSample : NUIApplication
     {
         mSceneView = new SceneView()
         {
-            SizeWidth = mWindowSize.Width,
-            SizeHeight = mWindowSize.Height,
+            SizeWidth = mWindowSize.Width * mSceneViewSizeRate,
+            SizeHeight = mWindowSize.Height * mSceneViewSizeRate,
             PositionX = 0.0f,
             PositionY = 0.0f,
-            PivotPoint = PivotPoint.TopLeft,
-            ParentOrigin = ParentOrigin.TopLeft,
+            PivotPoint = PivotPoint.Center,
+            ParentOrigin = ParentOrigin.Center,
             PositionUsesPivotPoint = true,
+
+            UseFramebuffer = true,
+            BackgroundColor = Color.DarkOrchid,
         };
 
         mSceneView.CameraTransitionFinished += (o, e) =>
@@ -159,6 +166,7 @@ class Scene3DSample : NUIApplication
         SetupSceneViewCamera(mSceneView);
 
         mWindow.Add(mSceneView);
+
     }
     private void SetupSceneViewCamera(SceneView sceneView)
     {
@@ -230,6 +238,11 @@ class Scene3DSample : NUIApplication
         {
             Name = modelUrl,
         };
+
+        mModel.SetAccessibilityRoleV2(AccessibilityRoleV2.Model);
+        mModel.AccessibilityName = "Model";
+        mModel.AccessibilityHighlightable = true;
+
         mModel.ResourcesLoaded += (s, e) =>
         {
             Model model = s as Model;
@@ -480,6 +493,34 @@ class Scene3DSample : NUIApplication
                     }
                     break;
                 }
+                case "c":
+                {
+                    if (mSceneView != null)
+                    {
+                        mSceneView.CornerRadius = new Vector4(60.0f, 60.0f, 60.0f, 60.0f);
+                        mSceneView.CornerSquareness = new Vector4(0.6f, 0.6f, 0.6f, 0.6f);
+                        mSceneView.CornerRadiusPolicy = VisualTransformPolicyType.Absolute;
+                        mSceneView.BorderlineWidth = 20.0f;
+                        mSceneView.BorderlineColor = new Vector4(1.0f, 1.0f, 1.0f, 0.2f);
+                        mSceneView.BorderlineOffset = -1.0f;
+                    }
+                    break;
+                }
+                case "a":
+                {
+                    if (!mIsCustomOverlay)
+                    {
+                        var newSize = new Size2D(500, 500);
+                        var newPosition = new Position2D(100, 100);
+                        Accessibility.SetCustomHighlightOverlay(mModel, newPosition, newSize);
+                    } 
+                    else
+                    {
+                        Accessibility.ResetCustomHighlightOverlay(mModel);
+                    }
+                    mIsCustomOverlay = !mIsCustomOverlay;
+                    break;
+                }
             }
 
             FullGC();
@@ -501,19 +542,24 @@ class Scene3DSample : NUIApplication
                     mModelAnimation.Play();
                 }
             }
+            if (mSceneView != null)
+            {
+                mSceneView.CornerRadius = Vector4.Zero;
+                mSceneView.BorderlineWidth = 0.0f;
+            }
         }
     }
 
     public void Activate()
     {
         mWindow = Window.Default;
-        mWindow.BackgroundColor = Color.DarkOrchid;
+        mWindow.BackgroundColor = Color.Blue;
         mWindowSize = mWindow.WindowSize;
 
         mWindow.Resized += (o, e) =>
         {
             mWindowSize = mWindow.WindowSize;
-            mSceneView.Size = new Size(mWindowSize);
+            mSceneView.Size = new Size(mWindowSize * mSceneViewSizeRate);
         };
 
         mWindow.KeyEvent += OnKeyEvent;

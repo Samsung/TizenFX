@@ -21,7 +21,9 @@ using NativeWebRTC = Interop.NativeWebRTC;
 
 namespace Tizen.Multimedia.Remoting
 {
-    /// <summary>Represents a null source.</summary>
+    /// <summary>
+    /// Represents a media source that only receives media streams from peer.
+    /// </summary>
     /// <remarks>
     /// If you add this source, WebRTC only receives media stream.<br/>
     /// <see cref="TransceiverDirection"/> is set <see cref="TransceiverDirection.RecvOnly"/> by default.
@@ -84,7 +86,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Retrieves the supported transceiver codecs.
+        /// Retrieves the supported transceiver codecs for receiving media stream.
         /// </summary>
         /// <param name="type">The media type.</param>
         /// <returns>The supported transceiver codecs.</returns>

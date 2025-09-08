@@ -226,5 +226,61 @@ namespace Tizen.NUI.Devel.Tests
 
             testView.Dispose();
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Verify SetAccessibilityStatesV2 and GetAccessibilityStatesV2 functionality")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.View.GetAccessibilityStatesV2 M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "seoyeon2.kim@samsung.com")]
+        public void AccessibilityStatesV2_SetAndGet_ReturnsCorrectState()
+        {
+            /* TEST CODE */
+            var testView = new View();
+            testView.SetAccessibilityStatesV2(AccessibilityStatesV2.Enabled);
+
+            var actualStates = testView.GetAccessibilityStatesV2();
+            Assert.AreEqual(AccessibilityStatesV2.Enabled, actualStates, "View AccessibilityStatesV2.Enabled should be true.");
+
+            testView.Dispose();
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Verify SetAccessibilityRoleV2 and GetAccessibilityRoleV2 functionality")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.View.GetAccessibilityRoleV2 M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "seoyeon2.kim@samsung.com")]
+        public void AccessibilityRoleV2_SetAndGet_ReturnsCorrectRole()
+        {
+            /* TEST CODE */
+            var testView = new View();
+            testView.SetAccessibilityRoleV2(AccessibilityRoleV2.Button);
+
+            var actualRole = testView.GetAccessibilityRoleV2();
+            Assert.AreEqual(AccessibilityRoleV2.Button, actualRole, "actualRole should be AccessibilityRoleV2.Button.");
+
+            testView.Dispose();
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Get value test for View.AccessibilityIsModal")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.View.AccessibilityIsModal")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "seoyeon2.kim@samsung.com")]
+        public void AccessibilityIsModal_GET_SET_VALUE()
+        {
+            /* TEST CODE */
+            View testView = new View();
+
+            testView.AccessibilityIsModal = true;
+            Assert.AreEqual(true, testView.AccessibilityIsModal, "Should get equal bool value what we set before");
+
+            testView.Dispose();
+        }
     }
 }

@@ -62,24 +62,34 @@ namespace Tizen.NUI.Components
         /// DateProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DateProperty = BindableProperty.Create(nameof(Date), typeof(DateTime), typeof(DatePicker), default(DateTime), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DateProperty = null;
+        internal static void SetInternalDateProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (DatePicker)bindable;
             if (newValue != null)
             {
+                var instance = (DatePicker)bindable;
                 instance.InternalDate = (DateTime)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalDateProperty(BindableObject bindable)
         {
             var instance = (DatePicker)bindable;
             return instance.InternalDate;
-        });
+        }
 
         private DateTime currentDate;
         private Picker dayPicker;
         private Picker monthPicker;
         private Picker yearPicker;
+
+        static DatePicker()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                DateProperty = BindableProperty.Create(nameof(Date), typeof(DateTime), typeof(DatePicker), default(DateTime),
+                    propertyChanged: SetInternalDateProperty, defaultValueCreator: GetInternalDateProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of DatePicker.
@@ -163,14 +173,29 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (DateTime)GetValue(DateProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (DateTime)GetValue(DateProperty);
+                }
+                else
+                {
+                    return InternalDate;
+                }
             }
             set
             {
-                SetValue(DateProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(DateProperty, value);
+                }
+                else
+                {
+                    InternalDate = value;
+                }
                 NotifyPropertyChanged();
             }
         }
+
         private DateTime InternalDate
         {
             get

@@ -973,6 +973,16 @@ namespace Tizen.Network.WiFiDirect
             }
         }
 
+        internal void CreateGroup(string ssid)
+        {
+            int ret = Interop.WiFiDirect.CreateGroupWithSsid(ssid);
+            if (ret != (int)WiFiDirectError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to create a WiFi-Direct group with ssid, Error - " + (WiFiDirectError)ret);
+                WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
+            }
+        }
+
         internal void DestroyGroup()
         {
             int ret = Interop.WiFiDirect.DestroyGroup();
@@ -1136,6 +1146,82 @@ namespace Tizen.Network.WiFiDirect
             if (ret != (int)WiFiDirectError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to deregister service, Error - " + (WiFiDirectError)ret);
+                WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
+            }
+        }
+
+        internal void AddVsie(WiFiDirectVsieFrameType frameType, string vsie)
+        {
+            int ret = Interop.WiFiDirect.AddVsie(frameType, vsie);
+
+            if (ret != (int)WiFiDirectError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to add vsie, Error - " + (WiFiDirectError)ret);
+                WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
+            }
+        }
+
+        internal string GetVsie(WiFiDirectVsieFrameType frameType)
+        {
+            string vsie;
+            int ret = Interop.WiFiDirect.GetVsie(frameType, out vsie);
+
+            if (ret != (int)WiFiDirectError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get vsie, Error - " + (WiFiDirectError)ret);
+                WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
+                vsie = null;
+            }
+
+            return vsie;
+        }
+
+        internal void RemoveVsie(WiFiDirectVsieFrameType frameType, string vsie)
+        {
+            int ret = Interop.WiFiDirect.RemoveVsie(frameType, vsie);
+
+            if (ret != (int)WiFiDirectError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to remove vsie, Error - " + (WiFiDirectError)ret);
+                WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
+            }
+        }
+
+        internal WiFiDirectPeer GetConnectingPeer()
+        {
+            IntPtr peer;
+            int ret = Interop.WiFiDirect.GetConnectingPeerInfo(out peer);
+
+            if (ret != (int)WiFiDirectError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get connecting peer info, Error - " + (WiFiDirectError)ret);
+                WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
+                return null;
+            }
+
+            DiscoveredPeerStruct peerStruct = (DiscoveredPeerStruct)Marshal.PtrToStructure(peer, typeof(DiscoveredPeerStruct));
+
+            return WiFiDirectUtils.ConvertStructToDiscoveredPeer(peerStruct);
+        }
+
+        internal void AcceptConnection(string peerMacAddress)
+        {
+            int ret = Interop.WiFiDirect.AcceptConnection(peerMacAddress);
+
+            if (ret != (int)WiFiDirectError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to accept connection, Error - " + (WiFiDirectError)ret);
+                WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
+            }
+        }
+
+        internal void RejectConnection(string peerMacAddress)
+        {
+            int ret = Interop.WiFiDirect.RejectConnection(peerMacAddress);
+
+            if (ret != (int)WiFiDirectError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to reject connection, Error - " + (WiFiDirectError)ret);
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }

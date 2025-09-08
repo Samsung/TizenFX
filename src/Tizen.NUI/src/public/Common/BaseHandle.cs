@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Tizen.NUI.Binding;
@@ -33,6 +34,8 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class BaseHandle : Element, global::System.IDisposable
     {
+        private static Dictionary<IntPtr, HashSet<object>> nativeBindedHolder = new Dictionary<IntPtr, HashSet<object>>();
+
         static internal void Preload()
         {
             // Do nothing. Just call for load static values.
@@ -58,7 +61,9 @@ namespace Tizen.NUI
         private bool registerMe;
 
         //The flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
+        private bool isDisposeQueued;
+
+        private bool _disposeOnlyMainThread;
 
         /// <summary>
         /// Create an instance of BaseHandle.
@@ -81,12 +86,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister)
+        internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister, bool disposableOnlyMainThread)
         {
             //to catch derived classes dali native exceptions
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            DebugFileLogging.Instance.WriteLog($"BaseHandle.contructor with cMemeryOwn:{cMemoryOwn} and cRegister:{cRegister} START");
 
             registerMe = cRegister;
             swigCMemOwn = cMemoryOwn;
@@ -102,61 +105,24 @@ namespace Tizen.NUI
                 }
             }
 
-            disposeDebuggingCtor();
-            DebugFileLogging.Instance.WriteLog($" BaseHandle.contructor with cMemeryOwn and cRegister END");
-            DebugFileLogging.Instance.WriteLog($"=============================");
+            // We must dispose BaseHandle at main thread if register successed.
+            _disposeOnlyMainThread = disposableOnlyMainThread || registerMe;
+        }
+        internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : this(cPtr, cMemoryOwn, cRegister, true)
+        {
         }
 
-        internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal BaseHandle(global::System.IntPtr cPtr, bool cMemoryOwn) : this(cPtr, cMemoryOwn, cMemoryOwn)
         {
-            //to catch derived classes dali native exceptions
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            DebugFileLogging.Instance.WriteLog($"BaseHandle.contructor with cMemeryOwn:{cMemoryOwn} START");
-
-            registerMe = swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            if (registerMe)
-            {
-                // Register this instance of BaseHandle in the registry.
-                if (!Registry.Register(this))
-                {
-                    registerMe = false;
-                }
-            }
-
-            disposeDebuggingCtor();
-            DebugFileLogging.Instance.WriteLog($" BaseHandle.contructor with cMemeryOwn END");
-            DebugFileLogging.Instance.WriteLog($"=============================");
         }
 
-        internal BaseHandle(global::System.IntPtr cPtr)
+        internal BaseHandle(global::System.IntPtr cPtr) : this(cPtr, true)
         {
-            DebugFileLogging.Instance.WriteLog($"BaseHandle.contructor START");
-
-            registerMe = swigCMemOwn = true;
-
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            if (registerMe)
-            {
-                // Register this instance of BaseHandle in the registry.
-                if (!Registry.Register(this))
-                {
-                    registerMe = false;
-                }
-            }
-
-            disposeDebuggingCtor();
-            DebugFileLogging.Instance.WriteLog($"BaseHandle.contructor END");
-            DebugFileLogging.Instance.WriteLog($"=============================");
         }
 
         /// <summary>
-        /// Dispose.
+        /// Finalizes the instance of the BaseHandle class.
+        /// This method implements the finalization pattern for proper disposal of resources.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         // following this guide: https://docs.microsoft.com/ko-kr/dotnet/fundamentals/code-analysis/quality-rules/ca1063?view=vs-2019 (CA1063)
@@ -225,6 +191,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Equality operator
         /// </summary>
+        /// <param name="x">The first BaseHandle instance to compare.</param>
+        /// <param name="y">The second BaseHandle instance to compare.</param>
+        /// <returns>true if both instances are equal; otherwise false.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static bool operator ==(BaseHandle x, BaseHandle y)
         {
@@ -254,8 +223,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Inequality operator. Returns Null if either operand is Null
+        /// Inequality operator. Returns true if the operands are not equal, false otherwise. Returns true if either operand is null.
         /// </summary>
+        /// <param name="x">The first BaseHandle instance to compare.</param>
+        /// <param name="y">The second BaseHandle instance to compare.</param>
+        /// <returns>True if the operands are not equal, false otherwise. Returns true if either operand is null.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static bool operator !=(BaseHandle x, BaseHandle y)
         {
@@ -263,9 +235,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Logical AND operator.<br />
-        /// It's possible when doing a  operator this function (opBitwiseAnd) is never called due to short circuiting.<br />
+        /// Logical AND operator.
+        /// It's possible when doing a logical AND operation, this function (opBitwiseAnd) might never be called due to short circuiting.
         /// </summary>
+        /// <param name="x">The first BaseHandle instance.</param>
+        /// <param name="y">The second BaseHandle instance.</param>
+        /// <returns>Returns the first BaseHandle instance if both instances are equal; otherwise, returns null.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static BaseHandle operator &(BaseHandle x, BaseHandle y)
         {
@@ -277,9 +252,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Logical OR operator for ||.<br />
-        /// It's possible when doing a || this function (opBitwiseOr) is never called due to short circuiting.<br />
+        /// Logical OR operator for ||.
+        /// It's possible when doing a || this function (opBitwiseOr) is never called due to short circuiting.
         /// </summary>
+        /// <param name="x">The first BaseHandle to be compared.</param>
+        /// <param name="y">The second BaseHandle to be compared.</param>
+        /// <returns>A BaseHandle that contains either of the non-null bodies of the two operands.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static BaseHandle operator |(BaseHandle x, BaseHandle y)
         {
@@ -299,8 +277,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Logical ! operator
+        /// Logical ! operator for BaseHandle class.
         /// </summary>
+        /// <param name="x">The BaseHandle instance to check.</param>
+        /// <returns>True if the handle is null or has no body; otherwise, false.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static bool operator !(BaseHandle x)
         {
@@ -317,10 +297,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Equals
+        /// Compares the current instance with another object of the same type and returns true if they represent the same handle.
         /// </summary>
-        /// <param name="o">The object should be compared.</param>
-        /// <returns>True if equal.</returns>
+        /// <param name="o">The object to compare with the current instance.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
         /// <since_tizen> 5 </since_tizen>
         public override bool Equals(object o)
         {
@@ -360,13 +340,14 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Dispose. 
+        /// Dispose.
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
         /// <remarks>
         /// Following the guide of https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose.
         /// This will replace "protected virtual void Dispose(DisposeTypes type)" which is exactly same in functionality.
         /// </remarks>
-        /// <param name="disposing">true in order to free managed objects</param>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         // Protected implementation of Dispose pattern.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
@@ -382,15 +363,12 @@ namespace Tizen.NUI
                 // Explicit call. user calls Dispose()
 
                 //Throw exception if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
+                if (DisposeOnlyMainThread && !Window.IsInstalled())
                 {
                     using var process = global::System.Diagnostics.Process.GetCurrentProcess();
                     var processId = process.Id;
                     var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                     var me = this.GetType().FullName;
-
-                    DebugFileLogging.Instance.WriteLog("[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
-                        $" process:{processId} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
 
                     Tizen.Log.Fatal("NUI", $"[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
                         $" process:{processId} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
@@ -402,8 +380,6 @@ namespace Tizen.NUI
 
                 if (isDisposeQueued)
                 {
-                    DebugFileLogging.Instance.WriteLog($"should not be here! (dead code) this will be removed!");
-
                     Tizen.Log.Fatal("NUI", $"[NUI] should not be here! (dead code) this will be removed!");
 
                     //to fix ArtApp black screen issue. this will be enabled after talking with ArtApp team and fixing it.
@@ -418,10 +394,17 @@ namespace Tizen.NUI
             else
             {
                 // Implicit call. user doesn't call Dispose(), so this object is added into DisposeQueue to be disposed automatically.
-                if (!isDisposeQueued)
+                if (_disposeOnlyMainThread)
                 {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
+                    if (!isDisposeQueued)
+                    {
+                        isDisposeQueued = true;
+                        DisposeQueue.Instance.Add(this);
+                    }
+                }
+                else
+                {
+                    Dispose(DisposeTypes.Implicit);
                 }
             }
 
@@ -557,6 +540,11 @@ namespace Tizen.NUI
         internal void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
             PropertySet?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+            if (ChangedPropertiesSetExcludingStyle != null && !ThemeManager.InitialThemeDisabled)
+            {
+                ChangedPropertiesSetExcludingStyle.Add(propertyName);
+            }
         }
 
         internal void UnregisterFromRegistry()
@@ -570,7 +558,12 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Dispose.
+        /// Releases unmanaged and optionally managed resources.
         /// </summary>
+        /// <remarks>
+        /// When overriding this method, you need to distinguish between explicit and implicit conditions. For explicit conditions, release both managed and unmanaged resources. For implicit conditions, only release unmanaged resources.
+        /// </remarks>
+        /// <param name="type">Explicit to release both managed and unmanaged resources. Implicit to release only unmanaged resources.</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
@@ -578,8 +571,6 @@ namespace Tizen.NUI
             {
                 return;
             }
-
-            DebugFileLogging.Instance.WriteLog($"BaseHandle.Dispose({type}) START");
 
             if (type == DisposeTypes.Explicit)
             {
@@ -596,11 +587,12 @@ namespace Tizen.NUI
             //Unreference this instance from Registry.
             UnregisterFromRegistry();
 
-            disposeDebuggingDispose(type);
-
             if (SwigCPtr.Handle != IntPtr.Zero)
             {
                 var nativeSwigCPtr = swigCPtr.Handle;
+
+                ClearHolder(nativeSwigCPtr);
+
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 if (swigCMemOwn)
                 {
@@ -611,13 +603,10 @@ namespace Tizen.NUI
             else
             {
                 var me = this.GetType().FullName;
-                DebugFileLogging.Instance.WriteLog($"[ERR] SwigCPtr is NULL, need to check! me:{me}");
                 Log.Error("NUI", $"[ERR] SwigCPtr is NULL, need to check! me:{me}");
             }
 
             disposed = true;
-            DebugFileLogging.Instance.WriteLog($"BaseHandle.Dispose({type}) END");
-            DebugFileLogging.Instance.WriteLog($"=============================");
             NUILog.Debug($"BaseHandle.Dispose({type}) END");
             NUILog.Debug($"=============================");
         }
@@ -631,6 +620,49 @@ namespace Tizen.NUI
         protected virtual void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.BaseHandle.DeleteBaseHandle(swigCPtr.Handle);
+        }
+
+        /// <summary>
+        /// Adds the specified object to the set of objects that have been bound to the native object.
+        /// </summary>
+        /// <param name="obj">The object to add.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void AddToNativeHolder(object obj)
+        {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            if (!nativeBindedHolder.TryGetValue(swigCPtr.Handle, out var holders))
+            {
+                nativeBindedHolder.Add(swigCPtr.Handle, holders = new HashSet<object>());
+            }
+
+            holders.Add(obj);
+        }
+
+        /// <summary>
+        ///  Removes the specified object from the set of objects that have been bound to the native object.
+        /// </summary>
+        /// <param name="obj">The object to remove.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void RemoveFromNativeHolder(object obj)
+        {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            if (nativeBindedHolder.TryGetValue(swigCPtr.Handle, out var holders))
+            {
+                holders.Remove(obj);
+
+                if (holders.Count == 0)
+                {
+                    nativeBindedHolder.Remove(swigCPtr.Handle);
+                }
+            }
         }
 
         /// <summary>
@@ -707,58 +739,67 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal bool IsDisposeQueued => isDisposeQueued;
 
-        [Conditional("NUI_DISPOSE_DEBUG_ON")]
-        private void disposeDebuggingCtor()
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal bool IsDisposedOrQueued => disposed || isDisposeQueued;
+
+        /// <summary>
+        /// The flag to check if it must be disposed at main thread or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal bool DisposeOnlyMainThread => _disposeOnlyMainThread;
+
+        static private void ClearHolder(IntPtr handle)
         {
-            DebugFileLogging.Instance.WriteLog($"type:{GetType()} copyNativeHandle:{swigCPtr.Handle.ToString("X8")}");
-            if (this is BaseComponents.View view)
-            {
-                DebugFileLogging.Instance.WriteLog($"ID:{view.ID} Name:{view.Name}");
-                //back trace
-                global::System.Diagnostics.StackTrace st = new global::System.Diagnostics.StackTrace(true);
-                for (int i = 0; i < st.FrameCount; i++)
-                {
-                    global::System.Diagnostics.StackFrame sf = st.GetFrame(i);
-                    DebugFileLogging.Instance.WriteLog($"[{i}] {sf.GetMethod()}:{sf.GetFileName()}:{sf.GetFileLineNumber()}");
-                }
-            }
+            nativeBindedHolder.Remove(handle);
         }
 
-        [Conditional("NUI_DISPOSE_DEBUG_ON")]
-        private void disposeDebuggingDispose(DisposeTypes type)
+        /// <summary>
+        /// Get memory ownership and registry information of the native pointer.
+        /// Please be aware enough about this action before use this method.
+        /// </summary>
+        internal void AcquireOwnership(IntPtr pointer)
         {
-            DebugFileLogging.Instance.WriteLog($"swigCMemOwn:{swigCMemOwn} type:{GetType()} copyNativeHandle:{swigCPtr.Handle.ToString("X8")} HasBody:{HasBody()}");
-
-            if (HasBody())
+            if (swigCMemOwn || registerMe || IsDisposedOrQueued)
             {
-                using var currentProcess = global::System.Diagnostics.Process.GetCurrentProcess();
-                var process = currentProcess.Id;
-                var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
-                var me = this.GetType().FullName;
-                var daliId = "unknown";
-                var hash = this.GetType().GetHashCode();
-                var name = "unknown";
-
-                if (this is BaseComponents.View)
-                {
-                    daliId = Interop.Actor.GetId(swigCPtr).ToString();
-                    name = Interop.Actor.GetName(swigCPtr);
-                    BaseObject tmp = new BaseObject(Interop.BaseHandle.GetBaseObject(swigCPtr), false);
-                    var refCnt = tmp.ReferenceCount();
-                    tmp.Dispose();
-                    if (refCnt > 2)
-                    {
-                        DebugFileLogging.Instance.WriteLog($"[ERR] reference count is over than 2. Could be a memory leak. Need to check! \n" +
-                            $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me} \n" +
-                            $" disposeType:{type}, name:{name}, daliID:{daliId}, hash:{hash}, refCnt:{refCnt}");
-
-                        Log.Error("NUI", $"[ERR] reference count is over than 2. Could be a memory leak. Need to check! \n" +
-                            $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me} \n" +
-                            $" disposeType:{type}, name:{name}, daliID:{daliId}, hash:{hash}, refCnt:{refCnt}");
-                    }
-                }
+                throw new InvalidOperationException("This should not have ownership of other native handle.");
             }
+
+            swigCPtr = new System.Runtime.InteropServices.HandleRef(this, pointer);
+            swigCMemOwn = true;
+            registerMe = true;
+
+            if (!Registry.Register(this))
+            {
+                throw new InvalidOperationException("This destination base handle should not have ownership of other native handle.");
+            }
+            _disposeOnlyMainThread = true;
         }
 
+        /// <summary>
+        /// Remove memory ownership and registry information of this handle.
+        /// Please be aware enough about this action before use this method.
+        /// </summary>
+        internal void RemoveOwnership()
+        {
+            if (!swigCMemOwn || !registerMe || !_disposeOnlyMainThread || IsDisposedOrQueued)
+            {
+                throw new InvalidOperationException("This base handle does not have ownership of the native handle.");
+            }
+
+            UnregisterFromRegistry();
+            swigCMemOwn = false;
+            _disposeOnlyMainThread = false;
+        }
+
+        /// <summary>
+        /// Get memory ownership and registry information of the native pointer.
+        /// Please be aware enough about this action before use this method.
+        /// </summary>
+        internal void MoveOwnership(BaseHandle handle)
+        {
+            IntPtr pointer = swigCPtr.Handle;
+            RemoveOwnership();
+            handle.AcquireOwnership(pointer);
+        }
     }
 }

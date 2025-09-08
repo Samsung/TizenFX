@@ -19,6 +19,7 @@ namespace Tizen.NUI
 {
     /// <summary>
     /// The Direction Bias type.
+    /// This enum is used to specify the direction bias for scroll snapping.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1712: Do not prefix enum values with type name")]

@@ -47,14 +47,14 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Gets the accuracy of the HeartRateMonitorBatch data.
+        /// Get the accuracy of the HeartRateMonitorBatch data as enum <see cref="SensorDataAccuracy"/> type.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        /// <value> Accuracy </value>
+        /// <value> Accuracy, <seealso cref="SensorDataAccuracy"/>. </value>
         public SensorDataAccuracy Accuracy { get; private set; } = SensorDataAccuracy.Undefined;
 
         /// <summary>
-        /// Returns true or false based on whether the HeartRateMonitorBatch sensor is supported by the device.
+        /// Return true or false based on whether the HeartRateMonitorBatch sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
@@ -68,7 +68,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Returns the number of HeartRateMonitorBatch sensors available on the device.
+        /// Return the number of HeartRateMonitorBatch sensors available on the system.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         /// <value> The count of HeartRateMonitorBatch sensors. </value>
@@ -83,7 +83,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tizen.Sensor.HeartRateMonitorBatch"/> class.
+        /// Initialize a new instance of the <see cref="Tizen.Sensor.HeartRateMonitorBatch"/> class.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         /// <privilege>http://tizen.org/privilege/healthinfo</privilege>
@@ -94,7 +94,8 @@ namespace Tizen.Sensor
         /// <exception cref="UnauthorizedAccessException">Thrown when the application has no privilege to use the sensor.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular HeartRateMonitorBatch in case of multiple sensors.
+        /// Index refers to a particular HeartRateMonitorBatch in case of multiple sensors.
+        /// Default value is 0.
         /// </param>
         public HeartRateMonitorBatch(uint index = 0) : base(index)
         {
@@ -110,11 +111,12 @@ namespace Tizen.Sensor
         /// An event handler for storing the callback functions for the event corresponding to the change in the HeartRateMonitorBatch data.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-
         public event EventHandler<HeartRateMonitorBatchDataUpdatedEventArgs> DataUpdated;
 
         /// <summary>
         /// An event handler for accuracy changed events.
+        /// If an event is added, a new accuracy change callback is registered for this sensor.
+        /// If an event is removed, accuracy change callback is unregistered for this sensor.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public event EventHandler<SensorAccuracyChangedEventArgs> AccuracyChanged

@@ -25,11 +25,11 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI.Accessibility
 {
     /// <summary>
-    /// Accessibility provides Dali-ATSPI interface which has functionality of Screen-Reader and general accessibility
+    /// Accessibility provides Dali-ATSPI interface which has functionality of Screen-Reader and general accessibility.
     /// </summary>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [SuppressMessage("Microsoft.Design", "CA1724: Type names should not match namespaces")]
-    [SuppressMessage("Microsoft.Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is a singleton class and is not disposed")]
+    [SuppressMessage("Microsoft.Design", "CA1001: Types that own disposable fields should be disposable", Justification = "This is a singleton class and is not disposed")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class Accessibility
     {
@@ -99,10 +99,10 @@ namespace Tizen.NUI.Accessibility
 
         #region Method
         /// <summary>
-        /// Start to speak
+        /// Start to speak.
         /// </summary>
-        /// <param name="sentence">Content to be spoken</param>
-        /// <param name="discardable">true to be stopped and discarded when other Say is triggered</param>
+        /// <param name="sentence">Content to be spoken.</param>
+        /// <param name="discardable">true to be stopped and discarded when other Say is triggered.</param>
         /// <returns></returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -113,9 +113,9 @@ namespace Tizen.NUI.Accessibility
         }
 
         /// <summary>
-        /// To make Say be paused or resumed
+        /// To make Say be paused or resumed.
         /// </summary>
-        /// <param name="pause">true to be paused, false to be resumed</param>
+        /// <param name="pause">true to be paused, false to be resumed.</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void PauseResume(bool pause)
@@ -125,9 +125,9 @@ namespace Tizen.NUI.Accessibility
         }
 
         /// <summary>
-        /// Cancels anything screen-reader is reading / has queued to read
+        /// Cancels anything screen-reader is reading / has queued to read.
         /// </summary>
-        /// <param name="alsoNonDiscardable">whether to cancel non-discardable readings as well</param>
+        /// <param name="alsoNonDiscardable">whether to cancel non-discardable readings as well.</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void StopReading(bool alsoNonDiscardable)
@@ -137,9 +137,9 @@ namespace Tizen.NUI.Accessibility
         }
 
         /// <summary>
-        /// Suppress reading of screen-reader
+        /// Suppress reading of screen-reader.
         /// </summary>
-        /// <param name="suppress">whether to suppress reading of screen-reader</param>
+        /// <param name="suppress">whether to suppress reading of screen-reader.</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool SuppressScreenReader(bool suppress)
@@ -150,7 +150,7 @@ namespace Tizen.NUI.Accessibility
         }
 
         /// <summary>
-        /// Re-enables auto-initialization of AT-SPI bridge
+        /// Re-enables auto-initialization of AT-SPI bridge.
         /// </summary>
         /// <remarks>
         /// Normal applications do not have to call this function. The AT-SPI bridge is initialized on demand.
@@ -163,7 +163,7 @@ namespace Tizen.NUI.Accessibility
         }
 
         /// <summary>
-        /// Blocks auto-initialization of AT-SPI bridge
+        /// Blocks auto-initialization of AT-SPI bridge.
         /// </summary>
         /// <remarks>
         /// Use this only if your application starts before DBus does, and call it early in Main().
@@ -202,8 +202,36 @@ namespace Tizen.NUI.Accessibility
         }
 
         /// <summary>
+        /// Sets a custom highlight overlay at the specified position and size.
+        /// This functionality is only applicable when the CustomHighlight Overlay is a child of the scene-view.  
+        /// In other words, the position and size of the highlight indicator can only be set if the CustomHighlight Overlay is part of the scene-view. 
+        /// </summary>
+        /// <param name="view">The view to set the overlay</param>
+        /// <param name="position">A Position2D representing the position of the overlay</param>
+        /// <param name="size">A Size2D representing the size of the overlay</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetCustomHighlightOverlay(View view, Position2D position, Size2D size)
+        {
+            Interop.ControlDevel.SetCustomHighlightOverlay(View.getCPtr(view), Position2D.getCPtr(position), Position2D.getCPtr(size));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Resets the custom highlight overlay
+        /// This functionality is only applicable when the CustomHighlight Overlay is a child of the scene-view.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void ResetCustomHighlightOverlay(View view)
+        {
+            Interop.ControlDevel.ResetCustomHighlightOverlay(View.getCPtr(view));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        /// <summary>
         ///  Get highligted View.
         /// </summary>
+        /// <returns>The currently highlighted view.</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static View GetCurrentlyHighlightedView()
@@ -218,6 +246,7 @@ namespace Tizen.NUI.Accessibility
         /// <summary>
         ///  Clear highlight.
         /// </summary>
+        /// <returns>true if the highlight was cleared successfully, otherwise false.</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool ClearCurrentlyHighlightedView()
@@ -243,30 +272,35 @@ namespace Tizen.NUI.Accessibility
             // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
             Invalid = -1,
+
             /// <summary>
             /// Cancelled
             /// </summary>
             // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
             Cancelled = 1,
+
             /// <summary>
             /// Stopped
             /// </summary>
             // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
             Stopped = 2,
+
             /// <summary>
             /// Skipped
             /// </summary>
             // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
             Skipped = 3,
+
             /// <summary>
             /// Paused
             /// </summary>
             // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
             [EditorBrowsable(EditorBrowsableState.Never)]
             Paused = 4,
+
             /// <summary>
             /// Resumed
             /// </summary>
@@ -313,13 +347,13 @@ namespace Tizen.NUI.Accessibility
         #endregion Event, Enum, Struct, ETC
 
         #region Private
-        private static Interop.Accessibility.EnabledDisabledSignalHandler enabledSignalHandler = null;
+        private static Interop.Accessibility.EnabledDisabledSignalHandler enabledSignalHandler;
 
-        private static Interop.Accessibility.EnabledDisabledSignalHandler disabledSignalHandler = null;
+        private static Interop.Accessibility.EnabledDisabledSignalHandler disabledSignalHandler;
 
-        private static Interop.Accessibility.EnabledDisabledSignalHandler screenReaderEnabledSignalHandler = null;
+        private static Interop.Accessibility.EnabledDisabledSignalHandler screenReaderEnabledSignalHandler;
 
-        private static Interop.Accessibility.EnabledDisabledSignalHandler screenReaderDisabledSignalHandler = null;
+        private static Interop.Accessibility.EnabledDisabledSignalHandler screenReaderDisabledSignalHandler;
 
         private static readonly IReadOnlyDictionary<string, SayFinishedState> sayFinishedStateDictionary = new Dictionary<string, SayFinishedState>
         {

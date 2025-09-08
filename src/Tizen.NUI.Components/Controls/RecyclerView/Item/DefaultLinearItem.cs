@@ -17,6 +17,7 @@ using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Accessibility;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -36,7 +37,20 @@ namespace Tizen.NUI.Components
         private Size prevSize;
         private DefaultLinearItemStyle ItemStyle => ViewStyle as DefaultLinearItemStyle;
 
-        static DefaultLinearItem() { }
+        static DefaultLinearItem()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                IconProperty = BindableProperty.Create(nameof(Icon), typeof(View), typeof(DefaultLinearItem), null,
+                    propertyChanged: SetInternalIconProperty, defaultValueCreator: GetInternalIconProperty);
+                TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(DefaultLinearItem), default(string),
+                    propertyChanged: SetInternalTextProperty, defaultValueCreator: GetInternalTextProperty);
+                SubTextProperty = BindableProperty.Create(nameof(SubText), typeof(string), typeof(DefaultLinearItem), default(string),
+                    propertyChanged: SetInternalSubTextProperty, defaultValueCreator: GetInternalSubTextProperty);
+                ExtraProperty = BindableProperty.Create(nameof(Extra), typeof(View), typeof(DefaultLinearItem), null,
+                    propertyChanged: SetInternalExtraProperty, defaultValueCreator: GetInternalExtraProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of DefaultLinearItem.
@@ -72,11 +86,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(IconProperty) as View;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(IconProperty) as View;
+                }
+                else
+                {
+                    return InternalIcon;
+                }
             }
             set
             {
-                SetValue(IconProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(IconProperty, value);
+                }
+                else
+                {
+                    InternalIcon = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -172,11 +200,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TextProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TextProperty) as string;
+                }
+                else
+                {
+                    return InternalText;
+                }
             }
             set
             {
-                SetValue(TextProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TextProperty, value);
+                }
+                else
+                {
+                    InternalText = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -228,11 +270,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(SubTextProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(SubTextProperty) as string;
+                }
+                else
+                {
+                    return InternalSubText;
+                }
             }
             set
             {
-                SetValue(SubTextProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(SubTextProperty, value);
+                }
+                else
+                {
+                    InternalSubText = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -256,11 +312,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ExtraProperty) as View;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ExtraProperty) as View;
+                }
+                else
+                {
+                    return InternalExtra;
+                }
             }
             set
             {
-                SetValue(ExtraProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ExtraProperty, value);
+                }
+                else
+                {
+                    InternalExtra = value;
+                }
                 NotifyPropertyChanged();
             }
         }

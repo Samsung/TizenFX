@@ -68,7 +68,7 @@ namespace Tizen.NUI
         private event EventHandler<ContentReceivedEventArgs> contentReceivedEventHandler;
 
         /// <summary>
-        /// InputMethodContext activated.
+        /// Event handler for the activation of the InputMethodContext.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public event EventHandler<ActivatedEventArgs> Activated
@@ -77,8 +77,9 @@ namespace Tizen.NUI
             {
                 if (activatedEventHandler == null)
                 {
-                    activatedEventCallback = OnActivated;
-                    ActivatedSignal().Connect(activatedEventCallback);
+                    CreateSafeCallback(OnActivated, out activatedEventCallback);
+                    using var signal = ActivatedSignal();
+                    signal.Connect(activatedEventCallback);
                 }
 
                 activatedEventHandler += value;
@@ -89,13 +90,15 @@ namespace Tizen.NUI
 
                 if (activatedEventHandler == null && activatedEventCallback != null)
                 {
-                    ActivatedSignal().Disconnect(activatedEventCallback);
+                    using var signal = ActivatedSignal();
+                    signal.Disconnect(activatedEventCallback);
+                    ReleaseSafeCallback(ref activatedEventCallback);
                 }
             }
         }
 
         /// <summary>
-        /// InputMethodContext event received.
+        /// This event handler is used to receive events related to the InputMethodContext.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public event EventHandlerWithReturnType<object, EventReceivedEventArgs, CallbackData> EventReceived
@@ -104,8 +107,9 @@ namespace Tizen.NUI
             {
                 if (eventReceivedEventHandler == null)
                 {
-                    eventReceivedEventCallback = OnEventReceived;
-                    EventReceivedSignal().Connect(eventReceivedEventCallback);
+                    CreateSafeCallback(OnEventReceived, out eventReceivedEventCallback);
+                    using var signal = EventReceivedSignal();
+                    signal.Connect(eventReceivedEventCallback);
                 }
 
                 eventReceivedEventHandler += value;
@@ -116,13 +120,15 @@ namespace Tizen.NUI
 
                 if (eventReceivedEventHandler == null && eventReceivedEventCallback != null)
                 {
-                    EventReceivedSignal().Disconnect(eventReceivedEventCallback);
+                    using var signal = EventReceivedSignal();
+                    signal.Disconnect(eventReceivedEventCallback);
+                    ReleaseSafeCallback(ref eventReceivedEventCallback);
                 }
             }
         }
 
         /// <summary>
-        /// InputMethodContext status changed.
+        /// The StatusChanged event is triggered when the input method context status changes.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public event EventHandler<StatusChangedEventArgs> StatusChanged
@@ -131,8 +137,9 @@ namespace Tizen.NUI
             {
                 if (statusChangedEventHandler == null)
                 {
-                    statusChangedEventCallback = OnStatusChanged;
-                    StatusChangedSignal().Connect(statusChangedEventCallback);
+                    CreateSafeCallback(OnStatusChanged, out statusChangedEventCallback);
+                    using var signal = StatusChangedSignal();
+                    signal.Connect(statusChangedEventCallback);
                 }
 
                 statusChangedEventHandler += value;
@@ -143,13 +150,15 @@ namespace Tizen.NUI
 
                 if (statusChangedEventHandler == null && statusChangedEventCallback != null)
                 {
-                    StatusChangedSignal().Disconnect(statusChangedEventCallback);
+                    using var signal = StatusChangedSignal();
+                    signal.Disconnect(statusChangedEventCallback);
+                    ReleaseSafeCallback(ref statusChangedEventCallback);
                 }
             }
         }
 
         /// <summary>
-        /// InputMethodContext resized.
+        /// Event handler for the InputMethodContext resized event.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public event EventHandler<ResizedEventArgs> Resized
@@ -158,8 +167,9 @@ namespace Tizen.NUI
             {
                 if (resizedEventHandler == null)
                 {
-                    resizedEventCallback = OnResized;
-                    ResizedSignal().Connect(resizedEventCallback);
+                    CreateSafeCallback(OnResized, out resizedEventCallback);
+                    using var signal = ResizedSignal();
+                    signal.Connect(resizedEventCallback);
                 }
 
                 resizedEventHandler += value;
@@ -170,13 +180,15 @@ namespace Tizen.NUI
 
                 if (resizedEventHandler == null && resizedEventCallback != null)
                 {
-                    ResizedSignal().Disconnect(resizedEventCallback);
+                    using var signal = ResizedSignal();
+                    signal.Disconnect(resizedEventCallback);
+                    ReleaseSafeCallback(ref resizedEventCallback);
                 }
             }
         }
 
         /// <summary>
-        /// InputMethodContext language changed.
+        /// This event is triggered when the language of the InputMethodContext changes.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public event EventHandler<LanguageChangedEventArgs> LanguageChanged
@@ -185,8 +197,9 @@ namespace Tizen.NUI
             {
                 if (languageChangedEventHandler == null)
                 {
-                    languageChangedEventCallback = OnLanguageChanged;
-                    LanguageChangedSignal().Connect(languageChangedEventCallback);
+                    CreateSafeCallback(OnLanguageChanged, out languageChangedEventCallback);
+                    using var signal = LanguageChangedSignal();
+                    signal.Connect(languageChangedEventCallback);
                 }
 
                 languageChangedEventHandler += value;
@@ -197,13 +210,15 @@ namespace Tizen.NUI
 
                 if (languageChangedEventHandler == null && languageChangedEventCallback != null)
                 {
-                    LanguageChangedSignal().Disconnect(languageChangedEventCallback);
+                    using var signal = LanguageChangedSignal();
+                    signal.Disconnect(languageChangedEventCallback);
+                    ReleaseSafeCallback(ref languageChangedEventCallback);
                 }
             }
         }
 
         /// <summary>
-        /// InputMethodContext keyboard type changed.
+        /// Event handler for InputMethodContext keyboard type changed.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public event EventHandler<KeyboardTypeChangedEventArgs> KeyboardTypeChanged
@@ -212,8 +227,9 @@ namespace Tizen.NUI
             {
                 if (keyboardTypeChangedEventHandler == null)
                 {
-                    keyboardTypeChangedEventCallback = OnKeyboardTypeChanged;
-                    KeyboardTypeChangedSignal().Connect(keyboardTypeChangedEventCallback);
+                    CreateSafeCallback(OnKeyboardTypeChanged, out keyboardTypeChangedEventCallback);
+                    using var signal = KeyboardTypeChangedSignal();
+                    signal.Connect(keyboardTypeChangedEventCallback);
                 }
 
                 keyboardTypeChangedEventHandler += value;
@@ -224,7 +240,9 @@ namespace Tizen.NUI
 
                 if (keyboardTypeChangedEventHandler == null && keyboardTypeChangedEventCallback != null)
                 {
-                    KeyboardTypeChangedSignal().Disconnect(keyboardTypeChangedEventCallback);
+                    using var signal = KeyboardTypeChangedSignal();
+                    signal.Disconnect(keyboardTypeChangedEventCallback);
+                    ReleaseSafeCallback(ref keyboardTypeChangedEventCallback);
                 }
             }
         }
@@ -232,7 +250,7 @@ namespace Tizen.NUI
         /// <summary>
         /// InputMethodContext content received.
         /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ContentReceivedEventArgs> ContentReceived
         {
@@ -240,8 +258,9 @@ namespace Tizen.NUI
             {
                 if (contentReceivedEventHandler == null)
                 {
-                    contentReceivedEventCallback = OnContentReceived;
-                    ContentReceivedSignal().Connect(contentReceivedEventCallback);
+                    CreateSafeCallback(OnContentReceived, out contentReceivedEventCallback);
+                    using var signal = ContentReceivedSignal();
+                    signal.Connect(contentReceivedEventCallback);
                 }
 
                 contentReceivedEventHandler += value;
@@ -252,13 +271,15 @@ namespace Tizen.NUI
 
                 if (contentReceivedEventHandler == null && contentReceivedEventCallback != null)
                 {
-                    ContentReceivedSignal().Disconnect(contentReceivedEventCallback);
+                    using var signal = ContentReceivedSignal();
+                    signal.Disconnect(contentReceivedEventCallback);
+                    ReleaseSafeCallback(ref contentReceivedEventCallback);
                 }
             }
         }
 
         /// <summary>
-        /// The direction of the text.
+        /// Enumeration for the direction of the text.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public enum TextDirection
@@ -274,7 +295,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Events that are generated by the IMF.
+        /// Enumeration for the events that are generated by the IMF.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public enum EventType
@@ -433,6 +454,22 @@ namespace Tizen.NUI
             set
             {
                 AllowTextPrediction(value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether the input panel should be shown in fullscreen mode.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool FullScreenMode
+        {
+            get
+            {
+                return IsFullScreenMode();
+            }
+            set
+            {
+                SetFullScreenMode(value);
             }
         }
 
@@ -667,6 +704,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hides the input panel.
+        /// This method hides the on-screen keyboard or input panel associated with the current InputMethodContext instance.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public void HideInputPanel()
@@ -792,12 +830,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void ApplyOptions(InputMethodOptions options)
-        {
-            Interop.InputMethodContext.ApplyOptions(SwigCPtr, InputMethodOptions.getCPtr(options));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal void AllowTextPrediction(bool prediction)
         {
             Interop.InputMethodContext.AllowTextPrediction(SwigCPtr, prediction);
@@ -807,6 +839,19 @@ namespace Tizen.NUI
         internal bool IsTextPredictionAllowed()
         {
             bool ret = Interop.InputMethodContext.IsTextPredictionAllowed(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetFullScreenMode(bool fullScreen)
+        {
+            Interop.InputMethodContext.SetFullScreenMode(SwigCPtr, fullScreen);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool IsFullScreenMode()
+        {
+            bool ret = Interop.InputMethodContext.IsFullScreenMode(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -879,12 +924,70 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance
             //because the execution order of Finalizes is non-deterministic.
 
-            if (keyboardTypeChangedEventCallback != null)
+            if (type == DisposeTypes.Explicit)
             {
-                KeyboardTypeChangedSignal().Disconnect(keyboardTypeChangedEventCallback);
+                DisconnectNativeSignals();
             }
 
             base.Dispose(type);
+        }
+
+        private void DisconnectNativeSignals()
+        {
+            if (HasBody() == false)
+            {
+                NUILog.Debug($"[Dispose] DisConnectFromSignals() No native body! No need to Disconnect Signals!");
+                return;
+            }
+
+            if (activatedEventCallback != null)
+            {
+                using var signal = ActivatedSignal();
+                signal.Disconnect(activatedEventCallback);
+                activatedEventCallback = null;
+            }
+
+            if (eventReceivedEventCallback != null)
+            {
+                using var signal = EventReceivedSignal();
+                signal.Disconnect(eventReceivedEventCallback);
+                eventReceivedEventCallback = null;
+            }
+
+            if (statusChangedEventCallback != null)
+            {
+                using var signal = StatusChangedSignal();
+                signal.Disconnect(statusChangedEventCallback);
+                statusChangedEventCallback = null;
+            }
+
+            if (resizedEventCallback != null)
+            {
+                using var signal = ResizedSignal();
+                signal.Disconnect(resizedEventCallback);
+                resizedEventCallback = null;
+            }
+
+            if (languageChangedEventCallback != null)
+            {
+                using var signal = LanguageChangedSignal();
+                signal.Disconnect(languageChangedEventCallback);
+                languageChangedEventCallback = null;
+            }
+
+            if (keyboardTypeChangedEventCallback != null)
+            {
+                using var signal = KeyboardTypeChangedSignal();
+                signal.Disconnect(keyboardTypeChangedEventCallback);
+                keyboardTypeChangedEventCallback = null;
+            }
+
+            if (contentReceivedEventCallback != null)
+            {
+                using var signal = ContentReceivedSignal();
+                signal.Disconnect(contentReceivedEventCallback);
+                contentReceivedEventCallback = null;
+            }
         }
 
         /// This will not be public opened.
@@ -896,6 +999,12 @@ namespace Tizen.NUI
 
         private void OnActivated(IntPtr data)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if InputMethodContext is disposed or queued for disposal.
+                return;
+            }
+
             ActivatedEventArgs e = new ActivatedEventArgs();
 
             if (data != IntPtr.Zero)
@@ -911,6 +1020,12 @@ namespace Tizen.NUI
 
         private IntPtr OnEventReceived(IntPtr inputMethodContext, IntPtr eventData)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if InputMethodContext is disposed or queued for disposal.
+                return IntPtr.Zero;
+            }
+
             CallbackData callbackData = null;
 
             EventReceivedEventArgs e = new EventReceivedEventArgs();
@@ -940,6 +1055,12 @@ namespace Tizen.NUI
 
         private void OnStatusChanged(bool statusChanged)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if InputMethodContext is disposed or queued for disposal.
+                return;
+            }
+
             StatusChangedEventArgs e = new StatusChangedEventArgs();
 
             e.StatusChanged = statusChanged;
@@ -952,6 +1073,12 @@ namespace Tizen.NUI
 
         private void OnResized(int resized)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if InputMethodContext is disposed or queued for disposal.
+                return;
+            }
+
             ResizedEventArgs e = new ResizedEventArgs();
             e.Resized = resized;
 
@@ -963,6 +1090,12 @@ namespace Tizen.NUI
 
         private void OnLanguageChanged(int languageChanged)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if InputMethodContext is disposed or queued for disposal.
+                return;
+            }
+
             LanguageChangedEventArgs e = new LanguageChangedEventArgs();
             e.LanguageChanged = languageChanged;
 
@@ -974,6 +1107,12 @@ namespace Tizen.NUI
 
         private void OnKeyboardTypeChanged(KeyboardType type)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if InputMethodContext is disposed or queued for disposal.
+                return;
+            }
+
             KeyboardTypeChangedEventArgs e = new KeyboardTypeChangedEventArgs();
 
             e.KeyboardType = type;
@@ -986,6 +1125,12 @@ namespace Tizen.NUI
 
         private void OnContentReceived(string content, string description, string mimeType)
         {
+            if (Disposed || IsDisposeQueued)
+            {
+                // Ignore native callback if InputMethodContext is disposed or queued for disposal.
+                return;
+            }
+
             ContentReceivedEventArgs e = new ContentReceivedEventArgs();
             e.Content = content;
             e.Description = description;
@@ -995,6 +1140,22 @@ namespace Tizen.NUI
             {
                 contentReceivedEventHandler(this, e);
             }
+        }
+
+        void CreateSafeCallback<T>(T method, out T safeCallback) where T : Delegate
+        {
+            AddToNativeHolder(method);
+            safeCallback = method;
+        }
+
+        void ReleaseSafeCallback<T>(ref T safeCallback) where T : Delegate
+        {
+            System.Diagnostics.Debug.Assert(safeCallback != null);
+            // FIXME: If eventReceivedEventCallback is removed from nativeholder,
+            //        then it is called from unmanaged code although it is disconnected.
+            //        So the callbacks are not removed from nativeholder until dispose.
+            // RemoveFromNativeHolder(safeCallback);
+            safeCallback = null;
         }
 
         /// <summary>
@@ -1013,7 +1174,7 @@ namespace Tizen.NUI
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
             /// <summary>
-            /// The default constructor.
+            /// The default constructor of EventData class.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public EventData() : this(Interop.InputMethodContext.NewInputMethodContextEventData(), true)
@@ -1173,7 +1334,7 @@ namespace Tizen.NUI
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
             /// <summary>
-            /// The default constructor.
+            /// The default constructor of CallbackData class.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public CallbackData() : this(Interop.InputMethodContext.NewInputMethodContextCallbackData(), true)

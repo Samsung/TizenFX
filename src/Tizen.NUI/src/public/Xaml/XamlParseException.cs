@@ -23,7 +23,7 @@ using System.Xml;
 
 namespace Tizen.NUI.Xaml
 {
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class XamlParseException : Exception
     {
@@ -64,7 +64,7 @@ namespace Tizen.NUI.Xaml
             unformattedMessage = message;
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public XamlParseException(string message, IXmlLineInfo xmlInfo, Exception innerException = null) : base(FormatMessage(message + GetStackInfo(), xmlInfo), innerException)
         {
@@ -77,7 +77,7 @@ namespace Tizen.NUI.Xaml
         {
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IXmlLineInfo XmlInfo { get; private set; }
 

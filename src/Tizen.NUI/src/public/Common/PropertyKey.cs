@@ -46,12 +46,12 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PropertyKey(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal PropertyKey(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 
         /// <summary>
-        /// The type of key.
+        /// Represents the type of key used in property-related operations.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// Can't fix because it's already used by other GBM.
@@ -72,6 +72,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// The type of the key.
+        /// This property returns the type of the key, which can be PropertyMap, PropertyArray, or PropertyValue.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyKey.KeyType Type
@@ -90,7 +91,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The index key.
+        /// Gets the index key.
+        /// The integer value representing the index key.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int IndexKey
@@ -109,7 +111,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The string key.
+        /// Returns the string key.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string StringKey

@@ -19,15 +19,19 @@ using System;
 namespace Tizen.Applications.ComponentBased.Common
 {
     /// <summary>
-    /// The class for showing UI module
+    /// Represents a base class for UI components in the component-based application model.
+    /// This class provides methods for handling the lifecycle and state of UI components.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public abstract class FrameComponent : BaseComponent
     {
         /// <summary>
-        /// Gets the display status of a component.
+        /// Gets the current display status of the component.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown when component type is already added to the component.</exception>
+        /// <value>
+        /// The current <see cref="DisplayStatus"/> of the component.
+        /// </value>
+        /// <exception cref="InvalidOperationException">Thrown when the display status cannot be retrieved.</exception>
         /// <since_tizen> 6 </since_tizen>
         public DisplayStatus DisplayStatus
         {
@@ -43,31 +47,36 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Overrides this method to handle behavior when the component is launched.
+        /// Called when the component is launched. Override this method to implement custom launch behavior.
         /// </summary>
-        /// <returns>True if a service component is successfully created</returns>
+        /// <returns>
+        /// <c>true</c> if the service component is successfully created; otherwise, <c>false</c>.
+        /// </returns>
         /// <since_tizen> 6 </since_tizen>
         public abstract bool OnCreate();
 
         /// <summary>
-        /// Overrides this method to create window. It will be called before OnCreate method.
+        /// Called to create the window for the component. Override this method to provide a custom window.
+        /// This method will be called before <see cref="OnCreate"/> method.
         /// </summary>
-        /// <returns>Window object to use</returns>
+        /// <returns>
+        /// An <see cref="IWindowInfo"/> object that represents the created window.
+        /// </returns>
         /// <since_tizen> 6 </since_tizen>
         public abstract IWindowInfo CreateWindowInfo();
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the component receives the appcontrol message.
+        /// Called when the component receives an app control message. Override this method to handle app control messages.
         /// </summary>
-        /// <param name="appControl">appcontrol object</param>
-        /// <param name="restarted">True if it was restarted</param>
+        /// <param name="appControl">The <see cref="AppControl"/> object containing the app control data.</param>
+        /// <param name="restarted"><c>true</c> if the component was restarted; otherwise, <c>false</c>.</param>
         /// <since_tizen> 6 </since_tizen>
         public virtual void OnStart(AppControl appControl, bool restarted)
         {
         }
 
         /// <summary>
-        /// Overrides this method if you want to handle the behavior when the component is resumed.
+        /// Called when the component is resumed. Override this method to handle resume behavior.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public virtual void OnResume()
@@ -75,7 +84,7 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Overrides this method if you want to handle the behavior when the component is paused.
+        /// Called when the component is paused. Override this method to handle pause behavior.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public virtual void OnPause()
@@ -83,7 +92,7 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Overrides this method if you want to handle the behavior when the component is stopped.
+        /// Called when the component is stopped. Override this method to handle stop behavior.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public virtual void OnStop()
@@ -91,7 +100,7 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the component is destroyed.
+        /// Called when the component is destroyed. Override this method to handle destruction behavior.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public virtual void OnDestroy()

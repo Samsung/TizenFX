@@ -22,6 +22,7 @@ namespace Tizen.Applications
     /// The class for badge operation.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public static class BadgeControl
     {
         private static event EventHandler<BadgeEventArgs> s_changed;
@@ -37,6 +38,7 @@ namespace Tizen.Applications
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access.</exception>
         /// <exception cref="NotSupportedException">Thrown when Badge is not supported.</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static event EventHandler<BadgeEventArgs> Changed
         {
             add
@@ -88,6 +90,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <exception cref="NotSupportedException">Thrown when Badge is not supported.</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static Badge Find(string appId)
         {
             uint count;
@@ -119,6 +122,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <exception cref="NotSupportedException">Thrown when Badge is not supported.</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static void Remove(string appId)
         {
             BadgeError err = Interop.Badge.Remove(appId);
@@ -139,6 +143,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <exception cref="NotSupportedException">Thrown when Badge is not supported.</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static void Remove(Badge badge)
         {
             if (badge == null)
@@ -160,6 +165,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <exception cref="NotSupportedException">Thrown when Badge is not supported.</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static void Add(Badge badge)
         {
             if (badge == null)
@@ -195,6 +201,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <exception cref="NotSupportedException">Thrown when Badge is not supported.</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static void Update(Badge badge)
         {
             if (badge == null)
@@ -225,6 +232,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <exception cref="NotSupportedException">Thrown when Badge is not supported.</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static IEnumerable<Badge> GetBadges()
         {
             IList<Badge> list = new List<Badge>();

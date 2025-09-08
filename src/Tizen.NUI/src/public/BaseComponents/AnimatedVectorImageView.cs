@@ -52,6 +52,13 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        static internal new void Preload()
+        {
+            // Do not call LottieAnimationView.Preload(), since we already call it
+
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
         /// Construct VectorAnimationView.
         /// </summary>
@@ -111,7 +118,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return GetInternalResourceURLProperty(this) as string;
+                    return InternalResourceURL;
                 }
             }
             set
@@ -122,7 +129,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalResourceURLProperty(this, null, value);
+                    InternalResourceURL = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -162,7 +169,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return GetInternalResourceUrlProperty(this) as string;
+                    return InternalResourceUrl;
                 }
             }
             set
@@ -173,7 +180,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalResourceUrlProperty(this, null, value);
+                    InternalResourceUrl = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -213,7 +220,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalRepeatCountProperty(this);
+                    return InternalRepeatCount;
                 }
             }
             set
@@ -224,7 +231,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalRepeatCountProperty(this, null, value);
+                    InternalRepeatCount = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -288,7 +295,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (int)GetInternalCurrentFrameProperty(this);
+                    return InternalCurrentFrame;
                 }
             }
             set
@@ -299,7 +306,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalCurrentFrameProperty(this, null, value);
+                    InternalCurrentFrame = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -346,7 +353,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    return (RepeatModes)GetInternalRepeatModeProperty(this);
+                    return InternalRepeatMode;
                 }
             }
             set
@@ -357,7 +364,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 else
                 {
-                    SetInternalRepeatModeProperty(this, null, value);
+                    InternalRepeatMode = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -722,12 +729,12 @@ namespace Tizen.NUI.BaseComponents
         public enum RepeatModes
         {
             /// <summary>
-            /// When the animation reaches the end and RepeatCount is nonZero, the animation restarts from the beginning. 
+            /// When the animation reaches the end and RepeatCount is nonZero, the animation restarts from the beginning.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Restart = LoopingModeType.Restart,
             /// <summary>
-            /// When the animation reaches the end and RepeatCount nonZero, the animation reverses direction on every animation cycle. 
+            /// When the animation reaches the end and RepeatCount nonZero, the animation reverses direction on every animation cycle.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Reverse = LoopingModeType.AutoReverse
@@ -838,12 +845,12 @@ namespace Tizen.NUI.BaseComponents
 
 
         #region Private
-        private string resourceUrl = null;
-        private int repeatCnt = 0;
+        private string resourceUrl;
+        private int repeatCnt;
         private RepeatModes repeatMode = RepeatModes.Restart;
         private int minimumFrame = -1, maximumFrame = -1;
-        private string minimumFrameMarker = null;
-        private string maximumFrameMarker = null;
+        private string minimumFrameMarker;
+        private string maximumFrameMarker;
         private minMaxSetTypes isMinMaxFrameSet = minMaxSetTypes.NotSetByUser;
         private int innerCurrentFrame = -1;
         private EndActions innerEndAction = EndActions.Cancel;

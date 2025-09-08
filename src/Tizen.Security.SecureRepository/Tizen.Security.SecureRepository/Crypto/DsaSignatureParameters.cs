@@ -17,13 +17,13 @@
 namespace Tizen.Security.SecureRepository.Crypto
 {
     /// <summary>
-    /// A class for holding parameters for the DSA signature algorithm.
+    /// Holds parameters for the DSA signature algorithm.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class DsaSignatureParameters : SignatureParameters
     {
         /// <summary>
-        /// A default constructor.
+        /// Initializes an instance of DsaSignatureParameters class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public DsaSignatureParameters() : base(SignatureAlgorithmType.Dsa)

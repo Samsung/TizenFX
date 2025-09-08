@@ -43,12 +43,12 @@ namespace Tizen.Applications.ComponentBased
         private static int _requestId = 0;
 
         /// <summary>
-        /// Constructor for this class.
+        /// Constructs a new instance of this class.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
         /// <exception cref="global::System.IO.IOException">Thrown when because of I/O error.</exception>
-        /// <param name="portName">The name of the port.</param>
+        /// <param name="portName">The name of the port to connect to.</param>
         /// <since_tizen> 9 </since_tizen>
         public ComponentPort(string portName)
         {
@@ -77,7 +77,7 @@ namespace Tizen.Applications.ComponentBased
         /// Adds a privilege to the port object.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
-        /// <param name="privilege">privilege data</param>
+        /// <param name="privilege">Privilege data specifying the access rights to be granted.</param>
         /// <since_tizen> 9 </since_tizen>
         public void AddPrivilege(string privilege)
         {
@@ -157,8 +157,8 @@ namespace Tizen.Applications.ComponentBased
         /// </summary>
         /// <remarks>
         /// This method runs a main loop until Cancel() is called.
-        /// The code in the next line will not run until Cancel() is called.
-        /// To avoid blocking the main thread, it's recommended to use the ComponentTask class.
+        /// The code in the next line will not execute until Cancel() is called.
+        /// To prevent blocking the main thread, consider using the ComponentTask class instead.
         /// </remarks>
         /// <example>
         /// <code>
@@ -182,15 +182,19 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Sends the request data.
+        /// Sends the request data to the specified endpoint.
         /// </summary>
+        /// <remarks>
+        /// This method sends the serialized request data to the specified endpoint.
+        /// If the timeout value is not set (-1), the default timeout will be used.
+        /// </remarks>
         /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         /// <exception cref="global::System.IO.IOException">Thrown when because of I/O error.</exception>
-        /// <param name="endpoint">The name of the endpoint</param>
-        /// <param name="timeout">The timeout in milliseconds, -1 to use the default timeout</param>
-        /// <param name="request">The serializable data to send</param>
+        /// <param name="endpoint">The name of the endpoint to which the request is sent.</param>
+        /// <param name="timeout">The timeout in milliseconds, -1 to use the default timeout.</param>
+        /// <param name="request">The serializable data to send.</param>
         /// <since_tizen> 9 </since_tizen>
         public void Send(string endpoint, int timeout, object request)
         {
@@ -222,10 +226,10 @@ namespace Tizen.Applications.ComponentBased
         /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         /// <exception cref="global::System.IO.IOException">Thrown when because of I/O error.</exception>
-        /// <param name="endpoint">The name of the endpoint</param>
-        /// <param name="timeout">The timeout in milliseconds, -1 to use the default timeout</param>
-        /// <param name="request">The serializable data to send</param>
-        /// <returns>The received serializable data</returns>
+        /// <param name="endpoint">The name of the endpoint to which the request is sent.</param>
+        /// <param name="timeout">The timeout in milliseconds, -1 to use the default timeout.</param>
+        /// <param name="request">The serializable data to send.</param>
+        /// <returns>The received serializable data.</returns>
         /// <since_tizen> 9 </since_tizen>
         public object SendAndReceive(string endpoint, int timeout, object request)
         {
@@ -264,11 +268,11 @@ namespace Tizen.Applications.ComponentBased
         /// <exception cref="OutOfMemoryException">Thrown when the memory is insufficient.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         /// <exception cref="global::System.IO.IOException">Thrown when because of I/O error.</exception>
-        /// <param name="endpoint">The name of the endpoint</param>
-        /// <param name="timeout">The timeout in milliseconds, -1 to use the default timeout</param>
-        /// <param name="request">The serializable data to send</param>
-        /// <returns>The received serializable data</returns>
-        /// /// <since_tizen> 9 </since_tizen>
+        /// <param name="endpoint">The name of the endpoint to which the request is sent.</param>
+        /// <param name="timeout">The timeout in milliseconds, -1 to use the default timeout.</param>
+        /// <param name="request">The serializable data to send.</param>
+        /// <returns>The received serializable data.</returns>
+        /// <since_tizen> 9 </since_tizen>
         public Task<object> SendAndReceiveAsync(string endpoint, int timeout, object request)
         {
             try
@@ -285,7 +289,7 @@ namespace Tizen.Applications.ComponentBased
         /// Occurs whenever the request is received.
         /// </summary>
         /// <remarks>
-        /// If the reply is requested, RequestEventArgs.Request should be set.
+        /// The event handler receives a RequestEventArgs argument that contains information about the request. If the reply is requested, RequestEventArgs.Request should be set.
         /// </remarks>
         /// <since_tizen> 9 </since_tizen>
         public event EventHandler<RequestEventArgs> RequestReceived;
@@ -422,7 +426,7 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Finalizer of the class ComponentPort.
+        /// Finalizes an instance of the class ComponentPort.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         ~ComponentPort()
@@ -433,7 +437,7 @@ namespace Tizen.Applications.ComponentBased
         /// <summary>
         /// Releases all the resources used by the class ComponentPort.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>>
+        /// <since_tizen> 9 </since_tizen>
         public void Dispose()
         {
             Dispose(disposing: true);

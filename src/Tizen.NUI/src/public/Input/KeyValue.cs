@@ -23,11 +23,11 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// KeyValue class.
+    /// The KeyValue class provides functionality for managing key-value pairs.
     /// </summary>
     public class KeyValue : IDisposable
     {
-        private bool disposed = false;
+        private bool disposed;
         /// <summary>
         /// Int key.
         /// </summary>
@@ -52,18 +52,18 @@ namespace Tizen.NUI
         [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public PropertyValue TrueValue = null;
 
-        private string key = null;
-        private object originalValue = null;
-        private object originalKey = null;
+        private string key;
+        private object originalValue;
+        private object originalKey;
 
         /// <summary>
-        /// Default Constructor.
+        /// The default Constructor of KeyValue class.
         /// </summary>
         public KeyValue()
         { }
 
         /// <summary>
-        /// Key property.
+        /// Gets or sets the key value.
         /// </summary>
         public string Key
         {
@@ -79,7 +79,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// OriginalKey property.
+        /// Gets or sets the original key associated with the KeyValue object.
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         public object OriginalKey
@@ -116,7 +116,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Value property.
+        /// Gets or sets the value associated with the key.
         /// </summary>
         public object Value
         {
@@ -181,7 +181,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// IntergerValue property.
+        /// Gets or sets the integer value associated with the key.
         /// </summary>
         public int IntergerValue
         {
@@ -201,7 +201,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// BooleanValue property.
+        /// Gets or sets the boolean value associated with the key.
         /// </summary>
         public bool BooleanValue
         {
@@ -221,7 +221,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// SingleValue property.
+        /// Gets or sets the Single(float) value associated with the key.
         /// </summary>
         public float SingleValue
         {
@@ -241,7 +241,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// StringValue property.
+        /// Gets or sets the string value associated with the key.
         /// </summary>
         public string StringValue
         {
@@ -261,7 +261,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Vector2Value property.
+        /// Gets or sets the <see cref="Tizen.NUI.Vector2"/> value associated with the key.
         /// </summary>
         public Vector2 Vector2Value
         {
@@ -282,7 +282,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Vector3Value property.
+        /// Gets or sets the <see cref="Tizen.NUI.Vector3"/> value associated with the key.
         /// </summary>
         public Vector3 Vector3Value
         {
@@ -303,7 +303,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Vector4Value property.
+        /// Gets or sets the <see cref="Tizen.NUI.Vector4"/> value associated with the key.
         /// </summary>
         public Vector4 Vector4Value
         {
@@ -324,7 +324,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// PositionValue property.
+        /// Gets or sets the <see cref="Tizen.NUI.Position"/> value associated with the key.
         /// </summary>
         public Position PositionValue
         {
@@ -345,7 +345,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Position2DValue property.
+        /// Gets or sets the <see cref="Tizen.NUI.Position2D"/> value associated with the key.
         /// </summary>
         public Position2D Position2DValue
         {
@@ -366,7 +366,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// SizeValue property.
+        /// Gets or sets the <see cref="Tizen.NUI.Size"/> value associated with the key.
         /// </summary>
         public Size SizeValue
         {
@@ -387,7 +387,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Size2DValue property.
+        /// Gets or sets the <see cref="Tizen.NUI.Size2D"/> value associated with the key.
         /// </summary>
         public Size2D Size2DValue
         {
@@ -408,7 +408,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// ColorValue property.
+        /// Gets or sets the <see cref="Tizen.NUI.Color"/> value associated with the key.
         /// </summary>
         public Color ColorValue
         {
@@ -429,7 +429,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// RectangleValue property.
+        /// Gets or sets the <see cref="Tizen.NUI.Rectangle"/> value associated with the key.
         /// </summary>
         public Rectangle RectangleValue
         {
@@ -450,7 +450,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// RotationValue property.
+        /// Gets or sets the <see cref="Tizen.NUI.Rotation"/> value associated with the key.
         /// </summary>
         public Rotation RotationValue
         {
@@ -471,7 +471,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// RelativeVector2Value property.
+        /// Gets or sets the <see cref="Tizen.NUI.RelativeVector2"/> value associated with the key.
         /// </summary>
         public RelativeVector2 RelativeVector2Value
         {
@@ -492,7 +492,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// RelativeVector3Value property.
+        /// Gets or sets the <see cref="Tizen.NUI.RelativeVector3"/> value associated with the key.
         /// </summary>
         public RelativeVector3 RelativeVector3Value
         {
@@ -513,7 +513,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// RelativeVector4Value property.
+        /// Gets or sets the <see cref="Tizen.NUI.RelativeVector4"/> value associated with the key.
         /// </summary>
         public RelativeVector4 RelativeVector4Value
         {
@@ -534,7 +534,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// ExtentsValue property.
+        /// Gets or sets the <see cref="Tizen.NUI.Extents"/> value associated with the key.
         /// </summary>
         public Extents ExtentsValue
         {
@@ -555,7 +555,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// PropertyArrayValue property.
+        /// Gets or sets the <see cref="Tizen.NUI.PropertyArray"/> value associated with the key.
         /// </summary>
         public PropertyArray PropertyArrayValue
         {
@@ -576,7 +576,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// PropertyMapValue property.
+        /// Gets or sets the <see cref="Tizen.NUI.PropertyMap"/> value associated with the key.
         /// </summary>
         public PropertyMap PropertyMapValue
         {

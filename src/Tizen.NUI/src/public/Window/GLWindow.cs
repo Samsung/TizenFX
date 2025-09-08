@@ -20,6 +20,7 @@ extern alias TizenSystemInformation;
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
@@ -173,6 +174,7 @@ namespace Tizen.NUI
         /// Raises the window to the top of the window stack.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Method used to raise the object, not event")]
         public void Raise()
         {
             Interop.GLWindow.GlWindowRaise(SwigCPtr);

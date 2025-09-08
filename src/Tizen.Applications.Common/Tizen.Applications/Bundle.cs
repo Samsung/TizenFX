@@ -39,10 +39,15 @@ namespace Tizen.Applications
         private readonly HashSet<string> _keys;
 
         /// <summary>
-        /// The bundle constructor.
+        /// Creates a new instance of the Bundle class.
         /// </summary>
+        /// <remarks>
+        /// This constructor initializes a new instance of the Bundle class. It does not perform any specific actions by itself but provides a starting point for creating and managing bundles of data.
+        /// </remarks>
         /// <exception cref="System.InvalidOperationException">Thrown when out of memory.</exception>
         /// <example>
+        /// Here's an example showing how to create a new instance of the Bundle class:
+        /// 
         /// <code>
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// </code>
@@ -56,10 +61,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The bundle constructor.
+        /// Creates a new instance of the Bundle class from the specified SafeBundleHandle.
         /// </summary>
-        /// <param name="handle">The SafeBundleHandle instance.</param>
-        /// <exception cref="System.ArgumentNullException">Thrown when the handle is null or invalid.</exception>
+        /// <param name="handle">The SafeBundleHandle instance that represents the bundle.</param>
+        /// <exception cref="System.ArgumentNullException">Thrown if the handle argument is null or invalid.</exception>
         /// <since_tizen> 3 </since_tizen>
         public Bundle(SafeBundleHandle handle)
         {

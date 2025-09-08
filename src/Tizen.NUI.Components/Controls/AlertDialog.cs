@@ -19,6 +19,7 @@ using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -40,6 +41,25 @@ namespace Tizen.NUI.Components
         private View defaultContent = null;
         private View defaultActionContent = null;
         private bool styleApplied = false;
+
+        static AlertDialog()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                TitleProperty = BindableProperty.Create(nameof(Title), typeof(string), typeof(AlertDialog), default(string),
+                    propertyChanged: SetInternalTitleProperty, defaultValueCreator: GetInternalTitleProperty);
+                TitleContentProperty = BindableProperty.Create(nameof(TitleContent), typeof(View), typeof(AlertDialog), null,
+                    propertyChanged: SetInternalTitleContentProperty, defaultValueCreator: GetInternalTitleContentProperty);
+                MessageProperty = BindableProperty.Create(nameof(Message), typeof(string), typeof(AlertDialog), default(string),
+                    propertyChanged: SetInternalMessageProperty, defaultValueCreator: GetInternalMessageProperty);
+                ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(AlertDialog), null,
+                    propertyChanged: SetInternalContentProperty, defaultValueCreator: GetInternalContentProperty);
+                ActionsProperty = BindableProperty.Create(nameof(Actions), typeof(IEnumerable<View>), typeof(AlertDialog), null,
+                    propertyChanged: SetInternalActionsProperty, defaultValueCreator: GetInternalActionsProperty);
+                ActionContentProperty = BindableProperty.Create(nameof(ActionContent), typeof(View), typeof(AlertDialog), null,
+                    propertyChanged: SetInternalActionContentProperty, defaultValueCreator: GetInternalActionContentProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a new instance of AlertDialog.
@@ -161,14 +181,29 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TitleProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TitleProperty) as string;
+                }
+                else
+                {
+                    return InternalTitle;
+                }
             }
             set
             {
-                SetValue(TitleProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TitleProperty, value);
+                }
+                else
+                {
+                    InternalTitle = value;
+                }
                 NotifyPropertyChanged();
             }
         }
+
         private string InternalTitle
         {
             get
@@ -204,14 +239,29 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TitleContentProperty) as View;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TitleContentProperty) as View;
+                }
+                else
+                {
+                    return InternalTitleContent;
+                }
             }
             set
             {
-                SetValue(TitleContentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TitleContentProperty, value);
+                }
+                else
+                {
+                    InternalTitleContent = value;
+                }
                 NotifyPropertyChanged();
             }
         }
+
         private View InternalTitleContent
         {
             get
@@ -255,14 +305,29 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(MessageProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(MessageProperty) as string;
+                }
+                else
+                {
+                    return InternalMessage;
+                }
             }
             set
             {
-                SetValue(MessageProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(MessageProperty, value);
+                }
+                else
+                {
+                    InternalMessage = value;
+                }
                 NotifyPropertyChanged();
             }
         }
+
         private string InternalMessage
         {
             get
@@ -298,14 +363,29 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ContentProperty) as View;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ContentProperty) as View;
+                }
+                else
+                {
+                    return InternalContent;
+                }
             }
             set
             {
-                SetValue(ContentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ContentProperty, value);
+                }
+                else
+                {
+                    InternalContent = value;
+                }
                 NotifyPropertyChanged();
             }
         }
+
         private View InternalContent
         {
             get
@@ -349,11 +429,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ActionsProperty) as IEnumerable<View>;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ActionsProperty) as IEnumerable<View>;
+                }
+                else
+                {
+                    return InternalActions;
+                }
             }
             set
             {
-                SetValue(ActionsProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ActionsProperty, value);
+                }
+                else
+                {
+                    InternalActions = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -407,14 +501,29 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ActionContentProperty) as View;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ActionContentProperty) as View;
+                }
+                else
+                {
+                    return InternalActionContent;
+                }
             }
             set
             {
-                SetValue(ActionContentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ActionContentProperty, value);
+                }
+                else
+                {
+                    InternalActionContent = value;
+                }
                 NotifyPropertyChanged();
             }
         }
+
         private View InternalActionContent
         {
              get

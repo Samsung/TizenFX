@@ -2,6 +2,7 @@
 using Tizen.NUI;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
+using System.Collections.Generic;
 
 namespace NUIDnDSource
 {
@@ -29,6 +30,15 @@ namespace NUIDnDSource
             Window.Instance.KeyEvent += OnKeyEvent;
             Window.Instance.WindowSize = new Size(900, 1080);
             Window.Instance.BackgroundColor = Color.White;
+
+            List<Window.WindowOrientation> list = new List<Window.WindowOrientation>();
+            list.Add(Window.WindowOrientation.Landscape);
+            list.Add(Window.WindowOrientation.LandscapeInverse);
+            list.Add(Window.WindowOrientation.NoOrientationPreference);
+            list.Add(Window.WindowOrientation.Portrait);
+            list.Add(Window.WindowOrientation.PortraitInverse);
+
+            Window.Instance.SetAvailableOrientations(list);
 
             TextLabel text = new TextLabel("DragSource Application");
             text.Position = new Position(0, 0);
@@ -91,7 +101,7 @@ namespace NUIDnDSource
                 Tizen.Log.Debug("NUIDnDSource", "StartDragAndDrop");
                 shadowView = new ImageView(Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "dragsource.png");
                 shadowView.Size = new Size(150, 150);
-                DragData dragData;
+                DragData dragData = new DragData();
                 dragData.MimeType = "text/uri-list";
                 dragData.Data = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "dragsource.png";
                 dnd.StartDragAndDrop(sourceView, shadowView, dragData, OnSourceEventFunc);

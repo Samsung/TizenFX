@@ -19,7 +19,11 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides data for the <see cref="AudioManager.DeviceRunningChanged"/> event.
+    /// Provides the data for the <see cref="AudioManager.DeviceRunningChanged"/> event,
+    /// which is triggered when the running state of an audio device changes.
+    /// This class encapsulates information about the specific audio device
+    /// that has undergone a state change, as well as its current running status,
+    /// allowing subscribers to respond appropriately to changes in audio device activity.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public class AudioDeviceRunningChangedEventArgs : EventArgs

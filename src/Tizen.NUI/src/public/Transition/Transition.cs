@@ -28,7 +28,7 @@ namespace Tizen.NUI
     public class Transition : TransitionBase
     {
         /// <summary>
-        /// Create a Transition for the View pair.
+        /// Default constructor to create a Transition for the View pair.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Transition()

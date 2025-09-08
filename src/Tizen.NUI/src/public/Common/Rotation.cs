@@ -21,7 +21,7 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// The Rotation class.
+    /// The Rotation class represents a rotation of a UI Component.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Binding.TypeConverter(typeof(RotationTypeConverter))]
@@ -29,7 +29,7 @@ namespace Tizen.NUI
     {
 
         /// <summary>
-        /// The default constructor.
+        /// The default constructor of Rotation class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Rotation() : this(Interop.Rotation.NewRotation(), true)
@@ -56,6 +56,7 @@ namespace Tizen.NUI
         /// <remarks>
         /// v0 and v1 should be normalized.
         /// </remarks>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Rotation(Vector3 v0, Vector3 v1) : this(Interop.Rotation.NewRotation2(Vector3.getCPtr(v0), Vector3.getCPtr(v1)), true)
         {
@@ -68,6 +69,7 @@ namespace Tizen.NUI
         /// <param name="pitch">Pitch value as Radian.</param>
         /// <param name="yaw">Yaw value as Radian</param>
         /// <param name="roll">Roll value as Radian</param>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Rotation(Radian pitch, Radian yaw, Radian roll) : this(Interop.Rotation.NewRotation3(Radian.getCPtr(pitch), Radian.getCPtr(yaw), Radian.getCPtr(roll)), true)
         {
@@ -78,6 +80,7 @@ namespace Tizen.NUI
         /// The constructor of Rotation from Quaternion Vector4.
         /// </summary>
         /// <param name="vector">Quaternion vector for Rotation.</param>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Rotation(Vector4 vector) : this(Interop.Rotation.NewRotation4(Vector4.getCPtr(vector)), true)
         {
@@ -85,7 +88,21 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// (0.0f,0.0f,0.0f,1.0f).
+        /// The copy constructor.
+        /// </summary>
+        /// <param name="rotation">The Rotation to copy from.</param>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rotation(Rotation rotation) : this()
+        {
+            if (null != rotation)
+            {
+                Assign(rotation);
+            }
+        }
+
+        /// <summary>
+        /// The identity rotation, which represents no rotation. Actual value is (0.0f,0.0f,0.0f,1.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static Rotation IDENTITY
@@ -285,12 +302,45 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Returns a new rotation that is the normalized version of the specified rotation.
+        /// The original rotation remains unchanged.
+        /// </summary>
+        /// <param name="rotation">The rotation to normalize.</param>
+        /// <returns>A new Rotation with a magnitude of 1.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Rotation Normalize(Rotation rotation)
+        {
+            // Create a copy and normalize it
+            Rotation newRotation = new Rotation(rotation);
+            newRotation.Normalize();
+            return newRotation;
+        }
+
+        /// <summary>
+        /// Returns a new rotation that is the inverse of the specified rotation.
+        /// The original rotation remains unchanged.
+        /// </summary>
+        /// <param name="rotation">The rotation to invert.</param>
+        /// <returns>A new Rotation representing the inverse.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Rotation Inverse(Rotation rotation)
+        {
+            // Create a copy and invert it
+            Rotation newRotation = new Rotation(rotation);
+            newRotation.Invert();
+            return newRotation;
+        }
+
+        /// <summary>
         /// Rotate a vector3 with the Rotation.
         /// For example, if this Rotation has (0, 1, 0) rotation axis and Math.PI radian angle and the input vector is (1, 0, 0),
         /// this Rotation method returns (-1, 0, 0) that is rotated along Y axis amount of Math.PI.
         /// </summary>
         /// <param name="vector">The vector of vector3 to be rotated with this Rotation</param>
         /// <returns>Vector3 that is the rotation result of this rotation.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 Rotate(Vector3 vector)
         {
@@ -306,6 +356,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="vector">The vector of vector4 to be rotated with this Rotation</param>
         /// <returns>Vector4 that is the rotation result of this rotation.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 Rotate(Vector4 vector)
         {
@@ -346,6 +397,7 @@ namespace Tizen.NUI
         /// <param name="pitch">Pitch value as Radian.</param>
         /// <param name="yaw">Yaw value as Radian</param>
         /// <param name="roll">Roll value as Radian</param>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetEulerAngle(Radian pitch, Radian yaw, Radian roll)
         {
@@ -359,6 +411,7 @@ namespace Tizen.NUI
         /// <param name="pitch">The result of pitch value as Radian.</param>
         /// <param name="yaw">The result of yaw value as Radian</param>
         /// <param name="roll">The result of roll value as Radian</param>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void GetEulerAngle(Radian pitch, Radian yaw, Radian roll)
         {
@@ -414,6 +467,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Conjugates this rotation.
+        /// This method computes the conjugate of the current rotation.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public void Conjugate()
@@ -424,6 +478,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Inverts this rotation.
+        /// This method computes the invert of the current rotation.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public void Invert()
@@ -456,8 +511,20 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal Rotation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Rotation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
+        }
+
+        /// <summary>
+        /// Assign.
+        /// </summary>
+        /// <param name="rhs">A reference to the copied handle.</param>
+        /// <returns>A reference to this.</returns>
+        internal Rotation Assign(Rotation rhs)
+        {
+            Rotation ret = new Rotation(Interop.Rotation.RotationAssign(SwigCPtr, Rotation.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// This will not be public opened.

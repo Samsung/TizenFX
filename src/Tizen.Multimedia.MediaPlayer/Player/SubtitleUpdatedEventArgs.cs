@@ -30,7 +30,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the duration of the updated subtitle.
+        /// Gets the duration in milliseconds of the updated subtitle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public uint Duration { get; }

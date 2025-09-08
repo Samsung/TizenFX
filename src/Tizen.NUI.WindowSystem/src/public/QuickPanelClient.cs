@@ -27,6 +27,10 @@ namespace Tizen.NUI.WindowSystem.Shell
     /// <summary>
     /// Class for the Tizen quickpanel client.
     /// </summary>
+    /// <remarks>
+    /// TizenShell.QuickPanelClient is a specialized class designed for handling interactions with the Quickpanel service that Tizen system GUI Application.
+    /// Through this class, we can conveniently retrieve various states of the Quickpanel service and make changes to specific states when necessary.
+    /// </remarks>
     /// <since_tizen> 8 </since_tizen>
     public class QuickPanelClient : IDisposable
     {
@@ -123,8 +127,10 @@ namespace Tizen.NUI.WindowSystem.Shell
 
         /// <summary>
         /// Emits the event when the rotation(orientation) of the quickpanel service window is changed.
-        /// The value of the event argument represents the rotation angle in degrees.
         /// </summary>
+        /// <remarks>
+        /// The value of the event argument represents the rotation angle in degrees.
+        /// </remarks>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
         /// <since_tizen> 12 </since_tizen>
         public event EventHandler<int> RotationChanged
@@ -230,6 +236,7 @@ namespace Tizen.NUI.WindowSystem.Shell
         /// <summary>
         /// Enumeration for orientation state of quickpanel service window.
         /// </summary>
+        /// <since_tizen> 8 </since_tizen>
         private enum OrientationState
         {
             /// <summary>
@@ -255,8 +262,12 @@ namespace Tizen.NUI.WindowSystem.Shell
         }
 
         /// <summary>
-        /// Creates a new Quickpanel Client handle.
+        /// The constructor of QuickPanelClass class.
         /// </summary>
+        /// <remarks>
+        /// This constructor creates a new Quickpanel Client handle. with this handle, we can interact with the quickpanel service window.
+        /// This handle needs the TizenShell handle first.
+        /// </remarks>
         /// <param name="tzShell">The TizenShell instance.</param>
         /// <param name="win">The window to provide service of the quickpanel.</param>
         /// <param name="type">The type of quickpanel service.</param>
@@ -295,8 +306,12 @@ namespace Tizen.NUI.WindowSystem.Shell
         }
 
         /// <summary>
-        /// Creates a new Quickpanel Client handle.
+        /// The constructor of QuickPanelClass class.
         /// </summary>
+        /// <remarks>
+        /// This constructor creates a new Quickpanel Client handle. with this handle, we can interact with the quickpanel service.
+        /// This handle needs the TizenShell handle first.
+        /// </remarks>
         /// <param name="tzShell">The TizenShell instance.</param>
         /// <param name="win">The window provider for the quickpanel service.</param>
         /// <param name="type">The type of quickpanel service.</param>
@@ -335,7 +350,7 @@ namespace Tizen.NUI.WindowSystem.Shell
         }
 
         /// <summary>
-        /// Destructor.
+        /// The destructor of QuickPanelClass class.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         ~QuickPanelClient()
@@ -348,7 +363,7 @@ namespace Tizen.NUI.WindowSystem.Shell
         }
 
         /// <summary>
-        /// Dispose.
+        /// Disposes the resources of the QuickPanelClient class.
         /// </summary>
         /// <exception cref="MemberAccessException">Thrown when private memeber is a corrupted.</exception>
         /// <since_tizen> 8 </since_tizen>
@@ -460,6 +475,10 @@ namespace Tizen.NUI.WindowSystem.Shell
         /// <summary>
         /// Gets the visible state of the quickpanel.
         /// </summary>
+        /// <remarks>
+        /// Retrieves the visible state of the Quickpanel Service.
+        /// This visible state indicates whether or not the Quickpanel Service window is displayed at the time of invocation.
+        /// </remarks>
         /// <returns>The visible state of the quickpanel service window.</returns>
         /// <exception cref="ArgumentException" > Thrown when failed of invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation or no service.</exception>
@@ -487,6 +506,11 @@ namespace Tizen.NUI.WindowSystem.Shell
         /// <summary>
         /// Gets or sets the window's scrollable state of the quickpanel service window.
         /// </summary>
+        /// <remarks>
+        /// Retrieves or Changes the scrollable state of the Quickpanel Service window.
+        /// The scrollableState determines whether the Quickpanel Service window is scrollable or not.
+        /// And the scrollableState can be affect the visibility of the Quickpanel Service window.
+        /// </remarks>
         /// <returns>The scrollable state of the quickpanel service window.</returns>
         /// <exception cref="ArgumentException" > Thrown when failed of invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation or no service.</exception>
@@ -527,6 +551,10 @@ namespace Tizen.NUI.WindowSystem.Shell
         /// <summary>
         /// Gets the current orientation of the quickpanel service window.
         /// </summary>
+        /// <remarks>
+        /// Retrieves the orientation of the Quickpanel Service.
+        /// This orientation value indicates the current angle of the Quickpanel Service window.
+        /// </remarks>
         /// <returns>The orientation of the quickpanel service window.</returns>
         /// <exception cref="ArgumentException" > Thrown when failed of invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation or no service.</exception>
@@ -556,6 +584,10 @@ namespace Tizen.NUI.WindowSystem.Shell
         /// <summary>
         /// Shows the quickpanel service window if it is currently scrollable.
         /// </summary>
+        /// <remarks>
+        /// Change the visible state of the quickpanel service window to shown if it is currently scrollable.
+        /// If the quickpanel is not scrollable, nothing will happen.
+        /// </remarks>
         /// <exception cref="ArgumentException" > Thrown when failed of invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation or no service.</exception>
         /// <since_tizen> 8 </since_tizen>
@@ -570,6 +602,9 @@ namespace Tizen.NUI.WindowSystem.Shell
         /// <summary>
         /// Hides the quickpanel service window.
         /// </summary>
+        /// <remarks>
+        /// Change the visible state of the quickpanel service window to hidden.
+        /// </remarks>
         /// <exception cref="ArgumentException" > Thrown when failed of invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation or no service.</exception>
         /// <since_tizen> 8 </since_tizen>

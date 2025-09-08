@@ -24,6 +24,7 @@ namespace Tizen.Telephony
     /// This class provides APIs that provide functionality related to the slot handle.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public class SlotHandle
     {
         internal IntPtr _handle;
@@ -39,6 +40,7 @@ namespace Tizen.Telephony
         /// This event will be triggered for the NotificationIds given in the SetNotificationId API.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public event EventHandler<ChangeNotificationEventArgs> ChangeNotification;
 
         internal IntPtr Handle
@@ -63,6 +65,7 @@ namespace Tizen.Telephony
         /// 1. Operation not supported.
         /// 2. Operation failed.
         /// </exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public void SetNotificationId(IEnumerable<ChangeNotificationEventArgs.Notification> list)
         {
             try
@@ -93,6 +96,7 @@ namespace Tizen.Telephony
         /// 1. Operation not supported.
         /// 2. Operation failed.
         /// </exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public void RemoveNotificationId(IEnumerable<ChangeNotificationEventArgs.Notification> list)
         {
             foreach (ChangeNotificationEventArgs.Notification n in list)

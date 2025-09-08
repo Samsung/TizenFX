@@ -24,7 +24,7 @@ using System.Collections.Generic;
 namespace Tizen.NUI.Binding.Internals
 {
     //FIXME: need a better name for this, and share with Binding, so we can share more unit tests
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class TypedBindingBase : BindingBase
     {
@@ -33,7 +33,7 @@ namespace Tizen.NUI.Binding.Internals
         object source;
         string updateSourceEventName;
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IValueConverter Converter
         {
@@ -45,7 +45,7 @@ namespace Tizen.NUI.Binding.Internals
             }
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object ConverterParameter
         {
@@ -57,7 +57,7 @@ namespace Tizen.NUI.Binding.Internals
             }
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Source
         {

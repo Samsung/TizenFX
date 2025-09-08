@@ -27,14 +27,14 @@ namespace Tizen.Sensor
         private static string GestureDetectorKey = "http://tizen.org/feature/sensor.gesture_recognition";
 
         /// <summary>
-        /// Gets the state of the face down gesture.
+        /// Get the state of the face down gesture as enum <see cref="DetectorState"/> type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> The face down state. </value>
+        /// <value> The face down state, <seealso cref="DetectorState"/>. </value>
         public DetectorState FaceDown { get; private set; } = DetectorState.Unknown;
 
         /// <summary>
-        /// Returns true or false based on whether the face down gesture detector is supported by the device.
+        /// Return true or false based on whether the face down gesture detector is supported by the system.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
@@ -48,7 +48,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Returns the number of face down gesture detectors available on the device.
+        /// Return the number of face down gesture detectors available on the system.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The count of face down gesture detectors. </value>
@@ -62,7 +62,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tizen.Sensor.FaceDownGestureDetector"/> class.
+        /// Initialize a new instance of the <see cref="Tizen.Sensor.FaceDownGestureDetector"/> class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.gesture_recognition</feature>
@@ -70,7 +70,8 @@ namespace Tizen.Sensor
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular face down gesture detector in case of multiple sensors.
+        /// Index refers to a particular face down gesture detector in case of multiple sensors.
+        /// Default value is 0.
         /// </param>
         public FaceDownGestureDetector(uint index = 0) : base(index)
         {

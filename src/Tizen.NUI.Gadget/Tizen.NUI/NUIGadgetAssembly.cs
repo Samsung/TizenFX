@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Loader;
@@ -35,20 +36,26 @@ namespace Tizen.NUI
         }
     }
 
-    internal class NUIGadgetAssembly
+    /// <summary>
+    /// Represents a class that provides access to the methods and properties of the NUIGadgetAssembly.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class NUIGadgetAssembly
     {
         private static readonly object _assemblyLock = new object();
         private readonly string _assemblyPath;
         private WeakReference _assemblyRef;
         private Assembly _assembly = null;
+        private bool _loaded = false;
 
-        public NUIGadgetAssembly(string assemblyPath) { _assemblyPath = assemblyPath; }
+        internal NUIGadgetAssembly(string assemblyPath) { _assemblyPath = assemblyPath; }
 
-        public void Load()
+        internal void Load()
         {
             lock (_assemblyLock)
             {
-                if (_assembly != null)
+                if (_loaded)
                 {
                     return;
                 }
@@ -62,12 +69,13 @@ namespace Tizen.NUI
                 Log.Debug("NativeImagePath=" + nativeImagePath + ", AssemblyPath=" + _assemblyPath);
                 _assembly = context.LoadFromNativeImagePath(nativeImagePath, _assemblyPath);
                 Log.Warn("Load(): " + _assemblyPath + " --");
+                _loaded = true;
             }
         }
 
-        public bool IsLoaded { get { return _assembly != null; } }
+        internal bool IsLoaded { get { return _loaded; } }
 
-        public NUIGadget CreateInstance(string className)
+        internal NUIGadget CreateInstance(string className)
         {
             lock (_assemblyLock)
             {
@@ -75,11 +83,17 @@ namespace Tizen.NUI
             }
         }
 
-        public void Unload()
+        /// <summary>
+        /// Property indicating whether the weak reference to the gadget assembly is still alive.
+        /// </summary>
+        /// <since_tizen> 12 </since_tizen>
+        public bool IsAlive {  get { return _assemblyRef.IsAlive; } }
+
+        internal void Unload()
         {
             lock (_assemblyLock)
             {
-                if (_assembly == null)
+                if (!_loaded)
                 {
                     return;
                 }
@@ -91,6 +105,7 @@ namespace Tizen.NUI
                 }
 
                 _assembly = null;
+                _loaded = false;
                 Log.Warn("Unload(): " + _assemblyPath + " --");
             }
         }

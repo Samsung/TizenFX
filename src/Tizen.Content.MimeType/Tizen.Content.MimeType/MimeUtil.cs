@@ -32,10 +32,11 @@ namespace Tizen.Content.MimeType
     public static class MimeUtil
     {
         /// <summary>
-        /// Gets the MIME type for the given file extension.
-        /// The MIME type is 'application/octet-stream' if the given file extension is not associated with specific file formats.
+        /// Retrieves the MIME type for the specified file extension.
+        /// If no specific file format is associated with the given file extension, the default MIME type 'application/octet-stream' is returned.
         /// </summary>
-        /// <param name="fileExtension"> The file extension.</param>
+        /// <param name="fileExtension">The file extension for which the MIME type needs to be retrieved.</param>
+        /// <returns>The MIME type for the specified file extension.</returns>
         /// <example>
         /// <code>
         ///     string mimeType = MimeUtil.GetMimeType("png");
@@ -54,19 +55,22 @@ namespace Tizen.Content.MimeType
         }
 
         /// <summary>
-        /// Gets the file extensions for the given MIME type.
+        /// Retrieves the file extensions associated with the specified MIME type.
         /// </summary>
-        /// <returns>
-        /// If successful, returns the list of file extension strings for the given MIME type.
-        /// The array of file extension is without the leading dot ('.').
-        /// </returns>
-        /// <param name="mime"> The MIME type.</param>
+        /// <remarks>
+        /// By calling this function with a specific MIME type argument, you can obtain a list of file extensions related to that MIME type. 
+        /// These file extensions are returned without the leading period ('.') character.
+        /// </remarks>
+        /// <param name="mime">The MIME type for which you want to retrieve the associated file extensions.</param>
+        /// <returns>An enumerable collection of file extension strings for the specified MIME type.</returns>
         /// <example>
+        /// In the following code snippet, we demonstrate how to utilize the GetFileExtension method by retrieving the file extensions associated with the video/mpeg MIME type:
+        ///
         /// <code>
-        ///     var extColl = MimeUtil.GetFileExtension("video/mpeg");
-        ///     foreach ( string obj in extColl )
+        ///     var fileExtensions = MimeUtil.GetFileExtension("video/mpeg");
+        ///     foreach (var extension in fileExtensions)
         ///     {
-        ///         Console.WriteLine(obj);
+        ///         Console.WriteLine(extension);
         ///     }
         /// </code>
         /// </example>

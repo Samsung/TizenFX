@@ -63,7 +63,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                         {
                             needUpdate = true;
                         }
-                        
+
                         if (true == needUpdate)
                         {
                             classNameToNameSpace[type.Name] = new NameSpaceInfo(type.Namespace, level);
@@ -249,12 +249,14 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             nsmgr.AddNamespace("__f__", XamlParser.XFUri);
 
             var root = xmlDoc.SelectSingleNode("/*", nsmgr);
-            if (root == null) {
+            if (root == null)
+            {
                 Logger?.LogMessage(MessageImportance.Low, " No root node found");
                 return false;
             }
 
-            foreach (XmlAttribute attr in root.Attributes) {
+            foreach (XmlAttribute attr in root.Attributes)
+            {
                 if (attr.Name == "xmlns")
                     nsmgr.AddNamespace("", attr.Value); //Add default xmlns
                 if (attr.Prefix != "xmlns")
@@ -265,20 +267,23 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             var rootClass = root.Attributes["Class", XamlParser.X2006Uri]
                          ?? root.Attributes["Class", XamlParser.X2009Uri];
 
-            if (rootClass != null) {
+            if (rootClass != null)
+            {
                 string rootType, rootNs, rootAsm, targetPlatform;
                 XmlnsHelper.ParseXmlns(rootClass.Value, out rootType, out rootNs, out rootAsm, out targetPlatform);
                 RootType = rootType;
                 RootClrNamespace = rootNs;
             }
-            else if (hasXamlCompilationProcessingInstruction) {
+            else if (hasXamlCompilationProcessingInstruction)
+            {
                 RootClrNamespace = "__XamlGeneratedCode__";
                 RootType = $"__Type{generatedTypesCount++}";
                 GenerateDefaultCtor = true;
                 AddXamlCompilationAttribute = true;
                 HideFromIntellisense = true;
             }
-            else { // rootClass == null && !hasXamlCompilationProcessingInstruction) {
+            else
+            { // rootClass == null && !hasXamlCompilationProcessingInstruction) {
                 XamlResourceIdOnly = true; //only generate the XamlResourceId assembly attribute
                 return true;
             }
@@ -319,7 +324,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             var declNs = new CodeNamespace(RootClrNamespace);
             ccu.Namespaces.Add(declNs);
 
-            var declType = new CodeTypeDeclaration(RootType) {
+            var declType = new CodeTypeDeclaration(RootType)
+            {
                 IsPartial = true,
                 TypeAttributes = GetTypeAttributes(classModifier),
                 CustomAttributes = {
@@ -341,8 +347,10 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             declNs.Types.Add(declType);
 
             //Create a default ctor calling InitializeComponent
-            if (GenerateDefaultCtor) {
-                var ctor = new CodeConstructor {
+            if (GenerateDefaultCtor)
+            {
+                var ctor = new CodeConstructor
+                {
                     Attributes = MemberAttributes.Public,
                     CustomAttributes = { GeneratedCodeAttrDecl },
                     Statements = {
@@ -354,7 +362,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             }
 
             //Create InitializeComponent()
-            var initcomp = new CodeMemberMethod {
+            var initcomp = new CodeMemberMethod
+            {
                 Name = "InitializeComponent",
                 CustomAttributes = { GeneratedCodeAttrDecl }
             };
@@ -363,8 +372,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
             //Create and initialize fields
 
-			if(0 == XamlOptimization)
-			{
+            if (0 == XamlOptimization)
+            {
                 initcomp.Statements.Add(new CodeMethodInvokeExpression(
                     new CodeTypeReferenceExpression(new CodeTypeReference($"global::{typeof(Extensions).FullName}")),
                     "LoadFromXaml", new CodeThisReferenceExpression(), new CodeTypeOfExpression(declType.Name)));
@@ -378,7 +387,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 declType.Members.Add(exitXamlComp);
             }
             else
-			{
+            {
                 var loadExaml_invoke = new CodeMethodInvokeExpression(
                     new CodeTypeReferenceExpression(new CodeTypeReference($"global::Tizen.NUI.EXaml.EXamlExtensions")),
                     "LoadFromEXamlByRelativePath", new CodeThisReferenceExpression(),
@@ -389,10 +398,11 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                         new CodeVariableReferenceExpression("eXamlData"), loadExaml_invoke);
 
                 initcomp.Statements.Add(assignEXamlObject);
-			}
+            }
 
-            foreach (var namedField in NamedFields) {
-                if(namedField.Type.BaseType.Contains("-"))
+            foreach (var namedField in NamedFields)
+            {
+                if (namedField.Type.BaseType.Contains("-"))
                 {
                     namedField.Type.BaseType = namedField.Type.BaseType.Replace("-", ".");
                 }
@@ -410,8 +420,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 initcomp.Statements.Add(assign);
             }
 
-			if(0 != XamlOptimization)
-			{
+            if (0 != XamlOptimization)
+            {
                 declType.Members.Add(new CodeMemberField
                 {
                     Name = "eXamlData",
@@ -432,7 +442,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 declType.Members.Add(getEXamlPathcomp);
 
                 GenerateMethodExitXaml(declType);
-			}
+            }
+
         writeAndExit:
             //write the result
             using (var writer = new StreamWriter(outFilePath))
@@ -517,7 +528,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 root.SelectNodes(
                     "//*[@" + xPrefix + ":Name" +
                     "][not(ancestor:: __f__:DataTemplate) and not(ancestor:: __f__:ControlTemplate) and not(ancestor:: __f__:Style) and not(ancestor:: __f__:VisualStateManager.VisualStateGroups)]", nsmgr);
-            foreach (XmlNode node in names) {
+            foreach (XmlNode node in names)
+            {
                 var name = GetAttributeValue(node, "Name", XamlParser.X2006Uri, XamlParser.X2009Uri);
                 var typeArguments = GetAttributeValue(node, "TypeArguments", XamlParser.X2006Uri, XamlParser.X2009Uri);
                 var fieldModifier = GetAttributeValue(node, "FieldModifier", XamlParser.X2006Uri, XamlParser.X2009Uri);
@@ -528,8 +540,10 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                                           : null);
 
                 var access = MemberAttributes.Public;
-                if (fieldModifier != null) {
-                    switch (fieldModifier.ToLowerInvariant()) {
+                if (fieldModifier != null)
+                {
+                    switch (fieldModifier.ToLowerInvariant())
+                    {
                         default:
                         case "private":
                             access = MemberAttributes.Private;
@@ -547,7 +561,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                     }
                 }
 
-                yield return new CodeMemberField {
+                yield return new CodeMemberField
+                {
                     Name = name,
                     Type = GetType(xmlType, node.GetNamespaceOfPrefix),
                     Attributes = access,
@@ -631,7 +646,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 throw new ArgumentNullException(nameof(localName));
             if (namespaceURIs == null)
                 throw new ArgumentNullException(nameof(namespaceURIs));
-            foreach (var namespaceURI in namespaceURIs) {
+            foreach (var namespaceURI in namespaceURIs)
+            {
                 var attr = node.Attributes[localName, namespaceURI];
                 if (attr == null)
                     continue;
@@ -641,4 +657,4 @@ namespace Tizen.NUI.Xaml.Build.Tasks
         }
     }
 }
- 
+

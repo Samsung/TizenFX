@@ -36,8 +36,6 @@ namespace Tizen.Applications
         private const string LogTag = "Tizen.Applications.PackageManager";
 
         private static SafePackageManagerHandle s_handle = new SafePackageManagerHandle();
-        private static Interop.PackageManager.EventStatus s_eventStatus = Interop.PackageManager.EventStatus.All;
-        private static Interop.PackageManager.EventStatus s_registered_eventStatus = Interop.PackageManager.EventStatus.All;
         private static event EventHandler<PackageManagerEventArgs> s_installEventHandler;
         private static event EventHandler<PackageManagerEventArgs> s_uninstallEventHandler;
         private static event EventHandler<PackageManagerEventArgs> s_updateEventHandler;
@@ -59,6 +57,30 @@ namespace Tizen.Applications
         /// <param name="eventType">Event type of the request.</param>
         /// <param name="eventState">Current event state of the request.</param>
         /// <param name="progress">Progress for the request being processed by the package manager (in percent).</param>
+        /// <remarks>
+        /// The RequestEventCallback function provides information about the current status of a package request. It is called every time there is an update in the package request process. By monitoring the arguments passed to this function, you can keep track of the progress and events related to the package request.
+        /// </remarks>
+        /// <example>
+        /// <code>
+        /// private static void OnRequestEventCallback(string type, string packageId, PackageEventType eventType, PackageEventState eventState, int progress)
+        /// {
+        ///     switch (eventType)
+        ///     {
+        ///         case PackageEventType.Installing:
+        ///             Console.WriteLine($"Package '{packageId}' is currently installing.");
+        ///             break;
+        ///         case PackageEventType.Updating:
+        ///             Console.WriteLine($"Package '{packageId}' is currently updating.");
+        ///             break;
+        ///         case PackageEventType.Removing:
+        ///             Console.WriteLine($"Package '{packageId}' is currently removing.");
+        ///             break;
+        ///         default:
+        ///             throw new ArgumentException($"Unknown event type: {eventType}");
+        ///     }
+        /// }
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public delegate void RequestEventCallback(string type, string packageId, PackageEventType eventType, PackageEventState eventState, int progress);
 
@@ -72,9 +94,9 @@ namespace Tizen.Applications
         private delegate Interop.PackageManager.ErrorCode InstallPackagesMethod(SafePackageManagerRequestHandle requestHandle, string[] pkgPaths, int pathsCount, out int requestID);
 
         /// <summary>
-        /// InstallProgressChanged event. This event occurs when a package is getting installed and the progress of the request to the package manager is changed.
+        /// InstallProgressChanged event. Occurs when a package is being installed and the progress of the request to the package manager changes.
         /// </summary>
-        /// <exception cref="IOException">Thrown when subscribing to package manager event failed.</exception>
+        /// <exception cref="IOException">Thrown when subscribing to package manager event fails.</exception>
         /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<PackageManagerEventArgs> InstallProgressChanged
         {
@@ -82,7 +104,6 @@ namespace Tizen.Applications
             {
                 lock (s_pkgEventLock)
                 {
-                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Install);
                     RegisterPackageManagerEventIfNeeded();
                     s_installEventHandler += value;
                 }
@@ -93,7 +114,6 @@ namespace Tizen.Applications
                 {
                     s_installEventHandler -= value;
                     UnregisterPackageManagerEventIfNeeded();
-                    UnsetPackageManagerEventStatus();
                 }
             }
         }
@@ -109,7 +129,6 @@ namespace Tizen.Applications
             {
                 lock (s_pkgEventLock)
                 {
-                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Uninstall);
                     RegisterPackageManagerEventIfNeeded();
                     s_uninstallEventHandler += value;
                 }
@@ -120,9 +139,8 @@ namespace Tizen.Applications
                 {
                     s_uninstallEventHandler -= value;
                     UnregisterPackageManagerEventIfNeeded();
-                    UnsetPackageManagerEventStatus();
                 }
-           }
+            }
         }
 
         /// <summary>
@@ -136,7 +154,6 @@ namespace Tizen.Applications
             {
                 lock (s_pkgEventLock)
                 {
-                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Upgrade);
                     RegisterPackageManagerEventIfNeeded();
                     s_updateEventHandler += value;
                 }
@@ -147,7 +164,6 @@ namespace Tizen.Applications
                 {
                     s_updateEventHandler -= value;
                     UnregisterPackageManagerEventIfNeeded();
-                    UnsetPackageManagerEventStatus();
                 }
             }
         }
@@ -163,7 +179,6 @@ namespace Tizen.Applications
             {
                 lock (s_pkgEventLock)
                 {
-                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.Move);
                     RegisterPackageManagerEventIfNeeded();
                     s_moveEventHandler += value;
                 }
@@ -174,7 +189,6 @@ namespace Tizen.Applications
                 {
                     s_moveEventHandler -= value;
                     UnregisterPackageManagerEventIfNeeded();
-                    UnsetPackageManagerEventStatus();
                 }
             }
         }
@@ -190,7 +204,6 @@ namespace Tizen.Applications
             {
                 lock (s_pkgEventLock)
                 {
-                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.ClearData);
                     RegisterPackageManagerEventIfNeeded();
                     s_clearDataEventHandler += value;
                 }
@@ -201,7 +214,6 @@ namespace Tizen.Applications
                 {
                     s_clearDataEventHandler -= value;
                     UnregisterPackageManagerEventIfNeeded();
-                    UnsetPackageManagerEventStatus();
                 }
             }
         }
@@ -218,7 +230,6 @@ namespace Tizen.Applications
             {
                 lock (s_pkgEventLock)
                 {
-                    SetPackageManagerEventStatus(Interop.PackageManager.EventStatus.ClearCache);
                     RegisterPackageManagerEventIfNeeded();
                     s_clearCacheEventHandler += value;
                 }
@@ -229,7 +240,6 @@ namespace Tizen.Applications
                 {
                     s_clearCacheEventHandler -= value;
                     UnregisterPackageManagerEventIfNeeded();
-                    UnsetPackageManagerEventStatus();
                 }
             }
         }
@@ -286,8 +296,8 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="applicationId">The ID of the application.</param>
         /// <returns>Returns the ID of the package.</returns>
-        /// <remarks>It returns null if the input is null.</remarks>
-        /// <exception cref="ArgumentException">Thrown when input application ID does not exist.</exception>
+        /// <remarks>If the input is null, it returns null.</remarks>
+        /// <exception cref="ArgumentException">Thrown when the input application ID does not exist.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
@@ -346,6 +356,10 @@ namespace Tizen.Applications
         /// <summary>
         /// Clears all the application's internal and external cache directories.
         /// </summary>
+        /// <remarks>
+        /// This method clears both the internal and external cache directories of the application. It ensures that any cached files are removed from the device storage.
+        /// By calling this method, you can free up valuable space on the device and improve its performance. However, note that this operation may take some time depending on the amount of cached data present in the directories.
+        /// </remarks>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
         /// <exception cref="System.IO.IOException">Thrown when the method fails due to an internal IO error.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
@@ -368,13 +382,13 @@ namespace Tizen.Applications
         /// </summary>
         /// <remarks>
         /// All files under data, shared/data, and shared/trusted in the internal storage are removed.
-        /// And, if the external storage exists, then all files under data and shared/trusted in the external storage are removed.
+        /// And, if the external storage exists, then all files under data and shared/trusted in the external storage are also removed.
         /// </remarks>
         /// <param name="packageId">ID of the package.</param>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
-        /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal IO error.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
-        /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method fails due to an internal IO error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the required privileges to access this method.</exception>
+        /// <exception cref="SystemException">Thrown when the method fails due to an internal system error.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
         /// <since_tizen> 3 </since_tizen>
@@ -480,6 +494,7 @@ namespace Tizen.Applications
                 {
                     Log.Warn(LogTag, string.Format("Failed to get package Informations. err = {0}", err));
                 }
+                GC.KeepAlive(cb);
             }
 
             err = Interop.PackageManager.PackageManagerFilterDestroy(filterHandle);
@@ -525,7 +540,9 @@ namespace Tizen.Applications
             {
                 tcs.TrySetException(PackageManagerErrorFactory.GetException(err, "Failed to get total package size info"));
             }
-            return await tcs.Task.ConfigureAwait(false);
+            var result = await tcs.Task.ConfigureAwait(false);
+            GC.KeepAlive(cb);
+            return result;
         }
 
         /// <summary>
@@ -533,10 +550,9 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="packagePath">Absolute path for the package to be installed.</param>
         /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
-        /// <returns>Returns true if the installation request is successful, otherwise false.</returns>
+        /// <returns>True if the installation request is successful, otherwise false.</returns>
         /// <remarks>
-        /// The 'true' means that the request for installation is successful.
-        /// To check the result of the installation, the caller should check the progress using the InstallProgressChanged event.
+        /// True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -554,8 +570,7 @@ namespace Tizen.Applications
         /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
         /// <returns>Returns true if installation request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that the request for installation is successful.
-        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.
+        /// True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -573,8 +588,7 @@ namespace Tizen.Applications
         /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
         /// <returns>Returns true if installation request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that the request for installation is successful.
-        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event.
+        /// True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -592,8 +606,7 @@ namespace Tizen.Applications
         /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
         /// <returns>Returns true if installation request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that the request for installation is successful.
-        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event.
+        /// True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -612,8 +625,7 @@ namespace Tizen.Applications
         /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
         /// <returns>Returns true if installation request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that the request for installation is successful.
-        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.
+        /// True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -632,8 +644,7 @@ namespace Tizen.Applications
         /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
         /// <returns>Returns true if installation request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that the request for installation is successful.
-        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.
+        /// True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -652,8 +663,7 @@ namespace Tizen.Applications
         /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
         /// <returns>Returns true if installation request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that the request for installation is successful.
-        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event.
+        /// True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -673,8 +683,7 @@ namespace Tizen.Applications
         /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
         /// <returns>Returns true if installation request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that the request for installation is successful.
-        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.
+        /// True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -691,8 +700,7 @@ namespace Tizen.Applications
         /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
         /// <returns>Returns true if installation request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that the request for installation is successful.
-        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.
+        /// True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -710,8 +718,7 @@ namespace Tizen.Applications
         /// <param name="installMode">Optional parameter to indicate special installation mode.</param>
         /// <returns>Returns true if installation request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that the request for installation is successful.
-        /// To check the result of installation, the caller should check the progress using the InstallProgressChanged event or eventCallback.
+        /// True indicates that the installation request was successful. However, to determine whether the actual installation was completed successfully, the caller must monitor the progress by subscribing to the InstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -878,8 +885,7 @@ namespace Tizen.Applications
         /// <param name="packageId">ID of the package to be uninstalled.</param>
         /// <returns>Returns true if the uninstallation request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that the request for uninstallation is successful.
-        /// To check the result of uninstallation, the caller should check the progress using the UninstallProgressChanged event.
+        /// The return value 'true' indicates that the uninstallation request was successfully made. However, in order to determine whether the actual uninstallation process completed without any errors, the caller needs to monitor the progress through the UninstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -896,8 +902,7 @@ namespace Tizen.Applications
         /// <param name="type">Optional - Package type for the package to be uninstalled.</param>
         /// <returns>Returns true if the uninstallation request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that the request for uninstallation is successful.
-        /// To check the result of uninstallation, the caller should check the progress using the UninstallProgressChanged event.
+        /// The return value 'true' indicates that the uninstallation request was successfully made. However, in order to determine whether the actual uninstallation process completed without any errors, the caller needs to monitor the progress through the UninstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -914,8 +919,7 @@ namespace Tizen.Applications
         /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request.</param>
         /// <returns>Returns true if the uninstallation request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that the request for uninstallation is successful.
-        /// To check the result of uninstallation, the caller should check the progress using the UninstallProgressChanged event or eventCallback.
+        /// The return value 'true' indicates that the uninstallation request was successfully made. However, in order to determine whether the actual uninstallation process completed without any errors, the caller needs to monitor the progress through the UninstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -933,8 +937,7 @@ namespace Tizen.Applications
         /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request.</param>
         /// <returns>Returns true if the uninstallation request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that the request for uninstallation is successful.
-        /// To check the result of uninstallation, the caller should check the progress using the UninstallProgressChanged event or eventCallback.
+        /// The return value 'true' indicates that the uninstallation request was successfully made. However, in order to determine whether the actual uninstallation process completed without any errors, the caller needs to monitor the progress through the UninstallProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -1005,8 +1008,8 @@ namespace Tizen.Applications
         /// <param name="newStorage">Storage package should be moved to.</param>
         /// <returns>Returns true if the move request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that the request for move is successful.
-        /// To check the result of move, the caller should check the progress using the MoveProgressChanged event.
+        /// The return value 'true' indicates that the move request was successfully made.
+        /// To determine whether the actual move operation completed successfully, the caller needs to monitor the progress by handling the MoveProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -1024,8 +1027,8 @@ namespace Tizen.Applications
         /// <param name="newStorage">Storage package should be moved to.</param>
         /// <returns>Returns true if the move request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that the request for move is successful.
-        /// To check the result of move, the caller should check the progress using the MoveProgressChanged event.
+        /// The return value 'true' indicates that the move request was successfully made.
+        /// To determine whether the actual move operation completed successfully, the caller needs to monitor the progress by handling the MoveProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -1043,8 +1046,8 @@ namespace Tizen.Applications
         /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request.</param>
         /// <returns>Returns true if move request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that the request for move is successful.
-        /// To check the result of move, the caller should check the progress using the MoveProgressChanged event.
+        /// The return value 'true' indicates that the move request was successfully made.
+        /// To determine whether the actual move operation completed successfully, the caller needs to monitor the progress by handling the MoveProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -1063,8 +1066,8 @@ namespace Tizen.Applications
         /// <param name="eventCallback">Optional - The event callback will be invoked only for the current request.</param>
         /// <returns>Returns true if move request is successful, false otherwise.</returns>
         /// <remarks>
-        /// The 'true' means that the request for move is successful.
-        /// To check the result of move, the caller should check the progress using the MoveProgressChanged event.
+        /// The return value 'true' indicates that the move request was successfully made.
+        /// To determine whether the actual move operation completed successfully, the caller needs to monitor the progress by handling the MoveProgressChanged event.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -1371,64 +1374,12 @@ namespace Tizen.Applications
             }
         }
 
-        private static void SetPackageManagerEventStatus(Interop.PackageManager.EventStatus status)
-        {
-            if (Handle.IsInvalid) return;
-
-            Interop.PackageManager.EventStatus eventStatus = s_eventStatus;
-            eventStatus |= status;
-            if (eventStatus != Interop.PackageManager.EventStatus.All)
-                eventStatus |= Interop.PackageManager.EventStatus.Progress;
-
-            var err = Interop.PackageManager.ErrorCode.None;
-            if (s_eventStatus != eventStatus)
-            {
-                err = Interop.PackageManager.PackageManagerSetEventStatus(Handle, eventStatus);
-                if (err == Interop.PackageManager.ErrorCode.None)
-                {
-                    s_eventStatus = eventStatus;
-                    Log.Debug(LogTag, string.Format("New Event Status flag: {0}", s_eventStatus));
-                    return;
-                }
-                Log.Debug(LogTag, string.Format("Failed to set flag for {0} event. err = {1}", eventStatus, err));
-            }
-        }
-
-        private static void UnsetPackageManagerEventStatus()
-        {
-            if (Handle.IsInvalid) return;
-
-            Interop.PackageManager.EventStatus eventStatus = Interop.PackageManager.EventStatus.All;
-            if (s_installEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Install;
-            if (s_uninstallEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Uninstall;
-            if (s_updateEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Upgrade;
-            if (s_moveEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.Move;
-            if (s_clearDataEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.ClearData;
-            if (s_clearCacheEventHandler != null) eventStatus |= Interop.PackageManager.EventStatus.ClearCache;
-            if (eventStatus != Interop.PackageManager.EventStatus.All)
-                eventStatus |= Interop.PackageManager.EventStatus.Progress;
-
-            var err = Interop.PackageManager.ErrorCode.None;
-            if (s_eventStatus != eventStatus)
-            {
-                err = Interop.PackageManager.PackageManagerSetEventStatus(Handle, eventStatus);
-                if (err == Interop.PackageManager.ErrorCode.None)
-                {
-                    s_eventStatus = eventStatus;
-                    Log.Debug(LogTag, string.Format("New Event Status flag: {0}", s_eventStatus));
-                    return;
-                }
-                Log.Debug(LogTag, string.Format("Failed to set flag for {0} event. err = {1}", eventStatus, err));
-            }
-        }
-
         private static void RegisterPackageManagerEventIfNeeded()
         {
-            if (s_installEventHandler != null && s_uninstallEventHandler != null && s_updateEventHandler != null && s_moveEventHandler != null && s_clearDataEventHandler != null && s_clearCacheEventHandler != null)
+            if (s_installEventHandler != null || s_uninstallEventHandler != null || s_updateEventHandler != null || s_moveEventHandler != null || s_clearDataEventHandler != null || s_clearCacheEventHandler != null)
+            {
                 return;
-
-            if ((s_registered_eventStatus & s_eventStatus) == s_eventStatus)
-                return;
+            }
 
             var err = Interop.PackageManager.ErrorCode.None;
 
@@ -1441,11 +1392,8 @@ namespace Tizen.Applications
             }
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                s_registered_eventStatus = Interop.PackageManager.EventStatus.All;
                 Log.Warn(LogTag, string.Format("Failed to register callback for package manager event. err = {0}", err));
                 throw PackageManagerErrorFactory.GetException(err, "Failed to register package manager event.");
-            } else {
-                s_registered_eventStatus = s_eventStatus;
             }
         }
 
@@ -1534,7 +1482,6 @@ namespace Tizen.Applications
                 {
                     throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
                 }
-                s_registered_eventStatus = Interop.PackageManager.EventStatus.All;
             }
         }
     }

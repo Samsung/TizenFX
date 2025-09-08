@@ -30,11 +30,17 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_SetTexture")]
             public static extern void SetTexture(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_RemoveTexture")]
+            public static extern void RemoveTexture(global::System.Runtime.InteropServices.HandleRef textureSet, uint index);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_GetTexture")]
             public static extern global::System.IntPtr GetTexture(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_SetSampler")]
             public static extern void SetSampler(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_RemoveSampler")]
+            public static extern void RemoveSampler(global::System.Runtime.InteropServices.HandleRef textureSet, uint index);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_GetSampler")]
             public static extern global::System.IntPtr GetSampler(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);

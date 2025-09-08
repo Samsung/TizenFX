@@ -23,18 +23,18 @@ using System.Threading.Tasks;
 namespace Tizen.Security.SecureRepository
 {
     /// <summary>
-    /// Enumeration for the OCSP status.
+    /// [Obsolete("Please do not use! This will be deprecated!")]
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Obsolete("Please do not use! This will be deprecated with API9 and removed with API11! Please use raw OpenSSL instead!")]
     public enum OcspStatus : int
     {
         /// <summary>
-        /// The OCSP status is good.
+        /// OCSP status is good.
         /// </summary>
         Good = 0x00,
         /// <summary>
-        /// The certificate is revoked.
+        /// Certificate is revoked.
         /// </summary>
         Revoked = 0x01,
         /// <summary>
@@ -42,27 +42,27 @@ namespace Tizen.Security.SecureRepository
         /// </summary>
         Unknown = 0x02,
         /// <summary>
-        /// The certificate does not provide the OCSP extension.
+        /// Certificate does not provide the OCSP extension.
         /// </summary>
         Unsupported = 0x03,
         /// <summary>
-        /// The invalid URL in the certificate OCSP extension.
+        /// Invalid URL in the certificate OCSP extension.
         /// </summary>
         InvalidUrl = 0x04,
         /// <summary>
-        /// The invalid response from the OCSP server.
+        /// Invalid response from the OCSP server.
         /// </summary>
         InvalidResponse = 0x05,
         /// <summary>
-        /// The OCSP remote server error.
+        /// OCSP remote server error.
         /// </summary>
         RemoteError = 0x06,
         /// <summary>
-        /// The Network connection error.
+        /// Network connection error.
         /// </summary>
         NetworkError = 0x07,
         /// <summary>
-        /// An Internal error.
+        /// Internal error.
         /// </summary>
         InternalError = 0x08
     }

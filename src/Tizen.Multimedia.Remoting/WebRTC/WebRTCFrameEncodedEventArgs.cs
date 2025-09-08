@@ -31,7 +31,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets the track information.
+        /// Gets the information of media stream track from remote peer.
         /// </summary>
         /// <value>The media type.</value>
         /// <since_tizen> 9 </since_tizen>

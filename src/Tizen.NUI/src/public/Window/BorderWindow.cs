@@ -32,32 +32,32 @@ namespace Tizen.NUI
         #endregion //Constant Fields
 
         #region Fields
-        private IBorderInterface borderInterface = null;
-        private Layer borderWindowRootLayer = null;
-        private Layer borderWindowBottomLayer = null;
+        private IBorderInterface borderInterface;
+        private Layer borderWindowRootLayer;
+        private Layer borderWindowBottomLayer;
         private WindowOrientation currentOrientation;
 
         // for border area
-        private View rootView = null;
-        private BorderView borderView = null;
-        private View topView = null;
-        private View contentsView = null;
-        private View bottomView = null;
-        private float borderHeight = 0;
-        private int screenWidth = 0;
-        private int screenHeight = 0;
+        private View rootView;
+        private BorderView borderView;
+        private View topView;
+        private View contentsView;
+        private View bottomView;
+        private float borderHeight;
+        private int screenWidth;
+        private int screenHeight;
 
-        private bool isBorderWindow = false;
-        private bool hasTopView = false;
-        private bool hasBottomView = false;
-        private bool isEnabledOverlayMode = false;
-        private bool isMaximized = false;
+        private bool isBorderWindow;
+        private bool hasTopView;
+        private bool hasBottomView;
+        private bool isEnabledOverlayMode;
+        private bool isMaximized;
 
 
         // for config
-        private Size2D minSize = null;
-        private Size2D maxSize = null;
-        private uint borderLineThickness = 0;
+        private Size2D minSize;
+        private Size2D maxSize;
+        private uint borderLineThickness;
         private BorderResizePolicyType borderResizePolicy = BorderResizePolicyType.Free;
         #endregion //Fields
 
@@ -69,7 +69,7 @@ namespace Tizen.NUI
 
         #region Delegates
         internal delegate void BorderCloseDelegate();
-        private BorderCloseDelegate borderCloseDelegate = null;
+        private BorderCloseDelegate borderCloseDelegate;
 
         #endregion //Delegates
 
@@ -318,7 +318,6 @@ namespace Tizen.NUI
                     borderInterface.OnMaximize(IsMaximized());
                     if (borderHeight > 0)
                     {
-                        borderLineThickness = borderInterface.BorderLineThickness;
                         WindowSize += new Size2D((int)borderLineThickness * 2, (int)(borderHeight + borderLineThickness * 2));
                     }
                 }
@@ -362,7 +361,8 @@ namespace Tizen.NUI
                 BackgroundColor = Color.Transparent,
             };
 
-            ushort padding = (ushort) borderLineThickness;
+            borderLineThickness = borderInterface.BorderLineThickness;
+            ushort padding = (ushort)borderLineThickness;
             borderView = new BorderView()
             {
                 GrabTouchAfterLeave = true,
@@ -706,7 +706,7 @@ namespace Tizen.NUI
         // View class for border view.
         private class BorderView : View
         {
-            private bool isEnabledOverlay = false;
+            private bool isEnabledOverlay;
             private Extents prePadding = new Extents(0, 0, 0, 0);
 
             internal BorderView() : base()

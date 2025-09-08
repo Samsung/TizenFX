@@ -22,6 +22,7 @@ namespace Tizen.Applications
     /// The class containing common properties of the Badge.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public class Badge
     {
         private int count = 0;
@@ -34,6 +35,7 @@ namespace Tizen.Applications
         /// <param name="count">Count value</param>
         /// <param name="visible">True if it should be displayed</param>
         /// <exception cref="ArgumentException">Thrown when failed because of invalid argument</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public Badge(string appId, int count = 1, bool visible = true)
         {
             if (IsNegativeNumber(count))
@@ -50,6 +52,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when set negative number</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int Count
         {
             get
@@ -71,12 +74,14 @@ namespace Tizen.Applications
         /// Property for the application ID of the badge.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string AppId { get; set; }
 
         /// <summary>
         /// Property for display visibility. True if the badge display visible, otherwise false..
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public bool Visible{ get; set; }
 
         private bool IsNegativeNumber(int number)

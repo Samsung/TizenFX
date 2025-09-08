@@ -35,7 +35,7 @@ namespace Tizen.NUI
         private float windowHeight;
         private LayoutTransitionManager transitionManager;
 
-        private int layoutCount = 0;
+        private int layoutCount;
 
         /// <summary>
         /// Constructs a LayoutController which controls the measuring and layouting.<br />
@@ -48,6 +48,36 @@ namespace Tizen.NUI
 
             SetBaseWindowAndSize(window);
         }
+
+        /// <summary>
+        /// Invoked when the layouting is finished.
+        /// </summary>
+        public event EventHandler Finished;
+
+        /// <summary>
+        /// Gets the owner window.
+        /// </summary>
+        public Window Owner => window;
+
+        /// <summary>
+        /// Gets or sets the extra width of root.
+        /// </summary>
+        public float ExtraWidth { get; set; }
+
+        /// <summary>
+        /// Gets or sets the extra height of root.
+        /// </summary>
+        public float ExtraHeight { get; set; }
+
+        /// <summary>
+        /// Gets or sets the offset x of root.
+        /// </summary>
+        public float OffsetX { get; set; }
+
+        /// <summary>
+        /// Gets or sets the offset y of root.
+        /// </summary>
+        public float OffsetY { get; set; }
 
         /// <summary>
         /// Dispose Explicit or Implicit
@@ -126,19 +156,21 @@ namespace Tizen.NUI
         {
             window.LayersChildren?.ForEach(layer =>
             {
-                if(layer?.LayoutCount > 0)
+                if (layer?.LayoutCount > 0)
                 {
                     layer?.Children?.ForEach(view =>
                     {
                         if (view != null)
                         {
-                            FindRootLayouts(view, windowWidth, windowHeight);
+                            FindRootLayouts(view, windowWidth + ExtraWidth, windowHeight + ExtraHeight);
                         }
                     });
                 }
             });
 
             transitionManager.SetupCoreAndPlayAnimation();
+
+            Finished?.Invoke(this, EventArgs.Empty);
         }
 
         /// <summary>
@@ -202,7 +234,7 @@ namespace Tizen.NUI
 
         // Traverse the tree looking for a root node that is a layout.
         // Once found, it's children can be assigned Layouts and the Measure process started.
-        private void FindRootLayouts(View rootNode, float parentWidth, float parentHeight)
+        internal void FindRootLayouts(View rootNode, float parentWidth, float parentHeight)
         {
             if (rootNode.Layout != null)
             {
@@ -236,10 +268,10 @@ namespace Tizen.NUI
                 // If wrap children then at most it can be the root parent size.
                 // If match parent then should be root parent size.
                 // If exact then should be that size limited by the root parent size.
-                float widthSize = GetLengthSize(parentWidth, root.WidthSpecification);
-                float heightSize = GetLengthSize(parentHeight, root.HeightSpecification);
-                var widthMode = GetMode(root.WidthSpecification);
-                var heightMode = GetMode(root.HeightSpecification);
+                float widthSize = GetLengthSize(parentWidth, root.LayoutWidth);
+                float heightSize = GetLengthSize(parentHeight, root.LayoutHeight);
+                var widthMode = GetMode(root.LayoutWidth);
+                var heightMode = GetMode(root.LayoutHeight);
 
                 if (layout.NeedsLayout(widthSize, heightSize, widthMode, heightMode))
                 {
@@ -250,8 +282,8 @@ namespace Tizen.NUI
                     MeasureHierarchy(root, widthSpec, heightSpec);
                 }
 
-                float positionX = root.PositionX;
-                float positionY = root.PositionY;
+                float positionX = root.PositionX + OffsetX;
+                float positionY = root.PositionY + OffsetY;
                 // Start at root which was just measured.
                 PerformLayout(root, new LayoutLength(positionX),
                                      new LayoutLength(positionY),
@@ -260,15 +292,15 @@ namespace Tizen.NUI
             }
         }
 
-        private float GetLengthSize(float size, int specification)
+        private float GetLengthSize(float size, LayoutDimension layoutDimension)
         {
             // exact size provided so match width exactly
-            return (specification >= 0) ? specification : size;
+            return layoutDimension.IsFixedValue ? layoutDimension : size;
         }
 
-        private MeasureSpecification.ModeType GetMode(int specification)
+        private MeasureSpecification.ModeType GetMode(LayoutDimension layoutDimension)
         {
-            if (specification >= 0 || specification == LayoutParamPolicies.MatchParent)
+            if (layoutDimension.IsFixedValue || layoutDimension == LayoutDimension.MatchParent)
             {
                 return MeasureSpecification.ModeType.Exactly;
             }

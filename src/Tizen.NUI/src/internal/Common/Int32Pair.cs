@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// </summary>
     internal class Int32Pair : Disposable
     {
-        internal Int32Pair(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Int32Pair(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 

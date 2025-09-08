@@ -41,12 +41,12 @@ namespace Tizen.NUI
     public class Theme : BindableObject, IResourcesProvider
     {
         private readonly Dictionary<string, ViewStyle> map;
-        private IEnumerable<KeyValuePair<string, string>> changedResources = null;
+        private IEnumerable<KeyValuePair<string, string>> changedResources;
         private string baseTheme;
         ResourceDictionary resources;
 
         /// <summary>
-        /// Create an empty theme.
+        /// The default constructor to create an empty theme.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Theme()
@@ -105,7 +105,7 @@ namespace Tizen.NUI
         /// The version of the Theme.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public string Version { get; set; } = null;
+        public string Version { get; set; }
 
         /// <summary>
         /// The url of small broken image
@@ -220,7 +220,7 @@ namespace Tizen.NUI
 
         internal int Count => map.Count;
 
-        internal int PackageCount { get; set; } = 0;
+        internal int PackageCount { get; set; }
 
         /// <summary>
         /// Get an enumerator of the theme.
@@ -358,11 +358,13 @@ namespace Tizen.NUI
                 }
                 else if (map.ContainsKey(item.Key) && !item.Value.SolidNull)
                 {
-                    map[item.Key].MergeDirectly(item.Value);
+                    var merged = map[item.Key].Clone();
+                    merged.MergeDirectly(item.Value);
+                    map[item.Key] = merged;
                 }
                 else
                 {
-                    map[item.Key] = item.Value.Clone();
+                    map[item.Key] = item.Value;
                 }
             }
 

@@ -62,7 +62,7 @@ namespace Tizen.Sensor
         };
 
         /// <summary>
-        /// Gets the activity accuracy of the activity detector.
+        /// Get the activity accuracy of the activity detector sensor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The activity accuracy. </value>

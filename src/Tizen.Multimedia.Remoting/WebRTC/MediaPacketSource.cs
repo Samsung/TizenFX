@@ -23,7 +23,7 @@ using static Interop;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Represents a media packet source.
+    /// Represents a media source that wraps media data into MediaPacket.
     /// </summary>
     /// <seealso cref="WebRTC.AddSource"/>
     /// <seealso cref="WebRTC.AddSources"/>

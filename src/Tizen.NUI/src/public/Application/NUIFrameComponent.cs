@@ -26,7 +26,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class NUIFrameComponent : FrameComponent
     {
-        private bool defaultWindowSet = false;
+        private bool defaultWindowSet;
         internal NUIWindowInfo NUIWindowInfo
         {
             get;

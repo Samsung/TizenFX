@@ -26,42 +26,9 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 8 </since_tizen>
     public class PaginationStyle : ControlStyle
     {
-        /// <summary>The IndicatorSize bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorSizeProperty = BindableProperty.Create(nameof(IndicatorSize), typeof(Size), typeof(PaginationStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((PaginationStyle)bindable).indicatorSize = newValue == null ? null : new Size((Size)newValue);
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((PaginationStyle)bindable).indicatorSize;
-        });
-
-        /// <summary>The IndicatorImageUrlSelector bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorImageUrlSelectorProperty = BindableProperty.Create("IndicatorImageUrl", typeof(Selector<string>), typeof(PaginationStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((PaginationStyle)bindable).indicatorImageUrl = (Selector<string>)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((PaginationStyle)bindable).indicatorImageUrl;
-        });
-
-        /// <summary>The IndicatorSpacing bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorSpacingProperty = BindableProperty.Create(nameof(IndicatorSpacing), typeof(int?), typeof(PaginationStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((PaginationStyle)bindable).indicatorSpacing = (int?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((PaginationStyle)bindable).indicatorSpacing;
-        });
-
-        private Size indicatorSize;
-        private Selector<string> indicatorImageUrl;
-        private int? indicatorSpacing;
+        static readonly IStyleProperty IndicatorSizeProperty = new StyleProperty<Pagination, Size>((v, o) => v.IndicatorSize = o);
+        static readonly IStyleProperty IndicatorImageUrlProperty = new StyleProperty<Pagination, Selector<string>>((v, o) => v.IndicatorImageUrl = o);
+        static readonly IStyleProperty IndicatorSpacingProperty = new StyleProperty<Pagination, int>((v, o) => v.IndicatorSpacing = o);
 
         static PaginationStyle() { }
 
@@ -96,8 +63,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Selector<string> IndicatorImageUrl
         {
-            get => (Selector<string>)GetValue(IndicatorImageUrlSelectorProperty);
-            set => SetValue(IndicatorImageUrlSelectorProperty, value);
+            get => (Selector<string>)GetValue(IndicatorImageUrlProperty);
+            set => SetValue(IndicatorImageUrlProperty, value);
         }
 
         /// <summary>

@@ -252,12 +252,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public void SetOrthographicProjection(float left, float right, float top, float bottom, float near, float far)
-        {
-            Interop.CameraActor.SetOrthographicProjection(SwigCPtr, left, right, top, bottom, near, far);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         // The type of GetType() and SetType() is different from Type property.
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1721: Property names should not match get methods")]
         public string Type
@@ -270,7 +264,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return GetInternalTypeProperty(this) as string;
+                    return InternalType;
                 }
             }
             set
@@ -281,7 +275,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalTypeProperty(this, null, value);
+                    InternalType = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -317,7 +311,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return GetInternalProjectionModeProperty(this) as string;
+                    return InternalProjectionMode;
                 }
             }
             set
@@ -328,7 +322,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalProjectionModeProperty(this, null, value);
+                    InternalProjectionMode = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -362,7 +356,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (float)GetInternalFieldOfViewProperty(this);
+                    return InternalFieldOfView;
                 }
             }
             set
@@ -373,7 +367,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalFieldOfViewProperty(this, null, value);
+                    InternalFieldOfView = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -407,7 +401,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (float)GetInternalAspectRatioProperty(this);
+                    return InternalAspectRatio;
                 }
             }
             set
@@ -418,7 +412,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalAspectRatioProperty(this, null, value);
+                    InternalAspectRatio = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -452,7 +446,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (float)GetInternalNearPlaneDistanceProperty(this);
+                    return InternalNearPlaneDistance;
                 }
             }
             set
@@ -463,7 +457,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalNearPlaneDistanceProperty(this, null, value);
+                    InternalNearPlaneDistance = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -497,7 +491,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (float)GetInternalFarPlaneDistanceProperty(this);
+                    return InternalFarPlaneDistance;
                 }
             }
             set
@@ -508,7 +502,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalFarPlaneDistanceProperty(this, null, value);
+                    InternalFarPlaneDistance = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -542,7 +536,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (float)GetInternalLeftPlaneDistanceProperty(this);
+                    return InternalLeftPlaneDistance;
                 }
             }
             set
@@ -553,7 +547,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalLeftPlaneDistanceProperty(this, null, value);
+                    InternalLeftPlaneDistance = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -587,7 +581,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (float)GetInternalRightPlaneDistanceProperty(this);
+                    return InternalRightPlaneDistance;
                 }
             }
             set
@@ -598,7 +592,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalRightPlaneDistanceProperty(this, null, value);
+                    InternalRightPlaneDistance = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -632,7 +626,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (float)GetInternalTopPlaneDistanceProperty(this);
+                    return InternalTopPlaneDistance;
                 }
             }
             set
@@ -643,7 +637,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalTopPlaneDistanceProperty(this, null, value);
+                    InternalTopPlaneDistance = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -677,7 +671,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (float)GetInternalBottomPlaneDistanceProperty(this);
+                    return InternalBottomPlaneDistance;
                 }
             }
             set
@@ -688,7 +682,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalBottomPlaneDistanceProperty(this, null, value);
+                    InternalBottomPlaneDistance = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -722,7 +716,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return GetInternalTargetPositionProperty(this) as Vector3;
+                    return InternalTargetPosition;
                 }
             }
             set
@@ -733,7 +727,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalTargetPositionProperty(this, null, value);
+                    InternalTargetPosition = value;
                 }
                 NotifyPropertyChanged();
             }
@@ -789,7 +783,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    return (bool)GetInternalInvertYAxisProperty(this);
+                    return InternalInvertYAxis;
                 }
             }
             set
@@ -800,7 +794,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    SetInternalInvertYAxisProperty(this, null, value);
+                    InternalInvertYAxis = value;
                 }
                 NotifyPropertyChanged();
             }

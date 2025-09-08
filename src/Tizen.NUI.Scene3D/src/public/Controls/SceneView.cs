@@ -446,7 +446,7 @@ namespace Tizen.NUI.Scene3D
             {
                 // We found matched NUI camera. Reduce cPtr reference count.
                 HandleRef handle = new HandleRef(this, cPtr);
-                Interop.Camera.DeleteCameraProperty(handle);
+                Interop.Camera.DeleteCamera(handle);
                 handle = new HandleRef(null, IntPtr.Zero);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -472,7 +472,7 @@ namespace Tizen.NUI.Scene3D
             {
                 // We found matched NUI camera. Reduce cPtr reference count.
                 HandleRef handle = new HandleRef(this, cPtr);
-                Interop.Camera.DeleteCameraProperty(handle);
+                Interop.Camera.DeleteCamera(handle);
                 handle = new HandleRef(null, IntPtr.Zero);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -569,7 +569,7 @@ namespace Tizen.NUI.Scene3D
             {
                 // We found matched NUI camera. Reduce cPtr reference count.
                 HandleRef handle = new HandleRef(this, cPtr);
-                Interop.Camera.DeleteCameraProperty(handle);
+                Interop.Camera.DeleteCamera(handle);
                 handle = new HandleRef(null, IntPtr.Zero);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

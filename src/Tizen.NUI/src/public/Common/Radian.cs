@@ -20,7 +20,7 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// An angle in radians.
+    /// This class represents an angle in radians.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Radian : Disposable
@@ -55,12 +55,13 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Radian(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Radian(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 
         /// <summary>
         /// The value in radians.
+        /// The float value representing the angle in radians.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float Value

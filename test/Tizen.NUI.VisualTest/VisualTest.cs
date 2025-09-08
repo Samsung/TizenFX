@@ -44,6 +44,8 @@ class VisualTestExample : NUIApplication
 
     private global::System.Random mRandom = new global::System.Random();
 
+    private global::System.Collections.Generic.List<Tizen.NUI.Visuals.VisualBase> visuals = new();
+
     protected void CreateScene()
     {
         mWindow = Window.Instance;
@@ -193,6 +195,11 @@ class VisualTestExample : NUIApplication
 
                         rootView?.Unparent();
                         rootView?.DisposeRecursively();
+                        foreach (var visual in visuals)
+                        {
+                            visual?.Dispose();
+                        }
+                        visuals.Clear();
                         rootView = new View()
                         {
                             SizeWidth = mWindowSize.X,
@@ -341,6 +348,7 @@ class VisualTestExample : NUIApplication
             WidthPolicy = VisualTransformPolicyType.Absolute,
             HeightPolicy = VisualTransformPolicyType.Absolute,
         };
+        visuals.Add(imageVisual);
 
         /*
         Tizen.NUI.Visuals.TextVisual textVisual = new Tizen.NUI.Visuals.TextVisual()
@@ -362,8 +370,8 @@ class VisualTestExample : NUIApplication
         };
         */
 
-        view.AddVisual(imageVisual);
-        //view.AddVisual(textVisual);
+        view.AddVisual(imageVisual, ViewVisualContainerRange.Content);
+        //view.AddVisual(textVisual, ViewVisualContainerRange.Content);
 
         TextLabel textLabel = new TextLabel()
         {
@@ -402,7 +410,8 @@ class VisualTestExample : NUIApplication
             ExtraWidth = mViewSize * 0.15f,
             ExtraHeight = -mViewSize * 0.05f,
         };
-        view.AddVisual(colorVisual);
+        visuals.Add(colorVisual);
+        view.AddVisual(colorVisual, ViewVisualContainerRange.Content);
         #endregion
 
         #region ImageVisual
@@ -421,7 +430,8 @@ class VisualTestExample : NUIApplication
             WidthPolicy = VisualTransformPolicyType.Absolute,
             HeightPolicy = VisualTransformPolicyType.Absolute,
         };
-        view.AddVisual(imageVisual);
+        visuals.Add(imageVisual);
+        view.AddVisual(imageVisual, ViewVisualContainerRange.Content);
         #endregion
 
         #region TextVisual
@@ -442,7 +452,8 @@ class VisualTestExample : NUIApplication
             HeightPolicy = VisualTransformPolicyType.Absolute,
             OffsetYPolicy = VisualTransformPolicyType.Absolute,
         };
-        view.AddVisual(textVisual);
+        visuals.Add(textVisual);
+        view.AddVisual(textVisual, ViewVisualContainerRange.Content);
         #endregion
 
         #region BorderVisual
@@ -452,7 +463,8 @@ class VisualTestExample : NUIApplication
             BorderWidth = mViewSize * 0.05f,
             AntiAliasing = false, // For speed up
         };
-        view.AddVisual(borderVisual);
+        visuals.Add(borderVisual);
+        view.AddVisual(borderVisual, ViewVisualContainerRange.Content);
         #endregion
     }
 

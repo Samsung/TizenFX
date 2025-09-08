@@ -29,7 +29,7 @@ namespace Tizen.NUI
     public class RelativeVector2 : Disposable
     {
         /// <summary>
-        /// The constructor.
+        /// The Default constructor of RelativeVector2 class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public RelativeVector2() : this(Interop.Vector2.NewVector2(), true)
@@ -68,7 +68,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal RelativeVector2(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal RelativeVector2(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 
@@ -213,6 +213,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Implicitly converts a RelativeVector2 instance to a Vector2 instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector2(RelativeVector2 relativeVector2)
@@ -225,6 +226,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Implicitly converts a Vector2 object to a RelativeVector2 object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator RelativeVector2(Vector2 vec)
@@ -303,6 +305,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Retrieves a RelativeVector2 object from a given pointer.
+        /// This method creates a new RelativeVector2 instance using the provided pointer.
         /// </summary>
         internal static RelativeVector2 GetRelativeVector2FromPtr(global::System.IntPtr cPtr)
         {

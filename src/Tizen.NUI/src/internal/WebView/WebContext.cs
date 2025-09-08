@@ -40,6 +40,8 @@ namespace Tizen.NUI
         private readonly WebContextPasswordDataListAcquiredProxyCallback passwordDataListAcquiredProxyCallback;
         private HttpRequestInterceptedCallback httpRequestInterceptedCallback;
         private readonly WebContextHttpRequestInterceptedProxyCallback httpRequestInterceptedProxyCallback;
+        private DownloadStartedCallback downloadStartedCallback;
+        private MimeOverriddenCallback mimeOverriddenCallback;
 
         internal WebContext(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -518,10 +520,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterDownloadStartedCallback(DownloadStartedCallback callback)
         {
+            downloadStartedCallback = callback;
             IntPtr ip = IntPtr.Zero;
-            if (callback != null)
+            if (downloadStartedCallback != null)
             {
-                ip = Marshal.GetFunctionPointerForDelegate(callback);
+                ip = Marshal.GetFunctionPointerForDelegate(downloadStartedCallback);
             }
             Interop.WebContext.RegisterDownloadStartedCallback(SwigCPtr, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -534,10 +537,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterMimeOverriddenCallback(MimeOverriddenCallback callback)
         {
+            mimeOverriddenCallback = callback;
             IntPtr ip = IntPtr.Zero;
-            if (callback != null)
+            if (mimeOverriddenCallback != null)
             {
-                ip = Marshal.GetFunctionPointerForDelegate(callback);
+                ip = Marshal.GetFunctionPointerForDelegate(mimeOverriddenCallback);
             }
             Interop.WebContext.RegisterMimeOverriddenCallback(SwigCPtr, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

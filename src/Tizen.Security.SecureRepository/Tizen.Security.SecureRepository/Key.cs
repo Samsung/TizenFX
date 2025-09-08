@@ -21,22 +21,22 @@ using static Interop;
 namespace Tizen.Security.SecureRepository
 {
     /// <summary>
-    /// The class that represents a key.
+    /// Represents a key.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Key
     {
         /// <summary>
-        /// A constructor of Key that takes the binary, its type, and optional password
-        /// of binary.
+        /// Initializes an instance of Key class with a binary, key type and a binary password.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="binary">
-        /// The binary value of a key. This binary may be encrypted with binaryPassword.
-        /// </param>
-        /// <param name="type">The key's type.</param>
+        /// <remarks>
+        /// The binary may be encrypted with binaryPassword.
+        /// </remarks>
+        /// <param name="binary">Binary value of a key.</param>
+        /// <param name="type">Key type.</param>
         /// <param name="binaryPassword">
-        /// The password used to decrypt binary when binary is encrypted.
+        /// Password used to decrypt binary when it's encrypted.
         /// </param>
         public Key(byte[] binary, KeyType type, string binaryPassword)
         {
@@ -82,8 +82,11 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// The binary value of a key.
+        /// Gets and sets binary value of a key.
         /// </summary>
+        /// <value>
+        /// Binary value of a key.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public byte[] Binary
         {
@@ -91,8 +94,11 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// The key's type.
+        /// Gets and sets key type.
         /// </summary>
+        /// <value>
+        /// Key type.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public KeyType Type
         {
@@ -100,8 +106,11 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// The password used to decrypt binary when binary is encrypted. It's optional.
+        /// Gets and sets password.
         /// </summary>
+        /// <value>
+        /// Password used to decrypt binary when it's encrypted (Optional).
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public string BinaryPassword
         {

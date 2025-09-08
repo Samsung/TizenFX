@@ -29,15 +29,18 @@ namespace Tizen.Applications.ComponentBased
     public static class ComponentManager
     {
         private const string LogTag = "Tizen.Applications";
-        
+
         /// <summary>
-        /// Gets the information of the installed components asynchronously.
+        /// Asynchronously retrieves a list of installed components.
         /// </summary>
-        /// <returns>The installed component info list.</returns>
-        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of the "component not exist" error or the system error.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// The task result contains an <see cref="IEnumerable{ComponentInfo}"/> of the installed component information.
+        /// </returns>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is provided.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the component does not exist or if a system error occurs.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException"> Thrown when permission is denied to access the component information.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         /// <since_tizen> 6 </since_tizen>
         public static async Task<IEnumerable<ComponentInfo>> GetInstalledComponentsAsync()
@@ -74,13 +77,16 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Gets the information of the running components asynchronously.
+        /// Asynchronously retrieves a list of currently running components.
         /// </summary>
-        /// <returns>The component running context list.</returns>
-        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of the "component not exist" error or the system error.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <returns>
+        /// A task that represents the asynchronous operation.
+        /// The task result contains an <see cref="IEnumerable{ComponentRunningContext}"/> of the running components.
+        /// </returns>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is provided.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the component does not exist or if a system error occurs.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied to access the running components.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         /// <since_tizen> 6 </since_tizen>
         public static async Task<IEnumerable<ComponentRunningContext>> GetRunningComponentsAsync()
@@ -117,14 +123,16 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Checks whether the component is running or not.
+        /// Checks if a specified component is currently running.
         /// </summary>
-        /// <param name="componentId">Component ID.</param>
-        /// <returns>Returns true if the component is running, otherwise false.</returns>
-        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of the "component not exist" error or the system error.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <param name="componentId">The unique identifier of the component.</param>
+        /// <returns>
+        /// True if the component is running; otherwise, false.
+        /// </returns>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is provided.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the component does not exist or if a system error occurs.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied to access the component status.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         /// <since_tizen> 6 </since_tizen>
         public static bool IsRunning(string componentId)
@@ -139,17 +147,17 @@ namespace Tizen.Applications.ComponentBased
         }
 
         /// <summary>
-        /// Terminates the component if it is running in the background.
+        /// Requests to terminate a specified component that is running in the background.
         /// </summary>
-        /// <param name="context">Component ID</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of the "component not exist" error or the system error.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <param name="context">The context of the running component to terminate.</param>
+        /// <exception cref="ArgumentException">Thrown when an invalid argument is provided.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the component does not exist or if a system error occurs.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied to terminate the component.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.kill.bgapp</privilege>
         /// <remarks>
-        /// This function returns after it just sends a request for terminating a background component.
-        /// Platform will decide if the target component could be terminated or not according to the state of the target component.
+        /// This method sends a request to terminate a background component.
+        /// The platform determines if the target component can be terminated based on its current state.
         /// </remarks>
         /// <since_tizen> 6 </since_tizen>
         public static void TerminateBackgroundComponent(ComponentRunningContext context)

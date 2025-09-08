@@ -21,26 +21,29 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
 
-    /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class FrameUpdateCallbackInterface : Disposable
+    public partial class FrameUpdateCallbackInterface : Disposable
     {
-        private uint onUpdateCallbackVersion = 0u;
+        private uint onUpdateCallbackVersion;
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        private static int aliveCount;
+
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal FrameUpdateCallbackInterface(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            ++aliveCount;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FrameUpdateCallbackInterface() : this(0u)
         {
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FrameUpdateCallbackInterface(uint updateCallbackVersion) : this(Interop.FrameUpdateCallbackInterface.newFrameUpdateCallbackInterface(), true)
         {
@@ -51,15 +54,35 @@ namespace Tizen.NUI
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            --aliveCount;
+
+            base.Dispose(type);
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.FrameUpdateCallbackInterface.DeleteFrameUpdateCallbackInterface(swigCPtr);
             NDalicPINVOKE.ThrowExceptionIfExists();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint UpdateCallbackVersion => onUpdateCallbackVersion;
+
+        /// <summary>
+        /// Gets the number of currently alived FrameUpdateCallbackInterface object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         private void DirectorConnect()
         {
@@ -90,13 +113,13 @@ namespace Tizen.NUI
         internal delegate bool DelegateFrameUpdateCallbackInterfaceV1(global::System.IntPtr proxy, float elapsedSeconds);
         private DelegateFrameUpdateCallbackInterfaceV1 Delegate1;
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnUpdate(float elapsedSeconds)
         {
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnUpdate(FrameUpdateCallbackInterface obj, float elapsedSeconds)
         {
@@ -105,7 +128,7 @@ namespace Tizen.NUI
             return false;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool GetPosition(uint id, Vector3 position)
         {
@@ -118,7 +141,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool SetPosition(uint id, Vector3 position)
         {
@@ -131,7 +154,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool BakePosition(uint id, Vector3 position)
         {
@@ -144,7 +167,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool GetOrientation(uint id, Rotation rotation)
         {
@@ -157,7 +180,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool SetOrientation(uint id, Rotation rotation)
         {
@@ -170,7 +193,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool BakeOrientation(uint id, Rotation rotation)
         {
@@ -183,7 +206,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool GetSize(uint id, Vector3 size)
         {
@@ -196,7 +219,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool SetSize(uint id, Vector3 size)
         {
@@ -209,7 +232,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool BakeSize(uint id, Vector3 size)
         {
@@ -222,7 +245,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool GetScale(uint id, Vector3 scale)
         {
@@ -235,7 +258,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool SetScale(uint id, Vector3 scale)
         {
@@ -248,7 +271,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool BakeScale(uint id, Vector3 scale)
         {
@@ -261,7 +284,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool GetColor(uint id, Vector4 color)
         {
@@ -274,7 +297,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool SetColor(uint id, Vector4 color)
         {
@@ -287,7 +310,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool BakeColor(uint id, Vector4 color)
         {
@@ -300,7 +323,34 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool SetIgnored(uint id, bool ignored)
+        {
+            if (proxyIntPtr == IntPtr.Zero)
+            {
+                return false;
+            }
+            bool ret = Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceSetIgnored(proxyIntPtr, id, ignored);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool GetIgnored(uint id, out bool ignored)
+        {
+            ignored = false;
+            if (proxyIntPtr == IntPtr.Zero)
+            {
+                return false;
+            }
+            bool ret = Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceGetIgnored(proxyIntPtr, id, out ignored);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool GetPositionAndSize(uint id, Vector3 Position, Vector3 Size)
         {
@@ -313,7 +363,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool GetWorldPositionScaleAndSize(uint id, Vector3 Position, Vector3 Scale, Vector3 Size)
         {
@@ -326,7 +376,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool GetWorldTransformAndSize(uint id, Vector3 Position, Vector3 Scale, Rotation Orientation, Vector3 Size)
         {

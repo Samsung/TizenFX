@@ -19,7 +19,6 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
-using Tizen.Applications;
 
 namespace Tizen.Network.WiFi
 {
@@ -50,13 +49,12 @@ namespace Tizen.Network.WiFi
         private static readonly Lazy<WiFiManagerImpl> _instance =
             new Lazy<WiFiManagerImpl>(() => new WiFiManagerImpl());
 
-        private TizenSynchronizationContext context = new TizenSynchronizationContext();
-
         private Dictionary<IntPtr, Interop.WiFi.VoidCallback> _callback_map =
             new Dictionary<IntPtr, Interop.WiFi.VoidCallback>();
 
         private int _requestId = 0;
         private string _macAddress;
+        private string _tdlsMacAddress;
         private IntPtr _specificScanHandle;
 
         //private string PrivilegeNetworkSet = "http://tizen.org/privilege/network.set";
@@ -152,11 +150,7 @@ namespace Tizen.Network.WiFi
             }
         }
 
-        private static ThreadLocal<HandleHolder> s_threadName = new ThreadLocal<HandleHolder>(() =>
-        {
-            Log.Info(Globals.LogTag, "In threadlocal delegate");
-            return new HandleHolder();
-        });
+        private static HandleHolder _handle = new HandleHolder();
 
         private WiFiManagerImpl()
         {
@@ -165,7 +159,7 @@ namespace Tizen.Network.WiFi
 
         internal SafeWiFiManagerHandle GetSafeHandle()
         {
-            return s_threadName.Value.GetSafeHandle();
+            return _handle.GetSafeHandle();
         }
 
         internal SafeWiFiManagerHandle Initialize()
@@ -288,6 +282,18 @@ namespace Tizen.Network.WiFi
             CheckReturnValue(ret, "SaveConfiguration", PrivilegeNetworkProfile);
        }
 
+        internal void RemoveWiFiNetworkConfiguration(WiFiConfiguration config)
+        {
+            Log.Debug(Globals.LogTag, "RemoveWiFiNetworkConfiguration");
+            if (config == null)
+            {
+                throw new ArgumentNullException("WiFi configuraiton is null");
+            }
+            IntPtr configHandle = config.GetHandle();
+            int ret = Interop.WiFi.Config.RemoveConfiguration(GetSafeHandle(), configHandle);
+            CheckReturnValue(ret, "RemoveConfiguration", PrivilegeNetworkProfile);
+        }
+
         internal WiFiAP GetConnectedAP()
         {
             Log.Info(Globals.LogTag, "GetConnectedAP");
@@ -330,24 +336,21 @@ namespace Tizen.Network.WiFi
                 };
             }
 
-            context.Post((x) =>
+            Log.Info(Globals.LogTag, "Interop.WiFi.ActivateAsync");
+            try
             {
-                Log.Info(Globals.LogTag, "Interop.WiFi.ActivateAsync");
-                try
+                int ret = (int)WiFiError.None;
+                lock (_callback_map)
                 {
-                    int ret = (int)WiFiError.None;
-                    lock (_callback_map)
-                    {
-                        ret = Interop.WiFi.Activate(GetSafeHandle(), _callback_map[id], id);
-                    }
-                    CheckReturnValue(ret, "Activate", "");
+                    ret = Interop.WiFi.Activate(GetSafeHandle(), _callback_map[id], id);
                 }
-                catch (Exception e)
-                {
-                    Log.Error(Globals.LogTag, "Exception on ActivateAsync\n" + e);
-                    task.SetException(e);
-                }
-            }, null);
+                CheckReturnValue(ret, "Activate", "");
+            }
+            catch (Exception e)
+            {
+                Log.Error(Globals.LogTag, "Exception on ActivateAsync\n" + e);
+                task.SetException(e);
+            }
 
             return task.Task;
         }
@@ -379,24 +382,21 @@ namespace Tizen.Network.WiFi
                 };
             }
 
-            context.Post((x) =>
+            Log.Info(Globals.LogTag, "Interop.WiFi.ActivateWithWiFiPickerTestedAsync");
+            try
             {
-                Log.Info(Globals.LogTag, "Interop.WiFi.ActivateWithWiFiPickerTestedAsync");
-                try
+                int ret = (int)WiFiError.None;
+                lock (_callback_map)
                 {
-                    int ret = (int)WiFiError.None;
-                    lock (_callback_map)
-                    {
-                        ret = Interop.WiFi.ActivateWithWiFiPickerTested(GetSafeHandle(), _callback_map[id], id);
-                    }
-                    CheckReturnValue(ret, "ActivateWithWiFiPickerTested", "");
+                    ret = Interop.WiFi.ActivateWithWiFiPickerTested(GetSafeHandle(), _callback_map[id], id);
                 }
-                catch (Exception e)
-                {
-                    Log.Error(Globals.LogTag, "Exception on ActivateWithWiFiPickerTestedAsync\n" + e);
-                    task.SetException(e);
-                }
-            }, null);
+                CheckReturnValue(ret, "ActivateWithWiFiPickerTested", "");
+            }
+            catch (Exception e)
+            {
+                Log.Error(Globals.LogTag, "Exception on ActivateWithWiFiPickerTestedAsync\n" + e);
+                task.SetException(e);
+            }
 
             return task.Task;
         }
@@ -428,24 +428,21 @@ namespace Tizen.Network.WiFi
                 };
             }
 
-            context.Post((x) =>
+            Log.Info(Globals.LogTag, "Interop.WiFi.Deactivate");
+            try
             {
-                Log.Info(Globals.LogTag, "Interop.WiFi.Deactivate");
-                try
+                int ret = (int)WiFiError.None;
+                lock (_callback_map)
                 {
-                    int ret = (int)WiFiError.None;
-                    lock (_callback_map)
-                    {
-                        ret = Interop.WiFi.Deactivate(GetSafeHandle(), _callback_map[id], id);
-                    }
-                    CheckReturnValue(ret, "Deactivate", "");
+                    ret = Interop.WiFi.Deactivate(GetSafeHandle(), _callback_map[id], id);
                 }
-                catch (Exception e)
-                {
-                    Log.Error(Globals.LogTag, "Exception on Deactivate\n" + e);
-                    task.SetException(e);
-                }
-            }, null);
+                CheckReturnValue(ret, "Deactivate", "");
+            }
+            catch (Exception e)
+            {
+                Log.Error(Globals.LogTag, "Exception on Deactivate\n" + e);
+                task.SetException(e);
+            }
 
             return task.Task;
         }
@@ -477,24 +474,21 @@ namespace Tizen.Network.WiFi
                 };
             }
 
-            context.Post((x) =>
+            Log.Info(Globals.LogTag, "Interop.WiFi.Scan");
+            try
             {
-                Log.Info(Globals.LogTag, "Interop.WiFi.Scan");
-                try
+                int ret = (int)WiFiError.None;
+                lock (_callback_map)
                 {
-                    int ret = (int)WiFiError.None;
-                    lock (_callback_map)
-                    {
-                        ret = Interop.WiFi.Scan(GetSafeHandle(), _callback_map[id], id);
-                    }
-                    CheckReturnValue(ret, "Scan", "");
+                    ret = Interop.WiFi.Scan(GetSafeHandle(), _callback_map[id], id);
                 }
-                catch (Exception e)
-                {
-                    Log.Error(Globals.LogTag, "Exception on Scan\n" + e);
-                    task.SetException(e);
-                }
-            }, null);
+                CheckReturnValue(ret, "Scan", "");
+            }
+            catch (Exception e)
+            {
+                Log.Error(Globals.LogTag, "Exception on Scan\n" + e);
+                task.SetException(e);
+            }
 
             return task.Task;
         }
@@ -526,24 +520,21 @@ namespace Tizen.Network.WiFi
                 };
             }
 
-            context.Post((x) =>
+            Log.Info(Globals.LogTag, "Interop.WiFi.ScanSpecificAPAsync");
+            try
             {
-                Log.Info(Globals.LogTag, "Interop.WiFi.ScanSpecificAPAsync");
-                try
+                int ret = (int)WiFiError.None;
+                lock (_callback_map)
                 {
-                    int ret = (int)WiFiError.None;
-                    lock (_callback_map)
-                    {
-                        ret = Interop.WiFi.ScanSpecificAP(GetSafeHandle(), essid, _callback_map[id], id);
-                    }
-                    CheckReturnValue(ret, "ScanSpecificAP", "");
+                    ret = Interop.WiFi.ScanSpecificAP(GetSafeHandle(), essid, _callback_map[id], id);
                 }
-                catch (Exception e)
-                {
-                    Log.Error(Globals.LogTag, "Exception on ScanSpecificAPAsync\n" + e);
-                    task.SetException(e);
-                }
-            }, null);
+                CheckReturnValue(ret, "ScanSpecificAP", "");
+            }
+            catch (Exception e)
+            {
+                Log.Error(Globals.LogTag, "Exception on ScanSpecificAPAsync\n" + e);
+                task.SetException(e);
+            }
 
             return task.Task;
         }
@@ -575,24 +566,21 @@ namespace Tizen.Network.WiFi
                 };
             }
 
-            context.Post((x) =>
+            Log.Info(Globals.LogTag, "Interop.WiFi.BssidScan");
+            try
             {
-                Log.Info(Globals.LogTag, "Interop.WiFi.BssidScan");
-                try
+                int ret = (int)WiFiError.None;
+                lock (_callback_map)
                 {
-                    int ret = (int)WiFiError.None;
-                    lock (_callback_map)
-                    {
-                        ret = Interop.WiFi.BssidScan(GetSafeHandle(), _callback_map[id], id);
-                    }
-                    CheckReturnValue(ret, "BssidScan", "");
+                    ret = Interop.WiFi.BssidScan(GetSafeHandle(), _callback_map[id], id);
                 }
-                catch (Exception e)
-                {
-                    Log.Error(Globals.LogTag, "Exception on BssidScan\n" + e);
-                    task.SetException(e);
-                }
-            }, null);
+                CheckReturnValue(ret, "BssidScan", "");
+            }
+            catch (Exception e)
+            {
+                Log.Error(Globals.LogTag, "Exception on BssidScan\n" + e);
+                task.SetException(e);
+            }
 
             return task.Task;
         }
@@ -631,24 +619,21 @@ namespace Tizen.Network.WiFi
                 };
             }
 
-            context.Post((x) =>
+            Log.Info(Globals.LogTag, "Interop.WiFi.HiddenAPConnect");
+            try
             {
-                Log.Info(Globals.LogTag, "Interop.WiFi.HiddenAPConnect");
-                try
+                int ret = (int)WiFiError.None;
+                lock (_callback_map)
                 {
-                    int ret = (int)WiFiError.None;
-                    lock (_callback_map)
-                    {
-                        ret = Interop.WiFi.ConnectHiddenAP(GetSafeHandle(), essid, secType, passphrase, _callback_map[id], id);
-                    }
-                    CheckReturnValue(ret, "HiddenAPConnect", "");
+                    ret = Interop.WiFi.ConnectHiddenAP(GetSafeHandle(), essid, secType, passphrase, _callback_map[id], id);
                 }
-                catch (Exception e)
-                {
-                    Log.Error(Globals.LogTag, "Exception on HiddenAPConnect\n" + e);
-                    task.SetException(e);
-                }
-            }, null);
+                CheckReturnValue(ret, "HiddenAPConnect", "");
+            }
+            catch (Exception e)
+            {
+                Log.Error(Globals.LogTag, "Exception on HiddenAPConnect\n" + e);
+                task.SetException(e);
+            }
 
             return task.Task;
         }
@@ -702,26 +687,45 @@ namespace Tizen.Network.WiFi
                 };
             }
 
-            context.Post((x) =>
+            Log.Info(Globals.LogTag, "Interop.WiFi.SpecificApStartMultiScan");
+            try
             {
-                Log.Info(Globals.LogTag, "Interop.WiFi.SpecificApStartMultiScan");
-                try
+                int ret = (int)WiFiError.None;
+                lock (_callback_map)
                 {
-                    int ret = (int)WiFiError.None;
-                    lock (_callback_map)
-                    {
-                        ret = Interop.WiFi.SpecificApStartMultiScan(GetSafeHandle(), _specificScanHandle, _callback_map[id], id);
-                    }
-                    CheckReturnValue(ret, "MultiScan", "");
+                    ret = Interop.WiFi.SpecificApStartMultiScan(GetSafeHandle(), _specificScanHandle, _callback_map[id], id);
                 }
-                catch (Exception e)
-                {
-                    Log.Error(Globals.LogTag, "Exception on Multi Scan\n" + e);
-                    task.SetException(e);
-                }
-            }, null);
+                CheckReturnValue(ret, "MultiScan", "");
+            }
+            catch (Exception e)
+            {
+                Log.Error(Globals.LogTag, "Exception on Multi Scan\n" + e);
+                task.SetException(e);
+            }
 
             return task.Task;
+        }
+
+        internal string TDLSConnectedPeer
+        {
+            get
+            {
+                IntPtr strPtr;
+                int ret = Interop.WiFi.GetTdlsConnectedPeer(GetSafeHandle(), out strPtr);
+                if (ret != (int)WiFiError.None)
+                {
+                    _tdlsMacAddress = "";
+                    Log.Error(Globals.LogTag, "Failed to get mac address, Error - " + (WiFiError)ret);
+                }
+                else
+                {
+                    _tdlsMacAddress = Marshal.PtrToStringAnsi(strPtr);
+                    Interop.Libc.Free(strPtr);
+                }
+
+                Log.Info(Globals.LogTag, "Tdls Mac address: " + _tdlsMacAddress);
+                return _tdlsMacAddress;
+            }
         }
 
         private void CheckReturnValue(int ret, string method, string privilege)

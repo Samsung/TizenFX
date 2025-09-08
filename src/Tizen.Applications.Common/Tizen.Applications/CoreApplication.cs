@@ -28,8 +28,11 @@ using Tizen.Applications.CoreBackend;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// This class represents an application controlled lifecycles by the backend system.
+    /// The CoreApplication class provides functionality to manage application lifecycle events that are controlled by the backend system.
     /// </summary>
+    /// <remarks>
+    /// By inheriting from the Application class, CoreApplication enables developers to handle various application states such as creating and terminating. It also allows them to define their own event handlers for these states.
+    /// </remarks>
     /// <since_tizen> 3 </since_tizen>
     public class CoreApplication : Application
     {
@@ -38,9 +41,14 @@ namespace Tizen.Applications
         private bool _disposedValue = false;
 
         /// <summary>
-        /// Initializes the CoreApplication class.
+        /// Initializes the CoreApplication class by providing a specific implementation of the ICoreBackend interface.
         /// </summary>
-        /// <param name="backend">The backend instance implementing ICoreBacked interface.</param>
+        /// <param name="backend">An instance of the desired implementation of the ICoreBackend interface.</param>
+        /// <remarks>
+        /// The CoreApplication class provides access to various features and functionalities related to application management.
+        /// By initializing the CoreApplication class with a specific implementation of the ICoreBackend interface, developers can customize the behavior and functionality of their applications based on their requirements.
+        /// It enables them to extend the capabilities of the default CoreApplication class and tailor it according to their needs.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public CoreApplication(ICoreBackend backend)
         {
@@ -169,8 +177,9 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the application is launched.
-        /// If base.OnCreated() is not called, the event 'Created' will not be emitted.
+        /// Overrides this method if you want to handle specific behavior when the application is created.
+        /// Calling base.OnCreate() ensures that the default implementation is executed before any custom code in this method.
+        /// If base.OnCreate() is not called, the event 'Created' will not be emitted.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnCreate()
@@ -195,8 +204,8 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the application is terminated.
-        /// If base.OnTerminate() is not called, the event 'Terminated' will not be emitted.
+        /// Override this method to define specific actions that occur when the application terminates.
+        /// Calling base.OnTerminate() ensures that the default termination process takes place and the 'Terminated' event is emitted.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnTerminate()
@@ -205,10 +214,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the application receives the appcontrol message.
-        /// If base.OnAppControlReceived() is not called, the event 'AppControlReceived' will not be emitted.
+        /// Override this method to customize the behavior when the application receives the appcontrol message.
+        /// If base.OnAppControlReceived() is not called, the event 'AppControlReceived' will not be triggered.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">The arguments passed in the appcontrol message</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
@@ -222,8 +231,8 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the system memory is low.
-        /// If base.OnLowMemory() is not called, the event 'LowMemory' will not be emitted.
+        /// Override this method to handle behavior when the system memory is low.
+        /// Calling base.OnLowMemory() ensures that the 'LowMemory' event is emitted.
         /// </summary>
         /// <param name="e">The low memory event argument</param>
         /// <since_tizen> 3 </since_tizen>
@@ -243,10 +252,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the system battery is low.
-        /// If base.OnLowBattery() is not called, the event 'LowBattery' will not be emitted.
+        /// Override this method to handle the behavior when the system battery level drops.
+        /// If base.OnLowBattery() is not called, the LowBattery event will not be raised.
         /// </summary>
-        /// <param name="e">The low battery event argument</param>
+        /// <param name="e">The arguments for the low battery event</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLowBattery(LowBatteryEventArgs e)
         {
@@ -260,10 +269,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the system language is changed.
-        /// If base.OnLocaleChanged() is not called, the event 'LocaleChanged' will not be emitted.
+        /// Override this method to handle changes in the system language.
+        /// If base.OnLocaleChanged() is not called, the LocaleChanged event will not be triggered.
         /// </summary>
-        /// <param name="e">The locale changed event argument</param>
+        /// <param name="e">The arguments passed with the LocaleChanged event</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
         {
@@ -282,10 +291,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the region format is changed.
-        /// If base.OnRegionFormatChanged() is not called, the event 'RegionFormatChanged' will not be emitted.
+        /// Override this method to handle changes in the region format.
+        /// Make sure to call base.OnRegionFormatChanged() to ensure that the RegionFormatChanged event is raised.
         /// </summary>
-        /// <param name="e">The region format changed event argument</param>
+        /// <param name="e">The region format changed event arguments</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
@@ -304,10 +313,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the device orientation is changed.
-        /// If base.OnRegionFormatChanged() is not called, the event 'RegionFormatChanged' will not be emitted.
+        /// Override this method to define specific behavior when the device orientation changes.
+        /// If base.OnDeviceOrientationChanged() is not called, the 'DeviceOrientationChanged' event will not be raised.
         /// </summary>
-        /// <param name="e">The device orientation changed event argument</param>
+        /// <param name="e">The arguments for the device orientation change event</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
         {
@@ -315,13 +324,14 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Override this method if you want to handle behavior when the time zone is changed.
-        /// If base.OnTimeZoneChanged() is not called, the event "TimeZoneChanged" will not be emitted.
+        /// Override this method to handle changes in the current time zone.
+        /// Calling base.OnTimeZoneChanged() ensures that the TimeZoneChanged event is triggered.
         /// </summary>
-        /// <param name="e">The time zone changed event argument</param>
+        /// <param name="e">The arguments containing details about the time zone change</param>
         /// <since_tizen> 11 </since_tizen>
         protected virtual void OnTimeZoneChanged(TimeZoneChangedEventArgs e)
         {
+            CultureInfo.CurrentCulture.ClearCachedData();
             TimeZoneChanged?.Invoke(this, e);
         }
 

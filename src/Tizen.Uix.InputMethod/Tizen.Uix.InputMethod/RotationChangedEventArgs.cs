@@ -14,12 +14,15 @@
 * limitations under the License.
 */
 
+using System;
+
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
     /// This class contains the data related to the RotationChanged event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public class RotationChangedEventArgs
     {
         internal RotationChangedEventArgs(int degree)
@@ -31,6 +34,7 @@ namespace Tizen.Uix.InputMethod
         /// The rotation degree.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public int Degree
         {
             get;

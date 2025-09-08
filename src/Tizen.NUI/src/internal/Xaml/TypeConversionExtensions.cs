@@ -143,7 +143,7 @@ namespace Tizen.NUI.Xaml
 
         private delegate void ParseValueFunc(string s, IFormatProvider provider);
 
-        static private Dictionary<Type, ParseValueFunc> typeToParseValueFunc = null;
+        static private Dictionary<Type, ParseValueFunc> typeToParseValueFunc;
 
         static private void BuildParseValueFunc()
         {

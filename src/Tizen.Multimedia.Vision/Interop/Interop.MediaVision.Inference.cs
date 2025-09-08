@@ -112,5 +112,145 @@ internal static partial class Interop
             internal static extern MediaVisionError DetectPoseLandmark(IntPtr source, IntPtr inference,
                 IntPtr roi, PoseLandmarkDetectedCallback callback, IntPtr userData = default(IntPtr)); // Deprecated in API 12
         }
+
+        internal static partial class InferenceImageClassification
+        {
+            // Newly added inferernce APIs
+            [DllImport(Libraries.MediaVisionInferenceImageClassification, EntryPoint = "mv_image_classification_create")]
+            internal static extern MediaVisionError Create(out IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferenceImageClassification, EntryPoint = "mv_image_classification_destroy")]
+            internal static extern MediaVisionError Destroy(IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferenceImageClassification, EntryPoint = "mv_image_classification_configure")]
+            internal static extern MediaVisionError Configure(IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferenceImageClassification, EntryPoint = "mv_image_classification_prepare")]
+            internal static extern MediaVisionError Prepare(IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferenceImageClassification, EntryPoint = "mv_image_classification_inference")]
+            internal static extern MediaVisionError Inference(IntPtr handle, IntPtr source);
+
+            [DllImport(Libraries.MediaVisionInferenceImageClassification, EntryPoint = "mv_image_classification_inference_async")]
+            internal static extern MediaVisionError InferenceAsync(IntPtr handle, IntPtr source);
+
+            [DllImport(Libraries.MediaVisionInferenceImageClassification, EntryPoint = "mv_image_classification_get_result_count")]
+            internal static extern MediaVisionError GetResultCount(IntPtr handle, out ulong requestOrder, out uint count);
+
+            [DllImport(Libraries.MediaVisionInferenceImageClassification, EntryPoint = "mv_image_classification_get_label")]
+            internal static extern MediaVisionError GetLabels(IntPtr handle, uint index, out IntPtr label);
+        }
+
+        internal static partial class InferenceFaceDetection
+        {
+            // Newly added inferernce APIs
+            [DllImport(Libraries.MediaVisionInferenceFaceDetection, EntryPoint = "mv_face_detection_create")]
+            internal static extern MediaVisionError Create(out IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferenceFaceDetection, EntryPoint = "mv_face_detection_destroy")]
+            internal static extern MediaVisionError Destroy(IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferenceFaceDetection, EntryPoint = "mv_face_detection_configure")]
+            internal static extern MediaVisionError Configure(IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferenceFaceDetection, EntryPoint = "mv_face_detection_prepare")]
+            internal static extern MediaVisionError Prepare(IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferenceFaceDetection, EntryPoint = "mv_face_detection_inference")]
+            internal static extern MediaVisionError Inference(IntPtr handle, IntPtr source);
+
+            [DllImport(Libraries.MediaVisionInferenceFaceDetection, EntryPoint = "mv_face_detection_inference_async")]
+            internal static extern MediaVisionError InferenceAsync(IntPtr handle, IntPtr source);
+
+            [DllImport(Libraries.MediaVisionInferenceFaceDetection, EntryPoint = "mv_face_detection_get_result_count")]
+            internal static extern MediaVisionError GetResultCount(IntPtr handle, out ulong requestId, out uint count);
+
+            [DllImport(Libraries.MediaVisionInferenceFaceDetection, EntryPoint = "mv_face_detection_get_bound_box")]
+            internal static extern MediaVisionError GetBoundingBoxes(IntPtr handle, uint index, out int left, out int top, out int right, out int bottom);
+        }
+
+        internal static partial class InferenceObjectDetection
+        {
+            // Newly added inferernce APIs
+            [DllImport(Libraries.MediaVisionInferenceObjectDetection, EntryPoint = "mv_object_detection_create")]
+            internal static extern MediaVisionError Create(out IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferenceObjectDetection, EntryPoint = "mv_object_detection_destroy")]
+            internal static extern MediaVisionError Destroy(IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferenceObjectDetection, EntryPoint = "mv_object_detection_configure")]
+            internal static extern MediaVisionError Configure(IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferenceObjectDetection, EntryPoint = "mv_object_detection_prepare")]
+            internal static extern MediaVisionError Prepare(IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferenceObjectDetection, EntryPoint = "mv_object_detection_inference")]
+            internal static extern MediaVisionError Inference(IntPtr handle, IntPtr source);
+
+            [DllImport(Libraries.MediaVisionInferenceObjectDetection, EntryPoint = "mv_object_detection_inference_async")]
+            internal static extern MediaVisionError InferenceAsync(IntPtr handle, IntPtr source);
+
+            [DllImport(Libraries.MediaVisionInferenceObjectDetection, EntryPoint = "mv_object_detection_get_result_count")]
+            internal static extern MediaVisionError GetResultCount(IntPtr handle, out ulong requestId, out uint count);
+
+            [DllImport(Libraries.MediaVisionInferenceObjectDetection, EntryPoint = "mv_object_detection_get_bound_box")]
+            internal static extern MediaVisionError GetBoundingBoxes(IntPtr handle, uint index, out int left, out int top, out int right, out int bottom);
+        }
+
+        internal static partial class InferenceFacialLandmarkDetection
+        {
+            // Newly added inferernce APIs
+            [DllImport(Libraries.MediaVisionInferenceFacialLandmarkDetection, EntryPoint = "mv_facial_landmark_create")]
+            internal static extern MediaVisionError Create(out IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferenceFacialLandmarkDetection, EntryPoint = "mv_facial_landmark_destroy")]
+            internal static extern MediaVisionError Destroy(IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferenceFacialLandmarkDetection, EntryPoint = "mv_facial_landmark_configure")]
+            internal static extern MediaVisionError Configure(IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferenceFacialLandmarkDetection, EntryPoint = "mv_facial_landmark_prepare")]
+            internal static extern MediaVisionError Prepare(IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferenceFacialLandmarkDetection, EntryPoint = "mv_facial_landmark_inference")]
+            internal static extern MediaVisionError Inference(IntPtr handle, IntPtr source);
+
+            [DllImport(Libraries.MediaVisionInferenceFacialLandmarkDetection, EntryPoint = "mv_facial_landmark_inference_async")]
+            internal static extern MediaVisionError InferenceAsync(IntPtr handle, IntPtr source);
+
+            [DllImport(Libraries.MediaVisionInferenceFacialLandmarkDetection, EntryPoint = "mv_facial_landmark_get_result_count")]
+            internal static extern MediaVisionError GetResultCount(IntPtr handle, out ulong requestId, out uint count);
+
+            [DllImport(Libraries.MediaVisionInferenceFacialLandmarkDetection, EntryPoint = "mv_facial_landmark_get_position")]
+            internal static extern MediaVisionError GetPoints(IntPtr handle, uint index, out uint posX, out uint posY);
+        }
+
+        internal static partial class InferencePoseLandmarkDetection
+        {
+            // Newly added inferernce APIs
+            [DllImport(Libraries.MediaVisionInferencePoseLandmarkDetection, EntryPoint = "mv_pose_landmark_create")]
+            internal static extern MediaVisionError Create(out IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferencePoseLandmarkDetection, EntryPoint = "mv_pose_landmark_destroy")]
+            internal static extern MediaVisionError Destroy(IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferencePoseLandmarkDetection, EntryPoint = "mv_pose_landmark_configure")]
+            internal static extern MediaVisionError Configure(IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferencePoseLandmarkDetection, EntryPoint = "mv_pose_landmark_prepare")]
+            internal static extern MediaVisionError Prepare(IntPtr handle);
+
+            [DllImport(Libraries.MediaVisionInferencePoseLandmarkDetection, EntryPoint = "mv_pose_landmark_inference")]
+            internal static extern MediaVisionError Inference(IntPtr handle, IntPtr source);
+
+            [DllImport(Libraries.MediaVisionInferencePoseLandmarkDetection, EntryPoint = "mv_pose_landmark_inference_async")]
+            internal static extern MediaVisionError InferenceAsync(IntPtr handle, IntPtr source);
+
+            [DllImport(Libraries.MediaVisionInferencePoseLandmarkDetection, EntryPoint = "mv_pose_landmark_get_result_count")]
+            internal static extern MediaVisionError GetResultCount(IntPtr handle, out ulong requestId, out uint count);
+
+            [DllImport(Libraries.MediaVisionInferencePoseLandmarkDetection, EntryPoint = "mv_pose_landmark_get_position")]
+            internal static extern MediaVisionError GetPoints(IntPtr handle, uint index, out uint posX, out uint posY);
+        }
     }
 }

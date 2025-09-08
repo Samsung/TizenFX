@@ -16,6 +16,7 @@
  */
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -36,6 +37,17 @@ namespace Tizen.NUI.Components
             // ContentPage matches to parent by default.
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
+        }
+
+        static ContentPage()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                AppBarProperty = BindableProperty.Create(nameof(AppBar), typeof(AppBar), typeof(ContentPage), null,
+                    propertyChanged: SetInternalAppBarProperty, defaultValueCreator: GetInternalAppBarProperty);
+                ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(ContentPage), null,
+                    propertyChanged: SetInternalContentProperty, defaultValueCreator: GetInternalContentProperty);
+            }
         }
 
         /// <summary>
@@ -121,11 +133,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(AppBarProperty) as AppBar;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(AppBarProperty) as AppBar;
+                }
+                else
+                {
+                    return InternalAppBar;
+                }
             }
             set
             {
-                SetValue(AppBarProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(AppBarProperty, value);
+                }
+                else
+                {
+                    InternalAppBar = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -168,11 +194,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ContentProperty) as View;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(ContentProperty) as View;
+                }
+                else
+                {
+                    return InternalContent;
+                }
             }
             set
             {
-                SetValue(ContentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(ContentProperty, value);
+                }
+                else
+                {
+                    InternalContent =  value;
+                }
                 NotifyPropertyChanged();
             }
         }

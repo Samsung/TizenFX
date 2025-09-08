@@ -42,20 +42,21 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public class VisualView : CustomView
     {
-        private Dictionary<int, string> visualNameDictionary = null;
-        private Dictionary<int, VisualBase> visualDictionary = null;
-        private Dictionary<int, PropertyMap> tranformDictionary = null;
-        private PropertyArray animateArray = null;
+        private Dictionary<int, string> visualNameDictionary;
+        private Dictionary<int, VisualBase> visualDictionary;
+        private Dictionary<int, PropertyMap> tranformDictionary;
+        private PropertyArray animateArray;
 
         /// <summary>
         /// Constructor.
+        /// This constructor initializes the VisualView with default behavior and support for touch events.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public VisualView() : this(CustomViewBehaviour.ViewBehaviourDefault | CustomViewBehaviour.RequiresTouchEventsSupport)
         {
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public VisualView(ViewStyle viewStyle) : this(CustomViewBehaviour.ViewBehaviourDefault | CustomViewBehaviour.RequiresTouchEventsSupport, viewStyle)
         {
@@ -99,6 +100,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Overrides the parent method.
+        /// This method is called by the framework when the instance is created.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public override void OnInitialize()
@@ -187,7 +189,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Removes all visuals of the visual view.
+        /// This method removes all visuals associated with the VisualView instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public void RemoveAll()
@@ -253,36 +255,24 @@ namespace Tizen.NUI.BaseComponents
                 {
                     using (PropertyMap animator = new PropertyMap())
                     using (PropertyMap timePeriod = new PropertyMap())
-                    using (PropertyValue pvDuration = new PropertyValue((endTime - startTime) / 1000.0f))
-                    using (PropertyValue pvDelay = new PropertyValue(startTime / 1000.0f))
                     using (PropertyValue destVal = PropertyValue.CreateFromObject(destinationValue))
                     using (PropertyMap transition = new PropertyMap())
-                    using (PropertyValue pvTarget = new PropertyValue(target.Name))
                     {
                         if (strAlpha != null)
                         {
-                            using (PropertyValue pvAlpha = new PropertyValue(strAlpha))
-                            {
-                                animator.Add("alphaFunction", pvAlpha);
-                            }
+                            animator.Add("alphaFunction", strAlpha);
                         }
-                        timePeriod.Add("duration", pvDuration);
-                        timePeriod.Add("delay", pvDelay);
-                        using (PropertyValue pvTimePeriod = new PropertyValue(timePeriod))
-                        {
-                            animator.Add("timePeriod", pvTimePeriod);
-                        }
+                        timePeriod.Add("duration", (endTime - startTime) / 1000.0f);
+                        timePeriod.Add("delay", startTime / 1000.0f);
+                        animator.Add("timePeriod", timePeriod);
 
                         StringBuilder sb = new StringBuilder(property);
                         sb[0] = (char)(sb[0] | 0x20);
                         string _str = sb.ToString();
                         if (_str == "position") { _str = "offset"; }
 
-                        transition.Add("target", pvTarget);
-                        using (PropertyValue pvStr = new PropertyValue(_str))
-                        {
-                            transition.Add("property", pvStr);
-                        }
+                        transition.Add("target", target.Name);
+                        transition.Add("property", _str);
 
                         if (initialValue != null)
                         {
@@ -293,10 +283,7 @@ namespace Tizen.NUI.BaseComponents
                             }
                         }
                         transition.Add("targetValue", destVal);
-                        using (PropertyValue pvAnimator = new PropertyValue(animator))
-                        {
-                            transition.Add("animator", pvAnimator);
-                        }
+                        transition.Add("animator", animator);
 
                         using (TransitionData transitionData = new TransitionData(transition))
                         {
@@ -335,37 +322,25 @@ namespace Tizen.NUI.BaseComponents
                 {
                     using (PropertyMap animator = new PropertyMap())
                     using (PropertyMap timePeriod = new PropertyMap())
-                    using (PropertyValue pvDuration = new PropertyValue((endTime - startTime) / 1000.0f))
-                    using (PropertyValue pvDelay = new PropertyValue(startTime / 1000.0f))
                     using (PropertyValue destVal = PropertyValue.CreateFromObject(destinationValue))
                     using (PropertyMap transition = new PropertyMap())
-                    using (PropertyValue pvTarget = new PropertyValue(target.Name))
                     {
                         if (strAlpha != null)
                         {
-                            using (PropertyValue pvStrAlpha = new PropertyValue(strAlpha))
-                            {
-                                animator.Add("alphaFunction", pvStrAlpha);
-                            }
+                            animator.Add("alphaFunction", strAlpha);
                         }
 
-                        timePeriod.Add("duration", pvDuration);
-                        timePeriod.Add("delay", pvDelay);
-                        using (PropertyValue pvTimePeriod = new PropertyValue(timePeriod))
-                        {
-                            animator.Add("timePeriod", pvTimePeriod);
-                        }
+                        timePeriod.Add("duration", (endTime - startTime) / 1000.0f);
+                        timePeriod.Add("delay", startTime / 1000.0f);
+                        animator.Add("timePeriod", timePeriod);
 
                         StringBuilder sb = new StringBuilder(property);
                         sb[0] = (char)(sb[0] | 0x20);
                         string _str = sb.ToString();
                         if (_str == "position") { _str = "offset"; }
 
-                        transition.Add("target", pvTarget);
-                        using (PropertyValue pvStr = new PropertyValue(_str))
-                        {
-                            transition.Add("property", pvStr);
-                        }
+                        transition.Add("target", target.Name);
+                        transition.Add("property", _str);
 
                         if (initialValue != null)
                         {
@@ -376,10 +351,7 @@ namespace Tizen.NUI.BaseComponents
                             }
                         }
                         transition.Add("targetValue", destVal);
-                        using (PropertyValue pvAnimator = new PropertyValue(animator))
-                        {
-                            transition.Add("animator", pvAnimator);
-                        }
+                        transition.Add("animator", animator);
 
                         using (PropertyValue pvTransition = new PropertyValue(transition))
                         {
@@ -410,7 +382,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// temporary fix to pass TCT.
+        /// Applies an animation to the specified visual map properties.
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when visualMap is null. </exception>
         /// <since_tizen> 3 </since_tizen>

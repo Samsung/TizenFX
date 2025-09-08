@@ -27,14 +27,14 @@ namespace Tizen.Sensor
         private const string LightSensorKey = "http://tizen.org/feature/sensor.photometer";
 
         /// <summary>
-        /// Gets the level of the light.
+        /// Get the light level of light sensor as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The light level. </value>
         public float Level { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Returns true or false based on whether the light sensor is supported by the device.
+        /// Return true or false based on whether the light sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
@@ -48,7 +48,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Returns the number of light sensors available on the device.
+        /// Return the number of light sensors available on the system.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The count of light sensors. </value>
@@ -62,7 +62,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tizen.Sensor.LightSensor"/> class.
+        /// Initialize a new instance of the <see cref="Tizen.Sensor.LightSensor"/> class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.photometer</feature>
@@ -70,7 +70,8 @@ namespace Tizen.Sensor
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular light sensor in case of multiple sensors.
+        /// Index refers to a particular light sensor in case of multiple sensors.
+        /// Default value is 0.
         /// </param>
         public LightSensor(uint index = 0) : base(index)
         {
@@ -86,7 +87,6 @@ namespace Tizen.Sensor
         /// An event handler for storing the callback functions for the event corresponding to the change in the light sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-
         public event EventHandler<LightSensorDataUpdatedEventArgs> DataUpdated;
 
         private static int GetCount()

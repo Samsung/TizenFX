@@ -132,6 +132,8 @@ internal static partial class Interop
         internal static extern int SetScanStateChangedCallback(SafeWiFiManagerHandle wifi, ScanStateChangedCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_unset_scan_state_changed_cb")]
         internal static extern int UnsetScanStateChangedCallback(SafeWiFiManagerHandle wifi);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_tdls_get_connected_peer")]
+        internal static extern int GetTdlsConnectedPeer(SafeWiFiManagerHandle wifi, out IntPtr peerMacAddress);
 
         internal static class AP
         {
@@ -270,6 +272,8 @@ internal static partial class Interop
             internal static extern int Destroy(IntPtr config);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_save")]
             internal static extern int SaveConfiguration(SafeWiFiManagerHandle wifi, IntPtr config);
+            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_remove")]
+            internal static extern int RemoveConfiguration(SafeWiFiManagerHandle wifi, IntPtr config);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_foreach_configuration")]
             internal static extern int GetForeachConfiguration(SafeWiFiManagerHandle wifi, HandleCallback callback, IntPtr userData);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_get_name")]
@@ -361,7 +365,6 @@ internal static partial class Interop
 
             protected override bool ReleaseHandle()
             {
-                WiFi.Config.Destroy(this.handle);
                 this.SetHandle(IntPtr.Zero);
                 return true;
             }
@@ -372,6 +375,12 @@ internal static partial class Interop
     internal static partial class Glib
     {
         [DllImport(Libraries.Glib, EntryPoint = "g_free", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void Free(IntPtr userData);
+    }
+
+    internal static partial class Libc
+    {
+        [DllImport(Libraries.Libc, EntryPoint = "free")]
         public static extern void Free(IntPtr userData);
     }
 }

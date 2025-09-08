@@ -23,45 +23,55 @@ namespace Tizen.Security.SecureRepository.Crypto
     public enum CipherAlgorithmType : int
     {
         /// <summary>
-        /// The AES-CTR algorithm.
-        /// Supported parameters:
-        /// - ParameterName.AlgorithmType = AesCtr(mandatory),
-        /// - ParameterName.IV = 16 - byte initialization vector(mandatory)
-        /// - ParameterName.CounterLength = length of counter block in bits
-        ///   (optional, only 128b is supported at the moment)
+        /// AES-CTR algorithm.
         /// </summary>
+        /// <remarks>
+        /// Supported parameters:
+        /// - ParameterName.AlgorithmType = AesCtr (mandatory),
+        /// - ParameterName.IV = 16 - byte initialization vector (mandatory)
+        /// - ParameterName.CounterLength = length of counter block in bits
+        ///   (optional, only 128b is supported at the moment).
+        /// </remarks>
         AesCtr = 0x01,
         /// <summary>
-        /// The AES-CBC algorithm.
-        /// Supported parameters:
-        /// - ParameterName.AlgorithmType = AesCbc(mandatory),
-        /// - ParameterName.IV = 16-byte initialization vector(mandatory)
+        /// AES-CBC algorithm.
         /// </summary>
+        /// <remarks>
+        /// Supported parameters:
+        /// - ParameterName.AlgorithmType = AesCbc (mandatory),
+        /// - ParameterName.IV = 16-byte initialization vector (mandatory).
+        /// </remarks>
         AesCbc,
         /// <summary>
-        /// The AES-GCM algorithm.
-        /// Supported parameters:
-        /// - ParameterName.AlgorithmType = AesGcm(mandatory),
-        /// - ParameterName.IV = initialization vector(mandatory)
-        /// - ParameterName.TagLength = GCM tag length in bits. One of
-        ///   {32, 64, 96, 104, 112, 120, 128} (optional, if not present the length 128 is used)
-        /// - CKMC_PARAM_ED_AAD = additional authentication data(optional)
+        /// AES-GCM algorithm.
         /// </summary>
+        /// <remarks>
+        /// Supported parameters:
+        /// - ParameterName.AlgorithmType = AesGcm (mandatory),
+        /// - ParameterName.IV = initialization vector (mandatory)
+        /// - ParameterName.TagLength = GCM tag length in bits. One of
+        ///   {32, 64, 96, 104, 112, 120, 128} (optional, if not present the length of 128 is used)
+        /// - CKMC_PARAM_ED_AAD = additional authentication data (optional).
+        /// </remarks>
         AesGcm,
         /// <summary>
-        /// Th AES-CFB algorithm.
-        /// Supported parameters:
-        /// - ParameterName.AlgorithmType = AesCfb(mandatory),
-        /// - ParameterName.IV = 16-byte initialization vector(mandatory)
+        /// AES-CFB algorithm.
         /// </summary>
+        /// <remarks>
+        /// Supported parameters:
+        /// - ParameterName.AlgorithmType = AesCfb (mandatory),
+        /// - ParameterName.IV = 16-byte initialization vector (mandatory).
+        /// </remarks>
         AesCfb,
         /// <summary>
-        /// The RSA-OAEP algorithm.
-        /// Supported parameters:
-        /// - ParameterName.AlgorithmType = RsaOaep(required),
-        /// - ParameterName.Label = label to be associated with the message
-        ///   (optional, not supported at the moment)
+        /// RSA-OAEP algorithm.
         /// </summary>
+        /// <remarks>
+        /// Supported parameters:
+        /// - ParameterName.AlgorithmType = RsaOaep (mandatory),
+        /// - ParameterName.Label = label to be associated with the message
+        ///   (optional, not supported at the moment).
+        /// </remarks>
         RsaOaep
     }
 }

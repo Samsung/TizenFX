@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.System
 {
@@ -94,25 +95,30 @@ namespace Tizen.System
     /// This class contains event arguments for the (PowerState)StateWaitCallback event from the Power class.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class PowerStateWaitEventArgs : EventArgs
     {
         internal PowerStateWaitEventArgs() {}
         /// <summary>
         /// PrevState indicates reason power state where transition has started
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PowerState PrevState { get; internal set; }
         /// <summary>
         /// NextState indicates power state to be changed by transition
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PowerState NextState { get; internal set; }
         /// <summary>
         /// WaitCallbackId indicates unique id for each callback invocation.
         /// It is used to confirm or cancel about subscribed callback.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public UInt64 WaitCallbackId { get; internal set; }
         /// <summary>
         /// TransitionReason indicates reason for what triggered the transition
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PowerTransitionReason TransitionReason { get; internal set; }
     }
 
@@ -121,21 +127,25 @@ namespace Tizen.System
     /// This class contains event arguments for the (PowerTransientState)StateWaitCallback event from the Power class.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class PowerTransientStateWaitEventArgs : EventArgs
     {
         internal PowerTransientStateWaitEventArgs() {}
         /// <summary>
         /// TransientState indicates transient state to be changed by the transition
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PowerTransientState TransientState { get; internal set; }
         /// <summary>
         /// WaitCallbackId indicates unique id for each callback invocation.
         /// It is used to confirm or cancel about subscribed callback.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public UInt64 WaitCallbackId { get; internal set; }
         /// <summary>
         /// TransitionReason indicates reason for what triggered the transition
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PowerTransitionReason TransitionReason { get; internal set; }
     }
 
@@ -144,16 +154,19 @@ namespace Tizen.System
     /// This class contains event arguments for the (PowerLock)StateChangedCallback event from the Power class.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class PowerLockStateChangedEventArgs : EventArgs
     {
         internal PowerLockStateChangedEventArgs() {}
         /// <summary>
         ///  PowerLockType indicates Type of power lock
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PowerLock PowerLockType { get; internal set; }
         /// <summary>
         /// PowerLockState indicates locked or unlocked about power lock type.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PowerLockState PowerLockState { get; internal set; }
     }
 
@@ -162,17 +175,20 @@ namespace Tizen.System
     /// This class contains event arguments for the (PowerState)StateChangeRequestCallback event from the Power class.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class PowerStateChangeRequestEventArgs : EventArgs
     {
         internal PowerStateChangeRequestEventArgs() {}
         /// <summary>
         /// PowerState indicates state to be changed that was requested.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PowerState PowerState { get; internal set; }
         /// <summary>
         /// Retval indicates return of change state result from deviced.
         /// If Retval is negative, it means failure, 0 means success.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int Retval { get; internal set; }
     }
 }

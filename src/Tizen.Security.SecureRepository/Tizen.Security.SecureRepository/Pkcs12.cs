@@ -22,27 +22,32 @@ using static Interop;
 namespace Tizen.Security.SecureRepository
 {
     /// <summary>
-    /// The class that represents a PKCS#12 contents.
-    /// It has a private key or its certificate or all the members of a chain of trust.
+    /// Represents PKCS#12 contents.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    /// <remarks>
+    /// It has a private key or its certificate or all members of a chain of trust.
+    /// </remarks>
     public class Pkcs12
     {
         private SafeCertificateListHandle _certChainHandle = null;
 
         /// <summary>
-        /// Loads the Pkcs12 from the given PKCS#12 file path.
+        /// Loads Pkcs12 from the given PKCS#12 file path.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="filePath">The path of the PKCS12 file to be loaded.</param>
-        /// <param name="filePassword">The passphrase used to decrypt the PCKS12 file.
-        /// If the PKCS12 file is not encrypted, passphrase can be null.</param>
-        /// <exception cref="ArgumentNullException">The filePath is null.</exception>
+        /// <remarks>
+        /// If the PKCS12 file is not encrypted, passphrase can be null.
+        /// </remarks>
+        /// <param name="filePath">Path of the PKCS12 file to be loaded.</param>
+        /// <param name="filePassword">Passphrase used to decrypt the PCKS12 file.</param>
+        /// <returns>Pkcs12 class instance.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when filePath is null.</exception>
         /// <exception cref="InvalidOperationException">
-        /// No file on filePath.
-        /// No permission to access file.
-        /// File is in the invalid PKCS12 format.
-        /// File cannot be extracted with provided filePassword.
+        /// Thrown when there's no existing file on <paramref name="filePath"/>.
+        /// Thrown when there are not sufficient permissions to access the file.
+        /// Thrown when file has an invalid PKCS12 format.
+        /// Thrown when file cannot be extracted with provided <paramref name="filePassword"/>.
         /// </exception>
         static public Pkcs12 Load(string filePath, string filePassword)
         {
@@ -66,7 +71,7 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// A constructor of Key that takes a private key.
+        /// Initializes an instance of Pkcs12 class with a private key.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="privateKey">A private key.</param>
@@ -78,14 +83,14 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// A constructor of Key that takes a private key, its corresponding certicate,
-        /// and CA's certificate chain.
+        /// Initializes an instance of Pkcs12 class with a private key,
+        /// its corresponding certificate and CA's certificate chain.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="privateKey">A private key.</param>
-        /// <param name="certificate">A certificate corresponding the private key.</param>
+        /// <param name="privateKey">Private key.</param>
+        /// <param name="certificate">Certificate corresponding to the private key.</param>
         /// <param name="caChain">
-        /// A certificate chain of CA(Certificate Authority) that issued the certificate.
+        /// Certificate chain of CA (Certificate Authority) that issued the certificate.
         /// </param>
         public Pkcs12(Key privateKey,
                       Certificate certificate,
@@ -150,8 +155,11 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// A private key.
+        /// Gets and sets private key.
         /// </summary>
+        /// <value>
+        /// Private key.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public Key PrivateKey
         {
@@ -159,8 +167,11 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// A certificate corresponding to the private key.
+        /// Gets and sets a certificate.
         /// </summary>
+        /// <value>
+        /// Certificate corresponding to the private key.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public Certificate Certificate
         {
@@ -168,8 +179,11 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// A certificate chain of CA(Certificate Authority) that issued the certificate.
+        /// Gets and sets a certificate chain.
         /// </summary>
+        /// <value>
+        /// Certificate chain of CA (Certificate Authority) that issued the certificate.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public IEnumerable<Certificate> CaChain
         {

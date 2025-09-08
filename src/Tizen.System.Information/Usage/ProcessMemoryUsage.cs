@@ -36,7 +36,7 @@ namespace Tizen.System
         private int[] Gems;
 
         /// <summary>
-        /// The constructor of ProcessMemoryInformation class.
+        /// The constructor of ProcessMemoryInformation class of the given list of process. It internally call Update() on constructing an instance.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="pid">List of unique process ids.</param>
@@ -51,13 +51,13 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The number of usage entries.
+        /// The number of processes being tracked by the instance.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int Count => Pids.Length;
 
         /// <summary>
-        /// Gets the virtual memory size of a process.
+        /// Gets the virtual memory size of the given process. To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="pid">The process id.</param>
@@ -75,7 +75,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the resident set size of a process.
+        /// Gets the resident set size of the given process. To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="pid">The process id.</param>
@@ -93,7 +93,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the proportional set size of a process.
+        /// Gets the proportional set size of the given process. To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="pid">The process id.</param>
@@ -111,7 +111,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the size not modified and mapped by other processes of a process.
+        /// Gets the memory size of the given process that is not modified and mapped by other processes. To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="pid">The process id.</param>
@@ -129,7 +129,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the size modified and mapped by other processes of a process.
+        /// Gets the memory size of the given process that is modified and mapped by other processes. To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="pid">The process id.</param>
@@ -147,7 +147,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the size not modified and available only to that process of a process.
+        /// Gets the memory size of the given process that is not modified and available only to it. To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="pid">The process id.</param>
@@ -165,7 +165,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the size modified and available only to that process of a process.
+        /// Gets the memory size of the given process that is modified and available only to it. To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="pid">The process id.</param>
@@ -183,7 +183,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the GPU memory size of a process.
+        /// Gets the GPU memory size of the given process. To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <param name="pid">The process id.</param>
         /// <returns>The GPU memory size <paramref name="pid"/> is using (KiB).</returns>
@@ -208,7 +208,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the resident set size in graphic execution manager of a process.
+        /// Gets the resident set size in graphic execution manager of a process. To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <param name="pid">The process id.</param>
         /// <returns>The resident set size <paramref name="pid"/> is using (KiB).</returns>
@@ -233,7 +233,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the SWAP memory size of a process.
+        /// Gets the SWAP memory size of the given process. To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <param name="pid">The process id.</param>
         /// <returns>The SWAP memory size <paramref name="pid"/> is using (KiB).</returns>

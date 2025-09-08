@@ -23,7 +23,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.System
 {
     /// <summary>
-    /// The class for CPU usage per process.
+    /// The class for CPU usage per given list of process.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class ProcessCpuUsage
@@ -32,7 +32,7 @@ namespace Tizen.System
         private Interop.RuntimeInfo.ProcessCpuUsage[] Usages;
 
         /// <summary>
-        /// The constructor of ProcessCpuUsage class.
+        /// The constructor of ProcessCpuUsage class of the given list of process. It internally call Update() on constructing an instance.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="pid">List of unique process ids.</param>
@@ -47,13 +47,13 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The number of usage entries.
+        /// The number of processes being tracked by the instance.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int Count { get; internal set; }
 
         /// <summary>
-        /// Gets the amount of time this process has been scheduled in user mode.
+        /// Gets the amount of time this process has been scheduled in user mode. To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="pid">The process id.</param>
@@ -71,7 +71,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the amount of time this process has been scheduled in kernel mode.
+        /// Gets the amount of time this process has been scheduled in kernel mode. To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="pid">The process id.</param>
@@ -89,7 +89,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Update the process CPU usage to the latest.
+        /// Update CPU usage of the given processes to the latest.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="pid">List of unique process ids.</param>

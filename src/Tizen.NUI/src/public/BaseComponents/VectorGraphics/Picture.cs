@@ -29,6 +29,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     {
         /// <summary>
         /// Creates an initialized Picture.
+        /// This constructor initializes a new instance of the Picture class.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Picture() : this(Interop.Picture.New(), true)
@@ -89,7 +90,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         {
             global::System.IntPtr cPtr = Interop.Picture.GetSize(View.getCPtr(this));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return Size2D.GetSize2DFromPtr(cPtr);
+            return Size2D.GetSize2DFromPtr(cPtr, true);
         }
     }
 }

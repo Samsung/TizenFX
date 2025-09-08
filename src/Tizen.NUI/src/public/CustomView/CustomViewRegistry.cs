@@ -97,6 +97,11 @@ namespace Tizen.NUI
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         public readonly ScriptableType type;
 
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScriptableProperty"/> class.
+        /// </summary>
+        /// <param name="type">The type of the scriptable property.</param>
         /// <since_tizen> 3 </since_tizen>
         public ScriptableProperty(ScriptableType type = ScriptableType.Default)
         {
@@ -114,7 +119,7 @@ namespace Tizen.NUI
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             Default,    // Read Writable, non-animatable property, event thread only
-                        //  Animatable // Animatable property, Currently disabled, UK
+                        // Animatable // Animatable property, Currently disabled, UK
         }
 
         /// <summary>
@@ -165,22 +170,21 @@ namespace Tizen.NUI
         /// <summary>
         /// Lookup table to match C# types to DALi types, used for the automatic property registration.
         /// </summary>
-        private static readonly Dictionary<string, Tizen.NUI.PropertyType> daliPropertyTypeLookup
-        = new Dictionary<string, Tizen.NUI.PropertyType>
+        private static readonly Dictionary<string, Tizen.NUI.PropertyType> daliPropertyTypeLookup = new Dictionary<string, Tizen.NUI.PropertyType>
         {
-      { "float",   PropertyType.Float },
-      { "int",     PropertyType.Integer },
-      { "Int32",   PropertyType.Integer },
-      { "Boolean", PropertyType.Boolean },
-      { "string",  PropertyType.String },
-      { "Vector2", PropertyType.Vector2 },
-      { "Vector3", PropertyType.Vector3 },
-      { "Vector4", PropertyType.Vector4 },
-      { "Size",    PropertyType.Vector2 },
-      { "Position",PropertyType.Vector3 },
-      { "Color",   PropertyType.Vector4 },
-      { "PropertyArray", PropertyType.Array },
-      { "PropertyMap",   PropertyType.Map },
+            { "float",   PropertyType.Float },
+            { "int",     PropertyType.Integer },
+            { "Int32",   PropertyType.Integer },
+            { "Boolean", PropertyType.Boolean },
+            { "string",  PropertyType.String },
+            { "Vector2", PropertyType.Vector2 },
+            { "Vector3", PropertyType.Vector3 },
+            { "Vector4", PropertyType.Vector4 },
+            { "Size",    PropertyType.Vector2 },
+            { "Position",PropertyType.Vector3 },
+            { "Color",   PropertyType.Vector4 },
+            { "PropertyArray", PropertyType.Array },
+            { "PropertyMap",   PropertyType.Map },
             //  { "Matrix3", PropertyType.MATRIX3 }, commented out until we need to use Matrices from JSON
             //  { "Matrix",  PropertyType.MATRIX },
         };
@@ -188,7 +192,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ViewRegistry is a singleton.
         /// </summary>
-        private static CustomViewRegistry instance = null;
+        private static CustomViewRegistry instance;
 
         private CreateControlDelegate createCallback;
         private SetPropertyDelegate setPropertyCallback;
@@ -220,6 +224,9 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void SetPropertyDelegate(IntPtr controlPtr, IntPtr propertyName, IntPtr propertyValue);
 
+        /// <summary>
+        /// Gets the singleton instance of the CustomViewRegistry.
+        /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static CustomViewRegistry Instance
         {
@@ -399,7 +406,7 @@ namespace Tizen.NUI
             View view = Registry.GetManagedBaseHandleFromRefObject(refObjectPtr) as View;
             if (view != null)
             {
-                System.Reflection.PropertyInfo propertyInfo = view.GetType().GetProperty(propertyName);
+                System.Reflection.PropertyInfo propertyInfo = view.GetType().GetProperty(propertyName) ?? throw new global::System.InvalidOperationException("propertyInfo is null! can not set any value!");
                 // We know the property name, we know it's type, we just need to convert from a DALi property value to native C# type
                 System.Type type = propertyInfo?.PropertyType;
                 bool ok = false;

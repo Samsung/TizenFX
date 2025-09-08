@@ -18,62 +18,71 @@ using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using Tizen.NUI.Binding;
+using static Tizen.Applications.ApplicationInfoFilter;
 
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>
     /// The base class of style attributes for a view.
+    /// This class provides a base for defining styles that can be applied to views.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
     public partial class ViewStyle : BindableObject, IDisposable
     {
-        private bool disposed = false;
-        private bool? focusable;
-        private bool? focusableChildren;
-        private bool? focusableInTouch;
-        private bool? positionUsesPivotPoint;
-        private Position parentOrigin;
-        private Position pivotPoint;
-        private Position position;
-        private Rotation orientation;
-        private DrawModeType? drawMode;
-        private Vector3 sizeModeFactor;
-        private ResizePolicyType? widthResizePolicy;
-        private ResizePolicyType? heightResizePolicy;
-        private bool? widthForHeight;
-        private bool? heightForWidth;
-        private Extents padding;
-        private Size2D minimumSize;
-        private Size2D maximumSize;
-        private ClippingModeType? clippingMode;
-        private Size size;
-        private Extents margin;
-        private bool? themeChangeSensitive;
-        private Vector4 cornerRadius;
-        private float? borderlineWidth;
-        private Color borderlineColor;
-        private float? borderlineOffset;
-        private bool? isEnabled;
+        static readonly IStyleProperty BackgroundImageProperty = new StyleProperty<View, Selector<string>>((v, o) => v.SetInternalBackgroundImage(o));
+        static readonly IStyleProperty FocusableProperty = new StyleProperty<View, bool>((v, o) => v.Focusable = o);
+        static readonly IStyleProperty FocusableChildrenProperty = new StyleProperty<View, bool>((v, o) => v.FocusableChildren = o);
+        static readonly IStyleProperty FocusableInTouchProperty = new StyleProperty<View, bool>((v, o) => v.FocusableInTouch = o);
+        static readonly IStyleProperty OpacityProperty = new StyleProperty<View, Selector<float?>>((v, o) => v.SetInternalOpacity(o));
+        static readonly IStyleProperty PositionUsesPivotPointProperty = new StyleProperty<View, bool>((v, o) => v.PositionUsesPivotPoint = o);
+        static readonly IStyleProperty ParentOriginProperty = new StyleProperty<View, Position>((v, o) => v.ParentOrigin = o);
+        static readonly IStyleProperty PivotPointProperty = new StyleProperty<View, Position>((v, o) => v.PivotPoint = o);
+        static readonly IStyleProperty SizeWidthProperty = new StyleProperty<View, float>((v, o) => v.SizeWidth = o);
+        static readonly IStyleProperty SizeHeightProperty = new StyleProperty<View, float>((v, o) => v.SizeHeight = o);
+        static readonly IStyleProperty PositionXProperty = new StyleProperty<View, float>((v, o) => v.PositionX = o);
+        static readonly IStyleProperty PositionYProperty = new StyleProperty<View, float>((v, o) => v.PositionY = o);
+        static readonly IStyleProperty PositionZProperty = new StyleProperty<View, float>((v, o) => v.PositionZ = o);
+        static readonly IStyleProperty OrientationProperty = new StyleProperty<View, Rotation>((v, o) => v.Orientation = o);
+        static readonly IStyleProperty DrawModeProperty = new StyleProperty<View, DrawModeType>((v, o) => v.DrawMode = o);
+        static readonly IStyleProperty SizeModeFactorProperty = new StyleProperty<View, Vector3>((v, o) => v.SizeModeFactor = o);
+        static readonly IStyleProperty WidthResizePolicyProperty = new StyleProperty<View, ResizePolicyType>((v, o) => v.WidthResizePolicy = o);
+        static readonly IStyleProperty HeightResizePolicyProperty = new StyleProperty<View, ResizePolicyType>((v, o) => v.HeightResizePolicy = o);
+        static readonly IStyleProperty WidthForHeightProperty = new StyleProperty<View, bool>((v, o) => v.WidthForHeight = o);
+        static readonly IStyleProperty HeightForWidthProperty = new StyleProperty<View, bool>((v, o) => v.HeightForWidth = o);
+        static readonly IStyleProperty PaddingProperty = new StyleProperty<View, Extents>((v, o) => v.Padding = o);
+        static readonly IStyleProperty MinimumSizeProperty = new StyleProperty<View, Size2D>((v, o) => v.MinimumSize = o);
+        static readonly IStyleProperty MaximumSizeProperty = new StyleProperty<View, Size2D>((v, o) => v.MaximumSize = o);
+        static readonly IStyleProperty ClippingModeProperty = new StyleProperty<View, ClippingModeType>((v, o) => v.ClippingMode = o);
+        static readonly IStyleProperty MarginProperty = new StyleProperty<View, Extents>((v, o) => v.Margin = o);
+        static readonly IStyleProperty BackgroundColorProperty = new StyleProperty<View, Selector<Color>>((v, o) => v.SetInternalBackgroundColor(o));
+        static readonly IStyleProperty ColorProperty = new StyleProperty<View, Selector<Color>>((v, o) => v.SetInternalColor(o));
+        static readonly IStyleProperty BackgroundImageBorderProperty = new StyleProperty<View, Selector<Rectangle>>((v, o) => v.SetInternalBackgroundImageBorder(o));
+        static readonly IStyleProperty ImageShadowProperty = new StyleProperty<View, Selector<ImageShadow>>((v, o) => v.SetInternalImageShadow(o));
+        static readonly IStyleProperty BoxShadowProperty = new StyleProperty<View, Selector<Shadow>>((v, o) => v.SetInternalBoxShadow(o));
+        static readonly IStyleProperty CornerRadiusProperty = new StyleProperty<View, Vector4>((v, o) => v.CornerRadius = o);
+        static readonly IStyleProperty CornerRadiusPolicyProperty = new StyleProperty<View, VisualTransformPolicyType>((v, o) => v.CornerRadiusPolicy = o);
+        static readonly IStyleProperty BorderlineWidthProperty = new StyleProperty<View, float>((v, o) => v.BorderlineWidth = o);
+        static readonly IStyleProperty BorderlineColorProperty = new StyleProperty<View, Color>((v, o) => v.BorderlineColor = o);
+        static readonly IStyleProperty BorderlineColorSelectorProperty = new StyleProperty<View, Selector<Color>>((v, o) => v.SetInternalBorderlineColor(o));
+        static readonly IStyleProperty BorderlineOffsetProperty = new StyleProperty<View, float>((v, o) => v.BorderlineOffset = o);
+        static readonly IStyleProperty ThemeChangeSensitiveProperty = new StyleProperty<View, bool>((v, o) => v.ThemeChangeSensitive = o);
+        static readonly IStyleProperty IsEnabledProperty = new StyleProperty<View, bool>((v, o) => v.IsEnabled = o);
 
-        private Selector<ImageShadow> imageShadow;
-        private Selector<Shadow> boxShadow;
-        private Selector<string> backgroundImageSelector;
-        private Selector<float?> opacitySelector;
-        private Selector<Color> backgroundColorSelector;
-        private Selector<Rectangle> backgroundImageBorderSelector;
-        private Selector<Color> colorSelector;
-        private VisualTransformPolicyType? cornerRadiusPolicy;
-        private Selector<Color> borderlineColorSelector;
+        private Dictionary<IStyleProperty, object> values = new Dictionary<IStyleProperty, object>();
+        private bool disposed;
+
+        private float? sizeDepth;
 
         static ViewStyle() { }
 
         /// <summary>
         /// Create an empty style instance.
+        /// This constructor initializes an empty style object for a view.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public ViewStyle() { }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ViewStyle(ViewStyle viewAttributes)
         {
@@ -94,15 +103,11 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Selector<string> BackgroundImage
         {
-            get
-            {
-                Selector<string> image = (Selector<string>)GetValue(BackgroundImageProperty);
-                return (null != image) ? image : backgroundImageSelector = new Selector<string>();
-            }
+            get => GetOrCreateValue<Selector<string>>(BackgroundImageProperty);
             set => SetValue(BackgroundImageProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? Focusable
         {
@@ -133,36 +138,92 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(FocusableInTouchProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [Obsolete("This has been deprecated. Use Size instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size2D Size2D
         {
-            get => (Size2D)GetValue(Size2DProperty);
-            set => SetValue(Size2DProperty, value);
+            get
+            {
+                var width = (float?)GetValue(SizeWidthProperty);
+                var height = (float?)GetValue(SizeHeightProperty);
+
+                if (null == width && null == height)
+                {
+                    return null;
+                }
+                else
+                {
+                    var realWidth = null == width ? 0 : width.Value;
+                    var realHeight = null == height ? 0 : height.Value;
+
+                    return new Size2D((int)realWidth, (int)realHeight);
+                }
+            }
+            set
+            {
+                float? width = null;
+                float? height = null;
+
+                if (value is Size2D size)
+                {
+                    width = size.Width;
+                    height = size.Height;
+                }
+
+                SetValue(SizeWidthProperty, width);
+                SetValue(SizeHeightProperty, height);
+            }
         }
 
         /// <summary>
         /// Defines view's opacity value.
+        /// This property allows you to specify different opacity values for various states of the view,
+        /// such as normal, pressed, focused, etc.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Selector<float?> Opacity
         {
-            get
-            {
-                Selector<float?> opacity = (Selector<float?>)GetValue(OpacityProperty);
-                return (null != opacity) ? opacity : opacitySelector = new Selector<float?>();
-            }
+            get => GetOrCreateValue<Selector<float?>>(OpacityProperty);
             set => SetValue(OpacityProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [Obsolete("This has been deprecated. Use Position instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Position2D Position2D
         {
-            get => (Position2D)GetValue(Position2DProperty);
-            set => SetValue(Position2DProperty, value);
+            get
+            {
+                var x = (float?)GetValue(PositionXProperty);
+                var y = (float?)GetValue(PositionYProperty);
+
+                if (null == x && null == y)
+                {
+                    return null;
+                }
+                else
+                {
+                    var realX = null == x ? 0 : x.Value;
+                    var realY = null == y ? 0 : y.Value;
+
+                    return new Position2D((int)realX, (int)realY);
+                }
+            }
+            set
+            {
+                float? x = null;
+                float? y = null;
+
+                if (value is Position2D position)
+                {
+                    x = position.X;
+                    y = position.Y;
+                }
+
+                SetValue(PositionXProperty, x);
+                SetValue(PositionYProperty, y);
+            }
         }
 
         /// <summary>
@@ -228,11 +289,45 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Position Position
         {
-            get => (Position)GetValue(PositionProperty);
-            set => SetValue(PositionProperty, value);
+            get
+            {
+                var x = (float?)GetValue(PositionXProperty);
+                var y = (float?)GetValue(PositionYProperty);
+                var z = (float?)GetValue(PositionZProperty);
+
+                if (null == x && null == y && null == z)
+                {
+                    return null;
+                }
+                else
+                {
+                    var realX = null == x ? 0 : x.Value;
+                    var realY = null == y ? 0 : y.Value;
+                    var realZ = null == z ? 0 : z.Value;
+
+                    return new Position(realX, realY, realZ);
+                }
+            }
+            set
+            {
+                float? x = null;
+                float? y = null;
+                float? z = null;
+
+                if (value is Position position)
+                {
+                    x = position.X;
+                    y = position.Y;
+                    z = position.Z;
+                }
+
+                SetValue(PositionXProperty, x);
+                SetValue(PositionYProperty, y);
+                SetValue(PositionZProperty, z);
+            }
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? PositionX
         {
@@ -240,7 +335,7 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(PositionXProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? PositionY
         {
@@ -248,7 +343,7 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(PositionYProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Rotation Orientation
         {
@@ -256,7 +351,7 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(OrientationProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DrawModeType? DrawMode
         {
@@ -296,7 +391,7 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(HeightResizePolicyProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? WidthForHeight
         {
@@ -304,7 +399,7 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(WidthForHeightProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool? HeightForWidth
         {
@@ -318,7 +413,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Extents Padding
         {
-            get => (Extents)GetValue(PaddingProperty) ?? (padding = new Extents());
+            get => GetOrCreateValue<Extents>(PaddingProperty);
             set => SetValue(PaddingProperty, value);
         }
 
@@ -342,7 +437,7 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(MaximumSizeProperty, value);
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ClippingModeType? ClippingMode
         {
@@ -356,8 +451,42 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Size Size
         {
-            get => (Size)GetValue(SizeProperty);
-            set => SetValue(SizeProperty, value);
+            get
+            {
+                var width = (float?)GetValue(SizeWidthProperty);
+                var height = (float?)GetValue(SizeHeightProperty);
+                var depth = sizeDepth;
+
+                if (null == width && null == height && null == depth)
+                {
+                    return null;
+                }
+                else
+                {
+                    var realWidth = null == width ? 0 : width.Value;
+                    var realHeight = null == height ? 0 : height.Value;
+                    var realDepth = null == depth ? 0 : depth.Value;
+
+                    return new Size(realWidth, realHeight, realDepth);
+                }
+            }
+            set
+            {
+                float? width = null;
+                float? height = null;
+                float? depth = null;
+
+                if (value is Size size)
+                {
+                    width = size.Width;
+                    height = size.Height;
+                    depth = size.Depth;
+                }
+
+                SetValue(SizeWidthProperty, width);
+                SetValue(SizeHeightProperty, height);
+                sizeDepth = depth;
+            }
         }
 
         /// <summary>
@@ -366,7 +495,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Extents Margin
         {
-            get => (Extents)GetValue(MarginProperty) ?? (margin = new Extents());
+            get => GetOrCreateValue<Extents>(MarginProperty);
             set => SetValue(MarginProperty, value);
         }
 
@@ -377,11 +506,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 9 </since_tizen>
         public Selector<Color> BackgroundColor
         {
-            get
-            {
-                Selector<Color> color = (Selector<Color>)GetValue(BackgroundColorProperty);
-                return (null != color) ? color : backgroundColorSelector = new Selector<Color>();
-            }
+            get => GetOrCreateValue<Selector<Color>>(BackgroundColorProperty);
             set => SetValue(BackgroundColorProperty, value);
         }
 
@@ -391,20 +516,16 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Color> Color
         {
-            get => (Selector<Color>)GetValue(ColorProperty) ?? (colorSelector = new Selector<Color>());
+            get => GetOrCreateValue<Selector<Color>>(ColorProperty);
             set => SetValue(ColorProperty, value);
         }
 
         /// <summary>View BackgroundBorder</summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Rectangle> BackgroundImageBorder
         {
-            get
-            {
-                Selector<Rectangle> border = (Selector<Rectangle>)GetValue(BackgroundImageBorderProperty);
-                return (null != border) ? border : backgroundImageBorderSelector = new Selector<Rectangle>();
-            }
+            get => GetOrCreateValue<Selector<Rectangle>>(BackgroundImageBorderProperty);
             set => SetValue(BackgroundImageBorderProperty, value);
         }
 
@@ -482,11 +603,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<Color> BorderlineColorSelector
         {
-            get
-            {
-                Selector<Color> color = (Selector<Color>)GetValue(BorderlineColorSelectorProperty);
-                return (null != color) ? color : borderlineColorSelector = new Selector<Color>();
-            }
+            get => GetOrCreateValue<Selector<Color>>(BorderlineColorSelectorProperty);
             set => SetValue(BorderlineColorSelectorProperty, value);
         }
 
@@ -524,7 +641,6 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(IsEnabledProperty, value);
         }
 
-
         /// <summary>
         /// Allow null properties when merging it into other Theme.
         /// If the value is true, the null properties reset target properties of the other ViewStyle with same key when merge.
@@ -551,7 +667,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Release instance.
+        /// Releases all resources used by the ViewStyle instance.
+        /// The Dispose method releases all resources used by the ViewStyle instance.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public void Dispose()
@@ -564,9 +681,119 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void CopyFrom(BindableObject other)
         {
-            var source = other as ViewStyle;
+            if (!(other is ViewStyle source))
+            {
+                return;
+            }
 
-            if (source == null || source.DirtyProperties == null || source.DirtyProperties.Count == 0)
+            IncludeDefaultStyle = source.IncludeDefaultStyle;
+            SolidNull = source.SolidNull;
+
+            foreach (var (property, value) in source.values)
+            {
+                if (value != null)
+                {
+                    values[property] = value;
+                }
+            }
+
+            // NOTE Support backward compatibility.
+            CopyBindablePropertyValues(source);
+        }
+
+        /// <summary>
+        /// Releases unmanaged and optionally managed resources.
+        /// </summary>
+        /// <param name="disposing"> If it true, the method has been called by a user's code to release both managed and unmanaged resources. Otherwise the method has been called by the finalizer to release only unmanaged resources.</param>
+        /// <since_tizen> 9 </since_tizen>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                // Dispose managed state (managed objects).
+                values = null;
+            }
+
+            disposed = true;
+        }
+
+        /// <summary>
+        /// Method that is called when a bound property is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnPropertyChangedWithData(BindableProperty property)
+        {
+            base.OnPropertyChangedWithData(property);
+
+            if (property != null)
+            {
+                (DirtyProperties ?? (DirtyProperties = new HashSet<BindableProperty>())).Add(property);
+            }
+        }
+
+        internal ViewStyle CreateInstance()
+        {
+            return (ViewStyle)Activator.CreateInstance(GetType());
+        }
+
+        /// <summary>Merge other style into the current style without creating new one.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal void MergeDirectly(ViewStyle other)
+        {
+            CopyFrom(other);
+        }
+
+        internal IEnumerable<(IStyleProperty, object)> GetProperties()
+        {
+            foreach (var (key, value) in values)
+            {
+                if (value != null)
+                {
+                    yield return (key, value);
+                }
+            }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual object GetValue(IStyleProperty styleProperty)
+        {
+            if (values.TryGetValue(styleProperty, out var value))
+            {
+                return value;
+            }
+            return default;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual T GetOrCreateValue<T>(IStyleProperty styleProperty)
+        {
+            if (values.TryGetValue(styleProperty, out var value))
+            {
+                return (T)value;
+            }
+            T newValue = (T)Activator.CreateInstance(typeof(T));
+            values[styleProperty] = newValue;
+            return newValue;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void SetValue(IStyleProperty styleProperty, object value)
+        {
+            // NOTE Allow null value. It is used when merging styles with solid null option
+            values[styleProperty] = value;
+        }
+
+        private void CopyBindablePropertyValues(ViewStyle source)
+        {
+            // NOTE This is to support legacy way of copying styles using bindable properties.
+            // Please do not spend time to keep this code
+            // This is just to make sure we don't break backward compatibility
+            if (source.DirtyProperties == null || source.DirtyProperties.Count == 0)
             {
                 return;
             }
@@ -598,64 +825,6 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
-
-        /// <summary>
-        /// Release instance.
-        /// </summary>
-        /// <param name="disposing"> If it true, the method has been called by a user's code. Otherwise the method has been called by the finalizer. </param>
-        /// <since_tizen> 9 </since_tizen>
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (disposing)
-            {
-                // Dispose managed state (managed objects).
-                margin?.Dispose();
-                maximumSize?.Dispose();
-                minimumSize?.Dispose();
-                orientation?.Dispose();
-                padding?.Dispose();
-                parentOrigin?.Dispose();
-                pivotPoint?.Dispose();
-                position?.Dispose();
-                size?.Dispose();
-                sizeModeFactor?.Dispose();
-                cornerRadius?.Dispose();
-                borderlineColor?.Dispose();
-            }
-
-            disposed = true;
-        }
-
-        /// <summary>
-        /// Method that is called when a bound property is changed.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnPropertyChangedWithData(BindableProperty property)
-        {
-            base.OnPropertyChangedWithData(property);
-
-            if (property != null)
-            {
-                (DirtyProperties ?? (DirtyProperties = new HashSet<BindableProperty>())).Add(property);
-            }
-        }
-
-        internal ViewStyle CreateInstance()
-        {
-            return (ViewStyle)Activator.CreateInstance(GetType());
-        }
-
-        /// <summary>Merge other style into the current style without creating new one.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal void MergeDirectly(ViewStyle other)
-        {
-            CopyFrom(other);
-        }
     }
 
     /// <summary> Extension methods for ViewStyle class.</summary>
@@ -667,9 +836,13 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static TOut Merge<TOut>(this TOut value, TOut other) where TOut : Tizen.NUI.BaseComponents.ViewStyle
         {
+            _ = value ?? throw new ArgumentNullException(nameof(value));
             var newStyle = value.Clone() as TOut;
-
-            newStyle?.CopyFrom(other);
+            if (newStyle == null)
+            {
+                throw new InvalidCastException($"Failed to cast to {typeof(TOut)}");
+            }
+            newStyle.CopyFrom(other);
 
             return newStyle;
         }

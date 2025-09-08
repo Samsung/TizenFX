@@ -23,6 +23,7 @@
 
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI.Utility
 {
@@ -35,6 +36,7 @@ namespace Tizen.NUI.Utility
         /// <summary>
         /// Positions and event time information
         /// </summary>
+        [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
         protected struct Movement
         {
             public uint EventTime;
@@ -48,8 +50,8 @@ namespace Tizen.NUI.Utility
 
         private const int mHistorySize = 20;
         private uint mMaximumTime;
-        private uint mLastEventTime = 0;
-        private float mLastPosition = 0;
+        private uint mLastEventTime;
+        private float mLastPosition;
         private uint mAssumePointerStoppedTime = 40; // 40ms
         protected SortedDictionary<int, List<Movement>> mMovements;
 

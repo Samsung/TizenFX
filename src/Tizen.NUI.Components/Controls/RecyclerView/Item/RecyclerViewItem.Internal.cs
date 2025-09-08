@@ -17,7 +17,6 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Accessibility; // To use AccessibilityManager
 
 namespace Tizen.NUI.Components
 {
@@ -198,8 +197,6 @@ namespace Tizen.NUI.Components
             Layout = new AbsoluteLayout();
             UpdateState();
 
-            AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ViewItem");
-
             AccessibilityRole = Role.ListItem;
             AccessibilityHighlightable = true;
         }
@@ -230,6 +227,7 @@ namespace Tizen.NUI.Components
         protected override void OnBindingContextChanged()
         {
             PropagateBindingContext(this);
+            base.OnBindingContextChanged();
         }
 
         private void PropagateBindingContext(View parent)

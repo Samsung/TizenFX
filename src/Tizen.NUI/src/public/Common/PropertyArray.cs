@@ -25,7 +25,7 @@ namespace Tizen.NUI
     public class PropertyArray : Disposable
     {
         /// <summary>
-        /// The constructor.
+        /// Default constructor of PropertyArray class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyArray() : this(Interop.Property.NewPropertyArray(), true)
@@ -38,7 +38,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PropertyArray(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal PropertyArray(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 
@@ -94,6 +94,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Clears the array.
+        /// This method removes all elements from the PropertyArray, resulting in an empty array.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public void Clear()
@@ -172,7 +173,6 @@ namespace Tizen.NUI
         public PropertyArray Add(PropertyValue value)
         {
             PropertyArray ret = new PropertyArray(Interop.Property.ArrayAdd(SwigCPtr, PropertyValue.getCPtr(value)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 

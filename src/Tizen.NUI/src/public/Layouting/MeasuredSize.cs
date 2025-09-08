@@ -17,12 +17,14 @@
 
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI
 {
     /// <summary>
-    /// [Draft] Class that encodes a measurement and a measure state, which is set if the measured size is too small.
+    /// Class that encodes a measurement and a measure state, which is set if the measured size is too small.
     /// </summary>
+    [SuppressMessage("Performance", "CA1815: Override equals and operator equals on value types", Justification = "This is a struct and does not need to override equals.")]
     public struct MeasuredSize
     {
         /// <summary>

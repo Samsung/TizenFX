@@ -15,6 +15,7 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 using System.Globalization;
 
@@ -25,6 +26,7 @@ namespace Tizen.NUI
     /// </summary>
     /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
+    [Obsolete("This has been deprecated in API13")]
     public sealed class SpTypeConverter : GraphicsTypeConverter
     {
         private volatile static SpTypeConverter spTypeConverter;
@@ -35,6 +37,7 @@ namespace Tizen.NUI
         /// <value>Singleton instance of SpTypeConverter</value>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public static SpTypeConverter Instance
         {
             get
@@ -54,6 +57,7 @@ namespace Tizen.NUI
         /// <returns>Pixel value that is converted from input string</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public override float ConvertScriptToPixel(string scriptValue)
         {
             float convertedValue = 0;
@@ -81,9 +85,10 @@ namespace Tizen.NUI
         /// <returns>Pixel value that is converted by the the display matric</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public override float ConvertToPixel(float value)
         {
-            return value * (GraphicsTypeManager.Instance.ScaledDpi / (float)GraphicsTypeManager.Instance.BaselineDpi);
+            return value * ((float)(GraphicsTypeManager.Instance.Dpi * GraphicsTypeManager.Instance.ScalingFactor) / GraphicsTypeManager.Instance.BaselineDpi);
         }
 
         /// <summary>
@@ -92,9 +97,10 @@ namespace Tizen.NUI
         /// <returns>An converted value from pixel</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("This has been deprecated in API13")]
         public override float ConvertFromPixel(float value)
         {
-            return value * (GraphicsTypeManager.Instance.BaselineDpi / (float)GraphicsTypeManager.Instance.ScaledDpi);
+            return value * (GraphicsTypeManager.Instance.BaselineDpi / (float)(GraphicsTypeManager.Instance.Dpi * GraphicsTypeManager.Instance.ScalingFactor));
         }
     }
 }

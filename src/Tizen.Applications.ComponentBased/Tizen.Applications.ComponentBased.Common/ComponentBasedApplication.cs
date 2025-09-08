@@ -20,8 +20,13 @@ using System.Collections.Generic;
 namespace Tizen.Applications.ComponentBased.Common
 {
     /// <summary>
-    /// The class for supporting multi-components based application model.
+    /// Represents the base class for a multi-component based application.
+    /// This class allows the creation and management of multiple application components, such as Frame, Service, and Widget components.
     /// </summary>
+    /// <remarks>
+    /// This abstract class provides the core structure for applications that consist of multiple components.
+    /// Each component has its own lifecycle, and the framework handles these lifecycles independently.
+    /// </remarks>
     /// <since_tizen> 6 </since_tizen>
     public abstract class ComponentBasedApplication : Application
     {
@@ -30,12 +35,24 @@ namespace Tizen.Applications.ComponentBased.Common
         private Interop.CBApplication.CBAppLifecycleCallbacks _callbacks;
 
         /// <summary>
-        /// Initializes the ComponentBasedApplicationBase class.
+        /// Initializes a new instance of the <see cref="ComponentBasedApplication"/> class with the specified component type information.
         /// </summary>
-        /// <param name="typeInfo">The component type information.
-        /// The key should be a class type of FrameComponent or SubComponent subclass.
-        /// The value should be a component id which is declared in tizen-manifest.xml.
-        /// </param>
+        /// <param name="typeInfo">A dictionary where the key is the component class type (FrameComponent, ServiceComponent or WidgetComponent subclass),
+        /// and the value is the component ID defined in the tizen-manifest.xml file.</param>
+        /// <remarks>
+        /// This constructor sets up the necessary callbacks for the application lifecycle and registers the provided components.
+        /// </remarks>
+        /// <example>
+        /// <code>
+        /// IDictionary&lt;Type, string&gt; components = new Dictionary&lt;Type, string&gt;()
+        /// {
+        ///     { typeof(MyFrameComponent), "frameComponentId" },
+        ///     { typeof(MyServiceComponent), "serviceComponentId" }
+        /// };
+        /// ComponentBasedApplication app = new MyApplication(components);
+        /// app.Run(args);
+        /// </code>
+        /// </example>
         /// <since_tizen> 6 </since_tizen>
         public ComponentBasedApplication(IDictionary<Type, string> typeInfo)
         {
@@ -53,11 +70,19 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Registers a component.
+        /// Registers a component with the specified type and ID.
         /// </summary>
-        /// <param name="compType">Class type</param>
-        /// <param name="compId">Component ID</param>
-        /// <exception cref="ArgumentException">Thrown when component type is already added or not sub-class of FrameComponent or ServiceComponent</exception>
+        /// <param name="compType">The type of the component to register. Must be a subclass of FrameComponent, ServiceComponent, or WidgetComponent.</param>
+        /// <param name="compId">The ID of the component, defined in the tizen-manifest.xml file.</param>
+        /// <exception cref="ArgumentException">Thrown when the component type is already registered or not sub-class of FrameComponent, ServiceComponent or WidgetComponent.</exception>
+        /// <remarks>
+        /// This method ensures that only valid component types are registered. The component ID must be unique.
+        /// </remarks>
+        /// <example>
+        /// <code>
+        /// app.RegisterComponent(typeof(MyFrameComponent), "frameComponentId");
+        /// </code>
+        /// </example>
         /// <since_tizen> 6 </since_tizen>
         public void RegisterComponent(Type compType, string compId)
         {
@@ -98,8 +123,13 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <summary>
         /// Runs the application's main loop.
         /// </summary>
-        /// <param name="args">Arguments from commandline.</param>
+        /// <param name="args">The arguments passed from the command line.</param>
         /// <exception cref="InvalidOperationException">Thrown when component type is already added to the component.</exception>
+        /// <example>
+        /// <code>
+        /// app.Run(args);
+        /// </code>
+        /// </example>
         /// <since_tizen> 6 </since_tizen>
         public override void Run(string[] args)
         {
@@ -121,7 +151,7 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Exits the main loop of the application.
+        /// Exits the application's main loop.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public override void Exit()
@@ -166,31 +196,43 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// This method will be called before running main-loop
+        /// Called before the main loop starts.
         /// </summary>
-        /// <param name="args"></param>
+        /// <param name="args">The arguments passed from the command line.</param>
+        /// <remarks>
+        /// Override this method to handle any initialization logic before the application enters the main event loop.
+        /// </remarks>
         /// <since_tizen> 6 </since_tizen>
         protected virtual void OnInit(string[] args)
         {
         }
 
         /// <summary>
-        /// This method will be called after exiting main-loop
+        /// Called after the main loop exits.
         /// </summary>
+        /// <remarks>
+        /// Override this method to handle any cleanup logic after the application has finished running.
+        /// </remarks>
         /// <since_tizen> 6 </since_tizen>
         protected virtual void OnFinished()
         {
         }
 
         /// <summary>
-        /// This method will be called to start main-loop
+        /// Called to start the main loop of the application.
         /// </summary>
+        /// <remarks>
+        /// This is an abstract method that must be implemented by derived classes to define the behavior when the application starts.
+        /// </remarks>
         /// <since_tizen> 6 </since_tizen>
         protected abstract void OnRun();
 
         /// <summary>
-        /// This method will be called to exit main-loop
+        /// Called to exit the main loop of the application.
         /// </summary>
+        /// <remarks>
+        /// Override this method to handle any logic needed before the application exits.
+        /// </remarks>
         /// <since_tizen> 6 </since_tizen>
         protected virtual void OnExit()
         {

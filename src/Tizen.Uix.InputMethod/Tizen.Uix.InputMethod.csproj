@@ -7,7 +7,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Tizen\Tizen.csproj" />
     <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
-    <ProjectReference Include="..\ElmSharp\ElmSharp.csproj" />
   </ItemGroup>
 
 </Project>

@@ -30,7 +30,7 @@ namespace Tizen.NUI
     {
 
         /// <summary>
-        /// The default constructor.
+        /// The default constructor of Hover class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Hover() : this(Interop.Hover.New(0u), true)
@@ -51,7 +51,7 @@ namespace Tizen.NUI
         {
         }
 
-        internal Hover(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        internal Hover(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister, cRegister)
         {
         }
 
@@ -148,6 +148,43 @@ namespace Tizen.NUI
         public uint GetPointCount()
         {
             uint ret = Interop.Hover.GetPointCount(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the device class type from which the mouse/Hover event is originated.
+        /// </summary>
+        /// <param name="point">The index of a Hover point.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public DeviceClassType GetDeviceClass(uint point)
+        {
+            int ret = Interop.Hover.GetDeviceClass(SwigCPtr, point);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return (DeviceClassType)ret;
+        }
+
+        /// <summary>
+        /// Gets the subclass type of the device from which the mouse/Hover event is originated.
+        /// </summary>
+        /// <param name="point">The index of a Hover point.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public DeviceSubClassType GetDeviceSubClass(uint point)
+        {
+            int ret = Interop.Hover.GetDeviceSubClass(SwigCPtr, point);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return (DeviceSubClassType)ret;
+        }
+
+        /// <summary>
+        /// Gets the device name from which the mouse/Hover event is originated.
+        /// </summary>
+        /// <param name="point">The index of a Hover point.</param>
+        /// <returns>Device name</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GetDeviceName(uint point)
+        {
+            string ret = Interop.Hover.GetDeviceName(SwigCPtr, point);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -165,6 +165,31 @@
                                   WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
                                 />
                             </View>
+                            <View
+                              x:Name="CornerRadiusView3"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                              HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                            >
+                                <View.Layout>
+                                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                                </View.Layout>
+
+                                <TextLabel
+                                  x:Name="CornerSquarenessT"
+                                  Weight = "0.15"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  Text="Squareness : "
+                                />
+                                <Slider x:Name="CornerSquareness"
+                                  MinValue="0"
+                                  MaxValue="1.0"
+                                  CurrentValue="0.0"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                            </View>
                         </View>
                     </View>
 

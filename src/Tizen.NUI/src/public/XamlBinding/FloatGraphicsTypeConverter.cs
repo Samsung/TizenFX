@@ -31,13 +31,13 @@ namespace Tizen.NUI.Binding
     /// dp, sp suffix is converted to pixel value with Dpi and ScalingFactors by GraphicsTypeManager.
     /// <seealso cref="Tizen.NUI.GraphicsTypeManager" />
     /// </summary>
-    /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     [ProvideCompiledAttribute("Tizen.NUI.Xaml.Core.XamlC.FloatGraphicsTypeConverter")]
     public class FloatGraphicsTypeConverter : TypeConverter
     {
         /// <inheritdoc/>
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
@@ -50,7 +50,7 @@ namespace Tizen.NUI.Binding
         }
 
         /// <inheritdoc/>
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {

@@ -19,41 +19,47 @@ using System;
 namespace Tizen.Applications.ComponentBased.Common
 {
     /// <summary>
-    /// The class for showing UI module
+    /// Represents a base class for widget components in the component-based application model.
+    /// This class provides methods for handling the lifecycle and state of widget components.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
     public abstract class WidgetComponent : BaseComponent
     {
-
         /// <summary>
-        /// Override this method to handle behavior when the component is launched.
+        /// Called when the widget component is created. Override this method to implement custom creation behavior.
         /// </summary>
-        /// <param name="width">The width of the widget component instance</param>
-        /// <param name="height">The height of the widget component instance</param>
-        /// <returns>True if a service component is successfully created</returns>
+        /// <param name="width">The width of the widget component instance.</param>
+        /// <param name="height">The height of the widget component instance.</param>
+        /// <returns>
+        /// <c>true</c> if the widget component is successfully created; otherwise, <c>false</c>.
+        /// </returns>
         /// <since_tizen> 9 </since_tizen>
         public abstract bool OnCreate(int width, int height);
 
         /// <summary>
-        /// Override this method to create window. It will be called before OnCreate method.
+        /// Called to create the window for the widget. This method will be called before the <see cref="OnCreate"/> method.
         /// </summary>
-        /// <param name="width">The width of the widget window</param>
-        /// <param name="height">The height of the widget window</param>
-        /// <returns>Window object to use</returns>
+        /// <param name="width">The width of the widget window.</param>
+        /// <param name="height">The height of the widget window.</param>
+        /// <returns>
+        /// An <see cref="IWindowProxy"/> object representing the window to use.
+        /// </returns>
         /// <since_tizen> 9 </since_tizen>
         public abstract IWindowProxy CreateWindowInfo(int width, int height);
 
         /// <summary>
-        /// Overrid this method if want to handle behavior when the component is started.
+        /// Called when the widget component is started. Override this method to handle start behavior.
         /// </summary>
-        /// <param name="restarted">True if it was restarted</param>
+        /// <param name="restarted">
+        /// <c>true</c> if the component was restarted; otherwise, <c>false</c>.
+        /// </param>
         /// <since_tizen> 9 </since_tizen>
         public virtual void OnStart(bool restarted)
         {
         }
 
         /// <summary>
-        /// Override this method if you want to handle the behavior when the component is resumed.
+        /// Called when the widget component is resumed. Override this method to handle resume behavior.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public virtual void OnResume()
@@ -61,7 +67,7 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Override this method if you want to handle the behavior when the component is paused.
+        /// Called when the widget component is paused. Override this method to handle pause behavior.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public virtual void OnPause()
@@ -69,7 +75,7 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Override this method if you want to handle the behavior when the component is stopped.
+        /// Called when the widget component is stopped. Override this method to handle stop behavior.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public virtual void OnStop()
@@ -77,9 +83,11 @@ namespace Tizen.Applications.ComponentBased.Common
         }
 
         /// <summary>
-        /// Override this method if want to handle behavior when the component is destroyed.
+        /// Called when the widget component is destroyed. Override this method to handle destruction behavior.
         /// </summary>
-        /// <param name="permanent">True if the instance is permanent</param>
+        /// <param name="permanent">
+        /// <c>true</c> if the instance is permanent; otherwise, <c>false</c>.
+        /// </param>
         /// <since_tizen> 9 </since_tizen>
         public virtual void OnDestroy(bool permanent)
         {

@@ -2,6 +2,7 @@
 using Tizen.NUI;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
+using System.Collections.Generic;
 
 namespace NUIDnDTarget
 {
@@ -25,6 +26,15 @@ namespace NUIDnDTarget
             Window.Instance.WindowPosition = new Position(1020, 0); 
             Window.Instance.WindowSize = new Size(900, 1080); 
             Window.Instance.BackgroundColor = Color.White;
+
+            List<Window.WindowOrientation> list = new List<Window.WindowOrientation>();
+            list.Add(Window.WindowOrientation.Landscape);
+            list.Add(Window.WindowOrientation.LandscapeInverse);
+            list.Add(Window.WindowOrientation.NoOrientationPreference);
+            list.Add(Window.WindowOrientation.Portrait);
+            list.Add(Window.WindowOrientation.PortraitInverse);
+
+            Window.Instance.SetAvailableOrientations(list);
 
             TextLabel text = new TextLabel("DropTarget Application");
             text.Position = new Position(0, 0);

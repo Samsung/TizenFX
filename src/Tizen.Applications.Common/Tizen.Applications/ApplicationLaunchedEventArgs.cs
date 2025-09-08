@@ -25,7 +25,7 @@ namespace Tizen.Applications
     public class ApplicationLaunchedEventArgs : EventArgs
     {
         /// <summary>
-        /// The information of the application.
+        /// Gets the current running context of the application.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public ApplicationRunningContext ApplicationRunningContext { get; internal set; }

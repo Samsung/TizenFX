@@ -29,6 +29,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_NewCustom")]
             public static extern global::System.IntPtr NewCustom();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_NewWithBehaviour")]
+            public static extern global::System.IntPtr NewWithBehaviour(int behaviour);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_NewCustomWithBehaviour")]
+            public static extern global::System.IntPtr NewCustomWithBehaviour(int behaviour);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_View")]
             public static extern void DeleteView(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -53,6 +59,12 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_SetRenderEffect")]
             public static extern void SetRenderEffect(global::System.Runtime.InteropServices.HandleRef self, global::System.Runtime.InteropServices.HandleRef effectRef);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetRenderEffect")]
+            public static extern global::System.IntPtr GetRenderEffect(global::System.Runtime.InteropServices.HandleRef self);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetOffScreenRenderingOutput")]
+            public static extern global::System.IntPtr GetOffScreenRenderingOutput(global::System.Runtime.InteropServices.HandleRef self);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_ClearRenderEffect")]
             public static extern void ClearRenderEffect(global::System.Runtime.InteropServices.HandleRef self);

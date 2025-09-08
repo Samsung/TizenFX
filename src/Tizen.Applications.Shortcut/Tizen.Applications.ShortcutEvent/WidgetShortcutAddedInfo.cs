@@ -16,28 +16,34 @@
 
 namespace Tizen.Applications.Shortcut
 {
+    using System;
+
     /// <summary>
     /// A class that contains the information about the widget.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public class WidgetShortcutAddedInfo : ShortcutAddedInfo
     {
         /// <summary>
         /// Gets the widget ID.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public string WidgetId { get; internal set; }
 
         /// <summary>
         /// Gets the size of the widget.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public ShortcutWidgetSize WidgetSize { get; internal set; }
 
         /// <summary>
         /// Gets the update period in seconds.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public double Period { get; internal set; }
     }
 }

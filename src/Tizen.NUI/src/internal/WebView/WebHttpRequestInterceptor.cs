@@ -171,10 +171,7 @@ namespace Tizen.NUI
             PropertyMap headerMap = new PropertyMap();
             foreach (KeyValuePair<string, string> kvp in headers)
             {
-                using (PropertyValue value = new PropertyValue(kvp.Value))
-                {
-                    headerMap.Add(kvp.Key, value);
-                }
+                headerMap.Add(kvp.Key, kvp.Value);
             }
             bool result = Interop.WebHttpRequestInterceptor.AddResponseHeaders(interceptorHandle, PropertyMap.getCPtr(headerMap));
             headerMap.Dispose();

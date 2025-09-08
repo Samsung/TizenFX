@@ -49,6 +49,9 @@ namespace Tizen.MachineLearning.Train
         public Layer(NNTrainerLayerType type)
         {
             NNTrainerError ret = Interop.Layer.Create(out handle, type);
+            if (ret != NNTrainerError.None) {
+                handle = IntPtr.Zero;
+            }
             NNTrainer.CheckException(ret, "Failed to create model instance");
             Log.Info(NNTrainer.Tag, $"Create layer with type:{type}");
         }
@@ -98,7 +101,7 @@ namespace Tizen.MachineLearning.Train
             disposed = true;
 
             if (!hasOwnership){
-                Log.Error(NNTrainer.Tag, "Cannot destroy layer already added in a Model. Model will destroy this layer");
+                Log.Info(NNTrainer.Tag, "Cannot destroy layer already added in a Model. Model will destroy this layer");
                 return;
             }
 

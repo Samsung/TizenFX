@@ -31,7 +31,7 @@ namespace Tizen.NUI
     internal class Uint16Pair : Disposable
     {
 
-        internal Uint16Pair(IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Uint16Pair(IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 

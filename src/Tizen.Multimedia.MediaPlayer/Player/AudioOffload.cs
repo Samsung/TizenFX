@@ -50,7 +50,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Enables or disables the audio offload.
+        /// Gets or sets whether the audio offload is enabled.
         /// </summary>
         /// <value>The value indicating whether or not audio offload is enabled. The default value is false.</value>
         /// <remarks><para>The player lets the hardware decode and render the sound if the audio offload is enabled.
@@ -103,7 +103,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Get a state whether or not the audio offload is activated.
+        /// Get a value indication whether or not the audio offload is activated.
         /// </summary>
         /// <value>The value indicating whether or not AudioOffload is activated.</value>
         /// <remarks>

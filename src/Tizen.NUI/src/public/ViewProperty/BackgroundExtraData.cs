@@ -24,20 +24,14 @@ namespace Tizen.NUI
     /// </summary>
     internal class BackgroundExtraData : IDisposable
     {
-        private bool disposed = false;
+        private bool disposed;
         internal BackgroundExtraData()
         {
-            BorderlineColor = Tizen.NUI.Color.Black;
         }
 
         internal BackgroundExtraData(BackgroundExtraData other)
         {
             BackgroundImageBorder = other.BackgroundImageBorder;
-            CornerRadius = other.CornerRadius;
-            CornerRadiusPolicy = other.CornerRadiusPolicy;
-            BorderlineWidth = other.BorderlineWidth;
-            BorderlineColor = other.BorderlineColor;
-            BorderlineOffset = other.BorderlineOffset;
         }
 
         private Rectangle backgroundImageBorder;
@@ -50,20 +44,29 @@ namespace Tizen.NUI
         }
 
         /// <summary></summary>
+        [Obsolete("Do not use this, that is deprecated in API13.")]
         internal Vector4 CornerRadius { get; set; }
+
+        /// <summary></summary>
+        [Obsolete("Do not use this, that is deprecated in API13.")]
+        internal Vector4 CornerSquareness { get; set; }
 
         /// <summary>
         /// Whether the CornerRadius value is relative (percentage [0.0f to 0.5f] of the view size) or absolute (in world units).
         /// </summary>
+        [Obsolete("Do not use this, that is deprecated in API13.")]
         internal VisualTransformPolicyType CornerRadiusPolicy { get; set; } = VisualTransformPolicyType.Absolute;
 
         /// <summary></summary>
+        [Obsolete("Do not use this, that is deprecated in API13.")]
         internal float BorderlineWidth { get; set; }
 
         /// <summary></summary>
+        [Obsolete("Do not use this, that is deprecated in API13.")]
         internal Color BorderlineColor { get; set; }
 
         /// <summary></summary>
+        [Obsolete("Do not use this, that is deprecated in API13.")]
         internal float BorderlineOffset { get; set; }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -76,8 +79,6 @@ namespace Tizen.NUI
             if (disposing)
             {
                 backgroundImageBorder?.Dispose();
-                CornerRadius?.Dispose();
-                BorderlineColor?.Dispose();
             }
             disposed = true;
         }

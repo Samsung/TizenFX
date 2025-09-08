@@ -23,27 +23,27 @@ namespace Tizen.Applications
     public enum ApplicationComponentType
     {
         /// <summary>
-        /// Component type is ui application.
+        /// The user interface (UI) application component type.
         /// </summary>
         UIApplication = 0,
 
         /// <summary>
-        /// Component type is service application.
+        /// The service application component type.
         /// </summary>
         ServiceApplication,
 
         /// <summary>
-        /// Component type is widget application.
+        /// The widget application component type.
         /// </summary>
         WidgetApplication,
 
         /// <summary>
-        /// Component type is watch application.
+        /// The watch application component type.
         /// </summary>
         WatchApplication,
 
         /// <summary>
-        /// Component type is component-based application.
+        /// The component-based application component type.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         ComponentBasedApplication,

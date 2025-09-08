@@ -30,7 +30,7 @@ namespace Tizen.NUI
     {
         private const int addThreshold = 1000; // Experimetal constant
         private const int listLengthThreshold = 1000; // Experimetal constant
-        private int cleanUpAddCount = 0;
+        private int cleanUpAddCount;
         private List<WeakHandler<T>> handlers = new List<WeakHandler<T>>();
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace Tizen.NUI
         protected int Count => handlers.Count;
 
         /// <summary>
-        /// Add an event handler.
+        /// Adds an event handler to the list of weak references.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
         public virtual void Add(T handler)
@@ -59,6 +59,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Remove last stored event handler equal to <paramref name="handler"/>.
         /// </summary>
+        /// <param name="handler">The event handler to remove.</param>
         /// <since_tizen> 12 </since_tizen>
         public virtual void Remove(T handler)
         {
@@ -80,6 +81,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Invoke event handlers.
         /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="args">An object that contains event data.</param>
         /// <since_tizen> 12 </since_tizen>
         public void Invoke(object sender, object args)
         {

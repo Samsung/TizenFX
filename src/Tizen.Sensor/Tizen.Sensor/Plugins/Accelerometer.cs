@@ -26,28 +26,28 @@ namespace Tizen.Sensor
     {
         private static string AccelerometerKey = "http://tizen.org/feature/sensor.accelerometer";
         /// <summary>
-        /// Gets the X component of the acceleration.
+        /// Get the X component value of acceleration from the accelerometer sensor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> X </value>
         public float X { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Gets the Y component of the acceleration.
+        /// Get the Y component value of acceleration from the accelerometer sensor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Y </value>
         public float Y { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Gets the Z component of the acceleration.
+        /// Get the Z component value of acceleration from the accelerometer sensor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Z </value>
         public float Z { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Returns true or false based on whether accelerometer sensor is supported by the device.
+        /// Return true or false based on whether accelerometer sensor is supported by the system.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
@@ -61,7 +61,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Returns the number of accelerometer sensors available on the device.
+        /// Return the number of accelerometer sensors available by the system.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The count of accelerometer sensors. </value>

@@ -157,7 +157,7 @@ namespace Tizen
     {
         private static char[] sep = { '\\', '/' };
         /// <summary>
-        /// Prints a log message with the VERBOSE priority.
+        /// Prints a regular log message with the VERBOSE priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
@@ -171,7 +171,7 @@ namespace Tizen
         }
 
         /// <summary>
-        /// Prints a log message with the DEBUG priority.
+        /// Prints a regular log message with the DEBUG priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
@@ -185,7 +185,7 @@ namespace Tizen
         }
 
         /// <summary>
-        /// Prints a log message with the INFO priority.
+        /// Prints a regular log message with the INFO priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
@@ -199,7 +199,7 @@ namespace Tizen
         }
 
         /// <summary>
-        /// Prints a log message with the WARNING priority.
+        /// Prints a regular log message with the WARNING priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
@@ -213,7 +213,7 @@ namespace Tizen
         }
 
         /// <summary>
-        /// Prints a log message with the ERROR priority.
+        /// Prints a regular log message with the ERROR priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
@@ -227,7 +227,7 @@ namespace Tizen
         }
 
         /// <summary>
-        /// Prints a log message with the FATAL priority.
+        /// Prints a regular log message with the FATAL priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
@@ -248,6 +248,7 @@ namespace Tizen
 
     /// <summary>
     /// Provides methods to print log messages to the Tizen logging system.
+    /// Sends "internal" logs, which end up in a different Dlog buffer than regular logs.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -255,7 +256,7 @@ namespace Tizen
     {
         private static char[] sep = { '\\', '/' };
         /// <summary>
-        /// Prints a log message with the VERBOSE priority.
+        /// Prints an internal log message with the VERBOSE priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
@@ -270,7 +271,7 @@ namespace Tizen
         }
 
         /// <summary>
-        /// Prints a log message with the DEBUG priority.
+        /// Prints an internal log message with the DEBUG priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
@@ -284,7 +285,7 @@ namespace Tizen
         }
 
         /// <summary>
-        /// Prints a log message with the INFO priority.
+        /// Prints an internal log message with the INFO priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
@@ -298,7 +299,7 @@ namespace Tizen
         }
 
         /// <summary>
-        /// Prints a log message with the WARNING priority.
+        /// Prints an internal log message with the WARNING priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
@@ -312,7 +313,7 @@ namespace Tizen
         }
 
         /// <summary>
-        /// Prints a log message with the ERROR priority.
+        /// Prints an internal log message with the ERROR priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
@@ -326,7 +327,7 @@ namespace Tizen
         }
 
         /// <summary>
-        /// Prints a log message with the FATAL priority.
+        /// Prints an internal log message with the FATAL priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
@@ -347,6 +348,7 @@ namespace Tizen
 
     /// <summary>
     /// Provides methods to print log messages to the Tizen logging system.
+    /// Sends "secure" logs, which have extra safety not to appear on release builds.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -354,7 +356,7 @@ namespace Tizen
     {
         private static char[] sep = { '\\', '/' };
         /// <summary>
-        /// Prints a log message with the VERBOSE priority.
+        /// Prints a secure log message with the VERBOSE priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
@@ -369,7 +371,7 @@ namespace Tizen
         }
 
         /// <summary>
-        /// Prints a log message with the DEBUG priority.
+        /// Prints a secure log message with the DEBUG priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
@@ -383,7 +385,7 @@ namespace Tizen
         }
 
         /// <summary>
-        /// Prints a log message with the INFO priority.
+        /// Prints a secure log message with the INFO priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
@@ -397,7 +399,7 @@ namespace Tizen
         }
 
         /// <summary>
-        /// Prints a log message with the WARNING priority.
+        /// Prints a secure log message with the WARNING priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
@@ -411,7 +413,7 @@ namespace Tizen
         }
 
         /// <summary>
-        /// Prints a log message with the ERROR priority.
+        /// Prints a secure log message with the ERROR priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>
@@ -425,7 +427,7 @@ namespace Tizen
         }
 
         /// <summary>
-        /// Prints a log message with the FATAL priority.
+        /// Prints a secure log message with the FATAL priority.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="tag">The tag name of the log message.</param>

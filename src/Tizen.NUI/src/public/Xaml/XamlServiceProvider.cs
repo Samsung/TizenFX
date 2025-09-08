@@ -26,7 +26,7 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Xaml
 {
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class XamlServiceProvider : IServiceProvider
     {
@@ -54,7 +54,7 @@ namespace Tizen.NUI.Xaml
             IValueConverterProvider = new ValueConverterProvider();
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public XamlServiceProvider()
         {
@@ -97,7 +97,7 @@ namespace Tizen.NUI.Xaml
             set { services[typeof(IValueConverterProvider)] = value; }
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object GetService(Type serviceType)
         {
@@ -105,7 +105,7 @@ namespace Tizen.NUI.Xaml
             return services.TryGetValue(serviceType, out service) ? service : null;
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(Type type, object service)
         {
@@ -127,7 +127,7 @@ namespace Tizen.NUI.Xaml
 
         HydrationContext Context { get; }
         public object TargetObject { get; }
-        public object TargetProperty { get; internal set; } = null;
+        public object TargetProperty { get; internal set; }
 
         IEnumerable<object> IProvideParentValues.ParentObjects
         {
@@ -156,21 +156,21 @@ namespace Tizen.NUI.Xaml
         }
     }
 
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SimpleValueTargetProvider : IProvideParentValues, IProvideValueTarget, IReferenceProvider
     {
         readonly object[] objectAndParents;
         readonly object targetProperty;
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         [Obsolete("SimpleValueTargetProvider(object[] objectAndParents) is obsolete as of version 2.3.4. Use SimpleValueTargetProvider(object[] objectAndParents, object targetProperty) instead.")]
         public SimpleValueTargetProvider(object[] objectAndParents) : this(objectAndParents, null)
         {
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SimpleValueTargetProvider(object[] objectAndParents, object targetProperty)
         {
@@ -192,7 +192,7 @@ namespace Tizen.NUI.Xaml
         object IProvideValueTarget.TargetProperty
             => targetProperty;
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object FindByName(string name)
         {
@@ -210,7 +210,7 @@ namespace Tizen.NUI.Xaml
         }
     }
 
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class XamlTypeResolver : IXamlTypeResolver
     {
@@ -218,7 +218,7 @@ namespace Tizen.NUI.Xaml
         readonly GetTypeFromXmlName getTypeFromXmlName;
         readonly IXmlNamespaceResolver namespaceResolver;
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public XamlTypeResolver(IXmlNamespaceResolver namespaceResolver, Assembly currentAssembly)
             : this(namespaceResolver, XamlParser.GetElementType, currentAssembly)
@@ -305,18 +305,18 @@ namespace Tizen.NUI.Xaml
         public object RootObject { get; }
     }
 
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class XmlLineInfoProvider : IXmlLineInfoProvider
     {
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public XmlLineInfoProvider(IXmlLineInfo xmlLineInfo)
         {
             XmlLineInfo = xmlLineInfo;
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IXmlLineInfo XmlLineInfo { get; }
     }
@@ -341,30 +341,30 @@ namespace Tizen.NUI.Xaml
         }
     }
 
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     [ObsoleteAttribute(" ", false)]
     public class NameScopeProvider : INameScopeProvider
     {
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public INameScope NameScope { get; set; }
     }
 
-    /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class XmlNamespaceResolver : IXmlNamespaceResolver
     {
         readonly Dictionary<string, string> namespaces = new Dictionary<string, string>();
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IDictionary<string, string> GetNamespacesInScope(XmlNamespaceScope scope)
         {
             throw new NotImplementedException();
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string LookupNamespace(string prefix)
         {
@@ -374,14 +374,14 @@ namespace Tizen.NUI.Xaml
             return null;
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string LookupPrefix(string namespaceName)
         {
             throw new NotImplementedException();
         }
 
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Add(string prefix, string ns)
         {

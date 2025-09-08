@@ -27,43 +27,44 @@ namespace Tizen.Sensor
         private static string RotationVectorKey = "http://tizen.org/feature/sensor.rotation_vector";
 
         private event EventHandler<SensorAccuracyChangedEventArgs> _accuracyChanged;
+
         /// <summary>
-        /// Gets the X component of the rotation vector.
+        /// Get the X component value of the rotation vector as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> X </value>
         public float X { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Gets the Y component of the rotation vector.
+        /// Get the Y component value of the rotation vector as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Y </value>
         public float Y { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Gets the Z component of the rotation vector.
+        /// Get the Z component value of the rotation vector as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Z </value>
         public float Z { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Gets the W component of the rotation vector.
+        /// Get the W component value of the rotation vector as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> W </value>
         public float W { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Gets the accuracy of the rotation vector data.
+        /// Get the accuracy value of the rotation vector data as enum <see cref="SensorDataAccuracy"/> type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value> Accuracy </value>
+        /// <value> Accuracy, <seealso cref="SensorDataAccuracy"/>. </value>
         public SensorDataAccuracy Accuracy { get; private set; } = SensorDataAccuracy.Undefined;
 
         /// <summary>
-        /// Returns true or false based on whether the rotation vector sensor is supported by the device.
+        /// Return true or false based on whether the rotation vector sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
@@ -77,7 +78,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Returns the number of rotation vector sensors available on the device.
+        /// Return the number of rotation vector sensors available on the system.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The count of rotation vector sensors. </value>
@@ -91,7 +92,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tizen.Sensor.RotationVectorSensor"/> class.
+        /// Initialize a new instance of the <see cref="Tizen.Sensor.RotationVectorSensor"/> class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.rotation_vector</feature>
@@ -99,7 +100,8 @@ namespace Tizen.Sensor
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular rotation vector sensor in case of multiple sensors.
+        /// Index refers to a particular rotation vector sensor in case of multiple sensors.
+        /// Default value is 0.
         /// </param>
         public RotationVectorSensor(uint index = 0) : base(index)
         {
@@ -115,11 +117,12 @@ namespace Tizen.Sensor
         /// An event handler for storing the callback functions for the event corresponding to the change in the rotation vector sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-
         public event EventHandler<RotationVectorSensorDataUpdatedEventArgs> DataUpdated;
 
         /// <summary>
         /// An event handler for accuracy changed events.
+        /// If an event is added, a new accuracy change callback is registered for this sensor.
+        /// If an event is removed, accuracy change callback is unregistered for this sensor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<SensorAccuracyChangedEventArgs> AccuracyChanged

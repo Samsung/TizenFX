@@ -30,7 +30,7 @@ namespace Tizen.NUI
     {
 
         /// <summary>
-        /// The constructor.
+        /// The default constructor of RelativeVector4 class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public RelativeVector4() : this(Interop.Vector4.NewVector4(), true)
@@ -77,7 +77,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         internal delegate void RelativeVector4ChangedCallback(float x, float y, float z, float w);
-        private RelativeVector4ChangedCallback callback = null;
+        private RelativeVector4ChangedCallback callback;
 
         /// <summary>
         /// The x component.
@@ -290,6 +290,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Implicitly converts a RelativeVector4 instance to a Vector4 instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector4(RelativeVector4 relativeVector4)
@@ -302,6 +303,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Implicitly converts a Vector4 instance to a RelativeVector4 instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator RelativeVector4(Vector4 vec)
@@ -379,8 +381,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// </summary>
         internal static RelativeVector4 GetRelativeVector4FromPtr(global::System.IntPtr cPtr)
         {
             RelativeVector4 ret = new RelativeVector4(cPtr, false);
@@ -388,7 +388,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal RelativeVector4(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal RelativeVector4(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 

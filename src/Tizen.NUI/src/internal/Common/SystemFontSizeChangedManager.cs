@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.NUI
 {
@@ -28,9 +29,20 @@ namespace Tizen.NUI
     /// </summary>
     internal static class SystemFontSizeChangedManager
     {
+        private static SystemSettingsFontSize? fontSize;
+        private static WeakEvent<EventHandler<FontSizeChangedEventArgs>> proxy = new WeakEvent<EventHandler<FontSizeChangedEventArgs>>();
+
         static SystemFontSizeChangedManager()
         {
-            SystemSettings.FontSizeChanged += SystemFontSizeChanged;
+            try
+            {
+                SystemSettings.FontSizeChanged += SystemFontSizeChanged;
+            }
+            catch(Exception e)
+            {
+                Tizen.Log.Info("NUI", $"{e} Exception caught! SystemFontSizeChanged will not be detected!\n");
+                fontSize = SystemSettingsFontSize.Normal;
+            }
         }
 
         /// <summary>
@@ -58,10 +70,30 @@ namespace Tizen.NUI
 
         private static void SystemFontSizeChanged(object sender, FontSizeChangedEventArgs args)
         {
+            fontSize = args.Value;
             proxy.Invoke(sender, args);
             Finished?.Invoke(sender, args);
         }
 
-        private static WeakEvent<EventHandler<FontSizeChangedEventArgs>> proxy = new WeakEvent<EventHandler<FontSizeChangedEventArgs>>();
+        [SuppressMessage("Microsoft.Design", "CA1031: Do not catch general exception types", Justification = "This method is to handle system settings information that may throw an exception but ignorable. This method should not interrupt the main stream.")]
+        public static SystemSettingsFontSize FontSize
+        {
+            get
+            {
+                if (fontSize == null)
+                {
+                    try
+                    {
+                        fontSize = SystemSettings.FontSize;
+                    }
+                    catch (Exception e)
+                    {
+                        Tizen.Log.Info("NUI", $"{e} Exception caught.\n");
+                        fontSize = SystemSettingsFontSize.Normal;
+                    }
+                }
+                return fontSize ?? SystemSettingsFontSize.Normal;
+            }
+        }
     }
 }

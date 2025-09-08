@@ -21,8 +21,8 @@ using Tizen.Internals.Errors;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// The preference class provides APIs to store and retrieve an application specific data/preference. A preference is saved in the form of a key-value pair.
-    /// Keys are always text strings and the value can be any one of the four types: integer, double, string, and boolean.
+    /// The Preference class provides methods to store and retrieve application specific data/preferences. Preferences are stored in the form of key-value pairs.
+    /// Key names must be text strings while values can be integers, doubles, strings, or booleans.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public static class Preference
@@ -136,6 +136,9 @@ namespace Tizen.Applications
         /// <returns>True if the key exists in the preference, otherwise false.</returns>
         /// <exception cref="ArgumentException">Thrown if the key is an invalid parameter.</exception>
         /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
+        /// <remarks>
+        /// This method checks if the specified key exists in the preferences. It returns true if the key exists, and false if not. The key argument should be a valid parameter. An ArgumentException will be thrown if the key is invalid. Additionally, an IOException may be thrown if the method fails due to an internal input/output error.
+        /// </remarks>
         /// <example>
         /// <code>
         ///     Preference.Set("active_user", "Joe");
@@ -166,18 +169,18 @@ namespace Tizen.Applications
         /// </summary>
         /// <remarks>
         /// If the key already exists in the preference, the old value will be overwritten with a new value.
-        /// Data types for supported values are: integer, double, string, and bool.
+        /// Supported value data types include integers, doubles, strings, and booleans.
         /// </remarks>
         /// <param name="key">The name of the key to create/modify.</param>
         /// <param name="value">The value corresponding to the key.</param>
         /// <exception cref="ArgumentException">Thrown if the key is an invalid parameter.</exception>
-        /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method fails due to an internal I/O error.</exception>
         /// <example>
         /// <code>
         ///     Preference.Set("Option_enabled", true);
         ///     Preference.Set("active_user", "Joe");
         ///     Preference.Set("default_volume", 10);
-        ///     Preference.Set("brightness", "0.6");
+        ///     Preference.Set("brightness", 0.6);
         /// </code>
         /// </example>
         /// <since_tizen> 3 </since_tizen>
@@ -362,7 +365,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The class manages event handlers of the preference keys. The class enables having event handlers for individual preference keys.
+        /// The class manages event handlers of the preference keys. It provides functionality to have event handlers for individual preference keys.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public class EventContext
@@ -377,14 +380,20 @@ namespace Tizen.Applications
             /// <summary>
             /// Occurs whenever there is a change in the value of a preference key.
             /// </summary>
+            /// <remarks>
+            /// This event is raised whenever the value of a preference key changes. It provides information about the changed key through the PreferenceChangedEventArgs argument.
+            /// The Changed event can be used to keep track of any modifications made to preferences during runtime.
+            /// </remarks>
             /// <exception cref="System.ArgumentException">Thrown when the key does not exist or when there is an invalid parameter.</exception>
             /// <exception cref="System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
             /// <example>
+            /// In this example, we show how to handle the Changed event by printing out the key that was modified. We also demonstrate how to subscribe and unsubscribe from the event.
             /// <code>
             ///     private static void Preference_PreferenceChanged(object sender, PreferenceChangedEventArgs e)
             ///     {
             ///         Console.WriteLine("key {0}", e.Key);
             ///     }
+            ///
             ///     Preference.EventContext context = null;
             ///     Preference.GetEventContext("active_user").TryGetTarget(out context);
             ///     if(context != null)

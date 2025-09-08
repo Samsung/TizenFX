@@ -28,42 +28,6 @@ namespace Tizen.NUI
         internal static partial class ControlDevel
         {
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActivateSignal")]
-            public static extern IntPtr DaliToolkitDevelControlAccessibilityActivateSignal(BaseComponents.View.ControlHandle arg1);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingSkippedSignal")]
-            public static extern IntPtr DaliToolkitDevelControlAccessibilityReadingSkippedSignal(BaseComponents.View.ControlHandle arg1);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingPausedSignal")]
-            public static extern IntPtr DaliToolkitDevelControlAccessibilityReadingPausedSignal(BaseComponents.View.ControlHandle arg1);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingResumedSignal")]
-            public static extern IntPtr DaliToolkitDevelControlAccessibilityReadingResumedSignal(BaseComponents.View.ControlHandle arg1);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingCancelledSignal")]
-            public static extern IntPtr DaliToolkitDevelControlAccessibilityReadingCancelledSignal(BaseComponents.View.ControlHandle arg1);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingStoppedSignal")]
-            public static extern IntPtr DaliToolkitDevelControlAccessibilityReadingStoppedSignal(BaseComponents.View.ControlHandle arg1);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityGetNameSignal")]
-            public static extern IntPtr DaliToolkitDevelControlAccessibilityGetNameSignal(BaseComponents.View.ControlHandle arg1);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityGetDescriptionSignal")]
-            public static extern IntPtr DaliToolkitDevelControlAccessibilityGetDescriptionSignal(BaseComponents.View.ControlHandle arg1);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityDoGestureSignal")]
-            public static extern IntPtr DaliToolkitDevelControlAccessibilityDoGestureSignal(BaseComponents.View.ControlHandle arg1);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AppendAccessibilityRelation")]
             public static extern void DaliToolkitDevelControlAppendAccessibilityRelation(HandleRef arg1, HandleRef arg2, int arg3);
 
@@ -82,6 +46,14 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_ClearAccessibilityRelations")]
             public static extern void DaliToolkitDevelControlClearAccessibilityRelations(HandleRef arg1);
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AppendAccessibilityAttribute")]
+            public static extern void DaliToolkitDevelControlAppendAccessibilityAttribute(HandleRef arg1, string arg2_key, string arg3_value);
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_RemoveAccessibilityAttribute")]
+            public static extern void DaliToolkitDevelControlRemoveAccessibilityAttribute(HandleRef arg1, string arg2_key);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_SetAccessibilityReadingInfoType2")]
@@ -168,6 +140,19 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Accessible_SetHighlightActor")]
             public static extern void DaliAccessibilityAccessibleSetHighlightActor(HandleRef arg1);
+
+#if false
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActionSignal")]
+            public static extern IntPtr DaliToolkitDevelControlAccessibilityActionSignal(BaseComponents.View.ControlHandle arg1);
+#endif
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_SetCustomHighlightOverlay")]
+            public static extern void SetCustomHighlightOverlay(global::System.Runtime.InteropServices.HandleRef control, global::System.Runtime.InteropServices.HandleRef position, global::System.Runtime.InteropServices.HandleRef size);
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_ResetCustomHighlightOverlay")]
+            public static extern void ResetCustomHighlightOverlay(global::System.Runtime.InteropServices.HandleRef control);
 
             // Keep this structure layout binary compatible with the respective C++ structure!
             [EditorBrowsable(EditorBrowsableState.Never)]

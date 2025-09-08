@@ -23,7 +23,7 @@ using Tizen.Internals.Errors;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Represents an application that has an UI screen. The events for resuming and pausing are provided.
+    /// Represents an application that has an UI screen. It provides events for handling resume and pause actions.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class CoreUIApplication : CoreApplication
@@ -32,7 +32,7 @@ namespace Tizen.Applications
         /// Initializes the CoreUIApplication class.
         /// </summary>
         /// <remarks>
-        /// The default backend for the UI application will be used.
+        /// By calling this constructor, the default backend for the UI application will be used.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
 #pragma warning disable CA2000
@@ -45,9 +45,9 @@ namespace Tizen.Applications
         /// Initializes the CoreUIApplication class.
         /// </summary>
         /// <remarks>
-        /// If you want to change the backend, use this constructor.
+        /// This constructor is called if you need to modify the default behavior by providing a custom implementation of the ICoreBackend interface. By passing in your own backend instance, you can customize the application's functionality according to your requirements.
         /// </remarks>
-        /// <param name="backend">The backend instance implementing the ICoreBacked interface.</param>
+        /// <param name="backend">The custom implementation of the ICoreBackend interface that provides customized functionalities.</param>
         /// <since_tizen> 3 </since_tizen>
         public CoreUIApplication(ICoreBackend backend) : base(backend)
         {
@@ -91,7 +91,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if you want to handle the behavior before calling OnCreate().
+        /// Overrides this method if you want to handle any specific actions before calling the OnCreate() method.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPreCreate()
@@ -99,8 +99,8 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if you want to handle the behavior when the application is resumed.
-        /// If base.OnResume() is not called, the event 'Resumed' will not be emitted.
+        /// Override this method to define the behavior when the application is resumed.
+        /// Calling base.OnResume() is required in order for the Resumed event to be raised.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnResume()
@@ -109,8 +109,8 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Overrides this method if you want to handle the behavior when the application is paused.
-        /// If base.OnPause() is not called, the event 'Paused' will not be emitted.
+        /// Override this method to define the behavior when the application is paused.
+        /// Calling base.OnPause() is required in order for the Paused event to be raised.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPause()
@@ -122,7 +122,7 @@ namespace Tizen.Applications
         /// Gets the window position of the application.
         /// </summary>
         /// <returns>The window position.</returns>
-        /// <exception cref="InvalidOperationException">Thrown when there is no window position.</exception>
+        /// <exception cref="InvalidOperationException">Thrown if there is no valid window position available.</exception>
         /// <since_tizen> 11 </since_tizen>
         public WindowPosition GetWindowPosition()
         {

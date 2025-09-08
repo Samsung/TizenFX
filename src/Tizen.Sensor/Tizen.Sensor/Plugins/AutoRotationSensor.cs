@@ -30,22 +30,22 @@ namespace Tizen.Sensor
         private event EventHandler<SensorAccuracyChangedEventArgs> _accuracyChanged;
 
         /// <summary>
-        /// Gets the value of the rotation state.
+        /// Get the degree of the rotation state of the sensor as enum <see cref="AutoRotationState"/> type.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
-        /// <value> The rotation state. </value>
+        /// <value> The rotation state, <seealso cref="AutoRotationState"/>. </value>
         public AutoRotationState Rotation { get; private set; } = AutoRotationState.Degree_0;
 
 
         /// <summary>
-        /// Gets the accuracy of the auto-rotation data.
+        /// Get the accuracy of the auto-rotation data as enum <see cref="SensorDataAccuracy"/> type.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
-        /// <value> Accuracy </value>
+        /// <value> Accuracy, <seealso cref="SensorDataAccuracy"/> </value>
         public SensorDataAccuracy Accuracy { get; private set; } = SensorDataAccuracy.Undefined;
 
         /// <summary>
-        /// Returns true or false based on whether the auto-rotation sensor is supported by the device.
+        /// Return true or false based on whether the auto-rotation sensor is supported by the system.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
@@ -87,11 +87,12 @@ namespace Tizen.Sensor
         /// An event handler for storing the callback functions for the event corresponding to the change in the auto-rotation sensor data.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
-
         public event EventHandler<AutoRotationSensorDataUpdatedEventArgs> DataUpdated;
 
         /// <summary>
-        /// An event handler for accuracy changed events.
+        /// An event handler for the event of accuracy change.
+        /// If an event is added, a new accuracy change callback is registered for this sensor.
+        /// If an event is removed, accuracy change callback is unregistered for this sensor.
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public event EventHandler<SensorAccuracyChangedEventArgs> AccuracyChanged

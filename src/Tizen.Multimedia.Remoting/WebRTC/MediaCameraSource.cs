@@ -21,7 +21,7 @@ using NativeWebRTC = Interop.NativeWebRTC;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Represents a camera source.
+    /// Represents a media source that makes video data using camera device internally.
     /// </summary>
     /// <remarks>The camera privilege(http://tizen.org/privilege/camera) is required.</remarks>
     /// <seealso cref="WebRTC.AddSource"/>
@@ -36,7 +36,7 @@ namespace Tizen.Multimedia.Remoting
         public MediaCameraSource() : base(MediaType.Video) {}
 
         /// <summary>
-        /// Gets or sets the camera device id.
+        /// Gets or sets the camera device id that identifies each camera device.
         /// </summary>
         /// <value>A value that specifies the camera device id.</value>
         /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>

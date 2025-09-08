@@ -47,6 +47,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static RenderTaskList DownCast(BaseHandle handle)
         {
+            _ = handle ?? throw new System.ArgumentNullException(nameof(handle));
             RenderTaskList ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as RenderTaskList;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -63,7 +64,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public RenderTask CreateTask()
         {
-            RenderTask ret = new RenderTask(Interop.RenderTask.RenderTaskListCreateTask(SwigCPtr), true);
+            RenderTask ret = new RenderTask(this, Interop.RenderTask.RenderTaskListCreateTask(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -97,14 +98,14 @@ namespace Tizen.NUI
                 HandleRef CPtr = new HandleRef(this, cPtr);
                 Interop.BaseHandle.DeleteBaseHandle(CPtr);
                 CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
             else
             {
-                ret = new RenderTask(cPtr, true);
+                ret = new RenderTask(this, cPtr, true);
+                return ret;
             }
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
     }
 }

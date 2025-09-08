@@ -15,7 +15,10 @@
  */
 
 using System;
+using System.Drawing;
 using System.Runtime.InteropServices;
+using Tizen.Internals;
+using Tizen.Multimedia;
 using Tizen.Multimedia.Remoting;
 
 internal static partial class Interop
@@ -25,6 +28,12 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void StateChangedCallback(ScreenMirroringErrorCode error,
             ScreenMirroringState state, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void SrcDisplayOrientationReceivedCallback(ScreenMirroringDisplayOrientation orientation, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void UibcInfoReceivedCallback(ScreenMirroringErrorCode error, IntPtr info, IntPtr userData);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_create")]
         internal static extern ScreenMirroringErrorCode Create(out IntPtr handle);
@@ -39,11 +48,23 @@ internal static partial class Interop
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_display")]
         internal static extern ScreenMirroringErrorCode SetDisplay(IntPtr handle, int type, IntPtr display);
 
+        [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_display_mode")]
+        internal static extern ScreenMirroringErrorCode SetDisplayMode(IntPtr handle, ScreenMirroringDisplayMode mode);
+
+        [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_display_roi")]
+        internal static extern ScreenMirroringErrorCode SetDisplayRoi(IntPtr handle, int x, int y, int width, int height);
+
+        [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_display_rotation")]
+        internal static extern ScreenMirroringErrorCode SetDisplayRotation(IntPtr handle, Rotation rotatjion);
+
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_ecore_wl_display")]
         internal static extern ScreenMirroringErrorCode SetEcoreDisplay(IntPtr handle, IntPtr display);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_resolution")]
         internal static extern ScreenMirroringErrorCode SetResolution(IntPtr handle, ScreenMirroringResolutions resolution);
+
+        [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_src_device_type")]
+        internal static extern ScreenMirroringErrorCode SetSrcDeviceType(IntPtr handle, ScreenMirroringDeviceType type);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_prepare")]
         internal static extern ScreenMirroringErrorCode Prepare(IntPtr handle);
@@ -99,5 +120,65 @@ internal static partial class Interop
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_get_negotiated_audio_bitwidth")]
         internal static extern ScreenMirroringErrorCode GetNegotiatedAudioBitwidth(ref IntPtr handle,
             out int bitwidth);
+
+        // UIBC
+        [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_src_display_orientation_notify_cb")]
+        internal static extern ScreenMirroringErrorCode SetSrcDisplayOrientationChangedCb(IntPtr handle,
+            SrcDisplayOrientationReceivedCallback callback, IntPtr userData = default);
+
+        [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_uibc_info_received_cb")]
+        internal static extern ScreenMirroringErrorCode SetUibcInfoReceivedCb(IntPtr handle,
+            UibcInfoReceivedCallback callback, IntPtr userData = default);
+
+        [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_set_window_size")]
+        internal static extern ScreenMirroringErrorCode SetWindowSize(IntPtr handle, int width, int height);
+
+        [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_enable_uibc")]
+        internal static extern ScreenMirroringErrorCode EnableUibc(IntPtr handle, ScreenMirroringCaptureMode mode);
+
+        [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_send_generic_mouse_event")]
+        internal static extern ScreenMirroringErrorCode SendGenericMouseEvent(IntPtr handle, IntPtr uibcEvent);
+
+        [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_send_generic_key_event")]
+        internal static extern ScreenMirroringErrorCode SendGenericKeyEvent(IntPtr handle, ScreenMirroringKeyEventType type, ushort keyCode1, ushort keyCode2);
+
+        [NativeStruct("scmirroring_uibc_input_s", Include = "scmirroring_type_internal.h", PkgConfig = "capi-media-screen-mirroring")]
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct UibcInput
+        {
+            internal ScreenMirroringUibcInputType type;
+            internal ScreenMirroringUibcInputPath path;
+        }
+
+        [NativeStruct("scmirroring_uibc_info_s", Include = "scmirroring_type_internal.h", PkgConfig = "capi-media-screen-mirroring")]
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct UibcInfo
+        {
+            internal string Ip;
+            internal uint Port;
+            internal uint GenCapability;
+            internal int Width;
+            internal int Height;
+            internal IntPtr hidcCapsList;
+            internal uint hidcCapsSize;
+        }
+
+        [NativeStruct("scmirroring_uibc_mouse_s", Include = "scmirroring_type_internal.h", PkgConfig = "capi-media-screen-mirroring")]
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct UibcMouse
+        {
+            internal ushort id;
+            internal ushort x;
+            internal ushort y;
+        }
+
+        [NativeStruct("scmirroring_uibc_mouse_event_s", Include = "scmirroring_type_internal.h", PkgConfig = "capi-media-screen-mirroring")]
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct UibcMouseEvent
+        {
+            internal int size;
+            internal ScreenMirroringMouseEventType type;
+            internal IntPtr uibcMouse;
+        }
     }
 }

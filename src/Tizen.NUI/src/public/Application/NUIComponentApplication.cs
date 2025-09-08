@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.Applications;
 using Tizen.Applications.ComponentBased.Common;
+using System.Threading;
 
 namespace Tizen.NUI
 {
@@ -40,6 +41,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIComponentApplication(IDictionary<Type, string> typeInfo) : base(new NUIComponentCoreBackend())
         {
+            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
             if (typeInfo != null)
             {
                 foreach (var component in typeInfo)
@@ -71,6 +73,10 @@ namespace Tizen.NUI
             else if (typeof(ServiceComponent).IsAssignableFrom(compType))
             {
                 componentFactories.Add(compType, new ServiceComponentStateManager(compType, compId, null));
+            }
+            else if (typeof(WidgetComponent).IsAssignableFrom(compType))
+            {
+                componentFactories.Add(compType, new WidgetComponentStateManager(compType, compId, null));
             }
             else
             {

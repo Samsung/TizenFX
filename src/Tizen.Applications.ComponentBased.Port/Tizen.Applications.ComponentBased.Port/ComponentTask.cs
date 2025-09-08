@@ -59,10 +59,10 @@ namespace Tizen.Applications.ComponentBased
 
         /// <summary>
         /// Starts the task.
-        /// <remark>
-        /// This method calls ComponentPort.WaitForEvent() in the thread.
-        /// </remark>
         /// </summary>
+        /// <remarks>
+        /// This method calls <see cref="ComponentPort.WaitForEvent"/> in the thread.
+        /// </remarks>
         /// <since_tizen> 9 </since_tizen>
         public void Start()
         {
@@ -81,7 +81,7 @@ namespace Tizen.Applications.ComponentBased
         /// Stops the task.
         /// </summary>
         /// <remarks>
-        /// This method calls ComponentPort.Cancel() before stopping the thread.
+        /// This method calls <see cref="ComponentPort.Cancel"/> before stopping the thread.
         /// </remarks>
         /// <since_tizen> 9 </since_tizen>
         public void Stop()

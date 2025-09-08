@@ -20,7 +20,7 @@ using System.IO;
 namespace Tizen.System
 {
     /// <summary>
-    /// The class for system CPU usage.
+    /// The class for CPU usage information of the system.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class SystemCpuUsage
@@ -30,7 +30,7 @@ namespace Tizen.System
         private int[] MaxFrequencies;
 
         /// <summary>
-        /// The constructor of SystemCpuUsage class.
+        /// The constructor of SystemCpuUsage class. It internally call Update() on constructing an instance.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <exception cref="IOException">Thrown when an I/O error occurs while reading from the system.</exception>
@@ -41,7 +41,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Running time of un-niced user processes (Percent).
+        /// Running time of un-niced user processes (Percent). To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public double User
@@ -53,7 +53,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Running time of kernel processes (Percent).
+        /// Running time of kernel processes (Percent). To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public double System
@@ -65,7 +65,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Running time of niced user processes (Percent).
+        /// Running time of niced user processes (Percent). To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public double Nice
@@ -77,7 +77,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Time waiting for I/O completion (Percent).
+        /// Time waiting for I/O completion (Percent). To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public double IoWait
@@ -95,7 +95,7 @@ namespace Tizen.System
         public int ProcessorCount { get; internal set; }
 
         /// <summary>
-        /// Gets the current frequency of the processor.
+        /// Gets the current frequency of the processor. To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="coreId">The index (from 0) of the CPU core that you want to know the frequency of.</param>
@@ -113,7 +113,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the max frequency of the processor.
+        /// Gets the max frequency of the processor. To get the latest value, it is recommended to call Update() before it.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="coreId">The index (from 0) of CPU core that you want to know the frequency of.</param>
@@ -131,7 +131,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Update the system CPU usage to the latest.
+        /// Update the system CPU usage information to the latest.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <exception cref="IOException">Thrown when an I/O error occurs while reading from the system.</exception>

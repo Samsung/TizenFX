@@ -124,7 +124,7 @@ namespace Tizen.System
 #pragma warning restore CS0618 // Type or member is obsolete
 
         /// <summary>
-        /// Gets the value of the feature.
+        /// Gets the value of the feature. It accepts both system and runtime feature key.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <typeparam name="T">The type of <paramref name="value"/>.</typeparam>

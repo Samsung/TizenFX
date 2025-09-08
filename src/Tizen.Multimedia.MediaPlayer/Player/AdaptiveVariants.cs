@@ -93,7 +93,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the maximum limit of the streaming variant.
+        /// Sets the maximum limit of adaptive streaming variants.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -119,7 +119,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the maximum limit of the streaming variant.
+        /// Gets the maximum limit of the adaptive streaming variant.
         /// </summary>
         /// <returns>The <see cref="VariantInfo"/> containing the variant information.</returns>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> has already been disposed of.</exception>
@@ -136,7 +136,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Retrieves all the available adaptive variants.
+        /// Retrieves all the available adaptive streaming variants.
         /// </summary>
         /// <returns>
         /// It returns a list contained all the available adaptive variants.

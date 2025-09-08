@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,10 +32,10 @@ namespace Tizen.NUI
         protected Application application;
         private string stylesheet = "";
         private NUIApplication.WindowMode windowMode = NUIApplication.WindowMode.Opaque;
-        private Rectangle windowRectangle = null;
+        private Rectangle windowRectangle;
         private WindowType defaultWindowType = WindowType.Normal;
         private ICoreTask coreTask;
-        private WindowData windowData = null;
+        private WindowData windowData;
 
         /// <summary>
         /// The Dictionary to contain each type of event callback.
@@ -142,8 +142,16 @@ namespace Tizen.NUI
         /// </summary>
         public void Exit()
         {
+            //This appears as an error log but actually does not indicate an error.
+            //The reason it is logged as an error is because the log level displayed in the GBM target is set to 'error' and 'fatal'.
+            //Therefore, although we have included this as an error log for debugging purposes, please note that it is not an actual error log.
+            Tizen.Log.Error("NUI", "NUICoreBackend.Exit() !");
             if (application != null)
             {
+                //This appears as an error log but actually does not indicate an error.
+                //The reason it is logged as an error is because the log level displayed in the GBM target is set to 'error' and 'fatal'.
+                //Therefore, although we have included this as an error log for debugging purposes, please note that it is not an actual error log.
+                Tizen.Log.Error("NUI", "application.Quit() !");
                 application.Quit();
             }
         }
@@ -156,6 +164,16 @@ namespace Tizen.NUI
         public bool AddIdle(System.Delegate func)
         {
             return application.AddIdle(func);
+        }
+
+        /// <summary>
+        /// Remove delegate what we added by AddIdle.
+        /// </summary>
+        /// <param name="func">The function to remove</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveIdle(System.Delegate func)
+        {
+            application.RemoveIdle(func);
         }
 
         /// <summary>

@@ -30,7 +30,7 @@ namespace Tizen.NUI
     {
 
         /// <summary>
-        /// The constructor.
+        /// The default constructor of RelativeVector3 class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public RelativeVector3() : this(Interop.Vector3.NewVector3(), true)
@@ -242,6 +242,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Implicitly converts a RelativeVector3 instance to a Vector3 instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector3(RelativeVector3 relativeVector3)
@@ -251,6 +252,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Implicitly converts a Vector3 instance to a RelativeVector3 instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static implicit operator RelativeVector3(Vector3 vec)
@@ -325,8 +327,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// </summary>
         internal static RelativeVector3 GetRelativeVector3FromPtr(global::System.IntPtr cPtr)
         {
             RelativeVector3 ret = new RelativeVector3(cPtr, false);
@@ -334,7 +334,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal RelativeVector3(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal RelativeVector3(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 

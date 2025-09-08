@@ -101,11 +101,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(BatchSizeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(BatchSizeProperty);
+                }
+                else
+                {
+                    return InternalBatchSize;
+                }
             }
             set
             {
-                SetValue(BatchSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(BatchSizeProperty, value);
+                }
+                else
+                {
+                    InternalBatchSize = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -143,11 +157,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(CacheSizeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(CacheSizeProperty);
+                }
+                else
+                {
+                    return InternalCacheSize;
+                }
             }
             set
             {
-                SetValue(CacheSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CacheSizeProperty, value);
+                }
+                else
+                {
+                    InternalCacheSize = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -184,11 +212,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(FrameDelayProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(FrameDelayProperty);
+                }
+                else
+                {
+                    return InternalFrameDelay;
+                }
             }
             set
             {
-                SetValue(FrameDelayProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FrameDelayProperty, value);
+                }
+                else
+                {
+                    InternalFrameDelay = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -221,11 +263,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(LoopCountProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(LoopCountProperty);
+                }
+                else
+                {
+                    return InternalLoopCount;
+                }
             }
             set
             {
-                SetValue(LoopCountProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(LoopCountProperty, value);
+                }
+                else
+                {
+                    InternalLoopCount = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -257,11 +313,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (StopBehaviorType)GetValue(StopBehaviorProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (StopBehaviorType)GetValue(StopBehaviorProperty);
+                }
+                else
+                {
+                    return InternalStopBehavior;
+                }
             }
             set
             {
-                SetValue(StopBehaviorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(StopBehaviorProperty, value);
+                }
+                else
+                {
+                    InternalStopBehavior = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -341,7 +411,7 @@ namespace Tizen.NUI.BaseComponents
                 PropertyMap map = base.Image;
                 if (map != null)
                 {
-                    PropertyValue val = map.Find(ImageVisualProperty.TotalFrameNumber);
+                    using PropertyValue val = map.Find(ImageVisualProperty.TotalFrameNumber);
                     if (val != null)
                     {
                         if (val.Get(out ret))
@@ -365,11 +435,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(CurrentFrameProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(CurrentFrameProperty);
+                }
+                else
+                {
+                    return InternalCurrentFrame;
+                }
             }
             set
             {
-                SetValue(CurrentFrameProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(CurrentFrameProperty, value);
+                }
+                else
+                {
+                    InternalCurrentFrame = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -381,7 +465,8 @@ namespace Tizen.NUI.BaseComponents
                 // Sync as current properties
                 UpdateImage();
 
-                DoAction(ImageView.Property.IMAGE, ActionJumpTo, new PropertyValue(value));
+                using var pv = new PropertyValue(value);
+                DoAction(Property.IMAGE, ActionJumpTo, pv);
             }
             get
             {
@@ -389,7 +474,7 @@ namespace Tizen.NUI.BaseComponents
                 PropertyMap map = base.Image;
                 if (map != null)
                 {
-                    PropertyValue val = map.Find(ImageVisualProperty.CurrentFrameNumber);
+                    using PropertyValue val = map.Find(ImageVisualProperty.CurrentFrameNumber);
                     if (val != null)
                     {
                         if (val.Get(out ret))

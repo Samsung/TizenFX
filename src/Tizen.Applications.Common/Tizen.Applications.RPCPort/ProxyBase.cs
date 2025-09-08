@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications.RPCPort
 {
     /// <summary>
-    /// Abstract class for creating a proxy class for RPC.
+    /// Base class for creating a proxy class for remote procedure calls.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public abstract class ProxyBase : IDisposable
@@ -45,9 +45,9 @@ namespace Tizen.Applications.RPCPort
         protected Port CallbackPort { get; private set; }
 
         /// <summary>
-        /// Constructor for this class.
+        /// Creates a new instance of the ProxyBase class.
         /// </summary>
-        /// <exception cref="InvalidIOException">Thrown when internal IO error occurs.</exception>
+        /// <exception cref="InvalidIOException">Thrown when an internal I/O error occurs during initialization.</exception>
         /// <since_tizen> 5 </since_tizen>
         public ProxyBase()
         {
@@ -64,13 +64,17 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Connects to port.
+        /// Establishes a connection to the specified application through the named remote procedure call (RPC) port.
         /// </summary>
-        /// <param name="appid">The target stub app ID.</param>
-        /// <param name="port">The name of the RPC port.</param>
-        /// <exception cref="InvalidIDException">Thrown when not available app ID is used.</exception>
-        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
-        /// <exception cref="PermissionDeniedException">Thrown when the permission is denied.</exception>
+        /// <remarks>
+        /// By calling this method, you can establish a connection between two applications using the specified RPC port. It requires the target application ID and the name of the desired RPC port.
+        /// If the connection cannot be established due to invalid arguments or insufficient privileges, appropriate exceptions are thrown accordingly.
+        /// </remarks>
+        /// <param name="appid">The ID of the target application to connect to.</param>
+        /// <param name="port">The name of the RPC port to use for the connection.</param>
+        /// <exception cref="InvalidIDException">Thrown if the specified application ID does not exist.</exception>
+        /// <exception cref="InvalidIOException">Thrown in case of an internal input/output error during the connection process.</exception>
+        /// <exception cref="PermissionDeniedException">Thrown when the required privileges are missing or access is otherwise restricted.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <since_tizen> 5 </since_tizen>
@@ -89,13 +93,13 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Connects to port synchronously.
+        /// Establishes a connection to the specified application synchronously through the named remote procedure call (RPC) port.
         /// </summary>
-        /// <param name="appid">The target stub app ID.</param>
-        /// <param name="port">The name of the RPC port.</param>
-        /// <exception cref="InvalidIDException">Thrown when not available app ID is used.</exception>
-        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
-        /// <exception cref="PermissionDeniedException">Thrown when the permission is denied.</exception>
+        /// <param name="appid">The ID of the target application to connect to.</param>
+        /// <param name="port">The name of the RPC port to use for the connection.</param>
+        /// <exception cref="InvalidIDException">Thrown if the specified application ID does not exist.</exception>
+        /// <exception cref="InvalidIOException">Thrown in case of an internal input/output error during the connection process.</exception>
+        /// <exception cref="PermissionDeniedException">Thrown when the required privileges are missing or access is otherwise restricted.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <since_tizen> 8 </since_tizen>
@@ -114,11 +118,17 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Gets a port.
+        /// Retrieves a port based on its type.
         /// </summary>
-        /// <param name="t">The type of port.</param>
-        /// <returns>Port object.</returns>
-        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <param name="t">The specific type of port to retrieve.</param>
+        /// <returns>An object representing the requested port.</returns>
+        /// <exception cref="InvalidIOException">Thrown if an internal I/O error occurs while retrieving the port.</exception>
+        /// <example>
+        /// To get a main port:
+        /// <code>
+        /// Port mainPort = GetPort(Port.Type.Main);
+        /// </code>
+        /// </example>
         /// <since_tizen> 5 </since_tizen>
         protected Port GetPort(Port.Type t)
         {
@@ -137,8 +147,8 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// Abstract method for receiving connected event.
         /// </summary>
-        /// <param name="endPoint">The target stub app ID.</param>
-        /// <param name="portName">The name of the RPC port.</param>
+        /// <param name="endPoint">The target stub application ID.</param>
+        /// <param name="portName">The name of the Remote Procedure Call (RPC) port.</param>
         /// <param name="port">Port object for reading and writing.</param>
         /// <since_tizen> 5 </since_tizen>
         protected abstract void OnConnectedEvent(string endPoint, string portName, Port port);
@@ -146,24 +156,24 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// Abstract method for receiving disconnected event.
         /// </summary>
-        /// <param name="endPoint">The target stub app ID.</param>
-        /// <param name="portName">The name of the port.</param>
+        /// <param name="endPoint">The target stub application ID..</param>
+        /// <param name="portName">The name of the Remote Procedure Call (RPC) port.</param>
         /// <since_tizen> 5 </since_tizen>
         protected abstract void OnDisconnectedEvent(string endPoint, string portName);
 
         /// <summary>
         /// Abstract method called when the proxy receives data from stub.
         /// </summary>
-        /// <param name="endPoint">The target stub app ID.</param>
-        /// <param name="portName">The name of the RPC port.</param>
+        /// <param name="endPoint">The target stub application ID..</param>
+        /// <param name="portName">The name of the Remote Procedure Call (RPC) port.</param>
         /// <since_tizen> 5 </since_tizen>
         protected abstract void OnReceivedEvent(string endPoint, string portName);
 
         /// <summary>
         /// Abstract method for receiving rejected event.
         /// </summary>
-        /// <param name="endPoint">The target stub app ID.</param>
-        /// <param name="portName">The name of the RPC port.</param>
+        /// <param name="endPoint">The target stub application ID..</param>
+        /// <param name="portName">The name of the Remote Procedure Call (RPC) port.</param>
         /// <since_tizen> 5 </since_tizen>
         protected abstract void OnRejectedEvent(string endPoint, string portName);
 

@@ -19,8 +19,13 @@ using System;
 namespace Tizen.Applications.RPCPort
 {
     /// <summary>
-    /// Abstract class for creating a stub class for RPC.
+    /// Base class for creating stubs in RPC.
     /// </summary>
+    /// <remarks>
+    /// This class provides a base implementation for creating stubs that are used in Remote Procedure Call (RPC). By extending this class, you can easily implement your own stubs for specific interfaces.
+    /// The StubBase class handles common functionality such as managing the connection state and handling incoming requests from clients. It also provides methods for sending responses back to the client after processing the request.
+    /// To create a stub for a specific interface, you need to extend the StubBase class and override its virtual methods according to the requirements of the interface.
+    /// </remarks>
     /// <since_tizen> 5 </since_tizen>
     public abstract class StubBase : IDisposable
     {
@@ -36,10 +41,18 @@ namespace Tizen.Applications.RPCPort
         public string PortName { get; }
 
         /// <summary>
-        /// Constructor for this class.
+        /// Constructs a new instance of the StubBase class.
         /// </summary>
         /// <param name="portName">The name of the port that wants to listen.</param>
         /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <example>
+        /// Here's an example showing how to construct a new instance of the StubBase class:
+        ///
+        /// <code>
+        /// // Create a new instance of the StubBase class
+        /// var stubBase = new StubBase("MyPort");
+        /// </code>
+        /// </example>
         /// <since_tizen> 5 </since_tizen>
         public StubBase(string portName)
         {
@@ -55,9 +68,13 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Listens to the requests for connections.
+        /// Starts listening to incoming connection requests on the specified port.
         /// </summary>
-        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <remarks>
+        /// This method enables your application to listen for incoming connection requests from other applications.
+        /// It is typically called after setting up the necessary network infrastructure such as creating a server socket and specifying a listening port.
+        /// </remarks>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs during the listening process.</exception>
         /// <since_tizen> 5 </since_tizen>
         protected void Listen()
         {
@@ -87,9 +104,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Sets a trusted proxy to the stub.
+        /// Sets whether the stub allows only trusted proxies or not.
         /// </summary>
-        /// <param name="trusted">Whether stub allows only trusted proxy or not.</param>
+        /// <param name="trusted">Indicates if the stub allows only trusted proxies or not.</param>
         /// <since_tizen> 5 </since_tizen>
         protected void SetTrusted(bool trusted)
         {
@@ -97,13 +114,13 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Gets s port.
+        /// Retrieves a port based on its type and the connected instance.
         /// </summary>
-        /// <param name="t">The type of port.</param>
-        /// <param name="instance">The ID of the instance, which is connected.</param>
-        /// <returns>Port object.</returns>
-        /// <exception cref="InvalidIDException">Thrown when invalid instance is used.</exception>
-        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <param name="t">The type of port to retrieve.</param>
+        /// <param name="instance">The ID of the instance that the port is connected to.</param>
+        /// <returns>The requested port.</returns>
+        /// <exception cref="InvalidIDException">Thrown if an invalid instance ID is passed.</exception>
+        /// <exception cref="InvalidIOException">Thrown in case of an internal I/O error.</exception>
         /// <since_tizen> 5 </since_tizen>
         protected Port GetPort(Port.Type t, string instance)
         {
@@ -123,7 +140,7 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// Abstract method for receiving connected event.
         /// </summary>
-        /// <param name="sender">The target proxy app ID.</param>
+        /// <param name="sender">The target proxy applicstion ID.</param>
         /// <param name="instance">The information about the request.</param>
         /// <since_tizen> 5 </since_tizen>
         protected abstract void OnConnectedEvent(string sender, string instance);
@@ -131,7 +148,7 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// Abstract method for receiving disconnected event.
         /// </summary>
-        /// <param name="sender">The target proxy app ID.</param>
+        /// <param name="sender">The target proxy applicstion ID.</param>
         /// <param name="instance">The information about the request.</param>
         /// <since_tizen> 5 </since_tizen>
         protected abstract void OnDisconnectedEvent(string sender, string instance);
@@ -139,7 +156,7 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// Abstract method called when the stub receives data from proxy.
         /// </summary>
-        /// <param name="sender">The target proxy app ID.</param>
+        /// <param name="sender">The target proxy applicstion ID.</param>
         /// <param name="instance">The information about the request.</param>
         /// <param name="port">Port object for reading and writing.</param>
         /// <returns><c>true</c> to continue receiving data, otherwise <c>false</c> to disconnect from the port.</returns>

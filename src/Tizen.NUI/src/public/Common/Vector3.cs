@@ -28,8 +28,22 @@ namespace Tizen.NUI
     [Binding.TypeConverter(typeof(Vector3TypeConverter))]
     public class Vector3 : Disposable, ICloneable
     {
+        private static readonly Vector3 one = new Vector3(1.0f, 1.0f, 1.0f);
+        private static readonly Vector3 zero = new Vector3(0.0f, 0.0f, 0.0f);
+        private static readonly Vector3 xaxis = new Vector3(1.0f, 0.0f, 0.0f);
+        private static readonly Vector3 yaxis = new Vector3(0.0f, 1.0f, 0.0f);
+        private static readonly Vector3 zaxis = new Vector3(0.0f, 0.0f, 1.0f);
+        private static readonly Vector3 negativeXaxis = new Vector3(-1.0f, 0.0f, 0.0f);
+        private static readonly Vector3 negativeYaxis = new Vector3(0.0f, -1.0f, 0.0f);
+        private static readonly Vector3 negativeZaxis = new Vector3(0.0f, 0.0f, -1.0f);
+
+        internal static new void Preload()
+        {
+            // Do nothing. Just call for load static values.
+        }
+
         /// <summary>
-        /// The constructor.
+        /// The default constructor of Vector3 class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Vector3() : this(Interop.Vector3.NewVector3(), true)
@@ -79,7 +93,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Vector3(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Vector3(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 
@@ -89,127 +103,57 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         internal delegate void Vector3ChangedCallback(float x, float y, float z);
-        private Vector3ChangedCallback callback = null;
+        private Vector3ChangedCallback callback;
 
         /// <summary>
-        /// (1.0f,1.0f,1.0f).
+        /// Returns a Vector2 instance where both the x and y components are set to 1.0f.
+        /// Actual value is (1.0f,1.0f,1.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector3 One
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.OneGet();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector3 One => one;
 
         /// <summary>
         /// The vector representing the x-axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector3 XAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.XaxisGet();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector3 XAxis => xaxis;
 
         /// <summary>
         /// The vector representing the y-axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector3 YAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.YaxisGet();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector3 YAxis => yaxis;
 
         /// <summary>
         /// The vector representing the z-axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector3 ZAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.ZaxisGet();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector3 ZAxis => zaxis;
 
         /// <summary>
         /// The vector representing the negative x-axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector3 NegativeXAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeXaxisGet();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector3 NegativeXAxis => negativeXaxis;
 
         /// <summary>
         /// Th vector representing the negative y-axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector3 NegativeYAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeYaxisGet();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector3 NegativeYAxis => negativeYaxis;
 
         /// <summary>
         /// The vector representing the negative z-axis.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector3 NegativeZAxis
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.NegativeZaxisGet();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector3 NegativeZAxis => negativeZaxis;
 
         /// <summary>
-        /// (0.0f, 0.0f, 0.0f).
+        /// A Vector2 object representing the zero vector.
+        /// Actual value is (0.0f, 0.0f, 0.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Vector3 Zero
-        {
-            get
-            {
-                global::System.IntPtr cPtr = Interop.Vector3.ZeroGet();
-                Vector3 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector3(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return ret;
-            }
-        }
+        public static Vector3 Zero => zero;
 
         /// <summary>
         /// The x component.
@@ -220,7 +164,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.X = 0.1f; 
+        /// vector3.X = 0.1f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f;
         /// Vector3 vector3 = new Vector3(x, y, z);
@@ -253,7 +197,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.Width = 1.0f; 
+        /// vector3.Width = 1.0f;
         /// // USE like this
         /// float width = 1.0f, height = 2.0f, depth = 3.0f;
         /// Vector3 vector3 = new Vector3(width, height, depth);
@@ -286,7 +230,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.R = 0.1f; 
+        /// vector3.R = 0.1f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f;
         /// Vector3 vector3 = new Vector3(r, g, b);
@@ -319,7 +263,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.Y = 0.5f; 
+        /// vector3.Y = 0.5f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f;
         /// Vector3 vector3 = new Vector3(x, y, z);
@@ -352,7 +296,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.Height = 2.0f; 
+        /// vector3.Height = 2.0f;
         /// // USE like this
         /// float width = 1.0f, height = 2.0f, depth = 3.0f;
         /// Vector3 vector3 = new Vector3(width, height, depth);
@@ -385,7 +329,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.G = 0.5f; 
+        /// vector3.G = 0.5f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f;
         /// Vector3 vector3 = new Vector3(r, g, b);
@@ -418,7 +362,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.Z = 0.9f; 
+        /// vector3.Z = 0.9f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f;
         /// Vector3 vector3 = new Vector3(x, y, z);
@@ -451,7 +395,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.Depth = 3.0f; 
+        /// vector3.Depth = 3.0f;
         /// // USE like this
         /// float width = 1.0f, height = 2.0f, depth = 3.0f;
         /// Vector3 vector3 = new Vector3(width, height, depth);
@@ -484,7 +428,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector3 vector3 = new Vector3();
-        /// vector3.B = 0.9f; 
+        /// vector3.B = 0.9f;
         /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f;
         /// Vector3 vector3 = new Vector3(r, g, b);
@@ -703,21 +647,107 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <inheritdoc/>
+        /// <summary>
+        /// Calculates the dot product of this vector and another vector.
+        /// </summary>
+        /// <param name="other">The other vector.</param>
+        /// <returns>The dot product of the two vectors.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public object Clone() => new Vector3(X, Y, Z);
-
-        internal static Vector3 GetVector3FromPtr(global::System.IntPtr cPtr)
+        public float Dot(Vector3 other)
         {
-            Vector3 ret = new Vector3(cPtr, false);
+            float ret = Interop.Vector3.Dot(SwigCPtr, Vector3.getCPtr(other));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal SWIGTYPE_p_float AsFloat()
+        /// <summary>
+        /// Calculates the cross product of this vector and another vector.
+        /// The result is a vector that is perpendicular to the two input vectors.
+        /// </summary>
+        /// <param name="other">The other vector.</param>
+        /// <returns>The cross product of the two vectors.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector3 Cross(Vector3 other)
         {
-            global::System.IntPtr cPtr = Interop.Vector3.AsFloat(SwigCPtr);
-            SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr);
+            Vector3 ret = new Vector3(Interop.Vector3.Cross(SwigCPtr, Vector3.getCPtr(other)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Calculates the Euclidean distance between two vectors.
+        /// </summary>
+        /// <param name="a">The first vector.</param>
+        /// <param name="b">The second vector.</param>
+        /// <returns>The distance between vector a and b.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float Distance(Vector3 a, Vector3 b)
+        {
+            // (a-b).Length()
+            float dx = a.X - b.X;
+            float dy = a.Y - b.Y;
+            float dz = a.Z - b.Z;
+            return (float)System.Math.Sqrt(dx * dx + dy * dy + dz * dz);
+        }
+
+        /// <summary>
+        /// Returns a new vector that is the normalized version of the specified vector.
+        /// The original vector remains unchanged.
+        /// </summary>
+        /// <param name="vector">The vector to normalize.</param>
+        /// <returns>A new Vector3 with a magnitude of 1 in the same direction.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector3 Normalize(Vector3 vector)
+        {
+            float length = vector.Length();
+            if (length > 1e-6f) // Epsilon to avoid division by zero
+            {
+                return new Vector3(vector.X / length, vector.Y / length, vector.Z / length);
+            }
+            return Vector3.Zero;
+        }
+
+        /// <summary>
+        /// Calculates the reflection vector given an incident vector and a surface normal.
+        /// The normal vector should be normalized.
+        /// </summary>
+        /// <param name="incident">The incident vector.</param>
+        /// <param name="normal">The surface normal vector.</param>
+        /// <returns>The reflection vector.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Vector3 Reflect(Vector3 incident, Vector3 normal)
+        {
+            // R = I - 2 * (I.N) * N
+            float dotProduct = incident.Dot(normal);
+            return new Vector3(
+                incident.X - 2.0f * dotProduct * normal.X,
+                incident.Y - 2.0f * dotProduct * normal.Y,
+                incident.Z - 2.0f * dotProduct * normal.Z
+            );
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object Clone() => new Vector3(X, Y, Z);
+
+        internal void Reset() => Reset(0, 0, 0);
+
+        internal void Reset(UIVector3 value) => Reset(value.X, value.Y, value.Z);
+
+        internal void Reset(float x, float y, float z)
+        {
+            Interop.Vector3.SetAll(SwigCPtr, x, y, z);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        internal static Vector3 GetVector3FromPtr(global::System.IntPtr cPtr)
+        {
+            Vector3 ret = new Vector3(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -848,19 +878,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal float Dot(Vector3 other)
-        {
-            float ret = Interop.Vector3.Dot(SwigCPtr, Vector3.getCPtr(other));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal Vector3 Cross(Vector3 other)
-        {
-            Vector3 ret = new Vector3(Interop.Vector3.Cross(SwigCPtr, Vector3.getCPtr(other)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
     }
 

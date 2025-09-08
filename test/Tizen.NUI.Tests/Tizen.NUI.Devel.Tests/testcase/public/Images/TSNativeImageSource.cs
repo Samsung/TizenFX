@@ -88,6 +88,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 testingTarget.AcquireBuffer(ref width, ref height, ref stride);
+                testingTarget.ReleaseBuffer(); ///< Must call after AcquireBuffer
             }
             catch (Exception e)
             {
@@ -114,6 +115,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object NativeImageSource");
             Assert.IsInstanceOf<NativeImageSource>(testingTarget, "Should be an instance of NativeImageSource type.");
 
+            testingTarget.AcquireBuffer(ref width, ref height, ref stride); ///< Must call before ReleaseBuffer
             try
             {
                 testingTarget.ReleaseBuffer();

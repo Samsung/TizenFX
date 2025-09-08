@@ -37,6 +37,9 @@ namespace Tizen.MachineLearning.Train
         private IntPtr handle = IntPtr.Zero;
         private bool disposed = false;
 
+        /// if false, model will be destroy optimizer handle
+        private bool hasOwnership = true;
+
         /// <summary>
         /// Creates a neural network optimizer.
         /// </summary>
@@ -45,6 +48,9 @@ namespace Tizen.MachineLearning.Train
         public Optimizer(NNTrainerOptimizerType type)
         {
             NNTrainerError ret = Interop.Optimizer.Create(out handle, type);
+            if (ret != NNTrainerError.None) {
+                handle = IntPtr.Zero;
+            }
             NNTrainer.CheckException(ret, "Failed to create optimizer instance");
             Log.Info(NNTrainer.Tag, $"Create optimizer with type:{type}");
         }
@@ -83,6 +89,14 @@ namespace Tizen.MachineLearning.Train
             {
                 // release managed object
             }
+
+            disposed = true;
+
+            if (!hasOwnership){
+                Log.Info(NNTrainer.Tag, "Cannot destroy optimizer already added in a Model. Model will destroy this optimizer");
+                return;
+            }
+
             // release unmanaged object
             if (handle != IntPtr.Zero)
             {
@@ -93,7 +107,6 @@ namespace Tizen.MachineLearning.Train
 
                 handle = IntPtr.Zero;
             }
-            disposed = true;
         }
 
         /// <summary>
@@ -121,6 +134,11 @@ namespace Tizen.MachineLearning.Train
         internal IntPtr GetHandle()
         {
             return handle;
+        }
+
+        internal void RemoveOwnership()
+        {
+            this.hasOwnership = false;
         }
     } 
 }

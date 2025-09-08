@@ -27,28 +27,28 @@ namespace Tizen.Sensor
         private const string GyroscopeKey = "http://tizen.org/feature/sensor.gyroscope";
 
         /// <summary>
-        /// Gets the X component of the acceleration.
+        /// Get the X component value of the acceleration as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> X </value>
         public float X { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Gets the Y component of the acceleration.
+        /// Get the Y component value of the acceleration as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Y </value>
         public float Y { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Gets the Z component of the acceleration.
+        /// Get the Z component value of the acceleration as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Z </value>
         public float Z { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Returns true or false based on whether the gyroscope sensor is supported by the device.
+        /// Return true or false based on whether the gyroscope sensor is supported by the system.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
@@ -62,7 +62,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Returns the number of the gyroscope sensors available on the device.
+        /// Return the number of the gyroscope sensors available on the system.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The count of the gyroscope sensors. </value>
@@ -76,7 +76,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tizen.Sensor.Gyroscope"/> class.
+        /// Initialize a new instance of the <see cref="Tizen.Sensor.Gyroscope"/> class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.gyroscope</feature>
@@ -84,7 +84,8 @@ namespace Tizen.Sensor
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular gyroscope sensor in case of multiple sensors.
+        /// Index refers to a particular gyroscope sensor in case of multiple sensors.
+        /// Default value is 0.
         /// </param>
         public Gyroscope(uint index = 0) : base(index)
         {
@@ -98,9 +99,10 @@ namespace Tizen.Sensor
 
         /// <summary>
         /// An event handler for storing the callback functions for the event corresponding to the change in the gyroscope sensor data.
+        /// If an event is added, a new accuracy change callback is registered for this sensor.
+        /// If an event is removed, accuracy change callback is unregistered for this sensor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-
         public event EventHandler<GyroscopeDataUpdatedEventArgs> DataUpdated;
 
         private static int GetCount()

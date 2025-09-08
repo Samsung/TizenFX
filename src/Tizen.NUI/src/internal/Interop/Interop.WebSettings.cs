@@ -175,12 +175,24 @@ namespace Tizen.NUI
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsTextZoomEnabled(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_SetImeStyle")]
+            public static extern void SetImeStyle(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_GetImeStyle")]
+            public static extern int GetImeStyle(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_SetExtraFeature")]
             public static extern void SetExtraFeature(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, bool jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_IsExtraFeatureEnabled")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsExtraFeatureEnabled(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_SetDefaultAudioInputDevice")]
+            public static extern void SetDefaultAudioInputDevice(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSettings_EnableDragAndDrop")]
+            public static extern void EnableDragAndDrop(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
         }
     }
 }

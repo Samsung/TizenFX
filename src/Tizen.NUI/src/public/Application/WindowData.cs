@@ -28,7 +28,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WindowData : Disposable
     {
-        private IBorderInterface borderInterface = null;
+        private IBorderInterface borderInterface;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WindowData() : this(Interop.WindowData.New(), true)
@@ -36,7 +36,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal WindowData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal WindowData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 
@@ -55,7 +55,7 @@ namespace Tizen.NUI
             }
             get
             {
-                Rectangle ret = Rectangle.GetRectangleFromPtr(Interop.WindowData.GetPositionSize(SwigCPtr));
+                Rectangle ret = Rectangle.GetRectangleFromPtr(Interop.WindowData.GetPositionSize(SwigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }

@@ -20,7 +20,7 @@ namespace Tizen.NUI
     using System.ComponentModel;
 
     /// <summary>
-    /// The gesture state.
+    /// The PaddingType class represents padding properties used in layouting.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class PaddingType : Disposable
@@ -48,12 +48,12 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PaddingType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal PaddingType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 
         /// <summary>
-        /// The Start value.
+        /// The Start value horizontally.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public float Start
@@ -69,7 +69,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The End value.
+        /// The End value horizontally.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public float End
@@ -85,7 +85,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The Top value.
+        /// The Top value vertically.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float Top
@@ -101,7 +101,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The Bottom value.
+        /// The Bottom value vertically.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float Bottom

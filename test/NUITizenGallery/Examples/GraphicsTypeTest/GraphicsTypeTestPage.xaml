@@ -55,17 +55,17 @@
                 <TextLabel x:Name="DpText" PixelSize="20"/>
             </View>
 
-            <View x:Name="SpTypeView"
-              WidthSpecification="500sp"
-              HeightSpecification="500sp"
+            <View x:Name="SdpTypeView"
+              WidthSpecification="500sdp"
+              HeightSpecification="500sdp"
               BackgroundColor="#B2DAB8">
 
-                <TextLabel Text="SP" PointSize="12sp" Position2D="73sp,130sp"/>
-                <View BackgroundColor="#FF0000" Position2D="32sp,108sp" Size2D="400sp,5sp"/>
-                <View BackgroundColor="#00FF00" Position2D="32sp,120sp" Size="400sp,5sp"/>
-                <View BackgroundColor="#0000FF" Position="42sp,100sp" Size2D="5sp,100sp"/>
-                <View x:Name="SpRect" BackgroundColor="#FFFFFF"/>
-                <TextLabel x:Name="SpText" PixelSize="20"/>
+                <TextLabel Text="SDP" PointSize="12sdp" Position2D="73sdp,130sdp"/>
+                <View BackgroundColor="#FF0000" Position2D="32sp,108sdp" Size2D="400sp,5sdp"/>
+                <View BackgroundColor="#00FF00" Position2D="32sp,120sdp" Size="400sp,5sdp"/>
+                <View BackgroundColor="#0000FF" Position="42sp,100sdp" Size2D="5sp,100sdp"/>
+                <View x:Name="SdpRect" BackgroundColor="#FFFFFF"/>
+                <TextLabel x:Name="SdpText" PixelSize="20"/>
             </View>
         </ScrollableBase>
     </ContentPage.Content>

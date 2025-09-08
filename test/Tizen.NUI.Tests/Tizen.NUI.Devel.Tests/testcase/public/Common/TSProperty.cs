@@ -62,31 +62,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Property constructor. With sub component index")]
-        [Property("SPEC", "Tizen.NUI.Property.Property C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void PropertyConstructorWithSubComponentIndex()
-        {
-            tlog.Debug(tag, $"PropertyConstructorWithSubComponentIndex START");
-
-            var animatable = new Animatable();
-            Assert.IsNotNull(animatable, "Should be not null!");
-            Assert.IsInstanceOf<Animatable>(animatable, "Should return PropertyValue instance.");
-
-            var dummyIndex = 28000000;
-            var testingTarget = new Property(animatable, dummyIndex, -1);
-            Assert.IsNotNull(testingTarget, "Should be not null!");
-            Assert.IsInstanceOf<Property>(testingTarget, "Should return PropertyValue instance.");
-
-            testingTarget.Dispose();
-            animatable.Dispose();
-            tlog.Debug(tag, $"PropertyConstructorWithSubComponentIndex END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Property constructor. With property name")]
         [Property("SPEC", "Tizen.NUI.Property.Property C")]
         [Property("SPEC_URL", "-")]
@@ -107,30 +82,6 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             animatable.Dispose();
             tlog.Debug(tag, $"PropertyConstructorWithPropertyName END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Property constructor. With property name and sub component index")]
-        [Property("SPEC", "Tizen.NUI.Property.Property C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void PropertyConstructorWithPropertyNameSubComponentIndex()
-        {
-            tlog.Debug(tag, $"PropertyConstructorWithPropertyNameSubComponentIndex START");
-
-            var animatable = new Animatable();
-            Assert.IsNotNull(animatable, "Should be not null!");
-            Assert.IsInstanceOf<Animatable>(animatable, "Should return PropertyValue instance.");
-
-            var testingTarget = new Property(animatable, "image", -1);
-            Assert.IsNotNull(testingTarget, "Should be not null!");
-            Assert.IsInstanceOf<Property>(testingTarget, "Should return PropertyValue instance.");
-
-            testingTarget.Dispose();
-            animatable.Dispose();
-            tlog.Debug(tag, $"PropertyConstructorWithPropertyNameSubComponentIndex END (OK)");
         }
 
         [Test]
@@ -186,61 +137,6 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             animatable.Dispose();
             tlog.Debug(tag, $"PropertyPropertyIndexSet END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Property componentIndex. Get")]
-        [Property("SPEC", "Tizen.NUI.Property.componentIndex A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void PropertyComponentIndexGet()
-        {
-            tlog.Debug(tag, $"PropertyComponentIndexGet START");
-
-            var animatable = new Animatable();
-            Assert.IsNotNull(animatable, "Should be not null!");
-            Assert.IsInstanceOf<Animatable>(animatable, "Should return PropertyValue instance.");
-
-            var testingTarget = new Property(animatable, 28000000, -1);
-            Assert.IsNotNull(testingTarget, "Should be not null!");
-            Assert.IsInstanceOf<Property>(testingTarget, "Should return PropertyValue instance.");
-
-            var result = testingTarget.componentIndex;
-            Assert.IsTrue(-1 == result);
-
-            testingTarget.Dispose();
-            animatable.Dispose();
-            tlog.Debug(tag, $"PropertyComponentIndexGet END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Property componentIndex. Get")]
-        [Property("SPEC", "Tizen.NUI.Property.componentIndex A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void PropertyComponentIndexSet()
-        {
-            tlog.Debug(tag, $"PropertyComponentIndexSet START");
-
-            var animatable = new Animatable();
-            Assert.IsNotNull(animatable, "Should be not null!");
-            Assert.IsInstanceOf<Animatable>(animatable, "Should return PropertyValue instance.");
-
-            var testingTarget = new Property(animatable, 28000000, -1);
-            Assert.IsNotNull(testingTarget, "Should be not null!");
-            Assert.IsInstanceOf<Property>(testingTarget, "Should return PropertyValue instance.");
-
-            testingTarget.componentIndex = 30000000;
-            var result = testingTarget.componentIndex;
-            Assert.IsTrue(30000000 == result);
-
-            testingTarget.Dispose();
-            animatable.Dispose();
-            tlog.Debug(tag, $"PropertyComponentIndexSet END (OK)");
         }
     }
 }

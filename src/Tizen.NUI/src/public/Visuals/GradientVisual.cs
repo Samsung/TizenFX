@@ -15,6 +15,8 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
     /// <summary>
@@ -23,17 +25,19 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class GradientVisual : VisualMap
     {
-        private Vector2 _startPosition = null;
-        private Vector2 _endPosition = null;
-        private Vector2 _center = null;
-        private float? _radius = null;
-        private PropertyArray _stopOffset = null;
-        private PropertyArray _stopColor = null;
-        private GradientVisualUnitsType? _units = null;
-        private GradientVisualSpreadMethodType? _spreadMethod = null;
+        private Vector2 _startPosition;
+        private Vector2 _endPosition;
+        private Vector2 _center;
+        private float? _radius;
+        private PropertyArray _stopOffset;
+        private PropertyArray _stopColor;
+        private GradientVisualUnitsType? _units;
+        private GradientVisualSpreadMethodType? _spreadMethod;
+        private float? _startOffset;
+        private float? _startAngle;
 
         /// <summary>
-        /// Constructor.
+        /// Default constructor of GradientVisual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public GradientVisual() : base()
@@ -78,7 +82,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets or sets the center point of a radial gradient.<br />
-        /// Mandatory for radial.<br />
+        /// Mandatory for radial and conic.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Vector2 Center
@@ -191,6 +195,44 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets or sets the gradient's start position offset.<br />
+        /// If not supplied, the default is 0.0f.<br />
+        /// Optional.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float StartOffset
+        {
+            get
+            {
+                return _startOffset ?? (0.0f);
+            }
+            set
+            {
+                _startOffset = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the start angle of the conic gradient.<br />
+        /// Mandatory for conic.<br />
+        /// Optional.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float StartAngle
+        {
+            get
+            {
+                return _startAngle ?? (0.0f);
+            }
+            set
+            {
+                _startAngle = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
         /// Compose the out visual map.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -199,61 +241,47 @@ namespace Tizen.NUI
             if (((_startPosition != null && _endPosition != null) || (_center != null && _radius != null)) && _stopColor != null)
             {
                 _outputVisualMap = new PropertyMap();
-                PropertyValue temp = new PropertyValue((int)Visual.Type.Gradient);
-                _outputVisualMap.Add(Visual.Property.Type, temp);
-                temp.Dispose();
-
-                temp = new PropertyValue(_stopColor);
-                _outputVisualMap.Add(GradientVisualProperty.StopColor, temp);
-                temp.Dispose();
+                _outputVisualMap.Add(Visual.Property.Type, (int)Visual.Type.Gradient);
+                _outputVisualMap.Add(GradientVisualProperty.StopColor, _stopColor);
 
                 if (_startPosition != null)
                 {
-                    temp = new PropertyValue(_startPosition);
-                    _outputVisualMap.Add(GradientVisualProperty.StartPosition, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(GradientVisualProperty.StartPosition, _startPosition);
                 }
 
                 if (_endPosition != null)
                 {
-                    temp = new PropertyValue(_endPosition);
-                    _outputVisualMap.Add(GradientVisualProperty.EndPosition, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(GradientVisualProperty.EndPosition, _endPosition);
                 }
 
                 if (_center != null)
                 {
-                    temp = new PropertyValue(_center);
-                    _outputVisualMap.Add(GradientVisualProperty.Center, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(GradientVisualProperty.Center, _center);
                 }
 
                 if (_radius != null)
                 {
-                    temp = new PropertyValue((float)_radius);
-                    _outputVisualMap.Add(GradientVisualProperty.Radius, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(GradientVisualProperty.Radius, (float)_radius);
                 }
 
                 if (_stopOffset != null)
                 {
-                    temp = new PropertyValue(_stopOffset);
-                    _outputVisualMap.Add(GradientVisualProperty.StopOffset, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(GradientVisualProperty.StopOffset, _stopOffset);
                 }
 
                 if (_units != null)
                 {
-                    temp = new PropertyValue((int)_units);
-                    _outputVisualMap.Add(GradientVisualProperty.Units, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(GradientVisualProperty.Units, (int)_units);
                 }
 
                 if (_spreadMethod != null)
                 {
-                    temp = new PropertyValue((int)_spreadMethod);
-                    _outputVisualMap.Add(GradientVisualProperty.SpreadMethod, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(GradientVisualProperty.SpreadMethod, (int)_spreadMethod);
+                }
+
+                if (_startOffset != null)
+                {
+                    _outputVisualMap.Add(GradientVisualProperty.StartOffset, (float)_startOffset);
                 }
                 base.ComposingPropertyMap();
             }

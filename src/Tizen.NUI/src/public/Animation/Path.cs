@@ -21,14 +21,14 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// A 3D parametric curve.<br />
-    /// Paths can be used to animate the position and orientation of actors.<br />
+    /// A 3D parametric curve.
+    /// Paths can be used to animate the position and orientation of views.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Path : BaseHandle
     {
         /// <summary>
-        /// Creates an initialized path handle.
+        /// The default constructor. Creates an initialized path handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Path() : this(Interop.Path.New(), true)
@@ -41,7 +41,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enumeration for the Points.
+        /// Gets or sets the array of points defining the path.
+        /// The property value is a PropertyArray containing the points that define the path.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyArray Points
@@ -63,7 +64,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enumeration for the ControlPoints.
+        /// Gets or sets the control points of the path.
+        /// The property value represents the array of control points defining the path.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyArray ControlPoints
@@ -96,7 +98,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Adds a control point.
+        /// Adds a control point to the path.
         /// </summary>
         /// <param name="point">The new control point to be added.</param>
         /// <since_tizen> 3 </since_tizen>
@@ -139,6 +141,7 @@ namespace Tizen.NUI
         /// An accessor for the interpolation points.
         /// </summary>
         /// <param name="index">The index of the interpolation point.</param>
+        /// <returns>The interpolation point at the specified index.</returns>
         /// <since_tizen> 3 </since_tizen>
         public Vector3 GetPoint(uint index)
         {
@@ -151,6 +154,7 @@ namespace Tizen.NUI
         /// An accessor for the control points.
         /// </summary>
         /// <param name="index">The index of the control point.</param>
+        /// <returns>The control point at the specified index.</returns>
         /// <since_tizen> 3 </since_tizen>
         public Vector3 GetControlPoint(uint index)
         {

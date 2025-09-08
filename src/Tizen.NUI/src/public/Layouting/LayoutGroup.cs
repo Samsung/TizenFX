@@ -26,18 +26,18 @@ using static Tizen.NUI.Binding.BindableObject;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// [Draft] LayoutGroup class providing container functionality.
+    /// LayoutGroup class providing container functionality.
     /// </summary>
     public class LayoutGroup : LayoutItem, ILayoutParent
     {
         /// <summary>
-        /// [Draft] List of child layouts in this container.
+        /// List of child layouts in this container.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         protected List<LayoutItem> LayoutChildren { get; } // Children of this LayoutGroup
 
         /// <summary>
-        /// [Draft] Constructor
+        /// Default constructor of LayoutGroup class.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public LayoutGroup()
@@ -52,7 +52,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected IEnumerable<LayoutItem> IterateLayoutChildren()
         {
-            return LayoutChildren.Where<LayoutItem>(childLayout => childLayout.SetPositionByLayout);
+            return LayoutChildren.Where<LayoutItem>(childLayout => (childLayout.SetPositionByLayout && childLayout.Owner.Visibility));
         }
 
         /// <summary>
@@ -571,12 +571,12 @@ namespace Tizen.NUI
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(new LayoutLength(parentWidthMeasureSpec.Size), parentWidthMeasureSpec.Mode),
                         new LayoutLength(Padding.Start + Padding.End),
-                        new LayoutLength(childOwner.WidthSpecification));
+                        new LayoutLength(CalculateChildSpecSizeWidth(childOwner)));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(new LayoutLength(parentHeightMeasureSpec.Size), parentHeightMeasureSpec.Mode),
                         new LayoutLength(Padding.Top + Padding.Bottom),
-                        new LayoutLength(childOwner.HeightSpecification));
+                        new LayoutLength(CalculateChildSpecSizeHeight(childOwner)));
 
             child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
         }
@@ -608,14 +608,14 @@ namespace Tizen.NUI
                             new LayoutLength(parentWidthMeasureSpec.Size + widthUsed - (margin.Start + margin.End)),
                             parentWidthMeasureSpec.Mode),
                         new LayoutLength(Padding.Start + Padding.End),
-                        new LayoutLength(childOwner.WidthSpecification));
+                        new LayoutLength(CalculateChildSpecSizeWidth(childOwner)));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(
                             new LayoutLength(parentHeightMeasureSpec.Size + heightUsed - (margin.Top + margin.Bottom)),
                             parentHeightMeasureSpec.Mode),
                         new LayoutLength(Padding.Top + Padding.Bottom),
-                        new LayoutLength(childOwner.HeightSpecification));
+                        new LayoutLength(CalculateChildSpecSizeHeight(childOwner)));
             child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
 
         }
@@ -642,14 +642,36 @@ namespace Tizen.NUI
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(new LayoutLength(parentWidthMeasureSpec.Size), parentWidthMeasureSpec.Mode),
                         new LayoutLength(0),
-                        new LayoutLength(childOwner.WidthSpecification));
+                        new LayoutLength(CalculateChildSpecSizeWidth(childOwner)));
 
             MeasureSpecification childHeightMeasureSpec = GetChildMeasureSpecification(
                         new MeasureSpecification(new LayoutLength(parentHeightMeasureSpec.Size), parentHeightMeasureSpec.Mode),
                         new LayoutLength(0),
-                        new LayoutLength(childOwner.HeightSpecification));
+                        new LayoutLength(CalculateChildSpecSizeHeight(childOwner)));
 
             child.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
+        }
+
+        internal float CalculateChildSpecSizeWidth(View child)
+        {
+            if (child.LayoutWidth.IsFixedValue)
+            {
+                // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+                return Math.Max(Math.Min(child.LayoutWidth, child.GetMaximumWidth()), child.GetMinimumWidth());
+            }
+
+            return child.LayoutWidth;
+        }
+
+        internal float CalculateChildSpecSizeHeight(View child)
+        {
+            if (child.LayoutHeight.IsFixedValue)
+            {
+                // Since priority of MinimumSize is higher than MaximumSize in DALi, here follows it.
+                return Math.Max(Math.Min(child.LayoutHeight, child.GetMaximumHeight()), child.GetMinimumHeight());
+            }
+
+            return child.LayoutHeight;
         }
 
         /// <summary>
@@ -682,6 +704,7 @@ namespace Tizen.NUI
 
             bindable.SetValueCore(property, value, SetValueFlags.None, SetValuePrivateFlags.ManuallySet);
         }
+
         internal static void OnChildPropertyChanged(Binding.BindableObject bindable, object oldValue, object newValue)
         {
             // Unused parameters

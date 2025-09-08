@@ -21,7 +21,7 @@ using System.Linq;
 namespace Tizen.Applications.RPCPort
 {
     /// <summary>
-    /// The class that proxy and stub can use to communicate with each other.
+    /// A class used by proxies and stubs to communicate with each other.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public class Port

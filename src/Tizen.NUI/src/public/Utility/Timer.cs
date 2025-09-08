@@ -35,11 +35,13 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Timer : BaseHandle
     {
-        private bool played = false;
+        private bool played;
         private EventHandlerWithReturnType<object, TickEventArgs, bool> timerTickEventHandler;
         private TickCallbackDelegate timerTickCallbackDelegate;
 
         private System.IntPtr timerTickCallbackOfNative;
+
+        private static int aliveCount;
 
         /// <summary>
         /// Creates a tick timer that emits periodic signal.
@@ -67,6 +69,8 @@ namespace Tizen.NUI
             timerTickCallbackDelegate = OnTick;
             timerTickCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(timerTickCallbackDelegate);
 
+            ++aliveCount;
+
             NUILog.Debug($"(0x{SwigCPtr.Handle:X})Timer() constructor!");
         }
 
@@ -92,16 +96,18 @@ namespace Tizen.NUI
             {
                 if (timerTickEventHandler == null && disposed == false)
                 {
-                    TickSignal().Connect(timerTickCallbackOfNative);
+                    using var signal = TickSignal();
+                    signal.Connect(timerTickCallbackOfNative);
                 }
                 timerTickEventHandler += value;
             }
             remove
             {
                 timerTickEventHandler -= value;
-                if (timerTickEventHandler == null && TickSignal().Empty() == false)
+                using var signal = TickSignal();
+                if (timerTickEventHandler == null && signal.Empty() == false)
                 {
-                    TickSignal().Disconnect(timerTickCallbackOfNative);
+                    signal.Disconnect(timerTickCallbackOfNative);
                 }
             }
         }
@@ -124,6 +130,12 @@ namespace Tizen.NUI
                 SetInterval(value);
             }
         }
+
+        /// <summary>
+        /// Gets the number of currently alived Timer object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
 
         /// <summary>
         /// Starts the timer.<br />
@@ -259,7 +271,12 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Dispose.
+        /// Releases unmanaged and optionally managed resources.
         /// </summary>
+        /// <remarks>
+        /// When overriding this method, you need to distinguish between explicit and implicit conditions. For explicit conditions, release both managed and unmanaged resources. For implicit conditions, only release unmanaged resources.
+        /// </remarks>
+        /// <param name="type">Explicit to release both managed and unmanaged resources. Implicit to release only unmanaged resources.</param>
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
@@ -267,7 +284,8 @@ namespace Tizen.NUI
 
             if (this != null && timerTickCallbackDelegate != null)
             {
-                TickSignal().Disconnect(timerTickCallbackOfNative);
+                using var signal = TickSignal();
+                signal.Disconnect(timerTickCallbackOfNative);
             }
 
             if (disposed)
@@ -276,6 +294,9 @@ namespace Tizen.NUI
             }
 
             played = false;
+
+            --aliveCount;
+
             base.Dispose(type);
         }
 

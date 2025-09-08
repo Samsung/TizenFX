@@ -384,6 +384,12 @@ namespace Tizen.NUI.BaseComponents
             if (outline.Width != null)
                 map.Add("width", (float)outline.Width);
 
+            if (outline.Offset != null)
+                map.Add("offset", outline.Offset);
+
+            if (outline.BlurRadius != null)
+                map.Add("blurRadius", (float)outline.BlurRadius);
+
             return map;
         }
 
@@ -401,6 +407,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 outline.Color = GetColorFromMap(map, "color");
                 outline.Width = GetFloatFromMap(map, "width", 0.0f);
+                outline.Offset = GetVector2FromMap(map, "offset");
+                outline.BlurRadius = GetFloatFromMap(map, "blurRadius", 0.0f);
             }
 
             return outline;
@@ -481,9 +489,8 @@ namespace Tizen.NUI.BaseComponents
             if (placeholder.FontStyle != null)
             {
                 using (var fontStyleMap = GetFontStyleMap((FontStyle)placeholder.FontStyle))
-                using (var fontStyleValue = new PropertyValue(fontStyleMap))
                 {
-                    map.Add("fontStyle", fontStyleValue);
+                    map.Add("fontStyle", fontStyleMap);
                 }
             }
 
@@ -613,6 +620,56 @@ namespace Tizen.NUI.BaseComponents
                 selectionHandleImage.RightImageUrl = GetStringFromMap(rightImageMap, "filename", defaultValue);
 
             return selectionHandleImage;
+        }
+
+        /// <summary>
+        /// This method converts a Emboss struct to a PropertyMap and returns it.
+        /// The returned map can be used for set Emboss PropertyMap in the SetTextEmboss method.
+        /// <param name="emboss">The Emboss struct value.</param>
+        /// <returns> A PropertyMap for Emboss property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetEmbossMap(Emboss emboss)
+        {
+            var map = new PropertyMap();
+            map.Add("enable", new PropertyValue(emboss.Enable));
+
+            if (emboss.Direction != null)
+                map.Add("direction", new PropertyValue(emboss.Direction));
+
+            if (emboss.Strength != null)
+                map.Add("strength", new PropertyValue(emboss.Strength.Value));
+
+            if (emboss.LightColor != null)
+                map.Add("lightColor", new PropertyValue(emboss.LightColor));
+
+            if (emboss.ShadowColor != null)
+                map.Add("shadowColor", new PropertyValue(emboss.ShadowColor));
+
+            return map;
+        }
+
+        /// <summary>
+        /// This method converts a Emboss map to a struct and returns it.
+        /// The returned struct can be returned to the user as a Emboss in the GetTextEmboss method.
+        /// <param name="map">The Emboss PropertyMap.</param>
+        /// <returns> A Emboss struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Emboss GetEmbossStruct(PropertyMap map)
+        {
+            var result = new Emboss();
+
+            if (map != null)
+            {
+                result.Enable = GetBoolFromMap(map, "enable", false);
+                result.Direction = GetVector2FromMap(map, "direction");
+                result.Strength = GetFloatFromMap(map, "strength", 0.0f);
+                result.LightColor = GetColorFromMap(map, "lightColor");
+                result.ShadowColor = GetColorFromMap(map, "shadowColor");
+            }
+
+            return result;
         }
 
         internal static string GetCamelCase(string pascalCase)

@@ -1,0 +1,9 @@
+# csproj file path
+csproj_file: Tizen.NUI.WindowSystem.InputGesture.csproj
+
+# files monitored for dirty/modified status
+files:
+  - Tizen.NUI.WindowSystem.InputGesture.csproj
+  - Tizen.NUI.WindowSystem.InputGesture.cs
+  - tizen-manifest.xml
+  - shared/res/Tizen.NUI.WindowSystem.InputGesture.png

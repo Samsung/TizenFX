@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2023 Samsung Electronics Co., Ltd.
+﻿// Copyright (c) 2025 Samsung Electronics Co., Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ namespace Tizen.NUI
     /// </summary>
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum FaceCullingModeType
+    public enum FaceCullingMode
     {
         /// <summary>
         /// None of the faces should be culled
@@ -57,7 +57,7 @@ namespace Tizen.NUI
     /// </summary>
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum BlendModeType
+    public enum BlendMode
     {
         /// <summary>
         /// Blending is disabled.
@@ -100,14 +100,14 @@ namespace Tizen.NUI
     /// </summary>
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum BlendEquationType
+    public enum BlendEquation
     {
         /// <summary>
         /// The source and destination colors are added to each other.
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Add = 0x8006,
+        Add = 0,
 
         /// <summary>
         /// Use minimum value of the source and the destination.
@@ -117,7 +117,7 @@ namespace Tizen.NUI
         /// </remark>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Min = 0x8007,
+        Min,
 
         /// <summary>
         /// Use maximum value of the source and the destination.
@@ -127,68 +127,68 @@ namespace Tizen.NUI
         /// </remark>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Max = 0x8008,
+        Max,
 
         /// <summary>
         /// Subtracts the destination from the source.
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Subtract = 0x800A,
+        Subtract,
 
         /// <summary>
         /// Subtracts the source from the destination.
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        ReverseSubtract = 0x800B,
+        ReverseSubtract,
 
         //Advanced Blend Equation
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Multiply = 0x9294,
+        Multiply,
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Screen = 0x9295,
+        Screen,
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Overlay = 0x9296,
+        Overlay,
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Darken = 0x9297,
+        Darken,
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Lighten = 0x9298,
+        Lighten,
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        ColorDodge = 0x9299,
+        ColorDodge,
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        ColorBurn = 0x929A,
+        ColorBurn,
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        HardLight = 0x929B,
+        HardLight,
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        SoftLight = 0x929C,
+        SoftLight,
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Difference = 0x929E,
+        Difference,
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Exclusion = 0x92A0,
+        Exclusion,
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Hue = 0x92AD,
+        Hue,
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Saturation = 0x92AE,
+        Saturation,
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Color = 0x92AF,
+        Color,
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Luminosity = 0x92B0,
+        Luminosity,
     }
 
     /// <summary>
@@ -196,7 +196,7 @@ namespace Tizen.NUI
     /// </summary>
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum BlendFactorType
+    public enum BlendFactor
     {
         /// <summary>
         /// Match as GL_ZERO
@@ -210,98 +210,98 @@ namespace Tizen.NUI
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        One = 1,
+        One,
 
         /// <summary>
         /// Match as GL_SRC_COLOR
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        SrcColor = 0x0300,
+        SourceColor,
 
         /// <summary>
         /// Match as GL_ONE_MINUS_SRC_COLOR
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        OneMinusSrcColor = 0x0301,
+        OneMinusSourceColor,
 
         /// <summary>
         /// Match as GL_SRC_ALPHA
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        SrcAlpha = 0x0302,
+        SourceAlpha,
 
         /// <summary>
         /// Match as GL_ONE_MINUS_SRC_ALPHA
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        OneMinusSrcAlpha = 0x0303,
+        OneMinusSourceAlpha,
 
         /// <summary>
         /// Match as GL_DST_ALPHA
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        DstAlpha = 0x0304,
+        DestinationAlpha,
 
         /// <summary>
         /// Match as GL_ONE_MINUS_DST_ALPHA
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        OneMinusDstAlpha = 0x0305,
+        OneMinusDestinationAlpha,
 
         /// <summary>
         /// Match as GL_DST_COLOR
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        DstColor = 0x0306,
+        DestinationColor,
 
         /// <summary>
         /// Match as GL_ONE_MINUS_DST_COLOR
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        OneMinusDstColor = 0x0307,
+        OneMinusDestinationColor,
 
         /// <summary>
         /// Match as GL_SRC_ALPHA_SATURATE
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        SrcAlphaSaturate = 0x0308,
+        SourceAlphaSaturate,
 
         /// <summary>
         /// Match as GL_CONSTANT_COLOR
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        ConstantColor = 0x8001,
+        ConstantColor,
 
         /// <summary>
         /// Match as GL_ONE_MINUS_CONSTANT_COLOR
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        OneMinusConstantColor = 0x8002,
+        OneMinusConstantColor,
 
         /// <summary>
         /// Match as GL_CONSTANT_ALPHA
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        ConstantAlpha = 0x8003,
+        ConstantAlpha,
 
         /// <summary>
         /// Match as GL_ONE_MINUS_CONSTANT_ALPHA
         /// </summary>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        OneMinusConstantAlpha = 0x8004,
+        OneMinusConstantAlpha,
     }
 
     /// <summary>
@@ -309,7 +309,7 @@ namespace Tizen.NUI
     /// </summary>
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum DepthWriteModeType
+    public enum DepthWriteMode
     {
         /// <summary>
         /// Renderer doesn't write to the depth buffer
@@ -338,7 +338,7 @@ namespace Tizen.NUI
     /// </summary>
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum DepthFunctionType
+    public enum DepthFunction
     {
         /// <summary>
         /// Depth test never passes
@@ -402,7 +402,7 @@ namespace Tizen.NUI
     /// </summary>
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum DepthTestModeType
+    public enum DepthTestMode
     {
         /// <summary>
         /// Renderer does not read from the depth buffer
@@ -431,7 +431,7 @@ namespace Tizen.NUI
     /// </summary>
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum RenderModeType
+    public enum RenderMode
     {
         /// <summary>
         /// Do not write to either color or stencil buffer (But will potentially render to depth buffer).
@@ -474,7 +474,7 @@ namespace Tizen.NUI
     /// </summary>
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum StencilFunctionType
+    public enum StencilFunction
     {
         /// <summary>
         /// Always fails
@@ -538,7 +538,7 @@ namespace Tizen.NUI
     /// </summary>
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum StencilOperationType
+    public enum StencilOperation
     {
         /// <summary>
         /// Sets the stencil buffer value to 0
@@ -560,7 +560,7 @@ namespace Tizen.NUI
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         Replace,
-
+ 
         /// <summary>
         /// Increments the current stencil buffer value. Clamps to the maximum representable unsigned value
         /// </summary>

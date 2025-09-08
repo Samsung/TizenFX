@@ -68,7 +68,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The default constructor.
+        /// The default constructor of PropertyValue class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public PropertyValue() : this(Interop.PropertyValue.NewPropertyValue(), true)
@@ -220,11 +220,10 @@ namespace Tizen.NUI
         /// Creates a Size property value.
         /// </summary>
         /// <param name="vectorValue">Size values.</param>
-        internal PropertyValue(Size vectorValue) : this(Interop.PropertyValue.NewPropertyValueVector3(Size.getCPtr(vectorValue)), true)
+        internal PropertyValue(Size vectorValue) : this(vectorValue.Width, vectorValue.Height, vectorValue.Depth)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        internal PropertyValue(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal PropertyValue(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {
         }
 
@@ -241,6 +240,39 @@ namespace Tizen.NUI
         internal PropertyValue(AngleAxis angleAxis) : this(Interop.PropertyValue.NewPropertyValueAngleAxis(AngleAxis.getCPtr(angleAxis)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates a Vector2 property value componentwise.
+        /// </summary>
+        /// <param name="xValue">X value of Vector2.</param>
+        /// <param name="yValue">Y value of Vector2.</param>
+        internal PropertyValue(float xValue, float yValue) : this(Interop.PropertyValue.NewPropertyValueVector2Componentwise(xValue, yValue), true)
+        {
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Creates a Vector3 property value componentwise.
+        /// </summary>
+        /// <param name="xValue">X value of Vector3.</param>
+        /// <param name="yValue">Y value of Vector3.</param>
+        /// <param name="zValue">Z value of Vector3.</param>
+        internal PropertyValue(float xValue, float yValue, float zValue) : this(Interop.PropertyValue.NewPropertyValueVector3Componentwise(xValue, yValue, zValue), true)
+        {
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Creates a Vector4 property value componentwise.
+        /// </summary>
+        /// <param name="xValue">X value of Vector4.</param>
+        /// <param name="yValue">Y value of Vector4.</param>
+        /// <param name="zValue">Z value of Vector4.</param>
+        /// <param name="wValue">W value of Vector4.</param>
+        internal PropertyValue(float xValue, float yValue, float zValue, float wValue) : this(Interop.PropertyValue.NewPropertyValueVector4Componentwise(xValue, yValue, zValue, wValue), true)
+        {
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
 
         /// <summary>
@@ -279,7 +311,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Dispose. 
+        /// Dispose.
         /// </summary>
         /// <remarks>
         /// Following the guide of https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose.
@@ -329,92 +361,151 @@ namespace Tizen.NUI
             }
 
             System.Type type = obj.GetType();
-            PropertyValue value;
             if (type.IsEnum)
             {
-                value = new PropertyValue((int)obj);//Enum.Parse(type, str);
+                PropertyValue value = new PropertyValue((int)obj);//Enum.Parse(type, str);
+                return value;
             }
             else if (type.Equals(typeof(int)))
             {
-                value = new PropertyValue((int)obj);
+                PropertyValue value = new PropertyValue((int)obj);
+                return value;
             }
             else if (type.Equals(typeof(System.Int32)))
             {
-                value = new PropertyValue((int)obj);
+                PropertyValue value = new PropertyValue((int)obj);
+                return value;
             }
             else if (type.Equals(typeof(bool)))
             {
-                value = new PropertyValue((bool)obj);
+                PropertyValue value = new PropertyValue((bool)obj);
+                return value;
             }
             else if (type.Equals(typeof(float)))
             {
-                value = new PropertyValue((float)obj);
+                PropertyValue value = new PropertyValue((float)obj);
+                return value;
             }
             else if (type.Equals(typeof(string)))
             {
-                value = new PropertyValue((string)obj);
+                PropertyValue value = new PropertyValue((string)obj);
+                return value;
             }
             else if (type.Equals(typeof(Vector2)))
             {
-                value = new PropertyValue((Vector2)obj);
+                PropertyValue value = new PropertyValue((Vector2)obj);
+                return value;
             }
             else if (type.Equals(typeof(Vector3)))
             {
-                value = new PropertyValue((Vector3)obj);
+                PropertyValue value = new PropertyValue((Vector3)obj);
+                return value;
             }
             else if (type.Equals(typeof(Vector4)))
             {
-                value = new PropertyValue((Vector4)obj);
+                PropertyValue value = new PropertyValue((Vector4)obj);
+                return value;
             }
             else if (type.Equals(typeof(Position)))
             {
-                value = new PropertyValue((Position)obj);
+                PropertyValue value = new PropertyValue((Position)obj);
+                return value;
             }
             else if (type.Equals(typeof(Position2D)))
             {
-                value = new PropertyValue((Position2D)obj);
+                PropertyValue value = new PropertyValue((Position2D)obj);
+                return value;
             }
             else if (type.Equals(typeof(Size)))
             {
-                value = new PropertyValue((Size)obj);
+                PropertyValue value = new PropertyValue((Size)obj);
+                return value;
             }
             else if (type.Equals(typeof(Size2D)))
             {
-                value = new PropertyValue((Size2D)obj);
+                PropertyValue value = new PropertyValue((Size2D)obj);
+                return value;
             }
             else if (type.Equals(typeof(Color)))
             {
-                value = new PropertyValue((Color)obj);
+                PropertyValue value = new PropertyValue((Color)obj);
+                return value;
             }
             else if (type.Equals(typeof(Rotation)))
             {
-                value = new PropertyValue((Rotation)obj);
+                PropertyValue value = new PropertyValue((Rotation)obj);
+                return value;
             }
             else if (type.Equals(typeof(RelativeVector2)))
             {
-                value = new PropertyValue((RelativeVector2)obj);
+                PropertyValue value = new PropertyValue((RelativeVector2)obj);
+                return value;
             }
             else if (type.Equals(typeof(RelativeVector3)))
             {
-                value = new PropertyValue((RelativeVector3)obj);
+                PropertyValue value = new PropertyValue((RelativeVector3)obj);
+                return value;
             }
             else if (type.Equals(typeof(RelativeVector4)))
             {
-                value = new PropertyValue((RelativeVector4)obj);
+                PropertyValue value = new PropertyValue((RelativeVector4)obj);
+                return value;
             }
             else if (type.Equals(typeof(Extents)))
             {
-                value = new PropertyValue((Extents)obj);
+                PropertyValue value = new PropertyValue((Extents)obj);
+                return value;
             }
             else if (type.Equals(typeof(Rectangle)))
             {
-                value = new PropertyValue((Rectangle)obj);
+                PropertyValue value = new PropertyValue((Rectangle)obj);
+                return value;
+            }
+            else if (type.Equals(typeof(PropertyArray)))
+            {
+                PropertyValue value = new PropertyValue((PropertyArray)obj);
+                return value;
+            }
+            else if (type.Equals(typeof(PropertyMap)))
+            {
+                PropertyValue value = new PropertyValue((PropertyMap)obj);
+                return value;
+            }
+            else if (type.Equals(typeof(UIColor)))
+            {
+                UIColor color = ((UIColor)obj);
+                PropertyValue value = new PropertyValue(color.R, color.G, color.B, color.A);
+                return value;
+            }
+            else if (type.Equals(typeof(UICorner)))
+            {
+                UICorner corner = ((UICorner)obj);
+                PropertyValue value = new PropertyValue(corner.TopLeft, corner.TopRight, corner.BottomRight, corner.BottomLeft);
+                return value;
+            }
+            else if (type.Equals(typeof(UIExtents)))
+            {
+                // TODO Do not create Extents instance
+                using Extents extents = ((UIExtents)obj).ToReferenceType();
+                PropertyValue value = new PropertyValue(extents);
+                return value;
+            }
+            else if (type.Equals(typeof(UIVector2)))
+            {
+                UIVector2 vector2 = ((UIVector2)obj);
+                PropertyValue value = new PropertyValue(vector2.X, vector2.Y);
+                return value;
+            }
+            else if (type.Equals(typeof(UIVector3)))
+            {
+                UIVector3 vector3 = ((UIVector3)obj);
+                PropertyValue value = new PropertyValue(vector3.X, vector3.Y, vector3.Z);
+                return value;
             }
             else
             {
                 throw new global::System.InvalidOperationException("Unimplemented type for Property Value :" + type.Name);
             }
-            return value;
         }
 
 
@@ -481,7 +572,14 @@ namespace Tizen.NUI
             }
             else if (type.Equals(typeof(Size)))
             {
-                value = Interop.PropertyValue.NewPropertyValueVector3(Size.getCPtr((Size)obj));
+                if (obj is Size size)
+                {
+                    value = Interop.PropertyValue.NewPropertyValueVector3Componentwise(size.Width, size.Height, size.Depth);
+                }
+                else
+                {
+                    throw new InvalidCastException("Object is not of type Size");
+                }
             }
             else if (type.Equals(typeof(Size2D)))
             {
@@ -514,6 +612,40 @@ namespace Tizen.NUI
             else if (type.Equals(typeof(Rectangle)))
             {
                 value = Interop.PropertyValue.NewPropertyValueRect(Rectangle.getCPtr((Rectangle)obj));
+            }
+            else if (type.Equals(typeof(PropertyArray)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueArray(PropertyArray.getCPtr((PropertyArray)(obj)));
+            }
+            else if (type.Equals(typeof(PropertyMap)))
+            {
+                value = Interop.PropertyValue.NewPropertyValueMap(PropertyMap.getCPtr((PropertyMap)(obj)));
+            }
+            else if (type.Equals(typeof(UIColor)))
+            {
+                UIColor color = ((UIColor)obj);
+                value = Interop.PropertyValue.NewPropertyValueVector4Componentwise(color.R, color.G, color.B, color.A);
+            }
+            else if (type.Equals(typeof(UICorner)))
+            {
+                UICorner corner = ((UICorner)obj);
+                value = Interop.PropertyValue.NewPropertyValueVector4Componentwise(corner.TopLeft, corner.TopRight, corner.BottomRight, corner.BottomLeft);
+            }
+            else if (type.Equals(typeof(UIExtents)))
+            {
+                // TODO Do not create Extents instance
+                using Extents extents = ((UIExtents)obj).ToReferenceType();
+                value = Interop.PropertyValue.NewPropertyValueExtents(Extents.getCPtr(extents));
+            }
+            else if (type.Equals(typeof(UIVector2)))
+            {
+                UIVector2 vector2 = ((UIVector2)obj);
+                value = Interop.PropertyValue.NewPropertyValueVector2Componentwise(vector2.X, vector2.Y);
+            }
+            else if (type.Equals(typeof(UIVector3)))
+            {
+                UIVector3 vector3 = ((UIVector3)obj);
+                value = Interop.PropertyValue.NewPropertyValueVector3Componentwise(vector3.X, vector3.Y, vector3.Z);
             }
             else
             {
@@ -554,8 +686,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Get(Size vectorValue)
         {
-            bool ret = Interop.PropertyValue.GetVector3(SwigCPtr, Size.getCPtr(vectorValue));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (null == vectorValue)
+            {
+                throw new ArgumentNullException(nameof(vectorValue));
+            }
+
+            var ret = GetVector3Component(out var w, out var h, out var d);
+            vectorValue.ResetValue(w, h, d);
+
             return ret;
         }
 
@@ -831,6 +969,48 @@ namespace Tizen.NUI
         {
             bool ret = Interop.PropertyValue.GetAngleAxis(SwigCPtr, AngleAxis.getCPtr(angleAxisValue));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Get each components of Vector2. It will be failed if the type is not Vector2.
+        /// </summary>
+        /// <param name="xValue">X value of Vector2 component</param>
+        /// <param name="yValue">Y value of Vector2 component</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
+        internal bool GetVector2Component(out float xValue, out float yValue)
+        {
+            bool ret = Interop.PropertyValue.PropertyValueGetVector2Componentwise(SwigCPtr, out xValue, out yValue);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
+        /// <summary>
+        /// Get each components of Vector3. It will be failed if the type is not Vector3.
+        /// </summary>
+        /// <param name="xValue">X value of Vector3 component</param>
+        /// <param name="yValue">Y value of Vector3 component</param>
+        /// <param name="zValue">Z value of Vector3 component</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
+        internal bool GetVector3Component(out float xValue, out float yValue, out float zValue)
+        {
+            bool ret = Interop.PropertyValue.PropertyValueGetVector3Componentwise(SwigCPtr, out xValue, out yValue, out zValue);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
+
+        /// <summary>
+        /// Get each components of Vector4. It will be failed if the type is not Vector4.
+        /// </summary>
+        /// <param name="xValue">X value of Vector4 component</param>
+        /// <param name="yValue">Y value of Vector4 component</param>
+        /// <param name="zValue">Z value of Vector4 component</param>
+        /// <param name="wValue">W value of Vector4 component</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
+        internal bool GetVector4Component(out float xValue, out float yValue, out float zValue, out float wValue)
+        {
+            bool ret = Interop.PropertyValue.PropertyValueGetVector4Componentwise(SwigCPtr, out xValue, out yValue, out zValue, out wValue);
+            NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
 

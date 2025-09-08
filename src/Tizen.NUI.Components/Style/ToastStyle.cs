@@ -26,18 +26,7 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ToastStyle : ControlStyle
     {
-        /// <summary>The Duration bindable property.</summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DurationProperty = BindableProperty.Create(nameof(Duration), typeof(uint?), typeof(ToastStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            ((ToastStyle)bindable).duration = (uint?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            return ((ToastStyle)bindable).duration;
-        });
-
-        private uint? duration;
+        static readonly IStyleProperty DurationProperty = new StyleProperty<Toast, uint>((v, o) => v.Duration = o);
 
         static ToastStyle() { }
 

@@ -33,46 +33,6 @@ namespace Tizen.NUI.Components
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MessageProperty = BindableProperty.Create(nameof(Message), typeof(string), typeof(Toast), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (Toast)bindable;
-            if (newValue != null)
-            {
-                instance.strText = (string)(newValue);
-                if (null != instance.textLabel)
-                {
-                    instance.textLabel.Text = instance.strText;
-                }
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Toast)bindable;
-            return instance.strText;
-        });
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DurationProperty = BindableProperty.Create(nameof(Duration), typeof(uint), typeof(Toast), default(uint), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (Toast)bindable;
-            if (newValue != null)
-            {
-                if (instance.timer == null)
-                {
-                    instance.timer = new Timer(instance.duration);
-                }
-                instance.timer.Interval = (uint)newValue;
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Toast)bindable;
-            return instance.timer == null ? instance.duration : instance.timer.Interval;
-        });
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Toast FromText(string text, uint duration)
         {
             Toast toast = new Toast();
@@ -89,7 +49,32 @@ namespace Tizen.NUI.Components
         private Timer timer = null;
         private readonly uint duration = 3000;
 
-        static Toast() { }
+        static Toast()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                MessageProperty = BindableProperty.Create(nameof(Message), typeof(string), typeof(Toast), string.Empty,
+                    propertyChanged: SetInternalMessageProperty, defaultValueCreator: GetInternalMessageProperty);
+                DurationProperty = BindableProperty.Create(nameof(Duration), typeof(uint), typeof(Toast), default(uint),
+                    propertyChanged: SetInternalDurationProperty, defaultValueCreator: GetInternalDurationProperty);
+                TextArrayProperty = BindableProperty.Create(nameof(TextArray), typeof(string[]), typeof(Toast), null,
+                    propertyChanged: SetInternalTextArrayProperty, defaultValueCreator: GetInternalTextArrayProperty);
+                PointSizeProperty = BindableProperty.Create(nameof(PointSize), typeof(float), typeof(Toast), default(float),
+                    propertyChanged: SetInternalPointSizeProperty, defaultValueCreator: GetInternalPointSizeProperty);
+                FontFamilyProperty = BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(Toast), default(string),
+                    propertyChanged: SetInternalFontFamilyProperty, defaultValueCreator: GetInternalFontFamilyProperty);
+                TextColorProperty = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(Toast), null,
+                    propertyChanged: SetInternalTextColorProperty, defaultValueCreator: GetInternalTextColorProperty);
+                TextAlignmentProperty = BindableProperty.Create(nameof(TextAlignment), typeof(HorizontalAlignment), typeof(Toast), default(HorizontalAlignment),
+                    propertyChanged: SetInternalTextAlignmentProperty, defaultValueCreator: GetInternalTextAlignmentProperty);
+                TextPaddingProperty = BindableProperty.Create(nameof(TextPadding), typeof(Extents), typeof(Toast), null,
+                    propertyChanged: SetInternalTextPaddingProperty, defaultValueCreator: GetInternalTextPaddingProperty);
+                TextLineHeightProperty = BindableProperty.Create(nameof(TextLineHeight), typeof(uint), typeof(Toast), default(uint),
+                    propertyChanged: SetInternalTextLineHeightProperty, defaultValueCreator: GetInternalTextLineHeightProperty);
+                TextLineSpaceProperty = BindableProperty.Create(nameof(TextLineSpace), typeof(uint), typeof(Toast), default(uint),
+                    propertyChanged: SetInternalTextLineSpaceProperty, defaultValueCreator: GetInternalTextLineSpaceProperty);
+            }
+        }
 
         /// <summary>
         /// Construct Toast with null.
@@ -129,11 +114,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TextArrayProperty) as string[];
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TextArrayProperty) as string[];
+                }
+                else
+                {
+                    return InternalTextArray;
+                }
             }
             set
             {
-                SetValue(TextArrayProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TextArrayProperty, value);
+                }
+                else
+                {
+                    InternalTextArray = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -152,11 +151,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (float)GetValue(PointSizeProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (float)GetValue(PointSizeProperty);
+                }
+                else
+                {
+                    return InternalPointSize;
+                }
             }
             set
             {
-                SetValue(PointSizeProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(PointSizeProperty, value);
+                }
+                else
+                {
+                    InternalPointSize = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -184,11 +197,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(FontFamilyProperty) as string;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(FontFamilyProperty) as string;
+                }
+                else
+                {
+                    return InternalFontFamily;
+                }
             }
             set
             {
-                SetValue(FontFamilyProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FontFamilyProperty, value);
+                }
+                else
+                {
+                    InternalFontFamily = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -216,11 +243,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TextColorProperty) as Color;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TextColorProperty) as Color;
+                }
+                else
+                {
+                    return InternalTextColor;
+                }
             }
             set
             {
-                SetValue(TextColorProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TextColorProperty, value);
+                }
+                else
+                {
+                    InternalTextColor = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -248,11 +289,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (HorizontalAlignment)GetValue(TextAlignmentProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (HorizontalAlignment)GetValue(TextAlignmentProperty);
+                }
+                else
+                {
+                    return InternalTextAlignment;
+                }
             }
             set
             {
-                SetValue(TextAlignmentProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TextAlignmentProperty, value);
+                }
+                else
+                {
+                    InternalTextAlignment = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -292,12 +347,43 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (string)GetValue(MessageProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (string)GetValue(MessageProperty);
+                }
+                else
+                {
+                    return GetInternalMessage();
+                }
             }
             set
             {
-                SetValue(MessageProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(MessageProperty, value);
+                }
+                else
+                {
+                    SetInternalMessage(value);
+                }
             }
+        }
+
+        private void SetInternalMessage(string newValue)
+        {
+            if (newValue != null)
+            {
+                strText = newValue;
+                if (null != textLabel)
+                {
+                    textLabel.Text = strText;
+                }
+            }
+        }
+
+        private string GetInternalMessage()
+        {
+            return strText;
         }
 
         /// <summary>
@@ -309,11 +395,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(TextPaddingProperty) as Extents;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(TextPaddingProperty) as Extents;
+                }
+                else
+                {
+                    return InternalTextPadding;
+                }
             }
             set
             {
-                SetValue(TextPaddingProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TextPaddingProperty, value);
+                }
+                else
+                {
+                    InternalTextPadding = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -341,11 +441,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (UInt32)GetValue(TextLineHeightProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (UInt32)GetValue(TextLineHeightProperty);
+                }
+                else
+                {
+                    return InternalTextLineHeight;
+                }
             }
             set
             {
-                SetValue(TextLineHeightProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TextLineHeightProperty, value);
+                }
+                else
+                {
+                    InternalTextLineHeight = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -360,11 +474,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (uint)GetValue(TextLineSpaceProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (uint)GetValue(TextLineSpaceProperty);
+                }
+                else
+                {
+                    return InternalTextLineSpace;
+                }
             }
             set
             {
-                SetValue(TextLineSpaceProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(TextLineSpaceProperty, value);
+                }
+                else
+                {
+                    InternalTextLineSpace = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -379,12 +507,40 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (uint)GetValue(DurationProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (uint)GetValue(DurationProperty);
+                }
+                else
+                {
+                    return GetInternalDuration();
+                }
             }
             set
             {
-                SetValue(DurationProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(DurationProperty, value);
+                }
+                else
+                {
+                    SetInternalDuration(value);
+                }
             }
+        }
+
+        private void SetInternalDuration(uint newValue)
+        {
+            if (timer == null)
+            {
+                timer = new Timer(duration);
+            }
+            timer.Interval = newValue;
+        }
+
+        private uint GetInternalDuration()
+        {
+            return timer == null ? duration : timer.Interval;
         }
 
         /// <inheritdoc/>

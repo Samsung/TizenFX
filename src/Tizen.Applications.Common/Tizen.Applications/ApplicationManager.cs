@@ -17,7 +17,6 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using static Interop.ApplicationManager;
 
@@ -43,6 +42,9 @@ namespace Tizen.Applications
         /// <summary>
         /// Occurs whenever the installed application is enabled.
         /// </summary>
+        /// <remarks>
+        /// This event is raised whenever the installed application is enabled. It provides information about the application that was enabled through the arguments passed in the event handler.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<ApplicationEnabledEventArgs> ApplicationEnabled
         {
@@ -74,6 +76,10 @@ namespace Tizen.Applications
         /// <summary>
         /// Occurs whenever the installed application is disabled.
         /// </summary>
+        /// <remarks>
+        /// This event is raised whenever the user disables an installed application through the Settings menu.
+        /// The event handler receives an argument of type ApplicationDisabledEventArgs which contains information about the disabled application.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<ApplicationDisabledEventArgs> ApplicationDisabled
         {
@@ -105,6 +111,10 @@ namespace Tizen.Applications
         /// <summary>
         /// Occurs whenever the installed applications get launched.
         /// </summary>
+        /// <remarks>
+        /// This event provides information about the application that was just launched, including its package ID, version, and other details.
+        /// It is useful for tracking and monitoring application launches in order to gather statistics or perform certain actions based on specific conditions.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<ApplicationLaunchedEventArgs> ApplicationLaunched
         {
@@ -133,9 +143,13 @@ namespace Tizen.Applications
             }
         }
 
+
         /// <summary>
         /// Occurs whenever the installed applications get terminated.
         /// </summary>
+        /// <remarks>
+        /// This event is raised whenever any application gets terminated on the device. It provides information about the terminated application through the arguments passed in the event handler.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<ApplicationTerminatedEventArgs> ApplicationTerminated
         {
@@ -165,9 +179,24 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the information of the installed applications asynchronously.
+        /// Asynchronously retrieves information about the installed applications.
         /// </summary>
-        /// <returns>The installed application info list.</returns>
+        /// <returns>An asynchronous task that returns a list containing information about the installed applications.</returns>
+        /// <remarks>
+        /// By calling this method, you can retrieve details about all the applications currently installed on the device. The returned list contains ApplicationInfo objects, which provide various properties such as package ID, version, and icon.
+        /// </remarks>
+        /// <example>
+        /// To get the information of the installed applications, you can call the following code snippet:
+        ///
+        /// <code>
+        /// var listApp = await ApplicationManager.GetInstalledApplicationsAsync();
+        /// Assert.IsNotEmpty(_listApp, "The list of installed app should not be empty.");
+        /// foreach (ApplicationInfo instapp in _listApp)
+        /// {
+        ///     Console.WriteLine(instapp.ApplicationId);
+        /// }
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync()
         {
@@ -238,10 +267,25 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the information of the installed applications with the ApplicationInfoFilter asynchronously.
+        /// Retrieves the information about installed applications that match the specified filter criteria in an asynchronous manner.
         /// </summary>
-        /// <param name="filter">Key-value pairs for filtering.</param>
-        /// <returns>The installed application info list.</returns>
+        /// <remarks>
+        /// By specifying the desired filter criteria through the <paramref name="filter"/> argument, you can retrieve only those applications that meet these conditions. The returned result will contain a list of ApplicationInfo objects representing the matched applications.
+        /// </remarks>
+        /// <param name="filter">An ApplicationInfoFilter containing the desired filter criteria.</param>
+        /// <returns>An IEnumerable&lt;ApplicationInfo&gt; containing the information of the installed applications that match the specified filter.</returns>
+        /// <example>
+        /// The following code snippet demonstrates how to obtain the information of all installed applications:
+        /// <code>
+        /// var filter = new ApplicationInfoFilter();
+        /// filter.Filter.Add(ApplicationInfoFilter.Keys.Id, "org.exmaple.hello");
+        /// var apps = await GetInstalledApplicationsAsync(filter);
+        /// foreach (var app in apps)
+        /// {
+        ///     Console.WriteLine(app.ApplicationId);
+        /// }
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync(ApplicationInfoFilter filter)
         {
@@ -285,10 +329,27 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the information of the installed applications with the ApplicationInfoMetadataFilter asynchronously.
+        /// Asynchronously retrieves the information about installed applications filtered by the specified criteria in the form of ApplicationInfoMetadataFilter.
         /// </summary>
-        /// <param name="filter">Key-value pairs for filtering.</param>
-        /// <returns>The installed application info list.</returns>
+        /// <remarks>
+        /// By providing the filter argument, you can specify various conditions such as package names, types, visibility status, etc., which will help narrow down the search results to only those that match the desired criteria.
+        /// The returned result is a list of ApplicationInfo objects containing detailed information about each matched application.
+        /// </remarks>
+        /// <param name="filter">A dictionary of key-value pairs used to define the specific filtering criteria.</param>
+        /// <returns>An enumerable collection of ApplicationInfo objects representing the installed applications that meet the specified filtering criteria.</returns>
+        /// <example>
+        /// To retrieve all visible applications:
+        ///
+        /// <code>
+        /// var filter = new ApplicationInfoMetadataFilter();
+        /// filter.Filter.Add("http://tizen.org/metadata/test-id", "org.exmaple.hello");
+        /// var apps = await GetInstalledApplicationsAsync(filter);
+        /// foreach (var app in apps)
+        /// {
+        ///     Console.WriteLine(app.ApplicationId);
+        /// }
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync(ApplicationInfoMetadataFilter filter)
         {
@@ -332,9 +393,22 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the information of the running applications asynchronously.
+        /// Asynchronously retrieves the information about currently running applications.
         /// </summary>
-        /// <returns>The application running context list.</returns>
+        /// <returns>An enumerable list containing details about the running applications.</returns>
+        /// <remarks>
+        /// This method provides an efficient way to gather information about all the active apps on the device without blocking the current thread. It returns a task which can be awaited in order to obtain the desired result.
+        /// </remarks>
+        /// <example>
+        /// Here's an example demonstrating how to retrieve the running applications and display their IDs:
+        /// <code>
+        /// await ApplicationManager.GetRunningApplicationsAsync().ContinueWith((task) => {
+        ///     foreach (var app in task.Result) {
+        ///         Console.WriteLine(app.ApplicationId);
+        ///     }
+        /// });
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationRunningContext>> GetRunningApplicationsAsync()
         {
@@ -371,9 +445,26 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the information of the running applications including subapp asynchronously.
+        /// Asynchronously retrieves the information about all currently running applications, including subapps.
         /// </summary>
-        /// <returns>The application running context list.</returns>
+        /// <returns>An enumerable list containing details about the running applications.</returns>
+        /// <remarks>
+        /// This method provides access to the current state of all active applications on the device, allowing you to gather information such as their IDs, types, and states.
+        /// By utilizing this functionality, developers can gain insights into the overall system activity and make informed decisions based on the available data.
+        /// </remarks>
+        /// <example>
+        /// Here is an example that demonstrates how to utilize the GetAllRunningApplicationsAsync method in order to obtain information about the currently running applications:
+        /// <code>
+        /// // Initiate the call to get all running applications
+        /// IEnumerable&lt;ApplicationRunningContext&gt; runningApps = await GetAllRunningApplicationsAsync();
+        ///
+        /// // Iterate through the obtained list of running apps
+        /// foreach (var app in runningApps)
+        /// {
+        ///     Console.WriteLine($"Id: {app.ApplicationId}");
+        /// }
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationRunningContext>> GetAllRunningApplicationsAsync()
         {
@@ -410,10 +501,25 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the information of the specified application with the application ID.
+        /// Retrieves the information of the specified application by its application ID.
         /// </summary>
-        /// <param name="applicationId">Application ID.</param>
-        /// <returns>The application info.</returns>
+        /// <param name="applicationId">The ID of the target application.</param>
+        /// <returns>An object containing detailed information about the requested application.</returns>
+        /// <remarks>
+        /// This function enables you to obtain specific information about an application based on its application ID.
+        /// It returns an object that contains various attributes such as the package name, version, icon URL, etc., which are associated with the identified application.
+        /// If the specified application does not exist in the system, an error message will be thrown indicating that the requested application could not be found.
+        /// </remarks>
+        /// <example>
+        /// The following code snippet demonstrates how to retrieve the details of an application with the ID "org.example.app":
+        /// <code>
+        /// // Retrieve the application details
+        /// ApplicationInfo appInfo = ApplicationManager.GetInstalledApplication("org.example.app");
+        ///
+        /// // Print the package ID of the retrieved application
+        /// Console.WriteLine($"Package ID: {appInfo.PackageId}");
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public static ApplicationInfo GetInstalledApplication(string applicationId)
         {
@@ -428,11 +534,26 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Returns if the specified application is running or not.
+        /// Determines whether the specified application is currently running.
         /// </summary>
-        /// <param name="applicationId">The application ID.</param>
-        /// <returns>Returns true if the given application is running, otherwise false.</returns>
-        /// <exception cref="ArgumentException">Thrown when the given parameter is invalid.</exception>
+        /// <param name="applicationId">The unique identifier of the application to check.</param>
+        /// <returns>True if the application identified by the given ID is currently running, otherwise False.</returns>
+        /// <exception cref="ArgumentException">Thrown when the provided argument is invalid or missing.</exception>
+        /// <example>
+        /// The following code snippet demonstrates how to determine if a specific application is currently running:
+        ///
+        /// <code>
+        /// string applicationId = "org.example.app";
+        /// if (ApplicationManager.IsRunning(applicationId))
+        /// {
+        ///     Console.WriteLine("The application with ID '{0}' is currently running.", applicationId);
+        /// }
+        /// else
+        /// {
+        ///     Console.WriteLine("The application with ID '{0}' is not currently running.", applicationId);
+        /// }
+        /// </code>
+	/// </example>
         /// <since_tizen> 3 </since_tizen>
         public static bool IsRunning(string applicationId)
         {
@@ -446,11 +567,24 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Returns the application id.
+        /// Retrieves the application ID based on the specified process ID.
         /// </summary>
-        /// <param name="processId">The application pid.</param>
-        /// <returns>Returns the application id.</returns>
-        /// <exception cref="ArgumentException">Thrown when the given parameter is invalid.</exception>
+        /// <remarks>
+        /// By providing the process ID as input, this function enables you to obtain the corresponding application ID.
+        /// It ensures that the correct application is identified even if multiple applications are running simultaneously.
+        /// </remarks>
+        /// <param name="processId">The process ID of the target application.</param>
+        /// <returns>The application ID associated with the given process ID.</returns>
+        /// <exception cref="ArgumentException">If the argument passed in is not valid.</exception>
+        /// <example>
+        /// The following code snippet demonstrates how to retrieve the application ID by calling the GetAppId() function:
+        ///
+        /// <code>
+        /// int processId = 12345; // Replace with actual process ID
+        /// string appId = GetAppId(processId);
+        /// Console.WriteLine($"Application ID: {appId}");
+        /// </code>
+        /// </example>
         /// <since_tizen> 6 </since_tizen>
         public static string GetAppId(int processId)
         {
@@ -682,6 +816,52 @@ namespace Tizen.Applications
             Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
 
             err = Interop.ApplicationManager.AppManagerAttachWindowBelow(parentAppId, childAppId);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.ApplicationManager.ErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid argument.");
+                    case Interop.ApplicationManager.ErrorCode.PermissionDenied:
+                        throw new UnauthorizedAccessException("Permission denied.");
+                    case Interop.ApplicationManager.ErrorCode.IoError:
+                        throw new InvalidOperationException("IO error at unmanaged code.");
+                    case Interop.ApplicationManager.ErrorCode.OutOfMemory:
+                        throw new InvalidOperationException("Out-of-memory at unmanaged code.");
+                    case Interop.ApplicationManager.ErrorCode.NoSuchApp:
+                        throw new InvalidOperationException("No such application.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Requests to remount the application path for the specified subsession to reflect user changes.
+        /// </summary>
+        /// <details>
+        /// This method unmounts and remounts the application's root path for the specified subsession,
+        /// updating the mount source to correspond to the current user context.
+        /// The application path itself remains unchanged, but the underlying source is replaced to reflect
+        /// the user switch. This is typically used to ensure data isolation and consistency when the user
+        /// changes while the application is running.
+        /// </details>
+        /// <remarks>
+        /// This method is only available for platform level signed applications.
+        /// </remarks>
+        /// <param name="subsessionId">The subsession identifier.</param>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <privilege>http://tizen.org/privilege/internal/default/platform</privilege>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void RemountSubsession(string subsessionId)
+        {
+            if (string.IsNullOrEmpty(subsessionId))
+            {
+                throw new ArgumentException("Invalid argument.");
+            }
+
+            Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppManagerRequestRemountSubsession(subsessionId);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
                 switch (err)

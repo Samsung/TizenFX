@@ -15,12 +15,17 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides the ability to control the sound stream.
+    /// Provides functionalities to control and manage sound streams within an application.
+    /// The <see cref="AudioStreamPolicy"/> class enables developers to set policies for
+    /// playback and recording audio streams, adjusting settings for focus and routing,
+    /// as well as configuring audio devices and sound effects.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class AudioStreamPolicy : IDisposable
@@ -62,7 +67,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Occurs when the state of focus that belongs to the current AudioStreamPolicy is changed.
+        /// Occurs when the state of focus for the current <see cref="AudioStreamPolicy"/> changes.
+        /// This event allows subscribers to react to changes in audio focus state,
+        /// helping to manage audio playback or recording effectively.
         /// </summary>
         /// <remarks>
         /// The event is raised in the internal thread.
@@ -419,6 +426,104 @@ namespace Tizen.Multimedia
             ret.ThrowIfError("Failed to check stream on device");
 
             return isOn;
+        }
+
+        /// <summary>
+        /// Sets the sound effect.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="withReference"/> is true, <paramref name="info.Type"/> must be <see cref="SoundEffectType.ReferenceCopy"/> or
+        /// <see cref="SoundEffectType.AecSpeex"/> or <see cref="SoundEffectType.AecWebrtc"/>.
+        /// And <paramref name="info.ReferenceDevice"/> must not be null.<br/>
+        /// If <paramref name="withReference"/> is false, <paramref name="info.Type"/> must be <see cref="SoundEffectType.NoiseSuppression"/> or
+        /// <see cref="SoundEffectType.AutoGainControl"/> or <see cref="SoundEffectType.NsWithAgc"/>.
+        /// </remarks>
+        /// <param name="info">See <see cref="SoundEffectInfo"/>.</param>
+        /// <param name="withReference">A reference device for sound effect.</param>
+        /// <exception cref="ArgumentNullException">When <paramref name="withReference"/> is true, A reference device is null.</exception>
+        /// <exception cref="AudioPolicyException">The current <see cref="AudioStreamType"/> is not supported for sound effect with reference.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed.</exception>
+        /// <since_tizen> 12 </since_tizen>
+        public void SetSoundEffect(SoundEffectInfo info, bool withReference)
+        {
+            if (withReference)
+            {
+                var set = new SoundEffectType[] { SoundEffectType.ReferenceCopy, SoundEffectType.AecSpeex, SoundEffectType.AecWebrtc };
+                if (!set.Contains(info.Type))
+                {
+                    Log.Error(Tag, $"Type={info.Type} is not supported for setting with reference.");
+                    throw new ArgumentException($"{info.Type} is not supported for setting with reference.");
+                }
+                if (info.ReferenceDevice == null)
+                {
+                    throw new ArgumentNullException(nameof(info.ReferenceDevice));
+                }
+
+                Log.Info(Tag, $"{info.ReferenceDevice}");
+
+                Interop.AudioStreamPolicy.SetSoundEffectWithReference(Handle, (SoundEffectWithReferenceNative)info.Type.ToNative(),
+                    info.ReferenceDevice.Id).ThrowIfError("Failed to set audio effect with reference");
+            }
+            else
+            {
+                var set = new SoundEffectType[] { SoundEffectType.NoiseSuppression, SoundEffectType.AutoGainControl, SoundEffectType.NsWithAgc };
+                if (!set.Contains(info.Type))
+                {
+                    throw new ArgumentException($"{info.Type} is not supported for setting without reference.");
+                }
+
+                Interop.AudioStreamPolicy.SetSoundEffect(Handle, info.Type.ToNative()).
+                    ThrowIfError("Failed to set sound effect with reference");
+            }
+        }
+
+        /// <summary>
+        /// Gets the sound effect.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="withReference"/> is false, <see cref="SoundEffectInfo.ReferenceDevice"/> of returned value will be null.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">
+        /// The sound effect is not set yet.<br/>
+        /// - or -<br/>
+        /// There's no matched AudioDevice.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">Sound effect is not set yet.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed.</exception>
+        /// <since_tizen> 12 </since_tizen>
+        public SoundEffectInfo GetSoundEffect(bool withReference)
+        {
+            AudioManagerError ret = AudioManagerError.None;
+            SoundEffectInfo soundEffectInfo;
+            int deviceId = 0;
+
+            if (withReference)
+            {
+                ret = Interop.AudioStreamPolicy.GetSoundEffectWithReference(Handle, out SoundEffectWithReferenceNative nativeEffect, out deviceId);
+                if (ret == AudioManagerError.InvalidParameter)
+                {
+                    throw new InvalidOperationException("There's no sound effect with reference");
+                }
+                ret.ThrowIfError("Failed to get sound effect with reference");
+
+                Log.Info(Tag, $"Device ID : {deviceId}");
+
+                soundEffectInfo = new SoundEffectInfo(nativeEffect.ToPublic(),
+                    AudioManager.GetConnectedDevices().Where(d => d.Id == deviceId).Single());
+            }
+            else
+            {
+                ret = Interop.AudioStreamPolicy.GetSoundEffect(Handle, out int nativeEffect);
+                if (ret == AudioManagerError.InvalidParameter)
+                {
+                    throw new InvalidOperationException("There's no sound effect");
+                }
+                ret.ThrowIfError("Failed to get sound effect");
+
+                soundEffectInfo = new SoundEffectInfo(((SoundEffectNative)nativeEffect).ToPublic());
+            }
+
+            return soundEffectInfo;
         }
 
         /// <summary>

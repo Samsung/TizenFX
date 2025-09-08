@@ -23,12 +23,12 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class NPatchVisual : VisualMap
     {
-        private string url = null;
-        private bool? borderOnly = null;
-        private Rectangle border = null;
+        private string url;
+        private bool? borderOnly;
+        private Rectangle border;
 
         /// <summary>
-        /// Constructor.
+        /// Default constructor of NPatchVisual class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public NPatchVisual() : base()
@@ -101,26 +101,17 @@ namespace Tizen.NUI
             if (url != null)
             {
                 _outputVisualMap = new PropertyMap();
-                PropertyValue temp = new PropertyValue((int)Visual.Type.NPatch);
-                _outputVisualMap.Add(Visual.Property.Type, temp);
-                temp.Dispose();
-
-                temp = new PropertyValue(url);
-                _outputVisualMap.Add(NpatchImageVisualProperty.URL, temp);
-                temp.Dispose();
+                _outputVisualMap.Add(Visual.Property.Type, (int)Visual.Type.NPatch);
+                _outputVisualMap.Add(NpatchImageVisualProperty.URL, url);
 
                 if (borderOnly != null)
                 {
-                    temp = new PropertyValue((bool)borderOnly);
-                    _outputVisualMap.Add(NpatchImageVisualProperty.BorderOnly, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(NpatchImageVisualProperty.BorderOnly, (bool)borderOnly);
                 }
 
                 if (border != null)
                 {
-                    temp = new PropertyValue(border);
-                    _outputVisualMap.Add(NpatchImageVisualProperty.Border, temp);
-                    temp.Dispose();
+                    _outputVisualMap.Add(NpatchImageVisualProperty.Border, border);
                 }
                 base.ComposingPropertyMap();
             }

@@ -38,7 +38,7 @@ namespace Tizen.Multimedia
         InternalError = ErrorCode.InvalidOperation,
 
         /// <summary>
-        /// No space.
+        /// No space on the device.
         /// </summary>
         NoSpaceOnDevice = PlayerErrorCode.NoSpaceOnDevice,
 
@@ -269,32 +269,32 @@ namespace Tizen.Multimedia
     public enum StreamMetadataKey
     {
         /// <summary>
-        /// Album.
+        /// The album name of the media content
         /// </summary>
         Album,
 
         /// <summary>
-        /// Artists.
+        /// The artist(s) of the media content.
         /// </summary>
         Artist,
 
         /// <summary>
-        /// Author.
+        /// The author(s) of the media content.
         /// </summary>
         Author,
 
         /// <summary>
-        /// Genre.
+        /// The genre(s) of the media content.
         /// </summary>
         Genre,
 
         /// <summary>
-        /// Title.
+        /// The title of the media content.
         /// </summary>
         Title,
 
         /// <summary>
-        /// Year.
+        /// The year of the media content.
         /// </summary>
         Year
     }

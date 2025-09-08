@@ -21,7 +21,7 @@ using static Interop;
 namespace Tizen.Security.SecureRepository
 {
     /// <summary>
-    /// The class that represents a certificate.
+    /// Represents a certificate.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Certificate
@@ -30,14 +30,12 @@ namespace Tizen.Security.SecureRepository
         /// Loads Certificate from the given file path.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="filePath">The path of certificate file to be loaded.</param>
+        /// <param name="filePath">Path of certificate file to be loaded.</param>
         /// <returns>Loaded certificate class instance.</returns>
-        /// <exception cref="ArgumentNullException">
-        /// The filePath should not be null
-        /// </exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="filePath"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
-        /// Invalid certificate file format. Provided file path does not exist or
-        /// cannot be accessed.
+        /// Thrown when a certificate has invalid file format.
+        /// Thrown when provided file path does not exist or cannot be accessed.
         /// </exception>
         static public Certificate Load(string filePath)
         {
@@ -54,11 +52,11 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// A constructor of Certificate that takes the binary and its format.
+        /// Initializes an instance of Certificate class with a binary and its data format.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="binary">The binary data of a certificate.</param>
-        /// <param name="format">The format of the binary data.</param>
+        /// <param name="binary">Binary data of a certificate.</param>
+        /// <param name="format">Format of the binary data.</param>
         public Certificate(byte[] binary, DataFormat format)
         {
             this.Binary = binary;
@@ -101,8 +99,11 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// The binary value of a certificate.
+        /// Gets and sets binary value of a certificate.
         /// </summary>
+        /// <value>
+        /// Binary value of a certificate.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public byte[] Binary
         {
@@ -110,8 +111,11 @@ namespace Tizen.Security.SecureRepository
         }
 
         /// <summary>
-        /// The format of the binary value.
+        /// Gets and sets format of the binary value.
         /// </summary>
+        /// <value>
+        /// Format of the binary value.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public DataFormat Format
         {

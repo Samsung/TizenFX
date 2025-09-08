@@ -32,7 +32,7 @@ namespace Tizen.NUI
         /// Calling member functions with an uninitialized touch handle is not allowed.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Touch() : this(Interop.Touch.NewTouch(), true, false)
+        public Touch() : this(Interop.Touch.NewTouch(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -41,7 +41,7 @@ namespace Tizen.NUI
         {
         }
 
-        internal Touch(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        internal Touch(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister, cRegister)
         {
         }
 
@@ -236,6 +236,19 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets the device name from which the mouse/touch event is originated.
+        /// </summary>
+        /// <param name="point">The index of a touch point.</param>
+        /// <returns>Device name</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GetDeviceName(uint point)
+        {
+            string ret = Interop.Touch.GetDeviceName(SwigCPtr, point);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// sets the time (in ms) that the touch event occurred.
         /// </summary>
         /// <param name="time">The time (in ms)</param>
@@ -253,7 +266,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Degree GetAngle(uint point)
         {

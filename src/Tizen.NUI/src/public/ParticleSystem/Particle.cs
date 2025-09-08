@@ -39,7 +39,7 @@ namespace Tizen.NUI.ParticleSystem
         Opacity       = 1 << 5, // float, opacity (0.0-1.0)
         Velocity      = 1 << 6, // Vector3, vector of velocity
         Lifetime      = 1 << 7, // float, remaining lifetime
-        Lifetime_Base = 1 << 8, // float, initial lifetime
+        LifetimeBase  = 1 << 8, // float, initial lifetime
     }
 
     /// <summary>
@@ -466,14 +466,14 @@ namespace Tizen.NUI.ParticleSystem
         {
             get
             {
-                var streamIndex = GetStreamIndex(ParticleStream.Lifetime_Base);
+                var streamIndex = GetStreamIndex(ParticleStream.LifetimeBase);
                 var ret = Interop.Particle.ReadFloat(mEmitterRef, (uint)streamIndex, mIndex);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
             set
             {
-                SetStreamValue( value, ParticleStream.Lifetime_Base);
+                SetStreamValue( value, ParticleStream.LifetimeBase);
             }
         }
 

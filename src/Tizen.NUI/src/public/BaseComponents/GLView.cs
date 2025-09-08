@@ -1,3 +1,20 @@
+/*
+ * Copyright(c) 2025 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+ 
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
@@ -19,6 +36,8 @@ namespace Tizen.NUI.BaseComponents
         private GLTerminateDelegate glTerminateCallback;
         private ViewResizeDelegate viewResizeCallback;
         private ViewResizeDelegate internalResizeCallback;
+
+        private bool _terminated;
 
         /// <summary>
         /// Type of callback to initialize OpenGLES.
@@ -101,6 +120,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Registers GL callback functions to render with OpenGL ES
         /// </summary>
+        /// <remarks>
+        /// Registered callback could be called after disposed.
+        /// </remarks>
         /// <param name="glInit">The callback function for GL initialization</param>
         /// <param name="glRenderFrame">The callback function to render the frame</param>
         /// <param name="glTerminate">The callback function to clean up GL resources</param>
@@ -168,6 +190,57 @@ namespace Tizen.NUI.BaseComponents
         {
             Interop.GLView.GlViewRenderOnce(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Terminate gl calls forcibly.
+        /// </summary>
+        /// <remarks>
+        /// All API after Terminate don't have any effects.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Terminate()
+        {
+            if (!_terminated)
+            {
+                Tizen.Log.Info("NUI", "GLView Terminate called\n");
+                _terminated = true;
+                Interop.GLView.GlViewTerminate(SwigCPtr);
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
+        }
+
+        /// <summary>
+        /// you can override it to clean-up your own resources.
+        /// </summary>
+        /// <param name="type">DisposeTypes</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+                // Keep delegate life ownership until next frame rendered.
+                RenderThreadObjectHolder.RegisterDelegate(glInitializeCallback);
+                RenderThreadObjectHolder.RegisterDelegate(glRenderFrameCallback);
+                RenderThreadObjectHolder.RegisterDelegate(glTerminateCallback);
+                RenderThreadObjectHolder.RegisterDelegate(viewResizeCallback);
+                RenderThreadObjectHolder.RegisterDelegate(internalResizeCallback);
+
+                // DevNote : Do not make viewResizeCallback as null here, to avoid race condition or lock overhead.
+            }
+
+            Terminate();
+
+            base.Dispose(type);
         }
     }
 }

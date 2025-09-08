@@ -52,13 +52,38 @@ namespace Tizen.Sensor
 
 
         /// <summary>
-        /// Read a sensor data synchronously.
+        /// Read sensor(which inherits this class) data synchronously.
         /// </summary>
         internal abstract void ReadData();
+
+        /// <summary>
+        /// Get the type of a sensor which inherits this class.
+        /// </summary>
         internal abstract SensorType GetSensorType();
+
+        /// <summary>
+        /// Start to listen the event of a sensor which inherits this class.
+        /// </summary>
         internal abstract void EventListenStart();
+
+        /// <summary>
+        /// Stop to listen the event of a sensor which inherits this class.
+        /// </summary>
         internal abstract void EventListenStop();
 
+        /// <summary>
+        /// Update the internal batch event list using the latest events.
+        /// </summary>
+        /// <remarks>
+        /// It will be called for updating events about the sensor like
+        /// BatchSensor or Plugin classes which inherits this class.
+        /// </remarks>
+        /// <param name="eventsPtr">
+        /// General batch data's raw pointer
+        /// </param>
+        /// <param name="events_count">
+        /// Number of general batch events
+        /// </param>
         internal void updateBatchEvents(IntPtr eventsPtr, uint events_count)
         {
             if (events_count >= 1)
@@ -73,6 +98,14 @@ namespace Tizen.Sensor
             }
         }
 
+        /// <summary>
+        /// Return the last element of Batched elements, which is the latest
+        /// sensor event.
+        /// </summary>
+        /// <remarks>
+        /// If there is no event, default(Interop.SensorEventStruct) will be
+        /// returned.
+        /// </remarks>
         internal Interop.SensorEventStruct latestEvent()
         {
             if (BatchedEvents.Count > 0)
@@ -82,6 +115,9 @@ namespace Tizen.Sensor
             return default(Interop.SensorEventStruct);
         }
 
+        /// <summary>
+        /// Create the Sensor object to listen to the sensor events.
+        /// </summary>
         internal Sensor(uint index)
         {
             SensorType type = GetSensorType();
@@ -94,7 +130,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Destroy the Sensor object.
+        /// Destroy the Sensor object and release all resources.
         /// </summary>
         ~Sensor()
         {
@@ -102,7 +138,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Property: Gets the name of the sensor.
+        /// Property: Gets the name of the sensor as a string.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The name of the sensor. </value>
@@ -116,7 +152,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Property: Gets the vendor.
+        /// Property: Gets the vendor of the sensor as a string.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The vendor name of the sensor. </value>
@@ -158,7 +194,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Property: Gets the resolution.
+        /// Property: Gets the resolution of the sensor as a float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The resolution. </value>
@@ -172,7 +208,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Property: Gets the minimum interval.
+        /// Property: Gets the minimum interval of the sensor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The minimum update interval. </value>
@@ -186,7 +222,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Property: Gets the FIFO count.
+        /// Property: Gets the FIFO count of the sensor as int type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The size of the hardware FIFO. </value>
@@ -200,7 +236,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Property: Gets the maximum batch count.
+        /// Property: Gets the maximum batch count of the sensor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The maximum batch count. </value>
@@ -257,7 +293,8 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Sets the pause policy of the sensor.
+        /// Get the pause policy or set the pause policy of the sensor as the
+        /// set value.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The pause policy.</value>
@@ -280,6 +317,9 @@ namespace Tizen.Sensor
 
         /// <summary>
         /// Gets or sets the time span.
+        /// Set value will be used as its 'Ticks' attribute.
+        /// Get will return the newly allocated TimeSpan object with the same
+        /// ticks as the sensor's timestamp.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The time span. </value>
@@ -298,7 +338,8 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Gets or sets the timestamp.
+        /// Gets or sets the timestamp of a sensor which inherits the sensor
+        /// class.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         /// <value> Timestamp. </value>
@@ -317,10 +358,10 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Indicates whether this sensor is sensing.
+        /// Indicate whether the sensor is sensing or not sensing.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <value><c>true</c> if this sensor is sensing; otherwise <c>false</c>.</value>
+        /// <value><c>true</c> if the sensor is sensing; otherwise <c>false</c>.</value>
         public bool IsSensing
         {
             get
@@ -338,6 +379,12 @@ namespace Tizen.Sensor
             }
         }
 
+        /// <summary>
+        /// Check if the sensor type is supported or not by the system.
+        /// </summary>
+        /// <param name="type">The sensor type to check.</param>
+        /// <param name="key">The key for the sensor type to check.</param>
+        /// <returns>True if the sensor type is supported, otherwise false.</returns>
         internal static bool CheckIfSupported(SensorType type, String key)
         {
             bool isSupported = false;
@@ -414,7 +461,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Destroy the current object.
+        /// Destroy the current object and release all the resources.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public void Dispose()
@@ -453,6 +500,13 @@ namespace Tizen.Sensor
             }
         }
 
+        /// <summary>
+        /// Gets the handle list of the sensors of a given type and index.
+        /// </summary>
+        /// <remarks>
+        /// A device may have more than one sensors of the given type.
+        /// In such case, the 'index'th sensor handle will be used.
+        /// </remarks>
         private void GetHandleList(SensorType type, uint index)
         {
             IntPtr list;
@@ -469,6 +523,10 @@ namespace Tizen.Sensor
             Interop.Libc.Free(list);
         }
 
+        /// <summary>
+        /// Get the following sensor properties of the sensor:
+        /// name, vendor, minimum range, maximum range, resolution, minimum interval, fifo count, maximum batch count
+        /// </summary>
         private void GetProperty()
         {
             int error = (int)SensorError.None;
@@ -530,6 +588,9 @@ namespace Tizen.Sensor
             }
         }
 
+        /// <summary>
+        /// Create a sensor listener and store a handle of the listener as an member variable.
+        /// </summary>
         private void CreateListener()
         {
             int error = Interop.SensorListener.CreateListener(_sensorHandle, out _listenerHandle);
@@ -540,6 +601,9 @@ namespace Tizen.Sensor
             }
         }
 
+        /// <summary>
+        /// Change the interval between updates for the sensor with the value stored in member variable.
+        /// </summary>
         private void SetInterval()
         {
             if (CheckListenerHandle())
@@ -556,6 +620,20 @@ namespace Tizen.Sensor
             }
         }
 
+        /// <summary>
+        /// Set the desired maximum batch latency of the sensor.
+        /// Sensors that support batching may allow applications to change their maximum batch latencies.
+        /// For example, if you set the latency as 10,000 ms, the sensor may store its data
+        /// up to 10,000 ms, before delivering the data through the HAL.
+        /// In case of non-batching sensors no error will be occured,
+        /// but nothing is affected by the input latency value.
+        /// </summary>
+        /// <remarks>
+        /// Even if you set a batch latency, the sensor may not work as you intended,
+        /// as one sensor can be used by more than one listeners.
+        /// In addition, some batch sensors may already have fixed batching latency
+        /// or batching queue size, which cannot be altered by applications.
+        /// </remarks>
         private void SetMaxBatchLatency()
         {
             if (CheckListenerHandle())
@@ -569,6 +647,14 @@ namespace Tizen.Sensor
             }
         }
 
+        /// <summary>
+        /// Check if listener handle for the sensor is valid or not.
+        /// </summary>
+        /// <remarks>
+        /// If listener handle is not valid, then it will throw ArgumentException.
+        /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when the sensor listener handler is invalid.</exception>
+        /// <value><c>true</c> if listener handle is valid.</value>
         private bool CheckListenerHandle()
         {
             bool result = false;
@@ -584,6 +670,12 @@ namespace Tizen.Sensor
             return result;
         }
 
+        /// <summary>
+        /// Check if sensor handle for the sensor is valid or not.
+        /// If sensor handle is not valid, then it will throw ArgumentException.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the sensor handler is invalid.</exception>
+        /// <value><c>true</c> if sensor handle is valid.</value>
         private bool CheckSensorHandle()
         {
             bool result = false;
@@ -599,6 +691,14 @@ namespace Tizen.Sensor
             return result;
         }
 
+        /// <summary>
+        /// Destroy resources of a listener handle of the sensor.
+        /// Release all resources allocated for a listener handle.
+        /// </summary>
+        /// <remarks>
+        /// If this function is called while the sensor is still running,
+        /// that is, then it is implicitly stopped.
+        /// </remarks>
         private void DestroyHandles()
         {
             Interop.SensorListener.DestroyListener(_listenerHandle);

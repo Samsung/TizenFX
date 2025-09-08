@@ -26,6 +26,8 @@ namespace Tizen.NUI
     public sealed class GestureOptions
     {
         private static readonly GestureOptions instance = new GestureOptions();
+        private static uint panGestureMinimumTouchesRequired;
+        private static uint panGestureMaximumTouchesRequired;
 
         /// <summary>
         /// Constructor.
@@ -253,6 +255,44 @@ namespace Tizen.NUI
         {
             Interop.GestureOptions.SetPanGestureMinimumPanEvents(number);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets the minimum number of touches required for the pan gesture to be detected.
+        /// </summary>
+        /// <param name="minimum">The minimum number of touches required</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetPanGestureMinimumTouchesRequired(uint minimum)
+        {
+            panGestureMinimumTouchesRequired = minimum;
+        }
+
+        /// <summary>
+        /// Gets the minimum number of touches required for the pan gesture to be detected.
+        /// </summary>
+        /// <returns>The minimum number of touches required</returns>
+        internal uint GetPanGestureMinimumTouchesRequired()
+        {
+            return panGestureMinimumTouchesRequired;
+        }
+
+        /// <summary>
+        /// Sets the maximum number of touches required for the pan gesture to be detected.
+        /// </summary>
+        /// <param name="maximum">The maximum number of touches required</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetPanGestureMaximumTouchesRequired(uint maximum)
+        {
+            panGestureMaximumTouchesRequired = maximum;
+        }
+
+        /// <summary>
+        /// Gets the maximum number of touches required for the pan gesture to be detected.
+        /// </summary>
+        /// <returns>The maximum number of touches required</returns>
+        internal uint GetPanGestureMaximumTouchesRequired()
+        {
+            return panGestureMaximumTouchesRequired;
         }
 
         /// <summary>

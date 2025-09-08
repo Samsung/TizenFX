@@ -10,15 +10,20 @@ namespace Tizen.NUI.Samples
 {
     public class CircularText : IExample
     {
-        private string VERSION_3_ES = "#version 300 es\n";
-
         private static readonly string VERTEX_SHADER =
+                        "//@name CircularText.vert\n" +
+                        "\n" +
+                        "//@version 100\n" +
+                        "\n" +
                         "precision mediump float;\n"+
-                        "in vec2 aPosition;\n"+
-                        "in vec2 aTexCoord;\n"+
-                        "out vec2 vUV;\n"+
-                        "uniform vec3 uSize;\n"+
-                        "uniform mat4 uMvpMatrix;\n"+
+                        "INPUT vec2 aPosition;\n"+
+                        "INPUT vec2 aTexCoord;\n"+
+                        "OUTPUT vec2 vUV;\n"+
+                        "UNIFORM_BLOCK VertBlock\n" +
+                        "{\n" +
+                        "  UNIFORM vec3 uSize;\n"+
+                        "  UNIFORM mat4 uMvpMatrix;\n"+
+                        "};\n" +
                         "void main()\n"+
                         "{\n"+
                         "  vec4 vertexPosition = vec4(aPosition, 0.0, 1.0);\n"+
@@ -28,15 +33,23 @@ namespace Tizen.NUI.Samples
                         "}\n";
 
         private static readonly string FRAGMENT_SHADER =
+                        "//@name CircularText.frag\n" +
+                        "\n" +
+                        "//@version 100\n" +
+                        "\n" +
                         "precision mediump float;\n"+
-                        "in vec2 vUV;\n"+
-                        "out vec4 FragColor;\n"+
-                        "uniform sampler2D sAlbedo;\n"+
-                        "uniform vec4 uColor;\n"+
+                        "INPUT vec2 vUV;\n"+
+                        //"OUTPUT vec4 FragColor;\n"+
+                        "UNIFORM sampler2D sAlbedo;\n"+
+                        "UNIFORM_BLOCK FragBlock\n" +
+                        "{\n" +
+                        "  UNIFORM vec4 uColor;\n"+
+                        "};\n" +
                         "void main()\n"+
                         "{\n"+
                         "  vec4 color = texture( sAlbedo, vUV );\n"+
-                        "  FragColor = vec4( color.rgb, uColor.a * color.a );\n"+
+                        //"  FragColor = vec4( color.rgb, uColor.a * color.a );\n"+
+                        "  gl_FragColor = vec4( color.rgb, uColor.a * color.a );\n"+
                         "}\n";
 
         public struct Vec2
@@ -56,7 +69,7 @@ namespace Tizen.NUI.Samples
             public Vec2 texCoord;
         };
 
-        private Renderer CreateRenderer()
+        private Renderable CreateRenderable()
         {
             TexturedQuadVertex vertex1 = new TexturedQuadVertex();
             TexturedQuadVertex vertex2 = new TexturedQuadVertex();
@@ -91,12 +104,16 @@ namespace Tizen.NUI.Samples
             geometry.SetType(Geometry.Type.TRIANGLE_STRIP);
 
             // Create the shader
-            Shader shader = new Shader( VERSION_3_ES + VERTEX_SHADER, VERSION_3_ES + FRAGMENT_SHADER );
+            Shader shader = new Shader( VERTEX_SHADER, FRAGMENT_SHADER, "CircularTextShader" );
 
-            // Create the renderer
-            Renderer renderer = new Renderer( geometry, shader );
+            // Create the renderable
+            Renderable renderable = new Renderable()
+            {
+                Geometry = geometry,
+                Shader = shader,
+            };
 
-            return renderer;
+            return renderable;
         }
 
         private uint GetBytesPerPixel(PixelFormat pixelFormat)
@@ -331,8 +348,8 @@ namespace Tizen.NUI.Samples
             embeddedItems.Add(IMAGE2);
 
             TextureSet textureSet = CreateTextureSet( textParameters, embeddedItems );
-            Renderer renderer = CreateRenderer();
-            renderer.SetTextures( textureSet );
+            Renderable renderable = CreateRenderable();
+            renderable.TextureSet = textureSet;
 
             View actor = new View();
             actor.PivotPoint = PivotPoint.TopLeft;
@@ -341,7 +358,7 @@ namespace Tizen.NUI.Samples
             actor.Size = new Size( 360, 360 );
             actor.Color = Color.White;
 
-            actor.AddRenderer( renderer );
+            actor.AddRenderable( renderable );
             root.Add(actor);
         }
 

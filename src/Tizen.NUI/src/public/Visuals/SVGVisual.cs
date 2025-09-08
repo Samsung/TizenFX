@@ -23,10 +23,10 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class SVGVisual : VisualMap
     {
-        private string url = null;
+        private string url;
 
         /// <summary>
-        /// Constructor.
+        /// Default constructor of SVGVisual class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public SVGVisual() : base()
@@ -59,12 +59,8 @@ namespace Tizen.NUI
             if (url != null)
             {
                 _outputVisualMap = new PropertyMap();
-                PropertyValue temp = new PropertyValue((int)Visual.Type.SVG);
-                _outputVisualMap.Add(Visual.Property.Type, temp);
-                temp.Dispose();
-                temp = new PropertyValue(url);
-                _outputVisualMap.Add(ImageVisualProperty.URL, temp);
-                temp.Dispose();
+                _outputVisualMap.Add(Visual.Property.Type, (int)Visual.Type.SVG);
+                _outputVisualMap.Add(ImageVisualProperty.URL, url);
                 base.ComposingPropertyMap();
             }
         }

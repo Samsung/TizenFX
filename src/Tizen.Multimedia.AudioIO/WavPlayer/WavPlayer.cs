@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -85,20 +86,62 @@ namespace Tizen.Multimedia
             }
 
             return cancellationToken.IsCancellationRequested ? Task.FromCanceled(cancellationToken) :
-                StartAsyncCore(path, streamPolicy, cancellationToken);
+                StartAsyncCore(path, streamPolicy, 1, cancellationToken);
         }
 
-        private static async Task StartAsyncCore(string path, AudioStreamPolicy streamPolicy,
+        /// <summary>
+        /// Plays a wav file based on the specified <see cref="AudioStreamPolicy"/> with given repetition number.
+        /// </summary>
+        /// <remarks>If loopCount is 0, it means infinite loops</remarks>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <param name="path">A file path to play.</param>
+        /// <param name="streamPolicy">A <see cref="AudioStreamPolicy"/>.</param>
+        /// <param name="loopCount">A number of repetitions.</param>
+        /// <param name="cancellationToken">A cancellation token which can be used to stop.</param>
+        /// <exception cref="ArgumentNullException">
+        ///     <paramref name="path"/> is null.
+        ///     <para>-or-</para>
+        ///     <paramref name="streamPolicy"/> is null.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exists.</exception>
+        /// <exception cref="FileFormatException">The format of <paramref name="path"/> is not supported.</exception>
+        /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed of.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Task StartAsync(string path, AudioStreamPolicy streamPolicy, uint loopCount,
             CancellationToken cancellationToken)
         {
+            if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+
+            if (streamPolicy == null)
+            {
+                throw new ArgumentNullException(nameof(streamPolicy));
+            }
+
+            if (File.Exists(path) == false)
+            {
+                throw new FileNotFoundException("File does not exists.", path);
+            }
+
+            return cancellationToken.IsCancellationRequested ? Task.FromCanceled(cancellationToken) :
+                StartAsyncCore(path, streamPolicy, loopCount, cancellationToken);
+        }
+
+        private static async Task StartAsyncCore(string path, AudioStreamPolicy streamPolicy, uint loopCount,
+            CancellationToken cancellationToken)
+        {
+            int id = 0;
             var tcs = new TaskCompletionSource<bool>();
 
             Native.WavPlayerCompletedCallback cb = (id_, _) => tcs.TrySetResult(true);
 
             using (var cbKeeper = ObjectKeeper.Get(cb))
             {
-                Native.Start(path, streamPolicy.Handle, cb, IntPtr.Zero, out var id).
-                    Validate("Failed to play.");
+                Native.StartLoop(path, streamPolicy.Handle, loopCount, cb, IntPtr.Zero, out id).
+                    Validate("Failed to play with loop.");
 
                 using (RegisterCancellationAction(tcs, cancellationToken, id))
                 {

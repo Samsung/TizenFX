@@ -53,7 +53,7 @@ namespace Tizen.NUI
         private event EventHandler<StateChangedEventArgs> stateChangedEventHandler;
 
         /// <summary>
-        /// State changed event.
+        /// The StateChanged event is triggered when the state of the TTS player changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<StateChangedEventArgs> StateChanged
@@ -63,7 +63,8 @@ namespace Tizen.NUI
                 if (stateChangedEventHandler == null)
                 {
                     stateChangedEventCallback = OnStateChanged;
-                    StateChangedSignal().Connect(stateChangedEventCallback);
+                    using var signal = StateChangedSignal();
+                    signal.Connect(stateChangedEventCallback);
                 }
 
                 stateChangedEventHandler += value;
@@ -71,10 +72,10 @@ namespace Tizen.NUI
             remove
             {
                 stateChangedEventHandler -= value;
-
-                if (stateChangedEventHandler == null && StateChangedSignal().Empty() == false && stateChangedEventCallback != null)
+                using var signal = StateChangedSignal();
+                if (stateChangedEventHandler == null && signal.Empty() == false && stateChangedEventCallback != null)
                 {
-                    StateChangedSignal().Disconnect(stateChangedEventCallback);
+                    signal.Disconnect(stateChangedEventCallback);
                 }
             }
         }
@@ -180,14 +181,14 @@ namespace Tizen.NUI
                 HandleRef CPtr = new HandleRef(dummyObect, cPtr);
                 Interop.BaseHandle.DeleteBaseHandle(CPtr);
                 CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
             else
             {
                 ret = new TTSPlayer(cPtr, true);
+                return ret;
             }
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -288,13 +289,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// State changed argument.
+        /// This class represents the event arguments used when the state of the TTS player changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public class StateChangedEventArgs : EventArgs
         {
             /// <summary>
-            /// PrevState.
+            /// The previous state of the TTS player before the change.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public TTSState PrevState
@@ -304,7 +305,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// NextState.
+            /// The new state of the TTS player after the change.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public TTSState NextState

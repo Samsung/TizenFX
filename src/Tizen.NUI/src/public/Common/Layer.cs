@@ -17,6 +17,7 @@
 using System;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
@@ -28,7 +29,7 @@ namespace Tizen.NUI
     public class Layer : Container
     {
         private Window window;
-        private int layoutCount = 0;
+        private int layoutCount;
 
         private EventHandler<VisibilityChangedEventArgs> visibilityChangedEventHandler;
         private VisibilityChangedEventCallbackType visibilityChangedEventCallback;
@@ -36,14 +37,21 @@ namespace Tizen.NUI
         private EventHandler<AggregatedVisibilityChangedEventArgs> aggregatedVisibilityChangedEventHandler;
         private AggregatedVisibilityChangedEventCallbackType aggregatedVisibilityChangedEventCallback;
 
+        private LayoutDirectionChangedEventCallbackType _layoutDirectionChangedEventCallback;
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void VisibilityChangedEventCallbackType(IntPtr data, bool visibility, VisibilityChangeType type);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AggregatedVisibilityChangedEventCallbackType(IntPtr data, bool visibility);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void LayoutDirectionChangedEventCallbackType(IntPtr data, ViewLayoutDirectionType type);
+
+        private static int aliveCount;
+
         /// <summary>
-        /// Creates a Layer object.
+        /// Default constructor of Layer class to create a Layer object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Layer() : this(Interop.Layer.New(), true)
@@ -55,11 +63,24 @@ namespace Tizen.NUI
 
         internal Layer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            ++aliveCount;
+
+            if (_layoutDirectionChangedEventCallback == null)
+            {
+                _layoutDirectionChangedEventCallback = OnLayoutDirectionChanged;
+                Interop.ActorSignal.LayoutDirectionChangedConnect(SwigCPtr, _layoutDirectionChangedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
         }
 
         /// <summary>
-        /// Dispose Explicit or Implicit
+        /// Dispose.
+        /// Releases unmanaged and optionally managed resources.
         /// </summary>
+        /// <remarks>
+        /// When overriding this method, you need to distinguish between explicit and implicit conditions. For explicit conditions, release both managed and unmanaged resources. For implicit conditions, only release unmanaged resources.
+        /// </remarks>
+        /// <param name="type">Explicit to release both managed and unmanaged resources. Implicit to release only unmanaged resources.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -86,7 +107,18 @@ namespace Tizen.NUI
                 aggregatedVisibilityChangedEventCallback = null;
             }
 
+            if (_layoutDirectionChangedEventCallback != null)
+            {
+                NUILog.Debug($"[Dispose] layoutDirectionChangedEventCallback");
+
+                Interop.ActorSignal.LayoutDirectionChangedDisconnect(GetBaseHandleCPtrHandleRef, _layoutDirectionChangedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                _layoutDirectionChangedEventCallback = null;
+            }
+
             LayoutCount = 0;
+
+            --aliveCount;
 
             base.Dispose(type);
         }
@@ -303,6 +335,39 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Gets of sets the flag to identify the Layer will be ignored or not.
+        /// If the Layer is marked as ignored, it will not be rendered and will be excluded from render thread computation.
+        /// So, the render thread properties like WorldPosition and WorldColor become inaccurate.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Ignored
+        {
+            set => SetInternalIgnored(value);
+            get => IsInternalIgnored();
+        }
+
+        /// <summary>
+        /// Gets the number of currently alived Layer object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int AliveCount => aliveCount;
+
+        private void SetInternalIgnored(bool ignored)
+        {
+            Interop.Actor.SetIgnored(SwigCPtr, ignored);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        private bool IsInternalIgnored()
+        {
+            bool isIgnored = Interop.Actor.IsIgnored(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return isIgnored;
+        }
+
 
         /// From the Container base class.
 
@@ -471,6 +536,7 @@ namespace Tizen.NUI
         /// Increments the depth of the layer.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Method used to raise the object, not event")]
         public void Raise()
         {
             var parentChildren = window?.LayersChildren;
@@ -510,6 +576,7 @@ namespace Tizen.NUI
         /// Raises the layer to the top.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate", Justification = "Method used to raise the object, not event")]
         public void RaiseToTop()
         {
             var parentChildren = window?.LayersChildren;
@@ -572,7 +639,7 @@ namespace Tizen.NUI
             LowerBelow(target);
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAnchorPoint(Vector3 anchorPoint)
         {
@@ -581,7 +648,7 @@ namespace Tizen.NUI
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetSize(float width, float height)
         {
@@ -590,7 +657,7 @@ namespace Tizen.NUI
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetParentOrigin(Vector3 parentOrigin)
         {
@@ -599,7 +666,7 @@ namespace Tizen.NUI
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetResizePolicy(ResizePolicyType policy, DimensionType dimension)
         {
@@ -804,11 +871,6 @@ namespace Tizen.NUI
             }
         }
 
-        internal void SetSortFunction(SWIGTYPE_p_f_r_q_const__Dali__Vector3__float function)
-        {
-            Interop.Layer.SetSortFunction(SwigCPtr, SWIGTYPE_p_f_r_q_const__Dali__Vector3__float.getCPtr(function));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
         internal bool IsTouchConsumed()
         {
@@ -950,6 +1012,19 @@ namespace Tizen.NUI
             if (aggregatedVisibilityChangedEventHandler != null)
             {
                 aggregatedVisibilityChangedEventHandler(this, e);
+            }
+        }
+
+        private void OnLayoutDirectionChanged(IntPtr data, ViewLayoutDirectionType type)
+        {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            foreach (var child in Children)
+            {
+                child.RequestLayoutForInheritLayoutDirection();
             }
         }
     }

@@ -20,7 +20,7 @@ using static Interop;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Provides means to configure properties and handle events for <see cref="MediaPacketSource"/>.
+    /// Provides means to configure properties and handle event for <see cref="MediaPacketSource"/>.
     /// </summary>
     /// <seealso cref="MediaPacketSource"/>
     /// <since_tizen> 9 </since_tizen>
@@ -35,7 +35,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Occurs when the buffer underruns or overflows.
+        /// Occurs when the status of buffer is underruns or overflows.
         /// </summary>
         /// <remarks>The event handler will be executed on an internal thread.</remarks>
         /// <since_tizen> 9 </since_tizen>

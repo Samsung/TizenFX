@@ -54,6 +54,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
 
         /// <summary>
         /// The commands array.
+        /// This property returns an enumerable collection of PathCommandType representing the path commands.
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when commands is null. </exception>
         /// <since_tizen> 9 </since_tizen>
@@ -75,6 +76,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
 
         /// <summary>
         /// The points array
+        /// This returns an enumerable collection of floating-point numbers representing the points.
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when points is null. </exception>
         /// <since_tizen> 9 </since_tizen>

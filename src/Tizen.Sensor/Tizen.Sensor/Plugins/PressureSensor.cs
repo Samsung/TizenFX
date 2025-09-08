@@ -27,14 +27,14 @@ namespace Tizen.Sensor
         private static string PressureSensorKey = "http://tizen.org/feature/sensor.barometer";
 
         /// <summary>
-        /// Gets the value of the pressure sensor.
+        /// Get the pressure value from the pressure sensor as float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> Pressure </value>
         public float Pressure { get; private set; } = float.MinValue;
 
         /// <summary>
-        /// Returns true or false based on whether the pressure sensor is supported by the device.
+        /// Return true or false based on whether the pressure sensor is supported by the device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
@@ -48,7 +48,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Returns the number of pressure sensors available on the device.
+        /// Return the number of pressure sensors available on the system.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The count of pressure sensors. </value>
@@ -62,7 +62,7 @@ namespace Tizen.Sensor
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tizen.Sensor.PressureSensor"/> class.
+        /// Initialize a new instance of the <see cref="Tizen.Sensor.PressureSensor"/> class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.barometer</feature>
@@ -70,7 +70,8 @@ namespace Tizen.Sensor
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the operation is invalid for the current state.</exception>
         /// <param name='index'>
-        /// Index. Default value for this is 0. Index refers to a particular pressure sensor in case of multiple sensors.
+        /// Index refers to a particular pressure sensor in case of multiple sensors.
+        /// Default value is 0.
         /// </param>
         public PressureSensor(uint index = 0) : base(index)
         {
@@ -86,7 +87,6 @@ namespace Tizen.Sensor
         /// An event handler for storing the callback functions for the event corresponding to the change in the pressure sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-
         public event EventHandler<PressureSensorDataUpdatedEventArgs> DataUpdated;
 
 

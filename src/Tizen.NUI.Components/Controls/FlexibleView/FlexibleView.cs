@@ -64,37 +64,39 @@ namespace Tizen.NUI.Components
         /// PaddingProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly new BindableProperty PaddingProperty = BindableProperty.Create(nameof(Padding), typeof(Extents), typeof(FlexibleView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly new BindableProperty PaddingProperty = null;
+        internal static new void SetInternalPaddingProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (FlexibleView)bindable;
             if (newValue is Extents extents)
             {
+                var instance = (FlexibleView)bindable;
                 instance.InternalPadding = extents;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static new object GetInternalPaddingProperty(BindableObject bindable)
         {
             var instance = (FlexibleView)bindable;
             return instance.InternalPadding;
-        });
+        }
 
         /// <summary>
         /// FocusedItemIndexProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FocusedItemIndexProperty = BindableProperty.Create(nameof(FocusedItemIndex), typeof(int), typeof(FlexibleView), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FocusedItemIndexProperty = null;
+        internal static void SetInternalFocusedItemIndexProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            var instance = (FlexibleView)bindable;
             if (newValue != null)
             {
+                var instance = (FlexibleView)bindable;
                 instance.InternalFocusedItemIndex = (int)newValue;
             }
-        },
-        defaultValueCreator: (bindable) =>
+        }
+        internal static object GetInternalFocusedItemIndexProperty(BindableObject bindable)
         {
             var instance = (FlexibleView)bindable;
             return instance.InternalFocusedItemIndex;
-        });
+        }
 
         /// <summary>
         /// Constant value: -1.
@@ -131,6 +133,17 @@ namespace Tizen.NUI.Components
         private EventHandler<FlexibleViewItemClickedEventArgs> clickEventHandlers;
         private EventHandler<FlexibleViewItemTouchEventArgs> touchEventHandlers;
         private EventHandler<NUI.StyleManager.StyleChangedEventArgs> styleChangedEventHandlers;
+
+        static FlexibleView()
+        {
+            if (NUIApplication.IsUsingXaml)
+            {
+                PaddingProperty = BindableProperty.Create(nameof(Padding), typeof(Extents), typeof(FlexibleView), null,
+                    propertyChanged: SetInternalPaddingProperty, defaultValueCreator: GetInternalPaddingProperty);
+                FocusedItemIndexProperty = BindableProperty.Create(nameof(FocusedItemIndex), typeof(int), typeof(FlexibleView), default(int),
+                    propertyChanged: SetInternalFocusedItemIndexProperty, defaultValueCreator: GetInternalFocusedItemIndexProperty);
+            }
+        }
 
         /// <summary>
         /// Creates a FlexibleView instance.
@@ -223,11 +236,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(PaddingProperty) as Extents;
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return GetValue(PaddingProperty) as Extents;
+                }
+                else
+                {
+                    return InternalPadding;
+                }
             }
             set
             {
-                SetValue(PaddingProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(PaddingProperty, value);
+                }
+                else
+                {
+                    InternalPadding = value;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -275,11 +302,25 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (int)GetValue(FocusedItemIndexProperty);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    return (int)GetValue(FocusedItemIndexProperty);
+                }
+                else
+                {
+                    return InternalFocusedItemIndex;
+                }
             }
             set
             {
-                SetValue(FocusedItemIndexProperty, value);
+                if (NUIApplication.IsUsingXaml)
+                {
+                    SetValue(FocusedItemIndexProperty, value);
+                }
+                else
+                {
+                    InternalFocusedItemIndex = value;
+                }
                 NotifyPropertyChanged();
             }
         }

@@ -20,8 +20,13 @@ using System.Collections.Generic;
 namespace Tizen.Sensor
 {
     /// <summary>
-    /// Abstract sensor for series of sensor data
+    /// Abstract class for sensor for series of sensor data.
+    /// Inherit the class 'Sensor' which is an abstract class.
     /// </summary>
+    /// <remarks>
+    /// A class which inherits this abstract class should provide TData as an
+    /// class that inherits BatchData class.
+    /// </remarks>
     /// <since_tizen> 8 </since_tizen>
     public abstract class BatchSensor<TData> : Sensor where TData : Tizen.Sensor.BatchData
     {
@@ -40,15 +45,23 @@ namespace Tizen.Sensor
         public IReadOnlyList<TData> Data { get; protected set; }
 
         /// <summary>
-        /// Convert general batch data to specific batch data
+        /// Convert general batch data to specific batch data type "TData".
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         /// <returns> List of converted specific batch data </returns>
         protected abstract IReadOnlyList<TData> ConvertBatchData();
 
         /// <summary>
-        /// Update the internal batch data using the latest events
+        /// Update the internal batch data using the latest events.
+        /// Call updateBatchEvents() which inherited from the Sensor class to
+        /// update batch data list which is managed by the Sensor class.
+        /// Then convert the updated batch data to the specific type by using
+        /// the method "ConvertBatchData" and assign it to the Data property.
         /// </summary>
+        /// <remarks>
+        /// To use this method, you must override the ConvertBatchData method.
+        /// </remarks>
+        /// <seealso cref="Tizen.Sensor.Sensor">
         /// <param name="eventsPtr">
         /// General batch data's raw pointer
         /// </param>

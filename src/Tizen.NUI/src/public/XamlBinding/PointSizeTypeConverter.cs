@@ -31,7 +31,7 @@ namespace Tizen.NUI.Binding
     [ProvideCompiledAttribute("Tizen.NUI.Xaml.Core.XamlC.PointSizeTypeConverter")]
     public class PointSizeTypeConverter : TypeConverter
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
@@ -43,7 +43,7 @@ namespace Tizen.NUI.Binding
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(float)}");
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {

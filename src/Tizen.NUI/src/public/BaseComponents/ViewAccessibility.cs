@@ -32,12 +32,12 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Start position in stored text.
         /// </summary>
-        public int StartOffset { get; set; } = 0;
+        public int StartOffset { get; set; }
 
         /// <summary>
         /// End position in stored text.
         /// </summary>
-        public int EndOffset { get; set; } = 0;
+        public int EndOffset { get; set; }
 
         /// <summary>
         /// Text content in stored text.
@@ -59,13 +59,47 @@ namespace Tizen.NUI.BaseComponents
         /// Dictionary of accessibility attributes (key-value pairs of strings).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Dictionary<string, string> AccessibilityAttributes { get; } = new Dictionary<string, string>();
+        public Dictionary<string, string> AccessibilityAttributes => EnsureAccessibilityRareData().Attributes;
 
         /// <summary>
         /// Dictionary of dynamically-evaluated accessibility attributes (key-value pairs of strings).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Dictionary<string, Func<string>> AccessibilityDynamicAttributes { get; } = new Dictionary<string, Func<string>>();
+        public Dictionary<string, Func<string>> AccessibilityDynamicAttributes => EnsureAccessibilityRareData().DynamicAttributes;
+
+        /// <summary>
+        /// Appends an accessibility attribute with a given key and value.
+        /// This attribute is stored in the native layer and can be used by accessibility logic.
+        /// </summary>
+        /// <param name="key">The key of the attribute.</param>
+        /// <param name="value">The value of the attribute.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the key is null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AppendAccessibilityAttribute(string key, string value)
+        {
+            if (key is null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            Interop.ControlDevel.DaliToolkitDevelControlAppendAccessibilityAttribute(SwigCPtr, key, value ?? "");
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Removes an accessibility attribute with a given key.
+        /// </summary>
+        /// <param name="key">The key of the attribute to remove.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the key is null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveAccessibilityAttribute(string key)
+        {
+            if (key is null)
+            {
+                throw new ArgumentNullException(nameof(key));
+            }
+            Interop.ControlDevel.DaliToolkitDevelControlRemoveAccessibilityAttribute(SwigCPtr, key);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
         ///////////////////////////////////////////////////////////////////
         // ************************** Highlight ************************ //
@@ -456,9 +490,10 @@ namespace Tizen.NUI.BaseComponents
         {
             if (name == AccessibilityActivateAction)
             {
-                if (ActivateSignal?.Empty() == false)
+                using var handle = GetControl();
+                if (Interop.AccessibilitySignal.AccessibilityActivateEmpty(handle) == false)
                 {
-                    ActivateSignal?.Emit();
+                    Interop.AccessibilitySignal.AccessibilityActivateEmit(handle);
                     return true;
                 }
                 else
@@ -468,9 +503,10 @@ namespace Tizen.NUI.BaseComponents
             }
             else if (name == AccessibilityReadingSkippedAction)
             {
-                if (ReadingSkippedSignal?.Empty() == false)
+                using var handle = GetControl();
+                if (Interop.AccessibilitySignal.AccessibilityReadingSkippedEmpty(handle) == false)
                 {
-                    ReadingSkippedSignal?.Emit();
+                    Interop.AccessibilitySignal.AccessibilityReadingSkippedEmit(handle);
                     return true;
                 }
                 else
@@ -480,9 +516,10 @@ namespace Tizen.NUI.BaseComponents
             }
             else if (name == AccessibilityReadingCancelledAction)
             {
-                if (ReadingCancelledSignal?.Empty() == false)
+                using var handle = GetControl();
+                if (Interop.AccessibilitySignal.AccessibilityReadingCancelledEmpty(handle) == false)
                 {
-                    ReadingCancelledSignal?.Emit();
+                    Interop.AccessibilitySignal.AccessibilityReadingCancelledEmit(handle);
                     return true;
                 }
                 else
@@ -492,9 +529,10 @@ namespace Tizen.NUI.BaseComponents
             }
             else if (name == AccessibilityReadingStoppedAction)
             {
-                if (ReadingStoppedSignal?.Empty() == false)
+                using var handle = GetControl();
+                if (Interop.AccessibilitySignal.AccessibilityReadingStoppedEmpty(handle) == false)
                 {
-                    ReadingStoppedSignal?.Emit();
+                    Interop.AccessibilitySignal.AccessibilityReadingStoppedEmit(handle);
                     return true;
                 }
                 else
@@ -504,9 +542,10 @@ namespace Tizen.NUI.BaseComponents
             }
             else if (name == AccessibilityReadingPausedAction)
             {
-                if (ReadingPausedSignal?.Empty() == false)
+                using var handle = GetControl();
+                if (Interop.AccessibilitySignal.AccessibilityReadingPausedEmpty(handle) == false)
                 {
-                    ReadingPausedSignal?.Emit();
+                    Interop.AccessibilitySignal.AccessibilityReadingPausedEmit(handle);
                     return true;
                 }
                 else
@@ -516,9 +555,10 @@ namespace Tizen.NUI.BaseComponents
             }
             else if (name == AccessibilityReadingResumedAction)
             {
-                if (ReadingResumedSignal?.Empty() == false)
+                using var handle = GetControl();
+                if (Interop.AccessibilitySignal.AccessibilityReadingResumedEmpty(handle) == false)
                 {
-                    ReadingResumedSignal?.Emit();
+                    Interop.AccessibilitySignal.AccessibilityReadingResumedEmit(handle);
                     return true;
                 }
                 else

@@ -26,6 +26,7 @@ namespace Tizen.Applications.Shortcut
     /// <param name="args">Object that contains the shortcut information to add.</param>
     /// <returns>The result of handling a shortcut add request.</returns>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public delegate ShortcutError ShortcutAdded(ShortcutAddedInfo args);
 
     /// <summary>
@@ -34,12 +35,14 @@ namespace Tizen.Applications.Shortcut
     /// <param name="args">Object that contains the shortcut information to delete.</param>
     /// <returns>The result of handling a shortcut delete request.</returns>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public delegate ShortcutError ShortcutDeleted(ShortcutDeletedInfo args);
 
     /// <summary>
     /// This class provides a way to register the callback function for the shortcut add and delete events.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API12. Will be removed in API14.")]
     public static class ShortcutEventManager
     {
         private static Interop.Shortcut.AddCallback shortcutAddCallback;
@@ -67,6 +70,7 @@ namespace Tizen.Applications.Shortcut
         /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static void RegisterEventHandler(ShortcutAdded addedEvent)
         {
             if (shortcutAddCallback == null)
@@ -103,6 +107,7 @@ namespace Tizen.Applications.Shortcut
         /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static void RegisterEventHandler(ShortcutDeleted deletedEvent)
         {
             if (shortcutDeleteCallback == null)
@@ -134,6 +139,7 @@ namespace Tizen.Applications.Shortcut
         /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case the permission is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static void UnregisterEventHandler(ShortcutAdded addedEvent)
         {
             if (shortcutAdded != null && shortcutAdded.Equals(addedEvent))
@@ -168,6 +174,7 @@ namespace Tizen.Applications.Shortcut
         /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case the permission is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static void UnregisterEventHandler(ShortcutDeleted deletedEvent)
         {
             if (shortcutDeleted != null && shortcutDeleted.Equals(deletedEvent))
@@ -205,6 +212,7 @@ namespace Tizen.Applications.Shortcut
         /// <exception cref="NotSupportedException">Thrown when the shortcut is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static IEnumerable<ShortcutTemplate> GetTemplateList(string appId)
         {
             shortcutTemplates.Clear();

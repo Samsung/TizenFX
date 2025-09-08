@@ -159,9 +159,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_TextChangedSignal")]
             public static extern global::System.IntPtr TextChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_InputStyleChangedSignal")]
-            public static extern global::System.IntPtr InputStyleChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_CursorPositionChangedSignal")]
             public static extern global::System.IntPtr CursorPositionChangedSignal(global::System.Runtime.InteropServices.HandleRef pTextEditor);
 
@@ -343,6 +340,8 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_REMOVE_BACK_INSET_get")]
             public static extern int RemoveBackInsetGet();
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_RegisterFontVariationProperty")]
+            public static extern int RegisterFontVariationProperty(global::System.Runtime.InteropServices.HandleRef textEditorRef, string pTag);
         }
     }
 }

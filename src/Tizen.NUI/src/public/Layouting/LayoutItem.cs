@@ -17,8 +17,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Diagnostics;
-
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -34,12 +32,12 @@ namespace Tizen.NUI
     };
 
     /// <summary>
-    /// [Draft] Base class for layouts. It is used to layout a View
+    /// Base class for layouts. It is used to layout a View
     /// It can be laid out by a LayoutGroup.
     /// </summary>
     public class LayoutItem : IDisposable
     {
-        private bool disposed = false;
+        private bool disposed;
         private MeasureSpecification oldWidthMeasureSpec; // Store measure specification to compare against later
         private MeasureSpecification oldHeightMeasureSpec; // Store measure specification to compare against later
 
@@ -52,22 +50,27 @@ namespace Tizen.NUI
         private Extents padding;
         private Extents margin;
 
-        private bool parentReplacement = false;
+        private bool parentReplacement;
         private bool setPositionByLayout = true;
 
         /// <summary>
-        /// [Draft] Condition event that is causing this Layout to transition.
+        /// Event that is raised when the layout is requested to be re-laid out.
+        /// </summary>
+        internal event EventHandler MeasureInvalidated;
+
+        /// <summary>
+        /// Condition event that is causing this Layout to transition.
         /// </summary>
         internal TransitionCondition ConditionForAnimation { get; set; }
 
         /// <summary>
-        /// [Draft] The View that this Layout has been assigned to.
+        /// The View that this Layout has been assigned to.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public View Owner { get; set; }  // Should not keep a View alive.
 
         /// <summary>
-        /// [Draft] Use transition for layouting child
+        /// Use transition for layouting child
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -75,7 +78,7 @@ namespace Tizen.NUI
         public bool LayoutWithTransition { get; set; }
 
         /// <summary>
-        /// [Draft] Set position by layouting result
+        /// Set position by layouting result
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SetPositionByLayout
@@ -95,7 +98,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Margin for this LayoutItem
+        /// Margin for this LayoutItem
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public Extents Margin
@@ -106,13 +109,13 @@ namespace Tizen.NUI
             }
             set
             {
-                margin = value;
+                margin = new Extents(value);
                 RequestLayout();
             }
         }
 
         /// <summary>
-        /// [Draft] Padding for this LayoutItem
+        /// Padding for this LayoutItem
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public Extents Padding
@@ -123,13 +126,13 @@ namespace Tizen.NUI
             }
             set
             {
-                padding = value;
+                padding = new Extents(value);
                 RequestLayout();
             }
         }
 
         /// <summary>
-        /// [Draft] Constructor
+        /// Default constructor of LayoutItem class.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public LayoutItem()
@@ -138,7 +141,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Set parent to this layout.
+        /// Set parent to this layout.
         /// </summary>
         /// <param name="parent">Parent to set on this Layout.</param>
         internal void SetParent(ILayoutParent parent)
@@ -168,8 +171,8 @@ namespace Tizen.NUI
         {
             LayoutWithTransition = false;
             layoutPositionData = new LayoutData(this, TransitionCondition.Unspecified, 0, 0, 0, 0);
-            padding = new Extents(0, 0, 0, 0);
-            margin = new Extents(0, 0, 0, 0);
+            padding = new Extents(Extents.Zero);
+            margin = new Extents(Extents.Zero);
         }
 
         /// <summary>
@@ -348,6 +351,7 @@ namespace Tizen.NUI
         public void RequestLayout()
         {
             flags = flags | LayoutFlags.ForceLayout;
+            MeasureInvalidated?.Invoke(this, EventArgs.Empty);
             if (parent == null)
             {
                 // If RequestLayout() is called while main loop is in idle state,
@@ -363,14 +367,19 @@ namespace Tizen.NUI
                 {
                     layoutGroup.RequestLayout();
                 }
-            }
 
+                // FlexLayout requires MarkDirty if child layout's layout properties are changed.
+                // e.g. MarkDirty is required if child layout's Width/HeightSpecification is changed.
+                if (parent is FlexLayout)
+                {
+                    FlexLayout.MarkDirty(Owner);
+                }
+            }
         }
 
         /// <summary>
         /// Predicate to determine if this layout has been requested to re-layout.<br />
         /// </summary>
-
         internal bool LayoutRequested
         {
             get
@@ -602,15 +611,20 @@ namespace Tizen.NUI
                     {
                         // If height or width specification is not explicitly defined,
                         // the size of the owner view must be reset even the ExcludeLayouting is true.
-                        if (Owner.HeightSpecification < 0 || Owner.WidthSpecification < 0)
+                        // Unlike Width/HeightSpecification, LayoutWidth/Height does not set view size automatically.
+                        // Therefore, view size should be checked if it is same with LayoutWidth/Height.
+                        if (!Owner.LayoutWidth.IsFixedValue || Owner.LayoutWidth != Owner.SizeWidth ||
+                            !Owner.LayoutHeight.IsFixedValue || Owner.LayoutHeight != Owner.SizeHeight)
                         {
                             Owner.SetSize(right - left, bottom - top);
+                            Owner.NotifyLayoutUpdated(false);
                         }
                     }
                     else
                     {
                         Owner.SetSize(right - left, bottom - top);
                         Owner.SetPosition(left, top);
+                        Owner.NotifyLayoutUpdated(false);
                     }
                 }
 
@@ -620,7 +634,6 @@ namespace Tizen.NUI
 
             return changed;
         }
-
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
@@ -663,5 +676,27 @@ namespace Tizen.NUI
                 }
             }
         }
+
+        /// <summary>
+        /// Indicates if padding is handled by native.
+        /// By default, padding is not handled by native if layout is set to view.
+        /// Instead, padding is handled by layout if layout is set to view.
+        /// If padding is not handled by native, then view padding is copied to layout padding and
+        /// view padding is initialized to zero not to make native handle padding.
+        /// If padding is handled by native, then view padding is preserved and padding is handled
+        /// by native.
+        /// </summary>
+        /// <return>True if padding is handled by native, otherwise false.</return>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual bool IsPaddingHandledByNative()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// The flag to check if it is already disposed of.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal bool Disposed => disposed;
     }
 }

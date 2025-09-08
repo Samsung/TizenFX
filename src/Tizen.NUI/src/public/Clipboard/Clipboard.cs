@@ -26,7 +26,7 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Clipboard.
+    /// This class provides methods to interact with the system clipboard, allowing users to get and set clipboard content.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public partial class Clipboard : BaseHandle
@@ -41,7 +41,7 @@ namespace Tizen.NUI
         /// </remarks>
         public delegate void ClipboardCallback(bool success, ClipEvent clipEvent);
 
-        internal bool hasClipboardDataReceived = false;
+        internal bool hasClipboardDataReceived;
         internal Dictionary<uint, ClipboardCallback> receivedCallbackDictionary = new Dictionary<uint, ClipboardCallback>();
 
         private Clipboard(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -79,14 +79,14 @@ namespace Tizen.NUI
                 HandleRef CPtr = new HandleRef(dummyObect, cPtr);
                 Interop.BaseHandle.DeleteBaseHandle(CPtr);
                 CPtr = new HandleRef(null, global::System.IntPtr.Zero);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
             else
             {
                 ret = new Clipboard(cPtr, true);
+                return ret;
             }
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -195,7 +195,13 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Dispose.
+        /// Releases unmanaged and optionally managed resources.
         /// </summary>
+        /// <remarks>
+        /// When overriding this method, you need to distinguish between explicit and implicit conditions. For explicit conditions, release both managed and unmanaged resources. For implicit conditions, only release unmanaged resources.
+        /// </remarks>
+        /// <param name="type">Explicit to release both managed and unmanaged resources. Implicit to release only unmanaged resources.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -213,13 +219,15 @@ namespace Tizen.NUI
             {
                 if (clipboardDataReceivedCallback != null)
                 {
-                    this.ClipboardDataReceivedSignal().Disconnect(clipboardDataReceivedCallback);
+                    using var signal = ClipboardDataReceivedSignal();
+                    signal.Disconnect(clipboardDataReceivedCallback);
                     clipboardDataReceivedCallback = null;
                 }
 
                 if (clipboardDataSelectedCallback != null)
                 {
-                    this.ClipboardDataSelectedSignal().Disconnect(clipboardDataSelectedCallback);
+                    using var signal = ClipboardDataSelectedSignal();
+                    signal.Disconnect(clipboardDataSelectedCallback);
                     clipboardDataSelectedCallback = null;
                 }
             }

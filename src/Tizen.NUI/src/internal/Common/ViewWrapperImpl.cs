@@ -68,12 +68,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public delegate bool OnAccessibilityActivatedDelegate();
         /// <since_tizen> 3 </since_tizen>
-        public delegate bool OnAccessibilityPanDelegate(PanGesture gestures);
-        /// <since_tizen> 3 </since_tizen>
-        public delegate bool OnAccessibilityValueChangeDelegate(bool isIncrease);
-        /// <since_tizen> 3 </since_tizen>
-        public delegate bool OnAccessibilityZoomDelegate();
-        /// <since_tizen> 3 </since_tizen>
         public delegate void OnFocusGainedDelegate();
         /// <since_tizen> 3 </since_tizen>
         public delegate void OnFocusLostDelegate();
@@ -92,43 +86,40 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public delegate void OnLongPressDelegate(LongPressGesture longPress);
 
-        public new OnSceneConnectionDelegate OnSceneConnection;
-        public new OnSceneDisconnectionDelegate OnSceneDisconnection;
+        public OnSceneConnectionDelegate OnSceneConnection;
+        public OnSceneDisconnectionDelegate OnSceneDisconnection;
         public OnSceneConnectionDelegate OnStageConnection;
         public OnSceneDisconnectionDelegate OnStageDisconnection;
-        public new OnChildAddDelegate OnChildAdd;
-        public new OnChildRemoveDelegate OnChildRemove;
-        public new OnPropertySetDelegate OnPropertySet;
-        public new OnSizeSetDelegate OnSizeSet;
-        public new OnSizeAnimationDelegate OnSizeAnimation;
+        public OnChildAddDelegate OnChildAdd;
+        public OnChildRemoveDelegate OnChildRemove;
+        public OnPropertySetDelegate OnPropertySet;
+        public OnSizeSetDelegate OnSizeSet;
+        public OnSizeAnimationDelegate OnSizeAnimation;
         public OnTouchDelegate OnTouch;
         public OnHoverDelegate OnHover;
         public OnKeyDelegate OnKey;
         public OnWheelDelegate OnWheel;
-        public new OnRelayoutDelegate OnRelayout;
-        public new OnSetResizePolicyDelegate OnSetResizePolicy;
-        public new GetNaturalSizeDelegate GetNaturalSize;
-        public new CalculateChildSizeDelegate CalculateChildSize;
-        public new GetHeightForWidthDelegate GetHeightForWidth;
-        public new GetWidthForHeightDelegate GetWidthForHeight;
+        public OnRelayoutDelegate OnRelayout;
+        public OnSetResizePolicyDelegate OnSetResizePolicy;
+        public GetNaturalSizeDelegate GetNaturalSize;
+        public CalculateChildSizeDelegate CalculateChildSize;
+        public GetHeightForWidthDelegate GetHeightForWidth;
+        public GetWidthForHeightDelegate GetWidthForHeight;
         public RelayoutDependentOnChildrenDimensionDelegate RelayoutDependentOnChildrenDimension;
-        public new RelayoutDependentOnChildrenDelegate RelayoutDependentOnChildren;
-        public new OnCalculateRelayoutSizeDelegate OnCalculateRelayoutSize;
-        public new OnLayoutNegotiatedDelegate OnLayoutNegotiated;
-        public new OnStyleChangeDelegate OnStyleChange;
-        public new OnAccessibilityActivatedDelegate OnAccessibilityActivated;
-        public new OnAccessibilityPanDelegate OnAccessibilityPan;
-        public new OnAccessibilityValueChangeDelegate OnAccessibilityValueChange;
-        public new OnAccessibilityZoomDelegate OnAccessibilityZoom;
+        public RelayoutDependentOnChildrenDelegate RelayoutDependentOnChildren;
+        public OnCalculateRelayoutSizeDelegate OnCalculateRelayoutSize;
+        public OnLayoutNegotiatedDelegate OnLayoutNegotiated;
+        public OnStyleChangeDelegate OnStyleChange;
+        public OnAccessibilityActivatedDelegate OnAccessibilityActivated;
         public OnFocusGainedDelegate OnFocusGained;
         public OnFocusLostDelegate OnFocusLost;
-        public new GetNextFocusableViewDelegate GetNextFocusableView;
-        public new OnFocusChangeCommittedDelegate OnFocusChangeCommitted;
-        public new OnKeyboardEnterDelegate OnKeyboardEnter;
-        public new OnPinchDelegate OnPinch;
-        public new OnPanDelegate OnPan;
-        public new OnTapDelegate OnTap;
-        public new OnLongPressDelegate OnLongPress;
+        public GetNextFocusableViewDelegate GetNextFocusableView;
+        public OnFocusChangeCommittedDelegate OnFocusChangeCommitted;
+        public OnKeyboardEnterDelegate OnKeyboardEnter;
+        public OnPinchDelegate OnPinch;
+        public OnPanDelegate OnPan;
+        public OnTapDelegate OnTap;
+        public OnLongPressDelegate OnLongPress;
 
         internal ViewWrapperImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -289,9 +280,6 @@ namespace Tizen.NUI
             Delegate21 = new DelegateViewWrapperImpl_21(DirectorOnInitialize);
             Delegate24 = new DelegateViewWrapperImpl_24(DirectorOnStyleChange);
             Delegate25 = new DelegateViewWrapperImpl_25(DirectorOnAccessibilityActivated);
-            Delegate26 = new DelegateViewWrapperImpl_26(DirectorOnAccessibilityPan);
-            Delegate28 = new DelegateViewWrapperImpl_28(DirectorOnAccessibilityValueChange);
-            Delegate29 = new DelegateViewWrapperImpl_29(DirectorOnAccessibilityZoom);
             Delegate30 = new DelegateViewWrapperImpl_30(DirectorOnFocusGained);
             Delegate31 = new DelegateViewWrapperImpl_31(DirectorOnFocusLost);
             Delegate32 = new DelegateViewWrapperImpl_32(DirectorGetNextFocusableActor);
@@ -301,9 +289,8 @@ namespace Tizen.NUI
             Delegate36 = new DelegateViewWrapperImpl_36(DirectorOnPan);
             Delegate37 = new DelegateViewWrapperImpl_37(DirectorOnTap);
             Delegate38 = new DelegateViewWrapperImpl_38(DirectorOnLongPress);
-            Interop.ViewWrapperImpl.DirectorConnect(SwigCPtr, Delegate0, Delegate1, Delegate2, Delegate3, Delegate4, Delegate5, Delegate6, Delegate9, Delegate11, Delegate12, Delegate13, Delegate14, Delegate15, Delegate16, Delegate17, Delegate18, Delegate19, Delegate20, Delegate21, Delegate24, Delegate25, Delegate26, Delegate28, Delegate29, Delegate30, Delegate31, Delegate32, Delegate33, Delegate34, Delegate35, Delegate36, Delegate37, Delegate38, null, null);
+            Interop.ViewWrapperImpl.DirectorConnect(SwigCPtr, Delegate0, Delegate1, Delegate2, Delegate3, Delegate4, Delegate5, Delegate6, Delegate9, Delegate11, Delegate12, Delegate13, Delegate14, Delegate15, Delegate16, Delegate17, Delegate18, Delegate19, Delegate20, Delegate21, Delegate24, Delegate25, Delegate30, Delegate31, Delegate32, Delegate33, Delegate34, Delegate35, Delegate36, Delegate37, Delegate38, null, null);
         }
-
 
         private void DirectorDisconnect()
         {
@@ -328,9 +315,6 @@ namespace Tizen.NUI
             Delegate21 = null;
             Delegate24 = null;
             Delegate25 = null;
-            Delegate26 = null;
-            Delegate28 = null;
-            Delegate29 = null;
             Delegate30 = null;
             Delegate31 = null;
             Delegate32 = null;
@@ -340,7 +324,7 @@ namespace Tizen.NUI
             Delegate36 = null;
             Delegate37 = null;
             Delegate38 = null;
-            Interop.ViewWrapperImpl.DirectorConnect(SwigCPtr, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
+            Interop.ViewWrapperImpl.DirectorConnect(SwigCPtr, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
         }
 
         private void DirectorOnSceneConnection(int depth)
@@ -509,24 +493,6 @@ namespace Tizen.NUI
             return OnAccessibilityActivated?.Invoke() ?? false;
         }
 
-        private bool DirectorOnAccessibilityPan(global::System.IntPtr gesture)
-        {
-            var panGesture = new PanGesture(gesture, false);
-            var ret = OnAccessibilityPan?.Invoke(panGesture) ?? false;
-            panGesture.Dispose();
-            return ret;
-        }
-
-        private bool DirectorOnAccessibilityValueChange(bool isIncrease)
-        {
-            return OnAccessibilityValueChange?.Invoke(isIncrease) ?? false;
-        }
-
-        private bool DirectorOnAccessibilityZoom()
-        {
-            return OnAccessibilityZoom?.Invoke() ?? false;
-        }
-
         private void DirectorOnFocusGained()
         {
             OnFocusGained?.Invoke();
@@ -686,9 +652,6 @@ namespace Tizen.NUI
         private DelegateViewWrapperImpl_21 Delegate21;
         private DelegateViewWrapperImpl_24 Delegate24;
         private DelegateViewWrapperImpl_25 Delegate25;
-        private DelegateViewWrapperImpl_26 Delegate26;
-        private DelegateViewWrapperImpl_28 Delegate28;
-        private DelegateViewWrapperImpl_29 Delegate29;
         private DelegateViewWrapperImpl_30 Delegate30;
         private DelegateViewWrapperImpl_31 Delegate31;
         private DelegateViewWrapperImpl_32 Delegate32;

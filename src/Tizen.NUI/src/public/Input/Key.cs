@@ -27,7 +27,7 @@ namespace Tizen.NUI
     public class Key : BaseHandle
     {
         /// <summary>
-        /// The default constructor.
+        /// The default constructor of Key class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Key() : this(Interop.Key.New("","",0,0,0u,0), true)
@@ -53,7 +53,7 @@ namespace Tizen.NUI
         {
         }
 
-        internal Key(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
+        internal Key(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister, cRegister)
         {
         }
 
@@ -81,7 +81,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Device name
+        /// Gets the device name
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string DeviceName
@@ -95,7 +95,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Name given to the key pressed.
+        /// Gets or sets the name given to the key pressed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string KeyPressedName
@@ -223,7 +223,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// State of the key event.
+        /// Gests or sets the state of the key event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public Key.StateType State

@@ -95,6 +95,8 @@ namespace Tizen.NUI
             core?.AddWidgetInfo(widgetTypes);
         }
 
+        private static bool _isUsingXaml = true;
+
         /// <summary>
         /// Set to true if XAML is used. 
         /// This must be called before or immediately after the NUIWidgetApplication constructor is called.
@@ -104,7 +106,21 @@ namespace Tizen.NUI
         /// This must be called before or immediately after the NUIWidgetApplication constructor is called.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public bool IsUsingXaml { get; set; } = true;
+        static public bool IsUsingXaml
+        {
+            get
+            {
+                return _isUsingXaml;
+            }
+            set
+            {
+                if (_isUsingXaml != value)
+                {
+                    Tizen.Log.Info("NUI", $"IsUsingXaml changed to {value}");
+                    _isUsingXaml = value;
+                }
+            }
+        }
 
         internal WidgetApplication ApplicationHandle
         {
@@ -115,7 +131,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Run NUIWidgetApplication.
+        /// Runs the NUI widget application.
+        /// This method starts the main loop of the application.
         /// </summary>
         /// <param name="args">Arguments from commandline.</param>
         /// <since_tizen> 4 </since_tizen>
@@ -126,8 +143,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Exit NUIWidgetApplication.
+        /// The Exit method of NUIWidgetApplication.
         /// </summary>
+        /// <remarks>
+        /// Note that calling this method will terminate the entire application.
+        /// Ensure that all necessary cleanup operations are performed before calling this method.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public override void Exit()
         {
@@ -150,8 +171,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle OnLocaleChanged behavior.
+        /// Override this method to implement custom behavior when the system locale changes.
         /// </summary>
+        /// <param name="e">The event arguments containing the new locale information.</param>
         /// <since_tizen> 4 </since_tizen>
         protected override void OnLocaleChanged(LocaleChangedEventArgs e)
         {
@@ -160,8 +182,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle OnLowBattery behavior.
+        /// The OnLowBattery method is called when the device's battery level is low.
+        /// This method can be overridden to implement custom behavior when the device's battery level is low.
         /// </summary>
+        /// <param name="e">The event arguments containing the battery status.</param>
         /// <since_tizen> 4 </since_tizen>
         protected override void OnLowBattery(LowBatteryEventArgs e)
         {
@@ -170,8 +194,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// This method is called when the system is running low on memory.
         /// Overrides this method if want to handle OnLowMemory behavior.
         /// </summary>
+        /// <param name="e">The event arguments containing the memory status.</param>
         /// <since_tizen> 4 </since_tizen>
         protected override void OnLowMemory(LowMemoryEventArgs e)
         {
@@ -180,8 +206,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle OnRegionFormatChanged behavior.
+        /// This method can be overridden to implement custom behavior when the region format changes.
         /// </summary>
+        /// <param name="e">The event arguments containing information about the region format change.</param>
         /// <since_tizen> 4 </since_tizen>
         protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
@@ -191,7 +218,6 @@ namespace Tizen.NUI
 
         /// <summary>
         /// This method is to handle behavior when the device orientation is changed.
-        ///
         /// When device is rotated to ccw or cw, this event occurs.
         /// In addition, this event is different to window orientation changed event.
         /// The window orientation event is for per a window and occurs when some flags should be set before.
@@ -205,7 +231,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle OnTerminate behavior.
+        /// This method is called when the application is terminated.
+        /// This method is overridden to perform custom actions when the application terminates.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         protected override void OnTerminate()
@@ -215,7 +242,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle OnPreCreate behavior.
+        /// Overrides this method if you want to handle behavior before the application is created.
+        /// This method is guaranteed to be called before <see cref="OnCreate"/> is called.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         protected virtual void OnPreCreate()
@@ -224,7 +252,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle OnCreate behavior.
+        /// This method is called when the application is created.
+        /// Override this method to handle custom initialization logic.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         protected override void OnCreate()

@@ -28,7 +28,7 @@ namespace Tizen.NUI.Binding
     public class DataTemplate : ElementTemplate
     {
         /// <summary>
-        /// Base constructor.
+        /// The default constructor of DataTemplate class.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public DataTemplate()

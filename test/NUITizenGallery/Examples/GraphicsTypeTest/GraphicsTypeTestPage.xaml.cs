@@ -41,18 +41,18 @@ namespace NUITizenGallery
             DpRect.Position = new Position(100f, 200f).DpToPx();
             DpRect.Size = new Size(300f, 100f).DpToPx();
             DpText.Position2D = new Position2D(100, 310).DpToPx();
-            DpText.WidthSpecification = 300.DpToPx();
-            DpText.HeightSpecification = 100.DpToPx();
-            DpText.Text = $"Dp size {100f.DpToPx()}";
+            DpText.WidthSpecification = 300.Dp();
+            DpText.HeightSpecification = 100.Dp();
+            DpText.Text = $"Dp size {100f.Dp()}";
             DpText.PointSize = 20f.DpToPt();
 
-            SpRect.Position = new Position(100f, 200f).SpToPx();
-            SpRect.Size = new Size(300f, 100f).SpToPx();
-            SpText.Position2D = new Position2D(100, 310).SpToPx();
-            SpText.WidthSpecification = 300.SpToPx();
-            SpText.HeightSpecification = 100.SpToPx();
-            SpText.Text = $"Sp size {100f.SpToPx()}";
-            SpText.PointSize = 20f.SpToPt();
+            SdpRect.Position = new Position(100f, 200f).SdpToPx();
+            SdpRect.Size = new Size(300f, 100f).SdpToPx();
+            SdpText.Position2D = new Position2D(100, 310).SdpToPx();
+            SdpText.WidthSpecification = 300.Sdp();
+            SdpText.HeightSpecification = 100.Sdp();
+            SdpText.Text = $"Sp size {100f.Sdp()}";
+            SdpText.PointSize = 20f.SdpToPt();
         }
     }
 }

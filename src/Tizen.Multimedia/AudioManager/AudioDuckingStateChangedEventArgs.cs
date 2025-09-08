@@ -19,7 +19,9 @@ using System;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides data for the state change event of <see cref="AudioDucking.DuckingStateChanged"/>.
+    /// Represents the event data for the <see cref="AudioDucking.DuckingStateChanged"/> event,
+    /// which is triggered when the ducking state of an audio stream changes.
+    /// This class provides information about whether the audio stream is currently ducked or not.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class AudioDuckingStateChangedEventArgs : EventArgs
@@ -30,7 +32,10 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the ducking state of the stream.
+        /// Gets a value indicating whether the audio stream is currently in a ducked state.
+        /// This property reflects the status of the audio stream, where <c>true</c>
+        /// signifies that the audio level has been lowered, and <c>false</c> indicates
+        /// that the audio is at its normal level.
         /// </summary>
         /// <value>true if the state is ducked; otherwise, false.</value>
         /// <since_tizen> 6 </since_tizen>
