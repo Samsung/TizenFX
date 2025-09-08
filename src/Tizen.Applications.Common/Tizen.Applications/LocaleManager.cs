@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -8,13 +9,14 @@ using System.Text;
 
 namespace Tizen.Applications
 {
-    static class LocaleManager
+    public static class LocaleManager
     {
         private static readonly string LogTag = "Tizen.Applications";
         private static readonly string SupportedLocalesFilePath = "/usr/share/i18n/SUPPORTED";
         private static bool _fileExists = File.Exists(SupportedLocalesFilePath);
         private static HashSet<string> _supportedLocales;
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetApplicationLocale(CultureInfo info)
         {
             if (!_fileExists)
@@ -39,6 +41,7 @@ namespace Tizen.Applications
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static CultureInfo GetApplicationLocale()
         {
             IntPtr langPtr = IntPtr.Zero;
@@ -71,7 +74,8 @@ namespace Tizen.Applications
                 }
             }
         }
-
+        
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static string GetSystemLocale()
         {
             IntPtr langPtr = IntPtr.Zero;
