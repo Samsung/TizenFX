@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
+ using System;
+
 namespace Tizen.Context.AppHistory
 {
     /// <summary>
     /// The Base class which contains the application statistics query result.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public abstract class AppStatisticsData
     {
         internal AppStatisticsData()
@@ -31,6 +34,7 @@ namespace Tizen.Context.AppHistory
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <value>The application ID.</value>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public string AppId { get; protected set; }
     }
 }
