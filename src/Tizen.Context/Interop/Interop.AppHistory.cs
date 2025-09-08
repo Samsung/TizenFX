@@ -19,6 +19,10 @@ using System.Runtime.InteropServices;
 
 internal static partial class Interop
 {
+    /// <summary>
+    /// The CtxHistory Interop class.
+    /// Deprecated since API13
+    /// </summary>
     internal static partial class CtxHistory
     {
         [DllImport(Library.AppHistory, EntryPoint = "ctx_history_query")]
@@ -31,6 +35,11 @@ internal static partial class Interop
         internal static extern int GetLastFullyChargedTime(out Int64 timestamp);
 
     }
+
+    /// <summary>
+    /// The CtxHistoryCursor Interop class.
+    /// Deprecated since API13
+    /// </summary>
     internal static partial class CtxHistoryCursor
     {
         [DllImport(Library.AppHistory, EntryPoint = "ctx_history_cursor_destroy")]

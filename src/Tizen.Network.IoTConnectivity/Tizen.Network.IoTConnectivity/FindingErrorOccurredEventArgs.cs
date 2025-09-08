@@ -23,6 +23,7 @@ namespace Tizen.Network.IoTConnectivity
     /// This class represents event arguments of the FindingErrorOccurred event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class FindingErrorOccurredEventArgs : EventArgs
     {
         internal FindingErrorOccurredEventArgs() { }
@@ -32,6 +33,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The request ID of the operation, which caused this error.</value>
+        [Obsolete("Deprecated since API level 13")]
         public int RequestId { get; internal set; }
 
         /// <summary>
@@ -39,6 +41,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Error details.</value>
+        [Obsolete("Deprecated since API level 13")]
         public Exception Error { get; internal set; }
     }
 }

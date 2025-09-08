@@ -23,6 +23,7 @@ namespace Tizen.Network.IoTConnectivity
     /// This class represents event arguments of the ResourceFound event.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API level 13")]
     public class ResourceFoundEventArgs : EventArgs
     {
         internal ResourceFoundEventArgs() { }
@@ -33,6 +34,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The request ID.</value>
+        [Obsolete("Deprecated since API level 13")]
         public int RequestId { get; internal set; }
 
         /// <summary>
@@ -40,6 +42,7 @@ namespace Tizen.Network.IoTConnectivity
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>Continuously receive the event for finding resource.</value>
+        [Obsolete("Deprecated since API level 13")]
         public bool EventContinue { get; set; }
 
         /// <summary>
@@ -49,6 +52,7 @@ namespace Tizen.Network.IoTConnectivity
         /// <value>Remote resource which is found after <see cref="IoTConnectivityClientManager.StartFindingResource(string, ResourceQuery)"/>.</value>
         /// <seealso cref="IoTConnectivityClientManager.ResourceFound"/>
         /// <seealso cref="IoTConnectivityClientManager.StartFindingResource(string, ResourceQuery)"/>
+        [Obsolete("Deprecated since API level 13")]
         public RemoteResource Resource { get; internal set; }
     }
 }
