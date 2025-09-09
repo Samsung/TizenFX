@@ -46,6 +46,7 @@ namespace Tizen.NUI
         {
             Type = type;
             State = NUIGadgetLifecycleState.Initialized;
+            Log.Info("Type=" + Type + ", State=" + State);
         }
 
         internal event EventHandler<NUIGadgetLifecycleChangedEventArgs> LifecycleChanged;
@@ -164,7 +165,7 @@ namespace Tizen.NUI
 
         internal void Destroy()
         {
-            if (State == NUIGadgetLifecycleState.Created || State == NUIGadgetLifecycleState.Paused)
+            if (State == NUIGadgetLifecycleState.PreCreated || State == NUIGadgetLifecycleState.Created || State == NUIGadgetLifecycleState.Paused)
             {
                 OnDestroy();
             }
@@ -216,6 +217,7 @@ namespace Tizen.NUI
         protected virtual void OnPreCreate()
         {
             State = NUIGadgetLifecycleState.PreCreated;
+            Log.Debug("ClassName=" + ClassName);
             NotifyLifecycleChanged();
         }
 
@@ -228,6 +230,7 @@ namespace Tizen.NUI
         protected virtual Tizen.NUI.BaseComponents.View OnCreate()
         {
             State = NUIGadgetLifecycleState.Created;
+            Log.Debug("ClassName=" + ClassName);
             NotifyLifecycleChanged();
             return null;
         }
@@ -243,6 +246,7 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         protected virtual void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
+            Log.Debug("ClassName=" + ClassName);
         }
 
         /// <summary>
@@ -253,6 +257,7 @@ namespace Tizen.NUI
         protected virtual void OnDestroy()
         {
             State = NUIGadgetLifecycleState.Destroyed;
+            Log.Debug("ClassName=" + ClassName);
             NotifyLifecycleChanged();
         }
 
@@ -264,6 +269,7 @@ namespace Tizen.NUI
         protected virtual void OnPause()
         {
             State = NUIGadgetLifecycleState.Paused;
+            Log.Debug("ClassName=" + ClassName);
             NotifyLifecycleChanged();
         }
 
@@ -275,6 +281,7 @@ namespace Tizen.NUI
         protected virtual void OnResume()
         {
             State = NUIGadgetLifecycleState.Resumed;
+            Log.Debug("ClassName=" + ClassName);
             NotifyLifecycleChanged();
         }
 
