@@ -411,6 +411,12 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetInsets__SWIG_1")]
             public static extern global::System.IntPtr GetInsets(global::System.Runtime.InteropServices.HandleRef window, int insetsFlags);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetScreen")]
+            public static extern void SetScreen(global::System.Runtime.InteropServices.HandleRef window, string name);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetScreen")]
+            public static extern string GetScreen(global::System.Runtime.InteropServices.HandleRef window);
         }
     }
 }

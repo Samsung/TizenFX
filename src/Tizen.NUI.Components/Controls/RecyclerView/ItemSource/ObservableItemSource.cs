@@ -95,12 +95,12 @@ namespace Tizen.NUI.Components
 
         int AdjustIndexForHeader(int index)
         {
-            return index - (HasHeader ? 1 : 0);
+            return index >= 0 ? index - (HasHeader ? 1 : 0) : -1;
         }
 
         int AdjustPositionForHeader(int position)
         {
-            return position + (HasHeader ? 1 : 0);
+            return position >= 0 ? position + (HasHeader ? 1 : 0) : -1;
         }
 
         void CollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
@@ -206,13 +206,14 @@ namespace Tizen.NUI.Components
             {
                 return;
             }
-            var startIndex = args.NewStartingIndex > -1 ? args.NewStartingIndex : IndexOf(args.NewItems[0]);
-            startIndex = AdjustPositionForHeader(startIndex);
-            
             int newCount = newItems.Count;
             int oldCount = oldItems.Count;
+            
             if (newCount == oldCount)
             {
+                var startIndex = args.NewStartingIndex > -1 ? args.NewStartingIndex : newCount > 0 ? IndexOf(args.NewItems[0]) : -1;
+                startIndex = AdjustPositionForHeader(startIndex);
+
                 // We are replacing one set of items with a set of equal size; we can do a simple item or range 
                 // notification to the adapter
                 if (newCount == 1)
