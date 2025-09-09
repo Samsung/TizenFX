@@ -25,6 +25,7 @@ namespace Tizen.Network.Smartcard
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/secureelement</privilege>
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public class SmartcardReader : IDisposable
     {
         private int _readerHandle = -1;
@@ -36,6 +37,7 @@ namespace Tizen.Network.Smartcard
         /// The name of the reader.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public string Name
         {
             get
@@ -55,6 +57,7 @@ namespace Tizen.Network.Smartcard
         /// The existence of a secure element.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public bool IsSecureElementPresent
         {
             get
@@ -86,6 +89,7 @@ namespace Tizen.Network.Smartcard
         /// Dispose
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public void Dispose()
         {
             Dispose(true);
@@ -125,6 +129,7 @@ namespace Tizen.Network.Smartcard
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>The SmartcardSession object.</returns>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public SmartcardSession OpenSession()
         {
             int ret = Interop.Smartcard.Reader.ReaderOpenSession(_readerHandle, out _session);
@@ -144,6 +149,7 @@ namespace Tizen.Network.Smartcard
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="NotSupportedException">Thrown when the Smartcard is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public void CloseSessions()
         {
             int ret = Interop.Smartcard.Reader.ReaderCloseSessions(_readerHandle);
