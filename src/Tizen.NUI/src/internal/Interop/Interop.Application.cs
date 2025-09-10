@@ -113,6 +113,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetAvailableScreens")]
             public static extern global::System.IntPtr GetAvailableScreens();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_SetApplicationLocale")]
+            public static extern void SetApplicationLocale(global::System.Runtime.InteropServices.HandleRef application, string locale);
         }
     }
 }
