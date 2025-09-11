@@ -869,6 +869,16 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         static public void Preload()
         {
+            if (IsPreload)
+            {
+                Log.Error("NUI", "[NUI] Preload() called multiple. Ignore\n");
+                return;
+            }
+            if (Tizen.NUI.Application.Current != null)
+            {
+                Log.Error("NUI", "[NUI] Preload() Should be called before application created. Ignore\n");
+                return;
+            }
             Interop.Application.PreInitialize();
             SupportPreInitializedCreation = Interop.Application.IsSupportPreInitializedCreation();
 
