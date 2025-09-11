@@ -105,6 +105,24 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Enable font specific design compatibility mode globally.
+        /// <remarks>
+        /// When enabled, FontMetrics will adjust ascender/descender values at construction
+        /// to ensure design compatibility rules.
+        /// </remarks>
+        /// <note>
+        /// This is a one-way switch. Once enabled, it cannot be disabled again during the lifetime of the process.
+        /// This function must be called before any text is rendered.
+        /// </note>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void EnableDesignCompatibility()
+        {
+            Interop.FontClient.EnableDesignCompatibility();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Called when the user changes the system defaults.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
