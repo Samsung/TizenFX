@@ -49,6 +49,19 @@ namespace Tizen.NUI
             Log.Info("Type=" + Type + ", State=" + State);
         }
 
+        //TODO : name & autoClose refactoring
+        public NUIGadget(NUIGadgetType type, ServiceFactory serviceFactory,string name,bool autoClose)
+        {
+            //how to recycle this duplicated logic
+            Type = type;
+            State = NUIGadgetLifecycleState.Initialized;
+            Log.Info("Type=" + Type + ", State=" + State);
+            if (serviceFactory != null)
+            {
+                Service = serviceFactory.CreateService(name,autoClose);
+            }
+        }
+
         internal event EventHandler<NUIGadgetLifecycleChangedEventArgs> LifecycleChanged;
 
         /// <summary>
@@ -125,11 +138,21 @@ namespace Tizen.NUI
             get;
         }
 
+        public OneShotService Service
+        {
+            internal set;
+            get;
+        }
+
         internal void PreCreate()
         {
             if (State == NUIGadgetLifecycleState.Initialized)
             {
                 OnPreCreate();
+                if (Service != null)
+                {
+                    Service.Run();
+                }
             }
         }
 
