@@ -412,6 +412,7 @@ namespace Tizen.NUI.BaseComponents
         {
             SetVisible(true);
 
+#if !PROFILE_TV
             if (GetAccessibilityStates()[AccessibilityState.Modal])
             {
                 RegisterDefaultLabel();
@@ -421,6 +422,7 @@ namespace Tizen.NUI.BaseComponents
                     EmitAccessibilityStateChangedEvent(AccessibilityState.Showing, true);
                 }
             }
+#endif
         }
 
         /// <summary>
@@ -436,6 +438,7 @@ namespace Tizen.NUI.BaseComponents
         {
             SetVisible(false);
 
+#if !PROFILE_TV
             if (GetAccessibilityStates()[AccessibilityState.Modal])
             {
                 UnregisterDefaultLabel();
@@ -445,6 +448,7 @@ namespace Tizen.NUI.BaseComponents
                     EmitAccessibilityStateChangedEvent(AccessibilityState.Showing, false);
                 }
             }
+#endif
         }
 
         /// <summary>
