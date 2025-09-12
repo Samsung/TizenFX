@@ -33,6 +33,8 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class NUIGadget
     {
+        private static int s_ServiceNameSequence = 0;
+
         /// <summary>
         /// Initializes the gadget.
         /// </summary>
@@ -53,7 +55,7 @@ namespace Tizen.NUI
         {
             if (serviceFactory != null)
             {
-                Service = serviceFactory.CreateService(ClassName, autoClose);
+                Service = serviceFactory.CreateService(GenerateOneShotServiceName(), autoClose);
             }
         }
 
@@ -226,6 +228,11 @@ namespace Tizen.NUI
             args.State = State;
             args.Gadget = this;
             LifecycleChanged?.Invoke(null, args);
+        }
+
+        private static string GenerateOneShotServiceName()
+        {
+            return $"oneshot{s_ServiceNameSequence++}";
         }
 
         /// <summary>
