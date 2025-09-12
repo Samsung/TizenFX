@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ using Tizen.NUI.Gadget.Tizen.NUI;
 
 namespace Tizen.NUI
 {
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ServiceFactory
     {
         public OneShotService CreateService(string name, bool autoClose)
