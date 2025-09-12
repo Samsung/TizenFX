@@ -51,7 +51,7 @@ namespace Tizen.NUI
             Log.Info("Type=" + Type + ", State=" + State);
         }
 
-        public NUIGadget(NUIGadgetType type, ServiceFactory serviceFactory, bool autoClose = false) : this(type)
+        public NUIGadget(NUIGadgetType type, ServiceFactory serviceFactory, bool autoClose = true) : this(type)
         {
             if (serviceFactory != null)
             {
