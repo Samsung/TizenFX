@@ -25,7 +25,7 @@ using Tizen.NUI.Gadget.Tizen.NUI;
 namespace Tizen.NUI
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class OneShotService
+    public abstract class OneShotService
     {
 
         public OneShotServiceLifecycleState State
