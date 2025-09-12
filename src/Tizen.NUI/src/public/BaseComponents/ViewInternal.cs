@@ -815,7 +815,7 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            EnsureLayoutExtraData()?.Layout?.RequestLayout();
+            RequestLayout();
         }
 
         /// <summary>
