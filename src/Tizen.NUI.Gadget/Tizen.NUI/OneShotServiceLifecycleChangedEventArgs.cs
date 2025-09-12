@@ -21,7 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tizen.NUI.Gadget.Tizen.NUI
+namespace Tizen.NUI
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class OneShotServiceLifecycleChangedEventArgs : EventArgs
