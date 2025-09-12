@@ -62,6 +62,7 @@ namespace Tizen.NUI
             if (State == OneShotServiceLifecycleState.Initialized)
             {
                 State = OneShotServiceLifecycleState.Created;
+                NotifyLifecycleChanged();
             }
         }
 
@@ -71,6 +72,7 @@ namespace Tizen.NUI
             if (State == OneShotServiceLifecycleState.Created)
             {
                 State = OneShotServiceLifecycleState.Destroyed;
+                NotifyLifecycleChanged();
             }
         }
 
@@ -111,6 +113,12 @@ namespace Tizen.NUI
             }
         }
 
-        //TODO : NotifyLifecycleChanged() method
+        private void NotifyLifecycleChanged()
+        {
+            var args = new OneShotServiceLifecycleChangedEventArgs();
+            args.State = State;
+            args.OneShotService = this;
+            LifecycleStateChanged?.Invoke(this, args);
+        }
     }
 }
