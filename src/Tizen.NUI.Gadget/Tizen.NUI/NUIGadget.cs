@@ -53,9 +53,10 @@ namespace Tizen.NUI
 
         public NUIGadget(NUIGadgetType type, IServiceFactory serviceFactory, bool autoClose = true) : this(type)
         {
+            AutoClose = autoClose;
             if (serviceFactory != null)
             {
-                Service = serviceFactory.CreateService(GenerateOneShotServiceName(), autoClose);
+                ServiceFactory = serviceFactory;
             }
         }
 
@@ -141,13 +142,24 @@ namespace Tizen.NUI
             get;
         }
 
+        private IServiceFactory ServiceFactory
+        {
+            set; get;
+        }
+
+        private bool AutoClose
+        {
+            set; get;
+        }
+
         internal void PreCreate()
         {
             if (State == NUIGadgetLifecycleState.Initialized)
             {
                 OnPreCreate();
-                if (Service != null)
+                if (ServiceFactory != null)
                 {
+                    Service = ServiceFactory.CreateService(GenerateOneShotServiceName(),AutoClose);
                     Log.Info($"PreCreate(), Service.Name = {Service.Name}");
                     Service.Run();
                 }
