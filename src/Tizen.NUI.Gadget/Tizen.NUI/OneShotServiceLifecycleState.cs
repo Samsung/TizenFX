@@ -44,6 +44,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The running state.
         /// This state is set when the OneShotService is running.
+        /// The 'Run()' method of the OneShotService is called.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         Running = 2,
