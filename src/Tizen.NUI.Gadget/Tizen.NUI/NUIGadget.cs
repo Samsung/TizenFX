@@ -50,12 +50,8 @@ namespace Tizen.NUI
         }
 
         //TODO : name & autoClose refactoring
-        public NUIGadget(NUIGadgetType type, ServiceFactory serviceFactory,string name,bool autoClose)
+        public NUIGadget(NUIGadgetType type, ServiceFactory serviceFactory,string name,bool autoClose) : this(type)
         {
-            //how to recycle this duplicated logic
-            Type = type;
-            State = NUIGadgetLifecycleState.Initialized;
-            Log.Info("Type=" + Type + ", State=" + State);
             if (serviceFactory != null)
             {
                 Service = serviceFactory.CreateService(name,autoClose);
