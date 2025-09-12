@@ -56,9 +56,7 @@ namespace Tizen.NUI
             TizenCore.Initialize();
         }
 
-#pragma warning disable CA1063
         ~OneShotService()
-#pragma warning restore CA1063
         {
             if (_task != null && State != OneShotServiceLifecycleState.Destroyed)
             {
