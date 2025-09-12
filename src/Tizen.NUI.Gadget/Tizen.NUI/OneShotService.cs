@@ -102,8 +102,10 @@ namespace Tizen.NUI
 
             if (AutoClose)
             {
-                _task.Post(() => { OnDestroy(); });
-                _task.Quit();
+                _task.Post(() => {
+                    OnDestroy();
+                    _task.Quit();
+                });
             }
         }
 
@@ -116,8 +118,10 @@ namespace Tizen.NUI
                 return;
             }
 
-            _task.Post(() => { OnDestroy(); });
-            _task.Quit();
+            _task.Post(() => { 
+                OnDestroy(); 
+                _task.Quit();
+            });
             if (waitForJoin)
             {
                 _task.Dispose();
