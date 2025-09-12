@@ -25,11 +25,8 @@ using Tizen.NUI.Gadget.Tizen.NUI;
 namespace Tizen.NUI
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ServiceFactory
+    public interface IServiceFactory
     {
-        public OneShotService CreateService(string name, bool autoClose)
-        {
-            return new OneShotService(name,autoClose);
-        }
+        OneShotService CreateService(string name, bool autoClose);
     }
 }
