@@ -49,12 +49,11 @@ namespace Tizen.NUI
             Log.Info("Type=" + Type + ", State=" + State);
         }
 
-        //TODO : name & autoClose refactoring
-        public NUIGadget(NUIGadgetType type, ServiceFactory serviceFactory,string name,bool autoClose) : this(type)
+        public NUIGadget(NUIGadgetType type, ServiceFactory serviceFactory, bool autoClose = false) : this(type)
         {
             if (serviceFactory != null)
             {
-                Service = serviceFactory.CreateService(name,autoClose);
+                Service = serviceFactory.CreateService(ClassName, autoClose);
             }
         }
 
@@ -147,6 +146,7 @@ namespace Tizen.NUI
                 OnPreCreate();
                 if (Service != null)
                 {
+                    Log.Info($"PreCreate(), Service.Name = {Service.Name}");
                     Service.Run();
                 }
             }
