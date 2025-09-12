@@ -23,9 +23,20 @@ using System.Threading.Tasks;
 
 namespace Tizen.NUI
 {
+    /// <summary>
+    /// An interface that make the OneShotService object.
+    /// </summary>
+    /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public interface IServiceFactory
     {
+        /// <summary>
+        /// Creates a new OneShotService instance.
+        /// </summary>
+        /// <param name="name">Unique identifier for the service instance</param>
+        /// <param name="autoClose">Whether to automatically close the service after execution</param>
+        /// <returns>A new OneShotService instance</returns>
+        /// <since_tizen> 13 </since_tizen>
         OneShotService CreateService(string name, bool autoClose);
     }
 }
