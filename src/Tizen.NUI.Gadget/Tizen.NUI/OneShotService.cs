@@ -54,6 +54,18 @@ namespace Tizen.NUI
             Name = name;
             AutoClose = autoClose;
             State = OneShotServiceLifecycleState.Initialized;
+            TizenCore.Initialize();
+        }
+
+#pragma warning disable CA1063
+        ~OneShotService()
+#pragma warning restore CA1063
+        {
+            if (_task != null && State != OneShotServiceLifecycleState.Destroyed)
+            {
+                _task.Dispose();
+            }
+            TizenCore.Shutdown();
         }
 
         protected virtual void OnCreate()
