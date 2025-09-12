@@ -124,7 +124,7 @@ namespace Tizen.NUI
         protected virtual void OnDestroy()
         {
             Log.Info("[OnDestroy]");
-            if (State == OneShotServiceLifecycleState.Created)
+            if (State == OneShotServiceLifecycleState.Running)
             {
                 State = OneShotServiceLifecycleState.Destroyed;
                 NotifyLifecycleChanged();
@@ -146,15 +146,22 @@ namespace Tizen.NUI
                 return;
             }
 
-            _task = TizenCore.Spawn(Name);
-            _task.Post(() => { OnCreate(); });
-
-            if (AutoClose)
+            if (State == OneShotServiceLifecycleState.Initialized)
             {
-                _task.Post(() => {
-                    OnDestroy();
-                    _task.Quit();
-                });
+                State = OneShotServiceLifecycleState.Running;
+                NotifyLifecycleChanged();
+
+                _task = TizenCore.Spawn(Name);
+                _task.Post(() => { OnCreate(); });
+
+                if (AutoClose)
+                {
+                    _task.Post(() =>
+                    {
+                        OnDestroy();
+                        _task.Quit();
+                    });
+                }
             }
         }
 
@@ -172,14 +179,19 @@ namespace Tizen.NUI
                 return;
             }
 
-            _task.Post(() => { 
-                OnDestroy(); 
-                _task.Quit();
-            });
-            if (waitForJoin)
+            if (State == OneShotServiceLifecycleState.Running)
             {
-                _task.Dispose();
-                _task = null;
+                _task.Post(() =>
+                {
+                    OnDestroy();
+                    _task.Quit();
+                });
+
+                if (waitForJoin)
+                {
+                    _task.Dispose();
+                    _task = null;
+                }
             }
         }
 
