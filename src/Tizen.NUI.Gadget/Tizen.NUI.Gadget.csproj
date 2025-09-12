@@ -5,6 +5,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tizen.Applications.Common\Tizen.Applications.Common.csproj" />
+    <ProjectReference Include="..\Tizen.Core\Tizen.Core.csproj"/>
     <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
     <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
     <ProjectReference Include="..\Tizen\Tizen.csproj" />

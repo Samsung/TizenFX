@@ -33,6 +33,8 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class NUIGadget
     {
+        private static int s_ServiceNameSequence = 0;
+
         /// <summary>
         /// Initializes the gadget.
         /// </summary>
@@ -47,6 +49,26 @@ namespace Tizen.NUI
             Type = type;
             State = NUIGadgetLifecycleState.Initialized;
             Log.Info("Type=" + Type + ", State=" + State);
+        }
+
+        /// <summary>
+        /// Initializes the gadget with OneShotService factory.
+        /// </summary>
+        /// <param name="type">The type of the NUIGadget.</param>
+        /// <param name="serviceFactory">The factory that can create OneShotService object</param>
+        /// <param name="autoClose">Whether to automatically close the service after execution</param>
+        /// <remarks>
+        /// This constructor initializes a new instance of the NUIGadget class based on the specified type with OneShotService.
+        /// It is important to provide the correct type argument in order to ensure proper functionality and compatibility with other components.
+        /// </remarks>
+        /// <since_tizen> 13 </since_tizen>
+        public NUIGadget(NUIGadgetType type, IServiceFactory serviceFactory, bool autoClose = true) : this(type)
+        {
+            AutoClose = autoClose;
+            if (serviceFactory != null)
+            {
+                ServiceFactory = serviceFactory;
+            }
         }
 
         internal event EventHandler<NUIGadgetLifecycleChangedEventArgs> LifecycleChanged;
@@ -125,11 +147,33 @@ namespace Tizen.NUI
             get;
         }
 
+        public OneShotService Service
+        {
+            internal set;
+            get;
+        }
+
+        private IServiceFactory ServiceFactory
+        {
+            set; get;
+        }
+
+        private bool AutoClose
+        {
+            set; get;
+        }
+
         internal void PreCreate()
         {
             if (State == NUIGadgetLifecycleState.Initialized)
             {
                 OnPreCreate();
+                if (ServiceFactory != null)
+                {
+                    Service = ServiceFactory.CreateService(GenerateOneShotServiceName(),AutoClose);
+                    Log.Info($"PreCreate(), Service.Name = {Service.Name}");
+                    Service.Run();
+                }
             }
         }
 
@@ -207,6 +251,11 @@ namespace Tizen.NUI
             args.State = State;
             args.Gadget = this;
             LifecycleChanged?.Invoke(null, args);
+        }
+
+        private static string GenerateOneShotServiceName()
+        {
+            return $"oneshot{s_ServiceNameSequence++}";
         }
 
         /// <summary>
