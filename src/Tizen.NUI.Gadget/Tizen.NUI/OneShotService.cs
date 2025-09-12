@@ -23,22 +23,49 @@ using Tizen.Core;
 
 namespace Tizen.NUI
 {
+    /// <summary>
+    /// OneShotService performs tasks
+    /// that the NUIGadget processes in parallel
+    /// during the PreCreate state.
+    /// </summary>
+    /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class OneShotService
     {
-
+        /// <summary>
+        /// Gets the current lifecycle state of OneShotService
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         public OneShotServiceLifecycleState State
         {
             get;
             internal set;
         }
 
+        /// <summary>
+        /// Gets the OneShotService's name
+        /// </summary>
+        /// <remarks>
+        /// This property is the name(identifier)
+        /// of the worker thread on which
+        /// `OneShotService` operates.
+        /// </remarks>
+        /// <since_tizen> 13 </since_tizen>
         public string Name
         {
             get;
             internal set;
         }
 
+        /// <summary>
+        /// Gets the AutoClose
+        /// </summary>
+        /// <remarks>
+        /// This property is a variable
+        /// as to whether to automatically make
+        /// OneShotService Destroy after execution
+        /// </remarks>
+        /// <since_tizen> 13 </since_tizen>
         public bool AutoClose{
             get;
             private set;
@@ -48,6 +75,12 @@ namespace Tizen.NUI
 
         public event EventHandler<OneShotServiceLifecycleChangedEventArgs> LifecycleStateChanged;
 
+        /// <summary>
+        /// Initializes the OneShotService.
+        /// </summary>
+        /// <param name="name">Unique identifier for the service instance</param>
+        /// <param name="autoClose">Whether to automatically close the service after execution</param>
+        /// <since_tizen> 13 </since_tizen>
         public OneShotService(string name,bool autoClose)
         {
             Name = name;
@@ -56,6 +89,10 @@ namespace Tizen.NUI
             TizenCore.Initialize();
         }
 
+        /// <summary>
+        /// Finalizer of the OneShotService  class.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         ~OneShotService()
         {
             if (_task != null && State != OneShotServiceLifecycleState.Destroyed)
@@ -65,6 +102,12 @@ namespace Tizen.NUI
             TizenCore.Shutdown();
         }
 
+        /// <summary>
+        /// Override this method to define the behavior when the OneShotService is created.
+        /// Calling 'base.OnCreate()' is necessary in order to
+        /// emit the 'OneShotServiceLifecycleState.Created` state
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         protected virtual void OnCreate()
         {
             Log.Info("[OnCreate]");
@@ -75,6 +118,12 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Override this method to define the behavior when the OneShotService is destroyed.
+        /// Calling 'base.OnDestroyed()' is necessary in order to
+        /// emit the 'OneShotServiceLifecycleState.Destroyed` state
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         protected virtual void OnDestroy()
         {
             Log.Info("[OnDestroy]");
@@ -85,6 +134,12 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Starts the OneShotService execution on a worker thread.
+        /// Initializes the service task and triggers the OnCreate event.
+        /// If AutoClose is enabled, automatically destroys the service after execution.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         public void Run()
         {
             Log.Warn($"Name = {Name}");
@@ -106,6 +161,11 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Stops the OneShotService execution and releases resources.
+        /// </summary>
+        /// <param name="waitForJoin">Whether to wait for complete service termination</param>
+        /// <since_tizen> 13 </since_tizen>
         public void Quit(bool waitForJoin)
         {
             Log.Warn($"Name = {Name}");

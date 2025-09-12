@@ -23,11 +23,23 @@ using System.Threading.Tasks;
 
 namespace Tizen.NUI
 {
+    /// <summary>
+    /// Event arguments for the OneShotService lifecycle change event.
+    /// </summary>
+    /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class OneShotServiceLifecycleChangedEventArgs : EventArgs
     {
+        /// <summary>
+        /// Gets the OneShotService object that triggered the event.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         public OneShotService OneShotService { get; set; }
 
+        /// <summary>
+        /// Gets the current state of the OneShotService lifecycle.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         public OneShotServiceLifecycleState State { get; internal set; }
     }
 }

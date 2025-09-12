@@ -23,12 +23,42 @@ using System.Threading.Tasks;
 
 namespace Tizen.NUI
 {
+    /// <summary>
+    /// Enumeration for the lifecycle state of the OneShotService.
+    /// </summary>
+    /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum OneShotServiceLifecycleState
     {
+        /// <summary>
+        /// The initialized state.
+        /// This state is set when the OneShotService is initialized.
+        /// The constructor of the OneShotService is called.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         Initialized = 0,
+
+        /// <summary>
+        /// The created state.
+        /// This state is set when the OneShotService is created.
+        /// The 'OnCreate()' method of the OneShotService is called.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         Created = 1,
+
+        /// <summary>
+        /// The running state.
+        /// This state is set when the OneShotService is running.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         Running = 2,
+
+        /// <summary>
+        /// The destroyed state.
+        /// This state is set when the OneShotService is destroyed.
+        /// The 'OnDestroyed()' method of the OneShotService is called.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         Destroyed = 3,
     }
 }
