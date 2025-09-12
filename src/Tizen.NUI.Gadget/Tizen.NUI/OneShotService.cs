@@ -20,7 +20,6 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using Tizen.Core;
-using Tizen.NUI.Gadget.Tizen.NUI;
 
 namespace Tizen.NUI
 {
