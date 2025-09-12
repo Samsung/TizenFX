@@ -23,6 +23,10 @@ namespace Tizen.NUI.Samples
         private float posT = -20.0f;
         private float posB = 10.0f;
 
+        private Animation radiusLargerAnimation;
+        private Animation radiusSmallerAnimation;
+        private bool isAnimated = false;
+
         public void Activate()
         {
             window = NUIApplication.GetDefaultWindow();
@@ -39,7 +43,7 @@ namespace Tizen.NUI.Samples
                 ParentOrigin = ParentOrigin.BottomLeft,
                 PivotPoint = PivotPoint.BottomLeft,
                 MultiLine = true,
-                Text = "Press lowercase l/r/t/b to expand the inner shadow outwards (Left/Right/Top/Bottom).\nPress uppercase L/R/T/B to shrink the inner shadow inwards.",
+                Text = "Press lowercase l/r/t/b to expand the inner shadow outwards (Left/Right/Top/Bottom).\nPress uppercase L/R/T/B to shrink the inner shadow inwards.\nPress a to animate corner radius to 0.0.\n Press A to animate corner radius to half of the height.",
             };
             window.Add(guide); // Add guide to the window
         }
@@ -71,6 +75,47 @@ namespace Tizen.NUI.Samples
         {
             if (e.Key.State == Key.StateType.Down)
             {
+                if (isAnimated)
+                {
+                    return;
+                }
+                if (e.Key.KeyPressed == "a")
+                {
+                    if(radiusSmallerAnimation != null)
+                    {
+                        radiusSmallerAnimation.Dispose();
+                    }
+
+                    radiusSmallerAnimation = new Animation(2000);
+                    radiusSmallerAnimation.AnimateTo(button, "CornerRadius", new Vector4(0.0f, 0.0f, 0.0f, 0.0f));
+                    radiusSmallerAnimation.LoopingMode = Animation.LoopingModes.AutoReverse;
+                    radiusSmallerAnimation.LoopCount = 1;
+                    radiusSmallerAnimation.Play();
+                    isAnimated = true;
+                    radiusSmallerAnimation.Finished += (s, e) =>
+                    {
+                        isAnimated = false;
+                    };
+                    return;
+                }
+                if (e.Key.KeyPressed == "A")
+                {
+                    if(radiusLargerAnimation != null)
+                    {
+                        radiusLargerAnimation.Dispose();
+                    }
+                    radiusLargerAnimation = new Animation(2000);
+                    radiusLargerAnimation.AnimateTo(button, "CornerRadius", new Vector4(100.0f, 100.0f, 100.0f, 100.0f));
+                    radiusLargerAnimation.LoopingMode = Animation.LoopingModes.AutoReverse;
+                    radiusLargerAnimation.LoopCount = 1;
+                    radiusLargerAnimation.Play();
+                    isAnimated = true;
+                    radiusLargerAnimation.Finished += (s, e) =>
+                    {
+                        isAnimated = false;
+                    };
+                    return;
+                }
                 if (e.Key.KeyPressed == "l")
                 {
                     posS -= 5.0f;
@@ -112,6 +157,13 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
+            var root = NUIApplication.GetDefaultWindow().GetRootLayer();
+            while (root.ChildCount > 0)
+            {
+                var child = root.GetChildAt(0);
+                root.Remove(child);
+                child.DisposeRecursively();
+            }
         }
     }
 }
