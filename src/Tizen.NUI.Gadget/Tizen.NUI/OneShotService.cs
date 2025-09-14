@@ -30,6 +30,33 @@ namespace Tizen.NUI
     public abstract class OneShotService
     {
         /// <summary>
+        /// Initializes the OneShotService.
+        /// </summary>
+        /// <param name="name">Unique identifier for the service instance</param>
+        /// <param name="autoClose">Whether to automatically close the service after execution</param>
+        /// <since_tizen> 13 </since_tizen>
+        public OneShotService(string name, bool autoClose)
+        {
+            Name = name;
+            AutoClose = autoClose;
+            State = OneShotServiceLifecycleState.Initialized;
+            TizenCore.Initialize();
+        }
+
+        /// <summary>
+        /// Finalizer of the OneShotService  class.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        ~OneShotService()
+        {
+            if (_task != null && State != OneShotServiceLifecycleState.Destroyed)
+            {
+                _task.Dispose();
+            }
+            TizenCore.Shutdown();
+        }
+
+        /// <summary>
         /// Gets the current lifecycle state of OneShotService
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
@@ -81,33 +108,6 @@ namespace Tizen.NUI
         /// </remarks>
         /// <since_tizen> 13 </since_tizen>
         public event EventHandler<OneShotServiceLifecycleChangedEventArgs> LifecycleStateChanged;
-
-        /// <summary>
-        /// Initializes the OneShotService.
-        /// </summary>
-        /// <param name="name">Unique identifier for the service instance</param>
-        /// <param name="autoClose">Whether to automatically close the service after execution</param>
-        /// <since_tizen> 13 </since_tizen>
-        public OneShotService(string name,bool autoClose)
-        {
-            Name = name;
-            AutoClose = autoClose;
-            State = OneShotServiceLifecycleState.Initialized;
-            TizenCore.Initialize();
-        }
-
-        /// <summary>
-        /// Finalizer of the OneShotService  class.
-        /// </summary>
-        /// <since_tizen> 13 </since_tizen>
-        ~OneShotService()
-        {
-            if (_task != null && State != OneShotServiceLifecycleState.Destroyed)
-            {
-                _task.Dispose();
-            }
-            TizenCore.Shutdown();
-        }
 
         /// <summary>
         /// Override this method to define the behavior when the OneShotService is created.
