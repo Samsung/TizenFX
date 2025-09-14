@@ -196,12 +196,12 @@ namespace Tizen.NUI
                     OnDestroy();
                     _task.Quit();
                 });
+            }
 
-                if (waitForJoin)
-                {
-                    _task.Dispose();
-                    _task = null;
-                }
+            if (waitForJoin && _task != null)
+            {
+                _task.Dispose();
+                _task = null;
             }
         }
 
