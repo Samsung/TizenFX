@@ -27,7 +27,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class OneShotService
+    public abstract class OneShotService : IDisposable
     {
         /// <summary>
         /// Initializes the OneShotService.
@@ -49,11 +49,7 @@ namespace Tizen.NUI
         /// <since_tizen> 13 </since_tizen>
         ~OneShotService()
         {
-            if (_task != null && State != OneShotServiceLifecycleState.Destroyed)
-            {
-                _task.Dispose();
-            }
-            TizenCore.Shutdown();
+            Dispose(false);
         }
 
         /// <summary>
@@ -211,6 +207,45 @@ namespace Tizen.NUI
             args.State = State;
             args.OneShotService = this;
             LifecycleStateChanged?.Invoke(this, args);
+        }
+
+        /// <summary>
+        /// To detect redundant calls
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        private bool _disposedValue = false;
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">if true, dispose any disposable objets. If false, does not dispose disposable objects</param>
+        /// <since_tizen> 13 </since_tizen>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposedValue)
+            {
+                if (disposing)
+                {
+                    if (_task != null)
+                    {
+                        _task.Dispose();
+                        TizenCore.Shutdown();
+                    }
+                }
+
+                _disposedValue = true;
+            }
+        }
+
+        /// <summary>
+        /// Releases all resources used by the OneShotService class.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
