@@ -65,10 +65,7 @@ namespace Tizen.NUI
         public NUIGadget(NUIGadgetType type, IServiceFactory serviceFactory, bool autoClose = true) : this(type)
         {
             AutoClose = autoClose;
-            if (serviceFactory != null)
-            {
-                ServiceFactory = serviceFactory;
-            }
+            ServiceFactory = serviceFactory;
         }
 
         internal event EventHandler<NUIGadgetLifecycleChangedEventArgs> LifecycleChanged;
