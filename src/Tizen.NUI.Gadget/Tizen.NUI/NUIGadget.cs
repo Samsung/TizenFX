@@ -170,7 +170,7 @@ namespace Tizen.NUI
                 OnPreCreate();
                 if (ServiceFactory != null)
                 {
-                    Service = ServiceFactory.CreateService(GenerateOneShotServiceName(),AutoClose);
+                    Service = ServiceFactory.CreateService(GenerateOneShotServiceName(), AutoClose);
                     Log.Info($"PreCreate(), Service.Name = {Service.Name}");
                     Service.Run();
                 }
