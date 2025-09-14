@@ -71,6 +71,15 @@ namespace Tizen.NUI
 
         private Task _task;
 
+        /// <summary>
+        /// Occurs when the lifecycle of the OneShotService is changed.
+        /// </summary>
+        /// <remarks>
+        /// This event is raised when the state of OneShotService changes.
+        /// It provides information about the current state through the 
+        /// OneShotServiceLifecycleChangedEventArgs argument.
+        /// </remarks>
+        /// <since_tizen> 13 </since_tizen>
         public event EventHandler<OneShotServiceLifecycleChangedEventArgs> LifecycleStateChanged;
 
         /// <summary>
