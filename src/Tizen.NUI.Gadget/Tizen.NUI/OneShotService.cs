@@ -63,7 +63,8 @@ namespace Tizen.NUI
         /// OneShotService Destroy after execution
         /// </remarks>
         /// <since_tizen> 13 </since_tizen>
-        public bool AutoClose{
+        public bool AutoClose
+        {
             get;
             private set;
         }
@@ -140,7 +141,7 @@ namespace Tizen.NUI
         public void Run()
         {
             Log.Warn($"Name = {Name}");
-            if(_task != null && _task.Running)
+            if (_task != null && _task.Running)
             {
                 Log.Info($"{Name} is already running");
                 return;
@@ -173,7 +174,7 @@ namespace Tizen.NUI
         public void Quit(bool waitForJoin)
         {
             Log.Warn($"Name = {Name}");
-            if(_task == null || State == OneShotServiceLifecycleState.Destroyed)
+            if (_task == null || State == OneShotServiceLifecycleState.Destroyed)
             {
                 Log.Info($"{Name} was already destroyed");
                 return;
