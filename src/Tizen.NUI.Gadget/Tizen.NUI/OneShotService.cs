@@ -130,7 +130,7 @@ namespace Tizen.NUI
         protected virtual void OnDestroy()
         {
             Log.Info("[OnDestroy]");
-            if (State == OneShotServiceLifecycleState.Running)
+            if (State != OneShotServiceLifecycleState.Destroyed)
             {
                 State = OneShotServiceLifecycleState.Destroyed;
                 NotifyLifecycleChanged();
@@ -187,14 +187,11 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (State == OneShotServiceLifecycleState.Running)
+            _task.Post(() =>
             {
-                _task.Post(() =>
-                {
-                    OnDestroy();
-                    _task.Quit();
-                });
-            }
+                OnDestroy();
+                _task.Quit();
+            });
 
             if (waitForJoin && _task != null)
             {
