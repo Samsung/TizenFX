@@ -154,11 +154,13 @@ namespace Tizen.NUI
 
             if (State == OneShotServiceLifecycleState.Initialized)
             {
-                State = OneShotServiceLifecycleState.Running;
-                NotifyLifecycleChanged();
-
                 _task = TizenCore.Spawn(Name);
-                _task.Post(() => { OnCreate(); });
+                _task.Post(() =>
+                {
+                    OnCreate();
+                    State = OneShotServiceLifecycleState.Running;
+                    NotifyLifecycleChanged();
+                });
 
                 if (AutoClose)
                 {
