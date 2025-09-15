@@ -41,6 +41,7 @@ namespace Tizen.NUI
             Name = name;
             AutoClose = autoClose;
             State = OneShotServiceLifecycleState.Initialized;
+            NotifyLifecycleChanged();
             TizenCore.Initialize();
         }
 
@@ -213,13 +214,13 @@ namespace Tizen.NUI
 
         private void NotifyLifecycleChanged()
         {
-            CoreApplication.Post(() =>
-            {
+            //CoreApplication.Post(() =>
+            //{
                 var args = new OneShotServiceLifecycleChangedEventArgs();
                 args.State = State;
                 args.OneShotService = this;
                 LifecycleStateChanged?.Invoke(this, args);
-            });
+            //});
         }
 
         /// <summary>
