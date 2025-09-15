@@ -106,6 +106,24 @@ namespace Tizen.NUI
         /// <since_tizen> 13 </since_tizen>
         public event EventHandler<OneShotServiceLifecycleChangedEventArgs> LifecycleStateChanged;
 
+        private void Create()
+        {
+            if (State == OneShotServiceLifecycleState.Initialized)
+            {
+                OnCreate();
+                State = OneShotServiceLifecycleState.Running;
+                NotifyLifecycleChanged();
+            }
+        }
+
+        private void Destroy()
+        {
+            if (State != OneShotServiceLifecycleState.Destroyed)
+            {
+                OnDestroy();
+            }
+        }
+
         /// <summary>
         /// Override this method to define the behavior when the OneShotService is created.
         /// Calling 'base.OnCreate()' is necessary in order to
@@ -115,11 +133,8 @@ namespace Tizen.NUI
         protected virtual void OnCreate()
         {
             Log.Info("[OnCreate]");
-            if (State == OneShotServiceLifecycleState.Initialized)
-            {
-                State = OneShotServiceLifecycleState.Created;
-                NotifyLifecycleChanged();
-            }
+            State = OneShotServiceLifecycleState.Created;
+            NotifyLifecycleChanged();
         }
 
         /// <summary>
@@ -131,11 +146,8 @@ namespace Tizen.NUI
         protected virtual void OnDestroy()
         {
             Log.Info("[OnDestroy]");
-            if (State != OneShotServiceLifecycleState.Destroyed)
-            {
-                State = OneShotServiceLifecycleState.Destroyed;
-                NotifyLifecycleChanged();
-            }
+            State = OneShotServiceLifecycleState.Destroyed;
+            NotifyLifecycleChanged();
         }
 
         /// <summary>
@@ -158,16 +170,14 @@ namespace Tizen.NUI
                 _task = TizenCore.Spawn(Name);
                 _task.Post(() =>
                 {
-                    OnCreate();
-                    State = OneShotServiceLifecycleState.Running;
-                    NotifyLifecycleChanged();
+                    Create();
                 });
 
                 if (AutoClose)
                 {
                     _task.Post(() =>
                     {
-                        OnDestroy();
+                        Destroy();
                         _task.Quit();
                     });
                 }
@@ -190,7 +200,7 @@ namespace Tizen.NUI
 
             _task.Post(() =>
             {
-                OnDestroy();
+                Destroy();
                 _task.Quit();
             });
 
