@@ -41,7 +41,7 @@ namespace Tizen.NUI
             Name = name;
             AutoClose = autoClose;
             State = OneShotServiceLifecycleState.Initialized;
-            NotifyLifecycleChanged();
+            NotifyLifecycleChanged(OneShotServiceLifecycleState.Initialized);
             TizenCore.Initialize();
         }
 
@@ -113,7 +113,7 @@ namespace Tizen.NUI
             {
                 OnCreate();
                 State = OneShotServiceLifecycleState.Running;
-                NotifyLifecycleChanged();
+                NotifyLifecycleChanged(OneShotServiceLifecycleState.Running);
             }
         }
 
@@ -135,7 +135,7 @@ namespace Tizen.NUI
         {
             Log.Info("[OnCreate]");
             State = OneShotServiceLifecycleState.Created;
-            NotifyLifecycleChanged();
+            NotifyLifecycleChanged(OneShotServiceLifecycleState.Created);
         }
 
         /// <summary>
@@ -148,7 +148,7 @@ namespace Tizen.NUI
         {
             Log.Info("[OnDestroy]");
             State = OneShotServiceLifecycleState.Destroyed;
-            NotifyLifecycleChanged();
+            NotifyLifecycleChanged(OneShotServiceLifecycleState.Destroyed);
         }
 
         /// <summary>
@@ -212,12 +212,12 @@ namespace Tizen.NUI
             }
         }
 
-        private void NotifyLifecycleChanged()
+        private void NotifyLifecycleChanged(OneShotServiceLifecycleState state)
         {
             CoreApplication.Post(() =>
             {
                 var args = new OneShotServiceLifecycleChangedEventArgs();
-                args.State = State;
+                args.State = state;
                 args.OneShotService = this;
                 LifecycleStateChanged?.Invoke(this, args);
             });
