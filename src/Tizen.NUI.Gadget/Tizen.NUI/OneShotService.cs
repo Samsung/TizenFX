@@ -16,6 +16,7 @@
 
 using System;
 using System.ComponentModel;
+using Tizen.Applications;
 using Tizen.Core;
 
 namespace Tizen.NUI
@@ -202,10 +203,13 @@ namespace Tizen.NUI
 
         private void NotifyLifecycleChanged()
         {
-            var args = new OneShotServiceLifecycleChangedEventArgs();
-            args.State = State;
-            args.OneShotService = this;
-            LifecycleStateChanged?.Invoke(this, args);
+            CoreApplication.Post(() =>
+            {
+                var args = new OneShotServiceLifecycleChangedEventArgs();
+                args.State = State;
+                args.OneShotService = this;
+                LifecycleStateChanged?.Invoke(this, args);
+            });
         }
 
         /// <summary>
