@@ -71,6 +71,17 @@ namespace Tizen.NUI
         internal event EventHandler<NUIGadgetLifecycleChangedEventArgs> LifecycleChanged;
 
         /// <summary>
+        /// Occurs when the lifecycle of the OneShotService is changed.
+        /// </summary>
+        /// <remarks>
+        /// This event is raised when the state of OneShotService changes.
+        /// It provides information about the current state through the 
+        /// OneShotServiceLifecycleChangedEventArgs argument.
+        /// </remarks>
+        /// <since_tizen> 13 </since_tizen>
+        public event EventHandler<OneShotServiceLifecycleChangedEventArgs> OneShotLifecycleStateChanged;
+
+        /// <summary>
         /// Gets the class representing information of the current gadget.
         /// </summary>
         /// <remarks>
@@ -168,6 +179,7 @@ namespace Tizen.NUI
                 if (ServiceFactory != null)
                 {
                     Service = ServiceFactory.CreateService(GenerateOneShotServiceName(), AutoClose);
+                    Service.LifecycleStateChanged += OnOneShotServiceLifecycleChanged;
                     Log.Info($"PreCreate(), Service.Name = {Service.Name}");
                     Service.Run();
                 }
@@ -239,6 +251,15 @@ namespace Tizen.NUI
                 default:
                     Log.Warn("Unknown Event Type: " + eventType);
                     break;
+            }
+        }
+        private void OnOneShotServiceLifecycleChanged(object sender, OneShotServiceLifecycleChangedEventArgs args)
+        {
+            OneShotLifecycleStateChanged?.Invoke(sender, args);
+
+            if (args.State == OneShotServiceLifecycleState.Destroyed)
+            {
+                args.OneShotService.LifecycleStateChanged -= OnOneShotServiceLifecycleChanged;
             }
         }
 
