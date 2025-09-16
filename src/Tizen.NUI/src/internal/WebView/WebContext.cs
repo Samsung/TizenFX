@@ -66,6 +66,9 @@ namespace Tizen.NUI
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
+                RegisterDownloadStartedCallback(null);
+                RegisterMimeOverriddenCallback(null);
+                RegisterHttpRequestInterceptedCallback(null);
                 if (passwordDataList != null)
                 {
                     passwordDataList.Dispose();

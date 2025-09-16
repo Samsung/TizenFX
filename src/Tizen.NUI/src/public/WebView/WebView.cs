@@ -252,21 +252,6 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            if (webContext != null)
-            {
-                webContext.RegisterDownloadStartedCallback(null);
-                webContext.RegisterMimeOverriddenCallback(null);
-                webContext.RegisterHttpRequestInterceptedCallback(null);
-                webContext.Dispose();
-                webContext = null;
-            }
-
-            if (webCookieManager != null)
-            {
-                webCookieManager.Dispose();
-                webCookieManager = null;
-            }
-
             if (type == DisposeTypes.Explicit)
             {
                 //Called by User
