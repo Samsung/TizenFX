@@ -253,6 +253,7 @@ namespace Tizen.NUI
                     break;
             }
         }
+
         private void OnOneShotServiceLifecycleChanged(object sender, OneShotServiceLifecycleChangedEventArgs args)
         {
             OneShotLifecycleStateChanged?.Invoke(sender, args);
