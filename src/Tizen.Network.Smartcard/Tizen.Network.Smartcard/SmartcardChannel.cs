@@ -25,6 +25,7 @@ namespace Tizen.Network.Smartcard
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <privilege>http://tizen.org/privilege/secureelement</privilege>
+    [Obsolete("Deprecated since API13, will be removed in API15.")]
     public class SmartcardChannel : IDisposable
     {
         private int _channelHandle = -1;
@@ -35,6 +36,7 @@ namespace Tizen.Network.Smartcard
         /// Whether the kind of channel is basic.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public bool IsBasicChannel
         {
             get
@@ -53,6 +55,7 @@ namespace Tizen.Network.Smartcard
         /// Whether the kind of channel is logical.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public bool IsLogicalChannel
         {
             get
@@ -71,6 +74,7 @@ namespace Tizen.Network.Smartcard
         /// Whether the channel is closed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public bool IsClosed
         {
             get
@@ -89,6 +93,7 @@ namespace Tizen.Network.Smartcard
         /// The session that has opened the given channel.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public SmartcardSession Session
         {
             get
@@ -127,6 +132,7 @@ namespace Tizen.Network.Smartcard
         /// Dispose
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public void Dispose()
         {
             Dispose(true);
@@ -152,6 +158,7 @@ namespace Tizen.Network.Smartcard
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="NotSupportedException">Thrown when the Smartcard is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public void Close()
         {
             int ret = Interop.Smartcard.Channel.ChannelClose(_channelHandle);
@@ -168,6 +175,7 @@ namespace Tizen.Network.Smartcard
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Byte array to retrieve the select response.</returns>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public byte[] GetSelectedResponse()
         {
             byte[] respList;
@@ -194,6 +202,7 @@ namespace Tizen.Network.Smartcard
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Byte array for the response APDU plus status words.</returns>
         /// <param name="cmd">Command APDU to be sent to the secure element.</param>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public byte[] Transmit(byte[] cmd)
         {
             byte[] atrList;
@@ -220,6 +229,7 @@ namespace Tizen.Network.Smartcard
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Byte array for the response APDU plus status words.</returns>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public byte[] GetTransmittedResponse()
         {
             byte[] respList;
@@ -245,6 +255,7 @@ namespace Tizen.Network.Smartcard
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>True or false depending whether another applet with the partial application ID (AID).</returns>
+        [Obsolete("Deprecated since API13, will be removed in API15.")]
         public bool SelectNext()
         {
             bool selectNext;
