@@ -150,12 +150,7 @@ namespace Tizen.NUI
 
                     if (borderView != null)
                     {
-                        Extents extents = borderView.Padding;
-                        ushort start = (extents.Start + diffBorderLine) > 0 ? (ushort)(extents.Start + diffBorderLine) : (ushort)0;
-                        ushort end = (extents.End + diffBorderLine) > 0 ? (ushort)(extents.End + diffBorderLine) : (ushort)0;
-                        ushort top = (extents.Top + diffBorderLine) > 0 ? (ushort)(extents.Top + diffBorderLine) : (ushort)0;
-                        ushort bottom = (extents.Bottom + diffBorderLine) > 0 ? (ushort)(extents.Bottom + diffBorderLine) : (ushort)0;
-                        borderView.Padding = new Extents(start, end, top, bottom);
+                        borderView.Padding = new Extents((ushort)borderLineThickness, (ushort)borderLineThickness, (ushort)borderLineThickness, (ushort)borderLineThickness);
                         if (IsMaximized() == true)
                         {
                             borderView.OnMaximize(true);
