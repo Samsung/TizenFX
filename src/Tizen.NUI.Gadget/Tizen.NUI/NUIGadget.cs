@@ -79,7 +79,7 @@ namespace Tizen.NUI
         /// OneShotServiceLifecycleChangedEventArgs argument.
         /// </remarks>
         /// <since_tizen> 13 </since_tizen>
-        public event EventHandler<OneShotServiceLifecycleChangedEventArgs> OneShotLifecycleStateChanged;
+        public event EventHandler<OneShotServiceLifecycleChangedEventArgs> OneShotServiceLifecycleChanged;
 
         /// <summary>
         /// Gets the class representing information of the current gadget.
@@ -256,7 +256,7 @@ namespace Tizen.NUI
 
         private void OnOneShotServiceLifecycleChanged(object sender, OneShotServiceLifecycleChangedEventArgs args)
         {
-            OneShotLifecycleStateChanged?.Invoke(sender, args);
+            OneShotServiceLifecycleChanged?.Invoke(sender, args);
 
             if (args.State == OneShotServiceLifecycleState.Destroyed)
             {
