@@ -175,7 +175,6 @@ namespace Tizen.NUI
         {
             if (State == NUIGadgetLifecycleState.Initialized)
             {
-                OnPreCreate();
                 if (ServiceFactory != null)
                 {
                     Service = ServiceFactory.CreateService(GenerateOneShotServiceName(), AutoClose);
@@ -183,6 +182,7 @@ namespace Tizen.NUI
                     Log.Info($"PreCreate(), Service.Name = {Service.Name}");
                     Service.Run();
                 }
+                OnPreCreate();
             }
         }
 
