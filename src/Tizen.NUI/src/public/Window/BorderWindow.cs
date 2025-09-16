@@ -586,8 +586,6 @@ namespace Tizen.NUI
             int resizeWidth = e.WindowSize.Width;
             int resizeHeight = e.WindowSize.Height;
 
-            borderInterface.OnResized(resizeWidth, resizeHeight);
-
              // reset borderHeight
             borderHeight = 0;
             if (hasTopView) borderHeight += topView.SizeHeight;
@@ -606,6 +604,10 @@ namespace Tizen.NUI
                 height += (float)(borderLineThickness * 2);
                 y += borderLineThickness;
             }
+
+            SetVisibleBounds((int)(resizeWidth + width), (int)(resizeHeight + height));
+
+            borderInterface.OnResized(resizeWidth, resizeHeight);
 
             Interop.ActorInternal.SetSize(GetBorderWindowRootLayer().SwigCPtr, resizeWidth, resizeHeight);
             Interop.ActorInternal.SetSize(GetBorderWindowBottomLayer().SwigCPtr, resizeWidth + width, resizeHeight + height);
@@ -663,6 +665,21 @@ namespace Tizen.NUI
             return borderWindowRootLayer;
         }
 
+        internal Rectangle VisibleBounds
+        {
+            set
+            {
+                Interop.Window.SetVisibleBounds(SwigCPtr, Rectangle.getCPtr(value));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                Rectangle ret = Rectangle.GetRectangleFromPtr(Interop.Window.GetVisibleBounds(SwigCPtr));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                return ret;
+            }
+        }
+
         internal void DisposeBorder()
         {
             Resized -= OnBorderWindowResized;
@@ -673,6 +690,11 @@ namespace Tizen.NUI
             OrientationChanged -= OnBorderWindowOrientationChanged;
             borderInterface.Dispose();
             GetBorderWindowBottomLayer().Dispose();
+        }
+
+        private void SetVisibleBounds(int width, int height)
+        {
+            VisibleBounds = new Rectangle((int)borderLineThickness, (int)borderLineThickness, width - (int)(borderLineThickness * 2), height - (int)(borderLineThickness * 2));
         }
 
         private void convertBorderWindowSizeToRealWindowSize(Uint16Pair size)
