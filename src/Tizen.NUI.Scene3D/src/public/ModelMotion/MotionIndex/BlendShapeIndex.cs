@@ -139,6 +139,57 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// DownCast operator by raw pointer.
+        /// </summary>
+        /// <param name="sourceBaseHandleCPtr">Source object's cPtr to downcast.</param>
+        /// <returns>DownCast object with memory ownership. Or null if failed</returns>
+        internal static BlendShapeIndex DownCastCPtr(IntPtr sourceBaseHandleCPtr)
+        {
+            if (sourceBaseHandleCPtr == IntPtr.Zero)
+            {
+                return null;
+            }
+
+            var dummyObject = new object();
+            var tempSourceSwigCPtr = new global::System.Runtime.InteropServices.HandleRef(dummyObject, sourceBaseHandleCPtr);
+            IntPtr cPtr = Interop.MotionIndex.BlendShapeIndexDownCast(tempSourceSwigCPtr);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            if (cPtr == IntPtr.Zero)
+            {
+                return null;
+            }
+
+            // Check whether it has body
+            var tempSwigCPtr = new global::System.Runtime.InteropServices.HandleRef(dummyObject, cPtr);
+            if (!Tizen.NUI.Interop.BaseHandle.HasBody(tempSwigCPtr))
+            {
+                Tizen.NUI.Interop.BaseHandle.DeleteBaseHandle(cPtr);
+                return null;
+            }
+
+            // Check whether it is already registered
+            BlendShapeIndex ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as BlendShapeIndex;
+            if (ret == null)
+            {
+                // Register new BlendShapeIndex into Registry.
+                ret = new BlendShapeIndex(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI BlendShapeIndex. Reduce cPtr reference count.
+                Tizen.NUI.Interop.BaseHandle.DeleteBaseHandle(cPtr);
+            }
+            NDalicPINVOKE.ThrowExceptionIfExists();
+
+            if (!ret.HasBody())
+            {
+                ret.Dispose();
+                ret = null;
+            }
+            return ret;
+        }
+
+        /// <summary>
         /// The key of blend shape.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>

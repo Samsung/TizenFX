@@ -191,25 +191,17 @@ namespace Tizen.NUI.Scene3D
         public MotionIndex GetIndex(uint index)
         {
             IntPtr cPtr = Interop.MotionData.GetIndex(SwigCPtr, index);
-            MotionIndex ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as MotionIndex;
+            MotionIndex ret;
+
+            // Try to downcast as all valid type of indeces.
+            ret = MotionTransformIndex.DownCastCPtr(cPtr);
             if (ret == null)
             {
-                // Register new animation into Registry.
-                ret = new MotionIndex(cPtr, true);
+                ret = BlendShapeIndex.DownCastCPtr(cPtr);
             }
-            else
+            if (ret == null)
             {
-                // We found matched NUI animation. Reduce cPtr reference count.
-                HandleRef handle = new HandleRef(this, cPtr);
-                Interop.MotionIndex.DeleteMotionIndex(handle);
-                handle = new HandleRef(null, IntPtr.Zero);
-            }
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            if (!ret.HasBody())
-            {
-                ret.Dispose();
-                ret = null;
+                ret = MotionPropertyIndex.DownCastCPtr(cPtr);
             }
             return ret;
         }
