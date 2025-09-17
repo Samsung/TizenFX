@@ -116,6 +116,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_SetApplicationLocale")]
             public static extern void SetApplicationLocale(global::System.Runtime.InteropServices.HandleRef application, string locale);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_EnableFrameworkLocaleCallback")]
+            public static extern void EnableApplicationFrameworkLocaleCallback(global::System.Runtime.InteropServices.HandleRef application);
         }
     }
 }
