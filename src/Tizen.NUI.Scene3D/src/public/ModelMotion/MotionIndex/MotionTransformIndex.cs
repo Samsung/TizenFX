@@ -172,6 +172,57 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// DownCast operator by raw pointer.
+        /// </summary>
+        /// <param name="sourceBaseHandleCPtr">Source object's cPtr to downcast.</param>
+        /// <returns>DownCast object with memory ownership. Or null if failed</returns>
+        internal static MotionTransformIndex DownCastCPtr(IntPtr sourceBaseHandleCPtr)
+        {
+            if (sourceBaseHandleCPtr == IntPtr.Zero)
+            {
+                return null;
+            }
+
+            var dummyObject = new object();
+            var tempSourceSwigCPtr = new global::System.Runtime.InteropServices.HandleRef(dummyObject, sourceBaseHandleCPtr);
+            IntPtr cPtr = Interop.MotionIndex.MotionTransformIndexDownCast(tempSourceSwigCPtr);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            if (cPtr == IntPtr.Zero)
+            {
+                return null;
+            }
+
+            // Check whether it has body
+            var tempSwigCPtr = new global::System.Runtime.InteropServices.HandleRef(dummyObject, cPtr);
+            if (!Tizen.NUI.Interop.BaseHandle.HasBody(tempSwigCPtr))
+            {
+                Tizen.NUI.Interop.BaseHandle.DeleteBaseHandle(cPtr);
+                return null;
+            }
+
+            // Check whether it is already registered
+            MotionTransformIndex ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as MotionTransformIndex;
+            if (ret == null)
+            {
+                // Register new MotionTransformIndex into Registry.
+                ret = new MotionTransformIndex(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI MotionTransformIndex. Reduce cPtr reference count.
+                Tizen.NUI.Interop.BaseHandle.DeleteBaseHandle(cPtr);
+            }
+            NDalicPINVOKE.ThrowExceptionIfExists();
+
+            if (!ret.HasBody())
+            {
+                ret.Dispose();
+                ret = null;
+            }
+            return ret;
+        }
+
+        /// <summary>
         /// The transform property type what this MotionIndex want to control.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
