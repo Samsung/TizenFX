@@ -194,7 +194,7 @@ namespace Tizen.Applications
                 {
                     if (string.IsNullOrEmpty(_language))
                     {
-                        _language = GetLanguage(locale);
+                        _language = GetLanguage(Locale);
                     }
                     return _language;
                 }
@@ -209,7 +209,7 @@ namespace Tizen.Applications
                 {
                     if (string.IsNullOrEmpty(_script))
                     {
-                        _script = GetScript(locale);
+                        _script = GetScript(Locale);
                     }
                     return _script;
                 }
@@ -223,7 +223,7 @@ namespace Tizen.Applications
                 {
                     if (string.IsNullOrEmpty(_country))
                     {
-                        _country = GetCountry(locale);
+                        _country = GetCountry(Locale);
                     }
                     return _country;
                 }
@@ -238,7 +238,7 @@ namespace Tizen.Applications
                 {
                     if (string.IsNullOrEmpty(_variant))
                     {
-                        _variant = GetVariant(locale);
+                        _variant = GetVariant(Locale);
                     }
                     return _variant;
                 }
@@ -251,7 +251,7 @@ namespace Tizen.Applications
                 get
                 {
                     if (_lcid == -1) {
-                        _lcid = GetLCID(locale);
+                        _lcid = GetLCID(Locale);
                     }
                     return _lcid;
                 }
