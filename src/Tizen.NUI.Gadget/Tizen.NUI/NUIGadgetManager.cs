@@ -438,7 +438,7 @@ namespace Tizen.NUI
         /// <param name="delay">The delay time. (milliseconds)</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static void ResumeDelayed(NUIGadget gadget, uint delay)
+        public static void Resume(NUIGadget gadget, uint delay)
         {
             if (gadget == null)
             {
@@ -451,7 +451,7 @@ namespace Tizen.NUI
             }
 
             Log.Info("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", Delay: " + delay.ToString());
-            CoreApplication.PostDelayed(() =>
+            CoreApplication.Post(() =>
             {
                 Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
                 gadget.Resume();
@@ -496,7 +496,7 @@ namespace Tizen.NUI
         /// <param name="delay">The delay time. (milliseconds)</param>
         /// <exception cref="ArgumentNullException">Thrown if the argument 'gadget' is null.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static void PauseDelayed(NUIGadget gadget, uint delay)
+        public static void Pause(NUIGadget gadget, uint delay)
         {
             if (gadget == null)
             {
@@ -509,7 +509,7 @@ namespace Tizen.NUI
             }
 
             Log.Info("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", Delay: " + delay.ToString());
-            CoreApplication.PostDelayed(() =>
+            CoreApplication.Post(() =>
             {
                 Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
                 gadget.Pause();

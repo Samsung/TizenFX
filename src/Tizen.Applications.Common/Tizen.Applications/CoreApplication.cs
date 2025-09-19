@@ -394,7 +394,7 @@ namespace Tizen.Applications
         /// <exception cref="ArgumentNullException">Thrown when the runner is null.</exception>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void PostDelayed(Action runner, uint delay)
+        public static void Post(Action runner, uint delay)
         {
             if (runner == null)
             {
