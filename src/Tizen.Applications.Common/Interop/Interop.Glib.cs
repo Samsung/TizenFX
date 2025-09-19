@@ -44,5 +44,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.Glib, EntryPoint = "g_main_context_get_thread_default", CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr MainContextGetThreadDefault();
+
+        [DllImport(Libraries.Glib, EntryPoint = "g_timeout_source_new", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern IntPtr TimeoutSourceNew(uint interval);
     }
 }

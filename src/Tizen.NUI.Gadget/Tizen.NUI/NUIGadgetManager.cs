@@ -428,6 +428,37 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Resumes the execution of the specified NUIGadget after the delay.
+        /// </summary>
+        /// <remarks>
+        /// By calling this method, you can resume the execution of the currently suspended NUIGadget.
+        /// It takes the NUIGadget object as an argument which represents the target gadget that needs to be resumed.
+        /// </remarks>
+        /// <param name="gadget">The NUIGadget object whose execution needs to be resumed.</param>
+        /// <param name="delay">The delay time. (milliseconds)</param>
+        /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        public static void ResumeDelayed(NUIGadget gadget, uint delay)
+        {
+            if (gadget == null)
+            {
+                throw new ArgumentNullException(nameof(gadget));
+            }
+
+            if (!_gadgets.ContainsKey(gadget))
+            {
+                return;
+            }
+
+            Log.Info("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", Delay: " + delay.ToString());
+            CoreApplication.PostDelayed(() =>
+            {
+                Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
+                gadget.Resume();
+            }, delay);
+        }
+
+        /// <summary>
         /// Pauses the execution of the specified NUIGadget.
         /// </summary>
         /// <remarks>
@@ -453,6 +484,36 @@ namespace Tizen.NUI
                 Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
                 gadget.Pause();
             });
+        }
+
+        /// <summary>
+        /// Pauses the execution of the specified NUIGadget after the delay.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method pauses the currently executing NUIGadget. It does not affect any other gadgets that may be running simultaneously.
+        /// </remarks>
+        /// <param name="gadget">The NUIGadget object whose execution needs to be paused.</param>
+        /// <param name="delay">The delay time. (milliseconds)</param>
+        /// <exception cref="ArgumentNullException">Thrown if the argument 'gadget' is null.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        public static void PauseDelayed(NUIGadget gadget, uint delay)
+        {
+            if (gadget == null)
+            {
+                throw new ArgumentNullException(nameof(gadget));
+            }
+
+            if (!_gadgets.ContainsKey(gadget))
+            {
+                return;
+            }
+
+            Log.Info("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", Delay: " + delay.ToString());
+            CoreApplication.PostDelayed(() =>
+            {
+                Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
+                gadget.Pause();
+            }, delay);
         }
 
         /// <summary>

@@ -383,6 +383,28 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Dispatches an asynchronous message to a main loop of the CoreApplication after the delay.
+        /// </summary>
+        /// <remarks>
+        /// If an application uses UI thread App Model, the asynchronous message will be delivered to the UI thread.
+        /// If not, the asynchronous message will be delivered to the main thread.
+        /// </remarks>
+        /// <param name="runner">The runner callaback.</param>
+        /// <param name="delay">The delay time.(milliseconds)</param>
+        /// <exception cref="ArgumentNullException">Thrown when the runner is null.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void PostDelayed(Action runner, uint delay)
+        {
+            if (runner == null)
+            {
+                throw new ArgumentNullException(nameof(runner));
+            }
+
+            GSourceManager.PostDelayed(runner, delay, true);
+        }
+
+        /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>

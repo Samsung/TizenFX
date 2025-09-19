@@ -40,6 +40,20 @@ namespace Tizen.Applications
             Interop.Glib.SourceUnref(source);
         }
 
+        public static void PostDelayed(Action action, uint delay, bool useTizenGlibContext = false)
+        {
+            int id = 0;
+            lock (_transactionLock)
+            {
+                id = _transactionId++;
+            }
+            _handlerMap.TryAdd(id, action);
+            IntPtr source = Interop.Glib.TimeoutSourceNew(delay);
+            Interop.Glib.SourceSetCallback(source, _wrapperHandler, (IntPtr)id, IntPtr.Zero);
+            _ = Interop.Glib.SourceAttach(source, useTizenGlibContext ? Interop.AppCoreUI.GetTizenGlibContext() : IntPtr.Zero);
+            Interop.Glib.SourceUnref(source);
+        }
+
         private static bool Handler(IntPtr userData)
         {
             int key = (int)userData;
