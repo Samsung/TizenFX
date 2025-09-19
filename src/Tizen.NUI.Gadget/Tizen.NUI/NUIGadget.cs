@@ -66,6 +66,8 @@ namespace Tizen.NUI
         {
             AutoClose = autoClose;
             ServiceFactory = serviceFactory;
+            Service = ServiceFactory.CreateService(GenerateOneShotServiceName(), AutoClose);
+            Service.LifecycleStateChanged += OnOneShotServiceLifecycleChanged;
         }
 
         internal event EventHandler<NUIGadgetLifecycleChangedEventArgs> LifecycleChanged;
@@ -175,14 +177,12 @@ namespace Tizen.NUI
         {
             if (State == NUIGadgetLifecycleState.Initialized)
             {
-                if (ServiceFactory != null)
+                OnPreCreate();
+                if (Service != null)
                 {
-                    Service = ServiceFactory.CreateService(GenerateOneShotServiceName(), AutoClose);
-                    Service.LifecycleStateChanged += OnOneShotServiceLifecycleChanged;
                     Log.Info($"PreCreate(), Service.Name = {Service.Name}");
                     Service.Run();
                 }
-                OnPreCreate();
             }
         }
 
