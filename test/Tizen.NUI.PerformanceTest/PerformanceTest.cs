@@ -138,6 +138,30 @@ class PerformanceTestExample : NUIApplication
 
     DateTime appStartTime;
     DateTime appEndTime;
+
+    PropertyMap basicBackroundProperties;
+    PropertyMap basicCornerRadiusProperties;
+    PropertyMap basicBorderlineProperties;
+    PropertyMap blurVisualMap;
+
+    private void PreparePropertyMap()
+    {
+        float requiredBorderlineWidth = Math.Min(mSize.X, mSize.Y) * VIEW_MARGIN_RATE;
+        float requiredBlurRadius = Math.Min(mSize.X, mSize.Y) * VIEW_MARGIN_RATE * 0.5f;
+
+        using var dummyView = new View();
+
+        basicBackroundProperties = new PropertyMap().Append(dummyView.GetPropertyIndex("Background"), Color.Yellow);
+        basicCornerRadiusProperties = new PropertyMap().Append(dummyView.GetPropertyIndex("CornerRadius"), 0.5f)
+                                                       .Append(dummyView.GetPropertyIndex("CornerRadiusPolicy"), (int)VisualTransformPolicyType.Relative);
+        basicBorderlineProperties = new PropertyMap().Append(dummyView.GetPropertyIndex("BorderlineWidth"), requiredBorderlineWidth)
+                                                     .Append(dummyView.GetPropertyIndex("BorderlineColor"), Color.Red);
+
+        blurVisualMap = new PropertyMap().Append((int)Visual.Property.Type, (int)Visual.Type.Color)
+                                         .Append((int)ColorVisualProperty.MixColor, Color.Yellow)
+                                         .Append((int)ColorVisualProperty.BlurRadius, requiredBlurRadius);
+    }
+
     protected void CreateScene()
     {
         appStartTime = DateTime.Now;
@@ -148,7 +172,7 @@ class PerformanceTestExample : NUIApplication
         mCreatingAnimationList = new global::System.Collections.Generic.LinkedList<Animation>();
         mRemovingAnimationList = new global::System.Collections.Generic.LinkedList<Animation>();
 
-        mWindow = Window.Instance;
+        mWindow = Window.Default;
         mWindow.BackgroundColor = Color.White;
         mWindowSize = mWindow.WindowSize;
 
@@ -190,12 +214,10 @@ class PerformanceTestExample : NUIApplication
         View columnView = new View()
         {
             BackgroundColor = Color.Blue,
-            Size = new Size(mSize.X, mWindowSize.Y),
-            Position = new Position(mSize.X * (mCreateCount % mColumnsCount), -mWindowSize.Y),
-
-            ParentOrigin = Position.ParentOriginTopLeft,
-            PivotPoint = Position.PivotPointTopLeft,
-            PositionUsesPivotPoint = true,
+            SizeWidth = mSize.X,
+            SizeHeight = mWindowSize.Y,
+            PositionX = mSize.X * (mCreateCount % mColumnsCount),
+            PositionY = -mWindowSize.Y,
         };
 
         for(int i = 0; i < mRowsCount; ++i)
@@ -226,27 +248,29 @@ class PerformanceTestExample : NUIApplication
                 }
                 case ViewTestType.TEST_TYPE_BORDER_COLOR:
                 {
-                    bgView = CreateBorderColor(Math.Min(mSize.X, mSize.Y) * VIEW_MARGIN_RATE);
+                    bgView = CreateBorderColor();
                     break;
                 }
                 case ViewTestType.TEST_TYPE_ROUNDED_BORDER_COLOR:
                 {
-                    bgView = CreateRoundedBorderColor(Math.Min(mSize.X, mSize.Y) * VIEW_MARGIN_RATE);
+                    bgView = CreateRoundedBorderColor();
                     break;
                 }
                 case ViewTestType.TEST_TYPE_BLUR_COLOR:
                 {
-                    bgView = CreateBlurColor(Math.Min(mSize.X, mSize.Y) * VIEW_MARGIN_RATE * 0.5f);
+                    bgView = CreateBlurColor();
                     break;
                 }
                 case ViewTestType.TEST_TYPE_ROUNDED_BLUR_COLOR:
                 {
-                    bgView = CreateRoundedBlurColor(Math.Min(mSize.X, mSize.Y) * VIEW_MARGIN_RATE * 0.5f);
+                    bgView = CreateRoundedBlurColor();
                     break;
                 }
             }
-            bgView.Size = new Size(mSize.X * (1.0f - VIEW_MARGIN_RATE), mSize.Y * (1.0f - VIEW_MARGIN_RATE));
-            bgView.Position = new Position(mSize.X * VIEW_MARGIN_RATE * 0.5f, (mSize.Y * VIEW_MARGIN_RATE * 0.5f) + (mSize.Y * (float)i));
+            bgView.SizeWidth = mSize.X * (1.0f - VIEW_MARGIN_RATE);
+            bgView.SizeHeight = mSize.Y * (1.0f - VIEW_MARGIN_RATE);
+            bgView.PositionX = mSize.X * VIEW_MARGIN_RATE * 0.5f;
+            bgView.PositionY = (mSize.Y * VIEW_MARGIN_RATE * 0.5f) + (mSize.Y * (float)i);
             columnView.Add(bgView);
         }
 
@@ -356,14 +380,8 @@ class PerformanceTestExample : NUIApplication
 
     private View CreateColor()
     {
-        View bgView = new View()
-        {
-            BackgroundColor = Color.Yellow,
-
-            ParentOrigin = Position.ParentOriginTopLeft,
-            PivotPoint = Position.PivotPointTopLeft,
-            PositionUsesPivotPoint = true,
-        };
+        View bgView = new View();
+        bgView.SetProperties(basicBackroundProperties);
         return bgView;
     }
     private View CreateImage()
@@ -371,10 +389,6 @@ class PerformanceTestExample : NUIApplication
         ImageView bgView = new ImageView()
         {
             ResourceUrl = IMAGE_PATH[(mImageCount++) % (IMAGE_PATH.Length)],
-
-            ParentOrigin = Position.ParentOriginTopLeft,
-            PivotPoint = Position.PivotPointTopLeft,
-            PositionUsesPivotPoint = true,
         };
         return bgView;
     }
@@ -383,104 +397,55 @@ class PerformanceTestExample : NUIApplication
         TextLabel bgView = new TextLabel()
         {
             Text = "Hello, World!",
-
-            ParentOrigin = Position.ParentOriginTopLeft,
-            PivotPoint = Position.PivotPointTopLeft,
-            PositionUsesPivotPoint = true,
         };
         return bgView;
     }
     private View CreateRoundedColor()
     {
-        View bgView = new View()
-        {
-            BackgroundColor = Color.Yellow,
-            CornerRadius = 0.5f,
-            CornerRadiusPolicy = VisualTransformPolicyType.Relative,
-
-            ParentOrigin = Position.ParentOriginTopLeft,
-            PivotPoint = Position.PivotPointTopLeft,
-            PositionUsesPivotPoint = true,
-        };
+        View bgView = new View();
+        bgView.SetProperties(basicBackroundProperties);
+        bgView.SetProperties(basicCornerRadiusProperties);
         return bgView;
     }
 
-    private View CreateBorderColor(float requiredBorderlineWidth)
+    private View CreateBorderColor()
     {
-        View bgView = new View()
-        {
-            BackgroundColor = Color.Yellow,
-            BorderlineColor = Color.Red,
-            BorderlineWidth = requiredBorderlineWidth,
-
-            ParentOrigin = Position.ParentOriginTopLeft,
-            PivotPoint = Position.PivotPointTopLeft,
-            PositionUsesPivotPoint = true,
-        };
+        View bgView = new View();
+        bgView.SetProperties(basicBackroundProperties);
+        bgView.SetProperties(basicBorderlineProperties);
         return bgView;
     }
-    private View CreateRoundedBorderColor(float requiredBorderlineWidth)
+    private View CreateRoundedBorderColor()
     {
-        View bgView = new View()
-        {
-            BackgroundColor = Color.Yellow,
-            CornerRadius = 0.5f,
-            CornerRadiusPolicy = VisualTransformPolicyType.Relative,
-            BorderlineColor = Color.Red,
-            BorderlineWidth = requiredBorderlineWidth,
-
-            ParentOrigin = Position.ParentOriginTopLeft,
-            PivotPoint = Position.PivotPointTopLeft,
-            PositionUsesPivotPoint = true,
-        };
+        View bgView = new View();
+        bgView.SetProperties(basicBackroundProperties);
+        bgView.SetProperties(basicCornerRadiusProperties);
+        bgView.SetProperties(basicBorderlineProperties);
         return bgView;
     }
-    private View CreateBlurColor(float requiredBlurRadius)
+    private View CreateBlurColor()
     {
         View bgView = new View()
         {
-            ParentOrigin = Position.ParentOriginTopLeft,
-            PivotPoint = Position.PivotPointTopLeft,
-            PositionUsesPivotPoint = true,
+            Background = blurVisualMap,
         };
-
-        using(PropertyMap map = new PropertyMap())
-        {
-            map.Insert((int)Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
-            map.Insert((int)ColorVisualProperty.MixColor, new PropertyValue(Color.Yellow));
-            map.Insert((int)ColorVisualProperty.BlurRadius, new PropertyValue(requiredBlurRadius));
-
-            bgView.Background = map;
-        }
 
         return bgView;
     }
-    private View CreateRoundedBlurColor(float requiredBlurRadius)
+    private View CreateRoundedBlurColor()
     {
         View bgView = new View()
         {
-            ParentOrigin = Position.ParentOriginTopLeft,
-            PivotPoint = Position.PivotPointTopLeft,
-            PositionUsesPivotPoint = true,
-        };;
-
-        using(PropertyMap map = new PropertyMap())
-        {
-            map.Insert((int)Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
-            map.Insert((int)ColorVisualProperty.MixColor, new PropertyValue(Color.Yellow));
-            map.Insert((int)ColorVisualProperty.BlurRadius, new PropertyValue(requiredBlurRadius));
-            map.Insert((int)Visual.Property.CornerRadius, new PropertyValue(0.5f));
-            map.Insert((int)Visual.Property.CornerRadiusPolicy, new PropertyValue((int)VisualTransformPolicyType.Relative));
-
-            bgView.Background = map;
-        }
-
+            Background = blurVisualMap,
+        };
+        bgView.SetProperties(basicCornerRadiusProperties);
         return bgView;
     }
 
     public void Activate()
     {
         CreateScene();
+        PreparePropertyMap();
     }
     public void FullGC()
     {
