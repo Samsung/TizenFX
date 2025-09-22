@@ -113,6 +113,12 @@ namespace Tizen.Applications
             }
 
             _task = ServiceInfo.UseThread ? TizenCore.Spawn(Name) : TizenCore.Find("main");
+            if (_task == null)
+            {
+                Log.Error("Not found task(" + Name + ")");
+                return;
+            }
+
             _task.Post(() => { OnCreate(); });
             SendAppControlReceivedEvent(args);
         }
