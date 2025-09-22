@@ -889,6 +889,23 @@ namespace Tizen.NUI.BaseComponents
             return internalCurrentWorldColor;
         }
 
+        internal bool IsCurrentIgnored()
+        {
+            // TODO : Need to bind new API for current property getter
+            using var value = Object.GetCurrentProperty(SwigCPtr, Property.Ignored);
+            bool ret = false;
+            if (value != null)
+            {
+                value.Get(out ret);
+            }
+            return ret;
+        }
+
+        internal bool IsWorldIgnored()
+        {
+            return Object.InternalGetPropertyBool(SwigCPtr, Property.WorldIgnored);
+        }
+
         internal void SetDrawMode(DrawModeType drawMode)
         {
             Interop.ActorInternal.SetDrawMode(SwigCPtr, (int)drawMode);
