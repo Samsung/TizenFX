@@ -74,17 +74,43 @@ namespace Tizen.NUI
         {
             { "cornerRadius", "viewCornerRadius" },
             { "CornerRadius", "viewCornerRadius" },
+            { "cornerRadiusPolicy", "viewCornerRadiusPolicy" },
+            { "CornerRadiusPolicy", "viewCornerRadiusPolicy" },
             { "cornerSquareness", "viewCornerSquareness" },
             { "CornerSquareness", "viewCornerSquareness" },
+            { "borderlineWidth", "viewBorderlineWidth" },
+            { "BorderlineWidth", "viewBorderlineWidth" },
+            { "borderlineColor", "viewBorderlineColor" },
+            { "BorderlineColor", "viewBorderlineColor" },
+            { "borderlineOffset", "viewBorderlineOffset" },
+            { "BorderlineOffset", "viewBorderlineOffset" },
         };
 
         static PropertyHelper() { }
+
+        ///<summary>
+        /// Convert native view accessable property name by given property name
+        ///</summary>
+        internal static bool ConvertSynonymPropertyName(Animatable animatable, ref string stringProperty)
+        {
+            if (animatable is View)
+            {
+                if (viewPropertySynonymTable.TryGetValue(stringProperty, out var stringSynonym))
+                {
+                    stringProperty = stringSynonym;
+                    return true;
+                }
+            }
+            return false;
+        }
 
         ///<summary>
         /// Returns a Property if stringProperty is a valid index
         ///</summary>
         internal static Property GetPropertyFromString(Animatable handle, string stringProperty)
         {
+            ConvertSynonymPropertyName(handle, ref stringProperty);
+
             Property property = new Property(handle, stringProperty);
             if (property.PropertyIndex == Property.InvalidIndex)
             {
@@ -99,12 +125,9 @@ namespace Tizen.NUI
         ///</summary>
         internal static SearchResult Search(Animatable animatable, string stringProperty)
         {
-            if(animatable is View)
+            if (animatable is View)
             {
-                if (viewPropertySynonymTable.TryGetValue(stringProperty, out var stringSynonym))
-                {
-                    stringProperty = stringSynonym;
-                }
+                ConvertSynonymPropertyName(animatable, ref stringProperty);
 
                 View view = animatable as View;
                 return SearchProperty(view, stringProperty) ?? SearchVisualProperty(view, stringProperty);
