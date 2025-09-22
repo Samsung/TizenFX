@@ -60,6 +60,17 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        public static void SetProperties(global::System.Runtime.InteropServices.HandleRef handle, PropertyMap propertyMap)
+        {
+            if (handle.Handle == System.IntPtr.Zero)
+            {
+                throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+            }
+
+            Interop.Handle.SetProperties(handle, PropertyMap.getCPtr(propertyMap));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal static int InternalSetPropertyString(HandleRef actor, int propertyType, string valString)
         {
             if (actor.Handle == System.IntPtr.Zero)
