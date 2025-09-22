@@ -57,6 +57,7 @@ namespace Tizen.NUI
         /// <param name="type">The type of the NUIGadget.</param>
         /// <param name="serviceFactory">The factory that can create OneShotService object</param>
         /// <param name="autoClose">Whether to automatically close the service after execution</param>
+        /// <exception cref="ArgumentNullException">Thrown if either 'serviceFactory' is null.</exception>
         /// <remarks>
         /// This constructor initializes a new instance of the NUIGadget class based on the specified type with OneShotService.
         /// It is important to provide the correct type argument in order to ensure proper functionality and compatibility with other components.
@@ -64,6 +65,11 @@ namespace Tizen.NUI
         /// <since_tizen> 13 </since_tizen>
         public NUIGadget(NUIGadgetType type, IServiceFactory serviceFactory, bool autoClose = true) : this(type)
         {
+            if (serviceFactory == null)
+            {
+                throw new ArgumentNullException(nameof(serviceFactory));
+            }
+
             AutoClose = autoClose;
             ServiceFactory = serviceFactory;
             Service = ServiceFactory.CreateService(GenerateOneShotServiceName(), AutoClose);
@@ -157,6 +163,10 @@ namespace Tizen.NUI
             get;
         }
 
+        /// <summary>
+        /// The OneShotService.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         public OneShotService Service
         {
             internal set;
