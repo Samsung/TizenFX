@@ -375,7 +375,7 @@ namespace Tizen.NUI
             }
 
             _gadgets.TryRemove(gadget, out _);
-            CoreApplication.Post(() =>
+            ActionManager.Post(() =>
             {
                 Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
                 gadget.Finish();
@@ -420,7 +420,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            CoreApplication.Post(() =>
+            ActionManager.Post(() =>
             {
                 Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
                 gadget.Resume();
@@ -448,7 +448,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            CoreApplication.Post(() =>
+            ActionManager.Post(() =>
             {
                 Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
                 gadget.Pause();
@@ -530,7 +530,7 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(message));
             }
 
-            CoreApplication.Post(() =>
+            ActionManager.Post(() =>
             {
                 NUIGadgetMessageReceived?.Invoke(null, new NUIGadgetMessageReceivedEventArgs(message));
             });

@@ -431,7 +431,7 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(message));
             }
 
-            CoreApplication.Post(() =>
+            ActionManager.Post(() =>
             {
                 OnMessageReceived(new NUIGadgetMessageReceivedEventArgs(message));
             });
