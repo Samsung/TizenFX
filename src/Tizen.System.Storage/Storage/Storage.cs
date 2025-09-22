@@ -344,9 +344,9 @@ namespace Tizen.System
         /// </summary>
         /// <remarks>
         /// The returned directory path may not exist, so you must make sure that it exists before using it.
-        /// For accessing internal storage except the ringtones directory, the application should have http://tizen.org/privilege/mediastorage privilege.
-        /// For accessing ringtones directory, the application should have http://tizen.org/privilege/systemsettings privilege.
-        /// For accessing external storage, the application should have http://tizen.org/privilege/externalstorage privilege.
+        /// For accessing internal storage except the ringtones directory, the application should have %http://tizen.org/privilege/mediastorage privilege.
+        /// For accessing ringtones directory, the application should have %http://tizen.org/privilege/systemsettings privilege.
+        /// For accessing external storage, the application should have %http://tizen.org/privilege/externalstorage privilege.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="dirType">Directory type.</param>
