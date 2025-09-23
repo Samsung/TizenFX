@@ -21,32 +21,65 @@ namespace Tizen.Applications
 {
     internal static class GSourceManager
     {
-        private static Interop.Glib.GSourceFunc _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
-        private static Object _transactionLock = new Object();
-        private static ConcurrentDictionary<int, Action> _handlerMap = new ConcurrentDictionary<int, Action>();
-        private static int _transactionId = 0;
+        private static readonly GSourceContext _tizenContext = new GSourceContext();
+        private static readonly GSourceContext _tizenUIContext = new GSourceContext();
+        private static readonly Interop.Glib.GSourceFunc _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
 
         public static void Post(Action action, bool useTizenGlibContext = false)
         {
-            int id = 0;
-            lock (_transactionLock)
-            {
-                id = _transactionId++;
-            }
-            _handlerMap.TryAdd(id, action);
-            IntPtr source = Interop.Glib.IdleSourceNew();
-            Interop.Glib.SourceSetCallback(source, _wrapperHandler, (IntPtr)id, IntPtr.Zero);
-            _ = Interop.Glib.SourceAttach(source, useTizenGlibContext ? Interop.AppCoreUI.GetTizenGlibContext() : IntPtr.Zero);
-            Interop.Glib.SourceUnref(source);
+            IntPtr context = useTizenGlibContext ? Interop.AppCoreUI.GetTizenGlibContext() : IntPtr.Zero;
+            var sourceContext = context == IntPtr.Zero ? _tizenContext : _tizenUIContext;
+            sourceContext.Post(action, context, _wrapperHandler);
         }
 
         private static bool Handler(IntPtr userData)
         {
-            int key = (int)userData;
-            if (_handlerMap.TryRemove(key, out Action action))
+            var sourceContext = userData == IntPtr.Zero ? _tizenContext : _tizenUIContext;
+            return sourceContext.ProcessQueue();
+        }
+    }
+
+    internal class GSourceContext
+    {
+        private readonly ConcurrentQueue<Action> _actionQueue = new ConcurrentQueue<Action>();
+        private readonly object _lock = new object();
+        private IntPtr _source = IntPtr.Zero;
+
+        public void Post(Action action, IntPtr context, Interop.Glib.GSourceFunc handler)
+        {
+            _actionQueue.Enqueue(action);
+
+            lock (_lock)
+            {
+                if (_source != IntPtr.Zero)
+                {
+                    return;
+                }
+
+                _source = Interop.Glib.IdleSourceNew();
+                Interop.Glib.SourceSetCallback(_source, handler, context, IntPtr.Zero);
+                _ = Interop.Glib.SourceAttach(_source, context);
+                Interop.Glib.SourceUnref(_source);
+            }
+        }
+
+        public bool ProcessQueue()
+        {
+            if (_actionQueue.TryDequeue(out var action))
             {
                 action?.Invoke();
             }
+
+            lock (_lock)
+            {
+                if (!_actionQueue.IsEmpty)
+                {
+                    return true;
+                }
+
+                _source = IntPtr.Zero;
+            }
+
             return false;
         }
     }
