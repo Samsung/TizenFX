@@ -102,6 +102,7 @@ namespace Tizen.Applications
         /// Runs the main loop of the service.
         /// </summary>
         /// <param name="args">The argument of the app control received event.</param>
+        /// <exception cref="InvalidOperationException">Thrown when the task cannot be found.</exception>
         /// <since_tizen> 13 </since_tizen>
         public void Run(AppControlReceivedEventArgs args)
         {
@@ -116,7 +117,7 @@ namespace Tizen.Applications
             if (_task == null)
             {
                 Log.Error("Not found task(" + Name + ")");
-                return;
+                throw new InvalidOperationException("Failed to find or create task for service: " + Name);
             }
 
             _task.Post(() => { OnCreate(); });
