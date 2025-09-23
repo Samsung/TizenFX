@@ -131,6 +131,17 @@ namespace Tizen.NUI
             return map;
         }
 
+        internal override Visuals.ColorVisual GetShadowVisual()
+        {
+            Visuals.ColorVisual shadowVisual = base.GetShadowVisual();
+            shadowVisual.Color = Color.Transparent;
+            shadowVisual.BorderlineColor = Color;
+            shadowVisual.BorderlineWidth = ShadowWidth;
+            shadowVisual.BorderlineOffset = -1.0f;
+            shadowVisual.CutoutPolicy = ColorVisualCutoutPolicyType.CutoutOutsideWithCornerRadius;
+            return shadowVisual;
+        }
+
         internal override object OnClone()
         {
             return new InnerShadow(this);

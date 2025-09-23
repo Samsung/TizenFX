@@ -27,6 +27,8 @@ using Mono.Cecil;
 
 namespace Tizen.NUI.Xaml.Build.Tasks
 {
+    [Obsolete("Deprecated in API13")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     [LoadInSeparateAppDomain]
     public abstract class XamlTask : MarshalByRefObject, ITask
     {
@@ -122,6 +124,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
         } = new List<XmlnsDefinitionAttribute>();
     }
 
+    [Obsolete("Deprecated in API13")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public static class CecilExtensions
     {
         public static bool IsResourceDictionaryXaml(this EmbeddedResource resource, ModuleDefinition module, out string classname)
@@ -166,7 +170,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             if (!resource.Name.EndsWith(".xaml", StringComparison.InvariantCulture))
                 return false;
 
-            using (var resourceStream = resource.GetResourceStream()) {
+            using (var resourceStream = resource.GetResourceStream())
+            {
                 var xmlDoc = new XmlDocument();
                 xmlDoc.Load(resourceStream);
 
@@ -178,7 +183,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
                 var rootClass = root.Attributes["Class", XamlParser.X2006Uri] ??
                                 root.Attributes["Class", XamlParser.X2009Uri];
-                if (rootClass != null) {
+                if (rootClass != null)
+                {
                     classname = rootClass.Value;
                     return true;
                 }
@@ -186,7 +192,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 //no x:Class, but it might be a RD without x:Class and with <?xaml-comp compile="true" ?>
                 //in that case, it has a XamlResourceIdAttribute
                 var typeRef = GetTypeForResourceId(module, resource.Name);
-                if (typeRef != null) {
+                if (typeRef != null)
+                {
                     classname = typeRef.FullName;
                     return true;
                 }
@@ -221,7 +228,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
         static TypeReference GetTypeForResourceId(ModuleDefinition module, string resourceId)
         {
-            foreach (var ca in module.GetCustomAttributes()) {
+            foreach (var ca in module.GetCustomAttributes())
+            {
                 if (!TypeRefComparer.Default.Equals(ca.AttributeType, module.ImportReference((XamlTask.xamlAssemblyName, XamlTask.xamlNameSpace, "XamlResourceIdAttribute"))))
                     continue;
                 if (ca.ConstructorArguments[0].Value as string != resourceId)
