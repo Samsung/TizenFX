@@ -27,6 +27,8 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public class VideoView : View
     {
+        private bool isEnableOffscreenFrameRendering = false;
+
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty VideoProperty = null;
@@ -577,57 +579,6 @@ namespace Tizen.NUI.BaseComponents
                 Interop.VideoView.SetLetterBoxEnabled(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-        }
-
-        /// <summary>
-        /// Gets or sets the time interval for frame interpolation in seconds.
-        /// </summary>
-        /// <remarks>
-        /// The interpolation factor will progress from 0.0 to 1.0 over this duration.
-        /// This interval is applied after the next call to SetNativeImageSourceForCurrentFrame.
-        /// The value must be non-negative.
-        /// </remarks>
-        /// <remarks>
-        /// This method must be called on the main thread.
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        internal float FrameInterpolationInterval
-        {
-            get
-            {
-                float ret = Interop.VideoView.GetFrameInterpolationInterval(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-            set
-            {
-                if (value < 0.0f)
-                {
-                    throw new ArgumentException("Frame interpolation interval cannot be negative.", nameof(value));
-                }
-                Interop.VideoView.SetFrameInterpolationInterval(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-        }
-
-        /// <summary>
-        /// Sets the NativeImageSource for the current video frame to be used in frame interpolation.
-        /// The VideoView must be in underlay mode (Underlay = true) and have a valid video size for this to take effect.
-        /// Call SetFrameInterpolationInterval() first to configure the interpolation duration.
-        /// </summary>
-        /// <param name="nativeImageSource">The NativeImageSource for the current frame.</param>
-        /// <remarks>
-        /// This method must be called on the main thread.
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)] // Devel API
-        public void SetNativeImageSourceForCurrentFrame(NativeImageSource nativeImageSource)
-        {
-            if (nativeImageSource == null)
-            {
-                throw new ArgumentNullException(nameof(nativeImageSource));
-            }
-            Interop.VideoView.SetNativeImageSourceForCurrentFrame(SwigCPtr, nativeImageSource.SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
