@@ -114,10 +114,6 @@ namespace Tizen.NUI.WindowSystem.Shell
             {
                 throw new ArgumentNullException(nameof(win));
             }
-            if (!(win is Tizen.NUI.Window))
-            {
-                throw new ArgumentNullException("win should be NUI.Window because this is for NUI.WindowSystem");
-            }
 
             _tzsh = tzShell;
             _tzshWin = WindowSystem.Interop.EcoreWl2.GetWindowId(win.WindowHandle);
