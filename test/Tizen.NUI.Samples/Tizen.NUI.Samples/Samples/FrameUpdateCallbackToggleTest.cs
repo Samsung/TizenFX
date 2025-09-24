@@ -12,6 +12,11 @@ namespace Tizen.NUI.Samples
         private TextLabel ignoredLabel;
         private IgnoredToggler ignoredToggler;
 
+        private PropertyNotification lessThanNotification;
+        private PropertyNotification greaterThanNotification;
+        private TextLabel lessThanLabel;
+        private TextLabel greaterThanLabel;
+
         // FrameUpdateCallback to toggle the ignored state of an actor
         private class IgnoredToggler : FrameUpdateCallbackInterface
         {
@@ -110,13 +115,67 @@ namespace Tizen.NUI.Samples
             // Pass null as the root view, as the callback doesn't need to be tied to a specific view's lifecycle
             // and Layer cannot be directly cast to View for this method.
             window.AddFrameUpdateCallback(ignoredToggler, null);
+
+            // Create TextLabels to display the property notification
+            lessThanNotification = imageView.AddPropertyNotification("Ignored", PropertyCondition.LessThan(0.5f));
+            lessThanNotification.Notified += (o, e) =>
+            {
+                if (lessThanLabel != null)
+                {
+                    lessThanLabel.Ignored = false;
+                }
+                if (greaterThanLabel != null)
+                {
+                    greaterThanLabel.Ignored = true;
+                }
+            };
+            lessThanLabel = new TextLabel("1 -> 0 Notified")
+            {
+                ParentOrigin = ParentOrigin.TopLeft,
+                PivotPoint = PivotPoint.TopLeft,
+                PositionUsesPivotPoint = true,
+                TextColor = Color.Black,
+                HorizontalAlignment = HorizontalAlignment.Begin,
+                PointSize = 12
+            };
+            window.GetDefaultLayer().Add(lessThanLabel); // Add to window directly
+            lessThanLabel.Ignored = true;
+
+            greaterThanNotification = imageView.AddPropertyNotification("Ignored", PropertyCondition.GreaterThan(0.5f));
+            greaterThanNotification.Notified += (o, e) =>
+            {
+                if (lessThanLabel != null)
+                {
+                    lessThanLabel.Ignored = true;
+                }
+                if (greaterThanLabel != null)
+                {
+                    greaterThanLabel.Ignored = false;
+                }
+            };
+            greaterThanLabel = new TextLabel("0 -> 1 Notified")
+            {
+                ParentOrigin = ParentOrigin.TopRight,
+                PivotPoint = PivotPoint.TopRight,
+                PositionUsesPivotPoint = true,
+                TextColor = Color.Black,
+                HorizontalAlignment = HorizontalAlignment.End,
+                PointSize = 12
+            };
+            window.GetDefaultLayer().Add(greaterThanLabel); // Add to window directly
+            greaterThanLabel.Ignored = true;
+
+            
         }
 
         public void Deactivate()
         {
             if (ignoredToggler != null)
             {
-                window.RemoveFrameUpdateCallback(ignoredToggler);
+                if (window != null)
+                {
+                    window.RemoveFrameUpdateCallback(ignoredToggler);
+                }
                 ignoredToggler = null;
             }
 
@@ -134,8 +193,32 @@ namespace Tizen.NUI.Samples
                 visibleLabel = null;
             }
 
+            if (lessThanLabel != null)
+            {
+                lessThanLabel.Unparent();
+                lessThanLabel.Dispose();
+                lessThanLabel = null;
+            }
+
+            if (greaterThanLabel != null)
+            {
+                greaterThanLabel.Unparent();
+                greaterThanLabel.Dispose();
+                greaterThanLabel = null;
+            }
+
             if (imageView != null)
             {
+                if (lessThanNotification != null)
+                {
+                    imageView.RemovePropertyNotification(lessThanNotification);
+                    lessThanNotification.Dispose();
+                }
+                if (greaterThanNotification != null)
+                {
+                    imageView.RemovePropertyNotification(greaterThanNotification);
+                    greaterThanNotification.Dispose();
+                }
                 imageView.Unparent();
                 imageView.Dispose();
                 imageView = null;

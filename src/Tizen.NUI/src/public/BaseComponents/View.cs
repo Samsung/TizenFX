@@ -7225,17 +7225,36 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalIgnored(bool ignored)
         {
-            Interop.Actor.SetIgnored(SwigCPtr, ignored);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Object.InternalSetPropertyBool(SwigCPtr, Property.Ignored, ignored);
         }
 
         private bool IsInternalIgnored()
         {
-            bool isIgnored = Interop.Actor.IsIgnored(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return isIgnored;
+            return Object.InternalGetPropertyBool(SwigCPtr, Property.Ignored);
+        }
+
+        /// <summary>
+        /// Gets the flag to identify the View is ignored or not currently.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool CurrentIgnored
+        {
+            get
+            {
+                return IsCurrentIgnored();
+            }
+        }
+
+        /// <summary>
+        /// Gets the flag to identify the View is world ignored or not currently.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool WorldIgnored
+        {
+            get
+            {
+                return IsWorldIgnored();
+            }
         }
 
         /// <summary>
