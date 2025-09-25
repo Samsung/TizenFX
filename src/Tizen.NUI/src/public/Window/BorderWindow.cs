@@ -173,7 +173,17 @@ namespace Tizen.NUI
 
                 if (isNeedResizeByLine == true || isNeedResizeByBorder == true)
                 {
-                    Interop.Window.SetSize(SwigCPtr, Uint16Pair.getCPtr(val));
+                    if (IsMaximized())
+                    {
+                        // When maximized, only the border can be updated without changing the window size.
+                        ResizedEventArgs e = new ResizedEventArgs();
+                        e.WindowSize = WindowSize;
+                        windowResizeEventHandler?.Invoke(this, e);
+                    }
+                    else
+                    {
+                        Interop.Window.SetSize(SwigCPtr, Uint16Pair.getCPtr(val));
+                    }
                 }
 
                 if (minSize != borderInterface.MinSize || (borderInterface.MinSize != null && isNeedResizeByLine == true))
