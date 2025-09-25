@@ -556,7 +556,6 @@ namespace Tizen.NUI
         {
             string pkgList = string.Empty;
             var ret = Interop.ApplicationManager.AppRemountGadgetPath(out pkgList);
-
             if (ret != Interop.ApplicationManager.ErrorCode.None)
             {
                 Log.Error("Failed to get gadget path. err = " + ret);
@@ -586,7 +585,8 @@ namespace Tizen.NUI
                 }
             }
 
-            foreach (var key in currentResourceTypes) {
+            foreach (var key in currentResourceTypes) 
+            {
                 if (updatedResourceTypes.Contains(key) == false)
                 {
                     try
