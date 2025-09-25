@@ -216,6 +216,14 @@ namespace Tizen.NUI
                 if (info.NUIGadgetAssembly?.IsLoaded == true)
                 {
                     info.NUIGadgetAssembly.Unload();
+                    CoreApplication.Post(() =>
+                    {
+                        for (int i = 0; info.NUIGadgetAssembly.IsAlive && i < 10; i++)
+                        {
+                            GC.Collect();
+                            GC.WaitForPendingFinalizers();
+                        }
+                    });
                 }
             }
         }
@@ -534,6 +542,66 @@ namespace Tizen.NUI
             {
                 NUIGadgetMessageReceived?.Invoke(null, new NUIGadgetMessageReceivedEventArgs(message));
             });
+        }
+
+        /// <summary>
+        /// Refresh gadget mount and update information in NUIGadgetManager.
+        /// </summary>
+        /// <remarks>
+        /// To use this method properly, All the gadgets should be unloaded in advance.
+        /// </remarks>
+        /// <exception cref="ArgumentNullException">Thrown if 'resource type' of pkg is null.</exception>
+        /// <exception cref="OverflowException">Thrown if too many gadget pkg exist</exception>
+        public static void Refresh()
+        {
+            string pkgList = string.Empty;
+            var ret = Interop.ApplicationManager.AppRemountGadgetPath(out pkgList);
+
+            if (ret != Interop.ApplicationManager.ErrorCode.None)
+            {
+                Log.Error("Failed to get gadget path. err = " + ret);
+                return;
+            }
+
+            var currentResourceTypes = _gadgetInfos.Keys.ToList();
+            var updatedResourceTypes = new List<string>();
+            foreach (var pkg in pkgList.Split(':'))
+            {
+                var info = NUIGadgetInfo.CreateNUIGadgetInfo(pkg);
+                if (info != null)
+                {
+                    updatedResourceTypes.Add(info.ResourceType);
+                    if (_gadgetInfos.ContainsKey(info.ResourceType) == false)
+                    {
+                        try
+                        {
+                            Log.Warn("Resource Type added: " + info.ResourceType);
+                            _gadgetInfos.TryAdd(info.ResourceType, info);
+                        }
+                        catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
+                        {
+                            Log.Error("Exception occurs. " + e.Message);
+                        }
+                    }
+                }
+            }
+
+            foreach (var key in currentResourceTypes) {
+                if (updatedResourceTypes.Contains(key) == false)
+                {
+                    try
+                    {
+                        Log.Warn("Resource Type removed: " + key);
+                        _gadgetInfos.TryRemove(key, out var unused);
+                    }
+                    catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
+                    {
+                        Log.Error("Exception occurs. " + e.Message);
+                    }
+                }
+            }
+
+            Log.Info("ResourceType Update(" + currentResourceTypes.Count + " > " + updatedResourceTypes.Count + ")");
         }
     }
 }
