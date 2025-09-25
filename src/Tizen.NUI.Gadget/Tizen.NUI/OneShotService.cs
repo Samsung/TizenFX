@@ -146,6 +146,7 @@ namespace Tizen.NUI
         /// Initializes the service task and triggers the OnCreate event.
         /// If AutoClose is enabled, automatically destroys the service after execution.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the task creation fails.</exception>
         /// <since_tizen> 13 </since_tizen>
         public void Run()
         {
@@ -159,6 +160,12 @@ namespace Tizen.NUI
             if (State == OneShotServiceLifecycleState.Initialized)
             {
                 _task = TizenCore.Spawn(Name);
+                if (_task == null)
+                {
+                    Log.Error($"Task creation failed for OneShotService({Name})");
+                    throw new InvalidOperationException($"Failed to create task for OneShotService({Name})");
+                }
+
                 _task.Post(() =>
                 {
                     Create();
