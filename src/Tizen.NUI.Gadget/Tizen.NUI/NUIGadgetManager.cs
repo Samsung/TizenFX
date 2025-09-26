@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -542,8 +542,8 @@ namespace Tizen.NUI
         /// <remarks>
         /// To use this method properly, All the gadgets should be unloaded in advance.
         /// </remarks>
-        /// <exception cref="ArgumentException">Thrown if any of gadgets is still loaded.</exception>
-        /// <exception cref="InvalidOperationException">Thrown if internal request fail.</exception>
+        /// <exception cref="InvalidOperationException">Thrown if any of gadgets is still loaded.</exception>
+        /// <exception cref="IOException">Thrown if internal request fail.</exception>
         public static void Refresh()
         {
             foreach (var info in _gadgetInfos)
@@ -552,8 +552,8 @@ namespace Tizen.NUI
                 {
                     if (info.Value.NUIGadgetAssembly.IsLoaded == true)
                     {
-                        Log.Warn("Gadget still loaded: " + info.Key);
-                        throw new ArgumentException("Gadget still loaded");
+                        Log.Error("Gadget still loaded: " + info.Key);
+                        throw new InvalidOperationException("Gadget still loaded");
                     }
                 }
             }
@@ -575,7 +575,7 @@ namespace Tizen.NUI
             if (ret != Interop.ApplicationManager.ErrorCode.None)
             {
                 Log.Error("Internal error occurs: " + ret);
-                throw new InvalidOperationException("Internal error");
+                throw new IOException("Internal error");
             }
 
             _gadgetInfos.Clear();
