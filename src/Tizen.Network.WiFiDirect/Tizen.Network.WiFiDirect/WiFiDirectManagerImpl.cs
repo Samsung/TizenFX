@@ -44,7 +44,10 @@ namespace Tizen.Network.WiFiDirect
             if (ret != (int)WiFiDirectError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to deinitialize Wi-Fi direct, Error - " + (WiFiDirectError)ret);
-                WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
+                if (ret != (int)WiFiDirectError.NotInitialized)
+                {
+                    WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
+                }
             }
 
             else
