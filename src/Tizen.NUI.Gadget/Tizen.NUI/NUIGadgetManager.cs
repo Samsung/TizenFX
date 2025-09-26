@@ -216,14 +216,6 @@ namespace Tizen.NUI
                 if (info.NUIGadgetAssembly?.IsLoaded == true)
                 {
                     info.NUIGadgetAssembly.Unload();
-                    CoreApplication.Post(() =>
-                    {
-                        for (int i = 0; info.NUIGadgetAssembly.IsAlive && i < 10; i++)
-                        {
-                            GC.Collect();
-                            GC.WaitForPendingFinalizers();
-                        }
-                    });
                 }
             }
         }
@@ -550,31 +542,52 @@ namespace Tizen.NUI
         /// <remarks>
         /// To use this method properly, All the gadgets should be unloaded in advance.
         /// </remarks>
-        /// <exception cref="ArgumentNullException">Thrown if 'resource type' of pkg is null.</exception>
-        /// <exception cref="OverflowException">Thrown if too many gadget pkg exist</exception>
+        /// <exception cref="ArgumentException">Thrown if any of gadgets is still loaded.</exception>
+        /// <exception cref="InvalidOperationException">Thrown if internal request fail.</exception>
         public static void Refresh()
         {
+            foreach (var info in _gadgetInfos)
+            {
+                if (info.Value.NUIGadgetAssembly is not null)
+                {
+                    if (info.Value.NUIGadgetAssembly.IsLoaded == true)
+                    {
+                        Log.Warn("Gadget still loaded: " + info.Key);
+                        throw new ArgumentException("Gadget still loaded");
+                    }
+                }
+            }
+
+            foreach (var info in _gadgetInfos)
+            {
+                if (info.Value.NUIGadgetAssembly is not null)
+                {
+                    for (int i = 0; info.Value.NUIGadgetAssembly.IsAlive && i < 10; i++)
+                    {
+                        GC.Collect();
+                        GC.WaitForPendingFinalizers();
+                    }
+                }
+            }
+
             string pkgList = string.Empty;
             var ret = Interop.ApplicationManager.AppRemountGadgetPath(out pkgList);
             if (ret != Interop.ApplicationManager.ErrorCode.None)
             {
-                Log.Error("Failed to get gadget path. err = " + ret);
-                return;
+                Log.Error("Internal error occurs: " + ret);
+                throw new InvalidOperationException("Internal error");
             }
 
-            var currentResourceTypes = _gadgetInfos.Keys.ToList();
-            var updatedResourceTypes = new List<string>();
-            foreach (var pkg in pkgList.Split(':'))
+            _gadgetInfos.Clear();
+            if (!string.IsNullOrWhiteSpace(pkgList))
             {
-                var info = NUIGadgetInfo.CreateNUIGadgetInfo(pkg);
-                if (info != null)
+                foreach (var pkg in pkgList.Split(':'))
                 {
-                    updatedResourceTypes.Add(info.ResourceType);
-                    if (_gadgetInfos.ContainsKey(info.ResourceType) == false)
+                    var info = NUIGadgetInfo.CreateNUIGadgetInfo(pkg);
+                    if (info != null)
                     {
                         try
                         {
-                            Log.Warn("Resource Type added: " + info.ResourceType);
                             _gadgetInfos.TryAdd(info.ResourceType, info);
                         }
                         catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
@@ -584,24 +597,7 @@ namespace Tizen.NUI
                     }
                 }
             }
-
-            foreach (var key in currentResourceTypes) 
-            {
-                if (updatedResourceTypes.Contains(key) == false)
-                {
-                    try
-                    {
-                        Log.Warn("Resource Type removed: " + key);
-                        _gadgetInfos.TryRemove(key, out var unused);
-                    }
-                    catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
-                    {
-                        Log.Error("Exception occurs. " + e.Message);
-                    }
-                }
-            }
-
-            Log.Info("ResourceType Update(" + currentResourceTypes.Count + " > " + updatedResourceTypes.Count + ")");
+            Log.Info("# of Gadget after refresh (" + _gadgetInfos.Count + ")");
         }
     }
 }
