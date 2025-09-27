@@ -856,7 +856,7 @@ namespace Tizen.Applications
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void RemountSubsession(string subsessionId)
         {
-            if (string.IsNullOrEmpty(subsessionId))
+            if (subsessionId == null)
             {
                 throw new ArgumentException("Invalid argument.");
             }
@@ -877,6 +877,10 @@ namespace Tizen.Applications
                     case Interop.ApplicationManager.ErrorCode.NoSuchApp:
                         throw new InvalidOperationException("No such application.");
                 }
+            }
+            else
+            {
+                Application.ResetCurrentApplicationDirectoryInfo();
             }
         }
     }

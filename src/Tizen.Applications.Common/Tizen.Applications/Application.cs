@@ -125,6 +125,19 @@ namespace Tizen.Applications
             s_CurrentApplication = this;
         }
 
+        internal static void ResetCurrentApplicationDirectoryInfo()
+        {
+            if (s_CurrentApplication == null)
+            {
+                return;
+            }
+
+            lock (s_CurrentApplication._lock)
+            {
+                s_CurrentApplication._directoryInfo = null;
+            }
+        }
+
         /// <summary>
         /// Exits the main loop of the application.
         /// </summary>
