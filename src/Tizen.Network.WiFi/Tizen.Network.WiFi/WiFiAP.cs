@@ -471,8 +471,6 @@ namespace Tizen.Network.WiFi
             {
                 Log.Error(Globals.LogTag, "Exception on ConnectWpsWithoutSsidAsync\n" + e);
                 wpsWithoutSsidTask.SetException(e);
-                wpsWithoutSsidTask = null;
-                Log.Info(Globals.LogTag, "task is null");
             }
 
             return wpsWithoutSsidTask.Task;
