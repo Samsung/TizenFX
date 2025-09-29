@@ -162,7 +162,11 @@ namespace Tizen.NUI
         /// Calling 'base.OnPreCreate()' is necessary in order to emit the 'NUIGadgetLifecycleChanged' event with the 'NUIGadgetLifecycleState.PreCreated' state.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        protected override void OnPreCreate() => base.OnPreCreate();
+        protected override void OnPreCreate()
+        {
+            Log.Info("OnPreCreate()");
+            base.OnPreCreate();
+        }
 
         /// <summary>
         /// Override this method to define the behavior when the gadget is created.
@@ -170,7 +174,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The main view object.</returns>
         /// <since_tizen> 10 </since_tizen>
-        protected new virtual Tizen.NUI.BaseComponents.View OnCreate() => (View)base.OnCreate();
+        protected override Tizen.NUI.BaseComponents.View OnCreate() => (View)base.OnCreate();
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the gadget receives the appcontrol message.

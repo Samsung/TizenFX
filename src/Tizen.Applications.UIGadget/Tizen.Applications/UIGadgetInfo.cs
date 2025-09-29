@@ -32,9 +32,9 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class UIGadgetInfo
     {
-        private const string MetadataUIGadgetDll = "http://tizen.org/metadata/ui-UIGadget/dll";
-        private const string MetadataUIGadgetResourceDll = "http://tizen.org/metadata/ui-UIGadget/resource/dll";
-        private const string MetadataUIGadgetResourceClassName = "http://tizen.org/metadata/ui-UIGadget/resource/class-name";
+        private const string MetadataUIGadgetDll = "http://tizen.org/metadata/ui-gadget/dll";
+        private const string MetadataUIGadgetResourceDll = "http://tizen.org/metadata/ui-gadget/resource/dll";
+        private const string MetadataUIGadgetResourceClassName = "http://tizen.org/metadata/ui-gadget/resource/class-name";
 
         internal UIGadgetInfo(string packageId)
         {

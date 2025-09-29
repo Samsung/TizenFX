@@ -39,7 +39,7 @@ namespace Tizen.Applications
 
         static UIGadgetManager()
         {
-            var ptr = Interop.Libc.GetEnvironmentVariable("UIGadget_PKGIDS");
+            var ptr = Interop.Libc.GetEnvironmentVariable("GADGET_PKGIDS");
             if (ptr != IntPtr.Zero)
             {
                 var packages = Marshal.PtrToStringAnsi(ptr);
