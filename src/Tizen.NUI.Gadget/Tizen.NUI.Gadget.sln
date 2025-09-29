@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Log", "..\Tizen.Log\T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.Common", "..\Tizen.Applications.Common\Tizen.Applications.Common.csproj", "{2AEDCAA7-543F-48A1-BEA3-CF3E14F6EDC2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.UIGadget", "..\Tizen.Applications.UIGadget\Tizen.Applications.UIGadget.csproj", "{192F8E92-B66E-49ED-915B-38C780ACCB7F}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI", "..\Tizen.NUI\Tizen.NUI.csproj", "{E62C42D3-9CE0-4EE4-930B-59AD6B9E84BE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.ComponentBased", "..\Tizen.Applications.ComponentBased\Tizen.Applications.ComponentBased.csproj", "{A9B4744E-EECC-44B6-8357-843DD20617EC}"
@@ -47,6 +49,10 @@ Global
 		{2AEDCAA7-543F-48A1-BEA3-CF3E14F6EDC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AEDCAA7-543F-48A1-BEA3-CF3E14F6EDC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AEDCAA7-543F-48A1-BEA3-CF3E14F6EDC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{192F8E92-B66E-49ED-915B-38C780ACCB7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{192F8E92-B66E-49ED-915B-38C780ACCB7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{192F8E92-B66E-49ED-915B-38C780ACCB7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{192F8E92-B66E-49ED-915B-38C780ACCB7F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E62C42D3-9CE0-4EE4-930B-59AD6B9E84BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E62C42D3-9CE0-4EE4-930B-59AD6B9E84BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E62C42D3-9CE0-4EE4-930B-59AD6B9E84BE}.Release|Any CPU.ActiveCfg = Release|Any CPU

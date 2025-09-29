@@ -84,9 +84,17 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public IDictionary<string, string> Metadata { get; private set; }
 
-        internal string ResourceFile { get; set; }
+        /// <summary>
+        /// The resource file of UIGadgetResourceManager.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        public string ResourceFile { get; set; }
 
-        internal string ResourceClassName { get; set; }
+        /// <summary>
+        /// The class name of the resource file of UIGadgetResourceManager.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        public string ResourceClassName { get; set; }
 
         /// <summary>
         /// Gets the assembly of the UIGadget.

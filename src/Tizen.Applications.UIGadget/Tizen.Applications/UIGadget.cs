@@ -98,7 +98,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public UIGadgetInfo UIGadgetInfo
         {
-            internal set;
+            protected internal set;
             get;
         }
 
@@ -108,7 +108,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public UIGadgetType Type
         {
-            internal set;
+            protected internal set;
             get;
         }
 
@@ -122,7 +122,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public string ClassName
         {
-            internal set;
+            protected internal set;
             get;
         }
 
@@ -132,7 +132,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public object MainView
         {
-            internal set;
+            protected internal set;
             get;
         }
 
@@ -142,7 +142,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public UIGadgetLifecycleState State
         {
-            internal set;
+            protected internal set;
             get;
         }
 
@@ -157,7 +157,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public UIGadgetResourceManager UIGadgetResourceManager
         {
-            internal set;
+            protected internal set;
             get;
         }
 
@@ -167,7 +167,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public OneShotService Service
         {
-            internal set;
+            protected internal set;
             get;
         }
 

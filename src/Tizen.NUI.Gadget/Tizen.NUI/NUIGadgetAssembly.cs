@@ -14,28 +14,11 @@
 * limitations under the License.
 */
 
-using System;
 using System.ComponentModel;
-using System.IO;
-using System.Reflection;
-using System.Runtime.Loader;
-
-using SystemIO = System.IO;
+using Tizen.Applications;
 
 namespace Tizen.NUI
 {
-    internal class NUIGadgetAssemblyLoadContext : AssemblyLoadContext
-    {
-        public NUIGadgetAssemblyLoadContext() : base(isCollectible: true)
-        {
-        }
-
-        protected override Assembly Load(AssemblyName name)
-        {
-            return null;
-        }
-    }
-
     /// <summary>
     /// Represents a class that provides access to the methods and properties of the NUIGadgetAssembly.
     /// </summary>
@@ -43,71 +26,14 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class NUIGadgetAssembly
     {
-        private static readonly object _assemblyLock = new object();
-        private readonly string _assemblyPath;
-        private WeakReference _assemblyRef;
-        private Assembly _assembly = null;
-        private bool _loaded = false;
+        internal NUIGadgetAssembly(UIGadgetAssembly assembly) { Assembly = assembly; }
 
-        internal NUIGadgetAssembly(string assemblyPath) { _assemblyPath = assemblyPath; }
-
-        internal void Load()
-        {
-            lock (_assemblyLock)
-            {
-                if (_loaded)
-                {
-                    return;
-                }
-
-                Log.Warn("Load(): " + _assemblyPath + " ++");
-                NUIGadgetAssemblyLoadContext context = new NUIGadgetAssemblyLoadContext();
-                _assemblyRef = new WeakReference(context);
-                string directoryPath = SystemIO.Path.GetDirectoryName(_assemblyPath);
-                string fileName = SystemIO.Path.GetFileNameWithoutExtension(_assemblyPath);
-                string nativeImagePath = directoryPath + "/.native_image/" + fileName + ".ni.dll";
-                Log.Debug("NativeImagePath=" + nativeImagePath + ", AssemblyPath=" + _assemblyPath);
-                _assembly = context.LoadFromNativeImagePath(nativeImagePath, _assemblyPath);
-                Log.Warn("Load(): " + _assemblyPath + " --");
-                _loaded = true;
-            }
-        }
-
-        internal bool IsLoaded { get { return _loaded; } }
-
-        internal NUIGadget CreateInstance(string className)
-        {
-            lock (_assemblyLock)
-            {
-                return (NUIGadget)_assembly?.CreateInstance(className);
-            }
-        }
+        internal UIGadgetAssembly Assembly { get; set; }
 
         /// <summary>
         /// Property indicating whether the weak reference to the gadget assembly is still alive.
         /// </summary>
         /// <since_tizen> 12 </since_tizen>
-        public bool IsAlive {  get { return _assemblyRef.IsAlive; } }
-
-        internal void Unload()
-        {
-            lock (_assemblyLock)
-            {
-                if (!_loaded)
-                {
-                    return;
-                }
-
-                Log.Warn("Unload(): " + _assemblyPath + " ++");
-                if (_assemblyRef.IsAlive)
-                {
-                    (_assemblyRef.Target as NUIGadgetAssemblyLoadContext).Unload();
-                }
-
-                _assembly = null;
-                _loaded = false;
-                Log.Warn("Unload(): " + _assemblyPath + " --");
-            }
-        }
+        public bool IsAlive {  get { return Assembly.IsAlive; } }
     }
 }
