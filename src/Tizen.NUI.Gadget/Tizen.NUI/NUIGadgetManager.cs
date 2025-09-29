@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -534,6 +534,70 @@ namespace Tizen.NUI
             {
                 NUIGadgetMessageReceived?.Invoke(null, new NUIGadgetMessageReceivedEventArgs(message));
             });
+        }
+
+        /// <summary>
+        /// Refresh gadget mount and update information in NUIGadgetManager.
+        /// </summary>
+        /// <remarks>
+        /// To use this method properly, All the gadgets should be unloaded in advance.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">Thrown if any of gadgets is still loaded.</exception>
+        /// <exception cref="IOException">Thrown if internal request fail.</exception>
+        public static void Refresh()
+        {
+            foreach (var info in _gadgetInfos)
+            {
+                if (info.Value.NUIGadgetAssembly is not null)
+                {
+                    if (info.Value.NUIGadgetAssembly.IsLoaded == true)
+                    {
+                        Log.Error("Gadget still loaded: " + info.Key);
+                        throw new InvalidOperationException("Gadget still loaded");
+                    }
+                }
+            }
+
+            foreach (var info in _gadgetInfos)
+            {
+                if (info.Value.NUIGadgetAssembly is not null)
+                {
+                    for (int i = 0; info.Value.NUIGadgetAssembly.IsAlive && i < 10; i++)
+                    {
+                        GC.Collect();
+                        GC.WaitForPendingFinalizers();
+                    }
+                }
+            }
+
+            string pkgList = string.Empty;
+            var ret = Interop.ApplicationManager.AppRemountGadgetPath(out pkgList);
+            if (ret != Interop.ApplicationManager.ErrorCode.None)
+            {
+                Log.Error("Internal error occurs: " + ret);
+                throw new IOException("Internal error");
+            }
+
+            _gadgetInfos.Clear();
+            if (!string.IsNullOrWhiteSpace(pkgList))
+            {
+                foreach (var pkg in pkgList.Split(':'))
+                {
+                    var info = NUIGadgetInfo.CreateNUIGadgetInfo(pkg);
+                    if (info != null)
+                    {
+                        try
+                        {
+                            _gadgetInfos.TryAdd(info.ResourceType, info);
+                        }
+                        catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
+                        {
+                            Log.Error("Exception occurs. " + e.Message);
+                        }
+                    }
+                }
+            }
+            Log.Info("# of Gadget after refresh (" + _gadgetInfos.Count + ")");
         }
     }
 }

@@ -20,5 +20,6 @@ internal static partial class Interop
     {
         public const string PackageManager = "libcapi-appfw-package-manager.so.0";
         public const string Libc = "libc.so.6";
+        public const string AppManager = "libcapi-appfw-app-manager.so.0";
     }
 }
