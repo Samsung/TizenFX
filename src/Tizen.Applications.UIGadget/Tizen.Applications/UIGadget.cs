@@ -31,7 +31,7 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class UIGadget
     {
-        private static int s_ServiceNameSequence = 0;
+        private static int s_DataLoaderNameSequence = 0;
 
         /// <summary>
         /// Initializes the UIGadget.
@@ -50,28 +50,28 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Initializes the UIGadget with OneShotService factory.
+        /// Initializes the UIGadget with DataLoader factory.
         /// </summary>
         /// <param name="type">The type of the UIGadget.</param>
-        /// <param name="serviceFactory">The factory that can create OneShotService object</param>
-        /// <param name="autoClose">Whether to automatically close the service after execution</param>
-        /// <exception cref="ArgumentNullException">Thrown if either 'serviceFactory' is null.</exception>
+        /// <param name="loaderFactory">The factory that can create DataLoader object</param>
+        /// <param name="autoClose">Whether to automatically close the loader after execution</param>
+        /// <exception cref="ArgumentNullException">Thrown if either 'loaderFactory' is null.</exception>
         /// <remarks>
-        /// This constructor initializes a new instance of the UIGadget class based on the specified type with OneShotService.
+        /// This constructor initializes a new instance of the UIGadget class based on the specified type with DataLoader.
         /// It is important to provide the correct type argument in order to ensure proper functionality and compatibility with other components.
         /// </remarks>
         /// <since_tizen> 13 </since_tizen>
-        public UIGadget(UIGadgetType type, IServiceFactory serviceFactory, bool autoClose = true) : this(type)
+        public UIGadget(UIGadgetType type, ILoaderFactory loaderFactory, bool autoClose = true) : this(type)
         {
-            if (serviceFactory == null)
+            if (loaderFactory == null)
             {
-                throw new ArgumentNullException(nameof(serviceFactory));
+                throw new ArgumentNullException(nameof(loaderFactory));
             }
 
             AutoClose = autoClose;
-            ServiceFactory = serviceFactory;
-            Service = ServiceFactory.CreateService(GenerateOneShotServiceName(), AutoClose);
-            Service.LifecycleStateChanged += OnOneShotServiceLifecycleChanged;
+            LoaderFactory = loaderFactory;
+            Loader = LoaderFactory.CreateInstance(GenerateDataLoaderName(), AutoClose);
+            Loader.LifecycleStateChanged += OnDataLoaderLifecycleChanged;
         }
 
         internal event EventHandler<UIGadgetLifecycleChangedEventArgs> LifecycleChanged;
@@ -85,7 +85,7 @@ namespace Tizen.Applications
         /// OneShotServiceLifecycleChangedEventArgs argument.
         /// </remarks>
         /// <since_tizen> 13 </since_tizen>
-        public event EventHandler<OneShotServiceLifecycleChangedEventArgs> OneShotServiceLifecycleChanged;
+        public event EventHandler<DataLoaderLifecycleChangedEventArgs> DataLoaderLifecycleChanged;
 
         /// <summary>
         /// Gets the class representing information of the current UIGadget.
@@ -162,16 +162,16 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The OneShotService.
+        /// The DataLoader.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public OneShotService Service
+        public DataLoader Loader
         {
             protected internal set;
             get;
         }
 
-        private IServiceFactory ServiceFactory
+        private ILoaderFactory LoaderFactory
         {
             set; get;
         }
@@ -186,10 +186,10 @@ namespace Tizen.Applications
             if (State == UIGadgetLifecycleState.Initialized)
             {
                 OnPreCreate();
-                if (Service != null)
+                if (Loader != null)
                 {
-                    Log.Info($"PreCreate(), Service.Name = {Service.Name}");
-                    Service.Run();
+                    Log.Info($"PreCreate(), Loader.Name = {Loader.Name}");
+                    Loader.Run();
                 }
             }
         }
@@ -259,13 +259,13 @@ namespace Tizen.Applications
             }
         }
 
-        private void OnOneShotServiceLifecycleChanged(object sender, OneShotServiceLifecycleChangedEventArgs args)
+        private void OnDataLoaderLifecycleChanged(object sender, DataLoaderLifecycleChangedEventArgs args)
         {
-            OneShotServiceLifecycleChanged?.Invoke(sender, args);
+            DataLoaderLifecycleChanged?.Invoke(sender, args);
 
-            if (args.State == OneShotServiceLifecycleState.Destroyed)
+            if (args.State == DataLoaderLifecycleState.Destroyed)
             {
-                args.OneShotService.LifecycleStateChanged -= OnOneShotServiceLifecycleChanged;
+                args.DataLoader.LifecycleStateChanged -= OnDataLoaderLifecycleChanged;
             }
         }
 
@@ -279,7 +279,7 @@ namespace Tizen.Applications
             LifecycleChanged?.Invoke(null, args);
         }
 
-        private static string GenerateOneShotServiceName() => $"oneshot{s_ServiceNameSequence++}";
+        private static string GenerateDataLoaderName() => $"DataLoader+{s_DataLoaderNameSequence++}";
 
         /// <summary>
         /// Override this method to define the behavior when the UIGadget is pre-created.

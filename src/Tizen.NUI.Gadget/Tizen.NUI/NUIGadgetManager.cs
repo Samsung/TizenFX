@@ -25,7 +25,6 @@ using Tizen.Applications;
 using System.ComponentModel;
 
 using SystemIO = System.IO;
-using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI
 {
@@ -36,14 +35,32 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class NUIGadgetManager
     {
-        private static EventHandler<NUIGadgetLifecycleChangedEventArgs> s_lifecycleChangedEventHandler;
-        private static readonly object s_lifecycleChangedEventLock = new object();
-        private static EventHandler<NUIGadgetMessageReceivedEventArgs> s_messageReceivedEventHandler;
-        private static readonly object s_messageReceivedEventLock = new object();
+        private static readonly ConcurrentDictionary<string, NUIGadgetInfo> _gadgetInfos = new ConcurrentDictionary<string, NUIGadgetInfo>(StringComparer.Ordinal);
+        private static readonly ConcurrentDictionary<NUIGadget, byte> _gadgets = new ConcurrentDictionary<NUIGadget, byte>();
 
         static NUIGadgetManager()
         {
             UIGadgetManager.UIGadgetFactory = new NUIGadgetFactory();
+            LoadGadgetInfos();
+        }
+
+        private static void LoadGadgetInfos()
+        {
+            foreach (var info in UIGadgetManager.GetUIGadgetInfos())
+            {
+                try
+                {
+                    var gadgetInfo = new NUIGadgetInfo(info);
+                    if (gadgetInfo != null)
+                    {
+                        _gadgetInfos.TryAdd(gadgetInfo.ResourceType, gadgetInfo);
+                    }
+                }
+                catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
+                {
+                    Log.Error("Exception occurs. " + e.Message);
+                }
+            }
         }
 
         /// <summary>
@@ -54,45 +71,27 @@ namespace Tizen.NUI
         /// It provides information about the current state through the NUIGadgetLifecycleChangedEventArgs argument.
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
-        public static event EventHandler<NUIGadgetLifecycleChangedEventArgs> NUIGadgetLifecycleChanged
+        public static event EventHandler<NUIGadgetLifecycleChangedEventArgs> NUIGadgetLifecycleChanged;
+
+        private static void OnNUIGadgetLifecycleChanged(object sender, NUIGadgetLifecycleChangedEventArgs args)
         {
-            add
+            NUIGadgetLifecycleChanged?.Invoke(sender, args);
+
+            if (args.State == NUIGadgetLifecycleState.Destroyed)
             {
-                lock (s_lifecycleChangedEventLock)
-                {
-                    if (s_lifecycleChangedEventHandler == null)
-                    {
-                        Log.Info("add");
-                        UIGadgetManager.UIGadgetLifecycleChanged += OnUIGadgetLifecycleChanged;
-                    }
-                    s_lifecycleChangedEventHandler += value;
-                }
-            }
-            remove
-            {
-                lock (s_lifecycleChangedEventLock)
-                {
-                    s_lifecycleChangedEventHandler -= value;
-                    if (s_lifecycleChangedEventHandler == null)
-                    {
-                        Log.Info("remove");
-                        UIGadgetManager.UIGadgetLifecycleChanged -= OnUIGadgetLifecycleChanged;
-                    }
-                }
+                args.Gadget.LifecycleChanged -= OnNUIGadgetLifecycleChanged;
+                _gadgets.TryRemove(args.Gadget, out _);
             }
         }
 
-        private static void OnUIGadgetLifecycleChanged(object sender, UIGadgetLifecycleChangedEventArgs e)
+        private static NUIGadgetInfo Find(string resourceType)
         {
-            lock (s_lifecycleChangedEventLock)
+            if (!_gadgetInfos.TryGetValue(resourceType, out var info))
             {
-                var args = new NUIGadgetLifecycleChangedEventArgs
-                {
-                    Gadget = (NUIGadget)e.UIGadget,
-                    State = (NUIGadgetLifecycleState)e.State
-                };
-                s_lifecycleChangedEventHandler?.Invoke(sender, args);
+                throw new ArgumentException("Failed to find NUIGadgetInfo. resource type: " + resourceType);
             }
+
+            return info;
         }
 
         /// <summary>
@@ -116,7 +115,15 @@ namespace Tizen.NUI
         /// <exception cref="ArgumentException">Thrown when failed due to an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed due to an invalid operation.</exception>
         /// <since_tizen> 10 </since_tizen>
-        public static void Load(string resourceType, bool useDefaultContext) => UIGadgetManager.Load(resourceType, useDefaultContext);
+        public static void Load(string resourceType, bool useDefaultContext)
+        {
+            if (string.IsNullOrEmpty(resourceType))
+            {
+                throw new ArgumentException("Invalid argument");
+            }
+
+            UIGadgetManager.Load(resourceType, useDefaultContext);
+        }
 
         /// <summary>
         /// Unloads the specified NUIGadget assembly from memory.
@@ -137,7 +144,15 @@ namespace Tizen.NUI
         /// </code>
         /// </example>
         /// <since_tizen> 10 </since_tizen>
-        public static void Unload(string resourceType) => UIGadgetManager.Unload(resourceType);
+        public static void Unload(string resourceType)
+        {
+            if (string.IsNullOrWhiteSpace(resourceType))
+            {
+                throw new ArgumentException("Invalid argument", nameof(resourceType));
+            }
+
+            UIGadgetManager.Unload(resourceType);
+        }
 
         /// <summary>
         /// Adds a NUIGadget to the NUIGadgetManager.
@@ -165,16 +180,12 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         public static NUIGadget Add(string resourceType, string className, bool useDefaultContext)
         {
-            Log.Info("ResourceType=" + resourceType + ",  ClassName=" + className);
-            var gadget = UIGadgetManager.Add(resourceType, className, useDefaultContext) as NUIGadget;
-            if (gadget == null)
+            var gadget = CreateInstance(resourceType, className, useDefaultContext);
+            if (gadget != null)
             {
-                Log.Error("Failed to create gadget instance. ClassName=" + className);
-                return null;
+                PreCreate(gadget);
+                Create(gadget);
             }
-
-            gadget.NUIGadgetInfo = new NUIGadgetInfo(gadget.UIGadgetInfo);
-            gadget.NUIGadgetResourceManager = new NUIGadgetResourceManager(gadget.NUIGadgetInfo);
             return gadget;
         }
 
@@ -183,15 +194,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>An enumerable list containing all the active NUIGadgets.</returns>
         /// <since_tizen> 10 </since_tizen>
-        public static IEnumerable<NUIGadget> GetGadgets()
-        {
-            var gadgets = new List<NUIGadget>();
-            foreach (var gadget in UIGadgetManager.GetUIGadgets())
-            {
-                gadgets.Add((NUIGadget)gadget);
-            }
-            return gadgets;
-        }
+        public static IEnumerable<NUIGadget> GetGadgets() => _gadgets.Keys;
 
         /// <summary>
         /// Retrieves information about available NUIGadgets.
@@ -203,16 +206,8 @@ namespace Tizen.NUI
         /// </remarks>
         /// <returns>An enumerable list of NUIGadgetInfo objects.</returns>
         /// <since_tizen> 10 </since_tizen>
-        public static IEnumerable<NUIGadgetInfo> GetGadgetInfos()
-        {
-            var Infos = new List<NUIGadgetInfo>();
-            foreach (var info in UIGadgetManager.GetUIGadgetInfos())
-            {
-                Infos.Add(new NUIGadgetInfo(info));
-            }
+        public static IEnumerable<NUIGadgetInfo> GetGadgetInfos() => _gadgetInfos.Values;
 
-            return Infos;
-        }
 
         /// <summary>
         /// Creates a new NUIGadget instance.
@@ -227,7 +222,21 @@ namespace Tizen.NUI
         /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static NUIGadget CreateInstance(string resourceType, string className, bool useDefaultContext) => (NUIGadget)UIGadgetManager.CreateInstance(resourceType, className, useDefaultContext);
+        public static NUIGadget CreateInstance(string resourceType, string className, bool useDefaultContext)
+        {
+            if (string.IsNullOrWhiteSpace(resourceType) || string.IsNullOrWhiteSpace(className))
+            {
+                throw new ArgumentException("Invalid argument");
+            }
+
+            NUIGadget.UIGadgetWrapper gadgetWrapper = UIGadgetManager.CreateInstance(resourceType, className, useDefaultContext) as NUIGadget.UIGadgetWrapper;
+            if (gadgetWrapper == null)
+            {
+                throw new InvalidOperationException("Failed to create gadget. ResourceType=" + resourceType + ", ClassName=" + className);
+            }
+
+            return gadgetWrapper.OuterGadget;
+        }
 
         /// <summary>
         /// Executes the pre-creation process of the NUIGadget.
@@ -235,7 +244,25 @@ namespace Tizen.NUI
         /// <param name="gadget">The NUIGadget object to perform the pre-creation process.</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static void PreCreate(NUIGadget gadget) => UIGadgetManager.PreCreate(gadget);
+        public static void PreCreate(NUIGadget gadget)
+        {
+            if (gadget == null)
+            {
+                throw new ArgumentNullException(nameof(gadget));
+            }
+
+
+            Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
+            if (gadget.State == NUIGadgetLifecycleState.Initialized)
+            {
+                UIGadgetManager.PreCreate(gadget.WrapperUIGadget);
+                if (gadget.Service != null)
+                {
+                    Log.Warn("Service.Name=" + gadget.Service.Name);
+                    gadget.Service.Run();
+                }
+            }
+        }
 
         /// <summary>
         /// Executes the creation process of the NUIGadget.
@@ -244,7 +271,23 @@ namespace Tizen.NUI
         /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static void Create(NUIGadget gadget) => UIGadgetManager.Create(gadget);
+        public static void Create(NUIGadget gadget)
+        {
+            if (gadget == null)
+            {
+                throw new ArgumentNullException(nameof(gadget));
+            }
+
+            if (_gadgets.ContainsKey(gadget))
+            {
+                Log.Error("Already exists. ResourceType:" + gadget.NUIGadgetInfo.ResourceType);
+                return;
+            }
+
+            UIGadgetManager.Create(gadget.WrapperUIGadget);
+            gadget.MainView = gadget.WrapperUIGadget.MainView as Tizen.NUI.BaseComponents.View;
+            _gadgets.TryAdd(gadget, 0);
+        }
 
         /// <summary>
         /// Removes the specified NUIGadget from the NUIGadgetManager.
@@ -257,7 +300,16 @@ namespace Tizen.NUI
         /// Therefore, it is crucial to handle the removal process carefully to avoid any potential issues.
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
-        public static void Remove(NUIGadget gadget) => UIGadgetManager.Remove(gadget);
+        public static void Remove(NUIGadget gadget)
+        {
+            if (gadget == null || !_gadgets.ContainsKey(gadget) || gadget.State == NUIGadgetLifecycleState.Destroyed)
+            {
+                return;
+            }
+
+            _gadgets.TryRemove(gadget, out _);
+            UIGadgetManager.Remove(gadget.WrapperUIGadget);
+        }
 
         /// <summary>
         /// Removes all NUIGadgets from the NUIGadgetManager.
@@ -267,7 +319,13 @@ namespace Tizen.NUI
         /// It ensures that no more NUIGadgets exist after calling this method.
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
-        public static void RemoveAll() => UIGadgetManager.RemoveAll();
+        public static void RemoveAll()
+        {
+            foreach (var gadget in _gadgets.Keys.ToList())
+            {
+                Remove(gadget);
+            }
+        }
 
         /// <summary>
         /// Resumes the execution of the specified NUIGadget.
@@ -279,7 +337,20 @@ namespace Tizen.NUI
         /// <param name="gadget">The NUIGadget object whose execution needs to be resumed.</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
         /// <since_tizen> 10 </since_tizen>
-        public static void Resume(NUIGadget gadget) => UIGadgetManager.Resume(gadget);
+        public static void Resume(NUIGadget gadget)
+        {
+            if (gadget == null)
+            {
+                throw new ArgumentNullException(nameof(gadget));
+            }
+
+            if (!_gadgets.ContainsKey(gadget))
+            {
+                return;
+            }
+
+            UIGadgetManager.Resume(gadget.WrapperUIGadget);
+        }
 
         /// <summary>
         /// Pauses the execution of the specified NUIGadget.
@@ -290,7 +361,20 @@ namespace Tizen.NUI
         /// <param name="gadget">The NUIGadget object whose execution needs to be paused.</param>
         /// <exception cref="ArgumentNullException">Thrown if the argument 'gadget' is null.</exception>
         /// <since_tizen> 10 </since_tizen>
-        public static void Pause(NUIGadget gadget) => UIGadgetManager.Pause(gadget);
+        public static void Pause(NUIGadget gadget)
+        {
+            if (gadget == null)
+            {
+                throw new ArgumentNullException(nameof(gadget));
+            }
+
+            if (!_gadgets.ContainsKey(gadget))
+            {
+                return;
+            }
+
+            UIGadgetManager.Pause(gadget.WrapperUIGadget);
+        }
 
         /// <summary>
         /// Sends the specified application control to the currently running NUIGadget.
@@ -300,45 +384,31 @@ namespace Tizen.NUI
         /// <exception cref="ArgumentException">Thrown if any of the arguments are invalid or missing.</exception>
         /// <exception cref="ArgumentNullException">Thrown if either 'gadget' or 'appControl' is null.</exception>
         /// <since_tizen> 10 </since_tizen>
-        public static void SendAppControl(NUIGadget gadget, AppControl appControl) => UIGadgetManager.SendAppControl(gadget, appControl);
+        public static void SendAppControl(NUIGadget gadget, AppControl appControl)
+        {
+            if (gadget == null)
+            {
+                throw new ArgumentNullException(nameof(gadget));
+            }
+
+            if (!_gadgets.ContainsKey(gadget))
+            {
+                throw new ArgumentException("Invalid argument", nameof(gadget));
+            }
+
+            if (appControl == null)
+            {
+                throw new ArgumentNullException(nameof(appControl));
+            }
+
+            UIGadgetManager.SendAppControl(gadget.WrapperUIGadget, appControl);
+        }
 
         /// <summary>
         /// Occurs when the message is received.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public static event EventHandler<NUIGadgetMessageReceivedEventArgs> NUIGadgetMessageReceived
-        {
-            add
-            {
-                lock (s_messageReceivedEventLock)
-                {
-                    if (s_messageReceivedEventHandler == null)
-                    {
-                        UIGadgetManager.UIGadgetMessageReceived += OnUIGadgetMessageRecevied;
-                    }
-                    s_messageReceivedEventHandler += value;
-                }
-            }
-            remove
-            {
-                lock (s_messageReceivedEventLock)
-                {
-                    s_messageReceivedEventHandler -= value;
-                    if (s_messageReceivedEventHandler == null)
-                    {
-                        UIGadgetManager.UIGadgetMessageReceived -= OnUIGadgetMessageRecevied;
-                    }
-                }
-            }
-        }
-
-        private static void OnUIGadgetMessageRecevied(object sender, UIGadgetMessageReceivedEventArgs e)
-        {
-            lock (s_messageReceivedEventLock)
-            {
-                s_messageReceivedEventHandler?.Invoke(sender, new NUIGadgetMessageReceivedEventArgs(e.Message));
-            }
-        }
+        public static event EventHandler<NUIGadgetMessageReceivedEventArgs> NUIGadgetMessageReceived;
 
         /// <summary>
         /// Sends the message to the NUIGadgetManager.
@@ -346,7 +416,18 @@ namespace Tizen.NUI
         /// <param name="message">The message</param>
         /// <exception cref="ArgumentNullException">Thrown if either 'envelope' is null.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static void SendMessage(Bundle message) => UIGadgetManager.SendMessage(message);
+        public static void SendMessage(Bundle message)
+        {
+            if (message == null)
+            {
+                throw new ArgumentNullException(nameof(message));
+            }
+
+            CoreApplication.Post(() =>
+            {
+                NUIGadgetMessageReceived?.Invoke(null, new NUIGadgetMessageReceivedEventArgs(message));
+            });
+        }
 
         /// <summary>
         /// Refresh gadget mount and update information in NUIGadgetManager.
@@ -357,23 +438,49 @@ namespace Tizen.NUI
         /// <exception cref="InvalidOperationException">Thrown if any of gadgets is still loaded.</exception>
         /// <exception cref="IOException">Thrown if internal request fail.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static void Refresh() => UIGadgetManager.Refresh();
-    }
-
-    internal class NUIGadgetFactory : IUIGadgetFactory
-    {
-        UIGadget IUIGadgetFactory.CreateInstance(UIGadgetInfo info, string className, bool useDefaultContext)
+        public static void Refresh()
         {
-            NUIGadget gadget = useDefaultContext ? info.Assembly.CreateInstance(className, true) as NUIGadget : info.UIGadgetAssembly.CreateInstance(className) as NUIGadget;
-            if (gadget == null)
-            {
-                Log.Info("Failed to create gadget instance. class name=" + className);
-                return null;
-            }
+            UIGadgetManager.Refresh();
+            _gadgetInfos.Clear();
+            LoadGadgetInfos();
+            Log.Info("# of Gadget after refresh (" + _gadgetInfos.Count + ")");
+        }
 
-            gadget.NUIGadgetInfo = new NUIGadgetInfo(info);
-            gadget.NUIGadgetResourceManager = new NUIGadgetResourceManager(gadget.NUIGadgetInfo);
-            return gadget;
+        internal class NUIGadgetFactory : IUIGadgetFactory
+        {
+            UIGadget IUIGadgetFactory.CreateInstance(UIGadgetInfo info, string className, bool useDefaultContext)
+            {
+                var gadgetInfo = Find(info.ResourceType);
+                if (gadgetInfo == null)
+                {
+                    Log.Error("Failed to find NUIGadgetInfo. ResourceType=" + info.ResourceType);
+                    return null;
+                }
+
+                NUIGadget gadget = null;
+                if (useDefaultContext)
+                {
+                    gadgetInfo.Assembly = info.Assembly;
+                    gadget = gadgetInfo.Assembly.CreateInstance(className, true) as NUIGadget;
+                }
+                else
+                {
+                    gadgetInfo.NUIGadgetAssembly = new NUIGadgetAssembly(info.UIGadgetAssembly);
+                    gadget = gadgetInfo.NUIGadgetAssembly.CreateInstance(className);
+                }
+
+                if (gadget == null)
+                {
+                    Log.Info("Failed to create gadget instance. class name=" + className);
+                    return null;
+                }
+                
+                gadget.NUIGadgetInfo = gadgetInfo;
+                gadget.ClassName = className;
+                gadget.NUIGadgetResourceManager = new NUIGadgetResourceManager(gadget.NUIGadgetInfo);
+                gadget.LifecycleChanged += OnNUIGadgetLifecycleChanged;
+                return gadget.WrapperUIGadget;
+            }
         }
     }
 }

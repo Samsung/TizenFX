@@ -14,28 +14,47 @@
  * limitations under the License.
  */
 
-using System;
 using System.ComponentModel;
 
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Event arguments for the OneShotService lifecycle change event.
+    /// Enumeration for the lifecycle state of the DataLoader.
     /// </summary>
     /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class OneShotServiceLifecycleChangedEventArgs : EventArgs
+    public enum DataLoaderLifecycleState
     {
         /// <summary>
-        /// Gets the OneShotService object that triggered the event.
+        /// The initialized state.
+        /// This state is set when the DataLoader is initialized.
+        /// The constructor of the DataLoader is called.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public OneShotService OneShotService { get; set; }
+        Initialized = 0,
 
         /// <summary>
-        /// Gets the current state of the OneShotService lifecycle.
+        /// The created state.
+        /// This state is set when the DataLoader is created.
+        /// The 'OnCreate()' method of the DataLoader is called.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public OneShotServiceLifecycleState State { get; internal set; }
+        Created = 1,
+
+        /// <summary>
+        /// The running state.
+        /// This state is set when the DataLoader is running.
+        /// The 'Run()' method of the DataLoader is called.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        Running = 2,
+
+        /// <summary>
+        /// The destroyed state.
+        /// This state is set when the DataLoader is destroyed.
+        /// The 'OnDestroyed()' method of the DataLoader is called.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        Destroyed = 3,
     }
 }
