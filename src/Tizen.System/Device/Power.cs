@@ -360,12 +360,30 @@ namespace Tizen.System
         /// After the given timeout (in milliseconds), unlock the given lock state automatically.
         /// </summary>
         /// <remarks>
-        /// If the process dies, then every lock will be removed.
+        /// If display feature(http://tizen.org/feature/display) is false, then only the type POWER_LOCK_CPU is effective,
+        /// and the other type returns DEVICE_ERROR_NOT_SUPPORTED. <br /> And even thoguh the display feature is false,
+        /// it requires display privilege(http://tizen.org/privilege/display). <br />
+        /// Scenario 1. If the same application requests the same power lock more than twice before it is released or expired, <br />
+        /// the timeout will be updated to the latest requested time. <br />
+        /// For example: <br />
+        /// The first request has a timeout of 5000ms. <br />
+        /// The second request has a timeout of 1000ms. <br />
+        /// If the second request is made before the first request is released or expired, <br />
+        /// the timeout will be updated to the latest requested time, which is 1000ms. <br />
+        /// Scenario 2. If different applications request the same power lock type, <br />
+        /// the power state timeout will be set to the maximum of the requested timeouts. <br />
+        /// For example: <br />
+        /// Application A requests POWER_LOCK_CPU with a timeout of 5000ms. <br />
+        /// Application B requests the same POWER_LOCK_CPU with a timeout of 1000ms. <br />
+        /// Unless Application A releases the POWER_LOCK_CPU lock, <br />
+        /// the timeout for POWER_LOCK_CPU will remain at the maximum requested time, which is 5000ms.
         /// </remarks>
+        /// <since_tizen> 5 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/display.state
         /// </privilege>
-        /// <since_tizen> 5 </since_tizen>
+        /// <feature>http://tizen.org/feature/display</feature>
+        /// <feature>http://tizen.org/feature/display.state</feature>
         /// <param name="type">
         /// The power type to request lock.
         /// </param>
@@ -395,7 +413,9 @@ namespace Tizen.System
         /// Releases the given specific power lock type which was locked before.
         /// </summary>
         /// <remarks>
-        /// Releases the lock of specific power lock type that was previously acquired using Power.RequestLock(PowerLock,int).
+        /// If display feature(http://tizen.org/feature/display) is false, then only the type POWER_LOCK_CPU is effective,
+        /// and the other type returns DEVICE_ERROR_NOT_SUPPORTED. <br /> And even thoguh the display feature is false,
+        /// it requires display privilege(http://tizen.org/privilege/display). <br />
         /// </remarks>
         /// <privilege>
         /// http://tizen.org/privilege/display.state

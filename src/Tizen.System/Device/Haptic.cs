@@ -79,6 +79,7 @@ namespace Tizen.System
         /// Retrieves the total number of vibrators available on the device.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature>http://tizen.org/feature/feedback.vibration</feature>
         /// <example>
         /// <code>
         /// using Tizen.System;
@@ -222,6 +223,7 @@ namespace Tizen.System
         /// Internally, it disconnects the connection to the vibrator by Vibrate().
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature>http://tizen.org/feature/feedback.vibration</feature>
         /// <example>
         /// <code>
         /// using Tizen.System;

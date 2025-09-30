@@ -50,6 +50,8 @@ namespace Tizen.System
         /// Retrieves the maximum brightness level of the back camera flash.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/led</privilege>
+        /// <feature>http://tizen.org/feature/camera.back.flash</feature>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
@@ -83,6 +85,8 @@ namespace Tizen.System
         /// Changing the brightness value will invoke the registered EventHandler for the LED BrightnessChanged (if any).
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/led</privilege>
+        /// <feature>http://tizen.org/feature/camera.back.flash</feature>
         /// <exception cref="ArgumentException"> When an invalid parameter value is set.</exception>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
@@ -126,6 +130,8 @@ namespace Tizen.System
         /// The Color value
         /// The first byte means opaque and the other 3 bytes are the RGB values.
         /// </param>
+        /// <privilege>http://tizen.org/privilege/led</privilege>
+        /// <feature>http://tizen.org/feature/led</feature>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
@@ -159,6 +165,8 @@ namespace Tizen.System
         /// The custom effect was started by Led.Play(int,int,Color).
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/led</privilege>
+        /// <feature>http://tizen.org/feature/led</feature>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
@@ -192,6 +200,8 @@ namespace Tizen.System
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <example>
+        /// <privilege>http://tizen.org/privilege/led</privilege>
+        /// <feature>http://tizen.org/feature/camera.back.flash</feature>
         /// <code>
         /// public static async Task LedEventHandler()
         /// {
