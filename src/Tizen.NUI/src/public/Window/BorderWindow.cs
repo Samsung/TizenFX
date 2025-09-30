@@ -535,6 +535,10 @@ namespace Tizen.NUI
         private void OnBorderWindowMoved(object sender, WindowMovedEventArgs e)
         {
             Tizen.Log.Info("NUI", $"OnBorderWindowMoved {e.WindowPosition.X}, {e.WindowPosition.Y}\n");
+            if (e.WindowPosition.X == 0 && e.WindowPosition.Y == 0)
+            {
+                DoMaximize(IsMaximized());
+            }
             borderInterface.OnMoved(e.WindowPosition.X, e.WindowPosition.Y);
         }
 
@@ -586,7 +590,12 @@ namespace Tizen.NUI
             {
                 contentsView.SizeHeight = resizeHeight - (isEnabledOverlay ? borderHeight : 0);
             }
-            DoMaximize(isMaximized);
+
+            var windowPosition = WindowPosition;
+            if (windowPosition.X == 0 && windowPosition.Y == 0)
+            {
+                DoMaximize(isMaximized);
+            }
 
             DoOverlayMode(isEnabledOverlay);
 
