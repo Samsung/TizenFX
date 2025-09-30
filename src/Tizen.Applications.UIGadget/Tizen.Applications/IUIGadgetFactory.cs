@@ -19,7 +19,7 @@ using System.ComponentModel;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// An interface that make the Gadget object.
+    /// An interface that make the UIGadget object.
     /// </summary>
     /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]

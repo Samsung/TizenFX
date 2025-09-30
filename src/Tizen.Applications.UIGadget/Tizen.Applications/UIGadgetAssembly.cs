@@ -18,6 +18,7 @@ using System;
 using System.ComponentModel;
 using System.IO;
 using System.Reflection;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.Loader;
 
 using SystemIO = System.IO;
@@ -26,14 +27,9 @@ namespace Tizen.Applications
 {
     internal class UIGadgetAssemblyLoadContext : AssemblyLoadContext
     {
-        public UIGadgetAssemblyLoadContext() : base(isCollectible: true)
-        {
-        }
+        public UIGadgetAssemblyLoadContext() : base(isCollectible: true) { }
 
-        protected override Assembly Load(AssemblyName name)
-        {
-            return null;
-        }
+        protected override Assembly Load(AssemblyName name) => null;
     }
 
     /// <summary>

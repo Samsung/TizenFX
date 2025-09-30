@@ -70,8 +70,8 @@ namespace Tizen.Applications
 
             AutoClose = autoClose;
             LoaderFactory = loaderFactory;
-            Loader = LoaderFactory.CreateInstance(GenerateDataLoaderName(), AutoClose);
-            Loader.LifecycleStateChanged += OnDataLoaderLifecycleChanged;
+            DataLoader = LoaderFactory.CreateInstance(GenerateDataLoaderName(), AutoClose);
+            DataLoader.LifecycleStateChanged += OnDataLoaderLifecycleChanged;
         }
 
         internal event EventHandler<UIGadgetLifecycleChangedEventArgs> LifecycleChanged;
@@ -98,7 +98,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public UIGadgetInfo UIGadgetInfo
         {
-            protected internal set;
+            internal set;
             get;
         }
 
@@ -108,7 +108,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public UIGadgetType Type
         {
-            protected internal set;
+            internal set;
             get;
         }
 
@@ -122,7 +122,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public string ClassName
         {
-            protected internal set;
+            internal set;
             get;
         }
 
@@ -132,7 +132,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public object MainView
         {
-            protected internal set;
+            internal set;
             get;
         }
 
@@ -142,7 +142,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public UIGadgetLifecycleState State
         {
-            protected internal set;
+            internal set;
             get;
         }
 
@@ -157,7 +157,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public UIGadgetResourceManager UIGadgetResourceManager
         {
-            protected internal set;
+            internal set;
             get;
         }
 
@@ -165,10 +165,9 @@ namespace Tizen.Applications
         /// The DataLoader.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public DataLoader Loader
+        public DataLoader DataLoader
         {
-            protected internal set;
-            get;
+            set; get;
         }
 
         private ILoaderFactory LoaderFactory
@@ -186,10 +185,10 @@ namespace Tizen.Applications
             if (State == UIGadgetLifecycleState.Initialized)
             {
                 OnPreCreate();
-                if (Loader != null)
+                if (DataLoader != null)
                 {
-                    Log.Info($"PreCreate(), Loader.Name = {Loader.Name}");
-                    Loader.Run();
+                    Log.Info($"PreCreate(), Loader.Name = {DataLoader.Name}");
+                    DataLoader.Run();
                 }
             }
         }
@@ -362,54 +361,42 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="e">The locale changed event argument.</param>
         /// <since_tizen> 13 </since_tizen>
-        protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
-        {
-        }
+        protected virtual void OnLocaleChanged(LocaleChangedEventArgs e) { }
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the system battery is low.
         /// </summary>
         /// <param name="e">The low batter event argument.</param>
         /// <since_tizen> 13 </since_tizen>
-        protected virtual void OnLowBattery(LowBatteryEventArgs e)
-        {
-        }
+        protected virtual void OnLowBattery(LowBatteryEventArgs e) { }
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the system memory is low.
         /// </summary>
         /// <param name="e">The low memory event argument.</param>
         /// <since_tizen> 13 </since_tizen>
-        protected virtual void OnLowMemory(LowMemoryEventArgs e)
-        {
-        }
+        protected virtual void OnLowMemory(LowMemoryEventArgs e) { }
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the region format is changed.
         /// </summary>
         /// <param name="e">The region format changed event argument.</param>
         /// <since_tizen> 13 </since_tizen>
-        protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
-        {
-        }
+        protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e) { }
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the device orientation is changed.
         /// </summary>
         /// <param name="e">The device orientation changed event argument.</param>
         /// <since_tizen> 13 </since_tizen>
-        protected virtual void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
-        {
-        }
+        protected virtual void OnDeviceOrientationChanged(DeviceOrientationEventArgs e) { }
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the message is received.
         /// </summary>
         /// <param name="e">The message received event argument.</param>
         /// <since_tizen> 13 </since_tizen>
-        protected virtual void OnMessageReceived(UIGadgetMessageReceivedEventArgs e)
-        {
-        }
+        protected virtual void OnMessageReceived(UIGadgetMessageReceivedEventArgs e) { }
 
         /// <summary>
         /// Sends the message to the UIGadget.
