@@ -113,6 +113,7 @@ namespace Tizen.System
         /// <since_tizen> 3 </since_tizen>
         /// <value>It returns an integer value from 0 to 100 that indicates the remaining
         /// battery charge as a percentage of the maximum level.</value>
+        /// <feature>http://tizen.org/feature/battery</feature>
         /// <example>
         /// <code>
         /// Console.WriteLine("battery Percent is: {0}", Tizen.System.Battery.Percent);
@@ -140,6 +141,7 @@ namespace Tizen.System
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         /// <value>The battery level status.</value>
+        /// <feature>http://tizen.org/feature/battery</feature>
         /// <example>
         /// <code>
         /// using Tizen.System;
@@ -172,6 +174,7 @@ namespace Tizen.System
         /// Checks whether the battery is currently being charged or not.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature>http://tizen.org/feature/battery</feature>
         /// <example>
         /// <code>
         /// using Tizen.System;
@@ -201,6 +204,7 @@ namespace Tizen.System
         /// </remarks>
         /// <since_tizen> 12 </since_tizen>
         /// <value>The battery power source type.</value>
+        /// <feature>http://tizen.org/feature/battery</feature>
         /// <example>
         /// <code>
         /// using Tizen.System;
@@ -231,6 +235,7 @@ namespace Tizen.System
         /// CapacityChanged is triggered when the battery charge percentage is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/internal/default/platform</privilege>
         /// <example>
         /// <code>
         /// public static async Task BatteryEventHandler()
@@ -277,6 +282,7 @@ namespace Tizen.System
         /// LevelChanged is triggered when the battery level is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/internal/default/platform</privilege>
         /// <example>
         /// <code>
         /// public static async Task BatteryEventHandler()
@@ -323,6 +329,7 @@ namespace Tizen.System
         /// This event is triggered when the charger is connected/disconnected.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/internal/default/platform</privilege>
         /// <example>
         /// <code>
         /// public static async Task BatteryEventHandler()
