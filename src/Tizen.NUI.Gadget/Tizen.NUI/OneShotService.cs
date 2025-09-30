@@ -190,9 +190,18 @@ namespace Tizen.NUI
         public void Quit(bool waitForJoin)
         {
             Log.Warn($"Name = {Name}");
-            if (_task == null || State == OneShotServiceLifecycleState.Destroyed)
+            if (_task == null)
             {
                 Log.Info($"{Name} was already destroyed");
+                return;
+            }
+
+            if (State == OneShotServiceLifecycleState.Destroyed)
+            {
+                if (waitForJoin)
+                {
+                    _task.Dispose();
+                }
                 return;
             }
 
@@ -202,10 +211,9 @@ namespace Tizen.NUI
                 _task.Quit();
             });
 
-            if (waitForJoin && _task != null)
+            if (waitForJoin)
             {
                 _task.Dispose();
-                _task = null;
             }
         }
 
@@ -213,9 +221,11 @@ namespace Tizen.NUI
         {
             CoreApplication.Post(() =>
             {
-                var args = new OneShotServiceLifecycleChangedEventArgs();
-                args.State = state;
-                args.OneShotService = this;
+                var args = new OneShotServiceLifecycleChangedEventArgs
+                {
+                    State = state,
+                    OneShotService = this
+                };
                 LifecycleStateChanged?.Invoke(this, args);
             });
         }
@@ -241,6 +251,7 @@ namespace Tizen.NUI
                     if (_task != null)
                     {
                         _task.Dispose();
+                        _task = null;
                         TizenCore.Shutdown();
                     }
                 }

@@ -183,9 +183,18 @@ namespace Tizen.Applications
         public void Quit(bool waitForJoin)
         {
             Log.Warn($"Name = {Name}");
-            if (_task == null || State == DataLoaderLifecycleState.Destroyed)
+            if (_task == null)
             {
                 Log.Info($"{Name} was already destroyed");
+                return;
+            }
+
+            if (State == DataLoaderLifecycleState.Destroyed)
+            {
+                if (waitForJoin)
+                {
+                    _task.Dispose();
+                }
                 return;
             }
 
@@ -195,10 +204,9 @@ namespace Tizen.Applications
                 _task.Quit();
             });
 
-            if (waitForJoin && _task != null)
+            if (waitForJoin)
             {
                 _task.Dispose();
-                _task = null;
             }
         }
 
@@ -206,9 +214,11 @@ namespace Tizen.Applications
         {
             CoreApplication.Post(() =>
             {
-                var args = new DataLoaderLifecycleChangedEventArgs();
-                args.State = state;
-                args.DataLoader = this;
+                var args = new DataLoaderLifecycleChangedEventArgs
+                {
+                    State = state,
+                    DataLoader = this
+                };
                 LifecycleStateChanged?.Invoke(this, args);
             });
         }
@@ -234,6 +244,7 @@ namespace Tizen.Applications
                     if (_task != null)
                     {
                         _task.Dispose();
+                        _task = null;
                         TizenCore.Shutdown();
                     }
                 }
