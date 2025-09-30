@@ -54,11 +54,8 @@ namespace Tizen.NUI
             Metadata = info.Metadata;
             ResourceFile = info.ResourceFile;
             ResourceClassName = info.ResourceClassName;
-            UIGadgetInfo = info;
             Log.Warn("PackageId= " + PackageId);
         }
-
-        private UIGadgetInfo UIGadgetInfo { get; set; }
 
         /// <summary>
         /// Gets the package ID of the gadget.

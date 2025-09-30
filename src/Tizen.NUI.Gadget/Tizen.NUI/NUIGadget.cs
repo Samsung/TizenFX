@@ -237,7 +237,7 @@ namespace Tizen.NUI
 
         private static string GenerateOneShotServiceName()
         {
-            return $"oneshot{s_ServiceNameSequence++}";
+            return $"OneShot+{s_ServiceNameSequence++}";
         }
 
         /// <summary>
