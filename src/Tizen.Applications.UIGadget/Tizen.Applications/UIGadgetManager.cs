@@ -299,7 +299,18 @@ namespace Tizen.Applications
             UIGadgetInfo info = Find(resourceType);
             LoadInternal(info, useDefaultContext);
 
-            UIGadget gadget = useDefaultContext ? info.Assembly.CreateInstance(className, true) as UIGadget : info.UIGadgetAssembly.CreateInstance(className) as UIGadget;
+            UIGadget gadget = null;
+            if (UIGadgetFactory != null)
+            {
+                Log.Info("Use UIGadgetFactory");
+                gadget = UIGadgetFactory.CreateInstance(info, className, useDefaultContext);
+            }
+            else
+            {
+                Log.Info("Default Creation");
+                gadget = useDefaultContext ? info.Assembly.CreateInstance(className, true) as UIGadget : info.UIGadgetAssembly.CreateInstance(className) as UIGadget;
+            }
+
             if (gadget == null)
             {
                 throw new InvalidOperationException("Failed to create instance. className: " + className);
@@ -352,6 +363,7 @@ namespace Tizen.Applications
             Log.Warn("ResourceType: " + gadget.UIGadgetInfo.ResourceType + ", State: " + gadget.State);
             if (!gadget.Create())
             {
+                Log.Error("Gadget returns null");
                 throw new InvalidOperationException("The View MUST be created");
             }
             _gadgets.TryAdd(gadget, 0);
@@ -543,6 +555,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <exception cref="InvalidOperationException">Thrown if any of gadgets is still loaded.</exception>
         /// <exception cref="IOException">Thrown if internal request fail.</exception>
+        /// <since_tizen> 13 </since_tizen>
         public static void Refresh()
         {
             foreach (var info in _gadgetInfos)
@@ -599,5 +612,13 @@ namespace Tizen.Applications
             Log.Info("# of Gadget after refresh (" + _gadgetInfos.Count + ")");
         }
 
+        /// <summary>
+        /// Property to store and retrieve the instance of IUIGadgetFactory.
+        /// </summary>
+        /// <details>
+        /// When this property is set, The CreateInstance() method uses this property to create a gadget instance.
+        /// </details>
+        /// <since_tizen> 13 </since_tizen>
+        public static IUIGadgetFactory UIGadgetFactory { get; set; }
     }
 }

@@ -41,6 +41,11 @@ namespace Tizen.NUI
         private static EventHandler<NUIGadgetMessageReceivedEventArgs> s_messageReceivedEventHandler;
         private static readonly object s_messageReceivedEventLock = new object();
 
+        static NUIGadgetManager()
+        {
+            UIGadgetManager.UIGadgetFactory = new NUIGadgetFactory();
+        }
+
         /// <summary>
         /// Occurs when the lifecycle of the NUIGadget is changed.
         /// </summary>
@@ -340,6 +345,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="message">The message</param>
         /// <exception cref="ArgumentNullException">Thrown if either 'envelope' is null.</exception>
+        /// <since_tizen> 13 </since_tizen>
         public static void SendMessage(Bundle message) => UIGadgetManager.SendMessage(message);
 
         /// <summary>
@@ -350,6 +356,24 @@ namespace Tizen.NUI
         /// </remarks>
         /// <exception cref="InvalidOperationException">Thrown if any of gadgets is still loaded.</exception>
         /// <exception cref="IOException">Thrown if internal request fail.</exception>
+        /// <since_tizen> 13 </since_tizen>
         public static void Refresh() => UIGadgetManager.Refresh();
+    }
+
+    internal class NUIGadgetFactory : IUIGadgetFactory
+    {
+        UIGadget IUIGadgetFactory.CreateInstance(UIGadgetInfo info, string className, bool useDefaultContext)
+        {
+            NUIGadget gadget = useDefaultContext ? info.Assembly.CreateInstance(className, true) as NUIGadget : info.UIGadgetAssembly.CreateInstance(className) as NUIGadget;
+            if (gadget == null)
+            {
+                Log.Info("Failed to create gadget instance. class name=" + className);
+                return null;
+            }
+
+            gadget.NUIGadgetInfo = new NUIGadgetInfo(info);
+            gadget.NUIGadgetResourceManager = new NUIGadgetResourceManager(gadget.NUIGadgetInfo);
+            return gadget;
+        }
     }
 }
