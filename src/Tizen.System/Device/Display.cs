@@ -81,6 +81,7 @@ namespace Tizen.System
         /// Retrieves the number of display devices connected to the system.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature>http://tizen.org/feature/display</feature>
         /// <example>
         /// <code>
         /// using Tizen.System;
@@ -136,6 +137,7 @@ namespace Tizen.System
         /// Retrieves the maximum brightness level of a specific display device.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature>http://tizen.org/feature/display</feature>
         /// <example>
         /// <code>
         ///     Display display = Display.Displays[0];
@@ -163,6 +165,7 @@ namespace Tizen.System
         /// The brightness value should be less than or equal to the MaxBrightness value.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature>http://tizen.org/feature/display</feature>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
@@ -203,6 +206,7 @@ namespace Tizen.System
         /// When the display state is set, it should be checked the profile version and supported display state.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature>http://tizen.org/feature/display</feature>
         /// <example>
         /// <code>
         /// using Tizen.System;
@@ -245,6 +249,7 @@ namespace Tizen.System
         ///  StateChanged is raised when the state of the display is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature>http://tizen.org/feature/display</feature>
         /// <example>
         /// <code>
         /// public static async Task DisplayEventHandler()
