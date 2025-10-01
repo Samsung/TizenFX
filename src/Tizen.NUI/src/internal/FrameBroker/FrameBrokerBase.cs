@@ -300,7 +300,7 @@ namespace Tizen.NUI
             vertexFormat.Add("aPosition", (int)PropertyType.Vector2);
 
             PropertyBuffer vertexBuffer = new PropertyBuffer(vertexFormat);
-            
+
             TexturedQuadVertex vertex1 = new TexturedQuadVertex();
             TexturedQuadVertex vertex2 = new TexturedQuadVertex();
             TexturedQuadVertex vertex3 = new TexturedQuadVertex();

@@ -1,4 +1,4 @@
-/* 
+/*
 * Copyright(c) 2021 Samsung Electronics Co., Ltd.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -64,7 +64,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
 
         /// <summary>
         /// Resize the picture content with the given size.
-        /// 
+        ///
         /// Resize the picture content while keeping the default size aspect ratio.
         /// The scaling factor is established for each of dimensions and the smaller value is applied to both of them.
         /// </summary>

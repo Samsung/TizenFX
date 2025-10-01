@@ -88,7 +88,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// RelativeVector4 relativeVector4 = new RelativeVector4();
-        /// relativeVector4.X = 0.1f; 
+        /// relativeVector4.X = 0.1f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// RelativeVector4 relativeVector4 = new RelativeVector4(x, y, z, w);
@@ -121,7 +121,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// RelativeVector4 relativeVector4 = new RelativeVector4();
-        /// relativeVector4.Y = 0.5f; 
+        /// relativeVector4.Y = 0.5f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// RelativeVector4 relativeVector4 = new RelativeVector4(x, y, z, w);
@@ -154,7 +154,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// RelativeVector4 relativeVector4 = new RelativeVector4();
-        /// relativeVector4.Z = 0.9f; 
+        /// relativeVector4.Z = 0.9f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// RelativeVector4 relativeVector4 = new RelativeVector4(x, y, z, w);
@@ -187,7 +187,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// RelativeVector4 relativeVector4 = new RelativeVector4();
-        /// relativeVector4.W = 1.0f; 
+        /// relativeVector4.W = 1.0f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// RelativeVector4 relativeVector4 = new RelativeVector4(x, y, z, w);

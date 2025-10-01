@@ -25,6 +25,6 @@ namespace Tizen.NUI.Samples
         public Vector2 textFoldedPosition = new Vector2(0, 0);
         public Vector2 textUnfoldedPosition = new Vector2(0, 0);
 
-         
+
     }
 }

@@ -47,7 +47,7 @@ namespace Tizen.NUI.Samples
         //        {
         //            if (e.Key.KeyPressedName == "Escape" || e.Key.KeyPressedName == "BackSpace")
         //            {
-                        
+
         //            }
         //        }
         //    }

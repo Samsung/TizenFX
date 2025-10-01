@@ -64,7 +64,7 @@ namespace Tizen.NUI.Samples
         private void rotationButtonClicked(object sender, ClickedEventArgs e)
         {
             int rotation = rotationCnt % 4;
-            if (overlayCamera != null) 
+            if (overlayCamera != null)
             {
                 switch (rotation)
                 {

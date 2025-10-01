@@ -78,7 +78,7 @@ namespace Tizen.NUI.Samples
                 int bufferWidth = 0;
                 int bufferHeight = 0;
                 int bufferStride = 0;
-                var buffer = source.AcquireBuffer(ref bufferWidth, ref bufferHeight, ref bufferStride); 
+                var buffer = source.AcquireBuffer(ref bufferWidth, ref bufferHeight, ref bufferStride);
                 Tizen.Log.Error("NUI", $"AcquireBuffer {bufferWidth} x {bufferHeight} with stride {bufferStride}\n");
                 uint size = (uint) bufferWidth * (uint) bufferHeight * 4;
                 unsafe

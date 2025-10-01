@@ -24,7 +24,7 @@ class VisualTestExample : NUIApplication
     const uint VIEW_COUNT = 1000;
 
     static string IMAGE_DIR = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "image/";
-    readonly static string[] IMAGE_PATH = 
+    readonly static string[] IMAGE_PATH =
     {
         IMAGE_DIR + "gallery-small-1.jpg",
     };
