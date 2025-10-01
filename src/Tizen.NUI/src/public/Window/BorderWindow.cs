@@ -51,6 +51,7 @@ namespace Tizen.NUI
         private bool hasBottomView;
         private bool isEnabledOverlayMode;
         private bool isMaximized;
+        private bool isFramePresentedCallbackRequested;
 
 
         // for config
@@ -531,12 +532,29 @@ namespace Tizen.NUI
             }
         }
 
+        private void OnFramePresented(int id)
+        {
+            borderInterface.OnMaximize(isMaximized);
+            isFramePresentedCallbackRequested = false;
+        }
+
         private void DoMaximize(bool isMaximized)
         {
             if (this.isMaximized != isMaximized)
             {
                 borderView?.OnMaximize(isMaximized);
-                borderInterface.OnMaximize(isMaximized);
+                if (isMaximized)
+                {
+                    if (!isFramePresentedCallbackRequested)
+                    {
+                        isFramePresentedCallbackRequested = true;
+                        AddFramePresentedCallback(OnFramePresented, 0);
+                    }
+                }
+                else
+                {
+                    borderInterface.OnMaximize(isMaximized);
+                }
             }
             this.isMaximized = isMaximized;
         }
