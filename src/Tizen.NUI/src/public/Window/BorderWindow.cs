@@ -578,6 +578,8 @@ namespace Tizen.NUI
                 y += borderLineThickness;
             }
 
+            SetVisibleBounds((int)(resizeWidth + width), (int)(resizeHeight + height), isMaximized);
+
             Interop.ActorInternal.SetSize(GetBorderWindowRootLayer().SwigCPtr, resizeWidth, resizeHeight);
             Interop.ActorInternal.SetSize(GetBorderWindowBottomLayer().SwigCPtr, resizeWidth + width, resizeHeight + height);
             Interop.ActorInternal.SetPosition(GetBorderWindowRootLayer().SwigCPtr, 0, y);
@@ -634,6 +636,21 @@ namespace Tizen.NUI
             return borderWindowRootLayer;
         }
 
+        internal Rectangle VisibleBounds
+        {
+            set
+            {
+                Interop.Window.SetVisibleBounds(SwigCPtr, Rectangle.getCPtr(value));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                Rectangle ret = Rectangle.GetRectangleFromPtr(Interop.Window.GetVisibleBounds(SwigCPtr));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                return ret;
+            }
+        }
+
         internal void DisposeBorder()
         {
             Resized -= OnBorderWindowResized;
@@ -643,6 +660,16 @@ namespace Tizen.NUI
             ResizeCompleted -= OnBorderWindowResizeCompleted;
             borderInterface.Dispose();
             GetBorderWindowBottomLayer().Dispose();
+        }
+
+        private void SetVisibleBounds(int width, int height, bool isMaximized)
+        {
+            int borderLine = 0;
+            if (!isMaximized)
+            {
+                borderLine = (int)borderLineThickness;
+            }
+            VisibleBounds = new Rectangle(borderLine, borderLine, width - (borderLine * 2), height - (borderLine * 2));
         }
 
         private void convertBorderWindowSizeToRealWindowSize(Uint16Pair size)
