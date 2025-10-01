@@ -27,8 +27,6 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public class VideoView : View
     {
-        private bool isEnableOffscreenFrameRendering = false;
-
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty VideoProperty = null;
@@ -133,6 +131,7 @@ namespace Tizen.NUI.BaseComponents
 
         private FinishedCallbackDelegate videoViewFinishedCallbackDelegate;
         private EventHandler<FinishedEventArgs> videoViewFinishedEventHandler;
+        private static readonly object videoFrameBufferLock = new object();
 
         static VideoView()
         {
@@ -579,6 +578,77 @@ namespace Tizen.NUI.BaseComponents
                 Interop.VideoView.SetLetterBoxEnabled(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
+        }
+
+        /// <summary>
+        /// Gets or sets the time interval for frame interpolation in seconds.
+        /// </summary>
+        /// <remarks>
+        /// The interpolation factor will progress from 0.0 to 1.0 over this duration.
+        /// This interval is applied after the next call to SetVideoFrameBuffer.
+        /// The value must be non-negative.
+        /// </remarks>
+        /// <remarks>
+        /// This method must be called on the main thread.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal float FrameInterpolationInterval
+        {
+            get
+            {
+                float ret = Interop.VideoView.GetFrameInterpolationInterval(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set
+            {
+                if (value < 0.0f)
+                {
+                    throw new ArgumentException("Frame interpolation interval cannot be negative.", nameof(value));
+                }
+                Interop.VideoView.SetFrameInterpolationInterval(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Sets the NativeImageSource for the current video frame to be used in frame interpolation.
+        /// The VideoView must be in underlay mode (Underlay = true) and have a valid video size for this to take effect.
+        /// Call SetFrameInterpolationInterval() first to configure the interpolation duration.
+        /// This method is thread-safe and can be called from worker threads.
+        /// </summary>
+        /// <param name="nativeImageSource">The NativeImageSource for the current frame.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)] // Devel API
+        public void SetVideoFrameBuffer(NativeImageSource nativeImageSource)
+        {
+            if (nativeImageSource == null)
+            {
+                throw new ArgumentNullException(nameof(nativeImageSource));
+            }
+
+            // Lock to ensure thread-safe access to the native interop
+            lock (videoFrameBufferLock)
+            {
+                Interop.VideoView.SetVideoFrameBuffer(SwigCPtr, nativeImageSource.SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Enables or disables offscreen frame rendering for video interpolation.
+        /// 
+        /// When enabled, the video player will use offscreen rendering for frame interpolation,
+        /// which can improve visual quality for certain video content.
+        /// </summary>
+        /// <param name="useOffScreenFrame">True to enable offscreen frame rendering, false to disable.</param>
+        /// <remarks>
+        /// This method must be called on the main thread.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)] // Devel API
+        public void EnableOffscreenFrameRendering(bool useOffScreenFrame)
+        {
+            Interop.VideoView.EnableOffscreenFrameRendering(SwigCPtr, useOffScreenFrame);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
