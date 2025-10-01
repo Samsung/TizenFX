@@ -118,7 +118,7 @@ namespace NUIClipboard
             string descriptionText = "* <u>Copy</u> : Copy the text entered in the TextField using the Clipboard's <u><i>SetData()</i></u> API.\n" +
                                      "* <u>Paste</u> : Paste the text using the Clipboard's <u><i>GetData()</i></u> API.\n" +
                                      "* <u>Clear</u> : Clear Information.\n" +
-                                     "* This sample uses three different <u><i>MIME types(TEXT, HTML, URI)</i></u> to send and receive data.\n" + 
+                                     "* This sample uses three different <u><i>MIME types(TEXT, HTML, URI)</i></u> to send and receive data.\n" +
                                      "* In order to send and receive data, the requested <u><i>MIME type must be the same.</i></u>\n" +
                                      "* For example, if copy the TEXT type and try to paste the HTML type, may receive a failure callback.";
 

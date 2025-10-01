@@ -55,7 +55,7 @@ namespace Tizen.NUI.MarkdownRenderer
         }
 
         /// <summary>
-        /// Adds a child view to the table row.  
+        /// Adds a child view to the table row.
         /// For header rows, children are added to the container; for body rows, directly to the row.
         /// </summary>
         public override void Add(View child)

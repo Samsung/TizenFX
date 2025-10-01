@@ -108,10 +108,10 @@ namespace Tizen.NUI.AIAvatar
             try
             {
                 string json = File.ReadAllText(configPath);
-                EmotionConfigData = JsonSerializer.Deserialize<EmotionConfig>(json);                
+                EmotionConfigData = JsonSerializer.Deserialize<EmotionConfig>(json);
             }
             catch (JsonException ex)
-            {                
+            {
                 throw new Exception($"Error loading Emotion Config data from {configPath}: {ex}");
             }
 
@@ -143,7 +143,7 @@ namespace Tizen.NUI.AIAvatar
                 }
 
                 foreach (string filename in expression.filename)
-                {   
+                {
                     string expressionFile = global::System.IO.Path.Combine(expressionResourcePath, filename);
 
                     if (!File.Exists(expressionFile))
@@ -160,5 +160,5 @@ namespace Tizen.NUI.AIAvatar
 
             }
         }
-    }        
+    }
 }

@@ -22,8 +22,8 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// WindowBlurInfo is a struct designed to encapsulate the information required to apply a blur effect to a window. 
-    /// It contains three properties that define how the blur effect is applied to the window, 
+    /// WindowBlurInfo is a struct designed to encapsulate the information required to apply a blur effect to a window.
+    /// It contains three properties that define how the blur effect is applied to the window,
     /// including the type of blur, its intensity, and the corner rounding for the background blur.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -48,7 +48,7 @@ namespace Tizen.NUI
         {
             BlurType = blurType;
             BlurRadius = blurRadius;
-            BackgroundCornerRadius = 0;            
+            BackgroundCornerRadius = 0;
         }
 
         /// <summary>
@@ -68,15 +68,15 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the corner radius of the window.
         /// It is only useful when window blur type is background.
-        /// 
-        /// When applying the background corner radius, ensure that the window's own corner radius is applied first. 
-        /// The blur effect will respect the window's pre-defined corner radius settings 
+        ///
+        /// When applying the background corner radius, ensure that the window's own corner radius is applied first.
+        /// The blur effect will respect the window's pre-defined corner radius settings
         /// before applying the specified background corner radius.
         /// </summary>
         /// <value>The corner radius of the window.</value>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int BackgroundCornerRadius {get; set;}
-        
+
         /// <summary>
         /// Whether this is equivalent to other.
         /// </summary>

@@ -35,7 +35,7 @@ namespace Tizen.NUI.Components
         public IReadOnlyList<object> PreviousSelection { get; }
 
         /// <summary>
-        /// Current selection list.    
+        /// Current selection list.
         ///  </summary>
         /// <since_tizen> 9 </since_tizen>
         public IReadOnlyList<object> CurrentSelection { get; }

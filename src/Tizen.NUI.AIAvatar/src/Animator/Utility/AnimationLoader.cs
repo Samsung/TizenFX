@@ -88,8 +88,8 @@ namespace Tizen.NUI.AIAvatar
                 var bodyMotionAnimations = Directory.GetFiles(bodyMotionDirectoryPath, "*.bvh");
 
                 foreach (var path in bodyMotionAnimations)
-                {                   
-                        motionInfoList.Add(LoadBodyMotion(path, useRootTranslationOnly, scale, synchronousLoad));                   
+                {
+                        motionInfoList.Add(LoadBodyMotion(path, useRootTranslationOnly, scale, synchronousLoad));
                 }
                 return motionInfoList;
             }
@@ -164,7 +164,7 @@ namespace Tizen.NUI.AIAvatar
             }
         }
 
-      
+
         internal MotionData CreateFacialMotionData(FaceAnimationData facialAnimation, List<IgnoreBlendShape> ignoreBlendShapes = null)
         {
 

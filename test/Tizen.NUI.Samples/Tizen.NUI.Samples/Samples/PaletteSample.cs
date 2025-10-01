@@ -209,7 +209,7 @@ namespace Tizen.NUI.Samples
         {
             PixelBuffer imgBitmap = ImageLoader.LoadImageFromFile(imagePath[idx]);
             Palette palette = Palette.Generate(imgBitmap);
-            
+
             return palette;
         }
 

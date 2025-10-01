@@ -41,7 +41,7 @@ namespace Tizen.NUI.Samples
         private void CreateNullStylePart()
         {
             null_style_parent = new View() { Size = new Size(960, 540) };
-            null_style_parent.Layout = new LinearLayout() 
+            null_style_parent.Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
                 HorizontalAlignment = HorizontalAlignment.Center,
@@ -83,11 +83,11 @@ namespace Tizen.NUI.Samples
             scrollBar[1].TrackImageURL = CommonResource.GetTVResourcePath() + "component/c_progressbar/c_progressbar_white_buffering.png";
             null_style_parent.Add(scrollBar[1]);
         }
-        
+
         private void CreateStylePart()
         {
             style_parent = new View() { Size = new Size(960, 540) };
-            style_parent.Layout = new LinearLayout() 
+            style_parent.Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
                 HorizontalAlignment = HorizontalAlignment.Center,

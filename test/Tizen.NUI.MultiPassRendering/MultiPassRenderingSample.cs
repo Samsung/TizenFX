@@ -289,7 +289,7 @@ class MultiPassRenderingSample : NUIApplication
         renderer.TextureSet = textureSet;
         return renderer;
     }
-    
+
     struct SimpleQuadVertex
     {
         public UIVector2 position;
@@ -302,7 +302,7 @@ class MultiPassRenderingSample : NUIApplication
         vertexFormat.Add("aPosition", new PropertyValue((int)PropertyType.Vector2));
 
         PropertyBuffer vertexBuffer = new PropertyBuffer(vertexFormat);
-        
+
         SimpleQuadVertex vertex1 = new SimpleQuadVertex();
         SimpleQuadVertex vertex2 = new SimpleQuadVertex();
         SimpleQuadVertex vertex3 = new SimpleQuadVertex();

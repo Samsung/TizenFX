@@ -7,10 +7,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-﻿// ReSharper disable IdentifierTypo
+// ReSharper disable IdentifierTypo
 using System;
 using System.Runtime.InteropServices;
 using System.Security;
@@ -76,7 +76,7 @@ namespace Tizen.NUI.Physics2D.Chipmunk
 
 #pragma warning disable CA1823 // Unused field 'ChipmunkLibraryName'
 
-#if __MACOS__ 
+#if __MACOS__
         private const string ChipmunkLibraryName = "libchipmunk.dylib";
 #else
         private const string ChipmunkLibraryName = "libchipmunk.so";

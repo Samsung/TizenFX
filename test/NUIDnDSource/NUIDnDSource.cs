@@ -67,7 +67,7 @@ namespace NUIDnDSource
             text3.PointSize = 7.0f;
             text3.MultiLine = true;
             Window.Instance.GetDefaultLayer().Add(text3);
-            
+
             TextLabel text4 = new TextLabel("Drop your image here");
             text4.Position = new Position(300, 940);
             text4.TextColor = Color.Black;

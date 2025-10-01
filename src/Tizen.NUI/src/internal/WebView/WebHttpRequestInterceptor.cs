@@ -256,7 +256,7 @@ namespace Tizen.NUI
         /// Any further calls result in undefined behavior.
         /// User should always check return value, because response to this request might not be needed any more,
         /// and the function can return false even though user still has data to write.
-        /// 
+        ///
         /// After writing full response body in chunks using this function,
         /// call it again with null as chunk, to signal that response body is finished.
         /// </summary>

@@ -80,7 +80,7 @@ namespace Tizen.NUI.Visuals
             }
 
             ~VisualTransformInfo() => Dispose(false);
-            
+
             public void Clear()
             {
                 width = 1.0f;
@@ -967,7 +967,7 @@ namespace Tizen.NUI.Visuals
             {
                 // If we cannot find result from cached map, Get value from native engine.
                 ret = GetCurrentVisualProperty(key);
-                
+
                 // Update cached value here
                 if (ret != null)
                 {

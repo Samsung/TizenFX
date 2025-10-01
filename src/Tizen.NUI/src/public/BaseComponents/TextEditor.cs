@@ -4912,7 +4912,7 @@ namespace Tizen.NUI.BaseComponents
                 hasSystemLanguageChanged = true;
             }
         }
-        
+
         private void RemoveSystemSettingsLocaleLanguageChanged()
         {
             if (hasSystemLanguageChanged)
