@@ -306,7 +306,7 @@ namespace Tizen.NUI.Samples
                     Stop();
 
                     _root?.Dispose();
-                    
+
                     if (_timer != null)
                     {
                         _timer.Tick -= OnTick;

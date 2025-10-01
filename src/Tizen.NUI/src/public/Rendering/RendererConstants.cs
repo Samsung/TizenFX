@@ -560,7 +560,7 @@ namespace Tizen.NUI
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         Replace,
- 
+
         /// <summary>
         /// Increments the current stencil buffer value. Clamps to the maximum representable unsigned value
         /// </summary>

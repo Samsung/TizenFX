@@ -542,7 +542,7 @@ namespace Tizen.NUI.Samples
         {
             string fragmentShaderPrefix = "#extension GL_OES_standard_derivatives : enable\n";
 
-            string fragmentShader = 
+            string fragmentShader =
                 "//@name DaliTableView.frag\n" +
                 "\n" +
                 "//@version 100\n" +

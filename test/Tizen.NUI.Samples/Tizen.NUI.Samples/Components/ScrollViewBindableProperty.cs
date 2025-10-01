@@ -38,7 +38,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.WrapEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         }
-        
+
         internal static object GetInternalWrapEnabledProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
@@ -46,7 +46,7 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.WrapEnabled).Get(out temp);
             return temp;
         }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PanningEnabledProperty = null;
 
@@ -58,7 +58,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.PanningEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         }
-        
+
         internal static object GetInternalPanningEnabledProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
@@ -66,7 +66,7 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.PanningEnabled).Get(out temp);
             return temp;
         }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AxisAutoLockEnabledProperty = null;
 
@@ -78,7 +78,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.AxisAutoLockEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         }
-        
+
         internal static object GetInternalAxisAutoLockEnabledProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
@@ -86,7 +86,7 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.AxisAutoLockEnabled).Get(out temp);
             return temp;
         }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty WheelScrollDistanceStepProperty = null;
 
@@ -98,7 +98,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.WheelScrollDistanceStep, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         }
-        
+
         internal static object GetInternalWheelScrollDistanceStepProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
@@ -106,7 +106,7 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.WheelScrollDistanceStep).Get(temp);
             return temp;
         }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollPositionProperty = null;
 
@@ -118,7 +118,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPosition, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         }
-        
+
         internal static object GetInternalScrollPositionProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
@@ -126,7 +126,7 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPosition).Get(temp);
             return temp;
         }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollPrePositionProperty = null;
 
@@ -138,7 +138,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPrePosition, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         }
-        
+
         internal static object GetInternalScrollPrePositionProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
@@ -146,7 +146,7 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPrePosition).Get(temp);
             return temp;
         }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollPrePositionMaxProperty = null;
 
@@ -158,7 +158,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPrePositionMax, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         }
-        
+
         internal static object GetInternalScrollPrePositionMaxProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
@@ -166,7 +166,7 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPrePositionMax).Get(temp);
             return temp;
         }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty OvershootXProperty = null;
 
@@ -178,7 +178,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.OvershootX, new Tizen.NUI.PropertyValue((float)newValue));
             }
         }
-        
+
         internal static object GetInternalOvershootXProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
@@ -186,7 +186,7 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.OvershootX).Get(out temp);
             return temp;
         }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty OvershootYProperty = null;
 
@@ -198,7 +198,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.OvershootY, new Tizen.NUI.PropertyValue((float)newValue));
             }
         }
-        
+
         internal static object GetInternalOvershootYProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
@@ -206,7 +206,7 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.OvershootY).Get(out temp);
             return temp;
         }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollFinalProperty = null;
 
@@ -218,7 +218,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollFinal, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         }
-        
+
         internal static object GetInternalScrollFinalProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
@@ -226,7 +226,7 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollFinal).Get(temp);
             return temp;
         }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty WrapProperty = null;
 
@@ -238,7 +238,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.WRAP, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         }
-        
+
         internal static object GetInternalWrapProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
@@ -246,7 +246,7 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.WRAP).Get(out temp);
             return temp;
         }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PanningProperty = null;
 
@@ -258,7 +258,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.PANNING, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         }
-        
+
         internal static object GetInternalPanningProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
@@ -266,7 +266,7 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.PANNING).Get(out temp);
             return temp;
         }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollingProperty = null;
 
@@ -278,7 +278,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.SCROLLING, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         }
-        
+
         internal static object GetInternalScrollingProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
@@ -286,7 +286,7 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.SCROLLING).Get(out temp);
             return temp;
         }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollDomainSizeProperty = null;
 
@@ -298,7 +298,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollDomainSize, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         }
-        
+
         internal static object GetInternalScrollDomainSizeProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
@@ -306,7 +306,7 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollDomainSize).Get(temp);
             return temp;
         }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollDomainOffsetProperty = null;
 
@@ -318,7 +318,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollDomainOffset, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         }
-        
+
         internal static object GetInternalScrollDomainOffsetProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
@@ -326,7 +326,7 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollDomainOffset).Get(temp);
             return temp;
         }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollPositionDeltaProperty = null;
 
@@ -338,7 +338,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPositionDelta, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         }
-        
+
         internal static object GetInternalScrollPositionDeltaProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
@@ -346,7 +346,7 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollPositionDelta).Get(temp);
             return temp;
         }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty StartPagePositionProperty = null;
 
@@ -358,7 +358,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.StartPagePosition, new Tizen.NUI.PropertyValue((Vector3)newValue));
             }
         }
-        
+
         internal static object GetInternalStartPagePositionProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;
@@ -366,7 +366,7 @@ namespace Tizen.NUI.Samples
             Tizen.NUI.Object.GetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.StartPagePosition).Get(temp);
             return temp;
         }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollModeProperty = null;
 
@@ -378,7 +378,7 @@ namespace Tizen.NUI.Samples
                 Tizen.NUI.Object.SetProperty((HandleRef)scrollView.SwigCPtr, ScrollView.Property.ScrollMode, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         }
-        
+
         internal static object GetInternalScrollModeProperty(BindableObject bindable)
         {
             var scrollView = (ScrollView)bindable;

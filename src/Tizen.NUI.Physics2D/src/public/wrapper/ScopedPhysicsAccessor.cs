@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;

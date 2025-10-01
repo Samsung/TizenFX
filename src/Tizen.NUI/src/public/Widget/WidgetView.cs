@@ -36,19 +36,19 @@ namespace Tizen.NUI
             if(NUIApplication.IsUsingXaml)
             {
                 PreviewProperty = BindableProperty.Create(nameof(Preview), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: SetInternalPreviewProperty, defaultValueCreator: GetInternalPreviewProperty);
-                
+
                 LoadingTextProperty = BindableProperty.Create(nameof(LoadingText), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: SetInternalLoadingTextProperty, defaultValueCreator: GetInternalLoadingTextProperty);
-                
+
                 WidgetStateFaultedProperty = BindableProperty.Create(nameof(WidgetStateFaulted), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: SetInternalWidgetStateFaultedProperty, defaultValueCreator: GetInternalWidgetStateFaultedProperty);
-                
+
                 PermanentDeleteProperty = BindableProperty.Create(nameof(PermanentDelete), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: SetInternalPermanentDeleteProperty, defaultValueCreator: GetInternalPermanentDeleteProperty);
-                
+
                 RetryTextProperty = BindableProperty.Create(nameof(RetryText), typeof(Tizen.NUI.PropertyMap), typeof(Tizen.NUI.WidgetView), null, propertyChanged: SetInternalRetryTextProperty, defaultValueCreator: GetInternalRetryTextProperty);
-                
+
                 EffectProperty = BindableProperty.Create(nameof(Effect), typeof(Tizen.NUI.PropertyMap), typeof(Tizen.NUI.WidgetView), null, propertyChanged: SetInternalEffectProperty, defaultValueCreator: GetInternalEffectProperty);
-                
+
                 KeepWidgetSizeProperty = BindableProperty.Create(nameof(KeepWidgetSize), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: SetInternalKeepWidgetSizeProperty, defaultValueCreator: GetInternalKeepWidgetSizeProperty);
-                
+
             }
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace Tizen.NUI
                 instance.InternalPreview = (bool)newValue;
             }
         }
-        
+
         internal static object GetInternalPreviewProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
@@ -86,7 +86,7 @@ namespace Tizen.NUI
                 instance.InternalLoadingText = (bool)newValue;
             }
         }
-        
+
         internal static object GetInternalLoadingTextProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
@@ -107,7 +107,7 @@ namespace Tizen.NUI
                 instance.InternalWidgetStateFaulted = (bool)newValue;
             }
         }
-        
+
         internal static object GetInternalWidgetStateFaultedProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
@@ -128,7 +128,7 @@ namespace Tizen.NUI
                 instance.InternalPermanentDelete = (bool)newValue;
             }
         }
-        
+
         internal static object GetInternalPermanentDeleteProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
@@ -149,7 +149,7 @@ namespace Tizen.NUI
                 instance.InternalRetryText = (Tizen.NUI.PropertyMap)newValue;
             }
         }
-        
+
         internal static object GetInternalRetryTextProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
@@ -170,7 +170,7 @@ namespace Tizen.NUI
                 instance.InternalEffect = (Tizen.NUI.PropertyMap)newValue;
             }
         }
-        
+
         internal static object GetInternalEffectProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
@@ -191,7 +191,7 @@ namespace Tizen.NUI
                 instance.InternalKeepWidgetSize = (bool)newValue;
             }
         }
-        
+
         internal static object GetInternalKeepWidgetSizeProperty(BindableObject bindable)
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
@@ -570,7 +570,7 @@ namespace Tizen.NUI
                 NotifyPropertyChanged();
             }
         }
-        
+
         private bool InternalPreview
         {
             get
@@ -619,7 +619,7 @@ namespace Tizen.NUI
                 NotifyPropertyChanged();
             }
         }
-        
+
         private bool InternalLoadingText
         {
             get
@@ -663,12 +663,12 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    InternalWidgetStateFaulted = value; 
+                    InternalWidgetStateFaulted = value;
                 }
                 NotifyPropertyChanged();
             }
         }
-        
+
         private bool InternalWidgetStateFaulted
         {
             get
@@ -717,7 +717,7 @@ namespace Tizen.NUI
                 NotifyPropertyChanged();
             }
         }
-        
+
         private bool InternalPermanentDelete
         {
             get
@@ -766,7 +766,7 @@ namespace Tizen.NUI
                 NotifyPropertyChanged();
             }
         }
-        
+
         private PropertyMap InternalRetryText
         {
             get
@@ -815,7 +815,7 @@ namespace Tizen.NUI
                 NotifyPropertyChanged();
             }
         }
-        
+
         private PropertyMap InternalEffect
         {
             get

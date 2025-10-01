@@ -25,7 +25,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// <since_tizen> 9 </since_tizen>
     public class ColorStop
     {
-        private float offset; //The relative position of the color. 
+        private float offset; //The relative position of the color.
         private Color color; //The color value.
 
         /// <summary>

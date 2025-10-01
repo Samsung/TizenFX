@@ -256,7 +256,7 @@ namespace Tizen.NUI.Samples
                         Disabled = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_radio_off.png",
                         DisabledSelected = CommonResource.GetFHResourcePath() + "9. Controller/controller_btn_radio_on.png",
                     },
-                },            
+                },
             };
             //Create family style of radio button.
             ButtonStyle familyStyle2 = new ButtonStyle

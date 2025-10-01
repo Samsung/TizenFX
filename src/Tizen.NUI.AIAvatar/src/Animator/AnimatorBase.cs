@@ -81,7 +81,7 @@ namespace Tizen.NUI.AIAvatar
                 throw new ArgumentException("Duplicate name: " + name);
             }
 
-            
+
         }
 
         /// <summary>

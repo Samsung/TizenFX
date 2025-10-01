@@ -16,10 +16,10 @@ namespace Tizen.NUI.ParticleSystem.Sample
             base.Construct(list);
             mRadius = new Vector2(list[0] as Vector2);
         }
-        
+
         public override uint Update(ParticleEmitterProxy emitterProxy, uint count)
         {
-            if(mStreamBasePos == 0 || mStreamBaseAngle == 0) // streams must exist 
+            if(mStreamBasePos == 0 || mStreamBaseAngle == 0) // streams must exist
             {
                 return 0u;
             }
@@ -32,19 +32,19 @@ namespace Tizen.NUI.ParticleSystem.Sample
                 {
                     return 0u;
                 }
-                
+
                 UpdateParticle(ref particle);
-                
+
                 count--;
             }
             return 0;
         }
-        
+
         public override void Init()
         {
             // Add local stream of Vector3 type
             mStreamBasePos = Emitter.AddLocalStreamVector3(Vector3.Zero);
-            
+
             // Add local stream of float type
             mStreamBaseAngle = Emitter.AddLocalStreamFloat(0.0f);
         }
@@ -65,7 +65,7 @@ namespace Tizen.NUI.ParticleSystem.Sample
             float initialScale = (float)(mRandom.Next() % 32) + 32;
             p.Scale = new Vector3(initialScale, initialScale, 1.0f);
         }
-        
+
         private static float mAngle = 0;
         private Random mRandom = new Random();
         public uint mStreamBasePos = 0;
@@ -108,7 +108,7 @@ namespace Tizen.NUI.ParticleSystem.Sample
             for (uint i = 0; i < particles.Count; ++i)
             {
                 var p = particles[(int)i];
-                
+
                 float angle = p.GetStreamValue(mStreamBaseAngle);
                 Vector3 basePos = p.GetStreamValue(mStreamBaseAngle);
                 float radians  = (float)((angle * Math.PI)/180.0f);
@@ -124,7 +124,7 @@ namespace Tizen.NUI.ParticleSystem.Sample
                 var color = new Vector4( 1, 1, 1, normalizedTime);
                 p.Color = color;
                 p.Scale = new Vector3(64.0f*(normalizedTime * normalizedTime * normalizedTime * normalizedTime), 64.0f*(normalizedTime * normalizedTime * normalizedTime * normalizedTime), 1.0f);
-                 
+
             }
         }
 
@@ -133,7 +133,7 @@ namespace Tizen.NUI.ParticleSystem.Sample
         private SparkleEffectSource mSource;
 
     }
-    
+
     class ParticleSystemSample : NUIApplication
     {
         static string IMAGE_DIR = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "image/";
@@ -164,25 +164,25 @@ namespace Tizen.NUI.ParticleSystem.Sample
                 InitialParticleCount = 0,
                 RendererBlendingMode = ParticleBlendingMode.Screen
             };
-            
+
             mSource = new ParticleSource<SparkleEffectSource>(new Vector2(50, 50));
             mModifier = new ParticleModifier<SparkleEffectModifier>(mSource.Callback);
-            
+
             mEmitter.SetSource(mSource);
             mEmitter.AddModifier(mModifier);
-            
+
             // Load texture
             mEmitter.TextureResourceUrl = IMAGE_DIR + "/blue-part2.png";
             mEmitter.Start();
         }
-        
+
         protected override void OnCreate()
         {
             // Up call to the Base class first
             base.OnCreate();
             Activate();
         }
-        
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

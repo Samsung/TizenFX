@@ -52,7 +52,7 @@ namespace Tizen.NUI.Samples
             // Init parent of TextView
             parentView[0] = new View();
             parentView[0].Size = new Size(1920, 300);
-            parentView[0].Layout = new LinearLayout() 
+            parentView[0].Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
                 HorizontalAlignment = HorizontalAlignment.Center,
@@ -85,7 +85,7 @@ namespace Tizen.NUI.Samples
             // Init parent of TabView
             parentView[1] = new View();
             parentView[1].Size = new Size(1920, 200);
-            parentView[1].Layout = new LinearLayout() 
+            parentView[1].Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
                 HorizontalAlignment = HorizontalAlignment.Center,
@@ -165,7 +165,7 @@ namespace Tizen.NUI.Samples
             // Init parent of ButtonView
             parentView[2] = new View();
             parentView[2].Size = new Size(1920, 200);
-            parentView[2].Layout = new LinearLayout() 
+            parentView[2].Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
                 HorizontalAlignment = HorizontalAlignment.Center,

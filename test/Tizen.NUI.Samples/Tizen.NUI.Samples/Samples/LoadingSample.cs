@@ -34,7 +34,7 @@ namespace Tizen.NUI.Samples
             {
                 Rows = 4,
                 GridOrientation = GridLayout.Orientation.Horizontal,
-                
+
             };
             root.Add(gridLayout);
 
@@ -102,13 +102,13 @@ namespace Tizen.NUI.Samples
             // To avoid button size same as the grid cell.
             layout[0] = new View() {};
             layout[0].Layout = new LinearLayout()
-            { 
+            {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
                 CellPadding = new Size(10, 50)
             };
-           
+
             button[0] = new Button();
             button[0].Size = new Size(200, 50);
             button[0].Text = "FPS++";

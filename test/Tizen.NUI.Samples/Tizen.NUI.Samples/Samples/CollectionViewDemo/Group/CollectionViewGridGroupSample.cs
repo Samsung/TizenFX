@@ -126,7 +126,7 @@ namespace Tizen.NUI.Samples
                     {
                         galItem.Selected = true;
                         // Tizen.Log.Debug("Selected: {0}", galItem.ViewLabel);
-                        
+
                         if (galItem == insertMenu)
                         {
                             // Insert new item to index 3.
@@ -142,7 +142,7 @@ namespace Tizen.NUI.Samples
                         else if (galItem == moveMenu)
                         {
                             // Move last indexed item to index 3.
-                            albumSource[2].Move(albumSource[2].Count - 1, 0);                   
+                            albumSource[2].Move(albumSource[2].Count - 1, 0);
                         }
                     }
                 }

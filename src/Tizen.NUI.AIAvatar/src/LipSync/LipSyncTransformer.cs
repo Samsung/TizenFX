@@ -99,7 +99,7 @@ namespace Tizen.NUI.AIAvatar
             {
                 animationTime = numVisemes * stepTime;
             }
-                       
+
 
             lipData.SetDuration(animationTime);
 
