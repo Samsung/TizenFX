@@ -208,13 +208,13 @@ namespace Tizen.NUI.Components
             }
             int newCount = newItems.Count;
             int oldCount = oldItems.Count;
-            
+
             if (newCount == oldCount)
             {
                 var startIndex = args.NewStartingIndex > -1 ? args.NewStartingIndex : newCount > 0 ? IndexOf(args.NewItems[0]) : -1;
                 startIndex = AdjustPositionForHeader(startIndex);
 
-                // We are replacing one set of items with a set of equal size; we can do a simple item or range 
+                // We are replacing one set of items with a set of equal size; we can do a simple item or range
                 // notification to the adapter
                 if (newCount == 1)
                 {
@@ -228,7 +228,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            // The original and replacement sets are of unequal size; this means that everything currently in view will 
+            // The original and replacement sets are of unequal size; this means that everything currently in view will
             // have to be updated. So we just have to use NotifyDataSetChanged and let the RecyclerView update everything
             notifier.NotifyDataSetChanged();
         }

@@ -23,8 +23,8 @@ namespace NUIDnDTarget
             dnd = DragAndDrop.Instance;
 
             Window.Instance.KeyEvent += OnKeyEvent;
-            Window.Instance.WindowPosition = new Position(1020, 0); 
-            Window.Instance.WindowSize = new Size(900, 1080); 
+            Window.Instance.WindowPosition = new Position(1020, 0);
+            Window.Instance.WindowSize = new Size(900, 1080);
             Window.Instance.BackgroundColor = Color.White;
 
             List<Window.WindowOrientation> list = new List<Window.WindowOrientation>();

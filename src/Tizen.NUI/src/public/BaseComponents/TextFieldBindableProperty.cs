@@ -388,7 +388,7 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             return textField.GetInternalCursorBlinkInterval();
         }
-        
+
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CursorBlinkDurationProperty = null;

@@ -290,7 +290,7 @@ namespace Tizen.NUI.Samples
                 if (NUIApplication.IsUsingXaml)
                 {
                     SetValue(ScrollPrePositionMaxProperty, value);
-                    
+
                 }
                 else
                 {
@@ -411,7 +411,7 @@ namespace Tizen.NUI.Samples
                 if (NUIApplication.IsUsingXaml)
                 {
                     SetValue(WrapProperty, value);
-                    
+
                 }
                 else
                 {

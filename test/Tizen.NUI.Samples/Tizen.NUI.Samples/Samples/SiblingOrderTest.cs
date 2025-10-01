@@ -78,9 +78,9 @@ namespace Tizen.NUI.Samples
             ch.Name = n;
             v.Add(ch);
             // SiblingOrder can set the order of mine in the sibling list owned by parent.
-            // the lower value of SiblingOrder means it goes lower to the bottom so that it will be covered by higher valued siblings. 
+            // the lower value of SiblingOrder means it goes lower to the bottom so that it will be covered by higher valued siblings.
             // (Vise versa, if SiblingOrder goes to high, the object will be up to the top which can be said as a screen.)
-            //if new added sibling has same value with previously existed sibling, the existed siblings, which have higer value than new sibling, will get +1 and will be rearranged. 
+            //if new added sibling has same value with previously existed sibling, the existed siblings, which have higer value than new sibling, will get +1 and will be rearranged.
             // (this means the new added sibling will be placed right under the old sibling that has same SiblingOrder value)
             //Therefore, SiblingOrder will be automatically set as parent's ChildCount + 1 when child itself is added to parent by "Add()".
             ch.SiblingOrder = so;

@@ -42,7 +42,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
 
         /// <summary>
         /// Sets the linear gradient bounds.
-        /// 
+        ///
         /// The bounds of the linear gradient are defined by two parallel lines crossing the given points firstPoint and secondPoint, respectively.
         /// Both lines are perpendicular to the line linking firstPoint and secondPoint.
         /// </summary>

@@ -159,7 +159,7 @@ namespace Tizen.NUI.Components
         }
 
         // The ICollectionChangedNotifier methods are called by child observable items sources (i.e., the groups)
-        // This class can then translate their local changes into global positions for upstream notification 
+        // This class can then translate their local changes into global positions for upstream notification
         // (e.g., to the actual RecyclerView.Adapter, so that it can notify the RecyclerView and handle animating
         // the changes)
         public void NotifyDataSetChanged()
@@ -365,12 +365,12 @@ namespace Tizen.NUI.Components
             if(newItems == null || oldItems == null)
             {
                 return;
-            }       
+            }
             int groupCount = newItems.Count;
             int oldCount = oldItems.Count;
             if (groupCount != oldCount)
             {
-                // The original and replacement sets are of unequal size; this means that most everything currently in 
+                // The original and replacement sets are of unequal size; this means that most everything currently in
                 // view will have to be updated. So just reload the whole thing.
                 Reload();
                 return;
@@ -384,13 +384,13 @@ namespace Tizen.NUI.Components
 
             if (newItemCount != oldItemCount)
             {
-                // The original and replacement sets are of unequal size; this means that most everything currently in 
+                // The original and replacement sets are of unequal size; this means that most everything currently in
                 // view will have to be updated. So just reload the whole thing.
                 Reload();
                 return;
             }
 
-            // We are replacing one set of items with a set of equal size; we can do a simple item or range notification 
+            // We are replacing one set of items with a set of equal size; we can do a simple item or range notification
             var firstGroupIndex = Math.Min(newStartIndex, oldStartIndex);
             var absolutePosition = GetAbsolutePosition(groups[firstGroupIndex], 0);
 

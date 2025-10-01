@@ -35,7 +35,7 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_SetSpread")]
             public static extern void SetSpread(global::System.Runtime.InteropServices.HandleRef gradient, int index);
-            
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_GetSpread")]
             public static extern int GetSpread(global::System.Runtime.InteropServices.HandleRef gradient);
         }

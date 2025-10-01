@@ -262,7 +262,7 @@ namespace Tizen.NUI
                 // e.WindowSize = new Size2D(val.GetWidth(), val.GetHeight());
                 // val.Dispose();
 
-                // Workaround : windowSize should be valid pointer from dali, 
+                // Workaround : windowSize should be valid pointer from dali,
                 // but currently it is fixed and is not Uint16Pair class.
                 // will be fixed later.
                 e.WindowSize = this.WindowSize;

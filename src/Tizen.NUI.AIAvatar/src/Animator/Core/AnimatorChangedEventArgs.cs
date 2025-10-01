@@ -20,20 +20,20 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.AIAvatar
 {
-    /// <summary>   
+    /// <summary>
     /// This class provides arguments for handling avatar motion change events.
-    /// <member name = "Previous" > The previous state of the avatar's motion.</member>  
-    /// <member name = "Current" > The current state of the avatar's motion.</member>  
-    /// </summary>  
+    /// <member name = "Previous" > The previous state of the avatar's motion.</member>
+    /// <member name = "Current" > The current state of the avatar's motion.</member>
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class AnimatorChangedEventArgs : EventArgs
     {
-        /// <summary>  
-        /// Initializes a new instance of the AvatarMotionChangedEventArgs class with the specified previous and current states.  
-        /// </summary>  
-        /// <param name="previous">The previous state of the avatar's motion.</param>  
-        /// <param name="current">The current state of the avatar's motion.</param>  
-        /// <param name="message">The current Animation of the Animation name.</param>  
+        /// <summary>
+        /// Initializes a new instance of the AvatarMotionChangedEventArgs class with the specified previous and current states.
+        /// </summary>
+        /// <param name="previous">The previous state of the avatar's motion.</param>
+        /// <param name="current">The current state of the avatar's motion.</param>
+        /// <param name="message">The current Animation of the Animation name.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatorChangedEventArgs(AnimatorState previous, AnimatorState current, string message = "")
         {

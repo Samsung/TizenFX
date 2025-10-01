@@ -23,8 +23,8 @@ namespace Tizen.NUI.AIAvatar
 {
 
     /// <summary>
-    /// The Avatar class contains an inner AvatarProperties class. 
-    /// This class manages AvatarProperty information using the AvatarPropertyMapper class. 
+    /// The Avatar class contains an inner AvatarProperties class.
+    /// This class manages AvatarProperty information using the AvatarPropertyMapper class.
     /// By default, it includes jointMapper, blendShapeMapper, and nodeMapper, which automatically generate Properties based on model information.
     /// This structure enables users to work with Avatar properties in a more convenient way.
     /// </summary>
@@ -55,10 +55,10 @@ namespace Tizen.NUI.AIAvatar
             }
         }
 
-        /// <summary>  
-        /// The BlendShapeMapper property gets or sets the AvatarPropertyMapper responsible for managing blend shape information in the Avatar model.  
-        /// When setting this property, any changes made will trigger the AvatarPropertiesChanged event if it has been subscribed to.  
-        /// </summary>  
+        /// <summary>
+        /// The BlendShapeMapper property gets or sets the AvatarPropertyMapper responsible for managing blend shape information in the Avatar model.
+        /// When setting this property, any changes made will trigger the AvatarPropertiesChanged event if it has been subscribed to.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AvatarPropertyMapper BlendShapeMapper
         {
@@ -73,10 +73,10 @@ namespace Tizen.NUI.AIAvatar
             }
         }
 
-        /// <summary>  
-        /// The NodeMapper property gets or sets the AvatarPropertyMapper responsible for managing node information in the Avatar model.  
-        /// When setting this property, any changes made will trigger the AvatarPropertiesChanged event if it has been subscribed to.  
-        /// </summary>  
+        /// <summary>
+        /// The NodeMapper property gets or sets the AvatarPropertyMapper responsible for managing node information in the Avatar model.
+        /// When setting this property, any changes made will trigger the AvatarPropertiesChanged event if it has been subscribed to.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AvatarPropertyMapper NodeMapper
         {
@@ -106,12 +106,12 @@ namespace Tizen.NUI.AIAvatar
             NodeMapper = new AvatarPropertyMapper(nodeMapper);
         }
 
-        /// <summary>  
-        /// This method generates a MotionIndex to be used in animations based on the NodeType and BlendShapeType using the model information of an Avatar.  
-        /// </summary>  
-        /// <param name="nodeType">Node type</param>  
-        /// <param name="blendShapeType">Blend shape type</param>  
-        /// <returns>The generated MotionIndex</returns>  
+        /// <summary>
+        /// This method generates a MotionIndex to be used in animations based on the NodeType and BlendShapeType using the model information of an Avatar.
+        /// </summary>
+        /// <param name="nodeType">Node type</param>
+        /// <param name="blendShapeType">Blend shape type</param>
+        /// <returns>The generated MotionIndex</returns>
         public MotionIndex CreateBlendShapeMotionIndex(NodeType nodeType, BlendShapeType blendShapeType)
         {
             var motionIndex = new AvatarBlendShapeIndex(NodeMapper, nodeType, BlendShapeMapper, blendShapeType);

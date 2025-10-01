@@ -1,4 +1,4 @@
-/* 
+/*
 * Copyright(c) 2021 Samsung Electronics Co., Ltd.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -394,19 +394,19 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
             }
             else
             {
-                commands = pathCommands.Commands.ToArray();        
+                commands = pathCommands.Commands.ToArray();
             }
 
-            float[] points = null;            
+            float[] points = null;
             if (pathCommands.Points is float[] pointArray)
             {
                 points = pointArray;
             }
             else
             {
-                points = pathCommands.Points.ToArray();    
+                points = pathCommands.Points.ToArray();
             }
-            
+
             Interop.Shape.AddPath(BaseHandle.getCPtr(this), commands, (uint)commands.Length, points, (uint)points.Length);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

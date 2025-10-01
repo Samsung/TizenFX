@@ -49,7 +49,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabelStyle ItemTextLabel { get; set; } = new TextLabelStyle();
-        
+
         /// <summary>
         /// Gets or sets the PickerStyle Item list start offset value.
         /// </summary>

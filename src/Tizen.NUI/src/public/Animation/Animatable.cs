@@ -21,9 +21,9 @@ namespace Tizen.NUI
 {
 
     /// <summary>
-    /// The class that represents an object capable of animation is the parent class of the minimum unit of visual, View. 
-    /// When a property is an animatable property, it means that its value can change continuously as the target of an animation. 
-    /// In this case, if a property notification callback is set, you can receive the callback according to the changing values. 
+    /// The class that represents an object capable of animation is the parent class of the minimum unit of visual, View.
+    /// When a property is an animatable property, it means that its value can change continuously as the target of an animation.
+    /// In this case, if a property notification callback is set, you can receive the callback according to the changing values.
     /// Additionally, users can also add their own properties.
     /// </summary>
     /// <example><code>
