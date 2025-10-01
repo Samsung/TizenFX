@@ -245,14 +245,12 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public static IUIGadget Add(string resourceType, string className, bool useDefaultContext)
         {
-            Log.Info("BEGIN");
             var gadget = CreateInstance(resourceType, className, useDefaultContext);
             if (gadget != null)
             {
                 PreCreate(gadget);
                 Create(gadget);
             }
-            Log.Info("END");
             return gadget;
         }
 

@@ -241,8 +241,6 @@ namespace Tizen.NUI
                 throw new InvalidOperationException("Failed to create gadget. ResourceType=" + resourceType + ", ClassName=" + className);
             }
 
-            var gadget = (NUIGadget)baseGadget;
-
             if (useDefaultContext)
             {
                 if (info.Assembly == null)
@@ -258,10 +256,12 @@ namespace Tizen.NUI
                 }
             }
 
+            var gadget = baseGadget as NUIGadget;
             gadget.NUIGadgetInfo = info;
             gadget.ClassName = className;
             gadget.NUIGadgetResourceManager = new NUIGadgetResourceManager(info);
             gadget.LifecycleChanged += OnNUIGadgetLifecycleChanged;
+            Log.Info("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
             return gadget;
         }
 
@@ -279,7 +279,7 @@ namespace Tizen.NUI
             }
 
 
-            Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
+            Log.Info("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
             if (gadget.State == NUIGadgetLifecycleState.Initialized)
             {
                 UIGadgetManager.PreCreate(gadget);
@@ -311,6 +311,7 @@ namespace Tizen.NUI
                 return;
             }
 
+            Log.Info("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
             UIGadgetManager.Create(gadget);
             _gadgets.TryAdd(gadget, 0);
         }
@@ -333,6 +334,7 @@ namespace Tizen.NUI
                 return;
             }
 
+            Log.Info("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
             _gadgets.TryRemove(gadget, out _);
             UIGadgetManager.Remove(gadget);
         }
@@ -375,6 +377,7 @@ namespace Tizen.NUI
                 return;
             }
 
+            Log.Info("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
             UIGadgetManager.Resume(gadget);
         }
 
@@ -399,6 +402,7 @@ namespace Tizen.NUI
                 return;
             }
 
+            Log.Info("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
             UIGadgetManager.Pause(gadget);
         }
 

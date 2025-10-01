@@ -76,19 +76,6 @@ namespace Tizen.NUI
             Service.LifecycleStateChanged += OnOneShotServiceLifecycleChanged;
         }
 
-        event EventHandler<UIGadgetLifecycleChangedEventArgs> IUIGadget.LifecycleChanged
-        {
-            add
-            {
-                throw new NotImplementedException();
-            }
-
-            remove
-            {
-                throw new NotImplementedException();
-            }
-        }
-
         internal event EventHandler<NUIGadgetLifecycleChangedEventArgs> LifecycleChanged;
 
         /// <summary>
@@ -259,10 +246,19 @@ namespace Tizen.NUI
 
         private void NotifyLifecycleChanged()
         {
-            var args = new NUIGadgetLifecycleChangedEventArgs();
-            args.State = State;
-            args.Gadget = this;
-            LifecycleChanged?.Invoke(null, args);
+            var args = new NUIGadgetLifecycleChangedEventArgs
+            {
+                State = State,
+                Gadget = this,
+            };
+            LifecycleChanged?.Invoke(this, args);
+
+            var e = new UIGadgetLifecycleChangedEventArgs
+            {
+                State = (UIGadgetLifecycleState)State,
+                UIGadget = this,
+            };
+            s_LifecycleChanged?.Invoke(this, e);
         }
 
         private static string GenerateOneShotServiceName()
@@ -430,6 +426,19 @@ namespace Tizen.NUI
             Destroy();
         }
 
+        private event EventHandler<UIGadgetLifecycleChangedEventArgs> s_LifecycleChanged;
+
+        event EventHandler<UIGadgetLifecycleChangedEventArgs> IUIGadget.LifecycleChanged
+        {
+            add
+            {
+                s_LifecycleChanged += value;
+            }
+            remove
+            {
+                s_LifecycleChanged -= value;
+            }
+        }
         object IUIGadget.MainView { get => MainView; set => MainView = (View)value; }
         string IUIGadget.ClassName { get => ClassName; set => ClassName = value; }
         UIGadgetInfo IUIGadget.UIGadgetInfo { get ; set; }
