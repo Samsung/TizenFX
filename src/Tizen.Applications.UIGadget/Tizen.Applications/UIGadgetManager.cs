@@ -35,7 +35,7 @@ namespace Tizen.Applications
     public static class UIGadgetManager
     {
         private static readonly ConcurrentDictionary<string, UIGadgetInfo> _gadgetInfos = new ConcurrentDictionary<string, UIGadgetInfo>(StringComparer.Ordinal);
-        private static readonly ConcurrentDictionary<UIGadget, byte> _gadgets = new ConcurrentDictionary<UIGadget, byte>();
+        private static readonly ConcurrentDictionary<IUIGadget, byte> _gadgets = new ConcurrentDictionary<IUIGadget, byte>();
 
         static UIGadgetManager()
         {
@@ -69,11 +69,11 @@ namespace Tizen.Applications
 
             var app = (CoreApplication)CoreApplication.Current;
             app.AppControlReceived += (s, e) => HandleAppControl(e);
-            app.LowMemory += (s, e) => HandleEvents(UIGadgetEventType.LowMemory, e);
-            app.LowBattery += (s, e) => HandleEvents(UIGadgetEventType.LowBattery, e);
-            app.LocaleChanged += (s, e) => HandleEvents(UIGadgetEventType.LocaleChanged, e);
-            app.RegionFormatChanged += (s, e) => HandleEvents(UIGadgetEventType.RegionFormatChanged, e);
-            app.DeviceOrientationChanged += (s, e) => HandleEvents(UIGadgetEventType.DeviceOrientationChanged, e);
+            app.LowMemory += (s, e) => HandleLowMemoryEvent(e);
+            app.LowBattery += (s, e) => HandleLowBatteryEvent(e);
+            app.LocaleChanged += (s, e) => HandleLocaleChangedEvent(e);
+            app.RegionFormatChanged += (s, e) => HandleRegionFormatChangedEvent(e);
+            app.DeviceOrientationChanged += (s, e) => HandleDeviceOrientationChangedEvent(e);
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace Tizen.Applications
         /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static UIGadget Add(string resourceType, string className) => Add(resourceType, className, true);
+        public static IUIGadget Add(string resourceType, string className) => Add(resourceType, className, true);
 
         /// <summary>
         /// Adds a UIGadget to the UIGadgetManager.
@@ -243,7 +243,7 @@ namespace Tizen.Applications
         /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static UIGadget Add(string resourceType, string className, bool useDefaultContext)
+        public static IUIGadget Add(string resourceType, string className, bool useDefaultContext)
         {
             Log.Info("BEGIN");
             var gadget = CreateInstance(resourceType, className, useDefaultContext);
@@ -261,7 +261,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <returns>An enumerable list containing all the active UIGadgets.</returns>
         /// <since_tizen> 13 </since_tizen>
-        public static IEnumerable<UIGadget> GetUIGadgets() => _gadgets.Keys;
+        public static IEnumerable<IUIGadget> GetUIGadgets() => _gadgets.Keys;
 
         /// <summary>
         /// Retrieves information about available UIGadgets.
@@ -289,7 +289,7 @@ namespace Tizen.Applications
         /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static UIGadget CreateInstance(string resourceType, string className, bool useDefaultContext)
+        public static IUIGadget CreateInstance(string resourceType, string className, bool useDefaultContext)
         {
             if (string.IsNullOrWhiteSpace(resourceType) || string.IsNullOrWhiteSpace(className))
             {
@@ -299,18 +299,7 @@ namespace Tizen.Applications
             UIGadgetInfo info = Find(resourceType);
             LoadInternal(info, useDefaultContext);
 
-            UIGadget gadget = null;
-            if (UIGadgetFactory != null)
-            {
-                Log.Info("Use UIGadgetFactory");
-                gadget = UIGadgetFactory.CreateInstance(info, className, useDefaultContext);
-            }
-            else
-            {
-                Log.Info("Default Creation");
-                gadget = useDefaultContext ? info.Assembly.CreateInstance(className, true) as UIGadget : info.UIGadgetAssembly.CreateInstance(className) as UIGadget;
-            }
-
+            IUIGadget gadget = useDefaultContext ? info.Assembly.CreateInstance(className, true) as IUIGadget : info.UIGadgetAssembly.CreateInstance(className) as IUIGadget;
             if (gadget == null)
             {
                 throw new InvalidOperationException("Failed to create instance. className: " + className);
@@ -329,7 +318,7 @@ namespace Tizen.Applications
         /// <param name="gadget">The UIGadget object to perform the pre-creation process.</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'UIGadget' argument is null.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static void PreCreate(UIGadget gadget)
+        public static void PreCreate(IUIGadget gadget)
         {
             if (gadget == null)
             {
@@ -347,7 +336,7 @@ namespace Tizen.Applications
         /// <exception cref="ArgumentNullException">Thrown if the 'UIGadget' argument is null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static void Create(UIGadget gadget)
+        public static void Create(IUIGadget gadget)
         {
             if (gadget == null)
             {
@@ -380,7 +369,7 @@ namespace Tizen.Applications
         /// Therefore, it is crucial to handle the removal process carefully to avoid any potential issues.
         /// </remarks>
         /// <since_tizen> 13 </since_tizen>
-        public static void Remove(UIGadget gadget)
+        public static void Remove(IUIGadget gadget)
         {
             if (gadget == null || !_gadgets.ContainsKey(gadget) || gadget.State == UIGadgetLifecycleState.Destroyed)
             {
@@ -421,7 +410,7 @@ namespace Tizen.Applications
         /// <param name="gadget">The UIGadget object whose execution needs to be resumed.</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'UIGadget' argument is null.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static void Resume(UIGadget gadget)
+        public static void Resume(IUIGadget gadget)
         {
             if (gadget == null)
             {
@@ -449,7 +438,7 @@ namespace Tizen.Applications
         /// <param name="gadget">The UIGadget object whose execution needs to be paused.</param>
         /// <exception cref="ArgumentNullException">Thrown if the argument 'UIGadget' is null.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static void Pause(UIGadget gadget)
+        public static void Pause(IUIGadget gadget)
         {
             if (gadget == null)
             {
@@ -476,7 +465,7 @@ namespace Tizen.Applications
         /// <exception cref="ArgumentException">Thrown if any of the arguments are invalid or missing.</exception>
         /// <exception cref="ArgumentNullException">Thrown if either 'UIGadget' or 'appControl' is null.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static void SendAppControl(UIGadget gadget, AppControl appControl)
+        public static void SendAppControl(IUIGadget gadget, AppControl appControl)
         {
             if (gadget == null)
             {
@@ -517,11 +506,43 @@ namespace Tizen.Applications
             return false;
         }
 
-        internal static void HandleEvents(UIGadgetEventType eventType, EventArgs args)
+        private static void HandleLocaleChangedEvent(LocaleChangedEventArgs args)
         {
-            foreach (UIGadget gadget in _gadgets.Keys)
+            foreach (var gadget in _gadgets.Keys)
             {
-                gadget.HandleEvents(eventType, args);
+                gadget.HandleLocaleChangedEvent(args);
+            }
+        }
+
+        private static void HandleLowBatteryEvent(LowBatteryEventArgs args)
+        {
+            foreach (var gadget in _gadgets.Keys)
+            {
+                gadget.HandleLowBatteryEvent(args);
+            }
+        }
+
+        private static void HandleLowMemoryEvent(LowMemoryEventArgs args)
+        {
+            foreach (var gadget in _gadgets.Keys)
+            {
+                gadget.HandleLowMemoryEvent(args);
+            }
+        }
+
+        private static void HandleRegionFormatChangedEvent(RegionFormatChangedEventArgs args)
+        {
+            foreach (var gadget in _gadgets.Keys)
+            {
+                gadget.HandleRegionFormatChangedEvent(args);
+            }
+        }
+
+        private static void HandleDeviceOrientationChangedEvent(DeviceOrientationEventArgs args)
+        {
+            foreach (var gadget in _gadgets.Keys)
+            {
+                gadget.HandleDeviceOrientationChangedEvent(args);
             }
         }
 
@@ -611,14 +632,5 @@ namespace Tizen.Applications
             }
             Log.Info("# of Gadget after refresh (" + _gadgetInfos.Count + ")");
         }
-
-        /// <summary>
-        /// Property to store and retrieve the instance of IUIGadgetFactory.
-        /// </summary>
-        /// <details>
-        /// When this property is set, The CreateInstance() method uses this property to create a gadget instance.
-        /// </details>
-        /// <since_tizen> 13 </since_tizen>
-        public static IUIGadgetFactory UIGadgetFactory { get; set; }
     }
 }

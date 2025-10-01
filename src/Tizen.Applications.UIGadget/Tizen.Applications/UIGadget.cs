@@ -29,7 +29,7 @@ namespace Tizen.Applications
     /// </remarks>
     /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class UIGadget
+    public abstract class UIGadget : IUIGadget
     {
         private static int s_DataLoaderNameSequence = 0;
 
@@ -74,7 +74,7 @@ namespace Tizen.Applications
             DataLoader.LifecycleStateChanged += OnDataLoaderLifecycleChanged;
         }
 
-        internal event EventHandler<UIGadgetLifecycleChangedEventArgs> LifecycleChanged;
+        private event EventHandler<UIGadgetLifecycleChangedEventArgs> LifecycleChanged;
 
         /// <summary>
         /// Occurs when the lifecycle of the OneShotService is changed.
@@ -180,7 +180,7 @@ namespace Tizen.Applications
             set; get;
         }
 
-        internal void PreCreate()
+        private void PreCreate()
         {
             if (State == UIGadgetLifecycleState.Initialized)
             {
@@ -193,7 +193,7 @@ namespace Tizen.Applications
             }
         }
 
-        internal bool Create()
+        private bool Create()
         {
             if (State == UIGadgetLifecycleState.PreCreated)
             {
@@ -207,7 +207,7 @@ namespace Tizen.Applications
             return true;
         }
 
-        internal void Resume()
+        private void Resume()
         {
             if (State == UIGadgetLifecycleState.Created || State == UIGadgetLifecycleState.Paused)
             {
@@ -215,7 +215,7 @@ namespace Tizen.Applications
             }
         }
 
-        internal void Pause()
+        private void Pause()
         {
             if (State == UIGadgetLifecycleState.Resumed)
             {
@@ -223,38 +223,11 @@ namespace Tizen.Applications
             }
         }
 
-        internal void Destroy()
+        private void Destroy()
         {
             if (State == UIGadgetLifecycleState.PreCreated || State == UIGadgetLifecycleState.Created || State == UIGadgetLifecycleState.Paused)
             {
                 OnDestroy();
-            }
-        }
-
-        internal void HandleAppControlReceivedEvent(AppControlReceivedEventArgs args) => OnAppControlReceived(args);
-
-        internal void HandleEvents(UIGadgetEventType eventType, EventArgs args)
-        {
-            switch (eventType)
-            {
-                case UIGadgetEventType.LocaleChanged:
-                    OnLocaleChanged((LocaleChangedEventArgs)args);
-                    break;
-                case UIGadgetEventType.LowMemory:
-                    OnLowMemory((LowMemoryEventArgs)args);
-                    break;
-                case UIGadgetEventType.LowBattery:
-                    OnLowBattery((LowBatteryEventArgs)args);
-                    break;
-                case UIGadgetEventType.RegionFormatChanged:
-                    OnRegionFormatChanged((RegionFormatChangedEventArgs)args);
-                    break;
-                case UIGadgetEventType.DeviceOrientationChanged:
-                    OnDeviceOrientationChanged((DeviceOrientationEventArgs)args);
-                    break;
-                default:
-                    Log.Warn("Unknown Event Type: " + eventType);
-                    break;
             }
         }
 
@@ -405,7 +378,7 @@ namespace Tizen.Applications
         /// <param name="message">The message</param>
         /// <exception cref="ArgumentNullException">Thrown if either 'message' is null.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public virtual void SendMessage(Bundle message)
+        public void SendMessage(Bundle message)
         {
             if (message == null)
             {
@@ -419,10 +392,55 @@ namespace Tizen.Applications
         /// Finishes the UIGadget.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public virtual void Finish()
+        public void Finish()
         {
             Pause();
             Destroy();
         }
+
+        event EventHandler<UIGadgetLifecycleChangedEventArgs> IUIGadget.LifecycleChanged
+        {
+            add
+            {
+                LifecycleChanged += value;
+            }
+
+            remove
+            {
+                LifecycleChanged -= value;
+            }
+        }
+
+        object IUIGadget.MainView { get => MainView; set => MainView = value; }
+        string IUIGadget.ClassName { get => ClassName; set => ClassName = value; }
+        UIGadgetInfo IUIGadget.UIGadgetInfo { get => UIGadgetInfo; set => UIGadgetInfo = value; }
+        UIGadgetResourceManager IUIGadget.UIGadgetResourceManager { get => UIGadgetResourceManager; set => UIGadgetResourceManager = value; }
+        UIGadgetLifecycleState IUIGadget.State { get => State; set => State = value; }
+
+        void IUIGadget.HandleAppControlReceivedEvent(AppControlReceivedEventArgs args) => OnAppControlReceived(args);
+
+        void IUIGadget.HandleLocaleChangedEvent(LocaleChangedEventArgs args) => OnLocaleChanged(args);
+
+        void IUIGadget.HandleRegionFormatChangedEvent(RegionFormatChangedEventArgs args) => OnRegionFormatChanged(args);
+
+        void IUIGadget.HandleLowMemoryEvent(LowMemoryEventArgs args) => OnLowMemory(args);
+
+        void IUIGadget.HandleLowBatteryEvent(LowBatteryEventArgs args) => OnLowBattery(args);
+
+        void IUIGadget.HandleDeviceOrientationChangedEvent(DeviceOrientationEventArgs args) => OnDeviceOrientationChanged(args);
+
+        void IUIGadget.PreCreate() => PreCreate();
+
+        bool IUIGadget.Create() => Create();
+
+        void IUIGadget.Resume() => Resume();
+
+        void IUIGadget.Pause() => Pause();
+
+        void IUIGadget.Destroy() => Destroy();
+
+        void IUIGadget.Finish() => Finish();
+
+        void IUIGadget.SendMessage(Bundle message) => SendMessage(message);
     }
 }

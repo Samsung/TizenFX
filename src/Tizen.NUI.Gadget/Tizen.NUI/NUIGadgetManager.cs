@@ -25,6 +25,7 @@ using Tizen.Applications;
 using System.ComponentModel;
 
 using SystemIO = System.IO;
+using System.Security.AccessControl;
 
 namespace Tizen.NUI
 {
@@ -40,7 +41,6 @@ namespace Tizen.NUI
 
         static NUIGadgetManager()
         {
-            UIGadgetManager.UIGadgetFactory = new NUIGadgetFactory();
             LoadGadgetInfos();
         }
 
@@ -229,13 +229,40 @@ namespace Tizen.NUI
                 throw new ArgumentException("Invalid argument");
             }
 
-            NUIGadget.UIGadgetWrapper gadgetWrapper = UIGadgetManager.CreateInstance(resourceType, className, useDefaultContext) as NUIGadget.UIGadgetWrapper;
-            if (gadgetWrapper == null)
+            NUIGadgetInfo info = Find(resourceType);
+            if (info == null)
+            {
+                throw new ArgumentException("Failed to find ResourceType=" + resourceType);
+            }
+
+            var baseGadget = UIGadgetManager.CreateInstance(resourceType, className, useDefaultContext);
+            if (baseGadget == null)
             {
                 throw new InvalidOperationException("Failed to create gadget. ResourceType=" + resourceType + ", ClassName=" + className);
             }
 
-            return gadgetWrapper.OuterGadget;
+            var gadget = (NUIGadget)baseGadget;
+
+            if (useDefaultContext)
+            {
+                if (info.Assembly == null)
+                {
+                    info.Assembly = baseGadget.UIGadgetInfo.Assembly;
+                }
+            }
+            else
+            {
+                if (info.NUIGadgetAssembly == null)
+                {
+                    info.NUIGadgetAssembly = new NUIGadgetAssembly(baseGadget.UIGadgetInfo.UIGadgetAssembly);
+                }
+            }
+
+            gadget.NUIGadgetInfo = info;
+            gadget.ClassName = className;
+            gadget.NUIGadgetResourceManager = new NUIGadgetResourceManager(info);
+            gadget.LifecycleChanged += OnNUIGadgetLifecycleChanged;
+            return gadget;
         }
 
         /// <summary>
@@ -255,7 +282,7 @@ namespace Tizen.NUI
             Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
             if (gadget.State == NUIGadgetLifecycleState.Initialized)
             {
-                UIGadgetManager.PreCreate(gadget.WrapperUIGadget);
+                UIGadgetManager.PreCreate(gadget);
                 if (gadget.Service != null)
                 {
                     Log.Warn("Service.Name=" + gadget.Service.Name);
@@ -284,8 +311,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            UIGadgetManager.Create(gadget.WrapperUIGadget);
-            gadget.MainView = gadget.WrapperUIGadget.MainView as Tizen.NUI.BaseComponents.View;
+            UIGadgetManager.Create(gadget);
             _gadgets.TryAdd(gadget, 0);
         }
 
@@ -308,7 +334,7 @@ namespace Tizen.NUI
             }
 
             _gadgets.TryRemove(gadget, out _);
-            UIGadgetManager.Remove(gadget.WrapperUIGadget);
+            UIGadgetManager.Remove(gadget);
         }
 
         /// <summary>
@@ -349,7 +375,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            UIGadgetManager.Resume(gadget.WrapperUIGadget);
+            UIGadgetManager.Resume(gadget);
         }
 
         /// <summary>
@@ -373,7 +399,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            UIGadgetManager.Pause(gadget.WrapperUIGadget);
+            UIGadgetManager.Pause(gadget);
         }
 
         /// <summary>
@@ -401,7 +427,7 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(appControl));
             }
 
-            UIGadgetManager.SendAppControl(gadget.WrapperUIGadget, appControl);
+            UIGadgetManager.SendAppControl(gadget, appControl);
         }
 
         /// <summary>
@@ -444,43 +470,6 @@ namespace Tizen.NUI
             _gadgetInfos.Clear();
             LoadGadgetInfos();
             Log.Info("# of Gadget after refresh (" + _gadgetInfos.Count + ")");
-        }
-
-        internal class NUIGadgetFactory : IUIGadgetFactory
-        {
-            UIGadget IUIGadgetFactory.CreateInstance(UIGadgetInfo info, string className, bool useDefaultContext)
-            {
-                var gadgetInfo = Find(info.ResourceType);
-                if (gadgetInfo == null)
-                {
-                    Log.Error("Failed to find NUIGadgetInfo. ResourceType=" + info.ResourceType);
-                    return null;
-                }
-
-                NUIGadget gadget = null;
-                if (useDefaultContext)
-                {
-                    gadgetInfo.Assembly = info.Assembly;
-                    gadget = gadgetInfo.Assembly.CreateInstance(className, true) as NUIGadget;
-                }
-                else
-                {
-                    gadgetInfo.NUIGadgetAssembly = new NUIGadgetAssembly(info.UIGadgetAssembly);
-                    gadget = gadgetInfo.NUIGadgetAssembly.CreateInstance(className);
-                }
-
-                if (gadget == null)
-                {
-                    Log.Info("Failed to create gadget instance. class name=" + className);
-                    return null;
-                }
-                
-                gadget.NUIGadgetInfo = gadgetInfo;
-                gadget.ClassName = className;
-                gadget.NUIGadgetResourceManager = new NUIGadgetResourceManager(gadget.NUIGadgetInfo);
-                gadget.LifecycleChanged += OnNUIGadgetLifecycleChanged;
-                return gadget.WrapperUIGadget;
-            }
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Tizen.NUI
     /// </remarks>
     /// <since_tizen> 10 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class NUIGadget
+    public abstract class NUIGadget : IUIGadget
     {
         private static int s_ServiceNameSequence = 0;
 
@@ -48,7 +48,6 @@ namespace Tizen.NUI
         {
             Type = type;
             State = NUIGadgetLifecycleState.Initialized;
-            WrapperUIGadget = new UIGadgetWrapper(this, (UIGadgetType)type);
             Log.Info("Type=" + Type + ", State=" + State);
         }
 
@@ -77,8 +76,18 @@ namespace Tizen.NUI
             Service.LifecycleStateChanged += OnOneShotServiceLifecycleChanged;
         }
 
+        event EventHandler<UIGadgetLifecycleChangedEventArgs> IUIGadget.LifecycleChanged
+        {
+            add
+            {
+                throw new NotImplementedException();
+            }
 
-        internal UIGadget WrapperUIGadget;
+            remove
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         internal event EventHandler<NUIGadgetLifecycleChangedEventArgs> LifecycleChanged;
 
@@ -187,33 +196,54 @@ namespace Tizen.NUI
             set; get;
         }
 
-        internal void HandleAppControlReceivedEvent(AppControlReceivedEventArgs args)
+        private void PreCreate()
         {
-            OnAppControlReceived(args);
+            if (State == NUIGadgetLifecycleState.Initialized)
+            {
+                OnPreCreate();
+                if (Service != null)
+                {
+                    Log.Info($"PreCreate(), Service.Name = {Service.Name}");
+                    Service.Run();
+                }
+            }
         }
 
-        internal void HandleEvents(NUIGadgetEventType eventType, EventArgs args)
+        private bool Create()
         {
-            switch (eventType)
+            if (State == NUIGadgetLifecycleState.PreCreated)
             {
-                case NUIGadgetEventType.LocaleChanged:
-                    OnLocaleChanged((LocaleChangedEventArgs)args);
-                    break;
-                case NUIGadgetEventType.LowMemory:
-                    OnLowMemory((LowMemoryEventArgs)args);
-                    break;
-                case NUIGadgetEventType.LowBattery:
-                    OnLowBattery((LowBatteryEventArgs)args);
-                    break;
-                case NUIGadgetEventType.RegionFormatChanged:
-                    OnRegionFormatChanged((RegionFormatChangedEventArgs)args);
-                    break;
-                case NUIGadgetEventType.DeviceOrientationChanged:
-                    OnDeviceOrientationChanged((DeviceOrientationEventArgs)args);
-                    break;
-                default:
-                    Log.Warn("Unknown Event Type: " + eventType);
-                    break;
+                MainView = OnCreate();
+                if (MainView == null)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private void Resume()
+        {
+            if (State == NUIGadgetLifecycleState.Created || State == NUIGadgetLifecycleState.Paused)
+            {
+                OnResume();
+            }
+        }
+
+        private void Pause()
+        {
+            if (State == NUIGadgetLifecycleState.Resumed)
+            {
+                OnPause();
+            }
+        }
+
+        private void Destroy()
+        {
+            if (State == NUIGadgetLifecycleState.PreCreated || State == NUIGadgetLifecycleState.Created || State == NUIGadgetLifecycleState.Paused)
+            {
+                OnDestroy();
             }
         }
 
@@ -396,89 +426,40 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         public void Finish()
         {
-            WrapperUIGadget.Finish();
+            Pause();
+            Destroy();
         }
 
-        internal class UIGadgetWrapper : UIGadget
-        {
-            internal NUIGadget OuterGadget { get; private set; }
+        object IUIGadget.MainView { get => MainView; set => MainView = (View)value; }
+        string IUIGadget.ClassName { get => ClassName; set => ClassName = value; }
+        UIGadgetInfo IUIGadget.UIGadgetInfo { get ; set; }
+        UIGadgetResourceManager IUIGadget.UIGadgetResourceManager { get; set; }
+        UIGadgetLifecycleState IUIGadget.State { get => (UIGadgetLifecycleState)State; set => State = (NUIGadgetLifecycleState)value; }
 
-            public UIGadgetWrapper(NUIGadget outerGadget, UIGadgetType type) : base(type)
-            {
-                OuterGadget = outerGadget;
-            }
+        void IUIGadget.HandleAppControlReceivedEvent(AppControlReceivedEventArgs args) => OnAppControlReceived(args);
 
-            protected override void OnPreCreate()
-            {
-                base.OnPreCreate();
-                OuterGadget.OnPreCreate();
-            }
+        void IUIGadget.HandleLocaleChangedEvent(LocaleChangedEventArgs args) => OnLocaleChanged(args);
 
-            protected override object OnCreate()
-            {
-                base.OnCreate();
-                return OuterGadget.OnCreate();
-            }
+        void IUIGadget.HandleRegionFormatChangedEvent(RegionFormatChangedEventArgs args) => OnRegionFormatChanged(args);
 
-            protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
-            {
-                base.OnAppControlReceived(e);
-                OuterGadget.OnAppControlReceived(e);
-            }
+        void IUIGadget.HandleLowMemoryEvent(LowMemoryEventArgs args) => OnLowMemory(args);
 
-            protected override void OnDestroy()
-            {
-                base.OnDestroy();
-                OuterGadget.OnDestroy();
-            }
+        void IUIGadget.HandleLowBatteryEvent(LowBatteryEventArgs args) => OnLowBattery(args);
 
-            protected override void OnPause()
-            {
-                base.OnPause();
-                OuterGadget.OnPause();
-            }
+        void IUIGadget.HandleDeviceOrientationChangedEvent(DeviceOrientationEventArgs args) => OnDeviceOrientationChanged(args);
 
-            protected override void OnResume()
-            {
-                base.OnResume();
-                OuterGadget.OnResume();
-            }
+        void IUIGadget.PreCreate() => PreCreate();
 
-            protected override void OnLocaleChanged(LocaleChangedEventArgs e)
-            {
-                base.OnLocaleChanged(e);
-                OuterGadget.OnLocaleChanged(e);
-            }
+        bool IUIGadget.Create() => Create();
 
-            protected override void OnLowBattery(LowBatteryEventArgs e)
-            {
-                base.OnLowBattery(e);
-                OuterGadget.OnLowBattery(e);
-            }
+        void IUIGadget.Resume() => Resume();
 
-            protected override void OnLowMemory(LowMemoryEventArgs e)
-            {
-                base.OnLowMemory(e);
-                OuterGadget.OnLowMemory(e);
-            }
+        void IUIGadget.Pause() => Pause();
 
-            protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
-            {
-                base.OnRegionFormatChanged(e);
-                OuterGadget.OnRegionFormatChanged(e);
-            }
+        void IUIGadget.Destroy() => Destroy();
 
-            protected override void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
-            {
-                base.OnDeviceOrientationChanged(e);
-                OuterGadget.OnDeviceOrientationChanged(e);
-            }
+        void IUIGadget.Finish() => Finish();
 
-            protected override void OnMessageReceived(UIGadgetMessageReceivedEventArgs e)
-            {
-                base.OnMessageReceived(e);
-                OuterGadget.OnMessageReceived(new NUIGadgetMessageReceivedEventArgs(e.Message));
-            }
-        }
+        void IUIGadget.SendMessage(Bundle message) => SendMessage(message);
     }
 }

@@ -30,7 +30,7 @@ namespace Tizen.Applications
         /// Gets the UIGadget object that triggered the event.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public UIGadget UIGadget { get; internal set; }
+        public IUIGadget UIGadget { get; internal set; }
 
         /// <summary>
         /// Gets the current state of the UIGadget lifecycle.
