@@ -27,13 +27,13 @@ namespace Tizen.NUI.Samples
         "\n" +
         "UNIFORM_BLOCK VertBlock\n" +
         "{\n" +
-        "  UNIFORM highp mat4  uMvpMatrix;\n" + 
-        "  UNIFORM highp vec3  uSize;\n" + 
+        "  UNIFORM highp mat4  uMvpMatrix;\n" +
+        "  UNIFORM highp vec3  uSize;\n" +
         "  UNIFORM highp float uDelta;\n" +
         "};\n" +
-        "\n" + 
-        "void main()\n" + 
-        "{\n" + 
+        "\n" +
+        "void main()\n" +
+        "{\n" +
         "   vec4 vertexPosition = vec4(mix(aPositionCircle, aPositionQuad, uDelta), 0.0, 1.0);\n" +
         "   vertexPosition.xyz *= uSize;\n" +
         "   gl_Position = uMvpMatrix * vertexPosition;\n" +

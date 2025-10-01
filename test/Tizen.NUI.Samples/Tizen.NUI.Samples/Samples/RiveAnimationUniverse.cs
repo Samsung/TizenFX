@@ -93,7 +93,7 @@ namespace Tizen.NUI.Samples
                 HorizontalAlignment = HorizontalAlignment.Center,
                 TextColor = new Color(1.0f, 1.0f, 1.0f, 1.0f),
                 PointSize = 20.0f,
-                
+
             };
 
             viewItems = new View[5];
@@ -116,7 +116,7 @@ namespace Tizen.NUI.Samples
                 TextLabel title = new TextLabel
                 {
                     Size = new Size(550, 70),
-                    PointSize = 12.0f,    
+                    PointSize = 12.0f,
                     Text = VIEW_TITLE[i],
                     TextColor = VIEW_TITLE_COLOR[i]
                 };
@@ -190,7 +190,7 @@ namespace Tizen.NUI.Samples
                 {
                     scroll.PositionY = minmaxY;
                 }
-            
+
                 float time = (scroll.PositionY - 120 ) / 400;
 
                 // Set RiveAnimation Elapsed Time using View Position
@@ -206,7 +206,7 @@ namespace Tizen.NUI.Samples
                else if (time >= 1.0 && isMoving)
                {
                    isMoving = false;
-                   // Enable RiveAnimations   
+                   // Enable RiveAnimations
                    rav.EnableAnimation("Trigger", true);
                    rav.EnableAnimation("Loading", true);
                    scroll.ScrollEnabled = true;
@@ -330,7 +330,7 @@ namespace Tizen.NUI.Samples
             PointStateType GetState = e.Touch.GetState(0);
             Vector2 item = e.Touch.GetLocalPosition(0);
             if (scroll.ScrollEnabled && item.Y > 30)
-            {   
+            {
                 if (GetState == PointStateType.Down)
                 {
                     viewBgClicked[3] = !viewBgClicked[3];

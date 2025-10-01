@@ -34,7 +34,7 @@ namespace NUIClipboardDataSelected
 
             Tizen.NUI.WindowSystem.Shell.KVMService kvmService;
             // Window that will act as KVM Service.
-            kvmService = new Tizen.NUI.WindowSystem.Shell.KVMService(tzShell, Window.Instance); 
+            kvmService = new Tizen.NUI.WindowSystem.Shell.KVMService(tzShell, Window.Instance);
             kvmService.SetSecondarySelection();
 
             // This view has nothing to do with this test, just for easy debugging.

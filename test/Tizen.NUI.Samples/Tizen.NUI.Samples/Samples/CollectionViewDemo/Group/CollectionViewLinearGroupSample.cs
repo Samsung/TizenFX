@@ -59,7 +59,7 @@ namespace Tizen.NUI.Samples
                     //[NOTE] This is sample of RadioButton usage in CollectionView.
                     // RadioButton change their selection by IsSelectedProperty bindings with
                     // SelectionChanged event with Single ItemSelectionMode of CollectionView.
-                    // be aware of there are no RadioButtonGroup. 
+                    // be aware of there are no RadioButtonGroup.
                     item.Extra = new RadioButton();
                     //FIXME : SetBinding in RadioButton crashed as Sensitive Property is disposed.
                     //item.Extra.SetBinding(RadioButton.IsSelectedProperty, "Selected");
@@ -115,7 +115,7 @@ namespace Tizen.NUI.Samples
                         albumSource.RemoveAt(2);
                     }
                 }
-                
+
             }
             foreach (object item in ev.CurrentSelection)
             {
@@ -142,7 +142,7 @@ namespace Tizen.NUI.Samples
                     else if (selItem == moveMenu)
                     {
                         // Move last indexed item to index 3.
-                        albumSource[2].Move(albumSource[2].Count - 1, 0);                   
+                        albumSource[2].Move(albumSource[2].Count - 1, 0);
                     }
                 }
                 else if (item is Album selAlbum)

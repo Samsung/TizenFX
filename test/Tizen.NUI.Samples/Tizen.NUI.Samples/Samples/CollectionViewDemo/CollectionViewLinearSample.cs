@@ -125,7 +125,7 @@ namespace Tizen.NUI.Samples
                 else if (selItem == moveMenu)
                 {
                     // Move last indexed item to index 3.
-                    gallerySource.Move(gallerySource.Count - 1, 3);                    
+                    gallerySource.Move(gallerySource.Count - 1, 3);
                 }
                 //Tizen.Log.Debug("NUI", "LSH :: Selected: {0}", selItem.ViewLabel);
             }

@@ -23,7 +23,7 @@ namespace Tizen.NUI.Samples
             window = NUIApplication.GetDefaultWindow();
             window.BackgroundColor = Color.White;
             Size2D windowSize = window.Size;
-            
+
             backFaceColors = new Color[3];
             backFaceColors[0] = Color.Red;
             backFaceColors[1] = Color.Green;

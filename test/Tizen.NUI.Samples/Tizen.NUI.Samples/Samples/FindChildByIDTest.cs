@@ -209,7 +209,7 @@ namespace Tizen.NUI.Samples
                 tlog.Debug(tag, $" child2({childList2[i].Text}) Id={childList2[i].Id}, ID={childList2[i].ID}");
             }
         }
-        
+
         bool toggle = false;
         private void WindowTouchEvent(object sender, Window.TouchEventArgs e)
         {

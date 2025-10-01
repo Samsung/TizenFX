@@ -91,7 +91,7 @@ namespace Tizen.NUI.Samples
 
             if (childViewWindow != null)
             {
-                
+
                 childViewWindow.AddAuxiliaryHint("wm.policy.win.msg.use", "1");
                 childViewWindow.VisibilityChanged += OnChildViewWindowVisibilityChanged;
                 childViewWindow.Resized += OnChildViewWindowResized;

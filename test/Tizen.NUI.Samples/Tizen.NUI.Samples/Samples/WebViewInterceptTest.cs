@@ -114,7 +114,7 @@ namespace Tizen.NUI.Samples
                     tlog.Debug(tag, $"http request intercepted write chunk end");
                 }
             }
-            
+
             if (interceptor.InterceptedWebView != null)
             {
                 tlog.Debug(tag, $"http request intercepted web view is not null");
@@ -158,7 +158,7 @@ namespace Tizen.NUI.Samples
                 {
                     path = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "hbo.png";
                 }
-                
+
                 using (FileStream fs = File.OpenRead(path))
                 {
                     byte[] bData = new byte[1024];

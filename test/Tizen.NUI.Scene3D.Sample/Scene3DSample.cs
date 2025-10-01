@@ -513,7 +513,7 @@ class Scene3DSample : NUIApplication
                         var newSize = new Size2D(500, 500);
                         var newPosition = new Position2D(100, 100);
                         Accessibility.SetCustomHighlightOverlay(mModel, newPosition, newSize);
-                    } 
+                    }
                     else
                     {
                         Accessibility.ResetCustomHighlightOverlay(mModel);

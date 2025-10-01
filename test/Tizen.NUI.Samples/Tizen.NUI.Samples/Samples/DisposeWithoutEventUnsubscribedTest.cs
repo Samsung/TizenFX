@@ -295,7 +295,7 @@ namespace Tizen.NUI.Samples
             {
                 //test case 1: checking ImageView object dispose.
                 //AddManyObject();
-                
+
                 //test case 2: checking ScrollableBase object dispose.
                 AddManyScrollableBases();
             }

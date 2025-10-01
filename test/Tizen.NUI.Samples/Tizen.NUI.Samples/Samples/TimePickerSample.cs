@@ -17,7 +17,7 @@ namespace Tizen.NUI.Samples
         private void TimeChanged(object sender, TimeChangedEventArgs e)
         {
             Console.WriteLine(" Time " + e.Time.Hour + " " + e.Time.Minute);
-        }                                                                      
+        }
 
         public void Activate()
         {
@@ -32,7 +32,7 @@ namespace Tizen.NUI.Samples
             timePicker.TimeChanged += TimeChanged;
             window.Add(timePicker);
         }
-        
+
         public void Deactivate()
         {
             window.Remove(timePicker);

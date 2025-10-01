@@ -136,7 +136,7 @@ namespace Tizen.NUI.Samples
             Thread.Sleep(8000);
             Tizen.Log.Info("NUI", "sleep for waiting precompile time(8sec) ... done!");
         }
-        
+
         private Window mainWin;
         private ImageView[] imageViews = null;
         const int imageWidth = 500;

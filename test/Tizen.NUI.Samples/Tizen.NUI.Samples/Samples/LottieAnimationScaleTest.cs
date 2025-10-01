@@ -6,7 +6,7 @@ using Tizen.NUI;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 
-namespace Tizen.NUI.Samples 
+namespace Tizen.NUI.Samples
 {
     public class LottieAnimationScaleTest : IExample
     {
@@ -221,7 +221,7 @@ namespace Tizen.NUI.Samples
                 MenuItem[] items = new MenuItem[9];
                 for(int i = 0; i < items.Length; i++)
                 {
-                    items[i] = new MenuItem() { Text = pivotPointNames[i] }; 
+                    items[i] = new MenuItem() { Text = pivotPointNames[i] };
                     items[i].SelectedChanged += (o,e) => {
                         if (e.IsSelected)
                         {

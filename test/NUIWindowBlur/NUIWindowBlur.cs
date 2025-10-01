@@ -539,7 +539,7 @@ namespace NUIWindowBlur
         {
           PositionUsesPivotPoint = true,
           PivotPoint = PivotPoint.Center,
-          ParentOrigin = ParentOrigin.Center,            
+          ParentOrigin = ParentOrigin.Center,
           Size = new Size(150, 180),
           Layout = new LinearLayout()
           {
