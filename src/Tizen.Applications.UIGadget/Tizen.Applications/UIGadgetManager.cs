@@ -307,6 +307,8 @@ namespace Tizen.Applications
             gadget.ClassName = className;
             gadget.UIGadgetResourceManager = new UIGadgetResourceManager(info);
             gadget.LifecycleChanged += OnUIGadgetLifecycleChanged;
+            Log.Info("Gadget is created. ResourceType=" + resourceType);
+            OnUIGadgetLifecycleChanged(gadget, new UIGadgetLifecycleChangedEventArgs { State = gadget.State, UIGadget = gadget });
             return gadget;
         }
 
@@ -324,7 +326,10 @@ namespace Tizen.Applications
             }
 
             Log.Warn("ResourceType: " + gadget.UIGadgetInfo.ResourceType + ", State: " + gadget.State);
-            gadget.PreCreate();
+            if (gadget.State == UIGadgetLifecycleState.Initialized)
+            {
+                gadget.OnPreCreate();
+            }
         }
 
         /// <summary>
@@ -348,12 +353,16 @@ namespace Tizen.Applications
             }
 
             Log.Warn("ResourceType: " + gadget.UIGadgetInfo.ResourceType + ", State: " + gadget.State);
-            if (!gadget.Create())
+            if (gadget.State != UIGadgetLifecycleState.PreCreated)
             {
-                Log.Error("Gadget returns null");
-                throw new InvalidOperationException("The View MUST be created");
+                gadget.MainView = gadget.OnCreate();
+                if (gadget.MainView == null)
+                {
+                    throw new InvalidOperationException("The View MUST be created");
+                }
+
+                _gadgets.TryAdd(gadget, 0);
             }
-            _gadgets.TryAdd(gadget, 0);
         }
 
         /// <summary>
@@ -423,7 +432,10 @@ namespace Tizen.Applications
             CoreApplication.Post(() =>
             {
                 Log.Warn("ResourceType: " + gadget.UIGadgetInfo.ResourceType + ", State: " + gadget.State);
-                gadget.Resume();
+                if (gadget.State == UIGadgetLifecycleState.Created || gadget.State == UIGadgetLifecycleState.Paused)
+            {
+                    gadget.OnResume();
+                }
             });
         }
 
@@ -451,7 +463,10 @@ namespace Tizen.Applications
             CoreApplication.Post(() =>
             {
                 Log.Warn("ResourceType: " + gadget.UIGadgetInfo.ResourceType + ", State: " + gadget.State);
-                gadget.Pause();
+                if (gadget.State == UIGadgetLifecycleState.Resumed)
+                {
+                    gadget.OnPause();
+                }
             });
         }
 
@@ -480,7 +495,7 @@ namespace Tizen.Applications
                 throw new ArgumentNullException(nameof(appControl));
             }
 
-            gadget.HandleAppControlReceivedEvent(new AppControlReceivedEventArgs(new ReceivedAppControl(appControl.SafeAppControlHandle)));
+            gadget.OnAppControlReceived(new AppControlReceivedEventArgs(new ReceivedAppControl(appControl.SafeAppControlHandle)));
         }
 
         internal static bool HandleAppControl(AppControlReceivedEventArgs args)
@@ -496,7 +511,7 @@ namespace Tizen.Applications
             {
                 if (gadget.UIGadgetInfo.ResourceType == resourceType && gadget.ClassName == className)
                 {
-                    gadget.HandleAppControlReceivedEvent(args);
+                    gadget.OnAppControlReceived(args);
                     return true;
                 }
             }
@@ -508,7 +523,7 @@ namespace Tizen.Applications
         {
             foreach (var gadget in _gadgets.Keys)
             {
-                gadget.HandleLocaleChangedEvent(args);
+                gadget.OnLocaleChanged(args);
             }
         }
 
@@ -516,7 +531,7 @@ namespace Tizen.Applications
         {
             foreach (var gadget in _gadgets.Keys)
             {
-                gadget.HandleLowBatteryEvent(args);
+                gadget.OnLowBattery(args);
             }
         }
 
@@ -524,7 +539,7 @@ namespace Tizen.Applications
         {
             foreach (var gadget in _gadgets.Keys)
             {
-                gadget.HandleLowMemoryEvent(args);
+                gadget.OnLowMemory(args);
             }
         }
 
@@ -532,7 +547,7 @@ namespace Tizen.Applications
         {
             foreach (var gadget in _gadgets.Keys)
             {
-                gadget.HandleRegionFormatChangedEvent(args);
+                gadget.OnRegionFormatChanged(args);
             }
         }
 
@@ -540,7 +555,7 @@ namespace Tizen.Applications
         {
             foreach (var gadget in _gadgets.Keys)
             {
-                gadget.HandleDeviceOrientationChangedEvent(args);
+                gadget.OnDeviceOrientationChanged(args);
             }
         }
 

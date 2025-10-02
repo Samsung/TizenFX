@@ -21,6 +21,7 @@ using System.Reflection;
 using System.IO;
 using System.ComponentModel;
 using System.Resources;
+using Tizen.Applications;
 
 namespace Tizen.NUI
 {
@@ -68,6 +69,13 @@ namespace Tizen.NUI
             _resourceClassName = resourceClassName;
         }
 
+        internal NUIGadgetResourceManager(UIGadgetResourceManager resourceManager)
+        {
+            UIGadgetResourceManager = resourceManager;
+        }
+
+        internal UIGadgetResourceManager UIGadgetResourceManager { get; set; }
+
         /// <summary>
         /// Retrieves the value of the specified string resource.
         /// </summary>
@@ -92,6 +100,11 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         public string GetString(string name)
         {
+            if (UIGadgetResourceManager != null)
+            {
+                return UIGadgetResourceManager.GetString(name, CultureInfo.CurrentUICulture);
+            }
+
             return GetString(name, CultureInfo.CurrentUICulture);
         }
 
@@ -118,6 +131,11 @@ namespace Tizen.NUI
             {
                 Log.Warn("Use CurrentUICulture");
                 cultureInfo = CultureInfo.CurrentUICulture;
+            }
+
+            if (UIGadgetResourceManager != null)
+            {
+                return UIGadgetResourceManager.GetString(name, cultureInfo);
             }
 
             string result = string.Empty;

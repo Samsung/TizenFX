@@ -180,55 +180,14 @@ namespace Tizen.Applications
             set; get;
         }
 
-        private void PreCreate()
+        private void NotifyLifecycleChanged()
         {
-            if (State == UIGadgetLifecycleState.Initialized)
+            var args = new UIGadgetLifecycleChangedEventArgs
             {
-                OnPreCreate();
-                if (DataLoader != null)
-                {
-                    Log.Info($"PreCreate(), Loader.Name = {DataLoader.Name}");
-                    DataLoader.Run();
-                }
-            }
-        }
-
-        private bool Create()
-        {
-            if (State == UIGadgetLifecycleState.PreCreated)
-            {
-                this.MainView = OnCreate();
-                if (this.MainView == null)
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        private void Resume()
-        {
-            if (State == UIGadgetLifecycleState.Created || State == UIGadgetLifecycleState.Paused)
-            {
-                OnResume();
-            }
-        }
-
-        private void Pause()
-        {
-            if (State == UIGadgetLifecycleState.Resumed)
-            {
-                OnPause();
-            }
-        }
-
-        private void Destroy()
-        {
-            if (State == UIGadgetLifecycleState.PreCreated || State == UIGadgetLifecycleState.Created || State == UIGadgetLifecycleState.Paused)
-            {
-                OnDestroy();
-            }
+                State = State,
+                UIGadget = this,
+            };
+            LifecycleChanged?.Invoke(null, args);
         }
 
         private void OnDataLoaderLifecycleChanged(object sender, DataLoaderLifecycleChangedEventArgs args)
@@ -239,16 +198,6 @@ namespace Tizen.Applications
             {
                 args.DataLoader.LifecycleStateChanged -= OnDataLoaderLifecycleChanged;
             }
-        }
-
-        private void NotifyLifecycleChanged()
-        {
-            var args = new UIGadgetLifecycleChangedEventArgs()
-            {
-                State = State,
-                UIGadget = this,
-            };
-            LifecycleChanged?.Invoke(null, args);
         }
 
         private static string GenerateDataLoaderName() => $"DataLoader+{s_DataLoaderNameSequence++}";
@@ -263,6 +212,11 @@ namespace Tizen.Applications
             State = UIGadgetLifecycleState.PreCreated;
             Log.Debug("ClassName=" + ClassName);
             NotifyLifecycleChanged();
+            if (DataLoader != null)
+            {
+                Log.Info($"PreCreate(), Loader.Name = {DataLoader.Name}");
+                DataLoader.Run();
+            }
         }
 
         /// <summary>
@@ -394,20 +348,14 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public void Finish()
         {
-            Pause();
-            Destroy();
-        }
-
-        event EventHandler<UIGadgetLifecycleChangedEventArgs> IUIGadget.LifecycleChanged
-        {
-            add
+            if (State == UIGadgetLifecycleState.Resumed)
             {
-                LifecycleChanged += value;
+                OnPause();
             }
 
-            remove
+            if (State == UIGadgetLifecycleState.PreCreated || State == UIGadgetLifecycleState.Created || State == UIGadgetLifecycleState.Paused)
             {
-                LifecycleChanged -= value;
+                OnDestroy();
             }
         }
 
@@ -417,27 +365,31 @@ namespace Tizen.Applications
         UIGadgetResourceManager IUIGadget.UIGadgetResourceManager { get => UIGadgetResourceManager; set => UIGadgetResourceManager = value; }
         UIGadgetLifecycleState IUIGadget.State { get => State; set => State = value; }
 
-        void IUIGadget.HandleAppControlReceivedEvent(AppControlReceivedEventArgs args) => OnAppControlReceived(args);
+        event EventHandler<UIGadgetLifecycleChangedEventArgs> IUIGadget.LifecycleChanged { add { LifecycleChanged += value; } remove { LifecycleChanged -= value; } }
 
-        void IUIGadget.HandleLocaleChangedEvent(LocaleChangedEventArgs args) => OnLocaleChanged(args);
+        void IUIGadget.OnAppControlReceived(AppControlReceivedEventArgs args) => OnAppControlReceived(args);
 
-        void IUIGadget.HandleRegionFormatChangedEvent(RegionFormatChangedEventArgs args) => OnRegionFormatChanged(args);
+        void IUIGadget.OnLocaleChanged(LocaleChangedEventArgs args) => OnLocaleChanged(args);
 
-        void IUIGadget.HandleLowMemoryEvent(LowMemoryEventArgs args) => OnLowMemory(args);
+        void IUIGadget.OnRegionFormatChanged(RegionFormatChangedEventArgs args) => OnRegionFormatChanged(args);
 
-        void IUIGadget.HandleLowBatteryEvent(LowBatteryEventArgs args) => OnLowBattery(args);
+        void IUIGadget.OnLowMemory(LowMemoryEventArgs args) => OnLowMemory(args);
 
-        void IUIGadget.HandleDeviceOrientationChangedEvent(DeviceOrientationEventArgs args) => OnDeviceOrientationChanged(args);
+        void IUIGadget.OnLowBattery(LowBatteryEventArgs args) => OnLowBattery(args);
 
-        void IUIGadget.PreCreate() => PreCreate();
+        void IUIGadget.OnDeviceOrientationChanged(DeviceOrientationEventArgs args) => OnDeviceOrientationChanged(args);
 
-        bool IUIGadget.Create() => Create();
+        void IUIGadget.OnMessageReceived(UIGadgetMessageReceivedEventArgs e) => OnMessageReceived(e);
 
-        void IUIGadget.Resume() => Resume();
+        void IUIGadget.OnPreCreate() => OnPreCreate();
 
-        void IUIGadget.Pause() => Pause();
+        object IUIGadget.OnCreate() => OnCreate();
 
-        void IUIGadget.Destroy() => Destroy();
+        void IUIGadget.OnResume() => OnResume();
+
+        void IUIGadget.OnPause() => OnPause();
+
+        void IUIGadget.OnDestroy() => OnDestroy();
 
         void IUIGadget.Finish() => Finish();
 

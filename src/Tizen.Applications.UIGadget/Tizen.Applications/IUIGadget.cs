@@ -26,42 +26,142 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public interface IUIGadget
     {
+        /// <summary>
+        /// The main view of the gadget.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         object MainView { get; set; }
 
+        /// <summary>
+        /// The class name of the gadget.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         string ClassName { get; set; }
 
+        /// <summary>
+        /// The information of the gadget.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         UIGadgetInfo UIGadgetInfo { get; set; }
 
+        /// <summary>
+        /// The resource manager of the gadget.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         UIGadgetResourceManager UIGadgetResourceManager { get; set; }
 
+        /// <summary>
+        /// The state of the gadget.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         UIGadgetLifecycleState State { get; set; }
 
+        /// <summary>
+        /// Occurs when the lifecycle of the UIGadget is changed.
+        /// </summary>
+        /// <remarks>
+        /// This event should be raised when the state of UIGadget changes.
+        /// It provides information about the current state through the UIGadgeteLifecycleChangedEventArgs argument.
+        /// </remarks>
+        /// <since_tizen> 13 </since_tizen>
         event EventHandler<UIGadgetLifecycleChangedEventArgs> LifecycleChanged;
 
-        void HandleAppControlReceivedEvent(AppControlReceivedEventArgs args);
+        /// <summary>
+        /// Overrides this method if want to handle behavior when the UIGadget receives the appcontrol message.
+        /// </summary>
+        /// <remarks>
+        /// This method provides a way to customize the response when the UIGadget receives an appcontrol message.
+        /// By overriding this method in your derived class, you can define specific actions based on the incoming arguments.
+        /// </remarks>
+        /// <param name="e">The appcontrol received event argument containing details about the received message.</param>
+        /// <since_tizen> 13 </since_tizen>
+        void OnAppControlReceived(AppControlReceivedEventArgs e);
 
-        void HandleLocaleChangedEvent(LocaleChangedEventArgs args);
+        /// <summary>
+        /// Overrides this method if want to handle behavior when the system language is changed.
+        /// </summary>
+        /// <param name="e">The locale changed event argument.</param>
+        /// <since_tizen> 13 </since_tizen>
+        void OnLocaleChanged(LocaleChangedEventArgs e);
 
-        void HandleRegionFormatChangedEvent(RegionFormatChangedEventArgs args);
+        /// <summary>
+        /// Overrides this method if want to handle behavior when the region format is changed.
+        /// </summary>
+        /// <param name="e">The region format changed event argument.</param>
+        /// <since_tizen> 13 </since_tizen>
+        void OnRegionFormatChanged(RegionFormatChangedEventArgs e);
 
-        void HandleLowMemoryEvent(LowMemoryEventArgs args);
+        /// <summary>
+        /// Overrides this method if want to handle behavior when the system memory is low.
+        /// </summary>
+        /// <param name="e">The low memory event argument.</param>
+        /// <since_tizen> 13 </since_tizen>
+        void OnLowMemory(LowMemoryEventArgs e);
 
-        void HandleLowBatteryEvent(LowBatteryEventArgs args);
+        /// <summary>
+        /// Overrides this method if want to handle behavior when the system battery is low.
+        /// </summary>
+        /// <param name="e">The low batter event argument.</param>
+        /// <since_tizen> 13 </since_tizen>
+        void OnLowBattery(LowBatteryEventArgs e);
 
-        void HandleDeviceOrientationChangedEvent(DeviceOrientationEventArgs args);
+        /// <summary>
+        /// Overrides this method if want to handle behavior when the device orientation is changed.
+        /// </summary>
+        /// <param name="e">The device orientation changed event argument.</param>
+        /// <since_tizen> 13 </since_tizen>
+        void OnDeviceOrientationChanged(DeviceOrientationEventArgs e);
 
-        void PreCreate();
+        /// <summary>
+        /// Overrides this method if want to handle behavior when the message is received.
+        /// </summary>
+        /// <param name="e">The message received event argument.</param>
+        /// <since_tizen> 13 </since_tizen>
+        void OnMessageReceived(UIGadgetMessageReceivedEventArgs e);
 
-        bool Create();
+        /// <summary>
+        /// Override this method to define the behavior when the UIGadget is pre-created.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        void OnPreCreate();
 
-        void Resume();
+        /// <summary>
+        /// Override this method to define the behavior when the UIGadget is created.
+        /// </summary>
+        /// <returns>The main view object.</returns>
+        /// <since_tizen> 13 </since_tizen>
+        object OnCreate();
 
-        void Pause();
+        /// <summary>
+        /// Overrides this method if want to handle behavior when the UIGadget is resumed.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        void OnResume();
 
-        void Destroy();
+        /// <summary>
+        /// Overrides this method if want to handle behavior when the UIGadget is paused.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        void OnPause();
 
+        /// <summary>
+        /// Override this method to handle the behavior when the UIGadget is destroyed.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        void OnDestroy();
+
+        /// <summary>
+        /// Finishes the UIGadget.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
         void Finish();
 
+        /// <summary>
+        /// Sends the message to the UIGadget.
+        /// The message should be delived to the OnMessageReceived() method.
+        /// </summary>
+        /// <param name="message">The message</param>
+        /// <since_tizen> 13 </since_tizen>
         void SendMessage(Bundle message);
     }
 }
