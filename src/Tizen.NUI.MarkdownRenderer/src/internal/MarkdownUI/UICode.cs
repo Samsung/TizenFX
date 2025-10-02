@@ -85,7 +85,7 @@ namespace Tizen.NUI.MarkdownRenderer
                 TextColor = new Color(code.TitleFontColor),
             };
             view.Add(uiCodeTitle);
-            return view; 
+            return view;
         }
 
         private View CreateCode(string text, bool asyncRendering)

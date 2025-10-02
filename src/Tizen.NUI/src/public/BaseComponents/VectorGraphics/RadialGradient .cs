@@ -40,7 +40,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
 
         /// <summary>
         /// Sets the radial gradient bounds.
-        /// 
+        ///
         /// The radial gradient bounds are defined as a circle centered in a given point of a given radius.
         /// </summary>
         /// <param name="centerPoint">The point of the center of the bounding circle.</param>

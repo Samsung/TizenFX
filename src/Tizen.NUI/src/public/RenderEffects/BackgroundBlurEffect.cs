@@ -145,7 +145,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Adds blur strength animation to the effect.
-        /// Basically it is to animate blurring clear texture, but when starting value(fromValue) is bigger than the end value(toValue), 
+        /// Basically it is to animate blurring clear texture, but when starting value(fromValue) is bigger than the end value(toValue),
         /// it may show a reversed animation that instead clarifies blurred texture.
         /// </summary>
         /// <param name="animation">Animation instance to add blur strength animation.</param>
@@ -164,7 +164,7 @@ namespace Tizen.NUI
         }
         /// <summary>
         /// Adds blur opacity animation to the effect.
-        /// Basically it is to animate blurring clear texture, but when starting value(fromValue) is bigger than the end value(toValue), 
+        /// Basically it is to animate blurring clear texture, but when starting value(fromValue) is bigger than the end value(toValue),
         /// it may show a reversed animation that instead clarifies blurred texture.
         /// </summary>
         /// <param name="animation">Animation instance to add blur opacity animation.</param>

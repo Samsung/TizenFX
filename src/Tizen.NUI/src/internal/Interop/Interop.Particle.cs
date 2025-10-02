@@ -26,10 +26,10 @@ namespace Tizen.NUI.ParticleSystem
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_ReadFloat")]
             internal static extern float ReadFloat(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamIndex, uint particleIndex);
-            
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_ReadVector2")]
             internal static extern global::System.IntPtr ReadVector2(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamIndex, uint particleIndex);
-            
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_ReadVector3")]
             internal static extern global::System.IntPtr ReadVector3(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamIndex, uint particleIndex);
 
@@ -38,7 +38,7 @@ namespace Tizen.NUI.ParticleSystem
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_WriteFloat")]
             internal static extern void WriteFloat(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamIndex, uint particleIndex, float value);
-            
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_WriteVector2")]
             internal static extern void WriteVector2(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamIndex, uint particleIndex, HandleRef value);
 
@@ -49,5 +49,5 @@ namespace Tizen.NUI.ParticleSystem
             internal static extern void WriteVector4(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamIndex, uint particleIndex, HandleRef value);
         }
     }
-}  
+}
 

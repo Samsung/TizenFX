@@ -22,7 +22,7 @@ namespace Tizen.NUI.AIAvatar
     /// <summary>
     /// The type of predefined blendshape. We can customize each type name by "TODO_mapper"
     /// The basic names provided by AIAvatar to control the default avatar of AREmoji.
-    /// Contains the BlendShape information of AIAvatar.  
+    /// Contains the BlendShape information of AIAvatar.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     internal enum BlendShapeType

@@ -80,7 +80,7 @@ namespace Tizen.NUI.Samples
                 SceneCapture(1);
             };
             sceneView.Add(cameras[1]);
-            
+
             cameras[0].LookAt(modelPosition);
             cameras[1].LookAt(modelPosition);
 

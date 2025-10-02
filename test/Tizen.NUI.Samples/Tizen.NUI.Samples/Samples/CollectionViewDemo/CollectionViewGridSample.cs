@@ -116,10 +116,10 @@ namespace Tizen.NUI.Samples
                         else if (galItem == moveMenu)
                         {
                             // Move last indexed item to index 3.
-                            gallerySource.Move(gallerySource.Count - 1, 3);                    
+                            gallerySource.Move(gallerySource.Count - 1, 3);
                         }
                     }
-                    
+
                 }
                 else continue;
             }

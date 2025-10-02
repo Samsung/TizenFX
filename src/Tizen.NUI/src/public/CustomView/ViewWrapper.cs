@@ -22,7 +22,7 @@ namespace Tizen.NUI
     /// <summary>
     /// ViewWrapper provides a way to wrap a custom view implementation within the Tizen NUI framework.
     /// This class is intended for advanced users who need to extend the functionality of the View class by implementing their own rendering logic.
-    /// </summary>    
+    /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class ViewWrapper : View
     {

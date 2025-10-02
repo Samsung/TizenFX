@@ -61,7 +61,7 @@ namespace Tizen.NUI.Samples
             vertexFormat.Add("aPosition", (int)PropertyType.Vector2);
 
             PropertyBuffer vertexBuffer = new PropertyBuffer(vertexFormat);
-            
+
             SimpleQuadVertex vertex1 = new SimpleQuadVertex();
             SimpleQuadVertex vertex2 = new SimpleQuadVertex();
             SimpleQuadVertex vertex3 = new SimpleQuadVertex();

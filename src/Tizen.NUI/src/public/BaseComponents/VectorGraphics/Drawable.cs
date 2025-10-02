@@ -66,7 +66,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </remarks>
         /// <code>
         ///  Shape shape = new Shape()
-        ///  {      
+        ///  {
         ///      FillColor = new Color(1.0f, 0.0f, 0.0f, 1.0f)
         ///  };
         ///  shape.AddRect(0.0f, 0.0f, 100.0f, 100.0f, 0.0f, 0.0f);

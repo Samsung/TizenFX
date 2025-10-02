@@ -81,7 +81,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// RelativeVector2 relativeVector2 = new RelativeVector2();
-        /// relativeVector2.X = 0.1f; 
+        /// relativeVector2.X = 0.1f;
         /// // USE like this
         /// float x = 0.1f, y = 0.9f;
         /// RelativeVector2 relativeVector2 = new RelativeVector2(x, y);
@@ -112,7 +112,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// RelativeVector2 relativeVector2 = new RelativeVector2();
-        /// relativeVector2.Y = 0.9f; 
+        /// relativeVector2.Y = 0.9f;
         /// // USE like this
         /// float x = 0.1f, y = 0.9f;
         /// RelativeVector2 relativeVector2 = new RelativeVector2(x, y);

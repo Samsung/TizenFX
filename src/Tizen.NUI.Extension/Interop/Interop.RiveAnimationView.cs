@@ -28,7 +28,7 @@ namespace Tizen.NUI.Extension
 
             [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_RiveAnimationView_EnableAnimation")]
             public static extern void EnableAnimation(global::System.Runtime.InteropServices.HandleRef handle, string animationName, bool on);
-            
+
             [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_RiveAnimationView_SetShapeFillColor")]
             public static extern void SetShapeFillColor(global::System.Runtime.InteropServices.HandleRef handle, string shapeFillName, global::System.Runtime.InteropServices.HandleRef color);
 
@@ -43,16 +43,16 @@ namespace Tizen.NUI.Extension
 
             [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_RiveAnimationView_SetNodeRotation")]
             public static extern void SetNodeRotation(global::System.Runtime.InteropServices.HandleRef handle, string nodeRotation, global::System.Runtime.InteropServices.HandleRef degree);
-            
+
             [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_RiveAnimationView_SetNodePosition")]
             public static extern void SetNodePosition(global::System.Runtime.InteropServices.HandleRef handle, string nodeName, global::System.Runtime.InteropServices.HandleRef position);
 
             [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_RiveAnimationView_PlayAnimation")]
             public static extern void Play(global::System.Runtime.InteropServices.HandleRef handle);
-            
+
             [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_RiveAnimationView_PauseAnimation")]
             public static extern void Pause(global::System.Runtime.InteropServices.HandleRef handle);
-            
+
             [global::System.Runtime.InteropServices.DllImport(Lib, EntryPoint = "CSharp_Dali_RiveAnimationView_StopAnimation")]
             public static extern void Stop(global::System.Runtime.InteropServices.HandleRef handle);
 

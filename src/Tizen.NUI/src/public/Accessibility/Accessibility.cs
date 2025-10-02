@@ -203,8 +203,8 @@ namespace Tizen.NUI.Accessibility
 
         /// <summary>
         /// Sets a custom highlight overlay at the specified position and size.
-        /// This functionality is only applicable when the CustomHighlight Overlay is a child of the scene-view.  
-        /// In other words, the position and size of the highlight indicator can only be set if the CustomHighlight Overlay is part of the scene-view. 
+        /// This functionality is only applicable when the CustomHighlight Overlay is a child of the scene-view.
+        /// In other words, the position and size of the highlight indicator can only be set if the CustomHighlight Overlay is part of the scene-view.
         /// </summary>
         /// <param name="view">The view to set the overlay</param>
         /// <param name="position">A Position2D representing the position of the overlay</param>

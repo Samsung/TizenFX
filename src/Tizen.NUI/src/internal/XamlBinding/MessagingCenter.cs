@@ -105,7 +105,7 @@ namespace Tizen.NUI.Binding
 
                 if (target == null)
                 {
-                    return; // Collected 
+                    return; // Collected
                 }
 
                 MethodInfo.Invoke(target, MethodInfo.GetParameters().Length == 1 ? new[] { sender } : new[] { sender, args });
@@ -222,7 +222,7 @@ namespace Tizen.NUI.Binding
 
             // ok so this code looks a bit funky but here is the gist of the problem. It is possible that in the course
             // of executing the callbacks for this message someone will subscribe/unsubscribe from the same message in
-            // the callback. This would invalidate the enumerator. To work around this we make a copy. However if you unsubscribe 
+            // the callback. This would invalidate the enumerator. To work around this we make a copy. However if you unsubscribe
             // from a message you can fairly reasonably expect that you will therefor not receive a call. To fix this we then
             // check that the item we are about to send the message to actually exists in the live list.
             List<Subscription> subscriptionsCopy = subcriptions.ToList();
@@ -269,7 +269,7 @@ namespace Tizen.NUI.Binding
 
         // This is a bit gross; it only exists to support the unit tests in PageTests
         // because the implementations of ActionSheet, Alert, and IsBusy are all very
-        // tightly coupled to the MessagingCenter singleton 
+        // tightly coupled to the MessagingCenter singleton
         internal static void ClearSubscribers()
         {
             (Instance as MessagingCenter)?.subscriptions.Clear();

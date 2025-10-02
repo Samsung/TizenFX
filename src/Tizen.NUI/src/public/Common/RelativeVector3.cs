@@ -79,7 +79,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// RelativeVector3 relativeVector3 = new RelativeVector3();
-        /// relativeVector3.X = 0.1f; 
+        /// relativeVector3.X = 0.1f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f;
         /// RelativeVector3 relativeVector3 = new RelativeVector3(x, y, z);
@@ -110,7 +110,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// RelativeVector3 relativeVector3 = new RelativeVector3();
-        /// relativeVector3.Y = 0.5f; 
+        /// relativeVector3.Y = 0.5f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f;
         /// RelativeVector3 relativeVector3 = new RelativeVector3(x, y, z);
@@ -141,7 +141,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// RelativeVector3 relativeVector3 = new RelativeVector3();
-        /// relativeVector3.Z = 0.9f; 
+        /// relativeVector3.Z = 0.9f;
         /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f;
         /// RelativeVector3 relativeVector3 = new RelativeVector3(x, y, z);

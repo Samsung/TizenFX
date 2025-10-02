@@ -346,7 +346,7 @@ namespace Tizen.NUI.Components
                 //Invoke Page events
                 page.InvokeAppeared();
                 page.RestoreKeyFocus();
-                
+
                 topPage.InvokeDisappeared();
                 NotifyAccessibilityStatesChangeOfPages(topPage, page);
             };

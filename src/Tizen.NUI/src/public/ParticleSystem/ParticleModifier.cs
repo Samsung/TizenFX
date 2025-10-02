@@ -26,7 +26,7 @@ namespace Tizen.NUI.ParticleSystem
 {
     /// <summary>
     /// ParticleModifierInterface provides callbacks in order to define
-    /// how particles in the system should be modified 
+    /// how particles in the system should be modified
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ParticleModifierInterface
@@ -48,7 +48,7 @@ namespace Tizen.NUI.ParticleSystem
         /// It is called immediately following the class constructor.
         /// </remarks>
         /// <param name="list">List of arguments</param>
-        [EditorBrowsable(EditorBrowsableState.Never)] 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void Construct(params object[] list)
         {
         }
@@ -58,9 +58,9 @@ namespace Tizen.NUI.ParticleSystem
         /// </summary>
         /// <remarks>
         /// This callback is responsible for updating particles in the system.
-        /// 
+        ///
         /// This callback runs on the Update thread! It should avoid using NUI objects.
-        /// 
+        ///
         /// </remarks>
         /// <param name="emitterProxy">Proxy to the ParticleEmitter object</param>
         /// <param name="particleList">List of particles to be updated by the modifier</param>
@@ -75,8 +75,8 @@ namespace Tizen.NUI.ParticleSystem
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ParticleEmitterProxy Emitter;
     }
-    
-    
+
+
     /// <summary>
     /// Class represents particle modifier
     /// </summary>
@@ -86,7 +86,7 @@ namespace Tizen.NUI.ParticleSystem
     /// Output of one modifier becomes input for next modifier.
     ///
     /// Modifier calls into the implementation of <see cref="ParticleModifierInterface"/> class.
-    /// 
+    ///
     /// </remarks>
     /// <typeparam name="T">Class of interface that derives from <see cref="ParticleModifierInterface"/></typeparam>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -94,7 +94,7 @@ namespace Tizen.NUI.ParticleSystem
     {
         // static cache for modifiers (binding between native side and interfaces)
         static ParticleInterfaceRegister<ParticleModifierInterface> gModifierInterfaceRegister = new ParticleInterfaceRegister<ParticleModifierInterface>();
-        
+
         /// <summary>
         /// Dispose.
         /// </summary>
@@ -135,9 +135,9 @@ namespace Tizen.NUI.ParticleSystem
 
         internal ParticleModifier(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-        } 
-        
-        
+        }
+
+
         /// <summary>
         /// Constructor of ParticleModifier
         /// </summary>
@@ -154,10 +154,10 @@ namespace Tizen.NUI.ParticleSystem
             // Create interface on the C# side (no direct connection with C++)
             mInterface = new T();
             mInterface.Construct(list);
-            
+
             // Register interface using base ptr
             gModifierInterfaceRegister.Register(gRefObjectPtr, mInterface);
-            
+
             // Initialise native side for this interface
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -167,7 +167,7 @@ namespace Tizen.NUI.ParticleSystem
         {
             mInterface.Emitter = new ParticleEmitterProxy(emitter);
         }
-        
+
         private static Interop.ParticleModifier.ParticleModifierUpdateInvokerType mOnUpdateInvoker = OnUpdateInvoker;
         private ParticleModifierInterface mInterface;
         private static IntPtr gRefObjectPtr;

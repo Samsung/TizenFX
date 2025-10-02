@@ -27,7 +27,7 @@ namespace Tizen.NUI.ParticleSystem
         {
             internal delegate void ParticleSourceInitInvokerType(IntPtr ptr);
             internal delegate uint ParticleSourceUpdateInvokerType(IntPtr ptr, uint count);
-            
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleSource_New_SWIG_0")]
             internal static extern global::System.IntPtr New(ParticleSourceInitInvokerType initInvoker, ParticleSourceUpdateInvokerType updateInvoker, out IntPtr refObject);
         }

@@ -66,7 +66,7 @@ namespace Tizen.NUI.Samples
         }
         topView.Layout = new LinearLayout()
         {
-          LinearOrientation = LinearLayout.Orientation.Horizontal, 
+          LinearOrientation = LinearLayout.Orientation.Horizontal,
           VerticalAlignment = VerticalAlignment.Center,
           CellPadding = new Size2D(20, 20),
         };
@@ -74,7 +74,7 @@ namespace Tizen.NUI.Samples
         {
           Text = "CustomBorder",
         };
-        
+
         var button = new Button()
         {
           Text = "AlwaysOnTop",
@@ -405,7 +405,7 @@ namespace Tizen.NUI.Samples
       {
         CustomBorder customBorder = new CustomBorder();
         subWindowTwo = new Window("subwin1", customBorder, new Rectangle(60, 20, 800, 800), false);
-        subWindowTwo.InterceptTouchEvent += (s, e) => 
+        subWindowTwo.InterceptTouchEvent += (s, e) =>
         {
             Tizen.Log.Error("NUI", $"subWindowTwo.InterceptTouchEvent\n");
             if (e.Touch.GetState(0) == PointStateType.Down)

@@ -23,7 +23,7 @@ namespace Tizen.NUI
         {
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RadialGradient_New")]
             public static extern global::System.IntPtr New();
-            
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RadialGradient_SetBounds")]
             public static extern void SetBounds(global::System.Runtime.InteropServices.HandleRef linearGradient, global::System.Runtime.InteropServices.HandleRef centerPoint, float radius);
 

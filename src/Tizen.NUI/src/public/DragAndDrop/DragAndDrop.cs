@@ -36,9 +36,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="sourceEventType">The type of the drag source event.</param>
         public delegate void SourceEventHandler(DragSourceEventType sourceEventType);
-        
+
         private delegate void InternalSourceEventHandler(int sourceEventType);
-        
+
         /// <summary>
         /// Delegate representing the method that will handle drag and drop events.
         /// </summary>
@@ -172,17 +172,17 @@ namespace Tizen.NUI
         private void ReleaseDragWindow()
         {
             if (mDragWindow)
-            {                        
+            {
                 if (mShadowView)
                 {
                     //Application has Shadow View ownership, so DnD doesn't dispose Shadow View
                     mDragWindow.Remove(mShadowView);
                     mShadowView = null;
                 }
-            
+
                 mDragWindow.Dispose();
-                mDragWindow = null;                      
-            }         
+                mDragWindow = null;
+            }
         }
 
         /// <summary>
@@ -248,16 +248,16 @@ namespace Tizen.NUI
 
                 //Make Position 0, 0 for Moving into Drag Window
                 shadowView.Position = new Position(0, 0);
-            
+
                 mShadowView = shadowView;
                 mDragWindow.Add(mShadowView);
-           
+
                 sourceEventCb = (sourceEventType) =>
-                {   
+                {
                     if ((DragSourceEventType)sourceEventType != DragSourceEventType.Start)
-                    {     
+                    {
                         Tizen.Log.Fatal("NUI", "DnD Source Event is Called");
-                        ReleaseDragWindow();                
+                        ReleaseDragWindow();
                     }
 
                     callback((DragSourceEventType)sourceEventType);
@@ -307,7 +307,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="targetView">The target view</param>
         /// <param name="mimeType">The mime type for target view</param>
-        /// <param name="callback">The callback function to get drag event when the drag source enters, moves, leaves and drops on the drop target</param> 
+        /// <param name="callback">The callback function to get drag event when the drag source enters, moves, leaves and drops on the drop target</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddListener(View targetView, string mimeType, DragAndDropEventHandler callback)
         {

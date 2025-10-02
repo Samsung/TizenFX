@@ -291,7 +291,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (underline.Height != null)
                 map.Add("height", (float)underline.Height);
-            
+
             if (underline.DashWidth != null)
                 map.Add("dashWidth", (float)underline.DashWidth);
 

@@ -27,23 +27,23 @@ namespace Tizen.AIAvatar
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class AvatarInfo
     {
-        /// <summary>  
-        /// The Name property gets the name of the Avatar.   
-        /// This value is read-only and cannot be modified directly.  
-        /// </summary>  
+        /// <summary>
+        /// The Name property gets the name of the Avatar.
+        /// This value is read-only and cannot be modified directly.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Name { get; private set; }
 
-        /// <summary>  
-        /// The ThumbnailPath property gets the path to the thumbnail image representing the Avatar.  
-        /// This value is read-only and cannot be modified directly.  
-        /// </summary>  
+        /// <summary>
+        /// The ThumbnailPath property gets the path to the thumbnail image representing the Avatar.
+        /// This value is read-only and cannot be modified directly.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ThumbnailPath { get; private set; }
 
-        /// <summary>  
-        /// The ResourcePath property gets the path to the resource files associated with the Avatar.  
-        /// This value is intended for internal use only and should not be accessed by users directly.  
+        /// <summary>
+        /// The ResourcePath property gets the path to the resource files associated with the Avatar.
+        /// This value is intended for internal use only and should not be accessed by users directly.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal string ResourcePath { get; private set; }
@@ -75,7 +75,7 @@ namespace Tizen.AIAvatar
         }
 
         internal AvatarInfo(string avatarPath)
-        {            
+        {
             Name = global::System.IO.Path.GetFileNameWithoutExtension(avatarPath);
             ResourcePath = avatarPath;
         }
@@ -89,14 +89,14 @@ namespace Tizen.AIAvatar
     public enum AvatarInfoOption
     {
 
-        /// <summary>  
-        /// Thumbnail indicates that the AvatarInfo instance should display or manipulate the thumbnail image of the Avatar.  
-        /// </summary>  
+        /// <summary>
+        /// Thumbnail indicates that the AvatarInfo instance should display or manipulate the thumbnail image of the Avatar.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Thumbnail = 0,
-        /// <summary>  
-        /// Resource indicates that the AvatarInfo instance should display or manipulate the resource files associated with the Avatar.  
-        /// </summary>  
+        /// <summary>
+        /// Resource indicates that the AvatarInfo instance should display or manipulate the resource files associated with the Avatar.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Resource = 1,
     }

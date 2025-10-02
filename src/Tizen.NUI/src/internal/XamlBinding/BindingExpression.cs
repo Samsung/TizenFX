@@ -142,7 +142,7 @@ namespace Tizen.NUI.Binding
 
                 if (!part.IsSelf && current != null)
                 {
-                    // Allow the object instance itself to provide its own TypeInfo 
+                    // Allow the object instance itself to provide its own TypeInfo
                     var reflectable = current as IReflectableType;
                     System.Reflection.TypeInfo currentType = reflectable != null ? reflectable.GetTypeInfo() : current.GetType().GetTypeInfo();
                     if (part.LastGetter == null || !part.LastGetter.DeclaringType.GetTypeInfo().IsAssignableFrom(currentType))

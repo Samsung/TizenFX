@@ -49,7 +49,7 @@ namespace Tizen.NUI.AIAvatar
             nameMapper = mapper;
         }
 
-        public AvatarBlendShapeIndex(AvatarPropertyMapper nodeMapper, NodeType nodeType, PropertyKey blendShapeId) 
+        public AvatarBlendShapeIndex(AvatarPropertyMapper nodeMapper, NodeType nodeType, PropertyKey blendShapeId)
             : base(new PropertyKey(GetPropertyNameFromMapper(nodeMapper, (uint)nodeType)), blendShapeId)
         {
         }
@@ -64,7 +64,7 @@ namespace Tizen.NUI.AIAvatar
             this.blendShapeType = blendShapeType;
         }
 
-        public AvatarBlendShapeIndex(AvatarPropertyMapper nodeMapper, NodeType nodeType, AvatarPropertyMapper blendShapeMapper, BlendShapeType blendShapeType) 
+        public AvatarBlendShapeIndex(AvatarPropertyMapper nodeMapper, NodeType nodeType, AvatarPropertyMapper blendShapeMapper, BlendShapeType blendShapeType)
             : base(new PropertyKey(GetPropertyNameFromMapper(nodeMapper, (uint)nodeType)), new PropertyKey(GetPropertyNameFromMapper(blendShapeMapper, (uint)blendShapeType)))
         {
             nameMapper = blendShapeMapper;

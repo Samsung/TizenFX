@@ -51,11 +51,11 @@ namespace Tizen.NUI.AIAvatar
             }
         }
 
-        /// <summary>  
-        /// Indexer method. Allows accessing and setting the property names using array notation.  
-        /// </summary>  
-        /// <param name="index">The index of property what we want to set</param>  
-        /// <returns>The index of property, or uint.MaxValue if not exist</returns>  
+        /// <summary>
+        /// Indexer method. Allows accessing and setting the property names using array notation.
+        /// </summary>
+        /// <param name="index">The index of property what we want to set</param>
+        /// <returns>The index of property, or uint.MaxValue if not exist</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string this[uint index]
         {
@@ -79,11 +79,11 @@ namespace Tizen.NUI.AIAvatar
             customIndexCounter = 0u;
         }
 
-        /// <summary>  
-        /// Copy constructor.  
-        /// Creates a new instance of the AvatarPropertyMapper class by copying the contents of another existing AvatarPropertyMapper instance.  
-        /// </summary>  
-        /// <param name="source">The source AvatarPropertyMapper instance to be copied.</param>  
+        /// <summary>
+        /// Copy constructor.
+        /// Creates a new instance of the AvatarPropertyMapper class by copying the contents of another existing AvatarPropertyMapper instance.
+        /// </summary>
+        /// <param name="source">The source AvatarPropertyMapper instance to be copied.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AvatarPropertyMapper(AvatarPropertyMapper source)
         {
@@ -99,11 +99,11 @@ namespace Tizen.NUI.AIAvatar
             }
         }
 
-        /// <summary>  
-        /// Registers a custom property by name and returns its index.  
-        /// </summary>  
-        /// <param name="name">The name of custom property</param>  
-        /// <returns>The index of property matched with name.</returns>  
+        /// <summary>
+        /// Registers a custom property by name and returns its index.
+        /// </summary>
+        /// <param name="name">The name of custom property</param>
+        /// <returns>The index of property matched with name.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint RegisterCustomProperty(string name)
         {
@@ -116,11 +116,11 @@ namespace Tizen.NUI.AIAvatar
             return ret;
         }
 
-        /// <summary>  
-        /// Returns the index of a property by its name.  
-        /// </summary>  
-        /// <param name="name">The name of property what we want to get index</param>  
-        /// <returns>The index of property, or uint.MaxValue if not exist</returns>  
+        /// <summary>
+        /// Returns the index of a property by its name.
+        /// </summary>
+        /// <param name="name">The name of property what we want to get index</param>
+        /// <returns>The index of property, or uint.MaxValue if not exist</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetPropertyIndexByName(string name)
         {
@@ -135,25 +135,25 @@ namespace Tizen.NUI.AIAvatar
             return uint.MaxValue;
         }
 
-        /// <summary>  
-        /// Sets the property name at the given index.  
-        /// </summary>  
-        /// <param name="index">The index of property what we want to set</param>  
-        /// <param name="name">The name of property what we want to set</param>  
-        /// <remark>  
-        /// New property will be added if we use index that not exist in mapper.  
-        /// </remark>  
+        /// <summary>
+        /// Sets the property name at the given index.
+        /// </summary>
+        /// <param name="index">The index of property what we want to set</param>
+        /// <param name="name">The name of property what we want to set</param>
+        /// <remark>
+        /// New property will be added if we use index that not exist in mapper.
+        /// </remark>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetPropertyName(uint index, string name)
         {
             mapper.TryAdd(index, name);
         }
 
-        /// <summary>  
-        /// Gets the property name at the given index.  
-        /// </summary>  
-        /// <param name="index">The index of property what we want to set</param>  
-        /// <returns>The name of property, or null if not exist</returns>  
+        /// <summary>
+        /// Gets the property name at the given index.
+        /// </summary>
+        /// <param name="index">The index of property what we want to set</param>
+        /// <returns>The name of property, or null if not exist</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetPropertyName(uint index)
         {

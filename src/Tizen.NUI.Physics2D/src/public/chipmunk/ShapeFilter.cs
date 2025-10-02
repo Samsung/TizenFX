@@ -15,7 +15,7 @@
  *
  */
 
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -31,18 +31,18 @@ namespace Tizen.NUI.Physics2D.Chipmunk
     {
         private static readonly UIntPtr no_group = (UIntPtr)0;
         private static readonly uint all_categories = (~(uint)0);
-        
+
         private static readonly ShapeFilter filter_all = new ShapeFilter(no_group, all_categories, all_categories);
         private static readonly ShapeFilter filter_none = new ShapeFilter(no_group, ~all_categories, ~all_categories);
 
         private UIntPtr group;
         private uint categories;
         private uint mask;
- 
+
         /// <summary>
-        /// Group value 
+        /// Group value
         /// Two objects with the same non-zero group value do not collide.
-        /// This is generally used to group objects in a composite object together to disable self collisions. 
+        /// This is generally used to group objects in a composite object together to disable self collisions.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public UIntPtr Group

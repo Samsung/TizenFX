@@ -59,7 +59,7 @@ namespace Tizen.NUI.ParticleSystem
         /// emitter.NewParticle() must be call. Number of particles to emit is given as 'count'.
         ///
         /// This callback runs on the Update thread! It should avoid using NUI objects.
-        /// 
+        ///
         /// </remarks>
         /// <param name="emitterProxy">Proxy to the ParticleEmitter object</param>
         /// <param name="count">Number of particles emitter expects to be spawned during call</param>
@@ -71,7 +71,7 @@ namespace Tizen.NUI.ParticleSystem
         }
 
         /// <summary>
-        /// Initializes ParticleSource  
+        /// Initializes ParticleSource
         /// </summary>
         /// <remarks>
         /// This callback should be overriden in order to initialise the ParticleSource.
@@ -81,7 +81,7 @@ namespace Tizen.NUI.ParticleSystem
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void Init()
         {
-            
+
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace Tizen.NUI.ParticleSystem
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ParticleEmitterProxy Emitter;
     }
-    
+
     /// <summary>
     /// Class represents the particle source
     /// </summary>
@@ -123,7 +123,7 @@ namespace Tizen.NUI.ParticleSystem
             }
             base.Dispose(type);
         }
-        
+
         /// <summary>
         /// Invoker for ParticleSourceInterface.Init()
         /// </summary>
@@ -138,7 +138,7 @@ namespace Tizen.NUI.ParticleSystem
             T source = gSourceInterfaceRegister.Get(cPtr) as T;
             source?.Init();
         }
-        
+
         /// <summary>
         /// Invoker for ParticleSourceInterface.Update()
         /// </summary>
@@ -155,7 +155,7 @@ namespace Tizen.NUI.ParticleSystem
             var retval= source?.Update(source.Emitter, count);
             return retval.HasValue ? retval.Value : 0;
         }
-        
+
         internal ParticleSource(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
@@ -176,14 +176,14 @@ namespace Tizen.NUI.ParticleSystem
             // Create interface on the C# side (no direct connection with C++)
             mInterface = new T();
             mInterface.Construct(list);
-            
+
             // Register interface using base ptr
             gSourceInterfaceRegister.Register(gRefObjectPtr, mInterface);
-            
+
             // Initialise native side for this interface
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        
+
         /// <summary>
         /// Returns associated source callback interface
         /// </summary>
@@ -205,7 +205,7 @@ namespace Tizen.NUI.ParticleSystem
         {
             mInterface.Emitter = new ParticleEmitterProxy(emitter);
         }
-        
+
         // private fields
         private static Interop.ParticleSource.ParticleSourceInitInvokerType mOnInitInvoker = OnInitInvoker;
         private static Interop.ParticleSource.ParticleSourceUpdateInvokerType mOnUpdateInvoker = OnUpdateInvoker;

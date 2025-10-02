@@ -22,7 +22,7 @@ using System.Collections.Specialized;
 namespace Tizen.NUI.Components
 {
     // Wraps a List which implements INotifyCollectionChanged (usually an ObservableCollection)
-    // and marshals all of the list modifications to the main thread. Modifications to the underlying 
+    // and marshals all of the list modifications to the main thread. Modifications to the underlying
     // collection which are made off of the main thread remain invisible to consumers on the main thread
     // until they have been processed by the main thread.
 

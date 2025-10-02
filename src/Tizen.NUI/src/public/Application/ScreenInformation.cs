@@ -22,7 +22,7 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// ScreenInformation is a struct designed to encapsulate the information of screen. 
+    /// ScreenInformation is a struct designed to encapsulate the information of screen.
     /// It contains three properties as screen name, width and hegiht.
     /// The ScreenInformation is especially used to support multiple screen.
     /// </summary>
@@ -56,12 +56,12 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets or sets the height of the screen.
-        /// 
+        ///
         /// </summary>
         /// <value>The height of the screen.</value>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int Height {get;}
-        
+
         /// <summary>
         /// Whether this is equivalent to other.
         /// </summary>

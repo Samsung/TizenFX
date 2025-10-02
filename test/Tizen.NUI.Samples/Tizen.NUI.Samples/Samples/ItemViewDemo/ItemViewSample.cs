@@ -204,7 +204,7 @@ namespace Tizen.NUI.Samples
             mItemFactoryWrapper.NewItemDelegate = NewItemView;
 
             mItemView = new ItemView(mItemFactoryWrapper)
-            { 
+            {
                 Size = new Size(800, 800, 800)
             };
             mContentView.Add(mItemView);
@@ -335,7 +335,7 @@ namespace Tizen.NUI.Samples
             checkBox.PivotPoint = PivotPoint.TopRight;
             checkBox.Size = spiralItemSize;
             checkBox.PositionZ = 0.1f;
-            
+
             PropertyMap solidColorProperty = new PropertyMap();
             solidColorProperty.Insert(Visual.Property.Type, new PropertyValue((int)Visual.Type.Color));
             solidColorProperty.Insert(ColorVisualProperty.MixColor, new PropertyValue(new Color(0.0f, 0.0f, 0.0f, 0.6f)));

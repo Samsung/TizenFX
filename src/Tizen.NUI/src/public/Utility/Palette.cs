@@ -549,7 +549,7 @@ namespace Tizen.NUI
                 EnsureTextColorsGenerated();
 
                 return new Color((float)(((bodyTextColor >> 16) & 0xff) / 255.0f), (float)(((bodyTextColor >> 8) & 0xff) / 255.0f), (float)((bodyTextColor & 0xff) / 255.0f), (float)(((bodyTextColor >> 24) & 0xff) / 255.0f));
-    
+
             }
 
             /// <summary>

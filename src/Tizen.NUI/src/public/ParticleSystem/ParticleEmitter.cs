@@ -89,7 +89,7 @@ namespace Tizen.NUI.ParticleSystem
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-        
+
         /// <summary>
         /// Raises the window to the top of the window stack.
         /// </summary>
@@ -99,12 +99,12 @@ namespace Tizen.NUI.ParticleSystem
         {
             // update interface
             source.SetEmitter(this);
-            
+
             // Set native source
             Interop.ParticleEmitter.SetSource(SwigCPtr, source.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        
+
         /// <summary>
         /// Maximum particle count
         /// </summary>
@@ -146,7 +146,7 @@ namespace Tizen.NUI.ParticleSystem
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
-        
+
         /// <summary>
         /// Initial particle count
         /// </summary>
@@ -163,13 +163,13 @@ namespace Tizen.NUI.ParticleSystem
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return value;
             }
-            set 
+            set
             {
                 Interop.ParticleEmitter.SetInitialParticleCount(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve(); 
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
-        
+
         /// <summary>
         /// Limit of active particles in the system
         /// </summary>
@@ -179,12 +179,12 @@ namespace Tizen.NUI.ParticleSystem
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint ActiveParticleLimit
         {
-            set 
+            set
             {
                 Interop.ParticleEmitter.SetActiveParticlesLimit(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-            
+
         }
 
         /// <summary>
@@ -198,7 +198,7 @@ namespace Tizen.NUI.ParticleSystem
         public ParticleBlendingMode RendererBlendingMode
         {
             get
-            {                
+            {
                 var value = Interop.ParticleEmitter.GetBlendingMode(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return (ParticleBlendingMode)value;
@@ -209,7 +209,7 @@ namespace Tizen.NUI.ParticleSystem
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
-        
+
         /// <summary>
         /// Sets texture to be used by the renderer
         /// </summary>
@@ -230,7 +230,7 @@ namespace Tizen.NUI.ParticleSystem
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
-        
+
         /// <summary>
         /// Adds ParticleModifier to the stack
         /// </summary>
@@ -245,7 +245,7 @@ namespace Tizen.NUI.ParticleSystem
         {
             // update interface
             modifier.SetEmitter(this);
-            
+
             Interop.ParticleEmitter.AddModifier(SwigCPtr, modifier.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -282,7 +282,7 @@ namespace Tizen.NUI.ParticleSystem
             Interop.ParticleEmitter.Stop(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        
+
         /// <summary>
         /// Adds local (not used by shader) data stream to the particle emitter
         /// </summary>
@@ -298,7 +298,7 @@ namespace Tizen.NUI.ParticleSystem
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
-        
+
         /// <summary>
         /// Adds local (not used by shader) data stream to the particle emitter
         /// </summary>
@@ -314,7 +314,7 @@ namespace Tizen.NUI.ParticleSystem
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
-        
+
         /// <summary>
         /// Adds local (not used by shader) data stream to the particle emitter
         /// </summary>
@@ -330,7 +330,7 @@ namespace Tizen.NUI.ParticleSystem
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
-        
+
         /// <summary>
         /// Adds local (not used by shader) data stream to the particle emitter
         /// </summary>
@@ -351,7 +351,7 @@ namespace Tizen.NUI.ParticleSystem
         internal ParticleEmitterProxy EmitterProxy => mProxy;
         private ParticleEmitterProxy mProxy;
     }
-    
+
     /// <summary>
     /// This class provides functionality that can be used inside the Source/Modifier callbacks.
     /// </summary>
@@ -363,7 +363,7 @@ namespace Tizen.NUI.ParticleSystem
             mEmitterBasePtr = emitter.SwigCPtr.Handle;
             mEmitter = emitter;
         }
-        
+
         /// <summary>
         /// Creates new particle
         /// </summary>
@@ -386,7 +386,7 @@ namespace Tizen.NUI.ParticleSystem
             }
             return null;
         }
-        
+
         /// <summary>
         /// Acquires list of Particles of specified length
         /// </summary>
@@ -407,7 +407,7 @@ namespace Tizen.NUI.ParticleSystem
             {
                 mParticleCache.Push(new Particle(mEmitter.SwigCPtr, 0));
             }
-            
+
             List<Particle> retval = new List<Particle>();
             for (var i = 0; i < count; ++i)
             {
@@ -436,11 +436,11 @@ namespace Tizen.NUI.ParticleSystem
             {
                 mParticleCache.Push(particles[i]);
             }
-            
+
             // clear the list (probably not needed?)
             particles.Clear();
         }
-        
+
         /// <summary>
         /// Adds local particle data stream of float values
         /// </summary>
@@ -451,7 +451,7 @@ namespace Tizen.NUI.ParticleSystem
         {
             return mEmitter.AddLocalStreamFloat(defaultValue);
         }
-        
+
         /// <summary>
         /// Adds local particle data stream of Vector2 values
         /// </summary>
@@ -462,7 +462,7 @@ namespace Tizen.NUI.ParticleSystem
         {
             return mEmitter.AddLocalStreamVector2(defaultValue);
         }
-        
+
         /// <summary>
         /// Adds local particle data stream of Vector3 values
         /// </summary>
@@ -473,7 +473,7 @@ namespace Tizen.NUI.ParticleSystem
         {
             return mEmitter.AddLocalStreamVector3(defaultValue);
         }
-        
+
         /// <summary>
         /// Adds local particle data stream of Vector4 values
         /// </summary>
@@ -484,17 +484,17 @@ namespace Tizen.NUI.ParticleSystem
         {
             return mEmitter.AddLocalStreamVector4(defaultValue);
         }
-        
+
         // Stack of cached particles
         private Stack<Particle> mParticleCache = new Stack<Particle>();
-        
+
         private IntPtr mEmitterBasePtr;
         private ParticleEmitter mEmitter;
 
     }
 
     /// <summary>
-    /// Register binding Source/Modifier interface to the pointer of a native counterpart 
+    /// Register binding Source/Modifier interface to the pointer of a native counterpart
     /// </summary>
     /// <typeparam name="T">Class type of objects to be stored in the register</typeparam>
     internal class ParticleInterfaceRegister<T> where T : class
@@ -537,7 +537,7 @@ namespace Tizen.NUI.ParticleSystem
                 return result >= 0;
             }
         }
-        
+
         internal T Get(IntPtr cPtr)
         {
             lock (mBasePtr)
@@ -551,7 +551,7 @@ namespace Tizen.NUI.ParticleSystem
                 return null;
             }
         }
-        
+
         private List<IntPtr> mBasePtr = new List<IntPtr>();
         private List<T> mInterfaces = new List<T>();
     }

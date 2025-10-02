@@ -7,10 +7,10 @@
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-﻿using System;
+using System;
 using System.Diagnostics;
 using System.ComponentModel;
 using cpBody = System.IntPtr;
@@ -194,7 +194,7 @@ namespace Tizen.NUI.Physics2D.Chipmunk
 
         /// <summary>
         /// Whether the two bodies connected by the constraint are allowed to collide or not.
-        /// 
+        ///
         /// When two bodies collide, Chipmunk ignores the collisions if this property is set to
         /// False on any constraint that connects the two bodies. Defaults to True. This can be
         /// used to create a chain that self-collides, but adjacent links in the chain do not collide.

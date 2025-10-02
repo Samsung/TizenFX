@@ -31,7 +31,7 @@ namespace Tizen.NUI
         public TransitionItemBase(View target, bool appearingTransition, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.TransitionItemBase.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            
+
             AppearingTransition = appearingTransition;
             TimePeriod = timePeriod;
             AlphaFunction = alphaFunction;

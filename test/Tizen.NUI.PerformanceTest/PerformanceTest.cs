@@ -29,7 +29,7 @@ class PerformanceTestExample : NUIApplication
     const uint DURATION_PER_COLUMNS = 50; // miliseconds
     // Increase animation time cause OnTick time can be delayed.
     const uint DURATION_OF_ANIMATION = (DURATION_PER_COLUMNS * (COLUMNS_COUNT * 4 / 3)); // miliseconds.
-    
+
 
     const float VIEW_MARGIN_RATE = 0.2f;
     enum ViewTestType
@@ -62,7 +62,7 @@ class PerformanceTestExample : NUIApplication
     }
 
     static string IMAGE_DIR = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "image/";
-    readonly static string[] IMAGE_PATH = 
+    readonly static string[] IMAGE_PATH =
     {
         IMAGE_DIR + "gallery-small-1.jpg",
     };
@@ -131,7 +131,7 @@ class PerformanceTestExample : NUIApplication
     uint mRowsCount = COLUMNS_COUNT;
     uint mTotalColumnsCount = TOTAL_COLUMNS_COUNT;
     uint mDurationPerColumns = DURATION_PER_COLUMNS; // miliseconds
-    
+
     uint mCreateCount = 0u;
     uint mDeleteCount = 0u;
     uint mImageCount  = 0u;

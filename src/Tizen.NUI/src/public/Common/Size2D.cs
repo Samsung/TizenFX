@@ -70,7 +70,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Hidden API (Inhouse API).
-        /// Dispose. 
+        /// Dispose.
         /// </summary>
         /// <remarks>
         /// Following the guide of https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose.
@@ -113,7 +113,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Size2D size2d = new Size2D();
-        /// size2d.Width = 1; 
+        /// size2d.Width = 1;
         /// // USE like this
         /// int width = 1, height = 2;
         /// Size2D size2d = new Size2D(width, height);
@@ -146,7 +146,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Size2D size2d = new Size2D();
-        /// size2d.Height = 2; 
+        /// size2d.Height = 2;
         /// // USE like this
         /// int width = 1, height = 2;
         /// Size2D size2d = new Size2D(width, height);

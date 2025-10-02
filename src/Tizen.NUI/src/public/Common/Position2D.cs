@@ -92,7 +92,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Position2D position2d = new Position2D();
-        /// position2d.X = 1; 
+        /// position2d.X = 1;
         /// // USE like this
         /// int x = 1, y = 2;
         /// Position2D position2d = new Position2D(x, y);
@@ -125,7 +125,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Position2D position2d = new Position2D();
-        /// position2d.Y = 2; 
+        /// position2d.Y = 2;
         /// // USE like this
         /// int x = 1, y = 2;
         /// Position2D position2d = new Position2D(x, y);

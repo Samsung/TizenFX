@@ -403,7 +403,7 @@ namespace Tizen.NUI.Samples
 
                 Origin = Visual.AlignType.BottomBegin,
                 PivotPoint = Visual.AlignType.BottomBegin,
-                
+
                 HorizontalAlignment = HorizontalAlignment.Begin,
                 VerticalAlignment = VerticalAlignment.Center,
 
@@ -428,7 +428,7 @@ namespace Tizen.NUI.Samples
 
                 Origin = Visual.AlignType.BottomBegin,
                 PivotPoint = Visual.AlignType.BottomBegin,
-                
+
                 HorizontalAlignment = HorizontalAlignment.Begin,
                 VerticalAlignment = VerticalAlignment.Center,
 

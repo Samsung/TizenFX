@@ -1,4 +1,4 @@
-/* 
+/*
 * Copyright(c) 2021 Samsung Electronics Co., Ltd.
 *
 * Licensed under the Apache License, Version 2.0 (the "License");
@@ -83,7 +83,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         }
 
         /// <summary>
-        /// Clears the drawable object added to the DrawableGroup. 
+        /// Clears the drawable object added to the DrawableGroup.
         /// This method does not free the memory of the added drawable object.
         /// </summary>
         /// <returns>True when it's successful. False otherwise.</returns>

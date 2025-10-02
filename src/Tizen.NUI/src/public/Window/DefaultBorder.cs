@@ -34,11 +34,11 @@ namespace Tizen.NUI
             if(NUIApplication.IsUsingXaml)
             {
                 BorderLineThicknessProperty = BindableProperty.Create(nameof(BorderLineThickness), typeof(uint), typeof(DefaultBorder), default(uint), propertyChanged: SetInternalBorderLineThicknessProperty, defaultValueCreator: GetInternalBorderLineThicknessProperty);
-                
+
                 MinSizeProperty = BindableProperty.Create(nameof(MinSize), typeof(Size2D), typeof(DefaultBorder), default(Size2D), propertyChanged: SetInternalMinSizeProperty, defaultValueCreator: GetInternalMinSizeProperty);
-                
+
                 MaxSizeProperty = BindableProperty.Create(nameof(MaxSize), typeof(Size2D), typeof(DefaultBorder), default(Size2D), propertyChanged: SetInternalMaxSizeProperty, defaultValueCreator: GetInternalMaxSizeProperty);
-                
+
                 ResizePolicyProperty = BindableProperty.Create(nameof(ResizePolicy), typeof(Window.BorderResizePolicyType), typeof(DefaultBorder), default(Window.BorderResizePolicyType), propertyChanged: SetInternalResizePolicyProperty, defaultValueCreator: GetInternalResizePolicyProperty);
             }
         }
@@ -100,7 +100,7 @@ namespace Tizen.NUI
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BorderLineThicknessProperty = null;
-        
+
         internal static void SetInternalBorderLineThicknessProperty(BindableObject bindable, object oldValue, object newValue)
         {
             if (newValue != null)
@@ -109,7 +109,7 @@ namespace Tizen.NUI
                 instance.SetInternalBorderLineThickness((uint)newValue);
             }
         }
-        
+
         internal static object GetInternalBorderLineThicknessProperty(BindableObject bindable)
         {
             var instance = (DefaultBorder)bindable;
@@ -118,7 +118,7 @@ namespace Tizen.NUI
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MinSizeProperty = null;
-        
+
         internal static void SetInternalMinSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             if (newValue != null)
@@ -127,7 +127,7 @@ namespace Tizen.NUI
                 instance.SetInternalMinSize((Size2D)newValue);
             }
         }
-        
+
         internal static object GetInternalMinSizeProperty(BindableObject bindable)
         {
             var instance = (DefaultBorder)bindable;
@@ -136,7 +136,7 @@ namespace Tizen.NUI
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MaxSizeProperty = null;
-        
+
         internal static void SetInternalMaxSizeProperty(BindableObject bindable, object oldValue, object newValue)
         {
             if (newValue != null)
@@ -145,7 +145,7 @@ namespace Tizen.NUI
                 instance.SetInternalMaxSize((Size2D)newValue);
             }
         }
-        
+
         internal static object GetInternalMaxSizeProperty(BindableObject bindable)
         {
             var instance = (DefaultBorder)bindable;
@@ -154,7 +154,7 @@ namespace Tizen.NUI
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ResizePolicyProperty = null;
-        
+
         internal static void SetInternalResizePolicyProperty(BindableObject bindable, object oldValue, object newValue)
         {
             if (newValue != null)
@@ -163,7 +163,7 @@ namespace Tizen.NUI
                 instance.SetInternalResizePolicy((Window.BorderResizePolicyType)newValue);
             }
         }
-        
+
         internal static object GetInternalResizePolicyProperty(BindableObject bindable)
         {
             var instance = (DefaultBorder)bindable;

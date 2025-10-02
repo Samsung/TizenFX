@@ -201,7 +201,7 @@ namespace NUITizenGallery
         public void OnSelectionChanged(object sender, SelectionChangedEventArgs ev)
         {
             Console.WriteLine($"@@@ OnSelectionChanged() {ev.CurrentSelection}");
-            
+
             foreach (object item in ev.CurrentSelection)
             {
                 if (item == null)

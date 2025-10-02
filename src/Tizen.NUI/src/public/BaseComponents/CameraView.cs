@@ -36,7 +36,7 @@ namespace Tizen.NUI.BaseComponents
             /// The camera view will be displayed using hardware overlay.
             /// </summary>
             Window = 0,   //  HW overlay
-            
+
             /// <summary>
             /// The camera view will be displayed using texture stream.
             /// </summary>

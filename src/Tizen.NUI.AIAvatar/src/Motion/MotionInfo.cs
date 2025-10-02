@@ -21,28 +21,28 @@ using Tizen.NUI.Scene3D;
 
 namespace Tizen.NUI.AIAvatar
 {
-    /// <summary>  
-    /// The AnimationInfo class manages animation data for an Avatar, including motion data and names. It is not meant to be directly edited by users or editors.  
-    /// </summary>  
+    /// <summary>
+    /// The AnimationInfo class manages animation data for an Avatar, including motion data and names. It is not meant to be directly edited by users or editors.
+    /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class MotionInfo
     {
-        /// <summary>  
-        /// Gets the motion data associated with this animation.  
-        /// </summary>  
+        /// <summary>
+        /// Gets the motion data associated with this animation.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public MotionData MotionData { get; private set; }
 
-        /// <summary>  
-        /// Gets the name of this animation.  
-        /// </summary>  
+        /// <summary>
+        /// Gets the name of this animation.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string MotionName { get; private set; }
 
-        
-        /// <summary>  
-        /// Initializes a new instance of the AnimationInfo class with the specified motion data and name.  
-        /// </summary>  
+
+        /// <summary>
+        /// Initializes a new instance of the AnimationInfo class with the specified motion data and name.
+        /// </summary>
         /// <param name="motionData">The motion data associated with this animation.</param>
         /// <param name="motionName">The name of this animation.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]

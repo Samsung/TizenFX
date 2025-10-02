@@ -32,7 +32,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Empty 
+        /// Empty
         /// </summary>
         /// <returns>true if there is no signal attached</returns>
         public bool Empty()

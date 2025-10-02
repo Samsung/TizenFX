@@ -192,7 +192,7 @@ namespace Tizen.NUI
                 {
                     // If we get here then there are no more boxes to split, so return
                     return;
-                }   
+                }
             }
         }
 
@@ -446,7 +446,7 @@ namespace Tizen.NUI
                     int red = (colors[i] >> 16) & 0xff;
                     int green = (colors[i] >> 8) & 0xff;
                     int blue = colors[i] & 0xff;
- 
+
                     maxRed = red > maxRed ? red : maxRed;
                     minRed = red < minRed ? red : minRed;
                     maxGreen = green > maxGreen ? green : maxGreen;

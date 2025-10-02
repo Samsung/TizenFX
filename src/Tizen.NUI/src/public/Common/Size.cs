@@ -101,7 +101,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Size size = new Size();
-        /// size.Width = 0.1f; 
+        /// size.Width = 0.1f;
         /// // USE like this
         /// float width = 0.1f, height = 0.5f, depth = 0.9f;
         /// Size size = new Size(width, height, depth);
@@ -130,7 +130,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Size size = new Size();
-        /// size.Height = 0.5f; 
+        /// size.Height = 0.5f;
         /// // USE like this
         /// float width = 0.1f, height = 0.5f, depth = 0.9f;
         /// Size size = new Size(width, height, depth);
@@ -159,7 +159,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Size size = new Size();
-        /// size.Depth = 0.9f; 
+        /// size.Depth = 0.9f;
         /// // USE like this
         /// float width = 0.1f, height = 0.5f, depth = 0.9f;
         /// Size size = new Size(width, height, depth);
@@ -530,7 +530,7 @@ namespace Tizen.NUI
         internal Size(SizeChangedCallback cb, float w, float h, float d)
         {
             callback = cb;
-            
+
             width = w;
             height = h;
             depth = d;

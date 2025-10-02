@@ -273,7 +273,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Position position = new Position();
-        /// position.X = 1.0f; 
+        /// position.X = 1.0f;
         /// // USE like this
         /// float x = 1.0f, y = 2.0f, z = 3.0f;
         /// Position position = new Position(x, y, z);
@@ -306,7 +306,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Position position = new Position();
-        /// position.Y = 2.0f; 
+        /// position.Y = 2.0f;
         /// // USE like this
         /// float x = 1.0f, y = 2.0f, z = 3.0f;
         /// Position position = new Position(x, y, z);
@@ -339,7 +339,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Position position = new Position();
-        /// position.Z = 3.0f; 
+        /// position.Z = 3.0f;
         /// // USE like this
         /// float x = 1.0f, y = 2.0f, z = 3.0f;
         /// Position position = new Position(x, y, z);

@@ -26,7 +26,7 @@ namespace Tizen.NUI.ParticleSystem
         internal static partial class ParticleModifier
         {
             internal delegate void ParticleModifierUpdateInvokerType(IntPtr ptr, IntPtr particleListPtr, uint first, uint count);
-            
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleModifier_New_SWIG_0")]
             public static extern global::System.IntPtr New(ParticleModifierUpdateInvokerType updateInvoker, out IntPtr basePtr);
         }

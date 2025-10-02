@@ -115,7 +115,7 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetLoopingMode")]
             public static extern int GetLoopingMode(global::System.Runtime.InteropServices.HandleRef jarg1);
-            
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetAnimationId")]
             public static extern uint GetAnimationId(global::System.Runtime.InteropServices.HandleRef nuiAnimation);
 

@@ -97,7 +97,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Rectangle rectangle = new Rectangle();
-        /// rectangle.X = 1; 
+        /// rectangle.X = 1;
         /// // USE like this
         /// int x = 1, y = 2, width = 3, height = 4;
         /// Rectangle rectangle = new Rectangle(x, y, width, height);
@@ -127,7 +127,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Rectangle rectangle = new Rectangle();
-        /// rectangle.Y = 2; 
+        /// rectangle.Y = 2;
         /// // USE like this
         /// int x = 1, y = 2, width = 3, height = 4;
         /// Rectangle rectangle = new Rectangle(x, y, width, height);
@@ -157,7 +157,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Rectangle rectangle = new Rectangle();
-        /// rectangle.Width = 3; 
+        /// rectangle.Width = 3;
         /// // USE like this
         /// int x = 1, y = 2, width = 3, height = 4;
         /// Rectangle rectangle = new Rectangle(x, y, width, height);
@@ -187,7 +187,7 @@ namespace Tizen.NUI
         /// <code>
         /// // DO NOT use like the followings!
         /// Rectangle rectangle = new Rectangle();
-        /// rectangle.Height = 4; 
+        /// rectangle.Height = 4;
         /// // USE like this
         /// int x = 1, y = 2, width = 3, height = 4;
         /// Rectangle rectangle = new Rectangle(x, y, width, height);
