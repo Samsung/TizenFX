@@ -490,8 +490,8 @@ namespace Tizen.System
 
             for (int iterator = 0; iterator < size; iterator++)
             {
-                managedArray[iterator] = Marshal.PtrToStringAnsi(curr, 20);
-                curr = IntPtr.Add(curr, 20);
+                managedArray[iterator] = Marshal.PtrToStringAnsi(curr);
+                curr = IntPtr.Add(curr, MaxUserLength);
             }
         }
 
