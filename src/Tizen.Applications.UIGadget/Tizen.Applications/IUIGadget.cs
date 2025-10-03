@@ -27,44 +27,34 @@ namespace Tizen.Applications
     public interface IUIGadget
     {
         /// <summary>
-        /// The main view of the gadget.
+        /// The main view of the UIGadget.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         object MainView { get; set; }
 
         /// <summary>
-        /// The class name of the gadget.
+        /// The class name of the UIGadget.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         string ClassName { get; set; }
 
         /// <summary>
-        /// The information of the gadget.
+        /// The information of the UIGadget.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         UIGadgetInfo UIGadgetInfo { get; set; }
 
         /// <summary>
-        /// The resource manager of the gadget.
+        /// The resource manager of the UIGadget.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         UIGadgetResourceManager UIGadgetResourceManager { get; set; }
 
         /// <summary>
-        /// The state of the gadget.
+        /// The state of the UIGadget.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         UIGadgetLifecycleState State { get; set; }
-
-        /// <summary>
-        /// Occurs when the lifecycle of the UIGadget is changed.
-        /// </summary>
-        /// <remarks>
-        /// This event should be raised when the state of UIGadget changes.
-        /// It provides information about the current state through the UIGadgeteLifecycleChangedEventArgs argument.
-        /// </remarks>
-        /// <since_tizen> 13 </since_tizen>
-        event EventHandler<UIGadgetLifecycleChangedEventArgs> LifecycleChanged;
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the UIGadget receives the appcontrol message.

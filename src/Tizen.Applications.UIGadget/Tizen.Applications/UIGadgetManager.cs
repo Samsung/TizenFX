@@ -74,6 +74,8 @@ namespace Tizen.Applications
             app.LocaleChanged += (s, e) => HandleLocaleChangedEvent(e);
             app.RegionFormatChanged += (s, e) => HandleRegionFormatChangedEvent(e);
             app.DeviceOrientationChanged += (s, e) => HandleDeviceOrientationChangedEvent(e);
+
+            UIGadgetLifecycleEventBroker.LifecycleChanged += OnUIGadgetLifecycleChanged;
         }
 
         /// <summary>
@@ -92,7 +94,6 @@ namespace Tizen.Applications
 
             if (args.State == UIGadgetLifecycleState.Destroyed)
             {
-                args.UIGadget.LifecycleChanged -= OnUIGadgetLifecycleChanged;
                 _gadgets.TryRemove(args.UIGadget, out _);
             }
         }
@@ -306,9 +307,7 @@ namespace Tizen.Applications
             gadget.UIGadgetInfo = info;
             gadget.ClassName = className;
             gadget.UIGadgetResourceManager = new UIGadgetResourceManager(info);
-            gadget.LifecycleChanged += OnUIGadgetLifecycleChanged;
             Log.Info("Gadget is created. ResourceType=" + resourceType);
-            OnUIGadgetLifecycleChanged(gadget, new UIGadgetLifecycleChangedEventArgs { State = gadget.State, UIGadget = gadget });
             return gadget;
         }
 

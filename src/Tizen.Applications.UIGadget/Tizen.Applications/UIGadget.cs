@@ -47,6 +47,7 @@ namespace Tizen.Applications
             Type = type;
             State = UIGadgetLifecycleState.Initialized;
             Log.Info("Type=" + Type + ", State=" + State);
+            NotifyLifecycleChanged();
         }
 
         /// <summary>
@@ -73,8 +74,6 @@ namespace Tizen.Applications
             DataLoader = LoaderFactory.CreateInstance(GenerateDataLoaderName(), AutoClose);
             DataLoader.LifecycleStateChanged += OnDataLoaderLifecycleChanged;
         }
-
-        private event EventHandler<UIGadgetLifecycleChangedEventArgs> LifecycleChanged;
 
         /// <summary>
         /// Occurs when the lifecycle of the OneShotService is changed.
@@ -182,12 +181,7 @@ namespace Tizen.Applications
 
         private void NotifyLifecycleChanged()
         {
-            var args = new UIGadgetLifecycleChangedEventArgs
-            {
-                State = State,
-                UIGadget = this,
-            };
-            LifecycleChanged?.Invoke(null, args);
+            UIGadgetLifecycleEventBroker.NotifyLifecycleChanged(this);
         }
 
         private void OnDataLoaderLifecycleChanged(object sender, DataLoaderLifecycleChangedEventArgs args)
@@ -364,8 +358,6 @@ namespace Tizen.Applications
         UIGadgetInfo IUIGadget.UIGadgetInfo { get => UIGadgetInfo; set => UIGadgetInfo = value; }
         UIGadgetResourceManager IUIGadget.UIGadgetResourceManager { get => UIGadgetResourceManager; set => UIGadgetResourceManager = value; }
         UIGadgetLifecycleState IUIGadget.State { get => State; set => State = value; }
-
-        event EventHandler<UIGadgetLifecycleChangedEventArgs> IUIGadget.LifecycleChanged { add { LifecycleChanged += value; } remove { LifecycleChanged -= value; } }
 
         void IUIGadget.OnAppControlReceived(AppControlReceivedEventArgs args) => OnAppControlReceived(args);
 

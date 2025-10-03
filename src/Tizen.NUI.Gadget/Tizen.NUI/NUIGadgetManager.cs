@@ -37,6 +37,7 @@ namespace Tizen.NUI
         static NUIGadgetManager()
         {
             LoadGadgetInfos();
+            UIGadgetLifecycleEventBroker.LifecycleChanged += OnUIGadgetLifecycleChanged;
         }
 
         private static void LoadGadgetInfos()
@@ -70,17 +71,23 @@ namespace Tizen.NUI
 
         private static void OnUIGadgetLifecycleChanged(object sender, UIGadgetLifecycleChangedEventArgs e)
         {
+            var gadget = e.UIGadget as NUIGadget;
+            if (gadget == null)
+            {
+                Log.Warn("Gadget is not NUIGadget");
+                return;
+            }
+
             var args = new NUIGadgetLifecycleChangedEventArgs
             {
                 State = (NUIGadgetLifecycleState)e.State,
-                Gadget = e.UIGadget as NUIGadget,
+                Gadget = gadget
             };
 
             NUIGadgetLifecycleChanged?.Invoke(sender, args);
 
             if (args.State == NUIGadgetLifecycleState.Destroyed)
             {
-                e.UIGadget.LifecycleChanged -= OnUIGadgetLifecycleChanged;
                 _gadgets.TryRemove(args.Gadget, out _);
             }
         }
@@ -250,7 +257,6 @@ namespace Tizen.NUI
                 }
             }
 
-            baseGadget.LifecycleChanged += OnUIGadgetLifecycleChanged;
             var gadget = baseGadget as NUIGadget;
             Log.Info("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
             return gadget;

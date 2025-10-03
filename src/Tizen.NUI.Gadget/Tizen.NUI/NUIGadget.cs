@@ -193,12 +193,7 @@ namespace Tizen.NUI
 
         private void NotifyLifecycleChanged()
         {
-            var args = new UIGadgetLifecycleChangedEventArgs
-            {
-                State = (UIGadgetLifecycleState)State,
-                UIGadget = this,
-            };
-            LifecycleChanged?.Invoke(this, args);
+            UIGadgetLifecycleEventBroker.NotifyLifecycleChanged(this);
         }
 
         private static string GenerateOneShotServiceName()
@@ -343,10 +338,7 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(message));
             }
 
-            CoreApplication.Post(() =>
-            {
-                OnMessageReceived(new NUIGadgetMessageReceivedEventArgs(message));
-            });
+            CoreApplication.Post(() => OnMessageReceived(new NUIGadgetMessageReceivedEventArgs(message)));
         }
 
         /// <summary>
@@ -359,25 +351,13 @@ namespace Tizen.NUI
             {
                 OnPause();
             }
+
             if (State == NUIGadgetLifecycleState.PreCreated || State == NUIGadgetLifecycleState.Created || State == NUIGadgetLifecycleState.Paused)
             {
                 OnDestroy();
             }
         }
 
-        private event EventHandler<UIGadgetLifecycleChangedEventArgs> LifecycleChanged;
-
-        event EventHandler<UIGadgetLifecycleChangedEventArgs> IUIGadget.LifecycleChanged
-        {
-            add
-            {
-                LifecycleChanged += value;
-            }
-            remove
-            {
-                LifecycleChanged -= value;
-            }
-        }
         object IUIGadget.MainView { get => MainView; set => MainView = (View)value; }
         string IUIGadget.ClassName { get => ClassName; set => ClassName = value; }
         UIGadgetInfo IUIGadget.UIGadgetInfo { get => NUIGadgetInfo.UIGadgetInfo; set => NUIGadgetInfo = new NUIGadgetInfo(value); }
