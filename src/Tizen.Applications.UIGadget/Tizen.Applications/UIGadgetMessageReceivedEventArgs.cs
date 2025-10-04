@@ -17,25 +17,24 @@
 using System;
 using System.ComponentModel;
 
-namespace Tizen.NUI
+namespace Tizen.Applications
 {
     /// <summary>
-    /// Event arguments for the OneShotService lifecycle change event.
+    /// Event arguments for the message received event.
     /// </summary>
     /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class OneShotServiceLifecycleChangedEventArgs : EventArgs
+    public class UIGadgetMessageReceivedEventArgs : EventArgs
     {
-        /// <summary>
-        /// Gets the OneShotService object that triggered the event.
-        /// </summary>
-        /// <since_tizen> 13 </since_tizen>
-        public OneShotService OneShotService { get; set; }
+        internal UIGadgetMessageReceivedEventArgs(Bundle message)
+        {
+            Message = message;
+        }
 
         /// <summary>
-        /// Gets the current state of the OneShotService lifecycle.
+        /// Gets the message.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public OneShotServiceLifecycleState State { get; internal set; }
+        public Bundle Message { get; internal set; }
     }
 }

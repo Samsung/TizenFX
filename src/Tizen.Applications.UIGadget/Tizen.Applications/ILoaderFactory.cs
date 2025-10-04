@@ -14,28 +14,24 @@
  * limitations under the License.
  */
 
-using System;
 using System.ComponentModel;
 
-namespace Tizen.NUI
+namespace Tizen.Applications
 {
     /// <summary>
-    /// Event arguments for the OneShotService lifecycle change event.
+    /// An interface that make the DataLoader object.
     /// </summary>
     /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class OneShotServiceLifecycleChangedEventArgs : EventArgs
+    public interface ILoaderFactory
     {
         /// <summary>
-        /// Gets the OneShotService object that triggered the event.
+        /// Creates a new DataLoader instance.
         /// </summary>
+        /// <param name="name">Unique identifier for the loader instance</param>
+        /// <param name="autoClose">Whether to automatically close the loader after execution</param>
+        /// <returns>A new DataLoader instance</returns>
         /// <since_tizen> 13 </since_tizen>
-        public OneShotService OneShotService { get; set; }
-
-        /// <summary>
-        /// Gets the current state of the OneShotService lifecycle.
-        /// </summary>
-        /// <since_tizen> 13 </since_tizen>
-        public OneShotServiceLifecycleState State { get; internal set; }
+        DataLoader CreateInstance(string name, bool autoClose);
     }
 }

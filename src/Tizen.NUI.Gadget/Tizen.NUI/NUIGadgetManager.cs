@@ -19,12 +19,8 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Reflection;
 using Tizen.Applications;
 using System.ComponentModel;
-
-using SystemIO = System.IO;
 
 namespace Tizen.NUI
 {
@@ -40,41 +36,27 @@ namespace Tizen.NUI
 
         static NUIGadgetManager()
         {
-            var ptr = Interop.Libc.GetEnvironmentVariable("GADGET_PKGIDS");
-            if (ptr != IntPtr.Zero)
+            LoadGadgetInfos();
+            UIGadgetLifecycleEventBroker.LifecycleChanged += OnUIGadgetLifecycleChanged;
+        }
+
+        private static void LoadGadgetInfos()
+        {
+            foreach (var info in UIGadgetManager.GetUIGadgetInfos())
             {
-                var packages = Marshal.PtrToStringAnsi(ptr);
-                if (!string.IsNullOrWhiteSpace(packages))
+                try
                 {
-                    foreach (var pkg in packages.Split(':'))
+                    var gadgetInfo = new NUIGadgetInfo(info);
+                    if (gadgetInfo != null)
                     {
-                        var info = NUIGadgetInfo.CreateNUIGadgetInfo(pkg);
-                        if (info != null)
-                        {
-                            try
-                            {
-                                _gadgetInfos.TryAdd(info.ResourceType, info);
-                            }
-                            catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
-                            {
-                                Log.Error("Exception occurs. " + e.Message);
-                            }
-                        }
+                        _gadgetInfos.TryAdd(gadgetInfo.ResourceType, gadgetInfo);
                     }
                 }
+                catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
+                {
+                    Log.Error("Exception occurs. " + e.Message);
+                }
             }
-            else
-            {
-                Log.Warn("Failed to get environment variable");
-            }
-
-            var app = (CoreApplication)CoreApplication.Current;
-            app.AppControlReceived += (s, e) => HandleAppControl(e);
-            app.LowMemory += (s, e) => HandleEvents(NUIGadgetEventType.LowMemory, e);
-            app.LowBattery += (s, e) => HandleEvents(NUIGadgetEventType.LowBattery, e);
-            app.LocaleChanged += (s, e) => HandleEvents(NUIGadgetEventType.LocaleChanged, e);
-            app.RegionFormatChanged += (s, e) => HandleEvents(NUIGadgetEventType.RegionFormatChanged, e);
-            app.DeviceOrientationChanged += (s, e) => HandleEvents(NUIGadgetEventType.DeviceOrientationChanged, e);
         }
 
         /// <summary>
@@ -87,13 +69,25 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         public static event EventHandler<NUIGadgetLifecycleChangedEventArgs> NUIGadgetLifecycleChanged;
 
-        private static void OnNUIGadgetLifecycleChanged(object sender, NUIGadgetLifecycleChangedEventArgs args)
+        private static void OnUIGadgetLifecycleChanged(object sender, UIGadgetLifecycleChangedEventArgs e)
         {
+            var gadget = e.UIGadget as NUIGadget;
+            if (gadget == null)
+            {
+                Log.Warn("Gadget is not NUIGadget");
+                return;
+            }
+
+            var args = new NUIGadgetLifecycleChangedEventArgs
+            {
+                State = (NUIGadgetLifecycleState)e.State,
+                Gadget = gadget
+            };
+
             NUIGadgetLifecycleChanged?.Invoke(sender, args);
 
             if (args.State == NUIGadgetLifecycleState.Destroyed)
             {
-                args.Gadget.LifecycleChanged -= OnNUIGadgetLifecycleChanged;
                 _gadgets.TryRemove(args.Gadget, out _);
             }
         }
@@ -136,47 +130,7 @@ namespace Tizen.NUI
                 throw new ArgumentException("Invalid argument");
             }
 
-            NUIGadgetInfo info = Find(resourceType);
-            LoadInternal(info, useDefaultContext);
-        }
-
-        private static void LoadInternal(NUIGadgetInfo info, bool useDefaultContext)
-        {
-            if (info == null)
-            {
-                throw new ArgumentException("Invalid argument", nameof(info));
-            }
-
-            try
-            {
-                lock (info)
-                {
-                    if (useDefaultContext)
-                    {
-                        if (info.Assembly == null)
-                        {
-
-                            Log.Warn("NUIGadget.Load(): " + info.ResourcePath + info.ExecutableFile + " ++");
-                            info.Assembly = Assembly.Load(SystemIO.Path.GetFileNameWithoutExtension(info.ExecutableFile));
-                            Log.Warn("NUIGadget.Load(): " + info.ResourcePath + info.ExecutableFile + " --");
-                        }
-                    }
-                    else
-                    {
-                        if (info.NUIGadgetAssembly == null || !info.NUIGadgetAssembly.IsLoaded)
-                        {
-                            Log.Warn("NUIGadgetAssembly.Load(): " + info.GadgetResourcePath + info.ExecutableFile + " ++");
-                            info.NUIGadgetAssembly = new NUIGadgetAssembly(info.GadgetResourcePath + info.ExecutableFile);
-                            info.NUIGadgetAssembly.Load();
-                            Log.Warn("NUIGadgetAssembly.Load(): " + info.GadgetResourcePath + info.ExecutableFile + " --");
-                        }
-                    }
-                }
-            }
-            catch (Exception e) when (e is FileLoadException || e is BadImageFormatException)
-            {
-                throw new InvalidOperationException(e.Message, e);
-            }
+            UIGadgetManager.Load(resourceType, useDefaultContext);
         }
 
         /// <summary>
@@ -205,19 +159,7 @@ namespace Tizen.NUI
                 throw new ArgumentException("Invalid argument", nameof(resourceType));
             }
 
-            NUIGadgetInfo info = Find(resourceType);
-            if (info == null)
-            {
-                throw new ArgumentException("Invalid argument", nameof(resourceType));
-            }
-
-            lock (info)
-            {
-                if (info.NUIGadgetAssembly?.IsLoaded == true)
-                {
-                    info.NUIGadgetAssembly.Unload();
-                }
-            }
+            UIGadgetManager.Unload(resourceType);
         }
 
         /// <summary>
@@ -296,18 +238,27 @@ namespace Tizen.NUI
             }
 
             NUIGadgetInfo info = Find(resourceType);
-            LoadInternal(info, useDefaultContext);
-
-            NUIGadget gadget = useDefaultContext ? info.Assembly.CreateInstance(className, true) as NUIGadget : info.NUIGadgetAssembly.CreateInstance(className);
-            if (gadget == null)
+            if (info == null)
             {
-                throw new InvalidOperationException("Failed to create instance. className: " + className);
+                throw new ArgumentException("Failed to find ResourceType=" + resourceType);
             }
 
-            gadget.NUIGadgetInfo = info;
-            gadget.ClassName = className;
-            gadget.NUIGadgetResourceManager = new NUIGadgetResourceManager(info);
-            gadget.LifecycleChanged += OnNUIGadgetLifecycleChanged;
+            var baseGadget = UIGadgetManager.CreateInstance(resourceType, className, useDefaultContext);
+            if (baseGadget == null)
+            {
+                throw new InvalidOperationException("Failed to create gadget. ResourceType=" + resourceType + ", ClassName=" + className);
+            }
+
+            if (!useDefaultContext)
+            {
+                if (info.NUIGadgetAssembly == null)
+                {
+                    info.NUIGadgetAssembly = new NUIGadgetAssembly(baseGadget.UIGadgetInfo.UIGadgetAssembly);
+                }
+            }
+
+            var gadget = baseGadget as NUIGadget;
+            Log.Info("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
             return gadget;
         }
 
@@ -319,13 +270,7 @@ namespace Tizen.NUI
         /// <since_tizen> 13 </since_tizen>
         public static void PreCreate(NUIGadget gadget)
         {
-            if (gadget == null)
-            {
-                throw new ArgumentNullException(nameof(gadget));
-            }
-
-            Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
-            gadget.PreCreate();
+            UIGadgetManager.PreCreate(gadget);
         }
 
         /// <summary>
@@ -348,11 +293,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
-            if (!gadget.Create())
-            {
-                throw new InvalidOperationException("The View MUST be created");
-            }
+            UIGadgetManager.Create(gadget);
             _gadgets.TryAdd(gadget, 0);
         }
 
@@ -373,13 +314,9 @@ namespace Tizen.NUI
             {
                 return;
             }
-
+                        
+            UIGadgetManager.Remove(gadget);
             _gadgets.TryRemove(gadget, out _);
-            CoreApplication.Post(() =>
-            {
-                Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
-                gadget.Finish();
-            });
         }
 
         /// <summary>
@@ -420,11 +357,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            CoreApplication.Post(() =>
-            {
-                Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
-                gadget.Resume();
-            });
+            UIGadgetManager.Resume(gadget);
         }
 
         /// <summary>
@@ -448,11 +381,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            CoreApplication.Post(() =>
-            {
-                Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
-                gadget.Pause();
-            });
+            UIGadgetManager.Pause(gadget);
         }
 
         /// <summary>
@@ -480,36 +409,7 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(appControl));
             }
 
-            gadget.HandleAppControlReceivedEvent(new AppControlReceivedEventArgs(new ReceivedAppControl(appControl.SafeAppControlHandle)));
-        }
-
-        internal static bool HandleAppControl(AppControlReceivedEventArgs args)
-        {
-            var extraData = args.ReceivedAppControl?.ExtraData;
-            if (extraData == null || !extraData.TryGet("__K_GADGET_RES_TYPE", out string resourceType) ||
-                !extraData.TryGet("__K_GADGET_CLASS_NAME", out string className))
-            {
-                return false;
-            }
-
-            foreach (var gadget in _gadgets.Keys)
-            {
-                if (gadget.NUIGadgetInfo.ResourceType == resourceType && gadget.ClassName == className)
-                {
-                    gadget.HandleAppControlReceivedEvent(args);
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        internal static void HandleEvents(NUIGadgetEventType eventType, EventArgs args)
-        {
-            foreach (NUIGadget gadget in _gadgets.Keys)
-            {
-                gadget.HandleEvents(eventType, args);
-            }
+            UIGadgetManager.SendAppControl(gadget, appControl);
         }
 
         /// <summary>
@@ -523,6 +423,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="message">The message</param>
         /// <exception cref="ArgumentNullException">Thrown if either 'envelope' is null.</exception>
+        /// <since_tizen> 13 </since_tizen>
         public static void SendMessage(Bundle message)
         {
             if (message == null)
@@ -544,59 +445,12 @@ namespace Tizen.NUI
         /// </remarks>
         /// <exception cref="InvalidOperationException">Thrown if any of gadgets is still loaded.</exception>
         /// <exception cref="IOException">Thrown if internal request fail.</exception>
+        /// <since_tizen> 13 </since_tizen>
         public static void Refresh()
         {
-            foreach (var info in _gadgetInfos)
-            {
-                if (info.Value.NUIGadgetAssembly is not null)
-                {
-                    if (info.Value.NUIGadgetAssembly.IsLoaded == true)
-                    {
-                        Log.Error("Gadget still loaded: " + info.Key);
-                        throw new InvalidOperationException("Gadget still loaded");
-                    }
-                }
-            }
-
-            foreach (var info in _gadgetInfos)
-            {
-                if (info.Value.NUIGadgetAssembly is not null)
-                {
-                    for (int i = 0; info.Value.NUIGadgetAssembly.IsAlive && i < 10; i++)
-                    {
-                        GC.Collect();
-                        GC.WaitForPendingFinalizers();
-                    }
-                }
-            }
-
-            string pkgList = string.Empty;
-            var ret = Interop.ApplicationManager.AppRemountGadgetPath(out pkgList);
-            if (ret != Interop.ApplicationManager.ErrorCode.None)
-            {
-                Log.Error("Internal error occurs: " + ret);
-                throw new IOException("Internal error");
-            }
-
+            UIGadgetManager.Refresh();
             _gadgetInfos.Clear();
-            if (!string.IsNullOrWhiteSpace(pkgList))
-            {
-                foreach (var pkg in pkgList.Split(':'))
-                {
-                    var info = NUIGadgetInfo.CreateNUIGadgetInfo(pkg);
-                    if (info != null)
-                    {
-                        try
-                        {
-                            _gadgetInfos.TryAdd(info.ResourceType, info);
-                        }
-                        catch (Exception e) when (e is ArgumentNullException || e is OverflowException)
-                        {
-                            Log.Error("Exception occurs. " + e.Message);
-                        }
-                    }
-                }
-            }
+            LoadGadgetInfos();
             Log.Info("# of Gadget after refresh (" + _gadgetInfos.Count + ")");
         }
     }

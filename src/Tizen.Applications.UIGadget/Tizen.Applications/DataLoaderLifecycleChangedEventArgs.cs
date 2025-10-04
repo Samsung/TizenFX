@@ -17,25 +17,25 @@
 using System;
 using System.ComponentModel;
 
-namespace Tizen.NUI
+namespace Tizen.Applications
 {
     /// <summary>
-    /// Event arguments for the OneShotService lifecycle change event.
+    /// Event arguments for the DataLoader lifecycle change event.
     /// </summary>
     /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class OneShotServiceLifecycleChangedEventArgs : EventArgs
+    public class DataLoaderLifecycleChangedEventArgs : EventArgs
     {
         /// <summary>
-        /// Gets the OneShotService object that triggered the event.
+        /// Gets the DataLoader object that triggered the event.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public OneShotService OneShotService { get; set; }
+        public DataLoader DataLoader { get; set; }
 
         /// <summary>
-        /// Gets the current state of the OneShotService lifecycle.
+        /// Gets the current state of the DataLoader lifecycle.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public OneShotServiceLifecycleState State { get; internal set; }
+        public DataLoaderLifecycleState State { get; internal set; }
     }
 }
