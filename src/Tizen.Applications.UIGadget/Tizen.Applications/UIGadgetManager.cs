@@ -352,7 +352,7 @@ namespace Tizen.Applications
             }
 
             Log.Warn("ResourceType: " + gadget.UIGadgetInfo.ResourceType + ", State: " + gadget.State);
-            if (gadget.State != UIGadgetLifecycleState.PreCreated)
+            if (gadget.State == UIGadgetLifecycleState.PreCreated)
             {
                 gadget.MainView = gadget.OnCreate();
                 if (gadget.MainView == null)

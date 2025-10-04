@@ -88,7 +88,7 @@ namespace Tizen.NUI
         public event EventHandler<OneShotServiceLifecycleChangedEventArgs> OneShotServiceLifecycleChanged;
 
         /// <summary>
-        /// Gets the class representing information of the current gadget.
+        /// The class representing information of the current gadget.
         /// </summary>
         /// <remarks>
         /// This property is set before the OnCreate() is called, after the instance has been created.
@@ -103,7 +103,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the type of the NUI gadget.
+        /// The type of the NUI gadget.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public NUIGadgetType Type
@@ -113,7 +113,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the class name.
+        /// The class name.
         /// </summary>
         /// <remarks>
         /// This property is set before the OnCreate() is called, after the instance has been created.
@@ -127,7 +127,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the main view of the NUI gadget.
+        /// The main view of the NUI gadget.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public View MainView
@@ -137,7 +137,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the current lifecycle state of the gadget.
+        /// The current lifecycle state of the gadget.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public NUIGadgetLifecycleState State
@@ -147,7 +147,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the resource manager.
+        /// The resource manager.
         /// </summary>
         /// <remarks> This property is set before the OnCreate() is called, after the instance has been created.
         /// It provides access to various resources such as images, sounds, and fonts that can be used in your application.
@@ -387,9 +387,5 @@ namespace Tizen.NUI
         void IUIGadget.OnPause() => OnPause();
 
         void IUIGadget.OnDestroy() => OnDestroy();
-
-        void IUIGadget.Finish() => Finish();
-
-        void IUIGadget.SendMessage(Bundle message) => SendMessage(message);
     }
 }

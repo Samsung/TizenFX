@@ -87,7 +87,7 @@ namespace Tizen.Applications
         public event EventHandler<DataLoaderLifecycleChangedEventArgs> DataLoaderLifecycleChanged;
 
         /// <summary>
-        /// Gets the class representing information of the current UIGadget.
+        /// The class representing information of the current UIGadget.
         /// </summary>
         /// <remarks>
         /// This property is set before the OnCreate() is called, after the instance has been created.
@@ -97,12 +97,12 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public UIGadgetInfo UIGadgetInfo
         {
-            internal set;
+            set;
             get;
         }
 
         /// <summary>
-        /// Gets the type of the UIGadget.
+        /// The type of the UIGadget.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         public UIGadgetType Type
@@ -112,7 +112,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the class name.
+        /// The class name.
         /// </summary>
         /// <remarks>
         /// This property is set before the OnCreate() is called, after the instance has been created.
@@ -121,32 +121,32 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public string ClassName
         {
-            internal set;
+            set;
             get;
         }
 
         /// <summary>
-        /// Gets the main view of the UIGadget.
+        /// The main view of the UIGadget.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         public object MainView
         {
-            internal set;
+            set;
             get;
         }
 
         /// <summary>
-        /// Gets the current lifecycle state of the UIGadget.
+        /// The current lifecycle state of the UIGadget.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         public UIGadgetLifecycleState State
         {
-            internal set;
+            set;
             get;
         }
 
         /// <summary>
-        /// Gets the resource manager.
+        /// The resource manager.
         /// </summary>
         /// <remarks> This property is set before the OnCreate() is called, after the instance has been created.
         /// It provides access to various resources such as images, sounds, and fonts that can be used in your application.
@@ -156,7 +156,7 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public UIGadgetResourceManager UIGadgetResourceManager
         {
-            internal set;
+            set;
             get;
         }
 
@@ -353,38 +353,17 @@ namespace Tizen.Applications
             }
         }
 
-        object IUIGadget.MainView { get => MainView; set => MainView = value; }
-        string IUIGadget.ClassName { get => ClassName; set => ClassName = value; }
-        UIGadgetInfo IUIGadget.UIGadgetInfo { get => UIGadgetInfo; set => UIGadgetInfo = value; }
-        UIGadgetResourceManager IUIGadget.UIGadgetResourceManager { get => UIGadgetResourceManager; set => UIGadgetResourceManager = value; }
-        UIGadgetLifecycleState IUIGadget.State { get => State; set => State = value; }
-
         void IUIGadget.OnAppControlReceived(AppControlReceivedEventArgs args) => OnAppControlReceived(args);
-
         void IUIGadget.OnLocaleChanged(LocaleChangedEventArgs args) => OnLocaleChanged(args);
-
         void IUIGadget.OnRegionFormatChanged(RegionFormatChangedEventArgs args) => OnRegionFormatChanged(args);
-
         void IUIGadget.OnLowMemory(LowMemoryEventArgs args) => OnLowMemory(args);
-
         void IUIGadget.OnLowBattery(LowBatteryEventArgs args) => OnLowBattery(args);
-
         void IUIGadget.OnDeviceOrientationChanged(DeviceOrientationEventArgs args) => OnDeviceOrientationChanged(args);
-
         void IUIGadget.OnMessageReceived(UIGadgetMessageReceivedEventArgs e) => OnMessageReceived(e);
-
         void IUIGadget.OnPreCreate() => OnPreCreate();
-
         object IUIGadget.OnCreate() => OnCreate();
-
         void IUIGadget.OnResume() => OnResume();
-
         void IUIGadget.OnPause() => OnPause();
-
         void IUIGadget.OnDestroy() => OnDestroy();
-
-        void IUIGadget.Finish() => Finish();
-
-        void IUIGadget.SendMessage(Bundle message) => SendMessage(message);
     }
 }
