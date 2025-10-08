@@ -23,6 +23,7 @@ namespace Tizen.Peripheral.I2c
     /// The class allows applications to communicate via i2c platform's bus.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/peripheralio</privilege>
+    /// <feature>http://tizen.org/feature/peripheral_io.i2c</feature>
     public class I2cDevice : IDisposable
     {
         /// <summary>
@@ -36,6 +37,12 @@ namespace Tizen.Peripheral.I2c
         /// </summary>
         /// <param name="bus">The I2C bus number that the slave device is connected.</param>
         /// <param name="address">The address of the slave device.</param>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.I2c;
+        /// var i2c = I2cDevice(1, 2);
+        /// </code>
+        /// </example>
         public I2cDevice(int bus, int address)
         {
             var ret = NativeI2c.Open(bus, address, out _handle);
@@ -54,11 +61,25 @@ namespace Tizen.Peripheral.I2c
         /// <summary>
         /// Closes the connection to the I2C slave device.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.I2c;
+        /// var i2c = I2cDevice(1, 2);
+        /// i2c.Close();
+        /// </code>
+        /// </example>
         public void Close() => Dispose();
 
         /// <summary>
         /// Disposes the I2c.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.I2c;
+        /// var i2c = I2cDevice(1, 2);
+        /// i2c.Dispose();
+        /// </code>
+        /// </example>
         public void Dispose()
         {
             Dispose(true);
@@ -84,6 +105,14 @@ namespace Tizen.Peripheral.I2c
         /// Reads the bytes data from the I2C slave device.
         /// </summary>
         /// <param name="dataOut">The output byte array.</param>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.I2c;
+        /// var i2c = I2cDevice(1, 2);
+        /// var buf = new byte[1024];
+        /// i2c.Read(buf);
+        /// </code>
+        /// </example>
         public void Read(byte[] dataOut)
         {
             if (dataOut == null)
@@ -98,6 +127,15 @@ namespace Tizen.Peripheral.I2c
         /// Writes the bytes data to the I2C slave device.
         /// </summary>
         /// <param name="data"></param>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.I2c;
+        /// var i2c = I2cDevice(1, 2);
+        /// var buf = new byte[1024];
+        /// FillData(buf);
+        /// i2c.Write(buf);
+        /// </code>
+        /// </example>
         public void Write(byte[] data)
         {
             if (data == null)
@@ -113,6 +151,13 @@ namespace Tizen.Peripheral.I2c
         /// </summary>
         /// <param name="register">The register address of the I2C slave device to read.</param>
         /// <returns>The single byte data.</returns>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.I2c;
+        /// var i2c = I2cDevice(1, 2);
+        /// Console.WriteLine($"Read {i2c.ReadRegisterByte(7)}");
+        /// </code>
+        /// </example>
         public byte ReadRegisterByte(byte register)
         {
             var ret = NativeI2c.ReadRegisterByte(_handle, register, out byte data);
@@ -127,6 +172,13 @@ namespace Tizen.Peripheral.I2c
         /// </summary>
         /// <param name="register">The register address of the I2C slave device to write.</param>
         /// <param name="data">The single byte data to write.</param>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.I2c;
+        /// var i2c = I2cDevice(1, 2);
+        /// i2c.WriteRegisterByte(7, 0x23);
+        /// </code>
+        /// </example>
         public void WriteRegisterByte(byte register, byte data)
         {
             var ret = NativeI2c.WriteRegisterByte(_handle, register, data);
@@ -139,6 +191,13 @@ namespace Tizen.Peripheral.I2c
         /// </summary>
         /// <param name="register">The register address of the I2C slave device to read.</param>
         /// <returns>The word (2 bytes) data.</returns>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.I2c;
+        /// var i2c = I2cDevice(1, 2);
+        /// Console.WriteLine($"Read {i2c.ReadRegisterWord(7)}");
+        /// </code>
+        /// </example>
         public ushort ReadRegisterWord(byte register)
         {
             var ret = NativeI2c.ReadRegisterWord(_handle, register, out ushort data);
@@ -153,6 +212,13 @@ namespace Tizen.Peripheral.I2c
         /// </summary>
         /// <param name="register">The register address of the I2C slave device to write.</param>
         /// <param name="data">The word (2 bytes) data to write.</param>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.I2c;
+        /// var i2c = I2cDevice(1, 2);
+        /// i2c.WriteRegisterWord(7, 0x2345);
+        /// </code>
+        /// </example>
         public void WriteRegisterWord(byte register, ushort data)
         {
             var ret = NativeI2c.WriteRegisterWord(_handle, register, data);

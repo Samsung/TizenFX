@@ -155,6 +155,7 @@ namespace Tizen.Peripheral.Uart
     /// The class allows applications to communicate via UART platform's bus.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/peripheralio</privilege>
+    /// <feature>http://tizen.org/feature/peripheral_io.uart</feature>
     public class SerialPort : IDisposable
     {
         private BaudRate _baudRate;
@@ -174,6 +175,19 @@ namespace Tizen.Peripheral.Uart
         /// Opens the UART slave device.
         /// </summary>
         /// <param name="port">The UART port number that the slave device is connected.</param>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Uart;
+        /// var uart = SerialPort(1);
+        /// // Probably useful to also set some settings before doing anything...
+        /// uart.BaudRate = BaudRate.Rate115200;
+        /// uart.DataBits = DataBits.Size8Bit;
+        /// uart.Parity = Parity.None;
+        /// uart.StopBits = StopBits.One;
+        /// uart.HardwareFlowControl = HardwareFlowControl.AutoRtsCts;
+        /// uart.SoftwareFlowControl = SoftwareFlowControl.None;
+        /// </code>
+        /// </example>
         public SerialPort(int port)
         {
             var ret = NativeUart.Open(port, out _handle);
@@ -192,11 +206,25 @@ namespace Tizen.Peripheral.Uart
         /// <summary>
         /// Closes the UART slave device.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Uart;
+        /// var uart = SerialPort(1);
+        /// uart.Close();
+        /// </code>
+        /// </example>
         public void Close() => Dispose();
 
         /// <summary>
         /// Disposes Uart object.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Uart;
+        /// var uart = SerialPort(1);
+        /// uart.Dispose();
+        /// </code>
+        /// </example>
         public void Dispose()
         {
             Dispose(true);
@@ -225,6 +253,24 @@ namespace Tizen.Peripheral.Uart
         /// <param name="offset">The offset in buffer at which to write the bytes.</param>
         /// <param name="count">The number of bytes to read.</param>
         /// <returns>The number of bytes read.</returns>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Uart;
+        /// var uart = SerialPort(1);
+        /// uart.BaudRate = BaudRate.Rate115200;
+        /// uart.DataBits = DataBits.Size8Bit;
+        /// uart.Parity = Parity.None;
+        /// uart.StopBits = StopBits.One;
+        /// uart.HardwareFlowControl = HardwareFlowControl.AutoRtsCts;
+        /// uart.SoftwareFlowControl = SoftwareFlowControl.None;
+        /// var buf = new byte[1024];
+        /// int read = 0;
+        /// while (buf.Length > read)
+        /// {
+        ///     read += uart.Read(buf, read, buf.Length - read);
+        /// }
+        /// </code>
+        /// </example>
         public int Read(byte[] buffer, int offset, int count)
         {
             if (buffer == null)
@@ -246,6 +292,25 @@ namespace Tizen.Peripheral.Uart
         /// <param name="buffer">The byte array that contains the data to write to the device.</param>
         /// <param name="offset">The offset in buffer at which to begin copying bytes.</param>
         /// <param name="count">The number of bytes to write</param>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Uart;
+        /// var uart = SerialPort(1);
+        /// uart.BaudRate = BaudRate.Rate115200;
+        /// uart.DataBits = DataBits.Size8Bit;
+        /// uart.Parity = Parity.None;
+        /// uart.StopBits = StopBits.One;
+        /// uart.HardwareFlowControl = HardwareFlowControl.AutoRtsCts;
+        /// uart.SoftwareFlowControl = SoftwareFlowControl.None;
+        /// var buf = new byte[1024];
+        /// FillData(buf);
+        /// int written = 0;
+        /// while (buf.Length > written)
+        /// {
+        ///     written += uart.Write(buf, written, buf.Length - written);
+        /// }
+        /// </code>
+        /// </example>
         public int Write(byte[] buffer, int offset, int count)
         {
             if (buffer == null)
