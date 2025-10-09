@@ -72,6 +72,11 @@ namespace Tizen.System.Usb
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        /// <example>
+        /// <code>
+        /// var endpoint = iface.Endpoints[123];
+        /// </code>
+        /// </example>
         public IReadOnlyDictionary<int, UsbEndpoint> Endpoints
         {
             get
@@ -123,6 +128,14 @@ namespace Tizen.System.Usb
         /// Throws an exception if device is disconnected or not opened for operation or another program or driver has claimed the interface.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        /// <example>
+        /// <code>
+        /// var interface = device.Interfaces[123];
+        /// interface.Claim();
+        ///   ... do the needful ...
+        /// interface.Release();
+        /// </code>
+        /// </example>
         public void Claim(bool force)
         {
             ThrowIfDisposed();
@@ -146,6 +159,14 @@ namespace Tizen.System.Usb
         /// <exception cref="InvalidOperationException">Throws exception if the device is disconnected or not opened for operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on the device.</exception>
         /// <since_tizen> 4 </since_tizen>
+        /// <example>
+        /// <code>
+        /// var interface = device.Interfaces[123];
+        /// interface.Claim();
+        ///   ... do the needful ...
+        /// interface.Release();
+        /// </code>
+        /// </example>
         public void Release()
         {
             ThrowIfDisposed();

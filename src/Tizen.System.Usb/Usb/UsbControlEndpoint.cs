@@ -93,6 +93,12 @@ namespace Tizen.System.Usb
         /// <exception cref="InvalidOperationException">Throws an exception if the device is disconnected or not opened for an operation.</exception>
         /// <exception cref="TimeoutException">Throws an exception if the transfer is timed out.</exception>
         /// <since_tizen> 4 </since_tizen>
+        /// <example>
+        /// <code>
+        /// byte[] buffer = new byte[123];
+        /// int bytesTransferred = endpoint.Transfer(0x12, 0x34, 0x56, 7, buffer, buffer.Length, 1000);
+        /// </code>
+        /// </example>
         public int Transfer(byte requestType, byte request, ushort value, ushort index, byte[] data, ushort length, uint timeout)
         {
             _device.ThrowIfDisposed();
