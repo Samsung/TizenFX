@@ -146,6 +146,7 @@ namespace Tizen.Applications
         /// Initializes the loader task and triggers the OnCreate event.
         /// If AutoClose is enabled, automatically destroys the loader after execution.
         /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the task creation fails.</exception>
         /// <since_tizen> 13 </since_tizen>
         public void Run()
         {
@@ -159,6 +160,12 @@ namespace Tizen.Applications
             if (State == DataLoaderLifecycleState.Initialized)
             {
                 _task = TizenCore.Spawn(Name);
+                if (_task == null)
+                {
+                    Log.Error($"Task creation failed for DataLoader({Name})");
+                    throw new InvalidOperationException($"Failed to create task for DataLoader({Name})");
+                }
+
                 _task.Post(() =>
                 {
                     Create();
