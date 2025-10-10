@@ -43,6 +43,8 @@ namespace Tizen.System
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         /// <value>true if the IR module is available, otherwise false.</value>
+        /// <privilege>http://tizen.org/privilege/use_ir</privilege>
+        /// <feature>http://tizen.org/feature/consumer_ir</feature>
         /// <example>
         /// <code>
         /// using Tizen.System;
@@ -74,6 +76,8 @@ namespace Tizen.System
         /// <param name="pattern">
         /// The IR command list of type integer.
         /// </param>
+        /// <privilege>http://tizen.org/privilege/use_ir</privilege>
+        /// <feature>http://tizen.org/feature/consumer_ir</feature>
         /// <exception cref="ArgumentException"> When an invalid parameter value is set.</exception>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
