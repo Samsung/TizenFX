@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Sensor
 {
@@ -150,7 +151,7 @@ namespace Tizen.Sensor
                 count = 0;
             }
             else
-                Interop.Libc.Free(list);
+                Marshal.FreeHGlobal(list);
             return count;
         }
 
@@ -169,7 +170,7 @@ namespace Tizen.Sensor
             Interop.SensorEventStruct sensorData = latestEvent();
             Timestamp = sensorData.timestamp;
             Accuracy = sensorData.accuracy;
-            Interop.Libc.Free(eventsPtr);
+            Marshal.FreeHGlobal(eventsPtr);
         }
 
         private static Interop.SensorListener.SensorEventsCallback _callback;
