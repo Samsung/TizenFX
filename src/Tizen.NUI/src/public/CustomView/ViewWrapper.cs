@@ -33,7 +33,7 @@ namespace Tizen.NUI
             // TODO : We need to find more good way to call this API
             if (NUIApplication.IsPreload == false)
             {
-                RegisterAccessibilityDelegate();
+                Accessibility.Accessibility.SetupAccessibilityInitSignal();
             }
         }
 
