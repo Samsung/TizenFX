@@ -181,7 +181,7 @@ internal static partial class Interop
             {
                 rotations = new int[count];
                 Marshal.Copy(rotationArrPtr, rotations, 0, count);
-                Libc.Free(rotationArrPtr);
+                Marshal.FreeHGlobal(rotationArrPtr);
                 return true;
             }
             rotations = null;
