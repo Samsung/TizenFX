@@ -15,7 +15,6 @@
  *
  */
 
-using System;
 using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
@@ -62,6 +61,12 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_RegisterScreenReaderEnabledDisabledSignalHandler")]
             public static extern void RegisterScreenReaderEnabledDisabledSignalHandler(EnabledDisabledSignalHandler enabledSignalHandler, EnabledDisabledSignalHandler disabledSignalHandler);
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            public delegate void AccessibilityRequestHandler();
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_RegisterRequestHandler")]
+            public static extern void RegisterAccessibilityRequestHandler(AccessibilityRequestHandler accessibilityRequestHandler);
         }
     }
 }

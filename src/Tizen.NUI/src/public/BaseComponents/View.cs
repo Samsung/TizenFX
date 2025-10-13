@@ -459,11 +459,10 @@ namespace Tizen.NUI.BaseComponents
                 RegisterPropertyGroup(ScaleZProperty, scalePropertyGroup);
             }
         }
-
         static internal new void Preload()
         {
             Container.Preload();
-            RegisterAccessibilityDelegate();
+            Accessibility.Accessibility.SetupAccessibilityInitSignal();
         }
 
         /// <summary>
@@ -525,7 +524,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     if (_accessibilityDeletageRegisterted == false && NUIApplication.IsPreload == false)
                     {
-                        RegisterAccessibilityDelegate();
+                        Accessibility.Accessibility.SetupAccessibilityInitSignal();
                     }
 
                     switch (resizePolicyMode)
@@ -547,7 +546,7 @@ namespace Tizen.NUI.BaseComponents
 #if !PROFILE_TV
                     if (_accessibilityDeletageRegisterted == false && NUIApplication.IsPreload == false)
                     {
-                        RegisterAccessibilityDelegate();
+                        Accessibility.Accessibility.SetupAccessibilityInitSignal();
                     }
 #endif
                     switch (resizePolicyMode)
