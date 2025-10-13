@@ -520,7 +520,7 @@ namespace Tizen.Sensor
             }
             sensorList = Interop.IntPtrToIntPtrArray(list, count);
             _sensorHandle = sensorList[index];
-            Interop.Libc.Free(list);
+            Marshal.FreeHGlobal(list);
         }
 
         /// <summary>
