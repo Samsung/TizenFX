@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2024 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2025 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -18,30 +18,26 @@ using System;
 using System.ComponentModel;
 using System.IO;
 using System.Reflection;
+using System.Reflection.Metadata.Ecma335;
 using System.Runtime.Loader;
-using Tizen.Applications;
+
 using SystemIO = System.IO;
 
-namespace Tizen.NUI
+namespace Tizen.Applications
 {
-    internal class NUIGadgetAssemblyLoadContext : AssemblyLoadContext
+    internal class UIGadgetAssemblyLoadContext : AssemblyLoadContext
     {
-        public NUIGadgetAssemblyLoadContext() : base(isCollectible: true)
-        {
-        }
+        public UIGadgetAssemblyLoadContext() : base(isCollectible: true) { }
 
-        protected override Assembly Load(AssemblyName name)
-        {
-            return null;
-        }
+        protected override Assembly Load(AssemblyName name) => null;
     }
 
     /// <summary>
-    /// Represents a class that provides access to the methods and properties of the NUIGadgetAssembly.
+    /// Represents a class that provides access to the methods and properties of the UIGadgetAssembly.
     /// </summary>
-    /// <since_tizen> 10 </since_tizen>
+    /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class NUIGadgetAssembly
+    public class UIGadgetAssembly
     {
         private static readonly object _assemblyLock = new object();
         private readonly string _assemblyPath;
@@ -49,11 +45,7 @@ namespace Tizen.NUI
         private Assembly _assembly = null;
         private bool _loaded = false;
 
-        internal NUIGadgetAssembly(string assemblyPath) { _assemblyPath = assemblyPath; }
-
-        internal NUIGadgetAssembly(UIGadgetAssembly assembly) { UIGadgetAssembly = assembly;  }
-
-        internal UIGadgetAssembly UIGadgetAssembly { get; private set; }
+        internal UIGadgetAssembly(string assemblyPath) { _assemblyPath = assemblyPath; }
 
         internal void Load()
         {
@@ -65,7 +57,7 @@ namespace Tizen.NUI
                 }
 
                 Log.Warn("Load(): " + _assemblyPath + " ++");
-                NUIGadgetAssemblyLoadContext context = new NUIGadgetAssemblyLoadContext();
+                UIGadgetAssemblyLoadContext context = new UIGadgetAssemblyLoadContext();
                 _assemblyRef = new WeakReference(context);
                 string directoryPath = SystemIO.Path.GetDirectoryName(_assemblyPath);
                 string fileName = SystemIO.Path.GetFileNameWithoutExtension(_assemblyPath);
@@ -79,35 +71,25 @@ namespace Tizen.NUI
 
         internal bool IsLoaded { get { return _loaded; } }
 
-        internal NUIGadget CreateInstance(string className)
+        /// <summary>
+        /// Creates an instance of the UIGadget.
+        /// </summary>
+        /// <param name="className">The class name.</param>
+        /// <returns>The UIGadget instance.</returns>
+        /// <since_tizen> 13 </since_tizen>
+        public object CreateInstance(string className)
         {
-            if (UIGadgetAssembly != null)
-            {
-                return (NUIGadget)UIGadgetAssembly.CreateInstance(className);
-            }
-
             lock (_assemblyLock)
             {
-                return (NUIGadget)_assembly?.CreateInstance(className);
+                return _assembly?.CreateInstance(className);
             }
         }
 
         /// <summary>
-        /// Property indicating whether the weak reference to the gadget assembly is still alive.
+        /// Property indicating whether the weak reference to the UIGadget assembly is still alive.
         /// </summary>
-        /// <since_tizen> 12 </since_tizen>
-        public bool IsAlive 
-        {
-            get
-            { 
-                if (UIGadgetAssembly != null)
-                {
-                    return UIGadgetAssembly.IsAlive;
-                }
-
-                return _assemblyRef.IsAlive;
-            }
-        }
+        /// <since_tizen> 13 </since_tizen>
+        public bool IsAlive {  get { return _assemblyRef.IsAlive; } }
 
         internal void Unload()
         {
@@ -121,7 +103,7 @@ namespace Tizen.NUI
                 Log.Warn("Unload(): " + _assemblyPath + " ++");
                 if (_assemblyRef.IsAlive)
                 {
-                    (_assemblyRef.Target as NUIGadgetAssemblyLoadContext).Unload();
+                    (_assemblyRef.Target as UIGadgetAssemblyLoadContext).Unload();
                 }
 
                 _assembly = null;

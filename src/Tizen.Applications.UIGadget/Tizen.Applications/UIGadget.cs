@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2025 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -16,64 +16,63 @@
 
 using System;
 using System.ComponentModel;
-using Tizen.Applications;
-using Tizen.NUI.BaseComponents;
 
-namespace Tizen.NUI
+namespace Tizen.Applications
 {
     /// <summary>
-    /// Represents a NUIGadget controlled lifecycle.
+    /// Represents an UIGadget controlled lifecycle.
     /// </summary>
     /// <remarks>
-    /// This class provides functionality related to managing the lifecycle of a NUIGadget.
-    /// It enables developers to handle events such as initialization, activation, deactivation, and destruction of the gadget.
-    /// By implementing this class, developers can define their own behavior for these events and customize the lifecycle of their gadgets accordingly.
+    /// This class provides functionality related to managing the lifecycle of an UIGadget.
+    /// It enables developers to handle events such as initialization, activation, deactivation, and destruction of the UIGadget.
+    /// By implementing this class, developers can define their own behavior for these events and customize the lifecycle of their UIGadget accordingly.
     /// </remarks>
-    /// <since_tizen> 10 </since_tizen>
+    /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class NUIGadget : IUIGadget
+    public abstract class UIGadget : IUIGadget
     {
-        private static int s_ServiceNameSequence = 0;
+        private static int s_DataLoaderNameSequence = 0;
 
         /// <summary>
-        /// Initializes the gadget.
+        /// Initializes the UIGadget.
         /// </summary>
-        /// <param name="type">The type of the NUIGadget.</param>
+        /// <param name="type">The type of the UIGadget.</param>
         /// <remarks>
-        /// This constructor initializes a new instance of the NUIGadget class based on the specified type.
-        /// It is important to provide the correct type argument in order to ensure proper functionality and compatibility with other components.
-        /// </remarks>
-        /// <since_tizen> 10 </since_tizen>
-        public NUIGadget(NUIGadgetType type)
-        {
-            Type = type;
-            State = NUIGadgetLifecycleState.Initialized;
-            Log.Info("Type=" + Type + ", State=" + State);
-        }
-
-        /// <summary>
-        /// Initializes the gadget with OneShotService factory.
-        /// </summary>
-        /// <param name="type">The type of the NUIGadget.</param>
-        /// <param name="serviceFactory">The factory that can create OneShotService object</param>
-        /// <param name="autoClose">Whether to automatically close the service after execution</param>
-        /// <exception cref="ArgumentNullException">Thrown if either 'serviceFactory' is null.</exception>
-        /// <remarks>
-        /// This constructor initializes a new instance of the NUIGadget class based on the specified type with OneShotService.
+        /// This constructor initializes a new instance of the UIGadget class based on the specified type.
         /// It is important to provide the correct type argument in order to ensure proper functionality and compatibility with other components.
         /// </remarks>
         /// <since_tizen> 13 </since_tizen>
-        public NUIGadget(NUIGadgetType type, IServiceFactory serviceFactory, bool autoClose = true) : this(type)
+        public UIGadget(UIGadgetType type)
         {
-            if (serviceFactory == null)
+            Type = type;
+            State = UIGadgetLifecycleState.Initialized;
+            Log.Info("Type=" + Type + ", State=" + State);
+            NotifyLifecycleChanged();
+        }
+
+        /// <summary>
+        /// Initializes the UIGadget with DataLoader factory.
+        /// </summary>
+        /// <param name="type">The type of the UIGadget.</param>
+        /// <param name="loaderFactory">The factory that can create DataLoader object</param>
+        /// <param name="autoClose">Whether to automatically close the loader after execution</param>
+        /// <exception cref="ArgumentNullException">Thrown if either 'loaderFactory' is null.</exception>
+        /// <remarks>
+        /// This constructor initializes a new instance of the UIGadget class based on the specified type with DataLoader.
+        /// It is important to provide the correct type argument in order to ensure proper functionality and compatibility with other components.
+        /// </remarks>
+        /// <since_tizen> 13 </since_tizen>
+        public UIGadget(UIGadgetType type, ILoaderFactory loaderFactory, bool autoClose = true) : this(type)
+        {
+            if (loaderFactory == null)
             {
-                throw new ArgumentNullException(nameof(serviceFactory));
+                throw new ArgumentNullException(nameof(loaderFactory));
             }
 
             AutoClose = autoClose;
-            ServiceFactory = serviceFactory;
-            Service = ServiceFactory.CreateService(GenerateOneShotServiceName(), AutoClose);
-            Service.LifecycleStateChanged += OnOneShotServiceLifecycleChanged;
+            LoaderFactory = loaderFactory;
+            DataLoader = LoaderFactory.CreateInstance(GenerateDataLoaderName(), AutoClose);
+            DataLoader.LifecycleStateChanged += OnDataLoaderLifecycleChanged;
         }
 
         /// <summary>
@@ -85,28 +84,28 @@ namespace Tizen.NUI
         /// OneShotServiceLifecycleChangedEventArgs argument.
         /// </remarks>
         /// <since_tizen> 13 </since_tizen>
-        public event EventHandler<OneShotServiceLifecycleChangedEventArgs> OneShotServiceLifecycleChanged;
+        public event EventHandler<DataLoaderLifecycleChangedEventArgs> DataLoaderLifecycleChanged;
 
         /// <summary>
-        /// The class representing information of the current gadget.
+        /// The class representing information of the current UIGadget.
         /// </summary>
         /// <remarks>
         /// This property is set before the OnCreate() is called, after the instance has been created.
-        /// It provides details about the current gadget such as its ID, name, version, and other relevant information.
-        /// By accessing this property, developers can retrieve the necessary information about the gadget they are working on.
+        /// It provides details about the current UIGadget such as its ID, name, version, and other relevant information.
+        /// By accessing this property, developers can retrieve the necessary information about the UIGadget they are working on.
         /// </remarks>
-        /// <since_tizen> 10 </since_tizen>
-        public NUIGadgetInfo NUIGadgetInfo
+        /// <since_tizen> 13 </since_tizen>
+        public UIGadgetInfo UIGadgetInfo
         {
-            internal set;
+            set;
             get;
         }
 
         /// <summary>
-        /// The type of the NUI gadget.
+        /// The type of the UIGadget.
         /// </summary>
-        /// <since_tizen> 10 </since_tizen>
-        public NUIGadgetType Type
+        /// <since_tizen> 13 </since_tizen>
+        public UIGadgetType Type
         {
             internal set;
             get;
@@ -119,30 +118,30 @@ namespace Tizen.NUI
         /// This property is set before the OnCreate() is called, after the instance has been created.
         /// It provides access to the name of the class that was used to create the current instance.
         /// </remarks>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public string ClassName
         {
-            internal set;
+            set;
             get;
         }
 
         /// <summary>
-        /// The main view of the NUI gadget.
+        /// The main view of the UIGadget.
         /// </summary>
-        /// <since_tizen> 10 </since_tizen>
-        public View MainView
+        /// <since_tizen> 13 </since_tizen>
+        public object MainView
         {
-            internal set;
+            set;
             get;
         }
 
         /// <summary>
-        /// The current lifecycle state of the gadget.
+        /// The current lifecycle state of the UIGadget.
         /// </summary>
-        /// <since_tizen> 10 </since_tizen>
-        public NUIGadgetLifecycleState State
+        /// <since_tizen> 13 </since_tizen>
+        public UIGadgetLifecycleState State
         {
-            internal set;
+            set;
             get;
         }
 
@@ -154,24 +153,23 @@ namespace Tizen.NUI
         /// By utilizing the resource manager, you can easily manage and retrieve these resources without having to manually handle their loading and unloading.
         /// Additionally, the resource manager ensures efficient memory management by automatically handling the caching and recycling of resources.
         /// </remarks>
-        /// <since_tizen> 10 </since_tizen>
-        public NUIGadgetResourceManager NUIGadgetResourceManager
+        /// <since_tizen> 13 </since_tizen>
+        public UIGadgetResourceManager UIGadgetResourceManager
         {
-            internal set;
+            set;
             get;
         }
 
         /// <summary>
-        /// The OneShotService.
+        /// The DataLoader.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public OneShotService Service
+        public DataLoader DataLoader
         {
-            internal set;
-            get;
+            set; get;
         }
 
-        private IServiceFactory ServiceFactory
+        private ILoaderFactory LoaderFactory
         {
             set; get;
         }
@@ -181,103 +179,100 @@ namespace Tizen.NUI
             set; get;
         }
 
-        private void OnOneShotServiceLifecycleChanged(object sender, OneShotServiceLifecycleChangedEventArgs args)
-        {
-            OneShotServiceLifecycleChanged?.Invoke(sender, args);
-
-            if (args.State == OneShotServiceLifecycleState.Destroyed)
-            {
-                args.OneShotService.LifecycleStateChanged -= OnOneShotServiceLifecycleChanged;
-            }
-        }
-
         private void NotifyLifecycleChanged()
         {
             UIGadgetLifecycleEventBroker.NotifyLifecycleChanged(this);
         }
 
-        private static string GenerateOneShotServiceName()
+        private void OnDataLoaderLifecycleChanged(object sender, DataLoaderLifecycleChangedEventArgs args)
         {
-            return $"OneShot+{s_ServiceNameSequence++}";
+            DataLoaderLifecycleChanged?.Invoke(sender, args);
+
+            if (args.State == DataLoaderLifecycleState.Destroyed)
+            {
+                args.DataLoader.LifecycleStateChanged -= OnDataLoaderLifecycleChanged;
+            }
         }
 
+        private static string GenerateDataLoaderName() => $"DataLoader+{s_DataLoaderNameSequence++}";
+
         /// <summary>
-        /// Override this method to define the behavior when the gadget is pre-created.
-        /// Calling 'base.OnPreCreate()' is necessary in order to emit the 'NUIGadgetLifecycleChanged' event with the 'NUIGadgetLifecycleState.PreCreated' state.
+        /// Override this method to define the behavior when the UIGadget is pre-created.
+        /// Calling 'base.OnPreCreate()' is necessary in order to emit the 'UIGadgetLifecycleChanged' event with the 'UIGadgetLifecycleState.PreCreated' state.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         protected virtual void OnPreCreate()
         {
-            State = NUIGadgetLifecycleState.PreCreated;
+            State = UIGadgetLifecycleState.PreCreated;
             Log.Debug("ClassName=" + ClassName);
             NotifyLifecycleChanged();
-            if (Service != null)
+            if (DataLoader != null)
             {
-                Log.Info($"PreCreate(), Service.Name = {Service.Name}");
-                Service.Run();
+                Log.Info($"PreCreate(), Loader.Name = {DataLoader.Name}");
+                DataLoader.Run();
             }
         }
 
         /// <summary>
-        /// Override this method to define the behavior when the gadget is created.
-        /// Calling 'base.OnCreate()' is necessary in order to emit the 'NUIGadgetLifecycleChanged' event with the 'NUIGadgetLifecycleState.Created' state.
+        /// Override this method to define the behavior when the UIGadget is created.
+        /// Calling 'base.OnCreate()' is necessary in order to emit the 'UIGadgetLifecycleChanged' event with the 'UIGadgetLifecycleState.Created' state.
         /// </summary>
         /// <returns>The main view object.</returns>
-        /// <since_tizen> 10 </since_tizen>
-        protected virtual Tizen.NUI.BaseComponents.View OnCreate()
+        /// <since_tizen> 13 </since_tizen>
+        protected virtual object OnCreate()
         {
-            State = NUIGadgetLifecycleState.Created;
+            State = UIGadgetLifecycleState.Created;
             Log.Debug("ClassName=" + ClassName);
             NotifyLifecycleChanged();
             return null;
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the gadget receives the appcontrol message.
+        /// Overrides this method if want to handle behavior when the UIGadget receives the appcontrol message.
         /// </summary>
         /// <remarks>
-        /// This method provides a way to customize the response when the gadget receives an appcontrol message.
+        /// This method provides a way to customize the response when the UIGadget receives an appcontrol message.
         /// By overriding this method in your derived class, you can define specific actions based on the incoming arguments.
         /// </remarks>
         /// <param name="e">The appcontrol received event argument containing details about the received message.</param>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         protected virtual void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
             Log.Debug("ClassName=" + ClassName);
         }
 
         /// <summary>
-        /// Override this method to handle the behavior when the gadget is destroyed.
-        /// If 'base.OnDestroy()' is not called, the 'NUIGadgetLifecycleChanged' event with the 'NUIGadgetLifecycleState.Destroyed' state will not be emitted.
+        /// Override this method to handle the behavior when the UIGadget is destroyed.
+        /// If 'base.OnDestroy()' is not called, the 'UIGadgetLifecycleChanged' event with the 'UIGadgetLifecycleState.Destroyed' state will not be emitted.
         /// </summary>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         protected virtual void OnDestroy()
         {
-            State = NUIGadgetLifecycleState.Destroyed;
+            State = UIGadgetLifecycleState.Destroyed;
             Log.Debug("ClassName=" + ClassName);
             NotifyLifecycleChanged();
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the gadget is paused.
-        /// If 'base.OnPause()' is not called. the event 'NUIGadgetLifecycleChanged' with the 'NUIGadgetLifecycleState.Paused' state will not be emitted.
+        /// Overrides this method if want to handle behavior when the UIGadget is paused.
+        /// If 'base.OnPause()' is not called. the event 'UIGadgetLifecycleChanged' with the 'UIGadgetLifecycleState.Paused' state will not be emitted.
         /// </summary>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         protected virtual void OnPause()
         {
-            State = NUIGadgetLifecycleState.Paused;
+            State = UIGadgetLifecycleState.Paused;
             Log.Debug("ClassName=" + ClassName);
             NotifyLifecycleChanged();
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior when the gadget is resumed.
-        /// If 'base.OnResume()' is not called. the event 'NUIGadgetLifecycleChanged' with the 'NUIGadgetLifecycleState.Resumed' state will not be emitted.
+        /// Overrides this method if want to handle behavior when the UIGadget is resumed.
+        /// If 'base.OnResume()' is not called. the event 'UIGadgetLifecycleChanged' with the 'UIGadgetLifecycleState.Resumed' state will not be emitted.
         /// </summary>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         protected virtual void OnResume()
         {
-            State = NUIGadgetLifecycleState.Resumed;
+            State = UIGadgetLifecycleState.Resumed;
             Log.Debug("ClassName=" + ClassName);
             NotifyLifecycleChanged();
         }
@@ -286,35 +281,35 @@ namespace Tizen.NUI
         /// Overrides this method if want to handle behavior when the system language is changed.
         /// </summary>
         /// <param name="e">The locale changed event argument.</param>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         protected virtual void OnLocaleChanged(LocaleChangedEventArgs e) { }
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the system battery is low.
         /// </summary>
         /// <param name="e">The low batter event argument.</param>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         protected virtual void OnLowBattery(LowBatteryEventArgs e) { }
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the system memory is low.
         /// </summary>
         /// <param name="e">The low memory event argument.</param>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         protected virtual void OnLowMemory(LowMemoryEventArgs e) { }
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the region format is changed.
         /// </summary>
         /// <param name="e">The region format changed event argument.</param>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e) { }
 
         /// <summary>
         /// Overrides this method if want to handle behavior when the device orientation is changed.
         /// </summary>
         /// <param name="e">The device orientation changed event argument.</param>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         protected virtual void OnDeviceOrientationChanged(DeviceOrientationEventArgs e) { }
 
         /// <summary>
@@ -322,14 +317,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="e">The message received event argument.</param>
         /// <since_tizen> 13 </since_tizen>
-        protected virtual void OnMessageReceived(NUIGadgetMessageReceivedEventArgs e) { }
+        protected virtual void OnMessageReceived(UIGadgetMessageReceivedEventArgs e) { }
 
         /// <summary>
-        /// Sends the message to the gadget.
+        /// Sends the message to the UIGadget.
         /// The message will be delived to the OnMessageReceived() method.
         /// </summary>
         /// <param name="message">The message</param>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <exception cref="ArgumentNullException">Thrown if either 'message' is null.</exception>
         /// <since_tizen> 13 </since_tizen>
         public void SendMessage(Bundle message)
         {
@@ -338,54 +333,37 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(message));
             }
 
-            CoreApplication.Post(() => OnMessageReceived(new NUIGadgetMessageReceivedEventArgs(message)));
+            CoreApplication.Post(() => OnMessageReceived(new UIGadgetMessageReceivedEventArgs(message)));
         }
 
         /// <summary>
-        /// Finishes the gadget.
+        /// Finishes the UIGadget.
         /// </summary>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public void Finish()
         {
-            if (State == NUIGadgetLifecycleState.Resumed)
+            if (State == UIGadgetLifecycleState.Resumed)
             {
                 OnPause();
             }
 
-            if (State == NUIGadgetLifecycleState.PreCreated || State == NUIGadgetLifecycleState.Created || State == NUIGadgetLifecycleState.Paused)
+            if (State == UIGadgetLifecycleState.PreCreated || State == UIGadgetLifecycleState.Created || State == UIGadgetLifecycleState.Paused)
             {
                 OnDestroy();
             }
         }
 
-        object IUIGadget.MainView { get => MainView; set => MainView = (View)value; }
-        string IUIGadget.ClassName { get => ClassName; set => ClassName = value; }
-        UIGadgetInfo IUIGadget.UIGadgetInfo { get => NUIGadgetInfo.UIGadgetInfo; set => NUIGadgetInfo = new NUIGadgetInfo(value); }
-        UIGadgetResourceManager IUIGadget.UIGadgetResourceManager { get => NUIGadgetResourceManager.UIGadgetResourceManager; set => NUIGadgetResourceManager = new NUIGadgetResourceManager(value); }
-        UIGadgetLifecycleState IUIGadget.State { get => (UIGadgetLifecycleState)State; set => State = (NUIGadgetLifecycleState)value; }
-
         void IUIGadget.OnAppControlReceived(AppControlReceivedEventArgs args) => OnAppControlReceived(args);
-
         void IUIGadget.OnLocaleChanged(LocaleChangedEventArgs args) => OnLocaleChanged(args);
-
         void IUIGadget.OnRegionFormatChanged(RegionFormatChangedEventArgs args) => OnRegionFormatChanged(args);
-
         void IUIGadget.OnLowMemory(LowMemoryEventArgs args) => OnLowMemory(args);
-
         void IUIGadget.OnLowBattery(LowBatteryEventArgs args) => OnLowBattery(args);
-
         void IUIGadget.OnDeviceOrientationChanged(DeviceOrientationEventArgs args) => OnDeviceOrientationChanged(args);
-
-        void IUIGadget.OnMessageReceived(UIGadgetMessageReceivedEventArgs e) => OnMessageReceived(new NUIGadgetMessageReceivedEventArgs(e.Message));
-
+        void IUIGadget.OnMessageReceived(UIGadgetMessageReceivedEventArgs e) => OnMessageReceived(e);
         void IUIGadget.OnPreCreate() => OnPreCreate();
-
         object IUIGadget.OnCreate() => OnCreate();
-
         void IUIGadget.OnResume() => OnResume();
-
         void IUIGadget.OnPause() => OnPause();
-
         void IUIGadget.OnDestroy() => OnDestroy();
     }
 }
