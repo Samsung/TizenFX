@@ -19,57 +19,57 @@ using System.ComponentModel;
 using Tizen.Applications;
 using Tizen.Core;
 
-namespace Tizen.NUI
+namespace Tizen.Applications
 {
     /// <summary>
-    /// OneShotService performs tasks
-    /// that the NUIGadget processes in parallel
+    /// DataLoader performs tasks
+    /// that the Gadget processes in parallel
     /// during the PreCreate state.
     /// </summary>
     /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public abstract class OneShotService : IDisposable
+    public abstract class DataLoader : IDisposable
     {
         /// <summary>
-        /// Initializes the OneShotService.
+        /// Initializes the DataLoader.
         /// </summary>
-        /// <param name="name">Unique identifier for the service instance</param>
-        /// <param name="autoClose">Whether to automatically close the service after execution</param>
+        /// <param name="name">Unique identifier for the loader instance</param>
+        /// <param name="autoClose">Whether to automatically close the loader after execution</param>
         /// <since_tizen> 13 </since_tizen>
-        public OneShotService(string name, bool autoClose)
+        public DataLoader(string name, bool autoClose)
         {
             Name = name;
             AutoClose = autoClose;
-            State = OneShotServiceLifecycleState.Initialized;
+            State = DataLoaderLifecycleState.Initialized;
             TizenCore.Initialize();
         }
 
         /// <summary>
-        /// Finalizer of the OneShotService  class.
+        /// Finalizer of the DataLoader class.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        ~OneShotService()
+        ~DataLoader()
         {
             Dispose(false);
         }
 
         /// <summary>
-        /// Gets the current lifecycle state of OneShotService
+        /// Gets the current lifecycle state of DataLoader
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public OneShotServiceLifecycleState State
+        public DataLoaderLifecycleState State
         {
             get;
             internal set;
         }
 
         /// <summary>
-        /// Gets the OneShotService's name
+        /// The name of the loader
         /// </summary>
         /// <remarks>
         /// This property is the name(identifier)
         /// of the worker thread on which
-        /// `OneShotService` operates.
+        /// `DataLoader` operates.
         /// </remarks>
         /// <since_tizen> 13 </since_tizen>
         public string Name
@@ -95,56 +95,56 @@ namespace Tizen.NUI
 
         private Task _task;
 
-        internal event EventHandler<OneShotServiceLifecycleChangedEventArgs> LifecycleStateChanged;
+        internal event EventHandler<DataLoaderLifecycleChangedEventArgs> LifecycleStateChanged;
 
         private void Create()
         {
-            if (State == OneShotServiceLifecycleState.Initialized)
+            if (State == DataLoaderLifecycleState.Initialized)
             {
                 OnCreate();
-                State = OneShotServiceLifecycleState.Running;
-                NotifyLifecycleChanged(OneShotServiceLifecycleState.Running);
+                State = DataLoaderLifecycleState.Running;
+                NotifyLifecycleChanged(DataLoaderLifecycleState.Running);
             }
         }
 
         private void Destroy()
         {
-            if (State != OneShotServiceLifecycleState.Destroyed)
+            if (State != DataLoaderLifecycleState.Destroyed)
             {
                 OnDestroy();
             }
         }
 
         /// <summary>
-        /// Override this method to define the behavior when the OneShotService is created.
+        /// Override this method to define the behavior when the DataLoader is created.
         /// Calling 'base.OnCreate()' is necessary in order to
-        /// emit the 'OneShotServiceLifecycleState.Created` state
+        /// emit the 'DataLoaderLifecycleState.Created` state
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         protected virtual void OnCreate()
         {
             Log.Info("[OnCreate]");
-            State = OneShotServiceLifecycleState.Created;
-            NotifyLifecycleChanged(OneShotServiceLifecycleState.Created);
+            State = DataLoaderLifecycleState.Created;
+            NotifyLifecycleChanged(DataLoaderLifecycleState.Created);
         }
 
         /// <summary>
-        /// Override this method to define the behavior when the OneShotService is destroyed.
+        /// Override this method to define the behavior when the DataLoader is destroyed.
         /// Calling 'base.OnDestroyed()' is necessary in order to
-        /// emit the 'OneShotServiceLifecycleState.Destroyed` state
+        /// emit the 'DataLoaderServiceLifecycleState.Destroyed` state
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         protected virtual void OnDestroy()
         {
             Log.Info("[OnDestroy]");
-            State = OneShotServiceLifecycleState.Destroyed;
-            NotifyLifecycleChanged(OneShotServiceLifecycleState.Destroyed);
+            State = DataLoaderLifecycleState.Destroyed;
+            NotifyLifecycleChanged(DataLoaderLifecycleState.Destroyed);
         }
 
         /// <summary>
-        /// Starts the OneShotService execution on a worker thread.
-        /// Initializes the service task and triggers the OnCreate event.
-        /// If AutoClose is enabled, automatically destroys the service after execution.
+        /// Starts the DataLoader execution on a worker thread.
+        /// Initializes the loader task and triggers the OnCreate event.
+        /// If AutoClose is enabled, automatically destroys the loader after execution.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the task creation fails.</exception>
         /// <since_tizen> 13 </since_tizen>
@@ -157,13 +157,13 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (State == OneShotServiceLifecycleState.Initialized)
+            if (State == DataLoaderLifecycleState.Initialized)
             {
                 _task = TizenCore.Spawn(Name);
                 if (_task == null)
                 {
-                    Log.Error($"Task creation failed for OneShotService({Name})");
-                    throw new InvalidOperationException($"Failed to create task for OneShotService({Name})");
+                    Log.Error($"Task creation failed for DataLoader({Name})");
+                    throw new InvalidOperationException($"Failed to create task for DataLoader({Name})");
                 }
 
                 _task.Post(() =>
@@ -183,7 +183,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Stops the OneShotService execution and releases resources.
+        /// Stops the DataLoader execution and releases resources.
         /// </summary>
         /// <param name="waitForJoin">Whether to wait for complete service termination</param>
         /// <since_tizen> 13 </since_tizen>
@@ -196,7 +196,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (State == OneShotServiceLifecycleState.Destroyed)
+            if (State == DataLoaderLifecycleState.Destroyed)
             {
                 if (waitForJoin)
                 {
@@ -217,14 +217,14 @@ namespace Tizen.NUI
             }
         }
 
-        private void NotifyLifecycleChanged(OneShotServiceLifecycleState state)
+        private void NotifyLifecycleChanged(DataLoaderLifecycleState state)
         {
             CoreApplication.Post(() =>
             {
-                var args = new OneShotServiceLifecycleChangedEventArgs
+                var args = new DataLoaderLifecycleChangedEventArgs
                 {
                     State = state,
-                    OneShotService = this
+                    DataLoader = this
                 };
                 LifecycleStateChanged?.Invoke(this, args);
             });
@@ -261,7 +261,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Releases all resources used by the OneShotService class.
+        /// Releases all resources used by the DataLoader class.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         public void Dispose()

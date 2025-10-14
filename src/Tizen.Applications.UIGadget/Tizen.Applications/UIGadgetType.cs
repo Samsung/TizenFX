@@ -14,28 +14,27 @@
  * limitations under the License.
  */
 
-using System;
 using System.ComponentModel;
 
-namespace Tizen.NUI
+namespace Tizen.Applications
 {
     /// <summary>
-    /// Event arguments for the OneShotService lifecycle change event.
+    /// Enumeration for the type of the UIGadget.
     /// </summary>
     /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class OneShotServiceLifecycleChangedEventArgs : EventArgs
+    public enum UIGadgetType
     {
         /// <summary>
-        /// Gets the OneShotService object that triggered the event.
+        /// The normal type.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public OneShotService OneShotService { get; set; }
+        Normal = 0,
 
         /// <summary>
-        /// Gets the current state of the OneShotService lifecycle.
+        /// The popup type.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public OneShotServiceLifecycleState State { get; internal set; }
+        Popup = 1,
     }
 }
