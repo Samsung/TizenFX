@@ -134,7 +134,7 @@ namespace Tizen.NUI.Samples
 
             Tizen.Log.Info("NUI", $"After deactivate app[{curAppName}] :\n");
             Tizen.Log.Info("NUI", $"  View:{View.AliveCount}, Window:{Window.AliveCount}, Layer:{Layer.AliveCount}\n");
-            Tizen.Log.Info("NUI", $"  Animation:{Animation.AliveCount}, Timer:{Timer.AliveCount}, Constraint:{Constraint.AliveCount}n");
+            Tizen.Log.Info("NUI", $"  Animation:{Animation.AliveCount}, Timer:{Timer.AliveCount}, Constraint:{Constraint.AliveCount}\n");
             Tizen.Log.Info("NUI", $"  FrameUpdateCallbackInterface:{FrameUpdateCallbackInterface.AliveCount}, VisualBase:{Visuals.VisualBase.AliveCount}, RenderEffect:{RenderEffect.AliveCount}\n");
             Tizen.Log.Info("NUI", $"  Renderable:{Renderable.AliveCount}, Geometry:{Geometry.AliveCount}, Shader:{Shader.AliveCount}\n");
             Tizen.Log.Info("NUI", $"  Texture:{Texture.AliveCount}, TextureSet:{TextureSet.AliveCount}, VertexBuffer:{VertexBuffer.AliveCount}\n");
