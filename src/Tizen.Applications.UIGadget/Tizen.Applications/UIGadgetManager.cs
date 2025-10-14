@@ -497,13 +497,13 @@ namespace Tizen.Applications
             gadget.OnAppControlReceived(new AppControlReceivedEventArgs(new ReceivedAppControl(appControl.SafeAppControlHandle)));
         }
 
-        internal static bool HandleAppControl(AppControlReceivedEventArgs args)
+        internal static void HandleAppControl(AppControlReceivedEventArgs args)
         {
             var extraData = args.ReceivedAppControl?.ExtraData;
             if (extraData == null || !extraData.TryGet("__K_UIGadget_RES_TYPE", out string resourceType) ||
                 !extraData.TryGet("__K_UIGadget_CLASS_NAME", out string className))
             {
-                return false;
+                return;
             }
 
             foreach (var gadget in _gadgets.Keys)
@@ -511,11 +511,9 @@ namespace Tizen.Applications
                 if (gadget.UIGadgetInfo.ResourceType == resourceType && gadget.ClassName == className)
                 {
                     gadget.OnAppControlReceived(args);
-                    return true;
+                    return;
                 }
             }
-
-            return false;
         }
 
         private static void HandleLocaleChangedEvent(LocaleChangedEventArgs args)
