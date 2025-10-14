@@ -51,6 +51,8 @@ namespace Tizen.NUI.Samples
             TargetImage1.ClearRenderEffect();
             TargetImage2.ClearRenderEffect();
 
+            renderEffect.Dispose();
+
             if (TargetImageMode == 1)
             {
                 ImageView.Add(TargetImage1);
@@ -413,8 +415,12 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
-            MainView.Unparent();
-            MainView.Dispose();
+            MainView?.Unparent();
+            MainView?.DisposeRecursively();
+
+            backgroundVisual?.Dispose();
+
+            renderEffect?.Dispose();
         }
     }
 }
