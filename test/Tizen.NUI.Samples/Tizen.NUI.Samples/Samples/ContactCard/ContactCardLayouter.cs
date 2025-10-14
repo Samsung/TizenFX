@@ -111,7 +111,7 @@ namespace Tizen.NUI.Samples
             }
 
             mContactCards.Add(new ContactCard(mContactCardLayoutInfo, contactName, contactAddress, imagePath, NextCardPosition(), rootView));
-            
+
         }
 
         private Vector2 NextCardPosition()
@@ -133,7 +133,7 @@ namespace Tizen.NUI.Samples
                 }
                 mLastPosition = new Vector2(positionX, positionY);
             }
-            
+
             return mLastPosition;
         }
 

@@ -53,7 +53,7 @@ namespace Tizen.NUI.AIAvatar
         [EditorBrowsable(EditorBrowsableState.Never)]
         public LipSyncer()
         {
-          
+
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace Tizen.NUI.AIAvatar
             var lipData = lipSyncTransformer.TransformVowelsToLipData(vowels, stepTime, isStreaming);
             using var motionData = GenerateMotionFromLipData(lipData);
             var animation = avatar.GenerateMotionDataAnimation(motionData);
-        
+
             return animation;
         }
 
@@ -116,7 +116,7 @@ namespace Tizen.NUI.AIAvatar
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Play()
-        {         
+        {
             if (animationTimer == null)
             {
                 PlayNextAnimation(null, null);
@@ -153,7 +153,7 @@ namespace Tizen.NUI.AIAvatar
                 currentAnimation.Stop();
                 currentAnimation.Dispose();
                 currentAnimation = null;
-                
+
                 queuedAnimations.Clear();
                 animationTimer.Stop();
                 animationTimer.Dispose();

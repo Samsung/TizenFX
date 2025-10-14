@@ -785,7 +785,7 @@ namespace Tizen.NUI.Samples
             finishAnimation.AnimateTo(controlView, "PositionX", destination, finishAnimation.DefaultAlphaFunction);
             finishAnimation.Play();
 
-            // Remove alpha function now, for test UserAlphaFunctionDelegate alived. 
+            // Remove alpha function now, for test UserAlphaFunctionDelegate alived.
             customScrollAlphaFunction = null;
             finishAnimation.DefaultAlphaFunction?.Dispose();
         }

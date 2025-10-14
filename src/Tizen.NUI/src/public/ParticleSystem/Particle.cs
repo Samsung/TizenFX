@@ -26,7 +26,7 @@ namespace Tizen.NUI.ParticleSystem
     using Tizen.NUI.BaseComponents;
 
     /// <summary>
-    /// Declares types of default streams 
+    /// Declares types of default streams
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum ParticleStream
@@ -61,7 +61,7 @@ namespace Tizen.NUI.ParticleSystem
                 mStreamIndex = (int)streamIndex;
                 mEmitterRef = list;
             }
-            
+
             internal StreamView(HandleRef list, uint particleIndex, ParticleStream builtInStream)
             {
                 mEmitterRef = list;
@@ -69,7 +69,7 @@ namespace Tizen.NUI.ParticleSystem
                 mStreamIndex = Interop.ParticleEmitter.GetDefaultStreamIndex(mEmitterRef, (uint)(builtInStream));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-            
+
             private struct Value
             {
                 internal float valueFloat;
@@ -83,25 +83,25 @@ namespace Tizen.NUI.ParticleSystem
                 value.valueFloat = f;
                 type = typeof(float);
             }
-            
+
             internal StreamView(Vector2 f)
             {
                 value.valueVector2 = f;
                 type = typeof(Vector2);
             }
-            
+
             internal StreamView(Vector3 f)
             {
                 value.valueVector3 = f;
                 type = typeof(Vector3);
             }
-            
+
             internal StreamView(Vector4 f)
             {
                 value.valueVector4 = f;
                 type = typeof(Vector4);
             }
-            
+
             /// <summary>
             /// Conversion operator to float value
             /// </summary>
@@ -128,7 +128,7 @@ namespace Tizen.NUI.ParticleSystem
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
-            
+
             /// <summary>
             /// Conversion operator to Vector3 value
             /// </summary>
@@ -149,7 +149,7 @@ namespace Tizen.NUI.ParticleSystem
             /// <returns>Converted value</returns>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static implicit operator Vector4(StreamView sv) {
-                
+
                 var ret = sv.mStreamIndex >= 0 ? new Vector4(Interop.Particle.ReadVector4(sv.mEmitterRef, (uint)sv.mStreamIndex, sv.mParticleIndex), true) : Vector4.Zero;
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -162,7 +162,7 @@ namespace Tizen.NUI.ParticleSystem
             private Value value;
             private System.Type type;
         }
-        
+
         /// <summary>
         /// Create an initialized Particle.
         /// </summary>
@@ -172,7 +172,7 @@ namespace Tizen.NUI.ParticleSystem
             mIndex = index;
             mEmitterRef = emitter;
         }
-        
+
         /// <summary>
         /// Returns value from specified data stream (default/custom)
         /// </summary>
@@ -207,7 +207,7 @@ namespace Tizen.NUI.ParticleSystem
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        
+
         /// <summary>
         /// Sets value on the specified data stream
         /// </summary>
@@ -233,7 +233,7 @@ namespace Tizen.NUI.ParticleSystem
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        
+
         /// <summary>
         /// Sets value on the specified data stream
         /// </summary>
@@ -246,7 +246,7 @@ namespace Tizen.NUI.ParticleSystem
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        
+
         /// <summary>
         /// Sets value on the specified data stream
         /// </summary>
@@ -257,12 +257,12 @@ namespace Tizen.NUI.ParticleSystem
         {
             uint streamIndex = (uint)(Interop.ParticleEmitter.GetDefaultStreamIndex(mEmitterRef, (uint)(particleStream)));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            
+
             Interop.Particle.WriteFloat(mEmitterRef, streamIndex, mIndex, value);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        
+
         /// <summary>
         /// Sets value on the specified data stream
         /// </summary>
@@ -273,7 +273,7 @@ namespace Tizen.NUI.ParticleSystem
         {
             uint streamIndex = (uint)(Interop.ParticleEmitter.GetDefaultStreamIndex(mEmitterRef, (uint)(particleStream)));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            
+
             Interop.Particle.WriteVector2(mEmitterRef, streamIndex, mIndex, value.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -289,12 +289,12 @@ namespace Tizen.NUI.ParticleSystem
         {
             uint streamIndex = (uint)(Interop.ParticleEmitter.GetDefaultStreamIndex(mEmitterRef, (uint)(particleStream)));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            
+
             Interop.Particle.WriteVector3(mEmitterRef, streamIndex, mIndex, value.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        
+
         /// <summary>
         /// Sets value on the specified data stream
         /// </summary>
@@ -305,12 +305,12 @@ namespace Tizen.NUI.ParticleSystem
         {
             uint streamIndex = (uint)(Interop.ParticleEmitter.GetDefaultStreamIndex(mEmitterRef, (uint)(particleStream)));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            
+
             Interop.Particle.WriteVector4(mEmitterRef, streamIndex, mIndex, value.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        
+
 
         /// <summary>
         /// Returns index of one of default streams.
@@ -324,7 +324,7 @@ namespace Tizen.NUI.ParticleSystem
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return streamIndex;
         }
-        
+
         /// <summary>
         /// Position of the Particle.
         /// </summary>
@@ -362,7 +362,7 @@ namespace Tizen.NUI.ParticleSystem
                 SetStreamValue( value, ParticleStream.Color);
             }
         }
-        
+
         /// <summary>
         /// Velocity of the Particle.
         /// </summary>
@@ -381,7 +381,7 @@ namespace Tizen.NUI.ParticleSystem
                 SetStreamValue( value, ParticleStream.Velocity);
             }
         }
-        
+
         /// <summary>
         /// Scale of the Particle.
         /// </summary>
@@ -400,7 +400,7 @@ namespace Tizen.NUI.ParticleSystem
                 SetStreamValue( value, ParticleStream.Scale);
             }
         }
-        
+
         /// <summary>
         /// Rotation of the Particle.
         /// </summary>
@@ -419,7 +419,7 @@ namespace Tizen.NUI.ParticleSystem
                 SetStreamValue( value, ParticleStream.Rotation);
             }
         }
-        
+
         /// <summary>
         /// Opacity of the Particle.
         /// </summary>
@@ -438,7 +438,7 @@ namespace Tizen.NUI.ParticleSystem
                 SetStreamValue( value, ParticleStream.Opacity);
             }
         }
-        
+
         /// <summary>
         /// Lifetime of the Particle.
         /// </summary>
@@ -457,7 +457,7 @@ namespace Tizen.NUI.ParticleSystem
                 SetStreamValue( value, ParticleStream.Lifetime);
             }
         }
-        
+
         /// <summary>
         /// Initial lifetime of the Particle.
         /// </summary>

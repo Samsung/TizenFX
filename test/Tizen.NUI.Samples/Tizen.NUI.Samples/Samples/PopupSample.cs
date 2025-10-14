@@ -66,7 +66,7 @@ namespace Tizen.NUI.Samples
                 LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
                 CellPadding = new Size(400, 400)
             };
-            
+
             ///////////////////////////////////////////////Create by Property//////////////////////////////////////////////////////////
             createText[0] = new TextLabel();
             createText[0].Text = "Create Popup just by properties";
@@ -256,7 +256,7 @@ namespace Tizen.NUI.Samples
                     index2 = index2 % buttonStyles.Length;
                     obj.ButtonTextColor = color[index2];
                     contentText2.Text = "Popup2 ButtonStyle is " + buttonStyles[index2];
-                }               
+                }
             }
         }
 
@@ -273,7 +273,7 @@ namespace Tizen.NUI.Samples
                 popup.LayoutDirection = ViewLayoutDirectionType.LTR;
                 popup2.LayoutDirection = ViewLayoutDirectionType.LTR;
                 button.TextLabel.Text = "LayoutDirection is left to right";
-            }           
+            }
         }
 
         public void Deactivate()

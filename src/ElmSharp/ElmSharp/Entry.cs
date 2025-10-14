@@ -1117,7 +1117,7 @@ namespace ElmSharp
 
                     if (updateText != text)
                     {
-                        Interop.Libc.Free(t);
+                        Marshal.FreeHGlobal(t);
                         t = Marshal.StringToHGlobalAnsi(updateText);
                     }
                 };
@@ -1144,7 +1144,7 @@ namespace ElmSharp
 
                     if (updateText != text)
                     {
-                        Interop.Libc.Free(t);
+                        Marshal.FreeHGlobal(t);
                         t = Marshal.StringToHGlobalAnsi(updateText);
                     }
                 };

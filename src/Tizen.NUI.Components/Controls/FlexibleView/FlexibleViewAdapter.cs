@@ -230,7 +230,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Notify any registered observers that the item previously located at position has been removed from the data set. 
+        /// Notify any registered observers that the item previously located at position has been removed from the data set.
         /// </summary>
         /// <param name="position">Previous position of the first item that was removed</param>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.

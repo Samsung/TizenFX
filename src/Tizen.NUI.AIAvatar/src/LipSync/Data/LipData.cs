@@ -37,13 +37,13 @@ namespace Tizen.NUI.AIAvatar
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string[] NodeNames { get; private set; }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int[] BlendShapeCounts { get; private set; }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string BlendShapeKeyFormat { get; private set; }
-        
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Duration { get; private set; }
 

@@ -31,7 +31,7 @@ namespace Tizen.NUI.MarkdownRenderer
 
         public UIParagraph(string text, ParagraphStyle paragraphStyle, string hash = "", bool asyncRendering = false) : base()
         {
-            ContentHash = hash; 
+            ContentHash = hash;
             Text = text;
             FontFamily = paragraphStyle.FontFamily;
             PixelSize = paragraphStyle.FontSize;

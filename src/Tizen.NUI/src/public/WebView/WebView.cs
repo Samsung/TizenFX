@@ -432,7 +432,7 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewUserMediaPermissionRequestCallback(IntPtr permission, string message);
-       
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void webViewDeviceConnectionChangedCallback(int deviceType);
 

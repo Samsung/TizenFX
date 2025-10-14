@@ -143,7 +143,7 @@ namespace Tizen.NUI.Extension
         /// <param name="degree">The degree of given node</param>
         /// <since_tizen> 9 </since_tizen>
         public void SetNodeRotation(string nodeName, Degree degree)
-        {            
+        {
             if (degree == null)
                  throw new ArgumentNullException(nameof(degree));
             Interop.RiveAnimationView.SetNodeRotation(SwigCPtr, nodeName, Degree.getCPtr(degree));

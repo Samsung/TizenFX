@@ -67,7 +67,7 @@ namespace NUIDnDMultiWindow
             text3.PointSize = 5.0f;
             text3.MultiLine = true;
             Window.Instance.GetDefaultLayer().Add(text3);
-            
+
             TextLabel text4 = new TextLabel("Window A");
             text4.Position = new Position(400, 650);
             text4.Size = new Size(400, 150);
@@ -121,7 +121,7 @@ namespace NUIDnDMultiWindow
                 BackgroundColor = Color.BlueViolet,
             };
             WindowA.Show();
-            
+
             // Create Target WindowA_ViewA
             WindowA_ViewA = new ImageView(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "droptarget.png");
             WindowA_ViewA.Size = new Size(150, 150);
@@ -146,7 +146,7 @@ namespace NUIDnDMultiWindow
                 BackgroundColor = Color.LightGoldenRodYellow,
             };
             WindowB.Show();
-            
+
             // Create Target WindowB_ViewA
             WindowB_ViewA = new ImageView(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "droptarget.png");
             WindowB_ViewA.Size = new Size(150, 150);
@@ -214,7 +214,7 @@ namespace NUIDnDMultiWindow
                 Exit();
             }
         }
-        
+
         static void Main(string[] args)
         {
             var app = new Program();

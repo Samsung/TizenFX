@@ -31,7 +31,7 @@ namespace Tizen.NUI.Components
         private int spanCount = DEFAULT_SPAN_COUNT;
 
         /// <summary>
-        /// Creates a GridLayoutManager with orientation. 
+        /// Creates a GridLayoutManager with orientation.
         /// </summary>
         /// <param name="spanCount">The number of columns or rows in the grid</param>
         /// <param name="orientation">Layout orientation.Should be HORIZONTAL or VERTICAL</param>
@@ -80,7 +80,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Retrieves a position that neighbor to current position by direction. 
+        /// Retrieves a position that neighbor to current position by direction.
         /// </summary>
         /// <param name="position">The anchor adapter position</param>
         /// <param name="direction">The direction.</param>

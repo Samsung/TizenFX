@@ -43,10 +43,10 @@ namespace Tizen.NUI.ParticleSystem
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_AddModifier")]
             internal static extern void AddModifier(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-            
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetParticleCount")]
             internal static extern void SetParticleCount(global::System.Runtime.InteropServices.HandleRef jarg1, uint count);
-            
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetParticleCount")]
             internal static extern uint GetParticleCount(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -61,7 +61,7 @@ namespace Tizen.NUI.ParticleSystem
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_Start")]
             internal static extern void Start(global::System.Runtime.InteropServices.HandleRef jarg1);
-            
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_Stop")]
             internal static extern void Stop(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -123,5 +123,5 @@ namespace Tizen.NUI.ParticleSystem
 
         }
     }
-}  
+}
 

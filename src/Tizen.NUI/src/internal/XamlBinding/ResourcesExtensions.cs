@@ -40,7 +40,7 @@ namespace Tizen.NUI.Binding
                     {
                         foreach (KeyValuePair<string, object> res in xres.MergedResources)
                         {
-                            // If a MergedDictionary value is overridden for a DynamicResource, 
+                            // If a MergedDictionary value is overridden for a DynamicResource,
                             // it comes out later in the enumeration of MergedResources
                             // TryGetValue ensures we pull the up-to-date value for the key
                             if (!resources.ContainsKey(res.Key) && xres.TryGetValue(res.Key, out object value))

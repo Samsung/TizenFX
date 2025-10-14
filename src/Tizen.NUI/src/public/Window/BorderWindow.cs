@@ -51,6 +51,7 @@ namespace Tizen.NUI
         private bool hasBottomView;
         private bool isEnabledOverlayMode;
         private bool isMaximized;
+        private bool isFramePresentedCallbackRequested;
 
 
         // for config
@@ -173,7 +174,17 @@ namespace Tizen.NUI
 
                 if (isNeedResizeByLine == true || isNeedResizeByBorder == true)
                 {
-                    Interop.Window.SetSize(SwigCPtr, Uint16Pair.getCPtr(val));
+                    if (IsMaximized())
+                    {
+                        // When maximized, only the border can be updated without changing the window size.
+                        ResizedEventArgs e = new ResizedEventArgs();
+                        e.WindowSize = WindowSize;
+                        windowResizeEventHandler?.Invoke(this, e);
+                    }
+                    else
+                    {
+                        Interop.Window.SetSize(SwigCPtr, Uint16Pair.getCPtr(val));
+                    }
                 }
 
                 if (minSize != borderInterface.MinSize || (borderInterface.MinSize != null && isNeedResizeByLine == true))
@@ -521,12 +532,29 @@ namespace Tizen.NUI
             }
         }
 
+        private void OnFramePresented(int id)
+        {
+            borderInterface.OnMaximize(isMaximized);
+            isFramePresentedCallbackRequested = false;
+        }
+
         private void DoMaximize(bool isMaximized)
         {
             if (this.isMaximized != isMaximized)
             {
                 borderView?.OnMaximize(isMaximized);
-                borderInterface.OnMaximize(isMaximized);
+                if (isMaximized)
+                {
+                    if (!isFramePresentedCallbackRequested)
+                    {
+                        isFramePresentedCallbackRequested = true;
+                        AddFramePresentedCallback(OnFramePresented, 0);
+                    }
+                }
+                else
+                {
+                    borderInterface.OnMaximize(isMaximized);
+                }
             }
             this.isMaximized = isMaximized;
         }

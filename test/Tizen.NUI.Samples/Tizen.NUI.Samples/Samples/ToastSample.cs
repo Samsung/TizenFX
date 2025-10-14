@@ -69,7 +69,7 @@ namespace Tizen.NUI.Samples
             // Init parent of ToastView
             parentView[1] = new View();
             parentView[1].Size = new Size(1920, 500);
-            parentView[1].Layout = new LinearLayout() 
+            parentView[1].Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
                 HorizontalAlignment = HorizontalAlignment.Center,

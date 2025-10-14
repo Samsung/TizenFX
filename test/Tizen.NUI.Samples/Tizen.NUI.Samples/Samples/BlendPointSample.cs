@@ -306,7 +306,7 @@ namespace Tizen.NUI.Samples
         private void RegenerateAnimation()
         {
             requiredNewAnimationCreate = false;
-        
+
             animationOrigin?.Dispose();
             animationOrigin = null;
             animationBlend?.Dispose();
