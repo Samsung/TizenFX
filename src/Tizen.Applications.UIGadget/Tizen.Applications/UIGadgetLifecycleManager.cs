@@ -17,7 +17,6 @@
 using System;
 using System.Collections.Concurrent;
 using System.Threading;
-using Tizen.Applications;
 
 namespace Tizen.Applications
 {
@@ -25,7 +24,7 @@ namespace Tizen.Applications
     {
         private static ConcurrentQueue<LifecycleEvent> _lifecycleEvents = new ConcurrentQueue<LifecycleEvent>();
         private static bool _processing = false;
-        private static readonly Thread _mainThread = Thread.CurrentThread;
+
         internal static void DispatchLifecycleEvent(IUIGadget gadget, UIGadgetLifecycleState state)
         {
             if (gadget == null)
@@ -34,20 +33,32 @@ namespace Tizen.Applications
             }
 
             Log.Info("ResourceType=" + gadget.UIGadgetInfo.ResourceType + ", State=" + gadget.State + " -> " + state);
-            if (_mainThread.Equals(Thread.CurrentThread))
-            {
-                ProcessLifecycleEvent(gadget, state);
-            }
-            else
-            {
-                CoreApplication.Post(() =>
-                {
-                    ProcessLifecycleEvent(gadget, state);
-                });
-            }
+            _lifecycleEvents.Enqueue(new LifecycleEvent(gadget, state));
+            ProcessLifecycleEvent();
         }
 
-        private static void ProcessLifecycleEvent(IUIGadget gadget, UIGadgetLifecycleState state)
+        private static void ProcessLifecycleEvent()
+        {
+            if (_processing)
+            {
+                Log.Info("Already processing");
+                return;
+            }
+
+            _processing = true;
+            while (!_lifecycleEvents.IsEmpty)
+            {
+                if (!_lifecycleEvents.TryDequeue(out LifecycleEvent lifecycleEvent))
+                {
+                    return;
+                }
+
+                ProcessLifecycleMethod(lifecycleEvent.UIGadget, lifecycleEvent.State);
+            }
+            _processing = false;
+        }
+
+        private static void ProcessLifecycleMethod(IUIGadget gadget, UIGadgetLifecycleState state)
         {
             if (gadget.State == state)
             {
