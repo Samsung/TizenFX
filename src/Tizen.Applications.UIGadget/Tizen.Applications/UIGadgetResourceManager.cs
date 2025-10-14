@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2023 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2025 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -21,16 +21,15 @@ using System.Reflection;
 using System.IO;
 using System.ComponentModel;
 using System.Resources;
-using Tizen.Applications;
 
-namespace Tizen.NUI
+namespace Tizen.Applications
 {
     /// <summary>
-    /// Manages resources related to NUI gadgets.
+    /// Manages resources related to NUI UIGadgets.
     /// </summary>
-    /// <since_tizen> 10 </since_tizen>
+    /// <since_tizen> 13 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class NUIGadgetResourceManager
+    public class UIGadgetResourceManager
     {
         private readonly string _resourcePath;
         private readonly string _resourceDll;
@@ -38,12 +37,12 @@ namespace Tizen.NUI
         private readonly IDictionary<string, global::System.Resources.ResourceManager> _resourceMap = new Dictionary<string, global::System.Resources.ResourceManager>();
 
         /// <summary>
-        /// Initializes the resource manager of the gadget.
+        /// Initializes the resource manager of the UIGadget.
         /// </summary>
-        /// <param name="info">The information of the gadget.</param>
+        /// <param name="info">The information of the UIGadget.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument is not valid.</exception>
-        /// <since_tizen> 10 </since_tizen>
-        public NUIGadgetResourceManager(NUIGadgetInfo info)
+        /// <since_tizen> 13 </since_tizen>
+        public UIGadgetResourceManager(UIGadgetInfo info)
         {
             if (info == null)
             {
@@ -56,25 +55,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Initializes the resource manager of the gadget.
+        /// Initializes the resource manager of the UIGadget.
         /// </summary>
         /// <param name="resourcePath">The path where the resources are located.</param>
         /// <param name="resourceDll">The name of the DLL containing the resources.</param>
         /// <param name="resourceClassName">The name of the class that represents the resources.</param>
-        /// <since_tizen> 10 </since_tizen>
-        public NUIGadgetResourceManager(string resourcePath, string resourceDll, string resourceClassName)
+        /// <since_tizen> 13 </since_tizen>
+        public UIGadgetResourceManager(string resourcePath, string resourceDll, string resourceClassName)
         {
             _resourcePath = resourcePath;
             _resourceDll = resourceDll;
             _resourceClassName = resourceClassName;
         }
-
-        internal NUIGadgetResourceManager(UIGadgetResourceManager resourceManager)
-        {
-            UIGadgetResourceManager = resourceManager;
-        }
-
-        internal UIGadgetResourceManager UIGadgetResourceManager { get; set; }
 
         /// <summary>
         /// Retrieves the value of the specified string resource.
@@ -97,14 +89,9 @@ namespace Tizen.NUI
         /// Console.WriteLine(greetingMessage);
         /// </code>
         /// </example>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public string GetString(string name)
         {
-            if (UIGadgetResourceManager != null)
-            {
-                return UIGadgetResourceManager.GetString(name, CultureInfo.CurrentUICulture);
-            }
-
             return GetString(name, CultureInfo.CurrentUICulture);
         }
 
@@ -119,7 +106,7 @@ namespace Tizen.NUI
         /// <param name="cultureInfo">An object representing the culture for which the resource needs to be localized.</param>
         /// <returns>The localized string resource for the specified culture, or null if the resource cannot be found.</returns>
         /// <exception cref="ArgumentNullException">Thrown when an invalid argument causes failure.</exception>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public string GetString(string name, CultureInfo cultureInfo)
         {
             if (string.IsNullOrEmpty(name))
@@ -131,11 +118,6 @@ namespace Tizen.NUI
             {
                 Log.Warn("Use CurrentUICulture");
                 cultureInfo = CultureInfo.CurrentUICulture;
-            }
-
-            if (UIGadgetResourceManager != null)
-            {
-                return UIGadgetResourceManager.GetString(name, cultureInfo);
             }
 
             string result = string.Empty;
