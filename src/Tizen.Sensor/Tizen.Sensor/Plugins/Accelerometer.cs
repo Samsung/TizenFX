@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Sensor
 {
@@ -113,7 +114,7 @@ namespace Tizen.Sensor
                 count = 0;
             }
             else
-                Interop.Libc.Free(list);
+                Marshal.FreeHGlobal(list);
             return count;
         }
 
