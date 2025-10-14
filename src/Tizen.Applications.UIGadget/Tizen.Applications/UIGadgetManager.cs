@@ -383,11 +383,8 @@ namespace Tizen.Applications
             }
 
             _gadgets.TryRemove(gadget, out _);
-            CoreApplication.Post(() =>
-            {
-                Log.Warn("ResourceType: " + gadget.UIGadgetInfo.ResourceType + ", State: " + gadget.State);
-                gadget.Finish();
-            });
+            Log.Warn("ResourceType: " + gadget.UIGadgetInfo.ResourceType + ", State: " + gadget.State);
+            gadget.Finish();
         }
 
         /// <summary>
@@ -428,14 +425,11 @@ namespace Tizen.Applications
                 return;
             }
 
-            CoreApplication.Post(() =>
+            Log.Warn("ResourceType: " + gadget.UIGadgetInfo.ResourceType + ", State: " + gadget.State);
+            if (gadget.State == UIGadgetLifecycleState.Created || gadget.State == UIGadgetLifecycleState.Paused)
             {
-                Log.Warn("ResourceType: " + gadget.UIGadgetInfo.ResourceType + ", State: " + gadget.State);
-                if (gadget.State == UIGadgetLifecycleState.Created || gadget.State == UIGadgetLifecycleState.Paused)
-            {
-                    gadget.OnResume();
-                }
-            });
+                gadget.OnResume();
+            }
         }
 
         /// <summary>
@@ -459,14 +453,11 @@ namespace Tizen.Applications
                 return;
             }
 
-            CoreApplication.Post(() =>
+            Log.Warn("ResourceType: " + gadget.UIGadgetInfo.ResourceType + ", State: " + gadget.State);
+            if (gadget.State == UIGadgetLifecycleState.Resumed)
             {
-                Log.Warn("ResourceType: " + gadget.UIGadgetInfo.ResourceType + ", State: " + gadget.State);
-                if (gadget.State == UIGadgetLifecycleState.Resumed)
-                {
-                    gadget.OnPause();
-                }
-            });
+                gadget.OnPause();
+            }
         }
 
         /// <summary>
