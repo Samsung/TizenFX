@@ -87,6 +87,7 @@ namespace Tizen.Peripheral.Gpio
     /// The class allows applications to use the platform Digital Pins as Input/Output.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/peripheralio</privilege>
+    /// <feature>http://tizen.org/feature/peripheral_io.gpio</feature>
     public class GpioPin : IDisposable
     {
 
@@ -109,6 +110,12 @@ namespace Tizen.Peripheral.Gpio
         /// </summary>
         /// <param name="pinNumber">The GPIO pin number.</param>
         /// <param name="mode">GPIO direction.</param>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Gpio;
+        /// var gpio = GpioPin(1, GpioPinDriveMode.Input);
+        /// </code>
+        /// </example>
         public GpioPin(int pinNumber, GpioPinDriveMode mode)
         {
             var ret = NativeGpio.Open(pinNumber, out _handle);
@@ -184,11 +191,25 @@ namespace Tizen.Peripheral.Gpio
         /// <summary>
         /// Closes a GPIO pin.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Gpio;
+        /// var gpio = GpioPin(1, GpioPinDriveMode.Input);
+        /// gpio.Close();
+        /// </code>
+        /// </example>
         public void Close() => Dispose();
 
         /// <summary>
         /// Disposes GPIO.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Gpio;
+        /// var gpio = GpioPin(1, GpioPinDriveMode.Input);
+        /// gpio.Dispose();
+        /// </code>
+        /// </example>
         public void Dispose()
         {
             Dispose(true);
@@ -219,6 +240,13 @@ namespace Tizen.Peripheral.Gpio
         /// Gets pin value.
         /// </summary>
         /// <returns>Pin value</returns>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Gpio;
+        /// var gpio = GpioPin(1, GpioPinDriveMode.Input);
+        /// Console.WriteLine($"Value is {gpio.Read()}");
+        /// </code>
+        /// </example>
         public GpioPinValue Read()
         {
             var ret = NativeGpio.Read(_handle, out uint value);
@@ -231,6 +259,13 @@ namespace Tizen.Peripheral.Gpio
         /// <summary>
         /// Sets pin value.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Gpio;
+        /// var gpio = GpioPin(1, GpioPinDriveMode.OutputInitiallyLow);
+        /// gpio.Write(GpioPinValue.High);
+        /// </code>
+        /// </example>
         public void Write(GpioPinValue value)
         {
             var ret = NativeGpio.Write(_handle, value == GpioPinValue.High ? 1 : (uint)0);
