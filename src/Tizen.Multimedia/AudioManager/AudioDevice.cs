@@ -241,7 +241,7 @@ namespace Tizen.Multimedia
                 uint[] convertedRates = new uint[numberOfElements];
 
                 Marshal.Copy(rates, ratesResult, 0, (int)numberOfElements);
-                Interop.Libc.Free(rates);
+                Marshal.FreeHGlobal(rates);
 
                 for (int i = 0; i < ratesResult.Length; i++)
                 {
