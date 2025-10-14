@@ -375,11 +375,8 @@ namespace Tizen.NUI
             }
 
             _gadgets.TryRemove(gadget, out _);
-            CoreApplication.Post(() =>
-            {
-                Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
-                gadget.Finish();
-            });
+            Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
+            gadget.Finish();
         }
 
         /// <summary>
@@ -420,11 +417,8 @@ namespace Tizen.NUI
                 return;
             }
 
-            CoreApplication.Post(() =>
-            {
-                Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
-                gadget.Resume();
-            });
+            Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
+            gadget.Resume();
         }
 
         /// <summary>
@@ -448,11 +442,8 @@ namespace Tizen.NUI
                 return;
             }
 
-            CoreApplication.Post(() =>
-            {
-                Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
-                gadget.Pause();
-            });
+            Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
+            gadget.Pause();
         }
 
         /// <summary>
