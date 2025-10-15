@@ -48,12 +48,15 @@ namespace Tizen.Applications
                 throw new ArgumentNullException(nameof(gadget));
             }
 
-            var args = new UIGadgetLifecycleChangedEventArgs
+            CoreApplication.Post(() =>
             {
-                State = gadget.State,
-                UIGadget = gadget,
-            };
-            LifecycleChanged?.Invoke(null, args);
+                var args = new UIGadgetLifecycleChangedEventArgs
+                {
+                    State = gadget.State,
+                    UIGadget = gadget,
+                };
+                LifecycleChanged?.Invoke(null, args);
+            });
         }
     }
 }
