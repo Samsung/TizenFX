@@ -342,15 +342,18 @@ namespace Tizen.Applications
         /// <since_tizen> 13 </since_tizen>
         public void Finish()
         {
-            if (State == UIGadgetLifecycleState.Resumed)
+            UIGadgetLifecycleManager.DispatchLifecycleEvent(this, () =>
             {
-                OnPause();
-            }
+                if (State == UIGadgetLifecycleState.Resumed)
+                {
+                    OnPause();
+                }
 
-            if (State == UIGadgetLifecycleState.PreCreated || State == UIGadgetLifecycleState.Created || State == UIGadgetLifecycleState.Paused)
-            {
-                OnDestroy();
-            }
+                if (State == UIGadgetLifecycleState.PreCreated || State == UIGadgetLifecycleState.Created || State == UIGadgetLifecycleState.Paused)
+                {
+                    OnDestroy();
+                }
+            });
         }
 
         void IUIGadget.OnAppControlReceived(AppControlReceivedEventArgs args) => OnAppControlReceived(args);

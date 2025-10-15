@@ -26,18 +26,18 @@ namespace Tizen.Applications
         private static readonly Thread _mainThread = Thread.CurrentThread;
         private static bool _processing = false;
 
-        internal static void DispatchLifecycleEvent(IUIGadget gadget, UIGadgetLifecycleState state)
+        internal static void DispatchLifecycleEvent(IUIGadget gadget, Action action)
         {
             if (gadget == null)
             {
                 throw new ArgumentNullException(nameof(gadget));
             }
 
-            Log.Info("ResourceType=" + gadget.UIGadgetInfo.ResourceType + ", State=" + gadget.State + " -> " + state);
+            Log.Info("ResourceType=" + gadget.UIGadgetInfo.ResourceType + ", State=" + gadget.State);
+            _lifecycleEvents.Enqueue(new LifecycleEvent(gadget, action));
 
             if (_mainThread.Equals(Thread.CurrentThread))
             {
-                _lifecycleEvents.Enqueue(new LifecycleEvent(gadget, state));
                 ProcessLifecycleEvent();
             }
             else
@@ -45,7 +45,6 @@ namespace Tizen.Applications
                 Log.Warn("The caller is not main thread.");
                 CoreApplication.Post(() =>
                 {
-                    _lifecycleEvents.Enqueue(new LifecycleEvent(gadget, state));
                     ProcessLifecycleEvent();
                 });
             }
@@ -68,69 +67,25 @@ namespace Tizen.Applications
                     return;
                 }
 
-                ProcessLifecycleMethod(lifecycleEvent.UIGadget, lifecycleEvent.State);
+                var gadget = lifecycleEvent.UIGadget;
+                var action = lifecycleEvent.Action;
+
+                action?.Invoke();
             }
             _processing = false;
         }
 
-        private static void ProcessLifecycleMethod(IUIGadget gadget, UIGadgetLifecycleState state)
-        {
-            if (gadget.State == state)
-            {
-                Log.Warn("Skip event=" + state);
-                return;
-            }
-
-            switch (state)
-            {
-                case UIGadgetLifecycleState.PreCreated:
-                    if (gadget.State == UIGadgetLifecycleState.Initialized)
-                    {
-                        gadget.OnPreCreate();
-                    }
-                    break;
-                case UIGadgetLifecycleState.Created:
-                    if (gadget.State == UIGadgetLifecycleState.PreCreated)
-                    {
-                        gadget.MainView = gadget.OnCreate();
-                    }
-                    break;
-                case UIGadgetLifecycleState.Destroyed:
-                    if (gadget.State == UIGadgetLifecycleState.Resumed)
-                    {
-                        gadget.OnPause();
-                    }
-                    if (gadget.State == UIGadgetLifecycleState.PreCreated || gadget.State == UIGadgetLifecycleState.Created || gadget.State == UIGadgetLifecycleState.Paused)
-                    {
-                        gadget.OnDestroy();
-                    }
-                    break;
-                case UIGadgetLifecycleState.Resumed:
-                    if (gadget.State == UIGadgetLifecycleState.Created || gadget.State == UIGadgetLifecycleState.Paused)
-                    {
-                        gadget.OnResume();
-                    }
-                    break;
-                case UIGadgetLifecycleState.Paused:
-                    if (gadget.State == UIGadgetLifecycleState.Resumed)
-                    {
-                        gadget.OnPause();
-                    }
-                    break;
-            }
-        }
-
         internal class LifecycleEvent
         {
-            internal LifecycleEvent(IUIGadget gadget, UIGadgetLifecycleState state)
+            internal LifecycleEvent(IUIGadget gadget, Action action)
             {
                 UIGadget = gadget;
-                State = state;
+                Action = action;
             }
 
             internal IUIGadget UIGadget { get; set; }
 
-            internal UIGadgetLifecycleState State { get; set; }
+            internal Action Action { get; set; }
         }
     }
 }
