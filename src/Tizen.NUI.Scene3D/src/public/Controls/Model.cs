@@ -635,6 +635,12 @@ namespace Tizen.NUI.Scene3D
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        internal override LayoutItem CreateDefaultLayout()
+        {
+            // Not to calculate size by NUI Layout.
+            return null;
+        }
+
         /// <summary>
         /// Sets whether this Model casts shadow or not.
         /// If it is true, this model is drawn on Shadow Map.
