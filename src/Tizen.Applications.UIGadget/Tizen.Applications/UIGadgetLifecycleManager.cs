@@ -67,9 +67,7 @@ namespace Tizen.Applications
                     return;
                 }
 
-                var gadget = lifecycleEvent.UIGadget;
                 var action = lifecycleEvent.Action;
-
                 action?.Invoke();
             }
             _processing = false;
