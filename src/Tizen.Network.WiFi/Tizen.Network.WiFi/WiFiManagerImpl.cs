@@ -720,7 +720,7 @@ namespace Tizen.Network.WiFi
                 else
                 {
                     _tdlsMacAddress = Marshal.PtrToStringAnsi(strPtr);
-		    Interop.Libc.Free(strPtr);
+                    Interop.Libc.Free(strPtr);
                 }
 
                 Log.Info(Globals.LogTag, "Tdls Mac address: " + _tdlsMacAddress);
