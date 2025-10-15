@@ -23,6 +23,7 @@ namespace Tizen.Applications
     internal static class UIGadgetLifecycleManager
     {
         private static ConcurrentQueue<LifecycleEvent> _lifecycleEvents = new ConcurrentQueue<LifecycleEvent>();
+        private static readonly Thread _mainThread = Thread.CurrentThread;
         private static bool _processing = false;
 
         internal static void DispatchLifecycleEvent(IUIGadget gadget, UIGadgetLifecycleState state)
@@ -33,8 +34,22 @@ namespace Tizen.Applications
             }
 
             Log.Info("ResourceType=" + gadget.UIGadgetInfo.ResourceType + ", State=" + gadget.State + " -> " + state);
-            _lifecycleEvents.Enqueue(new LifecycleEvent(gadget, state));
-            ProcessLifecycleEvent();
+
+            if (_mainThread.Equals(Thread.CurrentThread))
+            {
+                _lifecycleEvents.Enqueue(new LifecycleEvent(gadget, state));
+                ProcessLifecycleEvent();
+            }
+            else
+            {
+                Log.Warn("The caller is not main thread.");
+                CoreApplication.Post(() =>
+                {
+                    _lifecycleEvents.Enqueue(new LifecycleEvent(gadget, state));
+                    ProcessLifecycleEvent();
+                });
+            }
+
         }
 
         private static void ProcessLifecycleEvent()
