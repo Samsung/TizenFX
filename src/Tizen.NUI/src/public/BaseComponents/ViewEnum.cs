@@ -322,6 +322,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int DispatchTouchMotion = Interop.ActorProperty.DispatchTouchMotionGet();
             internal static readonly int DispatchHoverMotion = Interop.ActorProperty.DispatchHoverMotionGet();
             internal static readonly int ChildrenDepthIndexPolicy = Interop.ActorProperty.ChildrenDepthIndexPolicyGet();
+            internal static readonly int Ignored = Interop.ActorProperty.IgnoredGet();
+            internal static readonly int WorldIgnored = Interop.ActorProperty.WorldIgnoredGet();
             internal static readonly int OffScreenRendering = Interop.ViewProperty.OffScreenRenderingGet();
             internal static readonly int InnerShadow = Interop.ViewProperty.InnerShadowGet();
             internal static readonly int Borderline = Interop.ViewProperty.BorderlineGet();
