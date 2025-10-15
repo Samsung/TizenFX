@@ -70,6 +70,12 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void PreCache(List<string> fallbackFamilyList, List<string> extraFamilyList, string localeFamily, bool useThread, bool syncCreation = true)
         {
+            if (global::System.Threading.Thread.CurrentThread.ManagedThreadId != 1)
+            {
+                Log.Error("NUI", "PreCache should be called at main thread!");
+                return;
+            }
+
             int fallbackFamilySize = fallbackFamilyList?.Count ?? 0;
             int extraFamilySize = extraFamilyList?.Count ?? 0;
             string[] fallbackFamilyArray = fallbackFamilySize > 0 ? fallbackFamilyList.ToArray() : null;
@@ -95,6 +101,12 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void FontPreLoad(List<string> fontPathList, List<string> memoryFontPathList, bool useThread, bool syncCreation = true)
         {
+            if (global::System.Threading.Thread.CurrentThread.ManagedThreadId != 1)
+            {
+                Log.Error("NUI", "FontPreLoad should be called at main thread!");
+                return;
+            }
+
             int fontPathSize = fontPathList?.Count ?? 0;
             int memoryFontPathSize = memoryFontPathList?.Count ?? 0;
             string[] fontPathArray = fontPathSize > 0 ? fontPathList.ToArray() : null;
