@@ -40,6 +40,7 @@ namespace Tizen.Applications
         /// Notifies that the lifecycle of the UIGadget is changed.
         /// </summary>
         /// <param name="gadget">The UIGadget instance.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the 'gadget' is null.</exception>
         /// <since_tizen> 13 </since_tizen>
         public static void NotifyLifecycleChanged(IUIGadget gadget)
         {
@@ -48,15 +49,12 @@ namespace Tizen.Applications
                 throw new ArgumentNullException(nameof(gadget));
             }
 
-            CoreApplication.Post(() =>
+            var args = new UIGadgetLifecycleChangedEventArgs
             {
-                var args = new UIGadgetLifecycleChangedEventArgs
-                {
-                    State = gadget.State,
-                    UIGadget = gadget,
-                };
-                LifecycleChanged?.Invoke(null, args);
-            });
+                State = gadget.State,
+                UIGadget = gadget,
+            };
+            CoreApplication.Post(() => LifecycleChanged?.Invoke(null, args));
         }
     }
 }
