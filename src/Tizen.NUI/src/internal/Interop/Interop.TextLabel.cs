@@ -260,6 +260,8 @@ namespace Tizen.NUI
             public static extern int RegisterFontVariationProperty(HandleRef textLabelRef, string pTag);
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_SetMaskEffect")]
             public static extern void SetMaskEffect(HandleRef textLabelRef, HandleRef control);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_RemoveMaskEffect")]
+            public static extern void RemoveMaskEffect(HandleRef textLabelRef);
         }
     }
 }

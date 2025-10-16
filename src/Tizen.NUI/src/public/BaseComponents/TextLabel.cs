@@ -3616,6 +3616,19 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Removes mask Effect to given view.
+        /// </summary>
+        /// <remarks>
+        /// After this operation, the masked control unparents the Textlabel.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveMaskEffect()
+        {
+            Interop.TextLabel.RemoveMaskEffect(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
