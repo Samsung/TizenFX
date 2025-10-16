@@ -119,7 +119,7 @@ namespace Tizen.Applications
 
         private static void SetResourcePath(UIGadgetInfo info)
         {
-            info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/.res_mount/UIGadget/";
+            info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/.res_mount/gadget/";
             if (!Directory.Exists(info.ResourcePath))
             {
                 info.ResourcePath = SystemIO.Path.GetDirectoryName(Application.Current.ApplicationInfo.ExecutablePath) + "/.res_mount/";
