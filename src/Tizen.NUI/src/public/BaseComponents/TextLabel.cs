@@ -3620,7 +3620,7 @@ namespace Tizen.NUI.BaseComponents
         /// Removes mask Effect to given view.
         /// </summary>
         /// <remarks>
-        /// After this operation, the Textlabel will be parent of the control.
+        /// After this operation, the masked control unparents the Textlabel.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveMaskEffect()
