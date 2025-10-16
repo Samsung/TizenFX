@@ -345,6 +345,10 @@ namespace Tizen.System
         /// <summary>
         /// Constructor of Feedback class
         /// </summary>
+        /// <remarks>
+        /// Initializes a new instance of the Feedback class and prepares the feedback system for use.
+        /// This constructor initializes the underlying feedback system. It must be called before using any other Feedback methods.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>
         /// http://tizen.org/feature/feedback.vibration for FeedbackType.Vibration
@@ -376,6 +380,10 @@ namespace Tizen.System
         /// <summary>
         /// Finalizes an instance of the Feedback class.
         /// </summary>
+        /// <remarks>
+        /// Finalizes an instance of the Feedback class and releases associated resources.
+        /// This destructor ensures proper cleanup of the feedback system resources when the Feedback object is no longer needed.
+        /// </remarks>
         ~Feedback()
         {
             Interop.Feedback.FeedbackError res = (Interop.Feedback.FeedbackError)Interop.Feedback.Deinitialize();
@@ -386,7 +394,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Gets the supported information about a specific type and pattern.
+        /// Gets the supported information about a specific feedback type and pattern.
         /// </summary>
         /// <remarks>
         /// Now, IsSupportedPattern is not working for FeedbackType.All.
@@ -402,8 +410,8 @@ namespace Tizen.System
         /// </feature>
         /// <returns>Information whether a pattern is supported.</returns>
         /// <exception cref="Exception">Thrown when failed because the feedback is not initialized.</exception>
-        /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
-        /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed because the device (haptic, sound) is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when failed because the access is not granted (No privilege).</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
         /// <privilege>http://tizen.org/privilege/haptic</privilege>
@@ -451,6 +459,7 @@ namespace Tizen.System
         /// </summary>
         /// <remarks>
         /// To play Vibration type, app should have http://tizen.org/privilege/haptic privilege.
+        /// The pattern must be one of the predefined patterns and supported.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="type">The feedback type.</param>
@@ -556,20 +565,20 @@ namespace Tizen.System
         /// Gets the number of themes supported as described in the configuration.
         /// </summary>
         /// <remarks>
-        /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
+        /// This internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
         /// Counts of theme range will be 1 ~ N according to conf file.
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         /// <param name="type">The feedback type.</param>
-        /// <returns>The counf of theme can be used according to feedback type.</returns>
+        /// <returns>The count of themes can be used according to feedback type.</returns>
         /// <exception cref="Exception">Thrown when failed because the feedback is not initialized.</exception>
-        /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
-        /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed because the device (haptic, sound) is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
         /// <example>
         /// <code>
         /// Feedback feedback = new Feedback();
-        /// uint coundOfTheme = feedback.GetCountOfThemeInternal(FeedbackType.Sound);
+        /// uint countOfTheme = feedback.GetCountOfThemeInternal(FeedbackType.Sound);
         /// </code>
         /// </example>
         /// <seealso cref="FeedbackType"/>
@@ -610,8 +619,8 @@ namespace Tizen.System
         /// <since_tizen> 10 </since_tizen>
         /// <param name="type">The feedback type.</param>
         /// <returns>The id of theme selected as default theme according to feedback type.</returns>
-        /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
-        /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed because the device (haptic, sound) is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
         /// <example>
         /// <code>
@@ -646,7 +655,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Sets the current id of the theme from available themes described in the conf file.
+        /// Sets the current theme id from available themes described in the conf file.
         /// </summary>
         /// <remarks>
         /// Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
@@ -656,8 +665,8 @@ namespace Tizen.System
         /// <since_tizen> 10 </since_tizen>
         /// <param name="type">The feedback type.</param>
         /// <param name="idOfTheme">The id of theme will be set.</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
-        /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed because the device (haptic, sound) is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when failed because the access is not granted(No privilege)</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
         /// <example>
@@ -752,8 +761,8 @@ namespace Tizen.System
         /// <since_tizen> 10 </since_tizen>
         /// <param name="type">The feedback type.</param>
         /// <returns>The array of theme id supported according to feedback type.</returns>
-        /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
-        /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
+        /// <exception cref="NotSupportedException">Thrown when failed because the device (haptic, sound) is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
         /// <example>
         /// <code>
