@@ -134,7 +134,7 @@ namespace Tizen.Multimedia
                 int[] formatsResult = new int[numberOfElements];
 
                 Marshal.Copy(formats, formatsResult, 0, (int)numberOfElements);
-                Interop.Libc.Free(formats);
+                Marshal.FreeHGlobal(formats);
 
                 foreach (int f in formatsResult)
                 {
