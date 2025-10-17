@@ -6,7 +6,7 @@
     <authors>Samsung Electronics</authors>
     <owners>Samsung Electronics</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <license type="expression">Apache-2.0</license>
     <projectUrl>https://www.tizen.org/</projectUrl>
     <iconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</iconUrl>
     <description>Reference assemblies of Tizen .NET API Level 13.</description>
