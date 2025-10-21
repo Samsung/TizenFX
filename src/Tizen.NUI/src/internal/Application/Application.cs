@@ -2100,6 +2100,12 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        public void EnableApplicationFrameworkLocaleCallback()
+        {
+            Interop.Application.EnableApplicationFrameworkLocaleCallback(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static List<Window> GetWindowList()
         {
