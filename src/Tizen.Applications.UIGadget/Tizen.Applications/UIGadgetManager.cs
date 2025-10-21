@@ -314,11 +314,15 @@ namespace Tizen.Applications
         /// <summary>
         /// Executes the pre-creation process of the UIGadget.
         /// </summary>
+        /// <remarks>
+        /// This method basically works with sync.
+        /// If you want to operate with async, put true in the 'useIdler' parameter and use it.
+        /// </remarks>
         /// <param name="gadget">The UIGadget object to perform the pre-creation process.</param>
         /// <param name="useIdler">whether to use idler</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'UIGadget' argument is null.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static void PreCreate(IUIGadget gadget, bool useIdler = true)
+        public static void PreCreate(IUIGadget gadget, bool useIdler = false)
         {
             if (gadget == null)
             {
@@ -337,12 +341,16 @@ namespace Tizen.Applications
         /// <summary>
         /// Executes the creation process of the UIGadget.
         /// </summary>
+        /// <remarks>
+        /// This method basically works with sync.
+        /// If you want to operate with async, put true in the 'useIdler' parameter and use it.
+        /// </remarks>
         /// <param name="gadget">The UIGadget object to perform the creation process.</param>
         /// <param name="useIdler">whether to use idler</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'UIGadget' argument is null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static void Create(IUIGadget gadget, bool useIdler = true)
+        public static void Create(IUIGadget gadget, bool useIdler = false)
         {
             if (gadget == null)
             {
@@ -379,6 +387,8 @@ namespace Tizen.Applications
         /// By passing the UIGadget object as an argument, you can ensure that only the desired UIGadget is removed.
         /// It is important to note that once a UIGadget is removed, any references to it become invalid.
         /// Therefore, it is crucial to handle the removal process carefully to avoid any potential issues.
+        /// And, this method basically works with async.
+        /// If you want to operate with sync, put false in the 'useIdler' parameter and use it.
         /// </remarks>
         /// <since_tizen> 13 </since_tizen>
         public static void Remove(IUIGadget gadget, bool useIdler = true)
@@ -402,6 +412,8 @@ namespace Tizen.Applications
         /// <remarks>
         /// This method is called to remove all UIGadgets that are currently registered in the UIGadgetManager.
         /// It ensures that no more UIGadgets exist after calling this method.
+        /// And, this method basically works with async.
+        /// If you want to operate with sync, put false in the 'useIdler' parameter and use it.
         /// </remarks>
         /// <since_tizen> 13 </since_tizen>
         public static void RemoveAll(bool useIdler = true)
@@ -418,6 +430,8 @@ namespace Tizen.Applications
         /// <remarks>
         /// By calling this method, you can resume the execution of the currently suspended UIGadget.
         /// It takes the UIGadget object as an argument which represents the target UIGadget that needs to be resumed.
+        /// And, this method basically works with async.
+        /// If you want to operate with sync, put false in the 'useIdler' parameter and use it.
         /// </remarks>
         /// <param name="gadget">The UIGadget object whose execution needs to be resumed.</param>
         /// <param name="useIdler">whether to use idler</param>
@@ -449,6 +463,8 @@ namespace Tizen.Applications
         /// </summary>
         /// <remarks>
         /// Calling this method pauses the currently executing UIGadget. It does not affect any other UIGadgets that may be running simultaneously.
+        /// And, this method basically works with async.
+        /// If you want to operate with sync, put false in the 'useIdler' parameter and use it.
         /// </remarks>
         /// <param name="gadget">The UIGadget object whose execution needs to be paused.</param>
         /// <param name="useIdler">whether to use idler</param>
