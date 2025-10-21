@@ -315,6 +315,7 @@ namespace Tizen.Applications
         /// Executes the pre-creation process of the UIGadget.
         /// </summary>
         /// <param name="gadget">The UIGadget object to perform the pre-creation process.</param>
+        /// <param name="useIdler">whether to use idler</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'UIGadget' argument is null.</exception>
         /// <since_tizen> 13 </since_tizen>
         public static void PreCreate(IUIGadget gadget, bool useIdler = true)
@@ -337,6 +338,7 @@ namespace Tizen.Applications
         /// Executes the creation process of the UIGadget.
         /// </summary>
         /// <param name="gadget">The UIGadget object to perform the creation process.</param>
+        /// <param name="useIdler">whether to use idler</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'UIGadget' argument is null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <since_tizen> 13 </since_tizen>
@@ -371,6 +373,7 @@ namespace Tizen.Applications
         /// Removes the specified UIGadget from the UIGadgetManager.
         /// </summary>
         /// <param name="gadget">The UIGadget object that needs to be removed.</param>
+        /// <param name="useIdler">whether to use idler</param>
         /// <remarks>
         /// This method allows you to remove a specific UIGadget from the UIGadgetManager.
         /// By passing the UIGadget object as an argument, you can ensure that only the desired UIGadget is removed.
@@ -395,6 +398,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Removes all UIGadgets from the UIGadgetManager.
         /// </summary>
+        /// <param name="useIdler">whether to use idler</param>
         /// <remarks>
         /// This method is called to remove all UIGadgets that are currently registered in the UIGadgetManager.
         /// It ensures that no more UIGadgets exist after calling this method.
@@ -416,6 +420,7 @@ namespace Tizen.Applications
         /// It takes the UIGadget object as an argument which represents the target UIGadget that needs to be resumed.
         /// </remarks>
         /// <param name="gadget">The UIGadget object whose execution needs to be resumed.</param>
+        /// <param name="useIdler">whether to use idler</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'UIGadget' argument is null.</exception>
         /// <since_tizen> 13 </since_tizen>
         public static void Resume(IUIGadget gadget, bool useIdler = true)
@@ -446,6 +451,7 @@ namespace Tizen.Applications
         /// Calling this method pauses the currently executing UIGadget. It does not affect any other UIGadgets that may be running simultaneously.
         /// </remarks>
         /// <param name="gadget">The UIGadget object whose execution needs to be paused.</param>
+        /// <param name="useIdler">whether to use idler</param>
         /// <exception cref="ArgumentNullException">Thrown if the argument 'UIGadget' is null.</exception>
         /// <since_tizen> 13 </since_tizen>
         public static void Pause(IUIGadget gadget, bool useIdler = true)
