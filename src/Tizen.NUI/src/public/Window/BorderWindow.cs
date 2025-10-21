@@ -14,9 +14,6 @@
  * limitations under the License.
  *
  */
-extern alias TizenSystemInformation;
-using TizenSystemInformation.Tizen.System;
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,8 +40,6 @@ namespace Tizen.NUI
         private View contentsView;
         private View bottomView;
         private float borderHeight;
-        private int screenWidth;
-        private int screenHeight;
 
         private bool isBorderWindow;
         private bool hasTopView;
@@ -245,16 +240,6 @@ namespace Tizen.NUI
                 return false;
             }
 
-            try
-            {
-                Information.TryGetValue<int>("http://tizen.org/feature/screen.width", out screenWidth);
-                Information.TryGetValue<int>("http://tizen.org/feature/screen.height", out screenHeight);
-            }
-            catch (DllNotFoundException e)
-            {
-                Tizen.Log.Fatal("NUI", $"{e}\n");
-            }
-
             if (borderInterface == null)
             {
                 borderInterface = new DefaultBorder();
@@ -302,8 +287,9 @@ namespace Tizen.NUI
                 }
 
                 // When running the app for the first time, if it runs in full size, do Maximize(true).
-                if (screenWidth != 0 && screenHeight != 0 &&
-                    realWindowSize.Width >= screenWidth && realWindowSize.Height >= screenHeight &&
+                Size2D screenSize = NUIApplication.GetScreenSize();
+                if (screenSize.Width > 0 && screenSize.Height > 0 &&
+                    realWindowSize.Width >= screenSize.Width && realWindowSize.Height >= screenSize.Height &&
                     IsMaximized() == false)
                 {
                     Maximize(true);
