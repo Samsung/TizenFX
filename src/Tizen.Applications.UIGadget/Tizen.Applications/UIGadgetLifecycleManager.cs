@@ -23,7 +23,6 @@ namespace Tizen.Applications
     internal static class UIGadgetLifecycleManager
     {
         private static ConcurrentQueue<LifecycleEvent> _lifecycleEvents = new ConcurrentQueue<LifecycleEvent>();
-        private static readonly Thread _mainThread = Thread.CurrentThread;
         private static bool _processing = false;
 
         internal static void DispatchLifecycleEvent(IUIGadget gadget, Action action, bool useIdler = true)
