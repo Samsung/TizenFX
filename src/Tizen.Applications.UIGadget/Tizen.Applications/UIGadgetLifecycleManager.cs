@@ -36,19 +36,10 @@ namespace Tizen.Applications
             Log.Info("ResourceType=" + gadget.UIGadgetInfo.ResourceType + ", State=" + gadget.State);
             _lifecycleEvents.Enqueue(new LifecycleEvent(gadget, action));
 
-            if (_mainThread.Equals(Thread.CurrentThread))
+            CoreApplication.Post(() =>
             {
                 ProcessLifecycleEvent();
-            }
-            else
-            {
-                Log.Warn("The caller is not main thread.");
-                CoreApplication.Post(() =>
-                {
-                    ProcessLifecycleEvent();
-                });
-            }
-
+            });
         }
 
         private static void ProcessLifecycleEvent()
