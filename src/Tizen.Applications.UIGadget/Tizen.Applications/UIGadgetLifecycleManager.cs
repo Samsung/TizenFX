@@ -32,7 +32,7 @@ namespace Tizen.Applications
                 throw new ArgumentNullException(nameof(gadget));
             }
 
-            Log.Info("ResourceType=" + gadget.UIGadgetInfo.ResourceType + ", State=" + gadget.State);
+            Log.Info("ResourceType=" + gadget.UIGadgetInfo.ResourceType + ", State=" + gadget.State + ", UseIdler = " + useIdler);
             _lifecycleEvents.Enqueue(new LifecycleEvent(gadget, action));
 
             if (useIdler)
