@@ -26,7 +26,7 @@ namespace Tizen.Applications
         private static readonly Thread _mainThread = Thread.CurrentThread;
         private static bool _processing = false;
 
-        internal static void DispatchLifecycleEvent(IUIGadget gadget, Action action)
+        internal static void DispatchLifecycleEvent(IUIGadget gadget, Action action, bool useIdler = true)
         {
             if (gadget == null)
             {
@@ -36,10 +36,17 @@ namespace Tizen.Applications
             Log.Info("ResourceType=" + gadget.UIGadgetInfo.ResourceType + ", State=" + gadget.State);
             _lifecycleEvents.Enqueue(new LifecycleEvent(gadget, action));
 
-            CoreApplication.Post(() =>
+            if (useIdler)
+            {
+                CoreApplication.Post(() =>
+                {
+                    ProcessLifecycleEvent();
+                });
+            }
+            else
             {
                 ProcessLifecycleEvent();
-            });
+            }
         }
 
         private static void ProcessLifecycleEvent()
