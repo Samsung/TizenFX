@@ -157,7 +157,7 @@ namespace Tizen.Applications
             int ret = Interop.Preference.IsExisting(key, out contains);
             if (ret != (int)PreferenceErrorFactory.PreferenceError.None)
             {
-                Log.Error(LogTag, "Failed to find key");
+                Log.Error(LogTag, "Failed to find key(" + key + ")");
                 throw PreferenceErrorFactory.GetException(ret);
             }
 
@@ -190,43 +190,29 @@ namespace Tizen.Applications
             if (value is int)
             {
                 ret = Interop.Preference.SetInt(key, (int)value);
-                if (ret != (int)PreferenceErrorFactory.PreferenceError.None)
-                {
-                    Log.Error(LogTag, "Failed to find key");
-                    throw PreferenceErrorFactory.GetException(ret);
-                }
             }
             else if (value is double)
             {
                 ret = Interop.Preference.SetDouble(key, (double)value);
-                if (ret != (int)PreferenceErrorFactory.PreferenceError.None)
-                {
-                    Log.Error(LogTag, "Failed to find key");
-                    throw PreferenceErrorFactory.GetException(ret);
-                }
             }
             else if (value is string)
             {
                 ret = Interop.Preference.SetString(key, (string)value);
-                if (ret != (int)PreferenceErrorFactory.PreferenceError.None)
-                {
-                    Log.Error(LogTag, "Failed to find key");
-                    throw PreferenceErrorFactory.GetException(ret);
-                }
             }
             else if (value is bool)
             {
                 ret = Interop.Preference.SetBoolean(key, (bool)value);
-                if (ret != (int)PreferenceErrorFactory.PreferenceError.None)
-                {
-                    Log.Error(LogTag, "Failed to find key");
-                    throw PreferenceErrorFactory.GetException(ret);
-                }
             }
             else
             {
-                Log.Error(LogTag, "Failed to Set");
+                Log.Error(LogTag, "Failed to set key(" + key + ")");
                 throw new ArgumentException("Invalid parameter");
+            }
+
+            if (ret != (int)PreferenceErrorFactory.PreferenceError.None)
+            {
+                Log.Error(LogTag, "Failed to set key(" + key + ")");
+                throw PreferenceErrorFactory.GetException(ret);
             }
         }
 
@@ -281,13 +267,13 @@ namespace Tizen.Applications
             }
             else
             {
-                Log.Error(LogTag, "Failed to remove key");
+                Log.Error(LogTag, "Failed to get key(" + key + ")");
                 throw new ArgumentException("Invalid parameter");
             }
 
             if (ret != (int)PreferenceErrorFactory.PreferenceError.None)
             {
-                Log.Error(LogTag, "Failed to remove key");
+                Log.Error(LogTag, "Failed to get key(" + key + ")");
                 throw PreferenceErrorFactory.GetException(ret);
             }
 
@@ -315,7 +301,7 @@ namespace Tizen.Applications
             int ret = Interop.Preference.Remove(key);
             if (ret != (int)PreferenceErrorFactory.PreferenceError.None)
             {
-                Log.Error(LogTag, "Failed to remove key");
+                Log.Error(LogTag, "Failed to remove key(" + key + ")");
                 throw PreferenceErrorFactory.GetException(ret);
             }
         }
