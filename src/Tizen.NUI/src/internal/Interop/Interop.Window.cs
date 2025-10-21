@@ -417,6 +417,12 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetScreen")]
             public static extern string GetScreen(global::System.Runtime.InteropServices.HandleRef window);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetVisibleBounds")]
+            public static extern void SetVisibleBounds(global::System.Runtime.InteropServices.HandleRef window, global::System.Runtime.InteropServices.HandleRef positionSize);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetVisibleBounds")]
+            public static extern global::System.IntPtr GetVisibleBounds(global::System.Runtime.InteropServices.HandleRef window);
         }
     }
 }
