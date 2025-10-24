@@ -408,55 +408,51 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public BorderDirection GetDirection(float xPosition, float yPosition)
         {
-            BorderDirection direction = BorderDirection.None;
+            // Pre-calculate the coordinates of the entire area
+            float totalWidth = WindowSize.Width + (borderLineThickness * 2);
+            float totalHeight = borderLineThickness + (topView?.SizeHeight ?? 0) + WindowSize.Height + (bottomView?.SizeHeight ?? 0) + borderLineThickness;
 
-            // check bottom left corner
-            if (xPosition < borderInterface.TouchThickness && yPosition > WindowSize.Height + borderHeight - borderInterface.TouchThickness)
-            {
-                direction = BorderDirection.BottomLeft;
-            }
-            // check bottom right corner
-            else if (xPosition > WindowSize.Width + (float)(borderLineThickness * 2) - borderInterface.TouchThickness && yPosition > WindowSize.Height + borderHeight - borderInterface.TouchThickness)
-            {
-                direction = BorderDirection.BottomRight;
-            }
-            // check top left corner
-            else if (xPosition < borderInterface.TouchThickness && yPosition <  borderInterface.TouchThickness)
-            {
-                direction = BorderDirection.TopLeft;
-            }
-            // check top right corner
-            else if (xPosition > WindowSize.Width + (float)(borderLineThickness * 2) - borderInterface.TouchThickness && yPosition < borderInterface.TouchThickness)
-            {
-                direction = BorderDirection.TopRight;
-            }
-            // check left side
-            else if (xPosition < borderInterface.TouchThickness)
-            {
-                direction = BorderDirection.Left;
-            }
-            // check right side
-            else if (xPosition > WindowSize.Width + (float)(borderLineThickness * 2) - borderInterface.TouchThickness)
-            {
-                direction = BorderDirection.Right;
-            }
-            // check bottom side
-            else if (yPosition > WindowSize.Height + borderHeight + borderLineThickness - borderInterface.TouchThickness)
-            {
-                direction = BorderDirection.Bottom;
-            }
-            // check top side
-            else if (yPosition < borderInterface.TouchThickness)
-            {
-                direction = BorderDirection.Top;
-            }
+            float leftEdge = borderInterface.TouchThickness;
+            float rightEdge = totalWidth - borderInterface.TouchThickness;
+            float topEdge = borderInterface.TouchThickness;
+            float bottomEdge = totalHeight - borderInterface.TouchThickness;
+
+            bool isLeftCorner = xPosition < leftEdge;
+            bool isRightCorner = xPosition > rightEdge;
+            bool isTopCorner = yPosition < topEdge;
+            bool isBottomCorner = yPosition > bottomEdge;
+
+            if (isLeftCorner && isBottomCorner)
+                return BorderDirection.BottomLeft;
+            if (isRightCorner && isBottomCorner)
+                return BorderDirection.BottomRight;
+            if (isLeftCorner && isTopCorner)
+                return BorderDirection.TopLeft;
+            if (isRightCorner && isTopCorner)
+                return BorderDirection.TopRight;
+
+            if (isLeftCorner)
+                return BorderDirection.Left;
+            if (isRightCorner)
+                return BorderDirection.Right;
+            if (isTopCorner)
+                return BorderDirection.Top;
+            if (isBottomCorner)
+                return BorderDirection.Bottom;
+
             // check move
-            else if ((yPosition > WindowSize.Height) || (hasTopView == true && yPosition < topView.SizeHeight))
-            {
-                direction = BorderDirection.Move;
-            }
+            float topViewStart = borderLineThickness;
+            float topViewEnd = borderLineThickness + (topView?.SizeHeight ?? 0);
+            float bottomViewStart = borderLineThickness + (topView?.SizeHeight ?? 0) + WindowSize.Height;
+            float bottomViewEnd = bottomViewStart + (bottomView?.SizeHeight ?? 0);
 
-            return direction;
+            bool inTopMoveArea = hasTopView && yPosition >= topViewStart && yPosition <= topViewEnd;
+            bool inBottomMoveArea = hasBottomView && yPosition >= bottomViewStart && yPosition <= bottomViewEnd;
+
+            if (inTopMoveArea || inBottomMoveArea)
+                return BorderDirection.Move;
+
+            return BorderDirection.None;
         }
 
         /// <summary>
