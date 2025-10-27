@@ -18,6 +18,7 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
@@ -162,6 +163,7 @@ namespace Tizen.NUI
             Interop.BackgroundBlurEffect.AddBlurStrengthAnimation(SwigCPtr, Animation.getCPtr(animation), AlphaFunction.getCPtr(alphaFunction), TimePeriod.getCPtr(timePeriod), fromValue, toValue);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
         /// <summary>
         /// Adds blur opacity animation to the effect.
         /// Basically it is to animate blurring clear texture, but when starting value(fromValue) is bigger than the end value(toValue),
@@ -180,6 +182,35 @@ namespace Tizen.NUI
 
             Interop.BackgroundBlurEffect.AddBlurOpacityAnimation(SwigCPtr, Animation.getCPtr(animation), AlphaFunction.getCPtr(alphaFunction), TimePeriod.getCPtr(timePeriod), fromValue, toValue);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Set specific source view of background blur effects. If empty handle, works same as normal.
+        /// </summary>
+        /// <remarks>
+        /// If given source view is not a parent of source control, it has no efforts.
+        /// RenderEffect didn't hold source view reference.
+        /// </remarks>
+        /// <param name="sourceView">The source actor of background blur effects.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetSourceView(View sourceView)
+        {
+            Interop.BackgroundBlurEffect.SetSourceView(SwigCPtr, View.getCPtr(sourceView));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Set specific stopper view of background blur effects. If empty handle, works same as normal.
+        /// </summary>
+        /// <remarks>
+        /// RenderEffect didn't hold stopper view reference.
+        /// </remarks>
+        /// <param name="stopperView">The stopper actor of background blur effects.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetStopperView(View stopperView)
+        {
+            Interop.BackgroundBlurEffect.SetStopperView(SwigCPtr, View.getCPtr(stopperView));
+            NDalicPINVOKE.ThrowExceptionIfExists();
         }
     }
 }

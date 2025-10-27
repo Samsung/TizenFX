@@ -89,6 +89,10 @@ namespace Tizen.NUI.Samples
                     {
                         (example as FlushApplicationMessageSample)?.SetCurrentApplication(this);
                     }
+                    if(name == "Tizen.NUI.Samples.BackgroundBlurEffectTest")
+                    {
+                        (example as BackgroundBlurEffectTest)?.SetCurrentApplication(this);
+                    }
                     example.Activate();
                 }
                 catch (Exception e)
