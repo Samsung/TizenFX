@@ -702,6 +702,11 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
+            // LayoutRequested is set to true not to propagate RequestLayout from children.
+            // When children's LayoutWidth/Height are changed, their RequestLayout is called.
+            // If this.LayoutRequested is true, then RequestLayout is not propagated from this.
+            LayoutRequested = true;
+
             InitChildrenWithExpand(MeasuredWidth.Size - Padding.Start - Padding.End, MeasuredHeight.Size - Padding.Top - Padding.Bottom);
 
             for (int i = 0; i < gridChildren.Count; i++)
@@ -791,6 +796,9 @@ namespace Tizen.NUI
 
                 child.LayoutItem.Layout(new LayoutLength(childLeft), new LayoutLength(childTop), new LayoutLength(childLeft + width), new LayoutLength(childTop + height));
             }
+
+            // LayoutRequested is restored to false.
+            LayoutRequested = false;
         }
 
         /// <summary>
