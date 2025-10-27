@@ -386,6 +386,17 @@ namespace Tizen.NUI
             {
                 return (flags & LayoutFlags.ForceLayout) == LayoutFlags.ForceLayout;
             }
+            set
+            {
+                if (value)
+                {
+                    flags = flags | LayoutFlags.ForceLayout;
+                }
+                else
+                {
+                    flags = flags & ~LayoutFlags.ForceLayout;
+                }
+            }
         }
 
         internal void SetReplaceFlag()
