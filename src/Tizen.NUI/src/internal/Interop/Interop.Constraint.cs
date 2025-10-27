@@ -79,6 +79,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_GetRemoveAction")]
             public static extern int GetApplyAction(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_SetApplyRate")]
+            public static extern void SetApplyRate(global::System.Runtime.InteropServices.HandleRef jarg1, uint applyRate);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_GetApplyRate")]
+            public static extern uint GetApplyRate(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_SetTag")]
             public static extern void SetTag(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 

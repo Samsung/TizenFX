@@ -330,6 +330,46 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The apply-rate of the Constraint.
+        /// Default is 1u, mean apply constraint every frames.
+        /// </summary>
+        /// <remarks>
+        /// The default is 1u, meaning that the Constraint
+        /// will be processed every frame if the scene graph is changing.
+        /// It may be desirable to process less frequently. For example,
+        /// constraint.ApplyRate = 3u; will process once every 3 frames if the scene
+        /// graph is changing. If the scene graph is not changing, then the
+        /// constraint task will not be processed, regardless of this value.
+        ///
+        /// The 0 value means that the Constraint will be
+        /// processed once only, to bake a property and keep it.
+        /// Repeatedly calling constraint.ApplyRate = 0u will cause more
+        /// bake to be taken.
+        ///
+        /// We can change apply-rate even if already Apply() called.
+        ///
+        /// Constraint will be processed at first frame of this API called.
+        /// After then,
+        /// - if 0u, Constarint will be skipped.
+        /// - if not, Constraint will be skipped (ApplyRate - 1) frames,
+        ///   and then applied, and so on.
+        ///
+        /// Unlike SetProperty, APPLY_ONCE is useful if we want to set
+        /// the property with the same function of constraint, and want
+        /// to ignore other animation or set property changeness ensurely.
+        ///
+        /// @warning If you are using some input-sensitive constraints,
+        ///          be careful to use it. If applyRate is not 1u,
+        ///          some frames will be skipped.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint ApplyRate
+        {
+            set => Interop.Constraint.SetApplyRate(SwigCPtr, value);
+            get => Interop.Constraint.GetApplyRate(SwigCPtr);
+        }
+
+        /// <summary>
         /// Tag number. It will be useful when you want to seperate constraints.
         /// We can only use [ConstraintTagRanges.TagMin ConstraintTagRanges.TagMax] and ConstraintTagRanges.Default.
         /// </summary>
