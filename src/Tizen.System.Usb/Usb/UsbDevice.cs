@@ -117,6 +117,12 @@ namespace Tizen.System.Usb
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation. </exception>
         /// <since_tizen> 4 </since_tizen>
+        /// <example>
+        /// <code>
+        /// device.Configurations[123].SetAsActive();
+        /// DoSomeWorkNow(device.ActiveConfiguration);
+        /// </code>
+        /// </example>
         public UsbConfiguration ActiveConfiguration
         {
             get
@@ -135,6 +141,12 @@ namespace Tizen.System.Usb
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        /// <example>
+        /// <code>
+        /// device.Configurations[123].SetAsActive();
+        /// DoSomeWorkNow(device.ActiveConfiguration);
+        /// </code>
+        /// </example>
         public IReadOnlyDictionary<int, UsbConfiguration> Configurations
         {
             get
@@ -158,6 +170,11 @@ namespace Tizen.System.Usb
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        /// <example>
+        /// <code>
+        /// var specificDevice = manager.AvailableDevices.SingleOrDefault(dev => dev.DeviceInformation.ProductId == 0x123);
+        /// </code>
+        /// </example>
         public UsbDeviceInformation DeviceInformation
         {
             get
@@ -174,6 +191,12 @@ namespace Tizen.System.Usb
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException"> Throws exception if device is disconnected or not opened for operation. </exception>
         /// <since_tizen> 4 </since_tizen>
+        /// <example>
+        /// <code>
+        /// device.Open();
+        /// if (device.Strings.Manufacturer == "Samsung") ...
+        /// </code>
+        /// </example>
         public UsbDeviceStrings Strings
         {
             get
@@ -193,6 +216,14 @@ namespace Tizen.System.Usb
         /// <exception cref="InvalidOperationException">Throws an exception if the device is disconnected.</exception>
         /// <exception cref="UnauthorizedAccessException">Throws an exception if the user has insufficient permission on the device.</exception>
         /// <since_tizen> 4 </since_tizen>
+        /// <example>
+        /// <code>
+        /// var device = manager.Devices.Single(...);
+        /// dev.Open();
+        ///   ... do the needful ...
+        /// dev.Close();
+        /// </code>
+        /// </example>
         public void Open()
         {
             ThrowIfDisposed();
@@ -205,6 +236,14 @@ namespace Tizen.System.Usb
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        /// <example>
+        /// <code>
+        /// var device = manager.Devices.Single(...);
+        /// dev.Open();
+        ///   ... do the needful ...
+        /// dev.Close();
+        /// </code>
+        /// </example>
         public void Close()
         {
             ThrowIfDisposed();
