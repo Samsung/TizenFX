@@ -303,7 +303,17 @@ namespace Tizen.NUI
                     borderInterface.OnMaximize(IsMaximized());
                     if (borderHeight > 0 || borderLineThickness > 0)
                     {
-                        WindowSize += new Size2D((int)borderLineThickness * 2, (int)(borderHeight + borderLineThickness * 2));
+                        try
+                        {
+                            WindowSize += new Size2D(
+                                checked((int)borderLineThickness * 2),
+                                checked((int)(borderHeight + borderLineThickness * 2))
+                            );
+                        }
+                        catch (OverflowException)
+                        {
+                            WindowSize = new Size2D(screenSize.Width, screenSize.Height);
+                        }
                     }
                 }
 
