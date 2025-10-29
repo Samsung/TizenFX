@@ -44,6 +44,9 @@ internal static partial class Interop
                 public int vermagic;
                 public int gpioPinValue;
                 // skip the rest fields in structure as we do not need it
+                // HACK: The following is needed, so the alignment of the structure matches
+                // the alignment of the C structure (which contains pointers in the remaining fields)
+                private IntPtr alignmentHelper;
             }
             [StructLayout(LayoutKind.Sequential)]
             public struct PeripherialGpio
