@@ -223,6 +223,35 @@
         "tizen.10.0.0",
         "tizen-x64"
       ]
+    },
+    "tizen.11.0.0": {
+      "#import": [
+        "tizen.10.0.0"
+      ]
+    },
+    "tizen.11.0.0-armel": {
+      "#import": [
+        "tizen.11.0.0",
+        "tizen.10.0.0-armel"
+      ]
+    },
+    "tizen.11.0.0-x86": {
+      "#import": [
+        "tizen.11.0.0",
+        "tizen.10.0.0-x86"
+      ]
+    },
+    "tizen.11.0.0-arm64": {
+      "#import": [
+        "tizen.11.0.0",
+        "tizen.10.0.0-arm64"
+      ]
+    },
+    "tizen.11.0.0-x64": {
+      "#import": [
+        "tizen.11.0.0",
+        "tizen.10.0.0-x64"
+      ]
     }
   }
 }
