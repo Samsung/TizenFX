@@ -18,6 +18,6 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string Peripherial = "libcapi-system-peripheral-io.so.0.1.0";
+        public const string Peripherial = "libcapi-system-peripheral-io.so.0";
     }
 }
