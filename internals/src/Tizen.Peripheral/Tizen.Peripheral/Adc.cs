@@ -23,6 +23,7 @@ namespace Tizen.Peripheral.Adc
     /// The class allows applications to use the platform ADC peripheral.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/peripheralio</privilege>
+    /// <feature>http://tizen.org/feature/peripheral_io.adc</feature>
     public class AdcChannel : IDisposable
     {
         /// <summary>
@@ -36,6 +37,12 @@ namespace Tizen.Peripheral.Adc
         /// </summary>
         /// <param name="device">The ADC device number.</param>
         /// <param name="channel">The ADC channel number to control.</param>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Adc;
+        /// var adc = AdcChannel(1, 2);
+        /// </code>
+        /// </example>
         public AdcChannel(int device, int channel)
         {
             var ret = NativeAdc.Open(device, channel, out _handle);
@@ -54,6 +61,13 @@ namespace Tizen.Peripheral.Adc
         /// <summary>
         /// Gets the current value of the ADC pin.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Adc;
+        /// var adc = AdcChannel(1, 2);
+        /// Console.WriteLine($"Value is {adc.ReadValue()}");
+        /// </code>
+        /// </example>
         public uint ReadValue()
         {
             var ret = NativeAdc.Read(_handle, out uint adcValue);
@@ -65,11 +79,25 @@ namespace Tizen.Peripheral.Adc
         /// <summary>
         /// Closes the ADC pin.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Adc;
+        /// var adc = AdcChannel(1, 2);
+        /// adc.Close();
+        /// </code>
+        /// </example>
        public void Close() => Dispose();
 
         /// <summary>
         /// Disposes the ADC pin.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Adc;
+        /// var adc = AdcChannel(1, 2);
+        /// adc.Dispose();
+        /// </code>
+        /// </example>
         public void Dispose()
         {
             Dispose(true);
