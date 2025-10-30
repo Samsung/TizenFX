@@ -511,7 +511,7 @@ namespace Tizen.Multimedia.Remoting
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendGenericMouseEvent(IEnumerable<UibcMouseInfo> uibcMouseInfos, ScreenMirroringMouseEventType type)
         {
-            ValidateState(ScreenMirroringState.Connected);
+            ValidateState(ScreenMirroringState.Connected, ScreenMirroringState.Playing);
 
             if (!uibcMouseInfos.Any())
             {
@@ -571,7 +571,7 @@ namespace Tizen.Multimedia.Remoting
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendGenericKeyEvent(ScreenMirroringKeyEventType type, ushort keyCode1, ushort keyCode2)
         {
-            ValidateState(ScreenMirroringState.Connected);
+            ValidateState(ScreenMirroringState.Connected, ScreenMirroringState.Playing);
 
             Native.SendGenericKeyEvent(Handle, type, keyCode1, keyCode2).ThrowIfError("Failed to send generic key event");
         }
