@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>Tizen.NET</id>
+    <id>Tizen.NET.API14</id>
     <version>$fxversion$</version>
     <authors>Samsung Electronics</authors>
     <owners>Samsung Electronics</owners>
@@ -9,19 +9,14 @@
     <license type="expression">Apache-2.0</license>
     <projectUrl>https://www.tizen.org/</projectUrl>
     <iconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</iconUrl>
-    <description>A set of Tizen .NET APIs. This includes all of the APIs built on top of Tizen Platform.</description>
+    <description>Reference assemblies of Tizen .NET API Level 14.</description>
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
-    <dependencies>
-      <group targetFramework="net8.0-tizen10.0">
-        <dependency id="Tizen.NET.API13" version="$fxversion$" />
-      </group>
-      <group targetFramework="net8.0-tizen11.0">
-        <dependency id="Tizen.NET.API14" version="$fxversion$" />
-      </group>
-    </dependencies>
   </metadata>
   <files>
-    <file src="pkg\Tizen.NET\build\**" target="build" />
-    <file src="pkg\Tizen.NET\runtime.json" />
+    <file src="pkg\Tizen.NET.API14\build\**" target="build" />
+    <file src="pkg\Tizen.NET.API14\design\*.dll" target="ref\net6.0\Design" />
+    <file src="pkg\Tizen.NET.API14\xamlbuild\**" target="buildTransitive" />
+    <file src="Artifacts\bin\dummy\*.dll"  target="ref\net6.0" />
+    <file src="Artifacts\bin\public\*.xml"  target="ref\net6.0" />
   </files>
 </package>

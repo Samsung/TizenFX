@@ -1,7 +1,13 @@
 main:
+  api-level: API14
+  labels: [ API14 ]
+  tizen-branch: tizen
+  version-prefix: 14.0.0
+
+API13:
   api-level: API13
   labels: [ API13 ]
-  tizen-branch: tizen
+  tizen-branch: tizen_10.0
   version-prefix: 13.0.0
 
 API12:
