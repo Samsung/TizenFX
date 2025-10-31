@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -76,12 +76,12 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Occurs when the lifecycle of the OneShotService is changed.
+        /// Occurs when the lifecycle of the DataLoader is changed.
         /// </summary>
         /// <remarks>
-        /// This event is raised when the state of OneShotService changes.
+        /// This event is raised when the state of DataLoader changes.
         /// It provides information about the current state through the 
-        /// OneShotServiceLifecycleChangedEventArgs argument.
+        /// DataLoaderLifecycleChangedEventArgs argument.
         /// </remarks>
         /// <since_tizen> 13 </since_tizen>
         public event EventHandler<DataLoaderLifecycleChangedEventArgs> DataLoaderLifecycleChanged;
