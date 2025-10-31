@@ -259,9 +259,7 @@ namespace Tizen.Applications
         {
             ArgumentNullException.ThrowIfNull(cultureInfo);
 
-            global::System.Resources.ResourceManager resourceManager = null;
-
-            resourceManager = GetResourceManager(cultureInfo.Name);
+            global::System.Resources.ResourceManager resourceManager = GetResourceManager(cultureInfo.Name);
             if (resourceManager != null)
             {
                 return resourceManager;
@@ -273,8 +271,7 @@ namespace Tizen.Applications
                 return resourceManager;
             }
 
-            resourceManager = GetResourceManager("default");
-            return resourceManager;
+            return GetResourceManager("default");
         }
     }
 }
