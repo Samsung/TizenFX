@@ -237,5 +237,44 @@ namespace Tizen.Applications
 
             return resourceManager;
         }
+
+        /// <summary>
+        /// Retrieves the resource manager for the current UI culture.
+        /// </summary>
+        /// <returns>The resource manager for the current UI culture, or null if no matching resource manager could be found.</returns>
+        /// <since_tizen> 13 </since_tizen>
+        public global::System.Resources.ResourceManager GetResourceManager()
+        {
+            return GetResourceManager(CultureInfo.CurrentUICulture);
+        }
+
+        /// <summary>
+        /// Retrieves the resource manager for the specified culture.
+        /// </summary>
+        /// <param name="cultureInfo">The culture information for which the resource manager is requested.</param>
+        /// <returns>The resource manager for the specified culture, or null if no matching resource manager could be found.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the cultureInfo argument is null.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        public global::System.Resources.ResourceManager GetResourceManager(CultureInfo cultureInfo)
+        {
+            ArgumentNullException.ThrowIfNull(cultureInfo);
+
+            global::System.Resources.ResourceManager resourceManager = null;
+
+            resourceManager = GetResourceManager(cultureInfo.Name);
+            if (resourceManager != null)
+            {
+                return resourceManager;
+            }
+
+            resourceManager = GetResourceManager(cultureInfo.TwoLetterISOLanguageName);
+            if (resourceManager != null)
+            {
+                return resourceManager;
+            }
+
+            resourceManager = GetResourceManager("default");
+            return resourceManager;
+        }
     }
 }
