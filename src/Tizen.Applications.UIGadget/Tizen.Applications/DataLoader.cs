@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -84,7 +84,7 @@ namespace Tizen.Applications
         /// <remarks>
         /// This property is a variable
         /// as to whether to automatically make
-        /// OneShotService Destroy after execution
+        /// DataLoader Destroy after execution
         /// </remarks>
         /// <since_tizen> 13 </since_tizen>
         public bool AutoClose
@@ -130,8 +130,8 @@ namespace Tizen.Applications
 
         /// <summary>
         /// Override this method to define the behavior when the DataLoader is destroyed.
-        /// Calling 'base.OnDestroyed()' is necessary in order to
-        /// emit the 'DataLoaderServiceLifecycleState.Destroyed` state
+        /// Calling 'base.OnDestroy()' is necessary in order to
+        /// emit the 'DataLoaderLifecycleState.Destroyed` state
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         protected virtual void OnDestroy()
