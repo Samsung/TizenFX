@@ -29,7 +29,7 @@ namespace Tizen.NUI.Samples
         private static int bottomHeight = 60;
         private static int buttonWeight = 100;
         private static int buttonHeight = 40;
-        private static int maxView = 2;
+        private static int maxView = 4;
         private static string resourcePath = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
         private static string[] imagePath = {
             resourcePath + "/images/PaletteTest/rock.jpg",
@@ -40,6 +40,7 @@ namespace Tizen.NUI.Samples
 
         private int viewIndex = 0;
         private int windowWidth, windowHeight;
+        private int imageViewSize;
         private Window currentWindow;
         private View view;
         private View bottomView;
@@ -52,7 +53,9 @@ namespace Tizen.NUI.Samples
         private Palette.Swatch darkMutedSwatch;
         private Palette.Swatch lightVibrantSwatch;
         private Palette.Swatch lightMutedSwatch;
-        private Stopwatch timer = new Stopwatch();
+        private Stopwatch timerImage = new Stopwatch();
+        private Stopwatch timerPalette = new Stopwatch();
+        private int useRegionType = 0;
 
         public void Activate()
         {
@@ -66,6 +69,7 @@ namespace Tizen.NUI.Samples
 
             windowWidth = Window.Instance.Size.Width;
             windowHeight = Window.Instance.Size.Height;
+            imageViewSize = Math.Min(windowWidth, windowHeight - bottomHeight);
 
             CreatePage(viewIndex);
             CreateBottomLayout();
@@ -96,22 +100,33 @@ namespace Tizen.NUI.Samples
             };
             Button nextBtn = new Button()
             {
-                Text = "next",
+                Text = "Next",
                 Size = new Size(buttonWeight, buttonHeight),
+                Margin = 10,
+            };
+            Button regionBtn = new Button()
+            {
+                Text = "Change Region",
+                Size = new Size(buttonWeight * 2, buttonHeight),
                 Margin = 10,
             };
             bottomView.Add(prevBtn);
             bottomView.Add(nextBtn);
+            bottomView.Add(regionBtn);
 
             prevBtn.Clicked += PrevClicked;
             nextBtn.Clicked += NextClicked;
+            regionBtn.Clicked += RegionClicked;
         }
 
         private void PrevClicked(object sender, ClickedEventArgs e)
         {
-            if (viewIndex == 0) return;
-
+            if (viewIndex == 0)
+            {
+                viewIndex = maxView;
+            }
             viewIndex--;
+
             view.Unparent();
             CreatePage(viewIndex);
 
@@ -119,9 +134,24 @@ namespace Tizen.NUI.Samples
 
         private void NextClicked(object sender, ClickedEventArgs e)
         {
-            if (viewIndex == maxView) return;
-
             viewIndex++;
+            if (viewIndex == maxView)
+            {
+                viewIndex = 0;
+            }
+
+            view.Unparent();
+            CreatePage(viewIndex);
+        }
+
+        private void RegionClicked(object sender, ClickedEventArgs e)
+        {
+            useRegionType += 1;
+            if (useRegionType == 3)
+            {
+                useRegionType = 0;
+            }
+
             view.Unparent();
             CreatePage(viewIndex);
         }
@@ -138,11 +168,9 @@ namespace Tizen.NUI.Samples
             imageView = CreateImageView(viewIndex);
             view.Add(imageView);
 
-            timer.Start();
             palette = ImageGenerate(viewIndex);
-            timer.Stop();
 
-            TextLabel label = new TextLabel("Time = " + timer.ElapsedMilliseconds.ToString() + "ms")
+            TextLabel label = new TextLabel("Time = (load) " + timerImage.ElapsedMilliseconds.ToString() + "ms (palette) " + timerPalette.ElapsedMilliseconds.ToString() + "ms")
             {
                 Size2D  = new Size2D((int)(windowWidth), (int)((windowHeight - windowWidth) / 9)),
                 HorizontalAlignment = HorizontalAlignment.End,
@@ -150,65 +178,86 @@ namespace Tizen.NUI.Samples
             };
             view.Add(label);
 
-            dominantSwatch = palette.GetDominantSwatch();
-             if (dominantSwatch != null) {
-                CreateLabel(dominantSwatch);
-            }
+            CreateSwatchLabel("Dominant", palette.GetDominantSwatch());
+            CreateSwatchLabel("LightVibrant", palette.GetLightVibrantSwatch());
+            CreateSwatchLabel("Vibrant", palette.GetVibrantSwatch());
+            CreateSwatchLabel("DarkVibrant", palette.GetDarkVibrantSwatch());
+            CreateSwatchLabel("LightMuted", palette.GetLightMutedSwatch());
+            CreateSwatchLabel("Muted", palette.GetMutedSwatch());
+            CreateSwatchLabel("DarkMuted", palette.GetDarkMutedSwatch());
 
-            lightVibrantSwatch = palette.GetLightVibrantSwatch();
-            if (lightVibrantSwatch != null) {
-                CreateLabel(lightVibrantSwatch);
-            }
-
-            vibrantSwatch = palette.GetVibrantSwatch();
-            if (vibrantSwatch != null) {
-                CreateLabel(vibrantSwatch);
-            }
-
-            darkVibrantSwatch = palette.GetDarkVibrantSwatch();
-            if (darkVibrantSwatch != null) {
-                CreateLabel(darkVibrantSwatch);
-            }
-
-            lightMutedSwatch = palette.GetLightMutedSwatch();
-            if (lightMutedSwatch != null) {
-                CreateLabel(lightMutedSwatch);
-            }
-
-            mutedSwatch = palette.GetMutedSwatch();
-            if (mutedSwatch != null) {
-                CreateLabel(mutedSwatch);
-            }
-
-            darkMutedSwatch = palette.GetDarkMutedSwatch();
-            if (darkMutedSwatch != null) {
-                CreateLabel(darkMutedSwatch);
-            }
-
-            timer.Reset();
+            timerImage.Reset();
+            timerPalette.Reset();
         }
 
-        public void CreateLabel(Palette.Swatch swatch)
+        private void CreateSwatchLabel(string title, Palette.Swatch swatch)
         {
-            Color color = swatch.GetRgb();
-
-            string txt = " RGB(" + (int)(color.R * 255) + " " + (int)(color.G * 255) + " " + (int)(color.B * 255) + ")";
-            TextLabel label = new TextLabel(txt)
+            var swatchInfo = new View()
             {
-                TextColor = swatch.GetBodyTextColor(),
-                BackgroundColor = color,
-                Size2D  = new Size2D((int)(windowWidth), (int)((windowHeight - windowWidth) / 9)),
-                HorizontalAlignment = HorizontalAlignment.Begin,
-                VerticalAlignment = VerticalAlignment.Center,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.WrapContent,
+                Layout = new FlexLayout()
+                {
+                    Direction = FlexLayout.FlexDirection.Row,
+                    Justification = FlexLayout.FlexJustification.SpaceBetween,
+                    WrapType = FlexLayout.FlexWrapType.NoWrap,
+                },
             };
 
-            view.Add(label);
+            var titleLabel = new TextLabel()
+            {
+                Text = title,
+            };
+            swatchInfo.Add(titleLabel);
+
+            var bodyLabel = new TextLabel()
+            {
+                Text = " Invalid",
+            };
+            swatchInfo.Add(bodyLabel);
+
+            if (swatch != null)
+            {
+                Color color = swatch.GetRgb();
+                Color titleColor = swatch.GetTitleTextColor();
+                Color bodyColor = swatch.GetBodyTextColor();
+                bodyLabel.Text = " RGB(" + (int)(color.R * 255) + " " + (int)(color.G * 255) + " " + (int)(color.B * 255) + ")";
+
+                swatchInfo.BackgroundColor = color;
+                titleLabel.TextColor = titleColor;
+                bodyLabel.TextColor = bodyColor;
+            }
+
+            view.Add(swatchInfo);
         }
 
         public Palette ImageGenerate(int idx)
         {
+            timerImage.Start();
             PixelBuffer imgBitmap = ImageLoader.LoadImageFromFile(imagePath[idx]);
-            Palette palette = Palette.Generate(imgBitmap);
+            timerImage.Stop();
+
+            Rectangle rect = null;
+            if(useRegionType == 1)
+            {
+                rect = new Rectangle();
+                rect.Width = (int)imgBitmap.GetWidth() / 5;
+                rect.Height = (int)imgBitmap.GetHeight() / 5;
+                rect.Y = 0;
+                rect.X = (int)imgBitmap.GetWidth() - rect.Width;
+            }
+            else if(useRegionType == 2)
+            {
+                rect = new Rectangle();
+                rect.Width = (int)imgBitmap.GetWidth() / 5;
+                rect.Height = (int)imgBitmap.GetHeight() / 5;
+                rect.Y = ((int)imgBitmap.GetHeight() - rect.Height) / 2;
+                rect.X = ((int)imgBitmap.GetWidth() - rect.Width) / 2;
+            }
+
+            timerPalette.Start();
+            Palette palette = Palette.Generate(imgBitmap, rect);
+            timerPalette.Stop();
 
             return palette;
         }
@@ -218,10 +267,37 @@ namespace Tizen.NUI.Samples
             ImageView tempImage = new ImageView()
             {
                 ResourceUrl = imagePath[idx],
-                Size = new Tizen.NUI.Size(Window.Instance.Size.Width, Window.Instance.Size.Width),
+                Size = new Tizen.NUI.Size(imageViewSize, imageViewSize),
                 HeightResizePolicy = ResizePolicyType.Fixed,
                 WidthResizePolicy = ResizePolicyType.Fixed,
             };
+
+            if(useRegionType == 1)
+            {
+                var borderVisual = new Tizen.NUI.Visuals.BorderVisual()
+                {
+                    PivotPoint = Visual.AlignType.TopEnd,
+                    Origin = Visual.AlignType.TopEnd,
+                    Width = 0.2f, // Default size policy is relative
+                    Height = 0.2f, // Default size policy is relative
+                    BorderWidth = 4.0f,
+                    BorderColor = Color.Black,
+                };
+                tempImage.AddVisual(borderVisual, ViewVisualContainerRange.Decoration);
+            }
+            if(useRegionType == 2)
+            {
+                var borderVisual = new Tizen.NUI.Visuals.BorderVisual()
+                {
+                    PivotPoint = Visual.AlignType.Center,
+                    Origin = Visual.AlignType.Center,
+                    Width = 0.2f, // Default size policy is relative
+                    Height = 0.2f, // Default size policy is relative
+                    BorderWidth = 4.0f,
+                    BorderColor = Color.Black,
+                };
+                tempImage.AddVisual(borderVisual, ViewVisualContainerRange.Decoration);
+            }
 
             return tempImage;
         }
