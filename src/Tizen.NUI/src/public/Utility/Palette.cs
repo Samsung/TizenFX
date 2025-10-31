@@ -170,25 +170,15 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(pixelBuffer), "pixelBuffer should not be null.");
             }
 
-            // First we'll scale down the bitmap so it's shortest dimension is 100px
+            // First we'll crop and scale down the bitmap so it's shortest dimension is 100px
             // NOTE: scaledBitmap can gets bitmap origin value and new bitmap instance as well
             //       When ScaleBitmap created newly it will be dispose below.
             //       otherwise it should not disposed because of this instance from user side.
-            bool resized = ScaleBitmapDown(pixelBuffer);
-
-            // Region set
-            if (resized && region != null)
-            {
-                double scale = pixelBuffer.GetWidth() / (double)pixelBuffer.GetHeight();
-                region.X = (int)Math.Floor(region.X * scale);
-                region.Y = (int)Math.Floor(region.Y * scale);
-                region.Width = Math.Min((int)Math.Ceiling(region.Width * scale), (int)pixelBuffer.GetWidth() );
-                region.Height = Math.Min((int)Math.Ceiling(region.Height * scale), (int)pixelBuffer.GetHeight());
-            }
+            CropAndScaleBitmapDown(pixelBuffer, region);
 
             // Now generate a Quantizer from the Bitmap
             // FIXME: defaultCalculateNumberColors should be changeable?
-            ColorCutQuantizer quantizer = ColorCutQuantizer.FromBitmap(pixelBuffer, region, defaultCalculateNumberColors);
+            ColorCutQuantizer quantizer = ColorCutQuantizer.FromBitmap(pixelBuffer, defaultCalculateNumberColors);
 
             // Now return a ColorExtractor instance
             return new Palette(quantizer.GetQuantizedColors());
@@ -394,18 +384,24 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Scale the bitmap down so that it's smallest dimension is
+        /// Crop by region first, and Scale the bitmap down so that it's smallest dimension is
         /// calculateBitmapMinDimensionpx. If bitmap is smaller than this, than it
         /// is returned.
         /// </summary>
-        private static bool ScaleBitmapDown(PixelBuffer pixelBuffer)
+        private static void CropAndScaleBitmapDown(PixelBuffer pixelBuffer, Rectangle region)
         {
+            if(region != null)
+            {
+                // Crop the pixelbuffer first.
+                Tizen.Log.Info("Palette", "pixelBuffer (" + pixelBuffer.GetWidth() + "x" + pixelBuffer.GetHeight() + ") crop to (" + region.X + " " + region.X + " " + region.Width + " " + region.Height + ")" + "\n");
+                pixelBuffer.Crop((ushort)region.X, (ushort)region.Y, (ushort)region.Width, (ushort)region.Height);
+            }
             int minDimension = Math.Min((int)pixelBuffer.GetWidth(), (int)pixelBuffer.GetHeight());
 
             if (minDimension <= calculateBitmapMinDimension)
             {
                 // If the bitmap is small enough already, just return it
-                return false;
+                return;
             }
 
             float scaleRatio = calculateBitmapMinDimension / (float)minDimension;
@@ -416,7 +412,7 @@ namespace Tizen.NUI
             Tizen.Log.Info("Palette", "pixelBuffer resize to  " + width + " " + height + "\n");
             pixelBuffer.Resize((ushort)width, (ushort)height);
 
-            return true;
+            return;
         }
 
         private static float CreateComparisonValue(float saturation, float targetSaturation,
