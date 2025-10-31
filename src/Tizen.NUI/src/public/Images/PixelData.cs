@@ -170,6 +170,18 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets the stride of the buffer in bytes. 0 means the buffer is tightly packed
+        /// </summary>
+        /// <returns>The stride of the buffer in bytes.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetStrideBytes()
+        {
+            uint ret = Interop.PixelData.GetStrideBytes(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
