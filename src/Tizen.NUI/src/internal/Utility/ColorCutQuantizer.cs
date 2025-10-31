@@ -101,42 +101,61 @@ namespace Tizen.NUI
         /// <summary>
         /// Factory-method to generate a ColorCutQuantizer from a  PixelBuffer object.
         /// </summary>
-        public static ColorCutQuantizer FromBitmap(PixelBuffer pixelBuffer, Rectangle region, int maxColors)
+        public static ColorCutQuantizer FromBitmap(PixelBuffer pixelBuffer, int maxColors)
         {
-            int width;
-            int height;
+            int width = (int)pixelBuffer.GetWidth();
+            int height = (int)pixelBuffer.GetHeight();
             int[] pixels;
-            int i, j, index = 0;
-
-            if (region == null)
-            {
-                width = (int)pixelBuffer.GetWidth(); height = (int)pixelBuffer.GetHeight(); i = 0; j = 0;
-            }
-
-            else
-            {
-                width = region.Width; height = region.Height; i = region.X; j = region.Y;
-            }
-
-            Tizen.Log.Info("Palette", "Get pixels raw data from (" + i + " " + j + " " + width + " " + height + ")" + "\n");
 
             pixels = new int[width * height];
             PixelFormat format = pixelBuffer.GetPixelFormat();
             int pixelLength = (int)ColorUtils.GetBytesPerPixel(format);
             IntPtr bufferIntPtr = pixelBuffer.GetBuffer();
+            int pixelStrideBytes = (int)pixelBuffer.GetStrideBytes();
+            if (pixelStrideBytes == 0)
+            {
+                pixelStrideBytes = pixelLength * width;
+            }
 
             unsafe
             {
+                int index = 0;
+
                 byte *rawdata = (byte *)bufferIntPtr.ToPointer();
-                int totalLength = width * height * pixelLength;
-                for (i = 0; i < totalLength; i += pixelLength)
+                if (pixelStrideBytes == pixelLength * width)
                 {
-                    //RGB888
-                    if (pixelLength == 3)
-                        pixels[index++] = (255 & 0xff) << 24 | (rawdata[i] & 0xff) << 16 | (rawdata[i+1] & 0xff) << 8 | (rawdata[i+2] & 0xff);
-                    //RGBA8888
-                    else
-                        pixels[index++] = (rawdata[i + 3]  & 0xff) << 24 | (rawdata[i] & 0xff) << 16 | (rawdata[i+1] & 0xff) << 8 | (rawdata[i+2] & 0xff);
+                    int totalLength = width * height * pixelLength;
+                    for (int rawDataIndex = 0; rawDataIndex < totalLength; rawDataIndex += pixelLength)
+                    {
+                        // Pixel color infomation is in rawdata[rawDataIndex] ~ rawdata[rawDataIndex + pixelLength - 1]
+
+                        // TODO : Support more pixel formats!
+                        //RGB888
+                        if (pixelLength == 3)
+                            pixels[index++] = (255 & 0xff) << 24 | (rawdata[rawDataIndex + 0] & 0xff) << 16 | (rawdata[rawDataIndex + 1] & 0xff) << 8 | (rawdata[rawDataIndex + 2] & 0xff);
+                        //RGBA8888
+                        else
+                            pixels[index++] = (rawdata[rawDataIndex + 3]  & 0xff) << 24 | (rawdata[rawDataIndex + 0] & 0xff) << 16 | (rawdata[rawDataIndex + 1] & 0xff) << 8 | (rawdata[rawDataIndex + 2] & 0xff);
+                    }
+                }
+                else
+                {
+                    for (int pi = 0; pi <  height; ++pi)
+                    {
+                        for(int pj = 0; pj < width; ++pj)
+                        {
+                            // Pixel color infomation is in rawdata[rawDataIndex] ~ rawdata[rawDataIndex + pixelLength - 1]
+                            int rawDataIndex = pi * pixelStrideBytes + pj * pixelLength;
+
+                            // TODO : Support more pixel formats!
+                            //RGB888
+                            if (pixelLength == 3)
+                                pixels[index++] = (255 & 0xff) << 24 | (rawdata[rawDataIndex + 0] & 0xff) << 16 | (rawdata[rawDataIndex + 1] & 0xff) << 8 | (rawdata[rawDataIndex + 2] & 0xff);
+                            //RGBA8888
+                            else
+                                pixels[index++] = (rawdata[rawDataIndex + 3]  & 0xff) << 24 | (rawdata[rawDataIndex + 0] & 0xff) << 16 | (rawdata[rawDataIndex + 1] & 0xff) << 8 | (rawdata[rawDataIndex + 2] & 0xff);
+                        }
+                    }
                 }
             }
 

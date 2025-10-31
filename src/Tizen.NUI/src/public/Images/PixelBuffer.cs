@@ -141,6 +141,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets the stride of the buffer in bytes. 0 means the buffer is tightly packed
+        /// </summary>
+        /// <returns>The stride of the buffer in bytes.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetStrideBytes()
+        {
+            uint ret = Interop.PixelBuffer.GetStrideBytes(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Apply the mask to this pixel data and return a new pixel data that contains
         /// the masked image. If this PixelBuffer does not have an alpha channel, then
         /// the resultant PixelBuffer will be converted to a format that supports at
