@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -52,7 +52,7 @@ namespace Tizen.Applications
         /// <summary>
         /// The destroyed state.
         /// This state is set when the DataLoader is destroyed.
-        /// The 'OnDestroyed()' method of the DataLoader is called.
+        /// The 'OnDestroy()' method of the DataLoader is called.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
         Destroyed = 3,
