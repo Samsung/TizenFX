@@ -492,7 +492,7 @@ namespace Tizen.Multimedia.Remoting
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetUibcInformation(Size windowSize, ScreenMirroringCaptureMode mode)
         {
-            ValidateState(ScreenMirroringState.Idle);
+            ValidateState(ScreenMirroringState.Prepared);
 
             Native.SetWindowSize(Handle, windowSize.Width, windowSize.Height).ThrowIfError("Failed to set uibc window size");
             Native.EnableUibc(Handle, mode).ThrowIfError("Failed to set uibc capture mode");
