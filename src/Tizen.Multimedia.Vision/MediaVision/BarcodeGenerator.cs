@@ -239,7 +239,7 @@ namespace Tizen.Multimedia.Vision
                     imageConfig.Width, imageConfig.Height, type, qrMode, qrEcc, qrVersion,
                     imageConfig.Path, imageConfig.Format).
                     Validate("Failed to generate image");
-                GC.KeepAlive(config)
+                GC.KeepAlive(config);
             }
             catch (Exception)
             {
