@@ -233,10 +233,18 @@ namespace Tizen.Multimedia.Vision
 
             ValidationUtil.ValidateEnum(typeof(BarcodeType), type, nameof(type));
 
-            InteropBarcode.GenerateImage(EngineConfiguration.GetHandle(config), message,
-                imageConfig.Width, imageConfig.Height, type, qrMode, qrEcc, qrVersion,
-                imageConfig.Path, imageConfig.Format).
-                Validate("Failed to generate image");
+            try
+            {
+                InteropBarcode.GenerateImage(EngineConfiguration.GetHandle(config), message,
+                    imageConfig.Width, imageConfig.Height, type, qrMode, qrEcc, qrVersion,
+                    imageConfig.Path, imageConfig.Format).
+                    Validate("Failed to generate image");
+                GC.KeepAlive(config)
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -308,6 +316,8 @@ namespace Tizen.Multimedia.Vision
         public static void GenerateImage(string message, QrConfiguration qrConfig,
             BarcodeImageConfiguration imageConfig, BarcodeGenerationConfiguration config)
         {
+            BarcodeGenerationConfiguration config_ = null;
+
             if (qrConfig == null)
             {
                 throw new ArgumentNullException(nameof(qrConfig));
@@ -325,14 +335,16 @@ namespace Tizen.Multimedia.Vision
                 if (qrConfig.DataShape != QrShape.Rectangular || qrConfig.FinderShape != QrShape.Rectangular ||
                     qrConfig.EmbedImagePath != null)
                 {
-                    config = new BarcodeGenerationConfiguration();
+                    // Design QR case. The config_ for legacy QR will be null.
+                    config_ = new BarcodeGenerationConfiguration();
                 }
             }
 
-            SetDesignQrOptions(qrConfig, config);
+            SetDesignQrOptions(qrConfig, config ?? config_);
 
-            GenerateImage(config, message, BarcodeType.QR, imageConfig, (int)qrConfig.Mode,
+            GenerateImage(config ?? config_, message, BarcodeType.QR, imageConfig, (int)qrConfig.Mode,
                 (int)qrConfig.ErrorCorrectionLevel, qrConfig.Version);
+            config_?.Dispose();
         }
 
         /// <summary>
