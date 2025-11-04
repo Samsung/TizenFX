@@ -233,18 +233,11 @@ namespace Tizen.Multimedia.Vision
 
             ValidationUtil.ValidateEnum(typeof(BarcodeType), type, nameof(type));
 
-            try
-            {
-                InteropBarcode.GenerateImage(EngineConfiguration.GetHandle(config), message,
-                    imageConfig.Width, imageConfig.Height, type, qrMode, qrEcc, qrVersion,
-                    imageConfig.Path, imageConfig.Format).
-                    Validate("Failed to generate image");
-                GC.KeepAlive(config);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            InteropBarcode.GenerateImage(EngineConfiguration.GetHandle(config), message,
+                imageConfig.Width, imageConfig.Height, type, qrMode, qrEcc, qrVersion,
+                imageConfig.Path, imageConfig.Format).
+                Validate("Failed to generate image");
+            GC.KeepAlive(config);
         }
 
         /// <summary>
