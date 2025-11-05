@@ -21,7 +21,40 @@ namespace Tizen.Network.WiFiDirect
 {
     /// <summary>
     /// An extended EventArgs class which contains the changed connection state during connecting or disconnecting the peer device.
+    /// This event is triggered when the connection state with a specific peer device changes.
     /// </summary>
+    /// <remarks>
+    /// This event is raised by the <see cref="WiFiDirectPeer.ConnectionStateChanged"/> event.
+    /// Use this event to monitor connection progress and handle connection state changes such as:
+    /// - Connection request initiated
+    /// - WPS (Wi-Fi Protected Setup) in progress
+    /// - Connection established
+    /// - Disconnection initiated or completed
+    /// - Group creation/destruction events
+    ///
+    /// Example usage:
+    /// <code>
+    /// peer.ConnectionStateChanged += (sender, e) =>
+    /// {
+    ///     if (e.Error == WiFiDirectError.None)
+    ///     {
+    ///         switch (e.State)
+    ///         {
+    ///             case WiFiDirectConnectionState.ConnectionRsp:
+    ///                 Console.WriteLine($"Connected to peer: {e.MacAddress}");
+    ///                 break;
+    ///             case WiFiDirectConnectionState.DisconnectRsp:
+    ///                 Console.WriteLine($"Disconnected from peer: {e.MacAddress}");
+    ///                 break;
+    ///         }
+    ///     }
+    ///     else
+    ///     {
+    ///         Console.WriteLine($"Connection error: {e.Error}");
+    ///     }
+    /// };
+    /// </code>
+    /// </remarks>
     /// <since_tizen> 3 </since_tizen>
     public class ConnectionStateChangedEventArgs : EventArgs
     {
@@ -37,8 +70,12 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// The Wi-Fi Direct result.
+        /// The Wi-Fi Direct operation result.
+        /// Indicates whether the state change was successful or if an error occurred.
         /// </summary>
+        /// <value>
+        /// <see cref="WiFiDirectError.None"/> if successful, otherwise the specific error code.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public WiFiDirectError Error
         {
@@ -50,7 +87,11 @@ namespace Tizen.Network.WiFiDirect
 
         /// <summary>
         /// The Wi-Fi Direct connection state of the peer.
+        /// Represents the current state in the connection lifecycle.
         /// </summary>
+        /// <value>
+        /// A <see cref="WiFiDirectConnectionState"/> enum value indicating the current connection state.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public WiFiDirectConnectionState State
         {
@@ -61,8 +102,12 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// The MacAddress of the peer.
+        /// The MAC address of the peer device whose connection state changed.
+        /// This uniquely identifies the peer device in the connection event.
         /// </summary>
+        /// <value>
+        /// The MAC address string of the peer device (e.g., "AA:BB:CC:DD:EE:FF").
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public string MacAddress
         {
@@ -75,7 +120,27 @@ namespace Tizen.Network.WiFiDirect
 
     /// <summary>
     /// An extended EventArgs class which contains address properties of the peer when it connects to a group owner.
+    /// This event is triggered when a peer device successfully connects to a Wi-Fi Direct group and receives IP address assignment.
     /// </summary>
+    /// <remarks>
+    /// This event is raised by the <see cref="WiFiDirectPeer.IpAddressAssigned"/> event.
+    /// Use this event to get network configuration information when a peer joins the group:
+    /// - MAC address for device identification
+    /// - Assigned IP address for network communication
+    /// - Network interface address for routing
+    ///
+    /// Example usage:
+    /// <code>
+    /// peer.IpAddressAssigned += (sender, e) =>
+    /// {
+    ///     Console.WriteLine($"Peer {e.MacAddress} assigned IP: {e.IpAddress}");
+    ///     Console.WriteLine($"Interface: {e.InterfaceAddress}");
+    ///
+    ///     // Now you can establish network communication with the peer
+    ///     // using the assigned IP address
+    /// };
+    /// </code>
+    /// </remarks>
     /// <since_tizen> 3 </since_tizen>
     public class IpAddressAssignedEventArgs : EventArgs
     {
@@ -91,8 +156,12 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// The MacAddress of the connected peer.
+        /// The MAC address of the connected peer device.
+        /// This uniquely identifies the peer device that received the IP assignment.
         /// </summary>
+        /// <value>
+        /// The MAC address string of the peer device (e.g., "AA:BB:CC:DD:EE:FF").
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public string MacAddress
         {
@@ -103,8 +172,12 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// The IpAddress of the connected peer.
+        /// The IP address assigned to the connected peer device.
+        /// This is the network address that can be used for socket communication with the peer.
         /// </summary>
+        /// <value>
+        /// The IP address string (e.g., "192.168.49.2").
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public string IpAddress
         {
@@ -115,8 +188,12 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// The InterfaceAddress of the connected peer.
+        /// The network interface address of the connected peer device.
+        /// This is the network interface identifier used for routing and network configuration.
         /// </summary>
+        /// <value>
+        /// The network interface address string (e.g., "AA:BB:CC:DD:EE:FF").
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public string InterfaceAddress
         {
@@ -195,7 +272,34 @@ namespace Tizen.Network.WiFiDirect
 
     /// <summary>
     /// An extended EventArgs class which contains the found peer information during the Wi-Fi Direct scan operation.
+    /// This event is triggered when a new Wi-Fi Direct peer device is discovered during the scanning process.
     /// </summary>
+    /// <remarks>
+    /// This event is raised by the <see cref="WiFiDirectManager.PeerFound"/> event.
+    /// Use this event to get information about newly discovered peer devices and decide whether to connect to them:
+    /// - Peer device information (name, MAC address, device type)
+    /// - Discovery state indicating the phase of discovery
+    /// - Error status for the discovery operation
+    ///
+    /// Example usage:
+    /// <code>
+    /// WiFiDirectManager.PeerFound += (sender, e) =>
+    /// {
+    ///     if (e.Error == WiFiDirectError.None && e.DiscoveryState == WiFiDirectDiscoveryState.Found)
+    ///     {
+    ///         Console.WriteLine($"Found peer: {e.Peer.Name}");
+    ///         Console.WriteLine($"MAC: {e.Peer.MacAddress}");
+    ///         Console.WriteLine($"Device type: {e.Peer.PrimaryType}");
+    ///
+    ///         // Optionally connect to the peer
+    ///         if (ShouldConnectToPeer(e.Peer))
+    ///         {
+    ///             e.Peer.Connect();
+    ///         }
+    ///     }
+    /// };
+    /// </code>
+    /// </remarks>
     /// <since_tizen> 3 </since_tizen>
     public class PeerFoundEventArgs : EventArgs
     {
@@ -211,8 +315,12 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// The Wi-Fi Direct result.
+        /// The Wi-Fi Direct discovery operation result.
+        /// Indicates whether the peer discovery was successful or if an error occurred.
         /// </summary>
+        /// <value>
+        /// <see cref="WiFiDirectError.None"/> if successful, otherwise the specific error code.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public WiFiDirectError Error
         {
@@ -224,7 +332,11 @@ namespace Tizen.Network.WiFiDirect
 
         /// <summary>
         /// The Wi-Fi Direct discovery state.
+        /// Indicates the current phase of the discovery process when this peer was found.
         /// </summary>
+        /// <value>
+        /// A <see cref="WiFiDirectDiscoveryState"/> enum value indicating the discovery state.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public WiFiDirectDiscoveryState DiscoveryState
         {
@@ -235,8 +347,12 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// The found peer.
+        /// The discovered peer device object.
+        /// Contains detailed information about the found peer including name, MAC address, device capabilities, and connection methods.
         /// </summary>
+        /// <value>
+        /// A <see cref="WiFiDirectPeer"/> object representing the discovered device.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public WiFiDirectPeer Peer
         {
@@ -371,7 +487,42 @@ namespace Tizen.Network.WiFiDirect
 
     /// <summary>
     /// An extended EventArgs class which contains the changed connection state during disconnecting of all peers or grouping related operations.
+    /// This event is triggered for global connection status changes that affect the entire Wi-Fi Direct group or all connected peers.
     /// </summary>
+    /// <remarks>
+    /// This event is raised by the <see cref="WiFiDirectManager.ConnectionStatusChanged"/> event.
+    /// Use this event to monitor global connection status changes such as:
+    /// - Group creation and destruction
+    /// - Disconnection of all peers
+    /// - Group owner changes
+    /// - Auto-group removal events
+    ///
+    /// Example usage:
+    /// <code>
+    /// WiFiDirectManager.ConnectionStatusChanged += (sender, e) =>
+    /// {
+    ///     if (e.Error == WiFiDirectError.None)
+    ///     {
+    ///         switch (e.ConnectionState)
+    ///         {
+    ///             case WiFiDirectConnectionState.GroupCreated:
+    ///                 Console.WriteLine("Wi-Fi Direct group created successfully");
+    ///                 break;
+    ///             case WiFiDirectConnectionState.GroupDestroyed:
+    ///                 Console.WriteLine("Wi-Fi Direct group destroyed");
+    ///                 break;
+    ///             case WiFiDirectConnectionState.DisconnectionInd:
+    ///                 Console.WriteLine("All peers disconnected");
+    ///                 break;
+    ///         }
+    ///     }
+    ///     else
+    ///     {
+    ///         Console.WriteLine($"Connection status error: {e.Error}");
+    ///     }
+    /// };
+    /// </code>
+    /// </remarks>
     /// <since_tizen> 3 </since_tizen>
     public class ConnectionStatusChangedEventArgs : EventArgs
     {
@@ -385,8 +536,12 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// The Wi-Fi Direct result.
+        /// The Wi-Fi Direct operation result.
+        /// Indicates whether the connection status change was successful or if an error occurred.
         /// </summary>
+        /// <value>
+        /// <see cref="WiFiDirectError.None"/> if successful, otherwise the specific error code.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public WiFiDirectError Error
         {
@@ -397,8 +552,12 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// The connection state.
+        /// The global connection state.
+        /// Represents the overall connection status affecting the Wi-Fi Direct group or all peers.
         /// </summary>
+        /// <value>
+        /// A <see cref="WiFiDirectConnectionState"/> enum value indicating the global connection state.
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public WiFiDirectConnectionState ConnectionState
         {

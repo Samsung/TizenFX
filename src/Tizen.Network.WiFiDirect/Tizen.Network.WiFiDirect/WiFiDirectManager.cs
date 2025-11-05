@@ -328,7 +328,8 @@ namespace Tizen.Network.WiFiDirect
         /// A property to check whether the device is discoverable or not by P2P discovery.
         /// </summary>
         /// <value>
-        ///
+        /// true if the device is discoverable by other Wi-Fi Direct devices; otherwise, false.
+        /// When true, other devices can find this device during their discovery process.
         /// </value>
         /// <privilege>
         /// http://tizen.org/privilege/wifidirect
