@@ -26,8 +26,8 @@ using System.ComponentModel;
 namespace Tizen.Network.Bluetooth
 {
     /// <summary>
-    /// This class is used to handle the connection with other devices and set authorization of other devices.<br/>
-    /// The BluetoothDevice class is used to search for services available on remote devices.
+    /// This class is used to handle the remote Bluetooth device. This class lets you create a connection or query information about it, such as the name, address, class and service UUIDs.
+    /// To get a BluetoothDevice, use BluetoothAdapter.StartDiscovery() to create one representing a device.
     /// </summary>
     /// <privilege> http://tizen.org/privilege/bluetooth </privilege>
     /// <since_tizen> 3 </since_tizen>
