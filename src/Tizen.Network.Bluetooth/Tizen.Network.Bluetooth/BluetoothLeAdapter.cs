@@ -111,8 +111,8 @@ namespace Tizen.Network.Bluetooth {
     }
 
     /// <summary>
-    /// This is the BluetoothLeDevice class.
-    /// It handles the LE device operations like getting data from the scan result.
+    /// This class is used to handle the remote Bluetooth Low Energy(LE) device. This class lets you reate a LE connection or query information about it, such as the name, address, advertising and scan response data.
+    /// To get a BluetoothLeDevice, use BluetoothAdapter.StartLeScan() to create one representing a device.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class BluetoothLeDevice
