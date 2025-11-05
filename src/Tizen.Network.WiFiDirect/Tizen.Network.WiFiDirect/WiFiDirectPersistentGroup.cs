@@ -19,8 +19,16 @@ using System;
 namespace Tizen.Network.WiFiDirect
 {
     /// <summary>
-    /// A class to handle persistent groups.
+    /// A class to handle persistent groups in Wi-Fi Direct.
+    /// Persistent groups allow devices to automatically reconnect to previously established Wi-Fi Direct groups without requiring manual pairing each time.
+    /// This class provides information about saved persistent groups that can be used for automatic reconnection.
     /// </summary>
+    /// <remarks>
+    /// Persistent groups are created when a Wi-Fi Direct connection is established with the persistent group feature enabled.
+    /// The group information (SSID and group owner MAC address) is saved and can be used later for automatic reconnection.
+    /// Use <see cref="WiFiDirectManager.GetPersistentGroups"/> to retrieve all saved persistent groups,
+    /// and <see cref="WiFiDirectManager.RemovePersistentGroup"/> to remove a specific persistent group.
+    /// </remarks>
     /// <since_tizen> 3 </since_tizen>
     public class WiFiDirectPersistentGroup
     {
@@ -35,7 +43,11 @@ namespace Tizen.Network.WiFiDirect
 
         /// <summary>
         /// The MAC address of the persistent group owner.
+        /// This is the unique identifier of the device that acted as the group owner when the persistent group was created.
         /// </summary>
+        /// <value>
+        /// The MAC address string of the group owner (e.g., "AA:BB:CC:DD:EE:FF").
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public string MacAddress
         {
@@ -46,8 +58,12 @@ namespace Tizen.Network.WiFiDirect
         }
 
         /// <summary>
-        /// The SSID (Service Set Identifier) of the persistent group owner.
+        /// The SSID (Service Set Identifier) of the persistent group.
+        /// This is the network name that was assigned to the Wi-Fi Direct group when it was created.
         /// </summary>
+        /// <value>
+        /// The SSID string of the persistent group (e.g., "DIRECT-XY-DeviceName").
+        /// </value>
         /// <since_tizen> 3 </since_tizen>
         public string Ssid
         {
