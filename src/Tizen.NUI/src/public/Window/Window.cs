@@ -2794,6 +2794,25 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether front buffer rendering is enabled.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsFrontBufferRendering
+        {
+            get
+            {
+                bool ret = Interop.Window.GetFrontBufferRendering(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set
+            {
+                Interop.Window.SetFrontBufferRendering(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
         IntPtr IWindowProvider.WindowHandle => GetNativeWindowHandler();
         float IWindowProvider.X => WindowPosition.X;
         float IWindowProvider.Y => WindowPosition.Y;
