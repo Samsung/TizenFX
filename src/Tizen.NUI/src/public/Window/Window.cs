@@ -2649,8 +2649,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets or gets the window blur using window blur information.
-        /// 
-        /// It is designed to apply a blur effect to a window based on specified parameters. 
+        ///
+        /// It is designed to apply a blur effect to a window based on specified parameters.
         /// This supports different types of blurring effects, including blurring the window's background only.
         /// Or blurring the area surrounding the window while keeping the window itself clear.
         /// The more information is written WindowBlurInfo struct.
@@ -2684,7 +2684,26 @@ namespace Tizen.NUI
                 finally {
                     Interop.WindowBlurInfo.DeleteWindowBlurInfo(internalBlurInfo);
                 }
-            }            
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether front buffer rendering is enabled.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsFrontBufferRendering
+        {
+            get
+            {
+                bool ret = Interop.Window.GetFrontBufferRendering(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set
+            {
+                Interop.Window.SetFrontBufferRendering(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
         }
 
         IntPtr IWindowProvider.WindowHandle => GetNativeWindowHandler();
