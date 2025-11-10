@@ -357,6 +357,9 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterWebAuthResponseCallback")]
             public static extern void RegisterWebAuthResponseCallback(HandleRef webViewRef, HandleRef callbackRef);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterFileChooserRequestedCallback")]
+            public static extern void RegisterFileChooserRequestedCallback(HandleRef webViewRef, HandleRef callbackRef);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterUserMediaPermissionRequestCallback")]
             public static extern void RegisterUserMediaPermissionRequestCallback(HandleRef webViewRef, HandleRef callbackRef);
 
