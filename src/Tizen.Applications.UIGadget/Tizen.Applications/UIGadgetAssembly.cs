@@ -69,7 +69,10 @@ namespace Tizen.Applications
             }
         }
 
-        internal bool IsLoaded { get { return _loaded; } }
+        internal bool IsLoaded
+        {
+            get { lock (_assemblyLock) { return _loaded; } }
+        }
 
         /// <summary>
         /// Creates an instance of the UIGadget.
@@ -89,7 +92,10 @@ namespace Tizen.Applications
         /// Property indicating whether the weak reference to the UIGadget assembly is still alive.
         /// </summary>
         /// <since_tizen> 13 </since_tizen>
-        public bool IsAlive {  get { return _assemblyRef.IsAlive; } }
+        public bool IsAlive
+        {
+            get { lock (_assemblyLock) { return _assemblyRef.IsAlive; } }
+        }
 
         internal void Unload()
         {
