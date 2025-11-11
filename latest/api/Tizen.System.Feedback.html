@@ -10,7 +10,7 @@
     <meta name="title" content="Class Feedback
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API12">
+    <meta name="version" content="API13">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -159,7 +159,7 @@ bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, &quot;Tap&quot;);
   <h3 id="constructors">Constructors
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L360">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L364">View Source</a>
   </span>
   <a id="Tizen_System_Feedback__ctor_" data-uid="Tizen.System.Feedback.#ctor*"></a>
   <h4 id="Tizen_System_Feedback__ctor" data-uid="Tizen.System.Feedback.#ctor">Feedback()</h4>
@@ -170,6 +170,10 @@ bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, &quot;Tap&quot;);
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Feedback()</code></pre>
   </div>
+  <h5 id="Tizen_System_Feedback__ctor_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Initializes a new instance of the Feedback class and prepares the feedback system for use.
+This constructor initializes the underlying feedback system. It must be called before using any other Feedback methods.</p>
+</div>
   <h5 id="Tizen_System_Feedback__ctor_examples">Examples</h5>
   <pre><code>Feedback feedback = new Feedback();</code></pre>
 
@@ -201,7 +205,7 @@ bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, &quot;Tap&quot;);
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L379">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L387">View Source</a>
   </span>
   <a id="Tizen_System_Feedback_Finalize_" data-uid="Tizen.System.Feedback.Finalize*"></a>
   <h4 id="Tizen_System_Feedback_Finalize" data-uid="Tizen.System.Feedback.Finalize">~Feedback()</h4>
@@ -212,16 +216,20 @@ bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, &quot;Tap&quot;);
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected ~Feedback()</code></pre>
   </div>
+  <h5 id="Tizen_System_Feedback_Finalize_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Finalizes an instance of the Feedback class and releases associated resources.
+This destructor ensures proper cleanup of the feedback system resources when the Feedback object is no longer needed.</p>
+</div>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L417">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L425">View Source</a>
   </span>
   <a id="Tizen_System_Feedback_IsSupportedPattern_" data-uid="Tizen.System.Feedback.IsSupportedPattern*"></a>
   <h4 id="Tizen_System_Feedback_IsSupportedPattern_Tizen_System_FeedbackType_System_String_" data-uid="Tizen.System.Feedback.IsSupportedPattern(Tizen.System.FeedbackType,System.String)">IsSupportedPattern(FeedbackType, string)</h4>
-  <div class="markdown level1 summary"><p>Gets the supported information about a specific type and pattern.</p>
+  <div class="markdown level1 summary"><p>Gets the supported information about a specific feedback type and pattern.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -294,12 +302,12 @@ bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, &quot;Tap&quot;);
       </tr>
       <tr>
         <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when failed because of an invalid arguament.</p>
+        <td><p>Thrown when failed because of an invalid argument.</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when failed becuase the device (haptic, sound) is not supported.</p>
+        <td><p>Thrown when failed because the device (haptic, sound) is not supported.</p>
 </td>
       </tr>
       <tr>
@@ -323,7 +331,7 @@ bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, &quot;Tap&quot;);
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L475">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L484">View Source</a>
   </span>
   <a id="Tizen_System_Feedback_Play_" data-uid="Tizen.System.Feedback.Play*"></a>
   <h4 id="Tizen_System_Feedback_Play_Tizen_System_FeedbackType_System_String_" data-uid="Tizen.System.Feedback.Play(Tizen.System.FeedbackType,System.String)">Play(FeedbackType, string)</h4>
@@ -359,7 +367,8 @@ bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, &quot;Tap&quot;);
     </tbody>
   </table>
   <h5 id="Tizen_System_Feedback_Play_Tizen_System_FeedbackType_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>To play Vibration type, app should have <a href="http://tizen.org/privilege/haptic">http://tizen.org/privilege/haptic</a> privilege.</p>
+  <div class="markdown level1 remarks"><p>To play Vibration type, app should have <a href="http://tizen.org/privilege/haptic">http://tizen.org/privilege/haptic</a> privilege.
+The pattern must be one of the predefined patterns and supported.</p>
 </div>
   <h5 id="Tizen_System_Feedback_Play_Tizen_System_FeedbackType_System_String__examples">Examples</h5>
   <pre><code>Feedback feedback = new Feedback();
@@ -411,7 +420,7 @@ feedback.Play(FeedbackType.All, &quot;Tap&quot;);</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L531">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L540">View Source</a>
   </span>
   <a id="Tizen_System_Feedback_Stop_" data-uid="Tizen.System.Feedback.Stop*"></a>
   <h4 id="Tizen_System_Feedback_Stop" data-uid="Tizen.System.Feedback.Stop">Stop()</h4>
@@ -481,7 +490,7 @@ Feedback1.Stop();</code></pre>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L81" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L81" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
@@ -500,7 +509,7 @@ Feedback1.Stop();</code></pre>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-      <span>Copyright &copy; 2016-2024 Samsung <br> Generated by <strong>DocFX</strong></span>
+      <span>Copyright &copy; 2016-2025 Samsung <br> Generated by <strong>DocFX</strong></span>
       
           </div>
         </div>
