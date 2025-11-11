@@ -10,7 +10,7 @@
     <meta name="title" content="Class Led
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API12">
+    <meta name="version" content="API13">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -53,7 +53,7 @@
 Led
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System/Device/Led.cs/#L44" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System/Device/Led.cs/#L44" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -102,7 +102,7 @@ You can check if a device supports the related features for this API by using sy
   <a id="Tizen_System_Led_Brightness_" data-uid="Tizen.System.Led.Brightness*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System/Device/Led.cs/#L97">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System/Device/Led.cs/#L101">View Source</a>
     </span>
     <h4 id="Tizen_System_Led_Brightness" data-uid="Tizen.System.Led.Brightness">Brightness</h4>
     <section>
@@ -171,7 +171,7 @@ Changing the brightness value will invoke the registered EventHandler for the LE
   <a id="Tizen_System_Led_MaxBrightness_" data-uid="Tizen.System.Led.MaxBrightness*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System/Device/Led.cs/#L63">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System/Device/Led.cs/#L65">View Source</a>
     </span>
     <h4 id="Tizen_System_Led_MaxBrightness" data-uid="Tizen.System.Led.MaxBrightness">MaxBrightness</h4>
     <section>
@@ -241,7 +241,7 @@ Console.WriteLine(&quot;Led MaxBrightness is: {0}&quot;, Led.MaxBrightness);</co
   <a id="Tizen_System_Led_Play_" data-uid="Tizen.System.Led.Play*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System/Device/Led.cs/#L145">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System/Device/Led.cs/#L151">View Source</a>
     </span>
     <h4 id="Tizen_System_Led_Play_System_Int32_System_Int32_Tizen_Common_Color_" data-uid="Tizen.System.Led.Play(System.Int32,System.Int32,Tizen.Common.Color)">Play(int, int, Color)</h4>
     <section>
@@ -343,7 +343,7 @@ You can check if a device supports the related features for this API by using sy
   <a id="Tizen_System_Led_Stop_" data-uid="Tizen.System.Led.Stop*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System/Device/Led.cs/#L179">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System/Device/Led.cs/#L187">View Source</a>
     </span>
     <h4 id="Tizen_System_Led_Stop" data-uid="Tizen.System.Led.Stop">Stop()</h4>
     <section>
@@ -407,7 +407,7 @@ You can check if a device supports the related features for this API by using sy
 
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System/Device/Led.cs/#L208">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System/Device/Led.cs/#L218">View Source</a>
     </span>
     <h4 id="Tizen_System_Led_BrightnessChanged" data-uid="Tizen.System.Led.BrightnessChanged">BrightnessChanged</h4>
     <section>
@@ -444,7 +444,9 @@ It is recommended to design the feature related codes in your application for re
 You can check if a device supports the related features for this API by using system information, thereby controlling the procedure of your application.</p>
 </div>
   <h5 id="Tizen_System_Led_BrightnessChanged_examples">Examples</h5>
-  <pre><code>public static async Task LedEventHandler()
+  <p><privilege>http://tizen.org/privilege/led</privilege>
+<feature>http://tizen.org/feature/camera.back.flash</feature></p>
+<pre><code>public static async Task LedEventHandler()
 {
     EventHandler&lt;LedBrightnessChangedEventArgs> handler = null;
     handler = (object sender, LedBrightnessChangedEventArgs args) =>

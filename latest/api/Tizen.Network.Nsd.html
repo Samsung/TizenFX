@@ -10,7 +10,7 @@
     <meta name="title" content="Namespace Tizen.Network.Nsd
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API12">
+    <meta name="version" content="API13">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -55,13 +55,36 @@
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="markdown level0 remarks"><h2 id="overview">Overview</h2>
-<p>The Nsd API handles two network service discovery protocols: DNS-SD (DNS Service Discovery) and SSDP (Simple Service Discovery Protocol). They allows application to announce local services and search for remote services on a network.</p>
-<h2 id="example">Example</h2>
-<p>The following example demonstrates how to register a DNS-SD local service.</p>
-<pre><code class="lang-cs">DnssdService service = new DnssdService(&quot;_http._tcp&quot;);
+<p>The Nsd API handles DNS-SD (DNS Service Discovery) protocol. It allows applications to announce local services and search for remote services on a network.</p>
+<h2 id="registering-a-service-on-network">Registering a Service on Network</h2>
+<pre><code class="lang-cs">// Create and register a service
+DnssdService service = new DnssdService(&quot;_http._tcp&quot;);
 service.Name = &quot;TestService&quot;;
 service.Port = &quot;1234&quot;;
 service.RegisterService();
+
+// Optional: Add TXT records
+service.AddTXTRecord(&quot;version&quot;, &quot;1.0&quot;);
+</code></pre>
+<h2 id="discovering-services-on-network">Discovering Services on Network</h2>
+<pre><code class="lang-cs">// Create browser and start discovery
+DnssdBrowser browser = new DnssdBrowser(&quot;_http._tcp&quot;);
+browser.ServiceFound += (s, e) =&gt;
+{
+    if (e.State == DnssdServiceState.Available)
+    {
+        // Handle the discovered service
+    }
+};
+browser.StartDiscovery();
+</code></pre>
+<h2 id="cleaning-up-on-application-exit">Cleaning Up on Application Exit</h2>
+<pre><code class="lang-cs">// Stop service discovery
+browser.StopDiscovery();
+
+// Deregister service and dispose resources
+service.DeregisterService();
+service.Dispose();
 </code></pre>
 <h2 id="related-features">Related Features</h2>
 <p>To use DNS-SD, declare the following feature requirements in the config file:

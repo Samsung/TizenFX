@@ -10,7 +10,7 @@
     <meta name="title" content="Namespace Tizen.Network.Bluetooth
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API12">
+    <meta name="version" content="API13">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -139,8 +139,8 @@ like headset, hands-free, and headphone.</p>
         <h4 class="col col-12 col-md-4">
           <a class="xref" href="Tizen.Network.Bluetooth.BluetoothDevice.html">BluetoothDevice</a>
         </h4>
-        <section class="col col-12 col-md-8"><p>This class is used to handle the connection with other devices and set authorization of other devices.<br>
-The BluetoothDevice class is used to search for services available on remote devices.</p>
+        <section class="col col-12 col-md-8"><p>This class is used to handle the remote Bluetooth device. This class lets you create a connection or query information about it, such as the name, address, class and service UUIDs.
+To get a BluetoothDevice, use BluetoothAdapter.StartDiscovery() to create one representing a device.</p>
 </section>
       </div>
       <div class="described-list-item row ml-0 mr-0">
@@ -224,8 +224,8 @@ The BluetoothDevice class is used to search for services available on remote dev
         <h4 class="col col-12 col-md-4">
           <a class="xref" href="Tizen.Network.Bluetooth.BluetoothLeDevice.html">BluetoothLeDevice</a>
         </h4>
-        <section class="col col-12 col-md-8"><p>This is the BluetoothLeDevice class.
-It handles the LE device operations like getting data from the scan result.</p>
+        <section class="col col-12 col-md-8"><p>This class is used to handle the remote Bluetooth Low Energy(LE) device. This class lets you reate a LE connection or query information about it, such as the name, address, advertising and scan response data.
+To get a BluetoothLeDevice, use BluetoothAdapter.StartLeScan() to create one representing a device.</p>
 </section>
       </div>
       <div class="described-list-item row ml-0 mr-0">

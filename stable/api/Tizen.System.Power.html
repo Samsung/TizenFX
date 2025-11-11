@@ -10,7 +10,7 @@
     <meta name="title" content="Class Power
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API12">
+    <meta name="version" content="API13">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -53,7 +53,7 @@
 Power
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System/Device/Power.cs/#L311" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System/Device/Power.cs/#L311" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -94,7 +94,7 @@ It can be made to hold the specific state to avoid the CPU state internally.</p>
   <a id="Tizen_System_Power_ReleaseCpuLock_" data-uid="Tizen.System.Power.ReleaseCpuLock*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System/Device/Power.cs/#L348">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System/Device/Power.cs/#L348">View Source</a>
     </span>
     <h4 id="Tizen_System_Power_ReleaseCpuLock" data-uid="Tizen.System.Power.ReleaseCpuLock">ReleaseCpuLock()</h4>
     <section>
@@ -139,7 +139,7 @@ It can be made to hold the specific state to avoid the CPU state internally.</p>
   <a id="Tizen_System_Power_ReleaseLock_" data-uid="Tizen.System.Power.ReleaseLock*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System/Device/Power.cs/#L417">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System/Device/Power.cs/#L437">View Source</a>
     </span>
     <h4 id="Tizen_System_Power_ReleaseLock_Tizen_System_PowerLock_" data-uid="Tizen.System.Power.ReleaseLock(Tizen.System.PowerLock)">ReleaseLock(PowerLock)</h4>
     <section>
@@ -171,7 +171,9 @@ It can be made to hold the specific state to avoid the CPU state internally.</p>
     </tbody>
   </table>
   <h5 id="Tizen_System_Power_ReleaseLock_Tizen_System_PowerLock__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Releases the lock of specific power lock type that was previously acquired using Power.RequestLock(PowerLock,int).</p>
+  <div class="markdown level1 remarks"><p>If display feature(<a href="http://tizen.org/feature/display">http://tizen.org/feature/display</a>) is false, then only the type POWER_LOCK_CPU is effective,
+and the other type returns DEVICE_ERROR_NOT_SUPPORTED. <br> And even thoguh the display feature is false,
+it requires display privilege(<a href="http://tizen.org/privilege/display">http://tizen.org/privilege/display</a>). <br></p>
 </div>
   <h5 id="Tizen_System_Power_ReleaseLock_Tizen_System_PowerLock__examples">Examples</h5>
   <pre><code>Tizen.System.Power.ReleaseLock(Tizen.System.Power.PowerLock.Cpu);</code></pre>
@@ -213,7 +215,7 @@ It can be made to hold the specific state to avoid the CPU state internally.</p>
   <a id="Tizen_System_Power_RequestCpuLock_" data-uid="Tizen.System.Power.RequestCpuLock*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System/Device/Power.cs/#L331">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System/Device/Power.cs/#L331">View Source</a>
     </span>
     <h4 id="Tizen_System_Power_RequestCpuLock_System_Int32_" data-uid="Tizen.System.Power.RequestCpuLock(System.Int32)">RequestCpuLock(int)</h4>
     <section>
@@ -281,7 +283,7 @@ So you must release the permanent lock of the power state with ReleaseCpuLock() 
   <a id="Tizen_System_Power_RequestLock_" data-uid="Tizen.System.Power.RequestLock*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System/Device/Power.cs/#L386">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System/Device/Power.cs/#L404">View Source</a>
     </span>
     <h4 id="Tizen_System_Power_RequestLock_Tizen_System_PowerLock_System_Int32_" data-uid="Tizen.System.Power.RequestLock(Tizen.System.PowerLock,System.Int32)">RequestLock(PowerLock, int)</h4>
     <section>
@@ -321,7 +323,23 @@ So you must release the permanent lock of the power state with ReleaseLock() if 
     </tbody>
   </table>
   <h5 id="Tizen_System_Power_RequestLock_Tizen_System_PowerLock_System_Int32__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>If the process dies, then every lock will be removed.</p>
+  <div class="markdown level1 remarks"><p>If display feature(<a href="http://tizen.org/feature/display">http://tizen.org/feature/display</a>) is false, then only the type POWER_LOCK_CPU is effective,
+and the other type returns DEVICE_ERROR_NOT_SUPPORTED. <br> And even thoguh the display feature is false,
+it requires display privilege(<a href="http://tizen.org/privilege/display">http://tizen.org/privilege/display</a>). <br>
+Scenario 1. If the same application requests the same power lock more than twice before it is released or expired, <br>
+the timeout will be updated to the latest requested time. <br>
+For example: <br>
+The first request has a timeout of 5000ms. <br>
+The second request has a timeout of 1000ms. <br>
+If the second request is made before the first request is released or expired, <br>
+the timeout will be updated to the latest requested time, which is 1000ms. <br>
+Scenario 2. If different applications request the same power lock type, <br>
+the power state timeout will be set to the maximum of the requested timeouts. <br>
+For example: <br>
+Application A requests POWER_LOCK_CPU with a timeout of 5000ms. <br>
+Application B requests the same POWER_LOCK_CPU with a timeout of 1000ms. <br>
+Unless Application A releases the POWER_LOCK_CPU lock, <br>
+the timeout for POWER_LOCK_CPU will remain at the maximum requested time, which is 5000ms.</p>
 </div>
   <h5 id="Tizen_System_Power_RequestLock_Tizen_System_PowerLock_System_Int32__examples">Examples</h5>
   <pre><code>Tizen.System.Power.RequestLock(Tizen.System.Power.PowerLock.Cpu, 2000);</code></pre>

@@ -10,7 +10,7 @@
     <meta name="title" content="Class StorageManager
  ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="API12">
+    <meta name="version" content="API13">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -53,7 +53,7 @@
 StorageManager
 </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System.Storage/Storage/StorageManager.cs/#L26" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Storage/Storage/StorageManager.cs/#L26" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -90,7 +90,7 @@ StorageManager
   <a id="Tizen_System_StorageManager_Storages_" data-uid="Tizen.System.StorageManager.Storages*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System.Storage/Storage/StorageManager.cs/#L34">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Storage/Storage/StorageManager.cs/#L34">View Source</a>
     </span>
     <h4 id="Tizen_System_StorageManager_Storages" data-uid="Tizen.System.StorageManager.Storages">Storages</h4>
     <section>
@@ -126,7 +126,7 @@ StorageManager
   <a id="Tizen_System_StorageManager_SetChangedEvent_" data-uid="Tizen.System.StorageManager.SetChangedEvent*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System.Storage/Storage/StorageManager.cs/#L125">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Storage/Storage/StorageManager.cs/#L124">View Source</a>
     </span>
     <h4 id="Tizen_System_StorageManager_SetChangedEvent_Tizen_System_StorageArea_System_EventHandler_" data-uid="Tizen.System.StorageManager.SetChangedEvent(Tizen.System.StorageArea,System.EventHandler)">SetChangedEvent(StorageArea, EventHandler)</h4>
     <section>
@@ -170,8 +170,7 @@ StorageManager
   if (storage == null) return;
 };
 
-StorageManager.SetChangedEvent(StorageArea.External, callback);
-StorageManager.UnSetChangedEvent(StorageArea.External, callback);</code></pre>
+StorageManager.SetChangedEvent(StorageArea.External, callback);</code></pre>
 
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
@@ -195,7 +194,7 @@ StorageManager.UnSetChangedEvent(StorageArea.External, callback);</code></pre>
   <a id="Tizen_System_StorageManager_UnsetChangedEvent_" data-uid="Tizen.System.StorageManager.UnsetChangedEvent*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.System.Storage/Storage/StorageManager.cs/#L155">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Storage/Storage/StorageManager.cs/#L166">View Source</a>
     </span>
     <h4 id="Tizen_System_StorageManager_UnsetChangedEvent_Tizen_System_StorageArea_System_EventHandler_" data-uid="Tizen.System.StorageManager.UnsetChangedEvent(Tizen.System.StorageArea,System.EventHandler)">UnsetChangedEvent(StorageArea, EventHandler)</h4>
     <section>
@@ -232,6 +231,16 @@ StorageManager.UnSetChangedEvent(StorageArea.External, callback);</code></pre>
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_System_StorageManager_UnsetChangedEvent_Tizen_System_StorageArea_System_EventHandler__examples">Examples</h5>
+  <pre><code>EventHandler callback = (s, e) =>
+{
+  var storage = s as Storage;
+  if (storage == null) return;
+};
+
+StorageManager.SetChangedEvent(StorageArea.External, callback);
+StorageManager.UnSetChangedEvent(StorageArea.External, callback);</code></pre>
+
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
     <thead>
