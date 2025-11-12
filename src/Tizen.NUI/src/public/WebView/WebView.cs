@@ -164,8 +164,12 @@ namespace Tizen.NUI.BaseComponents
 
         private EventHandler<WebViewWebAuthDisplayQREventArgs> webAuthDisplayQREventHandler;
         private WebViewWebAuthDisplayQRCallback webAuthDisplayQRCallback;
+
         private EventHandler webAuthResponseEventHandler;
         private WebViewWebAuthResponseCallback webAuthResponseCallback;
+
+        private EventHandler<WebViewFileChooserRequestedEventArgs> fileChooserRequestedEventHandler;
+        private WebViewFileChooserRequestedCallback fileChooserRequestedCallback;
 
         private EventHandler<WebViewUserMediaPermissionRequestEventArgs> userMediaPermissionRequestEventHandler;
         private WebViewUserMediaPermissionRequestCallback userMediaPermissionRequestCallback;
@@ -429,6 +433,9 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewWebAuthResponseCallback();
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void WebViewFileChooserRequestedCallback(IntPtr chooser);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewUserMediaPermissionRequestCallback(IntPtr permission, string message);
@@ -1116,6 +1123,33 @@ namespace Tizen.NUI.BaseComponents
                 {
                     IntPtr ip = IntPtr.Zero;
                     Interop.WebView.RegisterWebAuthResponseCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event to FileChooserRequest.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewFileChooserRequestedEventArgs> FileChooserRequested
+        {
+            add
+            {
+                if (fileChooserRequestedEventHandler == null)
+                {
+                    fileChooserRequestedCallback = OnFileChooserRequseted;
+                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(fileChooserRequestedCallback);
+                    Interop.WebView.RegisterFileChooserRequestedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+                fileChooserRequestedEventHandler += value;
+            }
+            remove
+            {
+                fileChooserRequestedEventHandler -= value;
+                if (fileChooserRequestedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterFileChooserRequestedCallback(SwigCPtr, new HandleRef(this, ip));
                 }
             }
         }
@@ -3263,6 +3297,11 @@ namespace Tizen.NUI.BaseComponents
         private void OnWebAuthResponse()
         {
             webAuthResponseEventHandler?.Invoke(this, new EventArgs());
+        }
+
+        private void OnFileChooserRequseted(IntPtr chooser)
+        {
+            fileChooserRequestedEventHandler?.Invoke(this, new WebViewFileChooserRequestedEventArgs(new WebFileChooser(chooser, true)));
         }
 
         private void OnUserMediaPermissionRequset(IntPtr permission, string message)
