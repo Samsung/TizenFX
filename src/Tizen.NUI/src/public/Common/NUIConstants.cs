@@ -1966,6 +1966,23 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// Enumeration specifying text auto scroll direction.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum AutoScrollDirection
+    {
+        /// <summary>
+        /// Horizontal scrolling of text, only valid when single-line.
+        /// </summary>
+        Horizontal,
+
+        /// <summary>
+        /// Vertical scrolling of text, only valid when multi-line.
+        /// </summary>
+        Vertical
+    }
+
+    /// <summary>
     /// Pre-defined SlideTransition Direction
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]

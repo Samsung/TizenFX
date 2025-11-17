@@ -3521,6 +3521,27 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The AutoScrollDirection.
+        /// </summary>
+        /// <remarks>
+        /// Horizontal : Horizontal scrolling of text, only valid when single-line.<br />
+        /// Vertical : Vertical scrolling of text, only valid when multi-line.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AutoScrollDirection AutoScrollDirection
+        {
+            get
+            {
+                return (AutoScrollDirection)Object.InternalGetPropertyInt(this.SwigCPtr, TextLabel.Property.AutoScrollDirection);
+            }
+            set
+            {
+                Object.InternalSetPropertyInt(this.SwigCPtr, TextLabel.Property.AutoScrollDirection, (int)value);
+                NotifyPropertyChanged();
+            }
+        }
+
         private TextLabelSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextLabelSelectorData());
 
         /// <summary>
@@ -3857,6 +3878,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int Cutout = Interop.TextLabel.CutoutGet();
             internal static readonly int RenderMode = Interop.TextLabel.RenderModeGet();
             internal static readonly int LayoutDirectionPolicy = Interop.TextLabel.LayoutDirectionPolicyGet();
+            internal static readonly int AutoScrollDirection = Interop.TextLabel.AutoScrollDirectionGet();
             internal static readonly int ManualRendered = Interop.TextLabel.ManualRenderedGet();
             internal static readonly int NeedRequestAsyncRender = Interop.TextLabel.NeedRequestAsyncRenderGet();
             internal static readonly int AsyncLineCount = Interop.TextLabel.AsyncLineCountGet();
