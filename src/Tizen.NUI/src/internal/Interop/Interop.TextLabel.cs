@@ -200,6 +200,9 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_Property_LAYOUT_DIRECTION_POLICY_get")]
             public static extern int LayoutDirectionPolicyGet();
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_Property_AUTO_SCROLL_DIRECTION_get")]
+            public static extern int AutoScrollDirectionGet();
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_Property_ELLIPSIS_MODE_get")]
             public static extern int EllipsisModeGet();
 
