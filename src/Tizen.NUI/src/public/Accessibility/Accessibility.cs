@@ -108,7 +108,7 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Say(string sentence, bool discardable)
         {
-            Interop.Accessibility.Say(sentence, discardable, SayFinishedEventCallback);
+            Interop.Accessibility.Say(sentence, discardable, sayCallback);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -363,6 +363,8 @@ namespace Tizen.NUI.Accessibility
             ["ReadingPaused"] = SayFinishedState.Paused,
             ["ReadingResumed"] = SayFinishedState.Resumed,
         };
+
+        private static Interop.Accessibility.SayCallback sayCallback = SayFinishedEventCallback;
 
         private static void SayFinishedEventCallback(string status)
         {
