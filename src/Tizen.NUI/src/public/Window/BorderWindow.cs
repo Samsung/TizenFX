@@ -419,8 +419,8 @@ namespace Tizen.NUI
         public BorderDirection GetDirection(float xPosition, float yPosition)
         {
             // Pre-calculate the coordinates of the entire area
-            float totalWidth = WindowSize.Width + (borderLineThickness * 2);
-            float totalHeight = borderLineThickness + (topView?.SizeHeight ?? 0) + WindowSize.Height + (bottomView?.SizeHeight ?? 0) + borderLineThickness;
+            float totalWidth = (float)WindowSize.Width + (float)borderLineThickness * 2.0f;
+            float totalHeight = (float)borderLineThickness + (topView?.SizeHeight ?? 0) + (float)WindowSize.Height + (bottomView?.SizeHeight ?? 0) + (float)borderLineThickness;
 
             float leftEdge = borderInterface.TouchThickness;
             float rightEdge = totalWidth - borderInterface.TouchThickness;
@@ -451,9 +451,9 @@ namespace Tizen.NUI
                 return BorderDirection.Bottom;
 
             // check move
-            float topViewStart = borderLineThickness;
-            float topViewEnd = borderLineThickness + (topView?.SizeHeight ?? 0);
-            float bottomViewStart = borderLineThickness + (topView?.SizeHeight ?? 0) + WindowSize.Height;
+            float topViewStart = (float)borderLineThickness;
+            float topViewEnd = (float)borderLineThickness + (topView?.SizeHeight ?? 0);
+            float bottomViewStart = (float)borderLineThickness + (topView?.SizeHeight ?? 0) + (float)WindowSize.Height;
             float bottomViewEnd = bottomViewStart + (bottomView?.SizeHeight ?? 0);
 
             bool inTopMoveArea = hasTopView && yPosition >= topViewStart && yPosition <= topViewEnd;
@@ -593,9 +593,9 @@ namespace Tizen.NUI
 
             if (isMaximized == false)
             {
-                width = (float)(borderLineThickness * 2);
-                height += (float)(borderLineThickness * 2);
-                y += borderLineThickness;
+                width = (float)borderLineThickness * 2.0f;
+                height += (float)borderLineThickness * 2.0f;
+                y += (float)borderLineThickness;
             }
 
             Interop.ActorInternal.SetSize(GetBorderWindowRootLayer().SwigCPtr, resizeWidth, resizeHeight);
@@ -623,7 +623,7 @@ namespace Tizen.NUI
                 Interop.ActorInternal.SetParentOrigin(borderWindowBottomLayer.SwigCPtr, topCentor.SwigCPtr);
                 Interop.Actor.SetAnchorPoint(borderWindowBottomLayer.SwigCPtr, topCentor.SwigCPtr);
                 Interop.Actor.Add(rootLayer.SwigCPtr, borderWindowBottomLayer.SwigCPtr);
-                Interop.ActorInternal.SetSize(borderWindowBottomLayer.SwigCPtr, WindowSize.Width + (float)(borderLineThickness * 2), WindowSize.Height + (float)(borderLineThickness * 2));
+                Interop.ActorInternal.SetSize(borderWindowBottomLayer.SwigCPtr, WindowSize.Width + (float)borderLineThickness * 2.0f, WindowSize.Height + (float)borderLineThickness * 2.0f);
                 borderWindowBottomLayer.SetWindow(this);
                 borderWindowBottomLayer.LowerToBottom();
 
@@ -644,7 +644,7 @@ namespace Tizen.NUI
                 Interop.Actor.Add(rootLayer.SwigCPtr, borderWindowRootLayer.SwigCPtr);
                 Interop.ActorInternal.SetSize(borderWindowRootLayer.SwigCPtr, WindowSize.Width, WindowSize.Height - borderHeight - borderLineThickness * 2);
                 float height = (hasTopView == true) ? topView.SizeHeight : 0;
-                Interop.ActorInternal.SetPosition(borderWindowRootLayer.SwigCPtr, 0, height + borderLineThickness);
+                Interop.ActorInternal.SetPosition(borderWindowRootLayer.SwigCPtr, 0, height + (float)borderLineThickness);
                 using PropertyValue propertyValue = new Tizen.NUI.PropertyValue((int)Tizen.NUI.ClippingModeType.ClipToBoundingBox);
                 Tizen.NUI.Object.SetProperty(borderWindowRootLayer.SwigCPtr, Tizen.NUI.BaseComponents.View.Property.ClippingMode, propertyValue);
 
