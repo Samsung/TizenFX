@@ -19,7 +19,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
-using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Accessibility
@@ -60,6 +59,7 @@ namespace Tizen.NUI.Accessibility
             Interop.Accessibility.RegisterEnabledDisabledSignalHandler(enabledSignalHandler, disabledSignalHandler);
             Interop.Accessibility.RegisterScreenReaderEnabledDisabledSignalHandler(screenReaderEnabledSignalHandler, screenReaderDisabledSignalHandler);
         }
+
         #endregion Constructor
 
         #region Property
@@ -98,6 +98,30 @@ namespace Tizen.NUI.Accessibility
         #endregion Property
 
         #region Method
+
+        /// <summary>
+        /// Sets up the accessibility initialization signal handler.
+        /// This method ensures that the accessibility request handler is registered only once.
+        /// The handler is responsible for registering the accessibility delegate when an accessibility request is received.
+        /// </summary>
+        public static void SetupAccessibilityInitSignal()
+        {
+            if (accessibilityRequestHandler == null)
+            {
+                // Create a new handler for accessibility requests.
+                // This handler will register the View's accessibility delegate, which is necessary
+                // for Views to interact with the accessibility system.
+                accessibilityRequestHandler = () =>
+                {
+                    View.RegisterAccessibilityDelegate();
+                };
+
+                // Register the handler with the native accessibility interop layer.
+                // This connects the managed code handler to the underlying native accessibility events.
+                Interop.Accessibility.RegisterAccessibilityRequestHandler(accessibilityRequestHandler);
+            }
+        }
+
         /// <summary>
         /// Start to speak.
         /// </summary>
@@ -259,6 +283,7 @@ namespace Tizen.NUI.Accessibility
 
 
         #region Event, Enum, Struct, ETC
+
         /// <summary>
         /// Enum of Say finished event argument status
         /// </summary>
@@ -354,6 +379,8 @@ namespace Tizen.NUI.Accessibility
         private static Interop.Accessibility.EnabledDisabledSignalHandler screenReaderEnabledSignalHandler;
 
         private static Interop.Accessibility.EnabledDisabledSignalHandler screenReaderDisabledSignalHandler;
+
+        private static Interop.Accessibility.AccessibilityRequestHandler accessibilityRequestHandler;
 
         private static readonly IReadOnlyDictionary<string, SayFinishedState> sayFinishedStateDictionary = new Dictionary<string, SayFinishedState>
         {
