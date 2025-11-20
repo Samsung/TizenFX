@@ -72,6 +72,7 @@ namespace Tizen.Applications
 
                 var action = lifecycleEvent.Action;
                 action?.Invoke();
+                retry = 3;
             }
             _processing = false;
         }
