@@ -39,6 +39,7 @@ namespace Tizen.Network.WiFi
         /// The Wi-Fi connection state.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <value>State of the Wi-Fi connection.</value>
         public WiFiConnectionState State
         {
             get
@@ -51,6 +52,7 @@ namespace Tizen.Network.WiFi
         /// The access point.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <value>Network information of the access point.</value>
         public WiFiAP AP
         {
             get
