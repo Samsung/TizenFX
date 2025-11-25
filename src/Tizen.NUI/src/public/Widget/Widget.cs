@@ -172,6 +172,9 @@ namespace Tizen.NUI
 
         private void OnWidgetInstanceDestroyed(object sender, WidgetImpl.WIdgetInstanceOnDestroyArgs e)
         {
+            // Remove WidgetInstance from WidgetApplication
+            (WidgetApplication.Instance as WidgetApplication)?.RemoveWidgetInstance(this);
+
             OnTerminate(e.ContentInfo, e.TerminateType);
         }
 
