@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -265,22 +265,32 @@ namespace Tizen.NUI
         /// <summary>
         /// Executes the pre-creation process of the NUIGadget.
         /// </summary>
+        /// <remarks>
+        /// This method basically works with sync.
+        /// If you want to operate with async, put true in the 'useIdler' parameter and use it.
+        /// </remarks>
         /// <param name="gadget">The NUIGadget object to perform the pre-creation process.</param>
+        /// <param name="useIdler">whether to use idler</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static void PreCreate(NUIGadget gadget)
+        public static void PreCreate(NUIGadget gadget, bool useIdler = false)
         {
-            UIGadgetManager.PreCreate(gadget);
+            UIGadgetManager.PreCreate(gadget, useIdler);
         }
 
         /// <summary>
         /// Executes the creation process of the NUIGadget.
         /// </summary>
+        /// <remarks>
+        /// This method basically works with sync.
+        /// If you want to operate with async, put true in the 'useIdler' parameter and use it.
+        /// </remarks>
         /// <param name="gadget">The NUIGadget object to perform the creation process.</param>
+        /// <param name="useIdler">whether to use idler</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
         /// <since_tizen> 13 </since_tizen>
-        public static void Create(NUIGadget gadget)
+        public static void Create(NUIGadget gadget, bool useIdler = false)
         {
             if (gadget == null)
             {
@@ -293,7 +303,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            UIGadgetManager.Create(gadget);
+            UIGadgetManager.Create(gadget, useIdler);
             _gadgets.TryAdd(gadget, 0);
         }
 
@@ -301,37 +311,43 @@ namespace Tizen.NUI
         /// Removes the specified NUIGadget from the NUIGadgetManager.
         /// </summary>
         /// <param name="gadget">The NUIGadget object that needs to be removed.</param>
+        /// <param name="useIdler">whether to use idler</param>
         /// <remarks>
         /// This method allows you to remove a specific NUIGadget from the NUIGadgetManager.
         /// By passing the NUIGadget object as an argument, you can ensure that only the desired gadget is removed.
         /// It is important to note that once a gadget is removed, any references to it become invalid.
         /// Therefore, it is crucial to handle the removal process carefully to avoid any potential issues.
+        /// And, this method basically works with async.
+        /// If you want to operate with sync, put false in the 'useIdler' parameter and use it.
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
-        public static void Remove(NUIGadget gadget)
+        public static void Remove(NUIGadget gadget, bool useIdler = true)
         {
             if (gadget == null || !_gadgets.ContainsKey(gadget) || gadget.State == NUIGadgetLifecycleState.Destroyed)
             {
                 return;
             }
-                        
-            UIGadgetManager.Remove(gadget);
+
+            UIGadgetManager.Remove(gadget, useIdler);
             _gadgets.TryRemove(gadget, out _);
         }
 
         /// <summary>
         /// Removes all NUIGadgets from the NUIGadgetManager.
         /// </summary>
+        /// <param name="useIdler">whether to use idler</param>
         /// <remarks>
         /// This method is called to remove all NUIGadgets that are currently registered in the NUIGadgetManager.
         /// It ensures that no more NUIGadgets exist after calling this method.
+        /// And, this method basically works with async.
+        /// If you want to operate with sync, put false in the 'useIdler' parameter and use it.
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
-        public static void RemoveAll()
+        public static void RemoveAll(bool useIdler = true)
         {
             foreach (var gadget in _gadgets.Keys.ToList())
             {
-                Remove(gadget);
+                Remove(gadget, useIdler);
             }
         }
 
@@ -341,11 +357,14 @@ namespace Tizen.NUI
         /// <remarks>
         /// By calling this method, you can resume the execution of the currently suspended NUIGadget.
         /// It takes the NUIGadget object as an argument which represents the target gadget that needs to be resumed.
+        /// And, this method basically works with async.
+        /// If you want to operate with sync, put false in the 'useIdler' parameter and use it.
         /// </remarks>
         /// <param name="gadget">The NUIGadget object whose execution needs to be resumed.</param>
+        /// <param name="useIdler">whether to use idler</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
         /// <since_tizen> 10 </since_tizen>
-        public static void Resume(NUIGadget gadget)
+        public static void Resume(NUIGadget gadget, bool useIdler = true)
         {
             if (gadget == null)
             {
@@ -357,7 +376,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            UIGadgetManager.Resume(gadget);
+            UIGadgetManager.Resume(gadget, useIdler);
         }
 
         /// <summary>
@@ -365,11 +384,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <remarks>
         /// Calling this method pauses the currently executing NUIGadget. It does not affect any other gadgets that may be running simultaneously.
+        /// And, this method basically works with async.
+        /// If you want to operate with sync, put false in the 'useIdler' parameter and use it.
         /// </remarks>
         /// <param name="gadget">The NUIGadget object whose execution needs to be paused.</param>
+        /// <param name="useIdler">whether to use idler</param>
         /// <exception cref="ArgumentNullException">Thrown if the argument 'gadget' is null.</exception>
         /// <since_tizen> 10 </since_tizen>
-        public static void Pause(NUIGadget gadget)
+        public static void Pause(NUIGadget gadget, bool useIdler = true)
         {
             if (gadget == null)
             {
@@ -381,7 +403,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            UIGadgetManager.Pause(gadget);
+            UIGadgetManager.Pause(gadget, useIdler);
         }
 
         /// <summary>
