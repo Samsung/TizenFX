@@ -108,6 +108,32 @@ namespace Tizen.NUI
         public void AddWidgetInstance(Widget widget)
         {
             widgetList.Add(widget);
+            Tizen.Log.Info("NUI", $"[WidgetList] Widget added. Count: {widgetList.Count}, Widget: {widget?.GetType().Name}, List Size: {widgetList.Count}");
+        }
+
+        public void RemoveWidgetInstance(Widget widget)
+        {
+            if (widget == null)
+            {
+                return;
+            }
+
+            int widgetHashCode = widget.GetHashCode();
+            bool removed = false;
+            for (int i = widgetList.Count - 1; i >= 0; i--)
+            {
+                if (widgetList[i] != null && widgetList[i].GetHashCode() == widgetHashCode)
+                {
+                    widgetList.RemoveAt(i);
+                    removed = true;
+                    break;
+                }
+            }
+
+            if (removed)
+            {
+                Tizen.Log.Info("NUI", $"[WidgetList] Widget successfully removed. Remaining count: {widgetList.Count}, Hash:{widgetHashCode}");
+            }
         }
 
         public void RegisterWidgetInfo(Dictionary<System.Type, string> widgetInfo)
