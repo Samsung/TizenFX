@@ -891,7 +891,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnResized(int width, int height)
         {
-            if (overlayTimer != null)
+            if (overlayTimer != null && BorderWindow != null && !BorderWindow.IsMaximized())
             {
                 overlayTimer.Stop();
                 overlayTimer.Dispose();
