@@ -44,7 +44,6 @@ namespace Tizen.NUI
         private bool isBorderWindow;
         private bool hasTopView;
         private bool hasBottomView;
-        private bool isEnabledOverlayMode;
         private bool isMaximized;
         private bool isFramePresentedCallbackRequested;
 
@@ -507,19 +506,15 @@ namespace Tizen.NUI
         {
             if (borderInterface.OverlayMode == true)
             {
-                if (isEnabledOverlayMode != enable)
+                borderView?.OverlayMode(enable);
+                borderInterface.OnOverlayMode(enable);
+                if (enable == true)
                 {
-                    borderView?.OverlayMode(enable);
-                    borderInterface.OnOverlayMode(enable);
-                    if (enable == true)
-                    {
-                        GetBorderWindowBottomLayer().RaiseToTop();
-                    }
-                    else
-                    {
-                        GetBorderWindowBottomLayer().LowerToBottom();
-                    }
-                    isEnabledOverlayMode = enable;
+                    GetBorderWindowBottomLayer().RaiseToTop();
+                }
+                else
+                {
+                    GetBorderWindowBottomLayer().LowerToBottom();
                 }
             }
         }
