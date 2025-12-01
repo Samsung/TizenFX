@@ -53,16 +53,17 @@
         <dependency id="Microsoft.NETCore.Platforms" version="6.0.9" />
       </group>
       <group targetFramework="net6.0">
-        <dependency id="Tizen.NET.API13" version="$fxversion$" />
+        <dependency id="Tizen.NET.API12" version="12.0.0.18510" />
         <dependency id="Microsoft.NETCore.Platforms" version="6.0.9" />
       </group>
       <group targetFramework="net8.0-tizen10.0">
-        <dependency id="Tizen.NET.API13" version="$fxversion$" />
-        <dependency id="Microsoft.NETCore.Platforms" version="8.0.0-preview.7.23375.6" />
+        <dependency id="Tizen.NET.API13" version="13.0.0.19198" />
+      </group>
+      <group targetFramework="net8.0-tizen11.0">
+        <dependency id="Tizen.NET.API14" version="$fxversion$" />
       </group>
       <group targetFramework="net8.0">
-        <dependency id="Tizen.NET.API13" version="$fxversion$" />
-        <dependency id="Microsoft.NETCore.Platforms" version="8.0.0-preview.7.23375.6" />
+        <dependency id="Tizen.NET.API13" version="13.0.0.19198" />
       </group>
     </dependencies>
   </metadata>
