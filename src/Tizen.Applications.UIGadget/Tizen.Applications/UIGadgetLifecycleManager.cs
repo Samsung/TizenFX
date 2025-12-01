@@ -57,15 +57,22 @@ namespace Tizen.Applications
             }
 
             _processing = true;
+            var retry = 3;
             while (!_lifecycleEvents.IsEmpty)
             {
                 if (!_lifecycleEvents.TryDequeue(out LifecycleEvent lifecycleEvent))
                 {
-                    return;
+                    if ((!_lifecycleEvents.IsEmpty) && (retry-- > 0)) {
+                        Log.Warn("Fail to deque lifecycle events, retry " + retry);
+                        continue;
+                    } else {
+                        break;
+                    }
                 }
 
                 var action = lifecycleEvent.Action;
                 action?.Invoke();
+                retry = 3;
             }
             _processing = false;
         }
