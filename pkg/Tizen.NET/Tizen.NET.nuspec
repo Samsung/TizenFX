@@ -12,11 +12,58 @@
     <description>A set of Tizen .NET APIs. This includes all of the APIs built on top of Tizen Platform.</description>
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
     <dependencies>
+      <group targetFramework="Tizen4.0">
+        <dependency id="Tizen.NET.API4" version="4.0.1.14164" />
+        <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
+      </group>
+      <group targetFramework="Tizen5.0">
+        <dependency id="Tizen.NET.API5" version="5.0.0.14638" />
+        <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
+      </group>
+      <group targetFramework="Tizen6.0">
+        <dependency id="Tizen.NET.API6" version="6.0.0.14995" />
+        <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
+      </group>
+      <group targetFramework="Tizen7.0">
+        <dependency id="Tizen.NET.API7" version="7.0.0.15162" />
+        <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
+      </group>
+      <group targetFramework="Tizen8.0">
+        <dependency id="Tizen.NET.API8" version="8.0.0.15631" />
+        <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
+      </group>
+      <group targetFramework="Tizen9.0">
+        <dependency id="Tizen.NET.API9" version="9.0.0.16760" />
+        <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
+      </group>
+      <group targetFramework="Tizen10.0">
+        <dependency id="Tizen.NET.API10" version="10.0.0.17508" />
+        <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
+      </group>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Tizen.NET.API10" version="10.0.0.17508" />
+        <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
+      </group>
+      <group targetFramework="net6.0-tizen8.0">
+        <dependency id="Tizen.NET.API11" version="11.0.0.18030" />
+        <dependency id="Microsoft.NETCore.Platforms" version="6.0.9" />
+      </group>
+      <group targetFramework="net6.0-tizen9.0">
+        <dependency id="Tizen.NET.API12" version="12.0.0.18510" />
+        <dependency id="Microsoft.NETCore.Platforms" version="6.0.9" />
+      </group>
+      <group targetFramework="net6.0">
+        <dependency id="Tizen.NET.API12" version="12.0.0.18510" />
+        <dependency id="Microsoft.NETCore.Platforms" version="6.0.9" />
+      </group>
       <group targetFramework="net8.0-tizen10.0">
-        <dependency id="Tizen.NET.API13" version="$fxversion$" />
+        <dependency id="Tizen.NET.API13" version="13.0.0.19198" />
       </group>
       <group targetFramework="net8.0-tizen11.0">
         <dependency id="Tizen.NET.API14" version="$fxversion$" />
+      </group>
+      <group targetFramework="net8.0">
+        <dependency id="Tizen.NET.API13" version="13.0.0.19198" />
       </group>
     </dependencies>
   </metadata>
