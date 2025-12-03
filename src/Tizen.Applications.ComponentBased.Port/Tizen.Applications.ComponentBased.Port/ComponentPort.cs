@@ -356,23 +356,44 @@ namespace Tizen.Applications.ComponentBased
             {
                 using (var writer = XmlDictionaryWriter.CreateBinaryWriter(stream))
                 {
-                    writer.WriteStartElement("Root");
-                    writer.WriteStartElement("TypeName");
-                    writer.WriteString(typeName);
-                    writer.WriteEndElement();
+                    Parcel parcel = null;
+                    try
+                    {
+                        writer.WriteStartElement("Root");
+                        writer.WriteStartElement("TypeName");
+                        writer.WriteString(typeName);
+                        writer.WriteEndElement();
 
-                    writer.WriteStartElement("AssemblyName");
-                    writer.WriteString(assemblyName);
-                    writer.WriteEndElement();
+                        writer.WriteStartElement("AssemblyName");
+                        writer.WriteString(assemblyName);
+                        writer.WriteEndElement();
 
-                    var serializer = new DataContractSerializer(envelope.GetType());
-                    serializer.WriteObject(writer, envelope);
-                    writer.WriteEndElement();
+                        var serializer = new DataContractSerializer(envelope.GetType());
+                        serializer.WriteObject(writer, envelope);
+                        writer.WriteEndElement();
+
+                        parcel = new Parcel();
+                        parcel.UnMarshall(stream.ToArray());
+                    }
+                    catch (ArgumentException e)
+                    {
+                        Log.Error(LogTag, "ArgumentException occurs. " + e.Message);
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        Log.Error(LogTag, "InvalidOperationException occurs. " + e.Message);
+                    }
+                    catch (InvalidDataContractException e)
+                    {
+                        Log.Error(LogTag, "InvalidDataContractException occurs. " + e.Message);
+                    }
+                    catch (SerializationException e)
+                    {
+                        Log.Error(LogTag, "SerializationException occurs. " + e.Message);
+                    }
+
+                    return parcel;
                 }
-
-                Parcel parcel = new Parcel();
-                parcel.UnMarshall(stream.ToArray());
-                return parcel;
             }
         }
 
@@ -382,9 +403,9 @@ namespace Tizen.Applications.ComponentBased
                 return null;
 
             object envelope = null;
-            using (MemoryStream stream = new MemoryStream(parcel.Marshall()))
+            try
             {
-                try
+                using (MemoryStream stream = new MemoryStream(parcel.Marshall()))
                 {
                     using var reader = XmlDictionaryReader.CreateBinaryReader(stream, XmlDictionaryReaderQuotas.Max);
                     reader.ReadStartElement("Root");
@@ -402,18 +423,18 @@ namespace Tizen.Applications.ComponentBased
                     envelope = serializer.ReadObject(reader);
                     reader.ReadEndElement();
                 }
-                catch (ArgumentException e)
-                {
-                    Log.Error(LogTag, "ArgumentException occurs: " + e.Message);
-                }
-                catch (SerializationException e)
-                {
-                    Log.Error(LogTag, "SerializationException occurs: " + e.Message);
-                }
-                catch (SecurityException e)
-                {
-                    Log.Error(LogTag, "SecurityException occurs: " + e.Message);
-                }
+            }
+            catch (ArgumentNullException e)
+            {
+                Log.Error(LogTag, "ArgumentNullException occurs: " + e.Message);
+            }
+            catch (InvalidOperationException e)
+            {
+                Log.Error(LogTag, "InvalidOperationException occurs: " + e.Message);
+            }
+            catch (XmlException e)
+            {
+                Log.Error(LogTag, "XmlException occurs: " + e.Message);
             }
 
             return envelope;
