@@ -19,11 +19,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Security;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Tizen.Applications.ComponentBased
 {
@@ -351,15 +349,27 @@ namespace Tizen.Applications.ComponentBased
             if (envelope == null)
                 return null;
 
-            BinaryFormatter formatter = new BinaryFormatter
-            {
-                Binder = new PortBinder(),
-                AssemblyFormat = FormatterAssemblyStyle.Full
-            };
-
+            PortBinder binder = new PortBinder();
+            var typeName = envelope.GetType().FullName;
+            var assemblyName = binder.GetAssemblyName(typeName);
             using (MemoryStream stream = new MemoryStream())
             {
-                formatter.Serialize(stream, envelope);
+                using (var writer = XmlDictionaryWriter.CreateBinaryWriter(stream))
+                {
+                    writer.WriteStartElement("Root");
+                    writer.WriteStartElement("TypeName");
+                    writer.WriteString(typeName);
+                    writer.WriteEndElement();
+
+                    writer.WriteStartElement("AssemblyName");
+                    writer.WriteString(assemblyName);
+                    writer.WriteEndElement();
+
+                    var serializer = new DataContractSerializer(envelope.GetType());
+                    serializer.WriteObject(writer, envelope);
+                    writer.WriteEndElement();
+                }
+
                 Parcel parcel = new Parcel();
                 parcel.UnMarshall(stream.ToArray());
                 return parcel;
@@ -371,18 +381,26 @@ namespace Tizen.Applications.ComponentBased
             if (parcel == null)
                 return null;
 
-            BinaryFormatter formatter = new BinaryFormatter
-            {
-                Binder = new PortBinder(),
-                AssemblyFormat = FormatterAssemblyStyle.Full,
-            };
-
             object envelope = null;
             using (MemoryStream stream = new MemoryStream(parcel.Marshall()))
             {
                 try
                 {
-                    envelope = (object)formatter.Deserialize(stream);
+                    using var reader = XmlDictionaryReader.CreateBinaryReader(stream, XmlDictionaryReaderQuotas.Max);
+                    reader.ReadStartElement("Root");
+                    reader.ReadStartElement("TypeName");
+                    string typeName = reader.ReadString();
+                    reader.ReadEndElement();
+
+                    reader.ReadStartElement("AssemblyName");
+                    string assemblyName = reader.ReadString();
+                    reader.ReadEndElement();
+
+                    PortBinder portBinder = new PortBinder();
+                    Type type = portBinder.BindToType(assemblyName, typeName);
+                    var serializer = new DataContractSerializer(type);
+                    envelope = serializer.ReadObject(reader);
+                    reader.ReadEndElement();
                 }
                 catch (ArgumentException e)
                 {
@@ -449,7 +467,7 @@ namespace Tizen.Applications.ComponentBased
         {
             private static string LogTag = "PortBinder";
 
-            private string GetAssemblyName(string typeName)
+            public string GetAssemblyName(string typeName)
             {
                 foreach (Assembly a in AppDomain.CurrentDomain.GetAssemblies())
                 {
