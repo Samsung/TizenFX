@@ -9,7 +9,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
   <!-- Property Group for Tizen Project -->
@@ -60,4 +60,3 @@
     <Warning Condition="!Exists('$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets')" Text="$(TizenProjectExtensionsPath)Tizen.NET.ProjectType.targets is not exist.\&#xA; you need to check if 'Visual Studio for Tizen' is installed" />
   </Target>
 </Project>
-
