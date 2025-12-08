@@ -63,7 +63,7 @@
         <dependency id="Tizen.NET.API14" version="$fxversion$" />
       </group>
       <group targetFramework="net8.0">
-        <dependency id="Tizen.NET.API13" version="13.0.0.19198" />
+        <dependency id="Tizen.NET.API14" version="$fxversion$" />
       </group>
     </dependencies>
   </metadata>
