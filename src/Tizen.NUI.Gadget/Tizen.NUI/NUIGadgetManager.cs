@@ -229,7 +229,7 @@ namespace Tizen.NUI
         /// <returns>The NUIGadget object.</returns>
         /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public static NUIGadget CreateInstance(string resourceType, string className, bool useDefaultContext)
         {
             if (string.IsNullOrWhiteSpace(resourceType) || string.IsNullOrWhiteSpace(className))
@@ -270,7 +270,7 @@ namespace Tizen.NUI
         /// </remarks>
         /// <param name="gadget">The NUIGadget object to perform the pre-creation process.</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public static void PreCreate(NUIGadget gadget)
         {
             PreCreate(gadget, false);
@@ -286,7 +286,7 @@ namespace Tizen.NUI
         /// <param name="gadget">The NUIGadget object to perform the pre-creation process.</param>
         /// <param name="useIdler">whether to use idler</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public static void PreCreate(NUIGadget gadget, bool useIdler)
         {
             UIGadgetManager.PreCreate(gadget, useIdler);
@@ -301,7 +301,7 @@ namespace Tizen.NUI
         /// <param name="gadget">The NUIGadget object to perform the creation process.</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public static void Create(NUIGadget gadget)
         {
             Create(gadget, false);
@@ -318,7 +318,7 @@ namespace Tizen.NUI
         /// <param name="useIdler">whether to use idler</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public static void Create(NUIGadget gadget, bool useIdler)
         {
             if (gadget == null)
@@ -366,7 +366,7 @@ namespace Tizen.NUI
         /// And, this method basically works with async.
         /// If you want to operate with sync, put false in the 'useIdler' parameter and use it.
         /// </remarks>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public static void Remove(NUIGadget gadget, bool useIdler)
         {
             if (gadget == null || !_gadgets.ContainsKey(gadget) || gadget.State == NUIGadgetLifecycleState.Destroyed)
@@ -402,7 +402,7 @@ namespace Tizen.NUI
         /// And, this method basically works with async.
         /// If you want to operate with sync, put false in the 'useIdler' parameter and use it.
         /// </remarks>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public static void RemoveAll(bool useIdler)
         {
             foreach (var gadget in _gadgets.Keys.ToList())
@@ -439,7 +439,7 @@ namespace Tizen.NUI
         /// <param name="gadget">The NUIGadget object whose execution needs to be resumed.</param>
         /// <param name="useIdler">whether to use idler</param>
         /// <exception cref="ArgumentNullException">Thrown if the 'gadget' argument is null.</exception>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public static void Resume(NUIGadget gadget, bool useIdler)
         {
             if (gadget == null)
@@ -481,7 +481,7 @@ namespace Tizen.NUI
         /// <param name="gadget">The NUIGadget object whose execution needs to be paused.</param>
         /// <param name="useIdler">whether to use idler</param>
         /// <exception cref="ArgumentNullException">Thrown if the argument 'gadget' is null.</exception>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public static void Pause(NUIGadget gadget, bool useIdler)
         {
             if (gadget == null)
@@ -528,7 +528,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Occurs when the message is received.
         /// </summary>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public static event EventHandler<NUIGadgetMessageReceivedEventArgs> NUIGadgetMessageReceived;
 
         /// <summary>
@@ -536,7 +536,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="message">The message</param>
         /// <exception cref="ArgumentNullException">Thrown if either 'envelope' is null.</exception>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public static void SendMessage(Bundle message)
         {
             if (message == null)
@@ -558,7 +558,7 @@ namespace Tizen.NUI
         /// </remarks>
         /// <exception cref="InvalidOperationException">Thrown if any of gadgets is still loaded.</exception>
         /// <exception cref="IOException">Thrown if internal request fail.</exception>
-        /// <since_tizen> 10 </since_tizen>
+        /// <since_tizen> 13 </since_tizen>
         public static void Refresh()
         {
             UIGadgetManager.Refresh();
