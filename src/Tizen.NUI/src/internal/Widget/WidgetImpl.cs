@@ -335,12 +335,11 @@ namespace Tizen.NUI
 
         private void SwigDirectorOnCreate(string contentInfo, global::System.IntPtr window)
         {
-            bool needToDisopseWindow = false;
             Window ret = Registry.GetManagedBaseHandleFromNativePtr(window) as Window;
             if (ret == null)
             {
                 ret = new Window(window, true);
-                needToDisopseWindow = true;
+                createdWindow = ret;
             }
             else
             {
@@ -349,17 +348,17 @@ namespace Tizen.NUI
                 CPtr = new System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
             }
             OnCreate(contentInfo, ret);
-
-            // Dispose used window
-            if(needToDisopseWindow)
-            {
-              ret.Dispose();
-            }
         }
 
         private void SwigDirectorOnTerminate(string contentInfo, int type)
         {
             OnTerminate(contentInfo, (Widget.TerminationType)type);
+
+            if (createdWindow)
+            {
+                createdWindow.Dispose();
+                createdWindow = null;
+            }
         }
 
         private void SwigDirectorOnPause()
@@ -428,5 +427,6 @@ namespace Tizen.NUI
         private SwigDelegateWidgetImpl_5 swigDelegate5;
         private SwigDelegateWidgetImpl_6 swigDelegate6;
         private SwigDelegateWidgetImpl_7 swigDelegate7;
+        private Window createdWindow;
     }
 }
