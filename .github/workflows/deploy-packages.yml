@@ -11,10 +11,6 @@ on:
         description: 'Deploy packages to Github Packages Registry?'
         required: true
         default: true
-      deploy_to_myget:
-        description: 'Deploy packages to MyGet?'
-        required: true
-        default: true
       deploy_to_tizen:
         description: 'Submit changes to Tizen?'
         required: true
@@ -78,14 +74,6 @@ jobs:
         APIKEY: ${{ secrets.GITHUB_TOKEN }}
       run: |
         dotnet nuget push Artifacts/*.nupkg -k $APIKEY -s $PACKAGES_SOURCE -t 3000 --skip-duplicate
-
-    - name: Deploy NuGet packages to MyGet
-      if: github.event.inputs.deploy_to_myget == 'true'
-      env:
-        NUGET_SOURCE: https://tizen.myget.org/F/dotnet/api/v2/package
-        APIKEY: ${{ secrets.MYGET_APIKEY }}
-      run: |
-        dotnet nuget push Artifacts/*.nupkg -k $APIKEY -s $NUGET_SOURCE -t 3000 --skip-duplicate
 
     - name: Setup SSH private keys
       uses: webfactory/ssh-agent@v0.7.0
