@@ -7,7 +7,7 @@ TizenFX API, which allows you to access platform-specific features not covered b
 
 ## Branches
 
-| Branch | API Level | Target Framework | API Reference | Platform          | myget.org | nuget.org  |
+| Branch | API Level | Target Framework | API Reference | Platform          | Github Packages | nuget.org  |
 |--------|:---------:|------------------|---------------|-------------------|-----------|------------|
 |main    | 14        | net8.0-tizen11.0 | [Link](https://samsung.github.io/TizenFX/main/)  | Tizen 11.0 | [![api14_pkg](https://img.shields.io/github/v/tag/Samsung/TizenFX?include_prereleases&filter=v14.*&label=API14&logo=github)](https://github.com/Samsung/TizenFX/pkgs/nuget/Tizen.NET.API14) |  |
 |API13   | 13        | net8.0-tizen10.0 | [Link](https://samsung.github.io/TizenFX/API13/) | Tizen 10.0 | [![api13_pkg](https://img.shields.io/github/v/tag/Samsung/TizenFX?include_prereleases&filter=v13.*&label=API13&logo=github)](https://github.com/Samsung/TizenFX/pkgs/nuget/Tizen.NET.API13) | [![api13_nuget](https://img.shields.io/nuget/v/Tizen.NET.API13.svg)](https://www.nuget.org/packages/Tizen.NET/) |
