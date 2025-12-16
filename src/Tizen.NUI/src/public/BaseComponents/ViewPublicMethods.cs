@@ -301,8 +301,9 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void ClearBackground()
         {
-            Interop.View.ClearBackground(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            GetThemeData()?.selectorData?.ClearBackground(this);
+
+            InternalClearBackground();
 
             NotifyBackgroundChanged();
         }

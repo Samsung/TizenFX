@@ -2173,12 +2173,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (string.IsNullOrEmpty(value))
             {
-                backgroundImageUrl = null;
-
-                var empty = new PropertyValue();
-                // Clear background
-                Object.SetProperty(SwigCPtr, Property.BACKGROUND, empty);
-                empty.Dispose();
+                InternalClearBackground();
                 return;
             }
 
@@ -2270,6 +2265,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (value == null)
             {
+                InternalClearBackground();
                 return;
             }
 
