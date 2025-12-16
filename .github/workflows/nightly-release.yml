@@ -1,13 +1,12 @@
 name: "Nightly Release"
 
-
 on:
   schedule:
     - cron: '0 15 * * *'
   workflow_dispatch:
 
 env:
-  TARGET_BRANCHES: 'main API12 API11'
+  TARGET_BRANCHES: 'main API13 API12'
 
 jobs:
   nightly:
@@ -54,7 +53,7 @@ jobs:
               repo: context.repo.repo,
               workflow_id: workflow.id,
               ref: 'main',
-              inputs: { target, deploy_to_gpr: 'true', deploy_to_myget: 'true', deploy_to_tizen: 'true' }
+              inputs: { target, deploy_to_gpr: 'true', deploy_to_tizen: 'true' }
             })
             console.log(`Event dispatch for ${target} : ${dispatchResp.status}`)
           })
