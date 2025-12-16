@@ -1692,5 +1692,14 @@ namespace Tizen.NUI.BaseComponents
             // By using reserved keyword "_background", user may get notified all background modifications.
             NotifyPropertyChanged("_background");
         }
+
+        private void InternalClearBackground()
+        {
+            // Remove background image url information.
+            backgroundImageUrl = null;
+
+            Interop.View.ClearBackground(SwigCPtr);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
     }
 }
