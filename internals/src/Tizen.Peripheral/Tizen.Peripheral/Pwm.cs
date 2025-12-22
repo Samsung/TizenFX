@@ -39,6 +39,7 @@ namespace Tizen.Peripheral.Pwm
     /// The class allows applications to use the platform PWM peripheral.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/peripheralio</privilege>
+    /// <feature>http://tizen.org/feature/peripheral_io.pwm</feature>
     public class PwmPin : IDisposable
     {
 
@@ -59,6 +60,12 @@ namespace Tizen.Peripheral.Pwm
         /// </summary>
         /// <param name="chip">The PWM chip number.</param>
         /// <param name="pin">The PWM pin (channel) number to control.</param>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Pwm;
+        /// var pwm = PwmPin(1, 2);
+        /// </code>
+        /// </example>
         public PwmPin(int chip, int pin)
         {
             var ret = NativePwm.Open(chip, pin, out _handle);
@@ -77,11 +84,25 @@ namespace Tizen.Peripheral.Pwm
         /// <summary>
         /// Closes the PWM pin.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Pwm;
+        /// var pwm = PwmPin(1, 2);
+        /// pwm.Close();
+        /// </code>
+        /// </example>
         public void Close() => Dispose();
 
         /// <summary>
         /// Disposes the PWM.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Pwm;
+        /// var pwm = PwmPin(1, 2);
+        /// pwm.Dispose();
+        /// </code>
+        /// </example>
         public void Dispose()
         {
             Dispose(true);

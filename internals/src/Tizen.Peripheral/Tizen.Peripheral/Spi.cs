@@ -68,6 +68,7 @@ namespace Tizen.Peripheral.Spi
     /// The class allows applications to communicate via SPI platform's bus.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/peripheralio</privilege>
+    /// <feature>http://tizen.org/feature/peripheral_io.spi</feature>
     public class SpiDevice : IDisposable
     {
 
@@ -88,6 +89,17 @@ namespace Tizen.Peripheral.Spi
         /// </summary>
         /// <param name="bus">The SPI bus number.</param>
         /// <param name="chip">The SPI chip select number.</param>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Spi;
+        /// var spi = SpiDevice(1, 2);
+        /// // Probably useful to also set some settings before doing anything...
+        /// spi.Mode = SpiMode.Mode0;
+        /// spi.BitOrder = BitOrder.MSB;
+        /// spi.BitsPerWord = 8;
+        /// spi.Frequency = 8000000;
+        /// </code>
+        /// </example>
         public SpiDevice(int bus, int chip)
         {
             var ret = NativeSpi.Open(bus, chip, out _handle);
@@ -106,11 +118,25 @@ namespace Tizen.Peripheral.Spi
         /// <summary>
         /// Closes the SPI slave device.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Spi;
+        /// var spi = SpiDevice(1, 2);
+        /// spi.Close();
+        /// </code>
+        /// </example>
         public void Close() => Dispose();
 
         /// <summary>
         /// Disposes the Spi.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Spi;
+        /// var spi = SpiDevice(1, 2);
+        /// spi.Dispose();
+        /// </code>
+        /// </example>
         public void Dispose()
         {
             Dispose(true);
@@ -136,6 +162,18 @@ namespace Tizen.Peripheral.Spi
         /// Reads the bytes data from the SPI slave device.
         /// </summary>
         /// <param name="buffer">The Data buffer.</param>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Spi;
+        /// var spi = SpiDevice(1, 2);
+        /// spi.Mode = SpiMode.Mode0;
+        /// spi.BitOrder = BitOrder.MSB;
+        /// spi.BitsPerWord = 8;
+        /// spi.Frequency = 8000000;
+        /// var buf = new byte[1024];
+        /// spi.Read(buf);
+        /// </code>
+        /// </example>
         public void Read(byte[] buffer)
         {
             if (buffer == null)
@@ -150,6 +188,19 @@ namespace Tizen.Peripheral.Spi
         /// Writes the bytes data to the SPI slave device.
         /// </summary>
         /// <param name="data">The data buffer to write.</param>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Spi;
+        /// var spi = SpiDevice(1, 2);
+        /// spi.Mode = SpiMode.Mode0;
+        /// spi.BitOrder = BitOrder.MSB;
+        /// spi.BitsPerWord = 8;
+        /// spi.Frequency = 8000000;
+        /// var buf = new byte[1024];
+        /// FillData(buf);
+        /// spi.Write(buf);
+        /// </code>
+        /// </example>
         public void Write(byte[] data)
         {
             if (data == null)
@@ -166,6 +217,20 @@ namespace Tizen.Peripheral.Spi
         /// </summary>
         /// <param name="writeBuffer">Array containing data to write to the device.</param>
         /// <param name="readBuffer">Array containing data read from the dievice.</param>
+        /// <example>
+        /// <code>
+        /// using Tizen.Peripheral.Spi;
+        /// var spi = SpiDevice(1, 2);
+        /// spi.Mode = SpiMode.Mode0;
+        /// spi.BitOrder = BitOrder.MSB;
+        /// spi.BitsPerWord = 8;
+        /// spi.Frequency = 8000000;
+        /// var writeBuffer = new byte[1024];
+        /// var readBuffer = new byte[1024];
+        /// FillData(writeBuffer);
+        /// spi.TransferSequential(writeBuffer, readBuffer);
+        /// </code>
+        /// </example>
         public void TransferSequential(byte[] writeBuffer, byte[] readBuffer)
         {
             if (readBuffer == null)
