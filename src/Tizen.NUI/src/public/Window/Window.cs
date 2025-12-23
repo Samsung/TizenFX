@@ -1370,7 +1370,16 @@ namespace Tizen.NUI
                     return;
                 }
                 using Vector2 screenPosition = hover.GetScreenPosition(0);
-                touchPoint = new TouchPoint(hover.GetDeviceId(0), TouchPoint.StateType.Motion, screenPosition.X, screenPosition.Y);
+                PointStateType hoverType = hover.GetState(0);
+                TouchPoint.StateType stateType = hoverType switch
+                {
+                    PointStateType.Down => TouchPoint.StateType.Down,
+                    PointStateType.Up => TouchPoint.StateType.Up,
+                    PointStateType.Leave => TouchPoint.StateType.Leave,
+                    PointStateType.Interrupted => TouchPoint.StateType.Interrupted,
+                    _ => TouchPoint.StateType.Motion,
+                };
+                touchPoint = new TouchPoint(hover.GetDeviceId(0), stateType, screenPosition.X, screenPosition.Y);
             }
 
             Tizen.Log.Info("NUI", $"FeedHover {touchPoint.Screen.X}, {touchPoint.Screen.Y}, State : {touchPoint.State}");
