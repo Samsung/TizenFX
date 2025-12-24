@@ -245,7 +245,7 @@ namespace Tizen.NUI.BaseComponents
             });
         }
 
-        public void ClearSignal(View.ControlHandle handle)
+        public void ClearSignal()
         {
             // TODO Does it really need?
             // At least this should reuse return object of GetControl()
