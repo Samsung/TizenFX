@@ -371,6 +371,7 @@ namespace Tizen.Applications.ComponentBased
                         var serializer = new DataContractSerializer(envelope.GetType());
                         serializer.WriteObject(writer, envelope);
                         writer.WriteEndElement();
+                        writer.Flush();
 
                         parcel = new Parcel();
                         parcel.UnMarshall(stream.ToArray());
