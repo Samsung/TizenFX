@@ -1552,8 +1552,8 @@ namespace Tizen.NUI.BaseComponents
                 backgroundResourceLoadedCallback = null;
             }
 
-            _accessibilityData?.ClearSignal(GetControl());
-            _accessibilityRareData?.ClearSignal(GetControl());
+            _accessibilityData?.ClearSignal();
+            _accessibilityRareData?.ClearSignal();
 
             NDalicPINVOKE.ThrowExceptionIfExists();
             NUILog.Debug($"[Dispose] DisConnectFromSignals END");
