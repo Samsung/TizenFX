@@ -1690,7 +1690,7 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.RenderScale,
         };
 
-        private struct states
+        private struct LottieStates
         {
             internal string url;
             internal int loopCount;
@@ -1713,7 +1713,7 @@ namespace Tizen.NUI.BaseComponents
             internal bool notifyAfterRasterization;
             internal bool changed;
         };
-        private states currentStates;
+        private LottieStates currentStates;
 
         private event EventHandler finishedEventHandler;
 
