@@ -34,12 +34,14 @@ jobs:
 
     - name: Build Documents
       uses: actions/setup-node@v6
-      # if: steps.cache-site.outputs.cache-hit != 'true'
       with:
-        run: |
-          ./build.sh restore
-          ./build.sh build
-          ./build.sh index
+        node-version: 24
+        cache: 'npm'
+      # if: steps.cache-site.outputs.cache-hit != 'true'
+    - run: |
+        ./build.sh restore
+        ./build.sh build
+        ./build.sh index
 
     - name: Archive Artifacts
       run: |
