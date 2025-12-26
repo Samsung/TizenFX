@@ -13,6 +13,10 @@ jobs:
       with:
         repository: TizenAPI/TizenFX-Docs
 
+    - uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.102'
+
     - name: Install DocFX Tool
       run: dotnet tool update -f docfx
 
