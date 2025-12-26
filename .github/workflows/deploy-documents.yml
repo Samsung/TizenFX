@@ -33,12 +33,11 @@ jobs:
 
     - name: Build Documents
       # if: steps.cache-site.outputs.cache-hit != 'true'
-      with:
-        run: |
-          rm global.json
-          ./build.sh restore
-          ./build.sh build
-          ./build.sh index
+      run: |
+        rm global.json
+        ./build.sh restore
+        ./build.sh build
+        ./build.sh index
 
     - name: Archive Artifacts
       run: |
