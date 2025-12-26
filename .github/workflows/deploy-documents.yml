@@ -7,9 +7,6 @@ jobs:
 
   build:
     runs-on: ubuntu-22.04
-    container:
-      image: tizendotnet/tizenfx-build-worker:2.5
-      options: --ulimit nofile=10240:10240
 
     steps:
     - uses: actions/checkout@v4
@@ -19,6 +16,7 @@ jobs:
     - name: Checkout TizenFX sources
       run: |
         ./build.sh clone
+
     - name: Cache DocFX output
       id: cache-site
       uses: actions/cache@v4
@@ -27,11 +25,13 @@ jobs:
         key: docfx-gh-pages-site-${{ hashFiles('repos/commits') }}
 
     - name: Build Documents
+      uses: TizenAPI/tizenfx-build-actions/problem-filter@master
       # if: steps.cache-site.outputs.cache-hit != 'true'
-      run: |
-        ./build.sh restore
-        ./build.sh build
-        ./build.sh index
+      with:
+        run: |
+          ./build.sh restore
+          ./build.sh build
+          ./build.sh index
 
     - name: Archive Artifacts
       run: |
