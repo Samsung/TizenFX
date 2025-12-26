@@ -13,6 +13,9 @@ jobs:
       with:
         repository: TizenAPI/TizenFX-Docs
 
+    - name: Install DocFX Tool
+      run: dotnet tool update -f docfx
+
     - name: Checkout TizenFX sources
       run: |
         ./build.sh clone
