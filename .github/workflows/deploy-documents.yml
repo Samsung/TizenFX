@@ -32,13 +32,14 @@ jobs:
         path: _site
         key: docfx-gh-pages-site-${{ hashFiles('repos/commits') }}
 
-    - name: Build Documents
-      uses: actions/setup-node@v6
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
       with:
-        node-version: 24
-        cache: 'npm'
-      # if: steps.cache-site.outputs.cache-hit != 'true'
-    - run: |
+        node-version: 20
+
+    - name: Build Documents
+      if: steps.cache-site.outputs.cache-hit != 'true'
+      run: |
         ./build.sh restore
         ./build.sh build
         ./build.sh index
