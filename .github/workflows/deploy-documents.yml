@@ -32,10 +32,10 @@ jobs:
         key: docfx-gh-pages-site-${{ hashFiles('repos/commits') }}
 
     - name: Build Documents
-      uses: TizenAPI/tizenfx-build-actions/problem-filter@master
       # if: steps.cache-site.outputs.cache-hit != 'true'
       with:
         run: |
+          rm global.json
           ./build.sh restore
           ./build.sh build
           ./build.sh index
