@@ -33,7 +33,15 @@ namespace Tizen.Network.WiFi
 
         internal HandleHolder()
         {
-            _handle = WiFiManagerImpl.Instance.Initialize();
+            int tid = Thread.CurrentThread.ManagedThreadId;
+            Log.Info(Globals.LogTag, "PInvoke wifi_manager_initialize");
+            int ret = Interop.WiFi.Initialize(tid, out _handle);
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Initialize Fail, Error - " + (WiFiError)ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, "http://tizen.org/privilege/network.get");
+            }
+            _handle.SetTID(tid);
             Log.Info(Globals.LogTag, "Handle: " + _handle);
         }
 
@@ -46,8 +54,8 @@ namespace Tizen.Network.WiFi
 
     internal partial class WiFiManagerImpl
     {
-        private static readonly Lazy<WiFiManagerImpl> _instance =
-            new Lazy<WiFiManagerImpl>(() => new WiFiManagerImpl());
+        private static WiFiManagerImpl s_instance = null;
+        private static readonly object _lock = new object();
 
         private Dictionary<IntPtr, Interop.WiFi.VoidCallback> _callback_map =
             new Dictionary<IntPtr, Interop.WiFi.VoidCallback>();
@@ -146,36 +154,32 @@ namespace Tizen.Network.WiFi
         {
             get
             {
-               return _instance.Value;
+                lock (_lock)
+                {
+                    if (s_instance == null)
+                    {
+                        s_instance = new WiFiManagerImpl();
+                    }
+                    Log.Info(Globals.LogTag, "WiFiManagerImpl.Instance");
+                    return s_instance;
+                }
             }
         }
 
-        private static HandleHolder _handle = new HandleHolder();
+        private HandleHolder _handleHolder;
 
         private WiFiManagerImpl()
         {
             Log.Info(Globals.LogTag, "WiFiManagerImpl constructor");
+            _handleHolder = new HandleHolder();
+            Log.Info(Globals.LogTag, "Success to get handle");
         }
 
         internal SafeWiFiManagerHandle GetSafeHandle()
         {
-            return _handle.GetSafeHandle();
+            return _handleHolder.GetSafeHandle();
         }
 
-        internal SafeWiFiManagerHandle Initialize()
-        {
-            SafeWiFiManagerHandle handle;
-            int tid = Thread.CurrentThread.ManagedThreadId;
-            Log.Info(Globals.LogTag, "PInvoke wifi_manager_initialize");
-            int ret = Interop.WiFi.Initialize(tid, out handle);
-            if (ret != (int)WiFiError.None)
-            {
-                Log.Error(Globals.LogTag, "Initialize Fail, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, PrivilegeNetworkGet);
-            }
-            handle.SetTID(tid);
-            return handle;
-        }
 
         internal IEnumerable<WiFiAP> GetFoundAPs()
         {
