@@ -159,7 +159,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Point.html">Point</a>&gt;&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Point.html">Point</a>&gt;&gt;</td>
         <td><p>A task that represents the asynchronous detect operation.<br>
 If there's no detected facial landmark, empty collection will be returned.</p>
 </td>
@@ -170,37 +170,6 @@ If there's no detected facial landmark, empty collection will be returned.</p>
   <div class="markdown level1 remarks"><p>To set region-of-interest area in source image, please set <a class="xref" href="Tizen.Multimedia.Vision.InferenceModelConfiguration.html#Tizen_Multimedia_Vision_InferenceModelConfiguration_Roi">Roi</a>.
 If not set, full image area will be used to detect facial landmark.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> or <code data-dev-comment-type="paramref" class="paramref">config</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Internal error.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>The caller has no required privilege.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_Vision_FacialLandmarkDetector_DetectAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_InferenceModelConfiguration__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Vision.InferenceModelConfiguration.html">InferenceModelConfiguration</a></div>

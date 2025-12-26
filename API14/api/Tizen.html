@@ -88,9 +88,17 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
 </h3>
+      <h4><a class="xref" href="Tizen.InternalLog.html">InternalLog</a></h4>
+      <section><p>Provides methods to print log messages to the Tizen logging system.
+Sends &quot;internal&quot; logs, which end up in a different Dlog buffer than regular logs.</p>
+</section>
       <h4><a class="xref" href="Tizen.Log.html">Log</a></h4>
       <section><p>Provides methods to print log messages to the Tizen logging system.
 Depending on products, some priorities (e.g., Vervose and Debug) can be disabled by default to prevent too many logs.</p>
+</section>
+      <h4><a class="xref" href="Tizen.SecureLog.html">SecureLog</a></h4>
+      <section><p>Provides methods to print log messages to the Tizen logging system.
+Sends &quot;secure&quot; logs, which have extra safety not to appear on release builds.</p>
 </section>
       <h4><a class="xref" href="Tizen.Tracer.html">Tracer</a></h4>
       <section><p>Provides functions for writing a trace message to the system trace buffer.</p>

@@ -97,7 +97,7 @@ Additionally, users can also add their own properties.</p>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Animatable : BaseHandle, INotifyPropertyChanged, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Animatable : BaseHandle, IDynamicResourceHandler, INameScope, System.IDisposable</code></pre>
   </div>
 
 
@@ -106,8 +106,8 @@ Additionally, users can also add their own properties.</p>
     <dd>
       <div class="pdl-holder">
         <div class="pdl"><span class="xref">object</span></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.BindableObject</span></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div><span class="xref">Animatable</span></div>
       </div>
@@ -119,8 +119,12 @@ Additionally, users can also add their own properties.</p>
     <dd>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Renderable.html">Renderable</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Renderable.html">Renderable</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Renderer.html">Renderer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Renderer.html">Renderer</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.RenderTask.html">RenderTask</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.RenderTask.html">RenderTask</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Shader.html">Shader</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Shader.html">Shader</a></div>
     </dd>
@@ -130,7 +134,8 @@ Additionally, users can also add their own properties.</p>
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
@@ -238,6 +243,56 @@ Additionally, users can also add their own properties.</p>
       <tr>
         <td><a class="xref" href="Tizen.NUI.PropertyNotification.html">PropertyNotification</a></td>
         <td><p>A handle to the newly created PropertyNotification.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L280">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Animatable_GetCurrentProperty_" data-uid="Tizen.NUI.Animatable.GetCurrentProperty*"></a>
+  <h4 id="Tizen_NUI_Animatable_GetCurrentProperty_System_Int32_" data-uid="Tizen.NUI.Animatable.GetCurrentProperty(System.Int32)">GetCurrentProperty(int)</h4>
+  <div class="markdown level1 summary"><p>Retrieves the latest rendered frame value of the property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PropertyValue GetCurrentProperty(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of the property.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PropertyValue.html">PropertyValue</a></td>
+        <td><p>The property value.</p>
 </td>
       </tr>
     </tbody>
@@ -665,6 +720,40 @@ Additionally, users can also add their own properties.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L351">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Animatable_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Animatable.ReleaseSwigCPtr*"></a>
+  <h4 id="Tizen_NUI_Animatable_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Animatable.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
+        <td><span class="parametername">swigCPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">BaseHandle.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L308">View Source</a>
   </span>
   <a id="Tizen_NUI_Animatable_RemovePropertyNotification_" data-uid="Tizen.NUI.Animatable.RemovePropertyNotification*"></a>
@@ -715,6 +804,40 @@ Additionally, users can also add their own properties.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L228">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Animatable_SetProperties_" data-uid="Tizen.NUI.Animatable.SetProperties*"></a>
+  <h4 id="Tizen_NUI_Animatable_SetProperties_Tizen_NUI_PropertyMap_" data-uid="Tizen.NUI.Animatable.SetProperties(Tizen.NUI.PropertyMap)">SetProperties(PropertyMap)</h4>
+  <div class="markdown level1 summary"><p>Sets the map of values immediately.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetProperties(PropertyMap propertyMap)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PropertyMap.html">PropertyMap</a></td>
+        <td><span class="parametername">propertyMap</span></td>
+        <td><p>The list of index and new value of the property.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L194">View Source</a>
   </span>
   <a id="Tizen_NUI_Animatable_SetProperty_" data-uid="Tizen.NUI.Animatable.SetProperty*"></a>
@@ -754,12 +877,74 @@ Additionally, users can also add their own properties.</p>
 
   <div style="margin-bottom: 15px"></div>
 
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Animation/Animatable.cs/#L205">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Animatable_SetProperty_" data-uid="Tizen.NUI.Animatable.SetProperty*"></a>
+  <h4 id="Tizen_NUI_Animatable_SetProperty_System_String_Tizen_NUI_PropertyValue_" data-uid="Tizen.NUI.Animatable.SetProperty(System.String,Tizen.NUI.PropertyValue)">SetProperty(string, PropertyValue)</h4>
+  <div class="markdown level1 summary"><p>Sets the value of an existing property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetProperty(string name, PropertyValue propertyValue)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The index of the property.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PropertyValue.html">PropertyValue</a></td>
+        <td><span class="parametername">propertyValue</span></td>
+        <td><p>The new value of the property.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, string, BindingMode, IValueConverter, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, string)</a>
   </div>
 </article>
           </div>

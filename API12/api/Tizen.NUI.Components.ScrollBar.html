@@ -94,8 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public class ScrollBar : Control, INotifyPropertyChanged, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class ScrollBar : Control, IDynamicResourceHandler, INameScope, System.IDisposable, IResourcesProvider</code></pre>
   </div>
 
 
@@ -105,7 +104,7 @@ public class ScrollBar : Control, INotifyPropertyChanged, IDisposable</code></pr
       <div class="pdl-holder">
         <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
@@ -113,7 +112,7 @@ public class ScrollBar : Control, INotifyPropertyChanged, IDisposable</code></pr
         <div class="pdl"><a class="xref" href="Tizen.NUI.ViewWrapper.html">ViewWrapper</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Components.Control</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Control.html">Control</a></div>
         <div><span class="xref">ScrollBar</span></div>
       </div>
     </dd>
@@ -124,8 +123,10 @@ public class ScrollBar : Control, INotifyPropertyChanged, IDisposable</code></pr
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
     </dd>
   </dl>
 
@@ -144,10 +145,377 @@ public class ScrollBar : Control, INotifyPropertyChanged, IDisposable</code></pr
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public ScrollBar()</code></pre>
+    <pre><code class="lang-csharp hljs">public ScrollBar()</code></pre>
   </div>
   <h5 id="Tizen_NUI_Components_ScrollBar__ctor_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Please note that this class will be replaced with Scrollbar class in the near future.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/ImageScrollBar.cs/#L155">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ScrollBar__ctor_" data-uid="Tizen.NUI.Components.ScrollBar.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_ScrollBar__ctor_System_String_" data-uid="Tizen.NUI.Components.ScrollBar.#ctor(System.String)">ScrollBar(string)</h4>
+  <div class="markdown level1 summary"><p>The constructor of ScrollBar with specific style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScrollBar(string style)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">style</span></td>
+        <td><p>style name</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_ScrollBar__ctor_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Please note that this class will be replaced with Scrollbar class in the near future.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/ImageScrollBar.cs/#L164">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ScrollBar__ctor_" data-uid="Tizen.NUI.Components.ScrollBar.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_ScrollBar__ctor_Tizen_NUI_Components_ScrollBarStyle_" data-uid="Tizen.NUI.Components.ScrollBar.#ctor(Tizen.NUI.Components.ScrollBarStyle)">ScrollBar(ScrollBarStyle)</h4>
+  <div class="markdown level1 summary"><p>The constructor of ScrollBar with specific style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ScrollBar(ScrollBarStyle scrollBarStyle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.ScrollBarStyle.html">ScrollBarStyle</a></td>
+        <td><span class="parametername">scrollBarStyle</span></td>
+        <td><p>The style object to initialize the ScrollBar.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_ScrollBar__ctor_Tizen_NUI_Components_ScrollBarStyle__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Please note that this class will be replaced with Scrollbar class in the near future.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/ImageScrollBar.cs/#L91">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_ScrollBar_CurrentValueProperty" data-uid="Tizen.NUI.Components.ScrollBar.CurrentValueProperty">CurrentValueProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty CurrentValueProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_ScrollBar_CurrentValueProperty_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Please note that this class will be replaced with Scrollbar class in the near future.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/ImageScrollBar.cs/#L37">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_ScrollBar_DirectionProperty" data-uid="Tizen.NUI.Components.ScrollBar.DirectionProperty">DirectionProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty DirectionProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_ScrollBar_DirectionProperty_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Please note that this class will be replaced with Scrollbar class in the near future.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/ImageScrollBar.cs/#L110">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_ScrollBar_DurationProperty" data-uid="Tizen.NUI.Components.ScrollBar.DurationProperty">DurationProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty DurationProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_ScrollBar_DurationProperty_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Please note that this class will be replaced with Scrollbar class in the near future.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/ImageScrollBar.cs/#L53">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_ScrollBar_MaxValueProperty" data-uid="Tizen.NUI.Components.ScrollBar.MaxValueProperty">MaxValueProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty MaxValueProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_ScrollBar_MaxValueProperty_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Please note that this class will be replaced with Scrollbar class in the near future.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/ImageScrollBar.cs/#L72">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_ScrollBar_MinValueProperty" data-uid="Tizen.NUI.Components.ScrollBar.MinValueProperty">MinValueProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty MinValueProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_ScrollBar_MinValueProperty_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Please note that this class will be replaced with Scrollbar class in the near future.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/ScrollBarBindableProperty.cs/#L66">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_ScrollBar_ThumbColorProperty" data-uid="Tizen.NUI.Components.ScrollBar.ThumbColorProperty">ThumbColorProperty</h4>
+  <div class="markdown level1 summary"><p>ThumbColorProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty ThumbColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_ScrollBar_ThumbColorProperty_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Please note that this class will be replaced with Scrollbar class in the near future.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/ScrollBarBindableProperty.cs/#L12">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_ScrollBar_ThumbSizeProperty" data-uid="Tizen.NUI.Components.ScrollBar.ThumbSizeProperty">ThumbSizeProperty</h4>
+  <div class="markdown level1 summary"><p>ThumbSizeProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty ThumbSizeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_ScrollBar_ThumbSizeProperty_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Please note that this class will be replaced with Scrollbar class in the near future.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/ScrollBarBindableProperty.cs/#L48">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_ScrollBar_TrackColorProperty" data-uid="Tizen.NUI.Components.ScrollBar.TrackColorProperty">TrackColorProperty</h4>
+  <div class="markdown level1 summary"><p>TrackColorProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TrackColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_ScrollBar_TrackColorProperty_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Please note that this class will be replaced with Scrollbar class in the near future.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/ScrollBarBindableProperty.cs/#L30">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_ScrollBar_TrackImageURLProperty" data-uid="Tizen.NUI.Components.ScrollBar.TrackImageURLProperty">TrackImageURLProperty</h4>
+  <div class="markdown level1 summary"><p>TrackImageURLProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TrackImageURLProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_ScrollBar_TrackImageURLProperty_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Please note that this class will be replaced with Scrollbar class in the near future.</p>
 </div>
 
@@ -166,8 +534,7 @@ public ScrollBar()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public int CurrentValue { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int CurrentValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -200,22 +567,6 @@ catch(ArgumentOutOfRangeException e)
     Tizen.Log.Error(LogTag, &quot;Failed to set Current value : &quot; + e.Message);
 }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>Throw when Current value is less than Min value, or greater than Max value.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -230,8 +581,7 @@ catch(ArgumentOutOfRangeException e)
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public ScrollBar.DirectionType Direction { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ScrollBar.DirectionType Direction { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -265,8 +615,7 @@ public ScrollBar.DirectionType Direction { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public uint Duration { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public uint Duration { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -300,8 +649,7 @@ public uint Duration { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public int MaxValue { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int MaxValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -335,8 +683,7 @@ public int MaxValue { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public int MinValue { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int MinValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -370,8 +717,7 @@ public int MinValue { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public Color ThumbColor { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Color ThumbColor { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -405,8 +751,7 @@ public Color ThumbColor { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public Size ThumbSize { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Size ThumbSize { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -437,22 +782,6 @@ catch(InvalidOperationException e)
     Tizen.Log.Error(LogTag, &quot;Failed to set ThumbSize value : &quot; + e.Message);
 }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Throw when ThumbSize is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -467,8 +796,7 @@ catch(InvalidOperationException e)
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public Color TrackColor { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Color TrackColor { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -502,8 +830,7 @@ public Color TrackColor { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public string TrackImageURL { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string TrackImageURL { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -530,6 +857,82 @@ public string TrackImageURL { get; set; }</code></pre>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/ImageScrollBar.cs/#L582">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ScrollBar_ApplyStyle_" data-uid="Tizen.NUI.Components.ScrollBar.ApplyStyle*"></a>
+  <h4 id="Tizen_NUI_Components_ScrollBar_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_" data-uid="Tizen.NUI.Components.ScrollBar.ApplyStyle(Tizen.NUI.BaseComponents.ViewStyle)">ApplyStyle(ViewStyle)</h4>
+  <div class="markdown level1 summary"><p>Apply style instance to the view.
+Basically it sets the bindable property to the value of the bindable property with same name in the style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void ApplyStyle(ViewStyle style)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a></td>
+        <td><span class="parametername">style</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_">View.ApplyStyle(ViewStyle)</a></div>
+  <h5 id="Tizen_NUI_Components_ScrollBar_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Please note that this class will be replaced with Scrollbar class in the near future.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/ImageScrollBar.cs/#L535">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ScrollBar_CreateViewStyle_" data-uid="Tizen.NUI.Components.ScrollBar.CreateViewStyle*"></a>
+  <h4 id="Tizen_NUI_Components_ScrollBar_CreateViewStyle" data-uid="Tizen.NUI.Components.ScrollBar.CreateViewStyle">CreateViewStyle()</h4>
+  <div class="markdown level1 summary"><p>Get Scrollbar style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override ViewStyle CreateViewStyle()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a></td>
+        <td><p>The default scrollbar style.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_CreateViewStyle">Control.CreateViewStyle()</a></div>
+  <h5 id="Tizen_NUI_Components_ScrollBar_CreateViewStyle_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Please note that this class will be replaced with Scrollbar class in the near future.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/ImageScrollBar.cs/#L494">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_ScrollBar_Dispose_" data-uid="Tizen.NUI.Components.ScrollBar.Dispose*"></a>
@@ -539,8 +942,7 @@ public string TrackImageURL { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-protected override void Dispose(DisposeTypes type)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void Dispose(DisposeTypes type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -561,8 +963,30 @@ protected override void Dispose(DisposeTypes type)</code></pre>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Tizen.NUI.Components.Control.Dispose(Tizen.NUI.DisposeTypes)</span></div>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_Dispose_Tizen_NUI_DisposeTypes_">Control.Dispose(DisposeTypes)</a></div>
   <h5 id="Tizen_NUI_Components_ScrollBar_Dispose_Tizen_NUI_DisposeTypes__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Please note that this class will be replaced with Scrollbar class in the near future.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/ImageScrollBar.cs/#L542">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_ScrollBar_OnInitialize_" data-uid="Tizen.NUI.Components.ScrollBar.OnInitialize*"></a>
+  <h4 id="Tizen_NUI_Components_ScrollBar_OnInitialize" data-uid="Tizen.NUI.Components.ScrollBar.OnInitialize">OnInitialize()</h4>
+  <div class="markdown level1 summary"><p>Overrides the parent method.
+This method is called by the framework when the instance is created.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnInitialize()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_OnInitialize">Control.OnInitialize()</a></div>
+  <h5 id="Tizen_NUI_Components_ScrollBar_OnInitialize_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Please note that this class will be replaced with Scrollbar class in the near future.</p>
 </div>
 
@@ -579,8 +1003,7 @@ protected override void Dispose(DisposeTypes type)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public void SetCurrentValue(int currentValue, bool enableAnimation = true)</code></pre>
+    <pre><code class="lang-csharp hljs">public void SetCurrentValue(int currentValue, bool enableAnimation = true)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -622,32 +1045,44 @@ catch(ArgumentOutOfRangeException e)
     Tizen.Log.Error(LogTag, &quot;Failed to set current value : &quot; + e.Message);
 }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>Throw when current size is less than the min value, or greater than the max value.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

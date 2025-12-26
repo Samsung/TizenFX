@@ -95,7 +95,7 @@ Button may contain text or an icon.</p>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Button : Control, INotifyPropertyChanged, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Button : Control, IDynamicResourceHandler, INameScope, System.IDisposable, IResourcesProvider</code></pre>
   </div>
 
 
@@ -105,7 +105,7 @@ Button may contain text or an icon.</p>
       <div class="pdl-holder">
         <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
@@ -113,7 +113,7 @@ Button may contain text or an icon.</p>
         <div class="pdl"><a class="xref" href="Tizen.NUI.ViewWrapper.html">ViewWrapper</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Components.Control</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Control.html">Control</a></div>
         <div><span class="xref">Button</span></div>
       </div>
     </dd>
@@ -122,6 +122,10 @@ Button may contain text or an icon.</p>
   <dl class="attribute-list stack">
     <dt>Derived</dt>
     <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.SelectButton.html">SelectButton</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.SelectButton.html">SelectButton</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.SelectButton.html">SelectButton</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.SelectButton.html">SelectButton</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Switch.html">Switch</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Switch.html">Switch</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Switch.html">Switch</a></div>
@@ -133,8 +137,10 @@ Button may contain text or an icon.</p>
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
     </dd>
   </dl>
 
@@ -224,8 +230,576 @@ Button may contain text or an icon.</p>
 
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ButtonBindableProperty.cs/#L66">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_FontFamilyProperty" data-uid="Tizen.NUI.Components.Button.FontFamilyProperty">FontFamilyProperty</h4>
+  <div class="markdown level1 summary"><p>FontFamilyProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty FontFamilyProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.cs/#L115">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_IconPaddingProperty" data-uid="Tizen.NUI.Components.Button.IconPaddingProperty">IconPaddingProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty IconPaddingProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.cs/#L54">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_IconRelativeOrientationProperty" data-uid="Tizen.NUI.Components.Button.IconRelativeOrientationProperty">IconRelativeOrientationProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty IconRelativeOrientationProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ButtonBindableProperty.cs/#L138">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_IconSizeProperty" data-uid="Tizen.NUI.Components.Button.IconSizeProperty">IconSizeProperty</h4>
+  <div class="markdown level1 summary"><p>IconSizeProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty IconSizeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ButtonBindableProperty.cs/#L120">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_IconURLProperty" data-uid="Tizen.NUI.Components.Button.IconURLProperty">IconURLProperty</h4>
+  <div class="markdown level1 summary"><p>IconURLProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty IconURLProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ButtonBindableProperty.cs/#L216">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_IconURLSelectorProperty" data-uid="Tizen.NUI.Components.Button.IconURLSelectorProperty">IconURLSelectorProperty</h4>
+  <div class="markdown level1 summary"><p>IconURLSelectorProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty IconURLSelectorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.cs/#L98">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_IsSelectableProperty" data-uid="Tizen.NUI.Components.Button.IsSelectableProperty">IsSelectableProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty IsSelectableProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.cs/#L69">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_IsSelectedProperty" data-uid="Tizen.NUI.Components.Button.IsSelectedProperty">IsSelectedProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty IsSelectedProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ButtonBindableProperty.cs/#L48">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_PointSizeProperty" data-uid="Tizen.NUI.Components.Button.PointSizeProperty">PointSizeProperty</h4>
+  <div class="markdown level1 summary"><p>PointSizeProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty PointSizeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ButtonBindableProperty.cs/#L201">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_PointSizeSelectorProperty" data-uid="Tizen.NUI.Components.Button.PointSizeSelectorProperty">PointSizeSelectorProperty</h4>
+  <div class="markdown level1 summary"><p>PointSizeSelectorProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty PointSizeSelectorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ButtonBindableProperty.cs/#L102">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_TextAlignmentProperty" data-uid="Tizen.NUI.Components.Button.TextAlignmentProperty">TextAlignmentProperty</h4>
+  <div class="markdown level1 summary"><p>TextAlignmentProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TextAlignmentProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ButtonBindableProperty.cs/#L84">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_TextColorProperty" data-uid="Tizen.NUI.Components.Button.TextColorProperty">TextColorProperty</h4>
+  <div class="markdown level1 summary"><p>TextColorProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TextColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ButtonBindableProperty.cs/#L186">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_TextColorSelectorProperty" data-uid="Tizen.NUI.Components.Button.TextColorSelectorProperty">TextColorSelectorProperty</h4>
+  <div class="markdown level1 summary"><p>TextColorSelectorProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TextColorSelectorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.cs/#L128">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_TextPaddingProperty" data-uid="Tizen.NUI.Components.Button.TextPaddingProperty">TextPaddingProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TextPaddingProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ButtonBindableProperty.cs/#L12">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_TextProperty" data-uid="Tizen.NUI.Components.Button.TextProperty">TextProperty</h4>
+  <div class="markdown level1 summary"><p>TextProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TextProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ButtonBindableProperty.cs/#L156">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_TextSelectorProperty" data-uid="Tizen.NUI.Components.Button.TextSelectorProperty">TextSelectorProperty</h4>
+  <div class="markdown level1 summary"><p>TextSelectorProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TextSelectorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ButtonBindableProperty.cs/#L30">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_TranslatableTextProperty" data-uid="Tizen.NUI.Components.Button.TranslatableTextProperty">TranslatableTextProperty</h4>
+  <div class="markdown level1 summary"><p>TranslatableTextProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TranslatableTextProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ButtonBindableProperty.cs/#L171">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Button_TranslatableTextSelectorProperty" data-uid="Tizen.NUI.Components.Button.TranslatableTextSelectorProperty">TranslatableTextSelectorProperty</h4>
+  <div class="markdown level1 summary"><p>TranslatableTextSelectorProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TranslatableTextSelectorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="properties">Properties
 </h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.Internal.cs/#L51">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_Extension_" data-uid="Tizen.NUI.Components.Button.Extension*"></a>
+  <h4 id="Tizen_NUI_Components_Button_Extension" data-uid="Tizen.NUI.Components.Button.Extension">Extension</h4>
+  <div class="markdown level1 summary"><p>The ButtonExtension instance that is injected by ButtonStyle.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ButtonExtension Extension { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.Extension.ButtonExtension.html">ButtonExtension</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.cs/#L507">View Source</a>
   </span>
@@ -341,7 +915,38 @@ Button may contain text or an icon.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.Components.Button.html">Button</a>.<a class="xref" href="Tizen.NUI.Components.Button.IconOrientation.html">IconOrientation</a>?</td>
+        <td><a class="xref" href="Tizen.NUI.Components.Button.IconOrientation.html">IconOrientation</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.cs/#L618">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_IconSize_" data-uid="Tizen.NUI.Components.Button.IconSize*"></a>
+  <h4 id="Tizen_NUI_Components_Button_IconSize" data-uid="Tizen.NUI.Components.Button.IconSize">IconSize</h4>
+  <div class="markdown level1 summary"><p>Icon image's size in Button.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Size IconSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -404,24 +1009,8 @@ Getter returns copied selector value if exist, null otherwise.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Tizen.NUI.Components.StringSelector</span></td>
+        <td><a class="xref" href="Tizen.NUI.Components.StringSelector.html">StringSelector</a></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NullReferenceException</span></td>
-        <td><p>Thrown when setting null value.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -554,6 +1143,37 @@ Getter returns copied selector value if exist, null otherwise.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.cs/#L893">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_ItemHorizontalAlignment_" data-uid="Tizen.NUI.Components.Button.ItemHorizontalAlignment*"></a>
+  <h4 id="Tizen_NUI_Components_Button_ItemHorizontalAlignment" data-uid="Tizen.NUI.Components.Button.ItemHorizontalAlignment">ItemHorizontalAlignment</h4>
+  <div class="markdown level1 summary"><p>The item (text or icon or both) horizontal alignment.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public HorizontalAlignment ItemHorizontalAlignment { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.HorizontalAlignment.html">HorizontalAlignment</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.cs/#L916">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Button_ItemSpacing_" data-uid="Tizen.NUI.Components.Button.ItemSpacing*"></a>
@@ -578,6 +1198,37 @@ The width value is used when the items are arranged horizontally. Otherwise, the
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.cs/#L903">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_ItemVerticalAlignment_" data-uid="Tizen.NUI.Components.Button.ItemVerticalAlignment*"></a>
+  <h4 id="Tizen_NUI_Components_Button_ItemVerticalAlignment" data-uid="Tizen.NUI.Components.Button.ItemVerticalAlignment">ItemVerticalAlignment</h4>
+  <div class="markdown level1 summary"><p>The item (text or icon or both) vertical alignment.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VerticalAlignment ItemVerticalAlignment { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.VerticalAlignment.html">VerticalAlignment</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -671,24 +1322,8 @@ Getter returns copied selector value if exist, null otherwise.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Tizen.NUI.Components.FloatSelector</span></td>
+        <td><a class="xref" href="Tizen.NUI.Components.FloatSelector.html">FloatSelector</a></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NullReferenceException</span></td>
-        <td><p>Thrown when setting null value.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -846,24 +1481,8 @@ Getter returns copied selector value if exist, null otherwise.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Tizen.NUI.Components.ColorSelector</span></td>
+        <td><a class="xref" href="Tizen.NUI.Components.ColorSelector.html">ColorSelector</a></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NullReferenceException</span></td>
-        <td><p>Thrown when setting null value.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -940,7 +1559,7 @@ Getter returns copied selector value if exist, null otherwise.</p>
   <h4 id="Tizen_NUI_Components_Button_TextSelector" data-uid="Tizen.NUI.Components.Button.TextSelector">TextSelector</h4>
   <div class="markdown level1 summary"><p>Text string selector in Button.
 Getter returns copied selector value if exist, null otherwise.
-<span class="xref">Thrown when setting null value.</span></p>
+<exception cref="!:NullReferenceException">Thrown when setting null value.</exception></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -957,7 +1576,7 @@ Getter returns copied selector value if exist, null otherwise.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Tizen.NUI.Components.StringSelector</span></td>
+        <td><a class="xref" href="Tizen.NUI.Components.StringSelector.html">StringSelector</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -1020,24 +1639,8 @@ Getter returns copied selector value if exist, null otherwise.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Tizen.NUI.Components.StringSelector</span></td>
+        <td><a class="xref" href="Tizen.NUI.Components.StringSelector.html">StringSelector</a></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NullReferenceException</span></td>
-        <td><p>Thrown when setting null value.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -1047,6 +1650,72 @@ Getter returns copied selector value if exist, null otherwise.</p>
 
   <h3 id="methods">Methods
 </h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.cs/#L265">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_AccessibilityCalculateStates_" data-uid="Tizen.NUI.Components.Button.AccessibilityCalculateStates*"></a>
+  <h4 id="Tizen_NUI_Components_Button_AccessibilityCalculateStates" data-uid="Tizen.NUI.Components.Button.AccessibilityCalculateStates">AccessibilityCalculateStates()</h4>
+  <div class="markdown level1 summary"><p>Calculates current states for the button<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override AccessibilityStates AccessibilityCalculateStates()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.AccessibilityStates.html">AccessibilityStates</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_AccessibilityCalculateStates">View.AccessibilityCalculateStates()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.Internal.cs/#L42">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_AccessibilityGetName_" data-uid="Tizen.NUI.Components.Button.AccessibilityGetName*"></a>
+  <h4 id="Tizen_NUI_Components_Button_AccessibilityGetName" data-uid="Tizen.NUI.Components.Button.AccessibilityGetName">AccessibilityGetName()</h4>
+  <div class="markdown level1 summary"><p>Gets accessibility name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override string AccessibilityGetName()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_AccessibilityGetName">View.AccessibilityGetName()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.cs/#L1012">View Source</a>
   </span>
@@ -1084,6 +1753,99 @@ Getter returns copied selector value if exist, null otherwise.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.Internal.cs/#L73">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_CreateIcon_" data-uid="Tizen.NUI.Components.Button.CreateIcon*"></a>
+  <h4 id="Tizen_NUI_Components_Button_CreateIcon" data-uid="Tizen.NUI.Components.Button.CreateIcon">CreateIcon()</h4>
+  <div class="markdown level1 summary"><p>Creates Button's icon part.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ImageView CreateIcon()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html">ImageView</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.Internal.cs/#L86">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_CreateOverlayImage_" data-uid="Tizen.NUI.Components.Button.CreateOverlayImage*"></a>
+  <h4 id="Tizen_NUI_Components_Button_CreateOverlayImage" data-uid="Tizen.NUI.Components.Button.CreateOverlayImage">CreateOverlayImage()</h4>
+  <div class="markdown level1 summary"><p>Creates Button's overlay image part.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual ImageView CreateOverlayImage()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html">ImageView</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.Internal.cs/#L58">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_CreateText_" data-uid="Tizen.NUI.Components.Button.CreateText*"></a>
+  <h4 id="Tizen_NUI_Components_Button_CreateText" data-uid="Tizen.NUI.Components.Button.CreateText">CreateText()</h4>
+  <div class="markdown level1 summary"><p>Creates Button's text part.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual TextLabel CreateText()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.TextLabel.html">TextLabel</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.Internal.cs/#L114">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Button_CreateViewStyle_" data-uid="Tizen.NUI.Components.Button.CreateViewStyle*"></a>
@@ -1112,7 +1874,7 @@ Getter returns copied selector value if exist, null otherwise.</p>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Tizen.NUI.Components.Control.CreateViewStyle()</span></div>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_CreateViewStyle">Control.CreateViewStyle()</a></div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1148,7 +1910,180 @@ Getter returns copied selector value if exist, null otherwise.</p>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Tizen.NUI.Components.Control.Dispose(Tizen.NUI.DisposeTypes)</span></div>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_Dispose_Tizen_NUI_DisposeTypes_">Control.Dispose(DisposeTypes)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.Internal.cs/#L128">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_HandleControlStateOnTouch_" data-uid="Tizen.NUI.Components.Button.HandleControlStateOnTouch*"></a>
+  <h4 id="Tizen_NUI_Components_Button_HandleControlStateOnTouch_Tizen_NUI_Touch_" data-uid="Tizen.NUI.Components.Button.HandleControlStateOnTouch(Tizen.NUI.Touch)">HandleControlStateOnTouch(Touch)</h4>
+  <div class="markdown level1 summary"><p>The touch event handler for ControlState.
+Please change ControlState value by touch state if needed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool HandleControlStateOnTouch(Touch touch)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Touch.html">Touch</a></td>
+        <td><span class="parametername">touch</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_HandleControlStateOnTouch_Tizen_NUI_Touch_">View.HandleControlStateOnTouch(Touch)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.Internal.cs/#L340">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_LayoutItems_" data-uid="Tizen.NUI.Components.Button.LayoutItems*"></a>
+  <h4 id="Tizen_NUI_Components_Button_LayoutItems" data-uid="Tizen.NUI.Components.Button.LayoutItems">LayoutItems()</h4>
+  <div class="markdown level1 summary"><p>Put sub items (e.g. buttonText, buttonIcon) to the right place.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void LayoutItems()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.Internal.cs/#L104">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_OnClicked_" data-uid="Tizen.NUI.Components.Button.OnClicked*"></a>
+  <h4 id="Tizen_NUI_Components_Button_OnClicked_Tizen_NUI_Components_ClickedEventArgs_" data-uid="Tizen.NUI.Components.Button.OnClicked(Tizen.NUI.Components.ClickedEventArgs)">OnClicked(ClickedEventArgs)</h4>
+  <div class="markdown level1 summary"><p>Called when the Button is Clicked by a user</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void OnClicked(ClickedEventArgs eventArgs)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.ClickedEventArgs.html">ClickedEventArgs</a></td>
+        <td><span class="parametername">eventArgs</span></td>
+        <td><p>The click information.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.Internal.cs/#L307">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_OnControlStateChanged_" data-uid="Tizen.NUI.Components.Button.OnControlStateChanged*"></a>
+  <h4 id="Tizen_NUI_Components_Button_OnControlStateChanged_Tizen_NUI_BaseComponents_View_ControlStateChangedEventArgs_" data-uid="Tizen.NUI.Components.Button.OnControlStateChanged(Tizen.NUI.BaseComponents.View.ControlStateChangedEventArgs)">OnControlStateChanged(ControlStateChangedEventArgs)</h4>
+  <div class="markdown level1 summary"><p>Called after the View's ControlStates changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnControlStateChanged(View.ControlStateChangedEventArgs controlStateChangedInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>.<a class="xref" href="Tizen.NUI.BaseComponents.View.ControlStateChangedEventArgs.html">ControlStateChangedEventArgs</a></td>
+        <td><span class="parametername">controlStateChangedInfo</span></td>
+        <td><p>The information including state changed variables.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_OnControlStateChanged_Tizen_NUI_BaseComponents_View_ControlStateChangedEventArgs_">View.OnControlStateChanged(View.ControlStateChangedEventArgs)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.Internal.cs/#L181">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_OnEnabled_" data-uid="Tizen.NUI.Components.Button.OnEnabled*"></a>
+  <h4 id="Tizen_NUI_Components_Button_OnEnabled_System_Boolean_" data-uid="Tizen.NUI.Components.Button.OnEnabled(System.Boolean)">OnEnabled(bool)</h4>
+  <div class="markdown level1 summary"><p>Internal callback of enabled property changes.
+Inherited view can override this method to implements enabled property changes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnEnabled(bool enabled)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">enabled</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_OnEnabled_System_Boolean_">View.OnEnabled(bool)</a></div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1166,7 +2101,7 @@ Getter returns copied selector value if exist, null otherwise.</p>
     <pre><code class="lang-csharp hljs">public override void OnFocusGained()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Tizen.NUI.Components.Control.OnFocusGained()</span></div>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_OnFocusGained">Control.OnFocusGained()</a></div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1184,7 +2119,25 @@ Getter returns copied selector value if exist, null otherwise.</p>
     <pre><code class="lang-csharp hljs">public override void OnFocusLost()</code></pre>
   </div>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Tizen.NUI.Components.Control.OnFocusLost()</span></div>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_OnFocusLost">Control.OnFocusLost()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.Internal.cs/#L272">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_OnInitialize_" data-uid="Tizen.NUI.Components.Button.OnInitialize*"></a>
+  <h4 id="Tizen_NUI_Components_Button_OnInitialize" data-uid="Tizen.NUI.Components.Button.OnInitialize">OnInitialize()</h4>
+  <div class="markdown level1 summary"><p>Initializes AT-SPI object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnInitialize()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_OnInitialize">Control.OnInitialize()</a></div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1236,7 +2189,52 @@ Getter returns copied selector value if exist, null otherwise.</p>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Tizen.NUI.Components.Control.OnKey(Tizen.NUI.Key)</span></div>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_OnKey_Tizen_NUI_Key_">Control.OnKey(Key)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.Internal.cs/#L291">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_OnRelayout_" data-uid="Tizen.NUI.Components.Button.OnRelayout*"></a>
+  <h4 id="Tizen_NUI_Components_Button_OnRelayout_Tizen_NUI_Vector2_Tizen_NUI_RelayoutContainer_" data-uid="Tizen.NUI.Components.Button.OnRelayout(Tizen.NUI.Vector2,Tizen.NUI.RelayoutContainer)">OnRelayout(Vector2, RelayoutContainer)</h4>
+  <div class="markdown level1 summary"><p>Called after the size negotiation has been finished for this control.<br>
+The control is expected to assign this given size to itself or its children.<br>
+Should be overridden by derived classes if they need to layout views differently after certain operations like add or remove views, resize, or after changing specific properties.<br>
+As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored).<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnRelayout(Vector2 size, RelayoutContainer container)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td><span class="parametername">size</span></td>
+        <td><p>The allocated size.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.RelayoutContainer.html">RelayoutContainer</a></td>
+        <td><span class="parametername">container</span></td>
+        <td><p>The control should add views to this container that it is not able to allocate a size for.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_OnRelayout_Tizen_NUI_Vector2_Tizen_NUI_RelayoutContainer_">Control.OnRelayout(Vector2, RelayoutContainer)</a></div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1252,8 +2250,7 @@ CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. S
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10. Please use OnClicked instead.&quot;)]
-public override bool OnTouch(Touch touch)</code></pre>
+    <pre><code class="lang-csharp hljs">public override bool OnTouch(Touch touch)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1295,6 +2292,39 @@ public override bool OnTouch(Touch touch)</code></pre>
 
   <div style="margin-bottom: 15px"></div>
 
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.Internal.cs/#L120">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_OnUpdate_" data-uid="Tizen.NUI.Components.Button.OnUpdate*"></a>
+  <h4 id="Tizen_NUI_Components_Button_OnUpdate" data-uid="Tizen.NUI.Components.Button.OnUpdate">OnUpdate()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnUpdate()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_OnUpdate">Control.OnUpdate()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Button.Internal.cs/#L193">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Button_UpdateState_" data-uid="Tizen.NUI.Components.Button.UpdateState*"></a>
+  <h4 id="Tizen_NUI_Components_Button_UpdateState" data-uid="Tizen.NUI.Components.Button.UpdateState">UpdateState()</h4>
+  <div class="markdown level1 summary"><p>Update Button State.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void UpdateState()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
@@ -1318,7 +2348,7 @@ public override bool OnTouch(Touch touch)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Components.ClickedEventArgs.html">ClickedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Components.ClickedEventArgs.html">ClickedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1336,8 +2366,7 @@ public override bool OnTouch(Touch touch)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10. Please use Clicked event instead.&quot;)]
-public event EventHandler&lt;Button.ClickEventArgs&gt; ClickEvent</code></pre>
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;Button.ClickEventArgs&gt; ClickEvent</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1349,7 +2378,7 @@ public event EventHandler&lt;Button.ClickEventArgs&gt; ClickEvent</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Components.Button.html">Button</a>.<a class="xref" href="Tizen.NUI.Components.Button.ClickEventArgs.html">ClickEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Components.Button.ClickEventArgs.html">ClickEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1367,8 +2396,7 @@ public event EventHandler&lt;Button.ClickEventArgs&gt; ClickEvent</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10. Please use View.ControlStateChangedEvent&quot;)]
-public event EventHandler&lt;Button.StateChangedEventArgs&gt; StateChangedEvent</code></pre>
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;Button.StateChangedEventArgs&gt; StateChangedEvent</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1380,7 +2408,7 @@ public event EventHandler&lt;Button.StateChangedEventArgs&gt; StateChangedEvent<
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Components.Button.html">Button</a>.<a class="xref" href="Tizen.NUI.Components.Button.StateChangedEventArgs.html">StateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Components.Button.StateChangedEventArgs.html">StateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1391,10 +2419,38 @@ public event EventHandler&lt;Button.StateChangedEventArgs&gt; StateChangedEvent<
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

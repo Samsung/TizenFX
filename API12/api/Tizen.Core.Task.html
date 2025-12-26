@@ -113,12 +113,6 @@ After termination, the task returns back to 'Constructed' state.</p>
 
 
 
-  <dl class="attribute-list stack">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
-    </dd>
-  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
@@ -162,32 +156,6 @@ In such case, the 'main' task will operate on the main application thread instea
 var task = new Task(&quot;Worker&quot;);
 task.Run();</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the <code data-dev-comment-type="paramref" class="paramref">id</code> is invalid or a Task with that ID already exists.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when out of memory.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of an invalid operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -267,37 +235,6 @@ receiver.Received += (sender, args) => {
 };
 task.AddChannelReceiver(receiver);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when the argument is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the argument is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of an invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when out of memory.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -347,37 +284,6 @@ coreEvent.EventReceived += (sender, args) => {
 var task = TizenCore.Find(&quot;EventTask&quot;) ?? TizenCore.Spawn(&quot;EventTask&quot;);
 task.AddEvent(coreEvent);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when the argument is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the argument is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of an invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when out of memory.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -386,7 +292,7 @@ task.AddEvent(coreEvent);</code></pre>
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L223">View Source</a>
   </span>
   <a id="Tizen_Core_Task_AddTimer_" data-uid="Tizen.Core.Task.AddTimer*"></a>
-  <h4 id="Tizen_Core_Task_AddTimer_System_UInt32_System_Func_System_Boolean__" data-uid="Tizen.Core.Task.AddTimer(System.UInt32,System.Func{System.Boolean})">AddTimer(uint, Func&lt;bool&gt;)</h4>
+  <h4 id="Tizen_Core_Task_AddTimer_System_UInt32_Func_System_Boolean__" data-uid="Tizen.Core.Task.AddTimer(System.UInt32,Func{System.Boolean})">AddTimer(uint, Func&lt;bool&gt;)</h4>
   <div class="markdown level1 summary"><p>Adds a recurring timer to a main loop of the task.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -411,7 +317,7 @@ task.AddEvent(coreEvent);</code></pre>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Func&lt;TResult&gt;</span>&lt;<span class="xref">bool</span>&gt;</td>
+        <td><span class="xref">Func&lt;&gt;</span>&lt;<span class="xref">bool</span>&gt;</td>
         <td><span class="parametername">callback</span></td>
         <td><p>The recurring timer callback function which returns whether or not to continue triggering the timer.</p>
 </td>
@@ -434,42 +340,16 @@ task.AddEvent(coreEvent);</code></pre>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Core_Task_AddTimer_System_UInt32_System_Func_System_Boolean___remarks">Remarks</h5>
+  <h5 id="Tizen_Core_Task_AddTimer_System_UInt32_Func_System_Boolean___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The callback function will be called every time the specified interval elapses. It should return true to keep the timer running, otherwise the timer will be stopped.</p>
 </div>
-  <h5 id="Tizen_Core_Task_AddTimer_System_UInt32_System_Func_System_Boolean___examples">Examples</h5>
+  <h5 id="Tizen_Core_Task_AddTimer_System_UInt32_Func_System_Boolean___examples">Examples</h5>
   <pre><code>var task = TizenCore.Find(&quot;TimerTask&quot;) ?? TizenCore.Spawn(&quot;TimerTask&quot;);
 var timerId = task.AddTimer(1000, () => {
   Console.WriteLine(&quot;Timer callback is invoked&quot;);
   return true;
 });</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when the callback argument is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of an invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when out of memory.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -564,32 +444,6 @@ using (var eventObject = new TCoreEventObject(id++, message))
   task.EmitEvent(eventObject);
 }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when the argument is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the argument is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of an invalid operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -614,7 +468,7 @@ using (var eventObject = new TCoreEventObject(id++, message))
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L118">View Source</a>
   </span>
   <a id="Tizen_Core_Task_Post_" data-uid="Tizen.Core.Task.Post*"></a>
-  <h4 id="Tizen_Core_Task_Post_System_Action_" data-uid="Tizen.Core.Task.Post(System.Action)">Post(Action)</h4>
+  <h4 id="Tizen_Core_Task_Post_Action_" data-uid="Tizen.Core.Task.Post(Action)">Post(Action)</h4>
   <div class="markdown level1 summary"><p>Posts an action to be executed later.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -633,51 +487,25 @@ using (var eventObject = new TCoreEventObject(id++, message))
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Action</span></td>
+        <td><span class="xref">Action</span></td>
         <td><span class="parametername">action</span></td>
         <td><p>The action callback to post.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Core_Task_Post_System_Action__remarks">Remarks</h5>
+  <h5 id="Tizen_Core_Task_Post_Action__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The action callback will be executed by the main loop of the task.
 If there was any error during this process, an appropriate exception will be thrown.
 In order to prevent the <code data-dev-comment-type="paramref" class="paramref">action</code> from throwing an exception, you should add a try/catch block. If not, it may cause the application to crash or terminate.</p>
 </div>
-  <h5 id="Tizen_Core_Task_Post_System_Action__examples">Examples</h5>
+  <h5 id="Tizen_Core_Task_Post_Action__examples">Examples</h5>
   <pre><code>var task = TizenCore.Find(&quot;Test&quot;) ?? TizenCore.Spawn(&quot;Test&quot;);
 task.Post(() =>
 {
   Console.WriteLine(&quot;Test task&quot;);
 });</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when the action argument is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of an invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when out of memory.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -686,13 +514,13 @@ task.Post(() =>
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Core/Tizen.Core/Task.cs/#L173">View Source</a>
   </span>
   <a id="Tizen_Core_Task_Post_" data-uid="Tizen.Core.Task.Post*"></a>
-  <h4 id="Tizen_Core_Task_Post_System_Func_System_Threading_Tasks_Task__" data-uid="Tizen.Core.Task.Post(System.Func{System.Threading.Tasks.Task})">Post(Func&lt;Task&gt;)</h4>
+  <h4 id="Tizen_Core_Task_Post_Func_System_Threading_Tasks_Task__" data-uid="Tizen.Core.Task.Post(Func{System.Threading.Tasks.Task})">Post(Func&lt;Task&gt;)</h4>
   <div class="markdown level1 summary"><p>Posts a task to be executed later.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Post(Func&lt;Task&gt; task)</code></pre>
+    <pre><code class="lang-csharp hljs">public void Post(Func&lt;System.Threading.Tasks.Task&gt; task)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -705,20 +533,20 @@ task.Post(() =>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Func&lt;TResult&gt;</span>&lt;<span class="xref">System.Threading.Tasks.Task</span>&gt;</td>
+        <td><span class="xref">Func&lt;&gt;</span>&lt;<span class="xref">Task</span>&gt;</td>
         <td><span class="parametername">task</span></td>
         <td><p>The task to post.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Core_Task_Post_System_Func_System_Threading_Tasks_Task___remarks">Remarks</h5>
+  <h5 id="Tizen_Core_Task_Post_Func_System_Threading_Tasks_Task___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The task will be stored in the internal map using its unique identifier.
 Then it will be added as an idle job to the main loop of the task.
 If there was any error during this process, the task will be removed from the map and an appropriate exception will be thrown.
 In order to prevent the <code data-dev-comment-type="paramref" class="paramref">task</code> from throwing an exception, you should add a try/catch block. If not, it may cause the application to crash or terminate.</p>
 </div>
-  <h5 id="Tizen_Core_Task_Post_System_Func_System_Threading_Tasks_Task___examples">Examples</h5>
+  <h5 id="Tizen_Core_Task_Post_Func_System_Threading_Tasks_Task___examples">Examples</h5>
   <pre><code>var channel = new Channel();
 var task = TizenCore.Find(&quot;Sender&quot;) ?? TizenCore.Spawn(&quot;Sender&quot;);
 
@@ -730,32 +558,6 @@ task.Post(async () =>
   Console.WriteLine(&quot;Received message = &quot; + message);
 });</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when the task argument is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of an invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when out of memory.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -786,22 +588,6 @@ if (coreTask.Running)
   coreTask.Quit();
 }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of an invalid operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -847,27 +633,6 @@ receiver.Received += (sender, args) => {
 task.AddChannelReceiver(receiver);
 task.RemoveChannelReceiver(receiver);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when the argument is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the argument is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -912,27 +677,6 @@ var task = TizenCore.Find(&quot;EventTask&quot;) ?? TizenCore.Spawn(&quot;EventT
 task.AddEvent(coreEvent);
 task.RemoveEvent(coreEvent);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when the argument is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the argument is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1001,29 +745,31 @@ var coreTask = new TCoreTask(&quot;Runner&quot;);
 // Start the main loop of the task
 coreTask.Run();</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when failed because of an invalid operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="implements">Implements</h3>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Vector4 : Disposable, IDisposable, ICloneable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Vector4 : Disposable, ICloneable</code></pre>
   </div>
 
 
@@ -114,8 +114,7 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
-      <div class="pdl"><span class="xref">System.ICloneable</span></div>
+      <div class="pdl"><span class="xref">ICloneable</span></div>
     </dd>
   </dl>
 
@@ -954,6 +953,352 @@ Actual value is (0.0f, 0.0f, 0.0f, 0.0f).</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Common/Vector4.cs/#L886">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Vector4_Clone_" data-uid="Tizen.NUI.Vector4.Clone*"></a>
+  <h4 id="Tizen_NUI_Vector4_Clone" data-uid="Tizen.NUI.Vector4.Clone">Clone()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object Clone()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Common/Vector4.cs/#L807">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Vector4_Cross_" data-uid="Tizen.NUI.Vector4.Cross*"></a>
+  <h4 id="Tizen_NUI_Vector4_Cross_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Vector4.Cross(Tizen.NUI.Vector4)">Cross(Vector4)</h4>
+  <div class="markdown level1 summary"><p>Calculates the cross product of this vector and another Vector4.
+The W component is treated as 0.0f for the calculation, and the resulting vector's W component will be 0.0f.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Vector4 Cross(Vector4 other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>The other Vector4.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td><p>The cross product of the two vectors.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Common/Vector4.cs/#L822">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Vector4_Distance_" data-uid="Tizen.NUI.Vector4.Distance*"></a>
+  <h4 id="Tizen_NUI_Vector4_Distance_Tizen_NUI_Vector4_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Vector4.Distance(Tizen.NUI.Vector4,Tizen.NUI.Vector4)">Distance(Vector4, Vector4)</h4>
+  <div class="markdown level1 summary"><p>Calculates the Euclidean distance between two 4D vectors.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float Distance(Vector4 a, Vector4 b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>The first vector.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>The second vector.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The distance between vector a and b.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Common/Vector4.cs/#L840">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Vector4_Distance3_" data-uid="Tizen.NUI.Vector4.Distance3*"></a>
+  <h4 id="Tizen_NUI_Vector4_Distance3_Tizen_NUI_Vector4_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Vector4.Distance3(Tizen.NUI.Vector4,Tizen.NUI.Vector4)">Distance3(Vector4, Vector4)</h4>
+  <div class="markdown level1 summary"><p>Calculates the 3D Euclidean distance between the xyz components of two 4D vectors.
+The W component is ignored.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static float Distance3(Vector4 a, Vector4 b)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td><span class="parametername">a</span></td>
+        <td><p>The first vector.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td><span class="parametername">b</span></td>
+        <td><p>The second vector.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The 3D distance between the xyz components of vector a and b.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Common/Vector4.cs/#L763">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Vector4_Dot_" data-uid="Tizen.NUI.Vector4.Dot*"></a>
+  <h4 id="Tizen_NUI_Vector4_Dot_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Vector4.Dot(Tizen.NUI.Vector3)">Dot(Vector3)</h4>
+  <div class="markdown level1 summary"><p>Calculates the dot product of this vector and a Vector3.
+The W component of this vector is not used in the calculation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Dot(Vector3 other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector3.html">Vector3</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>The other Vector3.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The dot product of the two vectors.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Common/Vector4.cs/#L777">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Vector4_Dot_" data-uid="Tizen.NUI.Vector4.Dot*"></a>
+  <h4 id="Tizen_NUI_Vector4_Dot_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Vector4.Dot(Tizen.NUI.Vector4)">Dot(Vector4)</h4>
+  <div class="markdown level1 summary"><p>Calculates the dot product of this vector and another Vector4.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Dot(Vector4 other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>The other Vector4.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The dot product of the two vectors.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Common/Vector4.cs/#L792">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Vector4_Dot3_" data-uid="Tizen.NUI.Vector4.Dot3*"></a>
+  <h4 id="Tizen_NUI_Vector4_Dot3_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Vector4.Dot3(Tizen.NUI.Vector4)">Dot3(Vector4)</h4>
+  <div class="markdown level1 summary"><p>Calculates the 3D dot product of this vector and another Vector4 using only the x, y, and z components.
+a.x<em>b.x + a.y</em>b.y + a.z*b.z (without w)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Dot3(Vector4 other)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td><span class="parametername">other</span></td>
+        <td><p>The other Vector4.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The 3D dot product of the two vectors.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Common/Vector4.cs/#L649">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_Equals_" data-uid="Tizen.NUI.Vector4.Equals*"></a>
@@ -1031,8 +1376,6 @@ Actual value is (0.0f, 0.0f, 0.0f, 0.0f).</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">object.GetHashCode()</span></div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1061,6 +1404,38 @@ Actual value is (0.0f, 0.0f, 0.0f, 0.0f).</p>
       <tr>
         <td><span class="xref">float</span></td>
         <td><p>The length.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Common/Vector4.cs/#L686">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Vector4_Length3_" data-uid="Tizen.NUI.Vector4.Length3*"></a>
+  <h4 id="Tizen_NUI_Vector4_Length3" data-uid="Tizen.NUI.Vector4.Length3">Length3()</h4>
+  <div class="markdown level1 summary"><p>Returns the length of the xyz components of vector.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float Length3()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The length of xyz components.</p>
 </td>
       </tr>
     </tbody>
@@ -1104,6 +1479,40 @@ threshold checks as it avoids use of the square root.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Common/Vector4.cs/#L714">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Vector4_LengthSquared3_" data-uid="Tizen.NUI.Vector4.LengthSquared3*"></a>
+  <h4 id="Tizen_NUI_Vector4_LengthSquared3" data-uid="Tizen.NUI.Vector4.LengthSquared3">LengthSquared3()</h4>
+  <div class="markdown level1 summary"><p>Returns the length of the vector squared.<br>
+This is faster than using Length() when performing
+threshold checks as it avoids use of the square root.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float LengthSquared3()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>The length of xyz components vector squared.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Common/Vector4.cs/#L727">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_Normalize_" data-uid="Tizen.NUI.Vector4.Normalize*"></a>
@@ -1116,6 +1525,159 @@ Sets the vector to unit length whilst maintaining its direction.<br></p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Normalize()</code></pre>
   </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Common/Vector4.cs/#L856">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Vector4_Normalize_" data-uid="Tizen.NUI.Vector4.Normalize*"></a>
+  <h4 id="Tizen_NUI_Vector4_Normalize_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Vector4.Normalize(Tizen.NUI.Vector4)">Normalize(Vector4)</h4>
+  <div class="markdown level1 summary"><p>Returns a new vector that is the normalized version of the specified 4D vector.
+The original vector remains unchanged.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector4 Normalize(Vector4 vector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td><span class="parametername">vector</span></td>
+        <td><p>The vector to normalize.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td><p>A new Vector4 with a magnitude of 1 in the same direction.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Common/Vector4.cs/#L737">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Vector4_Normalize3_" data-uid="Tizen.NUI.Vector4.Normalize3*"></a>
+  <h4 id="Tizen_NUI_Vector4_Normalize3" data-uid="Tizen.NUI.Vector4.Normalize3">Normalize3()</h4>
+  <div class="markdown level1 summary"><p>Normalizes the vector of xyz components.<br>
+Sets the vector to unit length whilst maintaining its direction.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Normalize3()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Common/Vector4.cs/#L874">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Vector4_Normalize3_" data-uid="Tizen.NUI.Vector4.Normalize3*"></a>
+  <h4 id="Tizen_NUI_Vector4_Normalize3_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Vector4.Normalize3(Tizen.NUI.Vector4)">Normalize3(Vector4)</h4>
+  <div class="markdown level1 summary"><p>Returns a new vector that is the normalized version of the xyz components of the specified 4D vector.
+The original vector remains unchanged. The W component of the result is the same as the original vector's W component.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Vector4 Normalize3(Vector4 vector)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td><span class="parametername">vector</span></td>
+        <td><p>The vector whose xyz components are to be normalized.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td><p>A new Vector4 with xyz components of magnitude 1 and the original W component.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Common/Vector4.cs/#L903">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Vector4_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Vector4.ReleaseSwigCPtr*"></a>
+  <h4 id="Tizen_NUI_Vector4_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Vector4.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
+        <td><span class="parametername">swigCPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Disposable.html#Tizen_NUI_Disposable_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">Disposable.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1283,6 +1845,55 @@ Sets the vector to unit length whilst maintaining its direction.<br></p>
         <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
         <td><p>The vector containing the result of the division.</p>
 </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI/src/public/Common/Vector4.cs/#L638">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Vector4_op_Implicit_" data-uid="Tizen.NUI.Vector4.op_Implicit*"></a>
+  <h4 id="Tizen_NUI_Vector4_op_Implicit_System_Single__Tizen_NUI_Vector4" data-uid="Tizen.NUI.Vector4.op_Implicit(System.Single)~Tizen.NUI.Vector4">implicit operator Vector4(float)</h4>
+  <div class="markdown level1 summary"><p>Converts the float value to Vector4 class implicitly.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static implicit operator Vector4(float value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>A float value to be converted to Vector4</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector4.html">Vector4</a></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -1510,10 +2121,20 @@ Sets the vector to unit length whilst maintaining its direction.<br></p>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <span class="xref">ICloneable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
   </div>
   <div>
-      <span class="xref">System.ICloneable</span>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

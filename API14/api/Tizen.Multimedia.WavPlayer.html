@@ -117,7 +117,7 @@
     <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.AudioIO/WavPlayer/WavPlayer.cs/#L70">View Source</a>
   </span>
   <a id="Tizen_Multimedia_WavPlayer_StartAsync_" data-uid="Tizen.Multimedia.WavPlayer.StartAsync*"></a>
-  <h4 id="Tizen_Multimedia_WavPlayer_StartAsync_System_String_Tizen_Multimedia_AudioStreamPolicy_System_Threading_CancellationToken_" data-uid="Tizen.Multimedia.WavPlayer.StartAsync(System.String,Tizen.Multimedia.AudioStreamPolicy,System.Threading.CancellationToken)">StartAsync(string, AudioStreamPolicy, CancellationToken)</h4>
+  <h4 id="Tizen_Multimedia_WavPlayer_StartAsync_System_String_Tizen_Multimedia_AudioStreamPolicy_CancellationToken_" data-uid="Tizen.Multimedia.WavPlayer.StartAsync(System.String,Tizen.Multimedia.AudioStreamPolicy,CancellationToken)">StartAsync(string, AudioStreamPolicy, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Plays a wav file based on the specified <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -148,7 +148,7 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
         <td><p>A cancellation token which can be used to stop.</p>
 </td>
@@ -165,7 +165,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><span class="xref">Task</span></td>
         <td><p>A task that represents the asynchronous operation.</p>
 </td>
       </tr>
@@ -181,30 +181,95 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is null.</p>
-<p>-or-</p>
-<code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> is null.
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.FileNotFoundException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> does not exists.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Multimedia.FileFormatException.html">FileFormatException</a></td>
         <td><p>The format of <code data-dev-comment-type="paramref" class="paramref">path</code> is not supported.</p>
 </td>
       </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Multimedia.AudioIO/WavPlayer/WavPlayer.cs/#L110">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_WavPlayer_StartAsync_" data-uid="Tizen.Multimedia.WavPlayer.StartAsync*"></a>
+  <h4 id="Tizen_Multimedia_WavPlayer_StartAsync_System_String_Tizen_Multimedia_AudioStreamPolicy_System_UInt32_CancellationToken_" data-uid="Tizen.Multimedia.WavPlayer.StartAsync(System.String,Tizen.Multimedia.AudioStreamPolicy,System.UInt32,CancellationToken)">StartAsync(string, AudioStreamPolicy, uint, CancellationToken)</h4>
+  <div class="markdown level1 summary"><p>Plays a wav file based on the specified <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a> with given repetition number.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Task StartAsync(string path, AudioStreamPolicy streamPolicy, uint loopCount, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
       <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> has already been disposed of.</p>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">path</span></td>
+        <td><p>A file path to play.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a></td>
+        <td><span class="parametername">streamPolicy</span></td>
+        <td><p>A <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">loopCount</span></td>
+        <td><p>A number of repetitions.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>A cancellation token which can be used to stop.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td><p>A task that represents the asynchronous operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_WavPlayer_StartAsync_System_String_Tizen_Multimedia_AudioStreamPolicy_System_UInt32_CancellationToken__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If loopCount is 0, it means infinite loops</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.FileFormatException.html">FileFormatException</a></td>
+        <td><p>The format of <code data-dev-comment-type="paramref" class="paramref">path</code> is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -259,7 +324,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><span class="xref">Task</span></td>
         <td><p>A task that represents the asynchronous operation.</p>
 </td>
       </tr>
@@ -275,30 +340,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is null.</p>
-<p>-or-</p>
-<code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> is null.
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.FileNotFoundException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> does not exists.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Multimedia.FileFormatException.html">FileFormatException</a></td>
         <td><p>The format of <code data-dev-comment-type="paramref" class="paramref">path</code> is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> has already been disposed of.</p>
 </td>
       </tr>
     </tbody>

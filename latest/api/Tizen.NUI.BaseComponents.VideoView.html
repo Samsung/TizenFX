@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class VideoView : View, INotifyPropertyChanged, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class VideoView : View, IDynamicResourceHandler, INameScope, System.IDisposable, IResourcesProvider</code></pre>
   </div>
 
 
@@ -103,8 +103,8 @@
     <dd>
       <div class="pdl-holder">
         <div class="pdl"><span class="xref">object</span></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.BindableObject</span></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
@@ -119,8 +119,10 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
     </dd>
   </dl>
 
@@ -138,6 +140,82 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public VideoView()</code></pre>
   </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L185">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VideoView__ctor_" data-uid="Tizen.NUI.BaseComponents.VideoView.#ctor*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VideoView__ctor_System_Boolean_" data-uid="Tizen.NUI.BaseComponents.VideoView.#ctor(System.Boolean)">VideoView(bool)</h4>
+  <div class="markdown level1 summary"><p>Creates an initialized VideoView.<br>
+If the string is empty, VideoView will not display anything.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VideoView(bool swCodec)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">swCodec</span></td>
+        <td><p>Video rendering by H/W codec if false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L197">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VideoView__ctor_" data-uid="Tizen.NUI.BaseComponents.VideoView.#ctor*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VideoView__ctor_System_String_System_Boolean_" data-uid="Tizen.NUI.BaseComponents.VideoView.#ctor(System.String,System.Boolean)">VideoView(string, bool)</h4>
+  <div class="markdown level1 summary"><p>Creates an initialized VideoView.<br>
+If the string is empty, VideoView will not display anything.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VideoView(string url, bool swCodec)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">url</span></td>
+        <td><p>The URL of the video resource to display.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">swCodec</span></td>
+        <td><p>Video rendering by H/W codec if false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -177,8 +255,289 @@ If the string is empty, VideoView will not display anything.<br></p>
 
   <div style="margin-bottom: 15px"></div>
 
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L211">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VideoView__ctor_" data-uid="Tizen.NUI.BaseComponents.VideoView.#ctor*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VideoView__ctor_Uri_System_Boolean_" data-uid="Tizen.NUI.BaseComponents.VideoView.#ctor(Uri,System.Boolean)">VideoView(Uri, bool)</h4>
+  <div class="markdown level1 summary"><p>Hidden API (Inhouse API).
+Using Uri class to provide safe service and secure API.
+Creates an initialized VideoView.
+If the string is empty, VideoView will not display anything.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VideoView(Uri uri, bool swCodec)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Uri</span></td>
+        <td><span class="parametername">uri</span></td>
+        <td><p>The URI of the video resource to display.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">swCodec</span></td>
+        <td><p>Video rendering by H/W codec if false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L49">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_VideoView_LoopingProperty" data-uid="Tizen.NUI.BaseComponents.VideoView.LoopingProperty">LoopingProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty LoopingProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L66">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_VideoView_MutedProperty" data-uid="Tizen.NUI.BaseComponents.VideoView.MutedProperty">MutedProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty MutedProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L117">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_VideoView_ResourceUrlProperty" data-uid="Tizen.NUI.BaseComponents.VideoView.ResourceUrlProperty">ResourceUrlProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty ResourceUrlProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L100">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_VideoView_UnderlayProperty" data-uid="Tizen.NUI.BaseComponents.VideoView.UnderlayProperty">UnderlayProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty UnderlayProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L32">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_VideoView_VideoProperty" data-uid="Tizen.NUI.BaseComponents.VideoView.VideoProperty">VideoProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty VideoProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L83">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_VideoView_VolumeProperty" data-uid="Tizen.NUI.BaseComponents.VideoView.VolumeProperty">VolumeProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty VolumeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="properties">Properties
 </h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L544">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VideoView_IsAutoRotationEnabled_" data-uid="Tizen.NUI.BaseComponents.VideoView.IsAutoRotationEnabled*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VideoView_IsAutoRotationEnabled" data-uid="Tizen.NUI.BaseComponents.VideoView.IsAutoRotationEnabled">IsAutoRotationEnabled</h4>
+  <div class="markdown level1 summary"><p>Enables auto rotation of the video based on the orientation of the video contents.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsAutoRotationEnabled { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L567">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VideoView_IsLetterBoxEnabled_" data-uid="Tizen.NUI.BaseComponents.VideoView.IsLetterBoxEnabled*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VideoView_IsLetterBoxEnabled" data-uid="Tizen.NUI.BaseComponents.VideoView.IsLetterBoxEnabled">IsLetterBoxEnabled</h4>
+  <div class="markdown level1 summary"><p>Enables letter box of the video based on the aspect of the video contents.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsLetterBoxEnabled { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L306">View Source</a>
   </span>
@@ -274,7 +633,7 @@ if(handle.IsInvalid == false)
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Runtime.InteropServices.SafeHandle</span></td>
+        <td><span class="xref">SafeHandle</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -485,6 +844,45 @@ Releases unmanaged and optionally managed resources.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L647">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VideoView_EnableOffscreenFrameRendering_" data-uid="Tizen.NUI.BaseComponents.VideoView.EnableOffscreenFrameRendering*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VideoView_EnableOffscreenFrameRendering_System_Boolean_" data-uid="Tizen.NUI.BaseComponents.VideoView.EnableOffscreenFrameRendering(System.Boolean)">EnableOffscreenFrameRendering(bool)</h4>
+  <div class="markdown level1 summary"><p>Enables or disables offscreen frame rendering for video interpolation.</p>
+<p>When enabled, the video player will use offscreen rendering for frame interpolation,
+which can improve visual quality for certain video content.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void EnableOffscreenFrameRendering(bool useOffScreenFrame)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">useOffScreenFrame</span></td>
+        <td><p>True to enable offscreen frame rendering, false to disable.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_VideoView_EnableOffscreenFrameRendering_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This method must be called on the main thread.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L689">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_VideoView_Forward_" data-uid="Tizen.NUI.BaseComponents.VideoView.Forward*"></a>
@@ -551,6 +949,77 @@ Releases unmanaged and optionally managed resources.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L768">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VideoView_ReleaseSwigCPtr_" data-uid="Tizen.NUI.BaseComponents.VideoView.ReleaseSwigCPtr*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VideoView_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.BaseComponents.VideoView.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
+        <td><span class="parametername">swigCPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">View.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L621">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VideoView_SetVideoFrameBuffer_" data-uid="Tizen.NUI.BaseComponents.VideoView.SetVideoFrameBuffer*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VideoView_SetVideoFrameBuffer_Tizen_NUI_NativeImageSource_" data-uid="Tizen.NUI.BaseComponents.VideoView.SetVideoFrameBuffer(Tizen.NUI.NativeImageSource)">SetVideoFrameBuffer(NativeImageSource)</h4>
+  <div class="markdown level1 summary"><p>Sets the NativeImageSource for the current video frame to be used in frame interpolation.
+The VideoView must be in underlay mode (Underlay = true) and have a valid video size for this to take effect.
+Call SetFrameInterpolationInterval() first to configure the interpolation duration.
+This method is thread-safe and can be called from worker threads.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetVideoFrameBuffer(NativeImageSource nativeImageSource)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.NativeImageSource.html">NativeImageSource</a></td>
+        <td><span class="parametername">nativeImageSource</span></td>
+        <td><p>The NativeImageSource for the current frame.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L678">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_VideoView_Stop_" data-uid="Tizen.NUI.BaseComponents.VideoView.Stop*"></a>
@@ -590,7 +1059,7 @@ The finished signal is emitted when a video playback has finished.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.VideoView.html">VideoView</a>.<a class="xref" href="Tizen.NUI.BaseComponents.VideoView.FinishedEventArgs.html">FinishedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.VideoView.FinishedEventArgs.html">FinishedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -601,10 +1070,191 @@ The finished signal is emitted when a video playback has finished.<br></p>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindingExtensions.html#Tizen_NUI_Binding_BindingExtensions_BindingSession__2___0_Tizen_NUI_Binding_BindingSession___1__">BindingExtensions.BindingSession&lt;T, TViewModel&gt;(T, BindingSession&lt;TViewModel&gt;)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindingExtensions.html#Tizen_NUI_Binding_BindingExtensions_SetBinding__2___1_Tizen_NUI_Binding_BindingSession___0__Action___0___1__System_String_">BindingExtensions.SetBinding&lt;T, TView&gt;(TView, BindingSession&lt;T&gt;, Action&lt;T, TView&gt;, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindingExtensions.html#Tizen_NUI_Binding_BindingExtensions_SetBinding__3___0_Tizen_NUI_Binding_BindingSession___1__Tizen_NUI_Binding_BindingProperty___0___2__System_String_">BindingExtensions.SetBinding&lt;TView, TViewModel, TProperty&gt;(TView, BindingSession&lt;TViewModel&gt;, BindingProperty&lt;TView, TProperty&gt;, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindingExtensions.html#Tizen_NUI_Binding_BindingExtensions_SetTwoWayBinding__3___0_Tizen_NUI_Binding_BindingSession___1__Tizen_NUI_Binding_TwoWayBindingProperty___0___2__System_String_">BindingExtensions.SetTwoWayBinding&lt;TView, TViewModel, TProperty&gt;(TView, BindingSession&lt;TViewModel&gt;, TwoWayBindingProperty&lt;TView, TProperty&gt;, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BackgroundColor__1___0_System_Single_System_Single_System_Single_System_Single_">ViewExtensions.BackgroundColor&lt;T&gt;(T, float, float, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BackgroundColor__1___0_System_UInt32_System_Single_">ViewExtensions.BackgroundColor&lt;T&gt;(T, uint, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BackgroundColor__1___0_Tizen_NUI_UIColor_">ViewExtensions.BackgroundColor&lt;T&gt;(T, UIColor)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BackgroundImage__1___0_System_String_">ViewExtensions.BackgroundImage&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Borderline__1___0_System_Single_Tizen_NUI_UIColor_System_Single_">ViewExtensions.Borderline&lt;T&gt;(T, float, UIColor, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineColor__1___0_System_Single_System_Single_System_Single_System_Single_">ViewExtensions.BorderlineColor&lt;T&gt;(T, float, float, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineColor__1___0_System_UInt32_System_Single_">ViewExtensions.BorderlineColor&lt;T&gt;(T, uint, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineColor__1___0_Tizen_NUI_UIColor_">ViewExtensions.BorderlineColor&lt;T&gt;(T, UIColor)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineOffset__1___0_System_Single_">ViewExtensions.BorderlineOffset&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineWidth__1___0_System_Single_">ViewExtensions.BorderlineWidth&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BoxShadow__1___0_System_Single_System_Single_System_Single_">ViewExtensions.BoxShadow&lt;T&gt;(T, float, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BoxShadow__1___0_System_Single_Tizen_NUI_UIColor_System_Single_System_Single_">ViewExtensions.BoxShadow&lt;T&gt;(T, float, UIColor, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BoxShadow__1___0_Tizen_NUI_UIShadow_">ViewExtensions.BoxShadow&lt;T&gt;(T, UIShadow)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_ClippingMode__1___0_Tizen_NUI_ClippingModeType_">ViewExtensions.ClippingMode&lt;T&gt;(T, ClippingModeType)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Color__1___0_System_Single_System_Single_System_Single_System_Single_">ViewExtensions.Color&lt;T&gt;(T, float, float, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Color__1___0_System_UInt32_System_Single_">ViewExtensions.Color&lt;T&gt;(T, uint, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Color__1___0_Tizen_NUI_UIColor_">ViewExtensions.Color&lt;T&gt;(T, UIColor)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_CornerRadius__1___0_System_Single_System_Boolean_">ViewExtensions.CornerRadius&lt;T&gt;(T, float, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_CornerRadius__1___0_System_Single_System_Single_System_Single_System_Single_System_Boolean_">ViewExtensions.CornerRadius&lt;T&gt;(T, float, float, float, float, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_CornerRadius__1___0_Tizen_NUI_UICorner_">ViewExtensions.CornerRadius&lt;T&gt;(T, UICorner)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Focusable__1___0_System_Boolean_">ViewExtensions.Focusable&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_FocusableChildren__1___0_System_Boolean_">ViewExtensions.FocusableChildren&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_FocusableInTouch__1___0_System_Boolean_">ViewExtensions.FocusableInTouch&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_ImageShadow__1___0_Tizen_NUI_ImageShadow_">ViewExtensions.ImageShadow&lt;T&gt;(T, ImageShadow)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_IsEnabled__1___0_System_Boolean_">ViewExtensions.IsEnabled&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Layout__1___0_Tizen_NUI_LayoutItem_">ViewExtensions.Layout&lt;T&gt;(T, LayoutItem)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Opacity__1___0_System_Single_">ViewExtensions.Opacity&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Position__1___0_System_Single_System_Single_">ViewExtensions.Position&lt;T&gt;(T, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_PositionX__1___0_System_Single_">ViewExtensions.PositionX&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_PositionY__1___0_System_Single_">ViewExtensions.PositionY&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Scale__1___0_System_Single_System_Single_">ViewExtensions.Scale&lt;T&gt;(T, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_ScaleX__1___0_System_Single_">ViewExtensions.ScaleX&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_ScaleY__1___0_System_Single_">ViewExtensions.ScaleY&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Sensitive__1___0_System_Boolean_">ViewExtensions.Sensitive&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Size__1___0_System_Single_System_Single_">ViewExtensions.Size&lt;T&gt;(T, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_SizeHeight__1___0_System_Single_">ViewExtensions.SizeHeight&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_SizeWidth__1___0_System_Single_">ViewExtensions.SizeWidth&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Visibility__1___0_System_Boolean_">ViewExtensions.Visibility&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_VoiceInteractionName__1___0_System_String_">ViewExtensions.VoiceInteractionName&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindingExtensions.html#Tizen_NUI_Binding_BindingExtensions_BindingSession__1_Tizen_NUI_BaseComponents_View_">BindingExtensions.BindingSession&lt;TViewModel&gt;(View)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindingExtensions.html#Tizen_NUI_Binding_BindingExtensions_SetBinding__1_Tizen_NUI_BaseComponents_View_Tizen_NUI_Binding_BindingSession___0__Action___0__System_String_">BindingExtensions.SetBinding&lt;T&gt;(View, BindingSession&lt;T&gt;, Action&lt;T&gt;, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindingExtensions.html#Tizen_NUI_Binding_BindingExtensions_SetBinding__1_Tizen_NUI_BaseComponents_View_Tizen_NUI_Binding_BindingSession___0__System_String_System_String_">BindingExtensions.SetBinding&lt;TViewModel&gt;(View, BindingSession&lt;TViewModel&gt;, string, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindingExtensions.html#Tizen_NUI_Binding_BindingExtensions_SetTwoWayBinding__2_Tizen_NUI_BaseComponents_View_Tizen_NUI_Binding_BindingSession___0__Tizen_NUI_Binding_TwoWayBindingProperty_Tizen_NUI_BaseComponents_View___1__System_String_">BindingExtensions.SetTwoWayBinding&lt;TViewModel, TProperty&gt;(View, BindingSession&lt;TViewModel&gt;, TwoWayBindingProperty&lt;View, TProperty&gt;, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BackgroundColor_Tizen_NUI_BaseComponents_View_">ViewExtensions.BackgroundColor(View)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineColor_Tizen_NUI_BaseComponents_View_">ViewExtensions.BorderlineColor(View)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BoxShadow_Tizen_NUI_BaseComponents_View_">ViewExtensions.BoxShadow(View)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Color_Tizen_NUI_BaseComponents_View_">ViewExtensions.Color(View)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_CornerRadius_Tizen_NUI_BaseComponents_View_">ViewExtensions.CornerRadius(View)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, string, BindingMode, IValueConverter, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, string)</a>
   </div>
 </article>
           </div>

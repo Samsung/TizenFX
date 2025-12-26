@@ -117,12 +117,6 @@ All resources need to inherit from this class.</p>
   </dl>
 
 
-  <dl class="attribute-list stack">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
-    </dd>
-  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
@@ -136,8 +130,7 @@ All resources need to inherit from this class.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-protected Resource(string uri, ResourceTypes types, ResourceInterfaces interfaces, ResourcePolicy policy)</code></pre>
+    <pre><code class="lang-csharp hljs">protected Resource(string uri, ResourceTypes types, ResourceInterfaces interfaces, ResourcePolicy policy)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -200,27 +193,6 @@ and its length must be less than 128.</p>
      ResourceTypes types = new ResourceTypes(new List&lt;string>(){ &quot;oic.iot.door.new&quot; });
      Resource resource = new DoorResource(&quot;/door/uri1&quot;, types, ifaces, ResourcePolicy.Discoverable | ResourcePolicy.Observable);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the iotcon is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when there is not enough memory.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Network_IoTConnectivity_Resource__ctor_System_String_Tizen_Network_IoTConnectivity_ResourceTypes_Tizen_Network_IoTConnectivity_ResourceInterfaces_Tizen_Network_IoTConnectivity_ResourcePolicy__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceTypes.html">ResourceTypes</a></div>
@@ -243,8 +215,7 @@ and its length must be less than 128.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public ICollection&lt;Resource&gt; Children { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ICollection&lt;Resource&gt; Children { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -256,7 +227,7 @@ public ICollection&lt;Resource&gt; Children { get; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.ICollection&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Network.IoTConnectivity.Resource.html">Resource</a>&gt;</td>
+        <td><span class="xref">ICollection&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.IoTConnectivity.Resource.html">Resource</a>&gt;</td>
         <td><p>List of Child resources.</p>
 </td>
       </tr>
@@ -276,8 +247,7 @@ public ICollection&lt;Resource&gt; Children { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public ResourceInterfaces Interfaces { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ResourceInterfaces Interfaces { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -309,8 +279,7 @@ public ResourceInterfaces Interfaces { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public ResourcePolicy Policy { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ResourcePolicy Policy { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -342,8 +311,7 @@ public ResourcePolicy Policy { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public ResourceTypes Types { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ResourceTypes Types { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -375,8 +343,7 @@ public ResourceTypes Types { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public string UriPath { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string UriPath { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -426,8 +393,7 @@ public string UriPath { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-protected virtual void Dispose(bool disposing)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -477,8 +443,7 @@ protected virtual void Dispose(bool disposing)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public void Notify(Representation representation, QualityOfService qos)</code></pre>
+    <pre><code class="lang-csharp hljs">public void Notify(Representation representation, QualityOfService qos)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -518,32 +483,6 @@ public void Notify(Representation representation, QualityOfService qos)</code></
      };
      resource.Notify(repr, QualityOfService.High);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the iotcon is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have privilege to access.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the operation is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Network_IoTConnectivity_Resource_Notify_Tizen_Network_IoTConnectivity_Representation_Tizen_Network_IoTConnectivity_QualityOfService__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.Representation.html">Representation</a></div>
@@ -815,9 +754,18 @@ public void Notify(Representation representation, QualityOfService qos)</code></
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="implements">Implements</h3>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

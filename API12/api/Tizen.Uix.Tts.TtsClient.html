@@ -111,12 +111,6 @@ Applications can add input-text to queue for reading continuously and control th
 
 
 
-  <dl class="attribute-list stack">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
-    </dd>
-  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
@@ -132,36 +126,6 @@ Applications can add input-text to queue for reading continuously and control th
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public TtsClient()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>This exception can be due to the following reasons:</p>
-<ol>
-<li>Operation Failed</li>
-<li>Engine Not Found</li>
-</ol>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>This exception can be due to out Of memory.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>This exception can be due to TTS not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -192,36 +156,6 @@ Applications can add input-text to queue for reading continuously and control th
       <tr>
         <td><a class="xref" href="Tizen.Uix.Tts.Mode.html">Mode</a></td>
         <td><p>The current TTS mode (default, screen-reader, notification).</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>This exception can be due to the following reasons while setting the value:</p>
-<ol>
-<li>Operation Failed</li>
-<li>Engine Not Found</li>
-</ol>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>This exception can be due to out Of memory.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>This exception can be due to TTS not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -354,22 +288,6 @@ Applications can add input-text to queue for reading continuously and control th
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>This exception can be due to TTS not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -430,27 +348,6 @@ Applications can add input-text to queue for reading continuously and control th
       <tr>
         <td><a class="xref" href="Tizen.Uix.Tts.PlayingMode.html">PlayingMode</a></td>
         <td><p>The current playing mode.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>This exception can be due to an invalid state.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>This exception can be due to TTS not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -528,43 +425,6 @@ Applications can add input-text to queue for reading continuously and control th
   <h5 id="Tizen_Uix_Tts_TtsClient_AddText_System_String_System_String_System_Int32_System_Int32__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Locale MUST be set for text validation check.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>This exception can be due to the following reasons:</p>
-<ol>
-<li>Invalid State</li>
-<li>Operation Failure</li>
-<li>Invalid Voice</li>
-<li>Screen reader off</li>
-</ol>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>This exception can be due to TTS not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>This exception can be due to improper value provided while setting the value.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -681,32 +541,6 @@ Applications can add input-text to queue for reading continuously and control th
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>This exception can be due to the following reasons:</p>
-<ol>
-<li>Invalid State</li>
-<li>Engine Not found</li>
-<li>Operation Failure</li>
-</ol>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>This exception can be due to TTS not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -739,31 +573,6 @@ Applications can add input-text to queue for reading continuously and control th
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>This exception can be due to the following reasons:</p>
-<ol>
-<li>Invalid State</li>
-<li>Operation Failure</li>
-</ol>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>This exception can be due to TTS not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -790,33 +599,8 @@ Applications can add input-text to queue for reading continuously and control th
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.SupportedVoice.html">SupportedVoice</a>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.SupportedVoice.html">SupportedVoice</a>&gt;</td>
         <td><p>The list of SupportedVoice.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>This exception can be due to the following reasons:</p>
-<ol>
-<li>Engine Not Found</li>
-<li>Operation Failed</li>
-</ol>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>This exception can be due to TTS not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -837,32 +621,6 @@ Applications can add input-text to queue for reading continuously and control th
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Pause()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>This exception can be due to the following reasons:</p>
-<ol>
-<li>Invalid State</li>
-<li>Operation Failure</li>
-<li>Screen reader off</li>
-</ol>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>This exception can be due to TTS not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -879,38 +637,6 @@ Applications can add input-text to queue for reading continuously and control th
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Play()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>This exception can be due to the following reasons:</p>
-<ol>
-<li>Invalid State</li>
-<li>Operation Failure</li>
-<li>Out of Network</li>
-<li>Screen reader off</li>
-</ol>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>This exception can be due to TTS not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -927,31 +653,6 @@ Applications can add input-text to queue for reading continuously and control th
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Prepare()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>This exception can be due to the following reasons while setting the value:</p>
-<ol>
-<li>Invalid state</li>
-<li>Screen reader off</li>
-</ol>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>This exception can be due to TTS not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -980,32 +681,6 @@ Applications can add input-text to queue for reading continuously and control th
       <tr>
         <td><a class="xref" href="Tizen.Uix.Tts.RepeatedText.html">RepeatedText</a></td>
         <td><p>The RepeatedText instance which stores the text to repeat and its utterance ID.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>This exception can be due to the following reasons:</p>
-<ol>
-<li>Invalid State</li>
-<li>Operation Failure</li>
-<li>Screen reader off</li>
-</ol>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>This exception can be due to TTS not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -1041,32 +716,6 @@ Applications can add input-text to queue for reading continuously and control th
         <td><span class="parametername">credential</span></td>
         <td><p>.
 The credential string.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>This exception can be due to an invalid state.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>This exception can be due to TTS not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>This exception can be due to improper value provided while setting the value.</p>
 </td>
       </tr>
     </tbody>
@@ -1111,37 +760,6 @@ The credential string.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>This exception can be due to the following reasons:</p>
-<ol>
-<li>Invalid State</li>
-<li>Engine Not found</li>
-<li>Operation Failure</li>
-</ol>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>This exception can be due to TTS not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>This exception can be due to improper value provided while setting the value.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1158,32 +776,6 @@ The credential string.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Stop()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>This exception can be due to the following reasons:</p>
-<ol>
-<li>Invalid Stat</li>
-<li>Operation Failure</li>
-<li>Screen reader off</li>
-</ol>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>This exception can be due to TTS not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1200,27 +792,6 @@ The credential string.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Unprepare()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>This exception can be due to an invalid state.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>This exception can be due to TTS not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1248,7 +819,7 @@ The credential string.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.DefaultVoiceChangedEventArgs.html">DefaultVoiceChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.DefaultVoiceChangedEventArgs.html">DefaultVoiceChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1278,7 +849,7 @@ The credential string.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.EngineChangedEventArgs.html">EngineChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.EngineChangedEventArgs.html">EngineChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1308,7 +879,7 @@ The credential string.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.ErrorOccurredEventArgs.html">ErrorOccurredEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.ErrorOccurredEventArgs.html">ErrorOccurredEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1338,7 +909,7 @@ The credential string.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.ScreenReaderChangedEventArgs.html">ScreenReaderChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.ScreenReaderChangedEventArgs.html">ScreenReaderChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1368,7 +939,7 @@ The credential string.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.ServiceStateChangedEventArgs.html">ServiceStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.ServiceStateChangedEventArgs.html">ServiceStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1398,7 +969,7 @@ The credential string.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.StateChangedEventArgs.html">StateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.StateChangedEventArgs.html">StateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1428,7 +999,7 @@ The credential string.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.SynthesizedPcmEventArgs.html">SynthesizedPcmEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.SynthesizedPcmEventArgs.html">SynthesizedPcmEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1458,7 +1029,7 @@ The credential string.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.UtteranceEventArgs.html">UtteranceEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.UtteranceEventArgs.html">UtteranceEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1488,7 +1059,7 @@ The credential string.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.UtteranceEventArgs.html">UtteranceEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Uix.Tts.UtteranceEventArgs.html">UtteranceEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1497,9 +1068,27 @@ The credential string.</p>
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="implements">Implements</h3>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

@@ -93,8 +93,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[LoadInSeparateAppDomain]
-public abstract class XamlTask : MarshalByRefObject, ITask</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class XamlTask : MarshalByRefObject, ITask</code></pre>
   </div>
 
 
@@ -109,12 +108,21 @@ public abstract class XamlTask : MarshalByRefObject, ITask</code></pre>
     </dd>
   </dl>
 
+  <dl class="attribute-list stack">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><span class="xref">Tizen.NUI.Xaml.Build.Tasks.DebugXamlCTask</span></div>
+      <div class="pdl"><span class="xref">Tizen.NUI.Xaml.Build.Tasks.DebugXamlCTask</span></div>
+      <div class="pdl"><span class="xref">Tizen.NUI.Xaml.Build.Tasks.NUIXamlCTask</span></div>
+      <div class="pdl"><span class="xref">Tizen.NUI.Xaml.Build.Tasks.NUIXamlCTask</span></div>
+    </dd>
+  </dl>
 
 
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">Microsoft.Build.Framework.ITask</span></div>
+      <div class="pdl"><span class="xref">ITask</span></div>
     </dd>
   </dl>
 
@@ -129,8 +137,7 @@ public abstract class XamlTask : MarshalByRefObject, ITask</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Required]
-public string Assembly { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string Assembly { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -172,7 +179,7 @@ public string Assembly { get; set; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Microsoft.Build.Framework.IBuildEngine</span></td>
+        <td><span class="xref">IBuildEngine</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -292,7 +299,7 @@ public string Assembly { get; set; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Microsoft.Build.Framework.ITaskHost</span></td>
+        <td><span class="xref">ITaskHost</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -322,7 +329,7 @@ public string Assembly { get; set; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Microsoft.Build.Utilities.TaskLoggingHelper</span></td>
+        <td><span class="xref">TaskLoggingHelper</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -533,7 +540,7 @@ public int Verbosity { get; set; }</code></pre>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">Microsoft.Build.Framework.ITask</span>
+      <span class="xref">ITask</span>
   </div>
 </article>
           </div>

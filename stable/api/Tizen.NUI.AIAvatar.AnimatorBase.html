@@ -1,0 +1,840 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class AnimatorBase
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class AnimatorBase
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API13">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.NUI.AIAvatar.AnimatorBase">
+
+
+  <h1 id="Tizen_NUI_AIAvatar_AnimatorBase" data-uid="Tizen.NUI.AIAvatar.AnimatorBase" class="text-break">Class AnimatorBase
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.NUI.html">NUI</a>.<a class="xref" href="Tizen.NUI.AIAvatar.html">AIAvatar</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.AIAvatar.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>The base class for all animator implementations. Provides basic functionality for adding, playing, stopping, pausing, and removing animations.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class AnimatorBase : IAnimator, IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">AnimatorBase</span></div>
+      </div>
+    </dd>
+  </dl>
+
+  <dl class="attribute-list stack">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.AIAvatar.ParallelAnimator.html">ParallelAnimator</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.AIAvatar.ParallelAnimator.html">ParallelAnimator</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.AIAvatar.SerialAnimator.html">SerialAnimator</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.AIAvatar.SerialAnimator.html">SerialAnimator</a></div>
+    </dd>
+  </dl>
+
+
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.AIAvatar.IAnimator.html">IAnimator</a></div>
+      <div class="pdl"><span class="xref">IDisposable</span></div>
+    </dd>
+  </dl>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L54">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AIAvatar_AnimatorBase__ctor_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.#ctor*"></a>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase__ctor" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.#ctor">AnimatorBase()</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the AnimatorBase class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected AnimatorBase()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L42">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_animations" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.animations">animations</h4>
+  <div class="markdown level1 summary"><p>A dictionary to store animations. Each animation has a unique ID of type uint, which can be used as a key to store and retrieve the animations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected Dictionary&lt;uint, Animation&gt; animations</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Dictionary&lt;, &gt;</span>&lt;<span class="xref">uint</span>, <a class="xref" href="Tizen.NUI.Animation.html">Animation</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L90">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AIAvatar_AnimatorBase_Count_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Count*"></a>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_Count" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Count">Count</h4>
+  <div class="markdown level1 summary"><p>Gets the number of animations currently added to the animator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L211">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AIAvatar_AnimatorBase_CurrentAnimatorState_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.CurrentAnimatorState*"></a>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_CurrentAnimatorState" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.CurrentAnimatorState">CurrentAnimatorState</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the current state of the animator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AnimatorState CurrentAnimatorState { get; protected set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.AIAvatar.AnimatorState.html">AnimatorState</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L62">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AIAvatar_AnimatorBase_Add_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Add*"></a>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_Add_Tizen_NUI_Animation_System_String_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Add(Tizen.NUI.Animation,System.String)">Add(Animation, string)</h4>
+  <div class="markdown level1 summary"><p>Adds an animation to the animator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int Add(Animation animation, string name)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></td>
+        <td><span class="parametername">animation</span></td>
+        <td><p>The animation to add.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name of the animation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><p>The index of the added animation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L233">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AIAvatar_AnimatorBase_ChangeAnimatorState_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.ChangeAnimatorState*"></a>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_ChangeAnimatorState_Tizen_NUI_AIAvatar_AnimatorState_System_String_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.ChangeAnimatorState(Tizen.NUI.AIAvatar.AnimatorState,System.String)">ChangeAnimatorState(AnimatorState, string)</h4>
+  <div class="markdown level1 summary"><p>Changes the state of the animator.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void ChangeAnimatorState(AnimatorState newState, string animationName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.AIAvatar.AnimatorState.html">AnimatorState</a></td>
+        <td><span class="parametername">newState</span></td>
+        <td><p>The new state of the animator.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">animationName</span></td>
+        <td><p>The name of the animation associated with the state change.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L264">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AIAvatar_AnimatorBase_Dispose_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Dispose*"></a>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_Dispose" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Releases all resources used by the AnimatorBase class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L275">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AIAvatar_AnimatorBase_Dispose_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Dispose*"></a>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_Dispose_System_Boolean_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Dispose(System.Boolean)">Dispose(bool)</h4>
+  <div class="markdown level1 summary"><p>Releases the unmanaged resources used by the AnimatorBase class and optionally releases the managed resources.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>True to release both managed and unmanaged resources; false to release only unmanaged resources.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L172">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AIAvatar_AnimatorBase_GetIndexByName_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.GetIndexByName*"></a>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_GetIndexByName_System_String_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.GetIndexByName(System.String)">GetIndexByName(string)</h4>
+  <div class="markdown level1 summary"><p>Gets the index of an animation by its name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint GetIndexByName(string name)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name of the animation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>The index of the animation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L202">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AIAvatar_AnimatorBase_GetKeyElementAt_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.GetKeyElementAt*"></a>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_GetKeyElementAt_System_Int32_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.GetKeyElementAt(System.Int32)">GetKeyElementAt(int)</h4>
+  <div class="markdown level1 summary"><p>Gets the key element at the specified index in the animations dictionary.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public uint GetKeyElementAt(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The zero-based index of the key element to retrieve.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><p>The key element at the specified index.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L187">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AIAvatar_AnimatorBase_GetNameByIndex_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.GetNameByIndex*"></a>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_GetNameByIndex_System_UInt32_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.GetNameByIndex(System.UInt32)">GetNameByIndex(uint)</h4>
+  <div class="markdown level1 summary"><p>Gets the name of an animation by its index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string GetNameByIndex(uint index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of the animation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><p>The name of the animation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L244">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AIAvatar_AnimatorBase_OnAnimationFinished_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.OnAnimationFinished*"></a>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_OnAnimationFinished_System_Object_EventArgs_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.OnAnimationFinished(System.Object,EventArgs)">OnAnimationFinished(object, EventArgs)</h4>
+  <div class="markdown level1 summary"><p>Handles the Finished event of an animation.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void OnAnimationFinished(object sender, EventArgs e)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">sender</span></td>
+        <td><p>The object that raised the event.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">EventArgs</span></td>
+        <td><span class="parametername">e</span></td>
+        <td><p>The event arguments.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L132">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AIAvatar_AnimatorBase_Pause_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Pause*"></a>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_Pause" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Pause">Pause()</h4>
+  <div class="markdown level1 summary"><p>Pauses all currently playing animations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void Pause()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L110">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AIAvatar_AnimatorBase_Play_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Play*"></a>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_Play_System_String_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Play(System.String)">Play(string)</h4>
+  <div class="markdown level1 summary"><p>Plays an animation by its name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Play(string name)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name of the animation to play.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L103">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AIAvatar_AnimatorBase_Play_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Play*"></a>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_Play_System_UInt32_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Play(System.UInt32)">Play(uint)</h4>
+  <div class="markdown level1 summary"><p>Plays an animation by its index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void Play(uint index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of the animation to play.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L157">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AIAvatar_AnimatorBase_Remove_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Remove*"></a>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_Remove_System_String_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Remove(System.String)">Remove(string)</h4>
+  <div class="markdown level1 summary"><p>Removes an animation by its name.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(string name)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">name</span></td>
+        <td><p>The name of the animation to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L139">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AIAvatar_AnimatorBase_Remove_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Remove*"></a>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_Remove_System_UInt32_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Remove(System.UInt32)">Remove(uint)</h4>
+  <div class="markdown level1 summary"><p>Removes an animation by its index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Remove(uint index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>The index of the animation to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L126">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AIAvatar_AnimatorBase_Stop_" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Stop*"></a>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_Stop" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.Stop">Stop()</h4>
+  <div class="markdown level1 summary"><p>Stops all currently playing animations.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract void Stop()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L49">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_AIAvatar_AnimatorBase_AnimatorStateChanged" data-uid="Tizen.NUI.AIAvatar.AnimatorBase.AnimatorStateChanged">AnimatorStateChanged</h4>
+  <div class="markdown level1 summary"><p>Event triggered when the state of the animator changes.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;AnimatorChangedEventArgs&gt; AnimatorStateChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.AIAvatar.AnimatorChangedEventArgs.html">AnimatorChangedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.AIAvatar.IAnimator.html">IAnimator</a>
+  </div>
+  <div>
+      <span class="xref">IDisposable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.AIAvatar/src/Animator/AnimatorBase.cs/#L28" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2025 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

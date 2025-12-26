@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Pagination : Control, INotifyPropertyChanged, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Pagination : Control, IDynamicResourceHandler, INameScope, System.IDisposable, IResourcesProvider, IAtspiValue</code></pre>
   </div>
 
 
@@ -103,8 +103,8 @@
     <dd>
       <div class="pdl-holder">
         <div class="pdl"><span class="xref">object</span></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.BindableObject</span></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
@@ -112,7 +112,7 @@
         <div class="pdl"><a class="xref" href="Tizen.NUI.ViewWrapper.html">ViewWrapper</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Components.Control</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Control.html">Control</a></div>
         <div><span class="xref">Pagination</span></div>
       </div>
     </dd>
@@ -123,8 +123,11 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Accessibility.IAtspiValue.html">IAtspiValue</a></div>
     </dd>
   </dl>
 
@@ -214,6 +217,248 @@
 
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI.Components/Controls/PaginationBindableProperty.cs/#L113">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Pagination_IndicatorColorProperty" data-uid="Tizen.NUI.Components.Pagination.IndicatorColorProperty">IndicatorColorProperty</h4>
+  <div class="markdown level1 summary"><p>IndicatorColorProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty IndicatorColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI.Components/Controls/PaginationBindableProperty.cs/#L94">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Pagination_IndicatorCountProperty" data-uid="Tizen.NUI.Components.Pagination.IndicatorCountProperty">IndicatorCountProperty</h4>
+  <div class="markdown level1 summary"><p>IndicatorCountProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty IndicatorCountProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI.Components/Controls/PaginationBindableProperty.cs/#L45">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Pagination_IndicatorImageUrlProperty" data-uid="Tizen.NUI.Components.Pagination.IndicatorImageUrlProperty">IndicatorImageUrlProperty</h4>
+  <div class="markdown level1 summary"><p>The IndicatorImageUrlSelector bindable property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty IndicatorImageUrlProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI.Components/Controls/PaginationBindableProperty.cs/#L28">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Pagination_IndicatorSizeProperty" data-uid="Tizen.NUI.Components.Pagination.IndicatorSizeProperty">IndicatorSizeProperty</h4>
+  <div class="markdown level1 summary"><p>The IndicatorSize bindable property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty IndicatorSizeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI.Components/Controls/PaginationBindableProperty.cs/#L59">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Pagination_IndicatorSpacingProperty" data-uid="Tizen.NUI.Components.Pagination.IndicatorSpacingProperty">IndicatorSpacingProperty</h4>
+  <div class="markdown level1 summary"><p>The IndicatorSpacing bindable property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty IndicatorSpacingProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI.Components/Controls/PaginationBindableProperty.cs/#L75">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Pagination_LastIndicatorImageUrlProperty" data-uid="Tizen.NUI.Components.Pagination.LastIndicatorImageUrlProperty">LastIndicatorImageUrlProperty</h4>
+  <div class="markdown level1 summary"><p>LastIndicatorImageUrlProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty LastIndicatorImageUrlProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI.Components/Controls/PaginationBindableProperty.cs/#L151">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Pagination_SelectedIndexProperty" data-uid="Tizen.NUI.Components.Pagination.SelectedIndexProperty">SelectedIndexProperty</h4>
+  <div class="markdown level1 summary"><p>SelectedIndexProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SelectedIndexProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI.Components/Controls/PaginationBindableProperty.cs/#L132">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Pagination_SelectedIndicatorColorProperty" data-uid="Tizen.NUI.Components.Pagination.SelectedIndicatorColorProperty">SelectedIndicatorColorProperty</h4>
+  <div class="markdown level1 summary"><p>SelectedIndicatorColorProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SelectedIndicatorColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
@@ -271,22 +516,6 @@
       <tr>
         <td><span class="xref">int</span></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the given value is negative.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -379,6 +608,38 @@
     <tbody>
       <tr>
         <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI.Components/Controls/Pagination.cs/#L202">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Pagination_LastIndicatorImageUrl_" data-uid="Tizen.NUI.Components.Pagination.LastIndicatorImageUrl*"></a>
+  <h4 id="Tizen_NUI_Components_Pagination_LastIndicatorImageUrl" data-uid="Tizen.NUI.Components.Pagination.LastIndicatorImageUrl">LastIndicatorImageUrl</h4>
+  <div class="markdown level1 summary"><p>This is experimental API.
+Make the last indicator has exceptional image, not common image in the Pagination.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Selector&lt;string&gt; LastIndicatorImageUrl { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.Selector-1.html">Selector</a>&lt;<span class="xref">string</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -514,7 +775,7 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Tizen.NUI.Components.Control.CreateViewStyle()</span></div>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_CreateViewStyle">Control.CreateViewStyle()</a></div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -550,7 +811,7 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Tizen.NUI.Components.Control.Dispose(Tizen.NUI.DisposeTypes)</span></div>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_Dispose_Tizen_NUI_DisposeTypes_">Control.Dispose(DisposeTypes)</a></div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -601,6 +862,25 @@
       </tr>
     </tbody>
   </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI.Components/Controls/Pagination.cs/#L662">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Pagination_OnInitialize_" data-uid="Tizen.NUI.Components.Pagination.OnInitialize*"></a>
+  <h4 id="Tizen_NUI_Components_Pagination_OnInitialize" data-uid="Tizen.NUI.Components.Pagination.OnInitialize">OnInitialize()</h4>
+  <div class="markdown level1 summary"><p>Overrides the parent method.
+This method is called by the framework when the instance is created.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnInitialize()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_OnInitialize">Control.OnInitialize()</a></div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -673,12 +953,371 @@
 
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="eii">Explicit Interface Implementations
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI.Components/Controls/Pagination.cs/#L611">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Pagination_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetCurrent_" data-uid="Tizen.NUI.Components.Pagination.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetCurrent*"></a>
+  <h4 id="Tizen_NUI_Components_Pagination_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetCurrent" data-uid="Tizen.NUI.Components.Pagination.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetCurrent">IAtspiValue.AccessibilityGetCurrent()</h4>
+  <div class="markdown level1 summary"><p>Current value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double IAtspiValue.AccessibilityGetCurrent()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI.Components/Controls/Pagination.cs/#L629">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Pagination_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMaximum_" data-uid="Tizen.NUI.Components.Pagination.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetMaximum*"></a>
+  <h4 id="Tizen_NUI_Components_Pagination_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMaximum" data-uid="Tizen.NUI.Components.Pagination.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetMaximum">IAtspiValue.AccessibilityGetMaximum()</h4>
+  <div class="markdown level1 summary"><p>Maximum value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double IAtspiValue.AccessibilityGetMaximum()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI.Components/Controls/Pagination.cs/#L602">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Pagination_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMinimum_" data-uid="Tizen.NUI.Components.Pagination.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetMinimum*"></a>
+  <h4 id="Tizen_NUI_Components_Pagination_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMinimum" data-uid="Tizen.NUI.Components.Pagination.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetMinimum">IAtspiValue.AccessibilityGetMinimum()</h4>
+  <div class="markdown level1 summary"><p>Minimum value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double IAtspiValue.AccessibilityGetMinimum()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI.Components/Controls/Pagination.cs/#L655">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Pagination_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMinimumIncrement_" data-uid="Tizen.NUI.Components.Pagination.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetMinimumIncrement*"></a>
+  <h4 id="Tizen_NUI_Components_Pagination_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMinimumIncrement" data-uid="Tizen.NUI.Components.Pagination.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetMinimumIncrement">IAtspiValue.AccessibilityGetMinimumIncrement()</h4>
+  <div class="markdown level1 summary"><p>Minimum increment.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double IAtspiValue.AccessibilityGetMinimumIncrement()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI.Components/Controls/Pagination.cs/#L620">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Pagination_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetValueText_" data-uid="Tizen.NUI.Components.Pagination.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetValueText*"></a>
+  <h4 id="Tizen_NUI_Components_Pagination_Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetValueText" data-uid="Tizen.NUI.Components.Pagination.Tizen#NUI#Accessibility#IAtspiValue#AccessibilityGetValueText">IAtspiValue.AccessibilityGetValueText()</h4>
+  <div class="markdown level1 summary"><p>Formatted current value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string IAtspiValue.AccessibilityGetValueText()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.NUI.Components/Controls/Pagination.cs/#L638">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Pagination_Tizen_NUI_Accessibility_IAtspiValue_AccessibilitySetCurrent_" data-uid="Tizen.NUI.Components.Pagination.Tizen#NUI#Accessibility#IAtspiValue#AccessibilitySetCurrent*"></a>
+  <h4 id="Tizen_NUI_Components_Pagination_Tizen_NUI_Accessibility_IAtspiValue_AccessibilitySetCurrent_System_Double_" data-uid="Tizen.NUI.Components.Pagination.Tizen#NUI#Accessibility#IAtspiValue#AccessibilitySetCurrent(System.Double)">IAtspiValue.AccessibilitySetCurrent(double)</h4>
+  <div class="markdown level1 summary"><p>Current value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool IAtspiValue.AccessibilitySetCurrent(double value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">double</span></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Accessibility.IAtspiValue.html">IAtspiValue</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BackgroundColor_Tizen_NUI_BaseComponents_View_">ViewExtensions.BackgroundColor(View)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineColor_Tizen_NUI_BaseComponents_View_">ViewExtensions.BorderlineColor(View)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BoxShadow_Tizen_NUI_BaseComponents_View_">ViewExtensions.BoxShadow(View)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Color_Tizen_NUI_BaseComponents_View_">ViewExtensions.Color(View)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_CornerRadius_Tizen_NUI_BaseComponents_View_">ViewExtensions.CornerRadius(View)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BackgroundColor__1___0_System_Single_System_Single_System_Single_System_Single_">ViewExtensions.BackgroundColor&lt;T&gt;(T, float, float, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BackgroundColor__1___0_System_UInt32_System_Single_">ViewExtensions.BackgroundColor&lt;T&gt;(T, uint, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BackgroundColor__1___0_Tizen_NUI_UIColor_">ViewExtensions.BackgroundColor&lt;T&gt;(T, UIColor)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BackgroundImage__1___0_System_String_">ViewExtensions.BackgroundImage&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Borderline__1___0_System_Single_Tizen_NUI_UIColor_System_Single_">ViewExtensions.Borderline&lt;T&gt;(T, float, UIColor, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineColor__1___0_System_Single_System_Single_System_Single_System_Single_">ViewExtensions.BorderlineColor&lt;T&gt;(T, float, float, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineColor__1___0_System_UInt32_System_Single_">ViewExtensions.BorderlineColor&lt;T&gt;(T, uint, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineColor__1___0_Tizen_NUI_UIColor_">ViewExtensions.BorderlineColor&lt;T&gt;(T, UIColor)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineOffset__1___0_System_Single_">ViewExtensions.BorderlineOffset&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineWidth__1___0_System_Single_">ViewExtensions.BorderlineWidth&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BoxShadow__1___0_System_Single_System_Single_System_Single_">ViewExtensions.BoxShadow&lt;T&gt;(T, float, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BoxShadow__1___0_System_Single_Tizen_NUI_UIColor_System_Single_System_Single_">ViewExtensions.BoxShadow&lt;T&gt;(T, float, UIColor, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BoxShadow__1___0_Tizen_NUI_UIShadow_">ViewExtensions.BoxShadow&lt;T&gt;(T, UIShadow)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_ClippingMode__1___0_Tizen_NUI_ClippingModeType_">ViewExtensions.ClippingMode&lt;T&gt;(T, ClippingModeType)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Color__1___0_System_Single_System_Single_System_Single_System_Single_">ViewExtensions.Color&lt;T&gt;(T, float, float, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Color__1___0_System_UInt32_System_Single_">ViewExtensions.Color&lt;T&gt;(T, uint, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Color__1___0_Tizen_NUI_UIColor_">ViewExtensions.Color&lt;T&gt;(T, UIColor)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_CornerRadius__1___0_System_Single_System_Boolean_">ViewExtensions.CornerRadius&lt;T&gt;(T, float, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_CornerRadius__1___0_System_Single_System_Single_System_Single_System_Single_System_Boolean_">ViewExtensions.CornerRadius&lt;T&gt;(T, float, float, float, float, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_CornerRadius__1___0_Tizen_NUI_UICorner_">ViewExtensions.CornerRadius&lt;T&gt;(T, UICorner)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Focusable__1___0_System_Boolean_">ViewExtensions.Focusable&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_FocusableChildren__1___0_System_Boolean_">ViewExtensions.FocusableChildren&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_FocusableInTouch__1___0_System_Boolean_">ViewExtensions.FocusableInTouch&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_ImageShadow__1___0_Tizen_NUI_ImageShadow_">ViewExtensions.ImageShadow&lt;T&gt;(T, ImageShadow)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_IsEnabled__1___0_System_Boolean_">ViewExtensions.IsEnabled&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Layout__1___0_Tizen_NUI_LayoutItem_">ViewExtensions.Layout&lt;T&gt;(T, LayoutItem)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Opacity__1___0_System_Single_">ViewExtensions.Opacity&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Position__1___0_System_Single_System_Single_">ViewExtensions.Position&lt;T&gt;(T, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_PositionX__1___0_System_Single_">ViewExtensions.PositionX&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_PositionY__1___0_System_Single_">ViewExtensions.PositionY&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Scale__1___0_System_Single_System_Single_">ViewExtensions.Scale&lt;T&gt;(T, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_ScaleX__1___0_System_Single_">ViewExtensions.ScaleX&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_ScaleY__1___0_System_Single_">ViewExtensions.ScaleY&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Sensitive__1___0_System_Boolean_">ViewExtensions.Sensitive&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Size__1___0_System_Single_System_Single_">ViewExtensions.Size&lt;T&gt;(T, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_SizeHeight__1___0_System_Single_">ViewExtensions.SizeHeight&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_SizeWidth__1___0_System_Single_">ViewExtensions.SizeWidth&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Visibility__1___0_System_Boolean_">ViewExtensions.Visibility&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_VoiceInteractionName__1___0_System_String_">ViewExtensions.VoiceInteractionName&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

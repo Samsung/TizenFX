@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class BaseHandle : Element, INotifyPropertyChanged, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class BaseHandle : Element, IDynamicResourceHandler, INameScope, System.IDisposable</code></pre>
   </div>
 
 
@@ -104,7 +104,7 @@
       <div class="pdl-holder">
         <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div><span class="xref">BaseHandle</span></div>
       </div>
     </dd>
@@ -119,30 +119,53 @@
       <div class="pdl"><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Animation.html">Animation</a></div>
+      <div class="pdl"><span class="xref">Tizen.NUI.AsyncImageLoader</span></div>
+      <div class="pdl"><span class="xref">Tizen.NUI.AsyncImageLoader</span></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.Drawable.html">Drawable</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.Drawable.html">Drawable</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.Drawable.html">Drawable</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.Gradient.html">Gradient</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.Gradient.html">Gradient</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VectorGraphics.Gradient.html">Gradient</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Capture.html">Capture</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Capture.html">Capture</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Capture.html">Capture</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Clipboard.html">Clipboard</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Clipboard.html">Clipboard</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Clipboard.html">Clipboard</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.DragAndDrop.html">DragAndDrop</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.DragAndDrop.html">DragAndDrop</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.DragAndDrop.html">DragAndDrop</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.EncodedImageBuffer.html">EncodedImageBuffer</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.EncodedImageBuffer.html">EncodedImageBuffer</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.EncodedImageBuffer.html">EncodedImageBuffer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.FocusManager.html">FocusManager</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.FocusManager.html">FocusManager</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.FocusManager.html">FocusManager</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.FontClient.html">FontClient</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.FontClient.html">FontClient</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.FontClient.html">FontClient</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.FrameBuffer.html">FrameBuffer</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.FrameBuffer.html">FrameBuffer</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.FrameBuffer.html">FrameBuffer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Geometry.html">Geometry</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Geometry.html">Geometry</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Geometry.html">Geometry</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Gesture.html">Gesture</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Gesture.html">Gesture</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Gesture.html">Gesture</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.GestureDetector.html">GestureDetector</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.GestureDetector.html">GestureDetector</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.GestureDetector.html">GestureDetector</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.GLWindow.html">GLWindow</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.GLWindow.html">GLWindow</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.GLWindow.html">GLWindow</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Hover.html">Hover</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Hover.html">Hover</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Hover.html">Hover</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.ImageUrl.html">ImageUrl</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.ImageUrl.html">ImageUrl</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.ImageUrl.html">ImageUrl</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.InputMethodContext.html">InputMethodContext</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.InputMethodContext.html">InputMethodContext</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.InputMethodContext.html">InputMethodContext</a></div>
@@ -152,9 +175,30 @@
       <div class="pdl"><a class="xref" href="Tizen.NUI.KeyFrames.html">KeyFrames</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.KeyFrames.html">KeyFrames</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.KeyFrames.html">KeyFrames</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.ParticleSystem.ParticleEmitter.html">ParticleEmitter</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.ParticleSystem.ParticleEmitter.html">ParticleEmitter</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.ParticleSystem.ParticleEmitter.html">ParticleEmitter</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.ParticleSystem.ParticleModifier-1.html">ParticleModifier&lt;T&gt;</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.ParticleSystem.ParticleModifier-1.html">ParticleModifier&lt;T&gt;</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.ParticleSystem.ParticleModifier-1.html">ParticleModifier&lt;T&gt;</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.ParticleSystem.ParticleSource-1.html">ParticleSource&lt;T&gt;</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.ParticleSystem.ParticleSource-1.html">ParticleSource&lt;T&gt;</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.ParticleSystem.ParticleSource-1.html">ParticleSource&lt;T&gt;</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Path.html">Path</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Path.html">Path</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Path.html">Path</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Physics2D.PhysicsActor.html">PhysicsActor</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Physics2D.PhysicsActor.html">PhysicsActor</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Physics2D.PhysicsActor.html">PhysicsActor</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Physics2D.PhysicsAdaptor.html">PhysicsAdaptor</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Physics2D.PhysicsAdaptor.html">PhysicsAdaptor</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Physics2D.PhysicsAdaptor.html">PhysicsAdaptor</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.PixelBuffer.html">PixelBuffer</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.PixelBuffer.html">PixelBuffer</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.PixelBuffer.html">PixelBuffer</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.PixelData.html">PixelData</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.PixelData.html">PixelData</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.PixelData.html">PixelData</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.PropertyBuffer.html">PropertyBuffer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.PropertyBuffer.html">PropertyBuffer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.PropertyBuffer.html">PropertyBuffer</a></div>
@@ -164,9 +208,21 @@
       <div class="pdl"><a class="xref" href="Tizen.NUI.PropertyNotification.html">PropertyNotification</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.PropertyNotification.html">PropertyNotification</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.PropertyNotification.html">PropertyNotification</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.RenderEffect.html">RenderEffect</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.RenderEffect.html">RenderEffect</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.RenderEffect.html">RenderEffect</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.RenderTaskList.html">RenderTaskList</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.RenderTaskList.html">RenderTaskList</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.RenderTaskList.html">RenderTaskList</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Sampler.html">Sampler</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Sampler.html">Sampler</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Sampler.html">Sampler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Scene3D.Material.html">Material</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Scene3D.Material.html">Material</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Scene3D.Material.html">Material</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Scene3D.ModelPrimitive.html">ModelPrimitive</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Scene3D.ModelPrimitive.html">ModelPrimitive</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Scene3D.ModelPrimitive.html">ModelPrimitive</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Scene3D.MotionData.html">MotionData</a></div>
@@ -203,6 +259,9 @@
       <div class="pdl"><a class="xref" href="Tizen.NUI.TypeInfo.html">TypeInfo</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.TypeInfo.html">TypeInfo</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.TypeInfo.html">TypeInfo</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.TypeRegistry.html">TypeRegistry</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.TypeRegistry.html">TypeRegistry</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.TypeRegistry.html">TypeRegistry</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.VertexBuffer.html">VertexBuffer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.VertexBuffer.html">VertexBuffer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.VertexBuffer.html">VertexBuffer</a></div>
@@ -212,6 +271,9 @@
       <div class="pdl"><a class="xref" href="Tizen.NUI.VisualFactory.html">VisualFactory</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.VisualFactory.html">VisualFactory</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.VisualFactory.html">VisualFactory</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Visuals.VisualBase.html">VisualBase</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Visuals.VisualBase.html">VisualBase</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Visuals.VisualBase.html">VisualBase</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Wheel.html">Wheel</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Wheel.html">Wheel</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.Wheel.html">Wheel</a></div>
@@ -231,7 +293,8 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
@@ -314,8 +377,7 @@ It mean, even we call <a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11, Use Disposed&quot;)]
-protected bool disposed</code></pre>
+    <pre><code class="lang-csharp hljs">protected bool disposed</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -350,8 +412,7 @@ It mean, even we call <a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11, Use SwigCMemOwn&quot;)]
-protected bool swigCMemOwn</code></pre>
+    <pre><code class="lang-csharp hljs">protected bool swigCMemOwn</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -377,8 +438,192 @@ It mean, even we call <a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_
 
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/BaseHandle.cs/#L771">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseHandle_Disposed_" data-uid="Tizen.NUI.BaseHandle.Disposed*"></a>
+  <h4 id="Tizen_NUI_BaseHandle_Disposed" data-uid="Tizen.NUI.BaseHandle.Disposed">Disposed</h4>
+  <div class="markdown level1 summary"><p>The flag to check if it is already disposed of.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool Disposed { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseHandle_Disposed_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Internal Dali resources with BaseHandle has reference count internally.<br>
+And Dali resources will release the object only if reference count become zero.<br>
+It mean, even we call <a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_Dispose">Dispose()</a>, the reousrce will not be released if some native has reference count.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/BaseHandle.cs/#L780">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseHandle_IsDisposedOrQueued_" data-uid="Tizen.NUI.BaseHandle.IsDisposedOrQueued*"></a>
+  <h4 id="Tizen_NUI_BaseHandle_IsDisposedOrQueued" data-uid="Tizen.NUI.BaseHandle.IsDisposedOrQueued">IsDisposedOrQueued</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool IsDisposedOrQueued { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseHandle_IsDisposedOrQueued_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Internal Dali resources with BaseHandle has reference count internally.<br>
+And Dali resources will release the object only if reference count become zero.<br>
+It mean, even we call <a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_Dispose">Dispose()</a>, the reousrce will not be released if some native has reference count.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/BaseHandle.cs/#L777">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseHandle_IsDisposeQueued_" data-uid="Tizen.NUI.BaseHandle.IsDisposeQueued*"></a>
+  <h4 id="Tizen_NUI_BaseHandle_IsDisposeQueued" data-uid="Tizen.NUI.BaseHandle.IsDisposeQueued">IsDisposeQueued</h4>
+  <div class="markdown level1 summary"><p>The flag to check if it is disposed by DisposeQueue.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool IsDisposeQueued { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseHandle_IsDisposeQueued_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Internal Dali resources with BaseHandle has reference count internally.<br>
+And Dali resources will release the object only if reference count become zero.<br>
+It mean, even we call <a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_Dispose">Dispose()</a>, the reousrce will not be released if some native has reference count.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/BaseHandle.cs/#L765">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseHandle_SwigCMemOwn_" data-uid="Tizen.NUI.BaseHandle.SwigCMemOwn*"></a>
+  <h4 id="Tizen_NUI_BaseHandle_SwigCMemOwn" data-uid="Tizen.NUI.BaseHandle.SwigCMemOwn">SwigCMemOwn</h4>
+  <div class="markdown level1 summary"><p>swigCMemOwn</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool SwigCMemOwn { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseHandle_SwigCMemOwn_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Internal Dali resources with BaseHandle has reference count internally.<br>
+And Dali resources will release the object only if reference count become zero.<br>
+It mean, even we call <a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_Dispose">Dispose()</a>, the reousrce will not be released if some native has reference count.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="methods">Methods
 </h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/BaseHandle.cs/#L667">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseHandle_AddToNativeHolder_" data-uid="Tizen.NUI.BaseHandle.AddToNativeHolder*"></a>
+  <h4 id="Tizen_NUI_BaseHandle_AddToNativeHolder_System_Object_" data-uid="Tizen.NUI.BaseHandle.AddToNativeHolder(System.Object)">AddToNativeHolder(object)</h4>
+  <div class="markdown level1 summary"><p>Adds the specified object to the set of objects that have been bound to the native object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void AddToNativeHolder(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>The object to add.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseHandle_AddToNativeHolder_System_Object__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Internal Dali resources with BaseHandle has reference count internally.<br>
+And Dali resources will release the object only if reference count become zero.<br>
+It mean, even we call <a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_Dispose">Dispose()</a>, the reousrce will not be released if some native has reference count.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/BaseHandle.cs/#L366">View Source</a>
   </span>
@@ -394,6 +639,46 @@ It mean, even we call <a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_
   <h5 id="Tizen_NUI_BaseHandle_Dispose_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This method release only C# side objects. If someone hold BaseHandle at Native side<br>
 the object will not be removed until native side reset the handle.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/BaseHandle.cs/#L390">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseHandle_Dispose_" data-uid="Tizen.NUI.BaseHandle.Dispose*"></a>
+  <h4 id="Tizen_NUI_BaseHandle_Dispose_System_Boolean_" data-uid="Tizen.NUI.BaseHandle.Dispose(System.Boolean)">Dispose(bool)</h4>
+  <div class="markdown level1 summary"><p>Hidden API (Inhouse API).
+Dispose.
+Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>If true, disposes any disposable objects. If false, does not dispose disposable objects.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseHandle_Dispose_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Following the guide of <a href="https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose">https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose</a>.
+This will replace &quot;protected virtual void Dispose(DisposeTypes type)&quot; which is exactly same in functionality.</p>
 </div>
 
 
@@ -544,8 +829,6 @@ It mean, even we call <a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">object.Equals(object)</span></div>
   <h5 id="Tizen_NUI_BaseHandle_Equals_System_Object__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Internal Dali resources with BaseHandle has reference count internally.<br>
 And Dali resources will release the object only if reference count become zero.<br>
@@ -660,8 +943,6 @@ It mean, even we call <a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">object.GetHashCode()</span></div>
   <h5 id="Tizen_NUI_BaseHandle_GetHashCode_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Internal Dali resources with BaseHandle has reference count internally.<br>
 And Dali resources will release the object only if reference count become zero.<br>
@@ -913,6 +1194,83 @@ It mean, even we call <a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/BaseHandle.cs/#L657">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseHandle_ReleaseSwigCPtr_" data-uid="Tizen.NUI.BaseHandle.ReleaseSwigCPtr*"></a>
+  <h4 id="Tizen_NUI_BaseHandle_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.BaseHandle.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
+  <div class="markdown level1 summary"><p>Release swigCPtr.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
+        <td><span class="parametername">swigCPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseHandle_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Internal Dali resources with BaseHandle has reference count internally.<br>
+And Dali resources will release the object only if reference count become zero.<br>
+It mean, even we call <a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_Dispose">Dispose()</a>, the reousrce will not be released if some native has reference count.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/BaseHandle.cs/#L687">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseHandle_RemoveFromNativeHolder_" data-uid="Tizen.NUI.BaseHandle.RemoveFromNativeHolder*"></a>
+  <h4 id="Tizen_NUI_BaseHandle_RemoveFromNativeHolder_System_Object_" data-uid="Tizen.NUI.BaseHandle.RemoveFromNativeHolder(System.Object)">RemoveFromNativeHolder(object)</h4>
+  <div class="markdown level1 summary"><p>Removes the specified object from the set of objects that have been bound to the native object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void RemoveFromNativeHolder(object obj)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
+        <td><span class="parametername">obj</span></td>
+        <td><p>The object to remove.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseHandle_RemoveFromNativeHolder_System_Object__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Internal Dali resources with BaseHandle has reference count internally.<br>
+And Dali resources will release the object only if reference count become zero.<br>
+It mean, even we call <a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_Dispose">Dispose()</a>, the reousrce will not be released if some native has reference count.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/BaseHandle.cs/#L500">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseHandle_Reset_" data-uid="Tizen.NUI.BaseHandle.Reset*"></a>
@@ -944,8 +1302,7 @@ It mean, even we call <a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11, Use BindableObject.PropertyChanged instead.&quot;)]
-public event PropertyChangedEventHandler PropertySet</code></pre>
+    <pre><code class="lang-csharp hljs">public event PropertyChangedEventHandler PropertySet</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -957,7 +1314,7 @@ public event PropertyChangedEventHandler PropertySet</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ComponentModel.PropertyChangedEventHandler</span></td>
+        <td><span class="xref">PropertyChangedEventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1439,10 +1796,41 @@ It mean, even we call <a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, string, BindingMode, IValueConverter, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, string)</a>
   </div>
 </article>
           </div>

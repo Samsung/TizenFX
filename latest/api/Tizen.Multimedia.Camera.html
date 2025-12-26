@@ -116,7 +116,8 @@ It also notifies you when a significant picture parameter changes, (For example,
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><span class="xref">Tizen.Multimedia.IDisplayable&lt;&gt;</span>&lt;<span class="xref">CameraError</span>&gt;</div>
+      <div class="pdl"><span class="xref">IDisposable</span></div>
     </dd>
   </dl>
 
@@ -139,29 +140,6 @@ It also notifies you when a significant picture parameter changes, (For example,
 (User can check whether CameraDeviceManager is supported or not by using <a class="xref" href="Tizen.Multimedia.CameraDeviceManager.html#Tizen_Multimedia_CameraDeviceManager_IsCameraDeviceManagerSupported">IsCameraDeviceManagerSupported</a>.)<br>
 But, if not, this constructor will try to create Camera instance with <a class="xref" href="Tizen.Multimedia.CameraDevice.html#Tizen_Multimedia_CameraDevice_CameraDevice0">CameraDevice0</a> by default.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>There's no available camera device.
--or-<br>
-In case of any invalid operations.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The camera feature is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_Camera__ctor_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.CameraDeviceManager.html#Tizen_Multimedia_CameraDeviceManager_IsCameraDeviceManagerSupported">IsCameraDeviceManagerSupported</a></div>
@@ -200,32 +178,6 @@ In case of any invalid operations.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Invalid CameraDevice type.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>In case of any invalid operations.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The camera feature is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -257,22 +209,6 @@ In case of any invalid operations.</p>
         <td><span class="xref">int</span></td>
         <td><p>This returns 2, if the device supports primary and secondary cameras.
 Otherwise 1, if the device only supports primary camera.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The camera has already been disposed.</p>
 </td>
       </tr>
     </tbody>
@@ -340,22 +276,6 @@ Otherwise 1, if the device only supports primary camera.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The camera has already been disposed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -392,37 +312,6 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
   <div class="markdown level1 remarks"><p>This must be set before the StartPreview() method.
 In custom ROI display mode, DisplayRoiArea property must be set before calling this method.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>In case of any invalid operations.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case of this feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The camera has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>In case of access to the resources cannot be granted.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -453,32 +342,6 @@ the ChangeDevice method.</p>
       <tr>
         <td><span class="xref">bool</span></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>In case of invalid parameters.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>An invalid state.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The camera has already been disposed.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -539,7 +402,7 @@ the ChangeDevice method.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="xref">IntPtr</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -607,22 +470,6 @@ the ChangeDevice method.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The camera has already been disposed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -665,37 +512,6 @@ before stopping the preview, the display will be reused and last frame on the di
 can be kept even though camera device is changed.
 The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.html#Tizen_Multimedia_CameraState_Created">Created</a>.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>In case of invalid parameters.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>In case of any invalid operations.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case of the ChangeDevice feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The camera has already been disposed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -812,32 +628,6 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>In case of invalid parameters.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>In case of any invalid operations.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case of this feature is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -888,32 +678,6 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>In case of invalid parameters.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>In case of any invalid operations.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case of this feature is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -938,37 +702,6 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
 automatically and the corresponding EventHandlers will be invoked.
 The preview should be restarted by calling the <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_StartPreview">StartPreview()</a> method after capture is completed.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>In case of any invalid operations.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case of this feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The camera has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>In case of access to the resources cannot be granted.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -977,7 +710,7 @@ The preview should be restarted by calling the <a class="xref" href="Tizen.Multi
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Multimedia.Camera/Camera/Camera.cs/#L397">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Camera_StartCapture_" data-uid="Tizen.Multimedia.Camera.StartCapture*"></a>
-  <h4 id="Tizen_Multimedia_Camera_StartCapture_System_Int32_System_Int32_System_Threading_CancellationToken_" data-uid="Tizen.Multimedia.Camera.StartCapture(System.Int32,System.Int32,System.Threading.CancellationToken)">StartCapture(int, int, CancellationToken)</h4>
+  <h4 id="Tizen_Multimedia_Camera_StartCapture_System_Int32_System_Int32_CancellationToken_" data-uid="Tizen.Multimedia.Camera.StartCapture(System.Int32,System.Int32,CancellationToken)">StartCapture(int, int, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Starts continuously capturing still images.
 EventHandler must be set for capturing using <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_Capturing">Capturing</a>
 and for completed using <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_CaptureCompleted">CaptureCompleted</a> before calling this method.
@@ -1011,60 +744,20 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
         <td><p>The cancellation token to cancel capturing.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Camera_StartCapture_System_Int32_System_Int32_System_Threading_CancellationToken__remarks">Remarks</h5>
+  <h5 id="Tizen_Multimedia_Camera_StartCapture_System_Int32_System_Int32_CancellationToken__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>If this is not supported, zero shutter lag occurs. The capture resolution could be
 changed to the preview resolution. This function causes the transition of the camera state
 from capturing to captured automatically and the corresponding Eventhandlers will be invoked.
 Each captured image will be delivered through Eventhandler set using the <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_Capturing">Capturing</a> event.
 The preview should be restarted by calling the <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_StartPreview">StartPreview()</a> method after capture is completed.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p>In case of invalid parameters.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>In case of any invalid operations.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case of this feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The camera has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>In case of access to the resources cannot be granted.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Multimedia_Camera_StartCapture_System_Int32_System_Int32_System_Threading_CancellationToken__seealso">See Also</h5>
-  <div class="seealso">
-      <div><span class="xref">System.Threading.CancellationToken</span></div>
-  </div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1087,37 +780,6 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
 The Eventhandler set using <a class="xref" href="Tizen.Multimedia.Camera.html#Tizen_Multimedia_Camera_FaceDetected">FaceDetected</a> is invoked when the face is detected in the preview frame.
 Internally, it starts continuously focus and focusing on the detected face.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>In case of any invalid operations.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case of this feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The camera has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>In case of access to the resources cannot be granted.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1156,42 +818,6 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
   <h5 id="Tizen_Multimedia_Camera_StartFocusing_System_Boolean__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>If continuous status is true, the camera continuously tries to focus.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>In case of invalid parameters.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>In case of any invalid operations.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case of this feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The camera has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>In case of access to the resources cannot be granted.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1213,37 +839,6 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void StartPreview()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>In case of any invalid operations.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case of this feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The camera has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>In case of access to the resources cannot be granted.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1260,37 +855,6 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void StopFaceDetection()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>In case of any invalid operations.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case of this feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The camera has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>In case of access to the resources cannot be granted.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1308,37 +872,6 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void StopFocusing()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>In case of any invalid operations.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case of this feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The camera has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>In case of access to the resources cannot be granted.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1356,37 +889,6 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void StopPreview()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>In case of any invalid operations.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case of this feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The camera has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>In case of access to the resources cannot be granted.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1414,7 +916,7 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<span class="xref">System.EventArgs</span>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<span class="xref">EventArgs</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1444,7 +946,7 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraCapturingEventArgs.html">CameraCapturingEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraCapturingEventArgs.html">CameraCapturingEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1474,34 +976,8 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraDeviceStateChangedEventArgs.html">CameraDeviceStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraDeviceStateChangedEventArgs.html">CameraDeviceStateChangedEventArgs</a>&gt;</td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>In case of any invalid operations.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case of this feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>In case of invalid parameters.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -1530,7 +1006,7 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraErrorOccurredEventArgs.html">CameraErrorOccurredEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraErrorOccurredEventArgs.html">CameraErrorOccurredEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1560,7 +1036,7 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.ExtraPreviewEventArgs.html">ExtraPreviewEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.ExtraPreviewEventArgs.html">ExtraPreviewEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1590,7 +1066,7 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.FaceDetectedEventArgs.html">FaceDetectedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.FaceDetectedEventArgs.html">FaceDetectedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1620,7 +1096,7 @@ The camera must be in the <a class="xref" href="Tizen.Multimedia.CameraState.htm
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraFocusStateChangedEventArgs.html">CameraFocusStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraFocusStateChangedEventArgs.html">CameraFocusStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1651,24 +1127,8 @@ Checks whether the <a class="xref" href="Tizen.Multimedia.CameraCapabilities.htm
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.HdrCaptureProgressEventArgs.html">HdrCaptureProgressEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.HdrCaptureProgressEventArgs.html">HdrCaptureProgressEventArgs</a>&gt;</td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case of HDR feature is not supported.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -1697,7 +1157,7 @@ Checks whether the <a class="xref" href="Tizen.Multimedia.CameraCapabilities.htm
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraInterruptedEventArgs.html">CameraInterruptedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraInterruptedEventArgs.html">CameraInterruptedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1727,7 +1187,7 @@ Checks whether the <a class="xref" href="Tizen.Multimedia.CameraCapabilities.htm
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraInterruptStartedEventArgs.html">CameraInterruptStartedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraInterruptStartedEventArgs.html">CameraInterruptStartedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1758,7 +1218,7 @@ Preview callback is registered when an user adds a callback explicitly to avoid 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.MediaPacketPreviewEventArgs.html">MediaPacketPreviewEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.MediaPacketPreviewEventArgs.html">MediaPacketPreviewEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1789,7 +1249,7 @@ Preview callback is registered when an user adds a callback explicitly to avoid 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.PreviewEventArgs.html">PreviewEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.PreviewEventArgs.html">PreviewEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1819,7 +1279,7 @@ Preview callback is registered when an user adds a callback explicitly to avoid 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraStateChangedEventArgs.html">CameraStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CameraStateChangedEventArgs.html">CameraStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1830,7 +1290,23 @@ Preview callback is registered when an user adds a callback explicitly to avoid 
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <span class="xref">Tizen.Multimedia.IDisplayable&lt;&gt;</span>
+  </div>
+  <div>
+      <span class="xref">IDisposable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

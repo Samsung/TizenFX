@@ -94,8 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API14.&quot;)]
-public static class ShortcutEventManager</code></pre>
+    <pre><code class="lang-csharp hljs">public static class ShortcutEventManager</code></pre>
   </div>
 
 
@@ -124,8 +123,7 @@ public static class ShortcutEventManager</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API14.&quot;)]
-public static IEnumerable&lt;ShortcutTemplate&gt; GetTemplateList(string appId)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;ShortcutTemplate&gt; GetTemplateList(string appId)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -155,44 +153,8 @@ public static IEnumerable&lt;ShortcutTemplate&gt; GetTemplateList(string appId)<
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Shortcut.ShortcutTemplate.html">ShortcutTemplate</a>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Shortcut.ShortcutTemplate.html">ShortcutTemplate</a>&gt;</td>
         <td><p>The List of ShortcutTemplate.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when an argument is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown in case the permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the shortcut is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown in case of out of memory.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown in case of any internal error.</p>
 </td>
       </tr>
     </tbody>
@@ -211,8 +173,7 @@ public static IEnumerable&lt;ShortcutTemplate&gt; GetTemplateList(string appId)<
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API14.&quot;)]
-public static void RegisterEventHandler(ShortcutAdded addedEvent)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void RegisterEventHandler(ShortcutAdded addedEvent)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -235,42 +196,6 @@ public static void RegisterEventHandler(ShortcutAdded addedEvent)</code></pre>
   <h5 id="Tizen_Applications_Shortcut_ShortcutEventManager_RegisterEventHandler_Tizen_Applications_Shortcut_ShortcutAdded__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Previous registered delegate function should be unregistered.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when an argument is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown in case the permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the shortcut is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown in case of out of memory.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown in case of any internal error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -285,8 +210,7 @@ public static void RegisterEventHandler(ShortcutAdded addedEvent)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API14.&quot;)]
-public static void RegisterEventHandler(ShortcutDeleted deletedEvent)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void RegisterEventHandler(ShortcutDeleted deletedEvent)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -309,42 +233,6 @@ public static void RegisterEventHandler(ShortcutDeleted deletedEvent)</code></pr
   <h5 id="Tizen_Applications_Shortcut_ShortcutEventManager_RegisterEventHandler_Tizen_Applications_Shortcut_ShortcutDeleted__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Previous registered delegate function should be unregistered.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when an argument is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown in case the permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the shortcut is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown in case of out of memory.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown in case of any internal error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -359,8 +247,7 @@ public static void RegisterEventHandler(ShortcutDeleted deletedEvent)</code></pr
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API14.&quot;)]
-public static void UnregisterEventHandler(ShortcutAdded addedEvent)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void UnregisterEventHandler(ShortcutAdded addedEvent)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -380,32 +267,6 @@ public static void UnregisterEventHandler(ShortcutAdded addedEvent)</code></pre>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when an argument is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown in case the permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the shortcut is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -420,8 +281,7 @@ public static void UnregisterEventHandler(ShortcutAdded addedEvent)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API14.&quot;)]
-public static void UnregisterEventHandler(ShortcutDeleted deletedEvent)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void UnregisterEventHandler(ShortcutDeleted deletedEvent)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -437,32 +297,6 @@ public static void UnregisterEventHandler(ShortcutDeleted deletedEvent)</code></
         <td><a class="xref" href="Tizen.Applications.Shortcut.ShortcutDeleted.html">ShortcutDeleted</a></td>
         <td><span class="parametername">deletedEvent</span></td>
         <td><p>The callback function pointer that is used for RegisterCallback.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when an argument is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown in case the permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the shortcut is not supported.</p>
 </td>
       </tr>
     </tbody>

@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class TextEditor : View, INotifyPropertyChanged, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class TextEditor : View, IDynamicResourceHandler, INameScope, System.IDisposable, IResourcesProvider</code></pre>
   </div>
 
 
@@ -104,7 +104,7 @@
       <div class="pdl-holder">
         <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
@@ -119,8 +119,10 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
     </dd>
   </dl>
 
@@ -142,8 +144,2266 @@
 
   <div style="margin-bottom: 15px"></div>
 
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L240">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor__ctor_" data-uid="Tizen.NUI.BaseComponents.TextEditor.#ctor*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor__ctor_System_Boolean_" data-uid="Tizen.NUI.BaseComponents.TextEditor.#ctor(System.Boolean)">TextEditor(bool)</h4>
+  <div class="markdown level1 summary"><p>Creates the TextEditor with setting the status of shown or hidden.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TextEditor(bool shown)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">shown</span></td>
+        <td><p>false : Not displayed (hidden), true : displayed (shown)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L230">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor__ctor_" data-uid="Tizen.NUI.BaseComponents.TextEditor.#ctor*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor__ctor_Tizen_NUI_BaseComponents_TextEditorStyle_" data-uid="Tizen.NUI.BaseComponents.TextEditor.#ctor(Tizen.NUI.BaseComponents.TextEditorStyle)">TextEditor(TextEditorStyle)</h4>
+  <div class="markdown level1 summary"><p>Creates the TextEditor with specified style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TextEditor(TextEditorStyle style)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.TextEditorStyle.html">TextEditorStyle</a></td>
+        <td><span class="parametername">style</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1556">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_CharacterSpacingProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.CharacterSpacingProperty">CharacterSpacingProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty CharacterSpacingProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L322">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_CursorBlinkDurationProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.CursorBlinkDurationProperty">CursorBlinkDurationProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty CursorBlinkDurationProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L301">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_CursorBlinkIntervalProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.CursorBlinkIntervalProperty">CursorBlinkIntervalProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty CursorBlinkIntervalProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L343">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_CursorWidthProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.CursorWidthProperty">CursorWidthProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty CursorWidthProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L578">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_DecorationBoundingBoxProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.DecorationBoundingBoxProperty">DecorationBoundingBoxProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty DecorationBoundingBoxProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1388">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_EllipsisPositionProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.EllipsisPositionProperty">EllipsisPositionProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty EllipsisPositionProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1367">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_EllipsisProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.EllipsisProperty">EllipsisProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty EllipsisProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L856">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_EmbossProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.EmbossProperty">EmbossProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty EmbossProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L280">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_EnableCursorBlinkProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableCursorBlinkProperty">EnableCursorBlinkProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty EnableCursorBlinkProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1474">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_EnableEditingProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableEditingProperty">EnableEditingProperty</h4>
+  <div class="markdown level1 summary"><p>EnableEditingProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty EnableEditingProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1259">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_EnableFontSizeScaleProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableFontSizeScaleProperty">EnableFontSizeScaleProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty EnableFontSizeScaleProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1326">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_EnableGrabHandlePopupProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableGrabHandlePopupProperty">EnableGrabHandlePopupProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty EnableGrabHandlePopupProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1306">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_EnableGrabHandleProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableGrabHandleProperty">EnableGrabHandleProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty EnableGrabHandleProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L599">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_EnableMarkupProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableMarkupProperty">EnableMarkupProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty EnableMarkupProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L982">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_EnableScrollBarProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableScrollBarProperty">EnableScrollBarProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty EnableScrollBarProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1113">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_EnableSelectionProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableSelectionProperty">EnableSelectionProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty EnableSelectionProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1176">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_EnableShiftSelectionProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableShiftSelectionProperty">EnableShiftSelectionProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty EnableShiftSelectionProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L80">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_FontFamilyProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.FontFamilyProperty">FontFamilyProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty FontFamilyProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1240">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_FontSizeScaleProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.FontSizeScaleProperty">FontSizeScaleProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty FontSizeScaleProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L99">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_FontStyleProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.FontStyleProperty">FontStyleProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty FontStyleProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1280">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_GrabHandleColorProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.GrabHandleColorProperty">GrabHandleColorProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty GrabHandleColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L364">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_GrabHandleImageProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.GrabHandleImageProperty">GrabHandleImageProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty GrabHandleImageProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L385">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_GrabHandlePressedImageProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.GrabHandlePressedImageProperty">GrabHandlePressedImageProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty GrabHandlePressedImageProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L141">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_HorizontalAlignmentProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.HorizontalAlignmentProperty">HorizontalAlignmentProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty HorizontalAlignmentProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1495">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_HorizontalScrollPositionProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.HorizontalScrollPositionProperty">HorizontalScrollPositionProperty</h4>
+  <div class="markdown level1 summary"><p>HorizontalScrollPositionProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty HorizontalScrollPositionProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L620">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_InputColorProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.InputColorProperty">InputColorProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty InputColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L877">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_InputEmbossProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.InputEmbossProperty">InputEmbossProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty InputEmbossProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L646">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_InputFontFamilyProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.InputFontFamilyProperty">InputFontFamilyProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty InputFontFamilyProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L667">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_InputFontStyleProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.InputFontStyleProperty">InputFontStyleProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty InputFontStyleProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L730">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_InputLineSpacingProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.InputLineSpacingProperty">InputLineSpacingProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty InputLineSpacingProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1346">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_InputMethodSettingsProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.InputMethodSettingsProperty">InputMethodSettingsProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty InputMethodSettingsProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L919">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_InputOutlineProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.InputOutlineProperty">InputOutlineProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty InputOutlineProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L688">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_InputPointSizeProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.InputPointSizeProperty">InputPointSizeProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty InputPointSizeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L835">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_InputShadowProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.InputShadowProperty">InputShadowProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty InputShadowProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L792">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_InputUnderlineProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.InputUnderlineProperty">InputUnderlineProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty InputUnderlineProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L709">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_LineSpacingProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.LineSpacingProperty">LineSpacingProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty LineSpacingProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1155">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_LineWrapModeProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.LineWrapModeProperty">LineWrapModeProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty LineWrapModeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1198">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_MatchSystemLanguageDirectionProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.MatchSystemLanguageDirectionProperty">MatchSystemLanguageDirectionProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty MatchSystemLanguageDirectionProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1219">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_MaxLengthProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.MaxLengthProperty">MaxLengthProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty MaxLengthProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1409">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_MinLineSizeProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.MinLineSizeProperty">MinLineSizeProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty MinLineSizeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L898">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_OutlineProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.OutlineProperty">OutlineProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty OutlineProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1045">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_PixelSizeProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.PixelSizeProperty">PixelSizeProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty PixelSizeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1134">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_PlaceholderProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.PlaceholderProperty">PlaceholderProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty PlaceholderProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1087">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_PlaceholderTextColorProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.PlaceholderTextColorProperty">PlaceholderTextColorProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty PlaceholderTextColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1066">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_PlaceholderTextProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.PlaceholderTextProperty">PlaceholderTextProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty PlaceholderTextProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L120">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_PointSizeProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.PointSizeProperty">PointSizeProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty PointSizeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L228">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_PrimaryCursorColorProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.PrimaryCursorColorProperty">PrimaryCursorColorProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty PrimaryCursorColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1537">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_PrimaryCursorPositionProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.PrimaryCursorPositionProperty">PrimaryCursorPositionProperty</h4>
+  <div class="markdown level1 summary"><p>PrimaryCursorPositionProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty PrimaryCursorPositionProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L750">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_RelativeLineHeightProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.RelativeLineHeightProperty">RelativeLineHeightProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty RelativeLineHeightProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1599">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_RemoveBackInsetProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.RemoveBackInsetProperty">RemoveBackInsetProperty</h4>
+  <div class="markdown level1 summary"><p>RemoveBackInsetProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty RemoveBackInsetProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1579">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_RemoveFrontInsetProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.RemoveFrontInsetProperty">RemoveFrontInsetProperty</h4>
+  <div class="markdown level1 summary"><p>RemoveFrontInsetProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty RemoveFrontInsetProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1024">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_ScrollBarFadeDurationProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.ScrollBarFadeDurationProperty">ScrollBarFadeDurationProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty ScrollBarFadeDurationProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1003">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_ScrollBarShowDurationProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.ScrollBarShowDurationProperty">ScrollBarShowDurationProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty ScrollBarShowDurationProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L207">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_ScrollSpeedProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.ScrollSpeedProperty">ScrollSpeedProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty ScrollSpeedProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L186">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_ScrollThresholdProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.ScrollThresholdProperty">ScrollThresholdProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty ScrollThresholdProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L254">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SecondaryCursorColorProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.SecondaryCursorColorProperty">SecondaryCursorColorProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SecondaryCursorColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L426">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SelectionHandleImageLeftProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.SelectionHandleImageLeftProperty">SelectionHandleImageLeftProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SelectionHandleImageLeftProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L447">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SelectionHandleImageRightProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.SelectionHandleImageRightProperty">SelectionHandleImageRightProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SelectionHandleImageRightProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L510">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SelectionHandleMarkerImageLeftProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.SelectionHandleMarkerImageLeftProperty">SelectionHandleMarkerImageLeftProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SelectionHandleMarkerImageLeftProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L531">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SelectionHandleMarkerImageRightProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.SelectionHandleMarkerImageRightProperty">SelectionHandleMarkerImageRightProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SelectionHandleMarkerImageRightProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L468">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SelectionHandlePressedImageLeftProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.SelectionHandlePressedImageLeftProperty">SelectionHandlePressedImageLeftProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SelectionHandlePressedImageLeftProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L489">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SelectionHandlePressedImageRightProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.SelectionHandlePressedImageRightProperty">SelectionHandlePressedImageRightProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SelectionHandlePressedImageRightProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L552">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SelectionHighlightColorProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.SelectionHighlightColorProperty">SelectionHighlightColorProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SelectionHighlightColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L405">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SelectionPopupStyleProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.SelectionPopupStyleProperty">SelectionPopupStyleProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SelectionPopupStyleProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L814">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_ShadowProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.ShadowProperty">ShadowProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty ShadowProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L961">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SmoothScrollDurationProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.SmoothScrollDurationProperty">SmoothScrollDurationProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SmoothScrollDurationProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L940">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SmoothScrollProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.SmoothScrollProperty">SmoothScrollProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SmoothScrollProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L54">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_TextColorProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.TextColorProperty">TextColorProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TextColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L31">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_TextProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.TextProperty">TextProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TextProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1453">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_TranslatablePlaceholderTextProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.TranslatablePlaceholderTextProperty">TranslatablePlaceholderTextProperty</h4>
+  <div class="markdown level1 summary"><p>TranslatablePlaceholderTextProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TranslatablePlaceholderTextProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1432">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_TranslatableTextProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.TranslatableTextProperty">TranslatableTextProperty</h4>
+  <div class="markdown level1 summary"><p>TranslatableTextProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TranslatableTextProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L771">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_UnderlineProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.UnderlineProperty">UnderlineProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty UnderlineProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L163">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_VerticalAlignmentProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.VerticalAlignmentProperty">VerticalAlignmentProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty VerticalAlignmentProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorBindableProperty.cs/#L1516">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_VerticalScrollPositionProperty" data-uid="Tizen.NUI.BaseComponents.TextEditor.VerticalScrollPositionProperty">VerticalScrollPositionProperty</h4>
+  <div class="markdown level1 summary"><p>VerticalScrollPositionProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty VerticalScrollPositionProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="properties">Properties
 </h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L3629">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_CharacterSpacing_" data-uid="Tizen.NUI.BaseComponents.TextEditor.CharacterSpacing*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_CharacterSpacing" data-uid="Tizen.NUI.BaseComponents.TextEditor.CharacterSpacing">CharacterSpacing</h4>
+  <div class="markdown level1 summary"><p>The spaces between characters in Pixels.
+<remarks>
+A positive value will make the characters far apart (expanded) and a negative value will bring them closer (condensed).<br>
+The default value is 0.f which does nothing.
+</remarks></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float CharacterSpacing { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L897">View Source</a>
   </span>
@@ -403,6 +2663,135 @@ Whether the cursor should blink or not.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L2600">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_EnableEditing_" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableEditing*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_EnableEditing" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableEditing">EnableEditing</h4>
+  <div class="markdown level1 summary"><p>Enable editing in text control.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool EnableEditing { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L3373">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_EnableFontSizeScale_" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableFontSizeScale*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_EnableFontSizeScale" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableFontSizeScale">EnableFontSizeScale</h4>
+  <div class="markdown level1 summary"><p>The EnableFontSizeScale property.<br>
+Whether the font size scale is enabled. (The default value is true)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool EnableFontSizeScale { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L3521">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_EnableGrabHandle_" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableGrabHandle*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_EnableGrabHandle" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableGrabHandle">EnableGrabHandle</h4>
+  <div class="markdown level1 summary"><p>The Enable grab handle property.<br>
+Enables the grab handles for text selection.<br>
+The default value is true, which means the grab handles are enabled by default.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool EnableGrabHandle { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L3554">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_EnableGrabHandlePopup_" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableGrabHandlePopup*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_EnableGrabHandlePopup" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableGrabHandlePopup">EnableGrabHandlePopup</h4>
+  <div class="markdown level1 summary"><p>The Enable grab handle popup property.<br>
+Enables the grab handle popup for text selection.<br>
+The default value is true, which means the grab handle popup is enabled by default.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool EnableGrabHandlePopup { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L1513">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_TextEditor_EnableMarkup_" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableMarkup*"></a>
@@ -478,6 +2867,37 @@ Enables Text selection, such as the cursor, handle, clipboard, and highlight col
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool EnableSelection { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L3198">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_EnableShiftSelection_" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableShiftSelection*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_EnableShiftSelection" data-uid="Tizen.NUI.BaseComponents.TextEditor.EnableShiftSelection">EnableShiftSelection</h4>
+  <div class="markdown level1 summary"><p>Enables Text selection using Shift key.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool EnableShiftSelection { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -599,6 +3019,40 @@ The fontStyle map contains the following keys :<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L2811">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_GrabHandleColor_" data-uid="Tizen.NUI.BaseComponents.TextEditor.GrabHandleColor*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_GrabHandleColor" data-uid="Tizen.NUI.BaseComponents.TextEditor.GrabHandleColor">GrabHandleColor</h4>
+  <div class="markdown level1 summary"><p>The GrabHandleColor property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Color GrabHandleColor { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Color.html">Color</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_GrabHandleColor_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The property cascade chaining set is possible. For example, this (textEditor.GrabHandleColor.X = 0.1f;) is possible.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L960">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_TextEditor_GrabHandleImage_" data-uid="Tizen.NUI.BaseComponents.TextEditor.GrabHandleImage*"></a>
@@ -686,6 +3140,37 @@ The line horizontal alignment.<br></p>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.HorizontalAlignment.html">HorizontalAlignment</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L2651">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_HorizontalScrollPosition_" data-uid="Tizen.NUI.BaseComponents.TextEditor.HorizontalScrollPosition*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_HorizontalScrollPosition" data-uid="Tizen.NUI.BaseComponents.TextEditor.HorizontalScrollPosition">HorizontalScrollPosition</h4>
+  <div class="markdown level1 summary"><p>Specify horizontal scroll position in text control.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int HorizontalScrollPosition { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -855,6 +3340,50 @@ The extra space between lines in points.<br></p>
       </tr>
     </tbody>
   </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L3419">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_InputMethodSettings_" data-uid="Tizen.NUI.BaseComponents.TextEditor.InputMethodSettings*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_InputMethodSettings" data-uid="Tizen.NUI.BaseComponents.TextEditor.InputMethodSettings">InputMethodSettings</h4>
+  <div class="markdown level1 summary"><p>The InputMethodSettings property.<br>
+The settings to relating to the System's Input Method, Key and Value.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PropertyMap InputMethodSettings { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PropertyMap.html">PropertyMap</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_InputMethodSettings_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.NUI.InputMethod.html">InputMethod</a> is a class encapsulating the input method map. Use the <a class="xref" href="Tizen.NUI.InputMethod.html">InputMethod</a> class for this property.</p>
+</div>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_InputMethodSettings_examples">Examples</h5>
+  <p>The following example demonstrates how to set the InputMethodSettings property.</p>
+<pre><code>InputMethod method = new InputMethod();
+method.PanelLayout = InputMethod.PanelLayoutType.Normal;
+method.ActionButton = InputMethod.ActionButtonTitleType.Default;
+method.AutoCapital = InputMethod.AutoCapitalType.Word;
+method.Variation = 1;
+textEditor.InputMethodSettings = method.OutputMap;</code></pre>
+
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1105,6 +3634,71 @@ The line wrap mode when the text lines over the layout width.<br></p>
     <tbody>
       <tr>
         <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L3262">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_MaxLength_" data-uid="Tizen.NUI.BaseComponents.TextEditor.MaxLength*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_MaxLength" data-uid="Tizen.NUI.BaseComponents.TextEditor.MaxLength">MaxLength</h4>
+  <div class="markdown level1 summary"><p>The MaxLength property.<br>
+The maximum number of characters that can be inserted.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int MaxLength { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L3587">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_MinLineSize_" data-uid="Tizen.NUI.BaseComponents.TextEditor.MinLineSize*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_MinLineSize" data-uid="Tizen.NUI.BaseComponents.TextEditor.MinLineSize">MinLineSize</h4>
+  <div class="markdown level1 summary"><p>Minimum line size to be used.<br>
+The height of the line in points. <br>
+If the font size is larger than the line size, it works with the font size. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float MinLineSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1393,6 +3987,104 @@ Specify the position of the primary cursor (caret) in text control.</p>
   <h5 id="Tizen_NUI_BaseComponents_TextEditor_PrimaryCursorPosition_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>If the value set is out of range (negative or greater than or equal the number of characters in Text) then the PrimaryCursorPosition is moved to the end of Text (the number of characters in Text).</p>
 </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L1793">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_RelativeLineHeight_" data-uid="Tizen.NUI.BaseComponents.TextEditor.RelativeLineHeight*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_RelativeLineHeight" data-uid="Tizen.NUI.BaseComponents.TextEditor.RelativeLineHeight">RelativeLineHeight</h4>
+  <div class="markdown level1 summary"><p>The relative height of the line (a factor that will be multiplied by text height). <br>
+If the value is less than 1, the lines could to be overlapped.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public float RelativeLineHeight { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L3699">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_RemoveBackInset_" data-uid="Tizen.NUI.BaseComponents.TextEditor.RemoveBackInset*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_RemoveBackInset" data-uid="Tizen.NUI.BaseComponents.TextEditor.RemoveBackInset">RemoveBackInset</h4>
+  <div class="markdown level1 summary"><p>The RemoveBackInset property.<br>
+This property is used when the advance of last glyph must not be trimmed.<br>
+When set to false, The gap between the last glyph's rightmost pixel and X coordinate that next glyph will be placed is included in the width of text label.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveBackInset { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L3664">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_RemoveFrontInset_" data-uid="Tizen.NUI.BaseComponents.TextEditor.RemoveFrontInset*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_RemoveFrontInset" data-uid="Tizen.NUI.BaseComponents.TextEditor.RemoveFrontInset">RemoveFrontInset</h4>
+  <div class="markdown level1 summary"><p>The RemoveFrontInset property.<br>
+This property is used when the xBearing of first glyph must not be trimmed.<br>
+When set to false, The gap between (0, 0) from the first glyph's leftmost pixel is included in the width of text label.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool RemoveFrontInset { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1902,6 +4594,38 @@ The color of the selection highlight.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L1023">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_SelectionPopupStyle_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SelectionPopupStyle*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SelectionPopupStyle" data-uid="Tizen.NUI.BaseComponents.TextEditor.SelectionPopupStyle">SelectionPopupStyle</h4>
+  <div class="markdown level1 summary"><p>The SelectionPopupStyle property.<br>
+The style of the text selection popup can be set through SelectionPopupStyle property.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PropertyMap SelectionPopupStyle { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.PropertyMap.html">PropertyMap</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L1947">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_TextEditor_Shadow_" data-uid="Tizen.NUI.BaseComponents.TextEditor.Shadow*"></a>
@@ -2094,22 +4818,6 @@ The text can set the SID value.<br></p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>ResourceManager about multilingual is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -2139,22 +4847,6 @@ The text can set the SID value.<br></p>
       <tr>
         <td><span class="xref">string</span></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>ResourceManager about multilingual is null.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -2188,6 +4880,69 @@ The underline map contains the following keys :<br></p>
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.PropertyMap.html">PropertyMap</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L662">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_VerticalAlignment_" data-uid="Tizen.NUI.BaseComponents.TextEditor.VerticalAlignment*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_VerticalAlignment" data-uid="Tizen.NUI.BaseComponents.TextEditor.VerticalAlignment">VerticalAlignment</h4>
+  <div class="markdown level1 summary"><p>The VerticalAlignment property.<br>
+The line vertical alignment.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public VerticalAlignment VerticalAlignment { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.VerticalAlignment.html">VerticalAlignment</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L2702">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_VerticalScrollPosition_" data-uid="Tizen.NUI.BaseComponents.TextEditor.VerticalScrollPosition*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_VerticalScrollPosition" data-uid="Tizen.NUI.BaseComponents.TextEditor.VerticalScrollPosition">VerticalScrollPosition</h4>
+  <div class="markdown level1 summary"><p>Specify vertical scroll position in text control.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int VerticalScrollPosition { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -2234,6 +4989,41 @@ The underline map contains the following keys :<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L582">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_GetFontStyle_" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetFontStyle*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_GetFontStyle" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetFontStyle">GetFontStyle()</h4>
+  <div class="markdown level1 summary"><p>Get FontStyle from TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FontStyle GetFontStyle()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.FontStyle.html">FontStyle</a></td>
+        <td><p>The FontStyle</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_GetFontStyle_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.NUI.Text.FontStyle.html">FontStyle</a></p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L2877">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_TextEditor_GetInputFilter_" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetInputFilter*"></a>
@@ -2269,6 +5059,41 @@ The underline map contains the following keys :<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L1681">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_GetInputFontStyle_" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetInputFontStyle*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_GetInputFontStyle" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetInputFontStyle">GetInputFontStyle()</h4>
+  <div class="markdown level1 summary"><p>Get InputFontStyle from TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public FontStyle GetInputFontStyle()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.FontStyle.html">FontStyle</a></td>
+        <td><p>The FontStyle</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_GetInputFontStyle_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.NUI.Text.FontStyle.html">FontStyle</a></p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L3463">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_TextEditor_GetInputMethodContext_" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetInputMethodContext*"></a>
@@ -2292,6 +5117,354 @@ The underline map contains the following keys :<br></p>
       <tr>
         <td><a class="xref" href="Tizen.NUI.InputMethodContext.html">InputMethodContext</a></td>
         <td><p>The InputMethodContext instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L2184">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_GetOutline_" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetOutline*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_GetOutline" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetOutline">GetOutline()</h4>
+  <div class="markdown level1 summary"><p>Get Outline from TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Outline GetOutline()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.Outline.html">Outline</a></td>
+        <td><p>The Outline</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_GetOutline_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.NUI.Text.Outline.html">Outline</a></p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L3085">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_GetPlaceholder_" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetPlaceholder*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_GetPlaceholder" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetPlaceholder">GetPlaceholder()</h4>
+  <div class="markdown level1 summary"><p>Get Placeholder from TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Placeholder GetPlaceholder()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.Placeholder.html">Placeholder</a></td>
+        <td><p>The Placeholder</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_GetPlaceholder_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.NUI.Text.Placeholder.html">Placeholder</a></p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L1168">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_GetSelectionHandleImage_" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetSelectionHandleImage*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_GetSelectionHandleImage" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetSelectionHandleImage">GetSelectionHandleImage()</h4>
+  <div class="markdown level1 summary"><p>Get SelectionHandleImage from TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SelectionHandleImage GetSelectionHandleImage()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.SelectionHandleImage.html">SelectionHandleImage</a></td>
+        <td><p>The SelectionHandleImage</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_GetSelectionHandleImage_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.NUI.Text.SelectionHandleImage.html">SelectionHandleImage</a></p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L1422">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_GetSelectionHandleMarkerImage_" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetSelectionHandleMarkerImage*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_GetSelectionHandleMarkerImage" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetSelectionHandleMarkerImage">GetSelectionHandleMarkerImage()</h4>
+  <div class="markdown level1 summary"><p>Get SelectionHandleMarkerImage from TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SelectionHandleImage GetSelectionHandleMarkerImage()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.SelectionHandleImage.html">SelectionHandleImage</a></td>
+        <td><p>The SelectionHandleMarkerImage</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_GetSelectionHandleMarkerImage_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.NUI.Text.SelectionHandleImage.html">SelectionHandleImage</a></p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L1295">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_GetSelectionHandlePressedImage_" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetSelectionHandlePressedImage*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_GetSelectionHandlePressedImage" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetSelectionHandlePressedImage">GetSelectionHandlePressedImage()</h4>
+  <div class="markdown level1 summary"><p>Get SelectionHandlePressedImage from TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SelectionHandleImage GetSelectionHandlePressedImage()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.SelectionHandleImage.html">SelectionHandleImage</a></td>
+        <td><p>The SelectionHandlePressedImage</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_GetSelectionHandlePressedImage_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.NUI.Text.SelectionHandleImage.html">SelectionHandleImage</a></p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L2007">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_GetShadow_" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetShadow*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_GetShadow" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetShadow">GetShadow()</h4>
+  <div class="markdown level1 summary"><p>Get Shadow from TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Shadow GetShadow()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.Shadow.html">Shadow</a></td>
+        <td><p>The Shadow</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_GetShadow_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.NUI.Text.Shadow.html">Shadow</a></p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L2923">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_GetStrikethrough_" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetStrikethrough*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_GetStrikethrough" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetStrikethrough">GetStrikethrough()</h4>
+  <div class="markdown level1 summary"><p>Get Strikethrough from TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Strikethrough GetStrikethrough()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.Strikethrough.html">Strikethrough</a></td>
+        <td><p>The Strikethrough</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_GetStrikethrough_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.NUI.Text.Strikethrough.html">Strikethrough</a></p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L1893">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_GetUnderline_" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetUnderline*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_GetUnderline" data-uid="Tizen.NUI.BaseComponents.TextEditor.GetUnderline">GetUnderline()</h4>
+  <div class="markdown level1 summary"><p>Get Underline from TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Underline GetUnderline()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.Underline.html">Underline</a></td>
+        <td><p>The Underline</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_GetUnderline_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.NUI.Text.Underline.html">Underline</a></p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L3794">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_ReleaseSwigCPtr_" data-uid="Tizen.NUI.BaseComponents.TextEditor.ReleaseSwigCPtr*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.BaseComponents.TextEditor.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
+        <td><span class="parametername">swigCPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">View.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L3451">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_ScrollBy_" data-uid="Tizen.NUI.BaseComponents.TextEditor.ScrollBy*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_ScrollBy_Tizen_NUI_Vector2_" data-uid="Tizen.NUI.BaseComponents.TextEditor.ScrollBy(Tizen.NUI.Vector2)">ScrollBy(Vector2)</h4>
+  <div class="markdown level1 summary"><p>Scroll the text control by specific amount..</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ScrollBy(Vector2 scroll)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
+        <td><span class="parametername">scroll</span></td>
+        <td><p>The amount (in pixels) of scrolling in horizontal &amp; vertical directions.</p>
 </td>
       </tr>
     </tbody>
@@ -2378,6 +5551,51 @@ The index is valid when 0 or positive.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L566">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_SetFontStyle_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetFontStyle*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SetFontStyle_Tizen_NUI_Text_FontStyle_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetFontStyle(Tizen.NUI.Text.FontStyle)">SetFontStyle(FontStyle)</h4>
+  <div class="markdown level1 summary"><p>Set FontStyle to TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetFontStyle(FontStyle fontStyle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.FontStyle.html">FontStyle</a></td>
+        <td><span class="parametername">fontStyle</span></td>
+        <td><p>The FontStyle</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetFontStyle_Tizen_NUI_Text_FontStyle__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>SetFontStyle specifies the requested font style through <a class="xref" href="Tizen.NUI.Text.FontStyle.html">FontStyle</a>. <br></p>
+</div>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetFontStyle_Tizen_NUI_Text_FontStyle__examples">Examples</h5>
+  <p>The following example demonstrates how to use the SetFontStyle method.</p>
+<pre><code>var fontStyle = new Tizen.NUI.Text.FontStyle();
+fontStyle.Width = FontWidthType.Expanded;
+fontStyle.Weight = FontWeightType.Bold;
+fontStyle.Slant = FontSlantType.Italic;
+editor.SetFontStyle(fontStyle);</code></pre>
+
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L2860">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_TextEditor_SetInputFilter_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetInputFilter*"></a>
@@ -2423,6 +5641,416 @@ editor.SetInputFilter(inputFilter); // acceptable inputs are 4, 5, 6, 7, 8, 9</c
 
   <div style="margin-bottom: 15px"></div>
 
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L1665">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_SetInputFontStyle_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetInputFontStyle*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SetInputFontStyle_Tizen_NUI_Text_FontStyle_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetInputFontStyle(Tizen.NUI.Text.FontStyle)">SetInputFontStyle(FontStyle)</h4>
+  <div class="markdown level1 summary"><p>Set InputFontStyle to TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetInputFontStyle(FontStyle fontStyle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.FontStyle.html">FontStyle</a></td>
+        <td><span class="parametername">fontStyle</span></td>
+        <td><p>The FontStyle</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetInputFontStyle_Tizen_NUI_Text_FontStyle__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>SetInputFontStyle specifies the requested font style for new input text through <a class="xref" href="Tizen.NUI.Text.FontStyle.html">FontStyle</a>. <br></p>
+</div>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetInputFontStyle_Tizen_NUI_Text_FontStyle__examples">Examples</h5>
+  <p>The following example demonstrates how to use the SetInputFontStyle method.</p>
+<pre><code>var fontStyle = new Tizen.NUI.Text.FontStyle();
+fontStyle.Width = FontWidthType.Expanded;
+fontStyle.Weight = FontWeightType.Bold;
+fontStyle.Slant = FontSlantType.Italic;
+editor.SetInputFontStyle(fontStyle);</code></pre>
+
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L2168">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_SetOutline_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetOutline*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SetOutline_Tizen_NUI_Text_Outline_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetOutline(Tizen.NUI.Text.Outline)">SetOutline(Outline)</h4>
+  <div class="markdown level1 summary"><p>Set Outline to TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetOutline(Outline outline)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.Outline.html">Outline</a></td>
+        <td><span class="parametername">outline</span></td>
+        <td><p>The Outline</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetOutline_Tizen_NUI_Text_Outline__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>SetOutline specifies the outline of the text through <a class="xref" href="Tizen.NUI.Text.Outline.html">Outline</a>. <br></p>
+</div>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetOutline_Tizen_NUI_Text_Outline__examples">Examples</h5>
+  <p>The following example demonstrates how to use the SetOutline method.</p>
+<pre><code>var outline = new Tizen.NUI.Text.Outline();
+outline.Width = 2.0f;
+outline.Color = new Color(&quot;#45B39D&quot;);
+editor.SetOutline(outline);</code></pre>
+
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L3069">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_SetPlaceholder_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetPlaceholder*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SetPlaceholder_Tizen_NUI_Text_Placeholder_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetPlaceholder(Tizen.NUI.Text.Placeholder)">SetPlaceholder(Placeholder)</h4>
+  <div class="markdown level1 summary"><p>Set Placeholder to TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetPlaceholder(Placeholder placeholder)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.Placeholder.html">Placeholder</a></td>
+        <td><span class="parametername">placeholder</span></td>
+        <td><p>The Placeholder</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetPlaceholder_Tizen_NUI_Text_Placeholder__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>SetPlaceholder specifies the attributes of the placeholder property through <a class="xref" href="Tizen.NUI.Text.Placeholder.html">Placeholder</a>. <br></p>
+</div>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetPlaceholder_Tizen_NUI_Text_Placeholder__examples">Examples</h5>
+  <p>The following example demonstrates how to use the SetPlaceholder method.</p>
+<pre><code>var placeholder = new Tizen.NUI.Text.Placeholder();
+placeholder.Text = &quot;placeholder text&quot;;
+placeholder.TextFocused = &quot;placeholder textFocused&quot;;
+placeholder.Color = new Color(&quot;#45B39D&quot;);
+placeholder.FontFamily = &quot;BreezeSans&quot;;
+placeholder.FontStyle = new Tizen.NUI.Text.FontStyle()
+{
+    Width = FontWidthType.Expanded,
+    Weight = FontWeightType.ExtraLight,
+    Slant = FontSlantType.Italic,
+};
+placeholder.PointSize = 25.0f;
+//placeholder.PixelSize = 50.0f;
+placeholder.Ellipsis = true;
+editor.SetPlaceholder(placeholder);</code></pre>
+
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L1141">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_SetSelectionHandleImage_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetSelectionHandleImage*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SetSelectionHandleImage_Tizen_NUI_Text_SelectionHandleImage_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetSelectionHandleImage(Tizen.NUI.Text.SelectionHandleImage)">SetSelectionHandleImage(SelectionHandleImage)</h4>
+  <div class="markdown level1 summary"><p>Set SelectionHandleImage to TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetSelectionHandleImage(SelectionHandleImage selectionHandleImage)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.SelectionHandleImage.html">SelectionHandleImage</a></td>
+        <td><span class="parametername">selectionHandleImage</span></td>
+        <td><p>The SelectionHandleImage</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetSelectionHandleImage_Tizen_NUI_Text_SelectionHandleImage__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>SetSelectionHandleImage specifies the display image used for the selection handle through <a class="xref" href="Tizen.NUI.Text.SelectionHandleImage.html">SelectionHandleImage</a>. <br></p>
+</div>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetSelectionHandleImage_Tizen_NUI_Text_SelectionHandleImage__examples">Examples</h5>
+  <p>The following example demonstrates how to use the SetSelectionHandleImage method.</p>
+<pre><code>var selectionHandleImage = new Tizen.NUI.Text.SelectionHandleImage();
+selectionHandleImage.LeftImageUrl = &quot;handle_downleft.png&quot;;
+selectionHandleImage.RightImageUrl = &quot;handle_downright.png&quot;;
+editor.SetSelectionHandleImage(selectionHandleImage);</code></pre>
+
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L1395">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_SetSelectionHandleMarkerImage_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetSelectionHandleMarkerImage*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SetSelectionHandleMarkerImage_Tizen_NUI_Text_SelectionHandleImage_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetSelectionHandleMarkerImage(Tizen.NUI.Text.SelectionHandleImage)">SetSelectionHandleMarkerImage(SelectionHandleImage)</h4>
+  <div class="markdown level1 summary"><p>Set SelectionHandleMarkerImage to TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetSelectionHandleMarkerImage(SelectionHandleImage selectionHandleMarkerImage)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.SelectionHandleImage.html">SelectionHandleImage</a></td>
+        <td><span class="parametername">selectionHandleMarkerImage</span></td>
+        <td><p>The SelectionHandleImage</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetSelectionHandleMarkerImage_Tizen_NUI_Text_SelectionHandleImage__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>SetSelectionHandleMarkerImage specifies the display image used for the selection handle through <a class="xref" href="Tizen.NUI.Text.SelectionHandleImage.html">SelectionHandleImage</a>. <br></p>
+</div>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetSelectionHandleMarkerImage_Tizen_NUI_Text_SelectionHandleImage__examples">Examples</h5>
+  <p>The following example demonstrates how to use the SetSelectionHandleMarkerImage method.</p>
+<pre><code>var selectionHandleMarkerImage = new Tizen.NUI.Text.SelectionHandleImage();
+selectionHandleMarkerImage.LeftImageUrl = &quot;handle_pressed_downleft.png&quot;;
+selectionHandleMarkerImage.RightImageUrl = &quot;handle_pressed_downright.png&quot;;
+editor.SetSelectionHandleMarkerImage(selectionHandleMarkerImage);</code></pre>
+
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L1268">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_SetSelectionHandlePressedImage_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetSelectionHandlePressedImage*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SetSelectionHandlePressedImage_Tizen_NUI_Text_SelectionHandleImage_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetSelectionHandlePressedImage(Tizen.NUI.Text.SelectionHandleImage)">SetSelectionHandlePressedImage(SelectionHandleImage)</h4>
+  <div class="markdown level1 summary"><p>Set SelectionHandlePressedImage to TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetSelectionHandlePressedImage(SelectionHandleImage selectionHandlePressedImage)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.SelectionHandleImage.html">SelectionHandleImage</a></td>
+        <td><span class="parametername">selectionHandlePressedImage</span></td>
+        <td><p>The SelectionHandleImage</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetSelectionHandlePressedImage_Tizen_NUI_Text_SelectionHandleImage__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>SetSelectionHandlePressedImage specifies the display image used for the selection handle through <a class="xref" href="Tizen.NUI.Text.SelectionHandleImage.html">SelectionHandleImage</a>. <br></p>
+</div>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetSelectionHandlePressedImage_Tizen_NUI_Text_SelectionHandleImage__examples">Examples</h5>
+  <p>The following example demonstrates how to use the SetSelectionHandlePressedImage method.</p>
+<pre><code>var selectionHandlePressedImage = new Tizen.NUI.Text.SelectionHandleImage();
+selectionHandlePressedImage.LeftImageUrl = &quot;handle_pressed_downleft.png&quot;;
+selectionHandlePressedImage.RightImageUrl = &quot;handle_pressed_downright.png&quot;;
+editor.SetSelectionHandlePressedImage(selectionHandlePressedImage);</code></pre>
+
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L1991">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_SetShadow_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetShadow*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SetShadow_Tizen_NUI_Text_Shadow_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetShadow(Tizen.NUI.Text.Shadow)">SetShadow(Shadow)</h4>
+  <div class="markdown level1 summary"><p>Set Shadow to TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetShadow(Shadow shadow)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.Shadow.html">Shadow</a></td>
+        <td><span class="parametername">shadow</span></td>
+        <td><p>The Shadow</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetShadow_Tizen_NUI_Text_Shadow__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>SetShadow specifies the shadow of the text through <a class="xref" href="Tizen.NUI.Text.Shadow.html">Shadow</a>. <br></p>
+</div>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetShadow_Tizen_NUI_Text_Shadow__examples">Examples</h5>
+  <p>The following example demonstrates how to use the SetShadow method.</p>
+<pre><code>var shadow = new Tizen.NUI.Text.Shadow();
+shadow.Offset = new Vector2(3, 3);
+shadow.Color = new Color(&quot;#F1C40F&quot;);
+editor.SetShadow(shadow);</code></pre>
+
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L2906">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_SetStrikethrough_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetStrikethrough*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SetStrikethrough_Tizen_NUI_Text_Strikethrough_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetStrikethrough(Tizen.NUI.Text.Strikethrough)">SetStrikethrough(Strikethrough)</h4>
+  <div class="markdown level1 summary"><p>Set Strikethrough to TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetStrikethrough(Strikethrough strikethrough)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.Strikethrough.html">Strikethrough</a></td>
+        <td><span class="parametername">strikethrough</span></td>
+        <td><p>The Strikethrough</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetStrikethrough_Tizen_NUI_Text_Strikethrough__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>SetStrikethrough specifies the strikethrough of the text through <a class="xref" href="Tizen.NUI.Text.Strikethrough.html">Strikethrough</a>. <br></p>
+</div>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetStrikethrough_Tizen_NUI_Text_Strikethrough__examples">Examples</h5>
+  <p>The following example demonstrates how to use the SetStrikethrough method.</p>
+<pre><code>var strikethrough = new Tizen.NUI.Text.Strikethrough();
+strikethrough.Enable = true;
+strikethrough.Color = new Color(&quot;#3498DB&quot;);
+strikethrough.Height = 2.0f;
+editor.SetStrikethrough(strikethrough);</code></pre>
+
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditor.cs/#L1877">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_TextEditor_SetUnderline_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetUnderline*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_SetUnderline_Tizen_NUI_Text_Underline_" data-uid="Tizen.NUI.BaseComponents.TextEditor.SetUnderline(Tizen.NUI.Text.Underline)">SetUnderline(Underline)</h4>
+  <div class="markdown level1 summary"><p>Set Underline to TextEditor. <br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetUnderline(Underline underline)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Text.Underline.html">Underline</a></td>
+        <td><span class="parametername">underline</span></td>
+        <td><p>The Underline</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetUnderline_Tizen_NUI_Text_Underline__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>SetUnderline specifies the underline of the text through <a class="xref" href="Tizen.NUI.Text.Underline.html">Underline</a>. <br></p>
+</div>
+  <h5 id="Tizen_NUI_BaseComponents_TextEditor_SetUnderline_Tizen_NUI_Text_Underline__examples">Examples</h5>
+  <p>The following example demonstrates how to use the SetUnderline method.</p>
+<pre><code>var underline = new Tizen.NUI.Text.Underline();
+underline.Enable = true;
+underline.Color = new Color(&quot;#3498DB&quot;);
+underline.Height = 2.0f;
+editor.SetUnderline(underline);</code></pre>
+
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="events">Events
 </h3>
   <span class="small pull-right mobile-hide">
@@ -2446,7 +6074,7 @@ editor.SetInputFilter(inputFilter); // acceptable inputs are 4, 5, 6, 7, 8, 9</c
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.AnchorClickedEventArgs.html">AnchorClickedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.AnchorClickedEventArgs.html">AnchorClickedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2476,7 +6104,7 @@ editor.SetInputFilter(inputFilter); // acceptable inputs are 4, 5, 6, 7, 8, 9</c
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler</span></td>
+        <td><span class="xref">EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -2506,7 +6134,7 @@ editor.SetInputFilter(inputFilter); // acceptable inputs are 4, 5, 6, 7, 8, 9</c
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.InputFilteredEventArgs.html">InputFilteredEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.InputFilteredEventArgs.html">InputFilteredEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2533,6 +6161,36 @@ editor.SetInputFilter(inputFilter); // acceptable inputs are 4, 5, 6, 7, 8, 9</c
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorEvent.cs/#L167">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_BaseComponents_TextEditor_MaxLengthReached" data-uid="Tizen.NUI.BaseComponents.TextEditor.MaxLengthReached">MaxLengthReached</h4>
+  <div class="markdown level1 summary"><p>The MaxLengthReached event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;TextEditor.MaxLengthReachedEventArgs&gt; MaxLengthReached</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.TextEditor.MaxLengthReachedEventArgs.html">MaxLengthReachedEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/BaseComponents/TextEditorEvent.cs/#L117">View Source</a>
   </span>
   <h4 id="Tizen_NUI_BaseComponents_TextEditor_ScrollStateChanged" data-uid="Tizen.NUI.BaseComponents.TextEditor.ScrollStateChanged">ScrollStateChanged</h4>
@@ -2554,7 +6212,7 @@ provided by the user. The ScrollStateChanged signal is emitted when the scroll s
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.TextEditor.html">TextEditor</a>.<a class="xref" href="Tizen.NUI.BaseComponents.TextEditor.ScrollStateChangedEventArgs.html">ScrollStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.TextEditor.ScrollStateChangedEventArgs.html">ScrollStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2584,7 +6242,7 @@ provided by the user. The ScrollStateChanged signal is emitted when the scroll s
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler</span></td>
+        <td><span class="xref">EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -2614,7 +6272,7 @@ provided by the user. The ScrollStateChanged signal is emitted when the scroll s
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler</span></td>
+        <td><span class="xref">EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -2644,7 +6302,7 @@ provided by the user. The ScrollStateChanged signal is emitted when the scroll s
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler</span></td>
+        <td><span class="xref">EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -2675,7 +6333,7 @@ provided by the user. The TextChanged signal is emitted when the text changes.<b
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.TextEditor.html">TextEditor</a>.<a class="xref" href="Tizen.NUI.BaseComponents.TextEditor.TextChangedEventArgs.html">TextChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.BaseComponents.TextEditor.TextChangedEventArgs.html">TextChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2686,10 +6344,44 @@ provided by the user. The TextChanged signal is emitted when the text changes.<b
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, string, BindingMode, IValueConverter, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, string)</a>
   </div>
 </article>
           </div>

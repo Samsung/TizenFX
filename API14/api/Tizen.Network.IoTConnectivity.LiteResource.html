@@ -96,8 +96,7 @@ This class is accessed by using a constructor to create a new instance of this o
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public class LiteResource : Resource, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class LiteResource : Resource</code></pre>
   </div>
 
 
@@ -114,12 +113,6 @@ public class LiteResource : Resource, IDisposable</code></pre>
 
 
 
-  <dl class="attribute-list stack">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
-    </dd>
-  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
@@ -133,8 +126,7 @@ public class LiteResource : Resource, IDisposable</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public LiteResource(string uri, ResourceTypes types, ResourcePolicy policy, Attributes attribs = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public LiteResource(string uri, ResourceTypes types, ResourcePolicy policy, Attributes attribs = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -206,8 +198,7 @@ public LiteResource(string uri, ResourceTypes types, ResourcePolicy policy, Attr
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public Attributes Attributes { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Attributes Attributes { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -244,6 +235,174 @@ public Attributes Attributes { get; set; }</code></pre>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/LiteResource.cs/#L196">View Source</a>
+  </span>
+  <a id="Tizen_Network_IoTConnectivity_LiteResource_OnDelete_" data-uid="Tizen.Network.IoTConnectivity.LiteResource.OnDelete*"></a>
+  <h4 id="Tizen_Network_IoTConnectivity_LiteResource_OnDelete_Tizen_Network_IoTConnectivity_Request_" data-uid="Tizen.Network.IoTConnectivity.LiteResource.OnDelete(Tizen.Network.IoTConnectivity.Request)">OnDelete(Request)</h4>
+  <div class="markdown level1 summary"><p>This is called when the client performs delete operation on this resource.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override sealed Response OnDelete(Request request)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.IoTConnectivity.Request.html">Request</a></td>
+        <td><span class="parametername">request</span></td>
+        <td><p>A request from client.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.IoTConnectivity.Response.html">Response</a></td>
+        <td><p>A response.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.Network.IoTConnectivity.Resource.html#Tizen_Network_IoTConnectivity_Resource_OnDelete_Tizen_Network_IoTConnectivity_Request_">Resource.OnDelete(Request)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/LiteResource.cs/#L121">View Source</a>
+  </span>
+  <a id="Tizen_Network_IoTConnectivity_LiteResource_OnGet_" data-uid="Tizen.Network.IoTConnectivity.LiteResource.OnGet*"></a>
+  <h4 id="Tizen_Network_IoTConnectivity_LiteResource_OnGet_Tizen_Network_IoTConnectivity_Request_" data-uid="Tizen.Network.IoTConnectivity.LiteResource.OnGet(Tizen.Network.IoTConnectivity.Request)">OnGet(Request)</h4>
+  <div class="markdown level1 summary"><p>This is called when the client performs get operation on this resource.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override sealed Response OnGet(Request request)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.IoTConnectivity.Request.html">Request</a></td>
+        <td><span class="parametername">request</span></td>
+        <td><p>A request from client.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.IoTConnectivity.Response.html">Response</a></td>
+        <td><p>A response having the representation and the result.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.Network.IoTConnectivity.Resource.html#Tizen_Network_IoTConnectivity_Resource_OnGet_Tizen_Network_IoTConnectivity_Request_">Resource.OnGet(Request)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/LiteResource.cs/#L212">View Source</a>
+  </span>
+  <a id="Tizen_Network_IoTConnectivity_LiteResource_OnObserving_" data-uid="Tizen.Network.IoTConnectivity.LiteResource.OnObserving*"></a>
+  <h4 id="Tizen_Network_IoTConnectivity_LiteResource_OnObserving_Tizen_Network_IoTConnectivity_Request_Tizen_Network_IoTConnectivity_ObserveType_System_Int32_" data-uid="Tizen.Network.IoTConnectivity.LiteResource.OnObserving(Tizen.Network.IoTConnectivity.Request,Tizen.Network.IoTConnectivity.ObserveType,System.Int32)">OnObserving(Request, ObserveType, int)</h4>
+  <div class="markdown level1 summary"><p>Called on the observing event.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override sealed bool OnObserving(Request request, ObserveType observeType, int observeId)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.IoTConnectivity.Request.html">Request</a></td>
+        <td><span class="parametername">request</span></td>
+        <td><p>A request from client.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.IoTConnectivity.ObserveType.html">ObserveType</a></td>
+        <td><span class="parametername">observeType</span></td>
+        <td><p>Observer type.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">observeId</span></td>
+        <td><p>Observe identifier.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p>Returns true.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.Network.IoTConnectivity.Resource.html#Tizen_Network_IoTConnectivity_Resource_OnObserving_Tizen_Network_IoTConnectivity_Request_Tizen_Network_IoTConnectivity_ObserveType_System_Int32_">Resource.OnObserving(Request, ObserveType, int)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/LiteResource.cs/#L109">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_LiteResource_OnPost_" data-uid="Tizen.Network.IoTConnectivity.LiteResource.OnPost*"></a>
@@ -253,8 +412,7 @@ public Attributes Attributes { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-protected virtual bool OnPost(Attributes attribs)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual bool OnPost(Attributes attribs)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -310,9 +468,122 @@ protected virtual bool OnPost(Attributes attribs)</code></pre>
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="implements">Implements</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/LiteResource.cs/#L162">View Source</a>
+  </span>
+  <a id="Tizen_Network_IoTConnectivity_LiteResource_OnPost_" data-uid="Tizen.Network.IoTConnectivity.LiteResource.OnPost*"></a>
+  <h4 id="Tizen_Network_IoTConnectivity_LiteResource_OnPost_Tizen_Network_IoTConnectivity_Request_" data-uid="Tizen.Network.IoTConnectivity.LiteResource.OnPost(Tizen.Network.IoTConnectivity.Request)">OnPost(Request)</h4>
+  <div class="markdown level1 summary"><p>This is called when the client performs post operation on this resource.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override sealed Response OnPost(Request request)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.IoTConnectivity.Request.html">Request</a></td>
+        <td><span class="parametername">request</span></td>
+        <td><p>A request from client.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.IoTConnectivity.Response.html">Response</a></td>
+        <td><p>A response having the representation and the result.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.Network.IoTConnectivity.Resource.html#Tizen_Network_IoTConnectivity_Resource_OnPost_Tizen_Network_IoTConnectivity_Request_">Resource.OnPost(Request)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/main/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/LiteResource.cs/#L148">View Source</a>
+  </span>
+  <a id="Tizen_Network_IoTConnectivity_LiteResource_OnPut_" data-uid="Tizen.Network.IoTConnectivity.LiteResource.OnPut*"></a>
+  <h4 id="Tizen_Network_IoTConnectivity_LiteResource_OnPut_Tizen_Network_IoTConnectivity_Request_" data-uid="Tizen.Network.IoTConnectivity.LiteResource.OnPut(Tizen.Network.IoTConnectivity.Request)">OnPut(Request)</h4>
+  <div class="markdown level1 summary"><p>This is called when the client performs put operation on this resource.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override sealed Response OnPut(Request request)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.IoTConnectivity.Request.html">Request</a></td>
+        <td><span class="parametername">request</span></td>
+        <td><p>A request from client.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Network.IoTConnectivity.Response.html">Response</a></td>
+        <td><p>A response.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.Network.IoTConnectivity.Resource.html#Tizen_Network_IoTConnectivity_Resource_OnPut_Tizen_Network_IoTConnectivity_Request_">Resource.OnPut(Request)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
