@@ -220,9 +220,13 @@ namespace Tizen.NUI.Samples
                 SizeHeight = ItemHeight,
             };
 
-            btn.FocusGained += (s, e) => btn.Text = $"[{title}]";
+            btn.FocusGained += (s, e) =>
+            {
+                btn.Text = $"[{title}]";
+
+            };
             btn.FocusLost += (s, e) => btn.Text = $"{title}";
-            btn.FocusGained += (s, e) => _textLabel.Text = $"Focused : {title}";
+            btn.FocusGained += (s, e) => _textLabel.Text = $"Focused : {title},{FocusManager.Instance.GetLastFocusChangeDevice()},{FocusManager.Instance.GetLastFocusChangeDeviceName()}";
             return btn;
         }
 

@@ -2049,6 +2049,60 @@ namespace Tizen.NUI
         Behind = 2,
     }
 
+
+    /// <summary>
+    /// Focus device type
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum FocusDeviceType
+    {
+        /// <summary>
+        /// Unknown device.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Unknown,
+        /// <summary>
+        /// A regular keyboard, numberpad or attached buttons.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Keyboard,
+        /// <summary>
+        /// A mouse, trackball or touchpad relative motion device.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Mouse,
+        /// <summary>
+        /// A touchscreen with fingers or stylus.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Touch,
+        /// <summary>
+        /// A special pen device.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Pen,
+        /// <summary>
+        ///  A pointing device based on laser, infrared or similar technology.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Pointer,
+        /// <summary>
+        /// A gamepad controller or joystick.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Gamepad,
+        /// <summary>
+        /// A wheel device.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Wheel,
+        /// <summary>
+        /// A Programmatic
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Programmatic
+    }
+
     internal struct NUIConstants
     {
         internal static void Preload()
