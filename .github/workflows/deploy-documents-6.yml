@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         repository: TizenAPI/TizenFX-Docs
-        ref: test
+        ref: net6.0
 
     - uses: actions/setup-dotnet@v5
       with:
