@@ -16,7 +16,7 @@ jobs:
 
     - uses: actions/setup-dotnet@v5
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: '8.0.407'
 
     - name: Install DocFX Tool
       run: dotnet tool install -g docfx --version 2.61.0
@@ -35,7 +35,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 20
+        node-version: 24
 
     - name: Build Documents
       # if: steps.cache-site.outputs.cache-hit != 'true'
