@@ -184,6 +184,10 @@ namespace Tizen.NUI.BaseComponents
         /// Default constructor to create a WebView.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        /// <remark>
+        /// <see cref="Tizen.NUI.BaseComponents.View.FocusableInTouch"/> is false by default, but for WebView it defaults to true. 
+        /// This approach improves usability since WebView always requires <see cref="Tizen.NUI.BaseComponents.View.FocusableInTouch"/> to be true.
+        /// </remark>
         public WebView() : this(Interop.WebView.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -194,6 +198,10 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="locale">The specified locale</param>
         /// <param name="timezoneId">The specified time-zone ID</param>
+        /// <remark>
+        /// <see cref="Tizen.NUI.BaseComponents.View.FocusableInTouch"/> is false by default, but for WebView it defaults to true. 
+        /// This approach improves usability since WebView always requires <see cref="Tizen.NUI.BaseComponents.View.FocusableInTouch"/> to be true.
+        /// </remark>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WebView(string locale, string timezoneId) : this(Interop.WebView.New2(locale, timezoneId), true)
         {
@@ -205,6 +213,10 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="args">Arguments passed into web engine. The first value of array must be program's name.</param>
         /// <since_tizen> 9 </since_tizen>
+        /// <remark>
+        /// <see cref="Tizen.NUI.BaseComponents.View.FocusableInTouch"/> is false by default, but for WebView it defaults to true. 
+        /// This approach improves usability since WebView always requires <see cref="Tizen.NUI.BaseComponents.View.FocusableInTouch"/> to be true.
+        /// </remark>
         public WebView(string[] args) : this(Interop.WebView.New3(args?.Length ?? 0, args), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -215,6 +227,10 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="args">Arguments passed into web engine. The first value of array must be program's name.</param>
         /// <param name="webEngineType">Can select the plugin of Web Engine type. Chromium or LWE.</param>
+        /// <remark>
+        /// <see cref="Tizen.NUI.BaseComponents.View.FocusableInTouch"/> is false by default, but for WebView it defaults to true. 
+        /// This approach improves usability since WebView always requires <see cref="Tizen.NUI.BaseComponents.View.FocusableInTouch"/> to be true.
+        /// </remark>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WebView(string[] args, WebEngineType webEngineType) : this(Interop.WebView.New4(args?.Length ?? 0, args, (int)webEngineType), true)
         {
@@ -226,6 +242,10 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="webView">WebView to copy. The copied WebView will point at the same implementation</param>
         /// <since_tizen> 9 </since_tizen>
+        /// <remark>
+        /// <see cref="Tizen.NUI.BaseComponents.View.FocusableInTouch"/> is false by default, but for WebView it defaults to true. 
+        /// This approach improves usability since WebView always requires <see cref="Tizen.NUI.BaseComponents.View.FocusableInTouch"/> to be true.
+        /// </remark>
         public WebView(WebView webView) : this(Interop.WebView.NewWebView(WebView.getCPtr(webView)), true, false)
         {
             // TODO : Please deprecate this API.
