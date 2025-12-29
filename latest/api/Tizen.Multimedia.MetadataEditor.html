@@ -95,7 +95,8 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MetadataEditor : IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public class MetadataEditor : IDisposable</code></pre>
   </div>
 
 
@@ -111,6 +112,12 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
 
 
 
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
@@ -124,7 +131,8 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MetadataEditor(string path)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public MetadataEditor(string path)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -154,8 +162,28 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
     </thead>
     <tbody>
       <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is a zero-length string, contains only white space.</p>
+</td>
+      </tr>
+      <tr>
         <td><a class="xref" href="Tizen.Multimedia.FileFormatException.html">FileFormatException</a></td>
         <td><p>The file is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.FileNotFoundException</span></td>
+        <td><p>The file does not exist.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>The caller does not have required privilege to access the file.</p>
 </td>
       </tr>
     </tbody>
@@ -176,7 +204,8 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Album { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public string Album { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -190,6 +219,31 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
       <tr>
         <td><span class="xref">string</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -207,7 +261,8 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Artist { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public string Artist { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -221,6 +276,31 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
       <tr>
         <td><span class="xref">string</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -238,7 +318,8 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Author { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public string Author { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -252,6 +333,31 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
       <tr>
         <td><span class="xref">string</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -269,7 +375,8 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Comment { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public string Comment { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -283,6 +390,31 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
       <tr>
         <td><span class="xref">string</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -300,7 +432,8 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Conductor { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public string Conductor { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -314,6 +447,31 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
       <tr>
         <td><span class="xref">string</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -331,7 +489,8 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Copyright { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public string Copyright { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -345,6 +504,31 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
       <tr>
         <td><span class="xref">string</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -362,7 +546,8 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Date { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public string Date { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -383,6 +568,31 @@ Since 6.0, WAV, FLAC, OGG files are supported as well.</p>
   <div class="markdown level1 remarks"><p>If the media contains the ID3 tag, this refers to the recorded date.
 If the media is a mp4 format, this refers to the year, and the value to set will be converted into integer.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -397,7 +607,8 @@ If the media is a mp4 format, this refers to the year, and the value to set will
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Description { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public string Description { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -411,6 +622,31 @@ If the media is a mp4 format, this refers to the year, and the value to set will
       <tr>
         <td><span class="xref">string</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -428,7 +664,8 @@ If the media is a mp4 format, this refers to the year, and the value to set will
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Genre { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public string Genre { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -442,6 +679,31 @@ If the media is a mp4 format, this refers to the year, and the value to set will
       <tr>
         <td><span class="xref">string</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -459,7 +721,8 @@ If the media is a mp4 format, this refers to the year, and the value to set will
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int PictureCount { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public int PictureCount { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -473,6 +736,22 @@ If the media is a mp4 format, this refers to the year, and the value to set will
       <tr>
         <td><span class="xref">int</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -490,7 +769,8 @@ If the media is a mp4 format, this refers to the year, and the value to set will
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Title { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public string Title { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -504,6 +784,31 @@ If the media is a mp4 format, this refers to the year, and the value to set will
       <tr>
         <td><span class="xref">string</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -521,7 +826,8 @@ If the media is a mp4 format, this refers to the year, and the value to set will
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string TrackNumber { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public string TrackNumber { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -535,6 +841,31 @@ If the media is a mp4 format, this refers to the year, and the value to set will
       <tr>
         <td><span class="xref">string</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -552,7 +883,8 @@ If the media is a mp4 format, this refers to the year, and the value to set will
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string UnsyncLyrics { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public string UnsyncLyrics { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -566,6 +898,31 @@ If the media is a mp4 format, this refers to the year, and the value to set will
       <tr>
         <td><span class="xref">string</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -585,7 +942,8 @@ If the media is a mp4 format, this refers to the year, and the value to set will
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void AddPicture(string path)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public void AddPicture(string path)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -615,6 +973,35 @@ If the media is a mp4 format, this refers to the year, and the value to set will
     </thead>
     <tbody>
       <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+The malformed file which cannot be updatable.<br>
+-or-<br>
+Internal error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.FileNotFoundException</span></td>
+        <td><p>The file does not exist.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>The caller does not have required privilege to access the file.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
         <td><a class="xref" href="Tizen.Multimedia.FileFormatException.html">FileFormatException</a></td>
         <td><p>The specified file is not supported.</p>
 </td>
@@ -635,8 +1022,32 @@ If the media is a mp4 format, this refers to the year, and the value to set will
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Commit()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public void Commit()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The file is read-only.<br>
+-or-<br>
+Internal error.<br></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -651,7 +1062,8 @@ If the media is a mp4 format, this refers to the year, and the value to set will
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public void Dispose()</code></pre>
   </div>
 
 
@@ -717,7 +1129,8 @@ If the media is a mp4 format, this refers to the year, and the value to set will
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Artwork GetPicture(int index)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public Artwork GetPicture(int index)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -753,6 +1166,34 @@ If the media is a mp4 format, this refers to the year, and the value to set will
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">index</code> is less than zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">index</code> is greater than or equal to <a class="xref" href="Tizen.Multimedia.MetadataEditor.html#Tizen_Multimedia_MetadataEditor_PictureCount">PictureCount</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -767,7 +1208,8 @@ If the media is a mp4 format, this refers to the year, and the value to set will
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void RemovePicture(int index)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API12; Will be removed in API14&quot;)]
+public void RemovePicture(int index)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -787,22 +1229,43 @@ If the media is a mp4 format, this refers to the year, and the value to set will
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>An internal error occurs.<br>
+-or-<br>
+The media file is read-only.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">index</code> is less than zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">index</code> is greater than or equal to <a class="xref" href="Tizen.Multimedia.MetadataEditor.html#Tizen_Multimedia_MetadataEditor_PictureCount">PictureCount</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.MetadataEditor.html">MetadataEditor</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>

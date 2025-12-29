@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class MediaMicrophoneSource : MediaSource, IDisplayable&lt;uint&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class MediaMicrophoneSource : MediaSource</code></pre>
   </div>
 
 
@@ -111,12 +111,6 @@
 
 
 
-  <dl class="attribute-list stack">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><span class="xref">Tizen.Multimedia.IDisplayable&lt;&gt;</span>&lt;<span class="xref">uint</span>&gt;</div>
-    </dd>
-  </dl>
 
   <h5 id="Tizen_Multimedia_Remoting_MediaMicrophoneSource_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>The recorder privilege(<a href="http://tizen.org/privilege/recorder">http://tizen.org/privilege/recorder</a>) is required.</p>
@@ -185,6 +179,39 @@
 Supported types are <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#Tizen_Multimedia_AudioStreamType_Media">Media</a>, <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#Tizen_Multimedia_AudioStreamType_VoiceRecognition">VoiceRecognition</a>,
 <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#Tizen_Multimedia_AudioStreamType_Voip">Voip</a>, <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#Tizen_Multimedia_AudioStreamType_MediaExternalOnly">MediaExternalOnly</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The WebRTC has already been disposed.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">policy</code> has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">policy</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p><a class="xref" href="Tizen.Multimedia.AudioStreamType.html">AudioStreamType</a> of <code data-dev-comment-type="paramref" class="paramref">policy</code> is not supported on the current platform.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaMicrophoneSource_ApplyAudioStreamPolicy_Tizen_Multimedia_AudioStreamPolicy__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a></div>
@@ -193,23 +220,6 @@ Supported types are <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="implements">Implements</h3>
-  <div>
-      <span class="xref">Tizen.Multimedia.IDisplayable&lt;&gt;</span>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
   <h3 id="seealso">See Also</h3>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSource_Tizen_Multimedia_Remoting_MediaSource_">AddSource(MediaSource)</a></div>

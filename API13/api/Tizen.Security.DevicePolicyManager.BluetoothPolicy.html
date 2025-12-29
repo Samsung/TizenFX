@@ -94,7 +94,8 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class BluetoothPolicy : DevicePolicy, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 11.&quot;)]
+public class BluetoothPolicy : DevicePolicy, IDisposable</code></pre>
   </div>
 
 
@@ -114,7 +115,7 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">IDisposable</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
 
@@ -132,7 +133,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly string BluetoothPolicyName</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 11.&quot;)]
+public static readonly string BluetoothPolicyName</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -165,7 +167,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly string BluetoothTetheringPolicyName</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 11.&quot;)]
+public static readonly string BluetoothTetheringPolicyName</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -201,7 +204,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsBluetoothAllowed { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 11.&quot;)]
+public bool IsBluetoothAllowed { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -236,7 +240,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsBluetoothTetheringAllowed { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 11.&quot;)]
+public bool IsBluetoothTetheringAllowed { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -273,7 +278,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 11.&quot;)]
+public void Dispose()</code></pre>
   </div>
   <h5 id="Tizen_Security_DevicePolicyManager_BluetoothPolicy_Dispose_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The BluetoothPolicy is created by <a class="xref" href="Tizen.Security.DevicePolicyManager.DevicePolicyManager.html#Tizen_Security_DevicePolicyManager_DevicePolicyManager_GetPolicy__1">GetPolicy&lt;T&gt;()</a>. and the DevicePolicyManager instance must exists when using the BluetoothPolicy.</p>
@@ -292,7 +298,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 11.&quot;)]
+protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -329,7 +336,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected ~BluetoothPolicy()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 11.&quot;)]
+protected ~BluetoothPolicy()</code></pre>
   </div>
   <h5 id="Tizen_Security_DevicePolicyManager_BluetoothPolicy_Finalize_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The BluetoothPolicy is created by <a class="xref" href="Tizen.Security.DevicePolicyManager.DevicePolicyManager.html#Tizen_Security_DevicePolicyManager_DevicePolicyManager_GetPolicy__1">GetPolicy&lt;T&gt;()</a>. and the DevicePolicyManager instance must exists when using the BluetoothPolicy.</p>
@@ -349,7 +357,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;PolicyChangedEventArgs&gt; BluetoothPolicyChanged</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 11.&quot;)]
+public event EventHandler&lt;PolicyChangedEventArgs&gt; BluetoothPolicyChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -361,7 +370,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Security.DevicePolicyManager.PolicyChangedEventArgs.html">PolicyChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Security.DevicePolicyManager.PolicyChangedEventArgs.html">PolicyChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -382,7 +391,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;PolicyChangedEventArgs&gt; BluetoothTetheringPolicyChanged</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 11.&quot;)]
+public event EventHandler&lt;PolicyChangedEventArgs&gt; BluetoothTetheringPolicyChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -394,7 +404,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Security.DevicePolicyManager.PolicyChangedEventArgs.html">PolicyChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Security.DevicePolicyManager.PolicyChangedEventArgs.html">PolicyChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -408,20 +418,7 @@
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">IDisposable</span>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>

@@ -158,7 +158,7 @@ for different audio streams and ensure that the audio experience meets user pref
   <a id="Tizen_Multimedia_AudioManager_GetConnectedDevices_" data-uid="Tizen.Multimedia.AudioManager.GetConnectedDevices*"></a>
   <h4 id="Tizen_Multimedia_AudioManager_GetConnectedDevices" data-uid="Tizen.Multimedia.AudioManager.GetConnectedDevices">GetConnectedDevices()</h4>
   <div class="markdown level1 summary"><p>Retrieves a collection of all audio devices currently connected to the system.
-This method returns an <see cref="!:IEnumerable&lt;AudioDevice>"></see>, allowing developers to easily enumerate
+This method returns an <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>, allowing developers to easily enumerate
 through all available audio devices, such as speakers, microphones, and headphones.
 It is useful for applications that need to adapt to changes in the audio environment or support
 multiple audio output/input devices.</p>
@@ -178,7 +178,7 @@ multiple audio output/input devices.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDevice.html">AudioDevice</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDevice.html">AudioDevice</a>&gt;</td>
         <td><p>An IEnumerable&lt;AudioDevice&gt; that contains connected devices.</p>
 </td>
       </tr>
@@ -213,7 +213,7 @@ dynamic adjustments in the application to accommodate new devices or handle disc
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDeviceConnectionChangedEventArgs.html">AudioDeviceConnectionChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDeviceConnectionChangedEventArgs.html">AudioDeviceConnectionChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -248,7 +248,7 @@ may be played sequentially.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDeviceRunningChangedEventArgs.html">AudioDeviceRunningChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDeviceRunningChangedEventArgs.html">AudioDeviceRunningChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -258,6 +258,22 @@ may be played sequentially.</p>
 this event will not be invoked anymore, even if there are more audio streams to run.<br>
 This event is invoked only when all streams are stopped and a new stream starts to run.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>AudioManager failed to communicate internally or allocate memory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>

@@ -174,8 +174,26 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
         <td><p>the activated client ids.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
 </td>
       </tr>
     </tbody>
@@ -222,6 +240,29 @@
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_RemovePlaylist_Tizen_Multimedia_Remoting_MediaControlPlaylist__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Currently, only server can remove the playlist.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">playlist</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_RemovePlaylist_Tizen_Multimedia_Remoting_MediaControlPlaylist__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -241,7 +282,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task&lt;Bundle&gt; RequestAsync(Command command, string clientId)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API8; Will be removed in API10. Please use RequestCommandAsync(Command command) instead.&quot;)]
+public static Task&lt;Bundle&gt; RequestAsync(Command command, string clientId)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -277,8 +319,31 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">Bundle</span>&gt;</td>
-        <td><p><see cref="!:Bundle"></see> represents the extra data from client and it can be null.</p>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a>&gt;</td>
+        <td><p><a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a> represents the extra data from client and it can be null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">command</code> or <code data-dev-comment-type="paramref" class="paramref">clientId</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server has already been stopped.<br>
+-or-<br>
+An internal error occurs.</p>
 </td>
       </tr>
     </tbody>
@@ -337,10 +402,38 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task&lt;&gt;</span>&lt;(<span class="xref">Bundle</span> <span class="xref">bundle</span>, <span class="xref">int</span> <span class="xref">result</span>)&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;(<a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a> <span class="xref">bundle</span>, <span class="xref">int</span> <span class="xref">result</span>)&gt;</td>
         <td><p>The type of return value is Tuple.<br>
-First item of Tuple represents the <see cref="!:Bundle"></see> and it represents the extra data from client. It can be null.<br>
+First item of Tuple represents the <a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a> and it represents the extra data from client. It can be null.<br>
 Second item of Tuple represents the result of each request(command).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">command</code> or <code data-dev-comment-type="paramref" class="paramref">clientId</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server has already been stopped.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotImplementedException</span></td>
+        <td><p>The command which is not supported is used.</p>
 </td>
       </tr>
     </tbody>
@@ -357,7 +450,7 @@ Second item of Tuple represents the result of each request(command).</p>
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L954">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_MediaControlServer_Response_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_System_Int32_Bundle_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response(Tizen.Multimedia.Remoting.Command,System.Int32,Bundle)">Response(Command, int, Bundle)</h4>
+  <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_System_Int32_Tizen_Applications_Bundle_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response(Tizen.Multimedia.Remoting.Command,System.Int32,Tizen.Applications.Bundle)">Response(Command, int, Bundle)</h4>
   <div class="markdown level1 summary"><p>Sends the result of each command.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -388,14 +481,37 @@ Second item of Tuple represents the result of each request(command).</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">Bundle</span></td>
+        <td><a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a></td>
         <td><span class="parametername">bundle</span></td>
         <td><p>The extra data.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_System_Int32_Bundle__seealso">See Also</h5>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">command</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_System_Int32_Tizen_Applications_Bundle__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaController.html">MediaController</a></div>
@@ -440,6 +556,29 @@ Second item of Tuple represents the result of each request(command).</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">command</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_System_Int32__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -453,7 +592,7 @@ Second item of Tuple represents the result of each request(command).</p>
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L994">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_MediaControlServer_Response_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_Tizen_Multimedia_Remoting_MediaControlResult_Bundle_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response(Tizen.Multimedia.Remoting.Command,Tizen.Multimedia.Remoting.MediaControlResult,Bundle)">Response(Command, MediaControlResult, Bundle)</h4>
+  <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_Tizen_Multimedia_Remoting_MediaControlResult_Tizen_Applications_Bundle_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.Response(Tizen.Multimedia.Remoting.Command,Tizen.Multimedia.Remoting.MediaControlResult,Tizen.Applications.Bundle)">Response(Command, MediaControlResult, Bundle)</h4>
   <div class="markdown level1 summary"><p>Sends the result of each command.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -484,14 +623,37 @@ Second item of Tuple represents the result of each request(command).</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">Bundle</span></td>
+        <td><a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a></td>
         <td><span class="parametername">bundle</span></td>
         <td><p>The extra data.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_Tizen_Multimedia_Remoting_MediaControlResult_Bundle__seealso">See Also</h5>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">command</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_Tizen_Multimedia_Remoting_MediaControlResult_Tizen_Applications_Bundle__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaController.html">MediaController</a></div>
@@ -536,6 +698,29 @@ Second item of Tuple represents the result of each request(command).</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">command</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Response_Tizen_Multimedia_Remoting_Command_Tizen_Multimedia_Remoting_MediaControlResult__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -572,6 +757,29 @@ Second item of Tuple represents the result of each request(command).</p>
         <td><span class="parametername">ageRating</span></td>
         <td><p>The Age rating of latest played media. The valid range is 0 to 19, inclusive.
 Especially, 0 means that media is suitable for all ages.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>The specified <code data-dev-comment-type="paramref" class="paramref">ageRating</code> is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
 </td>
       </tr>
     </tbody>
@@ -615,6 +823,29 @@ Especially, 0 means that media is suitable for all ages.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetCustomCommandCapability_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -654,6 +885,24 @@ Especially, 0 means that media is suitable for all ages.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayMode_Tizen_Multimedia_Remoting_MediaControlDisplayMode__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -667,7 +916,7 @@ Especially, 0 means that media is suitable for all ages.</p>
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L725">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayModeCapabilities_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetDisplayModeCapabilities*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayModeCapabilities_IDictionary_Tizen_Multimedia_Remoting_MediaControlDisplayMode_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetDisplayModeCapabilities(IDictionary{Tizen.Multimedia.Remoting.MediaControlDisplayMode,Tizen.Multimedia.Remoting.MediaControlCapabilitySupport})">SetDisplayModeCapabilities(IDictionary&lt;MediaControlDisplayMode, MediaControlCapabilitySupport&gt;)</h4>
+  <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayModeCapabilities_System_Collections_Generic_IDictionary_Tizen_Multimedia_Remoting_MediaControlDisplayMode_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetDisplayModeCapabilities(System.Collections.Generic.IDictionary{Tizen.Multimedia.Remoting.MediaControlDisplayMode,Tizen.Multimedia.Remoting.MediaControlCapabilitySupport})">SetDisplayModeCapabilities(IDictionary&lt;MediaControlDisplayMode, MediaControlCapabilitySupport&gt;)</h4>
   <div class="markdown level1 summary"><p>Sets the supported list of <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlDisplayMode.html">MediaControlDisplayMode</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -686,18 +935,41 @@ Especially, 0 means that media is suitable for all ages.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IDictionary&lt;, &gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.MediaControlDisplayMode.html">MediaControlDisplayMode</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IDictionary&lt;TKey, TValue&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.MediaControlDisplayMode.html">MediaControlDisplayMode</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>&gt;</td>
         <td><span class="parametername">capabilities</span></td>
         <td><p>The supported list of <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlDisplayMode.html">MediaControlDisplayMode</a>.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayModeCapabilities_IDictionary_Tizen_Multimedia_Remoting_MediaControlDisplayMode_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport___remarks">Remarks</h5>
+  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayModeCapabilities_System_Collections_Generic_IDictionary_Tizen_Multimedia_Remoting_MediaControlDisplayMode_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html#Tizen_Multimedia_Remoting_MediaControlCapabilitySupport_NotDecided">NotDecided</a> is not allowed in display mode capability.
 The default value of each <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlDisplayMode.html">MediaControlDisplayMode</a> is not supported.</p>
 </div>
-  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayModeCapabilities_IDictionary_Tizen_Multimedia_Remoting_MediaControlDisplayMode_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport___seealso">See Also</h5>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">capabilities</code> is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayModeCapabilities_System_Collections_Generic_IDictionary_Tizen_Multimedia_Remoting_MediaControlDisplayMode_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport___seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaController.html">MediaController</a></div>
@@ -746,6 +1018,29 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Remoting.MediaC
   <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html#Tizen_Multimedia_Remoting_MediaControlCapabilitySupport_NotDecided">NotDecided</a> is not allowed in display mode capability.<br>
 The default value of each <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlDisplayMode.html">MediaControlDisplayMode</a> is not supported.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">mode</code> or <code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayModeCapability_Tizen_Multimedia_Remoting_MediaControlDisplayMode_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -785,6 +1080,24 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Remoting.MediaC
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayRotation_Tizen_Multimedia_Rotation__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -798,7 +1111,7 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Remoting.MediaC
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L778">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayRotationCapabilities_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetDisplayRotationCapabilities*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayRotationCapabilities_IDictionary_Tizen_Multimedia_Rotation_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetDisplayRotationCapabilities(IDictionary{Tizen.Multimedia.Rotation,Tizen.Multimedia.Remoting.MediaControlCapabilitySupport})">SetDisplayRotationCapabilities(IDictionary&lt;Rotation, MediaControlCapabilitySupport&gt;)</h4>
+  <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayRotationCapabilities_System_Collections_Generic_IDictionary_Tizen_Multimedia_Rotation_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetDisplayRotationCapabilities(System.Collections.Generic.IDictionary{Tizen.Multimedia.Rotation,Tizen.Multimedia.Remoting.MediaControlCapabilitySupport})">SetDisplayRotationCapabilities(IDictionary&lt;Rotation, MediaControlCapabilitySupport&gt;)</h4>
   <div class="markdown level1 summary"><p>Sets the supported list of <a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -817,18 +1130,41 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Remoting.MediaC
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IDictionary&lt;, &gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IDictionary&lt;TKey, TValue&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>&gt;</td>
         <td><span class="parametername">capabilities</span></td>
         <td><p>The supported list of <a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a>.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayRotationCapabilities_IDictionary_Tizen_Multimedia_Rotation_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport___remarks">Remarks</h5>
+  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayRotationCapabilities_System_Collections_Generic_IDictionary_Tizen_Multimedia_Rotation_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html#Tizen_Multimedia_Remoting_MediaControlCapabilitySupport_NotDecided">NotDecided</a> is not allowed in display rotation capability.<br>
 The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a> is not supported.</p>
 </div>
-  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayRotationCapabilities_IDictionary_Tizen_Multimedia_Rotation_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport___seealso">See Also</h5>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">capabilities</code> is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayRotationCapabilities_System_Collections_Generic_IDictionary_Tizen_Multimedia_Rotation_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport___seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaController.html">MediaController</a></div>
@@ -877,6 +1213,29 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
   <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html#Tizen_Multimedia_Remoting_MediaControlCapabilitySupport_NotDecided">NotDecided</a> is not allowed in display rotation capability.<br>
 The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">Rotation</a> is not supported.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">rotation</code> or <code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetDisplayRotationCapability_Tizen_Multimedia_Rotation_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -912,6 +1271,29 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
         <td><span class="xref">string</span></td>
         <td><span class="parametername">path</span></td>
         <td><p>The path of icon.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -961,6 +1343,29 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">playlistName</code> or <code data-dev-comment-type="paramref" class="paramref">index</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetInfoOfCurrentPlayingMedia_System_String_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -996,6 +1401,29 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
         <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlMetadata.html">MediaControlMetadata</a></td>
         <td><span class="parametername">metadata</span></td>
         <td><p>The metadata to update.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">metadata</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
 </td>
       </tr>
     </tbody>
@@ -1039,6 +1467,24 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetMode360_System_Boolean__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -1078,6 +1524,29 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetMode360Capability_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -1091,7 +1560,7 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.Remoting/MediaController/MediaControlServer.cs/#L521">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_MediaControlServer_SetPlaybackCapabilities_" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetPlaybackCapabilities*"></a>
-  <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetPlaybackCapabilities_Dictionary_Tizen_Multimedia_Remoting_MediaControlPlaybackCommand_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetPlaybackCapabilities(Dictionary{Tizen.Multimedia.Remoting.MediaControlPlaybackCommand,Tizen.Multimedia.Remoting.MediaControlCapabilitySupport})">SetPlaybackCapabilities(Dictionary&lt;MediaControlPlaybackCommand, MediaControlCapabilitySupport&gt;)</h4>
+  <h4 id="Tizen_Multimedia_Remoting_MediaControlServer_SetPlaybackCapabilities_System_Collections_Generic_Dictionary_Tizen_Multimedia_Remoting_MediaControlPlaybackCommand_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__" data-uid="Tizen.Multimedia.Remoting.MediaControlServer.SetPlaybackCapabilities(System.Collections.Generic.Dictionary{Tizen.Multimedia.Remoting.MediaControlPlaybackCommand,Tizen.Multimedia.Remoting.MediaControlCapabilitySupport})">SetPlaybackCapabilities(Dictionary&lt;MediaControlPlaybackCommand, MediaControlCapabilitySupport&gt;)</h4>
   <div class="markdown level1 summary"><p>Sets the capabilities by <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlPlaybackCommand.html">MediaControlPlaybackCommand</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1110,14 +1579,37 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Dictionary&lt;, &gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.MediaControlPlaybackCommand.html">MediaControlPlaybackCommand</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.Dictionary&lt;TKey, TValue&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.MediaControlPlaybackCommand.html">MediaControlPlaybackCommand</a>, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>&gt;</td>
         <td><span class="parametername">capabilities</span></td>
         <td><p>The set of <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlPlaybackCommand.html">MediaControlPlaybackCommand</a> and <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a>.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetPlaybackCapabilities_Dictionary_Tizen_Multimedia_Remoting_MediaControlPlaybackCommand_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport___seealso">See Also</h5>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">capabilities</code> is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetPlaybackCapabilities_System_Collections_Generic_Dictionary_Tizen_Multimedia_Remoting_MediaControlPlaybackCommand_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport___seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaController.html">MediaController</a></div>
@@ -1162,6 +1654,29 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">action</code> or <code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetPlaybackCapability_Tizen_Multimedia_Remoting_MediaControlPlaybackCommand_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -1201,6 +1716,29 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">type</code> is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetPlaybackContentType_Tizen_Multimedia_Remoting_MediaControlContentType__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -1236,6 +1774,29 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
         <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a></td>
         <td><span class="parametername">support</span></td>
         <td><p>A value indicating whether the playback position is supported or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -1285,6 +1846,34 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">state</code> is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">position</code> is less than zero.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetPlaybackState_Tizen_Multimedia_Remoting_MediaControlPlaybackState_System_Int64__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -1320,6 +1909,29 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
         <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a></td>
         <td><span class="parametername">support</span></td>
         <td><p>A value indicating whether the playlist is supported or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -1363,6 +1975,29 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">mode</code> is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetRepeatMode_Tizen_Multimedia_Remoting_MediaControlRepeatMode__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -1398,6 +2033,29 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
         <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a></td>
         <td><span class="parametername">support</span></td>
         <td><p>A value indicating whether the <a class="xref" href="Tizen.Multimedia.Remoting.MediaControlRepeatMode.html">MediaControlRepeatMode</a> is supported or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -1441,6 +2099,29 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetSearchCapability_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -1476,6 +2157,29 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
         <td><a class="xref" href="Tizen.Multimedia.Remoting.MediaControlCapabilitySupport.html">MediaControlCapabilitySupport</a></td>
         <td><span class="parametername">support</span></td>
         <td><p>A value indicating whether the shuffle mode is supported or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -1519,6 +2223,24 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetShuffleModeEnabled_System_Boolean__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -1554,6 +2276,24 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
         <td><span class="xref">bool</span></td>
         <td><span class="parametername">isEnabled</span></td>
         <td><p>A value indicating whether the subtitle mode is enabled.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
 </td>
       </tr>
     </tbody>
@@ -1597,6 +2337,29 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">support</code> is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_SetSubtitleModeCapability_Tizen_Multimedia_Remoting_MediaControlCapabilitySupport__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html">MediaControllerManager</a></div>
@@ -1621,6 +2384,27 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Start_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>When the server starts, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html#Tizen_Multimedia_Remoting_MediaControllerManager_ServerStarted">ServerStarted</a> will be raised.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Caller does not have required privilege.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Start_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html#Tizen_Multimedia_Remoting_MediaControllerManager_ServerStarted">ServerStarted</a></div>
@@ -1644,6 +2428,24 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Stop_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>When the server stops, <a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html#Tizen_Multimedia_Remoting_MediaControllerManager_ServerStopped">ServerStopped</a> will be raised.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The server is not running .<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_MediaControlServer_Stop_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.MediaControllerManager.html#Tizen_Multimedia_Remoting_MediaControllerManager_ServerStopped">ServerStopped</a></div>
@@ -1675,7 +2477,7 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.CustomCommandReceivedEventArgs.html">CustomCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.CustomCommandReceivedEventArgs.html">CustomCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1710,7 +2512,7 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.DisplayModeCommandReceivedEventArgs.html">DisplayModeCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.DisplayModeCommandReceivedEventArgs.html">DisplayModeCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1745,7 +2547,7 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.DisplayRotationCommandReceivedEventArgs.html">DisplayRotationCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.DisplayRotationCommandReceivedEventArgs.html">DisplayRotationCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1780,7 +2582,7 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.Mode360CommandReceivedEventArgs.html">Mode360CommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.Mode360CommandReceivedEventArgs.html">Mode360CommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1815,7 +2617,7 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.PlaybackActionCommandReceivedEventArgs.html">PlaybackActionCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.PlaybackActionCommandReceivedEventArgs.html">PlaybackActionCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1838,7 +2640,8 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;PlaybackCommandReceivedEventArgs&gt; PlaybackCommandReceived</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Please do not use! This will be deprecated. Please use PlaybackActionCommandReceived instead.&quot;)]
+public static event EventHandler&lt;PlaybackCommandReceivedEventArgs&gt; PlaybackCommandReceived</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1850,7 +2653,7 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.PlaybackCommandReceivedEventArgs.html">PlaybackCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.PlaybackCommandReceivedEventArgs.html">PlaybackCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1885,7 +2688,7 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.PlaybackPositionCommandReceivedEventArgs.html">PlaybackPositionCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.PlaybackPositionCommandReceivedEventArgs.html">PlaybackPositionCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1920,7 +2723,7 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.PlaylistCommandReceivedEventArgs.html">PlaylistCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.PlaylistCommandReceivedEventArgs.html">PlaylistCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1955,7 +2758,7 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.RepeatModeCommandReceivedEventArgs.html">RepeatModeCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.RepeatModeCommandReceivedEventArgs.html">RepeatModeCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1990,7 +2793,7 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.SearchCommandReceivedEventArgs.html">SearchCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.SearchCommandReceivedEventArgs.html">SearchCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2025,7 +2828,7 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.ShuffleModeCommandReceivedEventArgs.html">ShuffleModeCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.ShuffleModeCommandReceivedEventArgs.html">ShuffleModeCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2060,7 +2863,7 @@ The default value of each <a class="xref" href="Tizen.Multimedia.Rotation.html">
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.SubtitleModeCommandReceivedEventArgs.html">SubtitleModeCommandReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.SubtitleModeCommandReceivedEventArgs.html">SubtitleModeCommandReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>

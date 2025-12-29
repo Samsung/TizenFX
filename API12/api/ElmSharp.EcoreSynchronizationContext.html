@@ -94,7 +94,8 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class EcoreSynchronizationContext : SynchronizationContext</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public class EcoreSynchronizationContext : SynchronizationContext</code></pre>
   </div>
 
 
@@ -103,6 +104,7 @@
     <dd>
       <div class="pdl-holder">
         <div class="pdl"><span class="xref">object</span></div>
+        <div class="pdl"><span class="xref">System.Threading.SynchronizationContext</span></div>
         <div><span class="xref">EcoreSynchronizationContext</span></div>
       </div>
     </dd>
@@ -123,7 +125,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public EcoreSynchronizationContext()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public EcoreSynchronizationContext()</code></pre>
   </div>
 
 
@@ -141,7 +144,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void Initialize()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public static void Initialize()</code></pre>
   </div>
   <h5 id="ElmSharp_EcoreSynchronizationContext_Initialize_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>It is equivalent</p>
@@ -155,13 +159,14 @@
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp/ElmSharp/EcoreSynchronizationContext.cs/#L62">View Source</a>
   </span>
   <a id="ElmSharp_EcoreSynchronizationContext_Post_" data-uid="ElmSharp.EcoreSynchronizationContext.Post*"></a>
-  <h4 id="ElmSharp_EcoreSynchronizationContext_Post_SendOrPostCallback_System_Object_" data-uid="ElmSharp.EcoreSynchronizationContext.Post(SendOrPostCallback,System.Object)">Post(SendOrPostCallback, object)</h4>
+  <h4 id="ElmSharp_EcoreSynchronizationContext_Post_System_Threading_SendOrPostCallback_System_Object_" data-uid="ElmSharp.EcoreSynchronizationContext.Post(System.Threading.SendOrPostCallback,System.Object)">Post(SendOrPostCallback, object)</h4>
   <div class="markdown level1 summary"><p>Dispatches an asynchronous message to a Ecore main loop.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Post(SendOrPostCallback d, object state)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public override void Post(SendOrPostCallback d, object state)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -174,7 +179,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">SendOrPostCallback</span></td>
+        <td><span class="xref">System.Threading.SendOrPostCallback</span></td>
         <td><span class="parametername">d</span></td>
         <td><p>The <span class="xref">System.Threading.SendOrPostCallback</span> delegate to call.</p>
 </td>
@@ -187,7 +192,9 @@
       </tr>
     </tbody>
   </table>
-  <h5 id="ElmSharp_EcoreSynchronizationContext_Post_SendOrPostCallback_System_Object__remarks">Remarks</h5>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.Threading.SynchronizationContext.Post(System.Threading.SendOrPostCallback, object)</span></div>
+  <h5 id="ElmSharp_EcoreSynchronizationContext_Post_System_Threading_SendOrPostCallback_System_Object__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The Post method starts an asynchronous request to post a message.</p>
 </div>
 
@@ -198,13 +205,14 @@
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/ElmSharp/ElmSharp/EcoreSynchronizationContext.cs/#L79">View Source</a>
   </span>
   <a id="ElmSharp_EcoreSynchronizationContext_Send_" data-uid="ElmSharp.EcoreSynchronizationContext.Send*"></a>
-  <h4 id="ElmSharp_EcoreSynchronizationContext_Send_SendOrPostCallback_System_Object_" data-uid="ElmSharp.EcoreSynchronizationContext.Send(SendOrPostCallback,System.Object)">Send(SendOrPostCallback, object)</h4>
+  <h4 id="ElmSharp_EcoreSynchronizationContext_Send_System_Threading_SendOrPostCallback_System_Object_" data-uid="ElmSharp.EcoreSynchronizationContext.Send(System.Threading.SendOrPostCallback,System.Object)">Send(SendOrPostCallback, object)</h4>
   <div class="markdown level1 summary"><p>Dispatches an synchronous message to a Ecore main loop.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void Send(SendOrPostCallback d, object state)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;This has been deprecated in API12&quot;)]
+public override void Send(SendOrPostCallback d, object state)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -217,7 +225,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">SendOrPostCallback</span></td>
+        <td><span class="xref">System.Threading.SendOrPostCallback</span></td>
         <td><span class="parametername">d</span></td>
         <td><p>The <span class="xref">System.Threading.SendOrPostCallback</span> delegate to call.</p>
 </td>
@@ -230,35 +238,15 @@
       </tr>
     </tbody>
   </table>
-  <h5 id="ElmSharp_EcoreSynchronizationContext_Send_SendOrPostCallback_System_Object__remarks">Remarks</h5>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">System.Threading.SynchronizationContext.Send(System.Threading.SendOrPostCallback, object)</span></div>
+  <h5 id="ElmSharp_EcoreSynchronizationContext_Send_System_Threading_SendOrPostCallback_System_Object__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The Send method starts a synchronous request to send a message.</p>
 </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
 </article>
           </div>
 

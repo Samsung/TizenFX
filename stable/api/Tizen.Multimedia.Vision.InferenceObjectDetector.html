@@ -110,6 +110,12 @@
 
 
 
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
@@ -125,6 +131,22 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public InferenceObjectDetector()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required features are not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -229,6 +251,22 @@
   <div class="markdown level1 remarks"><p>If there's no detected object, <a class="xref" href="Tizen.Multimedia.Vision.InferenceObjectDetectorResult.html#Tizen_Multimedia_Vision_InferenceObjectDetectorResult_BoundingBoxes">BoundingBoxes</a> will be empty.<br>
 This method uses about twice as much memory as <a class="xref" href="Tizen.Multimedia.Vision.InferenceObjectDetector.html#Tizen_Multimedia_Vision_InferenceObjectDetector_Inference_Tizen_Multimedia_Vision_MediaVisionSource_">Inference(MediaVisionSource)</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The InferenceObjectDetector already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Vision_InferenceObjectDetector_GetRequestResults_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Vision.InferenceObjectDetector.html#Tizen_Multimedia_Vision_InferenceObjectDetector_RequestInference_Tizen_Multimedia_Vision_MediaVisionSource_">RequestInference(MediaVisionSource)</a></div>
@@ -286,6 +324,27 @@ This method uses about twice as much memory as <a class="xref" href="Tizen.Multi
   <h5 id="Tizen_Multimedia_Vision_InferenceObjectDetector_Inference_Tizen_Multimedia_Vision_MediaVisionSource__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.Vision.InferenceObjectDetectorResult.html#Tizen_Multimedia_Vision_InferenceObjectDetectorResult_BoundingBoxes">BoundingBoxes</a> can be empty, if there's no detected object.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The InferenceObjectDetector already has been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -330,7 +389,7 @@ This method uses about twice as much memory as <a class="xref" href="Tizen.Multi
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.InferenceObjectDetectorResult.html">InferenceObjectDetectorResult</a>&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.InferenceObjectDetectorResult.html">InferenceObjectDetectorResult</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -339,6 +398,27 @@ This method uses about twice as much memory as <a class="xref" href="Tizen.Multi
   <div class="markdown level1 remarks"><p><a class="xref" href="Tizen.Multimedia.Vision.InferenceObjectDetectorResult.html#Tizen_Multimedia_Vision_InferenceObjectDetectorResult_BoundingBoxes">BoundingBoxes</a> can be empty, if there's no detected object.<br>
 This method uses about twice as much memory as <a class="xref" href="Tizen.Multimedia.Vision.InferenceObjectDetector.html#Tizen_Multimedia_Vision_InferenceObjectDetector_Inference_Tizen_Multimedia_Vision_MediaVisionSource_">Inference(MediaVisionSource)</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The InferenceObjectDetector already has been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -395,6 +475,27 @@ If the user calls this method again before the previous one is finished internal
 <a class="xref" href="Tizen.Multimedia.Vision.InferenceObjectDetectorResult.html#Tizen_Multimedia_Vision_InferenceObjectDetectorResult_BoundingBoxes">BoundingBoxes</a> can be empty, if there's no detected object.<br>
 Note that this method could use about twice as much memory as <a class="xref" href="Tizen.Multimedia.Vision.InferenceObjectDetector.html#Tizen_Multimedia_Vision_InferenceObjectDetector_Inference_Tizen_Multimedia_Vision_MediaVisionSource_">Inference(MediaVisionSource)</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The InferenceObjectDetector already has been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Vision_InferenceObjectDetector_RequestInference_Tizen_Multimedia_Vision_MediaVisionSource__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Vision.InferenceObjectDetector.html#Tizen_Multimedia_Vision_InferenceObjectDetector_GetRequestResults">GetRequestResults()</a></div>
@@ -403,18 +504,9 @@ Note that this method could use about twice as much memory as <a class="xref" hr
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>

@@ -96,7 +96,8 @@ This class is accessed by using a constructor to create a new instance of this o
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Attributes : IDictionary&lt;string, object&gt;, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public class Attributes : IDictionary&lt;string, object&gt;, ICollection&lt;KeyValuePair&lt;string, object&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, object&gt;&gt;, IEnumerable, IDisposable</code></pre>
   </div>
 
 
@@ -115,7 +116,11 @@ This class is accessed by using a constructor to create a new instance of this o
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">IDisposable</span></div>
+      <div class="pdl"><span class="xref">System.Collections.Generic.IDictionary&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">object</span>&gt;</div>
+      <div class="pdl"><span class="xref">System.Collections.Generic.ICollection&lt;T&gt;</span>&lt;<span class="xref">System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">object</span>&gt;&gt;</div>
+      <div class="pdl"><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">object</span>&gt;&gt;</div>
+      <div class="pdl"><span class="xref">System.Collections.IEnumerable</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
 
@@ -131,11 +136,33 @@ This class is accessed by using a constructor to create a new instance of this o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Attributes()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public Attributes()</code></pre>
   </div>
   <h5 id="Tizen_Network_IoTConnectivity_Attributes__ctor_examples">Examples</h5>
   <pre><code>    Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when there is not enough memory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -152,7 +179,8 @@ This class is accessed by using a constructor to create a new instance of this o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public int Count { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -190,7 +218,8 @@ This class is accessed by using a constructor to create a new instance of this o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsReadOnly { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public bool IsReadOnly { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -230,7 +259,8 @@ This class is accessed by using a constructor to create a new instance of this o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public object this[string key] { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public object this[string key] { get; set; }</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -285,7 +315,8 @@ This class is accessed by using a constructor to create a new instance of this o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ICollection&lt;string&gt; Keys { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public ICollection&lt;string&gt; Keys { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -297,7 +328,7 @@ This class is accessed by using a constructor to create a new instance of this o
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ICollection&lt;&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.ICollection&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
         <td><p>All the attribute keys.</p>
 </td>
       </tr>
@@ -325,7 +356,8 @@ This class is accessed by using a constructor to create a new instance of this o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ICollection&lt;object&gt; Values { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public ICollection&lt;object&gt; Values { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -337,7 +369,7 @@ This class is accessed by using a constructor to create a new instance of this o
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ICollection&lt;&gt;</span>&lt;<span class="xref">object</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.ICollection&lt;T&gt;</span>&lt;<span class="xref">object</span>&gt;</td>
         <td><p>All the attribute values.</p>
 </td>
       </tr>
@@ -361,13 +393,14 @@ This class is accessed by using a constructor to create a new instance of this o
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/Attributes.cs/#L204">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_Attributes_Add_" data-uid="Tizen.Network.IoTConnectivity.Attributes.Add*"></a>
-  <h4 id="Tizen_Network_IoTConnectivity_Attributes_Add_KeyValuePair_System_String_System_Object__" data-uid="Tizen.Network.IoTConnectivity.Attributes.Add(KeyValuePair{System.String,System.Object})">Add(KeyValuePair&lt;string, object&gt;)</h4>
+  <h4 id="Tizen_Network_IoTConnectivity_Attributes_Add_System_Collections_Generic_KeyValuePair_System_String_System_Object__" data-uid="Tizen.Network.IoTConnectivity.Attributes.Add(System.Collections.Generic.KeyValuePair{System.String,System.Object})">Add(KeyValuePair&lt;string, object&gt;)</h4>
   <div class="markdown level1 summary"><p>Adds the attribute key and a value as a key value pair.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Add(KeyValuePair&lt;string, object&gt; item)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public void Add(KeyValuePair&lt;string, object&gt; item)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -380,14 +413,14 @@ This class is accessed by using a constructor to create a new instance of this o
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">KeyValuePair&lt;, &gt;</span>&lt;<span class="xref">string</span>, <span class="xref">object</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">object</span>&gt;</td>
         <td><span class="parametername">item</span></td>
         <td><p>The key value pair to add.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Network_IoTConnectivity_Attributes_Add_KeyValuePair_System_String_System_Object___examples">Examples</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_Attributes_Add_System_Collections_Generic_KeyValuePair_System_String_System_Object___examples">Examples</h5>
   <pre><code>    Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();
     attributes.Add(new KeyValuePair&lt;string, object> (&quot;state&quot;, &quot;ON&quot;));</code></pre>
 
@@ -405,7 +438,8 @@ This class is accessed by using a constructor to create a new instance of this o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Add(string key, object value)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public void Add(string key, object value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -449,13 +483,35 @@ This class is accessed by using a constructor to create a new instance of this o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public void Clear()</code></pre>
   </div>
   <h5 id="Tizen_Network_IoTConnectivity_Attributes_Clear_examples">Examples</h5>
   <pre><code>    Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes();
     attributes.Add(&quot;brightness&quot;, 50);
     attributes.Clear();</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -464,13 +520,14 @@ This class is accessed by using a constructor to create a new instance of this o
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/Attributes.cs/#L345">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_Attributes_Contains_" data-uid="Tizen.Network.IoTConnectivity.Attributes.Contains*"></a>
-  <h4 id="Tizen_Network_IoTConnectivity_Attributes_Contains_KeyValuePair_System_String_System_Object__" data-uid="Tizen.Network.IoTConnectivity.Attributes.Contains(KeyValuePair{System.String,System.Object})">Contains(KeyValuePair&lt;string, object&gt;)</h4>
+  <h4 id="Tizen_Network_IoTConnectivity_Attributes_Contains_System_Collections_Generic_KeyValuePair_System_String_System_Object__" data-uid="Tizen.Network.IoTConnectivity.Attributes.Contains(System.Collections.Generic.KeyValuePair{System.String,System.Object})">Contains(KeyValuePair&lt;string, object&gt;)</h4>
   <div class="markdown level1 summary"><p>Checks whether the given key value pair exists in attributes collection.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Contains(KeyValuePair&lt;string, object&gt; item)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public bool Contains(KeyValuePair&lt;string, object&gt; item)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -483,7 +540,7 @@ This class is accessed by using a constructor to create a new instance of this o
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">KeyValuePair&lt;, &gt;</span>&lt;<span class="xref">string</span>, <span class="xref">object</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">object</span>&gt;</td>
         <td><span class="parametername">item</span></td>
         <td><p>The status key value pair.</p>
 </td>
@@ -506,7 +563,7 @@ This class is accessed by using a constructor to create a new instance of this o
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Network_IoTConnectivity_Attributes_Contains_KeyValuePair_System_String_System_Object___examples">Examples</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_Attributes_Contains_System_Collections_Generic_KeyValuePair_System_String_System_Object___examples">Examples</h5>
   <pre><code>    Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
         { &quot;state&quot;, &quot;ON&quot; },
         { &quot;dim&quot;, 10 }
@@ -528,7 +585,8 @@ This class is accessed by using a constructor to create a new instance of this o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ContainsKey(string key)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public bool ContainsKey(string key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -580,13 +638,14 @@ This class is accessed by using a constructor to create a new instance of this o
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/Attributes.cs/#L387">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_Attributes_CopyTo_" data-uid="Tizen.Network.IoTConnectivity.Attributes.CopyTo*"></a>
-  <h4 id="Tizen_Network_IoTConnectivity_Attributes_CopyTo_KeyValuePair_System_String_System_Object____System_Int32_" data-uid="Tizen.Network.IoTConnectivity.Attributes.CopyTo(KeyValuePair{System.String,System.Object}[],System.Int32)">CopyTo(KeyValuePair&lt;string, object&gt;[], int)</h4>
+  <h4 id="Tizen_Network_IoTConnectivity_Attributes_CopyTo_System_Collections_Generic_KeyValuePair_System_String_System_Object____System_Int32_" data-uid="Tizen.Network.IoTConnectivity.Attributes.CopyTo(System.Collections.Generic.KeyValuePair{System.String,System.Object}[],System.Int32)">CopyTo(KeyValuePair&lt;string, object&gt;[], int)</h4>
   <div class="markdown level1 summary"><p>Copies the elements of the attributes to an array, starting at a particular index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void CopyTo(KeyValuePair&lt;string, object&gt;[] array, int arrayIndex)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public void CopyTo(KeyValuePair&lt;string, object&gt;[] array, int arrayIndex)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -599,7 +658,7 @@ This class is accessed by using a constructor to create a new instance of this o
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">KeyValuePair&lt;, &gt;</span>&lt;<span class="xref">string</span>, <span class="xref">object</span>&gt;[]</td>
+        <td><span class="xref">System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">object</span>&gt;[]</td>
         <td><span class="parametername">array</span></td>
         <td><p>The destination array.</p>
 </td>
@@ -612,7 +671,7 @@ This class is accessed by using a constructor to create a new instance of this o
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Network_IoTConnectivity_Attributes_CopyTo_KeyValuePair_System_String_System_Object____System_Int32__examples">Examples</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_Attributes_CopyTo_System_Collections_Generic_KeyValuePair_System_String_System_Object____System_Int32__examples">Examples</h5>
   <pre><code>    Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
         { &quot;state&quot;, &quot;ON&quot; },
         { &quot;dim&quot;, 10 }
@@ -636,7 +695,8 @@ This class is accessed by using a constructor to create a new instance of this o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public void Dispose()</code></pre>
   </div>
 
 
@@ -652,7 +712,8 @@ This class is accessed by using a constructor to create a new instance of this o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -702,7 +763,8 @@ This class is accessed by using a constructor to create a new instance of this o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IEnumerator&lt;KeyValuePair&lt;string, object&gt;&gt; GetEnumerator()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public IEnumerator&lt;KeyValuePair&lt;string, object&gt;&gt; GetEnumerator()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -714,7 +776,7 @@ This class is accessed by using a constructor to create a new instance of this o
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerator&lt;&gt;</span>&lt;<span class="xref">KeyValuePair&lt;, &gt;</span>&lt;<span class="xref">string</span>, <span class="xref">object</span>&gt;&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerator&lt;T&gt;</span>&lt;<span class="xref">System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">object</span>&gt;&gt;</td>
         <td><p>An enumerator that can be used to iterate through the collection.</p>
 </td>
       </tr>
@@ -738,13 +800,14 @@ This class is accessed by using a constructor to create a new instance of this o
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/Attributes.cs/#L432">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_Attributes_Remove_" data-uid="Tizen.Network.IoTConnectivity.Attributes.Remove*"></a>
-  <h4 id="Tizen_Network_IoTConnectivity_Attributes_Remove_KeyValuePair_System_String_System_Object__" data-uid="Tizen.Network.IoTConnectivity.Attributes.Remove(KeyValuePair{System.String,System.Object})">Remove(KeyValuePair&lt;string, object&gt;)</h4>
+  <h4 id="Tizen_Network_IoTConnectivity_Attributes_Remove_System_Collections_Generic_KeyValuePair_System_String_System_Object__" data-uid="Tizen.Network.IoTConnectivity.Attributes.Remove(System.Collections.Generic.KeyValuePair{System.String,System.Object})">Remove(KeyValuePair&lt;string, object&gt;)</h4>
   <div class="markdown level1 summary"><p>Removes an attribute from collection.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Remove(KeyValuePair&lt;string, object&gt; item)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public bool Remove(KeyValuePair&lt;string, object&gt; item)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -757,7 +820,7 @@ This class is accessed by using a constructor to create a new instance of this o
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">KeyValuePair&lt;, &gt;</span>&lt;<span class="xref">string</span>, <span class="xref">object</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">object</span>&gt;</td>
         <td><span class="parametername">item</span></td>
         <td><p>The attributes element to remove.</p>
 </td>
@@ -780,7 +843,7 @@ This class is accessed by using a constructor to create a new instance of this o
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Network_IoTConnectivity_Attributes_Remove_KeyValuePair_System_String_System_Object___examples">Examples</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_Attributes_Remove_System_Collections_Generic_KeyValuePair_System_String_System_Object___examples">Examples</h5>
   <pre><code>    Tizen.Network.IoTConnectivity.Attributes attributes = new Tizen.Network.IoTConnectivity.Attributes() {
         { &quot;state&quot;, &quot;ON&quot; },
         { &quot;dim&quot;, 10 }
@@ -788,6 +851,32 @@ This class is accessed by using a constructor to create a new instance of this o
     if (attributes.Remove(new KeyValuePair&lt;string, object>(&quot;dim&quot;, 10)))
         Console.WriteLine(&quot;Remove was successful&quot;);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -802,7 +891,8 @@ This class is accessed by using a constructor to create a new instance of this o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Remove(string key)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public bool Remove(string key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -846,6 +936,32 @@ This class is accessed by using a constructor to create a new instance of this o
     if (attributes.Remove(&quot;state&quot;))
         Console.WriteLine(&quot;Remove was successful&quot;);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -860,7 +976,8 @@ This class is accessed by using a constructor to create a new instance of this o
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool TryGetValue(string key, out object value)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public bool TryGetValue(string key, out object value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -915,22 +1032,54 @@ This class is accessed by using a constructor to create a new instance of this o
 
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="eii">Explicit Interface Implementations
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/Attributes.cs/#L497">View Source</a>
+  </span>
+  <a id="Tizen_Network_IoTConnectivity_Attributes_System_Collections_IEnumerable_GetEnumerator_" data-uid="Tizen.Network.IoTConnectivity.Attributes.System#Collections#IEnumerable#GetEnumerator*"></a>
+  <h4 id="Tizen_Network_IoTConnectivity_Attributes_System_Collections_IEnumerable_GetEnumerator" data-uid="Tizen.Network.IoTConnectivity.Attributes.System#Collections#IEnumerable#GetEnumerator">IEnumerable.GetEnumerator()</h4>
+  <div class="markdown level1 summary"><p>Returns an enumerator that iterates through the collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerator IEnumerable.GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.IEnumerator</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">IDisposable</span>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+      <span class="xref">System.Collections.Generic.IDictionary&lt;TKey, TValue&gt;</span>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.Collections.Generic.ICollection&lt;T&gt;</span>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+      <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.Collections.IEnumerable</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>

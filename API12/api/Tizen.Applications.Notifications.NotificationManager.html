@@ -157,6 +157,32 @@ NotificationManager.Post(notification);
 
 NotificationManager.Delete(notification);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -193,6 +219,27 @@ Notification secondNotification = new Notification
 NotificationManager.Post(secondNotification);
 NotificationManager.DeleteAll();</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -231,6 +278,27 @@ The block state indicates whether or not notifications can be posted.
 Additionally, only notifications to the notification panel are allowed in &quot;Do not disturb mode&quot;.
 Sound, vibrate, and active notifications are blocked.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -299,6 +367,32 @@ NotificationManager.Post(notification);
 
 Notification loadNotification = NotificationManager.Load(&quot;first notification&quot;);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Throwing the same exception when argument is invalid and when the tag does not exist is misleading.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of permission denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -379,102 +473,28 @@ notification.AddStyle(style);
 NotificationManager.SaveTemplate(notification, &quot;firstTemplate&quot;);
 Notification notificationTemplate = NotificationManager.LoadTemplate(&quot;firstTemplate&quot;);</code></pre>
 
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationManager.cs/#L560">View Source</a>
-  </span>
-  <a id="Tizen_Applications_Notifications_NotificationManager_MakeNotification_" data-uid="Tizen.Applications.Notifications.NotificationManager.MakeNotification*"></a>
-  <h4 id="Tizen_Applications_Notifications_NotificationManager_MakeNotification_Tizen_Applications_Notifications_NotificationSafeHandle_" data-uid="Tizen.Applications.Notifications.NotificationManager.MakeNotification(Tizen.Applications.Notifications.NotificationSafeHandle)">MakeNotification(NotificationSafeHandle)</h4>
-  <div class="markdown level1 summary"><p>Make a Notification from NotificationSafeHandle.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Notification MakeNotification(NotificationSafeHandle handle)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
+        <th>Condition</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.Applications.Notifications.NotificationSafeHandle.html">NotificationSafeHandle</a></td>
-        <td><span class="parametername">handle</span></td>
-        <td><p>The NotificationSafeHandle class.</p>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Throwing the same exception when argument is invalid and when the template does not exist is misleading.</p>
 </td>
       </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
       <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Applications.Notifications.Notification.html">Notification</a></td>
-        <td><p>The Notification class.</p>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of permission denied.</p>
 </td>
       </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationManager.cs/#L540">View Source</a>
-  </span>
-  <a id="Tizen_Applications_Notifications_NotificationManager_MakeNotificationSafeHandle_" data-uid="Tizen.Applications.Notifications.NotificationManager.MakeNotificationSafeHandle*"></a>
-  <h4 id="Tizen_Applications_Notifications_NotificationManager_MakeNotificationSafeHandle_Tizen_Applications_Notifications_Notification_" data-uid="Tizen.Applications.Notifications.NotificationManager.MakeNotificationSafeHandle(Tizen.Applications.Notifications.Notification)">MakeNotificationSafeHandle(Notification)</h4>
-  <div class="markdown level1 summary"><p>Make a NotificationSafeHandle from Notification.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static NotificationSafeHandle MakeNotificationSafeHandle(Notification notification)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
       <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Applications.Notifications.Notification.html">Notification</a></td>
-        <td><span class="parametername">notification</span></td>
-        <td><p>The Notification class.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Applications.Notifications.NotificationSafeHandle.html">NotificationSafeHandle</a></td>
-        <td><p>The NotificationSafeHandle class.</p>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
 </td>
       </tr>
     </tbody>
@@ -533,22 +553,32 @@ notification.Accessory = accessory;
 
 NotificationManager.Post(notification);</code></pre>
 
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationManager.cs/#L609">View Source</a>
-  </span>
-  <a id="Tizen_Applications_Notifications_NotificationManager_RegisterDoNotDisturbApp_" data-uid="Tizen.Applications.Notifications.NotificationManager.RegisterDoNotDisturbApp*"></a>
-  <h4 id="Tizen_Applications_Notifications_NotificationManager_RegisterDoNotDisturbApp" data-uid="Tizen.Applications.Notifications.NotificationManager.RegisterDoNotDisturbApp">RegisterDoNotDisturbApp()</h4>
-  <div class="markdown level1 summary"><p>Register do not disturb app</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void RegisterDoNotDisturbApp()</code></pre>
-  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -618,6 +648,32 @@ Notification.LockStyle style = new Notification.LockStyle
 notification.AddStyle(style);
 NotificationManager.SaveTemplate(notification, &quot;firstTemplate&quot;);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of a permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when it can't be saved as a template.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -697,65 +753,29 @@ static void UpdateProgress(Object obj)
     }
 }</code></pre>
 
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <h3 id="events">Events
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationManager.cs/#L577">View Source</a>
-  </span>
-  <h4 id="Tizen_Applications_Notifications_NotificationManager_DisturbReceived" data-uid="Tizen.Applications.Notifications.NotificationManager.DisturbReceived">DisturbReceived</h4>
-  <div class="markdown level1 summary"><p>The event handler to get</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static event EventHandler DisturbReceived</code></pre>
-  </div>
-  <h5 class="eventType">Event Type</h5>
+  <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Description</th>
+        <th>Condition</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span></td>
-        <td></td>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when an argument is invalid.</p>
+</td>
       </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Applications.Notification/Tizen.Applications.Notifications/NotificationManager.cs/#L65">View Source</a>
-  </span>
-  <h4 id="Tizen_Applications_Notifications_NotificationManager_ResponseReceived" data-uid="Tizen.Applications.Notifications.NotificationManager.ResponseReceived">ResponseReceived</h4>
-  <div class="markdown level1 summary"><p>The event handler for receiving a response event from the notification viewers</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;NotificationResponseEventArgs&gt; ResponseReceived</code></pre>
-  </div>
-  <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
       <tr>
-        <th>Type</th>
-        <th>Description</th>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown in case of a permission is denied.</p>
+</td>
       </tr>
-    </thead>
-    <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.Notifications.NotificationResponseEventArgs.html">NotificationResponseEventArgs</a>&gt;</td>
-        <td></td>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown in case of any internal error.</p>
+</td>
       </tr>
     </tbody>
   </table>

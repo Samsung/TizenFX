@@ -138,7 +138,7 @@ By implementing the appropriate event handlers, applications can respond accordi
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.System.MediaKeyEventArgs.html">MediaKeyEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.System.MediaKeyEventArgs.html">MediaKeyEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -148,6 +148,22 @@ By implementing the appropriate event handlers, applications can respond accordi
 To handle these events, you need to provide a callback function that implements the EventHandler&lt;MediaKeyEventArgs&gt; delegate.
 In case of failure while reserving or releasing the key, an InvalidOperationException will be thrown.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Failed to reserve or release the key.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>

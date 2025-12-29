@@ -121,13 +121,13 @@
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Security.WebAuthn/Tizen.Security.WebAuthn/PubkeyCredCreationOptions.cs/#L76">View Source</a>
   </span>
   <a id="Tizen_Security_WebAuthn_PubkeyCredCreationOptions__ctor_" data-uid="Tizen.Security.WebAuthn.PubkeyCredCreationOptions.#ctor*"></a>
-  <h4 id="Tizen_Security_WebAuthn_PubkeyCredCreationOptions__ctor_Tizen_Security_WebAuthn_RelyingPartyEntity_Tizen_Security_WebAuthn_UserEntity_IEnumerable_Tizen_Security_WebAuthn_PubkeyCredParam__System_UInt64_IEnumerable_Tizen_Security_WebAuthn_PubkeyCredDescriptor__Tizen_Security_WebAuthn_AuthenticationSelectionCriteria_IEnumerable_Tizen_Security_WebAuthn_PubkeyCredHint__Tizen_Security_WebAuthn_AttestationPref_IEnumerable_System_Byte____IEnumerable_Tizen_Security_WebAuthn_AuthenticationExtension__Tizen_Security_WebAuthn_HybridLinkedData_" data-uid="Tizen.Security.WebAuthn.PubkeyCredCreationOptions.#ctor(Tizen.Security.WebAuthn.RelyingPartyEntity,Tizen.Security.WebAuthn.UserEntity,IEnumerable{Tizen.Security.WebAuthn.PubkeyCredParam},System.UInt64,IEnumerable{Tizen.Security.WebAuthn.PubkeyCredDescriptor},Tizen.Security.WebAuthn.AuthenticationSelectionCriteria,IEnumerable{Tizen.Security.WebAuthn.PubkeyCredHint},Tizen.Security.WebAuthn.AttestationPref,IEnumerable{System.Byte[]},IEnumerable{Tizen.Security.WebAuthn.AuthenticationExtension},Tizen.Security.WebAuthn.HybridLinkedData)">PubkeyCredCreationOptions(RelyingPartyEntity, UserEntity, IEnumerable&lt;PubkeyCredParam&gt;, ulong, IEnumerable&lt;PubkeyCredDescriptor&gt;, AuthenticationSelectionCriteria, IEnumerable&lt;PubkeyCredHint&gt;, AttestationPref, IEnumerable&lt;byte[]&gt;, IEnumerable&lt;AuthenticationExtension&gt;, HybridLinkedData)</h4>
+  <h4 id="Tizen_Security_WebAuthn_PubkeyCredCreationOptions__ctor_Tizen_Security_WebAuthn_RelyingPartyEntity_Tizen_Security_WebAuthn_UserEntity_System_Collections_Generic_IEnumerable_Tizen_Security_WebAuthn_PubkeyCredParam__System_UInt64_System_Collections_Generic_IEnumerable_Tizen_Security_WebAuthn_PubkeyCredDescriptor__Tizen_Security_WebAuthn_AuthenticationSelectionCriteria_System_Collections_Generic_IEnumerable_Tizen_Security_WebAuthn_PubkeyCredHint__Tizen_Security_WebAuthn_AttestationPref_System_Collections_Generic_IEnumerable_System_Byte____System_Collections_Generic_IEnumerable_Tizen_Security_WebAuthn_AuthenticationExtension__Tizen_Security_WebAuthn_HybridLinkedData_" data-uid="Tizen.Security.WebAuthn.PubkeyCredCreationOptions.#ctor(Tizen.Security.WebAuthn.RelyingPartyEntity,Tizen.Security.WebAuthn.UserEntity,System.Collections.Generic.IEnumerable{Tizen.Security.WebAuthn.PubkeyCredParam},System.UInt64,System.Collections.Generic.IEnumerable{Tizen.Security.WebAuthn.PubkeyCredDescriptor},Tizen.Security.WebAuthn.AuthenticationSelectionCriteria,System.Collections.Generic.IEnumerable{Tizen.Security.WebAuthn.PubkeyCredHint},Tizen.Security.WebAuthn.AttestationPref,System.Collections.Generic.IEnumerable{System.Byte[]},System.Collections.Generic.IEnumerable{Tizen.Security.WebAuthn.AuthenticationExtension},Tizen.Security.WebAuthn.HybridLinkedData)">PubkeyCredCreationOptions(RelyingPartyEntity, UserEntity, IEnumerable&lt;PubkeyCredParam&gt;, ulong, IEnumerable&lt;PubkeyCredDescriptor&gt;, AuthenticationSelectionCriteria, IEnumerable&lt;PubkeyCredHint&gt;, AttestationPref, IEnumerable&lt;byte[]&gt;, IEnumerable&lt;AuthenticationExtension&gt;, HybridLinkedData)</h4>
   <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredCreationOptions.html">PubkeyCredCreationOptions</a> class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PubkeyCredCreationOptions(RelyingPartyEntity rp, UserEntity user, IEnumerable&lt;PubkeyCredParam&gt; pubkeyCredParams, ulong timeout = null, IEnumerable&lt;PubkeyCredDescriptor&gt; excludeCredentials = null, AuthenticationSelectionCriteria authenticatorSelection = null, IEnumerable&lt;PubkeyCredHint&gt; hints = null, AttestationPref attestation = default, IEnumerable&lt;byte[]&gt; attestationFormats = null, IEnumerable&lt;AuthenticationExtension&gt; extensions = null, HybridLinkedData linkedDevice = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public PubkeyCredCreationOptions(RelyingPartyEntity rp, UserEntity user, IEnumerable&lt;PubkeyCredParam&gt; pubkeyCredParams, ulong timeout = 0, IEnumerable&lt;PubkeyCredDescriptor&gt; excludeCredentials = null, AuthenticationSelectionCriteria authenticatorSelection = null, IEnumerable&lt;PubkeyCredHint&gt; hints = null, AttestationPref attestation = AttestationPref.None, IEnumerable&lt;byte[]&gt; attestationFormats = null, IEnumerable&lt;AuthenticationExtension&gt; extensions = null, HybridLinkedData linkedDevice = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -152,7 +152,7 @@
 </td>
       </tr>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredParam.html">PubkeyCredParam</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredParam.html">PubkeyCredParam</a>&gt;</td>
         <td><span class="parametername">pubkeyCredParams</span></td>
         <td><p>Lists the key types and signature algorithms the Relying Party supports,
 ordered from most preferred to least preferred.</p>
@@ -168,7 +168,7 @@ The value, '0', means no timeout is set. (optional)</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredDescriptor.html">PubkeyCredDescriptor</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredDescriptor.html">PubkeyCredDescriptor</a>&gt;</td>
         <td><span class="parametername">excludeCredentials</span></td>
         <td><p>The Relying Party SHOULD use this argument to list any existing credentials mapped
 to this user account (as identified by user.id). (optional)</p>
@@ -182,7 +182,7 @@ authenticator MUST or SHOULD satisfy to participate in this operation. (optional
 </td>
       </tr>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredHint.html">PubkeyCredHint</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredHint.html">PubkeyCredHint</a>&gt;</td>
         <td><span class="parametername">hints</span></td>
         <td><p>Contains zero or more elements from <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredHint.html">PubkeyCredHint</a> to
 guide the user agent in interacting with the user. (optional)</p>
@@ -196,7 +196,7 @@ The default value is <a class="xref" href="Tizen.Security.WebAuthn.AttestationPr
 </td>
       </tr>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<span class="xref">byte</span>[]&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">byte</span>[]&gt;</td>
         <td><span class="parametername">attestationFormats</span></td>
         <td><p>The Relying Party MAY use this argument to specify a preference regarding the attestation
 statement format used by the authenticator. The default value is the empty list, which
@@ -204,7 +204,7 @@ indicates no preference. (optional)</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.AuthenticationExtension.html">AuthenticationExtension</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.AuthenticationExtension.html">AuthenticationExtension</a>&gt;</td>
         <td><span class="parametername">extensions</span></td>
         <td><p>The Relying Party MAY use this argument to provide client extension inputs requesting
 additional processing by the client and authenticator. (optional)</p>
@@ -219,7 +219,7 @@ If not null, the state assisted transaction will start.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Security_WebAuthn_PubkeyCredCreationOptions__ctor_Tizen_Security_WebAuthn_RelyingPartyEntity_Tizen_Security_WebAuthn_UserEntity_IEnumerable_Tizen_Security_WebAuthn_PubkeyCredParam__System_UInt64_IEnumerable_Tizen_Security_WebAuthn_PubkeyCredDescriptor__Tizen_Security_WebAuthn_AuthenticationSelectionCriteria_IEnumerable_Tizen_Security_WebAuthn_PubkeyCredHint__Tizen_Security_WebAuthn_AttestationPref_IEnumerable_System_Byte____IEnumerable_Tizen_Security_WebAuthn_AuthenticationExtension__Tizen_Security_WebAuthn_HybridLinkedData__remarks">Remarks</h5>
+  <h5 id="Tizen_Security_WebAuthn_PubkeyCredCreationOptions__ctor_Tizen_Security_WebAuthn_RelyingPartyEntity_Tizen_Security_WebAuthn_UserEntity_System_Collections_Generic_IEnumerable_Tizen_Security_WebAuthn_PubkeyCredParam__System_UInt64_System_Collections_Generic_IEnumerable_Tizen_Security_WebAuthn_PubkeyCredDescriptor__Tizen_Security_WebAuthn_AuthenticationSelectionCriteria_System_Collections_Generic_IEnumerable_Tizen_Security_WebAuthn_PubkeyCredHint__Tizen_Security_WebAuthn_AttestationPref_System_Collections_Generic_IEnumerable_System_Byte____System_Collections_Generic_IEnumerable_Tizen_Security_WebAuthn_AuthenticationExtension__Tizen_Security_WebAuthn_HybridLinkedData__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Refer to the following W3C specification for more information.
 <a href="https://www.w3.org/TR/webauthn-3/#dictdef-publickeycredentialcreationoptions">https://www.w3.org/TR/webauthn-3/#dictdef-publickeycredentialcreationoptions</a></p>
 </div>
@@ -287,7 +287,7 @@ If not null, the state assisted transaction will start.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<span class="xref">byte</span>[]&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">byte</span>[]&gt;</td>
         <td><p>Specifies a preference regarding the attestation statement format used by the authenticator.</p>
 </td>
       </tr>
@@ -360,7 +360,7 @@ to participate in this operation.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredDescriptor.html">PubkeyCredDescriptor</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredDescriptor.html">PubkeyCredDescriptor</a>&gt;</td>
         <td><p>Any existing credentials mapped to this user account (as identified by user.id).</p>
 </td>
       </tr>
@@ -396,7 +396,7 @@ to participate in this operation.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.AuthenticationExtension.html">AuthenticationExtension</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.AuthenticationExtension.html">AuthenticationExtension</a>&gt;</td>
         <td><p>Client extension inputs requesting additional processing by the client and authenticator.</p>
 </td>
       </tr>
@@ -432,7 +432,7 @@ to participate in this operation.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredHint.html">PubkeyCredHint</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredHint.html">PubkeyCredHint</a>&gt;</td>
         <td><p>Contains zero or more elements from <a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredHint.html">PubkeyCredHint</a> to
 guide the user agent in interacting with the user.</p>
 </td>
@@ -505,7 +505,7 @@ guide the user agent in interacting with the user.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredParam.html">PubkeyCredParam</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Security.WebAuthn.PubkeyCredParam.html">PubkeyCredParam</a>&gt;</td>
         <td><p>The key types and signature algorithms the Relying Party supports,
 ordered from most preferred to least preferred.</p>
 </td>
@@ -630,19 +630,6 @@ The value, '0', means no timeout is set.</p>
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
 </article>
           </div>
 

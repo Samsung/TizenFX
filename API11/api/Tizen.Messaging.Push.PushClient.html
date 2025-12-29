@@ -201,7 +201,7 @@ with the push server along with APIs to request push message.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Push.ServerResponse.html">ServerResponse</a>&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Push.ServerResponse.html">ServerResponse</a>&gt;</td>
         <td><p>The method returns a task, which on completion will give a ServerResponse Object.</p>
 </td>
       </tr>
@@ -239,7 +239,7 @@ with the push server along with APIs to request push message.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Push.ServerResponse.html">ServerResponse</a>&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Push.ServerResponse.html">ServerResponse</a>&gt;</td>
         <td><p>The method returns a task, which on completion will give a ServerResponse Object.</p>
 </td>
       </tr>
@@ -291,6 +291,22 @@ It provides APIs to connect/disconnect from the push service.
 APIs are provided so that an application can register itself
 with the push server along with APIs to request push message.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>In case of privilege not defined.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -340,7 +356,7 @@ with the push server along with APIs to request push message.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Push.PushMessageEventArgs.html">PushMessageEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Push.PushMessageEventArgs.html">PushMessageEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -376,7 +392,7 @@ with the push server along with APIs to request push message.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Push.PushConnectionStateEventArgs.html">PushConnectionStateEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Messaging.Push.PushConnectionStateEventArgs.html">PushConnectionStateEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>

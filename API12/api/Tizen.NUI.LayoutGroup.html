@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class LayoutGroup : LayoutItem, ILayoutParent</code></pre>
+    <pre><code class="lang-csharp hljs">public class LayoutGroup : LayoutItem, IDisposable, ILayoutParent</code></pre>
   </div>
 
 
@@ -129,6 +129,7 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.ILayoutParent.html">ILayoutParent</a></div>
     </dd>
   </dl>
@@ -175,7 +176,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.LayoutItem.html">LayoutItem</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.List&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.NUI.LayoutItem.html">LayoutItem</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -216,114 +217,18 @@
       </tr>
     </tbody>
   </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L162">View Source</a>
-  </span>
-  <a id="Tizen_NUI_LayoutGroup_ChangeLayoutChildOrder_" data-uid="Tizen.NUI.LayoutGroup.ChangeLayoutChildOrder*"></a>
-  <h4 id="Tizen_NUI_LayoutGroup_ChangeLayoutChildOrder_Tizen_NUI_LayoutItem_System_Int32_" data-uid="Tizen.NUI.LayoutGroup.ChangeLayoutChildOrder(Tizen.NUI.LayoutItem,System.Int32)">ChangeLayoutChildOrder(LayoutItem, int)</h4>
-  <div class="markdown level1 summary"><p>Sets the order of the child layout in the layout group.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ChangeLayoutChildOrder(LayoutItem child, int order)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
+        <th>Condition</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.LayoutItem.html">LayoutItem</a></td>
-        <td><span class="parametername">child</span></td>
-        <td><p>the child layout in the layout group</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">int</span></td>
-        <td><span class="parametername">order</span></td>
-        <td><p>the order of the child layout in the layout group</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L662">View Source</a>
-  </span>
-  <a id="Tizen_NUI_LayoutGroup_GetAttachedValue_" data-uid="Tizen.NUI.LayoutGroup.GetAttachedValue*"></a>
-  <h4 id="Tizen_NUI_LayoutGroup_GetAttachedValue__1_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_" data-uid="Tizen.NUI.LayoutGroup.GetAttachedValue``1(Tizen.NUI.Binding.BindableObject,Tizen.NUI.Binding.BindableProperty)">GetAttachedValue&lt;T&gt;(BindableObject, BindableProperty)</h4>
-  <div class="markdown level1 summary"><p>Gets the value that is contained in the attached BindableProperty.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static T GetAttachedValue&lt;T&gt;(BindableObject bindable, BindableProperty property)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></td>
-        <td><span class="parametername">bindable</span></td>
-        <td><p>The bindable object.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
-        <td><span class="parametername">property</span></td>
-        <td><p>The BindableProperty for which to get the value.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><p>The value that is contained in the attached BindableProperty.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>The return type of property</p>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when childLayout is null.</p>
 </td>
       </tr>
     </tbody>
@@ -398,38 +303,6 @@ for one dimension (height or width) of one child view.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L52">View Source</a>
-  </span>
-  <a id="Tizen_NUI_LayoutGroup_IterateLayoutChildren_" data-uid="Tizen.NUI.LayoutGroup.IterateLayoutChildren*"></a>
-  <h4 id="Tizen_NUI_LayoutGroup_IterateLayoutChildren" data-uid="Tizen.NUI.LayoutGroup.IterateLayoutChildren">IterateLayoutChildren()</h4>
-  <div class="markdown level1 summary"><p>returns an enumerable collection of the child layouts that owner's <a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_ExcludeLayouting">ExcludeLayouting</a> is false.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected IEnumerable&lt;LayoutItem&gt; IterateLayoutChildren()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.LayoutItem.html">LayoutItem</a>&gt;</td>
-        <td><p>An enumerable collection of the child layouts that affected by this layout.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L562">View Source</a>
   </span>
   <a id="Tizen_NUI_LayoutGroup_MeasureChild_" data-uid="Tizen.NUI.LayoutGroup.MeasureChild*"></a>
@@ -469,6 +342,22 @@ The heavy lifting is done in GetChildMeasureSpecification.<br></p>
         <td><a class="xref" href="Tizen.NUI.MeasureSpecification.html">MeasureSpecification</a></td>
         <td><span class="parametername">parentHeightMeasureSpec</span></td>
         <td><p>The height requirements for this view.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when child is null.</p>
 </td>
       </tr>
     </tbody>
@@ -575,50 +464,18 @@ and margins. The heavy lifting is done in GetChildMeasureSpecification.<br></p>
       </tr>
     </tbody>
   </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L632">View Source</a>
-  </span>
-  <a id="Tizen_NUI_LayoutGroup_MeasureChildWithoutPadding_" data-uid="Tizen.NUI.LayoutGroup.MeasureChildWithoutPadding*"></a>
-  <h4 id="Tizen_NUI_LayoutGroup_MeasureChildWithoutPadding_Tizen_NUI_LayoutItem_Tizen_NUI_MeasureSpecification_Tizen_NUI_MeasureSpecification_" data-uid="Tizen.NUI.LayoutGroup.MeasureChildWithoutPadding(Tizen.NUI.LayoutItem,Tizen.NUI.MeasureSpecification,Tizen.NUI.MeasureSpecification)">MeasureChildWithoutPadding(LayoutItem, MeasureSpecification, MeasureSpecification)</h4>
-  <div class="markdown level1 summary"><p>Ask one of the children of this view to measure itself, taking into
-account both the MeasureSpec requirements for this view and without its padding.<br>
-and margins. The heavy lifting is done in GetChildMeasureSpecification.<br></p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void MeasureChildWithoutPadding(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, MeasureSpecification parentHeightMeasureSpec)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
+        <th>Condition</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.LayoutItem.html">LayoutItem</a></td>
-        <td><span class="parametername">child</span></td>
-        <td><p>The child to measure.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.MeasureSpecification.html">MeasureSpecification</a></td>
-        <td><span class="parametername">parentWidthMeasureSpec</span></td>
-        <td><p>The width requirements for this view.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.MeasureSpecification.html">MeasureSpecification</a></td>
-        <td><span class="parametername">parentHeightMeasureSpec</span></td>
-        <td><p>The height requirements for this view.</p>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when child is null.</p>
 </td>
       </tr>
     </tbody>
@@ -821,25 +678,6 @@ and width. <br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L508">View Source</a>
-  </span>
-  <a id="Tizen_NUI_LayoutGroup_OnUnparent_" data-uid="Tizen.NUI.LayoutGroup.OnUnparent*"></a>
-  <h4 id="Tizen_NUI_LayoutGroup_OnUnparent" data-uid="Tizen.NUI.LayoutGroup.OnUnparent">OnUnparent()</h4>
-  <div class="markdown level1 summary"><p>Virtual method to allow derived classes to remove any children before it is removed from
-its parent.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnUnparent()</code></pre>
-  </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.LayoutItem.html#Tizen_NUI_LayoutItem_OnUnparent">LayoutItem.OnUnparent()</a></div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L101">View Source</a>
   </span>
   <a id="Tizen_NUI_LayoutGroup_Remove_" data-uid="Tizen.NUI.LayoutGroup.Remove*"></a>
@@ -889,77 +727,12 @@ its parent.</p>
 
   <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L677">View Source</a>
-  </span>
-  <a id="Tizen_NUI_LayoutGroup_SetAttachedValue_" data-uid="Tizen.NUI.LayoutGroup.SetAttachedValue*"></a>
-  <h4 id="Tizen_NUI_LayoutGroup_SetAttachedValue_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_Object_" data-uid="Tizen.NUI.LayoutGroup.SetAttachedValue(Tizen.NUI.Binding.BindableObject,Tizen.NUI.Binding.BindableProperty,System.Object)">SetAttachedValue(BindableObject, BindableProperty, object)</h4>
-  <div class="markdown level1 summary"><p>Sets the value of the attached property.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void SetAttachedValue(BindableObject bindable, BindableProperty property, object value)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></td>
-        <td><span class="parametername">bindable</span></td>
-        <td><p>The bindable object.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
-        <td><span class="parametername">property</span></td>
-        <td><p>The BindableProperty on which to assign a value.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">object</span></td>
-        <td><span class="parametername">value</span></td>
-        <td><p>The value to set.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
   <h3 id="implements">Implements</h3>
   <div>
+      <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
       <a class="xref" href="Tizen.NUI.ILayoutParent.html">ILayoutParent</a>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

@@ -94,7 +94,8 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ResourceQuery : IDictionary&lt;string, string&gt;, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public class ResourceQuery : IDictionary&lt;string, string&gt;, ICollection&lt;KeyValuePair&lt;string, string&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;string, string&gt;&gt;, IEnumerable, IDisposable</code></pre>
   </div>
 
 
@@ -113,7 +114,11 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">IDisposable</span></div>
+      <div class="pdl"><span class="xref">System.Collections.Generic.IDictionary&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;</div>
+      <div class="pdl"><span class="xref">System.Collections.Generic.ICollection&lt;T&gt;</span>&lt;<span class="xref">System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;&gt;</div>
+      <div class="pdl"><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;&gt;</div>
+      <div class="pdl"><span class="xref">System.Collections.IEnumerable</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
 
@@ -129,11 +134,33 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ResourceQuery()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public ResourceQuery()</code></pre>
   </div>
   <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery__ctor_examples">Examples</h5>
   <pre><code>    ResourceQuery query = new ResourceQuery();</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when there is not enough memory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery__ctor_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceQuery.html#Tizen_Network_IoTConnectivity_ResourceQuery_Add_System_String_System_String_">Add(string, string)</a></div>
@@ -155,7 +182,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public int Count { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -194,7 +222,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Interface { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public string Interface { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -217,6 +246,32 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
   <pre><code>    ResourceQuery query = new ResourceQuery();
     query.Interface = ResourceInterfaces.LinkInterface;</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -231,7 +286,8 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsReadOnly { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public bool IsReadOnly { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -268,7 +324,8 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string this[string key] { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public string this[string key] { get; set; }</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -323,7 +380,8 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ICollection&lt;string&gt; Keys { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public ICollection&lt;string&gt; Keys { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -335,7 +393,7 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ICollection&lt;&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.ICollection&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
         <td><p>All the query keys.</p>
 </td>
       </tr>
@@ -362,7 +420,8 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Type { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public string Type { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -385,6 +444,32 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
     query.Type = &quot;org.tizen.light&quot;;
     Console.WriteLine(&quot;Type of query : {0}&quot;, query.Type);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -399,7 +484,8 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ICollection&lt;string&gt; Values { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public ICollection&lt;string&gt; Values { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -411,7 +497,7 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">ICollection&lt;&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.ICollection&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
         <td><p>All the query values.</p>
 </td>
       </tr>
@@ -434,13 +520,14 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceQuery.cs/#L402">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_ResourceQuery_Add_" data-uid="Tizen.Network.IoTConnectivity.ResourceQuery.Add*"></a>
-  <h4 id="Tizen_Network_IoTConnectivity_ResourceQuery_Add_KeyValuePair_System_String_System_String__" data-uid="Tizen.Network.IoTConnectivity.ResourceQuery.Add(KeyValuePair{System.String,System.String})">Add(KeyValuePair&lt;string, string&gt;)</h4>
+  <h4 id="Tizen_Network_IoTConnectivity_ResourceQuery_Add_System_Collections_Generic_KeyValuePair_System_String_System_String__" data-uid="Tizen.Network.IoTConnectivity.ResourceQuery.Add(System.Collections.Generic.KeyValuePair{System.String,System.String})">Add(KeyValuePair&lt;string, string&gt;)</h4>
   <div class="markdown level1 summary"><p>Adds a query key and a value as a key value pair.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Add(KeyValuePair&lt;string, string&gt; item)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public void Add(KeyValuePair&lt;string, string&gt; item)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -453,20 +540,20 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">KeyValuePair&lt;, &gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;</td>
         <td><span class="parametername">item</span></td>
         <td><p>The key value pair.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery_Add_KeyValuePair_System_String_System_String___examples">Examples</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery_Add_System_Collections_Generic_KeyValuePair_System_String_System_String___examples">Examples</h5>
   <pre><code>    ResourceQuery query = new ResourceQuery();
     query.Add(new KeyValuePair&lt;string, string>(&quot;key1&quot;, &quot;value1&quot;));</code></pre>
 
-  <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery_Add_KeyValuePair_System_String_System_String___seealso">See Also</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery_Add_System_Collections_Generic_KeyValuePair_System_String_System_String___seealso">See Also</h5>
   <div class="seealso">
-      <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceQuery.html#Tizen_Network_IoTConnectivity_ResourceQuery_Remove_KeyValuePair_System_String_System_String__">Remove(KeyValuePair&lt;string, string&gt;)</a></div>
+      <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceQuery.html#Tizen_Network_IoTConnectivity_ResourceQuery_Remove_System_Collections_Generic_KeyValuePair_System_String_System_String__">Remove(KeyValuePair&lt;string, string&gt;)</a></div>
   </div>
 
 
@@ -482,7 +569,8 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Add(string key, string value)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public void Add(string key, string value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -515,6 +603,32 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
   <pre><code>    ResourceQuery query = new ResourceQuery();
     query.Add(&quot;key1&quot;, &quot;value1&quot;);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery_Add_System_String_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceQuery.html#Tizen_Network_IoTConnectivity_ResourceQuery_Remove_System_String_">Remove(string)</a></div>
@@ -533,7 +647,8 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Clear()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public void Clear()</code></pre>
   </div>
   <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery_Clear_examples">Examples</h5>
   <pre><code>    ResourceQuery query = new ResourceQuery();
@@ -541,6 +656,27 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
     query.Add(&quot;key2&quot;, &quot;value2&quot;);
     query.Clear();</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -549,13 +685,14 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceQuery.cs/#L449">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_ResourceQuery_Contains_" data-uid="Tizen.Network.IoTConnectivity.ResourceQuery.Contains*"></a>
-  <h4 id="Tizen_Network_IoTConnectivity_ResourceQuery_Contains_KeyValuePair_System_String_System_String__" data-uid="Tizen.Network.IoTConnectivity.ResourceQuery.Contains(KeyValuePair{System.String,System.String})">Contains(KeyValuePair&lt;string, string&gt;)</h4>
+  <h4 id="Tizen_Network_IoTConnectivity_ResourceQuery_Contains_System_Collections_Generic_KeyValuePair_System_String_System_String__" data-uid="Tizen.Network.IoTConnectivity.ResourceQuery.Contains(System.Collections.Generic.KeyValuePair{System.String,System.String})">Contains(KeyValuePair&lt;string, string&gt;)</h4>
   <div class="markdown level1 summary"><p>Checks if the given query pair exists.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Contains(KeyValuePair&lt;string, string&gt; item)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public bool Contains(KeyValuePair&lt;string, string&gt; item)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -568,7 +705,7 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">KeyValuePair&lt;, &gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;</td>
         <td><span class="parametername">item</span></td>
         <td><p>The key value pair.</p>
 </td>
@@ -591,7 +728,7 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery_Contains_KeyValuePair_System_String_System_String___examples">Examples</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery_Contains_System_Collections_Generic_KeyValuePair_System_String_System_String___examples">Examples</h5>
   <pre><code>    ResourceQuery query = new ResourceQuery();
     query.Add(new KeyValuePair&lt;string, string>(&quot;key1&quot;, &quot;value1&quot;));
     var isPresent = query.Contains(new KeyValuePair&lt;string, string>(&quot;key1&quot;, &quot;value1&quot;));
@@ -612,7 +749,8 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool ContainsKey(string key)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public bool ContainsKey(string key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -662,13 +800,14 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceQuery.cs/#L468">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_ResourceQuery_CopyTo_" data-uid="Tizen.Network.IoTConnectivity.ResourceQuery.CopyTo*"></a>
-  <h4 id="Tizen_Network_IoTConnectivity_ResourceQuery_CopyTo_KeyValuePair_System_String_System_String____System_Int32_" data-uid="Tizen.Network.IoTConnectivity.ResourceQuery.CopyTo(KeyValuePair{System.String,System.String}[],System.Int32)">CopyTo(KeyValuePair&lt;string, string&gt;[], int)</h4>
+  <h4 id="Tizen_Network_IoTConnectivity_ResourceQuery_CopyTo_System_Collections_Generic_KeyValuePair_System_String_System_String____System_Int32_" data-uid="Tizen.Network.IoTConnectivity.ResourceQuery.CopyTo(System.Collections.Generic.KeyValuePair{System.String,System.String}[],System.Int32)">CopyTo(KeyValuePair&lt;string, string&gt;[], int)</h4>
   <div class="markdown level1 summary"><p>Copies the elements of the query collection to an array, starting at a particular index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void CopyTo(KeyValuePair&lt;string, string&gt;[] array, int arrayIndex)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public void CopyTo(KeyValuePair&lt;string, string&gt;[] array, int arrayIndex)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -681,7 +820,7 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">KeyValuePair&lt;, &gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;[]</td>
+        <td><span class="xref">System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;[]</td>
         <td><span class="parametername">array</span></td>
         <td><p>The destination array.</p>
 </td>
@@ -694,7 +833,7 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery_CopyTo_KeyValuePair_System_String_System_String____System_Int32__examples">Examples</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery_CopyTo_System_Collections_Generic_KeyValuePair_System_String_System_String____System_Int32__examples">Examples</h5>
   <pre><code>    ResourceQuery query = new ResourceQuery();
     query.Add(new KeyValuePair&lt;string, string>(&quot;key1&quot;, &quot;value1&quot;));
     KeyValuePair&lt;string, string>[] dest = new KeyValuePair&lt;string, string>[query.Count];
@@ -715,7 +854,8 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public void Dispose()</code></pre>
   </div>
 
 
@@ -731,7 +871,8 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -781,7 +922,8 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IEnumerator&lt;KeyValuePair&lt;string, string&gt;&gt; GetEnumerator()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public IEnumerator&lt;KeyValuePair&lt;string, string&gt;&gt; GetEnumerator()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -793,7 +935,7 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerator&lt;&gt;</span>&lt;<span class="xref">KeyValuePair&lt;, &gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerator&lt;T&gt;</span>&lt;<span class="xref">System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;&gt;</td>
         <td><p>Enumerator to query pairs.</p>
 </td>
       </tr>
@@ -816,13 +958,14 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceQuery.cs/#L488">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_ResourceQuery_Remove_" data-uid="Tizen.Network.IoTConnectivity.ResourceQuery.Remove*"></a>
-  <h4 id="Tizen_Network_IoTConnectivity_ResourceQuery_Remove_KeyValuePair_System_String_System_String__" data-uid="Tizen.Network.IoTConnectivity.ResourceQuery.Remove(KeyValuePair{System.String,System.String})">Remove(KeyValuePair&lt;string, string&gt;)</h4>
+  <h4 id="Tizen_Network_IoTConnectivity_ResourceQuery_Remove_System_Collections_Generic_KeyValuePair_System_String_System_String__" data-uid="Tizen.Network.IoTConnectivity.ResourceQuery.Remove(System.Collections.Generic.KeyValuePair{System.String,System.String})">Remove(KeyValuePair&lt;string, string&gt;)</h4>
   <div class="markdown level1 summary"><p>Removes the given key value pair from the query.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Remove(KeyValuePair&lt;string, string&gt; item)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public bool Remove(KeyValuePair&lt;string, string&gt; item)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -835,7 +978,7 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">KeyValuePair&lt;, &gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.KeyValuePair&lt;TKey, TValue&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;</td>
         <td><span class="parametername">item</span></td>
         <td><p>The key value pair to remove.</p>
 </td>
@@ -858,14 +1001,30 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery_Remove_KeyValuePair_System_String_System_String___examples">Examples</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery_Remove_System_Collections_Generic_KeyValuePair_System_String_System_String___examples">Examples</h5>
   <pre><code>    ResourceQuery query = new ResourceQuery();
     query.Add(new KeyValuePair&lt;string, string>(&quot;key1&quot;, &quot;value1&quot;));
     var result = query.Remove(new KeyValuePair&lt;string, string>(&quot;key1&quot;, &quot;value1&quot;));</code></pre>
 
-  <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery_Remove_KeyValuePair_System_String_System_String___seealso">See Also</h5>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery_Remove_System_Collections_Generic_KeyValuePair_System_String_System_String___seealso">See Also</h5>
   <div class="seealso">
-      <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceQuery.html#Tizen_Network_IoTConnectivity_ResourceQuery_Add_KeyValuePair_System_String_System_String__">Add(KeyValuePair&lt;string, string&gt;)</a></div>
+      <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceQuery.html#Tizen_Network_IoTConnectivity_ResourceQuery_Add_System_Collections_Generic_KeyValuePair_System_String_System_String__">Add(KeyValuePair&lt;string, string&gt;)</a></div>
   </div>
 
 
@@ -881,7 +1040,8 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Remove(string key)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public bool Remove(string key)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -922,6 +1082,32 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
     query.Add(&quot;key1&quot;, &quot;value1&quot;);
     var result = query.Remove(&quot;key1&quot;);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery_Remove_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceQuery.html#Tizen_Network_IoTConnectivity_ResourceQuery_Add_System_String_System_String_">Add(string, string)</a></div>
@@ -940,7 +1126,8 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool TryGetValue(string key, out string value)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public bool TryGetValue(string key, out string value)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -994,22 +1181,64 @@ Setter value could be a value, such as <a class="xref" href="Tizen.Network.IoTCo
 
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="eii">Explicit Interface Implementations
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceQuery.cs/#L528">View Source</a>
+  </span>
+  <a id="Tizen_Network_IoTConnectivity_ResourceQuery_System_Collections_IEnumerable_GetEnumerator_" data-uid="Tizen.Network.IoTConnectivity.ResourceQuery.System#Collections#IEnumerable#GetEnumerator*"></a>
+  <h4 id="Tizen_Network_IoTConnectivity_ResourceQuery_System_Collections_IEnumerable_GetEnumerator" data-uid="Tizen.Network.IoTConnectivity.ResourceQuery.System#Collections#IEnumerable#GetEnumerator">IEnumerable.GetEnumerator()</h4>
+  <div class="markdown level1 summary"><p>Gets the enumerator to the query collection.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerator IEnumerable.GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.IEnumerator</span></td>
+        <td><p>The enumerator to the query pairs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceQuery_System_Collections_IEnumerable_GetEnumerator_examples">Examples</h5>
+  <pre><code>    ResourceQuery query = new ResourceQuery();
+    query.Add(new KeyValuePair&lt;string, string>(&quot;key1&quot;, &quot;value1&quot;));
+    query.Add(new KeyValuePair&lt;string, string>(&quot;key2&quot;, &quot;value2&quot;));
+    foreach (KeyValuePair&lt;string, string> pair in query)
+    {
+        Console.WriteLine(&quot;key : {0}, value : {1}&quot;, pair.Key, pair.Value);
+    }</code></pre>
+
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">IDisposable</span>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+      <span class="xref">System.Collections.Generic.IDictionary&lt;TKey, TValue&gt;</span>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.Collections.Generic.ICollection&lt;T&gt;</span>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+      <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.Collections.IEnumerable</span>
+  </div>
+  <div>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>

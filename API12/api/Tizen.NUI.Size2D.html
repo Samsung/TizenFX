@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Size2D : Disposable, ICloneable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Size2D : Disposable, IDisposable, ICloneable</code></pre>
   </div>
 
 
@@ -114,7 +114,8 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">ICloneable</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><span class="xref">System.ICloneable</span></div>
     </dd>
   </dl>
 
@@ -315,77 +316,6 @@ Size Tmp = view.MaximumSize; //here Tmp.Depth will be 0.0f. <br></p>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Size2D.cs/#L373">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Size2D_Clone_" data-uid="Tizen.NUI.Size2D.Clone*"></a>
-  <h4 id="Tizen_NUI_Size2D_Clone" data-uid="Tizen.NUI.Size2D.Clone">Clone()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public object Clone()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">object</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Size2D.cs/#L81">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Size2D_Dispose_" data-uid="Tizen.NUI.Size2D.Dispose*"></a>
-  <h4 id="Tizen_NUI_Size2D_Dispose_System_Boolean_" data-uid="Tizen.NUI.Size2D.Dispose(System.Boolean)">Dispose(bool)</h4>
-  <div class="markdown level1 summary"><p>Hidden API (Inhouse API).
-Dispose.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void Dispose(bool disposing)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">bool</span></td>
-        <td><span class="parametername">disposing</span></td>
-        <td><p>true in order to free managed objects</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.Disposable.html#Tizen_NUI_Disposable_Dispose_System_Boolean_">Disposable.Dispose(bool)</a></div>
-  <h5 id="Tizen_NUI_Size2D_Dispose_System_Boolean__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Following the guide of <a href="https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose">https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose</a>.
-This will replace &quot;protected virtual void Dispose(DisposeTypes type)&quot; which is exactly same in functionality.</p>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Size2D.cs/#L323">View Source</a>
   </span>
   <a id="Tizen_NUI_Size2D_Equals_" data-uid="Tizen.NUI.Size2D.Equals*"></a>
@@ -514,6 +444,8 @@ Utilizes appropriate machine epsilon values.<br></p>
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">object.GetHashCode()</span></div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -565,40 +497,6 @@ Utilizes appropriate machine epsilon values.<br></p>
       </tr>
     </tbody>
   </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Size2D.cs/#L399">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Size2D_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Size2D.ReleaseSwigCPtr*"></a>
-  <h4 id="Tizen_NUI_Size2D_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Size2D.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
-        <td><span class="parametername">swigCPtr</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.Disposable.html#Tizen_NUI_Disposable_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">Disposable.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -766,55 +664,6 @@ Utilizes appropriate machine epsilon values.<br></p>
         <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
         <td><p>A size containing the result of the division.</p>
 </td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI/src/public/Common/Size2D.cs/#L293">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Size2D_op_Implicit_" data-uid="Tizen.NUI.Size2D.op_Implicit*"></a>
-  <h4 id="Tizen_NUI_Size2D_op_Implicit_Tizen_NUI_Size__Tizen_NUI_Size2D" data-uid="Tizen.NUI.Size2D.op_Implicit(Tizen.NUI.Size)~Tizen.NUI.Size2D">implicit operator Size2D(Size)</h4>
-  <div class="markdown level1 summary"><p>Implicit type cast operator, Size to Size2D</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static implicit operator Size2D(Size size)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Size.html">Size</a></td>
-        <td><span class="parametername">size</span></td>
-        <td><p>The object of Size type.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></td>
-        <td></td>
       </tr>
     </tbody>
   </table>
@@ -1142,41 +991,10 @@ Utilizes appropriate machine epsilon values.<br></p>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">ICloneable</span>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+      <span class="xref">System.IDisposable</span>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.GraphicsTypeExtensions.html#Tizen_NUI_GraphicsTypeExtensions_DpToPx_Tizen_NUI_Size2D_">GraphicsTypeExtensions.DpToPx(Size2D)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.GraphicsTypeExtensions.html#Tizen_NUI_GraphicsTypeExtensions_PxToDp_Tizen_NUI_Size2D_">GraphicsTypeExtensions.PxToDp(Size2D)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.GraphicsTypeExtensions.html#Tizen_NUI_GraphicsTypeExtensions_PxToSp_Tizen_NUI_Size2D_">GraphicsTypeExtensions.PxToSp(Size2D)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.GraphicsTypeExtensions.html#Tizen_NUI_GraphicsTypeExtensions_SpToPx_Tizen_NUI_Size2D_">GraphicsTypeExtensions.SpToPx(Size2D)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.ICloneable</span>
   </div>
 </article>
           </div>

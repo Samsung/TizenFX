@@ -114,7 +114,7 @@ start, pause, and resume the screen mirroring as a sink.</p>
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">Tizen.Multimedia.IDisplayable&lt;&gt;</span>&lt;<span class="xref">ScreenMirroringErrorCode</span>&gt;</div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
 
@@ -132,6 +132,22 @@ start, pause, and resume the screen mirroring as a sink.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ScreenMirroring()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -248,7 +264,7 @@ start, pause, and resume the screen mirroring as a sink.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task that represents the asynchronous operation.</p>
 </td>
       </tr>
@@ -258,6 +274,49 @@ start, pause, and resume the screen mirroring as a sink.</p>
   <div class="markdown level1 remarks"><p>The state must be <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Prepared">Prepared</a> state by
 <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_Prepare_Tizen_Multimedia_Display_Tizen_Multimedia_Remoting_ScreenMirroringResolutions_">Prepare(Display, ScreenMirroringResolutions)</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">sourceIp</code> is a zero-length string, contains only white space.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">sourceIp</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">port</code> is greater than port max value(65535).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Caller does not have required permission.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -302,7 +361,7 @@ start, pause, and resume the screen mirroring as a sink.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task that represents the asynchronous operation.</p>
 </td>
       </tr>
@@ -314,6 +373,44 @@ start, pause, and resume the screen mirroring as a sink.</p>
 The default port number is 2022.<br>
 If you want to connect using different port number, please use <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String_System_UInt32_">ConnectAsync(string, uint)</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">sourceIp</code> is a zero-length string, contains only white space.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">sourceIp</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Caller does not have required permission.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String_System_UInt32_">ConnectAsync(string, uint)</a></div>
@@ -338,6 +435,34 @@ If you want to connect using different port number, please use <a class="xref" h
   <div class="markdown level1 remarks"><p>The state must be <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Connected">Connected</a>,
 <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Playing">Playing</a> or <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Paused">Paused</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Caller does not have required permission.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -437,7 +562,7 @@ state. After calling <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirro
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task that represents the asynchronous operation.</p>
 </td>
       </tr>
@@ -447,6 +572,34 @@ state. After calling <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirro
   <div class="markdown level1 remarks"><p>The state must be <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Playing">Playing</a> state by
 <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_StartAsync">StartAsync()</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Caller does not have required permission.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -490,6 +643,41 @@ state. After calling <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirro
   <h5 id="Tizen_Multimedia_Remoting_ScreenMirroring_Prepare_Tizen_Multimedia_Display_Tizen_Multimedia_Remoting_ScreenMirroringResolutions__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The state must be <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Idle">Idle</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">resolutions</code> contain invalid flags.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">display</code> has already been assigned to another.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">display</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -529,6 +717,39 @@ state. After calling <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirro
 <br>
 All supported resolutions will be candidates.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">display</code> has already been assigned to another.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">display</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -555,7 +776,7 @@ All supported resolutions will be candidates.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task that represents the asynchronous operation.</p>
 </td>
       </tr>
@@ -565,6 +786,34 @@ All supported resolutions will be candidates.</p>
   <div class="markdown level1 remarks"><p>The state must be <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Paused">Paused</a> state by
 <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_PauseAsync">PauseAsync()</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Caller does not have required permission.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -591,7 +840,7 @@ All supported resolutions will be candidates.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task that represents the asynchronous operation.</p>
 </td>
       </tr>
@@ -601,6 +850,34 @@ All supported resolutions will be candidates.</p>
   <div class="markdown level1 remarks"><p>The state must be <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Connected">Connected</a> state by
 <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html#Tizen_Multimedia_Remoting_ScreenMirroring_ConnectAsync_System_String_">ConnectAsync(string)</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Caller does not have required permission.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -621,6 +898,29 @@ All supported resolutions will be candidates.</p>
   <div class="markdown level1 remarks"><p>The state must be <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Prepared">Prepared</a>,
 or <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tizen_Multimedia_Remoting_ScreenMirroringState_Disconnected">Disconnected</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The current state is not in the valid.<br>
+-or-<br>
+An internal error occurs.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroring.html">ScreenMirroring</a> has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -648,7 +948,7 @@ or <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tiz
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringErrorOccurredEventArgs.html">ScreenMirroringErrorOccurredEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringErrorOccurredEventArgs.html">ScreenMirroringErrorOccurredEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -678,7 +978,7 @@ or <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tiz
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringStateChangedEventArgs.html">ScreenMirroringStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringStateChangedEventArgs.html">ScreenMirroringStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -689,29 +989,7 @@ or <a class="xref" href="Tizen.Multimedia.Remoting.ScreenMirroringState.html#Tiz
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">Tizen.Multimedia.IDisplayable&lt;&gt;</span>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>

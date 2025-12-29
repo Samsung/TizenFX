@@ -94,7 +94,8 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class IoTConnectivityServerManager</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public static class IoTConnectivityServerManager</code></pre>
   </div>
 
 
@@ -123,7 +124,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void Deinitialize()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public static void Deinitialize()</code></pre>
   </div>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_Deinitialize_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This API must be called if IoTCon API is no longer needed.</p>
@@ -149,7 +151,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void Initialize(string filePath)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public static void Initialize(string filePath)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -178,6 +181,32 @@ in <code data-dev-comment-type="paramref" class="paramref">filePath</code>. We r
   <pre><code>    string filePath = &quot;../../res/iotcon-test-svr-db-server.dat&quot;;
     IoTConnectivityServerManager.Initialize(filePath);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have privilege to access</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_Initialize_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_Deinitialize">Deinitialize()</a></div>
@@ -196,7 +225,8 @@ in <code data-dev-comment-type="paramref" class="paramref">filePath</code>. We r
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void RegisterResource(Resource resource)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public static void RegisterResource(Resource resource)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -226,6 +256,42 @@ in <code data-dev-comment-type="paramref" class="paramref">filePath</code>. We r
         Console.Log(&quot;Exception caught : &quot; + ex.Message);
     }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when there is not enough memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have privilege to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_RegisterResource_Tizen_Network_IoTConnectivity_Resource__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.Resource.html">Resource</a></div>
@@ -245,7 +311,8 @@ in <code data-dev-comment-type="paramref" class="paramref">filePath</code>. We r
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void SetDeviceName(string deviceName)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public static void SetDeviceName(string deviceName)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -272,6 +339,32 @@ in <code data-dev-comment-type="paramref" class="paramref">filePath</code>. We r
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_SetDeviceName_System_String__examples">Examples</h5>
   <pre><code>    IoTConnectivityServerManager.SetDeviceName(&quot;my-tizen&quot;);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have privilege to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_SetDeviceName_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityClientManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_DeviceInformationFound">DeviceInformationFound</a></div>
@@ -292,7 +385,8 @@ in <code data-dev-comment-type="paramref" class="paramref">filePath</code>. We r
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void StartSendingPresence(uint time)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public static void StartSendingPresence(uint time)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -325,6 +419,32 @@ Server can call this API when online for the first time or come back from offlin
         Console.Log(&quot;Exception caught : &quot; + ex.Message);
     }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have privilege to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_StartSendingPresence_System_UInt32__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityClientManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_StartReceivingPresence_System_String_System_String_">StartReceivingPresence(string, string)</a></div>
@@ -346,7 +466,8 @@ Server can call this API when online for the first time or come back from offlin
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void StopSendingPresence()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public static void StopSendingPresence()</code></pre>
   </div>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_StopSendingPresence_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Use this API to stop sending server's announcements to clients.
@@ -355,6 +476,32 @@ Server can call this API when terminating, entering to offline or out of network
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_StopSendingPresence_examples">Examples</h5>
   <pre><code>    IoTConnectivityServerManager.StopSendingPresence();</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have privilege to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_StopSendingPresence_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityClientManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_StartReceivingPresence_System_String_System_String_">StartReceivingPresence(string, string)</a></div>
@@ -376,7 +523,8 @@ Server can call this API when terminating, entering to offline or out of network
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void UnregisterResource(Resource resource)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public static void UnregisterResource(Resource resource)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -407,6 +555,27 @@ Server can call this API when terminating, entering to offline or out of network
         Console.Log(&quot;Exception caught : &quot; + ex.Message);
     }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have privilege to access.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_UnregisterResource_Tizen_Network_IoTConnectivity_Resource__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.Resource.html">Resource</a></div>

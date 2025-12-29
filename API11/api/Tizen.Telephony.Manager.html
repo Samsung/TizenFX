@@ -160,6 +160,31 @@ It also provides APIs to get the SlotHandles, which can then be used to get othe
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static void Deinit()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception can be generated in the following cases:</p>
+<ol>
+<li>If the operation is not supported on the device.</li>
+<li>If the operation failed.</li>
+</ol>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -186,10 +211,36 @@ It also provides APIs to get the SlotHandles, which can then be used to get othe
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Telephony.SlotHandle.html">SlotHandle</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Telephony.SlotHandle.html">SlotHandle</a>&gt;</td>
         <td><p>A list of telephony handles.
 You will get 2 SlotHandles in case of the dual SIM device.
 Where, SlotHandle at Index '0' represents the primary SIM and Index '1' represents the secondary SIM.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>This exception will be generated in the following cases:</p>
+<ol>
+<li>The system is out of memory.</li>
+<li>If the operation is not supported on the device.</li>
+<li>If the operation failed.</li>
+</ol>
 </td>
       </tr>
     </tbody>
@@ -221,7 +272,7 @@ Where, SlotHandle at Index '0' represents the primary SIM and Index '1' represen
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Telephony.StateEventArgs.html">StateEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Telephony.StateEventArgs.html">StateEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>

@@ -274,38 +274,6 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
 
   <div style="margin-bottom: 15px"></div>
 
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.WiFi/Tizen.Network.WiFi/WiFiManager.cs/#L546">View Source</a>
-  </span>
-  <a id="Tizen_Network_WiFi_WiFiManager_TDLSConnectedPeer_" data-uid="Tizen.Network.WiFi.WiFiManager.TDLSConnectedPeer*"></a>
-  <h4 id="Tizen_Network_WiFi_WiFiManager_TDLSConnectedPeer" data-uid="Tizen.Network.WiFi.WiFiManager.TDLSConnectedPeer">TDLSConnectedPeer</h4>
-  <div class="markdown level1 summary"><p>Gets MAC address of peer connected through TDLS.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static string TDLSConnectedPeer { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><p>MAC address of the TDLS peer if connected on success or an empty string.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
@@ -330,7 +298,7 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task indicating whether the activate method is done or not.</p>
 </td>
       </tr>
@@ -346,8 +314,23 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
         <td><a class="xref" href="Tizen.Network.WiFi.NowInProgressException.html">NowInProgressException</a></td>
         <td><p>Thrown when the Wi-Fi activation is now in progress.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -378,7 +361,7 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task indicating whether the ActivateWithPicker method is done or not.</p>
 </td>
       </tr>
@@ -394,8 +377,23 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
         <td><a class="xref" href="Tizen.Network.WiFi.NowInProgressException.html">NowInProgressException</a></td>
         <td><p>Thrown when the Wi-Fi activation is now in progress.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -426,7 +424,7 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task indicating whether the BssidScanAsync method is done or not.</p>
 </td>
       </tr>
@@ -435,22 +433,32 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
   <h5 id="Tizen_Network_WiFi_WiFiManager_BssidScanAsync_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This method must be called from MainThread.</p>
 </div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.WiFi/Tizen.Network.WiFi/WiFiManager.cs/#L495">View Source</a>
-  </span>
-  <a id="Tizen_Network_WiFi_WiFiManager_CreateSpecificHandle_" data-uid="Tizen.Network.WiFi.WiFiManager.CreateSpecificHandle*"></a>
-  <h4 id="Tizen_Network_WiFi_WiFiManager_CreateSpecificHandle" data-uid="Tizen.Network.WiFi.WiFiManager.CreateSpecificHandle">CreateSpecificHandle()</h4>
-  <div class="markdown level1 summary"><p>Create Specific scan handle.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void CreateSpecificHandle()</code></pre>
-  </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -477,7 +485,7 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task indicating whether the deactivate method is done or not.</p>
 </td>
       </tr>
@@ -493,28 +501,27 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
         <td><a class="xref" href="Tizen.Network.WiFi.NowInProgressException.html">NowInProgressException</a></td>
         <td><p>Thrown when the Wi-Fi deactivation is now in progress.</p>
 </td>
       </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
     </tbody>
   </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.WiFi/Tizen.Network.WiFi/WiFiManager.cs/#L511">View Source</a>
-  </span>
-  <a id="Tizen_Network_WiFi_WiFiManager_DestroySpecificHandle_" data-uid="Tizen.Network.WiFi.WiFiManager.DestroySpecificHandle*"></a>
-  <h4 id="Tizen_Network_WiFi_WiFiManager_DestroySpecificHandle" data-uid="Tizen.Network.WiFi.WiFiManager.DestroySpecificHandle">DestroySpecificHandle()</h4>
-  <div class="markdown level1 summary"><p>Destroys Specific scan handle.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void DestroySpecificHandle()</code></pre>
-  </div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -547,6 +554,37 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when system is out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -573,8 +611,34 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiAP.html">WiFiAP</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiAP.html">WiFiAP</a>&gt;</td>
         <td><p>A list of the WiFiAP objects.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -605,8 +669,34 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiAP.html">WiFiAP</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiAP.html">WiFiAP</a>&gt;</td>
         <td><p>A list of the WiFiAP objects.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -637,8 +727,34 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiAP.html">WiFiAP</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiAP.html">WiFiAP</a>&gt;</td>
         <td><p>A list containing the WiFiAP objects.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -669,106 +785,43 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiConfiguration.html">WiFiConfiguration</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.WiFiConfiguration.html">WiFiConfiguration</a>&gt;</td>
         <td><p>A list containing the WiFiConfiguration objects.</p>
 </td>
       </tr>
     </tbody>
   </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.WiFi/Tizen.Network.WiFi/WiFiManager.cs/#L245">View Source</a>
-  </span>
-  <a id="Tizen_Network_WiFi_WiFiManager_GetWiFiHandle_" data-uid="Tizen.Network.WiFi.WiFiManager.GetWiFiHandle*"></a>
-  <h4 id="Tizen_Network_WiFi_WiFiManager_GetWiFiHandle" data-uid="Tizen.Network.WiFi.WiFiManager.GetWiFiHandle">GetWiFiHandle()</h4>
-  <div class="markdown level1 summary"><p>Gets the Wi-Fi safe handle.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static SafeWiFiManagerHandle GetWiFiHandle()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
+  <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Description</th>
+        <th>Condition</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.Network.WiFi.SafeWiFiManagerHandle.html">SafeWiFiManagerHandle</a></td>
-        <td><p>The instance of the SafeWiFiManagerHandle.</p>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when system is out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
   </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.WiFi/Tizen.Network.WiFi/WiFiManager.cs/#L479">View Source</a>
-  </span>
-  <a id="Tizen_Network_WiFi_WiFiManager_HiddenAPConnectAsync_" data-uid="Tizen.Network.WiFi.WiFiManager.HiddenAPConnectAsync*"></a>
-  <h4 id="Tizen_Network_WiFi_WiFiManager_HiddenAPConnectAsync_System_String_System_Int32_System_String_" data-uid="Tizen.Network.WiFi.WiFiManager.HiddenAPConnectAsync(System.String,System.Int32,System.String)">HiddenAPConnectAsync(string, int, string)</h4>
-  <div class="markdown level1 summary"><p>Hidden Ap connect.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task HiddenAPConnectAsync(string essid, int secType, string password)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">essid</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">int</span></td>
-        <td><span class="parametername">secType</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">password</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td><p>A task indicating whether the HiddenAPConnectAsync method is done or not.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Network_WiFi_WiFiManager_HiddenAPConnectAsync_System_String_System_Int32_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This method must be called from MainThread.</p>
-</div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -803,6 +856,42 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when WiFiConfiguration is passed as null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the method failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -829,8 +918,34 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task indicating whether the scan method is done or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
@@ -879,98 +994,43 @@ The Wi-Fi Manager enables your application to activate and deactivate a local Wi
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task indicating whether the ScanSpecificAP method is done or not.</p>
 </td>
       </tr>
     </tbody>
   </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.WiFi/Tizen.Network.WiFi/WiFiManager.cs/#L459">View Source</a>
-  </span>
-  <a id="Tizen_Network_WiFi_WiFiManager_SetAutoScanMode_" data-uid="Tizen.Network.WiFi.WiFiManager.SetAutoScanMode*"></a>
-  <h4 id="Tizen_Network_WiFi_WiFiManager_SetAutoScanMode_Tizen_Network_WiFi_WiFiAutoScanMode_" data-uid="Tizen.Network.WiFi.WiFiManager.SetAutoScanMode(Tizen.Network.WiFi.WiFiAutoScanMode)">SetAutoScanMode(WiFiAutoScanMode)</h4>
-  <div class="markdown level1 summary"><p>Set Auto Scan Mode.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void SetAutoScanMode(WiFiAutoScanMode scanMode)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
+        <th>Condition</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.Network.WiFi.WiFiAutoScanMode.html">WiFiAutoScanMode</a></td>
-        <td><span class="parametername">scanMode</span></td>
-        <td></td>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the Wi-Fi is not supported.</p>
+</td>
       </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Network.WiFi/Tizen.Network.WiFi/WiFiManager.cs/#L533">View Source</a>
-  </span>
-  <a id="Tizen_Network_WiFi_WiFiManager_StartMultiScan_" data-uid="Tizen.Network.WiFi.WiFiManager.StartMultiScan*"></a>
-  <h4 id="Tizen_Network_WiFi_WiFiManager_StartMultiScan_System_Int32_" data-uid="Tizen.Network.WiFi.WiFiManager.StartMultiScan(System.Int32)">StartMultiScan(int)</h4>
-  <div class="markdown level1 summary"><p>Starts Multi Scan.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static Task StartMultiScan(int frequency)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
       <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
       </tr>
-    </thead>
-    <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
-        <td><span class="parametername">frequency</span></td>
-        <td><p>Frequency for which MultiScan is to be run.</p>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when the method failed due to an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the method failed due to an invalid operation.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td><p>A task indicating whether the StartMultiScan  method is done or not.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Network_WiFi_WiFiManager_StartMultiScan_System_Int32__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This method must be called from MainThread.</p>
-</div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -999,7 +1059,7 @@ The background scan starts automatically when Wi-Fi is activated. The callback w
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span></td>
+        <td><span class="xref">System.EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -1029,7 +1089,7 @@ The background scan starts automatically when Wi-Fi is activated. The callback w
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.ConnectionStateChangedEventArgs.html">ConnectionStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.ConnectionStateChangedEventArgs.html">ConnectionStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1059,7 +1119,7 @@ The background scan starts automatically when Wi-Fi is activated. The callback w
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.DeviceStateChangedEventArgs.html">DeviceStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.DeviceStateChangedEventArgs.html">DeviceStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1089,7 +1149,7 @@ The background scan starts automatically when Wi-Fi is activated. The callback w
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.RssiLevelChangedEventArgs.html">RssiLevelChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.RssiLevelChangedEventArgs.html">RssiLevelChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1119,7 +1179,7 @@ The background scan starts automatically when Wi-Fi is activated. The callback w
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.ScanStateChangedEventArgs.html">ScanStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.WiFi.ScanStateChangedEventArgs.html">ScanStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>

@@ -95,7 +95,8 @@ A resource type indicates a class or a category of resources.</p>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ResourceTypes : IEnumerable&lt;string&gt;, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public class ResourceTypes : IEnumerable&lt;string&gt;, IEnumerable, IDisposable</code></pre>
   </div>
 
 
@@ -114,7 +115,9 @@ A resource type indicates a class or a category of resources.</p>
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">IDisposable</span></div>
+      <div class="pdl"><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</div>
+      <div class="pdl"><span class="xref">System.Collections.IEnumerable</span></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
 
@@ -130,11 +133,33 @@ A resource type indicates a class or a category of resources.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ResourceTypes()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public ResourceTypes()</code></pre>
   </div>
   <h5 id="Tizen_Network_IoTConnectivity_ResourceTypes__ctor_examples">Examples</h5>
   <pre><code>    ResourceTypes types = new ResourceTypes();</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.OutOfMemoryException</span></td>
+        <td><p>Thrown when there is not enough memory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_ResourceTypes__ctor_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceTypes.html#Tizen_Network_IoTConnectivity_ResourceTypes_Add_System_String_">Add(string)</a></div>
@@ -148,13 +173,14 @@ A resource type indicates a class or a category of resources.</p>
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceTypes.cs/#L71">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_ResourceTypes__ctor_" data-uid="Tizen.Network.IoTConnectivity.ResourceTypes.#ctor*"></a>
-  <h4 id="Tizen_Network_IoTConnectivity_ResourceTypes__ctor_IEnumerable_System_String__" data-uid="Tizen.Network.IoTConnectivity.ResourceTypes.#ctor(IEnumerable{System.String})">ResourceTypes(IEnumerable&lt;string&gt;)</h4>
+  <h4 id="Tizen_Network_IoTConnectivity_ResourceTypes__ctor_System_Collections_Generic_IEnumerable_System_String__" data-uid="Tizen.Network.IoTConnectivity.ResourceTypes.#ctor(System.Collections.Generic.IEnumerable{System.String})">ResourceTypes(IEnumerable&lt;string&gt;)</h4>
   <div class="markdown level1 summary"><p>Constructor of ResourceTypes using list of types.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ResourceTypes(IEnumerable&lt;string&gt; types)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public ResourceTypes(IEnumerable&lt;string&gt; types)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -167,16 +193,32 @@ A resource type indicates a class or a category of resources.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
         <td><span class="parametername">types</span></td>
         <td><p>List of resource types.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Network_IoTConnectivity_ResourceTypes__ctor_IEnumerable_System_String___examples">Examples</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceTypes__ctor_System_Collections_Generic_IEnumerable_System_String___examples">Examples</h5>
   <pre><code>    ResourceTypes types = new ResourceTypes(new List&lt;string>() { &quot;org.tizen.light&quot;, &quot;oic.if.room&quot; });</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -193,7 +235,8 @@ A resource type indicates a class or a category of resources.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Count { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public int Count { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -231,7 +274,8 @@ A resource type indicates a class or a category of resources.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Add(string item)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public void Add(string item)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -261,6 +305,32 @@ of lowercase alphabetic, numeric, &quot;.&quot;, or &quot;-&quot; characters, an
   <pre><code>    ResourceTypes resourceTypes = new ResourceTypes();
     resourceTypes.Add(&quot;org.tizen.light&quot;);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_ResourceTypes_Add_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceTypes.html#Tizen_Network_IoTConnectivity_ResourceTypes_Remove_System_String_">Remove(string)</a></div>
@@ -279,7 +349,8 @@ of lowercase alphabetic, numeric, &quot;.&quot;, or &quot;-&quot; characters, an
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public void Dispose()</code></pre>
   </div>
 
 
@@ -295,7 +366,8 @@ of lowercase alphabetic, numeric, &quot;.&quot;, or &quot;-&quot; characters, an
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -345,7 +417,8 @@ of lowercase alphabetic, numeric, &quot;.&quot;, or &quot;-&quot; characters, an
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IEnumerator&lt;string&gt; GetEnumerator()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public IEnumerator&lt;string&gt; GetEnumerator()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -357,7 +430,7 @@ of lowercase alphabetic, numeric, &quot;.&quot;, or &quot;-&quot; characters, an
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerator&lt;&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerator&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
         <td><p>The enumerator.</p>
 </td>
       </tr>
@@ -384,7 +457,8 @@ of lowercase alphabetic, numeric, &quot;.&quot;, or &quot;-&quot; characters, an
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Remove(string item)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
+public void Remove(string item)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -408,6 +482,32 @@ of lowercase alphabetic, numeric, &quot;.&quot;, or &quot;-&quot; characters, an
   <pre><code>    ResourceTypes resourceTypes = new ResourceTypes(new List&lt;string>() { &quot;org.tizen.light&quot;, &quot;oic.if.room&quot; });
     resourceTypes.Remove(&quot;oic.if.room&quot;);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when the iotcon is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when there is an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when the operation is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Network_IoTConnectivity_ResourceTypes_Remove_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceTypes.html#Tizen_Network_IoTConnectivity_ResourceTypes_Add_System_String_">Add(string)</a></div>
@@ -416,22 +516,56 @@ of lowercase alphabetic, numeric, &quot;.&quot;, or &quot;-&quot; characters, an
 
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="eii">Explicit Interface Implementations
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceTypes.cs/#L233">View Source</a>
+  </span>
+  <a id="Tizen_Network_IoTConnectivity_ResourceTypes_System_Collections_IEnumerable_GetEnumerator_" data-uid="Tizen.Network.IoTConnectivity.ResourceTypes.System#Collections#IEnumerable#GetEnumerator*"></a>
+  <h4 id="Tizen_Network_IoTConnectivity_ResourceTypes_System_Collections_IEnumerable_GetEnumerator" data-uid="Tizen.Network.IoTConnectivity.ResourceTypes.System#Collections#IEnumerable#GetEnumerator">IEnumerable.GetEnumerator()</h4>
+  <div class="markdown level1 summary"><p>Returns an enumerator for the list of types.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">IEnumerator IEnumerable.GetEnumerator()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Collections.IEnumerator</span></td>
+        <td><p>The enumerator.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceTypes_System_Collections_IEnumerable_GetEnumerator_examples">Examples</h5>
+  <pre><code>    ResourceTypes resourceTypes = new ResourceTypes(new List&lt;string>() { &quot;org.tizen.light&quot;, &quot;oic.if.room&quot; });
+    foreach(string item in resourceTypes)
+    {
+        Console.WriteLine(&quot;Type : {0}&quot;, item);
+    }</code></pre>
+
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">IDisposable</span>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+      <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.Collections.IEnumerable</span>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>

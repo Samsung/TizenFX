@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Shader : Animatable, IDynamicResourceHandler, INameScope, System.IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Shader : Animatable, INotifyPropertyChanged, IDisposable</code></pre>
   </div>
 
 
@@ -103,8 +103,8 @@
     <dd>
       <div class="pdl-holder">
         <div class="pdl"><span class="xref">object</span></div>
-        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.BindableObject</span></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div><span class="xref">Shader</span></div>
@@ -117,60 +117,13 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
+      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
 
   <h3 id="constructors">Constructors
 </h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Rendering/Shader.cs/#L57">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Shader__ctor_" data-uid="Tizen.NUI.Shader.#ctor*"></a>
-  <h4 id="Tizen_NUI_Shader__ctor_System_String_System_String_System_String_" data-uid="Tizen.NUI.Shader.#ctor(System.String,System.String,System.String)">Shader(string, string, string)</h4>
-  <div class="markdown level1 summary"><p>Creates Shader object with name</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Shader(string vertexShader, string fragmentShader, string shaderName)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">vertexShader</span></td>
-        <td><p>The vertex shader code for the effect.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">fragmentShader</span></td>
-        <td><p>The fragment Shader code for the effect.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">shaderName</span></td>
-        <td><p>The name of this shader object.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/deprecated/Rendering/Shader_Deprecated.cs/#L35">View Source</a>
   </span>
@@ -207,104 +160,6 @@
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Shader.html">Shader</a>.<a class="xref" href="Tizen.NUI.Shader.Hint.html">Hint</a>.<a class="xref" href="Tizen.NUI.Shader.Hint.Value.html">Value</a></td>
-        <td><span class="parametername">hints</span></td>
-        <td><p>The hints to define the geometry of the rendered object.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Rendering/Shader.cs/#L69">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Shader__ctor_" data-uid="Tizen.NUI.Shader.#ctor*"></a>
-  <h4 id="Tizen_NUI_Shader__ctor_System_String_System_String_Tizen_NUI_ShaderHint_System_String_" data-uid="Tizen.NUI.Shader.#ctor(System.String,System.String,Tizen.NUI.ShaderHint,System.String)">Shader(string, string, ShaderHint, string)</h4>
-  <div class="markdown level1 summary"><p>Creates Shader object with hints and name</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Shader(string vertexShader, string fragmentShader, ShaderHint hints, string shaderName)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">vertexShader</span></td>
-        <td><p>The vertex shader code for the effect.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">fragmentShader</span></td>
-        <td><p>The fragment Shader code for the effect.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.ShaderHint.html">ShaderHint</a></td>
-        <td><span class="parametername">hints</span></td>
-        <td><p>The hints to define the geometry of the rendered object.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">shaderName</span></td>
-        <td><p>The name of this shader object.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Rendering/Shader.cs/#L36">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Shader__ctor_" data-uid="Tizen.NUI.Shader.#ctor*"></a>
-  <h4 id="Tizen_NUI_Shader__ctor_System_String_System_String_Tizen_NUI_ShaderHint_" data-uid="Tizen.NUI.Shader.#ctor(System.String,System.String,Tizen.NUI.ShaderHint)">Shader(string, string, ShaderHint)</h4>
-  <div class="markdown level1 summary"><p>Creates Shader object.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Shader(string vertexShader, string fragmentShader, ShaderHint hints)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">vertexShader</span></td>
-        <td><p>The vertex shader code for the effect.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">fragmentShader</span></td>
-        <td><p>The fragment Shader code for the effect.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.ShaderHint.html">ShaderHint</a></td>
         <td><span class="parametername">hints</span></td>
         <td><p>The hints to define the geometry of the rendered object.</p>
 </td>
@@ -358,68 +213,6 @@
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Rendering/Shader.cs/#L118">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Shader_AliveCount_" data-uid="Tizen.NUI.Shader.AliveCount*"></a>
-  <h4 id="Tizen_NUI_Shader_AliveCount" data-uid="Tizen.NUI.Shader.AliveCount">AliveCount</h4>
-  <div class="markdown level1 summary"><p>Gets the number of currently alived Shader object.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int AliveCount { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">int</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Rendering/Shader.cs/#L112">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Shader_Name_" data-uid="Tizen.NUI.Shader.Name*"></a>
-  <h4 id="Tizen_NUI_Shader_Name" data-uid="Tizen.NUI.Shader.Name">Name</h4>
-  <div class="markdown level1 summary"><p>Gets the name of program.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Name { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Rendering/Shader.cs/#L80">View Source</a>
   </span>
   <a id="Tizen_NUI_Shader_Program_" data-uid="Tizen.NUI.Shader.Program*"></a>
@@ -450,104 +243,12 @@
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Rendering/Shader.cs/#L127">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Shader_Dispose_" data-uid="Tizen.NUI.Shader.Dispose*"></a>
-  <h4 id="Tizen_NUI_Shader_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.Shader.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void Dispose(DisposeTypes type)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.DisposeTypes.html">DisposeTypes</a></td>
-        <td><span class="parametername">type</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.BaseHandle.html#Tizen_NUI_BaseHandle_Dispose_Tizen_NUI_DisposeTypes_">BaseHandle.Dispose(DisposeTypes)</a></div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Rendering/Shader.cs/#L141">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Shader_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Shader.ReleaseSwigCPtr*"></a>
-  <h4 id="Tizen_NUI_Shader_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Shader.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
-        <td><span class="parametername">swigCPtr</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.Animatable.html#Tizen_NUI_Animatable_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">Animatable.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, string, BindingMode, IValueConverter, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

@@ -110,6 +110,12 @@
 
 
 
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
 
   <h3 id="methods">Methods
 </h3>
@@ -126,6 +132,32 @@ All commands within the session must be completed before this function can be ca
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Close()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have the privilege to access this method.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The operation is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -202,6 +234,37 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have the privilege to access this method.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The operation is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>The argument <code data-dev-comment-type="paramref" class="paramref">paramlist</code> is wrong.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -210,13 +273,13 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Security.TEEC/Tizen.Security.TEEC/Libteec.cs/#L749">View Source</a>
   </span>
   <a id="Tizen_Security_TEEC_Session_InvokeCommandAsync_" data-uid="Tizen.Security.TEEC.Session.InvokeCommandAsync*"></a>
-  <h4 id="Tizen_Security_TEEC_Session_InvokeCommandAsync_System_UInt32_Tizen_Security_TEEC_Parameter___CancellationToken_" data-uid="Tizen.Security.TEEC.Session.InvokeCommandAsync(System.UInt32,Tizen.Security.TEEC.Parameter[],CancellationToken)">InvokeCommandAsync(uint, Parameter[], CancellationToken)</h4>
+  <h4 id="Tizen_Security_TEEC_Session_InvokeCommandAsync_System_UInt32_Tizen_Security_TEEC_Parameter___System_Threading_CancellationToken_" data-uid="Tizen.Security.TEEC.Session.InvokeCommandAsync(System.UInt32,Tizen.Security.TEEC.Parameter[],System.Threading.CancellationToken)">InvokeCommandAsync(uint, Parameter[], CancellationToken)</h4>
   <div class="markdown level1 summary"><p>The asynchronous version of the InvokeCommand.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task InvokeCommandAsync(uint commandID, Parameter[] paramlist, CancellationToken token = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task InvokeCommandAsync(uint commandID, Parameter[] paramlist, CancellationToken token = default)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -241,7 +304,7 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
 </td>
       </tr>
       <tr>
-        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
         <td><span class="parametername">token</span></td>
         <td><p>The token for task manipulation.</p>
 </td>
@@ -258,8 +321,39 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>Returns a task executing an invoke command in the background.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when an application does not have the privilege to access this method.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The operation is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>One of the arguments is wrong.</p>
 </td>
       </tr>
     </tbody>
@@ -268,18 +362,9 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>

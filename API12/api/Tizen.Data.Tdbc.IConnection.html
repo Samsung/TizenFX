@@ -145,6 +145,22 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The connection is not opened.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -184,13 +200,13 @@
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/IConnection.cs/#L53">View Source</a>
   </span>
   <a id="Tizen_Data_Tdbc_IConnection_Open_" data-uid="Tizen.Data.Tdbc.IConnection.Open*"></a>
-  <h4 id="Tizen_Data_Tdbc_IConnection_Open_String_" data-uid="Tizen.Data.Tdbc.IConnection.Open(String)">Open(String)</h4>
+  <h4 id="Tizen_Data_Tdbc_IConnection_Open_System_String_" data-uid="Tizen.Data.Tdbc.IConnection.Open(System.String)">Open(string)</h4>
   <div class="markdown level1 summary"><p>Opens the database.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void Open(String openString)</code></pre>
+    <pre><code class="lang-csharp hljs">void Open(string openString)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -203,17 +219,43 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">openString</span></td>
         <td><p>The URI represents database to connect.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Data_Tdbc_IConnection_Open_String__remarks">Remarks</h5>
+  <h5 id="Tizen_Data_Tdbc_IConnection_Open_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>If the driver uses database at filesystem, such as media storage or external storage,
 you need to declare a proper privilege such as <a href="http://tizen.org/privileges/mediastorage">http://tizen.org/privileges/mediastorage</a> or <a href="http://tizen.org/privileges/externalstorage">http://tizen.org/privileges/externalstorage</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>The input openString is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The drvier open is failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>.The application doesn't have permission or privilege to access database.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -222,7 +264,7 @@ you need to declare a proper privilege such as <a href="http://tizen.org/privile
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Data.Tdbc/Tizen.Data.Tdbc/IConnection.cs/#L39">View Source</a>
   </span>
   <a id="Tizen_Data_Tdbc_IConnection_Open_" data-uid="Tizen.Data.Tdbc.IConnection.Open*"></a>
-  <h4 id="Tizen_Data_Tdbc_IConnection_Open_Uri_" data-uid="Tizen.Data.Tdbc.IConnection.Open(Uri)">Open(Uri)</h4>
+  <h4 id="Tizen_Data_Tdbc_IConnection_Open_System_Uri_" data-uid="Tizen.Data.Tdbc.IConnection.Open(System.Uri)">Open(Uri)</h4>
   <div class="markdown level1 summary"><p>Opens the database.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -241,17 +283,43 @@ you need to declare a proper privilege such as <a href="http://tizen.org/privile
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Uri</span></td>
+        <td><span class="xref">System.Uri</span></td>
         <td><span class="parametername">uri</span></td>
         <td><p>The URI represents database to connect.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Data_Tdbc_IConnection_Open_Uri__remarks">Remarks</h5>
+  <h5 id="Tizen_Data_Tdbc_IConnection_Open_System_Uri__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>If the driver uses database at filesystem, such as media storage or external storage,
 you need to declare a proper privilege such as <a href="http://tizen.org/privileges/mediastorage">http://tizen.org/privileges/mediastorage</a> or <a href="http://tizen.org/privileges/externalstorage">http://tizen.org/privileges/externalstorage</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>The input URI is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The drvier open is failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>.The application doesn't have permission or privilege to access database.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -279,7 +347,7 @@ you need to declare a proper privilege such as <a href="http://tizen.org/privile
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Data.Tdbc.RecordChangedEventArgs.html">RecordChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Data.Tdbc.RecordChangedEventArgs.html">RecordChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>

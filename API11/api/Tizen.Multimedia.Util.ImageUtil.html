@@ -123,7 +123,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int CalculateBufferSize(Size resolution, ColorSpace colorSpace)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Please do not use! This will be deprecated in level 6.&quot;)]
+public static int CalculateBufferSize(Size resolution, ColorSpace colorSpace)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -161,6 +162,29 @@
       <tr>
         <td><span class="xref">int</span></td>
         <td><p>The buffer size.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>width of <code data-dev-comment-type="paramref" class="paramref">resolution</code> is less than or equal to zero.<br>
+-or-<br>
+height of <code data-dev-comment-type="paramref" class="paramref">resolution</code> is less than or equal to zero.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">colorSpace</code> is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -215,7 +239,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Color</span></td>
+        <td><a class="xref" href="Tizen.Common.Color.html">Color</a></td>
         <td><p>The representative color of the image.</p>
 </td>
       </tr>
@@ -224,6 +248,34 @@
   <h5 id="Tizen_Multimedia_Util_ImageUtil_GetColor_System_Byte___Tizen_Multimedia_Size__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The image should be <a class="xref" href="Tizen.Multimedia.ColorSpace.html#Tizen_Multimedia_ColorSpace_Rgb888">Rgb888</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">buffer</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">buffer</code> is empty.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>width of <code data-dev-comment-type="paramref" class="paramref">size</code> is less than or equal to zero.<br>
+-or-<br>
+height of <code data-dev-comment-type="paramref" class="paramref">size</code> is less than or equal to zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -268,8 +320,24 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.ColorSpace.html">ColorSpace</a>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.ColorSpace.html">ColorSpace</a>&gt;</td>
         <td><p>An IEnumerable of <a class="xref" href="Tizen.Multimedia.ColorSpace.html">ColorSpace</a> representing the supported color-spaces.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">format</code> is invalid.</p>
 </td>
       </tr>
     </tbody>

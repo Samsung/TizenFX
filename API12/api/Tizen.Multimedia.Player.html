@@ -113,7 +113,7 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">Tizen.Multimedia.IDisplayable&lt;&gt;</span>&lt;<span class="xref">PlayerErrorCode</span>&gt;</div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
 
@@ -140,51 +140,6 @@ Note that only one video player can be played at one time.</p>
   <div class="markdown level1 remarks"><p>The player provides functions to play a media content.
 It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
 Note that only one video player can be played at one time.</p>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L68">View Source</a>
-  </span>
-  <a id="Tizen_Multimedia_Player__ctor_" data-uid="Tizen.Multimedia.Player.#ctor*"></a>
-  <h4 id="Tizen_Multimedia_Player__ctor_IntPtr_Action_System_Int32_System_String__" data-uid="Tizen.Multimedia.Player.#ctor(IntPtr,Action{System.Int32,System.String})">Player(IntPtr, Action&lt;int, string&gt;)</h4>
-  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.Player.html">Player</a> class with a native handle.
-The class takes care of the life cycle of the handle.
-Thus, it should not be closed/destroyed in another location.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Player(IntPtr handle, Action&lt;int, string&gt; errorHandler)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">IntPtr</span></td>
-        <td><span class="parametername">handle</span></td>
-        <td><p>The handle for the media player.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">Action&lt;, &gt;</span>&lt;<span class="xref">int</span>, <span class="xref">string</span>&gt;</td>
-        <td><span class="parametername">errorHandler</span></td>
-        <td><p>The handle for occuring error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Multimedia_Player__ctor_IntPtr_Action_System_Int32_System_String___remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This supports the product infrastructure and is not intended to be used directly from application code.</p>
 </div>
 
 
@@ -280,6 +235,23 @@ The following functions should be called after the codec type is set. :<br>
     </thead>
     <tbody>
       <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>The value is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.
+-or-<br>
+Operation failed; internal error.</p>
+</td>
+      </tr>
+      <tr>
         <td><a class="xref" href="Tizen.Multimedia.CodecNotSupportedException.html">CodecNotSupportedException</a></td>
         <td><p>The selected codec is not supported.</p>
 </td>
@@ -322,6 +294,22 @@ The following functions should be called after the codec type is set. :<br>
 It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
 Note that only one video player can be played at one time.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -368,6 +356,16 @@ But, state transition like pause or resume can be more slower than default(<a cl
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>The value is not valid.</p>
+</td>
+      </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.NotAvailableException.html">NotAvailableException</a></td>
         <td><p>If audio offload is enabled by calling <a class="xref" href="Tizen.Multimedia.AudioOffload.html#Tizen_Multimedia_AudioOffload_IsEnabled">IsEnabled</a>. (Since tizen 6.0)</p>
@@ -462,6 +460,23 @@ This function could be unavailable depending on the audio codec type.</p>
     </thead>
     <tbody>
       <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>A pitch is not enabled.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>value is less than 0.5.
+-or-<br>
+value is greater than 2.0.</p>
+</td>
+      </tr>
+      <tr>
         <td><a class="xref" href="Tizen.Multimedia.NotAvailableException.html">NotAvailableException</a></td>
         <td><p>If audio offload is enabled by calling <a class="xref" href="Tizen.Multimedia.AudioOffload.html#Tizen_Multimedia_AudioOffload_IsEnabled">IsEnabled</a>. (Since tizen 6.0)
 -or-<br>
@@ -522,6 +537,16 @@ This function could be unavailable depending on the audio codec type.</p>
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.NotAvailableException.html">NotAvailableException</a></td>
         <td><p>If audio offload is enabled by calling <a class="xref" href="Tizen.Multimedia.AudioOffload.html#Tizen_Multimedia_AudioOffload_IsEnabled">IsEnabled</a>. (Since tizen 6.0)
@@ -608,6 +633,39 @@ Note that only one video player can be played at one time.</p>
   <h5 id="Tizen_Multimedia_Player_BufferingTime_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>To set, the player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a> state.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><pramref name="PreBufferMillisecond"></pramref> is less than -1.<br>
+-or-<br>
+<pramref name="ReBufferMillisecond"></pramref> is less than -1.<br></p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Player_BufferingTime_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.PlayerBufferingTime.html">PlayerBufferingTime</a></div>
@@ -646,6 +704,32 @@ Note that only one video player can be played at one time.</p>
   <h5 id="Tizen_Multimedia_Player_Cookie_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>To set, the player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a> state.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>The value to set is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -682,9 +766,40 @@ Note that only one video player can be played at one time.</p>
   <div class="markdown level1 remarks"><p>The player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a> state.<br>
 The raw video feature(<a href="http://tizen.org/feature/multimedia.raw_video">http://tizen.org/feature/multimedia.raw_video</a>) is required if
 the display is created with <a class="xref" href="Tizen.Multimedia.MediaView.html">MediaView</a>.<br>
-If a user wants to use video and UI sync mode, please use <see cref="!:Tizen.Multimedia.Display(NUI.Window, bool)"></see>.(Since tizen 6.5)<br>
+If a user wants to use video and UI sync mode, please use <a class="xref" href="Tizen.Multimedia.Display.html#Tizen_Multimedia_Display__ctor_Tizen_NUI_Window_System_Boolean_">Display(Window, bool)</a>.(Since tizen 6.5)<br>
 But <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_DisplaySettings">DisplaySettings</a> is not supported in UI sync mode.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>The value has already been assigned to another player.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -748,7 +863,7 @@ Note that only one video player can be played at one time.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IntPtr</span></td>
+        <td><span class="xref">System.IntPtr</span></td>
         <td><p>An IntPtr that contains the native handle of the player.</p>
 </td>
       </tr>
@@ -759,43 +874,22 @@ Note that only one video player can be played at one time.</p>
 It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
 Note that only one video player can be played at one time.</p>
 </div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L537">View Source</a>
-  </span>
-  <a id="Tizen_Multimedia_Player_HasSource_" data-uid="Tizen.Multimedia.Player.HasSource*"></a>
-  <h4 id="Tizen_Multimedia_Player_HasSource" data-uid="Tizen.Multimedia.Player.HasSource">HasSource</h4>
-  <div class="markdown level1 summary"><p>Determines whether MediaSource has set.
-This supports the product infrastructure and is not intended to be used directly from application code.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected bool HasSource { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
+  <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Description</th>
+        <th>Condition</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">bool</span></td>
-        <td></td>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_HasSource_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The player provides functions to play a media content.
-It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
-Note that only one video player can be played at one time.</p>
-</div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -833,6 +927,27 @@ Note that only one video player can be played at one time.</p>
 It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
 Note that only one video player can be played at one time.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -870,6 +985,22 @@ Note that only one video player can be played at one time.</p>
 It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
 Note that only one video player can be played at one time.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -907,6 +1038,22 @@ Note that only one video player can be played at one time.</p>
 It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
 Note that only one video player can be played at one time.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -952,6 +1099,16 @@ otherwise, the replaygain is not affected by tag and properties.</p>
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.NotAvailableException.html">NotAvailableException</a></td>
         <td><p>If audio offload is enabled by calling <a class="xref" href="Tizen.Multimedia.AudioOffload.html#Tizen_Multimedia_AudioOffload_IsEnabled">IsEnabled</a>. (Since tizen 6.0)
@@ -1039,6 +1196,22 @@ Note that only one video player can be played at one time.</p>
 It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
 Note that only one video player can be played at one time.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1147,6 +1320,32 @@ Note that only one video player can be played at one time.</p>
   <h5 id="Tizen_Multimedia_Player_UserAgent_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>To set, the player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a> state.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>The value to set is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1195,6 +1394,23 @@ The default codec type could be different depending on the device capability.</p
     </thead>
     <tbody>
       <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>The value is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.
+-or-<br>
+Operation failed; internal error.</p>
+</td>
+      </tr>
+      <tr>
         <td><a class="xref" href="Tizen.Multimedia.CodecNotSupportedException.html">CodecNotSupportedException</a></td>
         <td><p>The selected codec is not supported.</p>
 </td>
@@ -1235,6 +1451,29 @@ The default codec type could be different depending on the device capability.</p
   <h5 id="Tizen_Multimedia_Player_Volume_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Valid volume range is from 0 to 1.0, inclusive.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is less than zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">value</code> is greater than 1.0.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1280,6 +1519,41 @@ Supported types are <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#
 <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#Tizen_Multimedia_AudioStreamType_Emergency">Emergency</a>, <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#Tizen_Multimedia_AudioStreamType_VoiceInformation">VoiceInformation</a>,
 <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#Tizen_Multimedia_AudioStreamType_RingtoneVoip">RingtoneVoip</a> and <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#Tizen_Multimedia_AudioStreamType_MediaExternalOnly">MediaExternalOnly</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">policy</code> has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">policy</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.<br>
+-or-<br>
+<a class="xref" href="Tizen.Multimedia.AudioStreamType.html">AudioStreamType</a> of <code data-dev-comment-type="paramref" class="paramref">policy</code> is not supported on the current platform.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Player_ApplyAudioStreamPolicy_Tizen_Multimedia_AudioStreamPolicy__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a></div>
@@ -1310,7 +1584,7 @@ Supported types are <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CapturedFrame.html">CapturedFrame</a>&gt;</td>
+        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.CapturedFrame.html">CapturedFrame</a>&gt;</td>
         <td><p>A task that represents the asynchronous capture operation.</p>
 </td>
       </tr>
@@ -1319,27 +1593,32 @@ Supported types are <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#
   <h5 id="Tizen_Multimedia_Player_CaptureVideoAsync_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Playing">Playing</a> or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Paused">Paused</a> state.</p>
 </div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L955">View Source</a>
-  </span>
-  <a id="Tizen_Multimedia_Player_ClearPreparing_" data-uid="Tizen.Multimedia.Player.ClearPreparing*"></a>
-  <h4 id="Tizen_Multimedia_Player_ClearPreparing" data-uid="Tizen.Multimedia.Player.ClearPreparing">ClearPreparing()</h4>
-  <div class="markdown level1 summary"><p>This supports the product infrastructure and is not intended to be used directly from application code.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void ClearPreparing()</code></pre>
-  </div>
-  <h5 id="Tizen_Multimedia_Player_ClearPreparing_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The player provides functions to play a media content.
-It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
-Note that only one video player can be played at one time.</p>
-</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1359,6 +1638,27 @@ Note that only one video player can be played at one time.</p>
   <h5 id="Tizen_Multimedia_Player_ClearSubtitle_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a> state.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1389,6 +1689,16 @@ This function could be unavailable depending on the audio codec type.</p>
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.NotAvailableException.html">NotAvailableException</a></td>
         <td><p>The function is not available depending on the audio codec type. (Since tizen 6.0)</p>
@@ -1421,6 +1731,32 @@ This function could be unavailable depending on the audio codec type.</p>
   <div class="markdown level1 remarks"><p>The player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a> or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Ready">Ready</a>
 state.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Player_DisableExportingVideoFrame_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_EnableExportingVideoFrame">EnableExportingVideoFrame()</a></div>
@@ -1442,45 +1778,6 @@ state.</p>
     <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
   </div>
   <h5 id="Tizen_Multimedia_Player_Dispose_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The player provides functions to play a media content.
-It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
-Note that only one video player can be played at one time.</p>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L139">View Source</a>
-  </span>
-  <a id="Tizen_Multimedia_Player_Dispose_" data-uid="Tizen.Multimedia.Player.Dispose*"></a>
-  <h4 id="Tizen_Multimedia_Player_Dispose_System_Boolean_" data-uid="Tizen.Multimedia.Player.Dispose(System.Boolean)">Dispose(bool)</h4>
-  <div class="markdown level1 summary"><p>Releases the unmanaged resources used by the <a class="xref" href="Tizen.Multimedia.Player.html">Player</a>.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">bool</span></td>
-        <td><span class="parametername">disposing</span></td>
-        <td><p>true to release both managed and unmanaged resources; false to release only unmanaged resources.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Multimedia_Player_Dispose_System_Boolean__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The player provides functions to play a media content.
 It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
 Note that only one video player can be played at one time.</p>
@@ -1547,6 +1844,23 @@ and all the packets have to be destroyed before <a class="xref" href="Tizen.Mult
     </thead>
     <tbody>
       <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>The value is not valid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Operation failed; internal error.
+-or-<br>
+The player is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
         <td><a class="xref" href="Tizen.Multimedia.NotAvailableException.html">NotAvailableException</a></td>
         <td><p>If audio offload is enabled by calling <a class="xref" href="Tizen.Multimedia.AudioOffload.html#Tizen_Multimedia_AudioOffload_IsEnabled">IsEnabled</a>. (Since tizen 6.0)
 -or-<br>
@@ -1589,6 +1903,34 @@ and the <a class="xref" href="Tizen.Multimedia.MediaPacket.html">MediaPacket</a>
 It is recommended to destroy the packet as quickly as possible after the decoded data is rendered on the display.
 All the packets have to be destroyed before <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Unprepare">Unprepare()</a> is called.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Operation failed; internal error.
+-or-<br>
+The player is not in the valid state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Player_EnableExportingVideoFrame_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_DisableExportingVideoFrame">DisableExportingVideoFrame()</a></div>
@@ -1629,119 +1971,29 @@ All the packets have to be destroyed before <a class="xref" href="Tizen.Multimed
   <div class="markdown level1 remarks"><p>The player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Ready">Ready</a>, <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Playing">Playing</a>,
 or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Paused">Paused</a> state.</p>
 </div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.ErrorHandler.cs/#L37">View Source</a>
-  </span>
-  <a id="Tizen_Multimedia_Player_GetException_" data-uid="Tizen.Multimedia.Player.GetException*"></a>
-  <h4 id="Tizen_Multimedia_Player_GetException_System_Int32_System_String_" data-uid="Tizen.Multimedia.Player.GetException(System.Int32,System.String)">GetException(int, string)</h4>
-  <div class="markdown level1 summary"><p>This method supports the product infrastructure and is not intended to be used directly from application code.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected static Exception GetException(int errorCode, string message)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
+        <th>Condition</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">int</span></td>
-        <td><span class="parametername">errorCode</span></td>
-        <td><p>The error code according to the exception.</p>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not streaming.<br>
+-or-<br>
+The player is not in the valid state.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">message</span></td>
-        <td><p>The error message to show user.</p>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Exception</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Multimedia_Player_GetException_System_Int32_System_String__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The player provides functions to play a media content.
-It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
-Note that only one video player can be played at one time.</p>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L924">View Source</a>
-  </span>
-  <a id="Tizen_Multimedia_Player_GetMediaPacket_" data-uid="Tizen.Multimedia.Player.GetMediaPacket*"></a>
-  <h4 id="Tizen_Multimedia_Player_GetMediaPacket_IntPtr_" data-uid="Tizen.Multimedia.Player.GetMediaPacket(IntPtr)">GetMediaPacket(IntPtr)</h4>
-  <div class="markdown level1 summary"><p>This supports the product infrastructure and is not intended to be used directly from application code.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected MediaPacket GetMediaPacket(IntPtr handle)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">IntPtr</span></td>
-        <td><span class="parametername">handle</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Multimedia.MediaPacket.html">MediaPacket</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Multimedia_Player_GetMediaPacket_IntPtr__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The player provides functions to play a media content.
-It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
-Note that only one video player can be played at one time.</p>
-</div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1778,6 +2030,27 @@ Note that only one video player can be played at one time.</p>
   <div class="markdown level1 remarks"><p>The player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Ready">Ready</a>, <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Playing">Playing</a>,
 or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Paused">Paused</a> state.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Player_GetPlayPosition_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetPlayPositionAsync_System_Int32_System_Boolean_">SetPlayPositionAsync(int, bool)</a></div>
@@ -1820,6 +2093,27 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
   <div class="markdown level1 remarks"><p>The player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Ready">Ready</a>, <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Playing">Playing</a>,
 or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Paused">Paused</a> state.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Player_GetPlayPositionNanoseconds_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetPlayPositionAsync_System_Int32_System_Boolean_">SetPlayPositionAsync(int, bool)</a></div>
@@ -1861,72 +2155,33 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
   <h5 id="Tizen_Multimedia_Player_GetVideoRoi_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The specified ROI area is valid only in <span class="xref">Tizen.Multimedia.PlayerDisplayType.Overlay</span>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Operation failed; internal error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Player_GetVideoRoi_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Display">Display</a></div>
       <div><a class="xref" href="Tizen.Multimedia.StreamInfo.html#Tizen_Multimedia_StreamInfo_GetVideoProperties">GetVideoProperties()</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetVideoRoi_Tizen_Multimedia_ScaleRectangle_">SetVideoRoi(ScaleRectangle)</a></div>
   </div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L84">View Source</a>
-  </span>
-  <a id="Tizen_Multimedia_Player_Initialize_" data-uid="Tizen.Multimedia.Player.Initialize*"></a>
-  <h4 id="Tizen_Multimedia_Player_Initialize" data-uid="Tizen.Multimedia.Player.Initialize">Initialize()</h4>
-  <div class="markdown level1 summary"><p>This supports the product infrastructure and is not intended to be used directly from application code.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void Initialize()</code></pre>
-  </div>
-  <h5 id="Tizen_Multimedia_Player_Initialize_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The player provides functions to play a media content.
-It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
-Note that only one video player can be played at one time.</p>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.Events.cs/#L167">View Source</a>
-  </span>
-  <a id="Tizen_Multimedia_Player_OnErrorOccurred_" data-uid="Tizen.Multimedia.Player.OnErrorOccurred*"></a>
-  <h4 id="Tizen_Multimedia_Player_OnErrorOccurred_Tizen_Multimedia_PlayerErrorOccurredEventArgs_" data-uid="Tizen.Multimedia.Player.OnErrorOccurred(Tizen.Multimedia.PlayerErrorOccurredEventArgs)">OnErrorOccurred(PlayerErrorOccurredEventArgs)</h4>
-  <div class="markdown level1 summary"><p>Raises the <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_ErrorOccurred">ErrorOccurred</a> event.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void OnErrorOccurred(PlayerErrorOccurredEventArgs e)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.Multimedia.PlayerErrorOccurredEventArgs.html">PlayerErrorOccurredEventArgs</a></td>
-        <td><span class="parametername">e</span></td>
-        <td><p>An <a class="xref" href="Tizen.Multimedia.PlayerErrorOccurredEventArgs.html">PlayerErrorOccurredEventArgs</a> that contains the event data.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Multimedia_Player_OnErrorOccurred_Tizen_Multimedia_PlayerErrorOccurredEventArgs__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The player provides functions to play a media content.
-It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
-Note that only one video player can be played at one time.</p>
-</div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1993,6 +2248,27 @@ Note that only one video player can be played at one time.</p>
   <div class="markdown level1 remarks"><p>The player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Playing">Playing</a> state.
 It has no effect if the player is already in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Paused">Paused</a> state.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Player_Pause_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Start">Start()</a></div>
@@ -2023,7 +2299,7 @@ It has no effect if the player is already in the <a class="xref" href="Tizen.Mul
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task that represents the asynchronous prepare operation.</p>
 </td>
       </tr>
@@ -2033,6 +2309,32 @@ It has no effect if the player is already in the <a class="xref" href="Tizen.Mul
   <div class="markdown level1 remarks"><p>To prepare the player, the player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a> state,
 and a source must be set.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>No source is set.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Player_PrepareAsync_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Preparing">Preparing</a></div>
@@ -2045,7 +2347,7 @@ and a source must be set.</p>
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L362">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Player_PrepareAsync_" data-uid="Tizen.Multimedia.Player.PrepareAsync*"></a>
-  <h4 id="Tizen_Multimedia_Player_PrepareAsync_CancellationToken_" data-uid="Tizen.Multimedia.Player.PrepareAsync(CancellationToken)">PrepareAsync(CancellationToken)</h4>
+  <h4 id="Tizen_Multimedia_Player_PrepareAsync_System_Threading_CancellationToken_" data-uid="Tizen.Multimedia.Player.PrepareAsync(System.Threading.CancellationToken)">PrepareAsync(CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Prepares the cancelable media player for playback, asynchronously.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -2064,7 +2366,7 @@ and a source must be set.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="xref">System.Threading.CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
         <td><p>The cancellation token to cancel preparing.</p>
 </td>
@@ -2081,20 +2383,44 @@ and a source must be set.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>The task that represents the asynchronous prepare operation.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_Player_PrepareAsync_CancellationToken__remarks">Remarks</h5>
+  <h5 id="Tizen_Multimedia_Player_PrepareAsync_System_Threading_CancellationToken__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>To prepare the player, the player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a> state,
 and a source must be set.
 The state must be <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Preparing">Preparing</a> to cancel preparing.
 When preparing is cancelled, a state will be changed to <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a> from <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Preparing">Preparing</a>.</p>
 </div>
-  <h5 id="Tizen_Multimedia_Player_PrepareAsync_CancellationToken__seealso">See Also</h5>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Operation failed; internal error.
+-or-<br>
+The player is not in the valid state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Player_PrepareAsync_System_Threading_CancellationToken__seealso">See Also</h5>
   <div class="seealso">
+      <div><span class="xref">System.Threading.CancellationToken</span></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_PrepareAsync">PrepareAsync()</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Unprepare">Unprepare()</a></div>
   </div>
@@ -2146,6 +2472,27 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
       </tr>
     </thead>
     <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.<br>
+-or-<br>
+Streaming playback.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">rate</code> is less than -5.0.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">rate</code> is greater than 5.0.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">rate</code> is zero.</p>
+</td>
+      </tr>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.NotAvailableException.html">NotAvailableException</a></td>
         <td><p>If audio offload is enabled by calling <a class="xref" href="Tizen.Multimedia.AudioOffload.html#Tizen_Multimedia_AudioOffload_IsEnabled">IsEnabled</a>. (Since tizen 6.0)</p>
@@ -2207,7 +2554,7 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task that represents the asynchronous operation.</p>
 </td>
       </tr>
@@ -2219,6 +2566,34 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
 <p>If the <code data-dev-comment-type="paramref" class="paramref">accurate</code> is true, the play position will be adjusted as the specified <code data-dev-comment-type="paramref" class="paramref">position</code> value,
 but this might be considerably slow. If false, the play position will be a nearest keyframe position.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.<br>
+-or-<br>
+In case of non-seekable content, the player will return error and keep playing without changing the play position.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>The specified position is not valid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Player_SetPlayPositionAsync_System_Int32_System_Boolean__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetPlayPositionNanosecondsAsync_System_Int64_System_Boolean_">SetPlayPositionNanosecondsAsync(long, bool)</a></div>
@@ -2275,7 +2650,7 @@ but this might be considerably slow. If false, the play position will be a neare
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span></td>
+        <td><span class="xref">System.Threading.Tasks.Task</span></td>
         <td><p>A task that represents the asynchronous operation.</p>
 </td>
       </tr>
@@ -2287,33 +2662,40 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
 <p>If the <code data-dev-comment-type="paramref" class="paramref">accurate</code> is true, the play position will be adjusted as the specified <code data-dev-comment-type="paramref" class="paramref">position</code> value,
 but this might be considerably slow. If false, the play position will be a nearest keyframe position.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.<br>
+-or-<br>
+In case of non-seekable content, the player will return error and keep playing without changing the play position.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p>The specified position is not valid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Player_SetPlayPositionNanosecondsAsync_System_Int64_System_Boolean__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetPlayPositionAsync_System_Int32_System_Boolean_">SetPlayPositionAsync(int, bool)</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_GetPlayPosition">GetPlayPosition()</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_GetPlayPositionNanoseconds">GetPlayPositionNanoseconds()</a></div>
   </div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.Multimedia.MediaPlayer/Player/Player.cs/#L946">View Source</a>
-  </span>
-  <a id="Tizen_Multimedia_Player_SetPreparing_" data-uid="Tizen.Multimedia.Player.SetPreparing*"></a>
-  <h4 id="Tizen_Multimedia_Player_SetPreparing" data-uid="Tizen.Multimedia.Player.SetPreparing">SetPreparing()</h4>
-  <div class="markdown level1 summary"><p>This supports the product infrastructure and is not intended to be used directly from application code.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected void SetPreparing()</code></pre>
-  </div>
-  <h5 id="Tizen_Multimedia_Player_SetPreparing_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The player provides functions to play a media content.
-It also provides functions to adjust the configurations of the player such as playback rate, volume, looping etc.
-Note that only one video player can be played at one time.</p>
-</div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -2351,10 +2733,38 @@ Note that only one video player can be played at one time.</p>
   <h5 id="Tizen_Multimedia_Player_SetSource_Tizen_Multimedia_MediaSource__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a> state.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.<br>
+-or-<br>
+It is not able to assign the source to the player.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when the permission is denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Player_SetSource_Tizen_Multimedia_MediaSource__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_PrepareAsync">PrepareAsync()</a></div>
-      <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_PrepareAsync_CancellationToken_">PrepareAsync(CancellationToken)</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_PrepareAsync_System_Threading_CancellationToken_">PrepareAsync(CancellationToken)</a></div>
   </div>
 
 
@@ -2395,6 +2805,37 @@ Note that only one video player can be played at one time.</p>
 <p>The mediastorage privilege(http://tizen.org/privilege/mediastorage) must be added if any files are used to play located in the internal storage.
 The externalstorage privilege(http://tizen.org/privilege/externalstorage) must be added if any files are used to play located in the external storage.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is an empty string.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.IO.FileNotFoundException</span></td>
+        <td><p>The specified path does not exist.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -2432,6 +2873,29 @@ The externalstorage privilege(http://tizen.org/privilege/externalstorage) must b
   <h5 id="Tizen_Multimedia_Player_SetSubtitleOffset_System_Int32__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Playing">Playing</a> or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Paused">Paused</a> state.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.<br>
+-or-<br>
+No subtitle is set.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Player_SetSubtitleOffset_System_Int32__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_SetSubtitle_System_String_">SetSubtitle(string)</a></div>
@@ -2476,6 +2940,40 @@ It can be regarded as zooming operation because the specified video area will be
 to guarantee of showing the same area for the dynamic resolution video content.
 This function have to be called after setting <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Display">Display</a></p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Operation failed; internal error.
+-or-<br>
+The <span class="xref">Tizen.Multimedia.PlayerDisplayType</span> is not set to <span class="xref">Tizen.Multimedia.PlayerDisplayType.Overlay</span>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">scaleRectangle.ScaleX.ScaleX</code> is less than 0.0 or greater than 1.0.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">scaleRectangle.ScaleY.ScaleY</code> is less than 0.0 or greater than 1.0.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">scaleRectangle.ScaleWidth.ScaleWidth</code> is less than or equal to 0.0 or greater than 1.0.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">scaleRectangle.ScaleHeight.ScaleHeight</code> is less than or equal to 0.0 or greater than 1.0.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Player_SetVideoRoi_Tizen_Multimedia_ScaleRectangle__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.ScaleRectangle.html">ScaleRectangle</a></div>
@@ -2510,10 +3008,31 @@ If the application calls this function during the buffering, the playback will b
 and the buffering message posting by <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_BufferingProgressChanged">BufferingProgressChanged</a> will be stopped.<br>
 In other cases, the player will keep playing without returning error.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Player_Start_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_PrepareAsync">PrepareAsync()</a></div>
-      <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_PrepareAsync_CancellationToken_">PrepareAsync(CancellationToken)</a></div>
+      <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_PrepareAsync_System_Threading_CancellationToken_">PrepareAsync(CancellationToken)</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Stop">Stop()</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Pause">Pause()</a></div>
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_PlaybackCompleted">PlaybackCompleted</a></div>
@@ -2540,6 +3059,27 @@ In other cases, the player will keep playing without returning error.</p>
   <div class="markdown level1 remarks"><p>The player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Playing">Playing</a> or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Paused">Paused</a> state.
 It has no effect if the player is already in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Ready">Ready</a> state.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Player_Stop_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_Start">Start()</a></div>
@@ -2564,12 +3104,33 @@ It has no effect if the player is already in the <a class="xref" href="Tizen.Mul
   <h5 id="Tizen_Multimedia_Player_Unprepare_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The most recently used source is reset and is no longer associated with the player. Playback is no longer possible.
 If you want to use the player again, you have to set a source and call <a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_PrepareAsync">PrepareAsync()</a> or
-<a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_PrepareAsync_CancellationToken_">PrepareAsync(CancellationToken)</a> again.</p>
+<a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_PrepareAsync_System_Threading_CancellationToken_">PrepareAsync(CancellationToken)</a> again.</p>
 <p>
 The player must be in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Ready">Ready</a>, <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Playing">Playing</a>, or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Paused">Paused</a> state.
 It has no effect if the player is already in the <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_PlayerState_Idle">Idle</a> state.
 </p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ObjectDisposedException</span></td>
+        <td><p>The player has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -2597,7 +3158,7 @@ It has no effect if the player is already in the <a class="xref" href="Tizen.Mul
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDataDecodedEventArgs.html">AudioDataDecodedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioDataDecodedEventArgs.html">AudioDataDecodedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2635,7 +3196,7 @@ It has no effect if the player is already in the <a class="xref" href="Tizen.Mul
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.BufferingProgressChangedEventArgs.html">BufferingProgressChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.BufferingProgressChangedEventArgs.html">BufferingProgressChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2670,7 +3231,7 @@ Note that only one video player can be played at one time.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.PlayerErrorOccurredEventArgs.html">PlayerErrorOccurredEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.PlayerErrorOccurredEventArgs.html">PlayerErrorOccurredEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2703,7 +3264,7 @@ Note that only one video player can be played at one time.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<span class="xref">EventArgs</span>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<span class="xref">System.EventArgs</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2738,7 +3299,7 @@ Note that only one video player can be played at one time.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.PlaybackInterruptedEventArgs.html">PlaybackInterruptedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.PlaybackInterruptedEventArgs.html">PlaybackInterruptedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2777,7 +3338,7 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.SubtitleUpdatedEventArgs.html">SubtitleUpdatedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.SubtitleUpdatedEventArgs.html">SubtitleUpdatedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2810,7 +3371,7 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.VideoFrameDecodedEventArgs.html">VideoFrameDecodedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.VideoFrameDecodedEventArgs.html">VideoFrameDecodedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2819,6 +3380,22 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
   <div class="markdown level1 remarks"><p>The event handler will be executed on an internal thread.</p>
 <p>The <a class="xref" href="Tizen.Multimedia.VideoFrameDecodedEventArgs.html#Tizen_Multimedia_VideoFrameDecodedEventArgs_Packet">Packet</a> in event args should be disposed after use.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>The required feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <h5 id="Tizen_Multimedia_Player_VideoFrameDecoded_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.VideoFrameDecodedEventArgs.html#Tizen_Multimedia_VideoFrameDecodedEventArgs_Packet">Packet</a></div>
@@ -2848,7 +3425,7 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.VideoStreamChangedEventArgs.html">VideoStreamChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.VideoStreamChangedEventArgs.html">VideoStreamChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2862,29 +3439,7 @@ or <a class="xref" href="Tizen.Multimedia.PlayerState.html#Tizen_Multimedia_Play
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">Tizen.Multimedia.IDisplayable&lt;&gt;</span>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>

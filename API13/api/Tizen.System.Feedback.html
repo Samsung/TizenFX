@@ -177,6 +177,27 @@ This constructor initializes the underlying feedback system. It must be called b
   <h5 id="Tizen_System_Feedback__ctor_examples">Examples</h5>
   <pre><code>Feedback feedback = new Feedback();</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when failed because the devices (vibration and sound) are not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of a system error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -204,203 +225,16 @@ This destructor ensures proper cleanup of the feedback system resources when the
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L585">View Source</a>
-  </span>
-  <a id="Tizen_System_Feedback_GetCountOfThemeInternal_" data-uid="Tizen.System.Feedback.GetCountOfThemeInternal*"></a>
-  <h4 id="Tizen_System_Feedback_GetCountOfThemeInternal_Tizen_System_FeedbackType_" data-uid="Tizen.System.Feedback.GetCountOfThemeInternal(Tizen.System.FeedbackType)">GetCountOfThemeInternal(FeedbackType)</h4>
-  <div class="markdown level1 summary"><p>Gets the number of themes supported as described in the configuration.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint GetCountOfThemeInternal(FeedbackType type)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.System.FeedbackType.html">FeedbackType</a></td>
-        <td><span class="parametername">type</span></td>
-        <td><p>The feedback type.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">uint</span></td>
-        <td><p>The count of themes can be used according to feedback type.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_System_Feedback_GetCountOfThemeInternal_Tizen_System_FeedbackType__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>This internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
-Counts of theme range will be 1 ~ N according to conf file.</p>
-</div>
-  <h5 id="Tizen_System_Feedback_GetCountOfThemeInternal_Tizen_System_FeedbackType__examples">Examples</h5>
-  <pre><code>Feedback feedback = new Feedback();
-uint countOfTheme = feedback.GetCountOfThemeInternal(FeedbackType.Sound);</code></pre>
-
-  <h5 id="Tizen_System_Feedback_GetCountOfThemeInternal_Tizen_System_FeedbackType__seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="Tizen.System.FeedbackType.html">FeedbackType</a></div>
-  </div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L632">View Source</a>
-  </span>
-  <a id="Tizen_System_Feedback_GetThemeIdInternal_" data-uid="Tizen.System.Feedback.GetThemeIdInternal*"></a>
-  <h4 id="Tizen_System_Feedback_GetThemeIdInternal_Tizen_System_FeedbackType_" data-uid="Tizen.System.Feedback.GetThemeIdInternal(Tizen.System.FeedbackType)">GetThemeIdInternal(FeedbackType)</h4>
-  <div class="markdown level1 summary"><p>Gets the current id of the theme selected from available themes described in the conf file.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint GetThemeIdInternal(FeedbackType type)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.System.FeedbackType.html">FeedbackType</a></td>
-        <td><span class="parametername">type</span></td>
-        <td><p>The feedback type.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">uint</span></td>
-        <td><p>The id of theme selected as default theme according to feedback type.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_System_Feedback_GetThemeIdInternal_Tizen_System_FeedbackType__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
-The theme id is positive value as defined in the conf file.</p>
-</div>
-  <h5 id="Tizen_System_Feedback_GetThemeIdInternal_Tizen_System_FeedbackType__examples">Examples</h5>
-  <pre><code>Feedback feedback = new Feedback();
-uint idOfTheme = feedback.GetThemeIdInternal(FeedbackType.Sound);</code></pre>
-
-  <h5 id="Tizen_System_Feedback_GetThemeIdInternal_Tizen_System_FeedbackType__seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="Tizen.System.FeedbackType.html">FeedbackType</a></div>
-  </div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L774">View Source</a>
-  </span>
-  <a id="Tizen_System_Feedback_GetThemeIdsInternal_" data-uid="Tizen.System.Feedback.GetThemeIdsInternal*"></a>
-  <h4 id="Tizen_System_Feedback_GetThemeIdsInternal_Tizen_System_FeedbackType_" data-uid="Tizen.System.Feedback.GetThemeIdsInternal(Tizen.System.FeedbackType)">GetThemeIdsInternal(FeedbackType)</h4>
-  <div class="markdown level1 summary"><p>Gets the array of theme ids supported described in the conf file.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint[] GetThemeIdsInternal(FeedbackType type)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.System.FeedbackType.html">FeedbackType</a></td>
-        <td><span class="parametername">type</span></td>
-        <td><p>The feedback type.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">uint</span>[]</td>
-        <td><p>The array of theme id supported according to feedback type.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_System_Feedback_GetThemeIdsInternal_Tizen_System_FeedbackType__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
-The theme id is positive value as defined in the conf file.
-Gets all theme ids as defined in the conf file.</p>
-</div>
-  <h5 id="Tizen_System_Feedback_GetThemeIdsInternal_Tizen_System_FeedbackType__examples">Examples</h5>
-  <pre><code>Feedback feedback = new Feedback();
-uint[] getThemeIds = feedback.GetThemeIdsInternal(FeedbackType.Sound);</code></pre>
-
-  <h5 id="Tizen_System_Feedback_GetThemeIdsInternal_Tizen_System_FeedbackType__seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="Tizen.System.FeedbackType.html">FeedbackType</a></div>
-  </div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L425">View Source</a>
   </span>
   <a id="Tizen_System_Feedback_IsSupportedPattern_" data-uid="Tizen.System.Feedback.IsSupportedPattern*"></a>
-  <h4 id="Tizen_System_Feedback_IsSupportedPattern_Tizen_System_FeedbackType_String_" data-uid="Tizen.System.Feedback.IsSupportedPattern(Tizen.System.FeedbackType,String)">IsSupportedPattern(FeedbackType, String)</h4>
+  <h4 id="Tizen_System_Feedback_IsSupportedPattern_Tizen_System_FeedbackType_System_String_" data-uid="Tizen.System.Feedback.IsSupportedPattern(Tizen.System.FeedbackType,System.String)">IsSupportedPattern(FeedbackType, string)</h4>
   <div class="markdown level1 summary"><p>Gets the supported information about a specific feedback type and pattern.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsSupportedPattern(FeedbackType type, String pattern)</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsSupportedPattern(FeedbackType type, string pattern)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -419,7 +253,7 @@ uint[] getThemeIds = feedback.GetThemeIdsInternal(FeedbackType.Sound);</code></p
 </td>
       </tr>
       <tr>
-        <td><span class="xref">String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">pattern</span></td>
         <td><p>The feedback pattern string.</p>
 </td>
@@ -442,17 +276,53 @@ uint[] getThemeIds = feedback.GetThemeIdsInternal(FeedbackType.Sound);</code></p
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_System_Feedback_IsSupportedPattern_Tizen_System_FeedbackType_String__remarks">Remarks</h5>
+  <h5 id="Tizen_System_Feedback_IsSupportedPattern_Tizen_System_FeedbackType_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Now, IsSupportedPattern is not working for FeedbackType.All.
 This API is working for FeedbackType.Sound and FeedbackType.Vibration only.
 If you use FeedbackType.All for type parameter, this API will throw ArgumentException.
 To get the supported information for Vibration type, the application should have <a href="http://tizen.org/privilege/haptic">http://tizen.org/privilege/haptic</a> privilege.</p>
 </div>
-  <h5 id="Tizen_System_Feedback_IsSupportedPattern_Tizen_System_FeedbackType_String__examples">Examples</h5>
+  <h5 id="Tizen_System_Feedback_IsSupportedPattern_Tizen_System_FeedbackType_System_String__examples">Examples</h5>
   <pre><code>Feedback feedback = new Feedback();
 bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, &quot;Tap&quot;);</code></pre>
 
-  <h5 id="Tizen_System_Feedback_IsSupportedPattern_Tizen_System_FeedbackType_String__seealso">See Also</h5>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Exception</span></td>
+        <td><p>Thrown when failed because the feedback is not initialized.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when failed because of an invalid argument.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when failed because the device (haptic, sound) is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when failed because the access is not granted (No privilege).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of a system error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_System_Feedback_IsSupportedPattern_Tizen_System_FeedbackType_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.System.FeedbackType.html">FeedbackType</a></div>
   </div>
@@ -464,13 +334,13 @@ bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, &quot;Tap&quot;);
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L484">View Source</a>
   </span>
   <a id="Tizen_System_Feedback_Play_" data-uid="Tizen.System.Feedback.Play*"></a>
-  <h4 id="Tizen_System_Feedback_Play_Tizen_System_FeedbackType_String_" data-uid="Tizen.System.Feedback.Play(Tizen.System.FeedbackType,String)">Play(FeedbackType, String)</h4>
+  <h4 id="Tizen_System_Feedback_Play_Tizen_System_FeedbackType_System_String_" data-uid="Tizen.System.Feedback.Play(Tizen.System.FeedbackType,System.String)">Play(FeedbackType, string)</h4>
   <div class="markdown level1 summary"><p>Plays specific type of reactions that are pre-defined feedback pattern.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Play(FeedbackType type, String pattern)</code></pre>
+    <pre><code class="lang-csharp hljs">public void Play(FeedbackType type, string pattern)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -489,79 +359,61 @@ bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, &quot;Tap&quot;);
 </td>
       </tr>
       <tr>
-        <td><span class="xref">String</span></td>
+        <td><span class="xref">string</span></td>
         <td><span class="parametername">pattern</span></td>
         <td><p>The feedback pattern string.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_System_Feedback_Play_Tizen_System_FeedbackType_String__remarks">Remarks</h5>
+  <h5 id="Tizen_System_Feedback_Play_Tizen_System_FeedbackType_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>To play Vibration type, app should have <a href="http://tizen.org/privilege/haptic">http://tizen.org/privilege/haptic</a> privilege.
 The pattern must be one of the predefined patterns and supported.</p>
 </div>
-  <h5 id="Tizen_System_Feedback_Play_Tizen_System_FeedbackType_String__examples">Examples</h5>
+  <h5 id="Tizen_System_Feedback_Play_Tizen_System_FeedbackType_System_String__examples">Examples</h5>
   <pre><code>Feedback feedback = new Feedback();
 feedback.Play(FeedbackType.All, &quot;Tap&quot;);</code></pre>
 
-  <h5 id="Tizen_System_Feedback_Play_Tizen_System_FeedbackType_String__seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="Tizen.System.FeedbackType.html">FeedbackType</a></div>
-      <div><a class="xref" href="Tizen.System.Feedback.html#Tizen_System_Feedback_Stop">Stop()</a></div>
-  </div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L680">View Source</a>
-  </span>
-  <a id="Tizen_System_Feedback_SetThemeIdInternal_" data-uid="Tizen.System.Feedback.SetThemeIdInternal*"></a>
-  <h4 id="Tizen_System_Feedback_SetThemeIdInternal_Tizen_System_FeedbackType_System_UInt32_" data-uid="Tizen.System.Feedback.SetThemeIdInternal(Tizen.System.FeedbackType,System.UInt32)">SetThemeIdInternal(FeedbackType, uint)</h4>
-  <div class="markdown level1 summary"><p>Sets the current theme id from available themes described in the conf file.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetThemeIdInternal(FeedbackType type, uint idOfTheme)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
+        <th>Condition</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.System.FeedbackType.html">FeedbackType</a></td>
-        <td><span class="parametername">type</span></td>
-        <td><p>The feedback type.</p>
+        <td><span class="xref">System.Exception</span></td>
+        <td><p>Thrown when failed because feedback is not initialized.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">uint</span></td>
-        <td><span class="parametername">idOfTheme</span></td>
-        <td><p>The id of theme will be set.</p>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when failed because of an invalid arguament.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when failed because the device (haptic, sound) or a specific pattern is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when failed because the access is not granted(No privilege)</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of a system error.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_System_Feedback_SetThemeIdInternal_Tizen_System_FeedbackType_System_UInt32__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>Now this internal API works for FeedbackType.Sound only, FeedbackType.Vibration is not supported.
-To set the id of theme for Sound type, the application should have <a href="http://tizen.org/privilege/systemsettings.admin">http://tizen.org/privilege/systemsettings.admin</a> privilege.
-The theme id is positive value as defined in the conf file.</p>
-</div>
-  <h5 id="Tizen_System_Feedback_SetThemeIdInternal_Tizen_System_FeedbackType_System_UInt32__examples">Examples</h5>
-  <pre><code>Feedback feedback = new Feedback();
-uint idOfTheme = 1;
-feedback.SetThemeIdInternal(FeedbackType.Sound, idOfTheme);</code></pre>
-
-  <h5 id="Tizen_System_Feedback_SetThemeIdInternal_Tizen_System_FeedbackType_System_UInt32__seealso">See Also</h5>
+  <h5 id="Tizen_System_Feedback_Play_Tizen_System_FeedbackType_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.System.FeedbackType.html">FeedbackType</a></div>
+      <div><a class="xref" href="Tizen.System.Feedback.html#Tizen_System_Feedback_Stop">Stop()</a></div>
   </div>
 
 
@@ -586,73 +438,50 @@ feedback.SetThemeIdInternal(FeedbackType.Sound, idOfTheme);</code></pre>
   <pre><code>Feedback Feedback1 = new Feedback();
 Feedback1.Stop();</code></pre>
 
-  <h5 id="Tizen_System_Feedback_Stop_seealso">See Also</h5>
-  <div class="seealso">
-      <div><a class="xref" href="Tizen.System.Feedback.html#Tizen_System_Feedback_Play_Tizen_System_FeedbackType_String_">Play(FeedbackType, String)</a></div>
-  </div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.System.Feedback/Feedback/Feedback.cs/#L726">View Source</a>
-  </span>
-  <a id="Tizen_System_Feedback_StopTypeInternal_" data-uid="Tizen.System.Feedback.StopTypeInternal*"></a>
-  <h4 id="Tizen_System_Feedback_StopTypeInternal_Tizen_System_FeedbackType_" data-uid="Tizen.System.Feedback.StopTypeInternal(Tizen.System.FeedbackType)">StopTypeInternal(FeedbackType)</h4>
-  <div class="markdown level1 summary"><p>Stops reactions of various types according to the feedback type.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void StopTypeInternal(FeedbackType type)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
+        <th>Condition</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.System.FeedbackType.html">FeedbackType</a></td>
-        <td><span class="parametername">type</span></td>
-        <td><p>The feedback type.</p>
+        <td><span class="xref">System.Exception</span></td>
+        <td><p>Thrown when failed because the feedback is not initialized.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when failed because of an invalid arguament</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.NotSupportedException</span></td>
+        <td><p>Thrown when failed because the device (haptic, sound) or a specific pattern is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.UnauthorizedAccessException</span></td>
+        <td><p>Thrown when failed because the access is not granted (No privilege).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when failed because of a system error.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_System_Feedback_StopTypeInternal_Tizen_System_FeedbackType__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>To stop vibration, the application should have <a href="http://tizen.org/privilege/haptic">http://tizen.org/privilege/haptic</a> privilege.</p>
-</div>
-  <h5 id="Tizen_System_Feedback_StopTypeInternal_Tizen_System_FeedbackType__examples">Examples</h5>
-  <pre><code>Feedback Feedback = new Feedback();
-feedback.StopTypeInternal(FeedbackType.Sound);
-feedback.StopTypeInternal(FeedbackType.Vibration);</code></pre>
-
-  <h5 id="Tizen_System_Feedback_StopTypeInternal_Tizen_System_FeedbackType__seealso">See Also</h5>
+  <h5 id="Tizen_System_Feedback_Stop_seealso">See Also</h5>
   <div class="seealso">
-      <div><a class="xref" href="Tizen.System.FeedbackType.html">FeedbackType</a></div>
+      <div><a class="xref" href="Tizen.System.Feedback.html#Tizen_System_Feedback_Play_Tizen_System_FeedbackType_System_String_">Play(FeedbackType, string)</a></div>
   </div>
 
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
 </article>
           </div>
 

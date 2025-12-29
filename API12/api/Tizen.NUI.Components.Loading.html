@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Loading : Control, IDynamicResourceHandler, INameScope, System.IDisposable, IResourcesProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class Loading : Control, INotifyPropertyChanged, IDisposable</code></pre>
   </div>
 
 
@@ -104,7 +104,7 @@
       <div class="pdl-holder">
         <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
@@ -112,7 +112,7 @@
         <div class="pdl"><a class="xref" href="Tizen.NUI.ViewWrapper.html">ViewWrapper</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
-        <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Control.html">Control</a></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Components.Control</span></div>
         <div><span class="xref">Loading</span></div>
       </div>
     </dd>
@@ -123,10 +123,8 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
+      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
     </dd>
   </dl>
 
@@ -232,178 +230,6 @@ When the user sets ImageArray separately, the image is changed to <code>ImageVis
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="fields">Fields
-</h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Loading.cs/#L99">View Source</a>
-  </span>
-  <h4 id="Tizen_NUI_Components_Loading_FrameRateProperty" data-uid="Tizen.NUI.Components.Loading.FrameRateProperty">FrameRateProperty</h4>
-  <div class="markdown level1 summary"><p>The FrameRate bindable property.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly BindableProperty FrameRateProperty</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_NUI_Components_Loading_FrameRateProperty_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The Loading is created as <code>LottieAnimationView</code> first.
-When the user sets ImageArray separately, the image is changed to <code>ImageVisual</code>.</p>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Loading.cs/#L40">View Source</a>
-  </span>
-  <h4 id="Tizen_NUI_Components_Loading_ImageArrayProperty" data-uid="Tizen.NUI.Components.Loading.ImageArrayProperty">ImageArrayProperty</h4>
-  <div class="markdown level1 summary"><p>ImageArrayProperty</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly BindableProperty ImageArrayProperty</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_NUI_Components_Loading_ImageArrayProperty_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The Loading is created as <code>LottieAnimationView</code> first.
-When the user sets ImageArray separately, the image is changed to <code>ImageVisual</code>.</p>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Loading.cs/#L56">View Source</a>
-  </span>
-  <h4 id="Tizen_NUI_Components_Loading_ImageListProperty" data-uid="Tizen.NUI.Components.Loading.ImageListProperty">ImageListProperty</h4>
-  <div class="markdown level1 summary"><p>The ImageList bindable property.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly BindableProperty ImageListProperty</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_NUI_Components_Loading_ImageListProperty_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The Loading is created as <code>LottieAnimationView</code> first.
-When the user sets ImageArray separately, the image is changed to <code>ImageVisual</code>.</p>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Loading.cs/#L70">View Source</a>
-  </span>
-  <h4 id="Tizen_NUI_Components_Loading_LottieResourceUrlProperty" data-uid="Tizen.NUI.Components.Loading.LottieResourceUrlProperty">LottieResourceUrlProperty</h4>
-  <div class="markdown level1 summary"><p>The lottie resource url bindable property.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly BindableProperty LottieResourceUrlProperty</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_NUI_Components_Loading_LottieResourceUrlProperty_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The Loading is created as <code>LottieAnimationView</code> first.
-When the user sets ImageArray separately, the image is changed to <code>ImageVisual</code>.</p>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Loading.cs/#L83">View Source</a>
-  </span>
-  <h4 id="Tizen_NUI_Components_Loading_SizeProperty" data-uid="Tizen.NUI.Components.Loading.SizeProperty">SizeProperty</h4>
-  <div class="markdown level1 summary"><p>The Size bindable property.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SizeProperty</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_NUI_Components_Loading_SizeProperty_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The Loading is created as <code>LottieAnimationView</code> first.
-When the user sets ImageArray separately, the image is changed to <code>ImageVisual</code>.</p>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
@@ -470,77 +296,6 @@ The mutually exclusive with &quot;LottieResourceUrl&quot;.</p>
     </tbody>
   </table>
   <h5 id="Tizen_NUI_Components_Loading_ImageArray_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The Loading is created as <code>LottieAnimationView</code> first.
-When the user sets ImageArray separately, the image is changed to <code>ImageVisual</code>.</p>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Loading.cs/#L205">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Components_Loading_ImageList_" data-uid="Tizen.NUI.Components.Loading.ImageList*"></a>
-  <h4 id="Tizen_NUI_Components_Loading_ImageList" data-uid="Tizen.NUI.Components.Loading.ImageList">ImageList</h4>
-  <div class="markdown level1 summary"><p>Gets loading image resource array.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IList&lt;string&gt; ImageList { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">IList&lt;&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_NUI_Components_Loading_ImageList_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The Loading is created as <code>LottieAnimationView</code> first.
-When the user sets ImageArray separately, the image is changed to <code>ImageVisual</code>.</p>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Loading.cs/#L218">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Components_Loading_LottieResourceUrl_" data-uid="Tizen.NUI.Components.Loading.LottieResourceUrl*"></a>
-  <h4 id="Tizen_NUI_Components_Loading_LottieResourceUrl" data-uid="Tizen.NUI.Components.Loading.LottieResourceUrl">LottieResourceUrl</h4>
-  <div class="markdown level1 summary"><p>Gets or sets an lottie resource url.
-The mutually exclusive with &quot;ImageArray&quot;.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string LottieResourceUrl { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_NUI_Components_Loading_LottieResourceUrl_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The Loading is created as <code>LottieAnimationView</code> first.
 When the user sets ImageArray separately, the image is changed to <code>ImageVisual</code>.</p>
 </div>
@@ -620,46 +375,6 @@ When the user sets ImageArray separately, the image is changed to <code>ImageVis
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Loading.cs/#L272">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Components_Loading_ApplyStyle_" data-uid="Tizen.NUI.Components.Loading.ApplyStyle*"></a>
-  <h4 id="Tizen_NUI_Components_Loading_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_" data-uid="Tizen.NUI.Components.Loading.ApplyStyle(Tizen.NUI.BaseComponents.ViewStyle)">ApplyStyle(ViewStyle)</h4>
-  <div class="markdown level1 summary"><p>Apply style instance to the view.
-Basically it sets the bindable property to the value of the bindable property with same name in the style.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void ApplyStyle(ViewStyle viewStyle)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a></td>
-        <td><span class="parametername">viewStyle</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_">View.ApplyStyle(ViewStyle)</a></div>
-  <h5 id="Tizen_NUI_Components_Loading_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The Loading is created as <code>LottieAnimationView</code> first.
-When the user sets ImageArray separately, the image is changed to <code>ImageVisual</code>.</p>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Loading.cs/#L296">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Loading_CreateViewStyle_" data-uid="Tizen.NUI.Components.Loading.CreateViewStyle*"></a>
@@ -688,7 +403,7 @@ When the user sets ImageArray separately, the image is changed to <code>ImageVis
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_CreateViewStyle">Control.CreateViewStyle()</a></div>
+  <div><span class="xref">Tizen.NUI.Components.Control.CreateViewStyle()</span></div>
   <h5 id="Tizen_NUI_Components_Loading_CreateViewStyle_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The Loading is created as <code>LottieAnimationView</code> first.
 When the user sets ImageArray separately, the image is changed to <code>ImageVisual</code>.</p>
@@ -728,31 +443,8 @@ When the user sets ImageArray separately, the image is changed to <code>ImageVis
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_Dispose_Tizen_NUI_DisposeTypes_">Control.Dispose(DisposeTypes)</a></div>
+  <div><span class="xref">Tizen.NUI.Components.Control.Dispose(Tizen.NUI.DisposeTypes)</span></div>
   <h5 id="Tizen_NUI_Components_Loading_Dispose_Tizen_NUI_DisposeTypes__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The Loading is created as <code>LottieAnimationView</code> first.
-When the user sets ImageArray separately, the image is changed to <code>ImageVisual</code>.</p>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.NUI.Components/Controls/Loading.cs/#L262">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Components_Loading_OnInitialize_" data-uid="Tizen.NUI.Components.Loading.OnInitialize*"></a>
-  <h4 id="Tizen_NUI_Components_Loading_OnInitialize" data-uid="Tizen.NUI.Components.Loading.OnInitialize">OnInitialize()</h4>
-  <div class="markdown level1 summary"><p>Overrides the parent method.
-This method is called by the framework when the instance is created.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void OnInitialize()</code></pre>
-  </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_OnInitialize">Control.OnInitialize()</a></div>
-  <h5 id="Tizen_NUI_Components_Loading_OnInitialize_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The Loading is created as <code>LottieAnimationView</code> first.
 When the user sets ImageArray separately, the image is changed to <code>ImageVisual</code>.</p>
 </div>
@@ -822,38 +514,10 @@ When the user sets ImageArray separately, the image is changed to <code>ImageVis
 
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
+      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

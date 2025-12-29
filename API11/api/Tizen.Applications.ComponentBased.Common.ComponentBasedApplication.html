@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class ComponentBasedApplication : Application</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class ComponentBasedApplication : Application, IDisposable</code></pre>
   </div>
 
 
@@ -119,6 +119,12 @@
   </dl>
 
 
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
+    </dd>
+  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
@@ -126,7 +132,7 @@
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.Common/ComponentBasedApplication.cs/#L40">View Source</a>
   </span>
   <a id="Tizen_Applications_ComponentBased_Common_ComponentBasedApplication__ctor_" data-uid="Tizen.Applications.ComponentBased.Common.ComponentBasedApplication.#ctor*"></a>
-  <h4 id="Tizen_Applications_ComponentBased_Common_ComponentBasedApplication__ctor_IDictionary_Type_System_String__" data-uid="Tizen.Applications.ComponentBased.Common.ComponentBasedApplication.#ctor(IDictionary{Type,System.String})">ComponentBasedApplication(IDictionary&lt;Type, string&gt;)</h4>
+  <h4 id="Tizen_Applications_ComponentBased_Common_ComponentBasedApplication__ctor_System_Collections_Generic_IDictionary_System_Type_System_String__" data-uid="Tizen.Applications.ComponentBased.Common.ComponentBasedApplication.#ctor(System.Collections.Generic.IDictionary{System.Type,System.String})">ComponentBasedApplication(IDictionary&lt;Type, string&gt;)</h4>
   <div class="markdown level1 summary"><p>Initializes the ComponentBasedApplicationBase class.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -145,7 +151,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IDictionary&lt;, &gt;</span>&lt;<span class="xref">Type</span>, <span class="xref">string</span>&gt;</td>
+        <td><span class="xref">System.Collections.Generic.IDictionary&lt;TKey, TValue&gt;</span>&lt;<span class="xref">System.Type</span>, <span class="xref">string</span>&gt;</td>
         <td><span class="parametername">typeInfo</span></td>
         <td><p>The component type information.
 The key should be a class type of FrameComponent or SubComponent subclass.
@@ -263,7 +269,7 @@ The value should be a component id which is declared in tizen-manifest.xml.</p>
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.Common/ComponentBasedApplication.cs/#L62">View Source</a>
   </span>
   <a id="Tizen_Applications_ComponentBased_Common_ComponentBasedApplication_RegisterComponent_" data-uid="Tizen.Applications.ComponentBased.Common.ComponentBasedApplication.RegisterComponent*"></a>
-  <h4 id="Tizen_Applications_ComponentBased_Common_ComponentBasedApplication_RegisterComponent_Type_System_String_" data-uid="Tizen.Applications.ComponentBased.Common.ComponentBasedApplication.RegisterComponent(Type,System.String)">RegisterComponent(Type, string)</h4>
+  <h4 id="Tizen_Applications_ComponentBased_Common_ComponentBasedApplication_RegisterComponent_System_Type_System_String_" data-uid="Tizen.Applications.ComponentBased.Common.ComponentBasedApplication.RegisterComponent(System.Type,System.String)">RegisterComponent(Type, string)</h4>
   <div class="markdown level1 summary"><p>Registers a component.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -282,7 +288,7 @@ The value should be a component id which is declared in tizen-manifest.xml.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Type</span></td>
+        <td><span class="xref">System.Type</span></td>
         <td><span class="parametername">compType</span></td>
         <td><p>Class type</p>
 </td>
@@ -291,6 +297,22 @@ The value should be a component id which is declared in tizen-manifest.xml.</p>
         <td><span class="xref">string</span></td>
         <td><span class="parametername">compId</span></td>
         <td><p>Component ID</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when component type is already added or not sub-class of FrameComponent or ServiceComponent</p>
 </td>
       </tr>
     </tbody>
@@ -331,31 +353,29 @@ The value should be a component id which is declared in tizen-manifest.xml.</p>
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.Applications.Application.html#Tizen_Applications_Application_Run_System_String___">Application.Run(string[])</a></div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when component type is already added to the component.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+      <span class="xref">System.IDisposable</span>
   </div>
 </article>
           </div>
