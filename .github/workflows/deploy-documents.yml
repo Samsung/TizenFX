@@ -16,7 +16,9 @@ jobs:
 
     - uses: actions/setup-dotnet@v5
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: | 
+          8.0.x
+          6.0.x
 
     - name: Install DocFX Tool
       run: dotnet tool install -g docfx --version 2.61.0
