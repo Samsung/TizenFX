@@ -18,7 +18,6 @@ jobs:
       with:
         dotnet-version: | 
           8.0.x
-          6.0.x
 
     - name: Install DocFX Tool
       run: dotnet tool install -g docfx --version 2.61.0
@@ -39,7 +38,7 @@ jobs:
         node-version: 24
 
     - name: Build Documents
-      # if: steps.cache-site.outputs.cache-hit != 'true'
+      if: steps.cache-site.outputs.cache-hit != 'true'
       run: |
         ./build.sh restore
         ./build.sh build
