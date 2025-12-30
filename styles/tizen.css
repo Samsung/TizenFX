@@ -1,0 +1,146 @@
+:root {
+  --header-bg-color: #005;
+}
+
+.tz_multiple_items > span {
+  margin-right: 10px;
+  background-color: #ccc;
+}
+
+.decalaration, .parameters, .returns, .typeParameters, .fieldValue, .propertyValue, .eventType, .overrides, .exceptions {
+  color: #777;
+}
+
+.container {
+  width: calc(100% - 10vw);
+}
+
+.sidetoc {
+  top: 210px;
+  width: 350px;
+}
+
+.sidefilter {
+  width: 350px;
+}
+
+.toc .level1 > li {
+  font-size: 14px;
+}
+
+.article.grid-right {
+  margin-left: 360px;
+}
+
+@media only screen and (max-width: 768px) {
+  .article.grid-right {
+    margin-left: 0;
+  }
+}
+
+.moniker-picker-label {
+  display: block;
+  font-size: 12pt;
+  font-weight: bold;
+}
+
+.moniker-picker-menu {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ddd;
+  margin-bottom: 5px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSdibGFjaycgaGVpZ2h0PScyNCcgdmlld0JveD0nMCAwIDI0IDI0JyB3aWR0aD0nMjQnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+PHBhdGggZD0nTTcgMTBsNSA1IDUtNXonLz48cGF0aCBkPSdNMCAwaDI0djI0SDB6JyBmaWxsPSdub25lJy8+PC9zdmc+);
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.moniker-picker-menu::-ms-expand {
+  display: none;
+}
+
+.toc-filter {
+  margin: 0;
+  border: solid;
+  border-width: 1px;
+  border-color: #ddd;
+  border-radius: 0;
+  padding: 2px;
+}
+
+.toc-filter > input {
+  padding-left: 30px;
+  border-bottom: none;
+}
+
+.toc-filter > .filter-icon {
+  display: block;
+  top: 7px;
+}
+
+.toc-filter > .clear-icon {
+  top: 7px;
+}
+
+.hidden-anchor {
+  height: 1px;
+  overflow: hidden;
+}
+
+.attribute-list {
+  display: flex;
+  margin: 0;
+  font-size: 14px;
+  color: #5e5e5e;
+}
+
+dl.attribute-list dd {
+  margin-left: 8px;
+}
+
+.pdl-holder  {
+  display: flex;
+  flex-direction: column;
+  flex-flow: wrap;
+}
+
+.pdl-holder .pdl:after {
+  color: #5e5e5e;
+  content: ">";
+  font-size: 14px;
+  padding-left: 6px;
+  padding-right: 6px;
+  vertical-align: bottom;
+}
+
+.stack {
+  margin-top: 20px;
+}
+
+.affix {
+  height: auto;
+}
+
+.sideaffix {
+  width: 250px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.affix > ul.level1 {
+  overflow: inherit;
+}
+
+.obsolete {
+  background-color: palevioletred;
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+}
+
+.obsolete-affix {
+    text-decoration: line-through;
+}
