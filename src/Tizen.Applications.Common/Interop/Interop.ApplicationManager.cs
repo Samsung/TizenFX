@@ -391,7 +391,7 @@ internal static partial class Interop
         [DllImport(Libraries.AppManager, EntryPoint = "app_info_foreach_res_control")]
         internal static extern ErrorCode AppInfoForeachResControl(IntPtr handle, AppInfoResControlCallback callback, IntPtr userData);
 
-        [NativeStruct("struct rua_rec", Include="rua.h", PkgConfig="rua")]
+        [NativeStruct("struct rua_rec", Include = "rua.h", PkgConfig = "rua")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct RuaRec
         {
@@ -407,6 +407,10 @@ internal static partial class Interop
             internal IntPtr image;
             internal IntPtr compId;
         };
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void RuaHistoryUpdateCallback(IntPtr table, int nRows, int nCols, IntPtr userData);
+        //void (*rua_history_update_cb) (char **table, int nrows, int ncols, void *user_data);
 
         [DllImport(Libraries.Rua, EntryPoint = "rua_history_get_rec")]
         internal static extern ErrorCode RuaHistoryGetRecord(out RuaRec record, IntPtr table, int nRows, int nCols, int row);
@@ -431,5 +435,13 @@ internal static partial class Interop
         [DllImport(Libraries.Rua, EntryPoint = "rua_clear_history")]
         internal static extern ErrorCode RuaClearHistory();
         //int rua_clear_history(void);
+
+        [DllImport(Libraries.Rua, EntryPoint = "rua_register_update_cb")]
+        internal static extern ErrorCode RuaSetUpdateCallback(RuaHistoryUpdateCallback callback, IntPtr userData, out int id);
+        //int rua_register_update_cb(rua_history_update_cb callback, void *user_data, int *callback_id);
+
+        [DllImport(Libraries.Rua, EntryPoint = "rua_unregister_update_cb")]
+        internal static extern ErrorCode RuaUnSetUpdateCallback(int id);
+        //int rua_unregister_update_cb(int callback_id);
     }
 }
