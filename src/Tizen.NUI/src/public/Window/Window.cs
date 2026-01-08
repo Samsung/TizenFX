@@ -2104,6 +2104,29 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets the maximized state of a given window with specific size
+        ///
+        /// This function unmaximizes the window to the specified size.
+        ///
+        /// </summary>
+        /// <param name="size">the unmaximized size.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetUnmaximizedSize(Size2D size)
+        {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            var val = new Uint16Pair((uint)size.Width, (uint)size.Height);
+
+            convertBorderWindowSizeToRealWindowSize(val);
+
+            Interop.Window.SetUnmaximizedSize(SwigCPtr, Uint16Pair.getCPtr(val));
+            val.Dispose();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Sets the layout of the window.
         /// </summary>
         /// <param name="numCols">The number of columns in the layout.</param>
