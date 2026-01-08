@@ -2047,6 +2047,32 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets the maximized state of a given window with specific size
+        ///
+        /// If this function is called with true, window will be resized with screen size.
+        /// Otherwise window will be resized with previous size.
+        /// It is for the window's MAX button in window's border.
+        /// If window border is supported by display server, it is not necessary.
+        /// </summary>
+        /// <param name="maximize">If window is maximized or unmaximized.</param>
+        /// <param name="restoreSize">This is the size used when unmaximized..</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Maximize(bool maximize, Size2D restoreSize)
+        {
+            if (null == restoreSize)
+            {
+                throw new ArgumentNullException(nameof(restoreSize));
+            }
+            var val = new Uint16Pair((uint)restoreSize.Width, (uint)restoreSize.Height);
+
+            convertBorderWindowSizeToRealWindowSize(val);
+
+            Interop.Window.MaximizeWithRestoreSize(SwigCPtr, maximize, Uint16Pair.getCPtr(val));
+            val.Dispose();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Returns whether the window is maximized or not.
         /// </summary>
         /// <returns>True if the window is maximized, false otherwise.</returns>
