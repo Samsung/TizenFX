@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using static Interop.ApplicationManager;
 
 namespace Tizen.Applications
 {
@@ -28,7 +29,12 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RecentApplicationControl
     {
+        private const string LogTag = "Tizen.Applications.RecentApplicationControl";
         private readonly string _pkgId;
+        private static Interop.ApplicationManager.RuaHistoryUpdateCallback s_historyUpdateCallback;
+        private static EventHandler<RecentApplicationUpdatedEventArgs> s_historyUpdateHandler;
+        private static int s_callbackId = 0;
+        private static readonly object s_eventLock = new object();
 
         internal RecentApplicationControl(String pkgId)
         {
@@ -62,6 +68,75 @@ namespace Tizen.Applications
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
                 throw ApplicationManagerErrorFactory.GetException(err, "Failed to clear the recent application list.");
+            }
+        }
+
+        /// <summary>
+        /// Occurs whenever the recent application history is updated.
+        /// </summary>
+        /// <privlevel>platform</privlevel>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        public static event EventHandler<RecentApplicationUpdatedEventArgs> RecentApplicationHistoryUpdated
+        {
+            add
+            {
+                lock (s_eventLock)
+                {
+                    if (s_historyUpdateCallback == null)
+                    {
+                        RegisterHistoryUpdateEvent();
+                    }
+                    s_historyUpdateHandler += value;
+                }
+            }
+            remove
+            {
+                lock (s_eventLock)
+                {
+                    s_historyUpdateHandler -= value;
+                    if (s_historyUpdateHandler == null && s_historyUpdateCallback != null)
+                    {
+                        UnRegisterHistoryUpdateEvent();
+                        s_historyUpdateCallback = null;
+                    }
+                }
+            }
+        }
+
+        private static void RegisterHistoryUpdateEvent()
+        {
+            s_historyUpdateCallback = (IntPtr table, int nRows, int nCols, IntPtr userData) =>
+            {
+                lock (s_eventLock)
+                {
+                    try
+                    {
+                        RecentApplicationUpdatedEventArgs args = new RecentApplicationUpdatedEventArgs(table, nRows, nCols);
+                        s_historyUpdateHandler?.Invoke(null, args);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(LogTag, "Failed to get record by using RuaHistoryGetRecord. Err = " + e.Message);
+                    }
+                }
+            };
+
+            Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
+            err = Interop.ApplicationManager.RuaSetUpdateCallback(s_historyUpdateCallback, IntPtr.Zero, out s_callbackId);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                throw ApplicationManagerErrorFactory.GetException(err, "Failed to register the callback function.");
+            }
+        }
+
+        private static void UnRegisterHistoryUpdateEvent()
+        {
+            Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
+            err = Interop.ApplicationManager.RuaUnSetUpdateCallback(s_callbackId);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                throw ApplicationManagerErrorFactory.GetException(err, "Failed to unregister the callback function.");
             }
         }
     }
