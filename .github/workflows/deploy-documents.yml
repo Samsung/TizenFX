@@ -1,4 +1,4 @@
-name: "Deploy Documents - net6.0"
+name: "Deploy Documents"
 
 on:
   workflow_dispatch:
@@ -12,14 +12,14 @@ jobs:
     - uses: actions/checkout@v4
       with:
         repository: TizenAPI/TizenFX-Docs
-        ref: net6.0
+        ref: net8.0
 
     - uses: actions/setup-dotnet@v5
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: '8.0.x'
 
     - name: Install DocFX Tool
-      run: dotnet tool install -g docfx --version 2.61.0
+      run: dotnet tool install -g docfx --version 2.78.4
 
     - name: Checkout TizenFX sources
       run: |
