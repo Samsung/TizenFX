@@ -139,6 +139,41 @@ Creates an alpha function object with the default built-in alpha function.<br></
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.NUI/src/public/AlphaFunction.cs/#L128">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AlphaFunction__ctor_" data-uid="Tizen.NUI.AlphaFunction.#ctor*"></a>
+  <h4 id="Tizen_NUI_AlphaFunction__ctor_System_Delegate_" data-uid="Tizen.NUI.AlphaFunction.#ctor(System.Delegate)">AlphaFunction(Delegate)</h4>
+  <div class="markdown level1 summary"><p>The constructor.<br>
+Creates an alpha function object with the user-defined alpha function.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public AlphaFunction(Delegate func)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Delegate</span></td>
+        <td><span class="parametername">func</span></td>
+        <td><p>User defined fuction. It must be a method formatted as float alphafunction(float progress)</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.NUI/src/public/AlphaFunction.cs/#L149">View Source</a>
   </span>
   <a id="Tizen_NUI_AlphaFunction__ctor_" data-uid="Tizen.NUI.AlphaFunction.#ctor*"></a>
@@ -213,41 +248,6 @@ Creates a bezier alpha function. The bezier will have the first point at (0,0) a
   <h5 id="Tizen_NUI_AlphaFunction__ctor_Tizen_NUI_Vector2_Tizen_NUI_Vector2__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The x components of the control points will be clamped to the range [0, 1] to prevent non-monotonic curves.</p>
 </div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API4/src/Tizen.NUI/src/public/AlphaFunction.cs/#L128">View Source</a>
-  </span>
-  <a id="Tizen_NUI_AlphaFunction__ctor_" data-uid="Tizen.NUI.AlphaFunction.#ctor*"></a>
-  <h4 id="Tizen_NUI_AlphaFunction__ctor_Tizen_System_Delegate_" data-uid="Tizen.NUI.AlphaFunction.#ctor(Tizen.System.Delegate)">AlphaFunction(Delegate)</h4>
-  <div class="markdown level1 summary"><p>The constructor.<br>
-Creates an alpha function object with the user-defined alpha function.<br></p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AlphaFunction(Delegate func)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Tizen.System.Delegate</span></td>
-        <td><span class="parametername">func</span></td>
-        <td><p>User defined fuction. It must be a method formatted as float alphafunction(float progress)</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>

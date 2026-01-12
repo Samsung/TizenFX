@@ -96,8 +96,7 @@ A toast will automatically disappear after a certain time.</p>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public class Toast : Control, INotifyPropertyChanged, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Toast : Control, IDynamicResourceHandler, INameScope, System.IDisposable, IResourcesProvider</code></pre>
   </div>
 
 
@@ -107,7 +106,7 @@ public class Toast : Control, INotifyPropertyChanged, IDisposable</code></pre>
       <div class="pdl-holder">
         <div class="pdl"><span class="xref">object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
@@ -115,7 +114,7 @@ public class Toast : Control, INotifyPropertyChanged, IDisposable</code></pre>
         <div class="pdl"><a class="xref" href="Tizen.NUI.ViewWrapper.html">ViewWrapper</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Components.Control</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Control.html">Control</a></div>
         <div><span class="xref">Toast</span></div>
       </div>
     </dd>
@@ -126,8 +125,10 @@ public class Toast : Control, INotifyPropertyChanged, IDisposable</code></pre>
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
     </dd>
   </dl>
 
@@ -143,15 +144,290 @@ public class Toast : Control, INotifyPropertyChanged, IDisposable</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public Toast()</code></pre>
+    <pre><code class="lang-csharp hljs">public Toast()</code></pre>
   </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Toast.cs/#L116">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Toast__ctor_" data-uid="Tizen.NUI.Components.Toast.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_Toast__ctor_System_String_" data-uid="Tizen.NUI.Components.Toast.#ctor(System.String)">Toast(string)</h4>
+  <div class="markdown level1 summary"><p>Constructor of the Toast class with special style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Toast(string style)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">style</span></td>
+        <td><p>style name</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Toast.cs/#L107">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Toast__ctor_" data-uid="Tizen.NUI.Components.Toast.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_Toast__ctor_Tizen_NUI_Components_ToastStyle_" data-uid="Tizen.NUI.Components.Toast.#ctor(Tizen.NUI.Components.ToastStyle)">Toast(ToastStyle)</h4>
+  <div class="markdown level1 summary"><p>The constructor of the Toast class with specific Style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Toast(ToastStyle toastStyle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.ToastStyle.html">ToastStyle</a></td>
+        <td><span class="parametername">toastStyle</span></td>
+        <td><p>Construct Style</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="fields">Fields
 </h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Toast.cs/#L56">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Toast_DurationProperty" data-uid="Tizen.NUI.Components.Toast.DurationProperty">DurationProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty DurationProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ToastBindableProperty.cs/#L48">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Toast_FontFamilyProperty" data-uid="Tizen.NUI.Components.Toast.FontFamilyProperty">FontFamilyProperty</h4>
+  <div class="markdown level1 summary"><p>FontFamilyProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty FontFamilyProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Toast.cs/#L36">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Toast_MessageProperty" data-uid="Tizen.NUI.Components.Toast.MessageProperty">MessageProperty</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty MessageProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ToastBindableProperty.cs/#L30">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Toast_PointSizeProperty" data-uid="Tizen.NUI.Components.Toast.PointSizeProperty">PointSizeProperty</h4>
+  <div class="markdown level1 summary"><p>PointSizeProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty PointSizeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ToastBindableProperty.cs/#L84">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Toast_TextAlignmentProperty" data-uid="Tizen.NUI.Components.Toast.TextAlignmentProperty">TextAlignmentProperty</h4>
+  <div class="markdown level1 summary"><p>TextAlignmentProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TextAlignmentProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ToastBindableProperty.cs/#L12">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Toast_TextArrayProperty" data-uid="Tizen.NUI.Components.Toast.TextArrayProperty">TextArrayProperty</h4>
+  <div class="markdown level1 summary"><p>TextArrayProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TextArrayProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ToastBindableProperty.cs/#L66">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Toast_TextColorProperty" data-uid="Tizen.NUI.Components.Toast.TextColorProperty">TextColorProperty</h4>
+  <div class="markdown level1 summary"><p>TextColorProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TextColorProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Toast.cs/#L86">View Source</a>
   </span>
@@ -182,6 +458,96 @@ public Toast()</code></pre>
 
   <div style="margin-bottom: 15px"></div>
 
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ToastBindableProperty.cs/#L120">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Toast_TextLineHeightProperty" data-uid="Tizen.NUI.Components.Toast.TextLineHeightProperty">TextLineHeightProperty</h4>
+  <div class="markdown level1 summary"><p>TextLineHeightProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TextLineHeightProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ToastBindableProperty.cs/#L138">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Toast_TextLineSpaceProperty" data-uid="Tizen.NUI.Components.Toast.TextLineSpaceProperty">TextLineSpaceProperty</h4>
+  <div class="markdown level1 summary"><p>TextLineSpaceProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TextLineSpaceProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/ToastBindableProperty.cs/#L102">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_Toast_TextPaddingProperty" data-uid="Tizen.NUI.Components.Toast.TextPaddingProperty">TextPaddingProperty</h4>
+  <div class="markdown level1 summary"><p>TextPaddingProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty TextPaddingProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
@@ -194,8 +560,7 @@ public Toast()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public uint Duration { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public uint Duration { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -226,8 +591,38 @@ public uint Duration { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public string FontFamily { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string FontFamily { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Toast.cs/#L290">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Toast_Message_" data-uid="Tizen.NUI.Components.Toast.Message*"></a>
+  <h4 id="Tizen_NUI_Components_Toast_Message" data-uid="Tizen.NUI.Components.Toast.Message">Message</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the text toast.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Message { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -258,8 +653,7 @@ public string FontFamily { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public float PointSize { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public float PointSize { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -290,8 +684,7 @@ public float PointSize { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public HorizontalAlignment TextAlignment { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public HorizontalAlignment TextAlignment { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -322,8 +715,7 @@ public HorizontalAlignment TextAlignment { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public string[] TextArray { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string[] TextArray { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -354,8 +746,7 @@ public string[] TextArray { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public Color TextColor { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Color TextColor { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -386,8 +777,7 @@ public Color TextColor { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public uint TextLineHeight { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public uint TextLineHeight { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -418,8 +808,7 @@ public uint TextLineHeight { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public uint TextLineSpace { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public uint TextLineSpace { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -450,8 +839,7 @@ public uint TextLineSpace { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-public Extents TextPadding { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Extents TextPadding { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -475,6 +863,76 @@ public Extents TextPadding { get; set; }</code></pre>
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Toast.cs/#L421">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Toast_ApplyStyle_" data-uid="Tizen.NUI.Components.Toast.ApplyStyle*"></a>
+  <h4 id="Tizen_NUI_Components_Toast_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_" data-uid="Tizen.NUI.Components.Toast.ApplyStyle(Tizen.NUI.BaseComponents.ViewStyle)">ApplyStyle(ViewStyle)</h4>
+  <div class="markdown level1 summary"><p>Apply style to toast.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void ApplyStyle(ViewStyle viewStyle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a></td>
+        <td><span class="parametername">viewStyle</span></td>
+        <td><p>The style to apply.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_">View.ApplyStyle(ViewStyle)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Toast.cs/#L470">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Toast_CreateViewStyle_" data-uid="Tizen.NUI.Components.Toast.CreateViewStyle*"></a>
+  <h4 id="Tizen_NUI_Components_Toast_CreateViewStyle" data-uid="Tizen.NUI.Components.Toast.CreateViewStyle">CreateViewStyle()</h4>
+  <div class="markdown level1 summary"><p>Get Toast style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override ViewStyle CreateViewStyle()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a></td>
+        <td><p>The default toast style.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_CreateViewStyle">Control.CreateViewStyle()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Toast.cs/#L437">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_Toast_Dispose_" data-uid="Tizen.NUI.Components.Toast.Dispose*"></a>
@@ -484,8 +942,7 @@ public Extents TextPadding { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10&quot;)]
-protected override void Dispose(DisposeTypes type)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void Dispose(DisposeTypes type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -506,17 +963,147 @@ protected override void Dispose(DisposeTypes type)</code></pre>
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Tizen.NUI.Components.Control.Dispose(Tizen.NUI.DisposeTypes)</span></div>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_Dispose_Tizen_NUI_DisposeTypes_">Control.Dispose(DisposeTypes)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Toast.cs/#L75">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Toast_FromText_" data-uid="Tizen.NUI.Components.Toast.FromText*"></a>
+  <h4 id="Tizen_NUI_Components_Toast_FromText_System_String_System_UInt32_" data-uid="Tizen.NUI.Components.Toast.FromText(System.String,System.UInt32)">FromText(string, uint)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Toast FromText(string text, uint duration)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">text</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">uint</span></td>
+        <td><span class="parametername">duration</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.Toast.html">Toast</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Toast.cs/#L391">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Toast_OnInitialize_" data-uid="Tizen.NUI.Components.Toast.OnInitialize*"></a>
+  <h4 id="Tizen_NUI_Components_Toast_OnInitialize" data-uid="Tizen.NUI.Components.Toast.OnInitialize">OnInitialize()</h4>
+  <div class="markdown level1 summary"><p>Overrides the parent method.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnInitialize()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_OnInitialize">Control.OnInitialize()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI.Components/Controls/Toast.cs/#L275">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_Toast_Post_" data-uid="Tizen.NUI.Components.Toast.Post*"></a>
+  <h4 id="Tizen_NUI_Components_Toast_Post_Tizen_NUI_Window_" data-uid="Tizen.NUI.Components.Toast.Post(Tizen.NUI.Window)">Post(Window)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Post(Window win)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Window.html">Window</a></td>
+        <td><span class="parametername">win</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

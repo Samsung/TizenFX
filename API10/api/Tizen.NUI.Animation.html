@@ -189,43 +189,6 @@ The default alpha function is linear.<br></p>
   <h3 id="properties">Properties
 </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L464">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Animation_BlendPoint_" data-uid="Tizen.NUI.Animation.BlendPoint*"></a>
-  <h4 id="Tizen_NUI_Animation_BlendPoint" data-uid="Tizen.NUI.Animation.BlendPoint">BlendPoint</h4>
-  <div class="markdown level1 summary"><p>Sets and Gets the blend point to interpolate animate property</p>
-<p>BlendPoint is a value between [0,1], If the value of the keyframe whose progress is 0 is different from the current value,
-the property is animated as it smoothly blends until the progress reaches the blendPoint.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float BlendPoint { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">float</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_NUI_Animation_BlendPoint_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The blend point only affects animation registered with AnimateBetween. Other animations operate the same as when Play() is called.
-And the blend point needs to be set before this animation plays. If the blend point changes after playback, animation continuity cannot be guaranteed.</p>
-</div>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L334">View Source</a>
   </span>
   <a id="Tizen_NUI_Animation_CurrentLoop_" data-uid="Tizen.NUI.Animation.CurrentLoop*"></a>
@@ -360,37 +323,6 @@ animation.AnimateTo(actor, &quot;size&quot;, size);</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L568">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Animation_DestValueList_" data-uid="Tizen.NUI.Animation.DestValueList*"></a>
-  <h4 id="Tizen_NUI_Animation_DestValueList" data-uid="Tizen.NUI.Animation.DestValueList">DestValueList</h4>
-  <div class="markdown level1 summary"><p>Get the list of the destination value for each property of the animation.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IList&lt;string&gt; DestValueList { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">IList&lt;&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L348">View Source</a>
   </span>
   <a id="Tizen_NUI_Animation_DisconnectAction_" data-uid="Tizen.NUI.Animation.DisconnectAction*"></a>
@@ -516,37 +448,6 @@ The default end action is cancel.<br></p>
     <tbody>
       <tr>
         <td><span class="xref">int</span>[]</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L602">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Animation_EndTimeList_" data-uid="Tizen.NUI.Animation.EndTimeList*"></a>
-  <h4 id="Tizen_NUI_Animation_EndTimeList" data-uid="Tizen.NUI.Animation.EndTimeList">EndTimeList</h4>
-  <div class="markdown level1 summary"><p>Get the list of end time for each property of the animation.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IList&lt;int&gt; EndTimeList { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">IList&lt;&gt;</span>&lt;<span class="xref">int</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -721,37 +622,6 @@ One notification can be set on each animation.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L551">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Animation_PropertyList_" data-uid="Tizen.NUI.Animation.PropertyList*"></a>
-  <h4 id="Tizen_NUI_Animation_PropertyList" data-uid="Tizen.NUI.Animation.PropertyList">PropertyList</h4>
-  <div class="markdown level1 summary"><p>Get the list of the properties of the animation.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IList&lt;string&gt; PropertyList { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">IList&lt;&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L393">View Source</a>
   </span>
   <a id="Tizen_NUI_Animation_SpeedFactor_" data-uid="Tizen.NUI.Animation.SpeedFactor*"></a>
@@ -817,37 +687,6 @@ It is also possible to specify a negative multiplier to play the animation in re
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L585">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Animation_StartTimeList_" data-uid="Tizen.NUI.Animation.StartTimeList*"></a>
-  <h4 id="Tizen_NUI_Animation_StartTimeList" data-uid="Tizen.NUI.Animation.StartTimeList">StartTimeList</h4>
-  <div class="markdown level1 summary"><p>Get the list of the start time for each property of the animation.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IList&lt;int&gt; StartTimeList { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">IList&lt;&gt;</span>&lt;<span class="xref">int</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L262">View Source</a>
   </span>
   <a id="Tizen_NUI_Animation_State_" data-uid="Tizen.NUI.Animation.State*"></a>
@@ -880,134 +719,6 @@ It is also possible to specify a negative multiplier to play the animation in re
 
   <h3 id="methods">Methods
 </h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L1058">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Animation_AnimateBetween_" data-uid="Tizen.NUI.Animation.AnimateBetween*"></a>
-  <h4 id="Tizen_NUI_Animation_AnimateBetween_Tizen_NUI_Animatable_System_String_Tizen_NUI_KeyFrames_System_Int32_System_Int32_Tizen_NUI_Animation_Interpolation_Tizen_NUI_AlphaFunction_" data-uid="Tizen.NUI.Animation.AnimateBetween(Tizen.NUI.Animatable,System.String,Tizen.NUI.KeyFrames,System.Int32,System.Int32,Tizen.NUI.Animation.Interpolation,Tizen.NUI.AlphaFunction)">AnimateBetween(Animatable, string, KeyFrames, int, int, Interpolation, AlphaFunction)</h4>
-  <div class="markdown level1 summary"><p>Animates a property between keyframes.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void AnimateBetween(Animatable target, string property, KeyFrames keyFrames, int startTime, int endTime, Animation.Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></td>
-        <td><span class="parametername">target</span></td>
-        <td><p>The target animatable object to animate</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">property</span></td>
-        <td><p>The target property to animate</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.KeyFrames.html">KeyFrames</a></td>
-        <td><span class="parametername">keyFrames</span></td>
-        <td><p>The set of time/value pairs between which to animate</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">int</span></td>
-        <td><span class="parametername">startTime</span></td>
-        <td><p>The start time of animation in milliseconds.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">int</span></td>
-        <td><span class="parametername">endTime</span></td>
-        <td><p>The end time of animation in milliseconds.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a>.<a class="xref" href="Tizen.NUI.Animation.Interpolation.html">Interpolation</a></td>
-        <td><span class="parametername">interpolation</span></td>
-        <td><p>The method used to interpolate between values.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.AlphaFunction.html">AlphaFunction</a></td>
-        <td><span class="parametername">alphaFunction</span></td>
-        <td><p>The alpha function to apply.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L1012">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Animation_AnimateBetween_" data-uid="Tizen.NUI.Animation.AnimateBetween*"></a>
-  <h4 id="Tizen_NUI_Animation_AnimateBetween_Tizen_NUI_Animatable_System_String_Tizen_NUI_KeyFrames_Tizen_NUI_Animation_Interpolation_Tizen_NUI_AlphaFunction_" data-uid="Tizen.NUI.Animation.AnimateBetween(Tizen.NUI.Animatable,System.String,Tizen.NUI.KeyFrames,Tizen.NUI.Animation.Interpolation,Tizen.NUI.AlphaFunction)">AnimateBetween(Animatable, string, KeyFrames, Interpolation, AlphaFunction)</h4>
-  <div class="markdown level1 summary"><p>Animates a property between keyframes.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void AnimateBetween(Animatable target, string property, KeyFrames keyFrames, Animation.Interpolation interpolation = Interpolation.Linear, AlphaFunction alphaFunction = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></td>
-        <td><span class="parametername">target</span></td>
-        <td><p>The target animatable object to animate.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">property</span></td>
-        <td><p>The target property to animate.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.KeyFrames.html">KeyFrames</a></td>
-        <td><span class="parametername">keyFrames</span></td>
-        <td><p>The set of time or value pairs between which to animate.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Animation.html">Animation</a>.<a class="xref" href="Tizen.NUI.Animation.Interpolation.html">Interpolation</a></td>
-        <td><span class="parametername">interpolation</span></td>
-        <td><p>The method used to interpolate between values.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.AlphaFunction.html">AlphaFunction</a></td>
-        <td><span class="parametername">alphaFunction</span></td>
-        <td><p>The alpha function to apply.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L1121">View Source</a>
   </span>
@@ -1074,6 +785,27 @@ It is also possible to specify a negative multiplier to play the animation in re
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when target or property or keyFrames is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it failed to find a property from given string or the given keyFrames has invalid value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1132,118 +864,23 @@ It is also possible to specify a negative multiplier to play the animation in re
       </tr>
     </tbody>
   </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L724">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Animation_AnimateBy_" data-uid="Tizen.NUI.Animation.AnimateBy*"></a>
-  <h4 id="Tizen_NUI_Animation_AnimateBy_Tizen_NUI_Animatable_System_String_System_Object_System_Int32_System_Int32_Tizen_NUI_AlphaFunction_" data-uid="Tizen.NUI.Animation.AnimateBy(Tizen.NUI.Animatable,System.String,System.Object,System.Int32,System.Int32,Tizen.NUI.AlphaFunction)">AnimateBy(Animatable, string, object, int, int, AlphaFunction)</h4>
-  <div class="markdown level1 summary"><p>Animates a property value by a relative amount.<br></p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void AnimateBy(Animatable target, string property, object relativeValue, int startTime, int endTime, AlphaFunction alphaFunction = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
+  <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
+        <th>Condition</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></td>
-        <td><span class="parametername">target</span></td>
-        <td><p>The target animatable object to animate.</p>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when target or property or keyFrames is null.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">property</span></td>
-        <td><p>The target property to animate.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">object</span></td>
-        <td><span class="parametername">relativeValue</span></td>
-        <td><p>The property value will change by this amount.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">int</span></td>
-        <td><span class="parametername">startTime</span></td>
-        <td><p>The start time of the animation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">int</span></td>
-        <td><span class="parametername">endTime</span></td>
-        <td><p>The end time of the animation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.AlphaFunction.html">AlphaFunction</a></td>
-        <td><span class="parametername">alphaFunction</span></td>
-        <td><p>The alpha function to apply.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L673">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Animation_AnimateBy_" data-uid="Tizen.NUI.Animation.AnimateBy*"></a>
-  <h4 id="Tizen_NUI_Animation_AnimateBy_Tizen_NUI_Animatable_System_String_System_Object_Tizen_NUI_AlphaFunction_" data-uid="Tizen.NUI.Animation.AnimateBy(Tizen.NUI.Animatable,System.String,System.Object,Tizen.NUI.AlphaFunction)">AnimateBy(Animatable, string, object, AlphaFunction)</h4>
-  <div class="markdown level1 summary"><p>Animates a property value by a relative amount.<br></p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void AnimateBy(Animatable target, string property, object relativeValue, AlphaFunction alphaFunction = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></td>
-        <td><span class="parametername">target</span></td>
-        <td><p>The target animatable object to animate.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">property</span></td>
-        <td><p>The target property to animate.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">object</span></td>
-        <td><span class="parametername">relativeValue</span></td>
-        <td><p>The property value will change by this amount.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.AlphaFunction.html">AlphaFunction</a></td>
-        <td><span class="parametername">alphaFunction</span></td>
-        <td><p>The alpha function to apply.</p>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it failed to find a property from given string or the given keyFrames has invalid value.</p>
 </td>
       </tr>
     </tbody>
@@ -1312,6 +949,27 @@ It is also possible to specify a negative multiplier to play the animation in re
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when target or property or relativeValue is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it failed to find a property from given string or the given relativeValue is invalid format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1360,6 +1018,27 @@ It is also possible to specify a negative multiplier to play the animation in re
         <td><a class="xref" href="Tizen.NUI.AlphaFunction.html">AlphaFunction</a></td>
         <td><span class="parametername">alphaFunction</span></td>
         <td><p>The alpha function to apply.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when target or property or relativeValue is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it failed to find a property from given string or the given relativeValue is invalid format.</p>
 </td>
       </tr>
     </tbody>
@@ -1489,122 +1168,6 @@ If forward is the zero vector then no rotation will happen.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L857">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Animation_AnimateTo_" data-uid="Tizen.NUI.Animation.AnimateTo*"></a>
-  <h4 id="Tizen_NUI_Animation_AnimateTo_Tizen_NUI_Animatable_System_String_System_Object_System_Int32_System_Int32_Tizen_NUI_AlphaFunction_" data-uid="Tizen.NUI.Animation.AnimateTo(Tizen.NUI.Animatable,System.String,System.Object,System.Int32,System.Int32,Tizen.NUI.AlphaFunction)">AnimateTo(Animatable, string, object, int, int, AlphaFunction)</h4>
-  <div class="markdown level1 summary"><p>Animates a property to a destination value.<br></p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void AnimateTo(Animatable target, string property, object destinationValue, int startTime, int endTime, AlphaFunction alphaFunction = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></td>
-        <td><span class="parametername">target</span></td>
-        <td><p>The target animatable object to animate.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">property</span></td>
-        <td><p>The target property to animate.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">object</span></td>
-        <td><span class="parametername">destinationValue</span></td>
-        <td><p>The destination value.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">int</span></td>
-        <td><span class="parametername">startTime</span></td>
-        <td><p>The start time of the animation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">int</span></td>
-        <td><span class="parametername">endTime</span></td>
-        <td><p>The end time of the animation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.AlphaFunction.html">AlphaFunction</a></td>
-        <td><span class="parametername">alphaFunction</span></td>
-        <td><p>The alpha function to apply.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L806">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Animation_AnimateTo_" data-uid="Tizen.NUI.Animation.AnimateTo*"></a>
-  <h4 id="Tizen_NUI_Animation_AnimateTo_Tizen_NUI_Animatable_System_String_System_Object_Tizen_NUI_AlphaFunction_" data-uid="Tizen.NUI.Animation.AnimateTo(Tizen.NUI.Animatable,System.String,System.Object,Tizen.NUI.AlphaFunction)">AnimateTo(Animatable, string, object, AlphaFunction)</h4>
-  <div class="markdown level1 summary"><p>Animates a property to a destination value.<br></p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void AnimateTo(Animatable target, string property, object destinationValue, AlphaFunction alphaFunction = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></td>
-        <td><span class="parametername">target</span></td>
-        <td><p>The target animatable object to animate.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">string</span></td>
-        <td><span class="parametername">property</span></td>
-        <td><p>The target property to animate.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">object</span></td>
-        <td><span class="parametername">destinationValue</span></td>
-        <td><p>The destination value.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.AlphaFunction.html">AlphaFunction</a></td>
-        <td><span class="parametername">alphaFunction</span></td>
-        <td><p>The alpha function to apply.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L929">View Source</a>
   </span>
   <a id="Tizen_NUI_Animation_AnimateTo_" data-uid="Tizen.NUI.Animation.AnimateTo*"></a>
@@ -1664,6 +1227,27 @@ If forward is the zero vector then no rotation will happen.<br></p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when target or property or destinationValue is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it failed to find a property from given string or the given destinationValue is invalid format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1712,6 +1296,27 @@ If forward is the zero vector then no rotation will happen.<br></p>
         <td><a class="xref" href="Tizen.NUI.AlphaFunction.html">AlphaFunction</a></td>
         <td><span class="parametername">alphaFunction</span></td>
         <td><p>The alpha function to apply.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when target or property or destinationValue is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.ArgumentException</span></td>
+        <td><p>Thrown when it failed to find a property from given string or the given destinationValue is invalid format.</p>
 </td>
       </tr>
     </tbody>
@@ -1870,6 +1475,22 @@ When the delay time is a negative value, it would treat as play immediately.<br>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.ArgumentNullException</span></td>
+        <td><p>Thrown when target is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1906,40 +1527,6 @@ otherwise, it will be ignored.<br></p>
       </tr>
     </tbody>
   </table>
-
-
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Animation/Animation.cs/#L1773">View Source</a>
-  </span>
-  <a id="Tizen_NUI_Animation_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Animation.ReleaseSwigCPtr*"></a>
-  <h4 id="Tizen_NUI_Animation_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Animation.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
-        <td><span class="parametername">swigCPtr</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Tizen.NUI.BaseHandle.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)</span></div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -2016,7 +1603,7 @@ otherwise, it will be ignored.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span></td>
+        <td><span class="xref">System.EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -2045,7 +1632,7 @@ otherwise, it will be ignored.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span></td>
+        <td><span class="xref">System.EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>

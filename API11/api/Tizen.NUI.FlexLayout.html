@@ -97,7 +97,7 @@ We implement the subset of the API in the class below.</p>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class FlexLayout : LayoutGroup, IDisposable, ILayoutParent</code></pre>
+    <pre><code class="lang-csharp hljs">public class FlexLayout : LayoutGroup, ILayoutParent</code></pre>
   </div>
 
 
@@ -118,7 +118,6 @@ We implement the subset of the API in the class below.</p>
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.ILayoutParent.html">ILayoutParent</a></div>
     </dd>
   </dl>
@@ -137,6 +136,188 @@ We implement the subset of the API in the class below.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public FlexLayout()</code></pre>
   </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L44">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_FlexLayout_FlexAlignmentSelfProperty" data-uid="Tizen.NUI.FlexLayout.FlexAlignmentSelfProperty">FlexAlignmentSelfProperty</h4>
+  <div class="markdown level1 summary"><p>FlexAlignmentSelfProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty FlexAlignmentSelfProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L72">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_FlexLayout_FlexAspectRatioProperty" data-uid="Tizen.NUI.FlexLayout.FlexAspectRatioProperty">FlexAspectRatioProperty</h4>
+  <div class="markdown level1 summary"><p>AspectRatioProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty FlexAspectRatioProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L78">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_FlexLayout_FlexBasisProperty" data-uid="Tizen.NUI.FlexLayout.FlexBasisProperty">FlexBasisProperty</h4>
+  <div class="markdown level1 summary"><p>FlexBasisProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty FlexBasisProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L90">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_FlexLayout_FlexGrowProperty" data-uid="Tizen.NUI.FlexLayout.FlexGrowProperty">FlexGrowProperty</h4>
+  <div class="markdown level1 summary"><p>FlexGrowProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty FlexGrowProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L50">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_FlexLayout_FlexPositionTypeProperty" data-uid="Tizen.NUI.FlexLayout.FlexPositionTypeProperty">FlexPositionTypeProperty</h4>
+  <div class="markdown level1 summary"><p>FlexPositionTypeProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty FlexPositionTypeProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L84">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_FlexLayout_FlexShrinkProperty" data-uid="Tizen.NUI.FlexLayout.FlexShrinkProperty">FlexShrinkProperty</h4>
+  <div class="markdown level1 summary"><p>FlexShrinkProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty FlexShrinkProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -172,22 +353,6 @@ This only has effect when items are wrapped to multiple lines using flex wrap.</
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ComponentModel.InvalidEnumArgumentException</span></td>
-        <td><p>Thrown when using invalid arguments that are enumerators.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -217,22 +382,6 @@ The direction of the main-axis which determines the direction that flex items ar
       <tr>
         <td><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a>.<a class="xref" href="Tizen.NUI.FlexLayout.FlexDirection.html">FlexDirection</a></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ComponentModel.InvalidEnumArgumentException</span></td>
-        <td><p>Thrown when using invalid arguments that are enumerators.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -269,22 +418,6 @@ Align items is very similar to <a class="xref" href="Tizen.NUI.FlexLayout.html#T
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ComponentModel.InvalidEnumArgumentException</span></td>
-        <td><p>Thrown when using invalid arguments that are enumerators.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -316,22 +449,6 @@ or vertically within a container with <a class="xref" href="Tizen.NUI.FlexLayout
       <tr>
         <td><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a>.<a class="xref" href="Tizen.NUI.FlexLayout.FlexJustification.html">FlexJustification</a></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ComponentModel.InvalidEnumArgumentException</span></td>
-        <td><p>Thrown when using invalid arguments that are enumerators.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -370,22 +487,6 @@ When wrapping lines <a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_Fl
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ComponentModel.InvalidEnumArgumentException</span></td>
-        <td><p>Thrown when using invalid arguments that are enumerators.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -403,6 +504,47 @@ When wrapping lines <a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_Fl
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
   </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L301">View Source</a>
+  </span>
+  <a id="Tizen_NUI_FlexLayout_Dispose_" data-uid="Tizen.NUI.FlexLayout.Dispose*"></a>
+  <h4 id="Tizen_NUI_FlexLayout_Dispose_System_Boolean_" data-uid="Tizen.NUI.FlexLayout.Dispose(System.Boolean)">Dispose(bool)</h4>
+  <div class="markdown level1 summary"><p>Hidden API (Inhouse API).
+Dispose.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">disposing</span></td>
+        <td><p>true in order to free managed objects</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.LayoutItem.html#Tizen_NUI_LayoutItem_Dispose_System_Boolean_">LayoutItem.Dispose(bool)</a></div>
+  <h5 id="Tizen_NUI_FlexLayout_Dispose_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Following the guide of <a href="https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose">https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose</a>.
+This will replace &quot;protected virtual void Dispose(DisposeTypes type)&quot; which is exactly same in functionality.</p>
+</div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -435,6 +577,23 @@ When wrapping lines <a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_Fl
       </tr>
     </tbody>
   </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L280">View Source</a>
+  </span>
+  <a id="Tizen_NUI_FlexLayout_Finalize_" data-uid="Tizen.NUI.FlexLayout.Finalize*"></a>
+  <h4 id="Tizen_NUI_FlexLayout_Finalize" data-uid="Tizen.NUI.FlexLayout.Finalize">~FlexLayout()</h4>
+  <div class="markdown level1 summary"><p>Hidden API (Inhouse API).
+Destructor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected ~FlexLayout()</code></pre>
+  </div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -481,22 +640,6 @@ When wrapping lines <a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_Fl
       <tr>
         <td><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a>.<a class="xref" href="Tizen.NUI.FlexLayout.AlignmentType.html">AlignmentType</a></td>
         <td><p>The value of alignment self.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">view</code> cannot be null.</p>
 </td>
       </tr>
     </tbody>
@@ -555,22 +698,6 @@ When wrapping lines <a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_Fl
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">view</code> cannot be null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_NUI_FlexLayout_GetFlexAspectRatio_Tizen_NUI_BaseComponents_View__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_FlexLayout_SetFlexAspectRatio_Tizen_NUI_BaseComponents_View_System_Single_">SetFlexAspectRatio(View, float)</a></div>
@@ -621,22 +748,6 @@ When wrapping lines <a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_Fl
       <tr>
         <td><span class="xref">float</span></td>
         <td><p>The value of basis</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">view</code> cannot be null.</p>
 </td>
       </tr>
     </tbody>
@@ -695,22 +806,6 @@ When wrapping lines <a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_Fl
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">view</code> cannot be null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_NUI_FlexLayout_GetFlexGrow_Tizen_NUI_BaseComponents_View__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_FlexLayout_SetFlexGrow_Tizen_NUI_BaseComponents_View_System_Single_">SetFlexGrow(View, float)</a></div>
@@ -761,22 +856,6 @@ When wrapping lines <a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_Fl
       <tr>
         <td><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a>.<a class="xref" href="Tizen.NUI.FlexLayout.PositionType.html">PositionType</a></td>
         <td><p>The value of position type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">view</code> cannot be null.</p>
 </td>
       </tr>
     </tbody>
@@ -835,22 +914,6 @@ When wrapping lines <a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_Fl
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">view</code> cannot be null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_NUI_FlexLayout_GetFlexShrink_Tizen_NUI_BaseComponents_View__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.NUI.FlexLayout.html#Tizen_NUI_FlexLayout_SetFlexShrink_Tizen_NUI_BaseComponents_View_System_Single_">SetFlexShrink(View, float)</a></div>
@@ -892,22 +955,6 @@ Derived classes can use this to set their own child properties on the child layo
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.NUI.LayoutGroup.html#Tizen_NUI_LayoutGroup_OnChildAdd_Tizen_NUI_LayoutItem_">LayoutGroup.OnChildAdd(LayoutItem)</a></div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when child is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -944,22 +991,6 @@ Derived classes can use this to set their own child properties on the child layo
   </table>
   <h5 class="overrides">Overrides</h5>
   <div><a class="xref" href="Tizen.NUI.LayoutGroup.html#Tizen_NUI_LayoutGroup_OnChildRemove_Tizen_NUI_LayoutItem_">LayoutGroup.OnChildRemove(LayoutItem)</a></div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>Thrown when child is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1067,6 +1098,40 @@ Derived classes can use this to set their own child properties on the child layo
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L381">View Source</a>
+  </span>
+  <a id="Tizen_NUI_FlexLayout_ReleaseSwigCPtr_" data-uid="Tizen.NUI.FlexLayout.ReleaseSwigCPtr*"></a>
+  <h4 id="Tizen_NUI_FlexLayout_ReleaseSwigCPtr_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.FlexLayout.ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(HandleRef)</h4>
+  <div class="markdown level1 summary"><p>Hidden API (Inhouse API).
+Release swigCPtr.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Runtime.InteropServices.HandleRef</span></td>
+        <td><span class="parametername">swigCPtr</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.NUI/src/public/Layouting/FlexLayout.cs/#L186">View Source</a>
   </span>
   <a id="Tizen_NUI_FlexLayout_SetFlexAlignmentSelf_" data-uid="Tizen.NUI.FlexLayout.SetFlexAlignmentSelf*"></a>
@@ -1101,27 +1166,6 @@ Alignment self overrides any option set by the parent with <a class="xref" href=
         <td><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a>.<a class="xref" href="Tizen.NUI.FlexLayout.AlignmentType.html">AlignmentType</a></td>
         <td><span class="parametername">value</span></td>
         <td><p>The value of alignment self.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">view</code> cannot be null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">value</code> should be <a class="xref" href="Tizen.NUI.FlexLayout.AlignmentType.html">FlexLayout.AlignmentType</a>.</p>
 </td>
       </tr>
     </tbody>
@@ -1165,27 +1209,6 @@ Aspect ratio accepts any floating point value &gt; 0. this has higher priority t
         <td><span class="xref">float</span></td>
         <td><span class="parametername">value</span></td>
         <td><p>The value of aspect ratio</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">view</code> cannot be null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">value</code> cannot be less than or equal to 0.0f.</p>
 </td>
       </tr>
     </tbody>
@@ -1234,27 +1257,6 @@ The flex basis of an item is the default size of that item, the size of the item
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">view</code> cannot be null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">value</code> cannot be less than 0.0f.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1295,27 +1297,6 @@ A container will distribute any remaining space among its children weighted by t
         <td><span class="xref">float</span></td>
         <td><span class="parametername">value</span></td>
         <td><p>The value of flex</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">view</code> cannot be null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">value</code> cannot be less than 0.0f.</p>
 </td>
       </tr>
     </tbody>
@@ -1365,27 +1346,6 @@ It is instead laid out independent of its siblings. The position is determined b
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">view</code> cannot be null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">value</code> should be <a class="xref" href="Tizen.NUI.FlexLayout.PositionType.html">FlexLayout.PositionType</a>.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -1430,37 +1390,35 @@ Flex shrink accepts any floating point value &gt;= 0, with 1 being the default v
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">view</code> cannot be null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>The <code data-dev-comment-type="paramref" class="paramref">value</code> cannot be less than 0.0f.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="Tizen.NUI.ILayoutParent.html">ILayoutParent</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.ILayoutParent.html">ILayoutParent</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

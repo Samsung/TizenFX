@@ -94,8 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public class StreamRecorder : IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class StreamRecorder : IDisposable</code></pre>
   </div>
 
 
@@ -111,12 +110,6 @@ public class StreamRecorder : IDisposable</code></pre>
 
 
 
-  <dl class="attribute-list stack">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
-    </dd>
-  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
@@ -130,25 +123,8 @@ public class StreamRecorder : IDisposable</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public StreamRecorder()</code></pre>
+    <pre><code class="lang-csharp hljs">public StreamRecorder()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_StreamRecorder__ctor_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Recorder.html">Recorder</a></div>
@@ -169,8 +145,7 @@ public StreamRecorder()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public RecorderState State { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public RecorderState State { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -184,22 +159,6 @@ public RecorderState State { get; }</code></pre>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.RecorderState.html">RecorderState</a></td>
         <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a> has already been disposed.</p>
-</td>
       </tr>
     </tbody>
   </table>
@@ -224,34 +183,12 @@ The recording data is discarded and not written.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public void Cancel()</code></pre>
+    <pre><code class="lang-csharp hljs">public void Cancel()</code></pre>
   </div>
   <h5 id="Tizen_Multimedia_StreamRecorder_Cancel_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The recorder state must be <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Recording">Recording</a> state by <a class="xref" href="Tizen.Multimedia.StreamRecorder.html#Tizen_Multimedia_StreamRecorder_Start">Start()</a> or
 <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Paused">Paused</a> state by <a class="xref" href="Tizen.Multimedia.StreamRecorder.html#Tizen_Multimedia_StreamRecorder_Pause">Pause()</a>.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The recorder is not in the valid state.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a> has already been disposed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_StreamRecorder_Cancel_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorder.html#Tizen_Multimedia_StreamRecorder_Start">Start()</a></div>
@@ -271,8 +208,7 @@ public void Cancel()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public void Commit()</code></pre>
+    <pre><code class="lang-csharp hljs">public void Commit()</code></pre>
   </div>
   <h5 id="Tizen_Multimedia_StreamRecorder_Commit_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The recorder state must be <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Recording">Recording</a> state by <a class="xref" href="Tizen.Multimedia.StreamRecorder.html#Tizen_Multimedia_StreamRecorder_Start">Start()</a> or
@@ -284,32 +220,6 @@ http://tizen.org/privilege/mediastorage is needed if the save path are relevant 
 http://tizen.org/privilege/externalstorage is needed if the save path are relevant to external storage.
 </p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The recorder is not in the valid state.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>The access to the resources can not be granted.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a> has already been disposed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_StreamRecorder_Commit_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorder.html#Tizen_Multimedia_StreamRecorder_Start">Start()</a></div>
@@ -329,8 +239,7 @@ http://tizen.org/privilege/externalstorage is needed if the save path are releva
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public void Dispose()</code></pre>
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
   </div>
   <h5 id="Tizen_Multimedia_StreamRecorder_Dispose_seealso">See Also</h5>
   <div class="seealso">
@@ -388,8 +297,7 @@ public void Dispose()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public IEnumerable&lt;RecorderAudioCodec&gt; GetSupportedAudioCodecs()</code></pre>
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;RecorderAudioCodec&gt; GetSupportedAudioCodecs()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -401,7 +309,7 @@ public IEnumerable&lt;RecorderAudioCodec&gt; GetSupportedAudioCodecs()</code></p
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecorderAudioCodec.html">RecorderAudioCodec</a>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecorderAudioCodec.html">RecorderAudioCodec</a>&gt;</td>
         <td><p>An IEnumerable of <a class="xref" href="Tizen.Multimedia.RecorderAudioCodec.html">RecorderAudioCodec</a> representing the supported audio codecs.</p>
 </td>
       </tr>
@@ -425,8 +333,7 @@ public IEnumerable&lt;RecorderAudioCodec&gt; GetSupportedAudioCodecs()</code></p
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public IEnumerable&lt;RecorderFileFormat&gt; GetSupportedFileFormats()</code></pre>
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;RecorderFileFormat&gt; GetSupportedFileFormats()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -438,7 +345,7 @@ public IEnumerable&lt;RecorderFileFormat&gt; GetSupportedFileFormats()</code></p
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecorderFileFormat.html">RecorderFileFormat</a>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecorderFileFormat.html">RecorderFileFormat</a>&gt;</td>
         <td><p>An IEnumerable of <a class="xref" href="Tizen.Multimedia.RecorderFileFormat.html">RecorderFileFormat</a> representing the supported file formats.</p>
 </td>
       </tr>
@@ -462,8 +369,7 @@ public IEnumerable&lt;RecorderFileFormat&gt; GetSupportedFileFormats()</code></p
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public IEnumerable&lt;RecorderVideoCodec&gt; GetSupportedVideoCodecs()</code></pre>
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;RecorderVideoCodec&gt; GetSupportedVideoCodecs()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -475,7 +381,7 @@ public IEnumerable&lt;RecorderVideoCodec&gt; GetSupportedVideoCodecs()</code></p
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecorderVideoCodec.html">RecorderVideoCodec</a>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecorderVideoCodec.html">RecorderVideoCodec</a>&gt;</td>
         <td><p>An IEnumerable of <a class="xref" href="Tizen.Multimedia.RecorderVideoCodec.html">RecorderVideoCodec</a> representing the supported video codecs.</p>
 </td>
       </tr>
@@ -499,8 +405,7 @@ public IEnumerable&lt;RecorderVideoCodec&gt; GetSupportedVideoCodecs()</code></p
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public IEnumerable&lt;Size&gt; GetSupportedVideoResolutions()</code></pre>
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;Size&gt; GetSupportedVideoResolutions()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -512,8 +417,8 @@ public IEnumerable&lt;Size&gt; GetSupportedVideoResolutions()</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Size.html">Size</a>&gt;</td>
-        <td><p>An IEnumerable of <a class="xref" href="Tizen.Multimedia.Size.html">Size</a> representing the supported resolutions.</p>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<span class="xref">Size</span>&gt;</td>
+        <td><p>An IEnumerable of <see cref="!:Size"></see> representing the supported resolutions.</p>
 </td>
       </tr>
     </tbody>
@@ -536,8 +441,7 @@ public IEnumerable&lt;Size&gt; GetSupportedVideoResolutions()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public void Pause()</code></pre>
+    <pre><code class="lang-csharp hljs">public void Pause()</code></pre>
   </div>
   <h5 id="Tizen_Multimedia_StreamRecorder_Pause_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Recording can be resumed with <a class="xref" href="Tizen.Multimedia.StreamRecorder.html#Tizen_Multimedia_StreamRecorder_Start">Start()</a>.<br>
@@ -546,27 +450,6 @@ The recorder state must be <a class="xref" href="Tizen.Multimedia.RecorderState.
 <br>
 It has no effect if the recorder is already in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Paused">Paused</a> state.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The recorder is not in the valid state.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a> has already been disposed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_StreamRecorder_Pause_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorder.html#Tizen_Multimedia_StreamRecorder_Start">Start()</a></div>
@@ -587,8 +470,7 @@ It has no effect if the recorder is already in the <a class="xref" href="Tizen.M
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public void Prepare(StreamRecorderOptions options)</code></pre>
+    <pre><code class="lang-csharp hljs">public void Prepare(StreamRecorderOptions options)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -611,38 +493,6 @@ public void Prepare(StreamRecorderOptions options)</code></pre>
   <h5 id="Tizen_Multimedia_StreamRecorder_Prepare_Tizen_Multimedia_StreamRecorderOptions__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The recorder must be <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Idle">Idle</a>.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The recorder is not in the valid state.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Both <a class="xref" href="Tizen.Multimedia.StreamRecorderOptions.html#Tizen_Multimedia_StreamRecorderOptions_Audio">Audio</a> and
-<a class="xref" href="Tizen.Multimedia.StreamRecorderOptions.html#Tizen_Multimedia_StreamRecorderOptions_Video">Video</a> are null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">options</code> contains a value which is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a> has already been disposed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_StreamRecorder_Prepare_Tizen_Multimedia_StreamRecorderOptions__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorder.html#Tizen_Multimedia_StreamRecorder_Unprepare">Unprepare()</a></div>
@@ -659,14 +509,13 @@ public void Prepare(StreamRecorderOptions options)</code></pre>
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Multimedia.StreamRecorder/StreamRecorder/StreamRecorder.cs/#L327">View Source</a>
   </span>
   <a id="Tizen_Multimedia_StreamRecorder_PushBuffer_" data-uid="Tizen.Multimedia.StreamRecorder.PushBuffer*"></a>
-  <h4 id="Tizen_Multimedia_StreamRecorder_PushBuffer_Tizen_Multimedia_MediaPacket_" data-uid="Tizen.Multimedia.StreamRecorder.PushBuffer(Tizen.Multimedia.MediaPacket)">PushBuffer(MediaPacket)</h4>
+  <h4 id="Tizen_Multimedia_StreamRecorder_PushBuffer_MediaPacket_" data-uid="Tizen.Multimedia.StreamRecorder.PushBuffer(MediaPacket)">PushBuffer(MediaPacket)</h4>
   <div class="markdown level1 summary"><p>Pushes a packet as recording raw data.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public void PushBuffer(MediaPacket packet)</code></pre>
+    <pre><code class="lang-csharp hljs">public void PushBuffer(MediaPacket packet)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -679,46 +528,17 @@ public void PushBuffer(MediaPacket packet)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.Multimedia.MediaPacket.html">MediaPacket</a></td>
+        <td><span class="xref">MediaPacket</span></td>
         <td><span class="parametername">packet</span></td>
         <td><p>An audio or video packet to record.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Multimedia_StreamRecorder_PushBuffer_Tizen_Multimedia_MediaPacket__remarks">Remarks</h5>
+  <h5 id="Tizen_Multimedia_StreamRecorder_PushBuffer_MediaPacket__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The recorder state must be <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Recording">Recording</a> state by <a class="xref" href="Tizen.Multimedia.StreamRecorder.html#Tizen_Multimedia_StreamRecorder_Start">Start()</a>.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The recorder is not in the valid state.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">packet</code> is an audio packet but audio recording is not enabled(See <a class="xref" href="Tizen.Multimedia.StreamRecorderOptions.html#Tizen_Multimedia_StreamRecorderOptions_Audio">Audio</a>).<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">packet</code> is a video packet but video recording is not enabled(See <a class="xref" href="Tizen.Multimedia.StreamRecorderOptions.html#Tizen_Multimedia_StreamRecorderOptions_Video">Video</a>).<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">packet</code> is a video packet but the <a class="xref" href="Tizen.Multimedia.VideoMediaFormat.html#Tizen_Multimedia_VideoMediaFormat_MimeType">MimeType</a> does not match the video source format.<br>
--or-<br>
-An internal error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a> has already been disposed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Multimedia_StreamRecorder_PushBuffer_Tizen_Multimedia_MediaPacket__seealso">See Also</h5>
+  <h5 id="Tizen_Multimedia_StreamRecorder_PushBuffer_MediaPacket__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorderOptions.html#Tizen_Multimedia_StreamRecorderOptions_Audio">Audio</a></div>
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorderOptions.html#Tizen_Multimedia_StreamRecorderOptions_Video">Video</a></div>
@@ -738,8 +558,7 @@ An internal error occurs.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public void Start()</code></pre>
+    <pre><code class="lang-csharp hljs">public void Start()</code></pre>
   </div>
   <h5 id="Tizen_Multimedia_StreamRecorder_Start_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The recorder state must be <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a> state by
@@ -748,32 +567,6 @@ public void Start()</code></pre>
 <br>
 It has no effect if the recorder is already in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Recording">Recording</a> state.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The recorder is not in the valid state.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>The access of the resources can not be granted.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a> has already been disposed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_StreamRecorder_Start_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorder.html#Tizen_Multimedia_StreamRecorder_Pause">Pause()</a></div>
@@ -794,8 +587,7 @@ It has no effect if the recorder is already in the <a class="xref" href="Tizen.M
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public void Unprepare()</code></pre>
+    <pre><code class="lang-csharp hljs">public void Unprepare()</code></pre>
   </div>
   <h5 id="Tizen_Multimedia_StreamRecorder_Unprepare_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The recorder state must be <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Ready">Ready</a> state by
@@ -804,27 +596,6 @@ The recorder state will be <a class="xref" href="Tizen.Multimedia.RecorderState.
 <br>
 It has no effect if the recorder is already in the <a class="xref" href="Tizen.Multimedia.RecorderState.html#Tizen_Multimedia_RecorderState_Idle">Idle</a> state.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The recorder is not in the valid state.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.StreamRecorder.html">StreamRecorder</a> has already been disposed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_StreamRecorder_Unprepare_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.StreamRecorder.html#Tizen_Multimedia_StreamRecorder_Prepare_Tizen_Multimedia_StreamRecorderOptions_">Prepare(StreamRecorderOptions)</a></div>
@@ -844,8 +615,7 @@ It has no effect if the recorder is already in the <a class="xref" href="Tizen.M
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public event EventHandler&lt;StreamRecorderBufferConsumedEventArgs&gt; BufferConsumed</code></pre>
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;StreamRecorderBufferConsumedEventArgs&gt; BufferConsumed</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -857,7 +627,7 @@ public event EventHandler&lt;StreamRecorderBufferConsumedEventArgs&gt; BufferCon
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.StreamRecorderBufferConsumedEventArgs.html">StreamRecorderBufferConsumedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.StreamRecorderBufferConsumedEventArgs.html">StreamRecorderBufferConsumedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -879,8 +649,7 @@ public event EventHandler&lt;StreamRecorderBufferConsumedEventArgs&gt; BufferCon
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public event EventHandler&lt;StreamRecorderErrorOccurredEventArgs&gt; ErrorOccurred</code></pre>
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;StreamRecorderErrorOccurredEventArgs&gt; ErrorOccurred</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -892,7 +661,7 @@ public event EventHandler&lt;StreamRecorderErrorOccurredEventArgs&gt; ErrorOccur
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.StreamRecorderErrorOccurredEventArgs.html">StreamRecorderErrorOccurredEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.StreamRecorderErrorOccurredEventArgs.html">StreamRecorderErrorOccurredEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -914,8 +683,7 @@ public event EventHandler&lt;StreamRecorderErrorOccurredEventArgs&gt; ErrorOccur
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public event EventHandler&lt;RecordingLimitReachedEventArgs&gt; RecordingLimitReached</code></pre>
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;RecordingLimitReachedEventArgs&gt; RecordingLimitReached</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -927,7 +695,7 @@ public event EventHandler&lt;RecordingLimitReachedEventArgs&gt; RecordingLimitRe
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecordingLimitReachedEventArgs.html">RecordingLimitReachedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecordingLimitReachedEventArgs.html">RecordingLimitReachedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -949,8 +717,7 @@ public event EventHandler&lt;RecordingLimitReachedEventArgs&gt; RecordingLimitRe
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public event EventHandler&lt;RecordingStatusChangedEventArgs&gt; RecordingStatusChanged</code></pre>
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;RecordingStatusChangedEventArgs&gt; RecordingStatusChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -962,7 +729,7 @@ public event EventHandler&lt;RecordingStatusChangedEventArgs&gt; RecordingStatus
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecordingStatusChangedEventArgs.html">RecordingStatusChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.RecordingStatusChangedEventArgs.html">RecordingStatusChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -984,8 +751,7 @@ public event EventHandler&lt;RecordingStatusChangedEventArgs&gt; RecordingStatus
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API10; Will be removed in API12&quot;)]
-public event EventHandler&lt;StreamRecorderStateChangedEventArgs&gt; StateChanged</code></pre>
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;StreamRecorderStateChangedEventArgs&gt; StateChanged</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -997,7 +763,7 @@ public event EventHandler&lt;StreamRecorderStateChangedEventArgs&gt; StateChange
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.StreamRecorderStateChangedEventArgs.html">StreamRecorderStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.StreamRecorderStateChangedEventArgs.html">StreamRecorderStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1010,9 +776,27 @@ public event EventHandler&lt;StreamRecorderStateChangedEventArgs&gt; StateChange
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="implements">Implements</h3>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
   <h3 id="seealso">See Also</h3>
   <div class="seealso">

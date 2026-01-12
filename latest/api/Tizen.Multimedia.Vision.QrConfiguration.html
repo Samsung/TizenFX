@@ -158,31 +158,6 @@
   <h5 id="Tizen_Multimedia_Vision_QrConfiguration__ctor_Tizen_Multimedia_Vision_QrMode_Tizen_Multimedia_Vision_ErrorCorrectionLevel_System_Int32__examples">Examples</h5>
   <pre><code>var qrConfig = new QrConfiguration(QrMode.Numeric, ErrorCorrectionLevel.Medium, 30);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentOutOfRangeException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">version</code> is less than 1.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">version</code> is greater than 40.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">qrMode</code> is invalid.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">ecc</code> is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -219,22 +194,6 @@
   <h5 id="Tizen_Multimedia_Vision_QrConfiguration_DataShape_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The default value is <a class="xref" href="Tizen.Multimedia.Vision.QrShape.html#Tizen_Multimedia_Vision_QrShape_Rectangular">Rectangular</a>.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is not valid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -270,27 +229,6 @@
   <div class="markdown level1 remarks"><p>The mediastorage privilege (<a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a>) is needed if the image path is relevant to media storage.<br>
 The externalstorage privilege (<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a>) is needed if the image path is relevant to external storage.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is zero-length string.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -356,22 +294,6 @@ The externalstorage privilege (<a href="http://tizen.org/privilege/externalstora
   <h5 id="Tizen_Multimedia_Vision_QrConfiguration_FinderShape_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The default value is <a class="xref" href="Tizen.Multimedia.Vision.QrShape.html#Tizen_Multimedia_Vision_QrShape_Rectangular">Rectangular</a>.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is not valid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -438,6 +360,19 @@ The externalstorage privilege (<a href="http://tizen.org/privilege/externalstora
 
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
 </article>
           </div>
 

@@ -94,8 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
-public static class FaceDetector</code></pre>
+    <pre><code class="lang-csharp hljs">public static class FaceDetector</code></pre>
   </div>
 
 
@@ -129,8 +128,7 @@ Each time when DetectAsync is called, a set of the detected faces at the media s
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
-public static Task&lt;Rectangle[]&gt; DetectAsync(MediaVisionSource source, FaceDetectionConfiguration config)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;Rectangle[]&gt; DetectAsync(MediaVisionSource source, FaceDetectionConfiguration config)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -166,7 +164,7 @@ public static Task&lt;Rectangle[]&gt; DetectAsync(MediaVisionSource source, Face
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Rectangle.html">Rectangle</a>[]&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Rectangle.html">Rectangle</a>[]&gt;</td>
         <td><p>A task that represents the asynchronous detect operation.</p>
 </td>
       </tr>
@@ -176,27 +174,6 @@ public static Task&lt;Rectangle[]&gt; DetectAsync(MediaVisionSource source, Face
   <div class="markdown level1 remarks"><p>If you want to use face detection based on inference engine(<a class="xref" href="Tizen.Multimedia.Vision.InferenceBackendType.html">InferenceBackendType</a>),
 please use <a class="xref" href="Tizen.Multimedia.Vision.FaceDetector.html#Tizen_Multimedia_Vision_FaceDetector_DetectAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_InferenceModelConfiguration_">DetectAsync(MediaVisionSource, InferenceModelConfiguration)</a>.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -212,8 +189,7 @@ Each time when DetectAsync is called, a set of the detected faces at the media s
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
-public static Task&lt;IEnumerable&lt;FaceDetectionResult&gt;&gt; DetectAsync(MediaVisionSource source, InferenceModelConfiguration config)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;IEnumerable&lt;FaceDetectionResult&gt;&gt; DetectAsync(MediaVisionSource source, InferenceModelConfiguration config)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -249,7 +225,7 @@ public static Task&lt;IEnumerable&lt;FaceDetectionResult&gt;&gt; DetectAsync(Med
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.FaceDetectionResult.html">FaceDetectionResult</a>&gt;&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Vision.FaceDetectionResult.html">FaceDetectionResult</a>&gt;&gt;</td>
         <td><p>A task that represents the asynchronous detect operation.<br>
 If there's no detected face, empty collection will be returned.</p>
 </td>
@@ -259,37 +235,6 @@ If there's no detected face, empty collection will be returned.</p>
   <h5 id="Tizen_Multimedia_Vision_FaceDetector_DetectAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_InferenceModelConfiguration__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>If there's no detected face, empty collection will be returned.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> or <code data-dev-comment-type="paramref" class="paramref">config</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Internal error.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>The caller has no required privilege.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Multimedia_Vision_FaceDetector_DetectAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_InferenceModelConfiguration__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Vision.InferenceModelConfiguration.html">InferenceModelConfiguration</a></div>
@@ -309,8 +254,7 @@ Each time when DetectAsync is called, a set of the detected faces at the media s
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API12. Will be removed in API15.&quot;)]
-public static Task&lt;Rectangle[]&gt; DetectAsync(MediaVisionSource source)</code></pre>
+    <pre><code class="lang-csharp hljs">public static Task&lt;Rectangle[]&gt; DetectAsync(MediaVisionSource source)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -340,7 +284,7 @@ public static Task&lt;Rectangle[]&gt; DetectAsync(MediaVisionSource source)</cod
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Rectangle.html">Rectangle</a>[]&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Multimedia.Rectangle.html">Rectangle</a>[]&gt;</td>
         <td><p>A task that represents the asynchronous detect operation.</p>
 </td>
       </tr>
@@ -350,29 +294,6 @@ public static Task&lt;Rectangle[]&gt; DetectAsync(MediaVisionSource source)</cod
   <div class="markdown level1 remarks"><p>If you want to use face detection based on inference engine(<a class="xref" href="Tizen.Multimedia.Vision.InferenceBackendType.html">InferenceBackendType</a>),
 please use <a class="xref" href="Tizen.Multimedia.Vision.FaceDetector.html#Tizen_Multimedia_Vision_FaceDetector_DetectAsync_Tizen_Multimedia_Vision_MediaVisionSource_Tizen_Multimedia_Vision_InferenceModelConfiguration_">DetectAsync(MediaVisionSource, InferenceModelConfiguration)</a>.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The feature is not supported.<br>
--or-<br>
-The format of <code data-dev-comment-type="paramref" class="paramref">source</code> is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>

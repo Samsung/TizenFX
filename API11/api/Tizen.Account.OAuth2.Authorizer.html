@@ -96,8 +96,7 @@ Also service provider document needs to be referred for using end points and add
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete]
-public abstract class Authorizer : IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class Authorizer : IDisposable</code></pre>
   </div>
 
 
@@ -117,12 +116,16 @@ public abstract class Authorizer : IDisposable</code></pre>
       <div class="pdl"><a class="xref" href="Tizen.Account.OAuth2.ClientCredentialsAuthorizer.html">ClientCredentialsAuthorizer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Account.OAuth2.ClientCredentialsAuthorizer.html">ClientCredentialsAuthorizer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Account.OAuth2.ClientCredentialsAuthorizer.html">ClientCredentialsAuthorizer</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Account.OAuth2.ClientCredentialsAuthorizer.html">ClientCredentialsAuthorizer</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Account.OAuth2.CodeGrantAuthorizer.html">CodeGrantAuthorizer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Account.OAuth2.CodeGrantAuthorizer.html">CodeGrantAuthorizer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Account.OAuth2.CodeGrantAuthorizer.html">CodeGrantAuthorizer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Account.OAuth2.CodeGrantAuthorizer.html">CodeGrantAuthorizer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Account.OAuth2.ImplicitGrantAuthorizer.html">ImplicitGrantAuthorizer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Account.OAuth2.ImplicitGrantAuthorizer.html">ImplicitGrantAuthorizer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Account.OAuth2.ImplicitGrantAuthorizer.html">ImplicitGrantAuthorizer</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Account.OAuth2.ImplicitGrantAuthorizer.html">ImplicitGrantAuthorizer</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Account.OAuth2.ResourceOwnerPwdCredentialsAuthorizer.html">ResourceOwnerPwdCredentialsAuthorizer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Account.OAuth2.ResourceOwnerPwdCredentialsAuthorizer.html">ResourceOwnerPwdCredentialsAuthorizer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Account.OAuth2.ResourceOwnerPwdCredentialsAuthorizer.html">ResourceOwnerPwdCredentialsAuthorizer</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Account.OAuth2.ResourceOwnerPwdCredentialsAuthorizer.html">ResourceOwnerPwdCredentialsAuthorizer</a></div>
@@ -130,12 +133,6 @@ public abstract class Authorizer : IDisposable</code></pre>
   </dl>
 
 
-  <dl class="attribute-list stack">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
-    </dd>
-  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
@@ -149,8 +146,7 @@ public abstract class Authorizer : IDisposable</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete]
-public Authorizer()</code></pre>
+    <pre><code class="lang-csharp hljs">public Authorizer()</code></pre>
   </div>
 
 
@@ -168,8 +164,7 @@ public Authorizer()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete]
-public bool IsRequestInProgress { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsRequestInProgress { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -202,8 +197,7 @@ public bool IsRequestInProgress { get; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete]
-public void Dispose()</code></pre>
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
   </div>
 
 
@@ -219,8 +213,7 @@ public void Dispose()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete]
-protected virtual void Dispose(bool disposing)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -270,8 +263,7 @@ protected virtual void Dispose(bool disposing)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete]
-public virtual Task&lt;TokenResponse&gt; RefreshAccessTokenAsync(RefreshTokenRequest request)</code></pre>
+    <pre><code class="lang-csharp hljs">public virtual Task&lt;TokenResponse&gt; RefreshAccessTokenAsync(RefreshTokenRequest request)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -301,7 +293,7 @@ public virtual Task&lt;TokenResponse&gt; RefreshAccessTokenAsync(RefreshTokenReq
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Account.OAuth2.TokenResponse.html">TokenResponse</a>&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Account.OAuth2.TokenResponse.html">TokenResponse</a>&gt;</td>
         <td><p>The response containing access token.</p>
 </td>
       </tr>
@@ -317,11 +309,6 @@ public virtual Task&lt;TokenResponse&gt; RefreshAccessTokenAsync(RefreshTokenReq
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when method failed due to invalid argumets</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Account.OAuth2.OAuth2Exception.html">OAuth2Exception</a></td>
         <td><p>Thrown when method fails due to server error</p>
 </td>
@@ -332,9 +319,27 @@ public virtual Task&lt;TokenResponse&gt; RefreshAccessTokenAsync(RefreshTokenReq
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="implements">Implements</h3>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

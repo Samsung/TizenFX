@@ -135,40 +135,9 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ComponentBased.ComponentInfo.html">ComponentInfo</a>&gt;&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ComponentBased.ComponentInfo.html">ComponentInfo</a>&gt;&gt;</td>
         <td><p>A task that represents the asynchronous operation.
-The task result contains an <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span> of the installed component information.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when an invalid argument is provided.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the component does not exist or if a system error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when the system runs out of memory.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when permission is denied to access the component information.</p>
+The task result contains an <see cref="!:IEnumerable&lt;ComponentInfo>"></see> of the installed component information.</p>
 </td>
       </tr>
     </tbody>
@@ -199,40 +168,9 @@ The task result contains an <span class="xref">System.Collections.Generic.IEnume
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ComponentBased.ComponentRunningContext.html">ComponentRunningContext</a>&gt;&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">IEnumerable&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ComponentBased.ComponentRunningContext.html">ComponentRunningContext</a>&gt;&gt;</td>
         <td><p>A task that represents the asynchronous operation.
-The task result contains an <span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span> of the running components.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when an invalid argument is provided.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the component does not exist or if a system error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when the system runs out of memory.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when permission is denied to access the running components.</p>
+The task result contains an <see cref="!:IEnumerable&lt;ComponentRunningContext>"></see> of the running components.</p>
 </td>
       </tr>
     </tbody>
@@ -287,37 +225,6 @@ The task result contains an <span class="xref">System.Collections.Generic.IEnume
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when an invalid argument is provided.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the component does not exist or if a system error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when the system runs out of memory.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when permission is denied to access the component status.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -356,37 +263,6 @@ The task result contains an <span class="xref">System.Collections.Generic.IEnume
   <div class="markdown level1 remarks"><p>This method sends a request to terminate a background component.
 The platform determines if the target component can be terminated based on its current state.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when an invalid argument is provided.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the component does not exist or if a system error occurs.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when the system runs out of memory.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when permission is denied to terminate the component.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>

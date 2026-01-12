@@ -110,12 +110,6 @@
 
 
 
-  <dl class="attribute-list stack">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
-    </dd>
-  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
@@ -150,32 +144,6 @@ TEE identified by the string identifier name (empty or null name denotes a defau
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have the privilege to access this method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The required feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The operation is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -186,14 +154,14 @@ TEE identified by the string identifier name (empty or null name denotes a defau
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Security.TEEC/Tizen.Security.TEEC/Libteec.cs/#L998">View Source</a>
   </span>
   <a id="Tizen_Security_TEEC_Context_AllocateSharedMemory_" data-uid="Tizen.Security.TEEC.Context.AllocateSharedMemory*"></a>
-  <h4 id="Tizen_Security_TEEC_Context_AllocateSharedMemory_System_UInt32_Tizen_Security_TEEC_SharedMemoryFlags_" data-uid="Tizen.Security.TEEC.Context.AllocateSharedMemory(System.UInt32,Tizen.Security.TEEC.SharedMemoryFlags)">AllocateSharedMemory(uint, SharedMemoryFlags)</h4>
+  <h4 id="Tizen_Security_TEEC_Context_AllocateSharedMemory_UInt32_Tizen_Security_TEEC_SharedMemoryFlags_" data-uid="Tizen.Security.TEEC.Context.AllocateSharedMemory(UInt32,Tizen.Security.TEEC.SharedMemoryFlags)">AllocateSharedMemory(UInt32, SharedMemoryFlags)</h4>
   <div class="markdown level1 summary"><p>This function allocates a new block of memory as a block of shared memory within the scope of the
 specified context, in accordance with the parameters.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SharedMemory AllocateSharedMemory(uint size, SharedMemoryFlags flags)</code></pre>
+    <pre><code class="lang-csharp hljs">public SharedMemory AllocateSharedMemory(UInt32 size, SharedMemoryFlags flags)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -206,7 +174,7 @@ specified context, in accordance with the parameters.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">uint</span></td>
+        <td><span class="xref">UInt32</span></td>
         <td><span class="parametername">size</span></td>
         <td><p>The size of shared memory.</p>
 </td>
@@ -231,32 +199,6 @@ specified context, in accordance with the parameters.</p>
       <tr>
         <td><a class="xref" href="Tizen.Security.TEEC.SharedMemory.html">SharedMemory</a></td>
         <td><p>Returns the Shared Memory handler.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have the privilege to access this method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The required feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The operation is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -301,7 +243,7 @@ specified context, in accordance with the parameters.</p>
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Security.TEEC/Tizen.Security.TEEC/Libteec.cs/#L872">View Source</a>
   </span>
   <a id="Tizen_Security_TEEC_Context_OpenSession_" data-uid="Tizen.Security.TEEC.Context.OpenSession*"></a>
-  <h4 id="Tizen_Security_TEEC_Context_OpenSession_System_Guid_System_UInt32_System_Byte___Tizen_Security_TEEC_Parameter___" data-uid="Tizen.Security.TEEC.Context.OpenSession(System.Guid,System.UInt32,System.Byte[],Tizen.Security.TEEC.Parameter[])">OpenSession(Guid, uint, byte[], Parameter[])</h4>
+  <h4 id="Tizen_Security_TEEC_Context_OpenSession_Guid_System_UInt32_System_Byte___Tizen_Security_TEEC_Parameter___" data-uid="Tizen.Security.TEEC.Context.OpenSession(Guid,System.UInt32,System.Byte[],Tizen.Security.TEEC.Parameter[])">OpenSession(Guid, uint, byte[], Parameter[])</h4>
   <div class="markdown level1 summary"><p>This function opens a new session between the client application and the specified trusted application.
 The target trusted application is identified by an UUID passed in the parameter destination.
 There can be up to four parameter objects given in the <code data-dev-comment-type="paramref" class="paramref">paramlist</code> array.</p>
@@ -322,7 +264,7 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Guid</span></td>
+        <td><span class="xref">Guid</span></td>
         <td><span class="parametername">destination</span></td>
         <td><p>The UUID of the destination TA.</p>
 </td>
@@ -363,37 +305,6 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have the privilege to access this method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The required feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The operation is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>One of the arguments is wrong.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -402,7 +313,7 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Security.TEEC/Tizen.Security.TEEC/Libteec.cs/#L894">View Source</a>
   </span>
   <a id="Tizen_Security_TEEC_Context_OpenSession_" data-uid="Tizen.Security.TEEC.Context.OpenSession*"></a>
-  <h4 id="Tizen_Security_TEEC_Context_OpenSession_System_Guid_" data-uid="Tizen.Security.TEEC.Context.OpenSession(System.Guid)">OpenSession(Guid)</h4>
+  <h4 id="Tizen_Security_TEEC_Context_OpenSession_Guid_" data-uid="Tizen.Security.TEEC.Context.OpenSession(Guid)">OpenSession(Guid)</h4>
   <div class="markdown level1 summary"><p>@see OpenSession (Guid destination, uint connectionMethod, byte[] connectionData, Parameter[] paramlist, CancellationToken token).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -421,7 +332,7 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Guid</span></td>
+        <td><span class="xref">Guid</span></td>
         <td><span class="parametername">destination</span></td>
         <td><p>The UUID of the destination TA.</p>
 </td>
@@ -444,32 +355,6 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have the privilege to access this method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The required feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The operation is invalid.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -478,14 +363,14 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Security.TEEC/Tizen.Security.TEEC/Libteec.cs/#L945">View Source</a>
   </span>
   <a id="Tizen_Security_TEEC_Context_OpenSessionAsync_" data-uid="Tizen.Security.TEEC.Context.OpenSessionAsync*"></a>
-  <h4 id="Tizen_Security_TEEC_Context_OpenSessionAsync_System_Guid_System_Threading_CancellationToken_" data-uid="Tizen.Security.TEEC.Context.OpenSessionAsync(System.Guid,System.Threading.CancellationToken)">OpenSessionAsync(Guid, CancellationToken)</h4>
+  <h4 id="Tizen_Security_TEEC_Context_OpenSessionAsync_Guid_CancellationToken_" data-uid="Tizen.Security.TEEC.Context.OpenSessionAsync(Guid,CancellationToken)">OpenSessionAsync(Guid, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>The asynchronous version of the OpenSession.
 @see OpenSession (Guid destination, uint connectionMethod, byte[] connectionData, Parameter[] paramlist, CancellationToken token).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;Session&gt; OpenSessionAsync(Guid destination, CancellationToken token = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;Session&gt; OpenSessionAsync(Guid destination, CancellationToken token = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -498,13 +383,13 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Guid</span></td>
+        <td><span class="xref">Guid</span></td>
         <td><span class="parametername">destination</span></td>
         <td><p>The UUID of the destination TA.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">token</span></td>
         <td><p>The token for a task manipulation.</p>
 </td>
@@ -521,34 +406,8 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Security.TEEC.Session.html">Session</a>&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Security.TEEC.Session.html">Session</a>&gt;</td>
         <td><p>Returns a task executing session open in the background.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have the privilege to access this method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The required feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The operation is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -561,14 +420,14 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Security.TEEC/Tizen.Security.TEEC/Libteec.cs/#L923">View Source</a>
   </span>
   <a id="Tizen_Security_TEEC_Context_OpenSessionAsync_" data-uid="Tizen.Security.TEEC.Context.OpenSessionAsync*"></a>
-  <h4 id="Tizen_Security_TEEC_Context_OpenSessionAsync_System_Guid_System_UInt32_System_Byte___Tizen_Security_TEEC_Parameter___System_Threading_CancellationToken_" data-uid="Tizen.Security.TEEC.Context.OpenSessionAsync(System.Guid,System.UInt32,System.Byte[],Tizen.Security.TEEC.Parameter[],System.Threading.CancellationToken)">OpenSessionAsync(Guid, uint, byte[], Parameter[], CancellationToken)</h4>
+  <h4 id="Tizen_Security_TEEC_Context_OpenSessionAsync_Guid_System_UInt32_System_Byte___Tizen_Security_TEEC_Parameter___CancellationToken_" data-uid="Tizen.Security.TEEC.Context.OpenSessionAsync(Guid,System.UInt32,System.Byte[],Tizen.Security.TEEC.Parameter[],CancellationToken)">OpenSessionAsync(Guid, uint, byte[], Parameter[], CancellationToken)</h4>
   <div class="markdown level1 summary"><p>The asynchronous version of the OpenSession.
 @see OpenSession (Guid destination, uint connectionMethod, byte[] connectionData, Parameter[] paramlist, CancellationToken token).</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;Session&gt; OpenSessionAsync(Guid destination, uint loginMethod, byte[] connectionData, Parameter[] paramlist, CancellationToken token = default)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;Session&gt; OpenSessionAsync(Guid destination, uint loginMethod, byte[] connectionData, Parameter[] paramlist, CancellationToken token = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -581,7 +440,7 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Guid</span></td>
+        <td><span class="xref">Guid</span></td>
         <td><span class="parametername">destination</span></td>
         <td><p>The UUID of the destination TA.</p>
 </td>
@@ -605,7 +464,7 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">token</span></td>
         <td><p>The token for the task manipulation.</p>
 </td>
@@ -622,39 +481,8 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<a class="xref" href="Tizen.Security.TEEC.Session.html">Session</a>&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Security.TEEC.Session.html">Session</a>&gt;</td>
         <td><p>Returns a Task executing the session open in the background.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have the privilege to access this method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The required feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The operation is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>One of the arguments is wrong.</p>
 </td>
       </tr>
     </tbody>
@@ -667,7 +495,7 @@ There can be up to four parameter objects given in the <code data-dev-comment-ty
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Security.TEEC/Tizen.Security.TEEC/Libteec.cs/#L971">View Source</a>
   </span>
   <a id="Tizen_Security_TEEC_Context_RegisterSharedMemory_" data-uid="Tizen.Security.TEEC.Context.RegisterSharedMemory*"></a>
-  <h4 id="Tizen_Security_TEEC_Context_RegisterSharedMemory_System_IntPtr_System_UInt32_Tizen_Security_TEEC_SharedMemoryFlags_" data-uid="Tizen.Security.TEEC.Context.RegisterSharedMemory(System.IntPtr,System.UInt32,Tizen.Security.TEEC.SharedMemoryFlags)">RegisterSharedMemory(IntPtr, uint, SharedMemoryFlags)</h4>
+  <h4 id="Tizen_Security_TEEC_Context_RegisterSharedMemory_IntPtr_UInt32_Tizen_Security_TEEC_SharedMemoryFlags_" data-uid="Tizen.Security.TEEC.Context.RegisterSharedMemory(IntPtr,UInt32,Tizen.Security.TEEC.SharedMemoryFlags)">RegisterSharedMemory(IntPtr, UInt32, SharedMemoryFlags)</h4>
   <div class="markdown level1 summary"><p>This function registers a block of the existing client application memory as a block of shared memory within
 the scope of the specified context, in accordance with the parameters.
 The input <code data-dev-comment-type="paramref" class="paramref">memaddr</code> must point to the shared memory region to register.</p>
@@ -675,7 +503,7 @@ The input <code data-dev-comment-type="paramref" class="paramref">memaddr</code>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SharedMemory RegisterSharedMemory(IntPtr memaddr, uint size, SharedMemoryFlags flags)</code></pre>
+    <pre><code class="lang-csharp hljs">public SharedMemory RegisterSharedMemory(IntPtr memaddr, UInt32 size, SharedMemoryFlags flags)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -688,13 +516,13 @@ The input <code data-dev-comment-type="paramref" class="paramref">memaddr</code>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="xref">IntPtr</span></td>
         <td><span class="parametername">memaddr</span></td>
         <td><p>The address of the shared memory.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">uint</span></td>
+        <td><span class="xref">UInt32</span></td>
         <td><span class="parametername">size</span></td>
         <td><p>The size of the shared memory.</p>
 </td>
@@ -719,37 +547,6 @@ The input <code data-dev-comment-type="paramref" class="paramref">memaddr</code>
       <tr>
         <td><a class="xref" href="Tizen.Security.TEEC.SharedMemory.html">SharedMemory</a></td>
         <td><p>Returns the SharedMemory handler.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have the privilege to access this method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The required feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The operation is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>The argument <code data-dev-comment-type="paramref" class="paramref">memaddr</code> is wrong.</p>
 </td>
       </tr>
     </tbody>
@@ -797,44 +594,22 @@ For memory registered using RegisterSharedMemory, the implementation must deregi
 underlying memory from the TEE, but the memory region will stay available to the client application for
 other purposes as the memory is owned by it.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have the privilege to access this method.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The required feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The operation is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>The argument is wrong.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="implements">Implements</h3>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

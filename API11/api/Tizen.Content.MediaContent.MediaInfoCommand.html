@@ -144,27 +144,6 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">database</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">database</code> has already been disposed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -226,7 +205,7 @@ If you want to access internal storage, you should add privilege <a href="http:/
 If you want to access external storage, you should add privilege <a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a>.<br>
 <br>
 If <a href="http://tizen.org/feature/content.scanning.others">http://tizen.org/feature/content.scanning.others</a> feature is not supported and the specified file is other-type,
-<span class="xref">System.NotSupportedException</span> will be thrown.</p>
+<see cref="!:NotSupportedException"></see> will be thrown.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -238,47 +217,8 @@ If <a href="http://tizen.org/feature/content.scanning.others">http://tizen.org/f
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is a zero-length string, contains only white space.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">path</code> contains a hidden path that starts with '.'.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">path</code> contains a directory containing the &quot;.scan_ignore&quot; file.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.FileNotFoundException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> does not exists.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>The caller has no required privilege.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The required feature is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -291,7 +231,7 @@ If <a href="http://tizen.org/feature/content.scanning.others">http://tizen.org/f
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L706">View Source</a>
   </span>
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_AddAsync_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.AddAsync*"></a>
-  <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_AddAsync_System_Collections_Generic_IEnumerable_System_String__" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.AddAsync(System.Collections.Generic.IEnumerable{System.String})">AddAsync(IEnumerable&lt;string&gt;)</h4>
+  <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_AddAsync_IEnumerable_System_String__" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.AddAsync(IEnumerable{System.String})">AddAsync(IEnumerable&lt;string&gt;)</h4>
   <div class="markdown level1 summary"><p>Adds media files into the media database.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -310,7 +250,7 @@ If <a href="http://tizen.org/feature/content.scanning.others">http://tizen.org/f
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IEnumerable&lt;T&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="xref">IEnumerable&lt;&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
         <td><span class="parametername">paths</span></td>
         <td><p>The paths of the media files to add.</p>
 </td>
@@ -327,13 +267,13 @@ If <a href="http://tizen.org/feature/content.scanning.others">http://tizen.org/f
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><span class="xref">Task</span></td>
         <td><p>A task that represents the asynchronous add operation.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Content_MediaContent_MediaInfoCommand_AddAsync_System_Collections_Generic_IEnumerable_System_String___remarks">Remarks</h5>
+  <h5 id="Tizen_Content_MediaContent_MediaInfoCommand_AddAsync_IEnumerable_System_String___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The paths that already exist in the database will be ignored.<br>
 At most 300 items can be added at once.<br>
 <br>
@@ -341,7 +281,7 @@ If you want to access internal storage, you should add privilege <a href="http:/
 If you want to access external storage, you should add privilege <a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a>.<br>
 <br>
 If <a href="http://tizen.org/feature/content.scanning.others">http://tizen.org/feature/content.scanning.others</a> feature is not supported and the specified file is other-type,
-<span class="xref">System.NotSupportedException</span> will be thrown.</p>
+<see cref="!:NotSupportedException"></see> will be thrown.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -353,47 +293,8 @@ If <a href="http://tizen.org/feature/content.scanning.others">http://tizen.org/f
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">paths</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">paths</code> contains null.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">paths</code> contains the invalid path.<br>
--or-<br>
-The number of <code data-dev-comment-type="paramref" class="paramref">paths</code> is 300 or more items.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.FileNotFoundException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">paths</code> contains a path that does not exist.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>The caller has no required privilege.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The required feature is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -464,28 +365,8 @@ The number of <code data-dev-comment-type="paramref" class="paramref">paths</cod
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
 </td>
       </tr>
     </tbody>
@@ -550,28 +431,8 @@ The number of <code data-dev-comment-type="paramref" class="paramref">paths</cod
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
 </td>
       </tr>
     </tbody>
@@ -590,8 +451,7 @@ The number of <code data-dev-comment-type="paramref" class="paramref">paths</cod
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11; Will be removed in API13.&quot;)]
-public int CountFaceInfo(string mediaId, CountArguments arguments)</code></pre>
+    <pre><code class="lang-csharp hljs">public int CountFaceInfo(string mediaId, CountArguments arguments)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -643,28 +503,8 @@ public int CountFaceInfo(string mediaId, CountArguments arguments)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
 </td>
       </tr>
     </tbody>
@@ -683,8 +523,7 @@ public int CountFaceInfo(string mediaId, CountArguments arguments)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Will be removed in API13.&quot;)]
-public int CountFaceInfo(string mediaId)</code></pre>
+    <pre><code class="lang-csharp hljs">public int CountFaceInfo(string mediaId)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -730,28 +569,8 @@ public int CountFaceInfo(string mediaId)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
 </td>
       </tr>
     </tbody>
@@ -822,23 +641,8 @@ public int CountFaceInfo(string mediaId)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">columnKey</code> is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -903,23 +707,8 @@ public int CountFaceInfo(string mediaId)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">columnKey</code> is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -965,16 +754,6 @@ public int CountFaceInfo(string mediaId)</code></pre>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
       <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
@@ -1041,16 +820,6 @@ public int CountFaceInfo(string mediaId)</code></pre>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
       <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
@@ -1124,28 +893,8 @@ public int CountFaceInfo(string mediaId)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
 </td>
       </tr>
     </tbody>
@@ -1210,28 +959,8 @@ public int CountFaceInfo(string mediaId)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
 </td>
       </tr>
     </tbody>
@@ -1297,25 +1026,8 @@ If the thumbnail already exists for the given media, the existing path will be r
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.<br>
--or-<br>
-An internal error occurred while executing.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
 </td>
       </tr>
       <tr>
@@ -1324,25 +1036,10 @@ An internal error occurred while executing.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.FileNotFoundException</span></td>
-        <td><p>The file of the media does not exists; moved or deleted.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.UnsupportedContentException.html">UnsupportedContentException</a></td>
         <td><p>The thumbnail is not available for the given media.<br>
 -or-<br>
 The media is in the external USB storage.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>The caller has no required privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -1355,15 +1052,14 @@ The media is in the external USB storage.</p>
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L915">View Source</a>
   </span>
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_CreateThumbnailAsync_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CreateThumbnailAsync*"></a>
-  <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_CreateThumbnailAsync_System_String_System_Threading_CancellationToken_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CreateThumbnailAsync(System.String,System.Threading.CancellationToken)">CreateThumbnailAsync(string, CancellationToken)</h4>
+  <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_CreateThumbnailAsync_System_String_CancellationToken_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.CreateThumbnailAsync(System.String,CancellationToken)">CreateThumbnailAsync(string, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Creates the thumbnail image for the given media.
 If the thumbnail already exists for the given media, the existing path will be returned.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10; Will be removed in API12. Please use CreateThumbnail instead.&quot;)]
-public Task&lt;string&gt; CreateThumbnailAsync(string mediaId, CancellationToken cancellationToken)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; CreateThumbnailAsync(string mediaId, CancellationToken cancellationToken)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1382,7 +1078,7 @@ public Task&lt;string&gt; CreateThumbnailAsync(string mediaId, CancellationToken
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
         <td><p>The token to cancel the operation.</p>
 </td>
@@ -1399,7 +1095,7 @@ public Task&lt;string&gt; CreateThumbnailAsync(string mediaId, CancellationToken
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
         <td><p>A task that represents the asynchronous operation. The task result contains the thumbnail path.</p>
 </td>
       </tr>
@@ -1415,40 +1111,13 @@ public Task&lt;string&gt; CreateThumbnailAsync(string mediaId, CancellationToken
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.<br>
--or-<br>
-An internal error occurred while executing.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.RecordNotFoundException.html">RecordNotFoundException</a></td>
         <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> does not exist in the database.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.FileNotFoundException</span></td>
-        <td><p>The file of the media does not exists; moved or deleted.</p>
 </td>
       </tr>
       <tr>
@@ -1475,8 +1144,7 @@ If the thumbnail already exists for the given media, the existing path will be r
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10; Will be removed in API12. Please use CreateThumbnail instead.&quot;)]
-public Task&lt;string&gt; CreateThumbnailAsync(string mediaId)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; CreateThumbnailAsync(string mediaId)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1506,7 +1174,7 @@ public Task&lt;string&gt; CreateThumbnailAsync(string mediaId)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">string</span>&gt;</td>
         <td><p>A task that represents the asynchronous operation. The task result contains the thumbnail path.</p>
 </td>
       </tr>
@@ -1522,40 +1190,13 @@ public Task&lt;string&gt; CreateThumbnailAsync(string mediaId)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.<br>
--or-<br>
-An internal error occurred while executing.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.RecordNotFoundException.html">RecordNotFoundException</a></td>
         <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> does not exist in the database.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.FileNotFoundException</span></td>
-        <td><p>The file of the media does not exists; moved or deleted.</p>
 </td>
       </tr>
       <tr>
@@ -1620,7 +1261,7 @@ The media is in the external USB storage.</p>
   <h5 id="Tizen_Content_MediaContent_MediaInfoCommand_Delete_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html#Tizen_Content_MediaContent_MediaDatabase_ScanFile_System_String_">ScanFile(string)</a> or the <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html#Tizen_Content_MediaContent_MediaDatabase_ScanFolderAsync_System_String_">ScanFolderAsync(string)</a> can be used instead.<br>
 Since API level 6, if the file related with the <code data-dev-comment-type="paramref" class="paramref">mediaId</code> in DB still exists in file system before calling this method,
-<span class="xref">System.InvalidOperationException</span> will be thrown to keep consistency in DB.</p>
+<see cref="!:InvalidOperationException"></see> will be thrown to keep consistency in DB.</p>
 </div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1632,35 +1273,8 @@ Since API level 6, if the file related with the <code data-dev-comment-type="par
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.<br>
--or-<br>
-The file related with the <code data-dev-comment-type="paramref" class="paramref">mediaId</code> in DB still exists in file system. (Since API level 6)</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>The caller has no required privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -1673,15 +1287,14 @@ The file related with the <code data-dev-comment-type="paramref" class="paramref
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaInfoCommand.cs/#L1114">View Source</a>
   </span>
   <a id="Tizen_Content_MediaContent_MediaInfoCommand_DetectFaceAsync_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.DetectFaceAsync*"></a>
-  <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_DetectFaceAsync_System_String_System_Threading_CancellationToken_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.DetectFaceAsync(System.String,System.Threading.CancellationToken)">DetectFaceAsync(string, CancellationToken)</h4>
+  <h4 id="Tizen_Content_MediaContent_MediaInfoCommand_DetectFaceAsync_System_String_CancellationToken_" data-uid="Tizen.Content.MediaContent.MediaInfoCommand.DetectFaceAsync(System.String,CancellationToken)">DetectFaceAsync(string, CancellationToken)</h4>
   <div class="markdown level1 summary"><p>Creates the thumbnail image for the given media.
 If the thumbnail already exists for the given media, the existing path will be returned.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11; Will be removed in API13.&quot;)]
-public Task&lt;int&gt; DetectFaceAsync(string mediaId, CancellationToken cancellationToken)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;int&gt; DetectFaceAsync(string mediaId, CancellationToken cancellationToken)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1700,7 +1313,7 @@ public Task&lt;int&gt; DetectFaceAsync(string mediaId, CancellationToken cancell
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Threading.CancellationToken</span></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
         <td><p>The token to cancel the operation.</p>
 </td>
@@ -1717,13 +1330,13 @@ public Task&lt;int&gt; DetectFaceAsync(string mediaId, CancellationToken cancell
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">int</span>&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">int</span>&gt;</td>
         <td><p>A task that represents the asynchronous operation. The task result contains the number of faces detected.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Content_MediaContent_MediaInfoCommand_DetectFaceAsync_System_String_System_Threading_CancellationToken__remarks">Remarks</h5>
+  <h5 id="Tizen_Content_MediaContent_MediaInfoCommand_DetectFaceAsync_System_String_CancellationToken__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Media in the external storage is not supported, with the exception of MMC.
 Only JPEG, PNG, BMP images are supported.</p>
 </div>
@@ -1737,25 +1350,8 @@ Only JPEG, PNG, BMP images are supported.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.<br>
--or-<br>
-An internal error occurred while executing.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
 </td>
       </tr>
       <tr>
@@ -1764,25 +1360,10 @@ An internal error occurred while executing.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.FileNotFoundException</span></td>
-        <td><p>The file of the media does not exists; moved or deleted.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.UnsupportedContentException.html">UnsupportedContentException</a></td>
         <td><p>Face detection is not available for the given media.<br>
 -or-<br>
 The media is in the external USB storage.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The required feature is not supported.</p>
 </td>
       </tr>
     </tbody>
@@ -1802,8 +1383,7 @@ If the thumbnail already exists for the given media, the existing path will be r
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11; Will be removed in API13.&quot;)]
-public Task&lt;int&gt; DetectFaceAsync(string mediaId)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;int&gt; DetectFaceAsync(string mediaId)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1833,7 +1413,7 @@ public Task&lt;int&gt; DetectFaceAsync(string mediaId)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">int</span>&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">int</span>&gt;</td>
         <td><p>A task that represents the asynchronous add operation. The task result contains the number of faces detected.</p>
 </td>
       </tr>
@@ -1849,25 +1429,8 @@ public Task&lt;int&gt; DetectFaceAsync(string mediaId)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.<br>
--or-<br>
-An internal error occurred while executing.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
 </td>
       </tr>
       <tr>
@@ -1876,28 +1439,8 @@ An internal error occurred while executing.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.FileNotFoundException</span></td>
-        <td><p>The file of the media does not exists; moved or deleted.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.UnsupportedContentException.html">UnsupportedContentException</a></td>
         <td><p>Face detection is not available for the given media.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>The required feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>The caller has no required privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -1974,46 +1517,8 @@ If you want to access external storage, you should add privilege <a href="http:/
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">newPath</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">newPath</code> is a zero-length string, contains only white space.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">newPath</code> contains a hidden directory that starts with '.'.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">newPath</code> contains a directory containing the &quot;.scan_ignore&quot; file.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.FileNotFoundException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">newPath</code> does not exists.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>The caller has no required privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -2084,28 +1589,8 @@ If you want to access external storage, you should add privilege <a href="http:/
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
 </td>
       </tr>
     </tbody>
@@ -2170,28 +1655,8 @@ If you want to access external storage, you should add privilege <a href="http:/
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
 </td>
       </tr>
     </tbody>
@@ -2256,28 +1721,8 @@ If you want to access external storage, you should add privilege <a href="http:/
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">keyword</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>The caller has no required privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -2296,8 +1741,7 @@ If you want to access external storage, you should add privilege <a href="http:/
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11; Will be removed in API13.&quot;)]
-public MediaDataReader&lt;FaceInfo&gt; SelectFaceInfo(string mediaId, SelectArguments arguments)</code></pre>
+    <pre><code class="lang-csharp hljs">public MediaDataReader&lt;FaceInfo&gt; SelectFaceInfo(string mediaId, SelectArguments arguments)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2349,28 +1793,8 @@ public MediaDataReader&lt;FaceInfo&gt; SelectFaceInfo(string mediaId, SelectArgu
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
 </td>
       </tr>
     </tbody>
@@ -2389,8 +1813,7 @@ public MediaDataReader&lt;FaceInfo&gt; SelectFaceInfo(string mediaId, SelectArgu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11; Will be removed in API13.&quot;)]
-public MediaDataReader&lt;FaceInfo&gt; SelectFaceInfo(string mediaId)</code></pre>
+    <pre><code class="lang-csharp hljs">public MediaDataReader&lt;FaceInfo&gt; SelectFaceInfo(string mediaId)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -2436,28 +1859,8 @@ public MediaDataReader&lt;FaceInfo&gt; SelectFaceInfo(string mediaId)</code></pr
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
 </td>
       </tr>
     </tbody>
@@ -2528,23 +1931,8 @@ public MediaDataReader&lt;FaceInfo&gt; SelectFaceInfo(string mediaId)</code></pr
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">columnKey</code> is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -2609,23 +1997,8 @@ public MediaDataReader&lt;FaceInfo&gt; SelectFaceInfo(string mediaId)</code></pr
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">columnKey</code> is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -2671,16 +2044,6 @@ public MediaDataReader&lt;FaceInfo&gt; SelectFaceInfo(string mediaId)</code></pr
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
       <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
@@ -2748,28 +2111,8 @@ public MediaDataReader&lt;FaceInfo&gt; SelectFaceInfo(string mediaId)</code></pr
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
 </td>
       </tr>
     </tbody>
@@ -2833,16 +2176,6 @@ public MediaDataReader&lt;FaceInfo&gt; SelectFaceInfo(string mediaId)</code></pr
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
       <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
@@ -2916,28 +2249,8 @@ public MediaDataReader&lt;FaceInfo&gt; SelectFaceInfo(string mediaId)</code></pr
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
 </td>
       </tr>
     </tbody>
@@ -3002,28 +2315,8 @@ public MediaDataReader&lt;FaceInfo&gt; SelectFaceInfo(string mediaId)</code></pr
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
 </td>
       </tr>
     </tbody>
@@ -3094,33 +2387,8 @@ public MediaDataReader&lt;FaceInfo&gt; SelectFaceInfo(string mediaId)</code></pr
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> is disconnected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ObjectDisposedException</span></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while executing the command.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentNullException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">mediaId</code> is a zero-length string, contains only white space.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>The caller has no required privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -3129,6 +2397,28 @@ public MediaDataReader&lt;FaceInfo&gt; SelectFaceInfo(string mediaId)</code></pr
 
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
 </article>
           </div>
 

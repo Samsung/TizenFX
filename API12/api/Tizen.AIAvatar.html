@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace Tizen.AIAvatar
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace Tizen.AIAvatar
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.AIAvatar">
+
+  <h1 id="Tizen_AIAvatar" data-uid="Tizen.AIAvatar" class="text-break">Namespace Tizen.AIAvatar
+</h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+</h3>
+      <h4><a class="xref" href="Tizen.AIAvatar.AnimationInfo.html">AnimationInfo</a></h4>
+      <section><p>The AnimationInfo class manages animation data for an Avatar, including motion data and names. It is not meant to be directly edited by users or editors.</p>
+</section>
+      <h4><a class="xref" href="Tizen.AIAvatar.Avatar.html">Avatar</a></h4>
+      <section><p>The Avatar class displays 3D avatars and provides easy access to their animations.
+This class is a sub-class of the Model class which allows us to easily control the Avatar's animations.
+Avatar also supports AR Emoji for humanoid-based 3D models.</p>
+</section>
+      <h4><a class="xref" href="Tizen.AIAvatar.AvatarExtension.html">AvatarExtension</a></h4>
+      <section></section>
+      <h4><a class="xref" href="Tizen.AIAvatar.AvatarInfo.html">AvatarInfo</a></h4>
+      <section><p>The AvatarInfo class describes the properties of an Avatar object.
+It includes information such as the name of the avatar, its thumbnail image, and associated resources.
+This class helps users manage and organize their Avatar assets more effectively.</p>
+</section>
+      <h4><a class="xref" href="Tizen.AIAvatar.AvatarMotionChangedEventArgs.html">AvatarMotionChangedEventArgs</a></h4>
+      <section><p>This class provides arguments for handling avatar motion change events.
+<member name="Previous"> The previous state of the avatar's motion.</member><br>
+<member name="Current"> The current state of the avatar's motion.</member></p>
+</section>
+      <h4><a class="xref" href="Tizen.AIAvatar.AvatarProperties.html">AvatarProperties</a></h4>
+      <section><p>The Avatar class contains an inner AvatarProperties class.
+This class manages AvatarProperty information using the AvatarPropertyMapper class.
+By default, it includes jointMapper, blendShapeMapper, and nodeMapper, which automatically generate Properties based on model information.
+This structure enables users to work with Avatar properties in a more convenient way.</p>
+</section>
+      <h4><a class="xref" href="Tizen.AIAvatar.AvatarPropertyMapper.html">AvatarPropertyMapper</a></h4>
+      <section><p>The AvatarPropertyMapper class manages property mapping information for specific attributes of an Avatar model.
+It primarily maps the names of AvatarProperty to their actual storage locations.
+By doing so, developers can directly read or write the values of these properties using their respective names.
+This approach provides consistency and convenience when working with Avatar models.</p>
+</section>
+      <h4><a class="xref" href="Tizen.AIAvatar.EmotionController.html">EmotionController</a></h4>
+      <section><p>Manages facial expression control for avatars based on input text sentiment analysis results.</p>
+</section>
+      <h4><a class="xref" href="Tizen.AIAvatar.LipSyncController.html">LipSyncController</a></h4>
+      <section><p>A controller class used to manage lip sync functionality for avatars.</p>
+</section>
+      <h4><a class="xref" href="Tizen.AIAvatar.SceneViewExtension.html">SceneViewExtension</a></h4>
+      <section></section>
+    <h3 id="structs">Structs
+</h3>
+      <h4><a class="xref" href="Tizen.AIAvatar.VoiceInfo.html">VoiceInfo</a></h4>
+      <section><p>VoiceInfo stores information about a voice.
+The 'Language' field stores the language of the voice
+The 'Type' field stores the type of the voice.</p>
+</section>
+    <h3 id="enums">Enums
+</h3>
+      <h4><a class="xref" href="Tizen.AIAvatar.AvatarInfoOption.html">AvatarInfoOption</a></h4>
+      <section><p>The AvatarInfoOption enumeration defines the options that determine how AvatarInfo instances are displayed or managed.
+Currently it has two values: Thumbnail and Resource.</p>
+</section>
+      <h4><a class="xref" href="Tizen.AIAvatar.AvatarMotionState.html">AvatarMotionState</a></h4>
+      <section><p>Enumeration for the states.</p>
+</section>
+      <h4><a class="xref" href="Tizen.AIAvatar.BlendShapeType.html">BlendShapeType</a></h4>
+      <section><p>The type of predefined blendshape. We can customize each type name by &quot;TODO_mapper&quot;
+The basic names provided by AIAvatar to control the default avatar of AREmoji.
+Contains the BlendShape information of AIAvatar.</p>
+</section>
+      <h4><a class="xref" href="Tizen.AIAvatar.JointType.html">JointType</a></h4>
+      <section><p>The type of predefined skeleton joint. We can customize each type name by &quot;TODO_mapper&quot;
+The basic names provided by AIAvatar to control the default avatar of AREmoji.
+Contains the joint information of AIAvatar.</p>
+</section>
+      <h4><a class="xref" href="Tizen.AIAvatar.NodeType.html">NodeType</a></h4>
+      <section><p>The type of predefined node. We can customize each type name by &quot;TODO_mapper&quot;
+The basic names provided by AIAvatar to control the default avatar of AREmoji.
+Contains the node information of AIAvatar.</p>
+</section>
+      <h4><a class="xref" href="Tizen.AIAvatar.VoiceType.html">VoiceType</a></h4>
+      <section><p>VoiceType is an enum that represents various types of voices.</p>
+</section>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2025 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

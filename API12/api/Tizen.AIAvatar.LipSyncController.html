@@ -1,0 +1,982 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class LipSyncController
+ </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class LipSyncController
+ ">
+    <meta name="generator" content="docfx ">
+    <meta name="version" content="API12">
+  
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <meta property="docfx:navrel" content="../../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../../">
+  
+  </head>  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../../index.html">
+                <img id="logo" class="svg" src="../../images/tizen_logo.png" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list"> <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Tizen.AIAvatar.LipSyncController">
+
+
+  <h1 id="Tizen_AIAvatar_LipSyncController" data-uid="Tizen.AIAvatar.LipSyncController" class="text-break">Class LipSyncController
+</h1>
+  <h3 class="hidden-anchor" id="definition"><a href="#definition"></a>Definition</h3>
+
+  <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.html">Tizen</a>.<a class="xref" href="Tizen.AIAvatar.html">AIAvatar</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.AIAvatar.dll</dd></dl>
+
+  <div class="markdown level0 summary"><p>A controller class used to manage lip sync functionality for avatars.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class LipSyncController : IDisposable</code></pre>
+  </div>
+
+
+  <dl class="attribute-list stack">
+    <dt>Inheritance</dt>
+    <dd>
+      <div class="pdl-holder">
+        <div class="pdl"><span class="xref">object</span></div>
+        <div><span class="xref">LipSyncController</span></div>
+      </div>
+    </dd>
+  </dl>
+
+
+
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L48">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController__ctor_" data-uid="Tizen.AIAvatar.LipSyncController.#ctor*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController__ctor_Tizen_AIAvatar_Avatar_" data-uid="Tizen.AIAvatar.LipSyncController.#ctor(Tizen.AIAvatar.Avatar)">LipSyncController(Avatar)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the <a class="xref" href="Tizen.AIAvatar.LipSyncController.html">LipSyncController</a> class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public LipSyncController(Avatar avatar)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.AIAvatar.Avatar.html">Avatar</a></td>
+        <td><span class="parametername">avatar</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L140">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_CurrentTTSClient_" data-uid="Tizen.AIAvatar.LipSyncController.CurrentTTSClient*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_CurrentTTSClient" data-uid="Tizen.AIAvatar.LipSyncController.CurrentTTSClient">CurrentTTSClient</h4>
+  <div class="markdown level1 summary"><p>Gets the current Text-To-Speech client associated with the Lip Sync Controller.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TtsClient CurrentTTSClient { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Uix.Tts.TtsClient.html">TtsClient</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L599">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_DeinitializeMic_" data-uid="Tizen.AIAvatar.LipSyncController.DeinitializeMic*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_DeinitializeMic" data-uid="Tizen.AIAvatar.LipSyncController.DeinitializeMic">DeinitializeMic()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DeinitializeMic()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L204">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_DeInitializeTTS_" data-uid="Tizen.AIAvatar.LipSyncController.DeInitializeTTS*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_DeInitializeTTS" data-uid="Tizen.AIAvatar.LipSyncController.DeInitializeTTS">DeInitializeTTS()</h4>
+  <div class="markdown level1 summary"><p>Deinitializes the Text-To-Speech system for use with the Lip Sync Controller.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void DeInitializeTTS()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L652">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_Dispose_" data-uid="Tizen.AIAvatar.LipSyncController.Dispose*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_Dispose" data-uid="Tizen.AIAvatar.LipSyncController.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Releases unmanaged resources used by this instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L226">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_GetSupportedVoices_" data-uid="Tizen.AIAvatar.LipSyncController.GetSupportedVoices*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_GetSupportedVoices" data-uid="Tizen.AIAvatar.LipSyncController.GetSupportedVoices">GetSupportedVoices()</h4>
+  <div class="markdown level1 summary"><p>Returns a list of supported voices for the Text-To-Speech system.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;VoiceInfo&gt; GetSupportedVoices()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">List&lt;&gt;</span>&lt;<a class="xref" href="Tizen.AIAvatar.VoiceInfo.html">VoiceInfo</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L589">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_InitializeMic_" data-uid="Tizen.AIAvatar.LipSyncController.InitializeMic*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_InitializeMic" data-uid="Tizen.AIAvatar.LipSyncController.InitializeMic">InitializeMic()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void InitializeMic()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L146">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_InitializeTTS_" data-uid="Tizen.AIAvatar.LipSyncController.InitializeTTS*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_InitializeTTS" data-uid="Tizen.AIAvatar.LipSyncController.InitializeTTS">InitializeTTS()</h4>
+  <div class="markdown level1 summary"><p>Initializes the Text-To-Speech system for use with the Lip Sync Controller.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void InitializeTTS()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L629">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_PauseMic_" data-uid="Tizen.AIAvatar.LipSyncController.PauseMic*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_PauseMic" data-uid="Tizen.AIAvatar.LipSyncController.PauseMic">PauseMic()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PauseMic()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L544">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_PauseTTS_" data-uid="Tizen.AIAvatar.LipSyncController.PauseTTS*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_PauseTTS" data-uid="Tizen.AIAvatar.LipSyncController.PauseTTS">PauseTTS()</h4>
+  <div class="markdown level1 summary"><p>Pauses the currently playing Text-To-Speech audio.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void PauseTTS()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L239">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_PlayLipSync_" data-uid="Tizen.AIAvatar.LipSyncController.PlayLipSync*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_PlayLipSync_System_Byte___System_Int32_" data-uid="Tizen.AIAvatar.LipSyncController.PlayLipSync(System.Byte[],System.Int32)">PlayLipSync(byte[], int)</h4>
+  <div class="markdown level1 summary"><p>Plays the given audio with LipSync and returns whether it was successful or not.
+If the lip syncer is null, logs an error and returns false.
+The lipSyncer plays the audio using the provided byte array and sample rate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool PlayLipSync(byte[] audio, int sampleRate = 24000)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">byte</span>[]</td>
+        <td><span class="parametername">audio</span></td>
+        <td><p>The audio data to be played in a byte array format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">sampleRate</span></td>
+        <td><p>The sampling rate of the audio data, default value is 24000 Hz.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L258">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_PlayLipSync_" data-uid="Tizen.AIAvatar.LipSyncController.PlayLipSync*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_PlayLipSync_System_String_System_Int32_" data-uid="Tizen.AIAvatar.LipSyncController.PlayLipSync(System.String,System.Int32)">PlayLipSync(string, int)</h4>
+  <div class="markdown level1 summary"><p>Plays the given audio with LipSync and returns whether it was successful or not.
+If the lip syncer is null, logs an error and returns false.
+The lipSyncer plays the audio using the provided byte array and sample rate.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool PlayLipSync(string path, int sampleRate = 24000)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">path</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">sampleRate</span></td>
+        <td><p>The sampling rate of the audio data, default value is 16000 Hz.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L361">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_PlayPreparedTTS_" data-uid="Tizen.AIAvatar.LipSyncController.PlayPreparedTTS*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_PlayPreparedTTS" data-uid="Tizen.AIAvatar.LipSyncController.PlayPreparedTTS">PlayPreparedTTS()</h4>
+  <div class="markdown level1 summary"><p>Plays the previously prepared Text-To-Speech audio data.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool PlayPreparedTTS()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p><code>True</code> if playback started successfully, otherwise <code>False</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L506">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_PlayTTS_" data-uid="Tizen.AIAvatar.LipSyncController.PlayTTS*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_PlayTTS_System_String_System_String_EventHandler_" data-uid="Tizen.AIAvatar.LipSyncController.PlayTTS(System.String,System.String,EventHandler)">PlayTTS(string, string, EventHandler)</h4>
+  <div class="markdown level1 summary"><p>Asynchronously converts the given text into speech using the specified language code and plays the resulting audio once it's ready.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool PlayTTS(string text, string lang = &quot;ko_KR&quot;, EventHandler ttsReadyFinishedCallback = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">text</span></td>
+        <td><p>The text to convert into speech.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">lang</span></td>
+        <td><p>The two-letter ISO 639-1 language code to use for converting the text into speech (default is Korean - ko_KR).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">EventHandler</span></td>
+        <td><span class="parametername">ttsReadyFinishedCallback</span></td>
+        <td><p>An optional callback that will be invoked when the TTS process is complete.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p><code>True</code> if asynchronous conversion was initiated successfully, otherwise <code>False</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L421">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_PlayTTS_" data-uid="Tizen.AIAvatar.LipSyncController.PlayTTS*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_PlayTTS_System_String_System_String_" data-uid="Tizen.AIAvatar.LipSyncController.PlayTTS(System.String,System.String)">PlayTTS(string, string)</h4>
+  <div class="markdown level1 summary"><p>Converts the given text into speech using the specified language code and plays the resulting audio immediately.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool PlayTTS(string text, string lang = &quot;ko_KR&quot;)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">text</span></td>
+        <td><p>The text to convert into speech.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">lang</span></td>
+        <td><p>The two-letter ISO 639-1 language code to use for converting the text into speech (default is Korean - ko_KR).</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p><code>True</code> if playback started successfully, otherwise <code>False</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L379">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_PlayTTS_" data-uid="Tizen.AIAvatar.LipSyncController.PlayTTS*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_PlayTTS_System_String_Tizen_AIAvatar_VoiceInfo_" data-uid="Tizen.AIAvatar.LipSyncController.PlayTTS(System.String,Tizen.AIAvatar.VoiceInfo)">PlayTTS(string, VoiceInfo)</h4>
+  <div class="markdown level1 summary"><p>Converts the given text into speech using the specified voice info and plays the resulting audio immediately.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool PlayTTS(string text, VoiceInfo voiceInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">text</span></td>
+        <td><p>The text to convert into speech.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.AIAvatar.VoiceInfo.html">VoiceInfo</a></td>
+        <td><span class="parametername">voiceInfo</span></td>
+        <td><p>The voice info to use for converting the text into speech.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p><code>True</code> if playback started successfully, otherwise <code>False</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L463">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_PlayTTSAsync_" data-uid="Tizen.AIAvatar.LipSyncController.PlayTTSAsync*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_PlayTTSAsync_System_String_Tizen_AIAvatar_VoiceInfo_EventHandler_" data-uid="Tizen.AIAvatar.LipSyncController.PlayTTSAsync(System.String,Tizen.AIAvatar.VoiceInfo,EventHandler)">PlayTTSAsync(string, VoiceInfo, EventHandler)</h4>
+  <div class="markdown level1 summary"><p>Asynchronously converts the given text into speech using the specified voice info and plays the resulting audio once it's ready.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool PlayTTSAsync(string text, VoiceInfo voiceInfo, EventHandler ttsReadyFinishedCallback = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">text</span></td>
+        <td><p>The text to convert into speech.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.AIAvatar.VoiceInfo.html">VoiceInfo</a></td>
+        <td><span class="parametername">voiceInfo</span></td>
+        <td><p>The voice info to use for converting the text into speech.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">EventHandler</span></td>
+        <td><span class="parametername">ttsReadyFinishedCallback</span></td>
+        <td><p>An optional callback that will be invoked when the TTS process is complete.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p><code>True</code> if asynchronous conversion was initiated successfully, otherwise <code>False</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L322">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_PrepareTTS_" data-uid="Tizen.AIAvatar.LipSyncController.PrepareTTS*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_PrepareTTS_System_String_System_String_EventHandler_" data-uid="Tizen.AIAvatar.LipSyncController.PrepareTTS(System.String,System.String,EventHandler)">PrepareTTS(string, string, EventHandler)</h4>
+  <div class="markdown level1 summary"><p>Prepares the Text-To-Speech engine to synthesize speech from the provided text and language code.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool PrepareTTS(string text, string lang = &quot;ko_KR&quot;, EventHandler ttsReadyFinishedCallback = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">text</span></td>
+        <td><p>The text to convert into speech.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">lang</span></td>
+        <td><p>The two-letter ISO 639-1 language code to use for converting the text into speech (default is Korean - ko_KR).</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">EventHandler</span></td>
+        <td><span class="parametername">ttsReadyFinishedCallback</span></td>
+        <td><p>An optional callback that will be invoked when the TTS process is complete.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p><code>True</code> if preparation was successful, otherwise <code>False</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L278">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_PrepareTTS_" data-uid="Tizen.AIAvatar.LipSyncController.PrepareTTS*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_PrepareTTS_System_String_Tizen_AIAvatar_VoiceInfo_EventHandler_" data-uid="Tizen.AIAvatar.LipSyncController.PrepareTTS(System.String,Tizen.AIAvatar.VoiceInfo,EventHandler)">PrepareTTS(string, VoiceInfo, EventHandler)</h4>
+  <div class="markdown level1 summary"><p>Prepares the Text-To-Speech engine to synthesize speech from the provided text and voice info.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool PrepareTTS(string text, VoiceInfo voiceInfo, EventHandler ttsReadyFinishedCallback = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">string</span></td>
+        <td><span class="parametername">text</span></td>
+        <td><p>The text to convert into speech.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.AIAvatar.VoiceInfo.html">VoiceInfo</a></td>
+        <td><span class="parametername">voiceInfo</span></td>
+        <td><p>The voice info to use for converting the text into speech.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">EventHandler</span></td>
+        <td><span class="parametername">ttsReadyFinishedCallback</span></td>
+        <td><p>An optional callback that will be invoked when the TTS process is complete.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><p><code>True</code> if preparation was successful, otherwise <code>False</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L639">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_ResumeMic_" data-uid="Tizen.AIAvatar.LipSyncController.ResumeMic*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_ResumeMic" data-uid="Tizen.AIAvatar.LipSyncController.ResumeMic">ResumeMic()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ResumeMic()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L609">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_StartMic_" data-uid="Tizen.AIAvatar.LipSyncController.StartMic*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_StartMic" data-uid="Tizen.AIAvatar.LipSyncController.StartMic">StartMic()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StartMic()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L619">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_StopMic_" data-uid="Tizen.AIAvatar.LipSyncController.StopMic*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_StopMic" data-uid="Tizen.AIAvatar.LipSyncController.StopMic">StopMic()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StopMic()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L568">View Source</a>
+  </span>
+  <a id="Tizen_AIAvatar_LipSyncController_StopTTS_" data-uid="Tizen.AIAvatar.LipSyncController.StopTTS*"></a>
+  <h4 id="Tizen_AIAvatar_LipSyncController_StopTTS" data-uid="Tizen.AIAvatar.LipSyncController.StopTTS">StopTTS()</h4>
+  <div class="markdown level1 summary"><p>Stops the currently playing Text-To-Speech audio.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void StopTTS()</code></pre>
+  </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L111">View Source</a>
+  </span>
+  <h4 id="Tizen_AIAvatar_LipSyncController_TTSReadyFinished" data-uid="Tizen.AIAvatar.LipSyncController.TTSReadyFinished">TTSReadyFinished</h4>
+  <div class="markdown level1 summary"><p>Occurs when text-to-speech synthesis has finished and the audio data is ready to play.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler TTSReadyFinished</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventHandler</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API12/src/Tizen.AIAvatar/src/Lipsync/LipSyncController.cs/#L33" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      <span>Copyright &copy; 2016-2025 Samsung <br> Generated by <strong>DocFX</strong></span>
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

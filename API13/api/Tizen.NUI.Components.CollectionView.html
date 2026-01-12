@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class CollectionView : RecyclerView, INotifyPropertyChanged, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class CollectionView : RecyclerView, IDynamicResourceHandler, INameScope, System.IDisposable, IResourcesProvider, ICollectionChangedNotifier</code></pre>
   </div>
 
 
@@ -103,8 +103,8 @@
     <dd>
       <div class="pdl-holder">
         <div class="pdl"><span class="xref">object</span></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.BindableObject</span></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
@@ -112,7 +112,7 @@
         <div class="pdl"><a class="xref" href="Tizen.NUI.ViewWrapper.html">ViewWrapper</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Components.Control</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Control.html">Control</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Components.ScrollableBase.html">ScrollableBase</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Components.RecyclerView.html">RecyclerView</a></div>
         <div><span class="xref">CollectionView</span></div>
@@ -125,8 +125,11 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.ComponentModel.INotifyPropertyChanged</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
       <div class="pdl"><span class="xref">System.IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Components.ICollectionChangedNotifier.html">ICollectionChangedNotifier</a></div>
     </dd>
   </dl>
 
@@ -149,10 +152,56 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L119">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_CollectionView__ctor_" data-uid="Tizen.NUI.Components.CollectionView.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_CollectionView__ctor_IEnumerable_Tizen_NUI_Components_ItemsLayouter_Tizen_NUI_Binding_DataTemplate_" data-uid="Tizen.NUI.Components.CollectionView.#ctor(IEnumerable,Tizen.NUI.Components.ItemsLayouter,Tizen.NUI.Binding.DataTemplate)">CollectionView(IEnumerable, ItemsLayouter, DataTemplate)</h4>
+  <div class="markdown level1 summary"><p>Base constructor with ItemsSource, ItemsLayouter and ItemTemplate</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CollectionView(IEnumerable itemsSource, ItemsLayouter layouter, DataTemplate template)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IEnumerable</span></td>
+        <td><span class="parametername">itemsSource</span></td>
+        <td><p>item's data source</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.ItemsLayouter.html">ItemsLayouter</a></td>
+        <td><span class="parametername">layouter</span></td>
+        <td><p>item's layout manager</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.DataTemplate.html">DataTemplate</a></td>
+        <td><span class="parametername">template</span></td>
+        <td><p>item's view template with data bindings</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L108">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_CollectionView__ctor_" data-uid="Tizen.NUI.Components.CollectionView.#ctor*"></a>
-  <h4 id="Tizen_NUI_Components_CollectionView__ctor_System_Collections_IEnumerable_" data-uid="Tizen.NUI.Components.CollectionView.#ctor(System.Collections.IEnumerable)">CollectionView(IEnumerable)</h4>
+  <h4 id="Tizen_NUI_Components_CollectionView__ctor_IEnumerable_" data-uid="Tizen.NUI.Components.CollectionView.#ctor(IEnumerable)">CollectionView(IEnumerable)</h4>
   <div class="markdown level1 summary"><p>Base constructor with ItemsSource</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -171,7 +220,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.IEnumerable</span></td>
+        <td><span class="xref">IEnumerable</span></td>
         <td><span class="parametername">itemsSource</span></td>
         <td><p>item's data source</p>
 </td>
@@ -182,8 +231,252 @@
 
   <div style="margin-bottom: 15px"></div>
 
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L131">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_CollectionView__ctor_" data-uid="Tizen.NUI.Components.CollectionView.#ctor*"></a>
+  <h4 id="Tizen_NUI_Components_CollectionView__ctor_Tizen_NUI_Components_ControlStyle_" data-uid="Tizen.NUI.Components.CollectionView.#ctor(Tizen.NUI.Components.ControlStyle)">CollectionView(ControlStyle)</h4>
+  <div class="markdown level1 summary"><p>Creates a new instance of a CollectionView with style.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public CollectionView(ControlStyle style)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.ControlStyle.html">ControlStyle</a></td>
+        <td><span class="parametername">style</span></td>
+        <td><p>A style applied to the newly created CollectionView.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="fields">Fields
 </h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionViewBindableProperty.cs/#L265">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_CollectionView_FooterProperty" data-uid="Tizen.NUI.Components.CollectionView.FooterProperty">FooterProperty</h4>
+  <div class="markdown level1 summary"><p>FooterProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty FooterProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionViewBindableProperty.cs/#L346">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_CollectionView_GroupFooterTemplateProperty" data-uid="Tizen.NUI.Components.CollectionView.GroupFooterTemplateProperty">GroupFooterTemplateProperty</h4>
+  <div class="markdown level1 summary"><p>GroupFooterTemplateProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty GroupFooterTemplateProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionViewBindableProperty.cs/#L319">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_CollectionView_GroupHeaderTemplateProperty" data-uid="Tizen.NUI.Components.CollectionView.GroupHeaderTemplateProperty">GroupHeaderTemplateProperty</h4>
+  <div class="markdown level1 summary"><p>GroupHeaderTemplateProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty GroupHeaderTemplateProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionViewBindableProperty.cs/#L238">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_CollectionView_HeaderProperty" data-uid="Tizen.NUI.Components.CollectionView.HeaderProperty">HeaderProperty</h4>
+  <div class="markdown level1 summary"><p>HeaderProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty HeaderProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionViewBindableProperty.cs/#L292">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_CollectionView_IsGroupedProperty" data-uid="Tizen.NUI.Components.CollectionView.IsGroupedProperty">IsGroupedProperty</h4>
+  <div class="markdown level1 summary"><p>IsGroupedProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty IsGroupedProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionViewBindableProperty.cs/#L130">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_CollectionView_ItemsLayouterProperty" data-uid="Tizen.NUI.Components.CollectionView.ItemsLayouterProperty">ItemsLayouterProperty</h4>
+  <div class="markdown level1 summary"><p>ItemsLayouterProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty ItemsLayouterProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionViewBindableProperty.cs/#L157">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_CollectionView_ScrollingDirectionProperty" data-uid="Tizen.NUI.Components.CollectionView.ScrollingDirectionProperty">ScrollingDirectionProperty</h4>
+  <div class="markdown level1 summary"><p>ScrollingDirectionProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty ScrollingDirectionProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionViewBindableProperty.cs/#L32">View Source</a>
   </span>
@@ -205,7 +498,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Tizen.NUI.Binding.BindableProperty</span></td>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -235,7 +528,67 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Tizen.NUI.Binding.BindableProperty</span></td>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionViewBindableProperty.cs/#L211">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_CollectionView_SelectionChangedCommandParameterProperty" data-uid="Tizen.NUI.Components.CollectionView.SelectionChangedCommandParameterProperty">SelectionChangedCommandParameterProperty</h4>
+  <div class="markdown level1 summary"><p>SelectionChangedCommandParameterProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SelectionChangedCommandParameterProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionViewBindableProperty.cs/#L184">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_Components_CollectionView_SelectionChangedCommandProperty" data-uid="Tizen.NUI.Components.CollectionView.SelectionChangedCommandProperty">SelectionChangedCommandProperty</h4>
+  <div class="markdown level1 summary"><p>SelectionChangedCommandProperty</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SelectionChangedCommandProperty</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -265,7 +618,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Tizen.NUI.Binding.BindableProperty</span></td>
+        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -311,6 +664,75 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L815">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_CollectionView_GroupFooterTemplate_" data-uid="Tizen.NUI.Components.CollectionView.GroupFooterTemplate*"></a>
+  <h4 id="Tizen_NUI_Components_CollectionView_GroupFooterTemplate" data-uid="Tizen.NUI.Components.CollectionView.GroupFooterTemplate">GroupFooterTemplate</h4>
+  <div class="markdown level1 summary"><p>DataTemplate of group footer. Group feature is not supported yet.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DataTemplate GroupFooterTemplate { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.DataTemplate.html">DataTemplate</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_CollectionView_GroupFooterTemplate_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Please note that, internal index will be increased by group footer.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L757">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_CollectionView_GroupHeaderTemplate_" data-uid="Tizen.NUI.Components.CollectionView.GroupHeaderTemplate*"></a>
+  <h4 id="Tizen_NUI_Components_CollectionView_GroupHeaderTemplate" data-uid="Tizen.NUI.Components.CollectionView.GroupHeaderTemplate">GroupHeaderTemplate</h4>
+  <div class="markdown level1 summary"><p>DataTemplate of group header.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DataTemplate GroupHeaderTemplate { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Binding.DataTemplate.html">DataTemplate</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_CollectionView_GroupHeaderTemplate_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Please note that, internal index will be increased by group header.
+GroupHeaderTemplate is essential for groupable view.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L589">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_CollectionView_Header_" data-uid="Tizen.NUI.Components.CollectionView.Header*"></a>
@@ -340,6 +762,70 @@
   <h5 id="Tizen_NUI_Components_CollectionView_Header_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Please note that, internal index will be increased by header.</p>
 </div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L341">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_CollectionView_InternalItemsLayouter_" data-uid="Tizen.NUI.Components.CollectionView.InternalItemsLayouter*"></a>
+  <h4 id="Tizen_NUI_Components_CollectionView_InternalItemsLayouter" data-uid="Tizen.NUI.Components.CollectionView.InternalItemsLayouter">InternalItemsLayouter</h4>
+  <div class="markdown level1 summary"><p>Internal Items Layouter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override ItemsLayouter InternalItemsLayouter { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.ItemsLayouter.html">ItemsLayouter</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.RecyclerView.html#Tizen_NUI_Components_RecyclerView_InternalItemsLayouter">RecyclerView.InternalItemsLayouter</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L703">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_CollectionView_IsGrouped_" data-uid="Tizen.NUI.Components.CollectionView.IsGrouped*"></a>
+  <h4 id="Tizen_NUI_Components_CollectionView_IsGrouped" data-uid="Tizen.NUI.Components.CollectionView.IsGrouped">IsGrouped</h4>
+  <div class="markdown level1 summary"><p>Enable groupable view.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsGrouped { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -401,7 +887,7 @@ Layouting items on the scroll ContentContainer.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.IEnumerable</span></td>
+        <td><span class="xref">IEnumerable</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -532,7 +1018,69 @@ return object type is restricted RecyclerViewItem.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IList&lt;T&gt;</span>&lt;<span class="xref">object</span>&gt;</td>
+        <td><span class="xref">IList&lt;&gt;</span>&lt;<span class="xref">object</span>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L523">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_CollectionView_SelectionChangedCommand_" data-uid="Tizen.NUI.Components.CollectionView.SelectionChangedCommand*"></a>
+  <h4 id="Tizen_NUI_Components_CollectionView_SelectionChangedCommand" data-uid="Tizen.NUI.Components.CollectionView.SelectionChangedCommand">SelectionChangedCommand</h4>
+  <div class="markdown level1 summary"><p>Command of selection changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ICommand SelectionChangedCommand { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ICommand</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L555">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_CollectionView_SelectionChangedCommandParameter_" data-uid="Tizen.NUI.Components.CollectionView.SelectionChangedCommandParameter*"></a>
+  <h4 id="Tizen_NUI_Components_CollectionView_SelectionChangedCommandParameter" data-uid="Tizen.NUI.Components.CollectionView.SelectionChangedCommandParameter">SelectionChangedCommandParameter</h4>
+  <div class="markdown level1 summary"><p>Command parameter of selection changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public object SelectionChangedCommandParameter { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">object</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -575,6 +1123,166 @@ return object type is restricted RecyclerViewItem.
   <h3 id="methods">Methods
 </h3>
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L1099">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_CollectionView_AccessibilityScrollToChild_" data-uid="Tizen.NUI.Components.CollectionView.AccessibilityScrollToChild*"></a>
+  <h4 id="Tizen_NUI_Components_CollectionView_AccessibilityScrollToChild_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.Components.CollectionView.AccessibilityScrollToChild(Tizen.NUI.BaseComponents.View)">AccessibilityScrollToChild(View)</h4>
+  <div class="markdown level1 summary"><p>Scroll to specified item</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool AccessibilityScrollToChild(View child)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">child</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.ScrollableBase.html#Tizen_NUI_Components_ScrollableBase_AccessibilityScrollToChild_Tizen_NUI_BaseComponents_View_">ScrollableBase.AccessibilityScrollToChild(View)</a></div>
+  <h5 id="Tizen_NUI_Components_CollectionView_AccessibilityScrollToChild_Tizen_NUI_BaseComponents_View__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Make sure that the item that is about to receive the accessibility highlight is visible.</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L1287">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_CollectionView_AdjustTargetPositionOfScrollAnimation_" data-uid="Tizen.NUI.Components.CollectionView.AdjustTargetPositionOfScrollAnimation*"></a>
+  <h4 id="Tizen_NUI_Components_CollectionView_AdjustTargetPositionOfScrollAnimation_System_Single_" data-uid="Tizen.NUI.Components.CollectionView.AdjustTargetPositionOfScrollAnimation(System.Single)">AdjustTargetPositionOfScrollAnimation(float)</h4>
+  <div class="markdown level1 summary"><p>Adjust scrolling position by own scrolling rules.
+Override this function when developer wants to change destination of flicking.(e.g. always snap to center of item)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override float AdjustTargetPositionOfScrollAnimation(float position)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><span class="parametername">position</span></td>
+        <td><p>Scroll position which is calculated by ScrollableBase</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td><p>Adjusted scroll destination</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.RecyclerView.html#Tizen_NUI_Components_RecyclerView_AdjustTargetPositionOfScrollAnimation_System_Single_">RecyclerView.AdjustTargetPositionOfScrollAnimation(float)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L1064">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_CollectionView_ApplyStyle_" data-uid="Tizen.NUI.Components.CollectionView.ApplyStyle*"></a>
+  <h4 id="Tizen_NUI_Components_CollectionView_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_" data-uid="Tizen.NUI.Components.CollectionView.ApplyStyle(Tizen.NUI.BaseComponents.ViewStyle)">ApplyStyle(ViewStyle)</h4>
+  <div class="markdown level1 summary"><p>Apply style to CollectionView</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void ApplyStyle(ViewStyle viewStyle)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a></td>
+        <td><span class="parametername">viewStyle</span></td>
+        <td><p>The style to apply.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_">View.ApplyStyle(ViewStyle)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L1296">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_CollectionView_ClearCache_" data-uid="Tizen.NUI.Components.CollectionView.ClearCache*"></a>
+  <h4 id="Tizen_NUI_Components_CollectionView_ClearCache" data-uid="Tizen.NUI.Components.CollectionView.ClearCache">ClearCache()</h4>
+  <div class="markdown level1 summary"><p>Clear all remaining caches.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void ClearCache()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.RecyclerView.html#Tizen_NUI_Components_RecyclerView_ClearCache">RecyclerView.ClearCache()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L1337">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_CollectionView_Dispose_" data-uid="Tizen.NUI.Components.CollectionView.Dispose*"></a>
@@ -605,7 +1313,43 @@ return object type is restricted RecyclerViewItem.
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Tizen.NUI.Components.RecyclerView.Dispose(Tizen.NUI.DisposeTypes)</span></div>
+  <div><a class="xref" href="Tizen.NUI.Components.RecyclerView.html#Tizen_NUI_Components_RecyclerView_Dispose_Tizen_NUI_DisposeTypes_">RecyclerView.Dispose(DisposeTypes)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L904">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_CollectionView_NotifyDataSetChanged_" data-uid="Tizen.NUI.Components.CollectionView.NotifyDataSetChanged*"></a>
+  <h4 id="Tizen_NUI_Components_CollectionView_NotifyDataSetChanged" data-uid="Tizen.NUI.Components.CollectionView.NotifyDataSetChanged">NotifyDataSetChanged()</h4>
+  <div class="markdown level1 summary"><p>Notify Dataset is Changed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void NotifyDataSetChanged()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.RecyclerView.html#Tizen_NUI_Components_RecyclerView_NotifyDataSetChanged">RecyclerView.NotifyDataSetChanged()</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L1086">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_CollectionView_OnInitialize_" data-uid="Tizen.NUI.Components.CollectionView.OnInitialize*"></a>
+  <h4 id="Tizen_NUI_Components_CollectionView_OnInitialize" data-uid="Tizen.NUI.Components.CollectionView.OnInitialize">OnInitialize()</h4>
+  <div class="markdown level1 summary"><p>Initialize AT-SPI object.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override void OnInitialize()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.Control.html#Tizen_NUI_Components_Control_OnInitialize">Control.OnInitialize()</a></div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -615,7 +1359,11 @@ return object type is restricted RecyclerViewItem.
   </span>
   <a id="Tizen_NUI_Components_CollectionView_OnRelayout_" data-uid="Tizen.NUI.Components.CollectionView.OnRelayout*"></a>
   <h4 id="Tizen_NUI_Components_CollectionView_OnRelayout_Tizen_NUI_Vector2_Tizen_NUI_RelayoutContainer_" data-uid="Tizen.NUI.Components.CollectionView.OnRelayout(Tizen.NUI.Vector2,Tizen.NUI.RelayoutContainer)">OnRelayout(Vector2, RelayoutContainer)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Called after the size negotiation has been finished for this control.<br>
+The control is expected to assign this given size to itself or its children.<br>
+Should be overridden by derived classes if they need to layout views differently after certain operations like add or remove views, resize, or after changing specific properties.<br>
+As this function is called from inside the size negotiation algorithm, you cannot call RequestRelayout (the call would just be ignored).<br></p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -634,12 +1382,14 @@ return object type is restricted RecyclerViewItem.
       <tr>
         <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
         <td><span class="parametername">size</span></td>
-        <td></td>
+        <td><p>The allocated size.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="Tizen.NUI.RelayoutContainer.html">RelayoutContainer</a></td>
         <td><span class="parametername">container</span></td>
-        <td></td>
+        <td><p>The control should add views to this container that it is not able to allocate a size for.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -720,6 +1470,57 @@ return object type is restricted RecyclerViewItem.
       </tr>
     </tbody>
   </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L1128">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_CollectionView_RealizeItem_" data-uid="Tizen.NUI.Components.CollectionView.RealizeItem*"></a>
+  <h4 id="Tizen_NUI_Components_CollectionView_RealizeItem_System_Int32_" data-uid="Tizen.NUI.Components.CollectionView.RealizeItem(System.Int32)">RealizeItem(int)</h4>
+  <div class="markdown level1 summary"><p>Realize indexed item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override RecyclerViewItem RealizeItem(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index position of realizing item</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.RecyclerViewItem.html">RecyclerViewItem</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.RecyclerView.html#Tizen_NUI_Components_RecyclerView_RealizeItem_System_Int32_">RecyclerView.RealizeItem(int)</a></div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -811,10 +1612,86 @@ return object type is restricted RecyclerViewItem.
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L975">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_CollectionView_ScrollToIndex_" data-uid="Tizen.NUI.Components.CollectionView.ScrollToIndex*"></a>
+  <h4 id="Tizen_NUI_Components_CollectionView_ScrollToIndex_System_Int32_" data-uid="Tizen.NUI.Components.CollectionView.ScrollToIndex(System.Int32)">ScrollToIndex(int)</h4>
+  <div class="markdown level1 summary"><p>Scrolls to the item at the specified index.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ScrollToIndex(int index)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index of item.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L1203">View Source</a>
+  </span>
+  <a id="Tizen_NUI_Components_CollectionView_UnrealizeItem_" data-uid="Tizen.NUI.Components.CollectionView.UnrealizeItem*"></a>
+  <h4 id="Tizen_NUI_Components_CollectionView_UnrealizeItem_Tizen_NUI_Components_RecyclerViewItem_System_Boolean_" data-uid="Tizen.NUI.Components.CollectionView.UnrealizeItem(Tizen.NUI.Components.RecyclerViewItem,System.Boolean)">UnrealizeItem(RecyclerViewItem, bool)</h4>
+  <div class="markdown level1 summary"><p>Unrealize indexed item.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void UnrealizeItem(RecyclerViewItem item, bool recycle = true)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.RecyclerViewItem.html">RecyclerViewItem</a></td>
+        <td><span class="parametername">item</span></td>
+        <td><p>Target item for unrealizing</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">bool</span></td>
+        <td><span class="parametername">recycle</span></td>
+        <td><p>Allow recycle. default is true</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Tizen.NUI.Components.RecyclerView.html#Tizen_NUI_Components_RecyclerView_UnrealizeItem_Tizen_NUI_Components_RecyclerViewItem_System_Boolean_">RecyclerView.UnrealizeItem(RecyclerViewItem, bool)</a></div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI.Components/Controls/RecyclerView/CollectionView.cs/#L924">View Source</a>
   </span>
   <a id="Tizen_NUI_Components_CollectionView_UpdateSelectedItems_" data-uid="Tizen.NUI.Components.CollectionView.UpdateSelectedItems*"></a>
-  <h4 id="Tizen_NUI_Components_CollectionView_UpdateSelectedItems_System_Collections_Generic_IList_System_Object__" data-uid="Tizen.NUI.Components.CollectionView.UpdateSelectedItems(System.Collections.Generic.IList{System.Object})">UpdateSelectedItems(IList&lt;object&gt;)</h4>
+  <h4 id="Tizen_NUI_Components_CollectionView_UpdateSelectedItems_IList_System_Object__" data-uid="Tizen.NUI.Components.CollectionView.UpdateSelectedItems(IList{System.Object})">UpdateSelectedItems(IList&lt;object&gt;)</h4>
   <div class="markdown level1 summary"><p>Update selected items list in multiple selection.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -833,7 +1710,7 @@ return object type is restricted RecyclerViewItem.
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IList&lt;T&gt;</span>&lt;<span class="xref">object</span>&gt;</td>
+        <td><span class="xref">IList&lt;&gt;</span>&lt;<span class="xref">object</span>&gt;</td>
         <td><span class="parametername">newSelection</span></td>
         <td><p>updated selection list by user</p>
 </td>
@@ -868,7 +1745,7 @@ previous selection list and current selection will be provided.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Components.SelectionChangedEventArgs.html">SelectionChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.NUI.Components.SelectionChangedEventArgs.html">SelectionChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -879,10 +1756,164 @@ previous selection list and current selection will be provided.</p>
 
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.ComponentModel.INotifyPropertyChanged</span>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
   </div>
   <div>
       <span class="xref">System.IDisposable</span>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Components.ICollectionChangedNotifier.html">ICollectionChangedNotifier</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BackgroundColor_Tizen_NUI_BaseComponents_View_">ViewExtensions.BackgroundColor(View)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineColor_Tizen_NUI_BaseComponents_View_">ViewExtensions.BorderlineColor(View)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BoxShadow_Tizen_NUI_BaseComponents_View_">ViewExtensions.BoxShadow(View)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Color_Tizen_NUI_BaseComponents_View_">ViewExtensions.Color(View)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_CornerRadius_Tizen_NUI_BaseComponents_View_">ViewExtensions.CornerRadius(View)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BackgroundColor__1___0_System_Single_System_Single_System_Single_System_Single_">ViewExtensions.BackgroundColor&lt;T&gt;(T, float, float, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BackgroundColor__1___0_System_UInt32_System_Single_">ViewExtensions.BackgroundColor&lt;T&gt;(T, uint, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BackgroundColor__1___0_Tizen_NUI_UIColor_">ViewExtensions.BackgroundColor&lt;T&gt;(T, UIColor)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BackgroundImage__1___0_System_String_">ViewExtensions.BackgroundImage&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Borderline__1___0_System_Single_Tizen_NUI_UIColor_System_Single_">ViewExtensions.Borderline&lt;T&gt;(T, float, UIColor, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineColor__1___0_System_Single_System_Single_System_Single_System_Single_">ViewExtensions.BorderlineColor&lt;T&gt;(T, float, float, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineColor__1___0_System_UInt32_System_Single_">ViewExtensions.BorderlineColor&lt;T&gt;(T, uint, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineColor__1___0_Tizen_NUI_UIColor_">ViewExtensions.BorderlineColor&lt;T&gt;(T, UIColor)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineOffset__1___0_System_Single_">ViewExtensions.BorderlineOffset&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BorderlineWidth__1___0_System_Single_">ViewExtensions.BorderlineWidth&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BoxShadow__1___0_System_Single_System_Single_System_Single_">ViewExtensions.BoxShadow&lt;T&gt;(T, float, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BoxShadow__1___0_System_Single_Tizen_NUI_UIColor_System_Single_System_Single_">ViewExtensions.BoxShadow&lt;T&gt;(T, float, UIColor, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_BoxShadow__1___0_Tizen_NUI_UIShadow_">ViewExtensions.BoxShadow&lt;T&gt;(T, UIShadow)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_ClippingMode__1___0_Tizen_NUI_ClippingModeType_">ViewExtensions.ClippingMode&lt;T&gt;(T, ClippingModeType)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Color__1___0_System_Single_System_Single_System_Single_System_Single_">ViewExtensions.Color&lt;T&gt;(T, float, float, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Color__1___0_System_UInt32_System_Single_">ViewExtensions.Color&lt;T&gt;(T, uint, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Color__1___0_Tizen_NUI_UIColor_">ViewExtensions.Color&lt;T&gt;(T, UIColor)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_CornerRadius__1___0_System_Single_System_Boolean_">ViewExtensions.CornerRadius&lt;T&gt;(T, float, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_CornerRadius__1___0_System_Single_System_Single_System_Single_System_Single_System_Boolean_">ViewExtensions.CornerRadius&lt;T&gt;(T, float, float, float, float, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_CornerRadius__1___0_Tizen_NUI_UICorner_">ViewExtensions.CornerRadius&lt;T&gt;(T, UICorner)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Focusable__1___0_System_Boolean_">ViewExtensions.Focusable&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_FocusableChildren__1___0_System_Boolean_">ViewExtensions.FocusableChildren&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_FocusableInTouch__1___0_System_Boolean_">ViewExtensions.FocusableInTouch&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_ImageShadow__1___0_Tizen_NUI_ImageShadow_">ViewExtensions.ImageShadow&lt;T&gt;(T, ImageShadow)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_IsEnabled__1___0_System_Boolean_">ViewExtensions.IsEnabled&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Layout__1___0_Tizen_NUI_LayoutItem_">ViewExtensions.Layout&lt;T&gt;(T, LayoutItem)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Opacity__1___0_System_Single_">ViewExtensions.Opacity&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Position__1___0_System_Single_System_Single_">ViewExtensions.Position&lt;T&gt;(T, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_PositionX__1___0_System_Single_">ViewExtensions.PositionX&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_PositionY__1___0_System_Single_">ViewExtensions.PositionY&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Scale__1___0_System_Single_System_Single_">ViewExtensions.Scale&lt;T&gt;(T, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_ScaleX__1___0_System_Single_">ViewExtensions.ScaleX&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_ScaleY__1___0_System_Single_">ViewExtensions.ScaleY&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Sensitive__1___0_System_Boolean_">ViewExtensions.Sensitive&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Size__1___0_System_Single_System_Single_">ViewExtensions.Size&lt;T&gt;(T, float, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_SizeHeight__1___0_System_Single_">ViewExtensions.SizeHeight&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_SizeWidth__1___0_System_Single_">ViewExtensions.SizeWidth&lt;T&gt;(T, float)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_Visibility__1___0_System_Boolean_">ViewExtensions.Visibility&lt;T&gt;(T, bool)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Extension.ViewExtensions.html#Tizen_NUI_Extension_ViewExtensions_VoiceInteractionName__1___0_System_String_">ViewExtensions.VoiceInteractionName&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

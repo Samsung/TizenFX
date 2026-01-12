@@ -110,12 +110,6 @@
 
 
 
-  <dl class="attribute-list stack">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
-    </dd>
-  </dl>
 
   <h3 id="constructors">Constructors
 </h3>
@@ -145,32 +139,6 @@
         <td><span class="xref">string</span></td>
         <td><span class="parametername">portName</span></td>
         <td><p>The name of the port to connect to.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the argument is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when the memory is insufficient.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.IOException</span></td>
-        <td><p>Thrown when because of I/O error.</p>
 </td>
       </tr>
     </tbody>
@@ -240,22 +208,6 @@
         <td><span class="xref">string</span></td>
         <td><span class="parametername">privilege</span></td>
         <td><p>Privilege data specifying the access rights to be granted.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the argument is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -392,37 +344,6 @@
   <div class="markdown level1 remarks"><p>This method sends the serialized request data to the specified endpoint.
 If the timeout value is not set (-1), the default timeout will be used.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the argument is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when the memory is insufficient.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.IOException</span></td>
-        <td><p>Thrown when because of I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -485,37 +406,6 @@ If the timeout value is not set (-1), the default timeout will be used.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the argument is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when the memory is insufficient.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.IOException</span></td>
-        <td><p>Thrown when because of I/O error.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -572,39 +462,8 @@ If the timeout value is not set (-1), the default timeout will be used.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task&lt;TResult&gt;</span>&lt;<span class="xref">object</span>&gt;</td>
+        <td><span class="xref">Task&lt;&gt;</span>&lt;<span class="xref">object</span>&gt;</td>
         <td><p>The received serializable data.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when the argument is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when the memory is insufficient.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when permission is denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.IO.IOException</span></td>
-        <td><p>Thrown when because of I/O error.</p>
 </td>
       </tr>
     </tbody>
@@ -678,7 +537,7 @@ task.Start();</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Threading.Tasks.Task</span></td>
+        <td><span class="xref">Task</span></td>
         <td><p>A task.</p>
 </td>
       </tr>
@@ -711,7 +570,7 @@ task.Start();</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ComponentBased.RequestEventArgs.html">RequestEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Applications.ComponentBased.RequestEventArgs.html">RequestEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -723,9 +582,18 @@ task.Start();</code></pre>
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="implements">Implements</h3>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

@@ -95,7 +95,7 @@ Inherit the class 'Sensor' which is an abstract class.</p>
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class BatchSensor&lt;TData&gt; : Sensor, IDisposable where TData : BatchData</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class BatchSensor&lt;TData&gt; : Sensor where TData : BatchData</code></pre>
   </div>
 
 
@@ -114,17 +114,13 @@ Inherit the class 'Sensor' which is an abstract class.</p>
     <dt>Derived</dt>
     <dd>
       <div class="pdl"><a class="xref" href="Tizen.Sensor.HeartRateMonitorBatch.html">HeartRateMonitorBatch</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Sensor.HeartRateMonitorBatch.html">HeartRateMonitorBatch</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.Sensor.HeartRateMonitorLEDGreenBatch.html">HeartRateMonitorLEDGreenBatch</a></div>
       <div class="pdl"><a class="xref" href="Tizen.Sensor.HeartRateMonitorLEDGreenBatch.html">HeartRateMonitorLEDGreenBatch</a></div>
     </dd>
   </dl>
 
 
-  <dl class="attribute-list stack">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
-    </dd>
-  </dl>
 
   <h5 id="Tizen_Sensor_BatchSensor_1_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>A class which inherits this abstract class should provide TData as an
@@ -142,7 +138,7 @@ class that inherits BatchData class.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public BatchSensor(uint index = 0)</code></pre>
+    <pre><code class="lang-csharp hljs">public BatchSensor(uint index = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -193,7 +189,7 @@ class that inherits BatchData class.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IReadOnlyList&lt;T&gt;</span>&lt;TData&gt;</td>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;TData&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -230,7 +226,7 @@ class that inherits BatchData class.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Collections.Generic.IReadOnlyList&lt;T&gt;</span>&lt;TData&gt;</td>
+        <td><span class="xref">IReadOnlyList&lt;&gt;</span>&lt;TData&gt;</td>
         <td><p>List of converted specific batch data</p>
 </td>
       </tr>
@@ -248,7 +244,7 @@ class that inherits BatchData class.</p>
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.Sensor/Tizen.Sensor/BatchSensor.cs/#L71">View Source</a>
   </span>
   <a id="Tizen_Sensor_BatchSensor_1_UpdateBatchData_" data-uid="Tizen.Sensor.BatchSensor`1.UpdateBatchData*"></a>
-  <h4 id="Tizen_Sensor_BatchSensor_1_UpdateBatchData_System_IntPtr_System_UInt32_" data-uid="Tizen.Sensor.BatchSensor`1.UpdateBatchData(System.IntPtr,System.UInt32)">UpdateBatchData(IntPtr, uint)</h4>
+  <h4 id="Tizen_Sensor_BatchSensor_1_UpdateBatchData_IntPtr_System_UInt32_" data-uid="Tizen.Sensor.BatchSensor`1.UpdateBatchData(IntPtr,System.UInt32)">UpdateBatchData(IntPtr, uint)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -266,7 +262,7 @@ class that inherits BatchData class.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.IntPtr</span></td>
+        <td><span class="xref">IntPtr</span></td>
         <td><span class="parametername">eventsPtr</span></td>
         <td></td>
       </tr>
@@ -277,7 +273,7 @@ class that inherits BatchData class.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Sensor_BatchSensor_1_UpdateBatchData_System_IntPtr_System_UInt32__remarks">Remarks</h5>
+  <h5 id="Tizen_Sensor_BatchSensor_1_UpdateBatchData_IntPtr_System_UInt32__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>A class which inherits this abstract class should provide TData as an
 class that inherits BatchData class.</p>
 </div>
@@ -285,9 +281,18 @@ class that inherits BatchData class.</p>
 
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="implements">Implements</h3>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>

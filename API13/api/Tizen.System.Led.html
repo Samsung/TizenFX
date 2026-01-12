@@ -161,32 +161,6 @@ Changing the brightness value will invoke the registered EventHandler for the LE
     Tizen.System.Led.Brightness = 50;
     Console.WriteLine(&quot;Led current Brightness is: {0}&quot;, Tizen.System.Led.Brightness);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>When an invalid parameter value is set.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>If the privilege is not set.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case the device does not support this behavior.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -226,32 +200,6 @@ Changing the brightness value will invoke the registered EventHandler for the LE
 ...
 Console.WriteLine(&quot;Led MaxBrightness is: {0}&quot;, Led.MaxBrightness);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>When an invalid parameter value is set.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>If the privilege is not set.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case the device does not support this behavior.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -318,37 +266,6 @@ You can check if a device supports the related features for this API by using sy
     {
     }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>When an invalid parameter value is set.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>If the privilege is not set.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>In case of any system error.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case the device does not support this behavior.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_System_Led_Play_System_Int32_System_Int32_Tizen_Common_Color__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.System.Led.html#Tizen_System_Led_Stop">Stop()</a></div>
@@ -383,32 +300,6 @@ You can check if a device supports the related features for this API by using sy
     {
     }</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>If the privilege is not set.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>In case of any system error.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>In case the device does not support this behavior.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_System_Led_Stop_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.System.Led.html#Tizen_System_Led_Play_System_Int32_System_Int32_Tizen_Common_Color_">Play(int, int, Color)</a></div>
@@ -440,7 +331,7 @@ You can check if a device supports the related features for this API by using sy
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.System.LedBrightnessChangedEventArgs.html">LedBrightnessChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.System.LedBrightnessChangedEventArgs.html">LedBrightnessChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>

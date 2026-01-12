@@ -173,7 +173,7 @@ This function returns if a given part exists in the edje group bound to object o
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/EdjeObject.cs/#L163">View Source</a>
   </span>
   <a id="ElmSharp_EdjeObject_AddSignalAction_" data-uid="ElmSharp.EdjeObject.AddSignalAction*"></a>
-  <h4 id="ElmSharp_EdjeObject_AddSignalAction_System_String_System_String_System_Action_System_String_System_String__" data-uid="ElmSharp.EdjeObject.AddSignalAction(System.String,System.String,System.Action{System.String,System.String})">AddSignalAction(string, string, Action&lt;string, string&gt;)</h4>
+  <h4 id="ElmSharp_EdjeObject_AddSignalAction_System_String_System_String_Action_System_String_System_String__" data-uid="ElmSharp.EdjeObject.AddSignalAction(System.String,System.String,Action{System.String,System.String})">AddSignalAction(string, string, Action&lt;string, string&gt;)</h4>
   <div class="markdown level1 summary"><p>Adds Action for an arriving edje signal, emitted by a given Ejde object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -204,7 +204,7 @@ This function returns if a given part exists in the edje group bound to object o
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Action&lt;T1, T2&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;</td>
+        <td><span class="xref">Action&lt;, &gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;</td>
         <td><span class="parametername">action</span></td>
         <td><p>The action to be executed when the signal is emitted.</p>
 </td>
@@ -257,7 +257,7 @@ This function deletes any values at the object level for the specified object an
     <a href="https://github.com/Samsung/TizenFX/blob/API11/src/ElmSharp/ElmSharp/EdjeObject.cs/#L188">View Source</a>
   </span>
   <a id="ElmSharp_EdjeObject_DeleteSignalAction_" data-uid="ElmSharp.EdjeObject.DeleteSignalAction*"></a>
-  <h4 id="ElmSharp_EdjeObject_DeleteSignalAction_System_String_System_String_System_Action_System_String_System_String__" data-uid="ElmSharp.EdjeObject.DeleteSignalAction(System.String,System.String,System.Action{System.String,System.String})">DeleteSignalAction(string, string, Action&lt;string, string&gt;)</h4>
+  <h4 id="ElmSharp_EdjeObject_DeleteSignalAction_System_String_System_String_Action_System_String_System_String__" data-uid="ElmSharp.EdjeObject.DeleteSignalAction(System.String,System.String,Action{System.String,System.String})">DeleteSignalAction(string, string, Action&lt;string, string&gt;)</h4>
   <div class="markdown level1 summary"><p>Deletes a signal-triggered action from an object.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -288,7 +288,7 @@ This function deletes any values at the object level for the specified object an
 </td>
       </tr>
       <tr>
-        <td><span class="xref">System.Action&lt;T1, T2&gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;</td>
+        <td><span class="xref">Action&lt;, &gt;</span>&lt;<span class="xref">string</span>, <span class="xref">string</span>&gt;</td>
         <td><span class="parametername">action</span></td>
         <td><p>The action to be executed when the signal is emitted.</p>
 </td>
@@ -707,6 +707,28 @@ This function deletes any values at the object level for the specified object an
 
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
 </article>
           </div>
 

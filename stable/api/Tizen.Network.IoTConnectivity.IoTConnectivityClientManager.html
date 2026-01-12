@@ -94,8 +94,7 @@
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public static class IoTConnectivityClientManager</code></pre>
+    <pre><code class="lang-csharp hljs">public static class IoTConnectivityClientManager</code></pre>
   </div>
 
 
@@ -123,8 +122,7 @@ public static class IoTConnectivityClientManager</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public const string MulticastAddress = null</code></pre>
+    <pre><code class="lang-csharp hljs">public const string MulticastAddress</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -157,8 +155,7 @@ public const string MulticastAddress = null</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public static int PollingInterval { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static int PollingInterval { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -198,8 +195,7 @@ Setter can throw exception.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public static int TimeOut { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public static int TimeOut { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -240,8 +236,7 @@ RemoteResource.GetAsync(), RemoteResource.PutAsync(), RemoteResource.PostAsync()
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public static void Deinitialize()</code></pre>
+    <pre><code class="lang-csharp hljs">public static void Deinitialize()</code></pre>
   </div>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_Deinitialize_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This API must be called if IoTCon API is no longer needed.</p>
@@ -268,8 +263,7 @@ Call this function to start IoTCon.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public static void Initialize(string filePath)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void Initialize(string filePath)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -298,32 +292,6 @@ in <code data-dev-comment-type="paramref" class="paramref">filePath</code>. We r
   <pre><code>    string filePath = &quot;../../res/iotcon-test-svr-db-client.dat&quot;;
     IoTConnectivityClientManager.Initialize(filePath);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the iotcon is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when there is an invalid parameter.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have privilege to access.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_Initialize_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityClientManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_Deinitialize">Deinitialize()</a></div>
@@ -342,8 +310,7 @@ in <code data-dev-comment-type="paramref" class="paramref">filePath</code>. We r
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public static void InvokePolling()</code></pre>
+    <pre><code class="lang-csharp hljs">public static void InvokePolling()</code></pre>
   </div>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_InvokePolling_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This API invokes a next message from a queue for receiving messages from others, immediately.
@@ -352,22 +319,6 @@ After calling the API, it continues the polling with existing interval.</p>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_InvokePolling_examples">Examples</h5>
   <pre><code>    IoTConnectivityClientManager.InvokePolling();</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the iotcon is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -382,8 +333,7 @@ After calling the API, it continues the polling with existing interval.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public static int StartFindingDeviceInformation(string hostAddress, ResourceQuery query = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int StartFindingDeviceInformation(string hostAddress, ResourceQuery query = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -442,37 +392,6 @@ If succeeded, <a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivit
     // Do not forget to remove these event handlers when they are not required any more.
     int id = IoTConnectivityClientManager.StartFindingDeviceInformation(IoTConnectivityClientManager.MulticastAddress);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the iotcon is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the operation is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have privilege to access.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when there is not enough memory.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_StartFindingDeviceInformation_System_String_Tizen_Network_IoTConnectivity_ResourceQuery__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_SetDeviceName_System_String_">SetDeviceName(string)</a></div>
@@ -494,8 +413,7 @@ If succeeded, <a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivit
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public static int StartFindingPlatformInformation(string hostAddress, ResourceQuery query = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int StartFindingPlatformInformation(string hostAddress, ResourceQuery query = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -554,37 +472,6 @@ If succeeded, <a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivit
     // Do not forget to remove these event handlers when they are not required any more.
     int id = IoTConnectivityClientManager.StartFindingPlatformInformation(IoTConnectivityClientManager.MulticastAddress);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the iotcon is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the operation is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have privilege to access.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when there is not enough memory.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_StartFindingPlatformInformation_System_String_Tizen_Network_IoTConnectivity_ResourceQuery__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityClientManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_PlatformInformationFound">PlatformInformationFound</a></div>
@@ -605,8 +492,7 @@ If succeeded, <a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivit
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public static int StartFindingResource(string hostAddress, ResourceQuery query = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int StartFindingResource(string hostAddress, ResourceQuery query = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -667,37 +553,6 @@ If succeeded, <a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivit
     // Do not forget to remove these event handlers when they are not required any more.
     int id = IoTConnectivityClientManager.StartFindingResource(null, query);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the iotcon is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the operation is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have privilege to access.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when there is not enough memory.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_StartFindingResource_System_String_Tizen_Network_IoTConnectivity_ResourceQuery__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityClientManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_ResourceFound">ResourceFound</a></div>
@@ -718,8 +573,7 @@ If succeeded, <a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivit
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public static int StartReceivingPresence(string hostAddress, string resourceType)</code></pre>
+    <pre><code class="lang-csharp hljs">public static int StartReceivingPresence(string hostAddress, string resourceType)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -782,42 +636,6 @@ of lowercase alphabetic, numeric, &quot;.&quot;, or &quot;-&quot; characters, an
     // Do not forget to remove these event handlers when they are not required any more.
     int id = IoTConnectivityClientManager.StartReceivingPresence(IoTConnectivityClientManager.MulticastAddress, &quot;oic.iot.door&quot;);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the iotcon is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when there is an invalid parameter.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the operation is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have privilege to access.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when there is not enough memory.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_StartReceivingPresence_System_String_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_StartSendingPresence_System_UInt32_">StartSendingPresence(uint)</a></div>
@@ -839,8 +657,7 @@ of lowercase alphabetic, numeric, &quot;.&quot;, or &quot;-&quot; characters, an
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public static void StopReceivingPresence(int presenceId)</code></pre>
+    <pre><code class="lang-csharp hljs">public static void StopReceivingPresence(int presenceId)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -879,42 +696,6 @@ public static void StopReceivingPresence(int presenceId)</code></pre>
     IoTConnectivityClientManager.FindingErrorOccurred -= errorHandler;
     IoTConnectivityClientManager.StopReceivingPresence(id);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.NotSupportedException</span></td>
-        <td><p>Thrown when the iotcon is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.ArgumentException</span></td>
-        <td><p>Thrown when there is an invalid parameter.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.InvalidOperationException</span></td>
-        <td><p>Thrown when the operation is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.UnauthorizedAccessException</span></td>
-        <td><p>Thrown when an application does not have privilege to access.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.OutOfMemoryException</span></td>
-        <td><p>Thrown when there is not enough memory.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Network_IoTConnectivity_IoTConnectivityClientManager_StopReceivingPresence_System_Int32__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.IoTConnectivityServerManager.html#Tizen_Network_IoTConnectivity_IoTConnectivityServerManager_StartSendingPresence_System_UInt32_">StartSendingPresence(uint)</a></div>
@@ -938,8 +719,7 @@ after sending request using API StartFindingDeviceInformation().</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public static event EventHandler&lt;DeviceInformationFoundEventArgs&gt; DeviceInformationFound</code></pre>
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;DeviceInformationFoundEventArgs&gt; DeviceInformationFound</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -951,7 +731,7 @@ public static event EventHandler&lt;DeviceInformationFoundEventArgs&gt; DeviceIn
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.IoTConnectivity.DeviceInformationFoundEventArgs.html">DeviceInformationFoundEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.IoTConnectivity.DeviceInformationFoundEventArgs.html">DeviceInformationFoundEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -969,8 +749,7 @@ public static event EventHandler&lt;DeviceInformationFoundEventArgs&gt; DeviceIn
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public static event EventHandler&lt;FindingErrorOccurredEventArgs&gt; FindingErrorOccurred</code></pre>
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;FindingErrorOccurredEventArgs&gt; FindingErrorOccurred</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -982,7 +761,7 @@ public static event EventHandler&lt;FindingErrorOccurredEventArgs&gt; FindingErr
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.IoTConnectivity.FindingErrorOccurredEventArgs.html">FindingErrorOccurredEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.IoTConnectivity.FindingErrorOccurredEventArgs.html">FindingErrorOccurredEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1001,8 +780,7 @@ after sending request using API StartFindingPlatformInformation().</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public static event EventHandler&lt;PlatformInformationFoundEventArgs&gt; PlatformInformationFound</code></pre>
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;PlatformInformationFoundEventArgs&gt; PlatformInformationFound</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1014,7 +792,7 @@ public static event EventHandler&lt;PlatformInformationFoundEventArgs&gt; Platfo
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.IoTConnectivity.PlatformInformationFoundEventArgs.html">PlatformInformationFoundEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.IoTConnectivity.PlatformInformationFoundEventArgs.html">PlatformInformationFoundEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1032,8 +810,7 @@ public static event EventHandler&lt;PlatformInformationFoundEventArgs&gt; Platfo
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public static event EventHandler&lt;PresenceReceivedEventArgs&gt; PresenceReceived</code></pre>
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;PresenceReceivedEventArgs&gt; PresenceReceived</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1045,7 +822,7 @@ public static event EventHandler&lt;PresenceReceivedEventArgs&gt; PresenceReceiv
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.IoTConnectivity.PresenceReceivedEventArgs.html">PresenceReceivedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.IoTConnectivity.PresenceReceivedEventArgs.html">PresenceReceivedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1064,8 +841,7 @@ after sending request using API StartFindingResource().</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 13&quot;)]
-public static event EventHandler&lt;ResourceFoundEventArgs&gt; ResourceFound</code></pre>
+    <pre><code class="lang-csharp hljs">public static event EventHandler&lt;ResourceFoundEventArgs&gt; ResourceFound</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1077,7 +853,7 @@ public static event EventHandler&lt;ResourceFoundEventArgs&gt; ResourceFound</co
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.EventHandler&lt;TEventArgs&gt;</span>&lt;<a class="xref" href="Tizen.Network.IoTConnectivity.ResourceFoundEventArgs.html">ResourceFoundEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler&lt;&gt;</span>&lt;<a class="xref" href="Tizen.Network.IoTConnectivity.ResourceFoundEventArgs.html">ResourceFoundEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>

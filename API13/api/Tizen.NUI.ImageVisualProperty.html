@@ -342,6 +342,43 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L1000">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_ImageVisualProperty_ContentInfo" data-uid="Tizen.NUI.ImageVisualProperty.ContentInfo">ContentInfo</h4>
+  <div class="markdown level1 summary"><p>@brief The content information the AnimatedVectorImageVisual will use.
+@details Name &quot;contentInfo&quot;, Type Property::MAP.
+The map contains the layer name as a key and Property::Array as a value.
+And the array contains 2 integer values which are the frame numbers, the start frame number and the end frame number of the layer.
+@note This property is read-only.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int ContentInfo</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ImageVisualProperty_ContentInfo_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Inhouse API</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L881">View Source</a>
   </span>
   <h4 id="Tizen_NUI_ImageVisualProperty_CropToMask" data-uid="Tizen.NUI.ImageVisualProperty.CropToMask">CropToMask</h4>
@@ -367,6 +404,41 @@
       </tr>
     </tbody>
   </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L954">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_ImageVisualProperty_CurrentFrameNumber" data-uid="Tizen.NUI.ImageVisualProperty.CurrentFrameNumber">CurrentFrameNumber</h4>
+  <div class="markdown level1 summary"><p>@brief The current frame number the AnimatedVectorImageVisual will use.
+@details Name &quot;currentFrameNumber&quot;, Type Property::INTEGER, between[0, the maximum frame number] or between the play range if specified
+@note This property is read-only.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int CurrentFrameNumber</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ImageVisualProperty_CurrentFrameNumber_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Inhouse API</p>
+</div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -432,6 +504,73 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L1048">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_ImageVisualProperty_EnableFrameCache" data-uid="Tizen.NUI.ImageVisualProperty.EnableFrameCache">EnableFrameCache</h4>
+  <div class="markdown level1 summary"><p>@brief Whether to animated image visual uses fixed cache or not.
+@details type Property::BOOLEAN.
+If this property is true, animated image visual uses fixed cache for loading and keeps loaded frame
+until the visual is removed. It reduces CPU cost when the animated image will be looping.
+But it can spend a lot of memory if the resource has high resolution image or many frame count.
+@note It is used in the AnimatedVectorImageVisual. The default is false</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int EnableFrameCache</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L1027">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_ImageVisualProperty_FastTrackUploading" data-uid="Tizen.NUI.ImageVisualProperty.FastTrackUploading">FastTrackUploading</h4>
+  <div class="markdown level1 summary"><p>@brief Whether to uploading texture before ResourceReady signal emit or after texture load completed time.
+@details Name &quot;fastTrackUploading&quot;, type Property::BOOLEAN.
+@note It is used in the ImageVisual. The default is false.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int FastTrackUploading</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L785">View Source</a>
   </span>
   <h4 id="Tizen_NUI_ImageVisualProperty_FittingMode" data-uid="Tizen.NUI.ImageVisualProperty.FittingMode">FittingMode</h4>
@@ -471,6 +610,42 @@
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static readonly int FrameDelay</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L1083">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_ImageVisualProperty_FrameSpeedFactor" data-uid="Tizen.NUI.ImageVisualProperty.FrameSpeedFactor">FrameSpeedFactor</h4>
+  <div class="markdown level1 summary"><p>@brief Specifies a speed factor for the animated image frame.
+@details Name &quot;frameSpeedFactor&quot;, type Property::FLOAT.</p>
+<p>The speed factor is a multiplier of the normal velocity of the animation. Values between [0,1] will
+slow down the animation and values above one will speed up the animation.</p>
+<p>@note The range of this value is clamped between [0.01f ~ 100.0f].
+It might be supported out of bound, and negative value in future.
+@note Used by the ImageVisual and AnimatedVectorImageVisual. The default is 1.0f.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int FrameSpeedFactor</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -553,6 +728,75 @@ The default is -1. If the value is less than 0, loop unlimited. Otherwise, loop 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L987">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_ImageVisualProperty_LoopingMode" data-uid="Tizen.NUI.ImageVisualProperty.LoopingMode">LoopingMode</h4>
+  <div class="markdown level1 summary"><p>@brief  The looping mode the AnimatedVectorImageVisual will use.
+@details Name &quot;loopingMode&quot;, Type LoopingMode::Type (Property::INTEGER)
+@note Default value is LoopingMode::RESTART.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int LoopingMode</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ImageVisualProperty_LoopingMode_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Inhouse API</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L1037">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_ImageVisualProperty_MarkerInfo" data-uid="Tizen.NUI.ImageVisualProperty.MarkerInfo">MarkerInfo</h4>
+  <div class="markdown level1 summary"><p>@brief The marker information the AnimatedVectorImageVisual will use.
+@details Type Property::MAP.
+The map contains the marker name as a key and Property::Array as a value.
+And the array contains 2 integer values which are the frame numbers, the start frame number and the end frame number of the marker.
+@note This property is read-only.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int MarkerInfo</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L875">View Source</a>
   </span>
   <h4 id="Tizen_NUI_ImageVisualProperty_MaskContentScale" data-uid="Tizen.NUI.ImageVisualProperty.MaskContentScale">MaskContentScale</h4>
@@ -562,6 +806,73 @@ The default is -1. If the value is less than 0, loop unlimited. Otherwise, loop 
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static readonly int MaskContentScale</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L1019">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_ImageVisualProperty_MaskingMode" data-uid="Tizen.NUI.ImageVisualProperty.MaskingMode">MaskingMode</h4>
+  <div class="markdown level1 summary"><p>@brief Whether to apply mask on the GPU or not.
+@details Name &quot;MaskingMode&quot;, type MaskingModeType (Property::INTEGER).
+@note It is used in the ImageVisual, and AnimatedImageVisual.The default is MaskingOnLoading.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int MaskingMode</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L1060">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_ImageVisualProperty_NotifyAfterRasterization" data-uid="Tizen.NUI.ImageVisualProperty.NotifyAfterRasterization">NotifyAfterRasterization</h4>
+  <div class="markdown level1 summary"><p>@brief Whether notify AnimatedVectorImageVisual to render thread after every rasterization or not.
+@details type Property::BOOLEAN.
+If this property is true, AnimatedVectorImageVisual send notify to render thread after every rasterization.
+If false, AnimatedVectorImageVisual set Renderer's Behaviour as Continouly (mean, always update the render thread.)</p>
+<p>This flag is useful if given resource has low fps, so we don't need to render every frame.
+@note It is used in the AnimatedVectorImageVisual. The default is false.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int NotifyAfterRasterization</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -643,6 +954,149 @@ The default is -1. If the value is less than 0, loop unlimited. Otherwise, loop 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L932">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_ImageVisualProperty_PlayRange" data-uid="Tizen.NUI.ImageVisualProperty.PlayRange">PlayRange</h4>
+  <div class="markdown level1 summary"><p>@brief The playing range the AnimatedVectorImageVisual will use.
+Animation will play between the values specified.The array can only have two values, and more will be ignored.
+Both values should be between 0 and the total frame number, otherwise they will be ignored.
+If the range provided is not in proper order (minimum, maximum), it will be reordered.
+@details Name &quot;playRange&quot;, Type Property::ARRAY of Property::INTEGER
+@note Default 0 and the total frame number.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int PlayRange</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ImageVisualProperty_PlayRange_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Hidden API (Inhouse API)</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L943">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_ImageVisualProperty_PlayState" data-uid="Tizen.NUI.ImageVisualProperty.PlayState">PlayState</h4>
+  <div class="markdown level1 summary"><p>@brief The playing state the AnimatedVectorImageVisual will use.
+@details Name &quot;playState&quot;, type PlayState (Property::INTEGER)
+@note This property is read-only.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int PlayState</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ImageVisualProperty_PlayState_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Hidden API (Inhouse API)</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L1011">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_ImageVisualProperty_RedrawInScalingDown" data-uid="Tizen.NUI.ImageVisualProperty.RedrawInScalingDown">RedrawInScalingDown</h4>
+  <div class="markdown level1 summary"><p>@brief Whether to redraw the image when the visual is scaled down.
+@details Name &quot;redrawInScalingDown&quot;, type Property::BOOLEAN.
+@note It is used in the AnimatedVectorImageVisual.The default is true.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int RedrawInScalingDown</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ImageVisualProperty_RedrawInScalingDown_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Inhouse API</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L1094">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_ImageVisualProperty_RedrawInScalingUp" data-uid="Tizen.NUI.ImageVisualProperty.RedrawInScalingUp">RedrawInScalingUp</h4>
+  <div class="markdown level1 summary"><p>@brief Whether to redraw the image when the visual is scaled up.
+@details Name &quot;redrawInScalingUp&quot;, type Property::BOOLEAN.
+@note It is used in the AnimatedVectorImageVisual.The default is true.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int RedrawInScalingUp</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ImageVisualProperty_RedrawInScalingUp_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Inhouse API</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L893">View Source</a>
   </span>
   <h4 id="Tizen_NUI_ImageVisualProperty_ReleasePolicy" data-uid="Tizen.NUI.ImageVisualProperty.ReleasePolicy">ReleasePolicy</h4>
@@ -652,6 +1106,38 @@ The default is -1. If the value is less than 0, loop unlimited. Otherwise, loop 
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static readonly int ReleasePolicy</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L1102">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_ImageVisualProperty_RenderScale" data-uid="Tizen.NUI.ImageVisualProperty.RenderScale">RenderScale</h4>
+  <div class="markdown level1 summary"><p>@brief Renders a texture at a given scale.
+@details Name &quot;renderScale&quot;, type Property::FLOAT.
+@note It is used when scaling up AnimatedVectorImageVisual. The default is 1.0f.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int RenderScale</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -703,6 +1189,41 @@ The default is -1. If the value is less than 0, loop unlimited. Otherwise, loop 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L976">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_ImageVisualProperty_StopBehavior" data-uid="Tizen.NUI.ImageVisualProperty.StopBehavior">StopBehavior</h4>
+  <div class="markdown level1 summary"><p>@brief  The stop behavior the AnimatedVectorImageVisual will use.
+@details Name &quot;stopBehavior&quot;, Type StopBehavior::Type (Property::INTEGER)
+@note Default value is StopBehavior::CURRENT_FRAME.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int StopBehavior</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ImageVisualProperty_StopBehavior_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Inhouse API</p>
+</div>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L809">View Source</a>
   </span>
   <h4 id="Tizen_NUI_ImageVisualProperty_SynchronousLoading" data-uid="Tizen.NUI.ImageVisualProperty.SynchronousLoading">SynchronousLoading</h4>
@@ -728,6 +1249,74 @@ The default is -1. If the value is less than 0, loop unlimited. Otherwise, loop 
       </tr>
     </tbody>
   </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L1069">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_ImageVisualProperty_SynchronousSizing" data-uid="Tizen.NUI.ImageVisualProperty.SynchronousSizing">SynchronousSizing</h4>
+  <div class="markdown level1 summary"><p>@brief Whether to synchronize image texture size to visual size.
+@details Name &quot;synchronousSizing&quot;, type Property::BOOLEAN.
+If this property is true, ImageVisual ignores mDesiredSize.
+@note Used by the ImageVisual. The default is false.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int SynchronousSizing</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Visuals/VisualConstants.cs/#L965">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_ImageVisualProperty_TotalFrameNumber" data-uid="Tizen.NUI.ImageVisualProperty.TotalFrameNumber">TotalFrameNumber</h4>
+  <div class="markdown level1 summary"><p>@brief The total frame number the AnimatedVectorImageVisual will use.
+@details Name &quot;totalFrameNumber&quot;, Type Property::INTEGER.
+@note This property is read-only.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static readonly int TotalFrameNumber</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">int</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_ImageVisualProperty_TotalFrameNumber_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Inhouse API</p>
+</div>
 
 
   <div style="margin-bottom: 15px"></div>
@@ -822,6 +1411,19 @@ The default is -1. If the value is less than 0, loop unlimited. Otherwise, loop 
 
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
 </article>
           </div>
 

@@ -95,7 +95,7 @@ Positions are from the top left of the layout and can be set using the View.Posi
   <div class="markdown level0 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AbsoluteLayout : LayoutGroup, IDisposable, ILayoutParent</code></pre>
+    <pre><code class="lang-csharp hljs">public class AbsoluteLayout : LayoutGroup, ILayoutParent</code></pre>
   </div>
 
 
@@ -116,7 +116,6 @@ Positions are from the top left of the layout and can be set using the View.Posi
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">System.IDisposable</span></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.ILayoutParent.html">ILayoutParent</a></div>
     </dd>
   </dl>
@@ -139,8 +138,141 @@ Positions are from the top left of the layout and can be set using the View.Posi
 
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="fields">Fields
+</h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Layouting/AbsoluteLayout.cs/#L32">View Source</a>
+  </span>
+  <h4 id="Tizen_NUI_AbsoluteLayout_LayoutBoundsAutoSized" data-uid="Tizen.NUI.AbsoluteLayout.LayoutBoundsAutoSized">LayoutBoundsAutoSized</h4>
+  <div class="markdown level1 summary"><p>A flag indicating that the width or height of the child view should be calculated based on the child view's WidthSpecification and HeightSpecification.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public const float LayoutBoundsAutoSized</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">float</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="methods">Methods
 </h3>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Layouting/AbsoluteLayout.cs/#L49">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AbsoluteLayout_GetLayoutBounds_" data-uid="Tizen.NUI.AbsoluteLayout.GetLayoutBounds*"></a>
+  <h4 id="Tizen_NUI_AbsoluteLayout_GetLayoutBounds_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.AbsoluteLayout.GetLayoutBounds(Tizen.NUI.BaseComponents.View)">GetLayoutBounds(View)</h4>
+  <div class="markdown level1 summary"><p>Gets the layout bounds of the child view. The default layout bounds is 0, 0, LayoutBoundsAutoSized, LayoutBoundsAutoSized.
+LayoutBoundsAutoSized for width and height calculates the child view's width and height based on the child view's WidthSpecification and HeightSpecification.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static UIRect GetLayoutBounds(View view)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>The child view.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.UIRect.html">UIRect</a></td>
+        <td><p>The layout bounds of <code data-dev-comment-type="paramref" class="paramref">view</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Layouting/AbsoluteLayout.cs/#L97">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AbsoluteLayout_GetLayoutFlags_" data-uid="Tizen.NUI.AbsoluteLayout.GetLayoutFlags*"></a>
+  <h4 id="Tizen_NUI_AbsoluteLayout_GetLayoutFlags_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.AbsoluteLayout.GetLayoutFlags(Tizen.NUI.BaseComponents.View)">GetLayoutFlags(View)</h4>
+  <div class="markdown level1 summary"><p>Gets the absolute layout flags of the child view. The default absolute layout flags is <a class="xref" href="Tizen.NUI.AbsoluteLayoutFlags.html#Tizen_NUI_AbsoluteLayoutFlags_None">None</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static AbsoluteLayoutFlags GetLayoutFlags(View view)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>The child view.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.AbsoluteLayoutFlags.html">AbsoluteLayoutFlags</a></td>
+        <td><p>The absolute layout flags of <code data-dev-comment-type="paramref" class="paramref">view</code>.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Layouting/AbsoluteLayout.cs/#L293">View Source</a>
   </span>
@@ -243,12 +375,103 @@ Positions are from the top left of the layout and can be set using the View.Posi
 
   <div style="margin-bottom: 15px"></div>
 
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Layouting/AbsoluteLayout.cs/#L67">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AbsoluteLayout_SetLayoutBounds_" data-uid="Tizen.NUI.AbsoluteLayout.SetLayoutBounds*"></a>
+  <h4 id="Tizen_NUI_AbsoluteLayout_SetLayoutBounds_Tizen_NUI_BaseComponents_View_Tizen_NUI_UIRect_" data-uid="Tizen.NUI.AbsoluteLayout.SetLayoutBounds(Tizen.NUI.BaseComponents.View,Tizen.NUI.UIRect)">SetLayoutBounds(View, UIRect)</h4>
+  <div class="markdown level1 summary"><p>Sets the layout bounds of the child view. The default layout bounds is 0, 0, LayoutBoundsAutoSized, LayoutBoundsAutoSized.
+LayoutBoundsAutoSized for width and height calculates the child view's width and height based on the child view's WidthSpecification and HeightSpecification.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetLayoutBounds(View view, UIRect rect)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>The child view.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.UIRect.html">UIRect</a></td>
+        <td><span class="parametername">rect</span></td>
+        <td><p>The layout bounds.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API13/src/Tizen.NUI/src/public/Layouting/AbsoluteLayout.cs/#L114">View Source</a>
+  </span>
+  <a id="Tizen_NUI_AbsoluteLayout_SetLayoutFlags_" data-uid="Tizen.NUI.AbsoluteLayout.SetLayoutFlags*"></a>
+  <h4 id="Tizen_NUI_AbsoluteLayout_SetLayoutFlags_Tizen_NUI_BaseComponents_View_Tizen_NUI_AbsoluteLayoutFlags_" data-uid="Tizen.NUI.AbsoluteLayout.SetLayoutFlags(Tizen.NUI.BaseComponents.View,Tizen.NUI.AbsoluteLayoutFlags)">SetLayoutFlags(View, AbsoluteLayoutFlags)</h4>
+  <div class="markdown level1 summary"><p>Sets the absolute layout flags of the child view. The default absolute layout flags is <a class="xref" href="Tizen.NUI.AbsoluteLayoutFlags.html#Tizen_NUI_AbsoluteLayoutFlags_None">None</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void SetLayoutFlags(View view, AbsoluteLayoutFlags flags)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>The child view.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.AbsoluteLayoutFlags.html">AbsoluteLayoutFlags</a></td>
+        <td><span class="parametername">flags</span></td>
+        <td><p>The absolute layout flags.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="implements">Implements</h3>
   <div>
-      <span class="xref">System.IDisposable</span>
+      <a class="xref" href="Tizen.NUI.ILayoutParent.html">ILayoutParent</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, string)</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.ILayoutParent.html">ILayoutParent</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, string)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, string)</a>
   </div>
 </article>
           </div>
