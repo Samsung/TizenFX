@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <LangVersion>9.0</LangVersion>
     <NoWarn>$(NoWarn);0618;CA1054;CA1056</NoWarn>
   </PropertyGroup>
 
