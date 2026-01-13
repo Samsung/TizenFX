@@ -32,6 +32,9 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WindowBlurInfo_SWIG_1")]
             public static extern global::System.IntPtr New(int nuiBlurType, int nuiBlurRadius);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WindowBlurInfo_SWIG_2")]
+            public static extern global::System.IntPtr New(int nuiBlurType, int nuiBlurRadius, int nuiCornerRadius, global::System.IntPtr nuiDimInfo);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WindowBlurInfo")]
             public static extern void DeleteWindowBlurInfo(global::System.IntPtr nuiWindowBlurInfo);
 
@@ -43,6 +46,27 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowBlurInfo_GetBackgroundCornerRadius")]
             public static extern int GetBackgroundCornerRadius(global::System.IntPtr nuiWindowBlurInfo);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowBlurInfo_SetBehindBlurDimInfo")]
+            public static extern void SetBehindBlurDimInfo(global::System.IntPtr nuiWindowBlurInfo, global::System.IntPtr nuiDimInfo);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowBlurInfo_GetBehindBlurDimInfo")]
+            public static extern global::System.IntPtr GetBehindBlurDimInfo(global::System.IntPtr nuiWindowBlurInfo);
+        }
+
+        internal static partial class WindowBehindBlurDimInfo
+        {
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WindowBehindBlurDimInfo")]
+            public static extern global::System.IntPtr New(int isEnable, global::System.IntPtr dimColor);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WindowBehindBlurDimInfo")]
+            public static extern void DeleteWindowBehindBlurDimInfo(global::System.IntPtr nuiWindowBehindBlurDimInfo);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowBehindBlurDimInfo_GetIsEnable")]
+            public static extern int GetIsEnable(global::System.IntPtr nuiWindowBehindBlurDimInfo);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowBehindBlurDimInfo_GetDimColor")]
+            public static extern global::System.IntPtr GetDimColor(global::System.IntPtr nuiWindowBehindBlurDimInfo);
         }
     }
 }

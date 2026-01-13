@@ -22,9 +22,131 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI
 {
     /// <summary>
+    /// The WindowBehindBlurDimInfo structure contains information for dimming effect applied to behind blur regions.
+    ///
+    /// This structure is used to configure dimming effects when WindowBlurType.BEHIND is applied.
+    /// Behind blur affects the area behind the window (excluding the window region itself), and this
+    /// structure allows additional dimming to be applied to that blurred area for better visual contrast
+    /// and user experience.
+    ///
+    /// The dimming effect uses a color overlay with alpha transparency to darken the blurred background.
+    /// This is particularly useful when the blurred background content is too bright or distracting,
+    /// making it difficult to see the foreground window content clearly.
+    ///
+    /// Common usage examples:
+    /// - Subtle darkening: new WindowBehindBlurDimInfo(1, new Color(0.0f, 0.0f, 0.0f, 0.3f))
+    /// - Strong darkening: new WindowBehindBlurDimInfo(1, new Color(0.0f, 0.0f, 0.0f, 0.7f))
+    /// - Reddish tint: new WindowBehindBlurDimInfo(1, new Color(1.0f, 0.0f, 0.0f, 0.2f))
+    /// - Disabled: new WindowBehindBlurDimInfo(0, new Color(0.0f, 0.0f, 0.0f, 0.0f))
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct WindowBehindBlurDimInfo : IEquatable<WindowBehindBlurDimInfo>
+    {
+        /// <summary>
+        /// Constructor with enable flag and dim color.
+        /// </summary>
+        /// <param name="isEnable">True to enable dimming effect, false to disable</param>
+        /// <param name="dim">The dimming color (RGBA) to apply. The alpha component controls the dimming intensity.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WindowBehindBlurDimInfo(int isEnable, Color dim)
+        {
+            IsEnableBehindBlurDim = isEnable;
+            BehindBlurDim = dim;
+        }
+
+        /// <summary>
+        /// Gets or sets the flag to enable or disable the dimming effect.
+        ///
+        /// When true (1), the dimming effect is applied to the behind blur region.
+        /// When false (0), no dimming is applied and only the blur effect is visible.
+        ///
+        /// Default value: 0 (disabled)
+        /// </summary>
+        /// <value>The enable state for dimming effect (0 = disabled, 1 = enabled)</value>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int IsEnableBehindBlurDim {get; set;}
+
+        /// <summary>
+        /// Gets or sets the dimming color to apply to the behind blur region.
+        ///
+        /// This is an RGBA color value where:
+        /// - RGB components define the dimming color (typically black for darkening)
+        /// - Alpha component controls the dimming intensity (0.0 = transparent, 1.0 = fully opaque)
+        ///
+        /// Common usage examples:
+        /// - Color(0.0f, 0.0f, 0.0f, 0.3f) for subtle darkening
+        /// - Color(0.0f, 0.0f, 0.0f, 0.7f) for strong darkening
+        /// - Color(1.0f, 0.0f, 0.0f, 0.2f) for reddish tint
+        ///
+        /// Default value: Color(0.0f, 0.0f, 0.0f, 0.0f) (fully transparent)
+        /// </summary>
+        /// <value>The dimming color with alpha transparency</value>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color BehindBlurDim {get; set;}
+
+        /// <summary>
+        /// Whether this is equivalent to other.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Equals(WindowBehindBlurDimInfo other)
+        {
+            return IsEnableBehindBlurDim == other.IsEnableBehindBlurDim &&
+                   BehindBlurDim.Equals(other.BehindBlurDim);
+        }
+
+        ///  <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj)
+        {
+            if (obj is WindowBehindBlurDimInfo other)
+            {
+                return Equals(other);
+            }
+            return base.Equals(obj);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                int hashcode = IsEnableBehindBlurDim.GetHashCode();
+                hashcode = hashcode * 397 ^ BehindBlurDim.GetHashCode();
+                return hashcode;
+            }
+        }
+
+        /// <summary>
+        /// Compares two WindowBehindBlurDimInfo for equality.
+        /// </summary>
+        /// <param name="operand1">The first operand object.</param>
+        /// <param name="operand2">The second operand object.</param>
+        /// <returns>True if both are equal, otherwise false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(WindowBehindBlurDimInfo operand1, WindowBehindBlurDimInfo operand2)
+        {
+            return operand1.Equals(operand2);
+        }
+
+        /// <summary>
+        /// Compares two WindowBehindBlurDimInfo for inequality.
+        /// </summary>
+        /// <param name="operand1">The first operand object.</param>
+        /// <param name="operand2">The second operand object.</param>
+        /// <returns>True if both are not equal, otherwise false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(WindowBehindBlurDimInfo operand1, WindowBehindBlurDimInfo operand2)
+        {
+            return !operand1.Equals(operand2);
+        }    
+    }
+
+    /// <summary>
     /// WindowBlurInfo is a struct designed to encapsulate the information required to apply a blur effect to a window.
-    /// It contains three properties that define how the blur effect is applied to the window,
-    /// including the type of blur, its intensity, and the corner rounding for the background blur.
+    /// It contains four properties that define how the blur effect is applied to the window,
+    /// including the type of blur, its intensity, the corner rounding for the background blur,
+    /// and the dimming information for behind blur effect.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public struct WindowBlurInfo : IEquatable<WindowBlurInfo>
@@ -38,6 +160,7 @@ namespace Tizen.NUI
             BlurType = blurType;
             BlurRadius = blurRadius;
             BackgroundCornerRadius = cornerRadius;
+            BehindBlurDimInfo = new WindowBehindBlurDimInfo(0, new Color(0.0f, 0.0f, 0.0f, 0.0f));
         }
 
         /// <summary>
@@ -49,6 +172,19 @@ namespace Tizen.NUI
             BlurType = blurType;
             BlurRadius = blurRadius;
             BackgroundCornerRadius = 0;
+            BehindBlurDimInfo = new WindowBehindBlurDimInfo(0, new Color(0.0f, 0.0f, 0.0f, 0.0f));
+        }
+
+        /// <summary>
+        /// The construct with blur type, radius, corner radius, and dimming information.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WindowBlurInfo(WindowBlurType blurType, int blurRadius, int cornerRadius, WindowBehindBlurDimInfo behindBlurDimInfo)
+        {
+            BlurType = blurType;
+            BlurRadius = blurRadius;
+            BackgroundCornerRadius = cornerRadius;
+            BehindBlurDimInfo = behindBlurDimInfo;
         }
 
         /// <summary>
@@ -78,6 +214,22 @@ namespace Tizen.NUI
         public int BackgroundCornerRadius {get; set;}
 
         /// <summary>
+        /// Gets or sets the dimming information for behind blur effect.
+        ///
+        /// This property contains the configuration for dimming effect that is applied to the behind blur region
+        /// when WindowBlurType.BEHIND is used. The dimming effect helps improve visual contrast
+        /// between the blurred background and the foreground window content.
+        ///
+        /// The dimming effect is only applied when the window blur type is set to BEHIND.
+        /// For other blur types (NONE or BACKGROUND), this setting has no visual effect.
+        ///
+        /// Default value: WindowBehindBlurDimInfo(0, new Color(0.0f, 0.0f, 0.0f, 0.0f)) (disabled)
+        /// </summary>
+        /// <value>The dimming configuration for behind blur effect</value>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WindowBehindBlurDimInfo BehindBlurDimInfo {get; set;}
+
+        /// <summary>
         /// Whether this is equivalent to other.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -85,7 +237,8 @@ namespace Tizen.NUI
         {
             return BlurType == other.BlurType &&
                    BlurRadius == other.BlurRadius &&
-                   BackgroundCornerRadius == other.BackgroundCornerRadius;
+                   BackgroundCornerRadius == other.BackgroundCornerRadius &&
+                   BehindBlurDimInfo.Equals(other.BehindBlurDimInfo);
         }
 
         ///  <inheritdoc/>
@@ -108,6 +261,7 @@ namespace Tizen.NUI
                 int hashcode = ((int)BlurType).GetHashCode();
                 hashcode = hashcode * 397 ^ BlurRadius.GetHashCode();
                 hashcode = hashcode * 397 ^ BackgroundCornerRadius.GetHashCode();
+                hashcode = hashcode * 397 ^ BehindBlurDimInfo.GetHashCode();
                 return hashcode;
             }
         }

@@ -2694,15 +2694,38 @@ namespace Tizen.NUI
                 blurInfo.BlurType = (WindowBlurType)Interop.WindowBlurInfo.GetBlurType(internalBlurInfo);
                 blurInfo.BlurRadius = Interop.WindowBlurInfo.GetBlurRadius(internalBlurInfo);
                 blurInfo.BackgroundCornerRadius = Interop.WindowBlurInfo.GetBackgroundCornerRadius(internalBlurInfo);
+                
+                IntPtr internalDimInfo = Interop.WindowBlurInfo.GetBehindBlurDimInfo(internalBlurInfo);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
+
+                Vector4 ret = new Vector4(Interop.WindowBehindBlurDimInfo.GetDimColor(internalDimInfo), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                int enableFlag = Interop.WindowBehindBlurDimInfo.GetIsEnable(internalDimInfo);
+                blurInfo.BehindBlurDimInfo = new WindowBehindBlurDimInfo(enableFlag, ret);
+                               
+                Interop.WindowBehindBlurDimInfo.DeleteWindowBehindBlurDimInfo(internalDimInfo);
                 Interop.WindowBlurInfo.DeleteWindowBlurInfo(internalBlurInfo);
 
                 return blurInfo;
             }
             set
             {
-                IntPtr internalBlurInfo = Interop.WindowBlurInfo.New((int)value.BlurType, value.BlurRadius, value.BackgroundCornerRadius);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                IntPtr colorPtr = Color.getCPtr(value.BehindBlurDimInfo.BehindBlurDim).Handle;
+                IntPtr internalDimInfo = Interop.WindowBehindBlurDimInfo.New(
+                    value.BehindBlurDimInfo.IsEnableBehindBlurDim,
+                    colorPtr
+                );
+                if (NDalicPINVOKE.SWIGPendingException.Pending) 
+                {
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                IntPtr internalBlurInfo = Interop.WindowBlurInfo.New((int)value.BlurType, value.BlurRadius, value.BackgroundCornerRadius, internalDimInfo);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) 
+                {
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
 
                 try {
                     Interop.Window.SetBlur(SwigCPtr, internalBlurInfo);
@@ -2710,6 +2733,7 @@ namespace Tizen.NUI
                 }
                 finally {
                     Interop.WindowBlurInfo.DeleteWindowBlurInfo(internalBlurInfo);
+                    Interop.WindowBehindBlurDimInfo.DeleteWindowBehindBlurDimInfo(internalDimInfo);
                 }
             }
         }
