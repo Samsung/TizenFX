@@ -46,7 +46,7 @@ jobs:
         ./build.sh restore
         ./build.sh build
         ./build.sh index
-      continue-on-error: true
+      # continue-on-error: true
         
     - name: Archive Artifacts
       run: |
