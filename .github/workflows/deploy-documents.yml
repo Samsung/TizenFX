@@ -39,10 +39,6 @@ jobs:
     - name: Build Documents
       # if: steps.cache-site.outputs.cache-hit != 'true'
       run: |
-        DOTNET_ROOT=$(dirname $(which dotnet))
-        MSBUILD_PATH=$(find $DOTNET_ROOT -name "MSBuild.dll" | sort -r | head -n 1)
-        echo "Found MSBuild at: $MSBUILD_PATH"
-        export MSBUILD_EXE_PATH=$MSBUILD_PATH
         ./build.sh restore
         ./build.sh build
         ./build.sh index
