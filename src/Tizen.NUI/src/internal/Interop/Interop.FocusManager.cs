@@ -111,6 +111,13 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetLastFocusChangeDeviceName")]
             public static extern string GetLastFocusChangeDeviceName(global::System.Runtime.InteropServices.HandleRef focusManager);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_SetClearFocusOnWindowFocusLost")]
+            public static extern void SetClearFocusOnWindowFocusLost(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetClearFocusOnWindowFocusLost")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool GetClearFocusOnWindowFocusLost(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }
