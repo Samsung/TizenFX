@@ -339,6 +339,24 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets or sets whether to clear focus when window loses focus.
+        /// By default, this is enabled.
+        /// When disabled, the focus state is preserved even when the window loses focus.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ClearFocusOnWindowFocusLost
+        {
+            set
+            {
+                SetClearFocusOnWindowFocusLost(value);
+            }
+            get
+            {
+                return IsClearFocusOnWindowFocusLost();
+            }
+        }
+
+        /// <summary>
         /// Gets the singleton of the FocusManager object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -714,6 +732,19 @@ namespace Tizen.NUI
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.FocusManager.GetFocusIndicatorActor(SwigCPtr);
             return this.GetInstanceSafely<View>(cPtr);
+        }
+
+        internal void SetClearFocusOnWindowFocusLost(bool enabled)
+        {
+            Interop.FocusManager.SetClearFocusOnWindowFocusLost(SwigCPtr, enabled);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool IsClearFocusOnWindowFocusLost()
+        {
+            bool ret = Interop.FocusManager.GetClearFocusOnWindowFocusLost(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         internal PreFocusChangeSignal PreFocusChangeSignal()
