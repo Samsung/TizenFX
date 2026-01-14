@@ -19,7 +19,7 @@ jobs:
         dotnet-version: '8.0.x'
 
     - name: Install DocFX Tool
-      run: dotnet tool install -g docfx --version 2.61.0
+      run: dotnet tool install -g docfx --version 2.78.4
 
     - name: Checkout TizenFX sources
       run: |
