@@ -22,27 +22,30 @@ namespace Tizen.NUI.Samples
                 Name = "test_root",
                 Size = new Size(500, 500),
                 Position = new Position(10, 10),
-                BackgroundColor = Color.White,
+                BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.5f),
             };
 
             window.Add(root);
 
             log.Debug(tag, $"root view added \n");
 
-            capturedView0 = new ImageView(resourcePath + "/images/image1.jpg")
+            capturedView0 = new ImageView(resourcePath + "/images/PaletteTest/3color.jpeg")
             {
                 Name = "test_v0",
                 Size = new Size(100, 100),
                 BackgroundColor = Color.Red,
+                PreMultiplyAlphaPolicy = ImageVisualPreMultiplyAlphaPolicyType.FollowVisualType,
+                Opacity = 0.5f,
             };
             root.Add(capturedView0);
 
-            capturedView1 = new ImageView(resourcePath + "/images/image2.jpg")
+            capturedView1 = new ImageView(resourcePath + "/images/MaskEffectSample/blackwhite.gif")
             {
                 Name = "test_v1",
                 Size = new Size(150, 150),
                 Position = new Position(150, 150),
                 BackgroundColor = Color.Yellow,
+                PreMultiplyAlphaPolicy = ImageVisualPreMultiplyAlphaPolicyType.MultiplyOffLoadAndOffRender,
             };
             root.Add(capturedView1);
 
@@ -58,9 +61,14 @@ namespace Tizen.NUI.Samples
             if (sender is Capture)
             {
                 log.Debug(tag, $"sender is Capture \n");
-                ImageUrl imageUrl = capture.GetImageUrl();
-                capturedImage = new ImageView(imageUrl.ToString());
-                log.Debug(tag, $"url={imageUrl.ToString()} \n");
+                // ImageUrl imageUrl = capture.GetImageUrl();
+                // capturedImage = new ImageView(imageUrl.ToString());
+                // log.Debug(tag, $"url={imageUrl.ToString()} \n");
+                capturedImage = new ImageView("/tmp/NUICaptureResult.png")
+                {
+                    PreMultiplyAlphaPolicy = ImageVisualPreMultiplyAlphaPolicyType.MultiplyOffLoadAndOnRender,
+                };
+                capturedImage.Reload();
 
                 capturedImage.Size = new Size(510, 510);
                 capturedImage.Position = new Position(10, 10);
@@ -77,7 +85,7 @@ namespace Tizen.NUI.Samples
                 {
                     done = true;
                     capture = new Capture();
-                    capture.Start(root, new Size(510, 510), "");
+                    capture.Start(root, new Size(510, 510), "/tmp/NUICaptureResult.png", Color.Transparent);
                     capture.Finished += onCaptureFinished;
                     log.Debug(tag, $"capture done \n");
                 }

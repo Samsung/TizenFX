@@ -49,6 +49,7 @@ namespace Tizen.NUI.Visuals
         internal ImageVisual(global::System.IntPtr cPtr, bool cMemoryOwn, bool cRegister) : base(cPtr, cMemoryOwn, cRegister)
         {
             Type = (int)Tizen.NUI.Visual.Type.Image;
+            PreMultiplyAlphaPolicy = ImageVisualPreMultiplyAlphaPolicyType.FollowVisualType;
         }
 
         #region Visual Properties
@@ -477,6 +478,27 @@ namespace Tizen.NUI.Visuals
                 using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.WrapModeV);
                 propertyValue?.Get(out ret);
                 return (WrapModeType)ret;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets pre-multiply options during load and render.<br />
+        /// By default, We use ImageVisualPreMultiplyAlphaPolicyType.FollowVisualType. <br />
+        /// Optional.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageVisualPreMultiplyAlphaPolicyType PreMultiplyAlphaPolicy
+        {
+            set
+            {
+                UpdateVisualProperty((int)Tizen.NUI.ImageVisualProperty.PreMultiplyAlphaPolicy, value);
+            }
+            get
+            {
+                int ret = (int)ImageVisualPreMultiplyAlphaPolicyType.FollowVisualType;
+                using var propertyValue = GetCachedVisualProperty((int)Tizen.NUI.ImageVisualProperty.PreMultiplyAlphaPolicy);
+                propertyValue?.Get(out ret);
+                return (ImageVisualPreMultiplyAlphaPolicyType)ret;
             }
         }
         #endregion

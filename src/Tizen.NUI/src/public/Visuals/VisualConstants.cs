@@ -1100,6 +1100,38 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int RenderScale = NDalic.ImageVisualOrientationCorrection + 21;
+
+        /// <summary>
+        /// @brief How to pre-multiply alpha during load the image, and how to render the result.
+        /// @details Name "preMultiplyAlphaPolicy", type ImageVisualPreMultiplyAlphaPolicyType (Property::INTEGER).
+        /// @note Visual.Property.PremultipliedAlpha will be ignored if it is not ImageVisualPreMultiplyAlphaPolicyType.FollowVisualProperty.
+        ///
+        /// |----------------------------------------|-------------------------|----------------------------------------|--------------------------------------------|
+        /// | ImageVisualPreMultiplyAlphaPolicyType  |    During load image    |          During render image           |               When it be used              |
+        /// |========================================|=========================|========================================|============================================|
+        /// | FollowVisualProperty                   | Follow Visual property  | Auto                                   | Default and legacy behavior.               |
+        /// |                                        |                         | (BLEND_PRE_MULTIPLIED_ALPHA true if    |                                            |
+        /// |                                        |                         | pre-multiply successed, false failed.) |                                            |
+        /// |----------------------------------------|-------------------------|----------------------------------------|--------------------------------------------|
+        /// | FollowVisualType                       | Pre-multiply alpha for  | Auto for ImageVisual.                  | Choose recommanded value automatically by  |
+        /// |                                        | ImageVisual. Load only  | BLEND_PRE_MULTIPLIED_ALPHA false for   | the type of Visual                         |
+        /// |                                        | for AnimatedImageVisual | AnimatedImageVisual                    |                                            |
+        /// |----------------------------------------|-------------------------|----------------------------------------|--------------------------------------------|
+        /// | MultiplyOnLoadAndAutoRender            | Pre-multiply alpha      | Auto                                   | Single image is good for it.               |
+        /// |                                        |                         |                                        | (Rendering performance is more important.) |
+        /// |----------------------------------------|-------------------------|----------------------------------------|--------------------------------------------|
+        /// | MultiplyOffLoadAndOffRender            | Load only               | BLEND_PRE_MULTIPLIED_ALPHA false       | Animated image is good for it.             |
+        /// |                                        |                         |                                        | (Load performance is more important.)      |
+        /// |----------------------------------------|-------------------------|----------------------------------------|--------------------------------------------|
+        /// | MultiplyOffLoadAndOnRender             | Load only               | BLEND_PRE_MULTIPLIED_ALPHA true        | Image's rgb pre-multiplied.                |
+        /// |                                        |                         |                                        | Be used when we load result of captured    |
+        /// |                                        |                         |                                        | image for normal case.                     |
+        /// |----------------------------------------|-------------------------|----------------------------------------|--------------------------------------------|
+        ///
+        /// @note Used by the AnimatedImageVisual and ImageVisual. The default is FollowVisualProperty.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int PreMultiplyAlphaPolicy = NDalic.ImageVisualOrientationCorrection + 22;
     }
 
     /// <summary>
@@ -1507,5 +1539,45 @@ namespace Tizen.NUI
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         CutoutOutsideWithCornerRadius,
+    };
+
+    /// <summary>
+    /// Defines how a imagevisual pre multiply during load and render
+    /// </summary>
+    /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum ImageVisualPreMultiplyAlphaPolicyType
+    {
+        /// <summary>
+        /// Use visual property. (default)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        FollowVisualProperty,
+
+        /// <summary>
+        /// Change policy by the visual type.
+        /// MultiplyOnLoadAndAutoRender for ImageVisual.
+        /// MultiplyOffLoadAndOffRender for AnimatedImageVisual
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        FollowVisualType,
+
+        /// <summary>
+        /// Try to multiply alpha on load first, and pre-multiplied blend factor of renderer changed by the multiply result.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        MultiplyOnLoadAndAutoRender,
+
+        /// <summary>
+        /// Do not multiply alpha on load, and not be used pre-multiplied blend factor of renderer.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        MultiplyOffLoadAndOffRender,
+
+        /// <summary>
+        /// Do not multiply alpha on load, but use pre-multiplied blend factor of renderer.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        MultiplyOffLoadAndOnRender,
     };
 }

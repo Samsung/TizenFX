@@ -138,6 +138,7 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.OrientationCorrection,
             ImageVisualProperty.FastTrackUploading,
             ImageVisualProperty.SynchronousSizing,
+            ImageVisualProperty.PreMultiplyAlphaPolicy,
             NpatchImageVisualProperty.Border,
             NpatchImageVisualProperty.BorderOnly,
         };
@@ -1154,6 +1155,36 @@ namespace Tizen.NUI.BaseComponents
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets or sets pre-multiply options during load and render.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageVisualPreMultiplyAlphaPolicyType PreMultiplyAlphaPolicy
+        {
+            get
+            {
+                return GetInternalPreMultiplyAlphaPolicy();
+            }
+            set
+            {
+                SetInternalPreMultiplyAlphaPolicy(value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private void SetInternalPreMultiplyAlphaPolicy(ImageVisualPreMultiplyAlphaPolicyType newValue)
+        {
+            using var pv = new PropertyValue((int)newValue);
+            UpdateImage(ImageVisualProperty.PreMultiplyAlphaPolicy, pv);
+        }
+
+        private ImageVisualPreMultiplyAlphaPolicyType GetInternalPreMultiplyAlphaPolicy()
+        {
+            int ret = (int)ImageVisualPreMultiplyAlphaPolicyType.FollowVisualProperty;
+            GetCachedImageVisualProperty(ImageVisualProperty.PreMultiplyAlphaPolicy)?.Get(out ret);
+            return (ImageVisualPreMultiplyAlphaPolicyType)ret;
         }
 
         /// <summary>
