@@ -6,7 +6,7 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-22.04
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v4
@@ -39,6 +39,7 @@ jobs:
     - name: Build Documents
       # if: steps.cache-site.outputs.cache-hit != 'true'
       run: |
+        chmod +x ./build.sh
         ./build.sh restore
         ./build.sh build
         ./build.sh index
