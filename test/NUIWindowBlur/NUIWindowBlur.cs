@@ -248,6 +248,8 @@ namespace NUIWindowBlur
     private Window windowForBackground = null;
     private Window windowForBehind = null;
 
+    private Timer mTimer;
+
     private static readonly string imagePath = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "/images/";
 
     protected override void OnCreate()
@@ -513,15 +515,60 @@ namespace NUIWindowBlur
       }
     }
 
+    bool testOnTick(object o, Timer.TickEventArgs e)
+    {
+      bool ret = true;
+
+      try
+      {
+        WindowBlurInfo blurInfo = windowForBehind.BlurInfo;
+        WindowDimInfo dimInfo = blurInfo.BehindBlurDimInfo;
+
+        Color dim = dimInfo.DimColor;
+
+        if (dim != null)
+        {
+          if (dim.A > (200.0f / 255.0f))
+          {
+            dimInfo.IsEnabled = 0;
+            ret = false;
+          }
+          else
+          {
+            dimInfo.IsEnabled = 1;
+            Color newDim = new Color(dim.R, dim.G, dim.B, dim.A + 1.0f / 255.0f);
+            dimInfo.DimColor = newDim;
+          }
+          blurInfo.BehindBlurDimInfo = dimInfo;
+          windowForBehind.BlurInfo = blurInfo;
+        }
+        else
+        {
+          log.Error(tag, $"dim color is null, skipping update\n");
+        }
+      }
+      catch (System.Exception ex)
+      {
+        log.Error(tag, $"Exception in testOnTick: {ex.Message}\n");
+        log.Error(tag, $"Stack trace: {ex.StackTrace}\n");
+        ret = false;
+      }
+
+      return ret;
+    }
     void CreateWindowForBehindBlur()
     {
       if (windowForBehind == null)
       {
         CustomBorder customBorder = new CustomBorder();
-        windowForBehind = new Window("windowForBehind", customBorder, new Rectangle(100, 700, 500, 200), false);
+        windowForBehind = new Window("windowForBehind", customBorder, new Rectangle(100, 700, 300, 200), false);
         windowForBackground.SetTransparency(false);
         windowForBehind.BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
         windowForBehind.BlurInfo = new WindowBlurInfo(WindowBlurType.Behind, 60);
+
+        mTimer = new Timer(2000);
+        mTimer.Tick += testOnTick;
+        mTimer.Start();
 
         windowForBehind.InterceptTouchEvent += (s, e) =>
         {

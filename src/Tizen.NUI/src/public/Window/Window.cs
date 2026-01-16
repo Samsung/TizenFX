@@ -2721,14 +2721,36 @@ namespace Tizen.NUI
                 blurInfo.BlurRadius = Interop.WindowBlurInfo.GetBlurRadius(internalBlurInfo);
                 blurInfo.BackgroundCornerRadius = Interop.WindowBlurInfo.GetBackgroundCornerRadius(internalBlurInfo);
 
+                IntPtr internalDimInfo = Interop.WindowBlurInfo.GetBehindBlurDimInfo(internalBlurInfo);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                Vector4 ret = new Vector4(Interop.WindowDimInfo.GetDimColor(internalDimInfo), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                int enableFlag = Interop.WindowDimInfo.GetIsEnabled(internalDimInfo);
+                blurInfo.BehindBlurDimInfo = new WindowDimInfo(enableFlag, ret);
+
+                Interop.WindowDimInfo.DeleteWindowDimInfo(internalDimInfo);
                 Interop.WindowBlurInfo.DeleteWindowBlurInfo(internalBlurInfo);
 
                 return blurInfo;
             }
             set
             {
-                IntPtr internalBlurInfo = Interop.WindowBlurInfo.New((int)value.BlurType, value.BlurRadius, value.BackgroundCornerRadius);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                IntPtr colorPtr = Color.getCPtr(value.BehindBlurDimInfo.DimColor).Handle;
+                IntPtr internalDimInfo = Interop.WindowDimInfo.New(
+                    value.BehindBlurDimInfo.IsEnabled,
+                    colorPtr
+                );
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                {
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                IntPtr internalBlurInfo = Interop.WindowBlurInfo.New((int)value.BlurType, value.BlurRadius, value.BackgroundCornerRadius, internalDimInfo);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                {
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
 
                 try {
                     Interop.Window.SetBlur(SwigCPtr, internalBlurInfo);
@@ -2736,6 +2758,7 @@ namespace Tizen.NUI
                 }
                 finally {
                     Interop.WindowBlurInfo.DeleteWindowBlurInfo(internalBlurInfo);
+                    Interop.WindowDimInfo.DeleteWindowDimInfo(internalDimInfo);
                 }
             }
         }
