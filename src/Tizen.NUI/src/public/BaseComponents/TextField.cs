@@ -5002,6 +5002,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int CharacterSpacing = Interop.TextField.CharacterSpacingGet();
             internal static readonly int RemoveFrontInset = Interop.TextField.RemoveFrontInsetGet();
             internal static readonly int RemoveBackInset = Interop.TextField.RemoveBackInsetGet();
+            internal static readonly int EnableCursorInset = Interop.TextField.EnableCursorInsetGet();
 
             internal static void Preload()
             {
