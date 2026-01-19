@@ -5057,6 +5057,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int CharacterSpacing = Interop.TextEditor.CharacterSpacingGet();
             internal static readonly int RemoveFrontInset = Interop.TextEditor.RemoveFrontInsetGet();
             internal static readonly int RemoveBackInset = Interop.TextEditor.RemoveBackInsetGet();
+            internal static readonly int EnableCursorInset = Interop.TextEditor.EnableCursorInsetGet();
 
             internal static void Preload()
             {
