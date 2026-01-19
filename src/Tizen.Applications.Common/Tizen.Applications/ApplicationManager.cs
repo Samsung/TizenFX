@@ -23,6 +23,51 @@ using static Interop.ApplicationManager;
 namespace Tizen.Applications
 {
     /// <summary>
+    /// Enumeration for application lifecycle state.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum ApplicationLifecycleState
+    {
+        /// <summary>The application is initialized.</summary>
+        Initialized = 0,
+        /// <summary>The application is created.</summary>
+        Created = 1,
+        /// <summary>The application is resumed.</summary>
+        Resumed = 2,
+        /// <summary>The application is paused.</summary>
+        Paused = 3,
+        /// <summary>The application is destroyed.</summary>
+        Destroyed = 4
+    }
+
+    /// <summary>
+    /// Event arguments for application lifecycle state changed event.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class ApplicationLifecycleStateChangedEventArgs : EventArgs
+    {
+        /// <summary>
+        /// Gets the application ID.
+        /// </summary>
+        public string ApplicationId { get; internal set; }
+
+        /// <summary>
+        /// Gets the process ID.
+        /// </summary>
+        public int ProcessId { get; internal set; }
+
+        /// <summary>
+        /// Gets the lifecycle state.
+        /// </summary>
+        public ApplicationLifecycleState State { get; internal set; }
+
+        /// <summary>
+        /// Gets whether the application has focus.
+        /// </summary>
+        public bool HasFocus { get; internal set; }
+    }
+
+    /// <summary>
     /// This class has the methods and events of the ApplicationManager.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -38,6 +83,9 @@ namespace Tizen.Applications
         private static IntPtr _eventHandle = IntPtr.Zero;
         private static readonly object s_eventLock = new object();
         private static readonly object s_applicationChangedEventLock = new object();
+        private static EventHandler<ApplicationLifecycleStateChangedEventArgs> s_lifecycleStateChangedHandler;
+        private static Interop.ApplicationManager.AppManagerLifecycleStateChangedCallback s_lifecycleStateChangedCallback;
+        private static readonly object s_lifecycleStateChangedLock = new object();
 
         /// <summary>
         /// Occurs whenever the installed application is enabled.
@@ -685,6 +733,83 @@ namespace Tizen.Applications
                 Interop.ApplicationManager.AppManagerEventDestroy(_eventHandle);
                 _eventHandle = IntPtr.Zero;
             }
+        }
+
+        /// <summary>
+        /// Occurs when the lifecycle state of any application changes.
+        /// </summary>
+        /// <remarks>
+        /// This event is raised whenever the lifecycle state of any application changes.
+        /// It provides information about the application whose lifecycle state has changed.
+        /// </remarks>
+        /// <example>
+        /// The following code snippet demonstrates how to subscribe to the ApplicationLifecycleStateChanged event:
+        ///
+        /// <code>
+        /// ApplicationManager.ApplicationLifecycleStateChanged += (sender, e) =>
+        /// {
+        ///     Console.WriteLine($"Application {e.ApplicationId} (PID: {e.ProcessId}) state changed to {e.State}");
+        ///     Console.WriteLine($"Has focus: {e.HasFocus}");
+        /// };
+        /// </code>
+        /// </example>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static event EventHandler<ApplicationLifecycleStateChangedEventArgs> ApplicationLifecycleStateChanged
+        {
+            add
+            {
+                lock (s_lifecycleStateChangedLock)
+                {
+                    if (s_lifecycleStateChangedCallback == null)
+                    {
+                        RegisterLifecycleStateChangedEvent();
+                    }
+                    s_lifecycleStateChangedHandler += value;
+                }
+            }
+            remove
+            {
+                lock (s_lifecycleStateChangedLock)
+                {
+                    s_lifecycleStateChangedHandler -= value;
+                    if (s_lifecycleStateChangedHandler == null && s_lifecycleStateChangedCallback != null)
+                    {
+                        UnRegisterLifecycleStateChangedEvent();
+                        s_lifecycleStateChangedCallback = null;
+                    }
+                }
+            }
+        }
+
+        private static void RegisterLifecycleStateChangedEvent()
+        {
+            s_lifecycleStateChangedCallback = (string appId, int pid,
+                Interop.ApplicationManager.AppLifecycleState state, bool hasFocus, IntPtr userData) =>
+            {
+                lock (s_lifecycleStateChangedLock)
+                {
+                    s_lifecycleStateChangedHandler?.Invoke(null, new ApplicationLifecycleStateChangedEventArgs
+                    {
+                        ApplicationId = appId,
+                        ProcessId = pid,
+                        State = (ApplicationLifecycleState)state,
+                        HasFocus = hasFocus
+                    });
+                }
+            };
+
+            Interop.ApplicationManager.ErrorCode err =
+                Interop.ApplicationManager.AppManagerSetLifecycleStateChangedCb(s_lifecycleStateChangedCallback, IntPtr.Zero);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                throw ApplicationManagerErrorFactory.GetException(err, "Failed to register the lifecycle state changed event.");
+            }
+        }
+
+        private static void UnRegisterLifecycleStateChangedEvent()
+        {
+            Interop.ApplicationManager.AppManagerUnsetLifecycleStateChangedCb();
         }
 
         /// <summary>
