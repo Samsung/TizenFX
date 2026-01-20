@@ -96,6 +96,8 @@ namespace Tizen.NUI
         private MeasureSpecification parentMeasureSpecificationWidth;
         private MeasureSpecification parentMeasureSpecificationHeight;
 
+        private bool _isOnLayout;
+
         internal const float FlexUndefined = 10E20F; // Auto setting which is equivalent to WrapContent.
 
         internal struct MeasuredSize
@@ -870,6 +872,13 @@ namespace Tizen.NUI
 
             measureSize.width = (childLayout == null) ? 0 : childLayout.MeasuredWidth.Size.AsRoundedValue();
             measureSize.height = (childLayout == null) ? 0 : childLayout.MeasuredHeight.Size.AsRoundedValue();
+
+            // measureChild() is called by Interop.FlexLayout.CalculateLayout() in OnMeasure() if Interop.FlexLayout.MarkDirty() was called.
+            // Not to call Interop.FlexLayout.MarkDirty() in the next render loop, MarkDirty should be initialized to false here.
+            if (child.GetAttached<LayoutParams>()?.MarkDirty ?? false)
+            {
+                child.GetAttached<LayoutParams>().MarkDirty = false;
+            }
         }
 
         void InsertChild(LayoutItem child)
@@ -1037,7 +1046,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-
+            _isOnLayout = true;
             bool isLayoutRtl = Owner.LayoutDirection == ViewLayoutDirectionType.RTL;
             LayoutLength width = right - left;
             LayoutLength height = bottom - top;
@@ -1071,10 +1080,18 @@ namespace Tizen.NUI
                 childLayout.Layout(new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W));
                 frame.Dispose();
             }
+            _isOnLayout = false;
         }
 
-        internal static void MarkDirty(View view)
+        internal void MarkDirty(View view)
         {
+            // Do not mark dirty during OnLayout() to prevent infinite size calculation.
+            // Otherwise, the MarkDirty set during OnLayout() causes size calculation during OnMeasure() in the next render loop.
+            if (_isOnLayout)
+            {
+                return;
+            }
+
             _ = view ?? throw new ArgumentNullException(nameof(view));
             var layoutParams = view.GetAttached<LayoutParams>();
             if (layoutParams != null)

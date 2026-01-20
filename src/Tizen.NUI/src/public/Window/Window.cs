@@ -2047,6 +2047,32 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets the maximized state of a given window with specific size
+        ///
+        /// If this function is called with true, window will be resized with screen size.
+        /// Otherwise window will be resized with previous size.
+        /// It is for the window's MAX button in window's border.
+        /// If window border is supported by display server, it is not necessary.
+        /// </summary>
+        /// <param name="maximize">If window is maximized or unmaximized.</param>
+        /// <param name="restoreSize">This is the size used when unmaximized..</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Maximize(bool maximize, Size2D restoreSize)
+        {
+            if (null == restoreSize)
+            {
+                throw new ArgumentNullException(nameof(restoreSize));
+            }
+            var val = new Uint16Pair((uint)restoreSize.Width, (uint)restoreSize.Height);
+
+            convertBorderWindowSizeToRealWindowSize(val);
+
+            Interop.Window.MaximizeWithRestoreSize(SwigCPtr, maximize, Uint16Pair.getCPtr(val));
+            val.Dispose();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Returns whether the window is maximized or not.
         /// </summary>
         /// <returns>True if the window is maximized, false otherwise.</returns>
@@ -2695,14 +2721,36 @@ namespace Tizen.NUI
                 blurInfo.BlurRadius = Interop.WindowBlurInfo.GetBlurRadius(internalBlurInfo);
                 blurInfo.BackgroundCornerRadius = Interop.WindowBlurInfo.GetBackgroundCornerRadius(internalBlurInfo);
 
+                IntPtr internalDimInfo = Interop.WindowBlurInfo.GetBehindBlurDimInfo(internalBlurInfo);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                Vector4 ret = new Vector4(Interop.WindowDimInfo.GetDimColor(internalDimInfo), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                int enableFlag = Interop.WindowDimInfo.GetIsEnabled(internalDimInfo);
+                blurInfo.BehindBlurDimInfo = new WindowDimInfo(enableFlag, ret);
+
+                Interop.WindowDimInfo.DeleteWindowDimInfo(internalDimInfo);
                 Interop.WindowBlurInfo.DeleteWindowBlurInfo(internalBlurInfo);
 
                 return blurInfo;
             }
             set
             {
-                IntPtr internalBlurInfo = Interop.WindowBlurInfo.New((int)value.BlurType, value.BlurRadius, value.BackgroundCornerRadius);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                IntPtr colorPtr = Color.getCPtr(value.BehindBlurDimInfo.DimColor).Handle;
+                IntPtr internalDimInfo = Interop.WindowDimInfo.New(
+                    value.BehindBlurDimInfo.IsEnabled,
+                    colorPtr
+                );
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                {
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                IntPtr internalBlurInfo = Interop.WindowBlurInfo.New((int)value.BlurType, value.BlurRadius, value.BackgroundCornerRadius, internalDimInfo);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                {
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
 
                 try {
                     Interop.Window.SetBlur(SwigCPtr, internalBlurInfo);
@@ -2710,6 +2758,7 @@ namespace Tizen.NUI
                 }
                 finally {
                     Interop.WindowBlurInfo.DeleteWindowBlurInfo(internalBlurInfo);
+                    Interop.WindowDimInfo.DeleteWindowDimInfo(internalDimInfo);
                 }
             }
         }
