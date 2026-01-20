@@ -82,6 +82,8 @@ namespace Tizen.Applications.RPCPort
         /// <since_tizen> 9 </since_tizen>
         public void SetTag(string tag)
         {
+            if (tag == null)
+                throw new InvalidIOException();
             string[] parts = tag.Split(new char[] {'.', ':'}, StringSplitOptions.RemoveEmptyEntries);
             if (parts.Length != 5)
             {
