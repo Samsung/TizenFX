@@ -158,6 +158,12 @@ internal static partial class Interop
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_get_tag")]
             internal static extern ErrorCode GetTag(IntPtr parcelHeaderHandle, out string tag);
 
+            //int rpc_port_parcel_header_set_tag_ex(rpc_port_parcel_header_h header,
+            //    unsigned char tidlc_version_major, unsigned char tidlc_version_minor,
+            //    unsigned char tidlc_version_patch, unsigned char tidl_protocol_ver, unsigned char flags);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_set_tag_ex")]
+            internal static extern ErrorCode SetTagEx(IntPtr parcelHeaderHandle, byte major, byte minor, byte patch, byte protocol, byte flags);
+
             //int rpc_port_parcel_header_set_seq_num(rpc_port_parcel_header_h header, int seq_num);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_set_seq_num")]
             internal static extern ErrorCode SetSeqNum(IntPtr parcelHeaderHandle, int seq_num);
