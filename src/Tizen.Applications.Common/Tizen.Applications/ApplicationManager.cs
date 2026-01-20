@@ -742,6 +742,8 @@ namespace Tizen.Applications
         /// This event is raised whenever the lifecycle state of any application changes.
         /// It provides information about the application whose lifecycle state has changed.
         /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed to register the lifecycle state changed event.</exception>
         /// <example>
         /// The following code snippet demonstrates how to subscribe to the ApplicationLifecycleStateChanged event:
         ///
