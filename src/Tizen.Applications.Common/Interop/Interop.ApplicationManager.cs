@@ -71,6 +71,19 @@ internal static partial class Interop
             WatchApp = 3
         }
 
+        internal enum AppLifecycleState
+        {
+            Initialized = 0,
+            Created = 1,
+            Resumed = 2,
+            Paused = 3,
+            Destroyed = 4
+        }
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void AppManagerLifecycleStateChangedCallback(string appId, int pid, AppLifecycleState state, bool hasFocus, IntPtr userData);
+        //void (*app_manager_lifecycle_state_changed_cb)(const char *app_id, pid_t pid, app_manager_lifecycle_state_e state, bool has_focus, void *user_data)
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void AppManagerEventCallback(string appType, string appId, AppManagerEventType eventType, AppManagerEventState eventState, IntPtr eventHandle, IntPtr userData);
         //void(* app_manager_event_cb)(const char *type, const char *app_id, app_manager_event_type_e event_type, app_manager_event_state_e event_state, app_manager_event_h handle, void *user_data)
@@ -110,6 +123,14 @@ internal static partial class Interop
         [DllImport(Libraries.AppManager, EntryPoint = "app_manager_unset_app_context_event_cb")]
         internal static extern void AppManagerUnSetAppContextEvent();
         //void app_manager_unset_app_context_event_cb (void);
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_set_lifecycle_state_changed_cb")]
+        internal static extern ErrorCode AppManagerSetLifecycleStateChangedCb(AppManagerLifecycleStateChangedCallback callback, IntPtr userData);
+        //int app_manager_set_lifecycle_state_changed_cb(app_manager_lifecycle_state_changed_cb callback, void *user_data)
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_unset_lifecycle_state_changed_cb")]
+        internal static extern void AppManagerUnsetLifecycleStateChangedCb();
+        //void app_manager_unset_lifecycle_state_changed_cb(void)
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_manager_foreach_running_app_context")]
         internal static extern ErrorCode AppManagerForeachRunningAppContext(AppManagerAppContextCallback callback, IntPtr userData);
