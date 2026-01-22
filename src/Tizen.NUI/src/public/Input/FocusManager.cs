@@ -339,6 +339,24 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets or sets whether to clear focus when window loses focus.
+        /// By default, this is enabled.
+        /// When disabled, the focus state is preserved even when the window loses focus.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ClearFocusOnWindowFocusLost
+        {
+            set
+            {
+                SetClearFocusOnWindowFocusLost(value);
+            }
+            get
+            {
+                return IsClearFocusOnWindowFocusLost();
+            }
+        }
+
+        /// <summary>
         /// Gets the singleton of the FocusManager object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -602,6 +620,34 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets the device of the last focus change.
+        /// This method returns what caused the most recent focus change,
+        /// allowing applications to differentiate between different input methods.
+        /// </summary>
+        /// <returns>The device of the last focus change</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FocusDeviceType GetLastFocusChangeDevice()
+        {
+            int ret = Interop.FocusManager.GetLastFocusChangeDevice(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return (FocusDeviceType)ret;
+        }
+
+        /// <summary>
+        /// Gets the device name that caused the last focus change.
+        /// This method returns the name of the input device that caused
+        /// the most recent focus change. For non-device inputs (like programmatic focus changes), an empty string may be returned.
+        /// </summary>
+        /// <returns>The device name that caused the last focus change</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GetLastFocusChangeDeviceName()
+        {
+            string ret = Interop.FocusManager.GetLastFocusChangeDeviceName(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         [global::System.Obsolete("Do not use this, that will be deprecated. Use TypeRegistry.Instance instead. " +
             "Like: " +
             "TypeRegistry visualFactory = TypeRegistry.Instance; " +
@@ -686,6 +732,19 @@ namespace Tizen.NUI
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.FocusManager.GetFocusIndicatorActor(SwigCPtr);
             return this.GetInstanceSafely<View>(cPtr);
+        }
+
+        internal void SetClearFocusOnWindowFocusLost(bool enabled)
+        {
+            Interop.FocusManager.SetClearFocusOnWindowFocusLost(SwigCPtr, enabled);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool IsClearFocusOnWindowFocusLost()
+        {
+            bool ret = Interop.FocusManager.GetClearFocusOnWindowFocusLost(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         internal PreFocusChangeSignal PreFocusChangeSignal()
