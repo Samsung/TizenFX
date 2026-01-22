@@ -23,7 +23,7 @@ namespace Tizen.Applications
     internal static class UIGadgetLifecycleManager
     {
         private static ConcurrentQueue<LifecycleEvent> _lifecycleEvents = new ConcurrentQueue<LifecycleEvent>();
-        private static bool _processing = false;
+        private static readonly object _processingLock = new object();
 
         internal static void DispatchLifecycleEvent(IUIGadget gadget, Action action, bool useIdler = true)
         {
@@ -50,31 +50,29 @@ namespace Tizen.Applications
 
         private static void ProcessLifecycleEvent()
         {
-            if (_processing)
+            if (!Monitor.TryEnter(_processingLock))
             {
                 Log.Info("Already processing");
                 return;
             }
 
-            _processing = true;
-            var retry = 3;
-            while (!_lifecycleEvents.IsEmpty)
+            try
             {
-                if (!_lifecycleEvents.TryDequeue(out LifecycleEvent lifecycleEvent))
+                while (!_lifecycleEvents.IsEmpty)
                 {
-                    if ((!_lifecycleEvents.IsEmpty) && (retry-- > 0)) {
-                        Log.Warn("Fail to deque lifecycle events, retry " + retry);
-                        continue;
-                    } else {
+                    if (!_lifecycleEvents.TryDequeue(out LifecycleEvent lifecycleEvent))
+                    {
                         break;
                     }
-                }
 
-                var action = lifecycleEvent.Action;
-                action?.Invoke();
-                retry = 3;
+                    var action = lifecycleEvent.Action;
+                    action?.Invoke();
+                }
             }
-            _processing = false;
+            finally
+            {
+                Monitor.Exit(_processingLock);
+            }
         }
 
         internal class LifecycleEvent
