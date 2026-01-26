@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Multimedia", "Tizen.Multimedia.csproj", "{CE0306EA-C972-4D11-916B-3A453FA18616}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElmSharp", "..\ElmSharp\ElmSharp.csproj", "{11BB8B68-9E10-49F4-B9AB-9AD64703C81B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen", "..\Tizen\Tizen.csproj", "{8C5FA5D9-925E-434C-B2E2-023AE99439D7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Log", "..\Tizen.Log\Tizen.Log.csproj", "{A93E036B-A06F-4A3F-A724-73DCD57B8AEB}"
@@ -33,10 +31,6 @@ Global
 		{CE0306EA-C972-4D11-916B-3A453FA18616}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE0306EA-C972-4D11-916B-3A453FA18616}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE0306EA-C972-4D11-916B-3A453FA18616}.Release|Any CPU.Build.0 = Release|Any CPU
-		{11BB8B68-9E10-49F4-B9AB-9AD64703C81B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{11BB8B68-9E10-49F4-B9AB-9AD64703C81B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{11BB8B68-9E10-49F4-B9AB-9AD64703C81B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{11BB8B68-9E10-49F4-B9AB-9AD64703C81B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8C5FA5D9-925E-434C-B2E2-023AE99439D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8C5FA5D9-925E-434C-B2E2-023AE99439D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C5FA5D9-925E-434C-B2E2-023AE99439D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
