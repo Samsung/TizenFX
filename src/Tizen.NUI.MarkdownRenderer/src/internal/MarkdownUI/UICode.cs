@@ -64,6 +64,7 @@ namespace Tizen.NUI.MarkdownRenderer
             };
             WidthSpecification = LayoutParamPolicies.MatchParent;
             Margin = new Extents((ushort)indent, 0, 0, 0);
+            InheritLayoutDirection = false;
             LayoutDirection = ViewLayoutDirectionType.LTR;
         }
 
