@@ -65,10 +65,7 @@ namespace Tizen.WindowSystem.Shell
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~TizenRegion()
-        {
-            Dispose(false);
-        }
+
 
         /// <summary>
         /// Dispose.
@@ -77,7 +74,6 @@ namespace Tizen.WindowSystem.Shell
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <inheritdoc/>

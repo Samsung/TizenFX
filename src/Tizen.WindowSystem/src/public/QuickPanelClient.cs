@@ -353,10 +353,7 @@ namespace Tizen.WindowSystem.Shell
         /// The destructor of QuickPanelClass class.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        ~QuickPanelClient()
-        {
-            Dispose(false);
-        }
+
 
         /// <summary>
         /// Disposes the resources of the QuickPanelClient class.
@@ -366,7 +363,6 @@ namespace Tizen.WindowSystem.Shell
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <inheritdoc/>

@@ -103,10 +103,7 @@ namespace Tizen.WindowSystem.Shell
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~ScreensaverService()
-        {
-            Dispose(disposing: false);
-        }
+
         /// <summary>
         /// Dispose.
         /// </summary>
@@ -116,7 +113,6 @@ namespace Tizen.WindowSystem.Shell
                 return;
 
             Dispose(disposing: true);
-            GC.SuppressFinalize(this);
         }
         /// <inheritdoc/>
         protected virtual void Dispose(bool disposing)

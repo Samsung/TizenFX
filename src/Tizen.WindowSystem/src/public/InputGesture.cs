@@ -199,10 +199,7 @@ namespace Tizen.WindowSystem
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~InputGesture()
-        {
-            Dispose(false);
-        }
+
 
         /// <summary>
         /// Dispose.
@@ -210,7 +207,6 @@ namespace Tizen.WindowSystem
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <inheritdoc/>

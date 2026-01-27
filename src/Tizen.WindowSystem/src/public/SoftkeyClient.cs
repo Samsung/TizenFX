@@ -110,10 +110,7 @@ namespace Tizen.WindowSystem.Shell
         /// <summary>
         /// Destructor.
         /// </summary>
-        ~SoftkeyClient()
-        {
-            Dispose(false);
-        }
+
 
         /// <summary>
         /// Dispose.
@@ -121,7 +118,6 @@ namespace Tizen.WindowSystem.Shell
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <inheritdoc/>

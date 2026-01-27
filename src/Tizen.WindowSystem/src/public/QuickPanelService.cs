@@ -151,10 +151,7 @@ namespace Tizen.WindowSystem.Shell
         /// Destructor.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
-        ~QuickPanelService()
-        {
-            Dispose(false);
-        }
+
 
         /// <summary>
         /// Dispose.
@@ -163,7 +160,6 @@ namespace Tizen.WindowSystem.Shell
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <inheritdoc/>

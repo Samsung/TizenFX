@@ -89,10 +89,7 @@ namespace Tizen.WindowSystem.Shell
         /// The destructor of TizenShell class.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        ~TizenShell()
-        {
-            Dispose(false);
-        }
+
 
         /// <summary>
         /// Dispose the TizenShell instance explicitly.
@@ -102,7 +99,6 @@ namespace Tizen.WindowSystem.Shell
         public void Dispose()
         {
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <inheritdoc/>
