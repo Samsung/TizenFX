@@ -157,13 +157,6 @@ namespace Tizen.NUI
             }
         }
 
-        internal Tizen.NUI.TypeInfo GetTypeInfo(SWIGTYPE_p_std__type_info registerType)
-        {
-            Tizen.NUI.TypeInfo ret = new Tizen.NUI.TypeInfo(Interop.TypeRegistry.GetTypeInfo(SwigCPtr, SWIGTYPE_p_std__type_info.getCPtr(registerType)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Gets type name count.
         /// </summary>
