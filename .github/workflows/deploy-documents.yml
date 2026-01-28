@@ -36,6 +36,10 @@ jobs:
       with:
         node-version: 24
 
+    - name: Install dependencies for Indexing
+      run: |
+        npm install stream-json
+
     - name: Build Documents
       # if: steps.cache-site.outputs.cache-hit != 'true'
       run: |
