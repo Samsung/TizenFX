@@ -7,9 +7,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    env:
-      DOTNET_gcServer: 0
-      DOTNET_NOLOGO: true
 
     steps:
     - uses: actions/checkout@v4
