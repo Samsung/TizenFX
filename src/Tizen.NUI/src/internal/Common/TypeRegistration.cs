@@ -28,39 +28,6 @@ namespace Tizen.NUI
             Interop.TypeRegistration.DeleteTypeRegistration(swigCPtr);
         }
 
-        static private global::System.IntPtr SwigConstructTypeRegistration(SWIGTYPE_p_std__type_info registerType, SWIGTYPE_p_std__type_info baseType, System.Delegate f)
-        {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(f);
-            return Interop.TypeRegistration.NewTypeRegistration(SWIGTYPE_p_std__type_info.getCPtr(registerType), SWIGTYPE_p_std__type_info.getCPtr(baseType), new System.Runtime.InteropServices.HandleRef(null, ip));
-        }
-
-        internal TypeRegistration(SWIGTYPE_p_std__type_info registerType, SWIGTYPE_p_std__type_info baseType, System.Delegate f) : this(TypeRegistration.SwigConstructTypeRegistration(registerType, baseType, f), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        static private global::System.IntPtr SwigConstructTypeRegistration(SWIGTYPE_p_std__type_info registerType, SWIGTYPE_p_std__type_info baseType, System.Delegate f, bool callCreateOnInit)
-        {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(f);
-            return Interop.TypeRegistration.NewTypeRegistration(SWIGTYPE_p_std__type_info.getCPtr(registerType), SWIGTYPE_p_std__type_info.getCPtr(baseType), new System.Runtime.InteropServices.HandleRef(null, ip), callCreateOnInit);
-        }
-
-        internal TypeRegistration(SWIGTYPE_p_std__type_info registerType, SWIGTYPE_p_std__type_info baseType, System.Delegate f, bool callCreateOnInit) : this(TypeRegistration.SwigConstructTypeRegistration(registerType, baseType, f, callCreateOnInit), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        static private global::System.IntPtr SwigConstructTypeRegistration(string name, SWIGTYPE_p_std__type_info baseType, System.Delegate f)
-        {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(f);
-            return Interop.TypeRegistration.NewTypeRegistration(name, SWIGTYPE_p_std__type_info.getCPtr(baseType), new System.Runtime.InteropServices.HandleRef(null, ip));
-        }
-
-        internal TypeRegistration(string name, SWIGTYPE_p_std__type_info baseType, System.Delegate f) : this(TypeRegistration.SwigConstructTypeRegistration(name, baseType, f), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         public string RegisteredName()
         {
             string ret = Interop.TypeRegistration.RegisteredName(SwigCPtr);
