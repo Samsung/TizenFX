@@ -31,7 +31,7 @@ internal static partial class Interop
 
         [DllImport(Libraries.PackageManager, EntryPoint = "pkgmgr_client_activate")]
         internal static extern ErrorCode PkgmgrClientActivate(IntPtr clientHandle, string pkgType, string pkgId);
-        
+
         [DllImport(Libraries.PackageManager, EntryPoint = "pkgmgr_client_deactivate")]
         internal static extern ErrorCode PkgmgrClientDeactivate(IntPtr clientHandle, string pkgType, string pkgId);
     }
