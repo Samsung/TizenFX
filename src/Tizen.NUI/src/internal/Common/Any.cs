@@ -51,13 +51,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public new SWIGTYPE_p_std__type_info GetType()
-        {
-            SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(Interop.Any.GetType(SwigCPtr));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public bool Empty()
         {
             bool ret = Interop.Any.Empty(SwigCPtr);
