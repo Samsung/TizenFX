@@ -21,7 +21,7 @@ using System.ComponentModel;
 using System.Text;
 using Tizen.Common;
 
-namespace Tizen.WindowSystem.Shell
+namespace Tizen.NUI.WindowSystem.Shell
 {
     /// <summary>
     /// Class for the Tizen quickpanel service.
@@ -34,6 +34,7 @@ namespace Tizen.WindowSystem.Shell
         private IntPtr _tzshQpService;
         private int _tzshWin;
         private bool disposed = false;
+        private bool isDisposeQueued = false;
 
         /// <summary>
         /// QuickPanel Type.
@@ -86,7 +87,7 @@ namespace Tizen.WindowSystem.Shell
         /// <exception cref="Tizen.Applications.Exceptions.OutOfMemoryException">Thrown when the memory is not enough to allocate.</exception>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
         /// <exception cref="ArgumentNullException">Thrown when a argument is null.</exception>
-        public QuickPanelService(TizenShell tzShell, int win, Types type)
+        public QuickPanelService(TizenShell tzShell, Window win, Types type)
         {
             if (tzShell == null)
             {
@@ -96,13 +97,13 @@ namespace Tizen.WindowSystem.Shell
             {
                 throw new ArgumentException("tzShell is not initialized.");
             }
-            if (win < 0)
+            if (win == null)
             {
-                throw new ArgumentException("Invalid window ID");
+                throw new ArgumentNullException(nameof(win));
             }
 
             _tzsh = tzShell;
-            _tzshWin = win;
+            _tzshWin = win.GetNativeId();
             _tzshQpService = Interop.QuickPanelService.CreateWithType(_tzsh.GetNativeHandle(), (uint)_tzshWin, (int)type);
             if (_tzshQpService == IntPtr.Zero)
             {
@@ -150,7 +151,14 @@ namespace Tizen.WindowSystem.Shell
         /// Destructor.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
-
+        ~QuickPanelService()
+        {
+            if (!isDisposeQueued)
+            {
+                isDisposeQueued = true;
+                DisposeQueue.Instance.Add(this);
+            }
+        }
 
         /// <summary>
         /// Dispose.
@@ -158,11 +166,19 @@ namespace Tizen.WindowSystem.Shell
         /// <exception cref="MemberAccessException">Thrown when private memeber is a corrupted.</exception>
         public void Dispose()
         {
-            Dispose(true);
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                GC.SuppressFinalize(this);
+            }
         }
 
         /// <inheritdoc/>
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(DisposeTypes disposing)
         {
             int res;
             if (!disposed)

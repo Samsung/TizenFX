@@ -19,7 +19,7 @@ using System;
 using System.ComponentModel;
 using Tizen.Common;
 
-namespace Tizen.WindowSystem.Shell
+namespace Tizen.NUI.WindowSystem.Shell
 {
     /// <summary>
     /// Class for the Tizen softkey service.
@@ -32,6 +32,7 @@ namespace Tizen.WindowSystem.Shell
         private IntPtr _softkeyService;
         private int _tzshWin;
         private bool disposed = false;
+        private bool isDisposeQueued = false;
 
         private Interop.SoftkeyService.SoftkeyVisibleEventCallback _onVisibleChanged;
         private Interop.SoftkeyService.SoftkeyExpandEventCallback _onExpandChanged;
@@ -40,6 +41,38 @@ namespace Tizen.WindowSystem.Shell
         private event EventHandler<SoftkeyVisibleState> _visibleChanged;        
         private event EventHandler<SoftkeyExpandState> _expandChanged;        
         private event EventHandler<SoftkeyOpacityState> _opacityChanged;
+
+        /// <summary>
+        /// Creates a new Softkey Service handle.
+        /// </summary>
+        /// <param name="tzShell">The TizenShell instance.</param>
+        /// <param name="win">The window to provide service of the quickpanel.</param>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when a argument is null.</exception>
+        public SoftkeyService(TizenShell tzShell, Window win)
+        {
+            if (tzShell == null)
+            {
+                throw new ArgumentNullException(nameof(tzShell));
+            }
+            if (tzShell.GetNativeHandle() == IntPtr.Zero)
+            {
+                throw new ArgumentException("tzShell is not initialized.");
+            }
+            if (win == null)
+            {
+                throw new ArgumentNullException(nameof(win));
+            }
+
+            _tzsh = tzShell;
+            _tzshWin = win.GetNativeId();
+            _softkeyService = Interop.SoftkeyService.Create(_tzsh.GetNativeHandle(), (uint)_tzshWin);
+            if (_softkeyService == IntPtr.Zero)
+            {
+                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
+                _tzsh.ErrorCodeThrow(err);
+            }
+        }
 
         /// <summary>
         /// Creates a new Softkey Service handle.
@@ -74,15 +107,35 @@ namespace Tizen.WindowSystem.Shell
         }
 
         /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~SoftkeyService()
+        {
+            if (!isDisposeQueued)
+            {
+                isDisposeQueued = true;
+                DisposeQueue.Instance.Add(this);
+            }
+        }
+
+        /// <summary>
         /// Dispose.
         /// </summary>
         public void Dispose()
         {
-            Dispose(true);
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                GC.SuppressFinalize(this);
+            }
         }
 
         /// <inheritdoc/>
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(DisposeTypes type)
         {
             if (!disposed)
             {

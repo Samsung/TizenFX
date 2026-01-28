@@ -22,7 +22,7 @@ using Tizen.Applications.Exceptions;
 using Tizen.System;
 using Tizen.Common;
 
-namespace Tizen.WindowSystem.Shell
+namespace Tizen.NUI.WindowSystem.Shell
 {
     /// <summary>
     /// Class for the Tizen quickpanel client.
@@ -38,8 +38,8 @@ namespace Tizen.WindowSystem.Shell
         private IntPtr _tzshQpClient;
         private int _tzshWin;
         private bool disposed = false;
-
-        private WindowOrientation _screenOrientation = WindowOrientation.Portrait;
+        private bool isDisposeQueued = false;
+        private Window.WindowOrientation _screenOrientation = Window.WindowOrientation.Portrait;
 
         private int _visibleEventType;
         private IntPtr _visibleEventHandler;
@@ -85,13 +85,13 @@ namespace Tizen.WindowSystem.Shell
         private int _orientationEventType;
         private IntPtr _orientationEventHandler;
         private Interop.QuickPanelClient.QuickPanelEventCallback _onOrientationChanged;
-        private event EventHandler<WindowOrientation> _orientationChanged;
+        private event EventHandler<Window.WindowOrientation> _orientationChanged;
         /// <summary>
         /// Emits the event when the orientation of the quickpanel service window is changed.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public event EventHandler<WindowOrientation> OrientationChanged
+        public event EventHandler<Window.WindowOrientation> OrientationChanged
         {
             add
             {
@@ -153,7 +153,7 @@ namespace Tizen.WindowSystem.Shell
             }
         }
 
-        private void OnRotationChanged(object sender, WindowOrientation e)
+        private void OnRotationChanged(object sender, Window.WindowOrientation e)
         {
             _rotationChanged?.Invoke(sender, (int)e);
         }
@@ -265,6 +265,50 @@ namespace Tizen.WindowSystem.Shell
         /// The constructor of QuickPanelClass class.
         /// </summary>
         /// <remarks>
+        /// This constructor creates a new Quickpanel Client handle. with this handle, we can interact with the quickpanel service window.
+        /// This handle needs the TizenShell handle first.
+        /// </remarks>
+        /// <param name="tzShell">The TizenShell instance.</param>
+        /// <param name="win">The window to provide service of the quickpanel.</param>
+        /// <param name="type">The type of quickpanel service.</param>
+        /// <exception cref="Tizen.Applications.Exceptions.OutOfMemoryException">Thrown when the memory is not enough to allocate.</exception>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when an argument is null.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public QuickPanelClient(TizenShell tzShell, Window win, Types type)
+        {
+            int width = 0, height = 0;
+            if (tzShell == null)
+            {
+                throw new ArgumentNullException((string)"tzShell");
+            }
+            if (tzShell.GetNativeHandle() == IntPtr.Zero)
+            {
+                throw new ArgumentException("tzShell is not initialized.");
+            }
+            if (win == null)
+            {
+                throw new ArgumentNullException((string)"win");
+            }
+
+            _tzsh = tzShell;
+            _tzshWin = win.GetNativeId();
+            _tzshQpClient = Interop.QuickPanelClient.CreateWithType(_tzsh.GetNativeHandle(), (uint)_tzshWin, (int)type);
+            if (_tzshQpClient == IntPtr.Zero)
+            {
+                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
+                _tzsh.ErrorCodeThrow(err);
+            }
+
+            Information.TryGetValue("http://tizen.org/feature/screen.width", out width);
+            Information.TryGetValue("http://tizen.org/feature/screen.height", out height);
+            if (width > height) _screenOrientation = Window.WindowOrientation.Landscape;
+        }
+
+        /// <summary>
+        /// The constructor of QuickPanelClass class.
+        /// </summary>
+        /// <remarks>
         /// This constructor creates a new Quickpanel Client handle. with this handle, we can interact with the quickpanel service.
         /// This handle needs the TizenShell handle first.
         /// </remarks>
@@ -302,7 +346,20 @@ namespace Tizen.WindowSystem.Shell
 
             Information.TryGetValue("http://tizen.org/feature/screen.width", out width);
             Information.TryGetValue("http://tizen.org/feature/screen.height", out height);
-            if (width > height) _screenOrientation = (WindowOrientation)(90);
+            if (width > height) _screenOrientation = (Window.WindowOrientation)(90);
+        }
+
+        /// <summary>
+        /// The destructor of QuickPanelClass class.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        ~QuickPanelClient()
+        {
+            if (!isDisposeQueued)
+            {
+                isDisposeQueued = true;
+                DisposeQueue.Instance.Add(this);
+            }
         }
 
         /// <summary>
@@ -312,11 +369,19 @@ namespace Tizen.WindowSystem.Shell
         /// <since_tizen> 8 </since_tizen>
         public void Dispose()
         {
-            Dispose(true);
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                GC.SuppressFinalize(this);
+            }
         }
 
         /// <inheritdoc/>
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(DisposeTypes type)
         {
             int res;
             if (!disposed)
@@ -338,44 +403,44 @@ namespace Tizen.WindowSystem.Shell
             }
         }
 
-        private WindowOrientation ConvertOrientation(OrientationState state)
+        private Window.WindowOrientation ConvertOrientation(OrientationState state)
         {
-            if (_screenOrientation == WindowOrientation.Portrait)
+            if (_screenOrientation == Window.WindowOrientation.Portrait)
             {
                 if (state == OrientationState.Angle_90)
                 {
-                    return WindowOrientation.Landscape;
+                    return Window.WindowOrientation.Landscape;
                 }
                 else if (state == OrientationState.Angle_180)
                 {
-                    return WindowOrientation.PortraitInverse;
+                    return Window.WindowOrientation.PortraitInverse;
                 }
                 else if (state == OrientationState.Angle_270)
                 {
-                    return WindowOrientation.LandscapeInverse;
+                    return Window.WindowOrientation.LandscapeInverse;
                 }
                 else
                 {
-                    return WindowOrientation.Portrait;
+                    return Window.WindowOrientation.Portrait;
                 }
             }
             else
             {
                 if (state == OrientationState.Angle_90)
                 {
-                    return WindowOrientation.Portrait;
+                    return Window.WindowOrientation.Portrait;
                 }
                 else if (state == OrientationState.Angle_180)
                 {
-                    return WindowOrientation.LandscapeInverse;
+                    return Window.WindowOrientation.LandscapeInverse;
                 }
                 else if (state == OrientationState.Angle_270)
                 {
-                    return WindowOrientation.PortraitInverse;
+                    return Window.WindowOrientation.PortraitInverse;
                 }
                 else
                 {
-                    return WindowOrientation.Landscape;
+                    return Window.WindowOrientation.Landscape;
                 }
             }
         }
@@ -397,7 +462,7 @@ namespace Tizen.WindowSystem.Shell
         {
             int res;
             int state;
-            WindowOrientation orientation;
+            Window.WindowOrientation orientation;
 
             res = Interop.QuickPanelClient.GetEventOrientation(ev_info, out state);
             _tzsh.ErrorCodeThrow(res);
@@ -494,7 +559,7 @@ namespace Tizen.WindowSystem.Shell
         /// <exception cref="ArgumentException" > Thrown when failed of invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation or no service.</exception>
         /// <since_tizen> 8 </since_tizen>
-        public WindowOrientation Orientation
+        public Window.WindowOrientation Orientation
         {
             get
             {
@@ -502,11 +567,11 @@ namespace Tizen.WindowSystem.Shell
             }
         }
 
-        private WindowOrientation GetOrientation()
+        private Window.WindowOrientation GetOrientation()
         {
             int res;
             int state;
-            WindowOrientation orientation;
+            Window.WindowOrientation orientation;
 
             res = Interop.QuickPanelClient.GetOrientation(_tzshQpClient, out state);
 

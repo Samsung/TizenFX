@@ -20,7 +20,7 @@ using System.ComponentModel;
 using System.Collections.Generic;
 using Tizen.Common;
 
-namespace Tizen.WindowSystem.Shell
+namespace Tizen.NUI.WindowSystem.Shell
 {
     /// <summary>
     /// Class for the Tizen KVM service.
@@ -33,6 +33,7 @@ namespace Tizen.WindowSystem.Shell
         private IntPtr _kvmService;
         private int _tzshWin;
         private bool disposed = false;
+        private bool isDisposeQueued = false;
 
         private Interop.KVMService.KVMDragStartEventCallback _onDragStarted;
         private Interop.KVMService.KVMDragEndEventCallback _onDragEnded;
@@ -55,6 +56,38 @@ namespace Tizen.WindowSystem.Shell
             /// </summary>
             UnderPointer = 1,
         };
+
+        /// <summary>
+        /// Creates a new KVM Service handle.
+        /// </summary>
+        /// <param name="tzShell">The TizenShell instance.</param>
+        /// <param name="win">The window to provide service of the quickpanel.</param>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when an argument is null.</exception>
+        public KVMService(TizenShell tzShell, Window win)
+        {
+            if (tzShell == null)
+            {
+                throw new ArgumentNullException(nameof(tzShell));
+            }
+            if (tzShell.GetNativeHandle() == IntPtr.Zero)
+            {
+                throw new ArgumentException("tzShell is not initialized.");
+            }
+            if (win == null)
+            {
+                throw new ArgumentNullException(nameof(win));
+            }
+
+            _tzsh = tzShell;
+            _tzshWin = win.GetNativeId();
+            _kvmService = Interop.KVMService.Create(_tzsh.GetNativeHandle(), (uint)_tzshWin);
+            if (_kvmService == IntPtr.Zero)
+            {
+                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
+                _tzsh.ErrorCodeThrow(err);
+            }
+        }
 
         /// <summary>
         /// Creates a new KVM Service handle.
@@ -90,15 +123,35 @@ namespace Tizen.WindowSystem.Shell
         }
 
         /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~KVMService()
+        {
+            if (!isDisposeQueued)
+            {
+                isDisposeQueued = true;
+                DisposeQueue.Instance.Add(this);
+            }
+        }
+
+        /// <summary>
         /// Dispose.
         /// </summary>
         public void Dispose()
         {
-            Dispose(true);
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                GC.SuppressFinalize(this);
+            }
         }
 
         /// <inheritdoc/>
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(DisposeTypes type)
         {
             if (!disposed)
             {

@@ -21,7 +21,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using Tizen.Applications.Exceptions;
 
-namespace Tizen.WindowSystem.Shell
+namespace Tizen.NUI.WindowSystem.Shell
 {
     /// <summary>
     /// Basic handle of Tizen Window System Shell.
@@ -35,6 +35,7 @@ namespace Tizen.WindowSystem.Shell
     {
         private IntPtr _tzsh;
         private bool disposed = false;
+        private bool isDisposeQueued = false;
 
         internal void ErrorCodeThrow(int error)
         {
@@ -85,17 +86,38 @@ namespace Tizen.WindowSystem.Shell
         }
 
         /// <summary>
+        /// The destructor of TizenShell class.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        ~TizenShell()
+        {
+            if (!isDisposeQueued)
+            {
+                isDisposeQueued = true;
+                DisposeQueue.Instance.Add(this);
+            }
+        }
+
+        /// <summary>
         /// Dispose the TizenShell instance explicitly.
         /// </summary>
         /// <exception cref="MemberAccessException">Thrown when private memeber is a corrupted.</exception>
         /// <since_tizen> 8 </since_tizen>
         public void Dispose()
         {
-            Dispose(true);
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                GC.SuppressFinalize(this);
+            }
         }
 
         /// <inheritdoc/>
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(DisposeTypes type)
         {
             int res;
 

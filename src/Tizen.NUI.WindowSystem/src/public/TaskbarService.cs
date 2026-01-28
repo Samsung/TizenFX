@@ -19,7 +19,7 @@ using System;
 using System.ComponentModel;
 using Tizen.Common;
 
-namespace Tizen.WindowSystem.Shell
+namespace Tizen.NUI.WindowSystem.Shell
 {
     /// <summary>
     /// Class for the Tizen taskbar service.
@@ -32,6 +32,7 @@ namespace Tizen.WindowSystem.Shell
         private IntPtr _taskbarService;
         private int _tzshWin;
         private bool disposed = false;
+        private bool isDisposeQueued = false;
 
         /// <summary>
         /// Enumeration for placed type of taskbar service window.
@@ -54,6 +55,41 @@ namespace Tizen.WindowSystem.Shell
             /// Place to Right Side of Screen.
             /// </summary>
             Right = 0x3,
+        }
+
+        /// <summary>
+        /// Creates a new Taskbar Service handle.
+        /// </summary>
+        /// <param name="tzShell">The TizenShell instance.</param>
+        /// <param name="win">The window to provide service of the taskbar.</param>
+        /// <param name="type">The type to be placed on the screen.</param>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when a argument is null.</exception>
+        public TaskbarService(TizenShell tzShell, Window win, PlaceType type = PlaceType.Bottom)
+        {
+            if (tzShell == null)
+            {
+                throw new ArgumentNullException(nameof(tzShell));
+            }
+            if (tzShell.GetNativeHandle() == IntPtr.Zero)
+            {
+                throw new ArgumentException("tzShell is not initialized.");
+            }
+            if (win == null)
+            {
+                throw new ArgumentNullException(nameof(win));
+            }
+
+            _tzsh = tzShell;
+            _tzshWin = win.GetNativeId();
+            _taskbarService = Interop.TaskbarService.Create(_tzsh.GetNativeHandle(), (uint)_tzshWin);
+            if (_taskbarService == IntPtr.Zero)
+            {
+                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
+                _tzsh.ErrorCodeThrow(err);
+            }
+
+            Interop.TaskbarService.SetPlaceType(_taskbarService, (int)type);
         }
 
         /// <summary>
@@ -91,17 +127,36 @@ namespace Tizen.WindowSystem.Shell
             Interop.TaskbarService.SetPlaceType(_taskbarService, (int)type);
         }
 
+        /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~TaskbarService()
+        {
+            if (!isDisposeQueued)
+            {
+                isDisposeQueued = true;
+                DisposeQueue.Instance.Add(this);
+            }
+        }
 
         /// <summary>
         /// Dispose.
         /// </summary>
         public void Dispose()
         {
-            Dispose(true);
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                GC.SuppressFinalize(this);
+            }
         }
 
         /// <inheritdoc/>
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(DisposeTypes type)
         {
             if (!disposed)
             {

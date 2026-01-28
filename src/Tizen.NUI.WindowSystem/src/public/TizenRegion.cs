@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace Tizen.WindowSystem.Shell
+namespace Tizen.NUI.WindowSystem.Shell
 {
     /// <summary>
     /// Tizen Window System Shell.
@@ -33,6 +33,7 @@ namespace Tizen.WindowSystem.Shell
         private TizenShell _tzsh;
         private IntPtr _region;
         private bool disposed = false;
+        private bool isDisposeQueued = false;
 
         /// <summary>
         /// Creates a new Tizen region object.
@@ -62,16 +63,36 @@ namespace Tizen.WindowSystem.Shell
         }
 
         /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~TizenRegion()
+        {
+            if (!isDisposeQueued)
+            {
+                isDisposeQueued = true;
+                DisposeQueue.Instance.Add(this);
+            }
+        }
+
+        /// <summary>
         /// Dispose.
         /// </summary>
         /// <exception cref="MemberAccessException">Thrown when private memeber is a corrupted.</exception>
         public void Dispose()
         {
-            Dispose(true);
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                GC.SuppressFinalize(this);
+            }
         }
 
         /// <inheritdoc/>
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(DisposeTypes type)
         {
             int res;
             if (!disposed)

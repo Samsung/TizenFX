@@ -18,7 +18,7 @@
 using System;
 using System.ComponentModel;
 
-namespace Tizen.WindowSystem
+namespace Tizen.NUI.WindowSystem
 {
     /// <summary>
     /// Class for the Tizen Input Generator.
@@ -32,6 +32,7 @@ namespace Tizen.WindowSystem
     {
         private IntPtr _handler;
         private bool disposed = false;
+        private bool isDisposeQueued = false;
 
         /// <summary>
         /// Enumeration of input device types.
@@ -178,15 +179,35 @@ namespace Tizen.WindowSystem
         }
 
         /// <summary>
+        /// Destructor.
+        /// </summary>
+        ~InputGenerator()
+        {
+            if (!isDisposeQueued)
+            {
+                isDisposeQueued = true;
+                DisposeQueue.Instance.Add(this);
+            }
+        }
+
+        /// <summary>
         /// Dispose.
         /// </summary>
         public void Dispose()
         {
-            Dispose(true);
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                GC.SuppressFinalize(this);
+            }
         }
 
         /// <inheritdoc/>
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(DisposeTypes type)
         {
             if (!disposed)
             {

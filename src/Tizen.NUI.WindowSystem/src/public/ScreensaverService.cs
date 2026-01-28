@@ -21,7 +21,7 @@ using System.Collections.Generic;
 using Tizen.Common;
 using Tizen.Applications;
 
-namespace Tizen.WindowSystem.Shell
+namespace Tizen.NUI.WindowSystem.Shell
 {
     /// <summary>
     /// Class for the Tizen screensaver service.
@@ -34,6 +34,39 @@ namespace Tizen.WindowSystem.Shell
         private IntPtr _screensaverService;
         private int _tzshWin;
         private bool disposed = false;
+        private bool isDisposeQueued = false;
+
+        /// <summary>
+        /// Creates a new Screensaver Service handle.
+        /// </summary>
+        /// <param name="tzShell">The TizenShell instance.</param>
+        /// <param name="win">The window to provide service of the screensaver.</param>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when an argument is null.</exception>
+        public ScreensaverService(TizenShell tzShell, Window win)
+        {
+            if (tzShell == null)
+            {
+                throw new ArgumentNullException(nameof(tzShell));
+            }
+            if (tzShell.GetNativeHandle() == IntPtr.Zero)
+            {
+                throw new ArgumentException("tzShell is not initialized.");
+            }
+            if (win == null)
+            {
+                throw new ArgumentNullException(nameof(win));
+            }
+
+            _tzsh = tzShell;
+            _tzshWin = win.GetNativeId();
+            _screensaverService = Interop.ScreensaverService.Create(_tzsh.GetNativeHandle(), (uint)_tzshWin);
+            if (_screensaverService == IntPtr.Zero)
+            {
+                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
+                _tzsh.ErrorCodeThrow(err);
+            }
+        }
 
         /// <summary>
         /// Creates a new Screensaver Service handle.
@@ -70,13 +103,20 @@ namespace Tizen.WindowSystem.Shell
         /// <summary>
         /// Destructor.
         /// </summary>
-
+        ~ScreensaverService()
+        {
+            Dispose(disposing: false);
+        }
         /// <summary>
         /// Dispose.
         /// </summary>
         public void Dispose()
         {
-            Dispose(true);
+            if (disposed)
+                return;
+
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
         /// <inheritdoc/>
         protected virtual void Dispose(bool disposing)
