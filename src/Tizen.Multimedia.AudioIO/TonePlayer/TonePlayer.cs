@@ -25,6 +25,7 @@ namespace Tizen.Multimedia
     /// Provides the ability to play a tone.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API14. Will be removed in API16.")]
     public static class TonePlayer
     {
         /// <summary>
@@ -41,6 +42,7 @@ namespace Tizen.Multimedia
         /// <exception cref="NotSupportedException"><paramref name="tone"/> is not a supported type.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed of.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API14. Will be removed in API16.")]
         public static Task StartAsync(ToneType tone, AudioStreamPolicy streamPolicy,
             int durationMilliseconds)
         {
@@ -62,6 +64,7 @@ namespace Tizen.Multimedia
         /// <exception cref="NotSupportedException"><paramref name="tone"/> is not a supported type.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed of.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API14. Will be removed in API16.")]
         public static Task StartAsync(ToneType tone, AudioStreamPolicy streamPolicy,
             int durationMilliseconds, CancellationToken cancellationToken)
         {
