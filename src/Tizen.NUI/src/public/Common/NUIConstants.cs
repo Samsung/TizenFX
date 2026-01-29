@@ -2247,6 +2247,28 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// Enumeration for the layout direction policy of text.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum TextLayoutDirectionPolicy
+    {
+        /// <summary>
+        /// The text layout direction is inherited. If you change the layout direction, it will be aligned with the changed layout direction.
+        /// </summary>
+        Inherit,
+
+        /// <summary>
+        /// The text layout direction is determined by the locale of the system language.
+        /// </summary>
+        Locale,
+
+        /// <summary>
+        /// The text layout direction is determined by the text itself.
+        /// </summary>
+        Contents
+    }
+
+    /// <summary>
     /// Pre-defined SlideTransition Direction
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
