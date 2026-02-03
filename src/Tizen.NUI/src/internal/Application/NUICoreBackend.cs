@@ -634,5 +634,9 @@ namespace Tizen.NUI
                 return application;
             }
         }
+
+        internal IDictionary<EventType, object> HandlersInternal => Handlers;
+
+        internal IDictionary<EventType, object> TaskHandlersInternal => TaskHandlers;
     }
 }
