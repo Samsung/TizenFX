@@ -62,7 +62,6 @@ namespace Tizen.Multimedia.Remoting
         /// If user set video source with <see cref="TransceiverDirection.SendRecv"/>, <see cref="Display"/> must be set.<br/>
         /// If not, the received video will fill entire screen.<br/>
         /// If remote track, <see cref="Display"/> must be set in <see cref="WebRTC.TrackAdded"/> event.<br/>
-        /// The display is created with <see cref="MediaView"/>.
         /// </remarks>
         /// <feature>http://tizen.org/feature/display</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
@@ -115,15 +114,6 @@ namespace Tizen.Multimedia.Remoting
                     ReplaceDisplay(value);
                 }
             }
-        }
-
-        WebRTCErrorCode IDisplayable<WebRTCErrorCode>.ApplyEvasDisplay(DisplayType type, ElmSharp.EvasObject evasObject)
-        {
-            Debug.Assert(Enum.IsDefined(typeof(DisplayType), type));
-            Debug.Assert(type != DisplayType.None);
-
-            return NativeWebRTC.SetDisplay(_webRtc.Handle, _trackId,
-                type == DisplayType.Overlay ? WebRTCDisplayType.Overlay : WebRTCDisplayType.Evas, evasObject);
         }
 
         WebRTCErrorCode IDisplayable<WebRTCErrorCode>.ApplyEcoreWindow(IntPtr windowHandle, Rectangle rect, Rotation rotation)
