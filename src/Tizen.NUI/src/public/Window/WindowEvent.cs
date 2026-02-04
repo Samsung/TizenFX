@@ -320,6 +320,32 @@ namespace Tizen.NUI
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event ReturnTypeEventHandler<object, KeyEventArgs, bool> InternalInterceptKeyEvent
+        {
+            add
+            {
+                if (stageInterceptKeyHandler == null)
+                {
+                    CreateSafeCallback(OnStageInterceptKey, out stageInterceptKeyCallbackDelegate);
+                    using KeyEventSignal signal = new KeyEventSignal(Interop.Window.InterceptKeyEventSignal(SwigCPtr), false);
+                    signal.Ensure()?.Connect(stageInterceptKeyCallbackDelegate);
+                }
+                stageInternalInterceptKeyHandler += value;
+            }
+            remove
+            {
+                stageInternalInterceptKeyHandler -= value;
+                if (stageInterceptKeyHandler == null && stageInterceptKeyCallbackDelegate != null)
+                {
+                    using KeyEventSignal signal = new KeyEventSignal(Interop.Window.InterceptKeyEventSignal(SwigCPtr), false);
+                    signal.Ensure()?.Disconnect(stageInterceptKeyCallbackDelegate);
+                    ReleaseSafeCallback(ref stageInterceptKeyCallbackDelegate);
+                }
+            }
+        }
+
+
         /// <summary>
         /// Emits the event when window is resized by user or the display server.<br />
         /// </summary>
@@ -713,6 +739,7 @@ namespace Tizen.NUI
         private ReturnTypeEventHandler<object, WheelEventArgs, bool> interceptWheelHandler;
         private event EventHandler<KeyEventArgs> stageKeyHandler;
         private ReturnTypeEventHandler<object, KeyEventArgs, bool> stageInterceptKeyHandler;
+        private ReturnTypeEventHandler<object, KeyEventArgs, bool> stageInternalInterceptKeyHandler;
         private event EventHandler stageEventProcessingFinishedEventHandler;
         private event EventHandler<ResizedEventArgs> windowResizeEventHandler;
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler2;
@@ -1177,6 +1204,20 @@ namespace Tizen.NUI
                 return false;
             }
 
+            bool internalConsumed = false;
+            if (stageInternalInterceptKeyHandler != null)
+            {
+                KeyEventArgs e = new KeyEventArgs();
+                e.Key = Tizen.NUI.Key.GetKeyFromPtr(data);
+
+                Delegate[] delegateList = stageInternalInterceptKeyHandler.GetInvocationList();
+                // Oring the result of each callback.
+                foreach (ReturnTypeEventHandler<object, KeyEventArgs, bool> del in delegateList)
+                {
+                    internalConsumed |= del(this, e);
+                }
+            }
+
             bool consumed = false;
             if (stageInterceptKeyHandler != null)
             {
@@ -1185,7 +1226,7 @@ namespace Tizen.NUI
                 //here we send all data to user event handlers
                 consumed = stageInterceptKeyHandler(this, e);
             }
-            return consumed;
+            return consumed | internalConsumed;
         }
 
         // Callback for Stage EventProcessingFinishedSignal
