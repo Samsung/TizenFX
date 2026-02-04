@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Multimedia
 {
     /// <summary>
     /// Specifies the audio codec.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API14. Will be removed in API16.")]
     public enum ToneType
     {
         /// <summary>
