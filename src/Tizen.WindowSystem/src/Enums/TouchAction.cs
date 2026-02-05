@@ -1,0 +1,31 @@
+using System.ComponentModel;
+
+namespace Tizen.WindowSystem
+{
+    /// <summary>
+    /// Enumeration of touch event types.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum TouchAction
+    {
+        /// <summary>
+        /// None.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Touch begin.
+        /// </summary>
+        Begin,
+
+        /// <summary>
+        /// Touch move.
+        /// </summary>
+        Update,
+
+        /// <summary>
+        /// Touch end.
+        /// </summary>
+        End,
+    }
+}
