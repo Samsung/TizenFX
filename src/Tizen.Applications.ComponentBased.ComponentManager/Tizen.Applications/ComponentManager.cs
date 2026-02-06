@@ -26,6 +26,7 @@ namespace Tizen.Applications.ComponentBased
     /// This class has the methods and events of the ComponentManager.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API level 14")]
     public static class ComponentManager
     {
         private const string LogTag = "Tizen.Applications";
@@ -43,6 +44,7 @@ namespace Tizen.Applications.ComponentBased
         /// <exception cref="UnauthorizedAccessException"> Thrown when permission is denied to access the component information.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 14")]
         public static async Task<IEnumerable<ComponentInfo>> GetInstalledComponentsAsync()
         {
             return await Task.Run(() =>
@@ -89,6 +91,7 @@ namespace Tizen.Applications.ComponentBased
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied to access the running components.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 14")]
         public static async Task<IEnumerable<ComponentRunningContext>> GetRunningComponentsAsync()
         {
             return await Task.Run(() =>
@@ -135,6 +138,7 @@ namespace Tizen.Applications.ComponentBased
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied to access the component status.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 14")]
         public static bool IsRunning(string componentId)
         {
             bool isRunning = false;
@@ -160,6 +164,7 @@ namespace Tizen.Applications.ComponentBased
         /// The platform determines if the target component can be terminated based on its current state.
         /// </remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 14")]
         public static void TerminateBackgroundComponent(ComponentRunningContext context)
         {
             if (context == null)
