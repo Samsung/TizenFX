@@ -22,6 +22,7 @@ namespace Tizen.Applications.ComponentBased
     /// The arguments for the event raised when the request is received.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
+    [Obsolete("This has been deprecated in API14")]
     public class RequestEventArgs : EventArgs
     {
         internal RequestEventArgs(string sender, object request, bool isReplyRequested)
@@ -36,6 +37,7 @@ namespace Tizen.Applications.ComponentBased
         /// The name of the sender port
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public string Sender
         {
             get;
@@ -46,6 +48,7 @@ namespace Tizen.Applications.ComponentBased
         /// The received serialized data.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public object Request
         {
             get;
@@ -56,6 +59,7 @@ namespace Tizen.Applications.ComponentBased
         /// The flag indicating whether the reply is requested or not.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public bool IsReplyRequested
         {
             get;
@@ -66,6 +70,7 @@ namespace Tizen.Applications.ComponentBased
         /// The serialized reply data.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public object Reply
         {
             get;
