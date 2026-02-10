@@ -45,7 +45,7 @@ namespace Tizen.WindowSystem.Shell
             {
                 throw new ArgumentNullException(nameof(tzShell));
             }
-            if (tzShell.GetNativeHandle() == IntPtr.Zero)
+            if (tzShell.SafeHandle == null || tzShell.SafeHandle.IsInvalid)
             {
                 throw new ArgumentException("tzShell is not initialized.");
             }
@@ -55,7 +55,7 @@ namespace Tizen.WindowSystem.Shell
             if (_region.IsInvalid)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                _tzsh.ThrowIfError(err);
+                Tizen.WindowSystem.ErrorUtils.ThrowIfError(err);
             }
         }
 
@@ -87,15 +87,15 @@ namespace Tizen.WindowSystem.Shell
         /// </summary>
         /// <param name="x">The x coordinate</param>
         /// <param name="y">The y coordinate</param>
-        /// <param name="w">The width</param>
-        /// <param name="h">The height</param>
+        /// <param name="width">The width</param>
+        /// <param name="height">The height</param>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
-        public void Add(int x, int y, int w, int h)
+        public void Add(int x, int y, int width, int height)
         {
             int res;
 
-            res = Interop.TizenShellRegion.Add(_region, x, y, w, h);
-            _tzsh.ThrowIfError(res);
+            res = Interop.TizenShellRegion.Add(_region, x, y, width, height);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
         }
 
         /// <summary>
@@ -103,20 +103,20 @@ namespace Tizen.WindowSystem.Shell
         /// </summary>
         /// <param name="x">The x coordinate</param>
         /// <param name="y">The y coordinate</param>
-        /// <param name="w">The width</param>
-        /// <param name="h">The height</param>
+        /// <param name="width">The width</param>
+        /// <param name="height">The height</param>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
-        public void Subtract(int x, int y, int w, int h)
+        public void Subtract(int x, int y, int width, int height)
         {
             int res;
 
-            res = Interop.TizenShellRegion.Subtract(_region, x, y, w, h);
-            _tzsh.ThrowIfError(res);
+            res = Interop.TizenShellRegion.Subtract(_region, x, y, width, height);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
         }
 
-        internal IntPtr GetNativeHandle()
+        internal SafeHandles.ShellRegionHandle SafeHandle
         {
-            return _region?.DangerousGetHandle() ?? IntPtr.Zero;
+            get { return _region; }
         }
     }
 }

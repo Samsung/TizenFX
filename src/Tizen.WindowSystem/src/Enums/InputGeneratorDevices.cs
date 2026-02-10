@@ -11,11 +11,6 @@ namespace Tizen.WindowSystem
     public enum InputGeneratorDevices
     {
         /// <summary>
-        /// None.
-        /// </summary>
-        None = 0x0,
-
-        /// <summary>
         /// Touchscreen device.
         /// </summary>
         Touchscreen = (1 << 0),
@@ -31,8 +26,8 @@ namespace Tizen.WindowSystem
         Pointer = (1 << 2),
 
         /// <summary>
-        /// Keyboard and Touchscreen device.
+        /// All devices.
         /// </summary>
-        All = Touchscreen | Keyboard,
+        All = Touchscreen | Keyboard | Pointer
     }
 }

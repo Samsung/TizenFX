@@ -54,7 +54,7 @@ namespace Tizen.WindowSystem.Shell
             {
                 throw new ArgumentNullException(nameof(tzShell));
             }
-            if (tzShell.GetNativeHandle() == IntPtr.Zero)
+            if (tzShell.SafeHandle == null || tzShell.SafeHandle.IsInvalid)
             {
                 throw new ArgumentException("tzShell is not initialized.");
             }
@@ -69,7 +69,7 @@ namespace Tizen.WindowSystem.Shell
             if (_kvmService.IsInvalid)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                _tzsh.ThrowIfError(err);
+                Tizen.WindowSystem.ErrorUtils.ThrowIfError(err);
             }
         }
 
@@ -107,7 +107,7 @@ namespace Tizen.WindowSystem.Shell
                 {
                     _onDragStarted = OnDragStarted;
                     int res = Interop.KVMService.SetDragStartEventHandler(_kvmService, _onDragStarted, IntPtr.Zero);
-                    _tzsh.ThrowIfError(res);
+                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
                 }
                 _dragStarted += value;
             }
@@ -117,7 +117,7 @@ namespace Tizen.WindowSystem.Shell
                 if (_dragStarted == null)
                 {
                     int res = Interop.KVMService.SetDragStartEventHandler(_kvmService, null, IntPtr.Zero);
-                    _tzsh.ThrowIfError(res);
+                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
                 }
             }
         }
@@ -134,7 +134,7 @@ namespace Tizen.WindowSystem.Shell
                 {
                     _onDragEnded = OnDragEnded;
                     int res = Interop.KVMService.SetDragEndEventHandler(_kvmService, _onDragEnded, IntPtr.Zero);
-                    _tzsh.ThrowIfError(res);
+                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
                 }
                 _dragEnded += value;
             }
@@ -144,7 +144,7 @@ namespace Tizen.WindowSystem.Shell
                 if (_dragEnded == null)
                 {
                     int res = Interop.KVMService.SetDragEndEventHandler(_kvmService, null, IntPtr.Zero);
-                    _tzsh.ThrowIfError(res);
+                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
                 }
             }
         }
@@ -166,7 +166,7 @@ namespace Tizen.WindowSystem.Shell
         public void PerformDrop()
         {
             int res = Interop.KVMService.PerformDrop(_kvmService);
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
         }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace Tizen.WindowSystem.Shell
         public void PerformDrop(DropTarget target)
         {
             int res = Interop.KVMService.PerformDropTarget(_kvmService, (uint)target);
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace Tizen.WindowSystem.Shell
         public void CancelDrag()
         {
             int res = Interop.KVMService.CancelDrag(_kvmService);
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
         }
 
         /// <summary>
@@ -197,7 +197,7 @@ namespace Tizen.WindowSystem.Shell
         public void ReceiveDragData(string mimeType)
         {
             int res = Interop.KVMService.ReceiveDragData(_kvmService, mimeType);
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace Tizen.WindowSystem.Shell
         public IEnumerable<string> GetSourceMimetypes()
         {
             int res = Interop.KVMService.GetSourceMimetypes(_kvmService, out IntPtr mimeTypesPtr, out int mimeTypeCount);
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
 
             if (mimeTypesPtr == IntPtr.Zero || mimeTypeCount == 0)
             {
@@ -233,7 +233,7 @@ namespace Tizen.WindowSystem.Shell
         public void SetSecondarySelection()
         {
             int res = Interop.KVMService.SetSecondarySelection(_kvmService);
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
         }
 
         /// <summary>
@@ -243,7 +243,7 @@ namespace Tizen.WindowSystem.Shell
         public void UnsetSecondarySelection()
         {
             int res = Interop.KVMService.UnsetSecondarySelection(_kvmService);
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
         }
     }
 }

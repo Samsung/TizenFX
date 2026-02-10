@@ -43,7 +43,7 @@ namespace Tizen.WindowSystem.Shell
         event EventHandler<QuickPanelVisibility> _visibleChanged;
 
         /// <summary>
-        /// The constructor of QuickPanelClass class.
+        /// The constructor of QuickPanelClient class.
         /// </summary>
         /// <remarks>
         /// This constructor creates a new Quickpanel Client handle. with this handle, we can interact with the quickpanel service.
@@ -61,15 +61,15 @@ namespace Tizen.WindowSystem.Shell
             int width = 0, height = 0;
             if (tzShell == null)
             {
-                throw new ArgumentNullException((string)"tzShell");
+                throw new ArgumentNullException("tzShell");
             }
-            if (tzShell.GetNativeHandle() == IntPtr.Zero)
+            if (tzShell.SafeHandle == null || tzShell.SafeHandle.IsInvalid)
             {
                 throw new ArgumentException("tzShell is not initialized.");
             }
             if (win == null)
             {
-                throw new ArgumentNullException((string)"win");
+                throw new ArgumentNullException("win");
             }
 
             _tzsh = tzShell;
@@ -78,7 +78,7 @@ namespace Tizen.WindowSystem.Shell
             if (_tzshQpClient.IsInvalid)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                _tzsh.ThrowIfError(err);
+                Tizen.WindowSystem.ErrorUtils.ThrowIfError(err);
             }
 
             Information.TryGetValue("http://tizen.org/feature/screen.width", out width);
@@ -130,7 +130,7 @@ namespace Tizen.WindowSystem.Shell
                     if (_visibleEventHandler == IntPtr.Zero)
                     {
                         int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                        _tzsh.ThrowIfError(err);
+                        Tizen.WindowSystem.ErrorUtils.ThrowIfError(err);
                     }
                 }
                 _visibleChanged += value;
@@ -142,7 +142,7 @@ namespace Tizen.WindowSystem.Shell
                 if (_visibleChanged == null)
                 {
                     _res = Interop.QuickPanelClient.DelEventHandler(_tzshQpClient, _visibleEventHandler);
-                    _tzsh.ThrowIfError(_res);
+                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(_res);
                 }
             }
         }
@@ -172,7 +172,7 @@ namespace Tizen.WindowSystem.Shell
                     if (_orientationEventHandler == IntPtr.Zero)
                     {
                         int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                        _tzsh.ThrowIfError(err);
+                        Tizen.WindowSystem.ErrorUtils.ThrowIfError(err);
                     }
                 }
                 _orientationChanged += value;
@@ -184,7 +184,7 @@ namespace Tizen.WindowSystem.Shell
                 if (_orientationChanged == null)
                 {
                     _res = Interop.QuickPanelClient.DelEventHandler(_tzshQpClient, _orientationEventHandler);
-                    _tzsh.ThrowIfError(_res);
+                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(_res);
                 }
             }
         }
@@ -301,7 +301,7 @@ namespace Tizen.WindowSystem.Shell
             int state;
 
             res = Interop.QuickPanelClient.GetEventVisible(ev_info, out state);
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
 
             _visibleChanged?.Invoke(this, (QuickPanelVisibility)state);
         }
@@ -314,7 +314,7 @@ namespace Tizen.WindowSystem.Shell
             WindowOrientation orientation;
 
             res = Interop.QuickPanelClient.GetEventOrientation(ev_info, out state);
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
 
             orientation = ConvertOrientation((OrientationState)state);
 
@@ -347,7 +347,7 @@ namespace Tizen.WindowSystem.Shell
 
             res = Interop.QuickPanelClient.GetVisible(_tzshQpClient, out vis);
 
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
 
             return (QuickPanelVisibility)vis;
         }
@@ -383,7 +383,7 @@ namespace Tizen.WindowSystem.Shell
 
             res = Interop.QuickPanelClient.GetScrollableState(_tzshQpClient, out scroll);
 
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
 
             return (QuickPanelScrollMode)scroll;
         }
@@ -394,7 +394,7 @@ namespace Tizen.WindowSystem.Shell
 
             res = Interop.QuickPanelClient.SetScrollableState(_tzshQpClient, scroll);
 
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
         }
 
         /// <summary>
@@ -424,7 +424,7 @@ namespace Tizen.WindowSystem.Shell
 
             res = Interop.QuickPanelClient.GetOrientation(_tzshQpClient, out state);
 
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
             orientation = ConvertOrientation((OrientationState)state);
 
             return orientation;
@@ -445,7 +445,7 @@ namespace Tizen.WindowSystem.Shell
             int res;
 
             res = Interop.QuickPanelClient.Show(_tzshQpClient);
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
         }
 
         /// <summary>
@@ -462,7 +462,7 @@ namespace Tizen.WindowSystem.Shell
             int res;
 
             res = Interop.QuickPanelClient.Hide(_tzshQpClient);
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
         }
     }
 }

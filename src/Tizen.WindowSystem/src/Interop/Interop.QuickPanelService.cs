@@ -26,10 +26,10 @@ namespace Tizen.WindowSystem.Shell
             internal static extern int Hide(SafeHandles.QuickPanelServiceHandle service);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_quickpanel_service_content_region_set")]
-            internal static extern int SetContentRegion(SafeHandles.QuickPanelServiceHandle service, uint angle, IntPtr region);
+            internal static extern int SetContentRegion(SafeHandles.QuickPanelServiceHandle service, uint angle, SafeHandles.ShellRegionHandle region);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_quickpanel_service_handler_region_set")]
-            internal static extern int SetHandlerRegion(SafeHandles.QuickPanelServiceHandle service, uint angle, IntPtr region);
+            internal static extern int SetHandlerRegion(SafeHandles.QuickPanelServiceHandle service, uint angle, SafeHandles.ShellRegionHandle region);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_quickpanel_service_effect_type_set")]
             internal static extern int SetEffectType(SafeHandles.QuickPanelServiceHandle service, QuickPanelEffect type);

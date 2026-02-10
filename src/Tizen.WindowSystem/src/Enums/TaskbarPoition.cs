@@ -5,7 +5,7 @@ namespace Tizen.WindowSystem.Shell
     /// <summary>
     /// Enumeration for placed type of taskbar service window.
     /// </summary>
-    public enum TaskbarPoition
+    public enum TaskbarPosition
     {
         /// <summary>
         /// Place to Bottom of Screen. Default type.

@@ -20,39 +20,40 @@ using System.ComponentModel;
 namespace Tizen.WindowSystem
 {
     /// <summary>
-    /// This class contains the data related to the EdgeDrag event.
+    /// This class contains the data related to edge gesture events (EdgeSwipe and EdgeDrag).
+    /// For EdgeSwipe, X/Y represent the start position. For EdgeDrag, X/Y represent the current position.
     /// </summary>
     /// This class is need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class EdgeDragEventArgs : EventArgs
+    public class EdgeGestureEventArgs : EventArgs
     {
-        internal EdgeDragEventArgs(GestureState mode, int fingers, int cx, int cy, GestureEdge edge)
+        internal EdgeGestureEventArgs(GestureState state, int fingers, int x, int y, GestureEdge edge)
         {
-            Mode = mode;
+            State = state;
             Fingers = fingers;
-            Cx = cx;
-            Cy = cy;
+            X = x;
+            Y = y;
             Edge = edge;
         }
         /// <summary>
-        /// Mode
+        /// State of the gesture.
         /// </summary>
-        public GestureState Mode{ get; internal set; }
+        public GestureState State { get; internal set; }
         /// <summary>
-        /// Fingers
+        /// Number of fingers.
         /// </summary>
-        public int Fingers{ get; internal set;}
+        public int Fingers { get; internal set; }
         /// <summary>
-        /// Cx
+        /// X coordinate. Start position for EdgeSwipe, current position for EdgeDrag.
         /// </summary>
-        public int Cx{ get; internal set;}
+        public int X { get; internal set; }
         /// <summary>
-        /// Cy
+        /// Y coordinate. Start position for EdgeSwipe, current position for EdgeDrag.
         /// </summary>
-        public int Cy{ get; internal set;}
+        public int Y { get; internal set; }
         /// <summary>
-        /// Edge
+        /// Edge position.
         /// </summary>
-        public GestureEdge Edge{ get; internal set;}
+        public GestureEdge Edge { get; internal set; }
     }
 }
