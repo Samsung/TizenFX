@@ -54,6 +54,7 @@ namespace Tizen.NUI.Samples
         "  UNIFORM highp vec2 CursorPosition;\n" +
         "  UNIFORM highp float uCornerSquareness;\n" +
         "  UNIFORM highp float uCustomCursorRadius;\n" +
+        "  UNIFORM highp float uCustomGreenColor;\n" +
         "};\n" +
         "\n" +
         "// Simplest CornerRadius implements\n" +
@@ -91,7 +92,7 @@ namespace Tizen.NUI.Samples
         "{\n" +
         "    highp float dist = length(vPosition - CursorPosition);\n" +
         "    dist /= uCustomCursorRadius;\n" +
-        "    gl_FragColor = uColor * vec4(dist, 0.0, 1.0, 1.0);\n" +
+        "    gl_FragColor = uColor * vec4(dist, uCustomGreenColor * (1.0 - dist), 1.0, 1.0);\n" +
         " \n" +
         "    highp vec2 location = abs(vPosition.xy - vec2(0.5) * uSize.xy);\n" +
         "    highp vec2 halfSize = uSize.xy * 0.5;\n" +
@@ -154,6 +155,76 @@ namespace Tizen.NUI.Samples
             vertexFormat.Dispose();
 
             return vertexBuffer;
+        }
+
+        // FrameUpdateCallback to change the custom property
+        private class GreenColorChanger : FrameUpdateCallbackInterface
+        {
+            private const float IntervalSeconds = 2.0f;
+            private uint viewId;
+            private float elapsedTime;
+
+            private bool activated;
+            private static object _lock = new object();
+
+            public GreenColorChanger(uint viewId) : base(1u) // Use version 1 of the callback to return a boolean
+            {
+                this.viewId = viewId;
+                activated = true;
+                elapsedTime = 0.0f;
+            }
+
+            public override bool OnUpdate(FrameUpdateCallbackInterface obj, float elapsedSeconds)
+            {
+                bool isActivated;
+                lock (_lock)
+                {
+                    isActivated = activated;
+                }
+
+                if (isActivated)
+                {
+                    elapsedTime += elapsedSeconds;
+
+                    if (elapsedTime >= IntervalSeconds)
+                    {
+                        elapsedTime = 0.0f; // Reset timer
+                    }
+
+                    if (_printLogs)
+                    {
+                        using PropertyValue valueGetter = new PropertyValue();
+                        Tizen.Log.Error("NUI", $"FrameUpdateCallback with id : {viewId}, activated\n");
+                        GetCustomProperty(viewId, "uCustomGreenColor", valueGetter);
+
+                        bool converted = valueGetter.Get(out float current);
+                        Tizen.Log.Error("NUI", $"FrameUpdateCallback with id : {viewId}, value converted? {converted} Now change to {current} -> {elapsedTime / IntervalSeconds}\n");
+                    }
+
+                    using PropertyValue valueSetter = new PropertyValue(elapsedTime / IntervalSeconds);
+
+                    BakeCustomProperty(viewId, "uCustomGreenColor", valueSetter);
+
+                    return true; // Keep the callback alive
+                }
+                else
+                {
+                    if (_printLogs)
+                    {
+                        Tizen.Log.Error("NUI", $"FrameUpdateCallback with id : {viewId}, deactivated\n");
+                    }
+                    return false;
+                }
+            }
+
+            public void ChangeActivate()
+            {
+                lock (_lock)
+                {
+                    Tizen.Log.Error("NUI", $"FrameUpdateCallback with id : {viewId}, activate changed {activated} -> {!activated}\n");
+                    activated ^= true;
+                }
+            }
         }
 
         private enum ConstraintBehaviorType
@@ -324,6 +395,8 @@ namespace Tizen.NUI.Samples
         private Animation cursorMoveAnimation;
         private int cursorPositionIndex;
 
+        private GreenColorChanger greenColorChanger;
+
         public void Activate()
         {
             win = NUIApplication.GetDefaultWindow();
@@ -359,7 +432,8 @@ namespace Tizen.NUI.Samples
                        "  Press 2 to test Apply / Remove cursor constraint\n" +
                        "  Press 3 to test re-generate source view\n" +
                        "  Press 4 to test re-generate target renderer\n" +
-                       "  Press 5 to test corner radius / squareness change of view\n",
+                       "  Press 5 to test corner radius / squareness change of view\n" +
+                       "  Press 6 to test custom property frame update callback activation\n",
                 MultiLine = true,
             };
             overlayLayer = new Layer();
@@ -462,6 +536,10 @@ namespace Tizen.NUI.Samples
                     float v = view.CornerRadius.X;
                     view.CornerRadius = 0.35f - v;
                 }
+                if (e.Key.KeyPressedName == "6")
+                {
+                    greenColorChanger.ChangeActivate();
+                }
             }
         }
 
@@ -532,6 +610,10 @@ namespace Tizen.NUI.Samples
 
             root.Add(view);
             root.Add(hoverView);
+
+            view.RegisterProperty("uCustomGreenColor", new PropertyValue(0.0f));
+            greenColorChanger = new GreenColorChanger(view.ID);
+            win.AddFrameUpdateCallback(greenColorChanger, view);
         }
 
         private void GenerateConstraint()
@@ -641,6 +723,11 @@ namespace Tizen.NUI.Samples
             {
                 Tizen.Log.Error("NUI", $"Constraint with ID : {constraint.ID} {orientationConstraint.ID} {cornerConstraint.ID} {cornerConstraint2.ID} invalidate after RenderThread object destroyed\n");
             }
+
+            view.RegisterProperty("uCustomGreenColor", new PropertyValue(0.0f));
+            win.RemoveFrameUpdateCallback(greenColorChanger);
+            greenColorChanger = new GreenColorChanger(view.ID);
+            win.AddFrameUpdateCallback(greenColorChanger, view);
         }
 
         private void RegenerateRenderable()
