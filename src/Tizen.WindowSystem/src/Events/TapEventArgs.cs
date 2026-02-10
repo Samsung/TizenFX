@@ -26,16 +26,16 @@ namespace Tizen.WindowSystem
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TapEventArgs : EventArgs
     {
-        internal TapEventArgs(GestureState mode, int fingers, int repeats)
+        internal TapEventArgs(GestureState state, int fingers, int repeats)
         {
-            Mode = mode;
+            State = state;
             Fingers = fingers;
             Repeats = repeats;
         }
         /// <summary>
-        /// Mode
+        /// State
         /// </summary>
-        public GestureState Mode{ get; internal set; }
+        public GestureState State { get; internal set; }
         /// <summary>
         /// Fingers
         /// </summary>

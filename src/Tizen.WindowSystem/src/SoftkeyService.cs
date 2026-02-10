@@ -37,9 +37,9 @@ namespace Tizen.WindowSystem.Shell
         Interop.SoftkeyService.SoftkeyExpandEventCallback _onExpandChanged;
         Interop.SoftkeyService.SoftkeyOpacityEventCallback _onOpacityChanged;
         
-        event EventHandler<SoftkeyVisibility> _visibleChanged;
-        event EventHandler<SoftkeyExpandMode> _expandChanged;
-        event EventHandler<SoftkeyOpacity> _opacityChanged;
+        event EventHandler<SoftkeyVisibleChangedEventArgs> _visibleChanged;
+        event EventHandler<SoftkeyExpandChangedEventArgs> _expandChanged;
+        event EventHandler<SoftkeyOpacityChangedEventArgs> _opacityChanged;
 
         /// <summary>
         /// Creates a new Softkey Service handle.
@@ -54,7 +54,7 @@ namespace Tizen.WindowSystem.Shell
             {
                 throw new ArgumentNullException(nameof(tzShell));
             }
-            if (tzShell.GetNativeHandle() == IntPtr.Zero)
+            if (tzShell.SafeHandle == null || tzShell.SafeHandle.IsInvalid)
             {
                 throw new ArgumentException("tzShell is not initialized.");
             }
@@ -69,7 +69,7 @@ namespace Tizen.WindowSystem.Shell
             if (_softkeyService.IsInvalid)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                _tzsh.ThrowIfError(err);
+                Tizen.WindowSystem.ErrorUtils.ThrowIfError(err);
             }
         }
 
@@ -99,7 +99,7 @@ namespace Tizen.WindowSystem.Shell
         /// Emits the event when the visible state of the softkey service window is changed.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
-        public event EventHandler<SoftkeyVisibility> VisibleChanged
+        public event EventHandler<SoftkeyVisibleChangedEventArgs> VisibleChanged
         {
             add
             {
@@ -107,7 +107,7 @@ namespace Tizen.WindowSystem.Shell
                 {
                     _onVisibleChanged = OnVisibleChanged;
                     int res = Interop.SoftkeyService.SetVisibleEventHandler(_softkeyService, _onVisibleChanged, IntPtr.Zero);
-                    _tzsh.ThrowIfError(res);
+                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
                 }
                 _visibleChanged += value;
             }
@@ -117,7 +117,7 @@ namespace Tizen.WindowSystem.Shell
                 if (_visibleChanged == null)
                 {
                     int res = Interop.SoftkeyService.SetVisibleEventHandler(_softkeyService, null, IntPtr.Zero);
-                    _tzsh.ThrowIfError(res);
+                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
                 }
             }
         }
@@ -126,7 +126,7 @@ namespace Tizen.WindowSystem.Shell
         /// Emits the event when the expand state of the softkey service window is changed.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
-        public event EventHandler<SoftkeyExpandMode> ExpandChanged
+        public event EventHandler<SoftkeyExpandChangedEventArgs> ExpandChanged
         {
             add
             {
@@ -134,7 +134,7 @@ namespace Tizen.WindowSystem.Shell
                 {
                     _onExpandChanged = OnExpandChanged;
                     int res = Interop.SoftkeyService.SetExpandEventHandler(_softkeyService, _onExpandChanged, IntPtr.Zero);
-                    _tzsh.ThrowIfError(res);
+                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
                 }
                 _expandChanged += value;
             }
@@ -144,7 +144,7 @@ namespace Tizen.WindowSystem.Shell
                 if (_expandChanged == null)
                 {
                     int res = Interop.SoftkeyService.SetExpandEventHandler(_softkeyService, null, IntPtr.Zero);
-                    _tzsh.ThrowIfError(res);
+                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
                 }
             }
         }
@@ -153,7 +153,7 @@ namespace Tizen.WindowSystem.Shell
         /// Emits the event when the opacity state of the softkey service window is changed.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
-        public event EventHandler<SoftkeyOpacity> OpacityChanged
+        public event EventHandler<SoftkeyOpacityChangedEventArgs> OpacityChanged
         {
             add
             {
@@ -161,7 +161,7 @@ namespace Tizen.WindowSystem.Shell
                 {
                     _onOpacityChanged = OnOpacityChanged;
                     int res = Interop.SoftkeyService.SetOpacityEventHandler(_softkeyService, _onOpacityChanged, IntPtr.Zero);
-                    _tzsh.ThrowIfError(res);
+                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res, "Unknown Error");
                 }
                 _opacityChanged += value;
             }
@@ -171,24 +171,27 @@ namespace Tizen.WindowSystem.Shell
                 if (_opacityChanged == null)
                 {
                     int res = Interop.SoftkeyService.SetOpacityEventHandler(_softkeyService, null, IntPtr.Zero);
-                    _tzsh.ThrowIfError(res);
+                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
                 }
             }
         }
 
         void OnVisibleChanged(IntPtr data, IntPtr softkeyService, int visible)
         {
-            _visibleChanged?.Invoke(this, ChangeVisibleStateToPublic((Interop.SoftkeyService.VisibleState)visible));
+            bool isVisible = (Interop.SoftkeyService.VisibleState)visible == Interop.SoftkeyService.VisibleState.Show;
+            _visibleChanged?.Invoke(this, new SoftkeyVisibleChangedEventArgs(isVisible));
         }
 
         void OnExpandChanged(IntPtr data, IntPtr softkeyService, int expand)
         {
-            _expandChanged?.Invoke(this, ChangeExpandStateToPublic((Interop.SoftkeyService.ExpandState)expand));
+            bool isExpandable = (Interop.SoftkeyService.ExpandState)expand == Interop.SoftkeyService.ExpandState.On;
+            _expandChanged?.Invoke(this, new SoftkeyExpandChangedEventArgs(isExpandable));
         }
 
         void OnOpacityChanged(IntPtr data, IntPtr softkeyService, int opacity)
         {
-            _opacityChanged?.Invoke(this, ChangeOpacityStateToPublic((Interop.SoftkeyService.OpacityState)opacity));
+            bool isOpaque = (Interop.SoftkeyService.OpacityState)opacity == Interop.SoftkeyService.OpacityState.Opaque;
+            _opacityChanged?.Invoke(this, new SoftkeyOpacityChangedEventArgs(isOpaque));
         }
 
         /// <summary>
@@ -198,7 +201,7 @@ namespace Tizen.WindowSystem.Shell
         public void Show()
         {
             int res = Interop.SoftkeyService.Show(_softkeyService);
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
         }
 
         /// <summary>
@@ -208,31 +211,7 @@ namespace Tizen.WindowSystem.Shell
         public void Hide()
         {
             int res = Interop.SoftkeyService.Hide(_softkeyService);
-            _tzsh.ThrowIfError(res);
-        }
-
-        SoftkeyVisibility ChangeVisibleStateToPublic(Interop.SoftkeyService.VisibleState state)
-        {
-            if (state == Interop.SoftkeyService.VisibleState.Show)
-                return SoftkeyVisibility.Shown;
-            else
-                return SoftkeyVisibility.Hidden;
-        }
-
-        SoftkeyExpandMode ChangeExpandStateToPublic(Interop.SoftkeyService.ExpandState state)
-        {
-            if (state == Interop.SoftkeyService.ExpandState.On)
-                return SoftkeyExpandMode.On;
-            else
-                return SoftkeyExpandMode.Off;
-        }
-
-        SoftkeyOpacity ChangeOpacityStateToPublic(Interop.SoftkeyService.OpacityState state)
-        {
-            if (state == Interop.SoftkeyService.OpacityState.Opaque)
-                return SoftkeyOpacity.Opaque;
-            else
-                return SoftkeyOpacity.Transparent;
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
         }
     }
 }

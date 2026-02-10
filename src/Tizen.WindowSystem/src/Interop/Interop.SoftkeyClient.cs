@@ -26,13 +26,13 @@ namespace Tizen.WindowSystem.Shell
             internal static extern int GetVisibleState(SafeHandles.SoftkeyClientHandle softkeyClient, out int visible);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_global_expand_state_set")]
-            internal static extern int SetExpandState(SafeHandles.SoftkeyClientHandle softkeyClient, SoftkeyExpandMode expand);
+            internal static extern int SetExpandState(SafeHandles.SoftkeyClientHandle softkeyClient, int expand);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_global_expand_state_get")]
             internal static extern int GetExpandState(SafeHandles.SoftkeyClientHandle softkeyClient, out int expand);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_global_opacity_state_set")]
-            internal static extern int SetOpacityState(SafeHandles.SoftkeyClientHandle softkeyClient, SoftkeyOpacity opacity);
+            internal static extern int SetOpacityState(SafeHandles.SoftkeyClientHandle softkeyClient, int opacity);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_softkey_global_opacity_state_get")]
             internal static extern int GetOpacityState(SafeHandles.SoftkeyClientHandle softkeyClient, out int opacity);

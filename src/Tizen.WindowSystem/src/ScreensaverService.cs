@@ -46,7 +46,7 @@ namespace Tizen.WindowSystem.Shell
             {
                 throw new ArgumentNullException(nameof(tzShell));
             }
-            if (tzShell.GetNativeHandle() == IntPtr.Zero)
+            if (tzShell.SafeHandle == null || tzShell.SafeHandle.IsInvalid)
             {
                 throw new ArgumentException("tzShell is not initialized.");
             }
@@ -61,7 +61,7 @@ namespace Tizen.WindowSystem.Shell
             if (_screensaverService.IsInvalid)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                _tzsh.ThrowIfError(err);
+                Tizen.WindowSystem.ErrorUtils.ThrowIfError(err);
             }
         }
 

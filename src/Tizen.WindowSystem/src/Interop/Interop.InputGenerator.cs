@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -23,19 +23,19 @@ namespace Tizen.WindowSystem
             internal static extern ErrorCode Deinit(IntPtr inputGenHandler);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_generate_key")]
-            internal static extern ErrorCode GenerateKey(SafeHandles.InputGeneratorHandle inputGenHandler, string keyName, int pressed);
+            internal static extern ErrorCode GenerateKey(SafeHandles.InputGeneratorHandle inputGenHandler, string keyName, bool isPressed);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_generate_pointer")]
-            internal static extern ErrorCode GeneratePointer(SafeHandles.InputGeneratorHandle inputGenHandler, int buttons, PointerAction pointerType, int x, int y);
+            internal static extern ErrorCode GeneratePointer(SafeHandles.InputGeneratorHandle inputGenHandler, int buttons, int pointerType, int x, int y);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_generate_wheel")]
             internal static extern ErrorCode GenerateWheel(SafeHandles.InputGeneratorHandle inputGenHandler, WheelDirection wheelType, int value);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_generate_touch")]
-            internal static extern ErrorCode GenerateTouch(SafeHandles.InputGeneratorHandle inputGenHandler, int idx, TouchAction touchType, int x, int y);
+            internal static extern ErrorCode GenerateTouch(SafeHandles.InputGeneratorHandle inputGenHandler, int idx, int touchType, int x, int y);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "efl_util_input_generate_touch_axis")]
-            internal static extern ErrorCode GenerateTouchAxis(SafeHandles.InputGeneratorHandle inputGenHandler, int idx, TouchAction touchType, int x, int y, double radius_x, double radius_y, double pressure, double angle, double palm);
+            internal static extern ErrorCode GenerateTouchAxis(SafeHandles.InputGeneratorHandle inputGenHandler, int idx, int touchType, int x, int y, double radius_x, double radius_y, double pressure, double angle, double palm);
 
             private const int ErrorTzsh = -0x02860000;
 

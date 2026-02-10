@@ -30,7 +30,7 @@ namespace Tizen.WindowSystem.Shell
     {
         TizenShell _tzsh;
         SafeHandles.TaskbarServiceHandle _taskbarService;
-        TaskbarPoition _taskbarPosition;
+        TaskbarPosition _taskbarPosition;
         int _tzshWin;
         bool disposed = false;
 
@@ -42,13 +42,13 @@ namespace Tizen.WindowSystem.Shell
         /// <param name="position">The selected, predefined location on the screen the Taskbar should be placed on the screen.</param>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
         /// <exception cref="ArgumentNullException">Thrown when a argument is null.</exception>
-        public TaskbarService(TizenShell tzShell, IWindowProvider win, TaskbarPoition position = TaskbarPoition.Bottom)
+        public TaskbarService(TizenShell tzShell, IWindowProvider win, TaskbarPosition position = TaskbarPosition.Bottom)
         {
             if (tzShell == null)
             {
                 throw new ArgumentNullException(nameof(tzShell));
             }
-            if (tzShell.GetNativeHandle() == IntPtr.Zero)
+            if (tzShell.SafeHandle == null || tzShell.SafeHandle.IsInvalid)
             {
                 throw new ArgumentException("tzShell is not initialized.");
             }
@@ -63,11 +63,10 @@ namespace Tizen.WindowSystem.Shell
             if (_taskbarService.IsInvalid)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                _tzsh.ThrowIfError(err);
+                Tizen.WindowSystem.ErrorUtils.ThrowIfError(err);
             }
 
-            _taskbarPosition = position;
-            Interop.TaskbarService.SetPlaceType(_taskbarService, _taskbarPosition);
+            Position = position;
         }
 
         /// <summary>
@@ -97,7 +96,7 @@ namespace Tizen.WindowSystem.Shell
         /// The window manager can use this to determine the geometry of another applications.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
-        public TaskbarPoition Position
+        public TaskbarPosition Position
         {
             get => _taskbarPosition;
             set
@@ -105,7 +104,7 @@ namespace Tizen.WindowSystem.Shell
                 if (_taskbarPosition != value)
                 {
                     int res = Interop.TaskbarService.SetPlaceType(_taskbarService, value);
-                    _tzsh.ThrowIfError(res);
+                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
                     _taskbarPosition = value;
                 }
             }
@@ -119,12 +118,12 @@ namespace Tizen.WindowSystem.Shell
         /// <param name="width">The width of the taskbar area.</param>
         /// <param name="height">The height of the taskbar area.</param>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>		
-        public void ReSize(uint width, uint height)
+        public void SetSize(int width, int height)
         {
             int res;
 
             res = Interop.TaskbarService.SetSize(_taskbarService, width, height);
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
         }
     }
 }

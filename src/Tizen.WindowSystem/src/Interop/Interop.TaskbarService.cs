@@ -17,10 +17,10 @@ namespace Tizen.WindowSystem.Shell
             internal static extern int Destroy(IntPtr taskbarService);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_taskbar_service_place_type_set")]
-            internal static extern int SetPlaceType(SafeHandles.TaskbarServiceHandle taskbarService, TaskbarPoition placeType);
+            internal static extern int SetPlaceType(SafeHandles.TaskbarServiceHandle taskbarService, TaskbarPosition placeType);
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "tzsh_taskbar_service_size_set")]
-            internal static extern int SetSize(SafeHandles.TaskbarServiceHandle taskbarService, uint width, uint height);
+            internal static extern int SetSize(SafeHandles.TaskbarServiceHandle taskbarService, int width, int height);
         }
     }
 }

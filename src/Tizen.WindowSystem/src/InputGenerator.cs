@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,66 +30,28 @@ namespace Tizen.WindowSystem
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class InputGenerator : IDisposable
     {
-        private SafeHandles.InputGeneratorHandle _handler;
+        private SafeHandles.InputGeneratorHandle _inputGeneratorHandle;
         private bool disposed = false;
 
-
-        internal void ThrowIfError(Interop.InputGenerator.ErrorCode error)
-        {
-            switch (error)
-            {
-                case Interop.InputGenerator.ErrorCode.None :
-                    return;
-                case Interop.InputGenerator.ErrorCode.OutOfMemory :
-                    throw new Tizen.Applications.Exceptions.OutOfMemoryException("Out of Memory");
-                case Interop.InputGenerator.ErrorCode.InvalidParameter :
-                    throw new ArgumentException("Invalid Parameter");
-                case Interop.InputGenerator.ErrorCode.PermissionDenied :
-                    throw new Tizen.Applications.Exceptions.PermissionDeniedException("Permission denied");
-                case Interop.InputGenerator.ErrorCode.NotSupported :
-                    throw new NotSupportedException("Not Supported");
-                case Interop.InputGenerator.ErrorCode.NoService :
-                    throw new InvalidOperationException("No Service");
-                default :
-                    throw new InvalidOperationException("Unknown Error");
-            }
-        }
-
-
         /// <summary>
         /// Creates a new InputGenerator.
         /// </summary>
-        /// <param name="devType">The Device type of the new input generator.</param>
-        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when a argument is null.</exception>
-        public InputGenerator(InputGeneratorDevices devType)
-        {
-            if (devType == InputGeneratorDevices.None)
-            {
-                throw new ArgumentException("Invalid device type");
-            }
-
-            _handler = Interop.InputGenerator.Init(devType);
-        }
-
-        /// <summary>
-        /// Creates a new InputGenerator.
-        /// </summary>
-        /// <param name="devType">The Device type of the new input generator.</param>
         /// <param name="name">The name of the new input generator.</param>
         /// <param name="sync"></param>
         /// <exception cref="ArgumentException"></exception>
-        public InputGenerator(InputGeneratorDevices devType, string name, bool sync = false)
+        public InputGenerator(string name = null, bool sync = false)
         {
-            if (devType == InputGeneratorDevices.None)
-            {
-                throw new ArgumentException("Invalid device type");
-            }
-
             if (sync)
-                _handler = Interop.InputGenerator.SyncInit(devType, name);
+            {
+                _inputGeneratorHandle = Interop.InputGenerator.SyncInit(InputGeneratorDevices.All, name);
+            }
             else
-                _handler = Interop.InputGenerator.InitWithName(devType, name);
+            {
+                if (name == null)
+                    _inputGeneratorHandle = Interop.InputGenerator.Init(InputGeneratorDevices.All);
+                else
+                    _inputGeneratorHandle = Interop.InputGenerator.InitWithName(InputGeneratorDevices.All, name);
+            }
         }
 
         /// <summary>
@@ -108,65 +70,68 @@ namespace Tizen.WindowSystem
             {
                 if (disposing)
                 {
-                    _handler?.Dispose();
+                    _inputGeneratorHandle?.Dispose();
                 }
                 disposed = true;
             }
         }
 
         /// <summary>
-        /// Generate given key.
+        /// Send given key.
         /// </summary>
         /// <param name="keyName">The key name to generate.</param>
-        /// <param name="pressed">Set the key is pressed or released.</param>
-        public void GenerateKey(string keyName, int pressed)
+        /// <param name="isPressed">Set the key is pressed or released.</param>
+        public void SendKey(string keyName, bool isPressed)
         {
-            Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GenerateKey(_handler, keyName, pressed);
-            ThrowIfError(res);
+            Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GenerateKey(_inputGeneratorHandle, keyName, isPressed);
+            ErrorUtils.ThrowIfError((int)res, "Unknown Error");
         }
 
         /// <summary>
-        /// Generate given pointer.
+        /// Send given pointer.
         /// </summary>
-        /// <param name="buttons">The pointer button to generate.</param>
-        /// <param name="pointerType">The type of the pointer.</param>
+        /// <param name="index">The pointer button or touch index to generate.</param>
+        /// <param name="action">The pointer action to generate.</param>
         /// <param name="x">X coordinate of the pointer.</param>
         /// <param name="y">Y coordinate of the pointer.</param>
-        public void GeneratePointer(int buttons, PointerAction pointerType, int x, int y)
+        /// <param name="device">The device type to generate.</param>
+        public void SendPointer(int index, PointerAction action, int x, int y, InputGeneratorDevices device = InputGeneratorDevices.Pointer)
         {
-            Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GeneratePointer(_handler, buttons, pointerType, x, y);
-            ThrowIfError(res);
+            if (device == InputGeneratorDevices.Touchscreen)
+            {
+                int touchAction = 0; // None
+                switch (action)
+                {
+                    case PointerAction.Down: touchAction = 1; break; // Begin
+                    case PointerAction.Up: touchAction = 3; break; // End
+                    case PointerAction.Move: touchAction = 2; break; // Update
+                }
+                Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GenerateTouch(_inputGeneratorHandle, index, touchAction, x, y);
+                ErrorUtils.ThrowIfError((int)res, "Unknown Error");
+            }
+            else
+            {
+                Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GeneratePointer(_inputGeneratorHandle, index, (int)action, x, y);
+                ErrorUtils.ThrowIfError((int)res, "Unknown Error");
+            }
         }
 
         /// <summary>
-        /// Generate given wheel.
+        /// Send given wheel.
         /// </summary>
         /// <param name="wheelType">The wheel type to generate.</param>
         /// <param name="value">The value of the wheel.</param>
-        public void GenerateWheel(WheelDirection wheelType, int value)
+        public void SendWheel(WheelDirection wheelType, int value)
         {
-            Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GenerateWheel(_handler, wheelType, value);
-            ThrowIfError(res);
+            Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GenerateWheel(_inputGeneratorHandle, wheelType, value);
+            ErrorUtils.ThrowIfError((int)res, "Unknown Error");
         }
 
         /// <summary>
-        /// Generate given touch.
+        /// Send given touch with axis.
         /// </summary>
-        /// <param name="idx">The touch index to generate.</param>
-        /// <param name="touchType">The touch type to generate.</param>
-        /// <param name="x">X coordinate of the touch.</param>
-        /// <param name="y">Y coordinate of the touch.</param>
-        public void GenerateTouch(int idx, TouchAction touchType, int x, int y)
-        {
-            Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GenerateTouch(_handler, idx, touchType, x, y);
-            ThrowIfError(res);
-        }
-
-        /// <summary>
-        /// Generate given touch with axis.
-        /// </summary>
-        /// <param name="idx">The touch index to generate.</param>
-        /// <param name="touchType">The touch type to generate.</param>
+        /// <param name="index">The touch index to generate.</param>
+        /// <param name="action">The touch action to generate.</param>
         /// <param name="x">X coordinate of the touch.</param>
         /// <param name="y">Y coordinate of the touch.</param>
         /// <param name="radiusX">radius_x of the touch.</param>
@@ -174,11 +139,19 @@ namespace Tizen.WindowSystem
         /// <param name="pressure">pressure of the touch.</param>
         /// <param name="angle">angle of the touch.</param>
         /// <param name="palm">palm of the touch.</param>
-        public void GenerateTouchAxis(int idx, TouchAction touchType, int x, int y, double radiusX, double radiusY, double pressure, double angle, double palm)
+
+        public void SendPointer(int index, PointerAction action, int x, int y, double radiusX, double radiusY, double pressure, double angle, double palm)
         {
-            Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GenerateTouchAxis(_handler, idx, touchType, x, y, radiusX, radiusY, pressure, angle, palm);
-            ThrowIfError(res);
+            int touchAction = 0; // None
+            switch (action)
+            {
+                case PointerAction.Down: touchAction = 1; break; // Begin
+                case PointerAction.Up: touchAction = 3; break; // End
+                case PointerAction.Move: touchAction = 2; break; // Update
+            }
+
+            Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GenerateTouchAxis(_inputGeneratorHandle, index, touchAction, x, y, radiusX, radiusY, pressure, angle, palm);
+            ErrorUtils.ThrowIfError((int)res, "Unknown Error");
         }
     }
 }
-

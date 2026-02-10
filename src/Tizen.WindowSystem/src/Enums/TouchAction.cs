@@ -9,11 +9,6 @@ namespace Tizen.WindowSystem
     public enum TouchAction
     {
         /// <summary>
-        /// None.
-        /// </summary>
-        None,
-
-        /// <summary>
         /// Touch begin.
         /// </summary>
         Begin,

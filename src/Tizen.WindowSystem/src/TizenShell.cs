@@ -30,40 +30,8 @@ namespace Tizen.WindowSystem.Shell
     /// <since_tizen> 8 </since_tizen>
     public class TizenShell : IDisposable
     {
-        SafeHandles.TizenShellHandle _tzsh;
+        SafeHandles.TizenShellHandle _tizenShell;
         bool disposed = false;
-
-        internal void ThrowIfError(int error)
-        {
-            if (error == (int)Interop.TizenShell.ErrorCode.None)
-            {
-                return;
-            }
-            else if (error == (int)Interop.TizenShell.ErrorCode.OutOfMemory)
-            {
-                throw new Tizen.Applications.Exceptions.OutOfMemoryException("Out of Memory");
-            }
-            else if (error == (int)Interop.TizenShell.ErrorCode.InvalidParameter)
-            {
-                throw new ArgumentException("Invalid Parameter");
-            }
-            else if (error == (int)Interop.TizenShell.ErrorCode.PermissionDenied)
-            {
-                throw new PermissionDeniedException("Permission denied");
-            }
-            else if (error == (int)Interop.TizenShell.ErrorCode.NotSupported)
-            {
-                throw new NotSupportedException("Not Supported");
-            }
-            else if (error == (int)Interop.TizenShell.ErrorCode.NoService)
-            {
-                throw new InvalidOperationException("No Service");
-            }
-            else
-            {
-                throw new InvalidOperationException("Unknown Error");
-            }
-        }
 
         /// <summary>
         /// The constructor of TizenShell class.
@@ -73,11 +41,11 @@ namespace Tizen.WindowSystem.Shell
         /// <since_tizen> 8 </since_tizen>
         public TizenShell()
         {
-            _tzsh = Interop.TizenShell.Create((int)Interop.TizenShell.ToolKitType.Efl);
-            if (_tzsh.IsInvalid)
+            _tizenShell = Interop.TizenShell.Create((int)Interop.TizenShell.ToolKitType.Efl);
+            if (_tizenShell.IsInvalid)
             {
-                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                ThrowIfError(err);
+                int error = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
+                Tizen.WindowSystem.ErrorUtils.ThrowIfError(error, "Unknown Error");
             }
         }
 
@@ -99,22 +67,15 @@ namespace Tizen.WindowSystem.Shell
             {
                 if (disposing)
                 {
-                    _tzsh?.Dispose();
+                    _tizenShell?.Dispose();
                 }
                 disposed = true;
             }
         }
 
-        internal IntPtr GetNativeHandle()
-        {
-            if (_tzsh == null || _tzsh.IsInvalid)
-                 return IntPtr.Zero;
-            return _tzsh.DangerousGetHandle();
-        }
-
         internal SafeHandles.TizenShellHandle SafeHandle
         {
-            get { return _tzsh; }
+            get { return _tizenShell; }
         }
     }
 }

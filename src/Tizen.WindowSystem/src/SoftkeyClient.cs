@@ -51,7 +51,7 @@ namespace Tizen.WindowSystem.Shell
             {
                 throw new ArgumentNullException(nameof(tzShell));
             }
-            if (tzShell.GetNativeHandle() == IntPtr.Zero)
+            if (tzShell.SafeHandle == null || tzShell.SafeHandle.IsInvalid)
             {
                 throw new ArgumentException("tzShell is not initialized.");
             }
@@ -66,7 +66,7 @@ namespace Tizen.WindowSystem.Shell
             if (_softkeyClient.IsInvalid)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                _tzsh.ThrowIfError(err);
+                Tizen.WindowSystem.ErrorUtils.ThrowIfError(err);
             }
         }
 
@@ -95,53 +95,58 @@ namespace Tizen.WindowSystem.Shell
         /// <summary>
         /// Gets the visible state of a softkey service window.
         /// </summary>
-        /// <returns>The visible state of the softkey service window.</returns>
-        /// <exception cref="ArgumentException" > Thrown when failed of invalid argument.</exception>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation or no service.</exception>
-        public SoftkeyVisibility Visibility
+        public bool IsVisible
         {
             get
             {
-                return GetVisible();
+                int res = Interop.SoftkeyClient.GetVisibleState(_softkeyClient, out int vis);
+                Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+                return vis != 0;
             }
         }
 
         /// <summary>
-        /// Gets the expand state of a softkey service window.
+        /// Gets or sets the expand state of a softkey service window.
         /// </summary>
-        /// <returns>The expand state of the softkey service window.</returns>
-        /// <exception cref="ArgumentException" > Thrown when failed of invalid argument.</exception>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation or no service.</exception>
-        public SoftkeyExpandMode ExpandMode
+        public bool IsExpandable
         {
             get
             {
-                return GetExpand();
+                int res = Interop.SoftkeyClient.GetExpandState(_softkeyClient, out int expand);
+                Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+                return expand != 0;
             }
             set
             {
-                SetExpand(value);
+                int res = Interop.SoftkeyClient.SetExpandState(_softkeyClient, value ? 1 : 0);
+                Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
             }
         }
 
         /// <summary>
-        /// Gets the opacity state of a softkey service window.
+        /// Gets or sets the opacity state of a softkey service window.
         /// </summary>
-        /// <returns>The opacity state of the softkey service window.</returns>
-        /// <exception cref="ArgumentException" > Thrown when failed of invalid argument.</exception>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation or no service.</exception>
-        public SoftkeyOpacity Opacity
+        public bool IsOpaque
         {
             get
             {
-                return GetOpacity();
+                int res = Interop.SoftkeyClient.GetOpacityState(_softkeyClient, out int opacity);
+                Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+                return opacity != 0;
             }
             set
             {
-                SetOpacity(value);
+                int res = Interop.SoftkeyClient.SetOpacityState(_softkeyClient, value ? 1 : 0);
+                Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
             }
         }
 
@@ -154,7 +159,7 @@ namespace Tizen.WindowSystem.Shell
         public void Show()
         {
             int res = Interop.SoftkeyClient.Show(_softkeyClient);
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
         }
 
         /// <summary>
@@ -166,48 +171,9 @@ namespace Tizen.WindowSystem.Shell
         public void Hide()
         {
             int res = Interop.SoftkeyClient.Hide(_softkeyClient);
-            _tzsh.ThrowIfError(res);
+            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
         }
 
-        SoftkeyVisibility GetVisible()
-        {
-            int res = Interop.SoftkeyClient.GetVisibleState(_softkeyClient, out int vis);
 
-            _tzsh.ThrowIfError(res);
-
-            return (SoftkeyVisibility)vis;
-        }
-
-        SoftkeyExpandMode GetExpand()
-        {
-            int res = Interop.SoftkeyClient.GetExpandState(_softkeyClient, out int expand);
-
-            _tzsh.ThrowIfError(res);
-
-            return (SoftkeyExpandMode)expand;
-        }
-
-        void SetExpand(SoftkeyExpandMode expand)
-        {
-            int res = Interop.SoftkeyClient.SetExpandState(_softkeyClient, expand);
-
-            _tzsh.ThrowIfError(res);
-        }
-
-        SoftkeyOpacity GetOpacity()
-        {
-            int res = Interop.SoftkeyClient.GetOpacityState(_softkeyClient, out int opacity);
-
-            _tzsh.ThrowIfError(res);
-
-            return (SoftkeyOpacity)opacity;
-        }
-
-        void SetOpacity(SoftkeyOpacity opacity)
-        {
-            int res = Interop.SoftkeyClient.SetOpacityState(_softkeyClient, opacity);
-
-            _tzsh.ThrowIfError(res);
-        }
     }
 }
