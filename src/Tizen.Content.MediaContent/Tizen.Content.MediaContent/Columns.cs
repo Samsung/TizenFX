@@ -623,43 +623,4 @@ namespace Tizen.Content.MediaContent
         [Obsolete("Deprecated since API12. Will be removed in API14.")]
         public static string Name => "BOOKMARK_NAME";
     }
-
-    /// <summary>
-    /// Provides the face info column names that can be used for Select and Count commands.
-    /// </summary>
-    /// <seealso cref="SelectArguments"/>
-    /// <seealso cref="CountArguments"/>
-    /// <seealso cref="QueryArguments.FilterExpression"/>
-    /// <seealso cref="SelectArguments.SortOrder"/>
-    /// <seealso cref="FaceInfoCommand.Select(SelectArguments)"/>
-    /// <seealso cref="MediaInfoCommand.CountFaceInfo(string, CountArguments)"/>
-    /// <seealso cref="MediaInfoCommand.SelectFaceInfo(string, SelectArguments)"/>
-    /// <since_tizen> 4 </since_tizen>
-    [Obsolete("Deprecated since API11. Will be removed in API13.")]
-    public static class FaceInfoColumns
-    {
-        /// <summary>
-        /// Gets the column name for the tag of face information.
-        /// </summary>
-        /// <value>The column name for the tag of face information.</value>
-        /// <remarks>
-        /// The value type is string.
-        /// </remarks>
-        /// <seealso cref="FaceInfo.Tag"/>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11. Will be removed in API13.")]
-        public static string Tag => "MEDIA_FACE_TAG";
-
-        /// <summary>
-        /// Gets the column name for the ID of face information.
-        /// </summary>
-        /// <value>The column name for the ID of face information.</value>
-        /// <remarks>
-        /// The value type is string.
-        /// </remarks>
-        /// <seealso cref="FaceInfo.Id"/>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated since API11. Will be removed in API13.")]
-        public static string Id => "MEDIA_FACE_ID";
-    }
 }
