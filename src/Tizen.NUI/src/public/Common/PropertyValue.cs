@@ -654,6 +654,7 @@ namespace Tizen.NUI
             return value;
         }
 
+        #region Get Value
         /// <summary>
         /// Retrieves a Size2D value.
         /// </summary>
@@ -951,14 +952,26 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal bool Get(Matrix3 matrixValue)
+        /// <summary>
+        /// Retrieves a Matrix3 value.
+        /// </summary>
+        /// <param name="matrixValue">On return, a matrix3.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Get(Matrix3 matrixValue)
         {
             bool ret = Interop.PropertyValue.GetMatrix3(SwigCPtr, Matrix3.getCPtr(matrixValue));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal bool Get(Matrix matrixValue)
+        /// <summary>
+        /// Retrieves a Matrix value.
+        /// </summary>
+        /// <param name="matrixValue">On return, a matrix.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Get(Matrix matrixValue)
         {
             bool ret = Interop.PropertyValue.GetMatrix(SwigCPtr, Matrix.getCPtr(matrixValue));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1013,6 +1026,261 @@ namespace Tizen.NUI
             NDalicPINVOKE.ThrowExceptionIfExists();
             return ret;
         }
+        #endregion
+
+        #region Set Value
+        /// <summary>
+        /// Sets a boolean value.
+        /// </summary>
+        /// <param name="boolValue">A boolean value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(bool boolValue)
+        {
+            Interop.PropertyValue.SetBoolean(SwigCPtr, boolValue);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Sets a floating-point value.
+        /// </summary>
+        /// <param name="floatValue">A floating-point value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(float floatValue)
+        {
+            Interop.PropertyValue.SetFloat(SwigCPtr, floatValue);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Sets an integer value.
+        /// </summary>
+        /// <param name="integerValue">An integer value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(int integerValue)
+        {
+            Interop.PropertyValue.SetInteger(SwigCPtr, integerValue);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Sets a vector value.
+        /// </summary>
+        /// <param name="vectorValue">A vector value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(Vector2 vectorValue)
+        {
+            Interop.PropertyValue.SetVector2(SwigCPtr, Vector2.getCPtr(vectorValue));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Sets a vector value.
+        /// </summary>
+        /// <param name="vectorValue">A vector value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(Vector3 vectorValue)
+        {
+            Interop.PropertyValue.SetVector3(SwigCPtr, Vector3.getCPtr(vectorValue));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Sets a vector value.
+        /// </summary>
+        /// <param name="vectorValue">A vector value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(Vector4 vectorValue)
+        {
+            Interop.PropertyValue.SetVector4(SwigCPtr, Vector4.getCPtr(vectorValue));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Sets a rectangle value.
+        /// </summary>
+        /// <param name="rectValue">A rectangle value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(Rectangle rectValue)
+        {
+            Interop.PropertyValue.SetRect(SwigCPtr, Rectangle.getCPtr(rectValue));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Sets a rotation value (quaternion).
+        /// </summary>
+        /// <param name="rotationValue">A rotation value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(Rotation rotationValue)
+        {
+            Interop.PropertyValue.SetQuaternion(SwigCPtr, Rotation.getCPtr(rotationValue));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Sets a string value.
+        /// </summary>
+        /// <param name="stringValue">A string.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(string stringValue)
+        {
+            Interop.PropertyValue.SetString(SwigCPtr, stringValue);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Sets an array property value.
+        /// </summary>
+        /// <param name="arrayValue">An array property value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(PropertyArray arrayValue)
+        {
+            Interop.PropertyValue.SetArray(SwigCPtr, PropertyArray.getCPtr(arrayValue));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Sets a map property value.
+        /// </summary>
+        /// <param name="mapValue">A map property value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(PropertyMap mapValue)
+        {
+            Interop.PropertyValue.SetMap(SwigCPtr, PropertyMap.getCPtr(mapValue));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Sets an extents value.
+        /// </summary>
+        /// <param name="extentsValue">An extents value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(Extents extentsValue)
+        {
+            Interop.PropertyValue.SetExtents(SwigCPtr, Extents.getCPtr(extentsValue));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Sets an UIColor value.
+        /// </summary>
+        /// <param name="color">An UIColor value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(UIColor color)
+        {
+            SetVector4Component(color.R, color.G, color.B, color.A);
+        }
+
+        /// <summary>
+        /// Sets an UICorner value.
+        /// </summary>
+        /// <param name="corner">An UICorner value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(UICorner corner)
+        {
+            SetVector4Component(corner.TopLeft, corner.TopRight, corner.BottomRight, corner.BottomLeft);
+        }
+
+        /// <summary>
+        /// Sets an UIExtents value.
+        /// </summary>
+        /// <param name="uiExtents">An UIExtents value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(UIExtents uiExtents)
+        {
+            // TODO Do not create Extents instance
+            using Extents extents = uiExtents.ToReferenceType();
+            Set(extents);
+        }
+
+        /// <summary>
+        /// Sets an UIVector2 value.
+        /// </summary>
+        /// <param name="vector2">An UIVector2 value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(UIVector2 vector2)
+        {
+            SetVector2Component(vector2.X, vector2.Y);
+        }
+
+        /// <summary>
+        /// Sets an UIVector3 value.
+        /// </summary>
+        /// <param name="vector3">An UIVector3 value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(UIVector3 vector3)
+        {
+            SetVector3Component(vector3.X, vector3.Y, vector3.Z);
+        }
+
+        /// <summary>
+        /// Sets a matrix3 value.
+        /// </summary>
+        /// <param name="matrixValue">A matrix3 value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(Matrix3 matrixValue)
+        {
+            Interop.PropertyValue.SetMatrix3(SwigCPtr, Matrix3.getCPtr(matrixValue));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Sets a matrix value.
+        /// </summary>
+        /// <param name="matrixValue">A matrix value.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Set(Matrix matrixValue)
+        {
+            Interop.PropertyValue.SetMatrix(SwigCPtr, Matrix.getCPtr(matrixValue));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Sets a rotation value (angle axis).
+        /// </summary>
+        /// <param name="angleAxisValue">A rotation value.</param>
+        internal void Set(AngleAxis angleAxisValue)
+        {
+            Interop.PropertyValue.SetAngleAxis(SwigCPtr, AngleAxis.getCPtr(angleAxisValue));
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Get each components of Vector2. It will be failed if the type is not Vector2.
+        /// </summary>
+        /// <param name="xValue">X value of Vector2 component</param>
+        /// <param name="yValue">Y value of Vector2 component</param>
+        internal void SetVector2Component(float xValue, float yValue)
+        {
+            Interop.PropertyValue.PropertyValueSetVector2Componentwise(SwigCPtr, xValue, yValue);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Set each components of Vector3. It will be failed if the type is not Vector3.
+        /// </summary>
+        /// <param name="xValue">X value of Vector3 component</param>
+        /// <param name="yValue">Y value of Vector3 component</param>
+        /// <param name="zValue">Z value of Vector3 component</param>
+        internal void SetVector3Component(float xValue, float yValue, float zValue)
+        {
+            Interop.PropertyValue.PropertyValueSetVector3Componentwise(SwigCPtr, xValue, yValue, zValue);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+
+        /// <summary>
+        /// Get each components of Vector4. It will be failed if the type is not Vector4.
+        /// </summary>
+        /// <param name="xValue">X value of Vector4 component</param>
+        /// <param name="yValue">Y value of Vector4 component</param>
+        /// <param name="zValue">Z value of Vector4 component</param>
+        /// <param name="wValue">W value of Vector4 component</param>
+        internal void SetVector4Component(float xValue, float yValue, float zValue, float wValue)
+        {
+            Interop.PropertyValue.PropertyValueSetVector4Componentwise(SwigCPtr, xValue, yValue, zValue, wValue);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+        }
+        #endregion
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
