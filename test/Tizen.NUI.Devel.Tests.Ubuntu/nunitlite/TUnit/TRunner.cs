@@ -129,13 +129,13 @@ namespace NUnitLite.TUnit
             Tizen.Log.Fatal("NUITEST", $"Executing the application: {pkgName}");
             Tizen.Log.Fatal("NUITEST", $"dllPath: {dllPath}");
             string exeFilePathName = "";
-            if (dllPath.Contains("net6.0"))
+            if (dllPath.Contains("net8.0"))
             {
                 exeFilePathName = string.Format(dllPath + "Tizen.{0}Tests.dll", pkgName);
             }
             else
             {
-                exeFilePathName = string.Format(dllPath + "Debug/net6.0/Tizen.{0}dll", pkgName);
+                exeFilePathName = string.Format(dllPath + "Debug/net8.0/Tizen.{0}dll", pkgName);
             }
             //TLogger.Write("exeFilePathName : " + exeFilePathName);
             Tizen.Log.Fatal("NUITEST", $"exeFilePathName : {exeFilePathName}");
