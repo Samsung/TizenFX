@@ -72,6 +72,12 @@ namespace Tizen.System.Usb
         /// <exception cref="OutOfMemoryException">Throws exception in case of insufficient memory.</exception>
         /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
         /// <since_tizen> 4 </since_tizen>
+        /// <example>
+        /// <code>
+        /// var specificDevice = manager.AvailableDevices.SingleOrDefault(dev => dev.DeviceInformation.ProductId == 0x123);
+        /// foreach (var dev in manager.AvailableDevices.Where(...)) { ... }
+        /// </code>
+        /// </example>
         public IEnumerable<UsbDevice> AvailableDevices
         {
             get
@@ -87,6 +93,13 @@ namespace Tizen.System.Usb
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        /// <example>
+        /// <code>
+        /// manager.DeviceHotPlugged += (object sender, HotPluggedEventArgs args) => {
+        ///    Tizen.Log.Warn("EXAMPLE", $"product {args.Device.DeviceInformation.ProductId} was {0}", args.EventType == HotplugEventType.Attach ? "attached" : "detached");
+        /// };
+        /// </code>
+        /// </example>
         public event EventHandler<HotPluggedEventArgs> DeviceHotPlugged;
 
         internal void HostHotplugAttachCallback(IntPtr devHandle, IntPtr userData)

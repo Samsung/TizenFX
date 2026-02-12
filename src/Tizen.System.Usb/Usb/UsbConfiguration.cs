@@ -87,6 +87,12 @@ namespace Tizen.System.Usb
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        /// <example>
+        /// <code>
+        /// var specificIface = device.ActiveConfiguration.Interfaces[123];
+        /// foreach (var iface in device.ActiveConfiguration.Interfaces.Where(...)) ...
+        /// </code>
+        /// </example>
         public IReadOnlyDictionary<int, UsbInterface> Interfaces
         {
             get
@@ -136,6 +142,12 @@ namespace Tizen.System.Usb
         /// Throws an exception if the device is disconnected, or not opened for an operation, or busy as its interfaces are currently claimed.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        /// <example>
+        /// <code>
+        /// device.Configurations[123].SetAsActive();
+        /// DoSomeWorkNow(device.ActiveConfiguration);
+        /// </code>
+        /// </example>
         public void SetAsActive()
         {
             ThrowIfDisposed();
