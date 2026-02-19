@@ -86,6 +86,12 @@ namespace Tizen.Applications
         private static EventHandler<ApplicationLifecycleStateChangedEventArgs> s_lifecycleStateChangedHandler;
         private static Interop.ApplicationManager.AppManagerLifecycleStateChangedCallback s_lifecycleStateChangedCallback;
         private static readonly object s_lifecycleStateChangedLock = new object();
+        private static readonly Dictionary<EventHandler<ApplicationLifecycleStateChangedEventArgs>, IntPtr>
+            s_lifecycleNotiMap = new Dictionary<EventHandler<ApplicationLifecycleStateChangedEventArgs>, IntPtr>();
+        private static readonly Dictionary<IntPtr, Interop.ApplicationManager.AppManagerLifecycleStateChangedCallback>
+            s_lifecycleNotiCbMap =
+                new Dictionary<IntPtr, Interop.ApplicationManager.AppManagerLifecycleStateChangedCallback>();
+        private static readonly object s_lifecycleStateChangedNotiLock = new object();
 
         /// <summary>
         /// Occurs whenever the installed application is enabled.
@@ -812,6 +818,66 @@ namespace Tizen.Applications
         private static void UnRegisterLifecycleStateChangedEvent()
         {
             Interop.ApplicationManager.AppManagerUnsetLifecycleStateChangedCb();
+        }
+
+        /// <summary>
+        /// Occurs when the lifecycle state of any application changes.
+        /// </summary>
+        /// <remarks>
+        /// Unlike <see cref="ApplicationLifecycleStateChanged"/>, this event uses a multi-callback
+        /// native API. Each subscriber gets an independent native registration, so registrations
+        /// from different modules do not interfere with each other.
+        /// </remarks>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static event EventHandler<ApplicationLifecycleStateChangedEventArgs> ApplicationLifecycleStateChangedNoti
+        {
+            add
+            {
+                lock (s_lifecycleStateChangedNotiLock)
+                {
+                    if (value == null)
+                    {
+                        throw new ArgumentNullException(nameof(value));
+                    }
+
+                    Interop.ApplicationManager.AppManagerLifecycleStateChangedCallback nativeCallback =
+                        (string appId, int pid, Interop.ApplicationManager.AppLifecycleState state, bool hasFocus,
+                         IntPtr userData) =>
+                    {
+                        value.Invoke(null, new ApplicationLifecycleStateChangedEventArgs {
+                            ApplicationId = appId, ProcessId = pid, State = (ApplicationLifecycleState)state,
+                            HasFocus = hasFocus
+                        });
+                    };
+
+                    Interop.ApplicationManager.ErrorCode err =
+                        Interop.ApplicationManager.AppManagerAddLifecycleStateChangedCb(nativeCallback, IntPtr.Zero,
+                                                                                        out IntPtr handle);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        throw ApplicationManagerErrorFactory.GetException(
+                            err, "Failed to add the lifecycle state changed callback.");
+                    }
+
+                    s_lifecycleNotiMap[value] = handle;
+                    s_lifecycleNotiCbMap[handle] = nativeCallback;
+                }
+            }
+            remove
+            {
+                lock (s_lifecycleStateChangedNotiLock)
+                {
+                    if (value == null || !s_lifecycleNotiMap.TryGetValue(value, out IntPtr handle))
+                    {
+                        return;
+                    }
+
+                    Interop.ApplicationManager.AppManagerRemoveLifecycleStateChangedCb(handle);
+                    s_lifecycleNotiMap.Remove(value);
+                    s_lifecycleNotiCbMap.Remove(handle);
+                }
+            }
         }
 
         /// <summary>
