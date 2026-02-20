@@ -86,6 +86,7 @@ namespace Tizen.Applications
         private static EventHandler<ApplicationLifecycleStateChangedEventArgs> s_lifecycleStateChangedHandler;
         private static Interop.ApplicationManager.AppManagerLifecycleStateChangedCallback s_lifecycleStateChangedCallback;
         private static readonly object s_lifecycleStateChangedLock = new object();
+        private static IntPtr s_lifecycleHandle = IntPtr.Zero;
 
         /// <summary>
         /// Occurs whenever the installed application is enabled.
@@ -801,8 +802,8 @@ namespace Tizen.Applications
                 }
             };
 
-            Interop.ApplicationManager.ErrorCode err =
-                Interop.ApplicationManager.AppManagerSetLifecycleStateChangedCb(s_lifecycleStateChangedCallback, IntPtr.Zero);
+            Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppManagerAddLifecycleStateChangedCb(
+                s_lifecycleStateChangedCallback, IntPtr.Zero, out s_lifecycleHandle);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
                 throw ApplicationManagerErrorFactory.GetException(err, "Failed to register the lifecycle state changed event.");
@@ -811,7 +812,11 @@ namespace Tizen.Applications
 
         private static void UnRegisterLifecycleStateChangedEvent()
         {
-            Interop.ApplicationManager.AppManagerUnsetLifecycleStateChangedCb();
+            if (s_lifecycleHandle != IntPtr.Zero)
+            {
+                Interop.ApplicationManager.AppManagerRemoveLifecycleStateChangedCb(s_lifecycleHandle);
+                s_lifecycleHandle = IntPtr.Zero;
+            }
         }
 
         /// <summary>
