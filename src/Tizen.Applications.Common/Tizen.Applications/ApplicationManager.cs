@@ -86,11 +86,9 @@ namespace Tizen.Applications
         private static EventHandler<ApplicationLifecycleStateChangedEventArgs> s_lifecycleStateChangedHandler;
         private static Interop.ApplicationManager.AppManagerLifecycleStateChangedCallback s_lifecycleStateChangedCallback;
         private static readonly object s_lifecycleStateChangedLock = new object();
-        private static readonly Dictionary<EventHandler<ApplicationLifecycleStateChangedEventArgs>, IntPtr>
-            s_lifecycleNotiMap = new Dictionary<EventHandler<ApplicationLifecycleStateChangedEventArgs>, IntPtr>();
-        private static readonly Dictionary<IntPtr, Interop.ApplicationManager.AppManagerLifecycleStateChangedCallback>
-            s_lifecycleNotiCbMap =
-                new Dictionary<IntPtr, Interop.ApplicationManager.AppManagerLifecycleStateChangedCallback>();
+        private static EventHandler<ApplicationLifecycleStateChangedEventArgs> s_lifecycleNotiHandler;
+        private static Interop.ApplicationManager.AppManagerLifecycleStateChangedCallback s_lifecycleNotiCallback;
+        private static IntPtr s_lifecycleNotiHandle = IntPtr.Zero;
         private static readonly object s_lifecycleStateChangedNotiLock = new object();
 
         /// <summary>
@@ -836,46 +834,47 @@ namespace Tizen.Applications
             {
                 lock (s_lifecycleStateChangedNotiLock)
                 {
-                    if (value == null)
+                    if (s_lifecycleNotiCallback == null)
                     {
-                        throw new ArgumentNullException(nameof(value));
+                        s_lifecycleNotiCallback =
+                            (string appId, int pid, Interop.ApplicationManager.AppLifecycleState state, bool hasFocus,
+                             IntPtr userData) =>
+                        {
+                            lock (s_lifecycleStateChangedNotiLock)
+                            {
+                                s_lifecycleNotiHandler?.Invoke(null, new ApplicationLifecycleStateChangedEventArgs {
+                                    ApplicationId = appId, ProcessId = pid, State = (ApplicationLifecycleState)state,
+                                    HasFocus = hasFocus
+                                });
+                            }
+                        };
+
+                        Interop.ApplicationManager.ErrorCode err =
+                            Interop.ApplicationManager.AppManagerAddLifecycleStateChangedCb(
+                                s_lifecycleNotiCallback, IntPtr.Zero, out s_lifecycleNotiHandle);
+                        if (err != Interop.ApplicationManager.ErrorCode.None)
+                        {
+                            throw ApplicationManagerErrorFactory.GetException(
+                                err, "Failed to add the lifecycle state changed callback.");
+                        }
                     }
-
-                    Interop.ApplicationManager.AppManagerLifecycleStateChangedCallback nativeCallback =
-                        (string appId, int pid, Interop.ApplicationManager.AppLifecycleState state, bool hasFocus,
-                         IntPtr userData) =>
-                    {
-                        value.Invoke(null, new ApplicationLifecycleStateChangedEventArgs {
-                            ApplicationId = appId, ProcessId = pid, State = (ApplicationLifecycleState)state,
-                            HasFocus = hasFocus
-                        });
-                    };
-
-                    Interop.ApplicationManager.ErrorCode err =
-                        Interop.ApplicationManager.AppManagerAddLifecycleStateChangedCb(nativeCallback, IntPtr.Zero,
-                                                                                        out IntPtr handle);
-                    if (err != Interop.ApplicationManager.ErrorCode.None)
-                    {
-                        throw ApplicationManagerErrorFactory.GetException(
-                            err, "Failed to add the lifecycle state changed callback.");
-                    }
-
-                    s_lifecycleNotiMap[value] = handle;
-                    s_lifecycleNotiCbMap[handle] = nativeCallback;
+                    s_lifecycleNotiHandler += value;
                 }
             }
             remove
             {
                 lock (s_lifecycleStateChangedNotiLock)
                 {
-                    if (value == null || !s_lifecycleNotiMap.TryGetValue(value, out IntPtr handle))
+                    s_lifecycleNotiHandler -= value;
+                    if (s_lifecycleNotiHandler == null && s_lifecycleNotiCallback != null)
                     {
-                        return;
+                        if (s_lifecycleNotiHandle != IntPtr.Zero)
+                        {
+                            Interop.ApplicationManager.AppManagerRemoveLifecycleStateChangedCb(s_lifecycleNotiHandle);
+                            s_lifecycleNotiHandle = IntPtr.Zero;
+                        }
+                        s_lifecycleNotiCallback = null;
                     }
-
-                    Interop.ApplicationManager.AppManagerRemoveLifecycleStateChangedCb(handle);
-                    s_lifecycleNotiMap.Remove(value);
-                    s_lifecycleNotiCbMap.Remove(handle);
                 }
             }
         }
