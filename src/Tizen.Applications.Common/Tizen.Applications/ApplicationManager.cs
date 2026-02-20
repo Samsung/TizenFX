@@ -86,10 +86,7 @@ namespace Tizen.Applications
         private static EventHandler<ApplicationLifecycleStateChangedEventArgs> s_lifecycleStateChangedHandler;
         private static Interop.ApplicationManager.AppManagerLifecycleStateChangedCallback s_lifecycleStateChangedCallback;
         private static readonly object s_lifecycleStateChangedLock = new object();
-        private static EventHandler<ApplicationLifecycleStateChangedEventArgs> s_lifecycleNotiHandler;
-        private static Interop.ApplicationManager.AppManagerLifecycleStateChangedCallback s_lifecycleNotiCallback;
-        private static IntPtr s_lifecycleNotiHandle = IntPtr.Zero;
-        private static readonly object s_lifecycleStateChangedNotiLock = new object();
+        private static IntPtr s_lifecycleHandle = IntPtr.Zero;
 
         /// <summary>
         /// Occurs whenever the installed application is enabled.
@@ -805,8 +802,8 @@ namespace Tizen.Applications
                 }
             };
 
-            Interop.ApplicationManager.ErrorCode err =
-                Interop.ApplicationManager.AppManagerSetLifecycleStateChangedCb(s_lifecycleStateChangedCallback, IntPtr.Zero);
+            Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppManagerAddLifecycleStateChangedCb(
+                s_lifecycleStateChangedCallback, IntPtr.Zero, out s_lifecycleHandle);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
                 throw ApplicationManagerErrorFactory.GetException(err, "Failed to register the lifecycle state changed event.");
@@ -815,67 +812,10 @@ namespace Tizen.Applications
 
         private static void UnRegisterLifecycleStateChangedEvent()
         {
-            Interop.ApplicationManager.AppManagerUnsetLifecycleStateChangedCb();
-        }
-
-        /// <summary>
-        /// Occurs when the lifecycle state of any application changes.
-        /// </summary>
-        /// <remarks>
-        /// Unlike <see cref="ApplicationLifecycleStateChanged"/>, this event uses a multi-callback
-        /// native API. Each subscriber gets an independent native registration, so registrations
-        /// from different modules do not interfere with each other.
-        /// </remarks>
-        /// <since_tizen> 13 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static event EventHandler<ApplicationLifecycleStateChangedEventArgs> ApplicationLifecycleStateChangedNoti
-        {
-            add
+            if (s_lifecycleHandle != IntPtr.Zero)
             {
-                lock (s_lifecycleStateChangedNotiLock)
-                {
-                    if (s_lifecycleNotiCallback == null)
-                    {
-                        s_lifecycleNotiCallback =
-                            (string appId, int pid, Interop.ApplicationManager.AppLifecycleState state, bool hasFocus,
-                             IntPtr userData) =>
-                        {
-                            lock (s_lifecycleStateChangedNotiLock)
-                            {
-                                s_lifecycleNotiHandler?.Invoke(null, new ApplicationLifecycleStateChangedEventArgs {
-                                    ApplicationId = appId, ProcessId = pid, State = (ApplicationLifecycleState)state,
-                                    HasFocus = hasFocus
-                                });
-                            }
-                        };
-
-                        Interop.ApplicationManager.ErrorCode err =
-                            Interop.ApplicationManager.AppManagerAddLifecycleStateChangedCb(
-                                s_lifecycleNotiCallback, IntPtr.Zero, out s_lifecycleNotiHandle);
-                        if (err != Interop.ApplicationManager.ErrorCode.None)
-                        {
-                            throw ApplicationManagerErrorFactory.GetException(
-                                err, "Failed to add the lifecycle state changed callback.");
-                        }
-                    }
-                    s_lifecycleNotiHandler += value;
-                }
-            }
-            remove
-            {
-                lock (s_lifecycleStateChangedNotiLock)
-                {
-                    s_lifecycleNotiHandler -= value;
-                    if (s_lifecycleNotiHandler == null && s_lifecycleNotiCallback != null)
-                    {
-                        if (s_lifecycleNotiHandle != IntPtr.Zero)
-                        {
-                            Interop.ApplicationManager.AppManagerRemoveLifecycleStateChangedCb(s_lifecycleNotiHandle);
-                            s_lifecycleNotiHandle = IntPtr.Zero;
-                        }
-                        s_lifecycleNotiCallback = null;
-                    }
-                }
+                Interop.ApplicationManager.AppManagerRemoveLifecycleStateChangedCb(s_lifecycleHandle);
+                s_lifecycleHandle = IntPtr.Zero;
             }
         }
 
