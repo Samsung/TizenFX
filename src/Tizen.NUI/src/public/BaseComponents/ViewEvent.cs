@@ -118,7 +118,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (keyInputFocusGainedEventHandler == null)
                 {
-                    keyInputFocusGainedCallback = OnKeyInputFocusGained;
+                    CreateSafeCallback(OnKeyInputFocusGained, out keyInputFocusGainedCallback);
                     Interop.ViewSignal.KeyInputFocusGainedConnect(SwigCPtr, keyInputFocusGainedCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -132,7 +132,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.ViewSignal.KeyInputFocusGainedDisconnect(SwigCPtr, keyInputFocusGainedCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    keyInputFocusGainedCallback = null;
+                    ReleaseSafeCallback(ref keyInputFocusGainedCallback);
                 }
             }
         }
@@ -148,7 +148,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (keyInputFocusLostEventHandler == null)
                 {
-                    keyInputFocusLostCallback = OnKeyInputFocusLost;
+                    CreateSafeCallback(OnKeyInputFocusLost, out keyInputFocusLostCallback);
                     Interop.ViewSignal.KeyInputFocusLostConnect(SwigCPtr, keyInputFocusLostCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -162,7 +162,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.ViewSignal.KeyInputFocusLostDisconnect(SwigCPtr, keyInputFocusLostCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    keyInputFocusLostCallback = null;
+                    ReleaseSafeCallback(ref keyInputFocusLostCallback);
                 }
             }
         }
@@ -178,7 +178,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (keyEventHandler == null)
                 {
-                    keyCallback = OnKeyEvent;
+                    CreateSafeCallback(OnKeyEvent, out keyCallback);
                     Interop.ViewSignal.KeyEventConnect(SwigCPtr, keyCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -192,7 +192,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.ViewSignal.KeyEventDisconnect(SwigCPtr, keyCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    keyCallback = null;
+                    ReleaseSafeCallback(ref keyCallback);
                 }
             }
         }
@@ -208,7 +208,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (onRelayoutEventHandler == null)
                 {
-                    onRelayoutEventCallback = OnRelayout;
+                    CreateSafeCallback(OnRelayout, out onRelayoutEventCallback);
                     Interop.ActorSignal.OnRelayoutConnect(SwigCPtr, onRelayoutEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -222,7 +222,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.ActorSignal.OnRelayoutDisconnect(SwigCPtr, onRelayoutEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    onRelayoutEventCallback = null;
+                    ReleaseSafeCallback(ref onRelayoutEventCallback);
                 }
             }
         }
@@ -273,7 +273,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (touchDataEventHandler == null)
                 {
-                    touchDataCallback = OnTouch;
+                    CreateSafeCallback(OnTouch, out touchDataCallback);
                     Interop.ActorSignal.TouchConnect(SwigCPtr, touchDataCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -287,7 +287,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.ActorSignal.TouchDisconnect(SwigCPtr, touchDataCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    touchDataCallback = null;
+                    ReleaseSafeCallback(ref touchDataCallback);
                 }
             }
         }
@@ -303,7 +303,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (hoverEventHandler == null)
                 {
-                    hoverEventCallback = OnHoverEvent;
+                    CreateSafeCallback(OnHoverEvent, out hoverEventCallback);
                     Interop.ActorSignal.HoveredConnect(SwigCPtr, hoverEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -317,7 +317,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.ActorSignal.HoveredDisconnect(SwigCPtr, hoverEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    hoverEventCallback = null;
+                    ReleaseSafeCallback(ref hoverEventCallback);
                 }
             }
         }
@@ -385,7 +385,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (onWindowEventHandler == null)
                 {
-                    onWindowEventCallback = OnWindow;
+                    CreateSafeCallback(OnWindow, out onWindowEventCallback);
                     Interop.ActorSignal.OnSceneConnect(SwigCPtr, onWindowEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -399,7 +399,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.ActorSignal.OnSceneDisconnect(SwigCPtr, onWindowEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    onWindowEventCallback = null;
+                    ReleaseSafeCallback(ref onWindowEventCallback);
                 }
             }
         }
@@ -415,7 +415,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (offWindowEventHandler == null)
                 {
-                    offWindowEventCallback = OffWindow;
+                    CreateSafeCallback(OffWindow, out offWindowEventCallback);
                     Interop.ActorSignal.OffSceneConnect(SwigCPtr, offWindowEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -429,7 +429,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.ActorSignal.OffSceneDisconnect(SwigCPtr, offWindowEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    offWindowEventCallback = null;
+                    ReleaseSafeCallback(ref offWindowEventCallback);
                 }
             }
         }
@@ -448,7 +448,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (offScreenRenderingFinishedEventHandler == null)
                 {
-                    offScreenRenderingFinishedCallback = OnOffScreenRenderingFinished;
+                    CreateSafeCallback(OnOffScreenRenderingFinished, out offScreenRenderingFinishedCallback);
                     Interop.ViewSignal.OffScreenRenderingFinishedConnect(SwigCPtr, offScreenRenderingFinishedCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -462,7 +462,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.ViewSignal.OffScreenRenderingFinishedDisconnect(SwigCPtr, offScreenRenderingFinishedCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    offScreenRenderingFinishedCallback = null;
+                    ReleaseSafeCallback(ref offScreenRenderingFinishedCallback);
                 }
             }
         }
@@ -489,7 +489,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (visibilityChangedEventHandler == null)
                 {
-                    visibilityChangedEventCallback = OnVisibilityChanged;
+                    CreateSafeCallback(OnVisibilityChanged, out visibilityChangedEventCallback);
                     Interop.ActorSignal.VisibilityChangedConnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -503,7 +503,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.ActorSignal.VisibilityChangedDisconnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    visibilityChangedEventCallback = null;
+                    ReleaseSafeCallback(ref visibilityChangedEventCallback);
                 }
             }
         }
@@ -526,7 +526,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (aggregatedVisibilityChangedEventHandler == null)
                 {
-                    aggregatedVisibilityChangedEventCallback = OnAggregatedVisibilityChanged;
+                    CreateSafeCallback(OnAggregatedVisibilityChanged, out aggregatedVisibilityChangedEventCallback);
                     Interop.ActorSignal.AggregatedVisibilityChangedConnect(SwigCPtr, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -540,7 +540,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.ActorSignal.AggregatedVisibilityChangedDisconnect(SwigCPtr, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    aggregatedVisibilityChangedEventCallback = null;
+                    ReleaseSafeCallback(ref aggregatedVisibilityChangedEventCallback);
                 }
             }
         }
@@ -573,7 +573,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (resourcesLoadedEventHandler == null)
                 {
-                    resourcesLoadedCallback = OnResourcesLoaded;
+                    CreateSafeCallback(OnResourcesLoaded, out resourcesLoadedCallback);
                     Interop.ViewSignal.ResourceReadyConnect(SwigCPtr, resourcesLoadedCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -587,7 +587,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.ViewSignal.ResourceReadyDisconnect(SwigCPtr, resourcesLoadedCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    resourcesLoadedCallback = null;
+                    ReleaseSafeCallback(ref resourcesLoadedCallback);
                 }
             }
         }
@@ -630,7 +630,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (backgroundResourceLoadedEventHandler == null)
                 {
-                    backgroundResourceLoadedCallback = OnBackgroundResourceLoaded;
+                    CreateSafeCallback(OnBackgroundResourceLoaded, out backgroundResourceLoadedCallback);
                     Interop.ViewSignal.ResourceReadyConnect(SwigCPtr, backgroundResourceLoadedCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -643,7 +643,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.ViewSignal.ResourceReadyDisconnect(SwigCPtr, backgroundResourceLoadedCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    backgroundResourceLoadedCallback = null;
+                    ReleaseSafeCallback(ref backgroundResourceLoadedCallback);
                 }
              }
         }

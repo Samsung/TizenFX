@@ -70,7 +70,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textLabelAsyncHeightForWidthComputedEventHandler == null)
                 {
-                    textLabelAsyncHeightForWidthComputedCallbackDelegate = OnAsyncHeightForWidthComputed;
+                    CreateSafeCallback(OnAsyncHeightForWidthComputed, out textLabelAsyncHeightForWidthComputedCallbackDelegate);
                     Interop.TextLabel.AsyncHeightForWidthComputedConnect(SwigCPtr, textLabelAsyncHeightForWidthComputedCallbackDelegate.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -83,7 +83,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.TextLabel.AsyncHeightForWidthComputedDisconnect(SwigCPtr, textLabelAsyncHeightForWidthComputedCallbackDelegate.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    textLabelAsyncHeightForWidthComputedCallbackDelegate = null;
+                    ReleaseSafeCallback(ref textLabelAsyncHeightForWidthComputedCallbackDelegate);
                 }
             }
         }
@@ -114,7 +114,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textLabelAsyncNaturalSizeComputedEventHandler == null)
                 {
-                    textLabelAsyncNaturalSizeComputedCallbackDelegate = OnAsyncNaturalSizeComputed;
+                    CreateSafeCallback(OnAsyncNaturalSizeComputed, out textLabelAsyncNaturalSizeComputedCallbackDelegate);
                     Interop.TextLabel.AsyncNaturalSizeComputedConnect(SwigCPtr, textLabelAsyncNaturalSizeComputedCallbackDelegate.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -127,7 +127,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.TextLabel.AsyncNaturalSizeComputedDisconnect(SwigCPtr, textLabelAsyncNaturalSizeComputedCallbackDelegate.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    textLabelAsyncNaturalSizeComputedCallbackDelegate = null;
+                    ReleaseSafeCallback(ref textLabelAsyncNaturalSizeComputedCallbackDelegate);
                 }
             }
         }
@@ -158,7 +158,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textLabelAsyncTextRenderedEventHandler == null)
                 {
-                    textLabelAsyncTextRenderedCallbackDelegate = OnAsyncTextRendered;
+                    CreateSafeCallback(OnAsyncTextRendered, out textLabelAsyncTextRenderedCallbackDelegate);
                     Interop.TextLabel.AsyncTextRenderedConnect(SwigCPtr, textLabelAsyncTextRenderedCallbackDelegate.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -171,7 +171,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.TextLabel.AsyncTextRenderedDisconnect(SwigCPtr, textLabelAsyncTextRenderedCallbackDelegate.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    textLabelAsyncTextRenderedCallbackDelegate = null;
+                    ReleaseSafeCallback(ref textLabelAsyncTextRenderedCallbackDelegate);
                 }
             }
         }
@@ -202,7 +202,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textLabelAnchorClickedEventHandler == null)
                 {
-                    textLabelAnchorClickedCallbackDelegate = (OnAnchorClicked);
+                    CreateSafeCallback(OnAnchorClicked, out textLabelAnchorClickedCallbackDelegate);
                     using var signal = AnchorClickedSignal();
                     signal.Connect(textLabelAnchorClickedCallbackDelegate);
                 }
@@ -211,10 +211,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 textLabelAnchorClickedEventHandler -= value;
-                using var signal = AnchorClickedSignal();
-                if (textLabelAnchorClickedEventHandler == null && signal.Empty() == false)
+                if (textLabelAnchorClickedEventHandler == null && textLabelAnchorClickedCallbackDelegate != null)
                 {
+                    using var signal = AnchorClickedSignal();
                     signal.Disconnect(textLabelAnchorClickedCallbackDelegate);
+                    ReleaseSafeCallback(ref textLabelAnchorClickedCallbackDelegate);
                 }
             }
         }
@@ -255,7 +256,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textLabelTextFitChangedEventHandler == null)
                 {
-                    textLabelTextFitChangedCallbackDelegate = (OnTextFitChanged);
+                    CreateSafeCallback(OnTextFitChanged, out textLabelTextFitChangedCallbackDelegate);
                     using var signal = TextFitChangedSignal();
                     signal.Connect(textLabelTextFitChangedCallbackDelegate);
                 }
@@ -264,10 +265,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 textLabelTextFitChangedEventHandler -= value;
-                using var signal = TextFitChangedSignal();
-                if (textLabelTextFitChangedEventHandler == null && signal.Empty() == false)
+                if (textLabelTextFitChangedEventHandler == null && textLabelTextFitChangedCallbackDelegate != null)
                 {
+                    using var signal = TextFitChangedSignal();
                     signal.Disconnect(textLabelTextFitChangedCallbackDelegate);
+                    ReleaseSafeCallback(ref textLabelTextFitChangedCallbackDelegate);
                 }
             }
         }

@@ -130,12 +130,16 @@ namespace Tizen.NUI.BaseComponents
             }
 
             //disconnect event signal
-            if (finishedEventHandler != null && visualEventSignalCallback != null)
+            if (this.HasBody())
             {
-                using VisualEventSignal visualEvent = VisualEventSignal();
-                visualEvent.Disconnect(visualEventSignalCallback);
-                finishedEventHandler = null;
-                NUILog.Debug($"disconnect event signal");
+                if (finishedEventHandler != null && visualEventSignalCallback != null)
+                {
+                    using VisualEventSignal visualEvent = VisualEventSignal();
+                    visualEvent.Disconnect(visualEventSignalCallback);
+                    ReleaseSafeCallback(ref visualEventSignalCallback);
+                    finishedEventHandler = null;
+                    NUILog.Debug($"disconnect event signal");
+                }
             }
 
             base.Dispose(type);
@@ -1326,7 +1330,7 @@ namespace Tizen.NUI.BaseComponents
                 if (finishedEventHandler == null)
                 {
                     NUILog.Debug($"<[{GetId()}] Finished eventhandler added>");
-                    visualEventSignalCallback = onVisualEventSignal;
+                    CreateSafeCallback(onVisualEventSignal, out visualEventSignalCallback);
                     using VisualEventSignal visualEvent = VisualEventSignal();
                     visualEvent.Connect(visualEventSignalCallback);
                 }
@@ -1340,7 +1344,10 @@ namespace Tizen.NUI.BaseComponents
                 {
                     using VisualEventSignal visualEvent = VisualEventSignal();
                     visualEvent?.Disconnect(visualEventSignalCallback);
-                    visualEventSignalCallback = null;
+                    if (visualEvent?.Empty() == true)
+                    {
+                        ReleaseSafeCallback(ref visualEventSignalCallback);
+                    }
                 }
             }
         }
@@ -1531,7 +1538,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (visualEventSignalHandler == null)
                 {
-                    visualEventSignalCallback = onVisualEventSignal;
+                    CreateSafeCallback(onVisualEventSignal, out visualEventSignalCallback);
                     using VisualEventSignal visualEvent = VisualEventSignal();
                     visualEvent?.Connect(visualEventSignalCallback);
                 }
@@ -1546,7 +1553,7 @@ namespace Tizen.NUI.BaseComponents
                     visualEvent?.Disconnect(visualEventSignalCallback);
                     if (visualEvent?.Empty() == true)
                     {
-                        visualEventSignalCallback = null;
+                        ReleaseSafeCallback(ref visualEventSignalCallback);
                     }
                 }
             }
