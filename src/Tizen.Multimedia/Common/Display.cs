@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 using System;
-using ElmSharp;
 using Tizen.Common;
 
 namespace Tizen.Multimedia
@@ -39,35 +38,12 @@ namespace Tizen.Multimedia
 
     internal interface IDisplayable<TError>
     {
-        TError ApplyEvasDisplay(DisplayType type, EvasObject evasObject);
         TError ApplyEcoreWindow(IntPtr windowHandle, Rectangle rect, Rotation rotation);
     }
 
     internal interface IDisplaySetter
     {
         TError SetDisplay<TError>(IDisplayable<TError> target);
-    }
-
-    internal class EvasDisplaySetter : IDisplaySetter
-    {
-        private readonly DisplayType _type;
-        private readonly EvasObject _target;
-
-        internal EvasDisplaySetter(DisplayType type, EvasObject target)
-        {
-            if (target == IntPtr.Zero)
-            {
-                throw new ArgumentException("The evas object is not realized.");
-            }
-
-            _type = type;
-            _target = target;
-        }
-
-        public TError SetDisplay<TError>(IDisplayable<TError> target)
-        {
-            return target.ApplyEvasDisplay(_type, _target);
-        }
     }
 
     internal class EcoreDisplaySetter : IDisplaySetter
@@ -99,40 +75,6 @@ namespace Tizen.Multimedia
     public class Display
     {
         private readonly IDisplaySetter _setter;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Display"/> class with a <see cref="MediaView"/> class.
-        /// </summary>
-        /// <param name="mediaView">A <see cref="MediaView"/> to display.</param>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API10; Will be removed in API12")]
-        public Display(MediaView mediaView)
-        {
-            if (mediaView == null)
-            {
-                throw new ArgumentNullException(nameof(mediaView));
-            }
-
-            _setter = new EvasDisplaySetter(DisplayType.Surface, mediaView);
-
-            HasMediaView = true;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Display"/> class with a <see cref="Window"/> class.
-        /// </summary>
-        /// <param name="window">A <see cref="Window"/> to display.</param>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API10; Will be removed in API12")]
-        public Display(Window window)
-        {
-            if (window == null)
-            {
-                throw new ArgumentNullException(nameof(window));
-            }
-
-            _setter = new EvasDisplaySetter(DisplayType.Overlay, window);
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Display"/> class with a <see cref="NUI.Window"/> class.
@@ -209,13 +151,9 @@ namespace Tizen.Multimedia
             UiSync = uiSync;
         }
 
-        private EvasObject EvasObject { get; }
-
         private DisplayType Type { get; }
 
         private object _owner;
-
-        internal bool HasMediaView { get; } = false;
 
         internal bool UiSync { get; } = false;
 
