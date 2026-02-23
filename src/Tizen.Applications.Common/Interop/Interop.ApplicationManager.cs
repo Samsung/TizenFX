@@ -453,5 +453,16 @@ internal static partial class Interop
         [DllImport(Libraries.Rua, EntryPoint = "rua_unregister_update_cb")]
         internal static extern ErrorCode RuaUnSetUpdateCallback(int id);
         //int rua_unregister_update_cb(int callback_id);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate int RuaStatTagIterCallback([MarshalAs(UnmanagedType.LPStr)] string ruaStatTag,
+                                                     IntPtr userData);
+        // int (*rua_stat_tag_iter_fn)(const char *rua_stat_tag, void *data)
+
+        [DllImport(Libraries.Rua, EntryPoint = "rua_stat_get_stat_tags")]
+        internal static extern ErrorCode RuaStatGetStatTags(string caller, RuaStatTagIterCallback callback,
+                                                            IntPtr userData);
+        // int rua_stat_get_stat_tags(char *caller, int (*rua_stat_tag_iter_fn)(const char *rua_stat_tag, void *data),
+        // void *data);
     }
 }
