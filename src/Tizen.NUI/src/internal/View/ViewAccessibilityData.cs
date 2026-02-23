@@ -55,7 +55,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (_getDescriptionHandler == null)
             {
-                _getDescriptionCallback = OnGetAccessibilityDescriptionEvent;
+                view.CreateSafeCallback(OnGetAccessibilityDescriptionEvent, out _getDescriptionCallback);
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityGetDescriptionConnect(handle, _getDescriptionCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
@@ -71,7 +71,7 @@ namespace Tizen.NUI.BaseComponents
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityGetDescriptionDisconnect(handle, _getDescriptionCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
-                _getDescriptionCallback = null;
+                view.ReleaseSafeCallback(ref _getDescriptionCallback);
             }
         }
 
@@ -79,7 +79,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (_getNameHandler == null)
             {
-                _getNameCallback = OnGetAccessibilityNameEvent;
+                view.CreateSafeCallback(OnGetAccessibilityNameEvent, out _getNameCallback);
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityGetNameConnect(handle, _getNameCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
@@ -95,7 +95,7 @@ namespace Tizen.NUI.BaseComponents
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityGetNameDisconnect(handle, _getNameCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
-                _getNameCallback = null;
+                view.ReleaseSafeCallback(ref _getNameCallback);
             }
         }
 
@@ -103,7 +103,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (_activateHandler == null)
             {
-                _activateCallback = OnAccessibilityActivatedEvent;
+                view.CreateSafeCallback(OnAccessibilityActivatedEvent, out _activateCallback);
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityActivateConnect(handle, _activateCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
@@ -119,7 +119,7 @@ namespace Tizen.NUI.BaseComponents
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityActivateDisconnect(handle, _activateCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
-                _activateCallback = null;
+                view.ReleaseSafeCallback(ref _activateCallback);
             }
         }
 
@@ -127,7 +127,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (_accessibilityActionReceivedHandler == null)
             {
-                _accessibilityActionReceivedCallback = OnAccessibilityActionReceived;
+                view.CreateSafeCallback(OnAccessibilityActionReceived, out _accessibilityActionReceivedCallback);
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityActionConnect(handle, _accessibilityActionReceivedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
@@ -143,7 +143,7 @@ namespace Tizen.NUI.BaseComponents
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityActionDisconnect(handle, _accessibilityActionReceivedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
-                _accessibilityActionReceivedCallback = null;
+                view.ReleaseSafeCallback(ref _accessibilityActionReceivedCallback);
             }
         }
 
@@ -151,7 +151,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (_accessibilityHighlightChangedHandler == null)
             {
-                _accessibilityHighlightedCallback = OnAccessibilityHighlighed;
+                view.CreateSafeCallback(OnAccessibilityHighlighed, out _accessibilityHighlightedCallback);
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityHighlightedConnect(handle, _accessibilityHighlightedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
@@ -167,7 +167,7 @@ namespace Tizen.NUI.BaseComponents
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityHighlightedDisconnect(handle, _accessibilityHighlightedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
-                _accessibilityHighlightedCallback = null;
+                view.ReleaseSafeCallback(ref _accessibilityHighlightedCallback);
             }
         }
 
