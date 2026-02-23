@@ -319,8 +319,6 @@ namespace Tizen.Multimedia
         /// <value>A <see cref="Multimedia.Display"/> that specifies the display.</value>
         /// <remarks>
         ///     The player must be in the <see cref="PlayerState.Idle"/> state.<br/>
-        ///     The raw video feature(http://tizen.org/feature/multimedia.raw_video) is required if
-        ///     the display is created with <see cref="MediaView"/>.<br/>
         ///     If a user wants to use video and UI sync mode, please use <see cref="Tizen.Multimedia.Display(NUI.Window, bool)"/>.(Since tizen 6.5)<br/>
         ///     But <see cref="Tizen.Multimedia.Player.DisplaySettings"/> is not supported in UI sync mode.
         /// </remarks>
@@ -339,11 +337,6 @@ namespace Tizen.Multimedia
             {
                 ValidatePlayerState(PlayerState.Idle);
 
-                if (value != null && value.HasMediaView)
-                {
-                    ValidationUtil.ValidateFeatureSupported(PlayerFeatures.RawVideo);
-                }
-
                 if (value?.Owner != null)
                 {
                     if (ReferenceEquals(this, value.Owner))
@@ -360,17 +353,6 @@ namespace Tizen.Multimedia
 
                 ReplaceDisplay(value);
             }
-        }
-
-        PlayerErrorCode IDisplayable<PlayerErrorCode>.ApplyEvasDisplay(DisplayType type, ElmSharp.EvasObject evasObject)
-        {
-            Debug.Assert(IsDisposed == false);
-
-            Debug.Assert(Enum.IsDefined(typeof(DisplayType), type));
-            Debug.Assert(type != DisplayType.None);
-
-            return NativeDisplay.SetDisplay(Handle,
-                type == DisplayType.Overlay ? PlayerDisplayType.Overlay : PlayerDisplayType.Evas, evasObject);
         }
 
         PlayerErrorCode IDisplayable<PlayerErrorCode>.ApplyEcoreWindow(IntPtr windowHandle, Rectangle rect, Rotation rotation)
