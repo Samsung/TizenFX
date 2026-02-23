@@ -49,7 +49,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_interceptTouchDataEventHandler == null)
                 {
-                    _interceptTouchDataCallback = OnInterceptTouch;
+                    _owner.CreateSafeCallback(OnInterceptTouch, out _interceptTouchDataCallback);
                     Interop.ActorSignal.InterceptTouchConnect(_owner.SwigCPtr, _interceptTouchDataCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -63,7 +63,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.ActorSignal.InterceptTouchDisconnect(_owner.SwigCPtr, _interceptTouchDataCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    _interceptTouchDataCallback = null;
+                    _owner.ReleaseSafeCallback(ref _interceptTouchDataCallback);
                 }
             }
         }
@@ -74,7 +74,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_interceptWheelHandler == null)
                 {
-                    _interceptWheelCallback = OnInterceptWheel;
+                    _owner.CreateSafeCallback(OnInterceptWheel, out _interceptWheelCallback);
                     Interop.ActorSignal.InterceptWheelConnect(_owner.SwigCPtr, _interceptWheelCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -88,7 +88,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.ActorSignal.InterceptWheelDisconnect(_owner.SwigCPtr, _interceptWheelCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    _interceptWheelCallback = null;
+                    _owner.ReleaseSafeCallback(ref _interceptWheelCallback);
                 }
             }
         }
@@ -99,7 +99,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_wheelEventHandler == null)
                 {
-                    _wheelEventCallback = OnWheelEvent;
+                    _owner.CreateSafeCallback(OnWheelEvent, out _wheelEventCallback);
                     Interop.ActorSignal.WheelEventConnect(_owner.SwigCPtr, _wheelEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -113,7 +113,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.ActorSignal.WheelEventDisconnect(_owner.SwigCPtr, _wheelEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    _wheelEventCallback = null;
+                    _owner.ReleaseSafeCallback(ref _wheelEventCallback);
                 }
             }
         }
@@ -124,7 +124,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_layoutDirectionChangedEventHandler == null)
                 {
-                    _layoutDirectionChangedEventCallback = OnLayoutDirectionChanged;
+                    _owner.CreateSafeCallback(OnLayoutDirectionChanged, out _layoutDirectionChangedEventCallback);
                     Interop.ActorSignal.LayoutDirectionChangedConnect(_owner.SwigCPtr, _layoutDirectionChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -140,7 +140,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.ActorSignal.LayoutDirectionChangedDisconnect(_owner.SwigCPtr, _layoutDirectionChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    _layoutDirectionChangedEventCallback = null;
+                    _owner.ReleaseSafeCallback(ref _layoutDirectionChangedEventCallback);
                 }
             }
         }
@@ -149,7 +149,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (_hitTestResultDataCallback == null)
             {
-                _hitTestResultDataCallback = callback;
+                _owner.CreateSafeCallback(callback, out _hitTestResultDataCallback);
                 Interop.ActorSignal.HitTestResultConnect(_owner.SwigCPtr, _hitTestResultDataCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
             }
@@ -161,7 +161,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Interop.ActorSignal.HitTestResultDisconnect(_owner.SwigCPtr, _hitTestResultDataCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                _hitTestResultDataCallback = null;
+                _owner.ReleaseSafeCallback(ref _hitTestResultDataCallback);
             }
         }
 
@@ -169,13 +169,15 @@ namespace Tizen.NUI.BaseComponents
         {
             HandleRef handle = _owner.GetBaseHandleCPtrHandleRef;
 
+            UnregisterHitTestCallback();
+
             if (_interceptWheelCallback != null)
             {
                 NUILog.Debug($"[Dispose] interceptWheelCallback");
 
                 Interop.ActorSignal.InterceptWheelDisconnect(handle, _interceptWheelCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                _interceptWheelCallback = null;
+                _owner.ReleaseSafeCallback(ref _interceptWheelCallback);
             }
 
             if (_wheelEventCallback != null)
@@ -184,16 +186,7 @@ namespace Tizen.NUI.BaseComponents
 
                 Interop.ActorSignal.WheelEventDisconnect(handle, _wheelEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                _wheelEventCallback = null;
-            }
-
-            if (_hitTestResultDataCallback != null)
-            {
-                NUILog.Debug($"[Dispose] hitTestResultDataCallback");
-
-                Interop.ActorSignal.HitTestResultDisconnect(handle, _hitTestResultDataCallback.ToHandleRef(this));
-                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                _hitTestResultDataCallback = null;
+                _owner.ReleaseSafeCallback(ref _wheelEventCallback);
             }
 
             if (_interceptTouchDataCallback != null)
@@ -202,7 +195,7 @@ namespace Tizen.NUI.BaseComponents
 
                 Interop.ActorSignal.InterceptTouchDisconnect(handle, _interceptTouchDataCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                _interceptTouchDataCallback = null;
+                _owner.ReleaseSafeCallback(ref _interceptTouchDataCallback);
             }
 
             if (_layoutDirectionChangedEventCallback != null)
@@ -211,7 +204,7 @@ namespace Tizen.NUI.BaseComponents
 
                 Interop.ActorSignal.LayoutDirectionChangedDisconnect(handle, _layoutDirectionChangedEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
-                _layoutDirectionChangedEventCallback = null;
+                _owner.ReleaseSafeCallback(ref _layoutDirectionChangedEventCallback);
             }
         }
 

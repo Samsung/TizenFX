@@ -94,7 +94,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorTextChangedEventHandler == null)
                 {
-                    textEditorTextChangedCallbackDelegate = (OnTextChanged);
+                    CreateSafeCallback(OnTextChanged, out textEditorTextChangedCallbackDelegate);
                     using var signal = TextChangedSignal();
                     signal.Connect(textEditorTextChangedCallbackDelegate);
                 }
@@ -103,10 +103,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 textEditorTextChangedEventHandler -= value;
-                using var signal = TextChangedSignal();
-                if (textEditorTextChangedEventHandler == null && signal.Empty() == false)
+                if (textEditorTextChangedEventHandler == null && textEditorTextChangedCallbackDelegate != null)
                 {
+                    using var signal = TextChangedSignal();
                     signal.Disconnect(textEditorTextChangedCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorTextChangedCallbackDelegate);
                 }
             }
         }
@@ -122,7 +123,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorScrollStateChangedEventHandler == null)
                 {
-                    textEditorScrollStateChangedCallbackDelegate = OnScrollStateChanged;
+                    CreateSafeCallback(OnScrollStateChanged, out textEditorScrollStateChangedCallbackDelegate);
                     using var signal = ScrollStateChangedSignal(this);
                     signal.Connect(textEditorScrollStateChangedCallbackDelegate);
                 }
@@ -131,10 +132,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 textEditorScrollStateChangedEventHandler -= value;
-                using var signal = ScrollStateChangedSignal(this);
-                if (textEditorScrollStateChangedEventHandler == null && signal.Empty() == false)
+                if (textEditorScrollStateChangedEventHandler == null && textEditorScrollStateChangedCallbackDelegate != null)
                 {
+                    using var signal = ScrollStateChangedSignal(this);
                     signal.Disconnect(textEditorScrollStateChangedCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorScrollStateChangedCallbackDelegate);
                 }
             }
         }
@@ -149,7 +151,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorCursorPositionChangedEventHandler == null)
                 {
-                    textEditorCursorPositionChangedCallbackDelegate = (OnCursorPositionChanged);
+                    CreateSafeCallback(OnCursorPositionChanged, out textEditorCursorPositionChangedCallbackDelegate);
                     using var signal = CursorPositionChangedSignal();
                     signal.Connect(textEditorCursorPositionChangedCallbackDelegate);
                 }
@@ -157,12 +159,13 @@ namespace Tizen.NUI.BaseComponents
             }
             remove
             {
-                using var signal = CursorPositionChangedSignal();
-                if (textEditorCursorPositionChangedEventHandler == null && signal.Empty() == false)
-                {
-                    signal.Disconnect(textEditorCursorPositionChangedCallbackDelegate);
-                }
                 textEditorCursorPositionChangedEventHandler -= value;
+                if (textEditorCursorPositionChangedEventHandler == null && textEditorCursorPositionChangedCallbackDelegate != null)
+                {
+                    using var signal = CursorPositionChangedSignal();
+                    signal.Disconnect(textEditorCursorPositionChangedCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorCursorPositionChangedCallbackDelegate);
+                }
             }
         }
 
@@ -177,7 +180,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorMaxLengthReachedEventHandler == null)
                 {
-                    textEditorMaxLengthReachedCallbackDelegate = (OnMaxLengthReached);
+                    CreateSafeCallback(OnMaxLengthReached, out textEditorMaxLengthReachedCallbackDelegate);
                     using var signal = MaxLengthReachedSignal();
                     signal.Connect(textEditorMaxLengthReachedCallbackDelegate);
                 }
@@ -185,12 +188,13 @@ namespace Tizen.NUI.BaseComponents
             }
             remove
             {
-                using var signal = MaxLengthReachedSignal();
-                if (textEditorMaxLengthReachedEventHandler == null && signal.Empty() == false)
-                {
-                    signal.Disconnect(textEditorMaxLengthReachedCallbackDelegate);
-                }
                 textEditorMaxLengthReachedEventHandler -= value;
+                if (textEditorMaxLengthReachedEventHandler == null && textEditorMaxLengthReachedCallbackDelegate != null)
+                {
+                    using var signal = MaxLengthReachedSignal();
+                    signal.Disconnect(textEditorMaxLengthReachedCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorMaxLengthReachedCallbackDelegate);
+                }
             }
         }
 
@@ -204,7 +208,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorAnchorClickedEventHandler == null)
                 {
-                    textEditorAnchorClickedCallbackDelegate = (OnAnchorClicked);
+                    CreateSafeCallback(OnAnchorClicked, out textEditorAnchorClickedCallbackDelegate);
                     using var signal = AnchorClickedSignal();
                     signal.Connect(textEditorAnchorClickedCallbackDelegate);
                 }
@@ -213,10 +217,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 textEditorAnchorClickedEventHandler -= value;
-                using var signal = AnchorClickedSignal();
-                if (textEditorAnchorClickedEventHandler == null && signal.Empty() == false)
+                if (textEditorAnchorClickedEventHandler == null && textEditorAnchorClickedCallbackDelegate != null)
                 {
+                    using var signal = AnchorClickedSignal();
                     signal.Disconnect(textEditorAnchorClickedCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorAnchorClickedCallbackDelegate);
                 }
             }
         }
@@ -231,7 +236,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorSelectionStartedEventHandler == null)
                 {
-                    textEditorSelectionStartedCallbackDelegate = (OnSelectionStarted);
+                    CreateSafeCallback(OnSelectionStarted, out textEditorSelectionStartedCallbackDelegate);
                     using var signal = SelectionStartedSignal();
                     signal.Connect(textEditorSelectionStartedCallbackDelegate);
                 }
@@ -239,12 +244,13 @@ namespace Tizen.NUI.BaseComponents
             }
             remove
             {
-                using var signal = SelectionStartedSignal();
-                if (textEditorSelectionStartedEventHandler == null && signal.Empty() == false)
-                {
-                    signal.Disconnect(textEditorSelectionStartedCallbackDelegate);
-                }
                 textEditorSelectionStartedEventHandler -= value;
+                if (textEditorSelectionStartedEventHandler == null && textEditorSelectionStartedCallbackDelegate != null)
+                {
+                    using var signal = SelectionStartedSignal();
+                    signal.Disconnect(textEditorSelectionStartedCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorSelectionStartedCallbackDelegate);
+                }
             }
         }
 
@@ -258,7 +264,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorSelectionClearedEventHandler == null)
                 {
-                    textEditorSelectionClearedCallbackDelegate = (OnSelectionCleared);
+                    CreateSafeCallback(OnSelectionCleared, out textEditorSelectionClearedCallbackDelegate);
                     using var signal = SelectionClearedSignal();
                     signal.Connect(textEditorSelectionClearedCallbackDelegate);
                 }
@@ -266,12 +272,13 @@ namespace Tizen.NUI.BaseComponents
             }
             remove
             {
-                using var signal = SelectionClearedSignal();
-                if (textEditorSelectionClearedEventHandler == null && signal.Empty() == false)
-                {
-                    signal.Disconnect(textEditorSelectionClearedCallbackDelegate);
-                }
                 textEditorSelectionClearedEventHandler -= value;
+                if (textEditorSelectionClearedEventHandler == null && textEditorSelectionClearedCallbackDelegate != null)
+                {
+                    using var signal = SelectionClearedSignal();
+                    signal.Disconnect(textEditorSelectionClearedCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorSelectionClearedCallbackDelegate);
+                }
             }
         }
 
@@ -285,7 +292,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorSelectionChangedEventHandler == null)
                 {
-                    textEditorSelectionChangedCallbackDelegate = (OnSelectionChanged);
+                    CreateSafeCallback(OnSelectionChanged, out textEditorSelectionChangedCallbackDelegate);
                     using var signal = SelectionChangedSignal();
                     signal.Connect(textEditorSelectionChangedCallbackDelegate);
                 }
@@ -293,12 +300,13 @@ namespace Tizen.NUI.BaseComponents
             }
             remove
             {
-                using var signal = SelectionChangedSignal();
-                if (textEditorSelectionChangedEventHandler == null && signal.Empty() == false)
-                {
-                    signal.Disconnect(textEditorSelectionChangedCallbackDelegate);
-                }
                 textEditorSelectionChangedEventHandler -= value;
+                if (textEditorSelectionChangedEventHandler == null && textEditorSelectionChangedCallbackDelegate != null)
+                {
+                    using var signal = SelectionChangedSignal();
+                    signal.Disconnect(textEditorSelectionChangedCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorSelectionChangedCallbackDelegate);
+                }
             }
         }
 
@@ -331,7 +339,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorInputFilteredEventHandler == null)
                 {
-                    textEditorInputFilteredCallbackDelegate = (OnInputFiltered);
+                    CreateSafeCallback(OnInputFiltered, out textEditorInputFilteredCallbackDelegate);
                     using var signal = InputFilteredSignal();
                     signal.Connect(textEditorInputFilteredCallbackDelegate);
                 }
@@ -340,10 +348,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 textEditorInputFilteredEventHandler -= value;
-                using var signal = InputFilteredSignal();
-                if (textEditorInputFilteredEventHandler == null && signal.Empty() == false)
+                if (textEditorInputFilteredEventHandler == null && textEditorInputFilteredCallbackDelegate != null)
                 {
+                    using var signal = InputFilteredSignal();
                     signal.Disconnect(textEditorInputFilteredCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorInputFilteredCallbackDelegate);
                 }
             }
         }
