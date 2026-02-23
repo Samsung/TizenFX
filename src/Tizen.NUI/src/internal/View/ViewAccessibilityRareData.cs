@@ -64,7 +64,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (_gestureInfoHandler == null)
             {
-                _gestureInfoCallback = OnAccessibilityGestureInfoEvent;
+                view.CreateSafeCallback(OnAccessibilityGestureInfoEvent, out _gestureInfoCallback);
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityDoGestureConnect(handle, _gestureInfoCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
@@ -80,7 +80,7 @@ namespace Tizen.NUI.BaseComponents
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityDoGestureDisconnect(handle, _gestureInfoCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
-                _gestureInfoCallback = null;
+                view.ReleaseSafeCallback(ref _gestureInfoCallback);
             }
         }
 
@@ -88,7 +88,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (_readingSkippedHandler == null)
             {
-                _readingSkippedCallback = OnAccessibilityReadingSkippedEvent;
+                view.CreateSafeCallback(OnAccessibilityReadingSkippedEvent, out _readingSkippedCallback);
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingSkippedConnect(handle, _readingSkippedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
@@ -104,7 +104,7 @@ namespace Tizen.NUI.BaseComponents
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingSkippedDisconnect(handle, _readingSkippedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
-                _readingSkippedCallback = null;
+                view.ReleaseSafeCallback(ref _readingSkippedCallback);
             }
         }
 
@@ -112,7 +112,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (_readingPausedHandler == null)
             {
-                _readingPausedCallback = OnAccessibilityReadingPausedEvent;
+                view.CreateSafeCallback(OnAccessibilityReadingPausedEvent, out _readingPausedCallback);
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingPausedConnect(handle, _readingPausedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
@@ -128,7 +128,7 @@ namespace Tizen.NUI.BaseComponents
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingPausedDisconnect(handle, _readingPausedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
-                _readingPausedCallback = null;
+                view.ReleaseSafeCallback(ref _readingPausedCallback);
             }
         }
 
@@ -136,7 +136,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (_readingResumedHandler == null)
             {
-                _readingResumedCallback = OnAccessibilityReadingResumedEvent;
+                view.CreateSafeCallback(OnAccessibilityReadingResumedEvent, out _readingResumedCallback);
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingResumedConnect(handle, _readingResumedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
@@ -152,7 +152,7 @@ namespace Tizen.NUI.BaseComponents
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingResumedDisconnect(handle, _readingResumedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
-                _readingResumedCallback = null;
+                view.ReleaseSafeCallback(ref _readingResumedCallback);
             }
         }
 
@@ -160,7 +160,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (_readingCancelledHandler == null)
             {
-                _readingCancelledCallback = OnAccessibilityReadingCancelledEvent;
+                view.CreateSafeCallback(OnAccessibilityReadingCancelledEvent, out _readingCancelledCallback);
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingCancelledConnect(handle, _readingCancelledCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
@@ -176,7 +176,7 @@ namespace Tizen.NUI.BaseComponents
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingCancelledDisconnect(handle, _readingCancelledCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
-                _readingCancelledCallback = null;
+                view.ReleaseSafeCallback(ref _readingCancelledCallback);
             }
         }
 
@@ -184,7 +184,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (_readingStoppedHandler == null)
             {
-                _readingStoppedCallback = OnAccessibilityReadingStoppedEvent;
+                view.CreateSafeCallback(OnAccessibilityReadingStoppedEvent, out _readingStoppedCallback);
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingStoppedConnect(handle, _readingStoppedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
@@ -200,7 +200,7 @@ namespace Tizen.NUI.BaseComponents
                 using var handle = view.GetControl();
                 Interop.AccessibilitySignal.AccessibilityReadingStoppedDisconnect(handle, _readingStoppedCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
-                _readingStoppedCallback = null;
+                view.ReleaseSafeCallback(ref _readingStoppedCallback);
             }
         }
 

@@ -17,6 +17,7 @@
 using System;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
@@ -67,7 +68,7 @@ namespace Tizen.NUI
 
             if (_layoutDirectionChangedEventCallback == null)
             {
-                _layoutDirectionChangedEventCallback = OnLayoutDirectionChanged;
+                CreateSafeCallback(OnLayoutDirectionChanged, out _layoutDirectionChangedEventCallback);
                 Interop.ActorSignal.LayoutDirectionChangedConnect(SwigCPtr, _layoutDirectionChangedEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }
@@ -95,7 +96,7 @@ namespace Tizen.NUI
 
                 Interop.ActorSignal.VisibilityChangedDisconnect(GetBaseHandleCPtrHandleRef, visibilityChangedEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                visibilityChangedEventCallback = null;
+                ReleaseSafeCallback(ref visibilityChangedEventCallback);
             }
 
             if (aggregatedVisibilityChangedEventCallback != null)
@@ -104,7 +105,7 @@ namespace Tizen.NUI
 
                 Interop.ActorSignal.AggregatedVisibilityChangedDisconnect(GetBaseHandleCPtrHandleRef, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                aggregatedVisibilityChangedEventCallback = null;
+                ReleaseSafeCallback(ref aggregatedVisibilityChangedEventCallback);
             }
 
             if (_layoutDirectionChangedEventCallback != null)
@@ -113,7 +114,7 @@ namespace Tizen.NUI
 
                 Interop.ActorSignal.LayoutDirectionChangedDisconnect(GetBaseHandleCPtrHandleRef, _layoutDirectionChangedEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
-                _layoutDirectionChangedEventCallback = null;
+                ReleaseSafeCallback(ref _layoutDirectionChangedEventCallback);
             }
 
             LayoutCount = 0;
@@ -712,7 +713,7 @@ namespace Tizen.NUI
             {
                 if (visibilityChangedEventHandler == null)
                 {
-                    visibilityChangedEventCallback = OnVisibilityChanged;
+                    CreateSafeCallback(OnVisibilityChanged, out visibilityChangedEventCallback);
                     Interop.ActorSignal.VisibilityChangedConnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -726,7 +727,7 @@ namespace Tizen.NUI
                 {
                     Interop.ActorSignal.VisibilityChangedDisconnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    visibilityChangedEventCallback = null;
+                    ReleaseSafeCallback(ref visibilityChangedEventCallback);
                 }
             }
         }
@@ -741,7 +742,7 @@ namespace Tizen.NUI
             {
                 if (aggregatedVisibilityChangedEventHandler == null)
                 {
-                    aggregatedVisibilityChangedEventCallback = OnAggregatedVisibilityChanged;
+                    CreateSafeCallback(OnAggregatedVisibilityChanged, out aggregatedVisibilityChangedEventCallback);
                     Interop.ActorSignal.AggregatedVisibilityChangedConnect(SwigCPtr, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -755,7 +756,7 @@ namespace Tizen.NUI
                 {
                     Interop.ActorSignal.AggregatedVisibilityChangedDisconnect(SwigCPtr, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    aggregatedVisibilityChangedEventCallback = null;
+                    ReleaseSafeCallback(ref aggregatedVisibilityChangedEventCallback);
                 }
             }
         }
@@ -984,6 +985,19 @@ namespace Tizen.NUI
         internal class Property
         {
             internal static readonly int BEHAVIOR = Interop.Layer.BehaviorGet();
+        }
+
+        internal void CreateSafeCallback<T>(T method, out T safeCallback) where T : Delegate
+        {
+            AddToNativeHolder(method);
+            safeCallback = method;
+        }
+
+        internal void ReleaseSafeCallback<T>(ref T safeCallback) where T : Delegate
+        {
+            Debug.Assert(safeCallback != null);
+            RemoveFromNativeHolder(safeCallback);
+            safeCallback = null;
         }
 
         // Callback for View visibility change signal
