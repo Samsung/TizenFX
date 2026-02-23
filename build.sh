@@ -31,6 +31,8 @@ prepare_solution() {
   target=$1; [ -z "$target" ] && target="full"
 
   dotnet new sln -n $SLN_NAME -o $SCRIPT_DIR --force
+  SLN_FILE=$(ls $SCRIPT_DIR/$SLN_NAME.sln* | head -n 1)
+  echo "Target solution fild: $SLN_FILE"
   if [ "$target" == "public" -o "$target" == "full" ]; then
     dotnet sln $SLN_FILE add $SCRIPT_DIR/src/*/*.csproj
   fi

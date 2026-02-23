@@ -1246,7 +1246,10 @@ namespace Tizen.NUI.BaseComponents
         private void SetInternalBackground(PropertyMap map)
         {
             if (map == null)
+            {
+                InternalClearBackground();
                 return;
+            }
 
             // Update backgroundImageUrl and backgroundImageSynchronousLoading from Map
             foreach (int key in cachedNUIViewBackgroundImagePropertyKeyList)

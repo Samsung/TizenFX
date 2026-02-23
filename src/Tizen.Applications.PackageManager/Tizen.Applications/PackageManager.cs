@@ -24,6 +24,31 @@ using System.ComponentModel;
 namespace Tizen.Applications
 {
     /// <summary>
+    /// Represents the installation status of a package.
+    /// </summary>
+    /// <since_tizen> 14 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum PackageInstallStatus
+    {
+        /// <summary>
+        /// The package is installed.
+        /// </summary>
+        Installed = 0,
+        /// <summary>
+        /// The package is not found.
+        /// </summary>
+        NotFound = 1,
+        /// <summary>
+        /// The package is being updated.
+        /// </summary>
+        Updating = 2,
+        /// <summary>
+        /// The package is being uninstalled.
+        /// </summary>
+        Uninstalling = 3
+    }
+
+    /// <summary>
     /// PackageManager class. This class has the methods and events of the PackageManager.
     /// </summary>
     /// <remarks>
@@ -1303,6 +1328,28 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Gets the installation status of the given package.
+        /// </summary>
+        /// <param name="packageId">The ID of the package.</param>
+        /// <returns>Returns the installation status of the package.</returns>
+        /// <exception cref="ArgumentException">Thrown when the failed input package ID is invalid.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method fails due to an internal I/O error.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method fails due to an internal system error.</exception>
+        /// <since_tizen> 14 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PackageInstallStatus GetPackageInstallStatus(string packageId)
+        {
+            int status;
+            var err = Interop.AulInternal.AulPackageGetInstallStatus(packageId, out status);
+            if (err != Interop.AulInternal.AulErrorCode.Ok)
+            {
+                Log.Warn(LogTag, string.Format("Failed to get package install status for {0}. err = {1}", packageId, err));
+                throw AulErrorFactory.GetException(err, "Failed to get package install status");
+            }
+            return (PackageInstallStatus)status;
+        }
+
+        /// <summary>
         /// Drm nested class. This class has the PackageManager's drm related methods.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1500,6 +1547,28 @@ namespace Tizen.Applications
                     return new UnauthorizedAccessException(errMessage);
                 case Interop.PackageManager.ErrorCode.IoError:
                     return new global::System.IO.IOException(errMessage);
+                default:
+                    return new InvalidOperationException(errMessage);
+            }
+        }
+    }
+
+    internal static class AulErrorFactory
+    {
+        internal static Exception GetException(Interop.AulInternal.AulErrorCode err, string message)
+        {
+            string errMessage = string.Format("{0} err = {1}", message, err);
+            switch (err)
+            {
+                case Interop.AulInternal.AulErrorCode.EInval:
+                case Interop.AulInternal.AulErrorCode.ENoApp:
+                    return new ArgumentException(errMessage);
+                case Interop.AulInternal.AulErrorCode.EIllAcc:
+                    return new UnauthorizedAccessException(errMessage);
+                case Interop.AulInternal.AulErrorCode.EComm:
+                    return new global::System.IO.IOException(errMessage);
+                case Interop.AulInternal.AulErrorCode.ENoMem:
+                    return new OutOfMemoryException(errMessage);
                 default:
                     return new InvalidOperationException(errMessage);
             }

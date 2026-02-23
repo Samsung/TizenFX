@@ -22,5 +22,6 @@ internal static partial class Interop
         public const string PackageManagerInternal = "libpkgmgr-client.so.0";
         public const string PackageManagerInfoInternal = "libpkgmgr-info.so.0";
         public const string Libc = "libc.so.6";
+        public const string Aul = "libaul.so.0";
     }
 }
