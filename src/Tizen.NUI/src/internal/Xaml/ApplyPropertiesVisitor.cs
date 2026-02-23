@@ -554,6 +554,10 @@ namespace Tizen.NUI.Xaml
             {
                 exception = new XamlParseException($"Method {stringValue} does not have the correct signature", lineInfo, ae);
             }
+            catch (Exception ex)
+            {
+                exception = new XamlParseException($"Error adding event handler for {stringValue}", lineInfo, ex);
+            }
             return false;
         }
 

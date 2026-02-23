@@ -220,11 +220,8 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BackgroundProperty = null;
         internal static void SetInternalBackgroundProperty(BindableObject bindable, object oldValue, object newValue)
         {
-            if (newValue != null)
-            {
-                var view = (View)bindable;
-                view.SetInternalBackground((PropertyMap)newValue);
-            }
+            var view = (View)bindable;
+            view.SetInternalBackground((PropertyMap)newValue);
         }
         internal static object GetInternalBackgroundProperty(BindableObject bindable)
         {
