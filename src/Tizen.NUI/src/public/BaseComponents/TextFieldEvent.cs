@@ -83,7 +83,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldTextChangedEventHandler == null)
                 {
-                    textFieldTextChangedCallbackDelegate = (OnTextChanged);
+                    CreateSafeCallback(OnTextChanged, out textFieldTextChangedCallbackDelegate);
                     using var signal = TextChangedSignal();
                     signal.Connect(textFieldTextChangedCallbackDelegate);
                 }
@@ -92,10 +92,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 textFieldTextChangedEventHandler -= value;
-                using var signal = TextChangedSignal();
-                if (textFieldTextChangedEventHandler == null && signal.Empty() == false)
+                if (textFieldTextChangedEventHandler == null && textFieldTextChangedCallbackDelegate != null)
                 {
+                    using var signal = TextChangedSignal();
                     signal.Disconnect(textFieldTextChangedCallbackDelegate);
+                    ReleaseSafeCallback(ref textFieldTextChangedCallbackDelegate);
                 }
             }
         }
@@ -110,7 +111,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldCursorPositionChangedEventHandler == null)
                 {
-                    textFieldCursorPositionChangedCallbackDelegate = (OnCursorPositionChanged);
+                    CreateSafeCallback(OnCursorPositionChanged, out textFieldCursorPositionChangedCallbackDelegate);
                     using var signal = CursorPositionChangedSignal();
                     signal.Connect(textFieldCursorPositionChangedCallbackDelegate);
                 }
@@ -118,12 +119,13 @@ namespace Tizen.NUI.BaseComponents
             }
             remove
             {
-                using var signal = CursorPositionChangedSignal();
-                if (textFieldCursorPositionChangedEventHandler == null && signal.Empty() == false)
-                {
-                    signal.Disconnect(textFieldCursorPositionChangedCallbackDelegate);
-                }
                 textFieldCursorPositionChangedEventHandler -= value;
+                if (textFieldCursorPositionChangedEventHandler == null && textFieldCursorPositionChangedCallbackDelegate != null)
+                {
+                    using var signal = CursorPositionChangedSignal();
+                    signal.Disconnect(textFieldCursorPositionChangedCallbackDelegate);
+                    ReleaseSafeCallback(ref textFieldCursorPositionChangedCallbackDelegate);
+                }
             }
         }
 
@@ -137,7 +139,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldMaxLengthReachedEventHandler == null)
                 {
-                    textFieldMaxLengthReachedCallbackDelegate = (OnMaxLengthReached);
+                    CreateSafeCallback(OnMaxLengthReached, out textFieldMaxLengthReachedCallbackDelegate);
                     using var signal = MaxLengthReachedSignal();
                     signal.Connect(textFieldMaxLengthReachedCallbackDelegate);
                 }
@@ -145,12 +147,13 @@ namespace Tizen.NUI.BaseComponents
             }
             remove
             {
-                using var signal = MaxLengthReachedSignal();
-                if (textFieldMaxLengthReachedEventHandler == null && signal.Empty() == false)
-                {
-                    signal.Disconnect(textFieldMaxLengthReachedCallbackDelegate);
-                }
                 textFieldMaxLengthReachedEventHandler -= value;
+                if (textFieldMaxLengthReachedEventHandler == null && textFieldMaxLengthReachedCallbackDelegate != null)
+                {
+                    using var signal = MaxLengthReachedSignal();
+                    signal.Disconnect(textFieldMaxLengthReachedCallbackDelegate);
+                    ReleaseSafeCallback(ref textFieldMaxLengthReachedCallbackDelegate);
+                }
             }
         }
 
@@ -164,7 +167,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldSelectionStartedEventHandler == null)
                 {
-                    textFieldSelectionStartedCallbackDelegate = (OnSelectionStarted);
+                    CreateSafeCallback(OnSelectionStarted, out textFieldSelectionStartedCallbackDelegate);
                     using var signal = SelectionStartedSignal();
                     signal.Connect(textFieldSelectionStartedCallbackDelegate);
                 }
@@ -172,12 +175,13 @@ namespace Tizen.NUI.BaseComponents
             }
             remove
             {
-                using var signal = SelectionStartedSignal();
-                if (textFieldSelectionStartedEventHandler == null && signal.Empty() == false)
-                {
-                    signal.Disconnect(textFieldSelectionStartedCallbackDelegate);
-                }
                 textFieldSelectionStartedEventHandler -= value;
+                if (textFieldSelectionStartedEventHandler == null && textFieldSelectionStartedCallbackDelegate != null)
+                {
+                    using var signal = SelectionStartedSignal();
+                    signal.Disconnect(textFieldSelectionStartedCallbackDelegate);
+                    ReleaseSafeCallback(ref textFieldSelectionStartedCallbackDelegate);
+                }
             }
         }
 
@@ -191,7 +195,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldSelectionClearedEventHandler == null)
                 {
-                    textFieldSelectionClearedCallbackDelegate = (OnSelectionCleared);
+                    CreateSafeCallback(OnSelectionCleared, out textFieldSelectionClearedCallbackDelegate);
                     using var signal = SelectionClearedSignal();
                     signal.Connect(textFieldSelectionClearedCallbackDelegate);
                 }
@@ -199,12 +203,13 @@ namespace Tizen.NUI.BaseComponents
             }
             remove
             {
-                using var signal = SelectionClearedSignal();
-                if (textFieldSelectionClearedEventHandler == null && signal.Empty() == false)
-                {
-                    signal.Disconnect(textFieldSelectionClearedCallbackDelegate);
-                }
                 textFieldSelectionClearedEventHandler -= value;
+                if (textFieldSelectionClearedEventHandler == null && textFieldSelectionClearedCallbackDelegate != null)
+                {
+                    using var signal = SelectionClearedSignal();
+                    signal.Disconnect(textFieldSelectionClearedCallbackDelegate);
+                    ReleaseSafeCallback(ref textFieldSelectionClearedCallbackDelegate);
+                }
             }
         }
 
@@ -218,7 +223,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldAnchorClickedEventHandler == null)
                 {
-                    textFieldAnchorClickedCallbackDelegate = (OnAnchorClicked);
+                    CreateSafeCallback(OnAnchorClicked, out textFieldAnchorClickedCallbackDelegate);
                     using var signal = AnchorClickedSignal();
                     signal.Connect(textFieldAnchorClickedCallbackDelegate);
                 }
@@ -227,10 +232,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 textFieldAnchorClickedEventHandler -= value;
-                using var signal = AnchorClickedSignal();
-                if (textFieldAnchorClickedEventHandler == null && signal.Empty() == false)
+                if (textFieldAnchorClickedEventHandler == null && textFieldAnchorClickedCallbackDelegate != null)
                 {
+                    using var signal = AnchorClickedSignal();
                     signal.Disconnect(textFieldAnchorClickedCallbackDelegate);
+                    ReleaseSafeCallback(ref textFieldAnchorClickedCallbackDelegate);
                 }
             }
         }
@@ -245,7 +251,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldSelectionChangedEventHandler == null)
                 {
-                    textFieldSelectionChangedCallbackDelegate = (OnSelectionChanged);
+                    CreateSafeCallback(OnSelectionChanged, out textFieldSelectionChangedCallbackDelegate);
                     using var signal = SelectionChangedSignal();
                     signal.Connect(textFieldSelectionChangedCallbackDelegate);
                 }
@@ -253,12 +259,13 @@ namespace Tizen.NUI.BaseComponents
             }
             remove
             {
-                using var signal = SelectionChangedSignal();
-                if (textFieldSelectionChangedEventHandler == null && signal.Empty() == false)
-                {
-                    signal.Disconnect(textFieldSelectionChangedCallbackDelegate);
-                }
                 textFieldSelectionChangedEventHandler -= value;
+                if (textFieldSelectionChangedEventHandler == null && textFieldSelectionChangedCallbackDelegate != null)
+                {
+                    using var signal = SelectionChangedSignal();
+                    signal.Disconnect(textFieldSelectionChangedCallbackDelegate);
+                    ReleaseSafeCallback(ref textFieldSelectionChangedCallbackDelegate);
+                }
             }
         }
 
@@ -291,7 +298,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldInputFilteredEventHandler == null)
                 {
-                    textFieldInputFilteredCallbackDelegate = (OnInputFiltered);
+                    CreateSafeCallback(OnInputFiltered, out textFieldInputFilteredCallbackDelegate);
                     using var signal = InputFilteredSignal();
                     signal.Connect(textFieldInputFilteredCallbackDelegate);
                 }
@@ -300,10 +307,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 textFieldInputFilteredEventHandler -= value;
-                using var signal = InputFilteredSignal();
-                if (textFieldInputFilteredEventHandler == null && signal.Empty() == false)
+                if (textFieldInputFilteredEventHandler == null && textFieldInputFilteredCallbackDelegate != null)
                 {
+                    using var signal = InputFilteredSignal();
                     signal.Disconnect(textFieldInputFilteredCallbackDelegate);
+                    ReleaseSafeCallback(ref textFieldInputFilteredCallbackDelegate);
                 }
             }
         }
