@@ -4767,36 +4767,56 @@ namespace Tizen.NUI.BaseComponents
                 {
                     using var signal = CursorPositionChangedSignal();
                     signal.Disconnect(textFieldCursorPositionChangedCallbackDelegate);
+                    ReleaseSafeCallback(ref textFieldCursorPositionChangedCallbackDelegate);
                 }
 
                 if (textFieldMaxLengthReachedCallbackDelegate != null)
                 {
                     using var signal = MaxLengthReachedSignal();
                     signal.Disconnect(textFieldMaxLengthReachedCallbackDelegate);
+                    ReleaseSafeCallback(ref textFieldMaxLengthReachedCallbackDelegate);
+                }
+
+                if (textFieldAnchorClickedCallbackDelegate != null)
+                {
+                    using var signal = AnchorClickedSignal();
+                    signal.Disconnect(textFieldAnchorClickedCallbackDelegate);
+                    ReleaseSafeCallback(ref textFieldAnchorClickedCallbackDelegate);
                 }
 
                 if (textFieldSelectionStartedCallbackDelegate != null)
                 {
                     using var signal = SelectionStartedSignal();
                     signal.Disconnect(textFieldSelectionStartedCallbackDelegate);
+                    ReleaseSafeCallback(ref textFieldSelectionStartedCallbackDelegate);
                 }
 
                 if (textFieldSelectionClearedCallbackDelegate != null)
                 {
                     using var signal = SelectionClearedSignal();
                     signal.Disconnect(textFieldSelectionClearedCallbackDelegate);
+                    ReleaseSafeCallback(ref textFieldSelectionClearedCallbackDelegate);
                 }
 
                 if (textFieldSelectionChangedCallbackDelegate != null)
                 {
                     using var signal = SelectionChangedSignal();
                     signal.Disconnect(textFieldSelectionChangedCallbackDelegate);
+                    ReleaseSafeCallback(ref textFieldSelectionChangedCallbackDelegate);
+                }
+
+                if (textFieldInputFilteredCallbackDelegate != null)
+                {
+                    using var signal = InputFilteredSignal();
+                    signal.Disconnect(textFieldInputFilteredCallbackDelegate);
+                    ReleaseSafeCallback(ref textFieldInputFilteredCallbackDelegate);
                 }
 
                 if (textFieldTextChangedCallbackDelegate != null)
                 {
                     using var signal = TextChangedSignal();
                     signal.Disconnect(textFieldTextChangedCallbackDelegate);
+                    ReleaseSafeCallback(ref textFieldTextChangedCallbackDelegate);
                 }
             }
 
