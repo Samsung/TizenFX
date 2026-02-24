@@ -864,6 +864,48 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Gets the RUA (Recently Used Applications) stat tags for the specified caller.
+        /// </summary>
+        /// <remarks>
+        /// This method retrieves the list of application IDs that have been launched
+        /// by the specified caller application, as recorded in the RUA statistics.
+        /// This method is only available for platform level signed applications.
+        /// </remarks>
+        /// <param name="caller">The caller application identifier.</param>
+        /// <returns>An enumerable collection of application IDs (stat tags).</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the caller argument is null.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <since_tizen> 14 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static IEnumerable<string> GetRuaStatTags(string caller)
+        {
+            if (caller == null)
+            {
+                throw new ArgumentNullException(nameof(caller));
+            }
+
+            List<string> tags = new List<string>();
+            Interop.ApplicationManager.RuaStatTagIterCallback callback = (string ruaStatTag, IntPtr userData) =>
+            {
+                if (!string.IsNullOrEmpty(ruaStatTag))
+                {
+                    tags.Add(ruaStatTag);
+                }
+                return 0;
+            };
+
+            Interop.ApplicationManager.ErrorCode err =
+                Interop.ApplicationManager.RuaStatGetStatTags(caller, callback, IntPtr.Zero);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                throw ApplicationManagerErrorFactory.GetException(err, "Failed to get RUA stat tags.");
+            }
+            GC.KeepAlive(callback);
+
+            return tags;
+        }
+
+        /// <summary>
         /// Attaches the window of the child application to the window of the parent application.
         /// </summary>
         /// <remarks>
