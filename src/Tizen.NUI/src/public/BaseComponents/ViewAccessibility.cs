@@ -572,15 +572,11 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        [Obsolete("This has been deprecated in API14.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual AccessibilityStates AccessibilityCalculateStates()
         {
-            var states = AccessibilityInitialStates;
-
-            states[AccessibilityState.Focused] = this.State == States.Focused;
-            states[AccessibilityState.Enabled] = this.State != States.Disabled;
-
-            return states;
+            return null;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
