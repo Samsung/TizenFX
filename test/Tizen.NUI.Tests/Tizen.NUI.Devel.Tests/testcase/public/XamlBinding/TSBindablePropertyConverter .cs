@@ -46,30 +46,12 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.IsNull(b3, "null Binding");
                 var b4 = t2.ConvertFromInvariantString("A.B.C");
                 Assert.IsNull(b4, "null Binding");
-                var b5 = t2.ConvertFromInvariantString("GaussianBlurView.BlurStrength");
-                Assert.IsNotNull(b5, "null Binding");
             }
             catch (Exception e)
             {
                 Assert.Fail("Caught Exception" + e.ToString());
             }
             tlog.Debug(tag, $"ConvertFromInvariantStringTest END");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("BindablePropertyConverter  ConvertFromInvariantString")]
-        [Property("SPEC", "Tizen.NUI.Binding.BindablePropertyConverter.ConvertFromInvariantString M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MEX")]
-        public void ConvertFromInvariantStringTest2()
-        {
-            tlog.Debug(tag, $"ConvertFromInvariantStringTest2 START");
-
-            BindablePropertyConverter t2 = new BindablePropertyConverter();
-            Assert.Throws<XamlParseException>(() => t2.ConvertFromInvariantString("GaussianBlurView.BlurStrengthA"));
-
-            tlog.Debug(tag, $"ConvertFromInvariantStringTest2 END");
         }
     }
 }
