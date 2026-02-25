@@ -31,6 +31,7 @@ namespace Tizen.NUI
     {
         private Window window;
         private int layoutCount;
+        private Rectangle _viewport;
 
         private EventHandler<VisibilityChangedEventArgs> visibilityChangedEventHandler;
         private VisibilityChangedEventCallbackType visibilityChangedEventCallback;
@@ -189,32 +190,19 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets the viewport (in window coordinates), type rectangle.
-        /// The contents of the layer will not be visible outside this box, when ViewportEnabled is true.
+        /// The contents of the layer will not be visible outside this box.
+        /// By default, it is the size of attached Window.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public Rectangle Viewport
         {
             get
             {
-                if (ClippingEnabled)
-                {
-                    Rectangle ret = new Rectangle(Interop.Layer.GetClippingBox(SwigCPtr), true);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                    return ret;
-                }
-                else
-                {
-                    // Clipping not enabled so return the window size
-                    Size2D windowSize = window?.Size;
-                    Rectangle ret = new Rectangle(0, 0, windowSize.Width, windowSize.Height);
-                    return ret;
-                }
+                return GetViewport();
             }
             set
             {
-                Interop.Layer.SetClippingBox(SwigCPtr, Rectangle.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                ClippingEnabled = true;
+                SetViewport(value);
             }
         }
 
@@ -300,25 +288,6 @@ namespace Tizen.NUI
             get
             {
                 return GetDepth();
-            }
-        }
-
-        /// <summary>
-        /// Internal only property to enable or disable clipping, type boolean.
-        /// By default, this is false, i.e., the viewport of the layer is the entire window.
-        /// </summary>
-        internal bool ClippingEnabled
-        {
-            get
-            {
-                bool ret = Interop.Layer.IsClipping(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-            set
-            {
-                Interop.Layer.SetClipping(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -980,6 +949,35 @@ namespace Tizen.NUI
             Layer.LayerBehavior ret = (Layer.LayerBehavior)Interop.Layer.GetBehavior(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        private void SetViewport(Rectangle viewport)
+        {
+            // Check by equality operator first.
+            if (_viewport != viewport)
+            {
+                Interop.Layer.SetClipping(SwigCPtr, (viewport != null));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
+
+            _viewport = viewport;
+
+            if (_viewport != null)
+            {
+                Interop.Layer.SetClippingBox(SwigCPtr, Rectangle.getCPtr(_viewport));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
+        }
+
+        private Rectangle GetViewport()
+        {
+            if (_viewport == null && window != null)
+            {
+                // Clipping not enabled so return the window size
+                using Size2D windowSize = window.Size;
+                return new Rectangle(0, 0, windowSize.Width, windowSize.Height);
+            }
+            return _viewport;
         }
 
         internal class Property
