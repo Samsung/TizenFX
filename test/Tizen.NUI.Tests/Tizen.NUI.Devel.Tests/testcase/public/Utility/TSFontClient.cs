@@ -29,12 +29,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Info(tag, "Destroy() is called!");
         }
 
-        internal class MySWIGTYPE_p_unsigned_int : SWIGTYPE_p_unsigned_int
-        {
-            public MySWIGTYPE_p_unsigned_int() : base()
-            { }
-        }
-
         [Test]
         [Category("P1")]
         [Description("FontClient constructor.")]
@@ -121,35 +115,6 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"FontClientAssign END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("FontClient GetDpi.")]
-        [Property("SPEC", "Tizen.NUI.FontClient.GetDpi M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void FontClientGetDpi()
-        {
-            tlog.Debug(tag, $"FontClientGetDpi START");
-
-            Size size = new Size(1920, 1080);   
-            FontClient.Instance.SetDpi((uint)size.Width, (uint)size.Height);
-
-            try
-            {
-                var horizontalDpi = new SWIGTYPE_p_unsigned_int(size.SwigCPtr.Handle);
-                var verticalDpi = new SWIGTYPE_p_unsigned_int(size.SwigCPtr.Handle);
-                FontClient.Instance.GetDpi(horizontalDpi, verticalDpi);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed");
-            }
-
-            tlog.Debug(tag, $"FontClientGetDpi END (OK)");
         }
 
         [Test]
@@ -269,43 +234,6 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"FontClientIsScalable END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("FontClient CreateVectorBlob.")]
-        [Property("SPEC", "Tizen.NUI.FontClient.CreateVectorBlob M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void FontClientCreateVectorBlob()
-        {
-            tlog.Debug(tag, $"FontClientCreateVectorBlob START");
-
-            var testingTarget = new FontClient(FontClient.Instance);
-
-            using (Color color = new Color(0.4f, 1.0f, 0.3f, 0.0f))
-            {
-                var blob = new SWIGTYPE_p_p_Dali__TextAbstraction__VectorBlob(color.SwigCPtr.Handle);
-                var blobLegnth = new SWIGTYPE_p_unsigned_int(color.SwigCPtr.Handle);
-
-                var nominalWidth = new SWIGTYPE_p_unsigned_int(FontClient.Instance.SwigCPtr.Handle);
-                var nominalHeight = new SWIGTYPE_p_unsigned_int(testingTarget.SwigCPtr.Handle);
-
-                try
-                {
-                    testingTarget.CreateVectorBlob(0, 0, blob, blobLegnth, nominalWidth, nominalHeight);
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception: Failed!");
-                }
-
-                testingTarget.Dispose();
-            }
-
-            tlog.Debug(tag, $"FontClientCreateVectorBlob END (OK)");
         }
 
         [Test]

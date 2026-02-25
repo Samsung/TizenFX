@@ -122,7 +122,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                var result = RenderTask.DefaultExclusive;
+                bool result = RenderTask.DefaultExclusive;
                 tlog.Debug(tag, "DefaultExclusive : " + result);
             }
             catch (Exception e)
