@@ -1232,7 +1232,6 @@ namespace Tizen.NUI.BaseComponents
 
             if (SwigCMemOwn && !IsNativeHandleInvalid())
             {
-                Interop.ControlDevel.DaliAccessibilityDetachAccessibleObject(SwigCPtr);
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }
 
