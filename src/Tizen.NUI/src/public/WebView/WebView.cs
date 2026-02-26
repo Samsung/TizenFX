@@ -171,6 +171,9 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<WebViewFileChooserRequestedEventArgs> fileChooserRequestedEventHandler;
         private WebViewFileChooserRequestedCallback fileChooserRequestedCallback;
 
+        private EventHandler webProcessCrashedEventHandler;
+        private WebViewWebProcessCrashedCallback webProcessCrashedCallback;
+
         private EventHandler<WebViewUserMediaPermissionRequestEventArgs> userMediaPermissionRequestEventHandler;
         private WebViewUserMediaPermissionRequestCallback userMediaPermissionRequestCallback;
 
@@ -456,6 +459,9 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewFileChooserRequestedCallback(IntPtr chooser);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void WebViewWebProcessCrashedCallback();
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WebViewUserMediaPermissionRequestCallback(IntPtr permission, string message);
@@ -1170,6 +1176,33 @@ namespace Tizen.NUI.BaseComponents
                 {
                     IntPtr ip = IntPtr.Zero;
                     Interop.WebView.RegisterFileChooserRequestedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Event for web process crash.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler WebProcessCrashed
+        {
+            add
+            {
+                if (webProcessCrashedEventHandler == null)
+                {
+                    webProcessCrashedCallback = OnWebProcessCrashed;
+                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(webProcessCrashedCallback);
+                    Interop.WebView.RegisterWebProcessCrashedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+                webProcessCrashedEventHandler += value;
+            }
+            remove
+            {
+                webProcessCrashedEventHandler -= value;
+                if (webProcessCrashedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebView.RegisterWebProcessCrashedCallback(SwigCPtr, new HandleRef(this, ip));
                 }
             }
         }
@@ -3322,6 +3355,11 @@ namespace Tizen.NUI.BaseComponents
         private void OnFileChooserRequseted(IntPtr chooser)
         {
             fileChooserRequestedEventHandler?.Invoke(this, new WebViewFileChooserRequestedEventArgs(new WebFileChooser(chooser, true)));
+        }
+
+        private void OnWebProcessCrashed()
+        {
+            webProcessCrashedEventHandler?.Invoke(this, new EventArgs());
         }
 
         private void OnUserMediaPermissionRequset(IntPtr permission, string message)
