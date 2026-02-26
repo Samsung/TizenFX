@@ -18,6 +18,7 @@ using System;
 using Tizen;
 using Tizen.Network.Stc;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 /// <summary>
 /// The Interop class for Stc.
@@ -28,7 +29,7 @@ internal static partial class Interop
     /// The Stc native APIs.
     /// </summary>
     // Deprecated since API13
-    internal static class Stc
+    internal static partial class Stc
     {
         // Callback for Statistics Information
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -48,7 +49,7 @@ internal static partial class Interop
         [DllImport(Libraries.Stc,EntryPoint = "stc_foreach_all_stats")]
         internal static extern int ForeachAllStats(IntPtr infoList, StatsInfoCallback infoCb, IntPtr userData);
 
-        internal static class Filter {
+        internal static partial class Filter {
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_create")]
             internal static extern int Create(SafeStcHandle stc, out SafeFilterHandle filter);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_destroy")]
@@ -65,7 +66,7 @@ internal static partial class Interop
             internal static extern int SetTimePeriod(SafeFilterHandle filter, NativeTimePeriodType timePeriod);
         }
 
-        internal static class Info {
+        internal static partial class Info {
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_clone")]
             internal static extern int StatsClone(IntPtr info, out SafeStatsHandle cloned);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_destroy")]
@@ -99,16 +100,14 @@ internal static partial class Interop
             public SafeFilterHandle(IntPtr handle) : base(handle, true)
             {
             }
-
-            public override bool IsInvalid
+        public override bool IsInvalid
             {
                 get
                 {
                     return this.handle == IntPtr.Zero;
                 }
             }
-
-            protected override bool ReleaseHandle()
+        protected override bool ReleaseHandle()
             {
                 int ret = Interop.Stc.Filter.Destroy(this.handle);
                 if (ret != (int)StcError.None)
@@ -129,16 +128,14 @@ internal static partial class Interop
             public SafeStatsHandle(IntPtr handle) : base(handle, true)
             {
             }
-
-            public override bool IsInvalid
+        public override bool IsInvalid
             {
                 get
                 {
                     return this.handle == IntPtr.Zero;
                 }
             }
-
-            protected override bool ReleaseHandle()
+        protected override bool ReleaseHandle()
             {
                 int ret = Interop.Stc.Info.StatsDestroy(this.handle);
                 if (ret != (int)StcError.None)
@@ -175,3 +172,10 @@ internal static partial class Interop
         return epoch.AddSeconds(timestamp).ToLocalTime();
     }
 }
+
+
+
+
+
+
+

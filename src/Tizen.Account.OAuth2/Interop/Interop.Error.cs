@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 /// <summary>
 /// Contains Interop declarations of OAuth2 classes.
@@ -27,17 +28,17 @@ internal static partial class Interop
     /// </summary>
     internal static partial class Error
     {
-        [DllImport(Libraries.OAuth2, EntryPoint = "oauth2_error_get_code")]
-        internal static extern int GetCode(IntPtr /* oauth2_error_h */ handle, out int serverErrorCode, out int platformErrorCode);
+        [LibraryImport(Libraries.OAuth2, EntryPoint = "oauth2_error_get_code", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetCode(IntPtr /* oauth2_error_h */ handle, out int serverErrorCode, out int platformErrorCode);
 
-        [DllImport(Libraries.OAuth2, EntryPoint = "oauth2_error_get_description")]
-        internal static extern int GetDescription(IntPtr /* oauth2_error_h */ handle, out string description);
+        [LibraryImport(Libraries.OAuth2, EntryPoint = "oauth2_error_get_description", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetDescription(IntPtr /* oauth2_error_h */ handle, out string description);
 
-        [DllImport(Libraries.OAuth2, EntryPoint = "oauth2_error_get_uri")]
-        internal static extern int GetUri(IntPtr /* oauth2_error_h */ handle, out string uri);
+        [LibraryImport(Libraries.OAuth2, EntryPoint = "oauth2_error_get_uri", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetUri(IntPtr /* oauth2_error_h */ handle, out string uri);
 
-        [DllImport(Libraries.OAuth2, EntryPoint = "oauth2_error_get_custom_data")]
-        internal static extern int GetCustomData(IntPtr /* oauth2_error_h */ handle, string customKey, out string customValue);
+        [LibraryImport(Libraries.OAuth2, EntryPoint = "oauth2_error_get_custom_data", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetCustomData(IntPtr /* oauth2_error_h */ handle, string customKey, out string customValue);
 
 
     }

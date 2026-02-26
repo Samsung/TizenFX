@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications.Cion;
 
 using ErrorCode = Interop.Cion.ErrorCode;
@@ -24,28 +25,31 @@ internal static partial class Interop
 {
     internal static partial class CionSecurity
     {
-        [DllImport(Libraries.Cion, EntryPoint = "cion_security_create")]
-        internal static extern ErrorCode CionSecurityCreate(out SecuritySafeHandle security);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_security_create", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionSecurityCreate(out SecuritySafeHandle security);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_security_destroy")]
-        internal static extern ErrorCode CionSecurityDestroy(IntPtr security);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_security_destroy", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionSecurityDestroy(IntPtr security);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_security_set_ca_path")]
-        internal static extern ErrorCode CionSecuritySetCaPath(SecuritySafeHandle peerInfo, string caPath);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_security_set_ca_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionSecuritySetCaPath(SecuritySafeHandle peerInfo, string caPath);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_security_set_cert_path")]
-        internal static extern ErrorCode CionSecuritySetCertPath(SecuritySafeHandle peerInfo, string certPath);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_security_set_cert_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionSecuritySetCertPath(SecuritySafeHandle peerInfo, string certPath);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_security_set_private_key_path")]
-        internal static extern ErrorCode CionSecuritySetPrivateKeyPath(SecuritySafeHandle peerInfo, string keyPath);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_security_set_private_key_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionSecuritySetPrivateKeyPath(SecuritySafeHandle peerInfo, string keyPath);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_security_get_ca_path")]
-        internal static extern ErrorCode CionSecurityGetCaPath(SecuritySafeHandle peerInfo, out string caPath);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_security_get_ca_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionSecurityGetCaPath(SecuritySafeHandle peerInfo, out string caPath);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_security_get_cert_path")]
-        internal static extern ErrorCode CionSecurityGetCertPath(SecuritySafeHandle peerInfo, out string certPath);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_security_get_cert_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionSecurityGetCertPath(SecuritySafeHandle peerInfo, out string certPath);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_security_get_private_key_path")]
-        internal static extern ErrorCode CionSecurityGetPrivateKeyPath(SecuritySafeHandle peerInfo, out string keyPath);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_security_get_private_key_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionSecurityGetPrivateKeyPath(SecuritySafeHandle peerInfo, out string keyPath);
     }
 }
+
+
+

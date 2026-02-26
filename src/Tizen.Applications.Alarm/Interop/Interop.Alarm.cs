@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 using Tizen.Internals;
 using Tizen.Applications;
@@ -42,83 +43,87 @@ internal static partial class Interop
             internal IntPtr tm_zone;
         };
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_after_delay")]
-        internal static extern int CreateAlarmAfterDelay(SafeAppControlHandle appControl, int delay, int period, out int alarmId);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_schedule_after_delay", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int CreateAlarmAfterDelay(SafeAppControlHandle appControl, int delay, int period, out int alarmId);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_once_after_delay")]
-        internal static extern int CreateAlarmOnceAfterDelay(SafeAppControlHandle appControl, int delay, out int alarmId);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_schedule_once_after_delay", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int CreateAlarmOnceAfterDelay(SafeAppControlHandle appControl, int delay, out int alarmId);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_once_at_date")]
-        internal static extern int CreateAlarmOnceAtDate(SafeAppControlHandle appControl, ref DateTime date, out int alarmId);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_schedule_once_at_date", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int CreateAlarmOnceAtDate(SafeAppControlHandle appControl, ref DateTime date, out int alarmId);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_with_recurrence_week_flag")]
-        internal static extern int CreateAlarmRecurWeek(SafeAppControlHandle appControl, ref DateTime date, int week, out int alarmId);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_schedule_with_recurrence_week_flag", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int CreateAlarmRecurWeek(SafeAppControlHandle appControl, ref DateTime date, int week, out int alarmId);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_service_with_recurrence_seconds")]
-        internal static extern int CreateAlarmRecurForService(SafeAppControlHandle appControl, ref DateTime date, int period, out int alarmId);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_schedule_service_with_recurrence_seconds", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int CreateAlarmRecurForService(SafeAppControlHandle appControl, ref DateTime date, int period, out int alarmId);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_service_once_after_delay")]
-        internal static extern int CreateAlarmOnceAfterDelayForService(SafeAppControlHandle appControl, int delay, out int alarmId);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_schedule_service_once_after_delay", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int CreateAlarmOnceAfterDelayForService(SafeAppControlHandle appControl, int delay, out int alarmId);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_service_once_at_date")]
-        internal static extern int CreateAlarmOnceAtDateForService(SafeAppControlHandle appControl, ref DateTime date, out int alarmId);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_schedule_service_once_at_date", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int CreateAlarmOnceAtDateForService(SafeAppControlHandle appControl, ref DateTime date, out int alarmId);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_get_scheduled_recurrence_week_flag")]
-        internal static extern int GetAlarmWeekFlag(int alarmId, out int weekFlag);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_get_scheduled_recurrence_week_flag", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetAlarmWeekFlag(int alarmId, out int weekFlag);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_cancel")]
-        internal static extern int CancelAlarm(int alarmId);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_cancel", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int CancelAlarm(int alarmId);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_cancel_all")]
-        internal static extern int CancelAllAlarms();
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_cancel_all", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int CancelAllAlarms();
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_get_scheduled_date")]
-        internal static extern int GetAlarmScheduledDate(int alarmId, out DateTime date);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_get_scheduled_date", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetAlarmScheduledDate(int alarmId, out DateTime date);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_get_current_time")]
-        internal static extern int GetCurrentTime(out DateTime date);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_get_current_time", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetCurrentTime(out DateTime date);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_get_app_control")]
-        internal static extern int GetAlarmAppControl(int alarmId, out SafeAppControlHandle control);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_get_app_control", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetAlarmAppControl(int alarmId, out SafeAppControlHandle control);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_get_scheduled_period")]
-        internal static extern int GetAlarmScheduledPeriod(int alarmId, out int period);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_get_scheduled_period", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetAlarmScheduledPeriod(int alarmId, out int period);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_set_global")]
-        internal static extern int SetAlarmGlobalFlag(int alarmId, bool global);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_set_global", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetAlarmGlobalFlag(int alarmId, [MarshalAs(UnmanagedType.U1)] bool global);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_get_global")]
-        internal static extern int GetAlarmGlobalFlag(int alarmId, out bool global);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_get_global", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetAlarmGlobalFlag(int alarmId, [MarshalAs(UnmanagedType.U1)] out bool global);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_foreach_registered_alarm")]
-        internal static extern int GetAllRegisteredAlarms(RegisteredAlarmCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_foreach_registered_alarm", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetAllRegisteredAlarms(RegisteredAlarmCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_noti_once_at_date")]
-        internal static extern AlarmError CreateAlarmNotiOnceAtDate(NotificationSafeHandle noti, ref DateTime date, out int alarmId);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_schedule_noti_once_at_date", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial AlarmError CreateAlarmNotiOnceAtDate(NotificationSafeHandle noti, ref DateTime date, out int alarmId);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_noti_after_delay")]
-        internal static extern AlarmError CreateAlarmNotiAfterDelay(NotificationSafeHandle noti, int delay, int period, out int alarmId);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_schedule_noti_after_delay", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial AlarmError CreateAlarmNotiAfterDelay(NotificationSafeHandle noti, int delay, int period, out int alarmId);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_noti_once_after_delay")]
-        internal static extern AlarmError CreateAlarmNotiOnceAfterDelay(NotificationSafeHandle noti, int delay, out int alarmId);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_schedule_noti_once_after_delay", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial AlarmError CreateAlarmNotiOnceAfterDelay(NotificationSafeHandle noti, int delay, out int alarmId);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_schedule_noti_with_recurrence_week_flag")]
-        internal static extern AlarmError CreateAlarmNotiRecurWeek(NotificationSafeHandle noti, ref DateTime date, int week, out int alarmId);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_schedule_noti_with_recurrence_week_flag", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial AlarmError CreateAlarmNotiRecurWeek(NotificationSafeHandle noti, ref DateTime date, int week, out int alarmId);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_update_delay")]
-        internal static extern AlarmError UpdateDelay(int alarmId, int delay);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_update_delay", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial AlarmError UpdateDelay(int alarmId, int delay);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_update_date")]
-        internal static extern AlarmError UpdateDate(int alarmId, ref DateTime date);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_update_date", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial AlarmError UpdateDate(int alarmId, ref DateTime date);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_update_period")]
-        internal static extern AlarmError UpdatePeriod(int alarmId, int period);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_update_period", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial AlarmError UpdatePeriod(int alarmId, int period);
 
-        [DllImport(Libraries.Alarm, EntryPoint = "alarm_update_week_flag")]
-        internal static extern AlarmError UpdateWeekFlag(int alarmId, int week);
+        [LibraryImport(Libraries.Alarm, EntryPoint = "alarm_update_week_flag", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial AlarmError UpdateWeekFlag(int alarmId, int week);
 
         //callback
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool RegisteredAlarmCallback(int alarmId, IntPtr userData);
+        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool RegisteredAlarmCallback(int alarmId, IntPtr userData);
     }
 }
+
+
+
+

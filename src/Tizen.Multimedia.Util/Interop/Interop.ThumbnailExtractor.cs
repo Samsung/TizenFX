@@ -16,17 +16,18 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Multimedia.Util;
 
 internal static partial class Interop
 {
-    internal static class ThumbnailExtractor
+    internal static partial class ThumbnailExtractor
     {
-        [DllImport(Libraries.ThumbnailExtractor, EntryPoint = "thumbnail_util_extract_to_buffer")]
-        internal static extern ThumbnailExtractorError ExtractToBuffer(string path, uint width, uint height, out IntPtr thumbData,
+        [LibraryImport(Libraries.ThumbnailExtractor, EntryPoint = "thumbnail_util_extract_to_buffer", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ThumbnailExtractorError ExtractToBuffer(string path, uint width, uint height, out IntPtr thumbData,
             out int dataSize, out uint thumbWidth, out uint thumbHeight);
 
-        [DllImport(Libraries.ThumbnailExtractor, EntryPoint = "thumbnail_util_extract_to_file")]
-        internal static extern ThumbnailExtractorError ExtractToFile(string path, uint width, uint height, string thumbPath);
+        [LibraryImport(Libraries.ThumbnailExtractor, EntryPoint = "thumbnail_util_extract_to_file", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ThumbnailExtractorError ExtractToFile(string path, uint width, uint height, string thumbPath);
     }
 }

@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications.Cion;
 
 using ErrorCode = Interop.Cion.ErrorCode;
@@ -24,34 +25,37 @@ internal static partial class Interop
 {
     internal static partial class CionPeerInfo
     {
-        [DllImport(Libraries.Cion, EntryPoint = "cion_peer_info_clone")]
-        internal static extern ErrorCode CionPeerInfoClone(IntPtr peerInfo, out PeerInfoSafeHandle peerInfoClone);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_peer_info_clone", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionPeerInfoClone(IntPtr peerInfo, out PeerInfoSafeHandle peerInfoClone);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_peer_info_destroy")]
-        internal static extern ErrorCode CionPeerInfoDestroy(IntPtr peerInfo);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_peer_info_destroy", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionPeerInfoDestroy(IntPtr peerInfo);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_peer_info_get_device_id")]
-        internal static extern ErrorCode CionPeerInfoGetDeviceId(PeerInfoSafeHandle peerInfo, out string deviceId);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_peer_info_get_device_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionPeerInfoGetDeviceId(PeerInfoSafeHandle peerInfo, out string deviceId);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_peer_info_get_device_name")]
-        internal static extern ErrorCode CionPeerInfoGetDeviceName(PeerInfoSafeHandle peerInfo, out string deviceName);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_peer_info_get_device_name", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionPeerInfoGetDeviceName(PeerInfoSafeHandle peerInfo, out string deviceName);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_peer_info_get_device_platform")]
-        internal static extern ErrorCode CionPeerInfoGetDevicePlatform(PeerInfoSafeHandle peerInfo, out string devicePlatform);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_peer_info_get_device_platform", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionPeerInfoGetDevicePlatform(PeerInfoSafeHandle peerInfo, out string devicePlatform);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_peer_info_get_device_platform_version")]
-        internal static extern ErrorCode CionPeerInfoGetDevicePlatformVersion(PeerInfoSafeHandle peerInfo, out string devicePlatformVersion);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_peer_info_get_device_platform_version", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionPeerInfoGetDevicePlatformVersion(PeerInfoSafeHandle peerInfo, out string devicePlatformVersion);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_peer_info_get_device_type")]
-        internal static extern ErrorCode CionPeerInfoGetDeviceType(PeerInfoSafeHandle peerInfo, out string deviceType);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_peer_info_get_device_type", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionPeerInfoGetDeviceType(PeerInfoSafeHandle peerInfo, out string deviceType);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_peer_info_get_app_id")]
-        internal static extern ErrorCode CionPeerInfoGetAppId(PeerInfoSafeHandle peerInfo, out string appId);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_peer_info_get_app_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionPeerInfoGetAppId(PeerInfoSafeHandle peerInfo, out string appId);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_peer_info_get_app_version")]
-        internal static extern ErrorCode CionPeerInfoGetAppVersion(PeerInfoSafeHandle peerInfo, out string appVersion);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_peer_info_get_app_version", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionPeerInfoGetAppVersion(PeerInfoSafeHandle peerInfo, out string appVersion);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_peer_info_get_uuid")]
-        internal static extern ErrorCode CionPeerInfoGetUuid(PeerInfoSafeHandle peerInfo, out string uuid);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_peer_info_get_uuid", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionPeerInfoGetUuid(PeerInfoSafeHandle peerInfo, out string uuid);
     }
 }
+
+
+

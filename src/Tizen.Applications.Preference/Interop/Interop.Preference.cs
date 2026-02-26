@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications;
 
 /// <summary>
@@ -30,48 +31,52 @@ internal static partial class Interop
     {
         internal delegate void ChangedCallback(string key, IntPtr userData);
 
-        internal delegate bool ItemCallback(string key, IntPtr userData);
+        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool ItemCallback(string key, IntPtr userData);
 
-        [DllImport(Libraries.Preference, EntryPoint = "preference_set_int")]
-        internal static extern int SetInt(string key, int value);
+        [LibraryImport(Libraries.Preference, EntryPoint = "preference_set_int", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetInt(string key, int value);
 
-        [DllImport(Libraries.Preference, EntryPoint = "preference_get_int")]
-        internal static extern int GetInt(string key, out int value);
+        [LibraryImport(Libraries.Preference, EntryPoint = "preference_get_int", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetInt(string key, out int value);
 
-        [DllImport(Libraries.Preference, EntryPoint = "preference_set_double")]
-        internal static extern int SetDouble(string key, double value);
+        [LibraryImport(Libraries.Preference, EntryPoint = "preference_set_double", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetDouble(string key, double value);
 
-        [DllImport(Libraries.Preference, EntryPoint = "preference_get_double")]
-        internal static extern int GetDouble(string key, out double value);
+        [LibraryImport(Libraries.Preference, EntryPoint = "preference_get_double", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetDouble(string key, out double value);
 
-        [DllImport(Libraries.Preference, EntryPoint = "preference_set_string")]
-        internal static extern int SetString(string key, string value);
+        [LibraryImport(Libraries.Preference, EntryPoint = "preference_set_string", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetString(string key, string value);
 
-        [DllImport(Libraries.Preference, EntryPoint = "preference_get_string")]
-        internal static extern int GetString(string key, out string value);
+        [LibraryImport(Libraries.Preference, EntryPoint = "preference_get_string", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetString(string key, out string value);
 
-        [DllImport(Libraries.Preference, EntryPoint = "preference_set_boolean")]
-        internal static extern int SetBoolean(string key, bool value);
+        [LibraryImport(Libraries.Preference, EntryPoint = "preference_set_boolean", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetBoolean(string key, [MarshalAs(UnmanagedType.U1)] bool value);
 
-        [DllImport(Libraries.Preference, EntryPoint = "preference_get_boolean")]
-        internal static extern int GetBoolean(string key, out bool value);
+        [LibraryImport(Libraries.Preference, EntryPoint = "preference_get_boolean", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetBoolean(string key, [MarshalAs(UnmanagedType.U1)] out bool value);
 
-        [DllImport(Libraries.Preference, EntryPoint = "preference_remove")]
-        internal static extern int Remove(string key);
+        [LibraryImport(Libraries.Preference, EntryPoint = "preference_remove", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int Remove(string key);
 
-        [DllImport(Libraries.Preference, EntryPoint = "preference_is_existing")]
-        internal static extern int IsExisting(string key, out bool existing);
+        [LibraryImport(Libraries.Preference, EntryPoint = "preference_is_existing", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int IsExisting(string key, [MarshalAs(UnmanagedType.U1)] out bool existing);
 
-        [DllImport(Libraries.Preference, EntryPoint = "preference_remove_all")]
-        internal static extern int RemoveAll();
+        [LibraryImport(Libraries.Preference, EntryPoint = "preference_remove_all", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int RemoveAll();
 
-        [DllImport(Libraries.Preference, EntryPoint = "preference_set_changed_cb")]
-        internal static extern int SetChangedCb(string key, ChangedCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.Preference, EntryPoint = "preference_set_changed_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetChangedCb(string key, ChangedCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.Preference, EntryPoint = "preference_unset_changed_cb")]
-        internal static extern int UnsetChangedCb(string key);
+        [LibraryImport(Libraries.Preference, EntryPoint = "preference_unset_changed_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int UnsetChangedCb(string key);
 
-        [DllImport(Libraries.Preference, EntryPoint = "preference_foreach_item")]
-        internal static extern int ForeachItem(ItemCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.Preference, EntryPoint = "preference_foreach_item", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int ForeachItem(ItemCallback callback, IntPtr userData);
     }
 }
+
+
+
+

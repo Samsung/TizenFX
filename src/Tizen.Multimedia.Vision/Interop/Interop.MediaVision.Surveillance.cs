@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Multimedia.Vision;
 
 /// <summary>
@@ -33,49 +34,49 @@ internal static partial class Interop
         /// </summary>
         internal static partial class Surveillance
         {
-            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_event_trigger_create")]
-            internal static extern MediaVisionError EventTriggerCreate(string eventType, out IntPtr trigger); // Deprecated in API 12
+            [LibraryImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_event_trigger_create", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial MediaVisionError EventTriggerCreate(string eventType, out IntPtr trigger); // Deprecated in API 12
 
-            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_event_trigger_destroy")]
-            internal static extern int EventTriggerDestroy(IntPtr trigger); // Deprecated in API 12
+            [LibraryImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_event_trigger_destroy", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial int EventTriggerDestroy(IntPtr trigger); // Deprecated in API 12
 
-            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_event_trigger_type")]
-            internal static extern int GetEventTriggerType(IntPtr trigger, out string eventType); // Deprecated in API 12
+            [LibraryImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_event_trigger_type", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial int GetEventTriggerType(IntPtr trigger, out string eventType); // Deprecated in API 12
 
-            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_set_event_trigger_roi")]
-            internal static extern MediaVisionError SetEventTriggerRoi(IntPtr trigger, int numberOfPoints, Point[] roi); // Deprecated in API 12
+            [LibraryImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_set_event_trigger_roi", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial MediaVisionError SetEventTriggerRoi(IntPtr trigger, int numberOfPoints, Point[] roi); // Deprecated in API 12
 
-            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_event_trigger_roi")]
-            internal static extern MediaVisionError GetEventTriggerRoi(IntPtr trigger, out int numberOfPoints, out IntPtr roi); // Deprecated in API 12
+            [LibraryImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_event_trigger_roi", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial MediaVisionError GetEventTriggerRoi(IntPtr trigger, out int numberOfPoints, out IntPtr roi); // Deprecated in API 12
 
-            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_subscribe_event_trigger")]
-            internal static extern MediaVisionError SubscribeEventTrigger(IntPtr trigger, int videoStreamId,
+            [LibraryImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_subscribe_event_trigger", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial MediaVisionError SubscribeEventTrigger(IntPtr trigger, int videoStreamId,
                 IntPtr engineCfg, EventOccurredCallback callback, IntPtr userData = default(IntPtr)); // Deprecated in API 12
 
-            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_unsubscribe_event_trigger")]
-            internal static extern MediaVisionError UnsubscribeEventTrigger(IntPtr trigger, int videoStreamId); // Deprecated in API 12
+            [LibraryImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_unsubscribe_event_trigger", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial MediaVisionError UnsubscribeEventTrigger(IntPtr trigger, int videoStreamId); // Deprecated in API 12
 
-            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_push_source")]
-            internal static extern MediaVisionError PushSource(IntPtr source, int videoStreamId); // Deprecated in API 12
+            [LibraryImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_push_source", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial MediaVisionError PushSource(IntPtr source, int videoStreamId); // Deprecated in API 12
 
-            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_foreach_supported_event_type")]
-            internal static extern int ForeachSupportedEventType(EventTypeCallback callback, IntPtr userData); // Deprecated in API 12
+            [LibraryImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_foreach_supported_event_type", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial int ForeachSupportedEventType(EventTypeCallback callback, IntPtr userData); // Deprecated in API 12
 
-            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_foreach_event_result_name")]
-            internal static extern int ForeachEventResultName(string eventType, EventResultNameCallback callback,
+            [LibraryImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_foreach_event_result_name", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial int ForeachEventResultName(string eventType, EventResultNameCallback callback,
                 IntPtr userData); // Deprecated in API 12
 
-            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_result_value")]
-            internal static extern MediaVisionError GetResultValue(IntPtr result, string name, out int value); // Deprecated in API 12
+            [LibraryImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_result_value", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial MediaVisionError GetResultValue(IntPtr result, string name, out int value); // Deprecated in API 12
 
-            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_result_value")]
-            internal static extern MediaVisionError GetResultValue(IntPtr result, string name, [Out] int[] value); // Deprecated in API 12
+            [LibraryImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_result_value", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial MediaVisionError GetResultValue(IntPtr result, string name, [Out] int[] value); // Deprecated in API 12
 
-            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_result_value")]
-            internal static extern MediaVisionError GetResultValue(IntPtr result, string name, [Out] double[] value); // Deprecated in API 12
+            [LibraryImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_result_value", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial MediaVisionError GetResultValue(IntPtr result, string name, [Out] double[] value); // Deprecated in API 12
 
-            [DllImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_result_value")]
-            internal static extern MediaVisionError GetResultValue(IntPtr result, string name, [Out] Rectangle[] value); // Deprecated in API 12
+            [LibraryImport(Libraries.MediaVisionSurveillance, EntryPoint = "mv_surveillance_get_result_value", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial MediaVisionError GetResultValue(IntPtr result, string name, [Out] Rectangle[] value); // Deprecated in API 12
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void EventOccurredCallback(IntPtr trigger, IntPtr source,

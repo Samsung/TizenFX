@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.Multimedia
 {
@@ -23,17 +24,17 @@ namespace Tizen.Multimedia
     {
         internal static partial class Libc
         {
-            internal static class AccessMode
+            internal static partial class AccessMode
             {
                 internal const int W_OK = 0x02;
                 internal const int R_OK = 0x04;
             }
 
-            [DllImport(Libraries.Libc, EntryPoint = "free", CallingConvention = CallingConvention.Cdecl)]
-            public static extern void Free(IntPtr ptr);
+            [LibraryImport(Libraries.Libc, EntryPoint = "free", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Free(IntPtr ptr);
 
-            [DllImport(Libraries.Libc, EntryPoint = "access", CallingConvention = CallingConvention.Cdecl)]
-            public static extern int Access(string path, int mode);
+            [LibraryImport(Libraries.Libc, EntryPoint = "access", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int Access(string path, int mode);
         }
     }
 }

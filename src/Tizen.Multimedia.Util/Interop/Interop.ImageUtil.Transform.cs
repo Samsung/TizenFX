@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen;
 using Tizen.Multimedia.Util;
 
@@ -23,46 +24,46 @@ internal static partial class Interop
 {
     internal static partial class ImageUtil
     {
-        internal static class Transform
+        internal static partial class Transform
         {
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void TransformCompletedCallback(IntPtr resultPacket, ImageUtilError errorCode,
                 IntPtr userData = default(IntPtr));
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_run")]
-            internal static extern ImageUtilError Run(TransformHandle handle, IntPtr srcPacket,
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_run", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError Run(TransformHandle handle, IntPtr srcPacket,
                 TransformCompletedCallback callback, IntPtr userData = default(IntPtr));
 
             [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_create")]
             internal static extern ImageUtilError Create(out TransformHandle handle);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_destroy")]
-            internal static extern ImageUtilError Destroy(IntPtr handle);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_destroy", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError Destroy(IntPtr handle);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_get_colorspace")]
-            internal static extern ImageUtilError GetColorspace(TransformHandle handle, out ImageColorSpace colorspace);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_get_colorspace", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError GetColorspace(TransformHandle handle, out ImageColorSpace colorspace);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_set_colorspace")]
-            internal static extern ImageUtilError SetColorspace(TransformHandle handle, ImageColorSpace colorspace);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_set_colorspace", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError SetColorspace(TransformHandle handle, ImageColorSpace colorspace);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_set_rotation")]
-            internal static extern ImageUtilError SetRotation(TransformHandle handle, ImageRotation rotation);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_set_rotation", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError SetRotation(TransformHandle handle, ImageRotation rotation);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_get_crop_area")]
-            internal static extern ImageUtilError GetCropArea(TransformHandle handle, out uint startX, out uint startY, out uint endX, out uint endY);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_get_crop_area", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError GetCropArea(TransformHandle handle, out uint startX, out uint startY, out uint endX, out uint endY);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_set_crop_area")]
-            internal static extern ImageUtilError SetCropArea(TransformHandle handle, int startX, int startY, int endX, int endY);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_set_crop_area", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError SetCropArea(TransformHandle handle, int startX, int startY, int endX, int endY);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_get_resolution")]
-            internal static extern ImageUtilError GetResolution(TransformHandle handle, out uint width, out uint height);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_get_resolution", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError GetResolution(TransformHandle handle, out uint width, out uint height);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_set_resolution")]
-            internal static extern ImageUtilError SetResolution(TransformHandle handle, uint width, uint height);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_transform_set_resolution", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError SetResolution(TransformHandle handle, uint width, uint height);
         }
     }
 
-    internal class TransformHandle : SafeHandle
+    internal partial class TransformHandle : SafeHandle
     {
         protected TransformHandle() : base(IntPtr.Zero, true)
         {

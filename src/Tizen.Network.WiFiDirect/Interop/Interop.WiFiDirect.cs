@@ -17,6 +17,7 @@
 using System;
 using Tizen.Network.WiFiDirect;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 /// <summary>
 /// The Interop class for Wi-Fi Direct.
@@ -44,204 +45,208 @@ internal static partial class Interop
         internal delegate void StateChangedCallback(WiFiDirectState state, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool DiscoveredPeerCallback(ref DiscoveredPeerStruct peer, IntPtr userData);
+        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool DiscoveredPeerCallback(ref DiscoveredPeerStruct peer, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool ConnectedPeerCallback(ref ConnectedPeerStruct peer, IntPtr userData);
+        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool ConnectedPeerCallback(ref ConnectedPeerStruct peer, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool WpsTypeCallback(WiFiDirectWpsType type, IntPtr userData);
+        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool WpsTypeCallback(WiFiDirectWpsType type, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool PersistentGroupCallback(string address, string ssid, IntPtr userData);
+        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool PersistentGroupCallback(string address, string ssid, IntPtr userData);
 
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_state_changed_cb")]
-        internal static extern int SetStateChangedCallback(StateChangedCallback stateChangedCb, IntPtr userData);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_unset_state_changed_cb")]
-        internal static extern int UnsetStateChangedCallback();
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_state_changed_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetStateChangedCallback(StateChangedCallback stateChangedCb, IntPtr userData);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_unset_state_changed_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int UnsetStateChangedCallback();
 
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_device_state_changed_cb")]
-        internal static extern int SetDeviceStateChangedCallback(DeviceStateChangedCallback deviceChangedCb, IntPtr userData);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_unset_device_state_changed_cb")]
-        internal static extern int UnsetDeviceStateChangedCallback();
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_device_state_changed_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetDeviceStateChangedCallback(DeviceStateChangedCallback deviceChangedCb, IntPtr userData);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_unset_device_state_changed_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int UnsetDeviceStateChangedCallback();
 
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_discovery_state_changed_cb")]
-        internal static extern int SetDiscoveryStateChangedCallback(DiscoveryStateChangedCallback discoveryStateChangedCb, IntPtr userData);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_unset_discovery_state_changed_cb")]
-        internal static extern int UnsetDiscoveryStateChangedCallback();
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_discovery_state_changed_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetDiscoveryStateChangedCallback(DiscoveryStateChangedCallback discoveryStateChangedCb, IntPtr userData);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_unset_discovery_state_changed_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int UnsetDiscoveryStateChangedCallback();
 
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_peer_found_cb")]
-        internal static extern int SetPeerFoundCallback(PeerFoundCallback peerFoundCb, IntPtr userData);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_unset_peer_found_cb")]
-        internal static extern int UnsetPeerFoundCallback();
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_peer_found_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetPeerFoundCallback(PeerFoundCallback peerFoundCb, IntPtr userData);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_unset_peer_found_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int UnsetPeerFoundCallback();
 
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_connection_state_changed_cb")]
-        internal static extern int SetConnectionChangedCallback(ConnectionStateChangedCallback connectionCb, IntPtr userData);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_unset_connection_state_changed_cb")]
-        internal static extern int UnsetConnectionChangedCallback();
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_connection_state_changed_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetConnectionChangedCallback(ConnectionStateChangedCallback connectionCb, IntPtr userData);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_unset_connection_state_changed_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int UnsetConnectionChangedCallback();
 
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_client_ip_address_assigned_cb")]
-        internal static extern int SetIpAddressAssignedCallback(ClientIpAddressAssignedCallback callback, IntPtr userData);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_unset_client_ip_address_assigned_cb")]
-        internal static extern int UnsetIpAddressAssignedCallback();
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_client_ip_address_assigned_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetIpAddressAssignedCallback(ClientIpAddressAssignedCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_unset_client_ip_address_assigned_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int UnsetIpAddressAssignedCallback();
 
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_service_state_changed_cb")]
-        internal static extern int SetServiceStateChangedCallback(ServiceStateChangedCallback serviceStateChangedCb, IntPtr userData);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_unset_service_state_changed_cb")]
-        internal static extern int UnsetServiceStateChangedCallback();
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_service_state_changed_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetServiceStateChangedCallback(ServiceStateChangedCallback serviceStateChangedCb, IntPtr userData);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_unset_service_state_changed_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int UnsetServiceStateChangedCallback();
 
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_initialize")]
-        internal static extern int Initialize();
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_deinitialize")]
-        internal static extern int Deinitialize();
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_activate")]
-        internal static extern int Activate();
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_deactivate")]
-        internal static extern int Deactivate();
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_start_discovery_specific_channel")]
-        internal static extern int StartDiscoveryInChannel(bool listenOnly, int timeout, WiFiDirectDiscoveryChannel channel);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_cancel_discovery")]
-        internal static extern int StopDiscovery();
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_foreach_discovered_peers")]
-        internal static extern int GetDiscoveredPeers(DiscoveredPeerCallback callback, IntPtr userData);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_connect")]
-        internal static extern int Connect(string address);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_cancel_connection")]
-        internal static extern int CancelConnection(string address);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_disconnect_all")]
-        internal static extern int DisconnectAll();
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_disconnect")]
-        internal static extern int Disconnect(string address);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_foreach_connected_peers")]
-        internal static extern int GetConnectedPeers(ConnectedPeerCallback callback, IntPtr userData);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_create_group")]
-        internal static extern int CreateGroup();
-        [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_create_group_with_ssid")]
-        internal static extern int CreateGroupWithSsid(string ssid);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_destroy_group")]
-        internal static extern int DestroyGroup();
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_is_group_owner")]
-        internal static extern int IsGroupOwner(out bool isGroupOwner);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_is_autonomous_group")]
-        internal static extern int IsAutonomousGroup(out bool isAutonomous);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_device_name")]
-        internal static extern int SetName(string name);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_device_name")]
-        internal static extern int GetName(out string name);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_ssid")]
-        internal static extern int GetSsid(out string ssid);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_network_interface_name")]
-        internal static extern int GetInterfaceName(out string name);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_ip_address")]
-        internal static extern int GetIpAddress(out string address);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_subnet_mask")]
-        internal static extern int GetSubnetMask(out string mask);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_gateway_address")]
-        internal static extern int GetGatewayAddress(out string address);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_mac_address")]
-        internal static extern int GetMacAddress(out string address);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_state")]
-        internal static extern int GetState(out WiFiDirectState state);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_is_discoverable")]
-        internal static extern int IsDiscoverable(out bool isDiscoverable);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_is_listening_only")]
-        internal static extern int IsListeningOnly(out bool listenOnly);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_primary_device_type")]
-        internal static extern int GetPrimaryType(out WiFiDirectPrimaryDeviceType type);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_secondary_device_type")]
-        internal static extern int GetSecondaryType(out WiFiDirectSecondaryDeviceType type);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_activate_pushbutton")]
-        internal static extern int ActivatePushButton();
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_wps_pin")]
-        internal static extern int SetWpsPin(string pin);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_wps_pin")]
-        internal static extern int GetWpsPin(out string pin);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_supported_wps_mode")]
-        internal static extern int GetWpsMode(out int mode);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_foreach_supported_wps_types")]
-        internal static extern int GetWpsTypes(WpsTypeCallback callback, IntPtr userData);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_local_wps_type")]
-        internal static extern int GetLocalWpsType(out WiFiDirectWpsType type);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_req_wps_type")]
-        internal static extern int SetReqWpsType(WiFiDirectWpsType type);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_req_wps_type")]
-        internal static extern int GetReqWpsType(out WiFiDirectWpsType type);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_group_owner_intent")]
-        internal static extern int SetIntent(int intent);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_group_owner_intent")]
-        internal static extern int GetIntent(out int intent);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_max_clients")]
-        internal static extern int SetMaxClients(int max);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_max_clients")]
-        internal static extern int GetMaxClients(out int max);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_passphrase")]
-        internal static extern int SetPassPhrase(string passphrase);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_passphrase")]
-        internal static extern int GetPassPhrase(out string passphrase);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_operating_channel")]
-        internal static extern int GetChannel(out int channel);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_autoconnection_mode")]
-        internal static extern int SetAutoConnectionMode(bool mode);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_is_autoconnection_mode")]
-        internal static extern int GetAutoConnectionMode(out bool mode);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_autoconnection_peer")]
-        internal static extern int SetAutoConnectionPeer(string address);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_persistent_group_enabled")]
-        internal static extern int SetPersistentGroupState(bool enabled);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_is_persistent_group_enabled")]
-        internal static extern int GetPersistentGroupState(out bool enabled);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_foreach_persistent_groups")]
-        internal static extern int GetPersistentGroups(PersistentGroupCallback callback, IntPtr userData);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_remove_persistent_group")]
-        internal static extern int RemovePersistentGroup(string address, string ssid);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_start_service_discovery")]
-        internal static extern int StartServiceDiscovery(string address, WiFiDirectServiceType type);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_cancel_service_discovery")]
-        internal static extern int StopServiceDiscovery(string address, WiFiDirectServiceType type);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_register_service")]
-        internal static extern int RegisterService(WiFiDirectServiceType type, string info1, string info2, out uint serviceId);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_deregister_service")]
-        internal static extern int DeregisterService(uint serviceId);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_init_miracast")]
-        internal static extern int InitMiracast(bool enable);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_peer_info")]
-        internal static extern int GetDiscoveredPeerInfo(string address, out IntPtr peer);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_init_display")]
-        internal static extern int InitDisplay();
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_deinit_display")]
-        internal static extern int DeinitDisplay();
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_display")]
-        internal static extern int SetDisplay(WiFiDirectDisplayType type, int port, int hdcp);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_display_availability")]
-        internal static extern int SetDisplayAvailability(bool availability);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_peer_display_type")]
-        internal static extern int GetDisplayType(string address, out WiFiDirectDisplayType type);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_peer_display_availability")]
-        internal static extern int GetDisplayAvailability(string address, out bool availability);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_peer_display_hdcp")]
-        internal static extern int GetDisplayHdcp(string address, out int hdcp);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_peer_display_port")]
-        internal static extern int GetDisplayPort(string address, out int port);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_peer_display_throughput")]
-        internal static extern int GetDisplayThroughput(string address, out int throughput);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_peer_rssi")]
-        internal static extern int GetRssi(string address, out int rssi);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_session_timer")]
-        internal static extern int GetSessionTimer(out int seconds);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_session_timer")]
-        internal static extern int SetSessionTimer(int seconds);
-        [DllImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_auto_group_removal")]
-        internal static extern int SetAutoGroupRemoval(bool enable);
-        [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_add_vsie")]
-        internal static extern int AddVsie(WiFiDirectVsieFrameType frameType, string vsie);
-        [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_get_vsie")]
-        internal static extern int GetVsie(WiFiDirectVsieFrameType frameType, out string vsie);
-        [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_remove_vsie")]
-        internal static extern int RemoveVsie(WiFiDirectVsieFrameType frameType, string vsie);
-        [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_get_connecting_peer_info")]
-        internal static extern int GetConnectingPeerInfo(out IntPtr peer);
-        [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_get_peer_vsie")]
-        internal static extern int GetPeerVsie(string macAddress, out string vsie);
-        [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_accept_connection")]
-        internal static extern int AcceptConnection(string macAddress);
-        [DllImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_reject_connection")]
-        internal static extern int RejectConnection(string macAddress);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_initialize", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int Initialize();
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_deinitialize", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int Deinitialize();
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_activate", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int Activate();
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_deactivate", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int Deactivate();
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_start_discovery_specific_channel", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int StartDiscoveryInChannel([MarshalAs(UnmanagedType.U1)] bool listenOnly, int timeout, WiFiDirectDiscoveryChannel channel);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_cancel_discovery", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int StopDiscovery();
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_foreach_discovered_peers", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetDiscoveredPeers(DiscoveredPeerCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_connect", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int Connect(string address);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_cancel_connection", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int CancelConnection(string address);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_disconnect_all", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int DisconnectAll();
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_disconnect", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int Disconnect(string address);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_foreach_connected_peers", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetConnectedPeers(ConnectedPeerCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_create_group", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int CreateGroup();
+        [LibraryImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_create_group_with_ssid", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int CreateGroupWithSsid(string ssid);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_destroy_group", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int DestroyGroup();
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_is_group_owner", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int IsGroupOwner([MarshalAs(UnmanagedType.U1)] out bool isGroupOwner);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_is_autonomous_group", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int IsAutonomousGroup([MarshalAs(UnmanagedType.U1)] out bool isAutonomous);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_device_name", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetName(string name);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_device_name", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetName(out string name);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_ssid", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetSsid(out string ssid);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_network_interface_name", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetInterfaceName(out string name);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_ip_address", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetIpAddress(out string address);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_subnet_mask", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetSubnetMask(out string mask);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_gateway_address", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetGatewayAddress(out string address);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_mac_address", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetMacAddress(out string address);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_state", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetState(out WiFiDirectState state);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_is_discoverable", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int IsDiscoverable([MarshalAs(UnmanagedType.U1)] out bool isDiscoverable);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_is_listening_only", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int IsListeningOnly([MarshalAs(UnmanagedType.U1)] out bool listenOnly);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_primary_device_type", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetPrimaryType(out WiFiDirectPrimaryDeviceType type);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_secondary_device_type", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetSecondaryType(out WiFiDirectSecondaryDeviceType type);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_activate_pushbutton", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int ActivatePushButton();
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_wps_pin", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetWpsPin(string pin);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_wps_pin", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetWpsPin(out string pin);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_supported_wps_mode", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetWpsMode(out int mode);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_foreach_supported_wps_types", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetWpsTypes(WpsTypeCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_local_wps_type", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetLocalWpsType(out WiFiDirectWpsType type);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_req_wps_type", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetReqWpsType(WiFiDirectWpsType type);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_req_wps_type", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetReqWpsType(out WiFiDirectWpsType type);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_group_owner_intent", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetIntent(int intent);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_group_owner_intent", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetIntent(out int intent);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_max_clients", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetMaxClients(int max);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_max_clients", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetMaxClients(out int max);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_passphrase", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetPassPhrase(string passphrase);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_passphrase", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetPassPhrase(out string passphrase);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_operating_channel", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetChannel(out int channel);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_autoconnection_mode", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetAutoConnectionMode([MarshalAs(UnmanagedType.U1)] bool mode);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_is_autoconnection_mode", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetAutoConnectionMode([MarshalAs(UnmanagedType.U1)] out bool mode);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_autoconnection_peer", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetAutoConnectionPeer(string address);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_persistent_group_enabled", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetPersistentGroupState([MarshalAs(UnmanagedType.U1)] bool enabled);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_is_persistent_group_enabled", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetPersistentGroupState([MarshalAs(UnmanagedType.U1)] out bool enabled);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_foreach_persistent_groups", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetPersistentGroups(PersistentGroupCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_remove_persistent_group", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int RemovePersistentGroup(string address, string ssid);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_start_service_discovery", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int StartServiceDiscovery(string address, WiFiDirectServiceType type);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_cancel_service_discovery", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int StopServiceDiscovery(string address, WiFiDirectServiceType type);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_register_service", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int RegisterService(WiFiDirectServiceType type, string info1, string info2, out uint serviceId);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_deregister_service", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int DeregisterService(uint serviceId);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_init_miracast", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int InitMiracast([MarshalAs(UnmanagedType.U1)] bool enable);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_peer_info", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetDiscoveredPeerInfo(string address, out IntPtr peer);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_init_display", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int InitDisplay();
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_deinit_display", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int DeinitDisplay();
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_display", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetDisplay(WiFiDirectDisplayType type, int port, int hdcp);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_display_availability", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetDisplayAvailability([MarshalAs(UnmanagedType.U1)] bool availability);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_peer_display_type", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetDisplayType(string address, out WiFiDirectDisplayType type);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_peer_display_availability", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetDisplayAvailability(string address, [MarshalAs(UnmanagedType.U1)] out bool availability);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_peer_display_hdcp", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetDisplayHdcp(string address, out int hdcp);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_peer_display_port", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetDisplayPort(string address, out int port);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_peer_display_throughput", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetDisplayThroughput(string address, out int throughput);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_peer_rssi", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetRssi(string address, out int rssi);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_get_session_timer", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetSessionTimer(out int seconds);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_session_timer", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetSessionTimer(int seconds);
+        [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_auto_group_removal", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int SetAutoGroupRemoval([MarshalAs(UnmanagedType.U1)] bool enable);
+        [LibraryImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_add_vsie", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int AddVsie(WiFiDirectVsieFrameType frameType, string vsie);
+        [LibraryImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_get_vsie", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetVsie(WiFiDirectVsieFrameType frameType, out string vsie);
+        [LibraryImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_remove_vsie", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int RemoveVsie(WiFiDirectVsieFrameType frameType, string vsie);
+        [LibraryImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_get_connecting_peer_info", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetConnectingPeerInfo(out IntPtr peer);
+        [LibraryImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_get_peer_vsie", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetPeerVsie(string macAddress, out string vsie);
+        [LibraryImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_accept_connection", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int AcceptConnection(string macAddress);
+        [LibraryImport(Libraries.WiFiDirect, EntryPoint = "wifi_direct_reject_connection", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int RejectConnection(string macAddress);
     }
 }
+
+
+
+

@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Internals;
 using Tizen.Applications;
 
@@ -46,7 +47,7 @@ internal static partial class Interop
 
         internal delegate void AppEventCallback(IntPtr handle, IntPtr data);
 
-        internal delegate bool WatchAppCreateCallback(int width, int height, IntPtr userData);
+        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool WatchAppCreateCallback(int width, int height, IntPtr userData);
 
         internal delegate void WatchAppPauseCallback(IntPtr userData);
 
@@ -60,7 +61,7 @@ internal static partial class Interop
 
         internal delegate void WatchAppAmbientTickCallback(IntPtr watchTime, IntPtr userData);
 
-        internal delegate void WatchAppAmbientChangedCallback(bool ambientMode, IntPtr userData);
+        internal delegate void WatchAppAmbientChangedCallback([MarshalAs(UnmanagedType.U1)] bool ambientMode, IntPtr userData);
 
 #if !PROFILE_TV
         [NativeStruct("watch_app_lifecycle_callback_s", Include="watch_app.h", PkgConfig="capi-appfw-watch-application")]
@@ -160,3 +161,8 @@ internal static partial class Interop
         internal static extern Tizen.Internals.Errors.ErrorCode AppEventGetRegionFormat(IntPtr handle, out string region);
     }
 }
+
+
+
+
+

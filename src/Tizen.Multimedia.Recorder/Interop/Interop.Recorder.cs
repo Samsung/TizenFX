@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Multimedia;
 
 internal static partial class Interop
@@ -28,44 +29,44 @@ internal static partial class Interop
         [DllImport(Libraries.Recorder, EntryPoint = "recorder_create_videorecorder")]
         internal static extern RecorderErrorCode CreateVideo(IntPtr cameraHandle, out RecorderHandle handle);
 
-        [DllImport(Libraries.Recorder, EntryPoint = "recorder_prepare")]
-        internal static extern RecorderErrorCode Prepare(RecorderHandle handle);
+        [LibraryImport(Libraries.Recorder, EntryPoint = "recorder_prepare", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial RecorderErrorCode Prepare(RecorderHandle handle);
 
-        [DllImport(Libraries.Recorder, EntryPoint = "recorder_unprepare")]
-        internal static extern RecorderErrorCode Unprepare(RecorderHandle handle);
+        [LibraryImport(Libraries.Recorder, EntryPoint = "recorder_unprepare", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial RecorderErrorCode Unprepare(RecorderHandle handle);
 
-        [DllImport(Libraries.Recorder, EntryPoint = "recorder_start")]
-        internal static extern RecorderErrorCode Start(RecorderHandle handle);
+        [LibraryImport(Libraries.Recorder, EntryPoint = "recorder_start", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial RecorderErrorCode Start(RecorderHandle handle);
 
-        [DllImport(Libraries.Recorder, EntryPoint = "recorder_pause")]
-        internal static extern RecorderErrorCode Pause(RecorderHandle handle);
+        [LibraryImport(Libraries.Recorder, EntryPoint = "recorder_pause", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial RecorderErrorCode Pause(RecorderHandle handle);
 
-        [DllImport(Libraries.Recorder, EntryPoint = "recorder_commit")]
-        internal static extern RecorderErrorCode Commit(RecorderHandle handle);
+        [LibraryImport(Libraries.Recorder, EntryPoint = "recorder_commit", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial RecorderErrorCode Commit(RecorderHandle handle);
 
-        [DllImport(Libraries.Recorder, EntryPoint = "recorder_cancel")]
-        internal static extern RecorderErrorCode Cancel(RecorderHandle handle);
+        [LibraryImport(Libraries.Recorder, EntryPoint = "recorder_cancel", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial RecorderErrorCode Cancel(RecorderHandle handle);
 
-        [DllImport(Libraries.Recorder, EntryPoint = "recorder_get_state")]
-        internal static extern RecorderErrorCode GetState(RecorderHandle handle, out RecorderState state);
+        [LibraryImport(Libraries.Recorder, EntryPoint = "recorder_get_state", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial RecorderErrorCode GetState(RecorderHandle handle, out RecorderState state);
 
-        [DllImport(Libraries.Recorder, EntryPoint = "recorder_set_sound_stream_info")]
-        internal static extern RecorderErrorCode SetAudioStreamPolicy(RecorderHandle handle, AudioStreamPolicyHandle streamInfoHandle);
+        [LibraryImport(Libraries.Recorder, EntryPoint = "recorder_set_sound_stream_info", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial RecorderErrorCode SetAudioStreamPolicy(RecorderHandle handle, AudioStreamPolicyHandle streamInfoHandle);
 
-        [DllImport(Libraries.Recorder, EntryPoint = "recorder_get_device_state")]
-        internal static extern RecorderErrorCode GetDeviceState(RecorderType type, out RecorderDeviceState state);
+        [LibraryImport(Libraries.Recorder, EntryPoint = "recorder_get_device_state", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial RecorderErrorCode GetDeviceState(RecorderType type, out RecorderDeviceState state);
     }
 
-    internal class RecorderHandle : SafeHandle
+    internal partial class RecorderHandle : SafeHandle
     {
-        [DllImport(Libraries.Recorder, EntryPoint = "recorder_destroy")]
-        private static extern RecorderErrorCode Destroy(IntPtr handle);
+        [LibraryImport(Libraries.Recorder, EntryPoint = "recorder_destroy", StringMarshalling = StringMarshalling.Utf8)]
+        private static partial RecorderErrorCode Destroy(IntPtr handle);
 
-        [DllImport(Libraries.Recorder, EntryPoint = "recorder_cancel")]
-        private static extern RecorderErrorCode Cancel(IntPtr handle);
+        [LibraryImport(Libraries.Recorder, EntryPoint = "recorder_cancel", StringMarshalling = StringMarshalling.Utf8)]
+        private static partial RecorderErrorCode Cancel(IntPtr handle);
 
-        [DllImport(Libraries.Recorder, EntryPoint = "recorder_unprepare")]
-        private static extern RecorderErrorCode Unprepare(IntPtr handle);
+        [LibraryImport(Libraries.Recorder, EntryPoint = "recorder_unprepare", StringMarshalling = StringMarshalling.Utf8)]
+        private static partial RecorderErrorCode Unprepare(IntPtr handle);
 
         protected RecorderHandle() : base(IntPtr.Zero, true)
         {

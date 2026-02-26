@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -26,9 +26,7 @@ internal static partial class Interop
         public MediaContentCriticalHandle() : base(IntPtr.Zero)
         {
         }
-
         public override bool IsInvalid => handle == IntPtr.Zero;
-
         protected override bool ReleaseHandle()
         {
             var result = DestroyHandle();
@@ -44,3 +42,7 @@ internal static partial class Interop
         protected abstract MediaContentError DestroyHandle();
     }
 }
+
+
+
+

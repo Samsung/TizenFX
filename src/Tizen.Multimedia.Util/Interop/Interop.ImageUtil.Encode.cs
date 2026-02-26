@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen;
 using Tizen.Multimedia.Util;
 
@@ -23,60 +24,60 @@ internal static partial class Interop
 {
     internal static partial class ImageUtil
     {
-        internal static class Encode
+        internal static partial class Encode
         {
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void EncodeCompletedCallback(ImageUtilError ImageUtilError, IntPtr userData, ulong size);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_run_async")]
-            internal static extern ImageUtilError EncodeRunAsync(ImageEncoderHandle handle,
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_run_async", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError EncodeRunAsync(ImageEncoderHandle handle,
                 EncodeCompletedCallback callback, IntPtr userData = default(IntPtr));
 
             [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_create")]
             internal static extern ImageUtilError Create(ImageFormat type, out ImageEncoderHandle handle);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_destroy")]
-            internal static extern ImageUtilError Destroy(IntPtr handle);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_destroy", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError Destroy(IntPtr handle);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_set_quality")]
-            internal static extern ImageUtilError SetQuality(ImageEncoderHandle handle, int quality);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_set_quality", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError SetQuality(ImageEncoderHandle handle, int quality);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_set_png_compression")]
-            internal static extern ImageUtilError SetPngCompression(ImageEncoderHandle handle, PngCompression compression);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_set_png_compression", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError SetPngCompression(ImageEncoderHandle handle, PngCompression compression);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_run_to_buffer")]
-            internal static extern ImageUtilError RunToBuffer(ImageEncoderHandle handle, IntPtr imageUtilHandle, out IntPtr buffer, out int size);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_run_to_buffer", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError RunToBuffer(ImageEncoderHandle handle, IntPtr imageUtilHandle, out IntPtr buffer, out int size);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_set_lossless")]
-            internal static extern ImageUtilError SetLossless(ImageEncoderHandle handle, bool lossless);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_encode_set_lossless", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError SetLossless(ImageEncoderHandle handle, [MarshalAs(UnmanagedType.U1)] bool lossless);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_create")]
-            internal static extern ImageUtilError AnimationCreate(AnimationType type, out IntPtr animHandle);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_create", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError AnimationCreate(AnimationType type, out IntPtr animHandle);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_set_loop_count")]
-            internal static extern ImageUtilError AnimationSetLoopCount(IntPtr animHandle, uint count);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_set_loop_count", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError AnimationSetLoopCount(IntPtr animHandle, uint count);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_set_background_color")]
-            internal static extern ImageUtilError AnimationSetBackgroundColor(IntPtr animHandle, byte r, byte g, byte b, byte a);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_set_background_color", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError AnimationSetBackgroundColor(IntPtr animHandle, byte r, byte g, byte b, byte a);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_set_lossless")]
-            internal static extern ImageUtilError AnimationSetLossless(IntPtr animHandle, bool isLossless);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_set_lossless", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError AnimationSetLossless(IntPtr animHandle, [MarshalAs(UnmanagedType.U1)] bool isLossless);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_add_frame")]
-            internal static extern ImageUtilError AnimationAddFrame(IntPtr animHandle, IntPtr utilHandle, uint delayTime);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_add_frame", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError AnimationAddFrame(IntPtr animHandle, IntPtr utilHandle, uint delayTime);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_save_to_file")]
-            internal static extern ImageUtilError AnimationSaveToFile(IntPtr animHandle, string path);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_save_to_file", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError AnimationSaveToFile(IntPtr animHandle, string path);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_save_to_buffer")]
-            internal static extern ImageUtilError AnimationSaveToBuffer(IntPtr animHandle, out IntPtr dstBuffer, out ulong size);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_save_to_buffer", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError AnimationSaveToBuffer(IntPtr animHandle, out IntPtr dstBuffer, out ulong size);
 
-            [DllImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_destroy")]
-            internal static extern ImageUtilError AnimationDestroy(IntPtr animHandle);
+            [LibraryImport(Libraries.ImageUtil, EntryPoint = "image_util_anim_encode_destroy", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial ImageUtilError AnimationDestroy(IntPtr animHandle);
         }
     }
 
-    internal class ImageEncoderHandle : SafeHandle
+    internal partial class ImageEncoderHandle : SafeHandle
     {
         protected ImageEncoderHandle() : base(IntPtr.Zero, true)
         {
@@ -98,7 +99,7 @@ internal static partial class Interop
         }
     }
 
-    internal class AgifImageEncoderHandle : SafeHandle
+    internal partial class AgifImageEncoderHandle : SafeHandle
     {
         protected AgifImageEncoderHandle() : base(IntPtr.Zero, true)
         {

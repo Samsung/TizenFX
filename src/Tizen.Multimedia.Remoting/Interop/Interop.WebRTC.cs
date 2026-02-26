@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen;
 using Tizen.Applications;
 using Tizen.Internals;
@@ -130,7 +131,7 @@ internal static partial class Interop
         internal static extern WebRTCErrorCode SetFileSourceLooping(IntPtr handle, uint sourceId, bool looping);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_file_source_get_looping")]
-        internal static extern WebRTCErrorCode GetFileSourceLooping(IntPtr handle, uint sourceId, out bool looping);
+        internal static extern WebRTCErrorCode GetFileSourceLooping(IntPtr handle, uint sourceId, [MarshalAs(UnmanagedType.U1)] out bool looping);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_transceiver_direction")]
         internal static extern WebRTCErrorCode GetTransceiverDirection(IntPtr handle, uint sourceId, MediaType type, out TransceiverDirection mode);
@@ -158,13 +159,13 @@ internal static partial class Interop
         internal static extern WebRTCErrorCode SetPause(IntPtr handle, uint sourceId, MediaType type, bool pause);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_pause")]
-        internal static extern WebRTCErrorCode GetPause(IntPtr handle, uint sourceId, MediaType type, out bool isPaused);
+        internal static extern WebRTCErrorCode GetPause(IntPtr handle, uint sourceId, MediaType type, [MarshalAs(UnmanagedType.U1)] out bool isPaused);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_mute")]
         internal static extern WebRTCErrorCode SetMute(IntPtr handle, uint sourceId, MediaType type, bool mute);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_mute")]
-        internal static extern WebRTCErrorCode GetMute(IntPtr handle, uint sourceId, MediaType type, out bool mute);
+        internal static extern WebRTCErrorCode GetMute(IntPtr handle, uint sourceId, MediaType type, [MarshalAs(UnmanagedType.U1)] out bool mute);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_encoder_bitrate")]
         internal static extern WebRTCErrorCode SetEncoderBitrate(IntPtr handle, uint sourceId, MediaType type, int bitrate);
@@ -209,7 +210,7 @@ internal static partial class Interop
         internal static extern WebRTCErrorCode SetAudioMute(IntPtr handle, uint trackId, bool mute);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_audio_mute")]
-        internal static extern WebRTCErrorCode GetAudioMute(IntPtr handle, uint trackId, out bool isMuted);
+        internal static extern WebRTCErrorCode GetAudioMute(IntPtr handle, uint trackId, [MarshalAs(UnmanagedType.U1)] out bool isMuted);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_display")]
         internal static extern WebRTCErrorCode SetDisplay(IntPtr handle, uint trackId, WebRTCDisplayType type, IntPtr display);
@@ -227,7 +228,7 @@ internal static partial class Interop
         internal static extern WebRTCErrorCode SetDisplayVisible(IntPtr handle, uint trackId, bool isVisible);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_display_visible")]
-        internal static extern WebRTCErrorCode GetDisplayVisible(IntPtr handle, uint trackId, out bool isVisible);
+        internal static extern WebRTCErrorCode GetDisplayVisible(IntPtr handle, uint trackId, [MarshalAs(UnmanagedType.U1)] out bool isVisible);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_stun_server")]
         internal static extern WebRTCErrorCode GetStunServer(IntPtr handle, out string server);
@@ -384,7 +385,7 @@ internal static partial class Interop
         }
     }
 
-    internal class WebRTCHandle : SafeHandle
+    internal partial class WebRTCHandle : SafeHandle
     {
         protected WebRTCHandle() : base(IntPtr.Zero, true)
         {
@@ -407,3 +408,4 @@ internal static partial class Interop
         }
     }
 }
+

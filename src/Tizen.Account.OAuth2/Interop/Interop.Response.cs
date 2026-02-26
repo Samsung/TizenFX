@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 /// <summary>
 /// Contains Interop declarations of OAuth2 classes.
@@ -27,35 +28,35 @@ internal static partial class Interop
     /// </summary>
     internal static partial class Response
     {
-        [DllImport(Libraries.OAuth2, EntryPoint = "oauth2_response_destroy")]
-        internal static extern int Destroy(IntPtr /* oauth2_response_h */ handle);
+        [LibraryImport(Libraries.OAuth2, EntryPoint = "oauth2_response_destroy", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int Destroy(IntPtr /* oauth2_response_h */ handle);
 
-        [DllImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_authorization_code")]
-        internal static extern int GetAuthorizationCode(IntPtr /* oauth2_response_h */ handle, out IntPtr code);
+        [LibraryImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_authorization_code", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetAuthorizationCode(IntPtr /* oauth2_response_h */ handle, out IntPtr code);
 
-        [DllImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_state")]
-        internal static extern int GetState(IntPtr /* oauth2_response_h */ handle, out IntPtr state);
+        [LibraryImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_state", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetState(IntPtr /* oauth2_response_h */ handle, out IntPtr state);
 
-        [DllImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_access_token")]
-        internal static extern int GetAccessToken(IntPtr /* oauth2_response_h */ handle, out IntPtr accessToken);
+        [LibraryImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_access_token", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetAccessToken(IntPtr /* oauth2_response_h */ handle, out IntPtr accessToken);
 
-        [DllImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_token_type")]
-        internal static extern int GetTokenType(IntPtr /* oauth2_response_h */ handle, out IntPtr tokenType);
+        [LibraryImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_token_type", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetTokenType(IntPtr /* oauth2_response_h */ handle, out IntPtr tokenType);
 
-        [DllImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_expires_in")]
-        internal static extern int GetExpiresIn(IntPtr /* oauth2_response_h */ handle, out long expiresIn);
+        [LibraryImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_expires_in", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetExpiresIn(IntPtr /* oauth2_response_h */ handle, out long expiresIn);
 
-        [DllImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_refresh_token")]
-        internal static extern int GetRefreshToken(IntPtr /* oauth2_response_h */ handle, out IntPtr refreshToken);
+        [LibraryImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_refresh_token", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetRefreshToken(IntPtr /* oauth2_response_h */ handle, out IntPtr refreshToken);
 
-        [DllImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_scope")]
-        internal static extern int GetScope(IntPtr /* oauth2_response_h */ handle, out IntPtr scope);
+        [LibraryImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_scope", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetScope(IntPtr /* oauth2_response_h */ handle, out IntPtr scope);
 
-        [DllImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_error")]
-        internal static extern int GetError(IntPtr /* oauth2_response_h */ handle, out IntPtr /* oauth2_error_h */ error);
+        [LibraryImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_error", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetError(IntPtr /* oauth2_response_h */ handle, out IntPtr /* oauth2_error_h */ error);
 
-        [DllImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_custom_data")]
-        internal static extern int GetCustomData(IntPtr /* oauth2_response_h */ handle, string customKey, out IntPtr customValue);
+        [LibraryImport(Libraries.OAuth2, EntryPoint = "oauth2_response_get_custom_data", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetCustomData(IntPtr /* oauth2_response_h */ handle, string customKey, out IntPtr customValue);
 
 
    }

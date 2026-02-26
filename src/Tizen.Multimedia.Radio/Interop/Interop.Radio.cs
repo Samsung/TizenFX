@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,11 +16,12 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Multimedia;
 
 internal static partial class Interop
 {
-    internal static class Radio
+    internal static partial class Radio
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void SeekCompletedCallback(int frequency, IntPtr userData);
@@ -82,7 +83,7 @@ internal static partial class Interop
         internal static extern RadioError SetMute(RadioHandle radio, bool muted);
 
         [DllImport(Libraries.Radio, EntryPoint = "radio_is_muted")]
-        internal static extern RadioError GetMuted(RadioHandle radio, out bool muted);
+        internal static extern RadioError GetMuted(RadioHandle radio, [MarshalAs(UnmanagedType.U1)] out bool muted);
 
         [DllImport(Libraries.Radio, EntryPoint = "radio_set_scan_completed_cb")]
         internal static extern RadioError SetScanCompletedCb(RadioHandle radio,
@@ -111,7 +112,7 @@ internal static partial class Interop
         internal static extern RadioError GetVolume(RadioHandle radio, out float volume);
     }
 
-    internal class RadioHandle : SafeHandle
+    internal partial class RadioHandle : SafeHandle
     {
         protected RadioHandle() : base(IntPtr.Zero, true)
         {
@@ -132,3 +133,4 @@ internal static partial class Interop
         }
     }
 }
+

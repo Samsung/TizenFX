@@ -1,4 +1,4 @@
- /*
+﻿ /*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,6 +17,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
@@ -27,7 +28,7 @@ internal static partial class Interop
         {
             internal static partial class DeviceInformation
             {
-                internal delegate bool DeviceInformationCallback(IntPtr deviceInfoHandle, int result, IntPtr userData);
+                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool DeviceInformationCallback(IntPtr deviceInfoHandle, int result, IntPtr userData);
 
                 internal enum Property
                 {
@@ -37,16 +38,16 @@ internal static partial class Interop
                     DataModelVersion,
                 }
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_find_device_info")]
-                internal static extern int Find(string hostAddress, int connectivityType, IntPtr query, DeviceInformationCallback cb, IntPtr userData);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_find_device_info", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int Find(string hostAddress, int connectivityType, IntPtr query, DeviceInformationCallback cb, IntPtr userData);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_device_info_get_property")]
-                internal static extern int GetProperty(IntPtr deviceInfoHandle, int property, out IntPtr value);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_device_info_get_property", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetProperty(IntPtr deviceInfoHandle, int property, out IntPtr value);
             }
 
             internal static partial class PlatformInformation
             {
-                internal delegate bool PlatformInformationCallback(IntPtr platformInfoHandle, int result, IntPtr userData);
+                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool PlatformInformationCallback(IntPtr platformInfoHandle, int result, IntPtr userData);
 
                 internal enum Propery
                 {
@@ -63,11 +64,11 @@ internal static partial class Interop
                     SystemTime
                 }
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_find_platform_info")]
-                internal static extern int Find(string hostAddress, int connectivityType, IntPtr query, PlatformInformationCallback cb, IntPtr userData);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_find_platform_info", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int Find(string hostAddress, int connectivityType, IntPtr query, PlatformInformationCallback cb, IntPtr userData);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_platform_info_get_property")]
-                internal static extern int GetProperty(IntPtr platformInfoHandle, int property, out IntPtr value);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_platform_info_get_property", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetProperty(IntPtr platformInfoHandle, int property, out IntPtr value);
             }
 
             internal static partial class RemoteResource
@@ -93,113 +94,113 @@ internal static partial class Interop
                     Ipv6
                 }
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_create")]
-                internal static extern int Create(string hostAddress, int connectivityType, string uriPath, int properties, IntPtr resourceTypes, IntPtr resourceInterfaces, out IntPtr remoteResource);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_create", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int Create(string hostAddress, int connectivityType, string uriPath, int properties, IntPtr resourceTypes, IntPtr resourceInterfaces, out IntPtr remoteResource);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_destroy")]
-                internal static extern void Destroy(IntPtr resource);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_destroy", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial void Destroy(IntPtr resource);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_clone")]
-                internal static extern int Clone(IntPtr src, out IntPtr dest);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_clone", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int Clone(IntPtr src, out IntPtr dest);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_observe_register")]
-                internal static extern int RegisterObserve(IntPtr resource, int observePolicy, IntPtr query, ObserveCallback cb, IntPtr userData);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_observe_register", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int RegisterObserve(IntPtr resource, int observePolicy, IntPtr query, ObserveCallback cb, IntPtr userData);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_observe_deregister")]
-                internal static extern int DeregisterObserve(IntPtr resource);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_observe_deregister", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int DeregisterObserve(IntPtr resource);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get")]
-                internal static extern int Get(IntPtr resource, IntPtr query, ResponseCallback cb, IntPtr userData);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int Get(IntPtr resource, IntPtr query, ResponseCallback cb, IntPtr userData);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_put")]
-                internal static extern int Put(IntPtr resource, IntPtr repr, IntPtr query, ResponseCallback cb, IntPtr userData);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_put", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int Put(IntPtr resource, IntPtr repr, IntPtr query, ResponseCallback cb, IntPtr userData);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_post")]
-                internal static extern int Post(IntPtr resource, IntPtr repr, IntPtr query, ResponseCallback cb, IntPtr userData);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_post", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int Post(IntPtr resource, IntPtr repr, IntPtr query, ResponseCallback cb, IntPtr userData);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_delete")]
-                internal static extern int Delete(IntPtr resource, ResponseCallback cb, IntPtr userData);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_delete", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int Delete(IntPtr resource, ResponseCallback cb, IntPtr userData);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_start_caching")]
-                internal static extern int StartCaching(IntPtr resource, CachedRepresentationChangedCallback cb, IntPtr userData);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_start_caching", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int StartCaching(IntPtr resource, CachedRepresentationChangedCallback cb, IntPtr userData);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_stop_caching")]
-                internal static extern int StopCaching(IntPtr resource);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_stop_caching", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int StopCaching(IntPtr resource);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_start_monitoring")]
-                internal static extern int StartMonitoring(IntPtr resource, StateChangedCallback cb, IntPtr userData);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_start_monitoring", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int StartMonitoring(IntPtr resource, StateChangedCallback cb, IntPtr userData);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_stop_monitoring")]
-                internal static extern int StopMonitoring(IntPtr resource);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_stop_monitoring", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int StopMonitoring(IntPtr resource);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_uri_path")]
-                internal static extern int GetUriPath(IntPtr resource, out IntPtr uriPath);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_uri_path", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetUriPath(IntPtr resource, out IntPtr uriPath);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_connectivity_type")]
-                internal static extern int GetConnectivityType(IntPtr resource, out int connectivityType);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_connectivity_type", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetConnectivityType(IntPtr resource, out int connectivityType);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_host_address")]
-                internal static extern int GetHostAddress(IntPtr resource, out IntPtr hostAddress);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_host_address", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetHostAddress(IntPtr resource, out IntPtr hostAddress);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_device_id")]
-                internal static extern int GetDeviceId(IntPtr resource, out IntPtr deviceId);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_device_id", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetDeviceId(IntPtr resource, out IntPtr deviceId);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_types")]
-                internal static extern int GetTypes(IntPtr resource, out IntPtr types);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_types", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetTypes(IntPtr resource, out IntPtr types);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_interfaces")]
-                internal static extern int GetInterfaces(IntPtr resource, out IntPtr ifaces);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_interfaces", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetInterfaces(IntPtr resource, out IntPtr ifaces);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_policies")]
-                internal static extern int GetPolicies(IntPtr resource, out int properties);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_policies", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetPolicies(IntPtr resource, out int properties);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_options")]
-                internal static extern int GetOptions(IntPtr resource, out IntPtr options);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_options", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetOptions(IntPtr resource, out IntPtr options);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_set_options")]
-                internal static extern int SetOptions(IntPtr resource, IntPtr options);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_set_options", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int SetOptions(IntPtr resource, IntPtr options);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_cached_representation")]
-                internal static extern int GetCachedRepresentation(IntPtr resource, out IntPtr representation);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_cached_representation", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetCachedRepresentation(IntPtr resource, out IntPtr representation);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_checking_interval")]
-                internal static extern int GetTimeInterval(IntPtr resource, out int timeInterval);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_get_checking_interval", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetTimeInterval(IntPtr resource, out int timeInterval);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_set_checking_interval")]
-                internal static extern int SetTimeInterval(IntPtr resource, int timeInterval);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remote_resource_set_checking_interval", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int SetTimeInterval(IntPtr resource, int timeInterval);
             }
 
             internal static partial class IoTCon
             {
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_initialize")]
-                internal static extern int Initialize(string filePath);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_initialize", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int Initialize(string filePath);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_deinitialize")]
-                internal static extern void Deinitialize();
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_deinitialize", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial void Deinitialize();
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_get_timeout")]
-                internal static extern int GetTimeout(out int timeoutSeconds);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_get_timeout", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetTimeout(out int timeoutSeconds);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_set_timeout")]
-                internal static extern int SetTimeout(int timeoutSeconds);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_set_timeout", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int SetTimeout(int timeoutSeconds);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_polling_get_interval")]
-                internal static extern int GetPollingInterval(out int interval);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_polling_get_interval", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetPollingInterval(out int interval);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_polling_set_interval")]
-                internal static extern int SetPollingInterval(int interval);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_polling_set_interval", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int SetPollingInterval(int interval);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_polling_invoke")]
-                internal static extern int InvokePolling();
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_polling_invoke", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int InvokePolling();
             }
 
             internal static partial class ResourceFinder
             {
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                internal delegate bool FoundResourceCallback(IntPtr remoteResourceHandle, int result, IntPtr userData);
+                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool FoundResourceCallback(IntPtr remoteResourceHandle, int result, IntPtr userData);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_find_resource")]
-                internal static extern int AddResourceFoundCb(string hostAddress, int connectivityType, IntPtr query, FoundResourceCallback cb, IntPtr userData);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_find_resource", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int AddResourceFoundCb(string hostAddress, int connectivityType, IntPtr query, FoundResourceCallback cb, IntPtr userData);
             }
 
             internal static partial class Presence
@@ -207,39 +208,43 @@ internal static partial class Interop
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
                 internal delegate void PresenceCallback(IntPtr presenceResponseHandle, int err, IntPtr response, IntPtr userData);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_add_presence_cb")]
-                internal static extern int AddPresenceCb(string hostAddress, int connectivityType, string resourceType, PresenceCallback cb, IntPtr userData, out IntPtr presenceHandle);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_add_presence_cb", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int AddPresenceCb(string hostAddress, int connectivityType, string resourceType, PresenceCallback cb, IntPtr userData, out IntPtr presenceHandle);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_remove_presence_cb")]
-                internal static extern int RemovePresenceCb(IntPtr presenceHandle);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_remove_presence_cb", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int RemovePresenceCb(IntPtr presenceHandle);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_get_host_address")]
-                internal static extern int GetHostAddress(IntPtr presence, out IntPtr hostAddress);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_get_host_address", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetHostAddress(IntPtr presence, out IntPtr hostAddress);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_get_connectivity_type")]
-                internal static extern int GetConnectivityType(IntPtr presence, out int connectivityType);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_get_connectivity_type", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetConnectivityType(IntPtr presence, out int connectivityType);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_get_resource_type")]
-                internal static extern int GetResourceType(IntPtr presence, out IntPtr resourceType);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_get_resource_type", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetResourceType(IntPtr presence, out IntPtr resourceType);
             }
 
             internal static partial class PresenceResponse
             {
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_response_get_result")]
-                internal static extern int GetResult(IntPtr response, out int result);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_response_get_result", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetResult(IntPtr response, out int result);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_response_get_trigger")]
-                internal static extern int GetTrigger(IntPtr response, out int trigger);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_response_get_trigger", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetTrigger(IntPtr response, out int trigger);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_response_get_host_address")]
-                internal static extern int GetHostAddress(IntPtr response, out IntPtr hostAddress);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_response_get_host_address", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetHostAddress(IntPtr response, out IntPtr hostAddress);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_response_get_connectivity_type")]
-                internal static extern int GetConnectivityType(IntPtr response, out int connectivityType);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_response_get_connectivity_type", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetConnectivityType(IntPtr response, out int connectivityType);
 
-                [DllImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_response_get_resource_type")]
-                internal static extern int GetResourceType(IntPtr response, out IntPtr resourceType);
+                [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_presence_response_get_resource_type", StringMarshalling = StringMarshalling.Utf8)]
+                internal static partial int GetResourceType(IntPtr response, out IntPtr resourceType);
             }
         }
     }
 }
+
+
+
+

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Content.MediaContent;
 
 internal static partial class Interop
@@ -125,19 +126,19 @@ internal static partial class Interop
         internal static extern MediaContentError GetRating(MediaInfoHandle mediaInformationHandle, out int rating);  // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_favorite")]
-        internal static extern MediaContentError GetFavorite(MediaInfoHandle mediaInformationHandle, out bool favorite);  // Deprecated since API12
+        internal static extern MediaContentError GetFavorite(MediaInfoHandle mediaInformationHandle, [MarshalAs(UnmanagedType.U1)] out bool favorite);  // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_title")]
         internal static extern MediaContentError GetTitle(MediaInfoHandle mediaInformationHandle, out IntPtr title);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_is_drm")]
-        internal static extern MediaContentError IsDrm(MediaInfoHandle mediaInformationHandle, out bool isDrm);  // Deprecated since API12
+        internal static extern MediaContentError IsDrm(MediaInfoHandle mediaInformationHandle, [MarshalAs(UnmanagedType.U1)] out bool isDrm);  // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_media_from_db")]
         internal static extern MediaContentError GetMediaFromDB(string mediaId, out MediaInfoHandle handle);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_set_favorite")]
-        internal static extern MediaContentError SetFavorite(MediaInfoHandle mediaInformationHandle, bool favorite);  // Deprecated since API12
+        internal static extern MediaContentError SetFavorite(MediaInfoHandle mediaInformationHandle, [MarshalAs(UnmanagedType.U1)] bool favorite);  // Deprecated since API12
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_update_to_db")]
         internal static extern MediaContentError UpdateToDB(MediaInfoHandle mediaInformationHandle);  // Deprecated since API12
@@ -168,12 +169,10 @@ internal static partial class Interop
         {
             SetHandle(handle);
         }
-
         public override bool IsInvalid
         {
             get { return handle == IntPtr.Zero; }
         }
-
         protected override bool ReleaseHandle()
         {
             MediaInfo.Destroy(handle);
@@ -181,3 +180,10 @@ internal static partial class Interop
         }
     }
 }
+
+
+
+
+
+
+

@@ -1,25 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 
 internal static partial class Interop
 {
     internal static partial class Elementary
     {
-        [DllImport(Libraries.Elementary, EntryPoint = "elm_init")]
-        internal static extern void ElmInit(int argc, string[] argv);
+        [LibraryImport(Libraries.Elementary, EntryPoint = "elm_init", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial void ElmInit(int argc, string[] argv);
 
-        [DllImport(Libraries.Elementary, EntryPoint = "elm_config_accel_preference_set")]
-        internal static extern IntPtr ElmConfigAccelPreferenceSet(string preference);
+        [LibraryImport(Libraries.Elementary, EntryPoint = "elm_config_accel_preference_set", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial IntPtr ElmConfigAccelPreferenceSet(string preference);
 
-        [DllImport(Libraries.Elementary, EntryPoint = "elm_run")]
-        internal static extern void ElmRun();
+        [LibraryImport(Libraries.Elementary, EntryPoint = "elm_run", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial void ElmRun();
 
-        [DllImport(Libraries.Elementary, EntryPoint = "elm_exit")]
-        internal static extern void ElmExit();
+        [LibraryImport(Libraries.Elementary, EntryPoint = "elm_exit", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial void ElmExit();
 
-        [DllImport(Libraries.Elementary, EntryPoint = "elm_shutdown")]
-        internal static extern void ElmShutdown();
+        [LibraryImport(Libraries.Elementary, EntryPoint = "elm_shutdown", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial void ElmShutdown();
     }
 }
+
+
+

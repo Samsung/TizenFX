@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.Multimedia
 {
@@ -24,77 +25,77 @@ namespace Tizen.Multimedia
         internal static partial class AudioDevice
         {
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-            internal delegate void ConnectionChangedCallback(IntPtr device, bool isConnected, IntPtr userData);
+            internal delegate void ConnectionChangedCallback(IntPtr device, [MarshalAs(UnmanagedType.U1)] bool isConnected, IntPtr userData);
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-            internal delegate void RunningChangedCallback(IntPtr device, bool isRunning, IntPtr userData);
+            internal delegate void RunningChangedCallback(IntPtr device, [MarshalAs(UnmanagedType.U1)] bool isRunning, IntPtr userData);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_list")]
-            internal static extern AudioManagerError GetDeviceList(AudioDeviceOptions deviceMask, out IntPtr deviceList);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_list", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError GetDeviceList(AudioDeviceOptions deviceMask, out IntPtr deviceList);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_free_device_list")]
-            internal static extern AudioManagerError FreeDeviceList(IntPtr deviceList);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_free_device_list", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError FreeDeviceList(IntPtr deviceList);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_next_device")]
-            internal static extern AudioManagerError GetNextDevice(IntPtr deviceList, out IntPtr device);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_next_device", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError GetNextDevice(IntPtr deviceList, out IntPtr device);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_type")]
-            internal static extern int GetDeviceType(IntPtr device, out AudioDeviceType type);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_type", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial int GetDeviceType(IntPtr device, out AudioDeviceType type);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_io_direction")]
-            internal static extern int GetDeviceIoDirection(IntPtr device, out AudioDeviceIoDirection ioDirection);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_io_direction", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial int GetDeviceIoDirection(IntPtr device, out AudioDeviceIoDirection ioDirection);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_id")]
-            internal static extern int GetDeviceId(IntPtr device, out int id);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_id", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial int GetDeviceId(IntPtr device, out int id);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_name")]
-            internal static extern int GetDeviceName(IntPtr device, out IntPtr name);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_name", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial int GetDeviceName(IntPtr device, out IntPtr name);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_is_device_running_by_id")]
-            internal static extern AudioManagerError IsDeviceRunning(int deviceId, out bool isRunning);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_is_device_running_by_id", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError IsDeviceRunning(int deviceId, [MarshalAs(UnmanagedType.U1)] out bool isRunning);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_supported_sample_formats_by_id")]
-            internal static extern AudioManagerError GetSupportedSampleFormats(int deviceId, out IntPtr formats, out uint numberOfElements);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_supported_sample_formats_by_id", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError GetSupportedSampleFormats(int deviceId, out IntPtr formats, out uint numberOfElements);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_sample_format_by_id")]
-            internal static extern AudioManagerError SetSampleFormat(int deviceId, AudioSampleFormat format);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_sample_format_by_id", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError SetSampleFormat(int deviceId, AudioSampleFormat format);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_sample_format_by_id")]
-            internal static extern AudioManagerError GetSampleFormat(int deviceId, out AudioSampleFormat format);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_sample_format_by_id", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError GetSampleFormat(int deviceId, out AudioSampleFormat format);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_supported_sample_rates_by_id")]
-            internal static extern AudioManagerError GetSupportedSampleRates(int deviceId, out IntPtr rates, out uint numberOfElements);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_supported_sample_rates_by_id", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError GetSupportedSampleRates(int deviceId, out IntPtr rates, out uint numberOfElements);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_sample_rate_by_id")]
-            internal static extern AudioManagerError SetSampleRate(int deviceId, uint rate);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_sample_rate_by_id", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError SetSampleRate(int deviceId, uint rate);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_sample_rate_by_id")]
-            internal static extern AudioManagerError GetSampleRate(int deviceId, out uint rate);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_sample_rate_by_id", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError GetSampleRate(int deviceId, out uint rate);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_avoid_resampling_by_id")]
-            internal static extern AudioManagerError SetAvoidResampling(int deviceId, bool enable);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_avoid_resampling_by_id", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError SetAvoidResampling(int deviceId, [MarshalAs(UnmanagedType.U1)] bool enable);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_avoid_resampling_by_id")]
-            internal static extern AudioManagerError GetAvoidResampling(int deviceId, out bool enabled);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_avoid_resampling_by_id", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError GetAvoidResampling(int deviceId, [MarshalAs(UnmanagedType.U1)] out bool enabled);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_media_stream_only_by_id")]
-            internal static extern AudioManagerError SetMediaStreamOnly(int deviceId, bool enable);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_media_stream_only_by_id", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError SetMediaStreamOnly(int deviceId, [MarshalAs(UnmanagedType.U1)] bool enable);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_media_stream_only_by_id")]
-            internal static extern AudioManagerError GetMediaStreamOnly(int deviceId, out bool enabled);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_media_stream_only_by_id", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError GetMediaStreamOnly(int deviceId, [MarshalAs(UnmanagedType.U1)] out bool enabled);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_device_connection_changed_cb")]
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_device_connection_changed_cb", CallingConvention = CallingConvention.Cdecl)]
             internal static extern AudioManagerError AddDeviceConnectionChangedCallback(
                 AudioDeviceOptions deviceMask, ConnectionChangedCallback callback, IntPtr userData, out int id);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_device_connection_changed_cb")]
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_device_connection_changed_cb", CallingConvention = CallingConvention.Cdecl)]
             internal static extern AudioManagerError RemoveDeviceConnectionChangedCallback(int id);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_device_running_changed_cb")]
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_device_running_changed_cb", CallingConvention = CallingConvention.Cdecl)]
             internal static extern AudioManagerError AddDeviceRunningChangedCallback(AudioDeviceOptions deviceMask,
                 RunningChangedCallback callback, IntPtr userData, out int id);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_device_running_changed_cb")]
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_device_running_changed_cb", CallingConvention = CallingConvention.Cdecl)]
             internal static extern AudioManagerError RemoveDeviceRunningChangedCallback(int id);
         }
     }

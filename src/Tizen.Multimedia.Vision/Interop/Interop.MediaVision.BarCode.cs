@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Multimedia.Vision;
 
 /// <summary>
@@ -33,8 +34,8 @@ internal static partial class Interop
         /// </summary>
         internal static partial class BarcodeDetector
         {
-            [DllImport(Libraries.MediaVisionBarcodeDetector, EntryPoint = "mv_barcode_detect")]
-            internal static extern MediaVisionError Detect(IntPtr source, IntPtr engineCfg, Rectangle roi,
+            [LibraryImport(Libraries.MediaVisionBarcodeDetector, EntryPoint = "mv_barcode_detect", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial MediaVisionError Detect(IntPtr source, IntPtr engineCfg, Rectangle roi,
                 DetectedCallback detectCb, IntPtr userData = default(IntPtr));
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -55,12 +56,12 @@ internal static partial class Interop
         /// </summary>
         internal static partial class BarcodeGenerator
         {
-            [DllImport(Libraries.MediaVisionBarcodeGenerator, EntryPoint = "mv_barcode_generate_source")]
-            internal static extern MediaVisionError GenerateSource(IntPtr engineCfg, string message,
+            [LibraryImport(Libraries.MediaVisionBarcodeGenerator, EntryPoint = "mv_barcode_generate_source", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial MediaVisionError GenerateSource(IntPtr engineCfg, string message,
                 BarcodeType type, int qrEncMode, int qrEcc, int qrVersion, IntPtr source);
 
-            [DllImport(Libraries.MediaVisionBarcodeGenerator, EntryPoint = "mv_barcode_generate_image")]
-            internal static extern MediaVisionError GenerateImage(IntPtr engineCfg,
+            [LibraryImport(Libraries.MediaVisionBarcodeGenerator, EntryPoint = "mv_barcode_generate_image", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial MediaVisionError GenerateImage(IntPtr engineCfg,
                 string message, int imageWidth, int imageHeight, BarcodeType type,
                 int qrEncMode, int qrEcc, int qrVersion, string imagePath, BarcodeImageFormat imageFormat);
         }

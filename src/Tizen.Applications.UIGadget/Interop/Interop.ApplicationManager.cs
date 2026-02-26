@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2025 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 using Tizen.Internals.Errors;
 using Tizen.Applications;
@@ -38,7 +39,10 @@ internal static partial class Interop
             PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied
         }
 
-        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_request_remount_gadget_path")]
-        internal static extern ErrorCode AppRemountGadgetPath(out string pkgList);
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_request_remount_gadget_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppRemountGadgetPath(out string pkgList);
     }
 }
+
+
+

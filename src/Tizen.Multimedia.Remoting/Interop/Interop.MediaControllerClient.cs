@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications;
 using Tizen.Multimedia.Remoting;
 
@@ -51,7 +52,7 @@ internal static partial class Interop
         internal delegate void DisplayRotationUpdatedCallback(string serverName, MediaControlNativeDisplayRotation isEnabned, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void BoolAttributeUpdatedCallback(string serverName, bool isEnabled, IntPtr userData);
+        internal delegate void BoolAttributeUpdatedCallback(string serverName, [MarshalAs(UnmanagedType.U1)] bool isEnabled, IntPtr userData);
 
 
         // Capability updated callbacks
@@ -128,11 +129,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_subtitles_enabled")]
         internal static extern MediaControllerError IsSubtitleEnabled(MediaControllerClientHandle clientHandle,
-            string serverName, out bool isEnabled);
+            string serverName, [MarshalAs(UnmanagedType.U1)] out bool isEnabled);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_360_mode_enabled")]
         internal static extern MediaControllerError IsMode360Enabled(MediaControllerClientHandle clientHandle,
-            string serverName, out bool isEnabled);
+            string serverName, [MarshalAs(UnmanagedType.U1)] out bool isEnabled);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_display_mode")]
         internal static extern MediaControllerError GetDisplayMode(MediaControllerClientHandle clientHandle,
@@ -341,7 +342,7 @@ internal static partial class Interop
         #endregion Event
     }
 
-    internal class MediaControllerClientHandle : SafeHandle
+    internal partial class MediaControllerClientHandle : SafeHandle
     {
         protected MediaControllerClientHandle() : base(IntPtr.Zero, true)
         {
@@ -362,3 +363,4 @@ internal static partial class Interop
         }
     }
 }
+

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 using ErrorCode = Interop.PackageManager.ErrorCode;
 
@@ -23,16 +24,19 @@ internal static partial class Interop
 {
     internal static partial class PackageManagerInternal
     {
-        [DllImport(Libraries.PackageManager, EntryPoint = "pkgmgr_client_new")]
-        internal static extern IntPtr PkgmgrClientNew(int type);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "pkgmgr_client_new", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial IntPtr PkgmgrClientNew(int type);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "pkgmgr_client_free")]
-        internal static extern ErrorCode PkgmgrClientFree(IntPtr clientHandle);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "pkgmgr_client_free", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PkgmgrClientFree(IntPtr clientHandle);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "pkgmgr_client_activate")]
-        internal static extern ErrorCode PkgmgrClientActivate(IntPtr clientHandle, string pkgType, string pkgId);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "pkgmgr_client_activate", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PkgmgrClientActivate(IntPtr clientHandle, string pkgType, string pkgId);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "pkgmgr_client_deactivate")]
-        internal static extern ErrorCode PkgmgrClientDeactivate(IntPtr clientHandle, string pkgType, string pkgId);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "pkgmgr_client_deactivate", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PkgmgrClientDeactivate(IntPtr clientHandle, string pkgType, string pkgId);
     }
 }
+
+
+

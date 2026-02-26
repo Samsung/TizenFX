@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,52 +16,57 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Content.MediaContent;
 
 internal static partial class Interop
 {
     internal static partial class VideoInfo
     {
-        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_destroy", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_destroy")]
         internal static extern MediaContentError Destroy(IntPtr handle); // Deprecated since API12
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_album", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_album")]
         internal static extern MediaContentError GetAlbum(IntPtr handle, out IntPtr albumName); // Deprecated since API12
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_artist", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_artist")]
         internal static extern MediaContentError GetArtist(IntPtr handle, out IntPtr artistName); // Deprecated since API12
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_album_artist", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_album_artist")]
         internal static extern MediaContentError GetAlbumArtist(IntPtr handle, out IntPtr albumArtistName); // Deprecated since API12
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_genre", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_genre")]
         internal static extern MediaContentError GetGenre(IntPtr handle, out IntPtr genreName); // Deprecated since API12
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_composer", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_composer")]
         internal static extern MediaContentError GetComposer(IntPtr handle, out IntPtr composerName); // Deprecated since API12
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_year", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_year")]
         internal static extern MediaContentError GetYear(IntPtr handle, out IntPtr year); // Deprecated since API12
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_recorded_date", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_recorded_date")]
         internal static extern MediaContentError GetRecordedDate(IntPtr handle, out IntPtr recordedDate); // Deprecated since API12
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_copyright", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_copyright")]
         internal static extern MediaContentError GetCopyright(IntPtr handle, out IntPtr copyright); // Deprecated since API12
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_track_num", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_track_num")]
         internal static extern MediaContentError GetTrackNum(IntPtr handle, out IntPtr trackNum); // Deprecated since API12
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_bit_rate", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_bit_rate")]
         internal static extern MediaContentError GetBitRate(IntPtr handle, out int bitRate); // Deprecated since API12
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_duration", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_duration")]
         internal static extern MediaContentError GetDuration(IntPtr handle, out int duration); // Deprecated since API12
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_width", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_width")]
         internal static extern MediaContentError GetWidth(IntPtr handle, out int width); // Deprecated since API12
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_height", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.MediaContent, EntryPoint = "video_meta_get_height")]
         internal static extern MediaContentError GetHeight(IntPtr handle, out int width); // Deprecated since API12
     }
 }
+
+
+
+

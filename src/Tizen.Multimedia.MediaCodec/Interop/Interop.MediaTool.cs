@@ -16,12 +16,13 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
-    internal static class MediaPacket
+    internal static partial class MediaPacket
     {
-        [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_destroy")]
-        internal static extern int Destroy(IntPtr handle);
+        [LibraryImport(Libraries.MediaTool, EntryPoint = "media_packet_destroy", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int Destroy(IntPtr handle);
     }
 }

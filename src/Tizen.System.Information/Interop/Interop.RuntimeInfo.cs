@@ -17,6 +17,7 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Internals;
 using Tizen.System;
 
@@ -116,46 +117,46 @@ internal static partial class Interop
             GemRss = 1000
         }
 
-        [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_value_int")]
-        public static extern InformationError GetValue(RuntimeInfoKey key, out int status);
+        [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_value_int")]
+        public static partial InformationError GetValue(RuntimeInfoKey key, out int status);
 
-        [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_value_bool")]
-        public static extern InformationError GetValue(RuntimeInfoKey key, out bool status);
+        [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_value_bool")]
+        public static partial InformationError GetValue(RuntimeInfoKey key, [MarshalAs(UnmanagedType.U1)] out bool status);
 
-        [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_value_double")]
-        public static extern InformationError GetValue(RuntimeInfoKey key, out double status);
+        [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_value_double")]
+        public static partial InformationError GetValue(RuntimeInfoKey key, out double status);
 
-        [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_value_string")]
-        public static extern InformationError GetValue(RuntimeInfoKey key, out string status);
+        [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_value_string")]
+        public static partial InformationError GetValue(RuntimeInfoKey key, [MarshalAs(UnmanagedType.LPStr)] out string status);
 
-        [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_system_memory_info")]
-        public static extern InformationError GetSystemMemoryInfo(out MemoryInfo memoryInfo);
+        [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_system_memory_info")]
+        public static partial InformationError GetSystemMemoryInfo(out MemoryInfo memoryInfo);
 
-        [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_process_memory_info")]
-        public static extern InformationError GetProcessMemoryInfo(int[] pid, int size, ref IntPtr array);
+        [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_process_memory_info")]
+        public static partial InformationError GetProcessMemoryInfo(int[] pid, int size, ref IntPtr array);
 
-        [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_cpu_usage")]
-        public static extern InformationError GetCpuUsage(out CpuUsage cpuUsage);
+        [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_cpu_usage")]
+        public static partial InformationError GetCpuUsage(out CpuUsage cpuUsage);
 
-        [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_process_cpu_usage")]
-        public static extern InformationError GetProcessCpuUsage(int[] pid, int size, ref IntPtr array);
+        [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_process_cpu_usage")]
+        public static partial InformationError GetProcessCpuUsage(int[] pid, int size, ref IntPtr array);
 
-        [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_processor_count")]
-        public static extern InformationError GetProcessorCount(out int processorCount);
+        [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_processor_count")]
+        public static partial InformationError GetProcessorCount(out int processorCount);
 
-        [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_processor_current_frequency")]
-        public static extern InformationError GetProcessorCurrentFrequency(int coreId, out int cpuFreq);
+        [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_processor_current_frequency")]
+        public static partial InformationError GetProcessorCurrentFrequency(int coreId, out int cpuFreq);
 
-        [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_processor_max_frequency")]
-        public static extern InformationError GetProcessorMaxFrequency(int coreId, out int cpuFreq);
+        [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_processor_max_frequency")]
+        public static partial InformationError GetProcessorMaxFrequency(int coreId, out int cpuFreq);
 
-        [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_set_changed_cb")]
-        public static extern InformationError SetRuntimeInfoChangedCallback(RuntimeInfoKey runtimeInfoKey, RuntimeInformationChangedCallback cb, IntPtr userData);
+        [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_set_changed_cb")]
+        public static partial InformationError SetRuntimeInfoChangedCallback(RuntimeInfoKey runtimeInfoKey, RuntimeInformationChangedCallback cb, IntPtr userData);
 
-        [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_unset_changed_cb")]
-        public static extern InformationError UnsetRuntimeInfoChangedCallback(RuntimeInfoKey runtimeInfoKey);
+        [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_unset_changed_cb")]
+        public static partial InformationError UnsetRuntimeInfoChangedCallback(RuntimeInfoKey runtimeInfoKey);
 
-        [DllImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_process_memory_value_int")]
-        public static extern InformationError GetProcessMemoryValueInt(int[] pid, int size, ProcessMemoryInfoKey memoryInfoKey, out IntPtr array);
+        [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_process_memory_value_int")]
+        public static partial InformationError GetProcessMemoryValueInt(int[] pid, int size, ProcessMemoryInfoKey memoryInfoKey, out IntPtr array);
     }
 }

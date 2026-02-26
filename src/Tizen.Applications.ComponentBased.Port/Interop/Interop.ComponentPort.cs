@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications;
 using Tizen.Applications.ComponentBased;
 
@@ -49,52 +50,55 @@ internal static partial class Interop
             PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
         }
 
-        [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_create")]
-        internal static extern ErrorCode Create(string portName, out IntPtr handle);
+        [LibraryImport(Libraries.ComponentPort, EntryPoint = "component_port_create", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode Create(string portName, out IntPtr handle);
         // int component_port_create(const char *port_name, component_port_h *port);
 
-        [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_destroy")]
-        internal static extern ErrorCode Destroy(IntPtr handle);
+        [LibraryImport(Libraries.ComponentPort, EntryPoint = "component_port_destroy", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode Destroy(IntPtr handle);
         // int component_port_destroy(component_port_h port);
 
-        [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_set_request_cb")]
-        internal static extern ErrorCode SetRequestCb(IntPtr handle, ComponentPortRequestCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.ComponentPort, EntryPoint = "component_port_set_request_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode SetRequestCb(IntPtr handle, ComponentPortRequestCallback callback, IntPtr userData);
         // int component_port_set_request_cb(component_port_h port, component_port_request_cb callback, void *user_data);
 
-        [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_set_sync_request_cb")]
-        internal static extern ErrorCode SetSyncRequestCb(IntPtr handle, ComponentPortSyncRequestCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.ComponentPort, EntryPoint = "component_port_set_sync_request_cb", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode SetSyncRequestCb(IntPtr handle, ComponentPortSyncRequestCallback callback, IntPtr userData);
         // int component_port_set_sync_request_cb(component_port_h port, component_port_sync_request_cb callback, void *user_data);
 
-        [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_add_privilege")]
-        internal static extern ErrorCode AddPrivilege(IntPtr handle, string privilege);
+        [LibraryImport(Libraries.ComponentPort, EntryPoint = "component_port_add_privilege", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AddPrivilege(IntPtr handle, string privilege);
         // int component_port_add_privilege(component_port_h port, const char *privilege);
 
-        [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_wait_for_event")]
-        internal static extern void WaitForEvent(IntPtr handle);
+        [LibraryImport(Libraries.ComponentPort, EntryPoint = "component_port_wait_for_event", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial void WaitForEvent(IntPtr handle);
         // void component_port_wait_for_event(component_port_h port);
 
-        [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_cancel")]
-        internal static extern void Cancel(IntPtr handle);
+        [LibraryImport(Libraries.ComponentPort, EntryPoint = "component_port_cancel", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial void Cancel(IntPtr handle);
         // void component_port_cancel(component_port_h port);
 
-        [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_send")]
-        internal static extern ErrorCode Send(IntPtr handle, string endpoint, Int32 timeout, SafeParcelHandle request);
+        [LibraryImport(Libraries.ComponentPort, EntryPoint = "component_port_send", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode Send(IntPtr handle, string endpoint, Int32 timeout, SafeParcelHandle request);
         // int component_port_send(component_port_h port, const char *endpoint, int timeout, parcel_h request);
 
-        [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_send_sync")]
-        internal static extern ErrorCode SendSync(IntPtr handle, string endpoint, Int32 timeout, SafeParcelHandle request, out SafeParcelHandle response);
+        [LibraryImport(Libraries.ComponentPort, EntryPoint = "component_port_send_sync", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode SendSync(IntPtr handle, string endpoint, Int32 timeout, SafeParcelHandle request, out SafeParcelHandle response);
         // int component_port_send(component_port_h port, const char *endpoint, int timeout, parcel_h request, parcel_h *response);
 
-        [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_is_running")]
-        internal static extern ErrorCode IsRunning(string endpoint, out bool isRunning);
-        // int component_port_is_running(const char *endpoint, bool *is_running);
+        [LibraryImport(Libraries.ComponentPort, EntryPoint = "component_port_is_running", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode IsRunning(string endpoint, [MarshalAs(UnmanagedType.U1)] out bool isRunning);
+        // int component_port_is_running(const char *endpoint, [MarshalAs(UnmanagedType.U1)] bool *is_running);
 
-        [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_watch")]
-        internal static extern ErrorCode Watch(string endpoint, ComponentPortAppearedCallback appearedCallback, ComponentPortVanishedCallback vanishedCallback, IntPtr userData, out uint watcherId);
+        [LibraryImport(Libraries.ComponentPort, EntryPoint = "component_port_watch", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode Watch(string endpoint, ComponentPortAppearedCallback appearedCallback, ComponentPortVanishedCallback vanishedCallback, IntPtr userData, out uint watcherId);
         // int component_port_watch(const char *endpoint, component_port_appeared_cb appeared_cb, component_port_vanished_cb vanished_cb, void *user_data, unsigned int *watcher_id);
 
-        [DllImport(Libraries.ComponentPort, EntryPoint = "component_port_unwatch")]
-        internal static extern ErrorCode Unwatch(uint watcherId);
+        [LibraryImport(Libraries.ComponentPort, EntryPoint = "component_port_unwatch", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode Unwatch(uint watcherId);
         // int component_port_unwatch(unsigned int watcher_id);
     }
 }
+
+
+

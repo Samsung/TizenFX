@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2023 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 using CertificateType = Interop.Package.CertificateType;
 
@@ -23,22 +24,25 @@ internal static partial class Interop
 {
     internal static partial class PackageManagerInfoInternal
     {
-        [DllImport(Libraries.PackageManagerInfoInternal, EntryPoint = "pkgmgrinfo_pkginfo_create_certinfo")]
-        internal static extern int PkgmgrinfoPkginfoCreateCertinfo(out IntPtr handle);
+        [LibraryImport(Libraries.PackageManagerInfoInternal, EntryPoint = "pkgmgrinfo_pkginfo_create_certinfo", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int PkgmgrinfoPkginfoCreateCertinfo(out IntPtr handle);
 
-        [DllImport(Libraries.PackageManagerInfoInternal, EntryPoint = "pkgmgrinfo_pkginfo_destroy_certinfo")]
-        internal static extern int PkgmgrinfoPkginfoDestroyCertinfo(IntPtr handle);
+        [LibraryImport(Libraries.PackageManagerInfoInternal, EntryPoint = "pkgmgrinfo_pkginfo_destroy_certinfo", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int PkgmgrinfoPkginfoDestroyCertinfo(IntPtr handle);
 
-        [DllImport(Libraries.PackageManagerInfoInternal, EntryPoint = "pkgmgrinfo_pkginfo_load_certinfo")]
-        internal static extern int PkgmgrinfoPkginfoLoadCertinfo(string pkgid, IntPtr handle, int uid);
+        [LibraryImport(Libraries.PackageManagerInfoInternal, EntryPoint = "pkgmgrinfo_pkginfo_load_certinfo", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int PkgmgrinfoPkginfoLoadCertinfo(string pkgid, IntPtr handle, int uid);
 
-        [DllImport(Libraries.PackageManagerInfoInternal, EntryPoint = "pkgmgrinfo_pkginfo_get_cert_value")]
-        internal static extern int PkgmgrinfoPkginfoGetCertValue(IntPtr handle, CertificateType certType, out IntPtr value);
+        [LibraryImport(Libraries.PackageManagerInfoInternal, EntryPoint = "pkgmgrinfo_pkginfo_get_cert_value", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int PkgmgrinfoPkginfoGetCertValue(IntPtr handle, CertificateType certType, out IntPtr value);
 
-        [DllImport(Libraries.PackageManagerInfoInternal, EntryPoint = "pkgmgrinfo_pkginfo_foreach_depends_on_by_pkgid")]
-        internal static extern int PkgmgrinfoPkginfoForeachDependsOnByPkgId(string pkgid, Interop.Package.PackageInfoDependencyInfoCallback callback, IntPtr userData, int uid);
+        [LibraryImport(Libraries.PackageManagerInfoInternal, EntryPoint = "pkgmgrinfo_pkginfo_foreach_depends_on_by_pkgid", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int PkgmgrinfoPkginfoForeachDependsOnByPkgId(string pkgid, Interop.Package.PackageInfoDependencyInfoCallback callback, IntPtr userData, int uid);
 
-        [DllImport(Libraries.Libc, EntryPoint = "getuid")]
-        internal static extern int GetUID();
+        [LibraryImport(Libraries.Libc, EntryPoint = "getuid", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetUID();
     }
 }
+
+
+

@@ -16,12 +16,16 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
     internal static partial class AppCoreUI
     {
-        [DllImport(Libraries.AppCoreUI, EntryPoint = "app_core_ui_base_get_tizen_glib_context", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern IntPtr GetTizenGlibContext();
+        [LibraryImport(Libraries.AppCoreUI, EntryPoint = "app_core_ui_base_get_tizen_glib_context", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial IntPtr GetTizenGlibContext();
     }
 }
+
+
+

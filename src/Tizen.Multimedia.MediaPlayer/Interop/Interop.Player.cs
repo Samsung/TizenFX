@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen;
 using Tizen.Multimedia;
 
@@ -113,7 +114,7 @@ internal static partial class Interop
         internal static extern PlayerErrorCode SetReplayGain(IntPtr player, bool enabled);
 
         [DllImport(Libraries.Player, EntryPoint = "player_is_replaygain_enabled")]
-        internal static extern PlayerErrorCode IsReplayGain(IntPtr player, out bool enabled);
+        internal static extern PlayerErrorCode IsReplayGain(IntPtr player, [MarshalAs(UnmanagedType.U1)] out bool enabled);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_sound_stream_info")]
         internal static extern PlayerErrorCode SetAudioPolicyInfo(IntPtr player, AudioStreamPolicyHandle streamInfo);
@@ -142,13 +143,13 @@ internal static partial class Interop
         internal static extern PlayerErrorCode SetMute(IntPtr player, bool muted);
 
         [DllImport(Libraries.Player, EntryPoint = "player_is_muted")]
-        internal static extern PlayerErrorCode IsMuted(IntPtr player, out bool muted);
+        internal static extern PlayerErrorCode IsMuted(IntPtr player, [MarshalAs(UnmanagedType.U1)] out bool muted);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_looping")]
         internal static extern PlayerErrorCode SetLooping(IntPtr player, bool looping);
 
         [DllImport(Libraries.Player, EntryPoint = "player_is_looping")]
-        internal static extern PlayerErrorCode IsLooping(IntPtr player, out bool looping);
+        internal static extern PlayerErrorCode IsLooping(IntPtr player, [MarshalAs(UnmanagedType.U1)] out bool looping);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_completed_cb")]
         internal static extern PlayerErrorCode SetCompletedCb(IntPtr player,
@@ -308,16 +309,16 @@ internal static partial class Interop
         internal static extern PlayerErrorCode SetAudioOnly(IntPtr player, bool audioOnly);
 
         [DllImport(Libraries.Player, EntryPoint = "player_is_audio_only")]
-        internal static extern PlayerErrorCode IsAudioOnly(IntPtr player, out bool audioOnly);
+        internal static extern PlayerErrorCode IsAudioOnly(IntPtr player, [MarshalAs(UnmanagedType.U1)] out bool audioOnly);
 
         [DllImport(Libraries.Player, EntryPoint = "player_360_is_content_spherical")]
-        internal static extern PlayerErrorCode IsSphericalContent(IntPtr player, out bool isspherical);
+        internal static extern PlayerErrorCode IsSphericalContent(IntPtr player, [MarshalAs(UnmanagedType.U1)] out bool isspherical);
 
         [DllImport(Libraries.Player, EntryPoint = "player_360_set_enabled")]
         internal static extern PlayerErrorCode SetSphericalMode(IntPtr player, bool enabled);
 
         [DllImport(Libraries.Player, EntryPoint = "player_360_is_enabled")]
-        internal static extern PlayerErrorCode IsSphericalMode(IntPtr player, out bool enabled);
+        internal static extern PlayerErrorCode IsSphericalMode(IntPtr player, [MarshalAs(UnmanagedType.U1)] out bool enabled);
 
         [DllImport(Libraries.Player, EntryPoint = "player_360_set_direction_of_view")]
         internal static extern PlayerErrorCode SetDirectionOfView(IntPtr player, float yaw, float pitch);
@@ -359,7 +360,7 @@ internal static partial class Interop
         internal static extern PlayerErrorCode SetAudioPitchEnabled(IntPtr player, bool enabled);
 
         [DllImport(Libraries.Player, EntryPoint = "player_audio_pitch_is_enabled")]
-        internal static extern PlayerErrorCode IsAudioPitchEnabled(IntPtr player, out bool enabled);
+        internal static extern PlayerErrorCode IsAudioPitchEnabled(IntPtr player, [MarshalAs(UnmanagedType.U1)] out bool enabled);
 
         [DllImport(Libraries.Player, EntryPoint = "player_audio_pitch_set_value")]
         internal static extern PlayerErrorCode SetAudioPitch(IntPtr player, float level);
@@ -371,10 +372,10 @@ internal static partial class Interop
         internal static extern PlayerErrorCode SetAudioOffloadEnabled(IntPtr player, bool value);
 
         [DllImport(Libraries.Player, EntryPoint = "player_audio_offload_is_enabled")]
-        internal static extern PlayerErrorCode IsAudioOffloadEnabled(IntPtr player, out bool value);
+        internal static extern PlayerErrorCode IsAudioOffloadEnabled(IntPtr player, [MarshalAs(UnmanagedType.U1)] out bool value);
 
         [DllImport(Libraries.Player, EntryPoint = "player_audio_offload_is_activated")]
-        internal static extern PlayerErrorCode IsAudioOffloadActivated(IntPtr player, out bool value);
+        internal static extern PlayerErrorCode IsAudioOffloadActivated(IntPtr player, [MarshalAs(UnmanagedType.U1)] out bool value);
 
         [DllImport(Libraries.Player, EntryPoint = "player_audio_offload_foreach_supported_format")]
         internal static extern PlayerErrorCode SupportedAudioOffloadFormat(IntPtr player, SupportedMediaFormatCallback callback, IntPtr userData);
@@ -395,7 +396,7 @@ internal static partial class Interop
         internal static extern PlayerErrorCode GetVideoCodecType(IntPtr player, out CodecType type);
     }
 
-    internal class PlayerHandle : SafeHandle
+    internal partial class PlayerHandle : SafeHandle
     {
         protected PlayerHandle() : base(IntPtr.Zero, true)
         {
@@ -421,3 +422,4 @@ internal static partial class Interop
         }
     }
 }
+

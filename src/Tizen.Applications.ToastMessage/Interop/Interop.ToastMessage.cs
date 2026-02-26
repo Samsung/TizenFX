@@ -16,13 +16,17 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications;
 
 internal static partial class Interop
 {
-    internal static class ToastMessage
+    internal static partial class ToastMessage
     {
-        [DllImport(Libraries.ToastMessage, EntryPoint = "notification_status_message_post")]
-        internal static extern int ToastMessagePost(string message);
+        [LibraryImport(Libraries.ToastMessage, EntryPoint = "notification_status_message_post", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int ToastMessagePost(string message);
     }
 }
+
+
+

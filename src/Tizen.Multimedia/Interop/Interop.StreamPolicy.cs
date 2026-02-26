@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.Multimedia
 {
@@ -33,78 +34,79 @@ namespace Tizen.Multimedia
                 AudioStreamFocusState focusState, AudioStreamFocusChangedReason reason, string extraInfo,
                 IntPtr userData);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_create_stream_information")]
-            internal static extern AudioManagerError Create(AudioStreamType streamType,
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_create_stream_information", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern AudioManagerError Create(AudioStreamType streamType,
                 FocusStateChangedCallback callback, IntPtr userData, out AudioStreamPolicyHandle streamInfo);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_destroy_stream_information")]
-            internal static extern AudioManagerError Destroy(IntPtr streamInfo);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_destroy_stream_information", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError Destroy(IntPtr streamInfo);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_device_id_for_stream_routing")]
-            internal static extern AudioManagerError AddDeviceForStreamRouting(
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_device_id_for_stream_routing", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError AddDeviceForStreamRouting(
                 AudioStreamPolicyHandle streamInfo, int deviceId);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_device_id_for_stream_routing")]
-            internal static extern AudioManagerError RemoveDeviceForStreamRouting(
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_device_id_for_stream_routing", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError RemoveDeviceForStreamRouting(
                 AudioStreamPolicyHandle streamInfo, int device);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_apply_stream_routing")]
-            internal static extern AudioManagerError ApplyStreamRouting(AudioStreamPolicyHandle streamInfo);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_apply_stream_routing", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError ApplyStreamRouting(AudioStreamPolicyHandle streamInfo);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_stream_preferred_device_id")]
-            internal static extern AudioManagerError SetPreferredDevice(AudioStreamPolicyHandle streamInfo, AudioDeviceIoDirection direction, int deviceId);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_stream_preferred_device_id", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError SetPreferredDevice(AudioStreamPolicyHandle streamInfo, AudioDeviceIoDirection direction, int deviceId);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_stream_preferred_device")]
-            internal static extern AudioManagerError GetPreferredDevice(AudioStreamPolicyHandle streamInfo, out int inDeviceId, out int outDeviceId);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_stream_preferred_device", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError GetPreferredDevice(AudioStreamPolicyHandle streamInfo, out int inDeviceId, out int outDeviceId);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_acquire_focus")]
-            internal static extern AudioManagerError AcquireFocus(AudioStreamPolicyHandle streamInfo,
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_acquire_focus", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError AcquireFocus(AudioStreamPolicyHandle streamInfo,
                 AudioStreamFocusOptions focusMask, AudioStreamBehaviors audioStreamBehavior, string extraInfo);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_release_focus")]
-            internal static extern AudioManagerError ReleaseFocus(AudioStreamPolicyHandle streamInfo,
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_release_focus", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError ReleaseFocus(AudioStreamPolicyHandle streamInfo,
                 AudioStreamFocusOptions focusMask, AudioStreamBehaviors audioStreamBehavior, string extraInfo);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_focus_state")]
-            internal static extern int GetFocusState(AudioStreamPolicyHandle streamInfo,
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_focus_state", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial int GetFocusState(AudioStreamPolicyHandle streamInfo,
                 out AudioStreamFocusState stateForPlayback, out AudioStreamFocusState stateForRecording);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_focus_reacquisition")]
-            internal static extern AudioManagerError SetFocusReacquisition(AudioStreamPolicyHandle streamInfo,
-                bool enable);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_focus_reacquisition", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError SetFocusReacquisition(AudioStreamPolicyHandle streamInfo,
+                [MarshalAs(UnmanagedType.U1)] bool enable);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_focus_reacquisition")]
-            internal static extern AudioManagerError GetFocusReacquisition(AudioStreamPolicyHandle streamInfo,
-                out bool enabled);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_focus_reacquisition", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError GetFocusReacquisition(AudioStreamPolicyHandle streamInfo,
+                [MarshalAs(UnmanagedType.U1)] out bool enabled);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_sound_type")]
-            internal static extern AudioManagerError GetSoundType(AudioStreamPolicyHandle streamInfo,
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_sound_type", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError GetSoundType(AudioStreamPolicyHandle streamInfo,
                 out AudioVolumeType soundType);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_focus_state_watch_cb")]
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_focus_state_watch_cb", CallingConvention = CallingConvention.Cdecl)]
             internal static extern AudioManagerError AddFocusStateWatchCallback(AudioStreamFocusOptions focusMask,
                 FocusStateWatchCallback callback, IntPtr userData, out int id);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_focus_state_watch_cb")]
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_focus_state_watch_cb", CallingConvention = CallingConvention.Cdecl)]
             internal static extern int RemoveFocusStateWatchCallback(int id);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_is_stream_on_device_by_id")]
-            internal static extern AudioManagerError IsStreamOnDevice(AudioStreamPolicyHandle streamInfo, int deviceId,
-                out bool isOn);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_is_stream_on_device_by_id", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError IsStreamOnDevice(AudioStreamPolicyHandle streamInfo, int deviceId,
+                [MarshalAs(UnmanagedType.U1)] out bool isOn);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_effect_method_with_reference_by_id")]
-            internal static extern AudioManagerError SetSoundEffectWithReference(AudioStreamPolicyHandle streamInfo,
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_effect_method_with_reference_by_id", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError SetSoundEffectWithReference(AudioStreamPolicyHandle streamInfo,
                 SoundEffectWithReferenceNative effect, int deviceId);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_effect_method_with_reference")]
-            internal static extern AudioManagerError GetSoundEffectWithReference(AudioStreamPolicyHandle streamInfo,
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_effect_method_with_reference", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError GetSoundEffectWithReference(AudioStreamPolicyHandle streamInfo,
                 out SoundEffectWithReferenceNative effect, out int deviceId);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_effect_method")]
-            internal static extern AudioManagerError SetSoundEffect(AudioStreamPolicyHandle streamInfo, int effect);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_effect_method", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError SetSoundEffect(AudioStreamPolicyHandle streamInfo, int effect);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_effect_method")]
-            internal static extern AudioManagerError GetSoundEffect(AudioStreamPolicyHandle streamInfo, out int effect);
+            [LibraryImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_effect_method", StringMarshalling = StringMarshalling.Utf8)]
+            internal static partial AudioManagerError GetSoundEffect(AudioStreamPolicyHandle streamInfo, out int effect);
         }
     }
 }
+
