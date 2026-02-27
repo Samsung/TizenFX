@@ -987,14 +987,18 @@ namespace Tizen.NUI
 
         internal void CreateSafeCallback<T>(T method, out T safeCallback) where T : Delegate
         {
-            AddToNativeHolder(method);
+            // TODO : Delgate strong-connected with object. So if we hold method, View could not be GC.
+            // But we have to keep safeCallback since Native could invoke it if View & Delegate GC.
+            // Until find good way to resolve this issue,
+
+            // AddToNativeHolder(method);
             safeCallback = method;
         }
 
         internal void ReleaseSafeCallback<T>(ref T safeCallback) where T : Delegate
         {
             Debug.Assert(safeCallback != null);
-            RemoveFromNativeHolder(safeCallback);
+            // RemoveFromNativeHolder(safeCallback);
             safeCallback = null;
         }
 
