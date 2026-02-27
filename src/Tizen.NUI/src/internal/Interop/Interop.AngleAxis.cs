@@ -15,32 +15,41 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class AngleAxis
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AngleAxis__SWIG_0")]
-            public static extern global::System.IntPtr NewAngleAxis();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AngleAxis__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewAngleAxis();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AngleAxis__SWIG_1")]
-            public static extern global::System.IntPtr NewAngleAxis(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AngleAxis__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewAngleAxis(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AngleAxis_angle_set")]
-            public static extern void AngleSet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AngleAxis_angle_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AngleSet(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AngleAxis_angle_get")]
-            public static extern global::System.IntPtr AngleGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AngleAxis_angle_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr AngleGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AngleAxis_axis_set")]
-            public static extern void AxisSet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AngleAxis_axis_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AxisSet(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AngleAxis_axis_get")]
-            public static extern global::System.IntPtr AxisGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AngleAxis_axis_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr AxisGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_AngleAxis")]
-            public static extern void DeleteAngleAxis(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_AngleAxis", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteAngleAxis(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

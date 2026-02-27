@@ -15,21 +15,30 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class WebPasswordDataList
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebPasswordDataList")]
-            public static extern void DeleteWebPasswordDataList(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebPasswordDataList", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWebPasswordDataList(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPasswordDataList_GetItemCount")]
-            public static extern uint GetItemCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPasswordDataList_GetItemCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetItemCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPasswordDataList_ValueOfIndex")]
-            public static extern System.IntPtr ValueOfIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPasswordDataList_ValueOfIndex", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial System.IntPtr ValueOfIndex(IntPtr jarg1, uint jarg2);
         }
     }
 }
+
+
+
+
+
 

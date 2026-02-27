@@ -15,39 +15,48 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class NDalicGradientVisual
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_START_POSITION_get")]
-            public static extern int GradientVisualStartPositionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_START_POSITION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GradientVisualStartPositionGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_END_POSITION_get")]
-            public static extern int GradientVisualEndPositionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_END_POSITION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GradientVisualEndPositionGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_CENTER_get")]
-            public static extern int GradientVisualCenterGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_CENTER_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GradientVisualCenterGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_RADIUS_get")]
-            public static extern int GradientVisualRadiusGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_RADIUS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GradientVisualRadiusGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_STOP_OFFSET_get")]
-            public static extern int GradientVisualStopOffsetGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_STOP_OFFSET_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GradientVisualStopOffsetGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_STOP_COLOR_get")]
-            public static extern int GradientVisualStopColorGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_STOP_COLOR_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GradientVisualStopColorGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_UNITS_get")]
-            public static extern int GradientVisualUnitsGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_UNITS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GradientVisualUnitsGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_SPREAD_METHOD_get")]
-            public static extern int GradientVisualSpreadMethodGet();
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_START_OFFSET_get")]
-            public static extern int GradientVisualStartOffsetGet();
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_START_ANGLE_get")]
-            public static extern int GradientVisualStartAngleGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_SPREAD_METHOD_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GradientVisualSpreadMethodGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_START_OFFSET_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GradientVisualStartOffsetGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GRADIENT_VISUAL_START_ANGLE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GradientVisualStartAngleGet();
         }
     }
 }
+
+
+
+
+

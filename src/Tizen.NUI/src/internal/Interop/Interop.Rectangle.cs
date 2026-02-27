@@ -15,98 +15,107 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class Rectangle
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Rectangle__SWIG_0")]
-            public static extern global::System.IntPtr NewRectangle();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Rectangle__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewRectangle();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Rectangle__SWIG_1")]
-            public static extern global::System.IntPtr NewRectangle(int jarg1, int jarg2, int jarg3, int jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Rectangle__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewRectangle(int jarg1, int jarg2, int jarg3, int jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_Set")]
-            public static extern void Set(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3, int jarg4, int jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_Set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Set(IntPtr jarg1, int jarg2, int jarg3, int jarg4, int jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_IsEmpty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_IsEmpty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsEmpty(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_Left")]
-            public static extern int Left(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_Left", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int Left(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_Right")]
-            public static extern int Right(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_Right", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int Right(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_Top")]
-            public static extern int Top(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_Top", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int Top(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_Bottom")]
-            public static extern int Bottom(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_Bottom", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int Bottom(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_Area")]
-            public static extern int Area(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_Area", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int Area(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_Intersects")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_Intersects", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool Intersects(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static partial bool Intersects(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_Contains")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_Contains", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool Contains(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static partial bool Contains(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_x_set")]
-            public static extern void XSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_x_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void XSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_x_get")]
-            public static extern int XGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_x_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int XGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_left_set")]
-            public static extern void LeftSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_left_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void LeftSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_left_get")]
-            public static extern int LeftGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_left_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int LeftGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_y_set")]
-            public static extern void YSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_y_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void YSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_y_get")]
-            public static extern int YGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_y_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int YGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_right_set")]
-            public static extern void RightSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_right_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RightSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_right_get")]
-            public static extern int RightGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_right_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int RightGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_width_set")]
-            public static extern void WidthSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_width_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void WidthSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_width_get")]
-            public static extern int WidthGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_width_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int WidthGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_bottom_set")]
-            public static extern void BottomSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_bottom_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void BottomSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_bottom_get")]
-            public static extern int BottomGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_bottom_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int BottomGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_height_set")]
-            public static extern void HeightSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_height_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void HeightSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_height_get")]
-            public static extern int HeightGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_height_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int HeightGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_top_set")]
-            public static extern void TopSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_top_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void TopSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_top_get")]
-            public static extern int TopGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Rectangle_top_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TopGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Rectangle")]
-            public static extern void DeleteRectangle(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Rectangle", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteRectangle(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

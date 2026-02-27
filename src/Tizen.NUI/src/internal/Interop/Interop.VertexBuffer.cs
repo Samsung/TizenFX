@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,17 +26,22 @@ namespace Tizen.NUI
         internal static partial class VertexBuffer
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VertexBuffer_New")]
-            public static extern global::System.IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VertexBuffer_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_VertexBuffer")]
-            public static extern void DeleteVertexBuffer(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_VertexBuffer", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteVertexBuffer(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VertexBuffer_SetData")]
-            public static extern void SetData(global::System.Runtime.InteropServices.HandleRef jarg1, System.IntPtr jarg2, uint jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VertexBuffer_SetData", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetData(IntPtr jarg1, System.IntPtr jarg2, uint jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VertexBuffer_GetSize")]
-            public static extern uint GetSize(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VertexBuffer_GetSize", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetSize(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

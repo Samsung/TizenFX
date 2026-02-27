@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -29,41 +33,46 @@ namespace Tizen.NUI
                 Drop
             }
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_New__SWIG_0")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_New__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_StartDragAndDrop")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_StartDragAndDrop", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool StartDragAndDrop(global::System.Runtime.InteropServices.HandleRef dragAndDrop, global::System.Runtime.InteropServices.HandleRef sourceView, global::System.Runtime.InteropServices.HandleRef shadow, string [] mimeTypes, int mimeTypsSize, string [] dataSet, int dataSetSize, global::System.Runtime.InteropServices.HandleRef callback);
+            public static partial bool StartDragAndDrop(IntPtr dragAndDrop, IntPtr sourceView, IntPtr shadow, string [] mimeTypes, int mimeTypsSize, string [] dataSet, int dataSetSize, IntPtr callback);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_AddListener")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_AddListener", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool AddListener(global::System.Runtime.InteropServices.HandleRef dragAndDrop, global::System.Runtime.InteropServices.HandleRef targetView, string mimeType, global::System.Runtime.InteropServices.HandleRef callback);
+            public static partial bool AddListener(IntPtr dragAndDrop, IntPtr targetView, string mimeType, IntPtr callback);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_RemoveListener")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_RemoveListener", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool RemoveListener(global::System.Runtime.InteropServices.HandleRef dragAndDrop, global::System.Runtime.InteropServices.HandleRef targetView, global::System.Runtime.InteropServices.HandleRef callback);
+            public static partial bool RemoveListener(IntPtr dragAndDrop, IntPtr targetView, IntPtr callback);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_Window_AddListener")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_Window_AddListener", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool WindowAddListener(global::System.Runtime.InteropServices.HandleRef dragAndDrop, global::System.Runtime.InteropServices.HandleRef targetWindow, string mimeType, global::System.Runtime.InteropServices.HandleRef callback);
+            public static partial bool WindowAddListener(IntPtr dragAndDrop, IntPtr targetWindow, string mimeType, IntPtr callback);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_Window_RemoveListener")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_Window_RemoveListener", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool WindowRemoveListener(global::System.Runtime.InteropServices.HandleRef dragAndDrop, global::System.Runtime.InteropServices.HandleRef targetWindow, global::System.Runtime.InteropServices.HandleRef callback);
+            public static partial bool WindowRemoveListener(IntPtr dragAndDrop, IntPtr targetWindow, IntPtr callback);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragEvent_GetAction")]
-            public static extern int GetAction(global::System.IntPtr dragAndDrop);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragEvent_GetAction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetAction(global::System.IntPtr dragAndDrop);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragEvent_GetPosition")]
-            public static extern global::System.IntPtr GetPosition(global::System.IntPtr dragAndDrop);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragEvent_GetPosition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetPosition(global::System.IntPtr dragAndDrop);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragEvent_GetMimeTypes")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragEvent_GetMimeTypes", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool GetMimeTypes(global::System.IntPtr dragAndDrop, out global::System.IntPtr mimeTypes, out int count);
+            public static partial bool GetMimeTypes(global::System.IntPtr dragAndDrop, out global::System.IntPtr mimeTypes, out int count);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragEvent_GetData")]
-            public static extern string GetData(global::System.IntPtr dragAndDrop);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragEvent_GetData", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetData(global::System.IntPtr dragAndDrop);
         }
     }
 }
+
+
+
+
+

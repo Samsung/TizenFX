@@ -15,329 +15,338 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class ScrollView
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ScrollViewEffect")]
-            public static extern global::System.IntPtr NewScrollViewEffect();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ScrollViewEffect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewScrollViewEffect();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ScrollViewEffect")]
-            public static extern void DeleteScrollViewEffect(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ScrollViewEffect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteScrollViewEffect(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewPagePathEffect_New")]
-            public static extern global::System.IntPtr ScrollViewPagePathEffectNew(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, uint jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewPagePathEffect_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ScrollViewPagePathEffectNew(IntPtr jarg1, IntPtr jarg2, int jarg3, IntPtr jarg4, uint jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewPagePathEffect_ApplyToPage")]
-            public static extern void ScrollViewPagePathEffectApplyToPage(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, uint jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewPagePathEffect_ApplyToPage", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ScrollViewPagePathEffectApplyToPage(IntPtr jarg1, IntPtr jarg2, uint jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ScrollViewPagePathEffect")]
-            public static extern void DeleteScrollViewPagePathEffect(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ScrollViewPagePathEffect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteScrollViewPagePathEffect(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SnapEvent_type_set")]
-            public static extern void SnapEventTypeSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SnapEvent_type_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SnapEventTypeSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SnapEvent_type_get")]
-            public static extern int SnapEventTypeGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SnapEvent_type_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int SnapEventTypeGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SnapEvent_position_set")]
-            public static extern void SnapEventPositionSet(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SnapEvent_position_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SnapEventPositionSet(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SnapEvent_position_get")]
-            public static extern global::System.IntPtr SnapEventPositionGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SnapEvent_position_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr SnapEventPositionGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SnapEvent_duration_set")]
-            public static extern void SnapEventDurationSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SnapEvent_duration_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SnapEventDurationSet(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SnapEvent_duration_get")]
-            public static extern float SnapEventDurationGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SnapEvent_duration_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float SnapEventDurationGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ScrollView_SnapEvent")]
-            public static extern global::System.IntPtr NewScrollViewSnapEvent();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ScrollView_SnapEvent", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewScrollViewSnapEvent();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ScrollView_SnapEvent")]
-            public static extern void DeleteScrollViewSnapEvent(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ScrollView_SnapEvent", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteScrollViewSnapEvent(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_WRAP_ENABLED_get")]
-            public static extern int WrapEnabledGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_WRAP_ENABLED_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int WrapEnabledGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_PANNING_ENABLED_get")]
-            public static extern int PanningEnabledGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_PANNING_ENABLED_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PanningEnabledGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_AXIS_AUTO_LOCK_ENABLED_get")]
-            public static extern int AxisAutoLockEnabledGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_AXIS_AUTO_LOCK_ENABLED_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int AxisAutoLockEnabledGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_WHEEL_SCROLL_DISTANCE_STEP_get")]
-            public static extern int WheelScrollDistanceStepGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_WHEEL_SCROLL_DISTANCE_STEP_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int WheelScrollDistanceStepGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_MODE_get")]
-            public static extern int ScrollModeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_MODE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollModeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_POSITION_get")]
-            public static extern int ScrollPositionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_POSITION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollPositionGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_PRE_POSITION_get")]
-            public static extern int ScrollPrePositionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_PRE_POSITION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollPrePositionGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_PRE_POSITION_X_get")]
-            public static extern int ScrollPrePositionXGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_PRE_POSITION_X_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollPrePositionXGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_PRE_POSITION_Y_get")]
-            public static extern int ScrollPrePositionYGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_PRE_POSITION_Y_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollPrePositionYGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_PRE_POSITION_MAX_get")]
-            public static extern int ScrollPrePositionMaxGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_PRE_POSITION_MAX_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollPrePositionMaxGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_PRE_POSITION_MAX_X_get")]
-            public static extern int ScrollPrePositionMaxXGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_PRE_POSITION_MAX_X_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollPrePositionMaxXGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_PRE_POSITION_MAX_Y_get")]
-            public static extern int ScrollPrePositionMaxYGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_PRE_POSITION_MAX_Y_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollPrePositionMaxYGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_OVERSHOOT_X_get")]
-            public static extern int OvershootXGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_OVERSHOOT_X_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int OvershootXGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_OVERSHOOT_Y_get")]
-            public static extern int OvershootYGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_OVERSHOOT_Y_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int OvershootYGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_FINAL_get")]
-            public static extern int ScrollFinalGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_FINAL_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollFinalGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_FINAL_X_get")]
-            public static extern int ScrollFinalXGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_FINAL_X_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollFinalXGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_FINAL_Y_get")]
-            public static extern int ScrollFinalYGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_FINAL_Y_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollFinalYGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_WRAP_get")]
-            public static extern int WrapGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_WRAP_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int WrapGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_PANNING_get")]
-            public static extern int PanningGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_PANNING_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PanningGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLLING_get")]
-            public static extern int ScrollingGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLLING_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollingGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_DOMAIN_SIZE_get")]
-            public static extern int ScrollDomainSizeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_DOMAIN_SIZE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollDomainSizeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_DOMAIN_SIZE_X_get")]
-            public static extern int ScrollDomainSizeXGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_DOMAIN_SIZE_X_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollDomainSizeXGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_DOMAIN_SIZE_Y_get")]
-            public static extern int ScrollDomainSizeYGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_DOMAIN_SIZE_Y_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollDomainSizeYGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_DOMAIN_OFFSET_get")]
-            public static extern int ScrollDomainOffsetGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_DOMAIN_OFFSET_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollDomainOffsetGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_POSITION_DELTA_get")]
-            public static extern int ScrollPositionDeltaGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_SCROLL_POSITION_DELTA_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollPositionDeltaGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_START_PAGE_POSITION_get")]
-            public static extern int StartPagePositionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_Property_START_PAGE_POSITION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int StartPagePositionGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ScrollView")]
-            public static extern void DeleteScrollView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ScrollView", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteScrollView(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_New")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetScrollSnapAlphaFunction")]
-            public static extern global::System.IntPtr GetScrollSnapAlphaFunction(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetScrollSnapAlphaFunction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetScrollSnapAlphaFunction(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetScrollSnapAlphaFunction")]
-            public static extern void SetScrollSnapAlphaFunction(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetScrollSnapAlphaFunction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetScrollSnapAlphaFunction(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetScrollFlickAlphaFunction")]
-            public static extern global::System.IntPtr GetScrollFlickAlphaFunction(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetScrollFlickAlphaFunction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetScrollFlickAlphaFunction(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetScrollFlickAlphaFunction")]
-            public static extern void SetScrollFlickAlphaFunction(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetScrollFlickAlphaFunction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetScrollFlickAlphaFunction(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetScrollSnapDuration")]
-            public static extern float GetScrollSnapDuration(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetScrollSnapDuration", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetScrollSnapDuration(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetScrollSnapDuration")]
-            public static extern void SetScrollSnapDuration(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetScrollSnapDuration", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetScrollSnapDuration(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetScrollFlickDuration")]
-            public static extern float GetScrollFlickDuration(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetScrollFlickDuration", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetScrollFlickDuration(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetScrollFlickDuration")]
-            public static extern void SetScrollFlickDuration(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetScrollFlickDuration", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetScrollFlickDuration(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetRulerX")]
-            public static extern void SetRulerX(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetRulerX", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetRulerX(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetRulerY")]
-            public static extern void SetRulerY(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetRulerY", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetRulerY(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetScrollSensitive")]
-            public static extern void SetScrollSensitive(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetScrollSensitive", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetScrollSensitive(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetMaxOvershoot")]
-            public static extern void SetMaxOvershoot(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetMaxOvershoot", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetMaxOvershoot(IntPtr jarg1, float jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetSnapOvershootAlphaFunction")]
-            public static extern void SetSnapOvershootAlphaFunction(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetSnapOvershootAlphaFunction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetSnapOvershootAlphaFunction(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetSnapOvershootDuration")]
-            public static extern void SetSnapOvershootDuration(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetSnapOvershootDuration", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetSnapOvershootDuration(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetActorAutoSnap")]
-            public static extern void SetActorAutoSnap(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetActorAutoSnap", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetActorAutoSnap(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetWrapMode")]
-            public static extern void SetWrapMode(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetWrapMode", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetWrapMode(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetScrollUpdateDistance")]
-            public static extern int GetScrollUpdateDistance(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetScrollUpdateDistance", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetScrollUpdateDistance(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetScrollUpdateDistance")]
-            public static extern void SetScrollUpdateDistance(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetScrollUpdateDistance", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetScrollUpdateDistance(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetAxisAutoLock")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetAxisAutoLock", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool GetAxisAutoLock(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool GetAxisAutoLock(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetAxisAutoLock")]
-            public static extern void SetAxisAutoLock(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetAxisAutoLock", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetAxisAutoLock(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetAxisAutoLockGradient")]
-            public static extern float GetAxisAutoLockGradient(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetAxisAutoLockGradient", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetAxisAutoLockGradient(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetAxisAutoLockGradient")]
-            public static extern void SetAxisAutoLockGradient(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetAxisAutoLockGradient", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetAxisAutoLockGradient(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetFrictionCoefficient")]
-            public static extern float GetFrictionCoefficient(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetFrictionCoefficient", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetFrictionCoefficient(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetFrictionCoefficient")]
-            public static extern void SetFrictionCoefficient(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetFrictionCoefficient", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetFrictionCoefficient(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetFlickSpeedCoefficient")]
-            public static extern float GetFlickSpeedCoefficient(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetFlickSpeedCoefficient", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetFlickSpeedCoefficient(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetFlickSpeedCoefficient")]
-            public static extern void SetFlickSpeedCoefficient(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetFlickSpeedCoefficient", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetFlickSpeedCoefficient(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetMinimumDistanceForFlick")]
-            public static extern global::System.IntPtr GetMinimumDistanceForFlick(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetMinimumDistanceForFlick", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetMinimumDistanceForFlick(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetMinimumDistanceForFlick")]
-            public static extern void SetMinimumDistanceForFlick(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetMinimumDistanceForFlick", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetMinimumDistanceForFlick(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetMinimumSpeedForFlick")]
-            public static extern float GetMinimumSpeedForFlick(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetMinimumSpeedForFlick", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetMinimumSpeedForFlick(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetMinimumSpeedForFlick")]
-            public static extern void SetMinimumSpeedForFlick(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetMinimumSpeedForFlick", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetMinimumSpeedForFlick(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetMaxFlickSpeed")]
-            public static extern float GetMaxFlickSpeed(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetMaxFlickSpeed", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetMaxFlickSpeed(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetMaxFlickSpeed")]
-            public static extern void SetMaxFlickSpeed(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetMaxFlickSpeed", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetMaxFlickSpeed(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetCurrentScrollPosition")]
-            public static extern global::System.IntPtr GetCurrentScrollPosition(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetCurrentScrollPosition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetCurrentScrollPosition(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetCurrentPage")]
-            public static extern uint GetCurrentPage(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_GetCurrentPage", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetCurrentPage(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_0")]
-            public static extern void ScrollToVector2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ScrollToVector2(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_1")]
-            public static extern void ScrollTo(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ScrollTo(IntPtr jarg1, IntPtr jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_2")]
-            public static extern void ScrollTo(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, float jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ScrollTo(IntPtr jarg1, IntPtr jarg2, float jarg3, IntPtr jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_3")]
-            public static extern void ScrollTo(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, float jarg3, int jarg4, int jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ScrollTo(IntPtr jarg1, IntPtr jarg2, float jarg3, int jarg4, int jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_4")]
-            public static extern void ScrollTo(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, float jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, int jarg5, int jarg6);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_4", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ScrollTo(IntPtr jarg1, IntPtr jarg2, float jarg3, IntPtr jarg4, int jarg5, int jarg6);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_5")]
-            public static extern void ScrollTo(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_5", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ScrollTo(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_6")]
-            public static extern void ScrollTo(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_6", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ScrollTo(IntPtr jarg1, uint jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_7")]
-            public static extern void ScrollTo(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, float jarg3, int jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_7", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ScrollTo(IntPtr jarg1, uint jarg2, float jarg3, int jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_8")]
-            public static extern void ScrollToView(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_8", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ScrollToView(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_9")]
-            public static extern void ScrollToViewDuration(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollTo__SWIG_9", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ScrollToViewDuration(IntPtr jarg1, IntPtr jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollToSnapPoint")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ScrollToSnapPoint", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool ScrollToSnapPoint(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool ScrollToSnapPoint(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ApplyConstraintToChildren")]
-            public static extern void ApplyConstraintToChildren(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ApplyConstraintToChildren", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ApplyConstraintToChildren(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ApplyEffect")]
-            public static extern void ApplyEffect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_ApplyEffect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ApplyEffect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_RemoveEffect")]
-            public static extern void RemoveEffect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_RemoveEffect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RemoveEffect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_RemoveAllEffects")]
-            public static extern void RemoveAllEffects(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_RemoveAllEffects", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RemoveAllEffects(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_BindActor")]
-            public static extern void BindActor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_BindActor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void BindActor(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_UnbindActor")]
-            public static extern void UnbindActor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_UnbindActor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void UnbindActor(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetScrollingDirection__SWIG_0")]
-            public static extern void SetScrollingDirection(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetScrollingDirection__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetScrollingDirection(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetScrollingDirection__SWIG_1")]
-            public static extern void SetScrollingDirection(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SetScrollingDirection__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetScrollingDirection(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_RemoveScrollingDirection")]
-            public static extern void RemoveScrollingDirection(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_RemoveScrollingDirection", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RemoveScrollingDirection(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SnapStartedSignal")]
-            public static extern global::System.IntPtr SnapStartedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollView_SnapStartedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr SnapStartedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewSnapStartedSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewSnapStartedSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool ScrollViewSnapStartedSignalEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool ScrollViewSnapStartedSignalEmpty(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewSnapStartedSignal_GetConnectionCount")]
-            public static extern uint ScrollViewSnapStartedSignalGetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewSnapStartedSignal_GetConnectionCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint ScrollViewSnapStartedSignalGetConnectionCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewSnapStartedSignal_Connect")]
-            public static extern void ScrollViewSnapStartedSignalConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewSnapStartedSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ScrollViewSnapStartedSignalConnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewSnapStartedSignal_Disconnect")]
-            public static extern void ScrollViewSnapStartedSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewSnapStartedSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ScrollViewSnapStartedSignalDisconnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewSnapStartedSignal_Emit")]
-            public static extern void ScrollViewSnapStartedSignalEmit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewSnapStartedSignal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ScrollViewSnapStartedSignalEmit(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ScrollViewSnapStartedSignal")]
-            public static extern global::System.IntPtr NewScrollViewSnapStartedSignal();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ScrollViewSnapStartedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewScrollViewSnapStartedSignal();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ScrollViewSnapStartedSignal")]
-            public static extern void DeleteScrollViewSnapStartedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ScrollViewSnapStartedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteScrollViewSnapStartedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewEffect_SWIGUpcast")]
-            public static extern global::System.IntPtr ScrollViewEffectUpcast(global::System.IntPtr jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewEffect_SWIGUpcast", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ScrollViewEffectUpcast(global::System.IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewPagePathEffect_SWIGUpcast")]
-            public static extern global::System.IntPtr ScrollViewPagePathEffectUpcast(global::System.IntPtr jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScrollViewPagePathEffect_SWIGUpcast", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ScrollViewPagePathEffectUpcast(global::System.IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

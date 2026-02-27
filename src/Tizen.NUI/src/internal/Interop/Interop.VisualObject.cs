@@ -15,62 +15,71 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class VisualObject
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_New")]
-            public static extern global::System.IntPtr VisualObjectNew();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr VisualObjectNew();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_GetContainer")]
-            public static extern global::System.IntPtr GetContainer(global::System.Runtime.InteropServices.HandleRef visualObject);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_GetContainer", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetContainer(IntPtr visualObject);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_CreateVisual")]
-            public static extern void CreateVisual(global::System.Runtime.InteropServices.HandleRef visualObject, global::System.Runtime.InteropServices.HandleRef propertyMap);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_CreateVisual", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void CreateVisual(IntPtr visualObject, IntPtr propertyMap);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_RetrieveVisualPropertyMap")]
-            public static extern void RetrieveVisualPropertyMap(global::System.Runtime.InteropServices.HandleRef visualObject, global::System.Runtime.InteropServices.HandleRef propertyMap);
-
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_DoAction_UpdatePropertyMap")]
-            public static extern void UpdateVisualPropertyMap(global::System.Runtime.InteropServices.HandleRef visualObject, global::System.Runtime.InteropServices.HandleRef propertyMap);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_DoActionWithEmptyAttributes")]
-            public static extern void DoActionWithEmptyAttributes(global::System.Runtime.InteropServices.HandleRef visualObject, int actionId);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_DoActionWithSingleIntAttributes")]
-            public static extern void DoActionWithSingleIntAttributes(global::System.Runtime.InteropServices.HandleRef visualObject, int actionId, int actionValue);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_RetrieveVisualPropertyMap", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RetrieveVisualPropertyMap(IntPtr visualObject, IntPtr propertyMap);
 
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_SetSiblingOrder")]
-            public static extern void SetSiblingOrder(global::System.Runtime.InteropServices.HandleRef visualObject, uint siblingOrder);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_DoAction_UpdatePropertyMap", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void UpdateVisualPropertyMap(IntPtr visualObject, IntPtr propertyMap);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_GetSiblingOrder")]
-            public static extern uint GetSiblingOrder(global::System.Runtime.InteropServices.HandleRef visualObject);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_DoActionWithEmptyAttributes", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DoActionWithEmptyAttributes(IntPtr visualObject, int actionId);
+
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_DoActionWithSingleIntAttributes", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DoActionWithSingleIntAttributes(IntPtr visualObject, int actionId, int actionValue);
 
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_DetachFromContainer")]
-            public static extern void Detach(global::System.Runtime.InteropServices.HandleRef visualObject);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_SetSiblingOrder", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetSiblingOrder(IntPtr visualObject, uint siblingOrder);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_Raise")]
-            public static extern void Raise(global::System.Runtime.InteropServices.HandleRef visualObject);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_GetSiblingOrder", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetSiblingOrder(IntPtr visualObject);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_Lower")]
-            public static extern void Lower(global::System.Runtime.InteropServices.HandleRef visualObject);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_RaiseToTop")]
-            public static extern void RaiseToTop(global::System.Runtime.InteropServices.HandleRef visualObject);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_DetachFromContainer", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Detach(IntPtr visualObject);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_LowerToBottom")]
-            public static extern void LowerToBottom(global::System.Runtime.InteropServices.HandleRef visualObject);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_Raise", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Raise(IntPtr visualObject);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_RaiseAbove")]
-            public static extern void RaiseAbove(global::System.Runtime.InteropServices.HandleRef visualObject, global::System.Runtime.InteropServices.HandleRef target);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_Lower", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Lower(IntPtr visualObject);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_LowerBelow")]
-            public static extern void LowerBelow(global::System.Runtime.InteropServices.HandleRef visualObject, global::System.Runtime.InteropServices.HandleRef target);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_RaiseToTop", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RaiseToTop(IntPtr visualObject);
+
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_LowerToBottom", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void LowerToBottom(IntPtr visualObject);
+
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_RaiseAbove", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RaiseAbove(IntPtr visualObject, IntPtr target);
+
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObject_LowerBelow", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void LowerBelow(IntPtr visualObject, IntPtr target);
         }
     }
 }
+
+
+
+
+

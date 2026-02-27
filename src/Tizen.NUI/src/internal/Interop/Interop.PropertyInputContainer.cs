@@ -15,45 +15,54 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class PropertyInputContainer
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetCount")]
-            public static extern uint GetCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetType")]
-            public static extern int GetPropertyType(global::System.Runtime.InteropServices.HandleRef jarg1, uint index);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetPropertyType(IntPtr jarg1, uint index);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetBoolean")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetBoolean", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool GetBoolean(global::System.Runtime.InteropServices.HandleRef jarg1, uint index);
+            public static partial bool GetBoolean(IntPtr jarg1, uint index);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetFloat")]
-            public static extern float GetFloat(global::System.Runtime.InteropServices.HandleRef jarg1, uint index);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetFloat", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetFloat(IntPtr jarg1, uint index);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetInteger")]
-            public static extern int GetInteger(global::System.Runtime.InteropServices.HandleRef jarg1, uint index);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetInteger", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetInteger(IntPtr jarg1, uint index);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetVector2_Componentwise")]
-            public static extern void GetVector2Componentwise(global::System.Runtime.InteropServices.HandleRef jarg1, uint index, out float x, out float y);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetVector2_Componentwise", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GetVector2Componentwise(IntPtr jarg1, uint index, out float x, out float y);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetVector3_Componentwise")]
-            public static extern void GetVector3Componentwise(global::System.Runtime.InteropServices.HandleRef jarg1, uint index, out float x, out float y, out float z);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetVector3_Componentwise", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GetVector3Componentwise(IntPtr jarg1, uint index, out float x, out float y, out float z);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetVector4_Componentwise")]
-            public static extern void GetVector4Componentwise(global::System.Runtime.InteropServices.HandleRef jarg1, uint index, out float x, out float y, out float z, out float w);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetVector4_Componentwise", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GetVector4Componentwise(IntPtr jarg1, uint index, out float x, out float y, out float z, out float w);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetMatrix3")]
-            public static extern global::System.IntPtr GetMatrix3(global::System.Runtime.InteropServices.HandleRef jarg1, uint index);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetMatrix3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetMatrix3(IntPtr jarg1, uint index);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetMatrix")]
-            public static extern global::System.IntPtr GetMatrix(global::System.Runtime.InteropServices.HandleRef jarg1, uint index);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetMatrix", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetMatrix(IntPtr jarg1, uint index);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetQuaternion")]
-            public static extern global::System.IntPtr GetRotation(global::System.Runtime.InteropServices.HandleRef jarg1, uint index);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyInputContainer_GetQuaternion", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetRotation(IntPtr jarg1, uint index);
         }
     }
 }
+
+
+
+
+

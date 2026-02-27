@@ -15,188 +15,196 @@
  *
  */
 
+using global::System;
 using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class ActorInternal
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsRoot")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsRoot", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsRoot(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsRoot(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetChildAt")]
-            public static extern global::System.IntPtr GetChildAt(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetChildAt", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetChildAt(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetParentOrigin")]
-            public static extern void SetParentOrigin(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetParentOrigin", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetParentOrigin(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetSize__SWIG_0")]
-            public static extern void SetSize(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetSize__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetSize(IntPtr jarg1, float jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetSize__SWIG_1")]
-            public static extern void SetSize(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetSize__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetSize(IntPtr jarg1, float jarg2, float jarg3, float jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetSize__SWIG_2")]
-            public static extern void SetSizeVector2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetSize__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetSizeVector2(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetSize__SWIG_3")]
-            public static extern void SetSizeVector3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetSize__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetSizeVector3(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetPosition__SWIG_0")]
-            public static extern void SetPosition(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetPosition__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPosition(IntPtr jarg1, float jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetPosition__SWIG_1")]
-            public static extern void SetPosition(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetPosition__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPosition(IntPtr jarg1, float jarg2, float jarg3, float jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetPosition__SWIG_2")]
-            public static extern void SetPosition(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetPosition__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPosition(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetX")]
-            public static extern void SetX(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetX", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetX(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetY")]
-            public static extern void SetY(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetY", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetY(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetZ")]
-            public static extern void SetZ(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetZ", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetZ(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_TranslateBy")]
-            public static extern void TranslateBy(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_TranslateBy", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void TranslateBy(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetInheritPosition")]
-            public static extern void SetInheritPosition(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetInheritPosition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetInheritPosition(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsPositionInherited")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsPositionInherited", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsPositionInherited(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsPositionInherited(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetOrientation__SWIG_0")]
-            public static extern void SetOrientationDegree(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetOrientation__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetOrientationDegree(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetOrientation__SWIG_1")]
-            public static extern void SetOrientationRadian(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetOrientation__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetOrientationRadian(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetOrientation__SWIG_2")]
-            public static extern void SetOrientationQuaternion(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetOrientation__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetOrientationQuaternion(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RotateBy__SWIG_0")]
-            public static extern void RotateByDegree(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RotateBy__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RotateByDegree(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RotateBy__SWIG_1")]
-            public static extern void RotateByRadian(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RotateBy__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RotateByRadian(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RotateBy__SWIG_2")]
-            public static extern void RotateByQuaternion(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RotateBy__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RotateByQuaternion(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetCurrentOrientation")]
-            public static extern global::System.IntPtr GetCurrentOrientation(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetCurrentOrientation", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetCurrentOrientation(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetInheritOrientation")]
-            public static extern void SetInheritOrientation(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetInheritOrientation", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetInheritOrientation(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsOrientationInherited")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsOrientationInherited", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsOrientationInherited(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsOrientationInherited(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetCurrentWorldOrientation")]
-            public static extern global::System.IntPtr GetCurrentWorldOrientation(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetCurrentWorldOrientation", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetCurrentWorldOrientation(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetScale__SWIG_0")]
-            public static extern void SetScale(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetScale__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetScale(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetScale__SWIG_1")]
-            public static extern void SetScale(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetScale__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetScale(IntPtr jarg1, float jarg2, float jarg3, float jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetScale__SWIG_2")]
-            public static extern void SetScale(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetScale__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetScale(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_ScaleBy")]
-            public static extern void ScaleBy(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_ScaleBy", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ScaleBy(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_LookAt")]
-            public static extern void LookAt(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_LookAt", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void LookAt(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, IntPtr jarg4, IntPtr jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetInheritScale")]
-            public static extern void SetInheritScale(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetInheritScale", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetInheritScale(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsScaleInherited")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsScaleInherited", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsScaleInherited(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsScaleInherited(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetCurrentWorldMatrix")]
-            public static extern global::System.IntPtr GetCurrentWorldMatrix(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetCurrentWorldMatrix", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetCurrentWorldMatrix(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsVisible")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsVisible", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsVisible(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsVisible(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetOpacity")]
-            public static extern void SetOpacity(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetOpacity", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetOpacity(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetCurrentOpacity")]
-            public static extern float GetCurrentOpacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetCurrentOpacity", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetCurrentOpacity(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetColor")]
-            public static extern void SetColor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetColor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetColor(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetColorMode")]
-            public static extern void SetColorMode(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetColorMode", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetColorMode(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetColorMode")]
-            public static extern int GetColorMode(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetColorMode", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetColorMode(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetDrawMode")]
-            public static extern void SetDrawMode(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetDrawMode", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetDrawMode(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetDrawMode")]
-            public static extern int GetDrawMode(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_GetDrawMode", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetDrawMode(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetKeyboardFocusable")]
-            public static extern void SetKeyboardFocusable(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetKeyboardFocusable", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetKeyboardFocusable(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsKeyboardFocusable")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsKeyboardFocusable", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsKeyboardFocusable(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsKeyboardFocusable(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetKeyboardFocusableChildren")]
-            public static extern void SetKeyboardFocusableChildren(global::System.Runtime.InteropServices.HandleRef manager, bool focusable);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetKeyboardFocusableChildren", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetKeyboardFocusableChildren(IntPtr manager, [MarshalAs(UnmanagedType.U1)] bool focusable);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_AreChildrenKeyBoardFocusable")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_AreChildrenKeyBoardFocusable", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool AreChildrenKeyBoardFocusable(global::System.Runtime.InteropServices.HandleRef manager);
+            public static partial bool AreChildrenKeyBoardFocusable(IntPtr manager);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetTouchFocusable")]
-            public static extern void SetFocusableInTouch(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetTouchFocusable", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetFocusableInTouch(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsTouchFocusable")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsTouchFocusable", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsFocusableInTouch(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsFocusableInTouch(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetMinimumSize")]
-            public static extern void SetMinimumSize(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetMinimumSize", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetMinimumSize(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetMaximumSize")]
-            public static extern void SetMaximumSize(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetMaximumSize", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetMaximumSize(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_DevelActor_Property_SetTouchAreaOffset")]
-            public static extern void SetTouchAreaOffset(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3, int jarg4, int jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_DevelActor_Property_SetTouchAreaOffset", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetTouchAreaOffset(IntPtr jarg1, int jarg2, int jarg3, int jarg4, int jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_DevelActor_Property_GetTouchAreaOffset")]
-            public static extern void GetTouchAreaOffset(global::System.Runtime.InteropServices.HandleRef jarg1, out int jarg2, out int jarg3, out int jarg4, out int jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_DevelActor_Property_GetTouchAreaOffset", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GetTouchAreaOffset(IntPtr jarg1, out int jarg2, out int jarg3, out int jarg4, out int jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveTargetSize")]
-            public static extern int RetrieveTargetSize(HandleRef actor, HandleRef retrievingVector3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveTargetSize", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int RetrieveTargetSize(IntPtr actor, IntPtr retrievingVector3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveCurrentPropertyVector3")]
-            public static extern int RetrieveCurrentPropertyVector3(HandleRef actor, int propertyType, HandleRef retrievingVector3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveCurrentPropertyVector3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int RetrieveCurrentPropertyVector3(IntPtr actor, int propertyType, IntPtr retrievingVector3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveCurrentPropertyVector2ActualVector3")]
-            public static extern int RetrieveCurrentPropertyVector2ActualVector3(HandleRef actor, int propertyType, HandleRef retrievingVector2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveCurrentPropertyVector2ActualVector3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int RetrieveCurrentPropertyVector2ActualVector3(IntPtr actor, int propertyType, IntPtr retrievingVector2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveCurrentPropertyVector4")]
-            public static extern int RetrieveCurrentPropertyVector4(HandleRef actor, int propertyType, HandleRef retrievingVector4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_RetrieveCurrentPropertyVector4", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int RetrieveCurrentPropertyVector4(IntPtr actor, int propertyType, IntPtr retrievingVector4);
         }
     }
 }
+
+
+
+
+

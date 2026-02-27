@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,9 @@
  *
  */
 
-using System.Runtime.InteropServices;
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI
 {
@@ -23,44 +25,47 @@ namespace Tizen.NUI
     {
         internal static partial class WindowData
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WindowData")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WindowData", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WindowData")]
-            public static extern void DeleteWindowData(HandleRef nuiWindowData);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WindowData", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWindowData(IntPtr nuiWindowData);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_SetPositionSize")]
-            public static extern void SetPositionSize(HandleRef nuiWindowData, HandleRef nuiPositionSize);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_SetPositionSize", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPositionSize(IntPtr nuiWindowData, IntPtr nuiPositionSize);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_GetPositionSize")]
-            public static extern global::System.IntPtr GetPositionSize(HandleRef nuiWindowData);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_GetPositionSize", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetPositionSize(IntPtr nuiWindowData);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_SetWindowType")]
-            public static extern void SetWindowType(HandleRef nuiWindowData, int nuiWindowType);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_SetWindowType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetWindowType(IntPtr nuiWindowData, int nuiWindowType);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_GetWindowType")]
-            public static extern int GetWindowType(HandleRef nuiWindowData);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_GetWindowType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetWindowType(IntPtr nuiWindowData);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_SetTransparency")]
-            public static extern void SetTransparency(HandleRef nuiWindowData, bool nuiTransparency);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_SetTransparency", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetTransparency(IntPtr nuiWindowData, [MarshalAs(UnmanagedType.U1)] bool nuiTransparency);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_GetTransparency")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_GetTransparency", StringMarshalling = StringMarshalling.Utf8)]
             [return: MarshalAs(UnmanagedType.U1)]
-            public static extern bool GetTransparency(HandleRef nuiWindowData);
+            public static partial bool GetTransparency(IntPtr nuiWindowData);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_SetFrontBufferRendering")]
-            public static extern void SetFrontBufferRendering(HandleRef nuiWindowData, bool enable);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_SetFrontBufferRendering", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetFrontBufferRendering(IntPtr nuiWindowData, [MarshalAs(UnmanagedType.U1)] bool enable);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_GetFrontBufferRendering")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_GetFrontBufferRendering", StringMarshalling = StringMarshalling.Utf8)]
             [return: MarshalAs(UnmanagedType.U1)]
-            public static extern bool GetFrontBufferRendering(HandleRef nuiWindowData);
+            public static partial bool GetFrontBufferRendering(IntPtr nuiWindowData);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_SetScreen")]
-            public static extern void SetScreen(HandleRef nuiWindowData, string screenName);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_SetScreen", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetScreen(IntPtr nuiWindowData, string screenName);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_GetScreen")]
-            public static extern string GetScreen(HandleRef nuiWindowData);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowData_GetScreen", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetScreen(IntPtr nuiWindowData);
 
         }
     }
 }
+
+
+

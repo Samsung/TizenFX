@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,229 +26,234 @@ namespace Tizen.NUI
         internal static partial class FontClient
         {
             //for FontClient
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_PreCache")]
-            public static extern void PreCache(string[] fallbackFamilyArray, int fallbackFamilySize, string[] extraFamilyArray, int extraFamilySize, string localeFamily, bool useThread, bool syncCreation);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_PreCache", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void PreCache(string[] fallbackFamilyArray, int fallbackFamilySize, string[] extraFamilyArray, int extraFamilySize, string localeFamily, [MarshalAs(UnmanagedType.U1)] bool useThread, [MarshalAs(UnmanagedType.U1)] bool syncCreation);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_FontPreLoad")]
-            public static extern void FontPreLoad(string[] fontPathArray, int fontPathSize, string[] memoryFontPathArray, int memoryFontPathSize, bool useThread, bool syncCreation);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_FontPreLoad", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void FontPreLoad(string[] fontPathArray, int fontPathSize, string[] memoryFontPathArray, int memoryFontPathSize, [MarshalAs(UnmanagedType.U1)] bool useThread, [MarshalAs(UnmanagedType.U1)] bool syncCreation);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_EnableDesignCompatibility")]
-            public static extern void EnableDesignCompatibility();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_EnableDesignCompatibility", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void EnableDesignCompatibility();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FontClient_GlyphBufferData")]
-            public static extern global::System.IntPtr NewFontClientGlyphBufferData();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FontClient_GlyphBufferData", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewFontClientGlyphBufferData();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_FontClient_GlyphBufferData")]
-            public static extern void DeleteFontClientGlyphBufferData(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_FontClient_GlyphBufferData", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteFontClientGlyphBufferData(IntPtr jarg1);
 
             /*
-                [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint="CSharp_Dali_FontClient_GlyphBufferData_buffer_set")]
-                public static extern void GlyphBufferDataBufferSet(global::System.Runtime.InteropServices.HandleRef jarg1, [global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPArray)]byte[] jarg2);
+                [LibraryImport(NDalicPINVOKE.Lib, EntryPoint="CSharp_Dali_FontClient_GlyphBufferData_buffer_set", StringMarshalling = StringMarshalling.Utf8)]
+                public static partial void GlyphBufferDataBufferSet(IntPtr jarg1, [global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPArray)]byte[] jarg2);
 
-                [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint="CSharp_Dali_FontClient_GlyphBufferData_buffer_get")]
-                public static extern byte[] GlyphBufferDataBufferGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+                [LibraryImport(NDalicPINVOKE.Lib, EntryPoint="CSharp_Dali_FontClient_GlyphBufferData_buffer_get", StringMarshalling = StringMarshalling.Utf8)]
+                public static partial byte[] GlyphBufferDataBufferGet(IntPtr jarg1);
             */
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GlyphBufferData_width_set")]
-            public static extern void GlyphBufferDataWidthSet(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GlyphBufferData_width_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GlyphBufferDataWidthSet(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GlyphBufferData_width_get")]
-            public static extern uint GlyphBufferDataWidthGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GlyphBufferData_width_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GlyphBufferDataWidthGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GlyphBufferData_height_set")]
-            public static extern void GlyphBufferDataHeightSet(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GlyphBufferData_height_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GlyphBufferDataHeightSet(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GlyphBufferData_height_get")]
-            public static extern uint GlyphBufferDataHeightGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GlyphBufferData_height_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GlyphBufferDataHeightGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GlyphBufferData_format_set")]
-            public static extern void GlyphBufferDataFormatSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GlyphBufferData_format_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GlyphBufferDataFormatSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GlyphBufferData_format_get")]
-            public static extern int GlyphBufferDataFormatGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GlyphBufferData_format_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GlyphBufferDataFormatGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_Get")]
-            public static extern global::System.IntPtr Get();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_Get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FontClient__SWIG_0")]
-            public static extern global::System.IntPtr NewFontClient();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FontClient__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewFontClient();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_Assign")]
-            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_Assign", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Assign(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_SetDpi")]
-            public static extern void SetDpi(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_SetDpi", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetDpi(IntPtr jarg1, uint jarg2, uint jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetDefaultFontSize")]
-            public static extern int GetDefaultFontSize(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetDefaultFontSize", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetDefaultFontSize(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_ResetSystemDefaults")]
-            public static extern void ResetSystemDefaults(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_ResetSystemDefaults", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ResetSystemDefaults(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetDefaultPlatformFontDescription")]
-            public static extern void GetDefaultPlatformFontDescription(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetDefaultPlatformFontDescription", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GetDefaultPlatformFontDescription(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetSystemFonts")]
-            public static extern global::System.IntPtr GetSystemFonts(global::System.Runtime.InteropServices.HandleRef fontClient);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetSystemFonts", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetSystemFonts(IntPtr fontClient);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetDescription")]
-            public static extern void GetDescription(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetDescription", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GetDescription(IntPtr jarg1, uint jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetPointSize")]
-            public static extern uint GetPointSize(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetPointSize", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetPointSize(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_IsCharacterSupportedByFont")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_IsCharacterSupportedByFont", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsCharacterSupportedByFont(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3);
+            public static partial bool IsCharacterSupportedByFont(IntPtr jarg1, uint jarg2, uint jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_FindDefaultFont__SWIG_0")]
-            public static extern uint FindDefaultFont(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3, bool jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_FindDefaultFont__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint FindDefaultFont(IntPtr jarg1, uint jarg2, uint jarg3, [MarshalAs(UnmanagedType.U1)] bool jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_FindDefaultFont__SWIG_1")]
-            public static extern uint FindDefaultFont(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_FindDefaultFont__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint FindDefaultFont(IntPtr jarg1, uint jarg2, uint jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_FindDefaultFont__SWIG_2")]
-            public static extern uint FindDefaultFont(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_FindDefaultFont__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint FindDefaultFont(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_FindFallbackFont__SWIG_0")]
-            public static extern uint FindFallbackFont(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, uint jarg4, bool jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_FindFallbackFont__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint FindFallbackFont(IntPtr jarg1, uint jarg2, IntPtr jarg3, uint jarg4, [MarshalAs(UnmanagedType.U1)] bool jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_FindFallbackFont__SWIG_1")]
-            public static extern uint FindFallbackFont(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, uint jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_FindFallbackFont__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint FindFallbackFont(IntPtr jarg1, uint jarg2, IntPtr jarg3, uint jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_FindFallbackFont__SWIG_2")]
-            public static extern uint FindFallbackFont(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_FindFallbackFont__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint FindFallbackFont(IntPtr jarg1, uint jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetFontId__SWIG_0")]
-            public static extern uint GetFontId(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, uint jarg3, uint jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetFontId__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetFontId(IntPtr jarg1, string jarg2, uint jarg3, uint jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetFontId__SWIG_1")]
-            public static extern uint GetFontId(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, uint jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetFontId__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetFontId(IntPtr jarg1, string jarg2, uint jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetFontId__SWIG_2")]
-            public static extern uint GetFontId(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetFontId__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetFontId(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetFontId__SWIG_3")]
-            public static extern uint GetFontId(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, uint jarg3, uint jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetFontId__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetFontId(IntPtr jarg1, IntPtr jarg2, uint jarg3, uint jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetFontId__SWIG_4")]
-            public static extern uint GetFontId(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, uint jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetFontId__SWIG_4", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetFontId(IntPtr jarg1, IntPtr jarg2, uint jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetFontId__SWIG_5")]
-            public static extern uint GetFontId(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetFontId__SWIG_5", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetFontId(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_IsScalable__SWIG_0")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_IsScalable__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsScalable(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            public static partial bool IsScalable(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_IsScalable__SWIG_1")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_IsScalable__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsScalable(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static partial bool IsScalable(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetFontMetrics")]
-            public static extern void GetFontMetrics(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetFontMetrics", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GetFontMetrics(IntPtr jarg1, uint jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetGlyphIndex")]
-            public static extern uint GetGlyphIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetGlyphIndex", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetGlyphIndex(IntPtr jarg1, uint jarg2, uint jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetGlyphMetrics__SWIG_0")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetGlyphMetrics__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool GetGlyphMetrics(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, uint jarg3, int jarg4, bool jarg5);
+            public static partial bool GetGlyphMetrics(IntPtr jarg1, IntPtr jarg2, uint jarg3, int jarg4, [MarshalAs(UnmanagedType.U1)] bool jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetGlyphMetrics__SWIG_1")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetGlyphMetrics__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool GetGlyphMetrics(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, uint jarg3, int jarg4);
+            public static partial bool GetGlyphMetrics(IntPtr jarg1, IntPtr jarg2, uint jarg3, int jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_CreateBitmap__SWIG_0")]
-            public static extern void CreateBitmap(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3, bool jarg4, bool jarg5, global::System.Runtime.InteropServices.HandleRef jarg6, int jarg7);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_CreateBitmap__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void CreateBitmap(IntPtr jarg1, uint jarg2, uint jarg3, [MarshalAs(UnmanagedType.U1)] bool jarg4, [MarshalAs(UnmanagedType.U1)] bool jarg5, IntPtr jarg6, int jarg7);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_CreateBitmap__SWIG_1")]
-            public static extern global::System.IntPtr CreateBitmap(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3, int jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_CreateBitmap__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr CreateBitmap(IntPtr jarg1, uint jarg2, uint jarg3, int jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetEllipsisGlyph")]
-            public static extern global::System.IntPtr GetEllipsisGlyph(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_GetEllipsisGlyph", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetEllipsisGlyph(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_IsColorGlyph")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_IsColorGlyph", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsColorGlyph(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3);
+            public static partial bool IsColorGlyph(IntPtr jarg1, uint jarg2, uint jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_AddCustomFontDirectory")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_AddCustomFontDirectory", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool AddCustomFontDirectory(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            public static partial bool AddCustomFontDirectory(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FontDescription")]
-            public static extern global::System.IntPtr NewFontDescription();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FontDescription", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewFontDescription();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_FontDescription")]
-            public static extern void DeleteFontDescription(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_FontDescription", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteFontDescription(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_path_set")]
-            public static extern void FontDescriptionPathSet(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_path_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void FontDescriptionPathSet(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_path_get")]
-            public static extern string FontDescriptionPathGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_path_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string FontDescriptionPathGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_family_set")]
-            public static extern void FontDescriptionFamilySet(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_family_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void FontDescriptionFamilySet(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_family_get")]
-            public static extern string FontDescriptionFamilyGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_family_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string FontDescriptionFamilyGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_width_set")]
-            public static extern void FontDescriptionWidthSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_width_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void FontDescriptionWidthSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_width_get")]
-            public static extern int FontDescriptionWidthGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_width_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int FontDescriptionWidthGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_weight_set")]
-            public static extern void FontDescriptionWeightSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_weight_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void FontDescriptionWeightSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_weight_get")]
-            public static extern int FontDescriptionWeightGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_weight_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int FontDescriptionWeightGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_slant_set")]
-            public static extern void FontDescriptionSlantSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_slant_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void FontDescriptionSlantSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_slant_get")]
-            public static extern int FontDescriptionSlantGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontDescription_slant_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int FontDescriptionSlantGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FontMetrics__SWIG_0")]
-            public static extern global::System.IntPtr NewFontMetrics();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FontMetrics__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewFontMetrics();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FontMetrics__SWIG_1")]
-            public static extern global::System.IntPtr NewFontMetrics(float jarg1, float jarg2, float jarg3, float jarg4, float jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FontMetrics__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewFontMetrics(float jarg1, float jarg2, float jarg3, float jarg4, float jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_ascender_set")]
-            public static extern void FontMetricsAscenderSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_ascender_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void FontMetricsAscenderSet(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_ascender_get")]
-            public static extern float FontMetricsAscenderGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_ascender_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float FontMetricsAscenderGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_descender_set")]
-            public static extern void FontMetricsDescenderSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_descender_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void FontMetricsDescenderSet(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_descender_get")]
-            public static extern float FontMetricsDescenderGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_descender_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float FontMetricsDescenderGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_height_set")]
-            public static extern void FontMetricsHeightSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_height_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void FontMetricsHeightSet(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_height_get")]
-            public static extern float FontMetricsHeightGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_height_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float FontMetricsHeightGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_underlinePosition_set")]
-            public static extern void FontMetricsUnderlinePositionSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_underlinePosition_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void FontMetricsUnderlinePositionSet(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_underlinePosition_get")]
-            public static extern float FontMetricsUnderlinePositionGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_underlinePosition_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float FontMetricsUnderlinePositionGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_underlineThickness_set")]
-            public static extern void FontMetricsUnderlineThicknessSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_underlineThickness_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void FontMetricsUnderlineThicknessSet(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_underlineThickness_get")]
-            public static extern float FontMetricsUnderlineThicknessGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontMetrics_underlineThickness_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float FontMetricsUnderlineThicknessGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_FontMetrics")]
-            public static extern void DeleteFontMetrics(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_FontMetrics", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteFontMetrics(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

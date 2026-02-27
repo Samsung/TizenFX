@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,62 +26,67 @@ namespace Tizen.NUI
         internal static partial class Handle
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_New")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Handle")]
-            public static extern void DeleteHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Handle", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteHandle(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_GetPropertyName")]
-            public static extern string GetPropertyName(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_GetPropertyName", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetPropertyName(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_GetPropertyIndex")]
-            public static extern int GetPropertyIndex(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_GetPropertyIndex", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetPropertyIndex(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_IsPropertyWritable")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_IsPropertyWritable", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsPropertyWritable(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static partial bool IsPropertyWritable(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_IsPropertyAnimatable")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_IsPropertyAnimatable", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsPropertyAnimatable(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static partial bool IsPropertyAnimatable(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_IsPropertyAConstraintInput")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_IsPropertyAConstraintInput", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsPropertyAConstraintInput(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static partial bool IsPropertyAConstraintInput(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_GetPropertyType")]
-            public static extern int GetPropertyType(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_GetPropertyType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetPropertyType(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_SetProperty")]
-            public static extern void SetProperty(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_SetProperty", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetProperty(IntPtr jarg1, int jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_SetProperties")]
-            public static extern void SetProperties(global::System.Runtime.InteropServices.HandleRef handle, global::System.Runtime.InteropServices.HandleRef propertyMap);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_SetProperties", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetProperties(IntPtr handle, IntPtr propertyMap);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_RegisterProperty__SWIG_0")]
-            public static extern int RegisterProperty(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_RegisterProperty__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int RegisterProperty(IntPtr jarg1, string jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_RegisterProperty__SWIG_1")]
-            public static extern int RegisterProperty(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, int jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_RegisterProperty__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int RegisterProperty(IntPtr jarg1, string jarg2, IntPtr jarg3, int jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_GetProperty")]
-            public static extern global::System.IntPtr GetProperty(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_GetProperty", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetProperty(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_GetCurrentProperty")]
-            public static extern global::System.IntPtr GetCurrentProperty(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_GetCurrentProperty", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetCurrentProperty(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_AddPropertyNotification__SWIG_0")]
-            public static extern global::System.IntPtr AddPropertyNotification(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_AddPropertyNotification__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr AddPropertyNotification(IntPtr jarg1, int jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_AddPropertyNotification__SWIG_1")]
-            public static extern global::System.IntPtr AddPropertyNotification(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_AddPropertyNotification__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr AddPropertyNotification(IntPtr jarg1, int jarg2, int jarg3, IntPtr jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_RemovePropertyNotification")]
-            public static extern void RemovePropertyNotification(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_RemovePropertyNotification", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RemovePropertyNotification(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_RemovePropertyNotifications")]
-            public static extern void RemovePropertyNotifications(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_RemovePropertyNotifications", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RemovePropertyNotifications(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

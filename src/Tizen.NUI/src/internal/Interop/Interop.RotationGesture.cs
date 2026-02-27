@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,57 +26,62 @@ namespace Tizen.NUI
         internal static partial class RotationGesture
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetector_New")]
-            public static extern global::System.IntPtr RotationGestureDetectorNew();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetector_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr RotationGestureDetectorNew();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_RotationGestureDetector")]
-            public static extern void DeleteRotationGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_RotationGestureDetector", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteRotationGestureDetector(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RotationGestureDetector__SWIG_1")]
-            public static extern global::System.IntPtr NewRotationGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RotationGestureDetector__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewRotationGestureDetector(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetector_Assign")]
-            public static extern global::System.IntPtr RotationGestureDetectorAssign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetector_Assign", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr RotationGestureDetectorAssign(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetector_DetectedSignal")]
-            public static extern global::System.IntPtr RotationGestureDetectorDetectedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetector_DetectedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr RotationGestureDetectorDetectedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_New")]
-            public static extern global::System.IntPtr New(int jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(int jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_RotationGesture")]
-            public static extern void DeleteRotationGesture(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_RotationGesture", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteRotationGesture(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_rotation_get")]
-            public static extern float RotationGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_rotation_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RotationGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_screenCenterPoint_get")]
-            public static extern global::System.IntPtr ScreenCenterPointGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_screenCenterPoint_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ScreenCenterPointGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_localCenterPoint_get")]
-            public static extern global::System.IntPtr LocalCenterPointGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGesture_localCenterPoint_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr LocalCenterPointGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetectedSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetectedSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool RotationGestureDetectedSignalEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool RotationGestureDetectedSignalEmpty(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetectedSignal_GetConnectionCount")]
-            public static extern uint RotationGestureDetectedSignalGetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetectedSignal_GetConnectionCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint RotationGestureDetectedSignalGetConnectionCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetectedSignal_Connect")]
-            public static extern void RotationGestureDetectedSignalConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetectedSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RotationGestureDetectedSignalConnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetectedSignal_Disconnect")]
-            public static extern void RotationGestureDetectedSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetectedSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RotationGestureDetectedSignalDisconnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetectedSignal_Emit")]
-            public static extern void RotationGestureDetectedSignalEmit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RotationGestureDetectedSignal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RotationGestureDetectedSignalEmit(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RotationGestureDetectedSignal")]
-            public static extern global::System.IntPtr NewRotationGestureDetectedSignal();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RotationGestureDetectedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewRotationGestureDetectedSignal();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_RotationGestureDetectedSignal")]
-            public static extern void DeleteRotationGestureDetectedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_RotationGestureDetectedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteRotationGestureDetectedSignal(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

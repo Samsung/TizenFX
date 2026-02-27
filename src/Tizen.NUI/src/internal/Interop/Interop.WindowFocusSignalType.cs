@@ -15,33 +15,42 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class WindowFocusSignalType
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowFocusSignalType_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowFocusSignalType_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool Empty(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowFocusSignalType_GetConnectionCount")]
-            public static extern uint GetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowFocusSignalType_GetConnectionCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetConnectionCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowFocusSignalType_Connect")]
-            public static extern void Connect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowFocusSignalType_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Connect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowFocusSignalType_Disconnect")]
-            public static extern void Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowFocusSignalType_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Disconnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowFocusSignalType_Emit")]
-            public static extern void Emit(global::System.Runtime.InteropServices.HandleRef signalType, global::System.Runtime.InteropServices.HandleRef window, bool focusIn);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WindowFocusSignalType_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Emit(IntPtr signalType, IntPtr window, [MarshalAs(UnmanagedType.U1)] bool focusIn);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WindowFocusSignalType")]
-            public static extern global::System.IntPtr NewWindowFocusSignalType();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WindowFocusSignalType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewWindowFocusSignalType();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WindowFocusSignalType")]
-            public static extern void DeleteWindowFocusSignalType(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WindowFocusSignalType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWindowFocusSignalType(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

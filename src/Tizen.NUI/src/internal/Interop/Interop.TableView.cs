@@ -15,168 +15,177 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class TableView
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_Property_ROWS_get")]
-            public static extern int RowsGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_Property_ROWS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int RowsGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_Property_COLUMNS_get")]
-            public static extern int ColumnsGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_Property_COLUMNS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ColumnsGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_Property_CELL_PADDING_get")]
-            public static extern int CellPaddingGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_Property_CELL_PADDING_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int CellPaddingGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_Property_LAYOUT_ROWS_get")]
-            public static extern int LayoutRowsGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_Property_LAYOUT_ROWS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int LayoutRowsGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_Property_LAYOUT_COLUMNS_get")]
-            public static extern int LayoutColumnsGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_Property_LAYOUT_COLUMNS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int LayoutColumnsGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_ChildProperty_CELL_INDEX_get")]
-            public static extern int ChildPropertyCellIndexGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_ChildProperty_CELL_INDEX_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ChildPropertyCellIndexGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_ChildProperty_ROW_SPAN_get")]
-            public static extern int ChildPropertyRowSpanGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_ChildProperty_ROW_SPAN_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ChildPropertyRowSpanGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_ChildProperty_COLUMN_SPAN_get")]
-            public static extern int ChildPropertyColumnSpanGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_ChildProperty_COLUMN_SPAN_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ChildPropertyColumnSpanGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_ChildProperty_CELL_HORIZONTAL_ALIGNMENT_get")]
-            public static extern int ChildPropertyCellHorizontalAlignmentGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_ChildProperty_CELL_HORIZONTAL_ALIGNMENT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ChildPropertyCellHorizontalAlignmentGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_ChildProperty_CELL_VERTICAL_ALIGNMENT_get")]
-            public static extern int ChildPropertyCellVerticalAlignmentGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_ChildProperty_CELL_VERTICAL_ALIGNMENT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ChildPropertyCellVerticalAlignmentGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TableView_CellPosition__SWIG_0")]
-            public static extern global::System.IntPtr NewTableViewCellPosition(uint jarg1, uint jarg2, uint jarg3, uint jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TableView_CellPosition__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewTableViewCellPosition(uint jarg1, uint jarg2, uint jarg3, uint jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TableView_CellPosition__SWIG_1")]
-            public static extern global::System.IntPtr NewTableViewCellPosition(uint jarg1, uint jarg2, uint jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TableView_CellPosition__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewTableViewCellPosition(uint jarg1, uint jarg2, uint jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TableView_CellPosition__SWIG_2")]
-            public static extern global::System.IntPtr NewTableViewCellPosition(uint jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TableView_CellPosition__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewTableViewCellPosition(uint jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TableView_CellPosition__SWIG_3")]
-            public static extern global::System.IntPtr NewTableViewCellPosition(uint jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TableView_CellPosition__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewTableViewCellPosition(uint jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TableView_CellPosition__SWIG_4")]
-            public static extern global::System.IntPtr NewTableViewCellPosition();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TableView_CellPosition__SWIG_4", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewTableViewCellPosition();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_CellPosition_rowIndex_set")]
-            public static extern void CellPositionRowIndexSet(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_CellPosition_rowIndex_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void CellPositionRowIndexSet(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_CellPosition_rowIndex_get")]
-            public static extern uint CellPositionRowIndexGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_CellPosition_rowIndex_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint CellPositionRowIndexGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_CellPosition_columnIndex_set")]
-            public static extern void CellPositionColumnIndexSet(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_CellPosition_columnIndex_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void CellPositionColumnIndexSet(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_CellPosition_columnIndex_get")]
-            public static extern uint CellPositionColumnIndexGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_CellPosition_columnIndex_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint CellPositionColumnIndexGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_CellPosition_rowSpan_set")]
-            public static extern void CellPositionRowSpanSet(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_CellPosition_rowSpan_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void CellPositionRowSpanSet(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_CellPosition_rowSpan_get")]
-            public static extern uint CellPositionRowSpanGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_CellPosition_rowSpan_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint CellPositionRowSpanGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_CellPosition_columnSpan_set")]
-            public static extern void CellPositionColumnSpanSet(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_CellPosition_columnSpan_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void CellPositionColumnSpanSet(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_CellPosition_columnSpan_get")]
-            public static extern uint CellPositionColumnSpanGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_CellPosition_columnSpan_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint CellPositionColumnSpanGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TableView_CellPosition")]
-            public static extern void DeleteTableViewCellPosition(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TableView_CellPosition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteTableViewCellPosition(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TableView__SWIG_1")]
-            public static extern global::System.IntPtr NewTableView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TableView__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewTableView(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TableView")]
-            public static extern void DeleteTableView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TableView", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteTableView(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_New")]
-            public static extern global::System.IntPtr New(uint jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(uint jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_AddChild")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_AddChild", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool AddChild(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            public static partial bool AddChild(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_GetChildAt")]
-            public static extern global::System.IntPtr GetChildAt(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_GetChildAt", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetChildAt(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_RemoveChildAt")]
-            public static extern global::System.IntPtr RemoveChildAt(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_RemoveChildAt", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr RemoveChildAt(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_FindChildPosition")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_FindChildPosition", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool FindChildPosition(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            public static partial bool FindChildPosition(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_InsertRow")]
-            public static extern void InsertRow(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_InsertRow", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void InsertRow(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_DeleteRow__SWIG_0")]
-            public static extern void DeleteRow(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_DeleteRow__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteRow(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_InsertColumn")]
-            public static extern void InsertColumn(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_InsertColumn", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void InsertColumn(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_DeleteColumn__SWIG_0")]
-            public static extern void DeleteColumn(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_DeleteColumn__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteColumn(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_Resize__SWIG_0")]
-            public static extern void Resize(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_Resize__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Resize(IntPtr jarg1, uint jarg2, uint jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_SetCellPadding")]
-            public static extern void SetCellPadding(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_SetCellPadding", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetCellPadding(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_GetCellPadding")]
-            public static extern global::System.IntPtr GetCellPadding(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_GetCellPadding", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetCellPadding(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_SetFitHeight")]
-            public static extern void SetFitHeight(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_SetFitHeight", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetFitHeight(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_IsFitHeight")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_IsFitHeight", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsFitHeight(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            public static partial bool IsFitHeight(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_SetFitWidth")]
-            public static extern void SetFitWidth(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_SetFitWidth", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetFitWidth(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_IsFitWidth")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_IsFitWidth", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsFitWidth(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            public static partial bool IsFitWidth(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_SetFixedHeight")]
-            public static extern void SetFixedHeight(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_SetFixedHeight", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetFixedHeight(IntPtr jarg1, uint jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_GetFixedHeight")]
-            public static extern float GetFixedHeight(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_GetFixedHeight", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetFixedHeight(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_SetRelativeHeight")]
-            public static extern void SetRelativeHeight(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_SetRelativeHeight", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetRelativeHeight(IntPtr jarg1, uint jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_GetRelativeHeight")]
-            public static extern float GetRelativeHeight(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_GetRelativeHeight", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetRelativeHeight(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_SetFixedWidth")]
-            public static extern void SetFixedWidth(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_SetFixedWidth", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetFixedWidth(IntPtr jarg1, uint jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_GetFixedWidth")]
-            public static extern float GetFixedWidth(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_GetFixedWidth", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetFixedWidth(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_SetRelativeWidth")]
-            public static extern void SetRelativeWidth(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_SetRelativeWidth", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetRelativeWidth(IntPtr jarg1, uint jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_GetRelativeWidth")]
-            public static extern float GetRelativeWidth(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_GetRelativeWidth", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetRelativeWidth(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_SetCellAlignment")]
-            public static extern void SetCellAlignment(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3, int jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TableView_SetCellAlignment", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetCellAlignment(IntPtr jarg1, IntPtr jarg2, int jarg3, int jarg4);
         }
     }
 }
+
+
+
+
+

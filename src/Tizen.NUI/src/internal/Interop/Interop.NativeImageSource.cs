@@ -15,41 +15,49 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
-    using global::System;
     internal static partial class Interop
     {
         internal static partial class NativeImageSource
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_New")]
-            public static extern IntPtr New(IntPtr handle);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr New(IntPtr handle);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_Delete")]
-            public static extern void Delete(IntPtr jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_Delete", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Delete(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_New_Handle")]
-            public static extern IntPtr NewHandle(uint jarg1, uint jarg2, int jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_New_Handle", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr NewHandle(uint jarg1, uint jarg2, int jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_AcquireBuffer")]
-            public static extern IntPtr AcquireBuffer(IntPtr jarg1, ref int jarg2, ref int jarg3, ref int jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_AcquireBuffer", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr AcquireBuffer(IntPtr jarg1, ref int jarg2, ref int jarg3, ref int jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_ReleaseBuffer")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_ReleaseBuffer", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool ReleaseBuffer(IntPtr jarg1);
+            public static partial bool ReleaseBuffer(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_GenerateUrl")]
-            public static extern IntPtr GenerateUrl(IntPtr handle);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_GenerateUrl", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr GenerateUrl(IntPtr handle);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_GenerateUrl_With_PreMultiplied")]
-            public static extern IntPtr GenerateUrl(IntPtr handle, bool preMultiplied);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_GenerateUrl_With_PreMultiplied", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr GenerateUrl(IntPtr handle, [MarshalAs(UnmanagedType.U1)] bool preMultiplied);
 
             // Platform dependency methods
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_New_Handle_With_TbmSurface")]
-            public static extern IntPtr NewHandleWithTbmSurface(IntPtr csTbmSurface);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_New_Handle_With_TbmSurface", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr NewHandleWithTbmSurface(IntPtr csTbmSurface);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_SetSource")]
-            public static extern void SetSource(IntPtr handle, IntPtr csTbmSurface);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageSource_SetSource", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetSource(IntPtr handle, IntPtr csTbmSurface);
         }
     }
 }
+
+
+
+
+

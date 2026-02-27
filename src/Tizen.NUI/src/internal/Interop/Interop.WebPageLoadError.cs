@@ -15,27 +15,36 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class WebPageLoadError
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebLoadError")]
-            public static extern void DeleteWebPageLoadError(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebLoadError", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWebPageLoadError(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebLoadError_GetUrl")]
-            public static extern string GetUrl(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebLoadError_GetUrl", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetUrl(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebLoadError_GetCode")]
-            public static extern int GetCode(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebLoadError_GetCode", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetCode(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebLoadError_GetDescription")]
-            public static extern string GetDescription(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebLoadError_GetDescription", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetDescription(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebLoadError_GetType")]
-            public static extern int GetType(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebLoadError_GetType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetType(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+
 

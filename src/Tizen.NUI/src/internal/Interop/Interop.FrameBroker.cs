@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-using System;
-using System.Runtime.InteropServices;
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications;
 using Tizen.NUI;
 
@@ -72,20 +73,20 @@ namespace Tizen.NUI
                 public FrameContextErrorCallback OnError;
             }
 
-            [DllImport(Libraries.FrameBroker, EntryPoint = "frame_context_start_animation")]
+            [LibraryImport(Libraries.FrameBroker, EntryPoint = "frame_context_start_animation", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode StartAnimation(IntPtr handle);
 
-            [DllImport(Libraries.FrameBroker, EntryPoint = "frame_context_finish_animation")]
+            [LibraryImport(Libraries.FrameBroker, EntryPoint = "frame_context_finish_animation", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode FinishAnimation(IntPtr handle);
 
 
-            [DllImport(Libraries.FrameBroker, EntryPoint = "frame_broker_create")]
+            [LibraryImport(Libraries.FrameBroker, EntryPoint = "frame_broker_create", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode Create(IntPtr wl2Win, ref FrameContextLifecycleCallbacks callbacks, IntPtr userData, out SafeFrameBrokerHandle handle);
 
-            [DllImport(Libraries.FrameBroker, EntryPoint = "frame_broker_destroy")]
+            [LibraryImport(Libraries.FrameBroker, EntryPoint = "frame_broker_destroy", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode DangerousDestroy(IntPtr handle);
 
-            [DllImport(Libraries.FrameBroker, EntryPoint = "frame_broker_send_launch_request")]
+            [LibraryImport(Libraries.FrameBroker, EntryPoint = "frame_broker_send_launch_request", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode SendLaunchRequest(SafeFrameBrokerHandle handle, SafeAppControlHandle safeAppControlHandle, AppControlResultCallback resultCallback, AppControlReplyCallback replyCallback, IntPtr userData);
 
 
@@ -103,32 +104,35 @@ namespace Tizen.NUI
                 Backward = 1,
             }
 
-            [DllImport(Libraries.FrameBroker, EntryPoint = "frame_get_tbm_surface")]
+            [LibraryImport(Libraries.FrameBroker, EntryPoint = "frame_get_tbm_surface", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode GetTbmSurface(IntPtr handle, out IntPtr tbmSurface);
 
-            [DllImport(Libraries.FrameBroker, EntryPoint = "frame_get_image_file")]
+            [LibraryImport(Libraries.FrameBroker, EntryPoint = "frame_get_image_file", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode GetImageFile(IntPtr handle, out Int32 fd, out UInt32 size);
 
-            [DllImport(Libraries.FrameBroker, EntryPoint = "frame_get_file_path")]
+            [LibraryImport(Libraries.FrameBroker, EntryPoint = "frame_get_file_path", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode GetFilePath(IntPtr handle, out string filePath);
 
-            [DllImport(Libraries.FrameBroker, EntryPoint = "frame_get_file_group")]
+            [LibraryImport(Libraries.FrameBroker, EntryPoint = "frame_get_file_group", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode GetFileGroup(IntPtr handle, out string fileGroup);
 
-            [DllImport(Libraries.FrameBroker, EntryPoint = "frame_get_type")]
+            [LibraryImport(Libraries.FrameBroker, EntryPoint = "frame_get_type", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode GetType(IntPtr handle, out FrameType type);
 
-            [DllImport(Libraries.FrameBroker, EntryPoint = "frame_get_direction")]
+            [LibraryImport(Libraries.FrameBroker, EntryPoint = "frame_get_direction", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode GetDirection(IntPtr handle, out FrameDirection direction);
 
-            [DllImport(Libraries.FrameBroker, EntryPoint = "frame_get_position_x")]
+            [LibraryImport(Libraries.FrameBroker, EntryPoint = "frame_get_position_x", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode GetPositionX(IntPtr handle, out Int32 x);
 
-            [DllImport(Libraries.FrameBroker, EntryPoint = "frame_get_position_y")]
+            [LibraryImport(Libraries.FrameBroker, EntryPoint = "frame_get_position_y", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode GetPositionY(IntPtr handle, out Int32 y);
 
-            [DllImport(Libraries.FrameBroker, EntryPoint = "frame_get_extra_data")]
+            [LibraryImport(Libraries.FrameBroker, EntryPoint = "frame_get_extra_data", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode GetExtraData(IntPtr handle, out SafeBundleHandle safeBundleHandle);
         }
     }
 }
+
+
+

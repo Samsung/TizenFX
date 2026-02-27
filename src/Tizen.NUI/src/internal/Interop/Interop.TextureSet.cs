@@ -15,38 +15,47 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class TextureSet
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_New")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TextureSet")]
-            public static extern void DeleteTextureSet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TextureSet", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteTextureSet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_SetTexture")]
-            public static extern void SetTexture(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_SetTexture", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetTexture(IntPtr jarg1, uint jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_RemoveTexture")]
-            public static extern void RemoveTexture(global::System.Runtime.InteropServices.HandleRef textureSet, uint index);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_RemoveTexture", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RemoveTexture(IntPtr textureSet, uint index);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_GetTexture")]
-            public static extern global::System.IntPtr GetTexture(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_GetTexture", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetTexture(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_SetSampler")]
-            public static extern void SetSampler(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_SetSampler", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetSampler(IntPtr jarg1, uint jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_RemoveSampler")]
-            public static extern void RemoveSampler(global::System.Runtime.InteropServices.HandleRef textureSet, uint index);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_RemoveSampler", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RemoveSampler(IntPtr textureSet, uint index);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_GetSampler")]
-            public static extern global::System.IntPtr GetSampler(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_GetSampler", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetSampler(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_GetTextureCount")]
-            public static extern uint GetTextureCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextureSet_GetTextureCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetTextureCount(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

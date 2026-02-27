@@ -14,7 +14,10 @@
  * limitations under the License.
  *
  */
+
+using global::System;
 using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI
 {
@@ -22,17 +25,20 @@ namespace Tizen.NUI
     {
         internal static partial class WebDeviceList
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_DeviceListGet")]
-            public static extern void Delete(HandleRef obj);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_DeviceListGet", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Delete(IntPtr obj);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DeviceListGet_GetTypeAndConnect")]
-            public static extern void GetTypeAndConnect(HandleRef obj, out int type, out bool connect, int idx);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DeviceListGet_GetTypeAndConnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GetTypeAndConnect(IntPtr obj, out int type, out bool connect, int idx);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DeviceListGet_GetDeviceId")]
-            public static extern string GetDeviceId(HandleRef obj, int idx);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DeviceListGet_GetDeviceId", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetDeviceId(IntPtr obj, int idx);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DeviceListGet_GetDeviceLabel")]
-            public static extern string GetDeviceLabel(HandleRef obj, int idx);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DeviceListGet_GetDeviceLabel", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetDeviceLabel(IntPtr obj, int idx);
         }
     }
 }
+
+
+

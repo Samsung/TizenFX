@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,9 @@
  *
  */
 
+using global::System;
 using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI.ParticleSystem
 {
@@ -23,105 +25,110 @@ namespace Tizen.NUI.ParticleSystem
     {
         internal static partial class ParticleEmitter
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ParticleEmitter")]
-            internal static extern void DeleteParticleEmitter(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ParticleEmitter", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void DeleteParticleEmitter(IntPtr jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_New_SWIG_0")]
-            internal static extern global::System.IntPtr New(HandleRef view);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_New_SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern global::System.IntPtr New(IntPtr view);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_Assign")]
-            internal static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_Assign", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern global::System.IntPtr Assign(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetSource")]
-            internal static extern void SetSource(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetSource", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void SetSource(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetDomain")]
-            internal static extern void SetDomain(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetDomain", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void SetDomain(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetRenderer")]
-            internal static extern void SetRenderer(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetRenderer", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void SetRenderer(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_AddModifier")]
-            internal static extern void AddModifier(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_AddModifier", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void AddModifier(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetParticleCount")]
-            internal static extern void SetParticleCount(global::System.Runtime.InteropServices.HandleRef jarg1, uint count);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetParticleCount", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void SetParticleCount(IntPtr jarg1, uint count);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetParticleCount")]
-            internal static extern uint GetParticleCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetParticleCount", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern uint GetParticleCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetEmissionRate")]
-            internal static extern void SetEmissionRate(global::System.Runtime.InteropServices.HandleRef jarg1, uint count);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetEmissionRate", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void SetEmissionRate(IntPtr jarg1, uint count);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetInitialParticleCount")]
-            internal static extern void SetInitialParticleCount(global::System.Runtime.InteropServices.HandleRef jarg1, uint count);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetInitialParticleCount", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void SetInitialParticleCount(IntPtr jarg1, uint count);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetActiveParticlesLimit")]
-            internal static extern void SetActiveParticlesLimit(global::System.Runtime.InteropServices.HandleRef jarg1, uint count);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_SetActiveParticlesLimit", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void SetActiveParticlesLimit(IntPtr jarg1, uint count);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_Start")]
-            internal static extern void Start(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_Start", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void Start(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_Stop")]
-            internal static extern void Stop(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_Stop", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void Stop(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_RemoveModifierAt")]
-            internal static extern void RemoveModifierAt(global::System.Runtime.InteropServices.HandleRef jarg1, uint index);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_RemoveModifierAt", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void RemoveModifierAt(IntPtr jarg1, uint index);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetParticleList")]
-            internal static extern global::System.IntPtr GetParticleList(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetParticleList", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern global::System.IntPtr GetParticleList(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetSource")]
-            internal static extern global::System.IntPtr GetSource(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetSource", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern global::System.IntPtr GetSource(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetDomain")]
-            internal static extern global::System.IntPtr GetDomain(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetDomain", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern global::System.IntPtr GetDomain(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetRenderer")]
-            internal static extern global::System.IntPtr GetRenderer(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetRenderer", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern global::System.IntPtr GetRenderer(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetEmissionRate")]
-            internal static extern uint GetEmissionRate(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetEmissionRate", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern uint GetEmissionRate(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetInitialParticleCount")]
-            internal static extern uint GetInitialParticleCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetInitialParticleCount", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern uint GetInitialParticleCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetActiveParticleLimit")]
-            internal static extern uint GetActiveParticleLimit(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_GetActiveParticleLimit", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern uint GetActiveParticleLimit(IntPtr jarg1);
 
             // ParticleRenderer
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleRenderer_SetTexture")]
-            internal static extern void SetTexture(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleRenderer_SetTexture", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void SetTexture(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleRenderer_SetBlendingMode")]
-            internal static extern void SetBlendingMode(global::System.Runtime.InteropServices.HandleRef jarg1, ParticleBlendingMode mode);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleRenderer_SetBlendingMode", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void SetBlendingMode(IntPtr jarg1, ParticleBlendingMode mode);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleRenderer_GetBlendingMode")]
-            internal static extern int GetBlendingMode(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleRenderer_GetBlendingMode", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern int GetBlendingMode(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_NewParticle")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleEmitter_NewParticle", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern int NewParticle(global::System.IntPtr emitter, float lifetime);
 
             // ParticleList
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStreamInt")]
-            internal static extern uint AddLocalStreamInt(global::System.Runtime.InteropServices.HandleRef jarg1, int defaultValue);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStreamInt", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern uint AddLocalStreamInt(IntPtr jarg1, int defaultValue);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStreamFloat")]
-            internal static extern uint AddLocalStreamFloat(global::System.Runtime.InteropServices.HandleRef jarg1, float defaultValue);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStreamFloat", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern uint AddLocalStreamFloat(IntPtr jarg1, float defaultValue);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStreamVector2")]
-            internal static extern uint AddLocalStreamVector2(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.IntPtr defaultValue);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStreamVector2", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern uint AddLocalStreamVector2(IntPtr jarg1, global::System.IntPtr defaultValue);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStreamVector3")]
-            internal static extern uint AddLocalStreamVector3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.IntPtr defaultValue);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStreamVector3", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern uint AddLocalStreamVector3(IntPtr jarg1, global::System.IntPtr defaultValue);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStreamVector4")]
-            internal static extern uint AddLocalStreamVector4(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.IntPtr defaultValue);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_AddLocalStreamVector4", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern uint AddLocalStreamVector4(IntPtr jarg1, global::System.IntPtr defaultValue);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_GetDefaultStreamIndex")]
-            internal static extern int GetDefaultStreamIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint builtInStream );
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleList_GetDefaultStreamIndex", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern int GetDefaultStreamIndex(IntPtr jarg1, uint builtInStream );
 
         }
     }
 }
+
+
+
+
+
 

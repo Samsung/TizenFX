@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,41 +26,46 @@ namespace Tizen.NUI
         internal static partial class VisualBase
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VisualBase__SWIG_0")]
-            public static extern global::System.IntPtr NewVisualBase();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VisualBase__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewVisualBase();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_VisualBase")]
-            public static extern void DeleteVisualBase(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_VisualBase", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteVisualBase(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VisualBase__SWIG_1")]
-            public static extern global::System.IntPtr NewVisualBase(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VisualBase__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewVisualBase(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_SetName")]
-            public static extern void SetName(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_SetName", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetName(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_GetName")]
-            public static extern string GetName(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_GetName", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetName(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_SetTransformAndSize")]
-            public static extern void SetTransformAndSize(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_SetTransformAndSize", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetTransformAndSize(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_GetHeightForWidth")]
-            public static extern float GetHeightForWidth(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_GetHeightForWidth", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetHeightForWidth(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_GetWidthForHeight")]
-            public static extern float GetWidthForHeight(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_GetWidthForHeight", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetWidthForHeight(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_GetNaturalSize")]
-            public static extern void GetNaturalSize(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_GetNaturalSize", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GetNaturalSize(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_SetDepthIndex")]
-            public static extern void SetDepthIndex(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_SetDepthIndex", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetDepthIndex(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_GetDepthIndex")]
-            public static extern int GetDepthIndex(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_GetDepthIndex", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetDepthIndex(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_CreatePropertyMap")]
-            public static extern void CreatePropertyMap(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualBase_CreatePropertyMap", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void CreatePropertyMap(IntPtr jarg1, IntPtr jarg2);
         }
     }
 }
+
+
+
+
+

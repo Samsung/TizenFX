@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +15,9 @@
  *
  */
 
-using System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices;
 
+using global::System.Runtime.InteropServices.Marshalling;
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -26,3 +27,5 @@ namespace Tizen.NUI
         }
     }
 }
+
+

@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,139 +26,144 @@ namespace Tizen.NUI
         internal static partial class WidgetView
         {
             //for widget view
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_WIDGET_ID_get")]
-            public static extern int WidgetIdGet();
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_WIDGET_ID_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int WidgetIdGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_INSTANCE_ID_get")]
-            public static extern int InstanceIdGet();
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_INSTANCE_ID_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InstanceIdGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_CONTENT_INFO_get")]
-            public static extern int ContentInfoGet();
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_CONTENT_INFO_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ContentInfoGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_TITLE_get")]
-            public static extern int TitleGet();
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_TITLE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TitleGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_UPDATE_PERIOD_get")]
-            public static extern int UpdatePeriodGet();
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_UPDATE_PERIOD_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int UpdatePeriodGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_PREVIEW_get")]
-            public static extern int PreviewGet();
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_PREVIEW_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PreviewGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_LOADING_TEXT_get")]
-            public static extern int LoadingTextGet();
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_LOADING_TEXT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int LoadingTextGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_WIDGET_STATE_FAULTED_get")]
-            public static extern int WidgetStateFaultedGet();
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_WIDGET_STATE_FAULTED_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int WidgetStateFaultedGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_PERMANENT_DELETE_get")]
-            public static extern int PermanentDeleteGet();
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_PERMANENT_DELETE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PermanentDeleteGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_RETRY_TEXT_get")]
-            public static extern int RetryTextGet();
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_RETRY_TEXT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int RetryTextGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_EFFECT_get")]
-            public static extern int EffectGet();
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_EFFECT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int EffectGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_KEEP_WIDGET_SIZE_get")]
-            public static extern int KeepWidgetSizeGet();
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Property_KEEP_WIDGET_SIZE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int KeepWidgetSizeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_New")]
-            public static extern global::System.IntPtr New(string jarg1, string jarg2, int jarg3, int jarg4, float jarg5);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(string jarg1, string jarg2, int jarg3, int jarg4, float jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_DownCast")]
-            public static extern global::System.IntPtr DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_DownCast", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr DownCast(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_new_WidgetView__SWIG_1")]
-            public static extern global::System.IntPtr NewWidgetView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_new_WidgetView__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewWidgetView(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Assign")]
-            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_Assign", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Assign(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_delete_WidgetView")]
-            public static extern void DeleteWidgetView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_delete_WidgetView", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWidgetView(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_PauseWidget")]
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_PauseWidget", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool PauseWidget(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool PauseWidget(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_ResumeWidget")]
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_ResumeWidget", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool ResumeWidget(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool ResumeWidget(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_CancelTouchEvent")]
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_CancelTouchEvent", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool CancelTouchEvent(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool CancelTouchEvent(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_ActivateFaultedWidget")]
-            public static extern void ActivateFaultedWidget(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_ActivateFaultedWidget", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ActivateFaultedWidget(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_TerminateWidget")]
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_TerminateWidget", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool TerminateWidget(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool TerminateWidget(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_WidgetAddedSignal")]
-            public static extern global::System.IntPtr WidgetAddedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_WidgetAddedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr WidgetAddedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_WidgetDeletedSignal")]
-            public static extern global::System.IntPtr WidgetDeletedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_WidgetDeletedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr WidgetDeletedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_WidgetCreationAbortedSignal")]
-            public static extern global::System.IntPtr WidgetCreationAbortedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_WidgetCreationAbortedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr WidgetCreationAbortedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_WidgetContentUpdatedSignal")]
-            public static extern global::System.IntPtr WidgetContentUpdatedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_WidgetContentUpdatedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr WidgetContentUpdatedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_WidgetUpdatePeriodChangedSignal")]
-            public static extern global::System.IntPtr WidgetUpdatePeriodChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_WidgetUpdatePeriodChangedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr WidgetUpdatePeriodChangedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_WidgetFaultedSignal")]
-            public static extern global::System.IntPtr WidgetFaultedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_WidgetFaultedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr WidgetFaultedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetViewSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetViewSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool WidgetViewSignalEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool WidgetViewSignalEmpty(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetViewSignal_GetConnectionCount")]
-            public static extern uint WidgetViewSignalGetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetViewSignal_GetConnectionCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint WidgetViewSignalGetConnectionCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetViewSignal_Connect")]
-            public static extern void WidgetViewSignalConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetViewSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void WidgetViewSignalConnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetViewSignal_Disconnect")]
-            public static extern void WidgetViewSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetViewSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void WidgetViewSignalDisconnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetViewSignal_Emit")]
-            public static extern void WidgetViewSignalEmit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetViewSignal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void WidgetViewSignalEmit(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_new_WidgetViewSignal")]
-            public static extern global::System.IntPtr NewWidgetViewSignal();
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_new_WidgetViewSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewWidgetViewSignal();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_delete_WidgetViewSignal")]
-            public static extern void DeleteWidgetViewSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_delete_WidgetViewSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWidgetViewSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_PauseWidget")]
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_PauseWidget", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool WidgetView_PauseWidget(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool WidgetView_PauseWidget(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_ResumeWidget")]
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_ResumeWidget", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool WidgetView_ResumeWidget(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool WidgetView_ResumeWidget(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_TerminateWidget")]
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_TerminateWidget", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool WidgetView_TerminateWidget(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool WidgetView_TerminateWidget(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_delete_WidgetView")]
-            public static extern void delete_WidgetView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_delete_WidgetView", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void delete_WidgetView(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_SWIGUpcast")]
-            public static extern global::System.IntPtr WidgetView_SWIGUpcast(global::System.IntPtr jarg1);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_SWIGUpcast", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr WidgetView_SWIGUpcast(global::System.IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_WidgetAddedSignal")]
-            public static extern global::System.IntPtr WidgetView_WidgetAddedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_WidgetAddedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr WidgetView_WidgetAddedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_WidgetDeletedSignal")]
-            public static extern global::System.IntPtr WidgetView_WidgetDeletedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.WidgetViewerLib, EntryPoint = "CSharp_Dali_WidgetView_WidgetDeletedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr WidgetView_WidgetDeletedSignal(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

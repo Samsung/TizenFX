@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,27 +15,31 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
-    using global::System;
-    using global::System.Runtime.InteropServices;
-
     internal static partial class Interop
     {
         internal static partial class ImageUrl
         {
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ImageUrl_Copy")]
-            public static extern global::System.IntPtr NewImageUrl(global::System.Runtime.InteropServices.HandleRef csImageUrl);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ImageUrl_Copy", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewImageUrl(IntPtr csImageUrl);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageUrl_New")]
-            public static extern global::System.IntPtr New(HandleRef texture, bool preMultiplied);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageUrl_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(IntPtr texture, [MarshalAs(UnmanagedType.U1)] bool preMultiplied);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ImageUrl")]
-            public static extern void Delete(HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ImageUrl", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Delete(IntPtr jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageUrl_Get")]
-            public static extern string GetUrl(HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageUrl_Get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetUrl(IntPtr jarg1);
         }
     }
 }
+
+
+

@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,41 +26,46 @@ namespace Tizen.NUI
         internal static partial class Hover
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_New")]
-            public static extern global::System.IntPtr New(uint jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(uint jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetTime")]
-            public static extern uint GetTime(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetTime", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetTime(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetPointCount")]
-            public static extern uint GetPointCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetPointCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetPointCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetDeviceId")]
-            public static extern int GetDeviceId(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetDeviceId", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetDeviceId(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetState")]
-            public static extern int GetState(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetState", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetState(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetHitActor")]
-            public static extern global::System.IntPtr GetHitActor(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetHitActor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetHitActor(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetLocalPosition")]
-            public static extern global::System.IntPtr GetLocalPosition(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetLocalPosition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetLocalPosition(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetScreenPosition")]
-            public static extern global::System.IntPtr GetScreenPosition(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetScreenPosition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetScreenPosition(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetDeviceClass")]
-            public static extern int GetDeviceClass(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetDeviceClass", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetDeviceClass(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetDeviceSubclass")]
-            public static extern int GetDeviceSubClass(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetDeviceSubclass", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetDeviceSubClass(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetDeviceName")]
-            public static extern string GetDeviceName(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Hover_GetDeviceName", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetDeviceName(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Hover")]
-            public static extern void DeleteHover(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Hover", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteHover(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

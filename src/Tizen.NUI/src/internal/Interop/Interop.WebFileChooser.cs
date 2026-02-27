@@ -15,43 +15,52 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class WebFileChooser
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebFileChooserRequest")]
-            public static extern void DeleteWebFileChooserRequest(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebFileChooserRequest", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWebFileChooserRequest(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebFileChooserRequest_MultipleFilesAllowed")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebFileChooserRequest_MultipleFilesAllowed", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool MultipleFilesAllowed(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool MultipleFilesAllowed(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebFileChooserRequest_AcceptedMimetypes")]
-            public static extern System.IntPtr AcceptedMimetypes(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebFileChooserRequest_AcceptedMimetypes", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial System.IntPtr AcceptedMimetypes(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebFileChooserRequest_Cancel")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebFileChooserRequest_Cancel", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool Cancel(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool Cancel(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebFileChooserRequest_ChooseFiles")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebFileChooserRequest_ChooseFiles", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool ChooseFiles(global::System.Runtime.InteropServices.HandleRef jarg1, string[] files, uint count);
+            public static partial bool ChooseFiles(IntPtr jarg1, string[] files, uint count);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebFileChooserRequest_ChooseFile")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebFileChooserRequest_ChooseFile", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool ChooseFile(global::System.Runtime.InteropServices.HandleRef jarg1, string file);
+            public static partial bool ChooseFile(IntPtr jarg1, string file);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_AcceptedMimetypes")]
-            public static extern void DeleteAcceptedMimetypes(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_AcceptedMimetypes", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteAcceptedMimetypes(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AcceptedMimetypes_Count")]
-            public static extern uint AcceptedMimetypesCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AcceptedMimetypes_Count", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint AcceptedMimetypesCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AcceptedMimetypes_GetItem")]
-            public static extern string AcceptedMimetypesGetItem(global::System.Runtime.InteropServices.HandleRef jarg1, uint index);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AcceptedMimetypes_GetItem", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string AcceptedMimetypesGetItem(IntPtr jarg1, uint index);
         }
     }
 }
+
+
+
+
+
 

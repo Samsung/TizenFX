@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,14 +26,19 @@ namespace Tizen.NUI
         internal static partial class HandleInternal
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_GetPropertyCount")]
-            public static extern uint HandleGetPropertyCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_GetPropertyCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint HandleGetPropertyCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_RemoveConstraints__SWIG_0")]
-            public static extern void HandleRemoveConstraints(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_RemoveConstraints__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void HandleRemoveConstraints(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_RemoveConstraints__SWIG_1")]
-            public static extern void HandleRemoveConstraints(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Handle_RemoveConstraints__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void HandleRemoveConstraints(IntPtr jarg1, uint jarg2);
         }
     }
 }
+
+
+
+
+

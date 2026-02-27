@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,46 +15,54 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
-    using global::System;
     internal static partial class Interop
     {
         internal static partial class NativeImageQueue
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_NativeImageQueuePtr_2")]
-            public static extern IntPtr NewHandle(uint queueCount, uint width, uint height, int colorFormat);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_NativeImageQueuePtr_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr NewHandle(uint queueCount, uint width, uint height, int colorFormat);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_GetPtr")]
-            public static extern IntPtr Get(IntPtr queue);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_GetPtr", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr Get(IntPtr queue);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_NativeImageQueuePtr")]
-            public static extern void Delete(IntPtr queue);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_NativeImageQueuePtr", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Delete(IntPtr queue);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_CanDequeueBuffer")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_CanDequeueBuffer", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool CanDequeueBuffer(IntPtr queue);
+            public static partial bool CanDequeueBuffer(IntPtr queue);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_DequeueBuffer")]
-            public static extern IntPtr DequeueBuffer(IntPtr queue, ref int width, ref int height, ref int colorDepth);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_DequeueBuffer", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr DequeueBuffer(IntPtr queue, ref int width, ref int height, ref int colorDepth);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_EnqueueBuffer")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_EnqueueBuffer", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool EnqueueBuffer(IntPtr queue, IntPtr buffer);
+            public static partial bool EnqueueBuffer(IntPtr queue, IntPtr buffer);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_GetQueueCount")]
-            public static extern uint GetQueueCount(IntPtr queue);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_GetQueueCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetQueueCount(IntPtr queue);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_GenerateUrl")]
-            public static extern IntPtr GenerateUrl(IntPtr queue);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_GenerateUrl", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr GenerateUrl(IntPtr queue);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_GenerateUrl_With_PreMultiplied")]
-            public static extern IntPtr GenerateUrl(IntPtr queue, bool preMultiplied);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueue_GenerateUrl_With_PreMultiplied", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr GenerateUrl(IntPtr queue, [MarshalAs(UnmanagedType.U1)] bool preMultiplied);
 
             // Platform dependency methods
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueuePtr_New_Handle_With_TbmQueue")]
-            public static extern IntPtr NewHandleWithTbmQueue(IntPtr csTbmQueue);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_NativeImageQueuePtr_New_Handle_With_TbmQueue", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr NewHandleWithTbmQueue(IntPtr csTbmQueue);
         }
     }
 }
+
+
+
+
+

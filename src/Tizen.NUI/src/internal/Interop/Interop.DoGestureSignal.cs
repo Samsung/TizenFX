@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,9 +14,12 @@
  * limitations under the License.
  *
  */
-using System;
-using System.Collections.Generic;
-using System.Text;
+ 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+using global::System.Collections.Generic;
+using global::System.Text;
 
 namespace Tizen.NUI
 {
@@ -24,15 +27,20 @@ namespace Tizen.NUI
     {
         internal static partial class DoGestureSignal
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_GesturePairToVoid_GetSizeOfGestureInfo")]
-            public static extern uint GetSizeOfGestureInfo();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_GesturePairToVoid_GetSizeOfGestureInfo", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetSizeOfGestureInfo();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_GesturePairToVoid_GetResult")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_GesturePairToVoid_GetResult", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool GetResult(global::System.IntPtr jarg1);
+            public static partial bool GetResult(global::System.IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_GesturePairToVoid_SetResult")]
-            public static extern void SetResult(global::System.IntPtr jarg1, bool result);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_GesturePairToVoid_SetResult", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetResult(global::System.IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool result);
         }
     }
 }
+
+
+
+
+

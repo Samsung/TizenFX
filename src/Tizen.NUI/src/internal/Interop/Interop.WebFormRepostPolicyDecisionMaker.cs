@@ -15,18 +15,27 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class WebFormRepostPolicyDecisionMaker
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebFormRepostDecision")]
-            public static extern void DeleteWebFormRepostDecision(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebFormRepostDecision", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWebFormRepostDecision(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebFormRepostDecision_Reply")]
-            public static extern void Reply(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebFormRepostDecision_Reply", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Reply(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
         }
     }
 }
+
+
+
+
+
 

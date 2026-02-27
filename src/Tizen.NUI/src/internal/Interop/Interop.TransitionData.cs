@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,23 +26,28 @@ namespace Tizen.NUI
         internal static partial class TransitionData
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TransitionData")]
-            public static extern void DeleteTransitionData(global::System.Runtime.InteropServices.HandleRef jarg1B);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TransitionData", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteTransitionData(IntPtr jarg1B);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionData_New__SWIG_0")]
-            public static extern global::System.IntPtr NewByMap(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionData_New__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewByMap(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionData_New__SWIG_1")]
-            public static extern global::System.IntPtr NewByArray(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionData_New__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewByArray(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TransitionData__SWIG_1")]
-            public static extern global::System.IntPtr NewTransitionData(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TransitionData__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewTransitionData(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionData_Count")]
-            public static extern uint Count(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionData_Count", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint Count(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionData_GetAnimatorAt")]
-            public static extern global::System.IntPtr GetAnimatorAt(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionData_GetAnimatorAt", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetAnimatorAt(IntPtr jarg1, uint jarg2);
         }
     }
 }
+
+
+
+
+

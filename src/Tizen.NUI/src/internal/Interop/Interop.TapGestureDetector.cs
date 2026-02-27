@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,35 +26,40 @@ namespace Tizen.NUI
         internal static partial class TapGestureDetector
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGestureDetector_New__SWIG_0")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGestureDetector_New__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGestureDetector_New__SWIG_1")]
-            public static extern global::System.IntPtr New(uint jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGestureDetector_New__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(uint jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TapGestureDetector")]
-            public static extern void DeleteTapGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TapGestureDetector", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteTapGestureDetector(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TapGestureDetector__SWIG_1")]
-            public static extern global::System.IntPtr NewTapGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TapGestureDetector__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewTapGestureDetector(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGestureDetector_Assign")]
-            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGestureDetector_Assign", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Assign(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGestureDetector_SetMinimumTapsRequired")]
-            public static extern void SetMinimumTapsRequired(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGestureDetector_SetMinimumTapsRequired", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetMinimumTapsRequired(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGestureDetector_SetMaximumTapsRequired")]
-            public static extern void SetMaximumTapsRequired(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGestureDetector_SetMaximumTapsRequired", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetMaximumTapsRequired(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGestureDetector_GetMinimumTapsRequired")]
-            public static extern uint GetMinimumTapsRequired(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGestureDetector_GetMinimumTapsRequired", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetMinimumTapsRequired(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGestureDetector_GetMaximumTapsRequired")]
-            public static extern uint GetMaximumTapsRequired(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGestureDetector_GetMaximumTapsRequired", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetMaximumTapsRequired(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGestureDetector_DetectedSignal")]
-            public static extern global::System.IntPtr DetectedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGestureDetector_DetectedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr DetectedSignal(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

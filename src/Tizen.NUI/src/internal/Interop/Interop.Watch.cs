@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,114 +26,119 @@ namespace Tizen.NUI
         internal static partial class Watch
         {
             //for watch
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WatchTime")]
-            public static extern global::System.IntPtr NewWatchTime();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WatchTime", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewWatchTime();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WatchTime")]
-            public static extern void DeleteWatchTime(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WatchTime", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWatchTime(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetHour")]
-            public static extern int WatchTimeGetHour(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetHour", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int WatchTimeGetHour(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetHour24")]
-            public static extern int WatchTimeGetHour24(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetHour24", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int WatchTimeGetHour24(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetMinute")]
-            public static extern int WatchTimeGetMinute(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetMinute", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int WatchTimeGetMinute(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetSecond")]
-            public static extern int WatchTimeGetSecond(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetSecond", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int WatchTimeGetSecond(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetMillisecond")]
-            public static extern int WatchTimeGetMillisecond(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetMillisecond", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int WatchTimeGetMillisecond(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetYear")]
-            public static extern int WatchTimeGetYear(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetYear", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int WatchTimeGetYear(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetMonth")]
-            public static extern int WatchTimeGetMonth(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetMonth", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int WatchTimeGetMonth(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetDay")]
-            public static extern int WatchTimeGetDay(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetDay", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int WatchTimeGetDay(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetDayOfWeek")]
-            public static extern int WatchTimeGetDayOfWeek(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetDayOfWeek", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int WatchTimeGetDayOfWeek(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetTimeZone")]
-            public static extern string WatchTimeGetTimeZone(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetTimeZone", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string WatchTimeGetTimeZone(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetDaylightSavingTimeStatus")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTime_GetDaylightSavingTimeStatus", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool WatchTimeGetDaylightSavingTimeStatus(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool WatchTimeGetDaylightSavingTimeStatus(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchApplication_New__SWIG_0")]
-            public static extern global::System.IntPtr WatchApplicationNew();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchApplication_New__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr WatchApplicationNew();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchApplication_New__SWIG_1")]
-            public static extern global::System.IntPtr WatchApplicationNew(int jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchApplication_New__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr WatchApplicationNew(int jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchApplication_New__SWIG_2")]
-            public static extern global::System.IntPtr WatchApplicationNew(int jarg1, string jarg2, string jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchApplication_New__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr WatchApplicationNew(int jarg1, string jarg2, string jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WatchApplication__SWIG_1")]
-            public static extern global::System.IntPtr NewWatchApplication(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WatchApplication__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewWatchApplication(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WatchApplication")]
-            public static extern void DeleteWatchApplication(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WatchApplication", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWatchApplication(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchApplication_TimeTickSignal")]
-            public static extern global::System.IntPtr WatchApplicationTimeTickSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchApplication_TimeTickSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr WatchApplicationTimeTickSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchApplication_AmbientTickSignal")]
-            public static extern global::System.IntPtr WatchApplicationAmbientTickSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchApplication_AmbientTickSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr WatchApplicationAmbientTickSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchApplication_AmbientChangedSignal")]
-            public static extern global::System.IntPtr WatchApplicationAmbientChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchApplication_AmbientChangedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr WatchApplicationAmbientChangedSignal(IntPtr jarg1);
 
             //for watch signal
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTimeSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTimeSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool WatchTimeSignalEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool WatchTimeSignalEmpty(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTimeSignal_GetConnectionCount")]
-            public static extern uint WatchTimeSignalGetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTimeSignal_GetConnectionCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint WatchTimeSignalGetConnectionCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTimeSignal_Connect")]
-            public static extern void WatchTimeSignalConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTimeSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void WatchTimeSignalConnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTimeSignal_Disconnect")]
-            public static extern void WatchTimeSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTimeSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void WatchTimeSignalDisconnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTimeSignal_Emit")]
-            public static extern void WatchTimeSignalEmit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchTimeSignal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void WatchTimeSignalEmit(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WatchTimeSignal")]
-            public static extern global::System.IntPtr NewWatchTimeSignal();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WatchTimeSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewWatchTimeSignal();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WatchTimeSignal")]
-            public static extern void DeleteWatchTimeSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WatchTimeSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWatchTimeSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchBoolSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchBoolSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool WatchBoolSignalEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool WatchBoolSignalEmpty(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchBoolSignal_GetConnectionCount")]
-            public static extern uint WatchBoolSignalGetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchBoolSignal_GetConnectionCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint WatchBoolSignalGetConnectionCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchBoolSignal_Connect")]
-            public static extern void WatchBoolSignalConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchBoolSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void WatchBoolSignalConnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchBoolSignal_Disconnect")]
-            public static extern void WatchBoolSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchBoolSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void WatchBoolSignalDisconnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchBoolSignal_Emit")]
-            public static extern void WatchBoolSignalEmit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WatchBoolSignal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void WatchBoolSignalEmit(IntPtr jarg1, IntPtr jarg2, [MarshalAs(UnmanagedType.U1)] bool jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WatchBoolSignal")]
-            public static extern global::System.IntPtr NewWatchBoolSignal();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WatchBoolSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewWatchBoolSignal();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WatchBoolSignal")]
-            public static extern void DeleteWatchBoolSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WatchBoolSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWatchBoolSignal(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

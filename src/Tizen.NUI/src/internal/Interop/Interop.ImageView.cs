@@ -14,92 +14,102 @@
  * limitations under the License.
  *
  */
+
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class ImageView
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_IMAGE_get")]
-            public static extern int ImageGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_IMAGE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_PRE_MULTIPLIED_ALPHA_get")]
-            public static extern int PreMultipliedAlphaGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_PRE_MULTIPLIED_ALPHA_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PreMultipliedAlphaGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_PIXEL_AREA_get")]
-            public static extern int PixelAreaGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_PIXEL_AREA_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PixelAreaGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_PLACEHOLDER_IMAGE_get")]
-            public static extern int PlaceHolderImageGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_PLACEHOLDER_IMAGE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PlaceHolderImageGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_TRANSITION_EFFECT_get")]
-            public static extern int TransitionEffectGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_TRANSITION_EFFECT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TransitionEffectGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_TRANSITION_EFFECT_OPTION_get")]
-            public static extern int TransitionEffectOptionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_TRANSITION_EFFECT_OPTION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TransitionEffectOptionGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_0")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_2")]
-            public static extern global::System.IntPtr New(string jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(string jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_3")]
-            public static extern global::System.IntPtr New(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(string jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ImageView")]
-            public static extern void DeleteImageView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ImageView", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteImageView(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_SetImage__SWIG_1")]
-            public static extern void SetImage(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_SetImage__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetImage(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_SetImage__SWIG_2")]
-            public static extern void SetImage(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_SetImage__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetImage(IntPtr jarg1, string jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageVisual_Actions_RELOAD_get")]
-            public static extern int ImageVisualActionReloadGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageVisual_Actions_RELOAD_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualActionReloadGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_0")]
-            public static extern global::System.IntPtr ImageView_New__SWIG_0();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ImageView_New__SWIG_0();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_2")]
-            public static extern global::System.IntPtr ImageView_New__SWIG_2(string jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ImageView_New__SWIG_2(string jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_3")]
-            public static extern global::System.IntPtr ImageView_New__SWIG_3(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ImageView_New__SWIG_3(string jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_SWIGUpcast")]
-            public static extern global::System.IntPtr ImageView_SWIGUpcast(global::System.IntPtr jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_SWIGUpcast", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ImageView_SWIGUpcast(global::System.IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_SetImage__SWIG_1")]
-            public static extern void ImageView_SetImage__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_SetImage__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ImageView_SetImage__SWIG_1(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_SetImage__SWIG_2")]
-            public static extern void ImageView_SetImage__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_SetImage__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ImageView_SetImage__SWIG_2(IntPtr jarg1, string jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ImageView")]
-            public static extern void delete_ImageView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ImageView", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void delete_ImageView(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_IMAGE_get")]
-            public static extern int ImageView_Property_IMAGE_get();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_IMAGE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageView_Property_IMAGE_get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_PRE_MULTIPLIED_ALPHA_get")]
-            public static extern int ImageView_Property_PRE_MULTIPLIED_ALPHA_get();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_PRE_MULTIPLIED_ALPHA_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageView_Property_PRE_MULTIPLIED_ALPHA_get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_PIXEL_AREA_get")]
-            public static extern int ImageView_Property_PIXEL_AREA_get();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_PIXEL_AREA_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageView_Property_PIXEL_AREA_get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageVisual_Actions_RELOAD_get")]
-            public static extern int ImageView_IMAGE_VISUAL_ACTION_RELOAD_get();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageVisual_Actions_RELOAD_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageView_IMAGE_VISUAL_ACTION_RELOAD_get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageVisual_Actions_PLAY_get")]
-            public static extern int ImageView_IMAGE_VISUAL_ACTION_PLAY_get();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageVisual_Actions_PLAY_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageView_IMAGE_VISUAL_ACTION_PLAY_get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageVisual_Actions_PAUSE_get")]
-            public static extern int ImageView_IMAGE_VISUAL_ACTION_PAUSE_get();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageVisual_Actions_PAUSE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageView_IMAGE_VISUAL_ACTION_PAUSE_get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageVisual_Actions_STOP_get")]
-            public static extern int ImageView_IMAGE_VISUAL_ACTION_STOP_get();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageVisual_Actions_STOP_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageView_IMAGE_VISUAL_ACTION_STOP_get();
         }
     }
 }
+
+
+
+
+

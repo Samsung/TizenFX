@@ -15,29 +15,38 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class ProcessorController
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ProcessorController_Without_Initialize")]
-            public static extern global::System.IntPtr NewWithoutInitialize();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ProcessorController_Without_Initialize", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewWithoutInitialize();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ProcessorController")]
-            public static extern void DeleteProcessorController(global::System.Runtime.InteropServices.HandleRef processorController);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ProcessorController", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteProcessorController(IntPtr processorController);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProcessorController_Initialize")]
-            public static extern void Initialize(global::System.Runtime.InteropServices.HandleRef processorController);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProcessorController_Initialize", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Initialize(IntPtr processorController);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProcessorController_SetCallback")]
-            public static extern void SetCallback(global::System.Runtime.InteropServices.HandleRef processorController, Tizen.NUI.ProcessorController.ProcessorEventHandler processorCallback);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProcessorController_SetCallback", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetCallback(IntPtr processorController, Tizen.NUI.ProcessorController.ProcessorEventHandler processorCallback);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProcessorController_RemoveCallback")]
-            public static extern void RemoveCallback(global::System.Runtime.InteropServices.HandleRef processorController, Tizen.NUI.ProcessorController.ProcessorEventHandler processorCallback);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProcessorController_RemoveCallback", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RemoveCallback(IntPtr processorController, Tizen.NUI.ProcessorController.ProcessorEventHandler processorCallback);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProcessorController_Awake")]
-            public static extern void Awake(global::System.Runtime.InteropServices.HandleRef processorController);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProcessorController_Awake", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Awake(IntPtr processorController);
         }
     }
 }
+
+
+
+
+

@@ -15,47 +15,56 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class NdalicPrimitive
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_SHAPE_get")]
-            public static extern int PrimitiveVisualShapeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_SHAPE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PrimitiveVisualShapeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_MIX_COLOR_get")]
-            public static extern int PrimitiveVisualMixColorGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_MIX_COLOR_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PrimitiveVisualMixColorGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_SLICES_get")]
-            public static extern int PrimitiveVisualSlicesGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_SLICES_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PrimitiveVisualSlicesGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_STACKS_get")]
-            public static extern int PrimitiveVisualStacksGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_STACKS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PrimitiveVisualStacksGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_SCALE_TOP_RADIUS_get")]
-            public static extern int PrimitiveVisualScaleTopRadiusGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_SCALE_TOP_RADIUS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PrimitiveVisualScaleTopRadiusGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_SCALE_BOTTOM_RADIUS_get")]
-            public static extern int PrimitiveVisualScaleBottomRadiusGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_SCALE_BOTTOM_RADIUS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PrimitiveVisualScaleBottomRadiusGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_SCALE_HEIGHT_get")]
-            public static extern int PrimitiveVisualScaleHeightGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_SCALE_HEIGHT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PrimitiveVisualScaleHeightGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_SCALE_RADIUS_get")]
-            public static extern int PrimitiveVisualScaleRadiusGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_SCALE_RADIUS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PrimitiveVisualScaleRadiusGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_SCALE_DIMENSIONS_get")]
-            public static extern int PrimitiveVisualScaleDimensionsGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_SCALE_DIMENSIONS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PrimitiveVisualScaleDimensionsGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_BEVEL_PERCENTAGE_get")]
-            public static extern int PrimitiveVisualBevelPercentageGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_BEVEL_PERCENTAGE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PrimitiveVisualBevelPercentageGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_BEVEL_SMOOTHNESS_get")]
-            public static extern int PrimitiveVisualBevelSmoothnessGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_BEVEL_SMOOTHNESS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PrimitiveVisualBevelSmoothnessGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_LIGHT_POSITION_get")]
-            public static extern int PrimitiveVisualLightPositionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PRIMITIVE_VISUAL_LIGHT_POSITION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PrimitiveVisualLightPositionGet();
         }
     }
 }
+
+
+
+
+

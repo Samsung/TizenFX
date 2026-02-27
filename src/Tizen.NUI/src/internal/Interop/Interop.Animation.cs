@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,236 +26,241 @@ namespace Tizen.NUI
         internal static partial class Animation
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_New")]
-            public static extern global::System.IntPtr New(float jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(float jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Animation")]
-            public static extern void DeleteAnimation(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Animation", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteAnimation(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Animation__SWIG_1")]
-            public static extern global::System.IntPtr NewAnimation(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Animation__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewAnimation(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Assign")]
-            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Assign", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Assign(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetDuration")]
-            public static extern void SetDuration(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetDuration", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetDuration(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetDuration")]
-            public static extern float GetDuration(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetDuration", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetDuration(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetLooping")]
-            public static extern void SetLooping(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetLooping", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetLooping(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetLoopCount")]
-            public static extern void SetLoopCount(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetLoopCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetLoopCount(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetLoopCount")]
-            public static extern int GetLoopCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetLoopCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetLoopCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetCurrentLoop")]
-            public static extern int GetCurrentLoop(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetCurrentLoop", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetCurrentLoop(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_IsLooping")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_IsLooping", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsLooping(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsLooping(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetEndAction")]
-            public static extern void SetEndAction(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetEndAction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetEndAction(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetEndAction")]
-            public static extern int GetEndAction(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetEndAction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetEndAction(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetDisconnectAction")]
-            public static extern void SetDisconnectAction(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetDisconnectAction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetDisconnectAction(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetDisconnectAction")]
-            public static extern int GetDisconnectAction(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetDisconnectAction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetDisconnectAction(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetDefaultAlphaFunction")]
-            public static extern void SetDefaultAlphaFunction(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetDefaultAlphaFunction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetDefaultAlphaFunction(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetDefaultAlphaFunction")]
-            public static extern global::System.IntPtr GetDefaultAlphaFunction(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetDefaultAlphaFunction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetDefaultAlphaFunction(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetCurrentProgress")]
-            public static extern void SetCurrentProgress(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetCurrentProgress", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetCurrentProgress(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetCurrentProgress")]
-            public static extern float GetCurrentProgress(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetCurrentProgress", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetCurrentProgress(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetSpeedFactor")]
-            public static extern void SetSpeedFactor(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetSpeedFactor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetSpeedFactor(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetSpeedFactor")]
-            public static extern float GetSpeedFactor(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetSpeedFactor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetSpeedFactor(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetPlayRange")]
-            public static extern void SetPlayRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetPlayRange", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPlayRange(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetPlayRange")]
-            public static extern global::System.IntPtr GetPlayRange(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetPlayRange", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetPlayRange(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Play")]
-            public static extern void Play(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Play", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Play(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_PlayFrom")]
-            public static extern void PlayFrom(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_PlayFrom", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void PlayFrom(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Pause")]
-            public static extern void Pause(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Pause", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Pause(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetState")]
-            public static extern int GetState(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetState", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetState(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Stop")]
-            public static extern void Stop(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Stop", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Stop(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Clear")]
-            public static extern void Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Clear", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Clear(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetLoopingMode")]
-            public static extern void SetLoopingMode(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetLoopingMode", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetLoopingMode(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetLoopingMode")]
-            public static extern int GetLoopingMode(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetLoopingMode", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetLoopingMode(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetAnimationId")]
-            public static extern uint GetAnimationId(global::System.Runtime.InteropServices.HandleRef nuiAnimation);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetAnimationId", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetAnimationId(IntPtr nuiAnimation);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetProgressNotification")]
-            public static extern void SetProgressNotification(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetProgressNotification", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetProgressNotification(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetProgressNotification")]
-            public static extern float GetProgressNotification(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetProgressNotification", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetProgressNotification(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetBlendPoint")]
-            public static extern void SetBlendPoint(global::System.Runtime.InteropServices.HandleRef csAnimation, float blendPoint);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetBlendPoint", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetBlendPoint(IntPtr csAnimation, float blendPoint);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetBlendPoint")]
-            public static extern float GetBlendPoint(global::System.Runtime.InteropServices.HandleRef csAnimation);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetBlendPoint", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetBlendPoint(IntPtr csAnimation);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_FinishedSignal")]
-            public static extern global::System.IntPtr FinishedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_FinishedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr FinishedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_ProgressReachedSignal")]
-            public static extern global::System.IntPtr ProgressReachedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_ProgressReachedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ProgressReachedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_PlayAfter")]
-            public static extern void PlayAfter(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_PlayAfter", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void PlayAfter(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBy__SWIG_0")]
-            public static extern void AnimateBy(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBy__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateBy(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBy__SWIG_1")]
-            public static extern void AnimateByAlphaFunction(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBy__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateByAlphaFunction(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, IntPtr jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBy__SWIG_2")]
-            public static extern void AnimateByTimePeriod(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBy__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateByTimePeriod(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, IntPtr jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBy__SWIG_3")]
-            public static extern void AnimateBy(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBy__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateBy(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, IntPtr jarg4, IntPtr jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateTo__SWIG_0")]
-            public static extern void AnimateTo(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateTo__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateTo(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateTo__SWIG_1")]
-            public static extern void AnimateToAlphaFunction(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateTo__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateToAlphaFunction(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, IntPtr jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateTo__SWIG_2")]
-            public static extern void AnimateToTimePeriod(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateTo__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateToTimePeriod(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, IntPtr jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateTo__SWIG_3")]
-            public static extern void AnimateTo(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateTo__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateTo(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, IntPtr jarg4, IntPtr jarg5);
 
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBy__SWIG_0")]
-            public static extern void AnimateBy(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.IntPtr jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBy__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateBy(IntPtr jarg1, IntPtr jarg2, global::System.IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBy__SWIG_1")]
-            public static extern void AnimateByAlphaFunction(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.IntPtr jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBy__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateByAlphaFunction(IntPtr jarg1, IntPtr jarg2, global::System.IntPtr jarg3, IntPtr jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBy__SWIG_2")]
-            public static extern void AnimateByTimePeriod(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.IntPtr jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBy__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateByTimePeriod(IntPtr jarg1, IntPtr jarg2, global::System.IntPtr jarg3, IntPtr jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBy__SWIG_3")]
-            public static extern void AnimateBy(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.IntPtr jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBy__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateBy(IntPtr jarg1, IntPtr jarg2, global::System.IntPtr jarg3, IntPtr jarg4, IntPtr jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateTo__SWIG_0")]
-            public static extern void AnimateTo(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.IntPtr jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateTo__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateTo(IntPtr jarg1, IntPtr jarg2, global::System.IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateTo__SWIG_1")]
-            public static extern void AnimateToAlphaFunction(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.IntPtr jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateTo__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateToAlphaFunction(IntPtr jarg1, IntPtr jarg2, global::System.IntPtr jarg3, IntPtr jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateTo__SWIG_2")]
-            public static extern void AnimateToTimePeriod(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.IntPtr jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateTo__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateToTimePeriod(IntPtr jarg1, IntPtr jarg2, global::System.IntPtr jarg3, IntPtr jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateTo__SWIG_3")]
-            public static extern void AnimateTo(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.IntPtr jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateTo__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateTo(IntPtr jarg1, IntPtr jarg2, global::System.IntPtr jarg3, IntPtr jarg4, IntPtr jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBetween__SWIG_0")]
-            public static extern void AnimateBetween(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBetween__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateBetween(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBetween__SWIG_1")]
-            public static extern void AnimateBetween(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, int jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBetween__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateBetween(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, int jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBetween__SWIG_2")]
-            public static extern void AnimateBetweenAlphaFunction(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBetween__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateBetweenAlphaFunction(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, IntPtr jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBetween__SWIG_3")]
-            public static extern void AnimateBetweenAlphaFunctionInterpolation(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, int jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBetween__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateBetweenAlphaFunctionInterpolation(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, IntPtr jarg4, int jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBetween__SWIG_4")]
-            public static extern void AnimateBetweenTimePeriod(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBetween__SWIG_4", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateBetweenTimePeriod(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, IntPtr jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBetween__SWIG_5")]
-            public static extern void AnimateBetweenTimePeriodInterpolation(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, int jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBetween__SWIG_5", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateBetweenTimePeriodInterpolation(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, IntPtr jarg4, int jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBetween__SWIG_6")]
-            public static extern void AnimateBetween(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBetween__SWIG_6", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateBetween(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, IntPtr jarg4, IntPtr jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBetween__SWIG_7")]
-            public static extern void AnimateBetween(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5, int jarg6);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_AnimateBetween__SWIG_7", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateBetween(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, IntPtr jarg4, IntPtr jarg5, int jarg6);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Animate__SWIG_0")]
-            public static extern void Animate(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Animate__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Animate(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, IntPtr jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Animate__SWIG_1")]
-            public static extern void AnimateAlphaFunction(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Animate__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateAlphaFunction(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, IntPtr jarg4, IntPtr jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Animate__SWIG_2")]
-            public static extern void AnimateTimePeriod(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Animate__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimateTimePeriod(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, IntPtr jarg4, IntPtr jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Animate__SWIG_3")]
-            public static extern void Animate(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5, global::System.Runtime.InteropServices.HandleRef jarg6);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Animate__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Animate(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, IntPtr jarg4, IntPtr jarg5, IntPtr jarg6);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Show")]
-            public static extern void Show(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Show", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Show(IntPtr jarg1, IntPtr jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Hide")]
-            public static extern void Hide(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_Hide", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Hide(IntPtr jarg1, IntPtr jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AnimationSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AnimationSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool AnimationSignalEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool AnimationSignalEmpty(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AnimationSignal_GetConnectionCount")]
-            public static extern uint AnimationSignalGetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AnimationSignal_GetConnectionCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint AnimationSignalGetConnectionCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AnimationSignal_Connect")]
-            public static extern void AnimationSignalConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AnimationSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimationSignalConnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AnimationSignal_Disconnect")]
-            public static extern void AnimationSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AnimationSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimationSignalDisconnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AnimationSignal_Emit")]
-            public static extern void AnimationSignalEmit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AnimationSignal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AnimationSignalEmit(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AnimationSignal")]
-            public static extern global::System.IntPtr NewAnimationSignal();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AnimationSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewAnimationSignal();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_AnimationSignal")]
-            public static extern void DeleteAnimationSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_AnimationSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteAnimationSignal(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

@@ -15,44 +15,53 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class FlexContainer
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_Property_CONTENT_DIRECTION_get")]
-            public static extern int ContentDirectionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_Property_CONTENT_DIRECTION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ContentDirectionGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_Property_FLEX_DIRECTION_get")]
-            public static extern int FlexDirectionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_Property_FLEX_DIRECTION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int FlexDirectionGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_Property_FLEX_WRAP_get")]
-            public static extern int FlexWrapGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_Property_FLEX_WRAP_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int FlexWrapGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_Property_JUSTIFY_CONTENT_get")]
-            public static extern int JustifyContentGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_Property_JUSTIFY_CONTENT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int JustifyContentGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_Property_ALIGN_ITEMS_get")]
-            public static extern int AlignItemsGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_Property_ALIGN_ITEMS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int AlignItemsGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_Property_ALIGN_CONTENT_get")]
-            public static extern int AlignContentGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_Property_ALIGN_CONTENT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int AlignContentGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_ChildProperty_FLEX_get")]
-            public static extern int ChildPropertyFlexGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_ChildProperty_FLEX_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ChildPropertyFlexGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_ChildProperty_ALIGN_SELF_get")]
-            public static extern int ChildPropertyAlignSelfGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_ChildProperty_ALIGN_SELF_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ChildPropertyAlignSelfGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_ChildProperty_FLEX_MARGIN_get")]
-            public static extern int ChildPropertyFlexMarginGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_ChildProperty_FLEX_MARGIN_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ChildPropertyFlexMarginGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_FlexContainer")]
-            public static extern void DeleteFlexContainer(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_FlexContainer", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteFlexContainer(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_New")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FlexContainer_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
         }
     }
 }
+
+
+
+
+

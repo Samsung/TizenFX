@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,89 +15,98 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class GestureOptions
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGesturePredictionMode")]
-            public static extern void SetPanGesturePredictionMode(int mode);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGesturePredictionMode", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPanGesturePredictionMode(int mode);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGesturePredictionAmount")]
-            public static extern void SetPanGesturePredictionAmount(uint amount);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGesturePredictionAmount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPanGesturePredictionAmount(uint amount);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureMaximumPredictionAmount")]
-            public static extern void SetPanGestureMaximumPredictionAmount(uint amount);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureMaximumPredictionAmount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPanGestureMaximumPredictionAmount(uint amount);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureMinimumPredictionAmount")]
-            public static extern void SetPanGestureMinimumPredictionAmount(uint amount);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureMinimumPredictionAmount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPanGestureMinimumPredictionAmount(uint amount);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGesturePredictionAmountAdjustment")]
-            public static extern void SetPanGesturePredictionAmountAdjustment(uint amount);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGesturePredictionAmountAdjustment", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPanGesturePredictionAmountAdjustment(uint amount);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureSmoothingMode")]
-            public static extern void SetPanGestureSmoothingMode(int mode);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureSmoothingMode", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPanGestureSmoothingMode(int mode);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureSmoothingAmount")]
-            public static extern void SetPanGestureSmoothingAmount(float jaamountrg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureSmoothingAmount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPanGestureSmoothingAmount(float jaamountrg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureUseActualTimes")]
-            public static extern void SetPanGestureUseActualTimes(bool enable);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureUseActualTimes", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPanGestureUseActualTimes([MarshalAs(UnmanagedType.U1)] bool enable);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureInterpolationTimeRange")]
-            public static extern void SetPanGestureInterpolationTimeRange(int range);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureInterpolationTimeRange", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPanGestureInterpolationTimeRange(int range);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureScalarOnlyPredictionEnabled")]
-            public static extern void SetPanGestureScalarOnlyPredictionEnabled(bool enable);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureScalarOnlyPredictionEnabled", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPanGestureScalarOnlyPredictionEnabled([MarshalAs(UnmanagedType.U1)] bool enable);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureTwoPointPredictionEnabled")]
-            public static extern void SetPanGestureTwoPointPredictionEnabled(bool enable);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureTwoPointPredictionEnabled", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPanGestureTwoPointPredictionEnabled([MarshalAs(UnmanagedType.U1)] bool enable);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureTwoPointInterpolatePastTime")]
-            public static extern void SetPanGestureTwoPointInterpolatePastTime(int time);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureTwoPointInterpolatePastTime", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPanGestureTwoPointInterpolatePastTime(int time);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureTwoPointVelocityBias")]
-            public static extern void SetPanGestureTwoPointVelocityBias(float velocity);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureTwoPointVelocityBias", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPanGestureTwoPointVelocityBias(float velocity);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureTwoPointAccelerationBias")]
-            public static extern void SetPanGestureTwoPointAccelerationBias(float acceleration);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureTwoPointAccelerationBias", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPanGestureTwoPointAccelerationBias(float acceleration);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureMultitapSmoothingRange")]
-            public static extern void SetPanGestureMultitapSmoothingRange(int range);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureMultitapSmoothingRange", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPanGestureMultitapSmoothingRange(int range);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureMinimumDistance")]
-            public static extern void SetPanGestureMinimumDistance(int distance);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureMinimumDistance", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPanGestureMinimumDistance(int distance);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureMinimumPanEvents")]
-            public static extern void SetPanGestureMinimumPanEvents(int number);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPanGestureMinimumPanEvents", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPanGestureMinimumPanEvents(int number);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPinchGestureMinimumDistance")]
-            public static extern void SetPinchGestureMinimumDistance(float distance);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPinchGestureMinimumDistance", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPinchGestureMinimumDistance(float distance);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPinchGestureMinimumTouchEvents")]
-            public static extern void SetPinchGestureMinimumTouchEvents(uint number);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPinchGestureMinimumTouchEvents", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPinchGestureMinimumTouchEvents(uint number);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPinchGestureMinimumTouchEventsAfterStart")]
-            public static extern void SetPinchGestureMinimumTouchEventsAfterStart(uint number);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetPinchGestureMinimumTouchEventsAfterStart", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPinchGestureMinimumTouchEventsAfterStart(uint number);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetRotationGestureMinimumTouchEvents")]
-            public static extern void SetRotationGestureMinimumTouchEvents(uint number);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetRotationGestureMinimumTouchEvents", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetRotationGestureMinimumTouchEvents(uint number);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetRotationGestureMinimumTouchEventsAfterStart")]
-            public static extern void SetRotationGestureMinimumTouchEventsAfterStart(uint number);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetRotationGestureMinimumTouchEventsAfterStart", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetRotationGestureMinimumTouchEventsAfterStart(uint number);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetLongPressMinimumHoldingTime")]
-            public static extern void SetLongPressMinimumHoldingTime(uint time);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetLongPressMinimumHoldingTime", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetLongPressMinimumHoldingTime(uint time);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetTapMaximumAllowedTime")]
-            public static extern void SetDoubleTapTimeout(uint ms);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetTapMaximumAllowedTime", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetDoubleTapTimeout(uint ms);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetTapRecognizerTime")]
-            public static extern void SetTapRecognizerTime(uint ms);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetTapRecognizerTime", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetTapRecognizerTime(uint ms);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetTapMaximumMotionAllowedDistance")]
-            public static extern void SetTapMaximumMotionAllowedDistance(float distance);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GestureOptions_SetTapMaximumMotionAllowedDistance", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetTapMaximumMotionAllowedDistance(float distance);
         }
     }
 }
+
+
+
+
+

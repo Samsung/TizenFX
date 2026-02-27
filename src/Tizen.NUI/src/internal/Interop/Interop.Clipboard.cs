@@ -15,49 +15,58 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class Clipboard
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Clipboard_Get")]
-            public static extern global::System.IntPtr Get();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Clipboard_Get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Clipboard_SetData")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Clipboard_SetData", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool SetData(global::System.Runtime.InteropServices.HandleRef clipboard, string mimeType, string data);
+            public static partial bool SetData(IntPtr clipboard, string mimeType, string data);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Clipboard_GetData")]
-            public static extern uint GetData(global::System.Runtime.InteropServices.HandleRef clipboard, string mimeType);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Clipboard_GetData", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetData(IntPtr clipboard, string mimeType);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Clipboard_DataReceivedSignal")]
-            public static extern global::System.IntPtr ClipboardDataReceivedSignal(global::System.Runtime.InteropServices.HandleRef clipboard);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Clipboard_DataReceivedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ClipboardDataReceivedSignal(IntPtr clipboard);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Clipboard_DataSelectedSignal")]
-            public static extern global::System.IntPtr ClipboardDataSelectedSignal(global::System.Runtime.InteropServices.HandleRef clipboard);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Clipboard_DataSelectedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ClipboardDataSelectedSignal(IntPtr clipboard);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ClipboardSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ClipboardSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool ClipboardSignalEmpty(global::System.Runtime.InteropServices.HandleRef signal);
+            public static partial bool ClipboardSignalEmpty(IntPtr signal);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ClipboardSignal_GetConnectionCount")]
-            public static extern uint ClipboardSignalGetConnectionCount(global::System.Runtime.InteropServices.HandleRef signal);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ClipboardSignal_GetConnectionCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint ClipboardSignalGetConnectionCount(IntPtr signal);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ClipboardSignal_Connect")]
-            public static extern void ClipboardSignalConnect(global::System.Runtime.InteropServices.HandleRef signal, global::System.Runtime.InteropServices.HandleRef clipboard);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ClipboardSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ClipboardSignalConnect(IntPtr signal, IntPtr clipboard);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ClipboardSignal_Disconnect")]
-            public static extern void ClipboardSignalDisconnect(global::System.Runtime.InteropServices.HandleRef signal, global::System.Runtime.InteropServices.HandleRef clipboard);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ClipboardSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ClipboardSignalDisconnect(IntPtr signal, IntPtr clipboard);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ClipboardSignal_Emit")]
-            public static extern void ClipboardSignalEmit(global::System.Runtime.InteropServices.HandleRef signal, global::System.Runtime.InteropServices.HandleRef clipboard);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ClipboardSignal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ClipboardSignalEmit(IntPtr signal, IntPtr clipboard);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ClipboardSignal")]
-            public static extern global::System.IntPtr NewClipboardSignal();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ClipboardSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewClipboardSignal();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ClipboardSignal")]
-            public static extern void DeleteClipboardSignal(global::System.Runtime.InteropServices.HandleRef signal);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ClipboardSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteClipboardSignal(IntPtr signal);
         }
     }
 }
+
+
+
+
+

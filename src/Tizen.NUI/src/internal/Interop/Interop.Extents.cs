@@ -15,61 +15,70 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class Extents
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Extents__SWIG_0")]
-            public static extern global::System.IntPtr NewExtents();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Extents__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewExtents();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Extents__SWIG_1")]
-            public static extern global::System.IntPtr NewExtents(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Extents__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewExtents(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Extents__SWIG_2")]
-            public static extern global::System.IntPtr NewExtents(ushort jarg1, ushort jarg2, ushort jarg3, ushort jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Extents__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewExtents(ushort jarg1, ushort jarg2, ushort jarg3, ushort jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_Assign__SWIG_0")]
-            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_Assign__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Assign(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_EqualTo")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_EqualTo", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool EqualTo(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static partial bool EqualTo(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_NotEqualTo")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_NotEqualTo", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool NotEqualTo(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static partial bool NotEqualTo(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_set_all")]
-            public static extern void SetAll(global::System.Runtime.InteropServices.HandleRef jarg1, ushort jarg2, ushort jarg3, ushort jarg4, ushort jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_set_all", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetAll(IntPtr jarg1, ushort jarg2, ushort jarg3, ushort jarg4, ushort jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_start_set")]
-            public static extern void StartSet(global::System.Runtime.InteropServices.HandleRef jarg1, ushort jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_start_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void StartSet(IntPtr jarg1, ushort jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_start_get")]
-            public static extern ushort StartGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_start_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial ushort StartGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_end_set")]
-            public static extern void EndSet(global::System.Runtime.InteropServices.HandleRef jarg1, ushort jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_end_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void EndSet(IntPtr jarg1, ushort jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_end_get")]
-            public static extern ushort EndGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_end_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial ushort EndGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_top_set")]
-            public static extern void TopSet(global::System.Runtime.InteropServices.HandleRef jarg1, ushort jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_top_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void TopSet(IntPtr jarg1, ushort jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_top_get")]
-            public static extern ushort TopGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_top_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial ushort TopGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_bottom_set")]
-            public static extern void BottomSet(global::System.Runtime.InteropServices.HandleRef jarg1, ushort jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_bottom_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void BottomSet(IntPtr jarg1, ushort jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_bottom_get")]
-            public static extern ushort BottomGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Extents_bottom_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial ushort BottomGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Extents")]
-            public static extern void DeleteExtents(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Extents", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteExtents(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

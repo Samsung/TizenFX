@@ -15,27 +15,36 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class WebHttpAuthHandler
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebHttpAuthHandler")]
-            public static extern void DeleteWebHttpAuthHandler(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebHttpAuthHandler", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWebHttpAuthHandler(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHttpAuthHandler_GetRealm")]
-            public static extern string GetRealm(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHttpAuthHandler_GetRealm", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetRealm(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHttpAuthHandler_Suspend")]
-            public static extern void Suspend(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHttpAuthHandler_Suspend", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Suspend(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHttpAuthHandler_UseCredential")]
-            public static extern void UseCredential(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHttpAuthHandler_UseCredential", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void UseCredential(IntPtr jarg1, string jarg2, string jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHttpAuthHandler_CancelCredential")]
-            public static extern void CancelCredential(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHttpAuthHandler_CancelCredential", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void CancelCredential(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+
 

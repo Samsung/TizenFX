@@ -1,30 +1,53 @@
+﻿/*
+ * Copyright(c) 2026 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
-    using global::System;
-    using global::System.Runtime.InteropServices;
-
     internal static partial class Interop
     {
         internal static partial class MaskEffect
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MaskEffect_New__SWIG_0")]
-            public static extern global::System.IntPtr New(HandleRef control);
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MaskEffect_New__SWIG_1")]
-            public static extern global::System.IntPtr New(HandleRef control, MaskEffectMode maskMode, float positionX, float positionY, float scaleX, float scaleY);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MaskEffect_New__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(IntPtr control);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MaskEffect_New__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(IntPtr control, MaskEffectMode maskMode, float positionX, float positionY, float scaleX, float scaleY);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MaskEffect_SetTargetMaskOnce")]
-            public static extern void SetTargetMaskOnce(HandleRef effect, bool targetMaskOnce);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MaskEffect_SetTargetMaskOnce", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetTargetMaskOnce(IntPtr effect, [MarshalAs(UnmanagedType.U1)] bool targetMaskOnce);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MaskEffect_GetTargetMaskOnce")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MaskEffect_GetTargetMaskOnce", StringMarshalling = StringMarshalling.Utf8)]
             [return: MarshalAs(UnmanagedType.U1)]
-            public static extern bool GetTargetMaskOnce(HandleRef effect);
+            public static partial bool GetTargetMaskOnce(IntPtr effect);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MaskEffect_SetSourceMaskOnce")]
-            public static extern void SetSourceMaskOnce(HandleRef effect, bool sourceMaskOnce);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MaskEffect_SetSourceMaskOnce", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetSourceMaskOnce(IntPtr effect, [MarshalAs(UnmanagedType.U1)] bool sourceMaskOnce);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MaskEffect_GetSourceMaskOnce")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MaskEffect_GetSourceMaskOnce", StringMarshalling = StringMarshalling.Utf8)]
             [return: MarshalAs(UnmanagedType.U1)]
-            public static extern bool GetSourceMaskOnce(HandleRef effect);
+            public static partial bool GetSourceMaskOnce(IntPtr effect);
         }
     }
 }
+
+
+
+
+

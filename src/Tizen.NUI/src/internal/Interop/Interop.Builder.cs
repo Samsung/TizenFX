@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,82 +26,87 @@ namespace Tizen.NUI
         internal static partial class Builder
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_New")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Builder")]
-            public static extern void DeleteBuilder(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Builder", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteBuilder(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_LoadFromString__SWIG_0")]
-            public static extern void LoadFromString(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, int jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_LoadFromString__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void LoadFromString(IntPtr jarg1, string jarg2, int jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_LoadFromString__SWIG_1")]
-            public static extern void LoadFromString(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_LoadFromString__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void LoadFromString(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_AddConstants")]
-            public static extern void AddConstants(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_AddConstants", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AddConstants(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_AddConstant")]
-            public static extern void AddConstant(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_AddConstant", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AddConstant(IntPtr jarg1, string jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_GetConstants")]
-            public static extern global::System.IntPtr GetConstants(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_GetConstants", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetConstants(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_GetConstant")]
-            public static extern global::System.IntPtr GetConstant(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_GetConstant", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetConstant(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_CreateAnimation__SWIG_0")]
-            public static extern global::System.IntPtr CreateAnimation(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_CreateAnimation__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr CreateAnimation(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_CreateAnimation__SWIG_1")]
-            public static extern global::System.IntPtr CreateAnimationWithPropertyMap(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_CreateAnimation__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr CreateAnimationWithPropertyMap(IntPtr jarg1, string jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_CreateAnimation__SWIG_2")]
-            public static extern global::System.IntPtr CreateAnimationWithView(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_CreateAnimation__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr CreateAnimationWithView(IntPtr jarg1, string jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_CreateAnimation__SWIG_3")]
-            public static extern global::System.IntPtr CreateAnimation(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_CreateAnimation__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr CreateAnimation(IntPtr jarg1, string jarg2, IntPtr jarg3, IntPtr jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_Create__SWIG_0")]
-            public static extern global::System.IntPtr Create(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_Create__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Create(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_Create__SWIG_1")]
-            public static extern global::System.IntPtr Create(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_Create__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Create(IntPtr jarg1, string jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_CreateFromJson")]
-            public static extern global::System.IntPtr CreateFromJson(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_CreateFromJson", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr CreateFromJson(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_ApplyStyle")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_ApplyStyle", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool ApplyStyle(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            public static partial bool ApplyStyle(IntPtr jarg1, string jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_ApplyFromJson")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_ApplyFromJson", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool ApplyFromJson(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3);
+            public static partial bool ApplyFromJson(IntPtr jarg1, IntPtr jarg2, string jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_AddActors__SWIG_0")]
-            public static extern void AddActors(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_AddActors__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AddActors(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_AddActors__SWIG_1")]
-            public static extern void AddActors(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_AddActors__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AddActors(IntPtr jarg1, string jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_CreateRenderTask")]
-            public static extern void CreateRenderTask(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_CreateRenderTask", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void CreateRenderTask(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_GetPath")]
-            public static extern global::System.IntPtr GetPath(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_GetPath", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetPath(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_GetPathConstrainer")]
-            public static extern global::System.IntPtr GetPathConstrainer(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_GetPathConstrainer", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetPathConstrainer(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_GetLinearConstrainer")]
-            public static extern global::System.IntPtr GetLinearConstrainer(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_GetLinearConstrainer", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetLinearConstrainer(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_QuitSignal_Connect")]
-            public static extern global::System.IntPtr QuitConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_QuitSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr QuitConnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_QuitSignal_Disconnect")]
-            public static extern global::System.IntPtr QuitDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Builder_QuitSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr QuitDisconnect(IntPtr jarg1, IntPtr jarg2);
         }
     }
 }
+
+
+
+
+

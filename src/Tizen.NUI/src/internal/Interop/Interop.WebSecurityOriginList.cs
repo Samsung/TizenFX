@@ -15,21 +15,30 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class WebSecurityOriginList
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebSecurityOriginList")]
-            public static extern void DeleteWebSecurityOriginList(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebSecurityOriginList", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWebSecurityOriginList(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSecurityOriginList_GetItemCount")]
-            public static extern uint GetItemCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSecurityOriginList_GetItemCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetItemCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSecurityOriginList_ValueOfIndex")]
-            public static extern System.IntPtr ValueOfIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSecurityOriginList_ValueOfIndex", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial System.IntPtr ValueOfIndex(IntPtr jarg1, uint jarg2);
         }
     }
 }
+
+
+
+
+
 

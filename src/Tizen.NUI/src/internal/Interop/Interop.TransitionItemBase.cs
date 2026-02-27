@@ -15,45 +15,49 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
-    using global::System;
-    using global::System.Runtime.InteropServices;
-
     internal static partial class Interop
     {
         internal static partial class TransitionItemBase
         {
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_New")]
-            public static extern IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr New();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TransitionBase")]
-            public static extern void Delete(HandleRef transition);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TransitionBase", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Delete(IntPtr transition);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TransitionBase_Set")]
-            public static extern IntPtr NewTransitionItemBase(HandleRef transition);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TransitionBase_Set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr NewTransitionItemBase(IntPtr transition);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_Assign")]
-            public static extern IntPtr Assign(HandleRef destination, HandleRef source);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_Assign", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr Assign(IntPtr destination, IntPtr source);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_SetTimePeriod")]
-            public static extern void SetTimePeriod(HandleRef transition, HandleRef seconds);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_SetTimePeriod", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetTimePeriod(IntPtr transition, IntPtr seconds);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_GetTimePeriod")]
-            public static extern IntPtr GetTimePeriod(HandleRef transition);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_GetTimePeriod", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr GetTimePeriod(IntPtr transition);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_SetAlphaFunction")]
-            public static extern void SetAlphaFunction(HandleRef transition, HandleRef seconds);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_SetAlphaFunction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetAlphaFunction(IntPtr transition, IntPtr seconds);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_GetAlphaFunction")]
-            public static extern IntPtr GetAlphaFunction(HandleRef transition);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_GetAlphaFunction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr GetAlphaFunction(IntPtr transition);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_TransitionWithChild")]
-            public static extern void TransitionWithChild(HandleRef transition, bool transitionWithChild);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_TransitionWithChild", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void TransitionWithChild(IntPtr transition, [MarshalAs(UnmanagedType.U1)] bool transitionWithChild);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_SetAppearingTransition")]
-            public static extern void SetAppearingTransition(HandleRef transition, bool appearingTransition);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TransitionBase_SetAppearingTransition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetAppearingTransition(IntPtr transition, [MarshalAs(UnmanagedType.U1)] bool appearingTransition);
         }
     }
 }
+
+
+

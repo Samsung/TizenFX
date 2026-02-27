@@ -14,7 +14,10 @@
  * limitations under the License.
  *
  */
-using System.Runtime.InteropServices;
+
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI
 {
@@ -22,77 +25,80 @@ namespace Tizen.NUI
     {
         internal static partial class ActorSignal
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_HitTestResultSignal_Connect")]
-            public static extern void HitTestResultConnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_HitTestResultSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void HitTestResultConnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_HitTestResultSignal_Disconnect")]
-            public static extern void HitTestResultDisconnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_HitTestResultSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void HitTestResultDisconnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InterceptTouchedSignal_Connect")]
-            public static extern void InterceptTouchConnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InterceptTouchedSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void InterceptTouchConnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InterceptTouchedSignal_Disconnect")]
-            public static extern void InterceptTouchDisconnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InterceptTouchedSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void InterceptTouchDisconnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_TouchedSignal_Connect")]
-            public static extern void TouchConnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_TouchedSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void TouchConnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_TouchedSignal_Disconnect")]
-            public static extern void TouchDisconnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_TouchedSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void TouchDisconnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_HoveredSignal_Connect")]
-            public static extern void HoveredConnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_HoveredSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void HoveredConnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_HoveredSignal_Disconnect")]
-            public static extern void HoveredDisconnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_HoveredSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void HoveredDisconnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_WheelEventSignal_Connect")]
-            public static extern void WheelEventConnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_WheelEventSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void WheelEventConnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_WheelEventSignal_Disconnect")]
-            public static extern void WheelEventDisconnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_WheelEventSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void WheelEventDisconnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InterceptWheelSignal_Connect")]
-            public static extern void InterceptWheelConnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InterceptWheelSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void InterceptWheelConnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InterceptWheelSignal_Disconnect")]
-            public static extern void InterceptWheelDisconnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InterceptWheelSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void InterceptWheelDisconnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_OnSceneSignal_Connect")]
-            public static extern void OnSceneConnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_OnSceneSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void OnSceneConnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_OnSceneSignal_Disconnect")]
-            public static extern void OnSceneDisconnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_OnSceneSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void OnSceneDisconnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_OffSceneSignal_Connect")]
-            public static extern void OffSceneConnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_OffSceneSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void OffSceneConnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_OffSceneSignal_Disconnect")]
-            public static extern void OffSceneDisconnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_OffSceneSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void OffSceneDisconnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_OnRelayoutSignal_Connect")]
-            public static extern void OnRelayoutConnect(HandleRef actor, HandleRef hanlder);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_OnRelayoutSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void OnRelayoutConnect(IntPtr actor, IntPtr hanlder);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_OnRelayoutSignal_Disconnect")]
-            public static extern void OnRelayoutDisconnect(HandleRef actor, HandleRef hanlder);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_OnRelayoutSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void OnRelayoutDisconnect(IntPtr actor, IntPtr hanlder);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_VisibilityChangedSignal_Connect")]
-            public static extern void VisibilityChangedConnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_VisibilityChangedSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void VisibilityChangedConnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_VisibilityChangedSignal_Disconnect")]
-            public static extern void VisibilityChangedDisconnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_VisibilityChangedSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void VisibilityChangedDisconnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InheritedVisibilityChangedSignal_Connect")]
-            public static extern void AggregatedVisibilityChangedConnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InheritedVisibilityChangedSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AggregatedVisibilityChangedConnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InheritedVisibilityChangedSignal_Disconnect")]
-            public static extern void AggregatedVisibilityChangedDisconnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InheritedVisibilityChangedSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AggregatedVisibilityChangedDisconnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_LayoutDirectionChangedSignal_Connect")]
-            public static extern void LayoutDirectionChangedConnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_LayoutDirectionChangedSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void LayoutDirectionChangedConnect(IntPtr actor, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_LayoutDirectionChangedSignal_Disconnect")]
-            public static extern void LayoutDirectionChangedDisconnect(HandleRef actor, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_LayoutDirectionChangedSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void LayoutDirectionChangedDisconnect(IntPtr actor, IntPtr handler);
         }
     }
 }
+
+
+

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,9 +14,12 @@
  * limitations under the License.
  *
  */
-using System;
-using System.Collections.Generic;
-using System.Text;
+
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+using global::System.Collections.Generic;
+using global::System.Text;
 
 namespace Tizen.NUI
 {
@@ -24,11 +27,16 @@ namespace Tizen.NUI
     {
         internal static partial class StringToVoidSignal
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_StringToVoid_GetResult")]
-            public static extern string GetResult(global::System.IntPtr jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_StringToVoid_GetResult", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetResult(global::System.IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_StringToVoid_SetResult")]
-            public static extern void SetResult(global::System.IntPtr jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Signal_StringToVoid_SetResult", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetResult(global::System.IntPtr jarg1, string jarg2);
         }
     }
 }
+
+
+
+
+

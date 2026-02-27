@@ -15,26 +15,35 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class Sampler
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Sampler_New")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Sampler_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Sampler")]
-            public static extern void DeleteSampler(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Sampler", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteSampler(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Sampler_SetFilterMode")]
-            public static extern void SetFilterMode(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Sampler_SetFilterMode", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetFilterMode(IntPtr jarg1, int jarg2, int jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Sampler_SetWrapMode__SWIG_0")]
-            public static extern void SetWrapMode(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Sampler_SetWrapMode__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetWrapMode(IntPtr jarg1, int jarg2, int jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Sampler_SetWrapMode__SWIG_1")]
-            public static extern void SetWrapMode(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3, int jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Sampler_SetWrapMode__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetWrapMode(IntPtr jarg1, int jarg2, int jarg3, int jarg4);
         }
     }
 }
+
+
+
+
+

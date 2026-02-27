@@ -566,7 +566,7 @@ namespace Tizen.NUI
         }
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.Application.DeleteApplication(swigCPtr);
+            Interop.Application.DeleteApplication(swigCPtr.Handle);
         }
 
         public enum BatteryStatus
@@ -1788,9 +1788,9 @@ namespace Tizen.NUI
             {
                 rootIdleCallback = RootIdleCallback;
                 System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(rootIdleCallback);
-                System.IntPtr ip2 = Interop.Application.MakeCallback(new System.Runtime.InteropServices.HandleRef(this, ip));
+                System.IntPtr ip2 = Interop.Application.MakeCallback((new System.Runtime.InteropServices.HandleRef(this, ip)).Handle);
 
-                bool ret = Interop.Application.AddIdle(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip2));
+                bool ret = Interop.Application.AddIdle(SwigCPtr.Handle, (new System.Runtime.InteropServices.HandleRef(this, ip2)).Handle);
                 NDalicPINVOKE.ThrowExceptionIfExists();
                 if (!ret)
                 {
@@ -1905,7 +1905,7 @@ namespace Tizen.NUI
 
         public static Application New(int argc, string stylesheet, NUIApplication.WindowMode windowMode, Rectangle positionSize)
         {
-            Application ret = new Application(Interop.Application.New(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize)), true);
+            Application ret = new Application(Interop.Application.New(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize).Handle), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1954,7 +1954,7 @@ namespace Tizen.NUI
             // It will be removed until dali APIs are prepared.
             using Rectangle initRectangle = new Rectangle(0, 0, 0, 0);
 
-            Application ret = new Application(Interop.Application.New(argc, argvStr, stylesheet, (int)windowMode, Rectangle.getCPtr(initRectangle), (int)type), true);
+            Application ret = new Application(Interop.Application.New(argc, argvStr, stylesheet, (int)windowMode, Rectangle.getCPtr(initRectangle).Handle, (int)type), true);
             return ret;
         }
 
@@ -1968,7 +1968,7 @@ namespace Tizen.NUI
                 argc = args.Length;
                 argvStr = string.Join(" ", args);
 
-                ret = new Application(Interop.Application.New(argc, argvStr, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize), useUIThread), true);
+                ret = new Application(Interop.Application.New(argc, argvStr, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize).Handle, useUIThread), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             catch (Exception exception)
@@ -1992,7 +1992,7 @@ namespace Tizen.NUI
                 argc = args.Length;
                 argvStr = string.Join(" ", args);
 
-                ret = new Application(Interop.Application.New(argc, argvStr, stylesheet, useUIThread, WindowData.getCPtr(windowData)), true);
+                ret = new Application(Interop.Application.New(argc, argvStr, stylesheet, useUIThread, WindowData.getCPtr(windowData).Handle), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             catch (Exception exception)
@@ -2011,14 +2011,14 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public Application(Application application) : this(Interop.Application.NewApplication(Application.getCPtr(application)), true)
+        public Application(Application application) : this(Interop.Application.NewApplication(Application.getCPtr(application).Handle), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public Application Assign(Application application)
         {
-            Application ret = new Application(Interop.Application.Assign(SwigCPtr, Application.getCPtr(application)), false);
+            Application ret = new Application(Interop.Application.Assign(SwigCPtr.Handle, Application.getCPtr(application).Handle), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -2031,13 +2031,13 @@ namespace Tizen.NUI
 
         public void Lower()
         {
-            Interop.Application.Lower(SwigCPtr);
+            Interop.Application.Lower(SwigCPtr.Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Quit()
         {
-            Interop.Application.Quit(SwigCPtr);
+            Interop.Application.Quit(SwigCPtr.Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -2048,7 +2048,7 @@ namespace Tizen.NUI
                 return window;
             }
 
-            var nativeWindow = Interop.Application.GetWindow(SwigCPtr);
+            var nativeWindow = Interop.Application.GetWindow(SwigCPtr.Handle);
             window = Registry.GetManagedBaseHandleFromNativePtr(nativeWindow) as Window;
             if (window != null)
             {
@@ -2076,27 +2076,27 @@ namespace Tizen.NUI
 
         public string GetLanguage()
         {
-            string ret = Interop.Application.GetLanguage(SwigCPtr);
+            string ret = Interop.Application.GetLanguage(SwigCPtr.Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public string GetRegion()
         {
-            string ret = Interop.Application.GetRegion(SwigCPtr);
+            string ret = Interop.Application.GetRegion(SwigCPtr.Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void FlushUpdateMessages()
         {
-            Interop.Application.FlushUpdateMessages(SwigCPtr);
+            Interop.Application.FlushUpdateMessages(SwigCPtr.Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void SetApplicationLocale(string locale)
         {
-            Interop.Application.SetApplicationLocale(SwigCPtr, locale);
+            Interop.Application.SetApplicationLocale(SwigCPtr.Handle, locale);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

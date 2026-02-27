@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,38 +26,43 @@ namespace Tizen.NUI
         internal static partial class LongPressGestureDetector
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_New__SWIG_0")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_New__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_New__SWIG_1")]
-            public static extern global::System.IntPtr New(uint jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_New__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(uint jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_New__SWIG_2")]
-            public static extern global::System.IntPtr New(uint jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_New__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(uint jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_LongPressGestureDetector")]
-            public static extern void DeleteLongPressGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_LongPressGestureDetector", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteLongPressGestureDetector(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_LongPressGestureDetector__SWIG_1")]
-            public static extern global::System.IntPtr NewLongPressGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_LongPressGestureDetector__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewLongPressGestureDetector(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_Assign")]
-            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_Assign", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Assign(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_SetTouchesRequired__SWIG_0")]
-            public static extern void SetTouchesRequired(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_SetTouchesRequired__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetTouchesRequired(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_SetTouchesRequired__SWIG_1")]
-            public static extern void SetTouchesRequired(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_SetTouchesRequired__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetTouchesRequired(IntPtr jarg1, uint jarg2, uint jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_GetMinimumTouchesRequired")]
-            public static extern uint GetMinimumTouchesRequired(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_GetMinimumTouchesRequired", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetMinimumTouchesRequired(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_GetMaximumTouchesRequired")]
-            public static extern uint GetMaximumTouchesRequired(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_GetMaximumTouchesRequired", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetMaximumTouchesRequired(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_DetectedSignal")]
-            public static extern global::System.IntPtr DetectedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LongPressGestureDetector_DetectedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr DetectedSignal(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

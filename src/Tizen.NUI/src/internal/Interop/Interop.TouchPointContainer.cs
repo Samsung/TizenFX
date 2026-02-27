@@ -15,77 +15,86 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class TouchPointContainer
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_Clear")]
-            public static extern void Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_Clear", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Clear(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_Add")]
-            public static extern void Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_Add", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Add(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_size")]
-            public static extern uint size(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_size", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint size(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_capacity")]
-            public static extern uint capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_capacity", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint capacity(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_reserve")]
-            public static extern void reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_reserve", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void reserve(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TouchPointContainer__SWIG_0")]
-            public static extern global::System.IntPtr NewTouchPointContainer();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TouchPointContainer__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewTouchPointContainer();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TouchPointContainer__SWIG_1")]
-            public static extern global::System.IntPtr NewTouchPointContainer(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TouchPointContainer__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewTouchPointContainer(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TouchPointContainer__SWIG_2")]
-            public static extern global::System.IntPtr NewTouchPointContainer(int jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TouchPointContainer__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewTouchPointContainer(int jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_getitemcopy")]
-            public static extern global::System.IntPtr getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_getitemcopy", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr getitemcopy(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_getitem")]
-            public static extern global::System.IntPtr getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_getitem", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr getitem(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_setitem")]
-            public static extern void setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_setitem", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void setitem(IntPtr jarg1, int jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_AddRange")]
-            public static extern void AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_AddRange", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AddRange(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_GetRange")]
-            public static extern global::System.IntPtr GetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_GetRange", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetRange(IntPtr jarg1, int jarg2, int jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_Insert")]
-            public static extern void Insert(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_Insert", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Insert(IntPtr jarg1, int jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_InsertRange")]
-            public static extern void InsertRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_InsertRange", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void InsertRange(IntPtr jarg1, int jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_RemoveAt")]
-            public static extern void RemoveAt(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_RemoveAt", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RemoveAt(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_RemoveRange")]
-            public static extern void RemoveRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_RemoveRange", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RemoveRange(IntPtr jarg1, int jarg2, int jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_Repeat")]
-            public static extern global::System.IntPtr Repeat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_Repeat", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Repeat(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_Reverse__SWIG_0")]
-            public static extern void Reverse(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_Reverse__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Reverse(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_Reverse__SWIG_1")]
-            public static extern void Reverse(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_Reverse__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Reverse(IntPtr jarg1, int jarg2, int jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_SetRange")]
-            public static extern void SetRange(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_SetRange", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetRange(IntPtr jarg1, int jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TouchPointContainer")]
-            public static extern void DeleteTouchPointContainer(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TouchPointContainer", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteTouchPointContainer(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

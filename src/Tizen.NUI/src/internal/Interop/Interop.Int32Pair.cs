@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,32 +14,42 @@
  * limitations under the License.
  *
  */
+
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
          internal static partial class Int32Pair
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Int32Pair__SWIG_0")]
-            public static extern global::System.IntPtr NewInt32Pair();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Int32Pair__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewInt32Pair();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Int32Pair__SWIG_1")]
-            public static extern global::System.IntPtr NewInt32Pair(int x, int y);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Int32Pair__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewInt32Pair(int x, int y);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Int32Pair_SetX")]
-            public static extern void SetX(global::System.Runtime.InteropServices.HandleRef handle, int x);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Int32Pair_SetX", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetX(IntPtr handle, int x);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Int32Pair_GetX")]
-            public static extern int GetX(global::System.Runtime.InteropServices.HandleRef handle);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Int32Pair_GetX", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetX(IntPtr handle);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Int32Pair_SetY")]
-            public static extern void SetY(global::System.Runtime.InteropServices.HandleRef handle, int y);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Int32Pair_SetY", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetY(IntPtr handle, int y);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Int32Pair_GetY")]
-            public static extern int GetY(global::System.Runtime.InteropServices.HandleRef handle);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Int32Pair_GetY", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetY(IntPtr handle);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Int32Pair")]
-            public static extern void DeleteInt32Pair(global::System.Runtime.InteropServices.HandleRef handle);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Int32Pair", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteInt32Pair(IntPtr handle);
        }
     }
 }
+
+
+
+
+

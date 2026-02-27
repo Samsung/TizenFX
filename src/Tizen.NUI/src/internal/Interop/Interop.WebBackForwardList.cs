@@ -15,60 +15,69 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class WebBackForwardListItem
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardListItem_GetUrl")]
-            public static extern string GetUrl(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardListItem_GetUrl", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetUrl(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardListItem_GetTitle")]
-            public static extern string GetTitle(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardListItem_GetTitle", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetTitle(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardListItem_GetOriginalUrl")]
-            public static extern string GetOriginalUrl(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardListItem_GetOriginalUrl", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetOriginalUrl(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_DeleteItem")]
-            public static extern void DeleteItem(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_DeleteItem", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteItem(IntPtr jarg1);
         }
 
         internal static partial class WebBackForwardSubList
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_DeleteCopiedItems")]
-            public static extern void DeleteCopiedItems(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_DeleteCopiedItems", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteCopiedItems(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetCopiedItemsCount")]
-            public static extern uint GetItemCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetCopiedItemsCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetItemCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetItemAtIndexFromCopiedItems")]
-            public static extern global::System.IntPtr GetItemAtIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetItemAtIndexFromCopiedItems", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetItemAtIndex(IntPtr jarg1, uint jarg2);
         }
 
         internal static partial class WebBackForwardList
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetItemCount")]
-            public static extern uint GetItemCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetItemCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetItemCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetCurrentItem")]
-            public static extern global::System.IntPtr GetCurrentItem(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetCurrentItem", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetCurrentItem(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetPreviousItem")]
-            public static extern global::System.IntPtr GetPreviousItem(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetPreviousItem", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetPreviousItem(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetNextItem")]
-            public static extern global::System.IntPtr GetNextItem(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetNextItem", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetNextItem(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetItemAtIndex")]
-            public static extern global::System.IntPtr GetItemAtIndex(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetItemAtIndex", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetItemAtIndex(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetBackwardItems")]
-            public static extern global::System.IntPtr GetBackwardItems(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetBackwardItems", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetBackwardItems(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetForwardItems")]
-            public static extern global::System.IntPtr GetForwardItems(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebBackForwardList_GetForwardItems", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetForwardItems(IntPtr jarg1, int jarg2);
         }
     }
 }
+
+
+
+
+
 

@@ -15,20 +15,29 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class NDalicBorderVisual
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BORDER_VISUAL_COLOR_get")]
-            public static extern int ColorGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BORDER_VISUAL_COLOR_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ColorGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BORDER_VISUAL_SIZE_get")]
-            public static extern int SizeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BORDER_VISUAL_SIZE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int SizeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BORDER_VISUAL_ANTI_ALIASING_get")]
-            public static extern int AntiAliasingGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BORDER_VISUAL_ANTI_ALIASING_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int AntiAliasingGet();
         }
     }
 }
+
+
+
+
+

@@ -15,23 +15,32 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class CustomAlgorithmInterface
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_CustomAlgorithmInterface")]
-            public static extern void DeleteCustomAlgorithmInterface(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_CustomAlgorithmInterface", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteCustomAlgorithmInterface(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CustomAlgorithmInterface_GetNextFocusableActor")]
-            public static extern global::System.IntPtr GetNextFocusableActor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, int jarg4, string deviceName);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CustomAlgorithmInterface_GetNextFocusableActor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetNextFocusableActor(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, int jarg4, string deviceName);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_CustomAlgorithmInterface")]
-            public static extern global::System.IntPtr NewCustomAlgorithmInterface();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_CustomAlgorithmInterface", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewCustomAlgorithmInterface();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CustomAlgorithmInterface_director_connect")]
-            public static extern void DirectorConnect(global::System.Runtime.InteropServices.HandleRef jarg1, Tizen.NUI.CustomAlgorithmInterface.SwigDelegateCustomAlgorithmInterface_0 delegate0);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CustomAlgorithmInterface_director_connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DirectorConnect(IntPtr jarg1, Tizen.NUI.CustomAlgorithmInterface.SwigDelegateCustomAlgorithmInterface_0 delegate0);
         }
     }
 }
+
+
+
+
+

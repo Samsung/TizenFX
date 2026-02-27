@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,20 +26,25 @@ namespace Tizen.NUI
         internal static partial class StageSignal
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_EventProcessingFinishedSignal")]
-            public static extern global::System.IntPtr EventProcessingFinishedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_EventProcessingFinishedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr EventProcessingFinishedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_WheelEventSignal")]
-            public static extern global::System.IntPtr WheelEventSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_WheelEventSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr WheelEventSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_ContextLostSignal")]
-            public static extern global::System.IntPtr ContextLostSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_ContextLostSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ContextLostSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_ContextRegainedSignal")]
-            public static extern global::System.IntPtr ContextRegainedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_ContextRegainedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ContextRegainedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_SceneCreatedSignal")]
-            public static extern global::System.IntPtr SceneCreatedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_SceneCreatedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr SceneCreatedSignal(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

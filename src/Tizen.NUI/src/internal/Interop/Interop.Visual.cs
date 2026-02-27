@@ -15,26 +15,35 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class Visual
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Visual_Property_TRANSFORM_get")]
-            public static extern int TransformGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Visual_Property_TRANSFORM_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TransformGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Visual_Property_PREMULTIPLIED_ALPHA_get")]
-            public static extern int PremultipliedAlphaGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Visual_Property_PREMULTIPLIED_ALPHA_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PremultipliedAlphaGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Visual_Property_MIX_COLOR_get")]
-            public static extern int MixColorGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Visual_Property_MIX_COLOR_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int MixColorGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Image_Visual_BORDER_get")]
-            public static extern int ImageVisualBorderGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Image_Visual_BORDER_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualBorderGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Visual_Actions_UPDATE_PROPERTY_get")]
-            public static extern int GetActionUpdateProperty();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Visual_Actions_UPDATE_PROPERTY_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetActionUpdateProperty();
         }
     }
 }
+
+
+
+
+

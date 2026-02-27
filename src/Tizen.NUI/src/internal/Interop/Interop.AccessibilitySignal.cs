@@ -15,123 +15,132 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static class AccessibilitySignal
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityDoGestureSignal_Connect")]
-            public static extern void AccessibilityDoGestureConnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityDoGestureSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityDoGestureConnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityDoGestureSignal_Disconnect")]
-            public static extern void AccessibilityDoGestureDisconnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityDoGestureSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityDoGestureDisconnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityGetNameSignal_Connect")]
-            public static extern void AccessibilityGetNameConnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityGetNameSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityGetNameConnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityGetNameSignal_Disconnect")]
-            public static extern void AccessibilityGetNameDisconnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityGetNameSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityGetNameDisconnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityGetNameSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityGetNameSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool AccessibilityGetNameEmpty(BaseComponents.View.ControlHandle jarg1);
+            public static partial bool AccessibilityGetNameEmpty(BaseComponents.View.ControlHandle jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityGetDescriptionSignal_Connect")]
-            public static extern void AccessibilityGetDescriptionConnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityGetDescriptionSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityGetDescriptionConnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityGetDescriptionSignal_Disconnect")]
-            public static extern void AccessibilityGetDescriptionDisconnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityGetDescriptionSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityGetDescriptionDisconnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActivateSignal_Connect")]
-            public static extern void AccessibilityActivateConnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActivateSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityActivateConnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActivateSignal_Disconnect")]
-            public static extern void AccessibilityActivateDisconnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActivateSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityActivateDisconnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActivateSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActivateSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool AccessibilityActivateEmpty(BaseComponents.View.ControlHandle jarg1);
+            public static partial bool AccessibilityActivateEmpty(BaseComponents.View.ControlHandle jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActivateSignal_Emit")]
-            public static extern void AccessibilityActivateEmit(BaseComponents.View.ControlHandle jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActivateSignal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityActivateEmit(BaseComponents.View.ControlHandle jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingSkippedSignal_Connect")]
-            public static extern void AccessibilityReadingSkippedConnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingSkippedSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityReadingSkippedConnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingSkippedSignal_Disconnect")]
-            public static extern void AccessibilityReadingSkippedDisconnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingSkippedSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityReadingSkippedDisconnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingSkippedSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingSkippedSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool AccessibilityReadingSkippedEmpty(BaseComponents.View.ControlHandle jarg1);
+            public static partial bool AccessibilityReadingSkippedEmpty(BaseComponents.View.ControlHandle jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingSkippedSignal_Emit")]
-            public static extern void AccessibilityReadingSkippedEmit(BaseComponents.View.ControlHandle jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingSkippedSignal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityReadingSkippedEmit(BaseComponents.View.ControlHandle jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingPausedSignal_Connect")]
-            public static extern void AccessibilityReadingPausedConnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingPausedSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityReadingPausedConnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingPausedSignal_Disconnect")]
-            public static extern void AccessibilityReadingPausedDisconnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingPausedSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityReadingPausedDisconnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingPausedSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingPausedSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool AccessibilityReadingPausedEmpty(BaseComponents.View.ControlHandle jarg1);
+            public static partial bool AccessibilityReadingPausedEmpty(BaseComponents.View.ControlHandle jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingPausedSignal_Emit")]
-            public static extern void AccessibilityReadingPausedEmit(BaseComponents.View.ControlHandle jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingPausedSignal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityReadingPausedEmit(BaseComponents.View.ControlHandle jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingResumedSignal_Connect")]
-            public static extern void AccessibilityReadingResumedConnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingResumedSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityReadingResumedConnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingResumedSignal_Disconnect")]
-            public static extern void AccessibilityReadingResumedDisconnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingResumedSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityReadingResumedDisconnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingResumedSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingResumedSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool AccessibilityReadingResumedEmpty(BaseComponents.View.ControlHandle jarg1);
+            public static partial bool AccessibilityReadingResumedEmpty(BaseComponents.View.ControlHandle jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingResumedSignal_Emit")]
-            public static extern void AccessibilityReadingResumedEmit(BaseComponents.View.ControlHandle jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingResumedSignal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityReadingResumedEmit(BaseComponents.View.ControlHandle jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingCancelledSignal_Connect")]
-            public static extern void AccessibilityReadingCancelledConnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingCancelledSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityReadingCancelledConnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingCancelledSignal_Disconnect")]
-            public static extern void AccessibilityReadingCancelledDisconnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingCancelledSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityReadingCancelledDisconnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingCancelledSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingCancelledSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool AccessibilityReadingCancelledEmpty(BaseComponents.View.ControlHandle jarg1);
+            public static partial bool AccessibilityReadingCancelledEmpty(BaseComponents.View.ControlHandle jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingCancelledSignal_Emit")]
-            public static extern void AccessibilityReadingCancelledEmit(BaseComponents.View.ControlHandle jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingCancelledSignal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityReadingCancelledEmit(BaseComponents.View.ControlHandle jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingStoppedSignal_Connect")]
-            public static extern void AccessibilityReadingStoppedConnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingStoppedSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityReadingStoppedConnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingStoppedSignal_Disconnect")]
-            public static extern void AccessibilityReadingStoppedDisconnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingStoppedSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityReadingStoppedDisconnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingStoppedSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingStoppedSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool AccessibilityReadingStoppedEmpty(BaseComponents.View.ControlHandle jarg1);
+            public static partial bool AccessibilityReadingStoppedEmpty(BaseComponents.View.ControlHandle jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingStoppedSignal_Emit")]
-            public static extern void AccessibilityReadingStoppedEmit(BaseComponents.View.ControlHandle jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityReadingStoppedSignal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityReadingStoppedEmit(BaseComponents.View.ControlHandle jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActionSignal_Connect")]
-            public static extern void AccessibilityActionConnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActionSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityActionConnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActionSignal_Disconnect")]
-            public static extern void AccessibilityActionDisconnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActionSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityActionDisconnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityHighlightedSignal_Connect")]
-            public static extern void AccessibilityHighlightedConnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityHighlightedSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityHighlightedConnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityHighlightedSignal_Disconnect")]
-            public static extern void AccessibilityHighlightedDisconnect(BaseComponents.View.ControlHandle jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityHighlightedSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AccessibilityHighlightedDisconnect(BaseComponents.View.ControlHandle jarg1, IntPtr jarg2);
         }
     }
 }
+
+
+
+
+

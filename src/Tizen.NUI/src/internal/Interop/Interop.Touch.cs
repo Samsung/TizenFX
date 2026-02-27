@@ -15,65 +15,74 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class Touch
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Touch__SWIG_0")]
-            public static extern global::System.IntPtr NewTouch();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Touch__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewTouch();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetMouseButton")]
-            public static extern int GetMouseButton(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetMouseButton", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetMouseButton(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetTime")]
-            public static extern uint GetTime(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetTime", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetTime(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_SetTime")]
-            public static extern void SetTime(global::System.Runtime.InteropServices.HandleRef touchEvent, uint time);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_SetTime", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetTime(IntPtr touchEvent, uint time);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetPointCount")]
-            public static extern uint GetPointCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetPointCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetPointCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetDeviceId")]
-            public static extern int GetDeviceId(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetDeviceId", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetDeviceId(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetState")]
-            public static extern int GetState(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetState", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetState(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetHitActor")]
-            public static extern global::System.IntPtr GetHitActor(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetHitActor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetHitActor(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetLocalPosition")]
-            public static extern global::System.IntPtr GetLocalPosition(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetLocalPosition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetLocalPosition(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetScreenPosition")]
-            public static extern global::System.IntPtr GetScreenPosition(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetScreenPosition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetScreenPosition(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetRadius")]
-            public static extern float GetRadius(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetRadius", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetRadius(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetEllipseRadius")]
-            public static extern global::System.IntPtr GetEllipseRadius(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetEllipseRadius", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetEllipseRadius(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetPressure")]
-            public static extern float GetPressure(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetPressure", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetPressure(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetAngle")]
-            public static extern global::System.IntPtr GetAngle(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetAngle", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetAngle(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetDeviceClass")]
-            public static extern int GetDeviceClass(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetDeviceClass", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetDeviceClass(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetDeviceSubclass")]
-            public static extern int GetDeviceSubClass(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetDeviceSubclass", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetDeviceSubClass(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetDeviceName")]
-            public static extern string GetDeviceName(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetDeviceName", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetDeviceName(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Touch")]
-            public static extern void DeleteTouch(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Touch", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteTouch(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

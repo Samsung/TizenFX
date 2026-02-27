@@ -15,33 +15,42 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class StateChangeSignalType
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StateChangedSignalType_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StateChangedSignalType_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool Empty(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StateChangedSignalType_GetConnectionCount")]
-            public static extern uint GetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StateChangedSignalType_GetConnectionCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetConnectionCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StateChangedSignalType_Connect")]
-            public static extern void Connect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StateChangedSignalType_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Connect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StateChangedSignalType_Disconnect")]
-            public static extern void Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StateChangedSignalType_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Disconnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StateChangedSignalType_Emit")]
-            public static extern void Emit(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StateChangedSignalType_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Emit(IntPtr jarg1, int jarg2, int jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_StateChangedSignalType")]
-            public static extern global::System.IntPtr NewStateChangedSignalType();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_StateChangedSignalType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewStateChangedSignalType();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_StateChangedSignalType")]
-            public static extern void DeleteStateChangedSignalType(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_StateChangedSignalType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteStateChangedSignalType(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

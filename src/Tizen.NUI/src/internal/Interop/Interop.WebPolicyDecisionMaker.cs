@@ -15,51 +15,60 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class WebPolicyDecisionMaker
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebPolicyDecision")]
-            public static extern void DeleteWebPolicyDecision(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebPolicyDecision", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWebPolicyDecision(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetUrl")]
-            public static extern string GetUrl(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetUrl", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetUrl(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetCookie")]
-            public static extern string GetCookie(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetCookie", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetCookie(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetDecisionType")]
-            public static extern int GetDecisionType(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetDecisionType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetDecisionType(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetResponseMime")]
-            public static extern string GetResponseMime(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetResponseMime", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetResponseMime(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetResponseStatusCode")]
-            public static extern int GetResponseStatusCode(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetResponseStatusCode", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetResponseStatusCode(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetNavigationType")]
-            public static extern int GetNavigationType(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetNavigationType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetNavigationType(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetFrame")]
-            public static extern System.IntPtr GetFrame(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetFrame", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial System.IntPtr GetFrame(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetScheme")]
-            public static extern string GetScheme(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_GetScheme", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetScheme(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_Use")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_Use", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool Use(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool Use(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_Ignore")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_Ignore", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool Ignore(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool Ignore(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_Suspend")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebPolicyDecision_Suspend", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool Suspend(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool Suspend(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+
 

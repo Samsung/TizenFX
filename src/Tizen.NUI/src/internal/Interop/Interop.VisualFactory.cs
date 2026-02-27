@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,27 +26,32 @@ namespace Tizen.NUI
         internal static partial class VisualFactory
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualFactory_Get")]
-            public static extern global::System.IntPtr Get();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualFactory_Get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VisualFactory__SWIG_0")]
-            public static extern global::System.IntPtr NewVisualFactory();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VisualFactory__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewVisualFactory();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualFactory_CreateVisual__SWIG_0")]
-            public static extern global::System.IntPtr CreateVisual(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualFactory_CreateVisual__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr CreateVisual(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualFactory_SetDefaultCreationOptions")]
-            public static extern void SetDefaultCreationOptions(global::System.Runtime.InteropServices.HandleRef jarg1, int creationOptions);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualFactory_SetDefaultCreationOptions", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetDefaultCreationOptions(IntPtr jarg1, int creationOptions);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualFactory_GetDefaultCreationOptions")]
-            public static extern int GetDefaultCreationOptions(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualFactory_GetDefaultCreationOptions", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetDefaultCreationOptions(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualFactory_AddPrecompileShader")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualFactory_AddPrecompileShader", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool AddPrecompileShader(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static partial bool AddPrecompileShader(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualFactory_UsePreCompiledShader")]
-            public static extern void UsePreCompiledShader(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualFactory_UsePreCompiledShader", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void UsePreCompiledShader(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

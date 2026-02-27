@@ -15,41 +15,50 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class PropertyCondition
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PropertyCondition__SWIG_0")]
-            public static extern global::System.IntPtr NewPropertyCondition();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PropertyCondition__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewPropertyCondition();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PropertyCondition")]
-            public static extern void DeletePropertyCondition(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PropertyCondition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeletePropertyCondition(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyCondition_GetArgumentCount")]
-            public static extern uint GetArgumentCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyCondition_GetArgumentCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetArgumentCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyCondition_GetArgument")]
-            public static extern float GetArgument(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyCondition_GetArgument", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetArgument(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LessThanCondition")]
-            public static extern global::System.IntPtr LessThanCondition(float jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LessThanCondition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr LessThanCondition(float jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GreaterThanCondition")]
-            public static extern global::System.IntPtr GreaterThanCondition(float jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GreaterThanCondition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GreaterThanCondition(float jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InsideCondition")]
-            public static extern global::System.IntPtr InsideCondition(float jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InsideCondition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr InsideCondition(float jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_OutsideCondition")]
-            public static extern global::System.IntPtr OutsideCondition(float jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_OutsideCondition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr OutsideCondition(float jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StepCondition__SWIG_0")]
-            public static extern global::System.IntPtr StepCondition(float jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StepCondition__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr StepCondition(float jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StepCondition__SWIG_1")]
-            public static extern global::System.IntPtr StepCondition(float jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StepCondition__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr StepCondition(float jarg1);
         }
     }
 }
+
+
+
+
+

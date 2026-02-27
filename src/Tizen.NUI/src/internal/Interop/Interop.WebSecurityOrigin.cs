@@ -15,18 +15,27 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class WebSecurityOrigin
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSecurityOrigin_GetHost")]
-            public static extern string GetHost(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSecurityOrigin_GetHost", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetHost(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSecurityOrigin_GetProtocol")]
-            public static extern string GetProtocol(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebSecurityOrigin_GetProtocol", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetProtocol(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+
 

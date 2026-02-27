@@ -15,38 +15,47 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class MouseRelative
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_MouseRelativeEvent__SWIG_0")]
-            public static extern global::System.IntPtr NewMouseRelative(int jarg1, uint jarg2, uint jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_MouseRelativeEvent__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewMouseRelative(int jarg1, uint jarg2, uint jarg3, IntPtr jarg4, IntPtr jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_MouseRelativeEvent")]
-            public static extern void DeleteMouseRelative(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_MouseRelativeEvent", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteMouseRelative(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MouseRelativeEvent_type_get")]
-            public static extern int TypeGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MouseRelativeEvent_type_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TypeGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MouseRelativeEvent_modifiers_get")]
-            public static extern uint ModifiersGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MouseRelativeEvent_modifiers_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint ModifiersGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MouseRelativeEvent_diff_position_get")]
-            public static extern global::System.IntPtr DiffPositionGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MouseRelativeEvent_diff_position_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr DiffPositionGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MouseRelativeEvent_unaccelated_position_get")]
-            public static extern global::System.IntPtr UnaccelatedPositionGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MouseRelativeEvent_unaccelated_position_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr UnaccelatedPositionGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MouseRelativeEvent_timeStamp_get")]
-            public static extern uint TimeStampGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MouseRelativeEvent_timeStamp_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint TimeStampGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MouseRelativeEvent_GetDeviceClass")]
-            public static extern int DeviceClassGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MouseRelativeEvent_GetDeviceClass", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int DeviceClassGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MouseRelativeEvent_GetDeviceSubClass")]
-            public static extern int DeviceSubClassGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MouseRelativeEvent_GetDeviceSubClass", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int DeviceSubClassGet(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

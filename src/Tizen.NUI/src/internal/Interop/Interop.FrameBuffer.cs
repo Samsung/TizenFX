@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,38 +26,43 @@ namespace Tizen.NUI
         internal static partial class FrameBuffer
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_New")]
-            public static extern global::System.IntPtr New(uint jarg1, uint jarg2, uint jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(uint jarg1, uint jarg2, uint jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_FrameBuffer")]
-            public static extern void DeleteFrameBuffer(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_FrameBuffer", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteFrameBuffer(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_AttachColorTexture__SWIG_0")]
-            public static extern void AttachColorTexture(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_AttachColorTexture__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AttachColorTexture(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_AttachColorTexture__SWIG_1")]
-            public static extern void AttachColorTexture(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, uint jarg3, uint jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_AttachColorTexture__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AttachColorTexture(IntPtr jarg1, IntPtr jarg2, uint jarg3, uint jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_AttachDepthTexture")]
-            public static extern void AttachDepthTexture(global::System.Runtime.InteropServices.HandleRef frameBuffer, global::System.Runtime.InteropServices.HandleRef depthTexture, uint mipmapLevel);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_AttachDepthTexture", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AttachDepthTexture(IntPtr frameBuffer, IntPtr depthTexture, uint mipmapLevel);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GetColorTexture")]
-            public static extern global::System.IntPtr GetColorTexture(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GetColorTexture", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetColorTexture(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GetColorTexture_Index")]
-            public static extern global::System.IntPtr GetColorTextureByIndex(global::System.Runtime.InteropServices.HandleRef frameBuffer, uint index);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GetColorTexture_Index", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetColorTextureByIndex(IntPtr frameBuffer, uint index);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GetDepthTexture")]
-            public static extern global::System.IntPtr GetDepthTexture(global::System.Runtime.InteropServices.HandleRef frameBuffer);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GetDepthTexture", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetDepthTexture(IntPtr frameBuffer);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GenerateUrl")]
-            public static extern global::System.IntPtr GenerateUrl(global::System.IntPtr frameBuffer, int pixelFormat, int width, int height);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GenerateUrl", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GenerateUrl(global::System.IntPtr frameBuffer, int pixelFormat, int width, int height);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GenerateUrl_Index")]
-            public static extern global::System.IntPtr GenerateUrlByIndex(global::System.IntPtr frameBuffer, uint index);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GenerateUrl_Index", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GenerateUrlByIndex(global::System.IntPtr frameBuffer, uint index);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GenerateDepthUrl")]
-            public static extern global::System.IntPtr GenerateDepthUrl(global::System.IntPtr frameBuffer);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FrameBuffer_GenerateDepthUrl", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GenerateDepthUrl(global::System.IntPtr frameBuffer);
         }
     }
 }
+
+
+
+
+

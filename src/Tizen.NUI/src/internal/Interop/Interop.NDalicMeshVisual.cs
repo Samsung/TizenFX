@@ -15,32 +15,41 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class NDalicMeshVisual
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MESH_VISUAL_OBJECT_URL_get")]
-            public static extern int MeshVisualObjectUrlGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MESH_VISUAL_OBJECT_URL_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int MeshVisualObjectUrlGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MESH_VISUAL_MATERIAL_URL_get")]
-            public static extern int MeshVisualMaterialUrlGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MESH_VISUAL_MATERIAL_URL_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int MeshVisualMaterialUrlGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MESH_VISUAL_TEXTURES_PATH_get")]
-            public static extern int MeshVisualTexturesPathGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MESH_VISUAL_TEXTURES_PATH_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int MeshVisualTexturesPathGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MESH_VISUAL_SHADING_MODE_get")]
-            public static extern int MeshVisualShadingModeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MESH_VISUAL_SHADING_MODE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int MeshVisualShadingModeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MESH_VISUAL_USE_MIPMAPPING_get")]
-            public static extern int MeshVisualUseMipmappingGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MESH_VISUAL_USE_MIPMAPPING_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int MeshVisualUseMipmappingGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MESH_VISUAL_USE_SOFT_NORMALS_get")]
-            public static extern int MeshVisualUseSoftNormalsGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MESH_VISUAL_USE_SOFT_NORMALS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int MeshVisualUseSoftNormalsGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MESH_VISUAL_LIGHT_POSITION_get")]
-            public static extern int MeshVisualLightPositionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_MESH_VISUAL_LIGHT_POSITION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int MeshVisualLightPositionGet();
         }
     }
 }
+
+
+
+
+

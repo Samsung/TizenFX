@@ -14,74 +14,84 @@
  * limitations under the License.
  *
  */
+
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class ImageLoading
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromFile__SWIG_0")]
-            public static extern global::System.IntPtr LoadImageFromFile(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3, int jarg4, bool jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromFile__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr LoadImageFromFile(string jarg1, IntPtr jarg2, int jarg3, int jarg4, [MarshalAs(UnmanagedType.U1)] bool jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromFile__SWIG_1")]
-            public static extern global::System.IntPtr LoadImageFromFile(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3, int jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromFile__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr LoadImageFromFile(string jarg1, IntPtr jarg2, int jarg3, int jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromFile__SWIG_2")]
-            public static extern global::System.IntPtr LoadImageFromFile(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromFile__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr LoadImageFromFile(string jarg1, IntPtr jarg2, int jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromFile__SWIG_3")]
-            public static extern global::System.IntPtr LoadImageFromFile(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromFile__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr LoadImageFromFile(string jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromFile__SWIG_4")]
-            public static extern global::System.IntPtr LoadImageFromFile(string jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromFile__SWIG_4", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr LoadImageFromFile(string jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromBuffer__SWIG_0")]
-            public static extern global::System.IntPtr LoadImageFromBuffer(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3, int jarg4, bool jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromBuffer__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr LoadImageFromBuffer(IntPtr jarg1, IntPtr jarg2, int jarg3, int jarg4, [MarshalAs(UnmanagedType.U1)] bool jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromBuffer__SWIG_1")]
-            public static extern global::System.IntPtr LoadImageFromBuffer(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3, int jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromBuffer__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr LoadImageFromBuffer(IntPtr jarg1, IntPtr jarg2, int jarg3, int jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromBuffer__SWIG_2")]
-            public static extern global::System.IntPtr LoadImageFromBuffer(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromBuffer__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr LoadImageFromBuffer(IntPtr jarg1, IntPtr jarg2, int jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromBuffer__SWIG_3")]
-            public static extern global::System.IntPtr LoadImageFromBuffer(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromBuffer__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr LoadImageFromBuffer(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromBuffer__SWIG_4")]
-            public static extern global::System.IntPtr LoadImageFromBuffer(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LoadImageFromBuffer__SWIG_4", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr LoadImageFromBuffer(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetClosestImageSize__SWIG_0")]
-            public static extern global::System.IntPtr GetClosestImageSize(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3, int jarg4, bool jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetClosestImageSize__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetClosestImageSize(string jarg1, IntPtr jarg2, int jarg3, int jarg4, [MarshalAs(UnmanagedType.U1)] bool jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetClosestImageSize__SWIG_1")]
-            public static extern global::System.IntPtr GetClosestImageSize(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3, int jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetClosestImageSize__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetClosestImageSize(string jarg1, IntPtr jarg2, int jarg3, int jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetClosestImageSize__SWIG_2")]
-            public static extern global::System.IntPtr GetClosestImageSize(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetClosestImageSize__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetClosestImageSize(string jarg1, IntPtr jarg2, int jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetClosestImageSize__SWIG_3")]
-            public static extern global::System.IntPtr GetClosestImageSize(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetClosestImageSize__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetClosestImageSize(string jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetClosestImageSize__SWIG_4")]
-            public static extern global::System.IntPtr GetClosestImageSize(string jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetClosestImageSize__SWIG_4", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetClosestImageSize(string jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetOriginalImageSize")]
-            public static extern global::System.IntPtr GetOriginalImageSize(string jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetOriginalImageSize", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetOriginalImageSize(string jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DownloadImageSynchronously__SWIG_0")]
-            public static extern global::System.IntPtr DownloadImageSynchronously(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3, int jarg4, bool jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DownloadImageSynchronously__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr DownloadImageSynchronously(string jarg1, IntPtr jarg2, int jarg3, int jarg4, [MarshalAs(UnmanagedType.U1)] bool jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DownloadImageSynchronously__SWIG_1")]
-            public static extern global::System.IntPtr DownloadImageSynchronously(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3, int jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DownloadImageSynchronously__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr DownloadImageSynchronously(string jarg1, IntPtr jarg2, int jarg3, int jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DownloadImageSynchronously__SWIG_2")]
-            public static extern global::System.IntPtr DownloadImageSynchronously(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DownloadImageSynchronously__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr DownloadImageSynchronously(string jarg1, IntPtr jarg2, int jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DownloadImageSynchronously__SWIG_3")]
-            public static extern global::System.IntPtr DownloadImageSynchronously(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DownloadImageSynchronously__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr DownloadImageSynchronously(string jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DownloadImageSynchronously__SWIG_4")]
-            public static extern global::System.IntPtr DownloadImageSynchronously(string jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DownloadImageSynchronously__SWIG_4", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr DownloadImageSynchronously(string jarg1);
         }
     }
 }
+
+
+
+
+

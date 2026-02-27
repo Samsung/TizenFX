@@ -15,31 +15,40 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class PointerConstraints
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PointerConstraintsEvent__SWIG_0")]
-            public static extern global::System.IntPtr NewPointerConstraints(int x, int y, bool locked, bool confined);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PointerConstraintsEvent__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewPointerConstraints(int x, int y, [MarshalAs(UnmanagedType.U1)] bool locked, [MarshalAs(UnmanagedType.U1)] bool confined);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PointerConstraintsEvent")]
-            public static extern void DeletePointerConstraints(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PointerConstraintsEvent", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeletePointerConstraints(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PointerConstraintsEvent_x_get")]
-            public static extern int XGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PointerConstraintsEvent_x_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int XGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PointerConstraintsEvent_y_get")]
-            public static extern int YGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PointerConstraintsEvent_y_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int YGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PointerConstraintsEvent_locked_get")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PointerConstraintsEvent_locked_get", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool LockedGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool LockedGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PointerConstraintsEvent_confined_get")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PointerConstraintsEvent_confined_get", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool ConfinedGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool ConfinedGet(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

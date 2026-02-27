@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,23 +26,28 @@ namespace Tizen.NUI
         internal static partial class Adaptor
         {
             //For Adaptor
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Adaptor")]
-            public static extern void DeleteAdaptor(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Adaptor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteAdaptor(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_SetRenderRefreshRate")]
-            public static extern void SetRenderRefreshRate(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_SetRenderRefreshRate", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetRenderRefreshRate(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_SetMaximumRenderFrameRate")]
-            public static extern void SetMaximumRenderFrameRate(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_SetMaximumRenderFrameRate", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetMaximumRenderFrameRate(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_Get")]
-            public static extern global::System.IntPtr Get();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_Get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_FeedWheelEvent")]
-            public static extern void FeedWheelEvent(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_FeedWheelEvent", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void FeedWheelEvent(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_FeedKeyEvent")]
-            public static extern void FeedKeyEvent(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_FeedKeyEvent", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void FeedKeyEvent(IntPtr jarg1, IntPtr jarg2);
         }
     }
 }
+
+
+
+
+

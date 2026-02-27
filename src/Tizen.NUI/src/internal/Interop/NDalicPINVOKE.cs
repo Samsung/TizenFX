@@ -15,9 +15,11 @@
  *
  */
 
-using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+using global::System.ComponentModel;
+using global::System.Runtime.CompilerServices;
 
 namespace Tizen.NUI
 {

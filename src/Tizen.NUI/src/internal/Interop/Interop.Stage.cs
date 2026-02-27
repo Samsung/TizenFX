@@ -14,6 +14,11 @@
  * limitations under the License.
  *
  */
+
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -24,24 +29,29 @@ namespace Tizen.NUI
             {
             }
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_GetCurrent")]
-            public static extern global::System.IntPtr GetCurrent();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_GetCurrent", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetCurrent();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_IsInstalled")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_IsInstalled", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsInstalled();
+            public static partial bool IsInstalled();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_GetRenderTaskList")]
-            public static extern global::System.IntPtr GetRenderTaskList(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_GetRenderTaskList", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetRenderTaskList(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_GetDpi")]
-            public static extern global::System.IntPtr GetDpi(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_GetDpi", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetDpi(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_SetRenderingBehavior")]
-            public static extern void SetRenderingBehavior(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_SetRenderingBehavior", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetRenderingBehavior(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_GetRenderingBehavior")]
-            public static extern int GetRenderingBehavior(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Stage_GetRenderingBehavior", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetRenderingBehavior(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

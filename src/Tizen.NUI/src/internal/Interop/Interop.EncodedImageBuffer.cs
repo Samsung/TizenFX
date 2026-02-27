@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,33 +15,36 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
-    using global::System;
-    using global::System.Runtime.InteropServices;
-
     internal static partial class Interop
     {
         internal static partial class EncodedImageBuffer
         {
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_New__SWIG_1")]
-            public static extern IntPtr New(global::System.Runtime.InteropServices.HandleRef jarg1, int imageType);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_New__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr New(IntPtr jarg1, int imageType);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_EncodedImageBuffer")]
-            public static extern void DeleteEncodedImageBuffer(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_EncodedImageBuffer", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteEncodedImageBuffer(IntPtr jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_SetImageType")]
-            public static extern void SetImageType(global::System.Runtime.InteropServices.HandleRef jarg1, int imageType);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_SetImageType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetImageType(IntPtr jarg1, int imageType);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_GetImageType")]
-            public static extern int GetImageType(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_GetImageType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetImageType(IntPtr jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_GetRawBuffer")]
-            public static extern IntPtr GetRawBuffer(IntPtr handle);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_GetRawBuffer", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr GetRawBuffer(IntPtr handle);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_GenerateUrl")]
-            public static extern IntPtr GenerateUrl(IntPtr handle);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EncodedImageBuffer_GenerateUrl", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr GenerateUrl(IntPtr handle);
         }
     }
 }
+
+

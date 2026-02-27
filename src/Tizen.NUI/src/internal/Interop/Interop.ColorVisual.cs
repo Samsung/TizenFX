@@ -15,14 +15,23 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class NDalicColorVisual
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_COLOR_VISUAL_MIX_COLOR_get")]
-            public static extern int ColorVisualMixColorGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_COLOR_VISUAL_MIX_COLOR_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ColorVisualMixColorGet();
         }
     }
 }
+
+
+
+
+

@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,23 +26,28 @@ namespace Tizen.NUI
         internal static partial class ViewInternal
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_SetKeyInputFocus")]
-            public static extern void SetKeyInputFocus(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_SetKeyInputFocus", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetKeyInputFocus(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_ClearKeyInputFocus")]
-            public static extern void ClearKeyInputFocus(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_ClearKeyInputFocus", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ClearKeyInputFocus(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetPinchGestureDetector")]
-            public static extern global::System.IntPtr GetPinchGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetPinchGestureDetector", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetPinchGestureDetector(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetPanGestureDetector")]
-            public static extern global::System.IntPtr GetPanGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetPanGestureDetector", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetPanGestureDetector(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetTapGestureDetector")]
-            public static extern global::System.IntPtr GetTapGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetTapGestureDetector", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetTapGestureDetector(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetLongPressGestureDetector")]
-            public static extern global::System.IntPtr GetLongPressGestureDetector(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetLongPressGestureDetector", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetLongPressGestureDetector(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

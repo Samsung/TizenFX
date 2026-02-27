@@ -15,17 +15,26 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class WebHttpRequestInterceptorPtr
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebRequestInterceptorPtr")]
-            public static extern void DeleteWebHttpRequestInterceptorPtr(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebRequestInterceptorPtr", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWebHttpRequestInterceptorPtr(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebRequestInterceptorPtr_Get")]
-            public static extern global::System.IntPtr Get(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebRequestInterceptorPtr_Get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Get(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

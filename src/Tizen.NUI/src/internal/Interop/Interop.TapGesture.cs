@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,24 +26,29 @@ namespace Tizen.NUI
         internal static partial class TapGesture
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGesture_New")]
-            public static extern global::System.IntPtr New(int jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGesture_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(int jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TapGesture")]
-            public static extern void DeleteTapGesture(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TapGesture", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteTapGesture(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGesture_numberOfTaps_get")]
-            public static extern uint NumberOfTapsGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGesture_numberOfTaps_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint NumberOfTapsGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGesture_numberOfTouches_get")]
-            public static extern uint NumberOfTouchesGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGesture_numberOfTouches_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint NumberOfTouchesGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGesture_screenPoint_get")]
-            public static extern global::System.IntPtr ScreenPointGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGesture_screenPoint_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ScreenPointGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGesture_localPoint_get")]
-            public static extern global::System.IntPtr LocalPointGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGesture_localPoint_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr LocalPointGet(IntPtr jarg1);
 
         }
     }
 }
+
+
+
+
+

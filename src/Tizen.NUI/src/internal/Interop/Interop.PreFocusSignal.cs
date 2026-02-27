@@ -15,33 +15,42 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class PreFocusSignal
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardPreFocusChangeSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardPreFocusChangeSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool Empty(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardPreFocusChangeSignal_GetConnectionCount")]
-            public static extern uint GetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardPreFocusChangeSignal_GetConnectionCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetConnectionCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardPreFocusChangeSignal_Connect")]
-            public static extern void Connect(global::System.Runtime.InteropServices.HandleRef jarg1, Tizen.NUI.FocusManager.PreFocusChangeEventCallback delegate1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardPreFocusChangeSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Connect(IntPtr jarg1, Tizen.NUI.FocusManager.PreFocusChangeEventCallback delegate1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardPreFocusChangeSignal_Disconnect")]
-            public static extern void Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardPreFocusChangeSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Disconnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardPreFocusChangeSignal_Emit")]
-            public static extern global::System.IntPtr Emit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, int jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardPreFocusChangeSignal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Emit(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3, int jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_new_KeyboardPreFocusChangeSignal")]
-            public static extern global::System.IntPtr NewPreFocusChangeSignal();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_new_KeyboardPreFocusChangeSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewPreFocusChangeSignal();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_delete_KeyboardPreFocusChangeSignal")]
-            public static extern void DeletePreFocusChangeSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_delete_KeyboardPreFocusChangeSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeletePreFocusChangeSignal(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

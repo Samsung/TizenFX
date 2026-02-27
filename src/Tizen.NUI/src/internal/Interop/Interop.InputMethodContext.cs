@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,209 +26,214 @@ namespace Tizen.NUI
         internal static partial class InputMethodContext
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_InputMethodContext_EventData__SWIG_0")]
-            public static extern global::System.IntPtr NewInputMethodContextEventData();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_InputMethodContext_EventData__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewInputMethodContextEventData();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_InputMethodContext_EventData__SWIG_1")]
-            public static extern global::System.IntPtr NewInputMethodContextEventData(int jarg1, string jarg2, int jarg3, int jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_InputMethodContext_EventData__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewInputMethodContextEventData(int jarg1, string jarg2, int jarg3, int jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventData_predictiveString_set")]
-            public static extern void EventDataPredictiveStringSet(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventData_predictiveString_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void EventDataPredictiveStringSet(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventData_predictiveString_get")]
-            public static extern string EventDataPredictiveStringGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventData_predictiveString_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string EventDataPredictiveStringGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventData_eventName_set")]
-            public static extern void EventDataEventNameSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventData_eventName_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void EventDataEventNameSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventData_eventName_get")]
-            public static extern int EventDataEventNameGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventData_eventName_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int EventDataEventNameGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventData_cursorOffset_set")]
-            public static extern void EventDataCursorOffsetSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventData_cursorOffset_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void EventDataCursorOffsetSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventData_cursorOffset_get")]
-            public static extern int EventDataCursorOffsetGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventData_cursorOffset_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int EventDataCursorOffsetGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventData_numberOfChars_set")]
-            public static extern void EventDataNumberOfCharsSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventData_numberOfChars_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void EventDataNumberOfCharsSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventData_numberOfChars_get")]
-            public static extern int EventDataNumberOfCharsGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventData_numberOfChars_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int EventDataNumberOfCharsGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_InputMethodContext_EventData")]
-            public static extern void DeleteInputMethodContextEventData(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_InputMethodContext_EventData", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteInputMethodContextEventData(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_InputMethodContext_CallbackData__SWIG_0")]
-            public static extern global::System.IntPtr NewInputMethodContextCallbackData();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_InputMethodContext_CallbackData__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewInputMethodContextCallbackData();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_InputMethodContext_CallbackData__SWIG_1")]
-            public static extern global::System.IntPtr NewInputMethodContextCallbackData(bool jarg1, int jarg2, string jarg3, bool jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_InputMethodContext_CallbackData__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewInputMethodContextCallbackData([MarshalAs(UnmanagedType.U1)] bool jarg1, int jarg2, string jarg3, [MarshalAs(UnmanagedType.U1)] bool jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_CallbackData_currentText_set")]
-            public static extern void CallbackDataCurrentTextSet(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_CallbackData_currentText_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void CallbackDataCurrentTextSet(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_CallbackData_currentText_get")]
-            public static extern string CallbackDataCurrentTextGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_CallbackData_currentText_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string CallbackDataCurrentTextGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_CallbackData_cursorPosition_set")]
-            public static extern void CallbackDataCursorPositionSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_CallbackData_cursorPosition_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void CallbackDataCursorPositionSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_CallbackData_cursorPosition_get")]
-            public static extern int CallbackDataCursorPositionGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_CallbackData_cursorPosition_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int CallbackDataCursorPositionGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_CallbackData_update_set")]
-            public static extern void CallbackDataUpdateSet(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_CallbackData_update_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void CallbackDataUpdateSet(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_CallbackData_update_get")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_CallbackData_update_get", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool CallbackDataUpdateGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool CallbackDataUpdateGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_CallbackData_preeditResetRequired_set")]
-            public static extern void CallbackDataPreeditResetRequiredSet(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_CallbackData_preeditResetRequired_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void CallbackDataPreeditResetRequiredSet(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_CallbackData_preeditResetRequired_get")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_CallbackData_preeditResetRequired_get", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool CallbackDataPreeditResetRequiredGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool CallbackDataPreeditResetRequiredGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_InputMethodContext_CallbackData")]
-            public static extern void DeleteInputMethodContextCallbackData(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_InputMethodContext_CallbackData", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteInputMethodContextCallbackData(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_Finalize")]
-            public static extern void Finalize(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_Finalize", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Finalize(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_InputMethodContext")]
-            public static extern void DeleteInputMethodContext(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_InputMethodContext", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteInputMethodContext(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_New")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_InputMethodContext__SWIG_1")]
-            public static extern global::System.IntPtr NewInputMethodContext(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_InputMethodContext__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewInputMethodContext(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_Assign")]
-            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_Assign", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Assign(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_DownCast")]
-            public static extern global::System.IntPtr DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_DownCast", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr DownCast(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_Activate")]
-            public static extern void Activate(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_Activate", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Activate(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_Deactivate")]
-            public static extern void Deactivate(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_Deactivate", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Deactivate(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_RestoreAfterFocusLost")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_RestoreAfterFocusLost", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool RestoreAfterFocusLost(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool RestoreAfterFocusLost(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetRestoreAfterFocusLost")]
-            public static extern void SetRestoreAfterFocusLost(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetRestoreAfterFocusLost", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetRestoreAfterFocusLost(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_Reset")]
-            public static extern void Reset(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_Reset", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Reset(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_NotifyCursorPosition")]
-            public static extern void NotifyCursorPosition(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_NotifyCursorPosition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void NotifyCursorPosition(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetCursorPosition")]
-            public static extern void SetCursorPosition(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetCursorPosition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetCursorPosition(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetCursorPosition")]
-            public static extern uint GetCursorPosition(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetCursorPosition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetCursorPosition(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetSurroundingText")]
-            public static extern void SetSurroundingText(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetSurroundingText", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetSurroundingText(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetSurroundingText")]
-            public static extern string GetSurroundingText(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetSurroundingText", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetSurroundingText(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_NotifyTextInputMultiLine")]
-            public static extern void NotifyTextInputMultiLine(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_NotifyTextInputMultiLine", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void NotifyTextInputMultiLine(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetTextDirection")]
-            public static extern int GetTextDirection(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetTextDirection", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetTextDirection(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetInputMethodArea")]
-            public static extern global::System.IntPtr GetInputMethodArea(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetInputMethodArea", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetInputMethodArea(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetInputPanelUserData")]
-            public static extern void SetInputPanelUserData(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetInputPanelUserData", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetInputPanelUserData(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetInputPanelUserData")]
-            public static extern void GetInputPanelUserData(global::System.Runtime.InteropServices.HandleRef jarg1, out string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetInputPanelUserData", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GetInputPanelUserData(IntPtr jarg1, out string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetInputPanelState")]
-            public static extern int GetInputPanelState(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetInputPanelState", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetInputPanelState(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetReturnKeyState")]
-            public static extern void SetReturnKeyState(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetReturnKeyState", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetReturnKeyState(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_AutoEnableInputPanel")]
-            public static extern void AutoEnableInputPanel(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_AutoEnableInputPanel", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AutoEnableInputPanel(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_ShowInputPanel")]
-            public static extern void ShowInputPanel(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_ShowInputPanel", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ShowInputPanel(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_HideInputPanel")]
-            public static extern void HideInputPanel(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_HideInputPanel", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void HideInputPanel(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetKeyboardType")]
-            public static extern int GetKeyboardType(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetKeyboardType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetKeyboardType(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetInputPanelLocale")]
-            public static extern string GetInputPanelLocale(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetInputPanelLocale", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetInputPanelLocale(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetMIMEType")]
-            public static extern void SetMIMEType(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetMIMEType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetMIMEType(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_AllowTextPrediction")]
-            public static extern void AllowTextPrediction(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_AllowTextPrediction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AllowTextPrediction(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_IsTextPredictionAllowed")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_IsTextPredictionAllowed", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsTextPredictionAllowed(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsTextPredictionAllowed(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetFullScreenMode")]
-            public static extern void SetFullScreenMode(global::System.Runtime.InteropServices.HandleRef inputMethodContext, bool fullScreen);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetFullScreenMode", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetFullScreenMode(IntPtr inputMethodContext, [MarshalAs(UnmanagedType.U1)] bool fullScreen);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_IsFullScreenMode")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_IsFullScreenMode", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsFullScreenMode(global::System.Runtime.InteropServices.HandleRef inputMethodContext);
+            public static partial bool IsFullScreenMode(IntPtr inputMethodContext);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetInputPanelLanguage")]
-            public static extern void SetInputPanelLanguage(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetInputPanelLanguage", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetInputPanelLanguage(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetInputPanelLanguage")]
-            public static extern int GetInputPanelLanguage(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_GetInputPanelLanguage", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetInputPanelLanguage(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetInputPanelPosition")]
-            public static extern void SetInputPanelPosition(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetInputPanelPosition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetInputPanelPosition(IntPtr jarg1, uint jarg2, uint jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetInputPanelPositionAlign")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_SetInputPanelPositionAlign", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool SetInputPanelPositionAlign(global::System.Runtime.InteropServices.HandleRef inputMethodContext, int x, int y, int align);
+            public static partial bool SetInputPanelPositionAlign(IntPtr inputMethodContext, int x, int y, int align);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_ActivatedSignal")]
-            public static extern global::System.IntPtr ActivatedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_ActivatedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ActivatedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventReceivedSignal")]
-            public static extern global::System.IntPtr EventReceivedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_EventReceivedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr EventReceivedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_StatusChangedSignal")]
-            public static extern global::System.IntPtr StatusChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_StatusChangedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr StatusChangedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_ResizedSignal")]
-            public static extern global::System.IntPtr ResizedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_ResizedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ResizedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_LanguageChangedSignal")]
-            public static extern global::System.IntPtr LanguageChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_LanguageChangedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr LanguageChangedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_KeyboardTypeChangedSignal")]
-            public static extern global::System.IntPtr KeyboardTypeChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_KeyboardTypeChangedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr KeyboardTypeChangedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_ContentReceivedSignal")]
-            public static extern global::System.IntPtr ContentReceivedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_InputMethodContext_ContentReceivedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ContentReceivedSignal(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

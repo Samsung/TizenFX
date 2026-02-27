@@ -15,23 +15,27 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
-    using global::System;
-    using global::System.Runtime.InteropServices;
-
     internal static partial class Interop
     {
         internal static partial class WindowInternal
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetNativeHandle")]
-            public static extern IntPtr WindowGetNativeHandle(HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetNativeHandle", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr WindowGetNativeHandle(IntPtr jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_AddFrameRenderedCallback")]
-            public static extern void AddFrameRenderedCallback(HandleRef nuiWindow, HandleRef nuiCallbakc, int nuiFrameId);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_AddFrameRenderedCallback", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AddFrameRenderedCallback(IntPtr nuiWindow, IntPtr nuiCallbakc, int nuiFrameId);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_AddFramePresentedCallback")]
-            public static extern void AddFramePresentedCallback(HandleRef nuiWindow, HandleRef nuiCallbakc, int nuiFrameId);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_AddFramePresentedCallback", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AddFramePresentedCallback(IntPtr nuiWindow, IntPtr nuiCallbakc, int nuiFrameId);
         }
     }
 }
+
+
+

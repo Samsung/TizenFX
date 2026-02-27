@@ -14,7 +14,10 @@
  * limitations under the License.
  *
  */
-using System.Runtime.InteropServices;
+
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI
 {
@@ -22,35 +25,38 @@ namespace Tizen.NUI
     {
         internal static partial class ViewSignal
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyEventSignal_Connect")]
-            public static extern void KeyEventConnect(HandleRef view, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyEventSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void KeyEventConnect(IntPtr view, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyEventSignal_Disconnect")]
-            public static extern void KeyEventDisconnect(HandleRef view, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyEventSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void KeyEventDisconnect(IntPtr view, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyInputFocusGainedSignal_Connect")]
-            public static extern void KeyInputFocusGainedConnect(HandleRef view, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyInputFocusGainedSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void KeyInputFocusGainedConnect(IntPtr view, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyInputFocusGainedSignal_Disconnect")]
-            public static extern void KeyInputFocusGainedDisconnect(HandleRef view, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyInputFocusGainedSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void KeyInputFocusGainedDisconnect(IntPtr view, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyInputFocusLostSignal_Connect")]
-            public static extern void KeyInputFocusLostConnect(HandleRef view, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyInputFocusLostSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void KeyInputFocusLostConnect(IntPtr view, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyInputFocusLostSignal_Disconnect")]
-            public static extern void KeyInputFocusLostDisconnect(HandleRef view, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyInputFocusLostSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void KeyInputFocusLostDisconnect(IntPtr view, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_ResourceReadySignal_Connect")]
-            public static extern void ResourceReadyConnect(HandleRef view, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_ResourceReadySignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ResourceReadyConnect(IntPtr view, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_ResourceReadySignal_Disconnect")]
-            public static extern void ResourceReadyDisconnect(HandleRef view, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_ResourceReadySignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ResourceReadyDisconnect(IntPtr view, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_OffScreenRenderingFinishedSignal_Connect")]
-            public static extern void OffScreenRenderingFinishedConnect(HandleRef view, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_OffScreenRenderingFinishedSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void OffScreenRenderingFinishedConnect(IntPtr view, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_OffScreenRenderingFinishedSignal_Disconnect")]
-            public static extern void OffScreenRenderingFinishedDisconnect(HandleRef view, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_OffScreenRenderingFinishedSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void OffScreenRenderingFinishedDisconnect(IntPtr view, IntPtr handler);
         }
     }
 }
+
+
+

@@ -15,9 +15,11 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+using global::System.Collections.Generic;
+using global::System.Text;
 
 namespace Tizen.NUI
 {
@@ -25,18 +27,23 @@ namespace Tizen.NUI
     {
         internal static partial class CameraView
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CameraView_New__SWIG_0")]
-            public static extern global::System.IntPtr New(global::System.IntPtr jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CameraView_New__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(global::System.IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_CameraView")]
-            public static extern void DeleteCameraView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_CameraView", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteCameraView(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_CameraView__SWIG_1")]
-            public static extern global::System.IntPtr NewCameraView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_CameraView__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewCameraView(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CameraView_Update")]
-            public static extern void Update(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CameraView_Update", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Update(IntPtr jarg1);
 
         }
     }
 }
+
+
+
+
+

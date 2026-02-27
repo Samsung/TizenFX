@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,62 +15,71 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     class NDalicManualPINVOKE
     {
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_MODE_get")]
-        public static extern int HiddeninputPropertyModeGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_MODE_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int HiddeninputPropertyModeGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_SUBSTITUTE_CHARACTER_get")]
-        public static extern int HiddeninputPropertySubstituteCharacterGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_SUBSTITUTE_CHARACTER_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int HiddeninputPropertySubstituteCharacterGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_SUBSTITUTE_COUNT_get")]
-        public static extern int HiddeninputPropertySubstituteCountGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_SUBSTITUTE_COUNT_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int HiddeninputPropertySubstituteCountGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_SHOW_LAST_CHARACTER_DURATION_get")]
-        public static extern int HiddeninputPropertyShowLastCharacterDurationGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_SHOW_LAST_CHARACTER_DURATION_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int HiddeninputPropertyShowLastCharacterDurationGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_POPUP_MAX_SIZE_get")]
-        public static extern int TextSelectionPopupPropertyPopupMaxSizeGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_POPUP_MAX_SIZE_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int TextSelectionPopupPropertyPopupMaxSizeGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_OPTION_DIVIDER_SIZE_get")]
-        public static extern int TextSelectionPopupPropertyOptionDividerSizeGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_OPTION_DIVIDER_SIZE_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int TextSelectionPopupPropertyOptionDividerSizeGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_OPTION_DIVIDER_PADDING_get")]
-        public static extern int TextSelectionPopupPropertyOptionDividerPaddingGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_OPTION_DIVIDER_PADDING_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int TextSelectionPopupPropertyOptionDividerPaddingGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_LABEL_MINIMUM_SIZE_get")]
-        public static extern int TextSelectionPopupPropertyLabelMinimumSizeGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_LABEL_MINIMUM_SIZE_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int TextSelectionPopupPropertyLabelMinimumSizeGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_LABEL_PADDING_get")]
-        public static extern int TextSelectionPopupPropertyLabelPaddingGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_LABEL_PADDING_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int TextSelectionPopupPropertyLabelPaddingGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_LABEL_TEXT_VISUAL_get")]
-        public static extern int TextSelectionPopupPropertyLabelTextVisualGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_LABEL_TEXT_VISUAL_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int TextSelectionPopupPropertyLabelTextVisualGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_ENABLE_SCROLL_BAR_get")]
-        public static extern int TextSelectionPopupPropertyEnableScrollBarGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_ENABLE_SCROLL_BAR_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int TextSelectionPopupPropertyEnableScrollBarGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_POPUP_DIVIDER_COLOR_get")]
-        public static extern int TextSelectionPopupPropertyPopupDividerColorGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_POPUP_DIVIDER_COLOR_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int TextSelectionPopupPropertyPopupDividerColorGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_POPUP_PRESSED_COLOR_get")]
-        public static extern int TextSelectionPopupPropertyPopupPressedColorGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_POPUP_PRESSED_COLOR_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int TextSelectionPopupPropertyPopupPressedColorGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_POPUP_PRESSED_CORNER_RADIUS_get")]
-        public static extern int TextSelectionPopupPropertyPopupPressedCornerRadiusGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_POPUP_PRESSED_CORNER_RADIUS_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int TextSelectionPopupPropertyPopupPressedCornerRadiusGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_POPUP_FADE_IN_DURATION_get")]
-        public static extern int TextSelectionPopupPropertyPopupFadeInDurationGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_POPUP_FADE_IN_DURATION_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int TextSelectionPopupPropertyPopupFadeInDurationGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_POPUP_FADE_OUT_DURATION_get")]
-        public static extern int TextSelectionPopupPropertyPopupFadeOutDurationGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_POPUP_FADE_OUT_DURATION_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int TextSelectionPopupPropertyPopupFadeOutDurationGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_BACKGROUND_get")]
-        public static extern int TextSelectionPopupPropertyPopupBackgroundGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_BACKGROUND_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int TextSelectionPopupPropertyPopupBackgroundGet();
 
-        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_BACKGROUND_BORDER_get")]
-        public static extern int TextSelectionPopupPropertyPopupBackgroundBorderGet();
+        [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextSelectionPopup_Property_BACKGROUND_BORDER_get", StringMarshalling = StringMarshalling.Utf8)]
+        public static partial int TextSelectionPopupPropertyPopupBackgroundBorderGet();
     }
 }
+
+
+
+
+

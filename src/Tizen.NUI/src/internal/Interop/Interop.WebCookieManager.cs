@@ -15,27 +15,36 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class WebCookieManager
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCookieManager_GetCookieAcceptPolicy")]
-            public static extern int GetCookieAcceptPolicy(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCookieManager_GetCookieAcceptPolicy", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetCookieAcceptPolicy(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCookieManager_SetCookieAcceptPolicy")]
-            public static extern void SetCookieAcceptPolicy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCookieManager_SetCookieAcceptPolicy", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetCookieAcceptPolicy(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCookieManager_SetPersistentStorage")]
-            public static extern void SetPersistentStorage(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, int jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCookieManager_SetPersistentStorage", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetPersistentStorage(IntPtr jarg1, string jarg2, int jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCookieManager_ClearCookies")]
-            public static extern void ClearCookies(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCookieManager_ClearCookies", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ClearCookies(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCookieManager_ChangesWatch")]
-            public static extern void CookieChangedCallback(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCookieManager_ChangesWatch", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void CookieChangedCallback(IntPtr jarg1, IntPtr jarg2);
         }
     }
 }
+
+
+
+
+
 

@@ -15,27 +15,36 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class WebConsoleMessage
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebConsoleMessage")]
-            public static extern void DeleteWebConsoleMessage(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebConsoleMessage", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWebConsoleMessage(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebConsoleMessage_GetSource")]
-            public static extern string GetSource(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebConsoleMessage_GetSource", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetSource(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebConsoleMessage_GetLine")]
-            public static extern uint GetLine(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebConsoleMessage_GetLine", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetLine(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebConsoleMessage_GetSeverityLevel")]
-            public static extern int GetSeverityLevel(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebConsoleMessage_GetSeverityLevel", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetSeverityLevel(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebConsoleMessage_GetText")]
-            public static extern string GetText(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebConsoleMessage_GetText", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetText(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+
 

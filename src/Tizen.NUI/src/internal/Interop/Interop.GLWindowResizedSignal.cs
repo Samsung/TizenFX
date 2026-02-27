@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,9 @@
  *
  */
 
-using System.Runtime.InteropServices;
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI
 {
@@ -23,27 +25,30 @@ namespace Tizen.NUI
     {
         internal static partial class GLWindowResizedSignal
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_ResizedSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_ResizedSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool GlWindowResizedSignalEmpty(HandleRef jarg1);
+            public static partial bool GlWindowResizedSignalEmpty(IntPtr jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_ResizedSignal_GetConnectionCount")]
-            public static extern uint GlWindowResizedSignalGetConnectionCount(HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_ResizedSignal_GetConnectionCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GlWindowResizedSignalGetConnectionCount(IntPtr jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_ResizedSignal_Connect")]
-            public static extern void GlWindowResizedSignalConnect(HandleRef jarg1, HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_ResizedSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GlWindowResizedSignalConnect(IntPtr jarg1, IntPtr jarg2);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_ResizedSignal_Disconnect")]
-            public static extern void GlWindowResizedSignalDisconnect(HandleRef jarg1, HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_ResizedSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GlWindowResizedSignalDisconnect(IntPtr jarg1, IntPtr jarg2);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_ResizedSignal_Emit")]
-            public static extern void GlWindowResizedSignalEmit(HandleRef jarg1, HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_ResizedSignal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GlWindowResizedSignalEmit(IntPtr jarg1, IntPtr jarg2);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_GlWindow_ResizedSignal")]
-            public static extern global::System.IntPtr NewGlWindowResizedSignal();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_GlWindow_ResizedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewGlWindowResizedSignal();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_delete_ResizedSignal")]
-            public static extern void GlWindowDeleteResizedSignal(HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_delete_ResizedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GlWindowDeleteResizedSignal(IntPtr jarg1);
         }
     }
 }
+
+
+

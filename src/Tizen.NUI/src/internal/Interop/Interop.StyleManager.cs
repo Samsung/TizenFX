@@ -15,42 +15,51 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class StyleManager
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_StyleManager")]
-            public static extern global::System.IntPtr NewStyleManager();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_StyleManager", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewStyleManager();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_Get")]
-            public static extern global::System.IntPtr Get();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_Get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_ApplyTheme")]
-            public static extern void ApplyTheme(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_ApplyTheme", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ApplyTheme(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_ApplyDefaultTheme")]
-            public static extern void ApplyDefaultTheme(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_ApplyDefaultTheme", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ApplyDefaultTheme(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_SetStyleConstant")]
-            public static extern void SetStyleConstant(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_SetStyleConstant", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetStyleConstant(IntPtr jarg1, string jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_GetStyleConstant")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_GetStyleConstant", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool GetStyleConstant(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            public static partial bool GetStyleConstant(IntPtr jarg1, string jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_ApplyStyle")]
-            public static extern void ApplyStyle(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, string jarg3, string jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_ApplyStyle", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ApplyStyle(IntPtr jarg1, IntPtr jarg2, string jarg3, string jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_StyleChangedSignal")]
-            public static extern global::System.IntPtr StyleChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_StyleChangedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr StyleChangedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_SetBrokenImageUrl")]
-            public static extern void SetBrokenImageUrl(global::System.Runtime.InteropServices.HandleRef jarg1,uint jarg2, string jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_SetBrokenImageUrl", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetBrokenImageUrl(IntPtr jarg1,uint jarg2, string jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_GetBrokenImageUrl")]
-            public static extern string GetBrokenImageUrl(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_GetBrokenImageUrl", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetBrokenImageUrl(IntPtr jarg1, uint jarg2);
         }
     }
 }
+
+
+
+
+

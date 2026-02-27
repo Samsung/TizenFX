@@ -15,27 +15,31 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
-    using global::System;
-    using global::System.Runtime.InteropServices;
-
     internal static partial class Interop
     {
         internal static partial class FadeTransitionItem
         {
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FadeTransition_New")]
-            public static extern IntPtr New(HandleRef view, float opacity, HandleRef timePeriod);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FadeTransition_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr New(IntPtr view, float opacity, IntPtr timePeriod);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_FadeTransition")]
-            public static extern void Delete(HandleRef fade);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_FadeTransition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Delete(IntPtr fade);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FadeTransition_Set")]
-            public static extern IntPtr NewFadeTransitionItem(HandleRef fade);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FadeTransition_Set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr NewFadeTransitionItem(IntPtr fade);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FadeTransition_Assign")]
-            public static extern IntPtr Assign(HandleRef destination, HandleRef source);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FadeTransition_Assign", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr Assign(IntPtr destination, IntPtr source);
         }
     }
 }
+
+
+

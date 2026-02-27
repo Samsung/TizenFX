@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,17 +26,17 @@ namespace Tizen.NUI
         internal static partial class ViewWrapperImpl
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_CONTROL_BEHAVIOUR_FLAG_COUNT_get")]
-            public static extern int ControlBehaviourFlagCountGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_CONTROL_BEHAVIOUR_FLAG_COUNT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ControlBehaviourFlagCountGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ViewWrapperImpl")]
-            public static extern global::System.IntPtr NewViewWrapperImpl(int jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ViewWrapperImpl", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewViewWrapperImpl(int jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_New")]
-            public static extern global::System.IntPtr New(string jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(string jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_director_connect")]
-            public static extern void DirectorConnect(global::System.Runtime.InteropServices.HandleRef jarg1,
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_director_connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DirectorConnect(IntPtr jarg1,
                 Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_0 delegate0, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_1 delegate1,
                 Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_2 delegate2, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_3 delegate3,
                 Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_4 delegate4, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_5 delegate5,
@@ -51,53 +55,58 @@ namespace Tizen.NUI
                 Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_38 delegate38, Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_39 delegate39,
                 Tizen.NUI.ViewWrapperImpl.DelegateViewWrapperImpl_40 delegate40);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_RelayoutRequest")]
-            public static extern void RelayoutRequest(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_RelayoutRequest", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RelayoutRequest(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_GetHeightForWidthBase")]
-            public static extern float GetHeightForWidthBase(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_GetHeightForWidthBase", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetHeightForWidthBase(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_GetWidthForHeightBase")]
-            public static extern float GetWidthForHeightBase(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_GetWidthForHeightBase", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetWidthForHeightBase(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_CalculateChildSizeBase")]
-            public static extern float CalculateChildSizeBase(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, int jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_CalculateChildSizeBase", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float CalculateChildSizeBase(IntPtr jarg1, IntPtr jarg2, int jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_RelayoutDependentOnChildrenBase__SWIG_0")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_RelayoutDependentOnChildrenBase__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool RelayoutDependentOnChildrenBase(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static partial bool RelayoutDependentOnChildrenBase(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_RelayoutDependentOnChildrenBase__SWIG_1")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_RelayoutDependentOnChildrenBase__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool RelayoutDependentOnChildrenBase(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool RelayoutDependentOnChildrenBase(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_RegisterVisual__SWIG_0")]
-            public static extern void RegisterVisual(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_RegisterVisual__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RegisterVisual(IntPtr jarg1, int jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_RegisterVisual__SWIG_1")]
-            public static extern void RegisterVisual(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, bool jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_RegisterVisual__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RegisterVisual(IntPtr jarg1, int jarg2, IntPtr jarg3, [MarshalAs(UnmanagedType.U1)] bool jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_UnregisterVisual")]
-            public static extern void UnregisterVisual(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_UnregisterVisual", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void UnregisterVisual(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_GetVisual")]
-            public static extern global::System.IntPtr GetVisual(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_GetVisual", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetVisual(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_EnableVisual")]
-            public static extern void EnableVisual(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, bool jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_EnableVisual", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void EnableVisual(IntPtr jarg1, int jarg2, [MarshalAs(UnmanagedType.U1)] bool jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_IsVisualEnabled")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_IsVisualEnabled", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsVisualEnabled(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static partial bool IsVisualEnabled(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_CreateTransition")]
-            public static extern global::System.IntPtr CreateTransition(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_CreateTransition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr CreateTransition(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_EmitKeyInputFocusSignal")]
-            public static extern void EmitKeyInputFocusSignal(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ViewWrapperImpl_EmitKeyInputFocusSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void EmitKeyInputFocusSignal(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_ApplyThemeStyle")]
-            public static extern void ApplyThemeStyle(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewWrapperImpl_ApplyThemeStyle", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ApplyThemeStyle(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

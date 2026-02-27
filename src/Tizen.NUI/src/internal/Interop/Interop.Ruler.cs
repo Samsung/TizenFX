@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,260 +26,265 @@ namespace Tizen.NUI
         internal static partial class Ruler
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RulerDomain__SWIG_0")]
-            public static extern global::System.IntPtr NewRulerDomain(float jarg1, float jarg2, bool jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RulerDomain__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewRulerDomain(float jarg1, float jarg2, [MarshalAs(UnmanagedType.U1)] bool jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RulerDomain__SWIG_1")]
-            public static extern global::System.IntPtr NewRulerDomain(float jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RulerDomain__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewRulerDomain(float jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_min_set")]
-            public static extern void RulerDomainMinSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_min_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RulerDomainMinSet(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_min_get")]
-            public static extern float RulerDomainMinGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_min_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerDomainMinGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_max_set")]
-            public static extern void RulerDomainMaxSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_max_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RulerDomainMaxSet(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_max_get")]
-            public static extern float RulerDomainMaxGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_max_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerDomainMaxGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_enabled_set")]
-            public static extern void RulerDomainEnabledSet(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_enabled_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RulerDomainEnabledSet(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_enabled_get")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_enabled_get", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool RulerDomainEnabledGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool RulerDomainEnabledGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_Clamp__SWIG_0")]
-            public static extern float RulerDomainClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_Clamp__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerDomainClamp(IntPtr jarg1, float jarg2, float jarg3, float jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_Clamp__SWIG_1")]
-            public static extern float RulerDomainClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_Clamp__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerDomainClamp(IntPtr jarg1, float jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_Clamp__SWIG_2")]
-            public static extern float RulerDomainClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_Clamp__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerDomainClamp(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_Clamp__SWIG_3")]
-            public static extern float RulerDomainClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_Clamp__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerDomainClamp(IntPtr jarg1, float jarg2, float jarg3, float jarg4, IntPtr jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_GetSize")]
-            public static extern float RulerDomainGetSize(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerDomain_GetSize", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerDomainGetSize(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_RulerDomain")]
-            public static extern void DeleteRulerDomain(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_RulerDomain", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteRulerDomain(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_Snap__SWIG_0")]
-            public static extern float Snap(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_Snap__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float Snap(IntPtr jarg1, float jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_Snap__SWIG_1")]
-            public static extern float Snap(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_Snap__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float Snap(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_GetPositionFromPage")]
-            public static extern float GetPositionFromPage(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, out uint jarg3, bool jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_GetPositionFromPage", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetPositionFromPage(IntPtr jarg1, uint jarg2, out uint jarg3, [MarshalAs(UnmanagedType.U1)] bool jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_GetPageFromPosition")]
-            public static extern uint GetPageFromPosition(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, bool jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_GetPageFromPosition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetPageFromPosition(IntPtr jarg1, float jarg2, [MarshalAs(UnmanagedType.U1)] bool jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_GetTotalPages")]
-            public static extern uint GetTotalPages(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_GetTotalPages", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetTotalPages(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_GetType")]
-            public static extern int GetType(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_GetType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetType(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_IsEnabled")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_IsEnabled", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsEnabled(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsEnabled(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_Enable")]
-            public static extern void Enable(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_Enable", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Enable(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_Disable")]
-            public static extern void Disable(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_Disable", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Disable(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_SetDomain")]
-            public static extern void SetDomain(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_SetDomain", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetDomain(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_GetDomain")]
-            public static extern global::System.IntPtr GetDomain(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_GetDomain", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetDomain(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_DisableDomain")]
-            public static extern void DisableDomain(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_DisableDomain", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DisableDomain(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_Clamp__SWIG_0")]
-            public static extern float Clamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_Clamp__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float Clamp(IntPtr jarg1, float jarg2, float jarg3, float jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_Clamp__SWIG_1")]
-            public static extern float Clamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_Clamp__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float Clamp(IntPtr jarg1, float jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_Clamp__SWIG_2")]
-            public static extern float Clamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_Clamp__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float Clamp(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_Clamp__SWIG_3")]
-            public static extern float Clamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_Clamp__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float Clamp(IntPtr jarg1, float jarg2, float jarg3, float jarg4, IntPtr jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_SnapAndClamp__SWIG_0")]
-            public static extern float SnapAndClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4, float jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_SnapAndClamp__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float SnapAndClamp(IntPtr jarg1, float jarg2, float jarg3, float jarg4, float jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_SnapAndClamp__SWIG_1")]
-            public static extern float SnapAndClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_SnapAndClamp__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float SnapAndClamp(IntPtr jarg1, float jarg2, float jarg3, float jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_SnapAndClamp__SWIG_2")]
-            public static extern float SnapAndClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_SnapAndClamp__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float SnapAndClamp(IntPtr jarg1, float jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_SnapAndClamp__SWIG_3")]
-            public static extern float SnapAndClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_SnapAndClamp__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float SnapAndClamp(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_SnapAndClamp__SWIG_4")]
-            public static extern float SnapAndClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4, float jarg5, global::System.Runtime.InteropServices.HandleRef jarg6);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Ruler_SnapAndClamp__SWIG_4", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float SnapAndClamp(IntPtr jarg1, float jarg2, float jarg3, float jarg4, float jarg5, IntPtr jarg6);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_DefaultRuler")]
-            public static extern global::System.IntPtr NewDefaultRuler();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_DefaultRuler", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewDefaultRuler();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DefaultRuler_Snap")]
-            public static extern float DefaultRulerSnap(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DefaultRuler_Snap", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float DefaultRulerSnap(IntPtr jarg1, float jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DefaultRuler_GetPositionFromPage")]
-            public static extern float DefaultRulerGetPositionFromPage(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, out uint jarg3, bool jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DefaultRuler_GetPositionFromPage", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float DefaultRulerGetPositionFromPage(IntPtr jarg1, uint jarg2, out uint jarg3, [MarshalAs(UnmanagedType.U1)] bool jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DefaultRuler_GetPageFromPosition")]
-            public static extern uint DefaultRulerGetPageFromPosition(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, bool jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DefaultRuler_GetPageFromPosition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint DefaultRulerGetPageFromPosition(IntPtr jarg1, float jarg2, [MarshalAs(UnmanagedType.U1)] bool jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DefaultRuler_GetTotalPages")]
-            public static extern uint DefaultRulerGetTotalPages(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DefaultRuler_GetTotalPages", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint DefaultRulerGetTotalPages(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_DefaultRuler")]
-            public static extern void DeleteDefaultRuler(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_DefaultRuler", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteDefaultRuler(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FixedRuler__SWIG_0")]
-            public static extern global::System.IntPtr NewFixedRuler(float jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FixedRuler__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewFixedRuler(float jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FixedRuler__SWIG_1")]
-            public static extern global::System.IntPtr NewFixedRuler();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_FixedRuler__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewFixedRuler();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FixedRuler_Snap")]
-            public static extern float FixedRulerSnap(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FixedRuler_Snap", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float FixedRulerSnap(IntPtr jarg1, float jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FixedRuler_GetPositionFromPage")]
-            public static extern float FixedRulerGetPositionFromPage(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, out uint jarg3, bool jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FixedRuler_GetPositionFromPage", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float FixedRulerGetPositionFromPage(IntPtr jarg1, uint jarg2, out uint jarg3, [MarshalAs(UnmanagedType.U1)] bool jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FixedRuler_GetPageFromPosition")]
-            public static extern uint FixedRulerGetPageFromPosition(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, bool jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FixedRuler_GetPageFromPosition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint FixedRulerGetPageFromPosition(IntPtr jarg1, float jarg2, [MarshalAs(UnmanagedType.U1)] bool jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FixedRuler_GetTotalPages")]
-            public static extern uint FixedRulerGetTotalPages(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FixedRuler_GetTotalPages", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint FixedRulerGetTotalPages(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_FixedRuler")]
-            public static extern void DeleteFixedRuler(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_FixedRuler", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteFixedRuler(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RulerPtr__SWIG_0")]
-            public static extern global::System.IntPtr NewRulerPtr();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RulerPtr__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewRulerPtr();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RulerPtr__SWIG_1")]
-            public static extern global::System.IntPtr NewRulerPtr(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RulerPtr__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewRulerPtr(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RulerPtr__SWIG_2")]
-            public static extern global::System.IntPtr NewRulerPtrPtr(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_RulerPtr__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewRulerPtrPtr(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_RulerPtr")]
-            public static extern void DeleteRulerPtr(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_RulerPtr", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteRulerPtr(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Get")]
-            public static extern global::System.IntPtr RulerPtrGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr RulerPtrGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr___deref__")]
-            public static extern global::System.IntPtr RulerPtrDeref(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr___deref__", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr RulerPtrDeref(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr___ref__")]
-            public static extern global::System.IntPtr RulerPtrRef(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr___ref__", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr RulerPtrRef(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Assign__SWIG_0")]
-            public static extern global::System.IntPtr AssignPtr(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Assign__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr AssignPtr(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Assign__SWIG_1")]
-            public static extern global::System.IntPtr RulerPtrAssign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Assign__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr RulerPtrAssign(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Reset__SWIG_0")]
-            public static extern void RulerPtrReset(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Reset__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RulerPtrReset(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Reset__SWIG_1")]
-            public static extern void RulerPtrReset(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Reset__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RulerPtrReset(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Detach")]
-            public static extern global::System.IntPtr RulerPtrDetach(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Detach", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr RulerPtrDetach(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Snap__SWIG_0")]
-            public static extern float RulerPtrSnap(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Snap__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerPtrSnap(IntPtr jarg1, float jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Snap__SWIG_1")]
-            public static extern float RulerPtrSnap(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Snap__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerPtrSnap(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_GetPositionFromPage")]
-            public static extern float RulerPtrGetPositionFromPage(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, out uint jarg3, bool jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_GetPositionFromPage", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerPtrGetPositionFromPage(IntPtr jarg1, uint jarg2, out uint jarg3, [MarshalAs(UnmanagedType.U1)] bool jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_GetPageFromPosition")]
-            public static extern uint RulerPtrGetPageFromPosition(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, bool jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_GetPageFromPosition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint RulerPtrGetPageFromPosition(IntPtr jarg1, float jarg2, [MarshalAs(UnmanagedType.U1)] bool jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_GetTotalPages")]
-            public static extern uint RulerPtrGetTotalPages(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_GetTotalPages", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint RulerPtrGetTotalPages(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_GetType")]
-            public static extern int RulerPtrGetType(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_GetType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int RulerPtrGetType(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_IsEnabled")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_IsEnabled", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool RulerPtrIsEnabled(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool RulerPtrIsEnabled(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Enable")]
-            public static extern void RulerPtrEnable(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Enable", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RulerPtrEnable(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Disable")]
-            public static extern void RulerPtrDisable(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Disable", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RulerPtrDisable(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_SetDomain")]
-            public static extern void RulerPtrSetDomain(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_SetDomain", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RulerPtrSetDomain(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_GetDomain")]
-            public static extern global::System.IntPtr RulerPtrGetDomain(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_GetDomain", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr RulerPtrGetDomain(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_DisableDomain")]
-            public static extern void RulerPtrDisableDomain(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_DisableDomain", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RulerPtrDisableDomain(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Clamp__SWIG_0")]
-            public static extern float RulerPtrClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Clamp__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerPtrClamp(IntPtr jarg1, float jarg2, float jarg3, float jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Clamp__SWIG_1")]
-            public static extern float RulerPtrClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Clamp__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerPtrClamp(IntPtr jarg1, float jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Clamp__SWIG_2")]
-            public static extern float RulerPtrClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Clamp__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerPtrClamp(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Clamp__SWIG_3")]
-            public static extern float RulerPtrClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4, global::System.Runtime.InteropServices.HandleRef jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Clamp__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerPtrClamp(IntPtr jarg1, float jarg2, float jarg3, float jarg4, IntPtr jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_SnapAndClamp__SWIG_0")]
-            public static extern float RulerPtrSnapAndClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4, float jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_SnapAndClamp__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerPtrSnapAndClamp(IntPtr jarg1, float jarg2, float jarg3, float jarg4, float jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_SnapAndClamp__SWIG_1")]
-            public static extern float RulerPtrSnapAndClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_SnapAndClamp__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerPtrSnapAndClamp(IntPtr jarg1, float jarg2, float jarg3, float jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_SnapAndClamp__SWIG_2")]
-            public static extern float RulerPtrSnapAndClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_SnapAndClamp__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerPtrSnapAndClamp(IntPtr jarg1, float jarg2, float jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_SnapAndClamp__SWIG_3")]
-            public static extern float RulerPtrSnapAndClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_SnapAndClamp__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerPtrSnapAndClamp(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_SnapAndClamp__SWIG_4")]
-            public static extern float RulerPtrSnapAndClamp(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4, float jarg5, global::System.Runtime.InteropServices.HandleRef jarg6);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_SnapAndClamp__SWIG_4", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RulerPtrSnapAndClamp(IntPtr jarg1, float jarg2, float jarg3, float jarg4, float jarg5, IntPtr jarg6);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Reference")]
-            public static extern void RulerPtrReference(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Reference", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RulerPtrReference(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Unreference")]
-            public static extern void RulerPtrUnreference(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_Unreference", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RulerPtrUnreference(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_ReferenceCount")]
-            public static extern int RulerPtrReferenceCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RulerPtr_ReferenceCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int RulerPtrReferenceCount(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

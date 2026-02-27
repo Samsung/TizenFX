@@ -15,22 +15,31 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class WebUserMediaPermissionRequest
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_UserMediaPermissionRequest")]
-            public static extern void Delete(global::System.Runtime.InteropServices.HandleRef webPermission);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_UserMediaPermissionRequest", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Delete(IntPtr webPermission);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_UserMediaPermissionRequest_Set")]
-            public static extern void Set(global::System.Runtime.InteropServices.HandleRef webPermission, bool allowed);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_UserMediaPermissionRequest_Set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Set(IntPtr webPermission, [MarshalAs(UnmanagedType.U1)] bool allowed);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_UserMediaPermissionRequest_Suspend")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_UserMediaPermissionRequest_Suspend", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool Suspend(global::System.Runtime.InteropServices.HandleRef webPermission);
+            public static partial bool Suspend(IntPtr webPermission);
         }
     }
 }
+
+
+
+
+
 

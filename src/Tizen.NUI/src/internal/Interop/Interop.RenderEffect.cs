@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,26 +15,30 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
-    using global::System;
-    using global::System.Runtime.InteropServices;
-
     internal static partial class Interop
     {
         internal static class RenderEffect
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderEffect_Activate")]
-            public static extern void Activate(HandleRef effect);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderEffect_Activate", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Activate(IntPtr effect);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderEffect_Deactivate")]
-            public static extern void Deactivate(HandleRef effect);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderEffect_Deactivate", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Deactivate(IntPtr effect);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderEffect_Refresh")]
-            public static extern void Refresh(HandleRef effect);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderEffect_Refresh", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Refresh(IntPtr effect);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderEffect_IsActivated")]
-            public static extern bool IsActivated(HandleRef effect);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderEffect_IsActivated", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial bool IsActivated(IntPtr effect);
         }
     }
 }
+
+
+

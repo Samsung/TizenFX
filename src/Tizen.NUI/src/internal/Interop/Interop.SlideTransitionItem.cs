@@ -15,26 +15,30 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
-    using global::System;
-    using global::System.Runtime.InteropServices;
-
     internal static partial class Interop
     {
         internal static partial class SlideTransitionItem
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SlideTransition_New")]
-            public static extern IntPtr New(HandleRef view, HandleRef direction, HandleRef timePeriod);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SlideTransition_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr New(IntPtr view, IntPtr direction, IntPtr timePeriod);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_SlideTransition")]
-            public static extern void Delete(HandleRef slideTransition);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_SlideTransition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Delete(IntPtr slideTransition);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_SlideTransition_Set")]
-            public static extern IntPtr NewSlideTransitionItem(HandleRef slideTransition);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_SlideTransition_Set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr NewSlideTransitionItem(IntPtr slideTransition);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SlideTransition_Assign")]
-            public static extern IntPtr Assign(HandleRef destination, HandleRef source);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SlideTransition_Assign", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr Assign(IntPtr destination, IntPtr source);
         }
     }
 }
+
+
+

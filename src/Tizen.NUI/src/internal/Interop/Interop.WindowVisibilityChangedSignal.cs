@@ -15,7 +15,9 @@
  *
  */
 
-using System;
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI
 {
@@ -23,27 +25,32 @@ namespace Tizen.NUI
     {
         internal static partial class WindowVisibilityChangedSignal
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Visibility_Changed_Signal")]
-            public static extern global::System.IntPtr GetSignal(global::System.Runtime.InteropServices.HandleRef window);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Visibility_Changed_Signal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetSignal(IntPtr window);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Visibility_Changed_Signal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Visibility_Changed_Signal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool Empty(global::System.Runtime.InteropServices.HandleRef signalType);
+            public static partial bool Empty(IntPtr signalType);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Visibility_Changed_Signal_GetConnectionCount")]
-            public static extern uint GetConnectionCount(global::System.Runtime.InteropServices.HandleRef signalType);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Visibility_Changed_Signal_GetConnectionCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetConnectionCount(IntPtr signalType);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Visibility_Changed_Signal_Connect")]
-            public static extern void Connect(global::System.Runtime.InteropServices.HandleRef signalType, global::System.Runtime.InteropServices.HandleRef callback);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Visibility_Changed_Signal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Connect(IntPtr signalType, IntPtr callback);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Visibility_Changed_Signal_Disconnect")]
-            public static extern void Disconnect(global::System.Runtime.InteropServices.HandleRef signalType, global::System.Runtime.InteropServices.HandleRef callback);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Visibility_Changed_Signal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Disconnect(IntPtr signalType, IntPtr callback);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Visibility_Changed_Signal_Emit")]
-            public static extern void Emit(global::System.Runtime.InteropServices.HandleRef signalType, global::System.Runtime.InteropServices.HandleRef window, bool visibility);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Visibility_Changed_Signal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Emit(IntPtr signalType, IntPtr window, [MarshalAs(UnmanagedType.U1)] bool visibility);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Visibility_Changed_Signal_delete")]
-            public static extern void DeleteSignal(global::System.Runtime.InteropServices.HandleRef signalType);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Visibility_Changed_Signal_delete", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteSignal(IntPtr signalType);
         }
     }
 }
+
+
+
+
+

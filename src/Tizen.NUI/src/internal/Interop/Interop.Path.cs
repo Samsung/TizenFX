@@ -15,44 +15,53 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class Path
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_Property_POINTS_get")]
-            public static extern int PointsGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_Property_POINTS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PointsGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_Property_CONTROL_POINTS_get")]
-            public static extern int ControlPointsGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_Property_CONTROL_POINTS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ControlPointsGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_New")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Path")]
-            public static extern void DeletePath(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Path", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeletePath(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_AddPoint")]
-            public static extern void AddPoint(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_AddPoint", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AddPoint(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_AddControlPoint")]
-            public static extern void AddControlPoint(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_AddControlPoint", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AddControlPoint(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_GenerateControlPoints")]
-            public static extern void GenerateControlPoints(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_GenerateControlPoints", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GenerateControlPoints(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_Sample")]
-            public static extern void Sample(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_Sample", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Sample(IntPtr jarg1, float jarg2, IntPtr jarg3, IntPtr jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_GetPoint")]
-            public static extern global::System.IntPtr GetPoint(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_GetPoint", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetPoint(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_GetControlPoint")]
-            public static extern global::System.IntPtr GetControlPoint(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_GetControlPoint", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetControlPoint(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_GetPointCount")]
-            public static extern uint GetPointCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Path_GetPointCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetPointCount(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

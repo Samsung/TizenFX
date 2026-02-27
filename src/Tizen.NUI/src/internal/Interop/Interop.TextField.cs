@@ -15,299 +15,308 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class TextField
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_TEXT_get")]
-            public static extern int TextGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_TEXT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TextGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_PLACEHOLDER_TEXT_get")]
-            public static extern int PlaceholderTextGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_PLACEHOLDER_TEXT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PlaceholderTextGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_PLACEHOLDER_TEXT_FOCUSED_get")]
-            public static extern int PlaceholderTextFocusedGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_PLACEHOLDER_TEXT_FOCUSED_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PlaceholderTextFocusedGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_FONT_FAMILY_get")]
-            public static extern int FontFamilyGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_FONT_FAMILY_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int FontFamilyGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_FONT_STYLE_get")]
-            public static extern int FontStyleGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_FONT_STYLE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int FontStyleGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_POINT_SIZE_get")]
-            public static extern int PointSizeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_POINT_SIZE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PointSizeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_MAX_LENGTH_get")]
-            public static extern int MaxLengthGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_MAX_LENGTH_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int MaxLengthGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_EXCEED_POLICY_get")]
-            public static extern int ExceedPolicyGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_EXCEED_POLICY_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ExceedPolicyGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_HORIZONTAL_ALIGNMENT_get")]
-            public static extern int HorizontalAlignmentGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_HORIZONTAL_ALIGNMENT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int HorizontalAlignmentGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_VERTICAL_ALIGNMENT_get")]
-            public static extern int VerticalAlignmentGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_VERTICAL_ALIGNMENT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int VerticalAlignmentGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_TEXT_COLOR_get")]
-            public static extern int TextColorGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_TEXT_COLOR_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TextColorGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_PLACEHOLDER_TEXT_COLOR_get")]
-            public static extern int PlaceholderTextColorGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_PLACEHOLDER_TEXT_COLOR_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PlaceholderTextColorGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_PRIMARY_CURSOR_COLOR_get")]
-            public static extern int PrimaryCursorColorGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_PRIMARY_CURSOR_COLOR_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PrimaryCursorColorGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SECONDARY_CURSOR_COLOR_get")]
-            public static extern int SecondaryCursorColorGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SECONDARY_CURSOR_COLOR_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int SecondaryCursorColorGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_ENABLE_CURSOR_BLINK_get")]
-            public static extern int EnableCursorBlinkGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_ENABLE_CURSOR_BLINK_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int EnableCursorBlinkGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_CURSOR_BLINK_INTERVAL_get")]
-            public static extern int CursorBlinkIntervalGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_CURSOR_BLINK_INTERVAL_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int CursorBlinkIntervalGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_CURSOR_BLINK_DURATION_get")]
-            public static extern int CursorBlinkDurationGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_CURSOR_BLINK_DURATION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int CursorBlinkDurationGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_CURSOR_WIDTH_get")]
-            public static extern int CursorWidthGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_CURSOR_WIDTH_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int CursorWidthGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_GRAB_HANDLE_IMAGE_get")]
-            public static extern int GrabHandleImageGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_GRAB_HANDLE_IMAGE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GrabHandleImageGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_GRAB_HANDLE_PRESSED_IMAGE_get")]
-            public static extern int GrabHandlePressedImageGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_GRAB_HANDLE_PRESSED_IMAGE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GrabHandlePressedImageGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SCROLL_THRESHOLD_get")]
-            public static extern int ScrollThresholdGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SCROLL_THRESHOLD_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollThresholdGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SCROLL_SPEED_get")]
-            public static extern int ScrollSpeedGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SCROLL_SPEED_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollSpeedGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_POPUP_STYLE_get")]
-            public static extern int SelectionPopupStyleGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_POPUP_STYLE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int SelectionPopupStyleGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_HANDLE_IMAGE_LEFT_get")]
-            public static extern int SelectionHandleImageLeftGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_HANDLE_IMAGE_LEFT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int SelectionHandleImageLeftGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_HANDLE_IMAGE_RIGHT_get")]
-            public static extern int SelectionHandleImageRightGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_HANDLE_IMAGE_RIGHT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int SelectionHandleImageRightGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_HANDLE_PRESSED_IMAGE_LEFT_get")]
-            public static extern int SelectionHandlePressedImageLeftGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_HANDLE_PRESSED_IMAGE_LEFT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int SelectionHandlePressedImageLeftGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_HANDLE_PRESSED_IMAGE_RIGHT_get")]
-            public static extern int SelectionHandlePressedImageRightGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_HANDLE_PRESSED_IMAGE_RIGHT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int SelectionHandlePressedImageRightGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_HANDLE_MARKER_IMAGE_LEFT_get")]
-            public static extern int SelectionHandleMarkerImageLeftGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_HANDLE_MARKER_IMAGE_LEFT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int SelectionHandleMarkerImageLeftGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_HANDLE_MARKER_IMAGE_RIGHT_get")]
-            public static extern int SelectionHandleMarkerImageRightGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_HANDLE_MARKER_IMAGE_RIGHT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int SelectionHandleMarkerImageRightGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_HIGHLIGHT_COLOR_get")]
-            public static extern int SelectionHighlightColorGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_HIGHLIGHT_COLOR_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int SelectionHighlightColorGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_DECORATION_BOUNDING_BOX_get")]
-            public static extern int DecorationBoundingBoxGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_DECORATION_BOUNDING_BOX_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int DecorationBoundingBoxGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_METHOD_SETTINGS_get")]
-            public static extern int InputMethodSettingsGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_METHOD_SETTINGS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InputMethodSettingsGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_COLOR_get")]
-            public static extern int InputColorGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_COLOR_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InputColorGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_ENABLE_MARKUP_get")]
-            public static extern int EnableMarkupGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_ENABLE_MARKUP_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int EnableMarkupGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_FONT_FAMILY_get")]
-            public static extern int InputFontFamilyGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_FONT_FAMILY_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InputFontFamilyGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_FONT_STYLE_get")]
-            public static extern int InputFontStyleGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_FONT_STYLE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InputFontStyleGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_POINT_SIZE_get")]
-            public static extern int InputPointSizeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_POINT_SIZE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InputPointSizeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_UNDERLINE_get")]
-            public static extern int UnderlineGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_UNDERLINE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int UnderlineGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_UNDERLINE_get")]
-            public static extern int InputUnderlineGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_UNDERLINE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InputUnderlineGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SHADOW_get")]
-            public static extern int ShadowGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SHADOW_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ShadowGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_SHADOW_get")]
-            public static extern int InputShadowGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_SHADOW_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InputShadowGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_EMBOSS_get")]
-            public static extern int EmbossGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_EMBOSS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int EmbossGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_EMBOSS_get")]
-            public static extern int InputEmbossGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_EMBOSS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InputEmbossGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_OUTLINE_get")]
-            public static extern int OutlineGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_OUTLINE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int OutlineGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_OUTLINE_get")]
-            public static extern int InputOutlineGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_OUTLINE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InputOutlineGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_New_With_Style")]
-            public static extern global::System.IntPtr New(bool hasStyle);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_New_With_Style", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New([MarshalAs(UnmanagedType.U1)] bool hasStyle);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TextField")]
-            public static extern void DeleteTextField(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TextField", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteTextField(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_GetInputMethodContext")]
-            public static extern global::System.IntPtr GetInputMethodContext(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_GetInputMethodContext", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetInputMethodContext(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_TextChangedSignal")]
-            public static extern global::System.IntPtr TextChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_TextChangedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr TextChangedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_CursorPositionChangedSignal")]
-            public static extern global::System.IntPtr CursorPositionChangedSignal(global::System.Runtime.InteropServices.HandleRef pTextField);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_CursorPositionChangedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr CursorPositionChangedSignal(IntPtr pTextField);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_MaxLengthReachedSignal")]
-            public static extern global::System.IntPtr MaxLengthReachedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_MaxLengthReachedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr MaxLengthReachedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectionClearedSignal")]
-            public static extern global::System.IntPtr SelectionClearedSignal(global::System.Runtime.InteropServices.HandleRef pTextField);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectionClearedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr SelectionClearedSignal(IntPtr pTextField);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectionStartedSignal")]
-            public static extern global::System.IntPtr SelectionStartedSignal(global::System.Runtime.InteropServices.HandleRef pTextField);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectionStartedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr SelectionStartedSignal(IntPtr pTextField);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_AnchorClickedSignal")]
-            public static extern global::System.IntPtr AnchorClickedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_AnchorClickedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr AnchorClickedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectionChangedSignal")]
-            public static extern global::System.IntPtr SelectionChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectionChangedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr SelectionChangedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextFieldSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextFieldSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool TextFieldSignalEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool TextFieldSignalEmpty(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextFieldSignal_GetConnectionCount")]
-            public static extern uint TextFieldSignalGetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextFieldSignal_GetConnectionCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint TextFieldSignalGetConnectionCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextFieldSignal_Connect")]
-            public static extern void TextFieldSignalConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextFieldSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void TextFieldSignalConnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextFieldSignal_Disconnect")]
-            public static extern void TextFieldSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextFieldSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void TextFieldSignalDisconnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextFieldSignal_Emit")]
-            public static extern void TextFieldSignalEmit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextFieldSignal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void TextFieldSignalEmit(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TextFieldSignal")]
-            public static extern global::System.IntPtr NewTextFieldSignal();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TextFieldSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewTextFieldSignal();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TextFieldSignal")]
-            public static extern void DeleteTextFieldSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TextFieldSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteTextFieldSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ENABLE_SHIFT_SELECTION_get")]
-            public static extern int EnableShiftSelectionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ENABLE_SHIFT_SELECTION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int EnableShiftSelectionGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get")]
-            public static extern int MatchSystemLanguageDirectionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int MatchSystemLanguageDirectionGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_HIDDEN_INPUT_SETTINGS_get")]
-            public static extern int HiddenInputSettingsGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_HIDDEN_INPUT_SETTINGS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int HiddenInputSettingsGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_PIXEL_SIZE_get")]
-            public static extern int PixelSizeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_PIXEL_SIZE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PixelSizeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ENABLE_SELECTION_get")]
-            public static extern int EnableSelectionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ENABLE_SELECTION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int EnableSelectionGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_PLACEHOLDER_get")]
-            public static extern int PlaceholderGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_PLACEHOLDER_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PlaceholderGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ELLIPSIS_get")]
-            public static extern int EllipsisGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ELLIPSIS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int EllipsisGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ELLIPSIS_POSITION_get")]
-            public static extern int EllipsisPositionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ELLIPSIS_POSITION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int EllipsisPositionGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectWholeText")]
-            public static extern void SelectWholeText(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectWholeText", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SelectWholeText(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectText")]
-            public static extern void SelectText(global::System.Runtime.InteropServices.HandleRef textFieldRef, uint start, uint end);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectText", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SelectText(IntPtr textFieldRef, uint start, uint end);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ENABLE_GRAB_HANDLE_get")]
-            public static extern int EnableGrabHandleGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ENABLE_GRAB_HANDLE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int EnableGrabHandleGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ENABLE_GRAB_HANDLE_POPUP_get")]
-            public static extern int EnableGrabHandlePopupGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextField_Property_ENABLE_GRAB_HANDLE_POPUP_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int EnableGrabHandlePopupGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTED_TEXT_get")]
-            public static extern int SelectedTextGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTED_TEXT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int SelectedTextGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTED_TEXT_START_get")]
-            public static extern int SelectedTextStartGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTED_TEXT_START_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int SelectedTextStartGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTED_TEXT_END_get")]
-            public static extern int SelectedTextEndGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTED_TEXT_END_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int SelectedTextEndGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_ENABLE_EDITING_get")]
-            public static extern int EnableEditingGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_ENABLE_EDITING_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int EnableEditingGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_PRIMARY_CURSOR_POSITION_get")]
-            public static extern int PrimaryCursorPositionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_PRIMARY_CURSOR_POSITION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int PrimaryCursorPositionGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectNone")]
-            public static extern int SelectNone(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectNone", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int SelectNone(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_FONT_SIZE_SCALE_get")]
-            public static extern int FontSizeScaleGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_FONT_SIZE_SCALE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int FontSizeScaleGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_ENABLE_FONT_SIZE_SCALE_get")]
-            public static extern int EnableFontSizeScaleGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_ENABLE_FONT_SIZE_SCALE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int EnableFontSizeScaleGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_GRAB_HANDLE_COLOR_get")]
-            public static extern int GrabHandleColorGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_GRAB_HANDLE_COLOR_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GrabHandleColorGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_FILTER_get")]
-            public static extern int InputFilterGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_INPUT_FILTER_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InputFilterGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_InputFilteredSignal")]
-            public static extern global::System.IntPtr InputFilteredSignal(global::System.Runtime.InteropServices.HandleRef textFieldRef);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_InputFilteredSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr InputFilteredSignal(IntPtr textFieldRef);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_GetTextSize")]
-            public static extern global::System.IntPtr GetTextSize(global::System.Runtime.InteropServices.HandleRef textFieldRef, uint start, uint end);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_GetTextSize", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetTextSize(IntPtr textFieldRef, uint start, uint end);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_GetTextPosition")]
-            public static extern global::System.IntPtr GetTextPosition(global::System.Runtime.InteropServices.HandleRef textFieldRef, uint start, uint end);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_GetTextPosition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetTextPosition(IntPtr textFieldRef, uint start, uint end);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_CopyText")]
-            public static extern string CopyText(global::System.Runtime.InteropServices.HandleRef textFieldRef);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_CopyText", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string CopyText(IntPtr textFieldRef);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_CutText")]
-            public static extern string CutText(global::System.Runtime.InteropServices.HandleRef textFieldRef);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_CutText", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string CutText(IntPtr textFieldRef);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_PasteText")]
-            public static extern void PasteText(global::System.Runtime.InteropServices.HandleRef textFieldRef);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_PasteText", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void PasteText(IntPtr textFieldRef);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_STRIKETHROUGH_get")]
-            public static extern int StrikethroughGet();
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_CHARACTER_SPACING_get")]
-            public static extern int CharacterSpacingGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_STRIKETHROUGH_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int StrikethroughGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_CHARACTER_SPACING_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int CharacterSpacingGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_REMOVE_FRONT_INSET_get")]
-            public static extern int RemoveFrontInsetGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_REMOVE_FRONT_INSET_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int RemoveFrontInsetGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_REMOVE_BACK_INSET_get")]
-            public static extern int RemoveBackInsetGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_REMOVE_BACK_INSET_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int RemoveBackInsetGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_RegisterFontVariationProperty")]
-            public static extern int RegisterFontVariationProperty(global::System.Runtime.InteropServices.HandleRef textFieldRef, string pTag);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_RegisterFontVariationProperty", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int RegisterFontVariationProperty(IntPtr textFieldRef, string pTag);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_ENABLE_CURSOR_INSET_get")]
-            public static extern int EnableCursorInsetGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_ENABLE_CURSOR_INSET_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int EnableCursorInsetGet();
         }
     }
 }
+
+
+
+
+

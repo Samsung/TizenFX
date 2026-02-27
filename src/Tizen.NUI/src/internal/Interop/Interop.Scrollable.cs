@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,81 +26,86 @@ namespace Tizen.NUI
         internal static partial class Scrollable
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_OVERSHOOT_EFFECT_COLOR_get")]
-            public static extern int OvershootEffectColorGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_OVERSHOOT_EFFECT_COLOR_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int OvershootEffectColorGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_OVERSHOOT_ANIMATION_SPEED_get")]
-            public static extern int OvershootAnimationSpeedGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_OVERSHOOT_ANIMATION_SPEED_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int OvershootAnimationSpeedGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_OVERSHOOT_ENABLED_get")]
-            public static extern int OvershootEnabledGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_OVERSHOOT_ENABLED_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int OvershootEnabledGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_OVERSHOOT_SIZE_get")]
-            public static extern int OvershootSizeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_OVERSHOOT_SIZE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int OvershootSizeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_SCROLL_TO_ALPHA_FUNCTION_get")]
-            public static extern int ScrollToAlphaFunctionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_SCROLL_TO_ALPHA_FUNCTION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollToAlphaFunctionGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_SCROLL_RELATIVE_POSITION_get")]
-            public static extern int ScrollRelativePositionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_SCROLL_RELATIVE_POSITION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollRelativePositionGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_SCROLL_POSITION_MIN_get")]
-            public static extern int ScrollPositionMinGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_SCROLL_POSITION_MIN_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollPositionMinGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_SCROLL_POSITION_MIN_X_get")]
-            public static extern int ScrollPositionMinXGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_SCROLL_POSITION_MIN_X_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollPositionMinXGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_SCROLL_POSITION_MIN_Y_get")]
-            public static extern int ScrollPositionMinYGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_SCROLL_POSITION_MIN_Y_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollPositionMinYGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_SCROLL_POSITION_MAX_get")]
-            public static extern int ScrollPositionMaxGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_SCROLL_POSITION_MAX_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollPositionMaxGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_SCROLL_POSITION_MAX_X_get")]
-            public static extern int ScrollPositionMaxXGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_SCROLL_POSITION_MAX_X_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollPositionMaxXGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_SCROLL_POSITION_MAX_Y_get")]
-            public static extern int ScrollPositionMaxYGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_SCROLL_POSITION_MAX_Y_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ScrollPositionMaxYGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_CAN_SCROLL_VERTICAL_get")]
-            public static extern int CanScrollVerticalGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_CAN_SCROLL_VERTICAL_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int CanScrollVerticalGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_CAN_SCROLL_HORIZONTAL_get")]
-            public static extern int CanScrollHorizontalGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_Property_CAN_SCROLL_HORIZONTAL_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int CanScrollHorizontalGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Scrollable__SWIG_0")]
-            public static extern global::System.IntPtr NewScrollable();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Scrollable__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewScrollable();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Scrollable")]
-            public static extern void DeleteScrollable(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Scrollable", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteScrollable(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_IsOvershootEnabled")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_IsOvershootEnabled", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsOvershootEnabled(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsOvershootEnabled(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_SetOvershootEnabled")]
-            public static extern void SetOvershootEnabled(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_SetOvershootEnabled", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetOvershootEnabled(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_SetOvershootEffectColor")]
-            public static extern void SetOvershootEffectColor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_SetOvershootEffectColor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetOvershootEffectColor(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_GetOvershootEffectColor")]
-            public static extern global::System.IntPtr GetOvershootEffectColor(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_GetOvershootEffectColor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetOvershootEffectColor(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_SetOvershootAnimationSpeed")]
-            public static extern void SetOvershootAnimationSpeed(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_SetOvershootAnimationSpeed", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetOvershootAnimationSpeed(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_GetOvershootAnimationSpeed")]
-            public static extern float GetOvershootAnimationSpeed(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_GetOvershootAnimationSpeed", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetOvershootAnimationSpeed(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_ScrollStartedSignal")]
-            public static extern global::System.IntPtr ScrollStartedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_ScrollStartedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ScrollStartedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_ScrollUpdatedSignal")]
-            public static extern global::System.IntPtr ScrollUpdatedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_ScrollUpdatedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ScrollUpdatedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_ScrollCompletedSignal")]
-            public static extern global::System.IntPtr ScrollCompletedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Scrollable_ScrollCompletedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ScrollCompletedSignal(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

@@ -15,53 +15,62 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class NDalicToolTip
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_CONTENT_get")]
-            public static extern int TooltipContentGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_CONTENT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TooltipContentGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_LAYOUT_get")]
-            public static extern int TooltipLayoutGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_LAYOUT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TooltipLayoutGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_WAIT_TIME_get")]
-            public static extern int TooltipWaitTimeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_WAIT_TIME_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TooltipWaitTimeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_BACKGROUND_get")]
-            public static extern int TooltipBackgroundGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_BACKGROUND_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TooltipBackgroundGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_TAIL_get")]
-            public static extern int TooltipTailGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_TAIL_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TooltipTailGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_POSITION_get")]
-            public static extern int TooltipPositionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_POSITION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TooltipPositionGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_HOVER_POINT_OFFSET_get")]
-            public static extern int TooltipHoverPointOffsetGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_HOVER_POINT_OFFSET_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TooltipHoverPointOffsetGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_MOVEMENT_THRESHOLD_get")]
-            public static extern int TooltipMovementThresholdGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_MOVEMENT_THRESHOLD_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TooltipMovementThresholdGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_DISAPPEAR_ON_MOVEMENT_get")]
-            public static extern int TooltipDisappearOnMovementGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_DISAPPEAR_ON_MOVEMENT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TooltipDisappearOnMovementGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_BACKGROUND_VISUAL_get")]
-            public static extern int TooltipBackgroundVisualGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_BACKGROUND_VISUAL_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TooltipBackgroundVisualGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_BACKGROUND_BORDER_get")]
-            public static extern int TooltipBackgroundBorderGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_BACKGROUND_BORDER_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TooltipBackgroundBorderGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_TAIL_VISIBILITY_get")]
-            public static extern int TooltipTailVisibilityGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_TAIL_VISIBILITY_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TooltipTailVisibilityGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_TAIL_ABOVE_VISUAL_get")]
-            public static extern int TooltipTailAboveVisualGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_TAIL_ABOVE_VISUAL_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TooltipTailAboveVisualGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_TAIL_BELOW_VISUAL_get")]
-            public static extern int TooltipTailBelowVisualGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TOOLTIP_TAIL_BELOW_VISUAL_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TooltipTailBelowVisualGet();
         }
     }
 }
+
+
+
+
+

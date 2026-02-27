@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,71 +26,76 @@ namespace Tizen.NUI
         internal static partial class Key
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_New")]
-            public static extern global::System.IntPtr New(string jarg1, string jarg2, int jarg3, int jarg4, uint jarg5, int jarg6);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(string jarg1, string jarg2, int jarg3, int jarg4, uint jarg5, int jarg6);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_New__SWIG_1")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_New__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Key")]
-            public static extern void DeleteKey(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Key", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteKey(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_IsShiftModifier")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_IsShiftModifier", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsShiftModifier(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsShiftModifier(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_IsCtrlModifier")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_IsCtrlModifier", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsCtrlModifier(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsCtrlModifier(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_IsAltModifier")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_IsAltModifier", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsAltModifier(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsAltModifier(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyPressedName_set")]
-            public static extern void KeyPressedNameSet(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyPressedName_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void KeyPressedNameSet(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyPressedName_get")]
-            public static extern string KeyPressedNameGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyPressedName_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string KeyPressedNameGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyPressed_set")]
-            public static extern void KeyPressedSet(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyPressed_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void KeyPressedSet(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyPressed_get")]
-            public static extern string KeyPressedGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyPressed_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string KeyPressedGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyPressed_set")]
-            public static extern void KeyStringSet(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyPressed_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void KeyStringSet(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyPressed_get")]
-            public static extern string KeyStringGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyPressed_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string KeyStringGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyCode_set")]
-            public static extern void KeyCodeSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyCode_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void KeyCodeSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyCode_get")]
-            public static extern int KeyCodeGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyCode_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int KeyCodeGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyModifier_set")]
-            public static extern void KeyModifierSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyModifier_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void KeyModifierSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyModifier_get")]
-            public static extern int KeyModifierGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_keyModifier_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int KeyModifierGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_time_set")]
-            public static extern void TimeSet(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_time_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void TimeSet(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_time_get")]
-            public static extern uint TimeGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_time_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint TimeGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_state_set")]
-            public static extern void StateSet(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_state_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void StateSet(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_state_get")]
-            public static extern int StateGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_state_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int StateGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_logicalKey_get")]
-            public static extern string LogicalKeyGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Key_logicalKey_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string LogicalKeyGet(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

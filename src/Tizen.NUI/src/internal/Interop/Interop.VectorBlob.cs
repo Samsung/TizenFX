@@ -15,41 +15,50 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class VectorBlob
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorBlob_r_set")]
-            public static extern void RSet(global::System.Runtime.InteropServices.HandleRef jarg1, byte jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorBlob_r_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RSet(IntPtr jarg1, byte jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorBlob_r_get")]
-            public static extern byte RGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorBlob_r_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial byte RGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorBlob_g_set")]
-            public static extern void GSet(global::System.Runtime.InteropServices.HandleRef jarg1, byte jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorBlob_g_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GSet(IntPtr jarg1, byte jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorBlob_g_get")]
-            public static extern byte GGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorBlob_g_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial byte GGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorBlob_b_set")]
-            public static extern void BSet(global::System.Runtime.InteropServices.HandleRef jarg1, byte jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorBlob_b_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void BSet(IntPtr jarg1, byte jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorBlob_b_get")]
-            public static extern byte BGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorBlob_b_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial byte BGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorBlob_a_set")]
-            public static extern void ASet(global::System.Runtime.InteropServices.HandleRef jarg1, byte jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorBlob_a_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ASet(IntPtr jarg1, byte jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorBlob_a_get")]
-            public static extern byte AGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorBlob_a_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial byte AGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VectorBlob")]
-            public static extern global::System.IntPtr NewVectorBlob();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VectorBlob", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewVectorBlob();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_VectorBlob")]
-            public static extern void DeleteVectorBlob(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_VectorBlob", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteVectorBlob(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,9 +15,10 @@
  *
  */
 
+using global::System;
 using global::System.Runtime.InteropServices;
-using System.Reflection;
-using System;
+using global::System.Runtime.InteropServices.Marshalling;
+using global::System.Reflection;
 
 namespace Tizen.NUI.ParticleSystem
 {
@@ -27,8 +28,10 @@ namespace Tizen.NUI.ParticleSystem
         {
             internal delegate void ParticleModifierUpdateInvokerType(IntPtr ptr, IntPtr particleListPtr, uint first, uint count);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleModifier_New_SWIG_0")]
-            public static extern global::System.IntPtr New(ParticleModifierUpdateInvokerType updateInvoker, out IntPtr basePtr);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ParticleModifier_New_SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(ParticleModifierUpdateInvokerType updateInvoker, out IntPtr basePtr);
         }
     }
 }
+
+

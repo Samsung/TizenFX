@@ -15,111 +15,120 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class VideoView
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Property_VIDEO_get")]
-            public static extern int VideoGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Property_VIDEO_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int VideoGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Property_LOOPING_get")]
-            public static extern int LoopingGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Property_LOOPING_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int LoopingGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Property_MUTED_get")]
-            public static extern int MutedGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Property_MUTED_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int MutedGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Property_VOLUME_get")]
-            public static extern int VolumeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Property_VOLUME_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int VolumeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Property_UNDERLAY_get")]
-            public static extern int UnderlayGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Property_UNDERLAY_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int UnderlayGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_New__SWIG_0")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_New__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_New__SWIG_1")]
-            public static extern global::System.IntPtr New(string jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_New__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(string jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_New__SWIG_2")]
-            public static extern global::System.IntPtr New(bool swCodec);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_New__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New([MarshalAs(UnmanagedType.U1)] bool swCodec);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_New__SWIG_3")]
-            public static extern global::System.IntPtr New(string jarg1, bool swCodec);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_New__SWIG_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(string jarg1, [MarshalAs(UnmanagedType.U1)] bool swCodec);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_VideoView")]
-            public static extern void DeleteVideoView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_VideoView", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteVideoView(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Play")]
-            public static extern void Play(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Play", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Play(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Pause")]
-            public static extern void Pause(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Pause", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Pause(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Stop")]
-            public static extern void Stop(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Stop", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Stop(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Forward")]
-            public static extern void Forward(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Forward", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Forward(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Backward")]
-            public static extern void Backward(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_Backward", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Backward(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_SetAutoRotationEnabled")]
-            public static extern void SetAutoRotationEnabled(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_SetAutoRotationEnabled", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetAutoRotationEnabled(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_IsAutoRotationEnabled")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_IsAutoRotationEnabled", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsAutoRotationEnabled(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsAutoRotationEnabled(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_SetLetterBoxEnabled")]
-            public static extern void SetLetterBoxEnabled(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_SetLetterBoxEnabled", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetLetterBoxEnabled(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_IsLetterBoxEnabled")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_IsLetterBoxEnabled", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsLetterBoxEnabled(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsLetterBoxEnabled(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_FinishedSignal")]
-            public static extern global::System.IntPtr FinishedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_FinishedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr FinishedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoViewSignal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoViewSignal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool VideoViewSignalEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool VideoViewSignalEmpty(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoViewSignal_GetConnectionCount")]
-            public static extern uint VideoViewSignalGetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoViewSignal_GetConnectionCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint VideoViewSignalGetConnectionCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoViewSignal_Connect")]
-            public static extern void VideoViewSignalConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoViewSignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void VideoViewSignalConnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoViewSignal_Disconnect")]
-            public static extern void VideoViewSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoViewSignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void VideoViewSignalDisconnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoViewSignal_Emit")]
-            public static extern void VideoViewSignalEmit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoViewSignal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void VideoViewSignalEmit(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VideoViewSignal")]
-            public static extern global::System.IntPtr NewVideoViewSignal();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VideoViewSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewVideoViewSignal();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_VideoViewSignal")]
-            public static extern void DeleteVideoViewSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_VideoViewSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteVideoViewSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_GetNativePlayerHandle")]
-            public static extern global::System.IntPtr GetNativePlayerHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_GetNativePlayerHandle", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetNativePlayerHandle(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_SetFrameInterpolationInterval")]
-            public static extern void SetFrameInterpolationInterval(global::System.Runtime.InteropServices.HandleRef view, float intervalSeconds);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_SetFrameInterpolationInterval", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetFrameInterpolationInterval(IntPtr view, float intervalSeconds);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_GetFrameInterpolationInterval")]
-            public static extern float GetFrameInterpolationInterval(global::System.Runtime.InteropServices.HandleRef view);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_GetFrameInterpolationInterval", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetFrameInterpolationInterval(IntPtr view);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_SetVideoFrameBuffer")]
-            public static extern void SetVideoFrameBuffer(global::System.Runtime.InteropServices.HandleRef view, global::System.Runtime.InteropServices.HandleRef nativeImageSource);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_SetVideoFrameBuffer", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetVideoFrameBuffer(IntPtr view, IntPtr nativeImageSource);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_EnableOffscreenFrameRendering")]
-            public static extern void EnableOffscreenFrameRendering(global::System.Runtime.InteropServices.HandleRef view, bool useOffScreenFrame);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VideoView_EnableOffscreenFrameRendering", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void EnableOffscreenFrameRendering(IntPtr view, [MarshalAs(UnmanagedType.U1)] bool useOffScreenFrame);
 
         }
     }
 }
+
+
+
+
+

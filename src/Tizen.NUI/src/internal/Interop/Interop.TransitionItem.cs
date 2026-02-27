@@ -15,27 +15,31 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
-    using global::System;
-    using global::System.Runtime.InteropServices;
-
     internal static partial class Interop
     {
         internal static partial class TransitionItem
         {
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Transition_New")]
-            public static extern IntPtr New(HandleRef source, HandleRef destination, bool useDestinationTarget, HandleRef timePeriod);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Transition_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr New(IntPtr source, IntPtr destination, [MarshalAs(UnmanagedType.U1)] bool useDestinationTarget, IntPtr timePeriod);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Transition")]
-            public static extern void Delete(HandleRef transition);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Transition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Delete(IntPtr transition);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Transition_Set")]
-            public static extern IntPtr NewTransitionItem(HandleRef transition);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Transition_Set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr NewTransitionItem(IntPtr transition);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Transition_Assign")]
-            public static extern IntPtr Assign(HandleRef destination, HandleRef source);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Transition_Assign", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr Assign(IntPtr destination, IntPtr source);
         }
     }
 }
+
+
+

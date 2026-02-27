@@ -14,23 +14,33 @@
  * limitations under the License.
  *
  */
+
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class AnimatedImageView
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedImageVisual_Actions_PLAY_get")]
-            public static extern int AnimatedImageVisualActionPlayGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedImageVisual_Actions_PLAY_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int AnimatedImageVisualActionPlayGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedImageVisual_Actions_PAUSE_get")]
-            public static extern int AnimatedImageVisualActionPauseGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedImageVisual_Actions_PAUSE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int AnimatedImageVisualActionPauseGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedImageVisual_Actions_STOP_get")]
-            public static extern int AnimatedImageVisualActionStopGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedImageVisual_Actions_STOP_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int AnimatedImageVisualActionStopGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedImageVisual_Actions_JUMP_TO_get")]
-            public static extern int AnimatedImageVisualActionJumpToGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_AnimatedImageVisual_Actions_JUMP_TO_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int AnimatedImageVisualActionJumpToGet();
         }
     }
 }
+
+
+
+
+

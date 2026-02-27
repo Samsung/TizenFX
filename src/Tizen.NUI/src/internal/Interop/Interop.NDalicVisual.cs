@@ -15,32 +15,41 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class NDalicVisual
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VISUAL_PROPERTY_TYPE_get")]
-            public static extern int VisualPropertyTypeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VISUAL_PROPERTY_TYPE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int VisualPropertyTypeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VISUAL_PROPERTY_SHADER_get")]
-            public static extern int VisualPropertyShaderGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VISUAL_PROPERTY_SHADER_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int VisualPropertyShaderGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VISUAL_SHADER_VERTEX_get")]
-            public static extern int VisualShaderVertexGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VISUAL_SHADER_VERTEX_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int VisualShaderVertexGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VISUAL_SHADER_FRAGMENT_get")]
-            public static extern int VisualShaderFragmentGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VISUAL_SHADER_FRAGMENT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int VisualShaderFragmentGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VISUAL_SHADER_SUBDIVIDE_GRID_X_get")]
-            public static extern int VisualShaderSubdivideGridXGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VISUAL_SHADER_SUBDIVIDE_GRID_X_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int VisualShaderSubdivideGridXGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VISUAL_SHADER_SUBDIVIDE_GRID_Y_get")]
-            public static extern int VisualShaderSubdivideGridYGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VISUAL_SHADER_SUBDIVIDE_GRID_Y_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int VisualShaderSubdivideGridYGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VISUAL_SHADER_HINTS_get")]
-            public static extern int VisualShaderHintsGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VISUAL_SHADER_HINTS_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int VisualShaderHintsGet();
         }
     }
 }
+
+
+
+
+

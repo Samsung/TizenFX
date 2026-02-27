@@ -15,14 +15,23 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class AlphaFunctionSpringData
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AlphaFunctionSpringData_GetDuration")]
-            public static extern float GetDuration(float stiffness, float damping, float mass);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AlphaFunctionSpringData_GetDuration", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetDuration(float stiffness, float damping, float mass);
         }
     }
 }
+
+
+
+
+

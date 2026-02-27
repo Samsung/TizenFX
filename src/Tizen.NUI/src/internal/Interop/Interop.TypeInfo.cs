@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,29 +26,34 @@ namespace Tizen.NUI
         internal static partial class TypeInfo
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TypeInfo__SWIG_0")]
-            public static extern global::System.IntPtr NewTypeInfo();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TypeInfo__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewTypeInfo();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TypeInfo")]
-            public static extern void DeleteTypeInfo(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TypeInfo", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteTypeInfo(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TypeInfo__SWIG_1")]
-            public static extern global::System.IntPtr NewTypeInfo(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TypeInfo__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewTypeInfo(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TypeInfo_GetName")]
-            public static extern string GetName(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TypeInfo_GetName", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetName(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TypeInfo_GetBaseName")]
-            public static extern string GetBaseName(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TypeInfo_GetBaseName", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetBaseName(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TypeInfo_CreateInstance")]
-            public static extern global::System.IntPtr CreateInstance(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TypeInfo_CreateInstance", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr CreateInstance(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TypeInfo_GetPropertyCount")]
-            public static extern uint GetPropertyCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TypeInfo_GetPropertyCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetPropertyCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TypeInfo_GetPropertyName")]
-            public static extern string GetPropertyName(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TypeInfo_GetPropertyName", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetPropertyName(IntPtr jarg1, int jarg2);
         }
     }
 }
+
+
+
+
+

@@ -15,59 +15,68 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class PaddingType
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PaddingType__SWIG_0")]
-            public static extern global::System.IntPtr NewPaddingType();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PaddingType__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewPaddingType();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PaddingType__SWIG_1")]
-            public static extern global::System.IntPtr NewPaddingType(float jarg1, float jarg2, float jarg3, float jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_PaddingType__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewPaddingType(float jarg1, float jarg2, float jarg3, float jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_Set")]
-            public static extern void Set(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, float jarg3, float jarg4, float jarg5);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_Set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Set(IntPtr jarg1, float jarg2, float jarg3, float jarg4, float jarg5);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_left_set")]
-            public static extern void LeftSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_left_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void LeftSet(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_left_get")]
-            public static extern float LeftGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_left_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float LeftGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_start_set")]
-            public static extern void StartSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_start_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void StartSet(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_start_get")]
-            public static extern float StartGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_start_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float StartGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_right_set")]
-            public static extern void RightSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_right_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RightSet(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_right_get")]
-            public static extern float RightGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_right_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float RightGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_end_set")]
-            public static extern void EndSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_end_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void EndSet(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_end_get")]
-            public static extern float EndGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_end_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float EndGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_bottom_set")]
-            public static extern void BottomSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_bottom_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void BottomSet(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_bottom_get")]
-            public static extern float BottomGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_bottom_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float BottomGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_top_set")]
-            public static extern void TopSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_top_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void TopSet(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_top_get")]
-            public static extern float TopGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PaddingType_top_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float TopGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PaddingType")]
-            public static extern void DeletePaddingType(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_PaddingType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeletePaddingType(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

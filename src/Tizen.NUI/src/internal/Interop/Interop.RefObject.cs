@@ -15,23 +15,32 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class RefObject
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RefObject_Reference")]
-            public static extern void Reference(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RefObject_Reference", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Reference(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RefObject_Unreference")]
-            public static extern void Unreference(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RefObject_Unreference", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Unreference(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RefObject_ReferenceCount")]
-            public static extern int ReferenceCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RefObject_ReferenceCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ReferenceCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetRefObjectPtr")]
-            public static extern global::System.IntPtr GetRefObjectPtr(global::System.IntPtr jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetRefObjectPtr", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetRefObjectPtr(global::System.IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

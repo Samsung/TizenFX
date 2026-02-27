@@ -14,7 +14,10 @@
  * limitations under the License.
  *
  */
-using System.Runtime.InteropServices;
+
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI
 {
@@ -22,102 +25,107 @@ namespace Tizen.NUI
     {
         internal static partial class FocusManager
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_new_KeyboardFocusManager")]
-            public static extern global::System.IntPtr NewFocusManager();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_new_KeyboardFocusManager", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewFocusManager();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_Get")]
-            public static extern global::System.IntPtr Get();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_Get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr Get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_SetCurrentFocusActor")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_SetCurrentFocusActor", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool SetCurrentFocusActor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static partial bool SetCurrentFocusActor(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetCurrentFocusActor")]
-            public static extern global::System.IntPtr GetCurrentFocusActor(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetCurrentFocusActor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetCurrentFocusActor(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_MoveFocus")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_MoveFocus", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool MoveFocus(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static partial bool MoveFocus(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_ClearFocus")]
-            public static extern void ClearFocus(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_ClearFocus", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ClearFocus(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_SetFocusGroupLoop")]
-            public static extern void SetFocusGroupLoop(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_SetFocusGroupLoop", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetFocusGroupLoop(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetFocusGroupLoop")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetFocusGroupLoop", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool GetFocusGroupLoop(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool GetFocusGroupLoop(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_SetAsFocusGroup")]
-            public static extern void SetAsFocusGroup(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, bool jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_SetAsFocusGroup", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetAsFocusGroup(IntPtr jarg1, IntPtr jarg2, [MarshalAs(UnmanagedType.U1)] bool jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_IsFocusGroup")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_IsFocusGroup", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsFocusGroup(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static partial bool IsFocusGroup(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetFocusGroup")]
-            public static extern global::System.IntPtr GetFocusGroup(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetFocusGroup", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetFocusGroup(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_SetFocusIndicatorActor")]
-            public static extern void SetFocusIndicatorActor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_SetFocusIndicatorActor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetFocusIndicatorActor(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetFocusIndicatorActor")]
-            public static extern global::System.IntPtr GetFocusIndicatorActor(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetFocusIndicatorActor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetFocusIndicatorActor(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_MoveFocusBackward")]
-            public static extern void MoveFocusBackward(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_MoveFocusBackward", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void MoveFocusBackward(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_PreFocusChangeSignal")]
-            public static extern global::System.IntPtr PreFocusChangeSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_PreFocusChangeSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr PreFocusChangeSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_FocusChangedSignal")]
-            public static extern global::System.IntPtr FocusChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_FocusChangedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr FocusChangedSignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_FocusGroupChangedSignal")]
-            public static extern global::System.IntPtr FocusGroupChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_FocusGroupChangedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr FocusGroupChangedSignal(IntPtr jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_FocusedActorEnterKeySignal_Connect")]
-            public static extern void FocusedActorEnterKeySignalConnect(HandleRef focusManager, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_FocusedActorEnterKeySignal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void FocusedActorEnterKeySignalConnect(IntPtr focusManager, IntPtr handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_FocusedActorEnterKeySignal_Disconnect")]
-            public static extern void FocusedActorEnterKeySignalDisconnect(HandleRef focusManager, HandleRef handler);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_FocusedActorEnterKeySignal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void FocusedActorEnterKeySignalDisconnect(IntPtr focusManager, IntPtr handler);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyboardFocusManager_EnableDefaultAlgorithm")]
-            public static extern void EnableDefaultAlgorithm(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyboardFocusManager_EnableDefaultAlgorithm", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void EnableDefaultAlgorithm(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyboardFocusManager_IsDefaultAlgorithmEnabled")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyboardFocusManager_IsDefaultAlgorithmEnabled", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsDefaultAlgorithmEnabled(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsDefaultAlgorithmEnabled(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetNearestFocusableActor")]
-            public static extern global::System.IntPtr GetNearestFocusableActor(global::System.Runtime.InteropServices.HandleRef rootView, global::System.Runtime.InteropServices.HandleRef currentView, int direction);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetNearestFocusableActor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetNearestFocusableActor(IntPtr rootView, IntPtr currentView, int direction);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyboardFocusManager_SetFocusFinderRootActor")]
-            public static extern void SetFocusFinderRootView(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyboardFocusManager_SetFocusFinderRootActor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetFocusFinderRootView(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyboardFocusManager_ResetFocusFinderRootActor")]
-            public static extern void ResetFocusFinderRootView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyboardFocusManager_ResetFocusFinderRootActor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ResetFocusFinderRootView(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_EnableFocusIndicator")]
-            public static extern void EnableFocusIndicator(global::System.Runtime.InteropServices.HandleRef focusManager, bool enable);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_EnableFocusIndicator", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void EnableFocusIndicator(IntPtr focusManager, [MarshalAs(UnmanagedType.U1)] bool enable);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_IsFocusIndicatorEnabled")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_IsFocusIndicatorEnabled", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsFocusIndicatorEnabled(global::System.Runtime.InteropServices.HandleRef focusManager);
+            public static partial bool IsFocusIndicatorEnabled(IntPtr focusManager);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetLastFocusChangeDevice")]
-            public static extern int GetLastFocusChangeDevice(global::System.Runtime.InteropServices.HandleRef focusManager);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetLastFocusChangeDevice", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetLastFocusChangeDevice(IntPtr focusManager);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetLastFocusChangeDeviceName")]
-            public static extern string GetLastFocusChangeDeviceName(global::System.Runtime.InteropServices.HandleRef focusManager);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetLastFocusChangeDeviceName", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetLastFocusChangeDeviceName(IntPtr focusManager);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_SetClearFocusOnWindowFocusLost")]
-            public static extern void SetClearFocusOnWindowFocusLost(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_SetClearFocusOnWindowFocusLost", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetClearFocusOnWindowFocusLost(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetClearFocusOnWindowFocusLost")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetClearFocusOnWindowFocusLost", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool GetClearFocusOnWindowFocusLost(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool GetClearFocusOnWindowFocusLost(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

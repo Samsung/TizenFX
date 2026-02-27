@@ -15,7 +15,9 @@
  *
  */
 
+using global::System;
 using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI
 {
@@ -23,110 +25,115 @@ namespace Tizen.NUI
     {
         internal static partial class View
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_New")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_NewWithBehaviour")]
-            public static extern global::System.IntPtr NewWithBehaviour(int behaviour);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_NewWithBehaviour", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewWithBehaviour(int behaviour);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_View")]
-            public static extern void DeleteView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_View", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteView(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_View")]
-            public static extern void DeleteControlHandleView(global::System.IntPtr jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_View", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteControlHandleView(global::System.IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_DownCast")]
-            public static extern global::System.IntPtr DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_DownCast", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr DownCast(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_HasKeyInputFocus")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_HasKeyInputFocus", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool HasKeyInputFocus(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool HasKeyInputFocus(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_SetStyleName")]
-            public static extern void SetStyleName(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_SetStyleName", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetStyleName(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetStyleName")]
-            public static extern string GetStyleName(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetStyleName", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetStyleName(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_ClearBackground")]
-            public static extern void ClearBackground(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_ClearBackground", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ClearBackground(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_SetRenderEffect")]
-            public static extern void SetRenderEffect(global::System.Runtime.InteropServices.HandleRef self, global::System.Runtime.InteropServices.HandleRef effectRef);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_SetRenderEffect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetRenderEffect(IntPtr self, IntPtr effectRef);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetRenderEffect")]
-            public static extern global::System.IntPtr GetRenderEffect(global::System.Runtime.InteropServices.HandleRef self);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetRenderEffect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetRenderEffect(IntPtr self);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetOffScreenRenderingOutput")]
-            public static extern global::System.IntPtr GetOffScreenRenderingOutput(global::System.Runtime.InteropServices.HandleRef self);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetOffScreenRenderingOutput", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetOffScreenRenderingOutput(IntPtr self);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_ClearRenderEffect")]
-            public static extern void ClearRenderEffect(global::System.Runtime.InteropServices.HandleRef self);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_ClearRenderEffect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ClearRenderEffect(IntPtr self);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_View__SWIG_2")]
-            public static extern global::System.IntPtr NewViewInternal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_View__SWIG_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewViewInternal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetVisualResourceStatus")]
-            public static extern int GetVisualResourceStatus(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetVisualResourceStatus", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetVisualResourceStatus(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_CreateTransition")]
-            public static extern global::System.IntPtr CreateTransition(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_CreateTransition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr CreateTransition(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_DoAction")]
-            public static extern void DoAction(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_DoAction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DoAction(IntPtr jarg1, int jarg2, int jarg3, IntPtr jarg4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetVisualProperty")]
-            public static extern global::System.IntPtr GetVisualProperty(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetVisualProperty", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetVisualProperty(IntPtr jarg1, int jarg2, int jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IsResourceReady")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IsResourceReady", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsResourceReady(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsResourceReady(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ResourceReadySignal")]
-            public static extern global::System.IntPtr ResourceReadySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ResourceReadySignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ResourceReadySignal(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetVisualResourceStatus")]
-            public static extern int View_GetVisualResourceStatus(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_GetVisualResourceStatus", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int View_GetVisualResourceStatus(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_DoActionExtension")]
-            public static extern void DoActionExtension(global::System.Runtime.InteropServices.HandleRef control, int visualIndex, int actionId, int id, string keyPath, int property, global::System.IntPtr callback);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_DoActionExtension", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DoActionExtension(IntPtr control, int visualIndex, int actionId, int id, string keyPath, int property, global::System.IntPtr callback);
 
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_DoActionWithEmptyAttributes")]
-            public static extern void DoActionWithEmptyAttributes(HandleRef control, int visualIndex, int actionId);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_DoActionWithEmptyAttributes", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DoActionWithEmptyAttributes(IntPtr control, int visualIndex, int actionId);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_DoActionWithSingleIntAttributes")]
-            public static extern void DoActionWithSingleIntAttributes(HandleRef control, int visualIndex, int actionId, int actionValue);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_DoActionWithSingleIntAttributes", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DoActionWithSingleIntAttributes(IntPtr control, int visualIndex, int actionId, int actionValue);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyBool")]
-            public static extern int InternalUpdateVisualPropertyBool(HandleRef control, int visualIndex, int visualPropertyIndex, bool valBool);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyBool", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InternalUpdateVisualPropertyBool(IntPtr control, int visualIndex, int visualPropertyIndex, [MarshalAs(UnmanagedType.U1)] bool valBool);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyFloat")]
-            public static extern int InternalUpdateVisualPropertyFloat(HandleRef control, int visualIndex, int visualPropertyIndex, float valFloat);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyFloat", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InternalUpdateVisualPropertyFloat(IntPtr control, int visualIndex, int visualPropertyIndex, float valFloat);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyInt")]
-            public static extern int InternalUpdateVisualPropertyInt(HandleRef control, int visualIndex, int visualPropertyIndex, int valInt);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyInt", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InternalUpdateVisualPropertyInt(IntPtr control, int visualIndex, int visualPropertyIndex, int valInt);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyIntPair")]
-            public static extern int InternalUpdateVisualPropertyIntPair(HandleRef control, int visualIndex, int visualPropertyIndex, int valInt1, int valInt2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyIntPair", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InternalUpdateVisualPropertyIntPair(IntPtr control, int visualIndex, int visualPropertyIndex, int valInt1, int valInt2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyString")]
-            public static extern int InternalUpdateVisualPropertyString(HandleRef control, int visualIndex, int visualPropertyIndex, string valString);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyString", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InternalUpdateVisualPropertyString(IntPtr control, int visualIndex, int visualPropertyIndex, string valString);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyStringPair")]
-            public static extern int InternalUpdateVisualPropertyStringPair(HandleRef control, int visualIndex, int visualPropertyIndex, string valString1, string valString2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyStringPair", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InternalUpdateVisualPropertyStringPair(IntPtr control, int visualIndex, int visualPropertyIndex, string valString1, string valString2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyVector4")]
-            public static extern int InternalUpdateVisualPropertyVector4(HandleRef control, int visualIndex, int visualPropertyIndex, HandleRef vector4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyVector4", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InternalUpdateVisualPropertyVector4(IntPtr control, int visualIndex, int visualPropertyIndex, IntPtr vector4);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingVisualPropertyInt")]
-            public static extern int InternalRetrievingVisualPropertyInt(HandleRef actor,  int visualIndex, int visualPropertyIndex, out int valInt);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingVisualPropertyInt", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InternalRetrievingVisualPropertyInt(IntPtr actor,  int visualIndex, int visualPropertyIndex, out int valInt);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingVisualPropertyString")]
-            public static extern int InternalRetrievingVisualPropertyString(HandleRef actor,  int visualIndex, int visualPropertyIndex, out string valString);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingVisualPropertyString", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InternalRetrievingVisualPropertyString(IntPtr actor,  int visualIndex, int visualPropertyIndex, out string valString);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingVisualPropertyVector4")]
-            public static extern int InternalRetrievingVisualPropertyVector4(HandleRef actor,  int visualIndex, int visualPropertyIndex, HandleRef retrievingVector4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingVisualPropertyVector4", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int InternalRetrievingVisualPropertyVector4(IntPtr actor,  int visualIndex, int visualPropertyIndex, IntPtr retrievingVector4);
         }
     }
 }
+
+
+
+
+

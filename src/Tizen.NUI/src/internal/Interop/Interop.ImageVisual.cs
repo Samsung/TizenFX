@@ -15,77 +15,86 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class NDalicImageVisual
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_URL_get")]
-            public static extern int ImageVisualUrlGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_URL_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualUrlGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_ALPHA_MASK_URL_get")]
-            public static extern int ImageVisualAlphaMaskUrlGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_ALPHA_MASK_URL_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualAlphaMaskUrlGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_FITTING_MODE_get")]
-            public static extern int ImageVisualFittingModeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_FITTING_MODE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualFittingModeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_SAMPLING_MODE_get")]
-            public static extern int ImageVisualSamplingModeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_SAMPLING_MODE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualSamplingModeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_DESIRED_WIDTH_get")]
-            public static extern int ImageVisualDesiredWidthGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_DESIRED_WIDTH_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualDesiredWidthGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_DESIRED_HEIGHT_get")]
-            public static extern int ImageVisualDesiredHeightGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_DESIRED_HEIGHT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualDesiredHeightGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_SYNCHRONOUS_LOADING_get")]
-            public static extern int ImageVisualSynchronousLoadingGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_SYNCHRONOUS_LOADING_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualSynchronousLoadingGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_BORDER_ONLY_get")]
-            public static extern int ImageVisualBorderOnlyGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_BORDER_ONLY_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualBorderOnlyGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_PIXEL_AREA_get")]
-            public static extern int ImageVisualPixelAreaGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_PIXEL_AREA_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualPixelAreaGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_WRAP_MODE_U_get")]
-            public static extern int ImageVisualWrapModeUGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_WRAP_MODE_U_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualWrapModeUGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_WRAP_MODE_V_get")]
-            public static extern int ImageVisualWrapModeVGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_WRAP_MODE_V_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualWrapModeVGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_BATCH_SIZE_get")]
-            public static extern int ImageVisualBatchSizeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_BATCH_SIZE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualBatchSizeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_CACHE_SIZE_get")]
-            public static extern int ImageVisualCacheSizeGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_CACHE_SIZE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualCacheSizeGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_FRAME_DELAY_get")]
-            public static extern int ImageVisualFrameDelayGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_FRAME_DELAY_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualFrameDelayGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_LOOP_COUNT_get")]
-            public static extern int ImageVisualLoopCountGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_LOOP_COUNT_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualLoopCountGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_MASK_CONTENT_SCALE_get")]
-            public static extern int ImageVisualMaskContentScaleGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_MASK_CONTENT_SCALE_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualMaskContentScaleGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_CROP_TO_MASK_get")]
-            public static extern int ImageVisualCropToMaskGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_CROP_TO_MASK_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualCropToMaskGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_RELEASE_POLICY_get")]
-            public static extern int ImageVisualReleasePolicyGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_RELEASE_POLICY_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualReleasePolicyGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_LOAD_POLICY_get")]
-            public static extern int ImageVisualLoadPolicyGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_LOAD_POLICY_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualLoadPolicyGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_ORIENTATION_CORRECTION_get")]
-            public static extern int ImageVisualOrientationCorrectionGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_ORIENTATION_CORRECTION_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualOrientationCorrectionGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_AUXILIARY_IMAGE_URL_get")]
-            public static extern int ImageVisualAuxiliaryImageUrlGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_AUXILIARY_IMAGE_URL_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualAuxiliaryImageUrlGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_AUXILIARY_IMAGE_ALPHA_get")]
-            public static extern int ImageVisualAuxiliaryImageAlphaGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_IMAGE_VISUAL_AUXILIARY_IMAGE_ALPHA_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ImageVisualAuxiliaryImageAlphaGet();
         }
     }
 }
+
+
+
+
+

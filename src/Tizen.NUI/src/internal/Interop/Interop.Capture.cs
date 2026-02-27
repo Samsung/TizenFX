@@ -15,72 +15,76 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
-    using global::System;
-    using global::System.Runtime.InteropServices;
-
     internal static partial class Interop
     {
         internal static partial class Capture
         {
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_New")]
-            public static extern IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr New();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Capture")]
-            public static extern void Delete(HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Capture", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Delete(IntPtr jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Start_1")]
-            public static extern void Start1(HandleRef capture, HandleRef source, HandleRef size, string path, HandleRef clearColor);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Start_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Start1(IntPtr capture, IntPtr source, IntPtr size, string path, IntPtr clearColor);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Start_2")]
-            public static extern void Start2(HandleRef capture, HandleRef source, HandleRef size, string path);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Start_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Start2(IntPtr capture, IntPtr source, IntPtr size, string path);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Start_3")]
-            public static extern void Start3(HandleRef capture, HandleRef source, HandleRef size, string path, HandleRef clearColor, uint quality);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Start_3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Start3(IntPtr capture, IntPtr source, IntPtr size, string path, IntPtr clearColor, uint quality);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Start_4")]
-            public static extern void Start4(HandleRef capture, HandleRef source, HandleRef position, HandleRef size, string path, HandleRef clearColor);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Start_4", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Start4(IntPtr capture, IntPtr source, IntPtr position, IntPtr size, string path, IntPtr clearColor);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_SetImageQuality")]
-            public static extern void SetImageQuality(HandleRef capture, uint quality);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_SetImageQuality", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetImageQuality(IntPtr capture, uint quality);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_SetExclusive")]
-            public static extern void SetExclusive(HandleRef capture, bool exclusive);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_SetExclusive", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetExclusive(IntPtr capture, [MarshalAs(UnmanagedType.U1)] bool exclusive);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_IsExclusive")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_IsExclusive", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsExclusive(HandleRef capture);
+            public static partial bool IsExclusive(IntPtr capture);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool SignalEmpty(HandleRef jarg1);
+            public static partial bool SignalEmpty(IntPtr jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_GetConnectionCount")]
-            public static extern uint SignalGetConnectionCount(HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_GetConnectionCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint SignalGetConnectionCount(IntPtr jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Connect")]
-            public static extern void SignalConnect(HandleRef jarg1, HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SignalConnect(IntPtr jarg1, IntPtr jarg2);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Disconnect")]
-            public static extern void SignalDisconnect(HandleRef jarg1, HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SignalDisconnect(IntPtr jarg1, IntPtr jarg2);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Emit")]
-            public static extern void SignalEmit(HandleRef jarg1, HandleRef jarg2, int jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SignalEmit(IntPtr jarg1, IntPtr jarg2, int jarg3);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Get")]
-            public static extern IntPtr Get(HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_Signal_Get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr Get(IntPtr jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_GetImageUrl")]
-            public static extern IntPtr GetImageUrl(HandleRef capture);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_GetImageUrl", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr GetImageUrl(IntPtr capture);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_GetNativeImageSource")]
-            public static extern IntPtr GetNativeImageSourcePtr(HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_GetNativeImageSource", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr GetNativeImageSourcePtr(IntPtr jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_GetCapturedBuffer")]
-            public static extern IntPtr GetCapturedBuffer(HandleRef capture);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Capture_GetCapturedBuffer", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr GetCapturedBuffer(IntPtr capture);
 
         }
     }
 }
+
+
+

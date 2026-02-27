@@ -14,8 +14,9 @@
  * limitations under the License.
  *
  */
-using System;
-using System.Runtime.InteropServices;
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI
 {
@@ -23,8 +24,13 @@ namespace Tizen.NUI
     {
         internal static partial class PropertyBridge
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyBridge_RegisterStringGetter")]
-            public static extern void RegisterStringGetter(IntPtr getter);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PropertyBridge_RegisterStringGetter", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RegisterStringGetter(IntPtr getter);
         }
     }
 }
+
+
+
+
+

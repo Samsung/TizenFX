@@ -15,55 +15,64 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class VisualObjectsContainer
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_ContainerRangeTypeBackgroundEffectGet")]
-            public static extern int ContainerRangeTypeBackgroundEffectGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_ContainerRangeTypeBackgroundEffectGet", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ContainerRangeTypeBackgroundEffectGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_ContainerRangeTypeBackgroundGet")]
-            public static extern int ContainerRangeTypeBackgroundGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_ContainerRangeTypeBackgroundGet", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ContainerRangeTypeBackgroundGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_ContainerRangeTypeContentGet")]
-            public static extern int ContainerRangeTypeContentGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_ContainerRangeTypeContentGet", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ContainerRangeTypeContentGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_ContainerRangeTypeDecorationGet")]
-            public static extern int ContainerRangeTypeDecorationGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_ContainerRangeTypeDecorationGet", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ContainerRangeTypeDecorationGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_ContainerRangeTypeForegroundEffectGet")]
-            public static extern int ContainerRangeTypeForegroundEffectGet();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_ContainerRangeTypeForegroundEffectGet", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int ContainerRangeTypeForegroundEffectGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VisualObjectsContainer__SWIG_0")]
-            public static extern global::System.IntPtr NewVisualObjectsContainer();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VisualObjectsContainer__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewVisualObjectsContainer();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_New")]
-            public static extern global::System.IntPtr VisualObjectsContainerNew(global::System.Runtime.InteropServices.HandleRef view, int rangeType);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr VisualObjectsContainerNew(IntPtr view, int rangeType);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_GetOwner")]
-            public static extern global::System.IntPtr GetOwner(global::System.Runtime.InteropServices.HandleRef container);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_GetOwner", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetOwner(IntPtr container);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_GetContainerRangeType")]
-            public static extern int GetContainerRangeType(global::System.Runtime.InteropServices.HandleRef container);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_GetContainerRangeType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetContainerRangeType(IntPtr container);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_GetVisualObjectsCount")]
-            public static extern uint GetVisualObjectsCount(global::System.Runtime.InteropServices.HandleRef container);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_GetVisualObjectsCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetVisualObjectsCount(IntPtr container);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_GetVisualObjectAt")]
-            public static extern global::System.IntPtr GetVisualObjectAt(global::System.Runtime.InteropServices.HandleRef container, uint index);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_GetVisualObjectAt", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetVisualObjectAt(IntPtr container, uint index);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_AddVisualObject")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_AddVisualObject", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool AddVisualObject(global::System.Runtime.InteropServices.HandleRef container, global::System.Runtime.InteropServices.HandleRef viewObject);
+            public static partial bool AddVisualObject(IntPtr container, IntPtr viewObject);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_AddShadowVisualObject")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_AddShadowVisualObject", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool AddShadowVisualObject(global::System.Runtime.InteropServices.HandleRef container, global::System.Runtime.InteropServices.HandleRef viewObject, int shadowType);
+            public static partial bool AddShadowVisualObject(IntPtr container, IntPtr viewObject, int shadowType);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_RemoveVisualObject")]
-            public static extern void RemoveVisualObject(global::System.Runtime.InteropServices.HandleRef container, global::System.Runtime.InteropServices.HandleRef viewObject);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VisualObjectsContainer_RemoveVisualObject", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RemoveVisualObject(IntPtr container, IntPtr viewObject);
         }
     }
 }
+
+
+
+
+

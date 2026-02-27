@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,8 +15,9 @@
  *
  */
 
-using System;
+using global::System;
 using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI.ParticleSystem
 {
@@ -24,30 +25,35 @@ namespace Tizen.NUI.ParticleSystem
     {
         internal static partial class Particle
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_ReadFloat")]
-            internal static extern float ReadFloat(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamIndex, uint particleIndex);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_ReadFloat", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern float ReadFloat(IntPtr jarg1, uint streamIndex, uint particleIndex);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_ReadVector2")]
-            internal static extern global::System.IntPtr ReadVector2(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamIndex, uint particleIndex);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_ReadVector2", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern global::System.IntPtr ReadVector2(IntPtr jarg1, uint streamIndex, uint particleIndex);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_ReadVector3")]
-            internal static extern global::System.IntPtr ReadVector3(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamIndex, uint particleIndex);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_ReadVector3", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern global::System.IntPtr ReadVector3(IntPtr jarg1, uint streamIndex, uint particleIndex);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_ReadVector4")]
-            internal static extern global::System.IntPtr ReadVector4(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamIndex, uint particleIndex);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_ReadVector4", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern global::System.IntPtr ReadVector4(IntPtr jarg1, uint streamIndex, uint particleIndex);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_WriteFloat")]
-            internal static extern void WriteFloat(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamIndex, uint particleIndex, float value);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_WriteFloat", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void WriteFloat(IntPtr jarg1, uint streamIndex, uint particleIndex, float value);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_WriteVector2")]
-            internal static extern void WriteVector2(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamIndex, uint particleIndex, HandleRef value);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_WriteVector2", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void WriteVector2(IntPtr jarg1, uint streamIndex, uint particleIndex, IntPtr value);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_WriteVector3")]
-            internal static extern void WriteVector3(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamIndex, uint particleIndex, HandleRef value);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_WriteVector3", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void WriteVector3(IntPtr jarg1, uint streamIndex, uint particleIndex, IntPtr value);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_WriteVector4")]
-            internal static extern void WriteVector4(global::System.Runtime.InteropServices.HandleRef jarg1, uint streamIndex, uint particleIndex, HandleRef value);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Particle_WriteVector4", StringMarshalling = StringMarshalling.Utf8)]
+            internal static extern void WriteVector4(IntPtr jarg1, uint streamIndex, uint particleIndex, IntPtr value);
         }
     }
 }
+
+
+
+
+
 

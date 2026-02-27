@@ -15,35 +15,43 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
-
     internal static partial class Interop
     {
         internal static partial class ViewImpl
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_SetBackground")]
-            public static extern void SetBackground(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_SetBackground", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetBackground(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_EnableGestureDetection")]
-            public static extern void EnableGestureDetection(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_EnableGestureDetection", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void EnableGestureDetection(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_DisableGestureDetection")]
-            public static extern void DisableGestureDetection(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_DisableGestureDetection", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DisableGestureDetection(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_SetKeyboardNavigationSupport")]
-            public static extern void SetKeyboardNavigationSupport(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_SetKeyboardNavigationSupport", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetKeyboardNavigationSupport(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_IsKeyboardNavigationSupported")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_IsKeyboardNavigationSupported", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsKeyboardNavigationSupported(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsKeyboardNavigationSupported(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_SetAsKeyboardFocusGroup")]
-            public static extern void SetAsKeyboardFocusGroup(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_SetAsKeyboardFocusGroup", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetAsKeyboardFocusGroup(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_IsKeyboardFocusGroup")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewImpl_IsKeyboardFocusGroup", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsKeyboardFocusGroup(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsKeyboardFocusGroup(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,41 +26,46 @@ namespace Tizen.NUI
         internal static partial class GaussianBlurView
         {
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_GaussianBlurView__SWIG_1")]
-            public static extern global::System.IntPtr NewGaussianBlurView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_GaussianBlurView__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewGaussianBlurView(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_GaussianBlurView")]
-            public static extern void DeleteGaussianBlurView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_GaussianBlurView", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteGaussianBlurView(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_New__SWIG_0")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_New__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_New__SWIG_1")]
-            public static extern global::System.IntPtr New(uint jarg1, float jarg2, int jarg3, float jarg4, float jarg5, bool jarg6);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_New__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(uint jarg1, float jarg2, int jarg3, float jarg4, float jarg5, [MarshalAs(UnmanagedType.U1)] bool jarg6);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_Activate")]
-            public static extern void Activate(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_Activate", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Activate(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_ActivateOnce")]
-            public static extern void ActivateOnce(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_ActivateOnce", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ActivateOnce(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_Deactivate")]
-            public static extern void Deactivate(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_Deactivate", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Deactivate(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_SetUserImageAndOutputRenderTarget")]
-            public static extern void SetUserImageAndOutputRenderTarget(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_SetUserImageAndOutputRenderTarget", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetUserImageAndOutputRenderTarget(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_GetBlurStrengthPropertyIndex")]
-            public static extern int GetBlurStrengthPropertyIndex(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_GetBlurStrengthPropertyIndex", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetBlurStrengthPropertyIndex(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_SetBackgroundColor")]
-            public static extern void SetBackgroundColor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_SetBackgroundColor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetBackgroundColor(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_GetBackgroundColor")]
-            public static extern global::System.IntPtr GetBackgroundColor(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_GetBackgroundColor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetBackgroundColor(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_FinishedSignal")]
-            public static extern global::System.IntPtr FinishedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GaussianBlurView_FinishedSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr FinishedSignal(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

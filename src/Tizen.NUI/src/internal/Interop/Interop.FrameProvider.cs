@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-using System;
-using System.Runtime.InteropServices;
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
 
 using Tizen.NUI;
 using Tizen.Applications;
@@ -46,17 +47,20 @@ namespace Tizen.NUI
                 public HideCallback OnHide;
             }
 
-            [DllImport(Libraries.FrameProvider, EntryPoint = "frame_provider_create")]
+            [LibraryImport(Libraries.FrameProvider, EntryPoint = "frame_provider_create", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode Create(IntPtr wl2Win, ref FrameProviderEventCallbacks callbacks, IntPtr userData, out SafeFrameProviderHandle handle);
 
-            [DllImport(Libraries.FrameProvider, EntryPoint = "frame_provider_destroy")]
+            [LibraryImport(Libraries.FrameProvider, EntryPoint = "frame_provider_destroy", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode DangerousDestroy(IntPtr handle);
 
-            [DllImport(Libraries.FrameProvider, EntryPoint = "frame_provider_notify_show_status")]
+            [LibraryImport(Libraries.FrameProvider, EntryPoint = "frame_provider_notify_show_status", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode NotifyShowStatus(SafeFrameProviderHandle handle, SafeBundleHandle safeBundleHandle);
 
-            [DllImport(Libraries.FrameProvider, EntryPoint = "frame_provider_notify_hide_status")]
+            [LibraryImport(Libraries.FrameProvider, EntryPoint = "frame_provider_notify_hide_status", StringMarshalling = StringMarshalling.Utf8)]
             internal static extern ErrorCode NotifyHideStatus(SafeFrameProviderHandle handle, SafeBundleHandle safeBundleHandle);
         }
     }
 }
+
+
+

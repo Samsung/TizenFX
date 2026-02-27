@@ -15,32 +15,41 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class Gesture
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Gesture")]
-            public static extern global::System.IntPtr NewGesture(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Gesture", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewGesture(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Gesture")]
-            public static extern void DeleteGesture(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Gesture", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteGesture(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gesture_type_get")]
-            public static extern int TypeGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gesture_type_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int TypeGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gesture_state_get")]
-            public static extern int StateGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gesture_state_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int StateGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gesture_time_get")]
-            public static extern uint TimeGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gesture_time_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint TimeGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gesture_sourceType_get")]
-            public static extern int SourceTypeGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gesture_sourceType_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int SourceTypeGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gesture_sourceData_get")]
-            public static extern int SourceDataGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gesture_sourceData_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int SourceDataGet(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

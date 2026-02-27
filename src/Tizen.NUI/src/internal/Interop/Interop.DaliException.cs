@@ -15,29 +15,38 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class DaliException
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_DaliException")]
-            public static extern global::System.IntPtr NewDaliException(string jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_DaliException", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewDaliException(string jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DaliException_location_set")]
-            public static extern void LocationSet(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DaliException_location_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void LocationSet(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DaliException_location_get")]
-            public static extern string LocationGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DaliException_location_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string LocationGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DaliException_condition_set")]
-            public static extern void ConditionSet(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DaliException_condition_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ConditionSet(IntPtr jarg1, string jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DaliException_condition_get")]
-            public static extern string ConditionGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DaliException_condition_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string ConditionGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_DaliException")]
-            public static extern void DeleteDaliException(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_DaliException", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteDaliException(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

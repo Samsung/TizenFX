@@ -15,37 +15,46 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class WebContextMenuItem
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebContextMenuItem")]
-            public static extern void DeleteWebContextMenuItem(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebContextMenuItem", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWebContextMenuItem(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContextMenuItem_GetTag")]
-            public static extern int GetTag(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContextMenuItem_GetTag", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetTag(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContextMenuItem_GetType")]
-            public static extern int GetType(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContextMenuItem_GetType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetType(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContextMenuItem_IsEnabled")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContextMenuItem_IsEnabled", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsEnabled(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsEnabled(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContextMenuItem_GetLinkUrl")]
-            public static extern string GetLinkUrl(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContextMenuItem_GetLinkUrl", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetLinkUrl(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContextMenuItem_GetImageUrl")]
-            public static extern string GetImageUrl(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContextMenuItem_GetImageUrl", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetImageUrl(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContextMenuItem_GetTitle")]
-            public static extern string GetTitle(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContextMenuItem_GetTitle", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetTitle(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContextMenuItem_GetParentMenu")]
-            public static extern System.IntPtr GetParentMenu(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebContextMenuItem_GetParentMenu", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial System.IntPtr GetParentMenu(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+
 

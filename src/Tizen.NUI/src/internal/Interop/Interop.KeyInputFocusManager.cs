@@ -17,6 +17,7 @@
 
 using global::System;
 using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI
 {
@@ -24,23 +25,26 @@ namespace Tizen.NUI
     {
         internal static partial class KeyInputFocusManager
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_KeyInputFocusManager")]
-            public static extern IntPtr NewKeyInputFocusManager();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_KeyInputFocusManager", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr NewKeyInputFocusManager();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_KeyInputFocusManager")]
-            public static extern void DeleteKeyInputFocusManager(HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_KeyInputFocusManager", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteKeyInputFocusManager(IntPtr jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_Get")]
-            public static extern IntPtr Get();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_Get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr Get();
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_SetFocus")]
-            public static extern void SetFocus(HandleRef jarg1, HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_SetFocus", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetFocus(IntPtr jarg1, IntPtr jarg2);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_GetCurrentFocusControl")]
-            public static extern IntPtr GetCurrentFocusControl(HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_GetCurrentFocusControl", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr GetCurrentFocusControl(IntPtr jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_RemoveFocus")]
-            public static extern void RemoveFocus(HandleRef jarg1, HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_RemoveFocus", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void RemoveFocus(IntPtr jarg1, IntPtr jarg2);
         }
     }
 }
+
+
+

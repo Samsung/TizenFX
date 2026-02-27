@@ -15,20 +15,29 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class RadialGradient
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RadialGradient_New")]
-            public static extern global::System.IntPtr New();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RadialGradient_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RadialGradient_SetBounds")]
-            public static extern void SetBounds(global::System.Runtime.InteropServices.HandleRef linearGradient, global::System.Runtime.InteropServices.HandleRef centerPoint, float radius);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RadialGradient_SetBounds", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetBounds(IntPtr linearGradient, IntPtr centerPoint, float radius);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RadialGradient_GetBounds")]
-            public unsafe static extern void GetBounds(global::System.Runtime.InteropServices.HandleRef linearGradient, global::System.Runtime.InteropServices.HandleRef centerPoint, void* radius);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RadialGradient_GetBounds", StringMarshalling = StringMarshalling.Utf8)]
+            public unsafe static extern void GetBounds(IntPtr linearGradient, IntPtr centerPoint, void* radius);
         }
     }
 }
+
+
+
+
+

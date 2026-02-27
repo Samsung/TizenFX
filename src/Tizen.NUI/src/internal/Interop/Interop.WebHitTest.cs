@@ -15,48 +15,57 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class WebHitTest
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebHitTest")]
-            public static extern void DeleteWebHitTest(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebHitTest", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWebHitTest(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetResultContext")]
-            public static extern int GetResultContext(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetResultContext", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetResultContext(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetLinkUri")]
-            public static extern string GetLinkUri(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetLinkUri", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetLinkUri(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetLinkTitle")]
-            public static extern string GetLinkTitle(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetLinkTitle", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetLinkTitle(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetLinkLabel")]
-            public static extern string GetLinkLabel(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetLinkLabel", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetLinkLabel(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetImageUri")]
-            public static extern string GetImageUri(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetImageUri", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetImageUri(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetMediaUri")]
-            public static extern string GetMediaUri(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetMediaUri", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetMediaUri(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetTagName")]
-            public static extern string GetTagName(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetTagName", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetTagName(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetNodeValue")]
-            public static extern string GetNodeValue(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetNodeValue", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetNodeValue(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetAttributes")]
-            public static extern global::System.IntPtr GetAttributes(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetAttributes", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetAttributes(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetImageFileNameExtension")]
-            public static extern string GetImageFileNameExtension(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetImageFileNameExtension", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetImageFileNameExtension(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetImageBuffer")]
-            public static extern global::System.IntPtr GetImageBuffer(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebHitTest_GetImageBuffer", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetImageBuffer(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+
 

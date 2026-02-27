@@ -15,32 +15,41 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class TimePeriod
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TimePeriod__SWIG_0")]
-            public static extern global::System.IntPtr NewTimePeriod(float jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TimePeriod__SWIG_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewTimePeriod(float jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TimePeriod__SWIG_1")]
-            public static extern global::System.IntPtr NewTimePeriod(float jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TimePeriod__SWIG_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewTimePeriod(float jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TimePeriod")]
-            public static extern void DeleteTimePeriod(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_TimePeriod", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteTimePeriod(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TimePeriod_delaySeconds_set")]
-            public static extern void DelaySecondsSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TimePeriod_delaySeconds_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DelaySecondsSet(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TimePeriod_delaySeconds_get")]
-            public static extern float DelaySecondsGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TimePeriod_delaySeconds_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float DelaySecondsGet(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TimePeriod_durationSeconds_set")]
-            public static extern void DurationSecondsSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TimePeriod_durationSeconds_set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DurationSecondsSet(IntPtr jarg1, float jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TimePeriod_durationSeconds_get")]
-            public static extern float DurationSecondsGet(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TimePeriod_durationSeconds_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float DurationSecondsGet(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

@@ -15,36 +15,45 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class WebCertificate
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebCertificate")]
-            public static extern void DeleteWebCertificate(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebCertificate", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteWebCertificate(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCertificate_Allow")]
-            public static extern void Allow(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCertificate_Allow", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Allow(IntPtr jarg1, [MarshalAs(UnmanagedType.U1)] bool jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCertificate_IsFromMainFrame")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCertificate_IsFromMainFrame", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsFromMainFrame(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsFromMainFrame(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCertificate_GetPem")]
-            public static extern string GetPem(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCertificate_GetPem", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial string GetPem(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCertificate_IsContextSecure")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCertificate_IsContextSecure", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsContextSecure(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool IsContextSecure(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCertificate_GetPolicyDecisionError")]
-            public static extern int GetPolicyDecisionError(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCertificate_GetPolicyDecisionError", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetPolicyDecisionError(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCertificate_SuspendPolicyDecision")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebCertificate_SuspendPolicyDecision", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool SuspendPolicyDecision(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool SuspendPolicyDecision(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+
 

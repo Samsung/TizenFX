@@ -15,33 +15,42 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class LowBatterySignal
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_LowBatterySignalType_Empty")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_LowBatterySignalType_Empty", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool LowBatterySignalTypeEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static partial bool LowBatterySignalTypeEmpty(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_LowBatterySignalType_GetConnectionCount")]
-            public static extern uint LowBatterySignalTypeGetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_LowBatterySignalType_GetConnectionCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint LowBatterySignalTypeGetConnectionCount(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_LowBatterySignalType_Connect")]
-            public static extern void LowBatterySignalTypeConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_LowBatterySignalType_Connect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void LowBatterySignalTypeConnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_LowBatterySignalType_Disconnect")]
-            public static extern void LowBatterySignalTypeDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_LowBatterySignalType_Disconnect", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void LowBatterySignalTypeDisconnect(IntPtr jarg1, IntPtr jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_LowBatterySignalType_Emit")]
-            public static extern void LowBatterySignalTypeEmit(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_LowBatterySignalType_Emit", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void LowBatterySignalTypeEmit(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_new_LowBatterySignalType")]
-            public static extern global::System.IntPtr NewLowBatterySignalType();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_new_LowBatterySignalType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewLowBatterySignalType();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_delete_LowBatterySignalType")]
-            public static extern void DeleteLowBatterySignalType(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_delete_LowBatterySignalType", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteLowBatterySignalType(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

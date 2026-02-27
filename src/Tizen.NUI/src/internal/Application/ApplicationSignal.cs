@@ -39,7 +39,7 @@ namespace Tizen.NUI
 
         public uint GetConnectionCount()
         {
-            uint ret = Interop.ApplicationSignal.GetConnectionCount(SwigCPtr);
+            uint ret = Interop.ApplicationSignal.GetConnectionCount(SwigCPtr.Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -48,7 +48,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ApplicationSignal.Connect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ApplicationSignal.Connect(SwigCPtr.Handle, ip);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -57,14 +57,14 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                Interop.ApplicationSignal.Disconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.ApplicationSignal.Disconnect(SwigCPtr.Handle, ip);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
         public void Emit(Application arg)
         {
-            Interop.ApplicationSignal.Emit(SwigCPtr, Application.getCPtr(arg));
+            Interop.ApplicationSignal.Emit(SwigCPtr.Handle, Application.getCPtr(arg).Handle);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

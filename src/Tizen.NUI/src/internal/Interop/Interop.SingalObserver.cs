@@ -15,17 +15,26 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class SignalObserver
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_SignalObserver")]
-            public static extern void DeleteSignalObserver(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_SignalObserver", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteSignalObserver(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SignalObserver_SignalDisconnected")]
-            public static extern void SignalDisconnected(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_SignalObserver_SignalDisconnected", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SignalDisconnected(IntPtr jarg1, IntPtr jarg2, IntPtr jarg3);
         }
     }
 }
+
+
+
+
+

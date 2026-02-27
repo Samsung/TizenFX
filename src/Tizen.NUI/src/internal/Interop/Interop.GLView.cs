@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,7 +15,9 @@
  *
  */
 
-using System.Runtime.InteropServices;
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.NUI
 {
@@ -23,54 +25,57 @@ namespace Tizen.NUI
     {
         internal static partial class GLView
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_New_SWIG")]
-            public static extern global::System.IntPtr New(int nuiColorFormat);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_New_SWIG", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(int nuiColorFormat);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_New2_SWIG")]
-            public static extern global::System.IntPtr New(int backendMode, int nuiColorFormat);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_New2_SWIG", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr New(int backendMode, int nuiColorFormat);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_RegisterGlCallbacks")]
-            public static extern void GlViewRegisterGlCallbacks(HandleRef nuiGlView, HandleRef nuiInitCB, HandleRef nuiRenderFrameCB, HandleRef nuiTerminateCB);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_RegisterGlCallbacks", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GlViewRegisterGlCallbacks(IntPtr nuiGlView, IntPtr nuiInitCB, IntPtr nuiRenderFrameCB, IntPtr nuiTerminateCB);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_SetResizeCallback")]
-            public static extern void GlViewSetResizeCallback(HandleRef nuiGlView, HandleRef nuiResizeCB);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_SetResizeCallback", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GlViewSetResizeCallback(IntPtr nuiGlView, IntPtr nuiResizeCB);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_SetGraphicsConfig")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_SetGraphicsConfig", StringMarshalling = StringMarshalling.Utf8)]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool GlViewSetGraphicsConfig(HandleRef nuiGlView, bool nuiDepth, bool nuiStencil, int nuiMsaa, int nuiVersion);
+            public static partial bool GlViewSetGraphicsConfig(IntPtr nuiGlView, [MarshalAs(UnmanagedType.U1)] bool nuiDepth, [MarshalAs(UnmanagedType.U1)] bool nuiStencil, int nuiMsaa, int nuiVersion);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_SetRenderingMode")]
-            public static extern void GlViewSetRenderingMode(HandleRef nuiGlView, int nuiRenderingMode);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_SetRenderingMode", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GlViewSetRenderingMode(IntPtr nuiGlView, int nuiRenderingMode);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_GetRenderingMode")]
-            public static extern global::System.IntPtr GlViewGetRenderingMode(HandleRef nuiGlView);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_GetRenderingMode", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GlViewGetRenderingMode(IntPtr nuiGlView);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_RenderOnce")]
-            public static extern void GlViewRenderOnce(HandleRef nuiGlView);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_RenderOnce", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GlViewRenderOnce(IntPtr nuiGlView);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_Terminate")]
-            public static extern void GlViewTerminate(HandleRef nuiGlView);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_Terminate", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GlViewTerminate(IntPtr nuiGlView);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_BindTextureResources")]
-            public static extern void GlViewBindTextureResources(HandleRef nuiGlView, global::System.IntPtr textures, int size);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_BindTextureResources", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void GlViewBindTextureResources(IntPtr nuiGlView, global::System.IntPtr textures, int size);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_Size_get")]
-            public static extern global::System.IntPtr GlViewGetRednerCallbackInputSize(global::System.IntPtr renderInput);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_Size_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GlViewGetRednerCallbackInputSize(global::System.IntPtr renderInput);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_Mvp_get")]
-            public static extern global::System.IntPtr GlViewGetRednerCallbackInputMvp(global::System.IntPtr renderInput);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_Mvp_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GlViewGetRednerCallbackInputMvp(global::System.IntPtr renderInput);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_Projection_get")]
-            public static extern global::System.IntPtr GlViewGetRednerCallbackInputProjection(global::System.IntPtr renderInput);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_Projection_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GlViewGetRednerCallbackInputProjection(global::System.IntPtr renderInput);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_ClippingBox_get")]
-            public static extern global::System.IntPtr GlViewGetRednerCallbackInputClipplingBox(global::System.IntPtr renderInput);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_ClippingBox_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GlViewGetRednerCallbackInputClipplingBox(global::System.IntPtr renderInput);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_TextureBindings_get")]
-            public static extern global::System.IntPtr GlViewGetRednerCallbackInputTextureBindings(global::System.IntPtr renderInput, ref int size);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_TextureBindings_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GlViewGetRednerCallbackInputTextureBindings(global::System.IntPtr renderInput, ref int size);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_WorldColor_get")]
-            public static extern global::System.IntPtr GlViewGetRednerCallbackInputWorldColor(global::System.IntPtr renderInput);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderCallbackInput_WorldColor_get", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GlViewGetRednerCallbackInputWorldColor(global::System.IntPtr renderInput);
         }
     }
 }
+
+
+

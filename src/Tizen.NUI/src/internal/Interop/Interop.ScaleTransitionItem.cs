@@ -15,30 +15,34 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
-    using global::System;
-    using global::System.Runtime.InteropServices;
-
     internal static partial class Interop
     {
         internal static partial class ScaleTransitionItem
         {
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScaleTransition_New_1")]
-            public static extern IntPtr New(HandleRef view, float scale, HandleRef timePeriod);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScaleTransition_New_1", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr New(IntPtr view, float scale, IntPtr timePeriod);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScaleTransition_New_2")]
-            public static extern IntPtr New(HandleRef view, HandleRef scale, HandleRef timePeriod);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScaleTransition_New_2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr New(IntPtr view, IntPtr scale, IntPtr timePeriod);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ScaleTransition")]
-            public static extern void Delete(HandleRef scaleTransition);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ScaleTransition", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Delete(IntPtr scaleTransition);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ScaleTransition_Set")]
-            public static extern IntPtr NewScaleTransitionItem(HandleRef scaleTransition);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_ScaleTransition_Set", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr NewScaleTransitionItem(IntPtr scaleTransition);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScaleTransition_Assign")]
-            public static extern IntPtr Assign(HandleRef destination, HandleRef source);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ScaleTransition_Assign", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr Assign(IntPtr destination, IntPtr source);
         }
     }
 }
+
+
+

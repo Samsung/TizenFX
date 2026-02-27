@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2020-2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,11 +15,12 @@
  *
  */
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
-using System.Text;
+using global::System;
+using global::System.Collections.Generic;
+using global::System.ComponentModel;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+using global::System.Text;
 
 namespace Tizen.NUI
 {
@@ -28,131 +29,136 @@ namespace Tizen.NUI
         internal static partial class ControlDevel
         {
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AppendAccessibilityRelation")]
-            public static extern void DaliToolkitDevelControlAppendAccessibilityRelation(HandleRef arg1, HandleRef arg2, int arg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AppendAccessibilityRelation", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DaliToolkitDevelControlAppendAccessibilityRelation(IntPtr arg1, IntPtr arg2, int arg3);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_RemoveAccessibilityRelation")]
-            public static extern void DaliToolkitDevelControlRemoveAccessibilityRelation(HandleRef arg1, HandleRef arg2, int arg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_RemoveAccessibilityRelation", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DaliToolkitDevelControlRemoveAccessibilityRelation(IntPtr arg1, IntPtr arg2, int arg3);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public delegate void GetAccessibilityRelationsCallback(int relationType, IntPtr relationTarget, IntPtr userData);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_GetAccessibilityRelations")]
-            public static extern void DaliToolkitDevelControlGetAccessibilityRelations(HandleRef arg1_control, GetAccessibilityRelationsCallback arg2_callback, IntPtr arg3_userData);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_GetAccessibilityRelations", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DaliToolkitDevelControlGetAccessibilityRelations(IntPtr arg1_control, GetAccessibilityRelationsCallback arg2_callback, IntPtr arg3_userData);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_ClearAccessibilityRelations")]
-            public static extern void DaliToolkitDevelControlClearAccessibilityRelations(HandleRef arg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_ClearAccessibilityRelations", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DaliToolkitDevelControlClearAccessibilityRelations(IntPtr arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AppendAccessibilityAttribute")]
-            public static extern void DaliToolkitDevelControlAppendAccessibilityAttribute(HandleRef arg1, string arg2_key, string arg3_value);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AppendAccessibilityAttribute", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DaliToolkitDevelControlAppendAccessibilityAttribute(IntPtr arg1, string arg2_key, string arg3_value);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_RemoveAccessibilityAttribute")]
-            public static extern void DaliToolkitDevelControlRemoveAccessibilityAttribute(HandleRef arg1, string arg2_key);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_RemoveAccessibilityAttribute", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DaliToolkitDevelControlRemoveAccessibilityAttribute(IntPtr arg1, string arg2_key);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_SetAccessibilityReadingInfoType2")]
-            public static extern void DaliToolkitDevelControlSetAccessibilityReadingInfoTypes(HandleRef arg1, int arg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_SetAccessibilityReadingInfoType2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DaliToolkitDevelControlSetAccessibilityReadingInfoTypes(IntPtr arg1, int arg2);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_GetAccessibilityReadingInfoType2")]
-            public static extern int DaliToolkitDevelControlGetAccessibilityReadingInfoTypes(HandleRef arg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_GetAccessibilityReadingInfoType2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int DaliToolkitDevelControlGetAccessibilityReadingInfoTypes(IntPtr arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_ClearAccessibilityHighlight")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_ClearAccessibilityHighlight", StringMarshalling = StringMarshalling.Utf8)]
             [return: MarshalAs(UnmanagedType.U1)]
-            public static extern bool DaliToolkitDevelControlClearAccessibilityHighlight(HandleRef arg1);
+            public static partial bool DaliToolkitDevelControlClearAccessibilityHighlight(IntPtr arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_GrabAccessibilityHighlight")]
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_GrabAccessibilityHighlight", StringMarshalling = StringMarshalling.Utf8)]
             [return: MarshalAs(UnmanagedType.U1)]
-            public static extern bool DaliToolkitDevelControlGrabAccessibilityHighlight(HandleRef arg1);
+            public static partial bool DaliToolkitDevelControlGrabAccessibilityHighlight(IntPtr arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_GetAccessibilityStates")]
-            public static extern ulong DaliToolkitDevelControlGetAccessibilityStates(HandleRef arg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_GetAccessibilityStates", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial ulong DaliToolkitDevelControlGetAccessibilityStates(IntPtr arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_NotifyAccessibilityStateChange")]
-            public static extern IntPtr DaliToolkitDevelControlNotifyAccessibilityStateChange(HandleRef arg1, ulong arg2, int arg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_NotifyAccessibilityStateChange", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr DaliToolkitDevelControlNotifyAccessibilityStateChange(IntPtr arg1, ulong arg2, int arg3);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitAccessibilityEvent")]
-            public static extern IntPtr DaliAccessibilityEmitAccessibilityEvent(HandleRef arg1, int arg2_event);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitAccessibilityEvent", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr DaliAccessibilityEmitAccessibilityEvent(IntPtr arg1, int arg2_event);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitAccessibilityStateChangedEvent")]
-            public static extern IntPtr DaliAccessibilityEmitAccessibilityStateChangedEvent(HandleRef arg1, int arg2_state, int arg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitAccessibilityStateChangedEvent", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr DaliAccessibilityEmitAccessibilityStateChangedEvent(IntPtr arg1, int arg2_state, int arg3);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitTextInsertedEvent")]
-            public static extern IntPtr DaliAccessibilityEmitTextInsertedEvent(HandleRef arg1, int arg2_pos, int arg3_len, string arg3_content);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitTextInsertedEvent", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr DaliAccessibilityEmitTextInsertedEvent(IntPtr arg1, int arg2_pos, int arg3_len, string arg3_content);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitTextDeletedEvent")]
-            public static extern IntPtr DaliAccessibilityEmitTextDeletedEvent(HandleRef arg1, int arg2_pos, int arg3_len, string arg3_content);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitTextDeletedEvent", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr DaliAccessibilityEmitTextDeletedEvent(IntPtr arg1, int arg2_pos, int arg3_len, string arg3_content);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitTextCursorMovedEvent")]
-            public static extern IntPtr DaliAccessibilityEmitTextCursorMovedEvent(HandleRef arg1, int arg2_pos);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitTextCursorMovedEvent", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr DaliAccessibilityEmitTextCursorMovedEvent(IntPtr arg1, int arg2_pos);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitScrollStartedEvent")]
-            public static extern IntPtr DaliAccessibilityEmitScrollStartedEvent(HandleRef arg1_actor);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitScrollStartedEvent", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr DaliAccessibilityEmitScrollStartedEvent(IntPtr arg1_actor);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitScrollFinishedEvent")]
-            public static extern IntPtr DaliAccessibilityEmitScrollFinishedEvent(HandleRef arg1_actor);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitScrollFinishedEvent", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr DaliAccessibilityEmitScrollFinishedEvent(IntPtr arg1_actor);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_IsSuppressedEvent")]
-            public static extern bool DaliAccessibilityIsSuppressedEvent(HandleRef arg1, int accessibilityEvent);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_IsSuppressedEvent", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial bool DaliAccessibilityIsSuppressedEvent(IntPtr arg1, int accessibilityEvent);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_SetSuppressedEvent")]
-            public static extern void DaliAccessibilitySetSuppressedEvent(HandleRef arg1, int accessibilityEvent, bool isSuppressed);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_SetSuppressedEvent", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DaliAccessibilitySetSuppressedEvent(IntPtr arg1, int accessibilityEvent, [MarshalAs(UnmanagedType.U1)] bool isSuppressed);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_new_Range")]
-            public static extern IntPtr DaliAccessibilityNewRange(int arg1_start, int arg2_end, string arg3_content);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_new_Range", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr DaliAccessibilityNewRange(int arg1_start, int arg2_end, string arg3_content);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Bridge_RegisterDefaultLabel")]
-            public static extern void DaliAccessibilityBridgeRegisterDefaultLabel(HandleRef arg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Bridge_RegisterDefaultLabel", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DaliAccessibilityBridgeRegisterDefaultLabel(IntPtr arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Bridge_UnregisterDefaultLabel")]
-            public static extern void DaliAccessibilityBridgeUnregisterDefaultLabel(HandleRef arg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Bridge_UnregisterDefaultLabel", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DaliAccessibilityBridgeUnregisterDefaultLabel(IntPtr arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Accessible_GetCurrentlyHighlightedActor")]
-            public static extern IntPtr DaliAccessibilityAccessibleGetCurrentlyHighlightedActor();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Accessible_GetCurrentlyHighlightedActor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr DaliAccessibilityAccessibleGetCurrentlyHighlightedActor();
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Accessible_GetHighlightActor")]
-            public static extern IntPtr DaliAccessibilityAccessibleGetHighlightActor();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Accessible_GetHighlightActor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr DaliAccessibilityAccessibleGetHighlightActor();
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Accessible_SetHighlightActor")]
-            public static extern void DaliAccessibilityAccessibleSetHighlightActor(HandleRef arg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Accessible_SetHighlightActor", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DaliAccessibilityAccessibleSetHighlightActor(IntPtr arg1);
 
 #if false
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActionSignal")]
-            public static extern IntPtr DaliToolkitDevelControlAccessibilityActionSignal(BaseComponents.View.ControlHandle arg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibilityActionSignal", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial IntPtr DaliToolkitDevelControlAccessibilityActionSignal(BaseComponents.View.ControlHandle arg1);
 #endif
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_SetCustomHighlightOverlay")]
-            public static extern void SetCustomHighlightOverlay(global::System.Runtime.InteropServices.HandleRef control, global::System.Runtime.InteropServices.HandleRef position, global::System.Runtime.InteropServices.HandleRef size);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_SetCustomHighlightOverlay", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetCustomHighlightOverlay(IntPtr control, IntPtr position, IntPtr size);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_ResetCustomHighlightOverlay")]
-            public static extern void ResetCustomHighlightOverlay(global::System.Runtime.InteropServices.HandleRef control);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_ResetCustomHighlightOverlay", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ResetCustomHighlightOverlay(IntPtr control);
         }
     }
 }
+
+
+
+
+

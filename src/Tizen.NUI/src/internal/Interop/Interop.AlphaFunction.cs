@@ -15,41 +15,50 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class AlphaFunction
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AlphaFunction_0")]
-            public static extern global::System.IntPtr NewAlphaFunction();
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AlphaFunction_0", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewAlphaFunction();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AlphaFunction_BuiltInFunction")]
-            public static extern global::System.IntPtr NewAlphaFunction(int builtInFunction);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AlphaFunction_BuiltInFunction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewAlphaFunction(int builtInFunction);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AlphaFunction_CustomAlphaFunction")]
-            public static extern global::System.IntPtr NewAlphaFunction(global::System.Runtime.InteropServices.HandleRef alphaFunction);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AlphaFunction_CustomAlphaFunction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewAlphaFunction(IntPtr alphaFunction);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AlphaFunction_Bezier")]
-            public static extern global::System.IntPtr NewAlphaFunction(global::System.Runtime.InteropServices.HandleRef controlPoint0, global::System.Runtime.InteropServices.HandleRef controlPoint1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AlphaFunction_Bezier", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewAlphaFunction(IntPtr controlPoint0, IntPtr controlPoint1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AlphaFunction_BuiltInSpring")]
-            public static extern global::System.IntPtr NewAlphaFunctionSpringType(int springType);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AlphaFunction_BuiltInSpring", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewAlphaFunctionSpringType(int springType);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AlphaFunction_CustomSpring")]
-            public static extern global::System.IntPtr NewAlphaFunctionSpringData(float stiffness, float damping, float mass);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_AlphaFunction_CustomSpring", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewAlphaFunctionSpringData(float stiffness, float damping, float mass);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AlphaFunction_GetBezierControlPoints")]
-            public static extern global::System.IntPtr GetBezierControlPoints(global::System.Runtime.InteropServices.HandleRef alphaFunction);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AlphaFunction_GetBezierControlPoints", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetBezierControlPoints(IntPtr alphaFunction);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AlphaFunction_GetBuiltinFunction")]
-            public static extern int GetBuiltinFunction(global::System.Runtime.InteropServices.HandleRef alphaFunction);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AlphaFunction_GetBuiltinFunction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetBuiltinFunction(IntPtr alphaFunction);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AlphaFunction_GetMode")]
-            public static extern int GetMode(global::System.Runtime.InteropServices.HandleRef alphaFunction);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AlphaFunction_GetMode", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetMode(IntPtr alphaFunction);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_AlphaFunction")]
-            public static extern void DeleteAlphaFunction(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_AlphaFunction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void DeleteAlphaFunction(IntPtr jarg1);
         }
     }
 }
+
+
+
+
+

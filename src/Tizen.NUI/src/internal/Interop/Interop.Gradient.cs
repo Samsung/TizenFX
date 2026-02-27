@@ -15,29 +15,38 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class Gradient
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_SetColorStops")]
-            public static extern void SetColorStops(global::System.Runtime.InteropServices.HandleRef gradient, [global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPArray)] float[] stops, uint stopsLength);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_SetColorStops", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetColorStops(IntPtr gradient, [global::System.Runtime.InteropServices.In, global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.LPArray)] float[] stops, uint stopsLength);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_GetColorStopsCount")]
-            public static extern uint GetColorStopsCount(global::System.Runtime.InteropServices.HandleRef gradient);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_GetColorStopsCount", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetColorStopsCount(IntPtr gradient);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_GetColorStopsOffsetIndexOf")]
-            public static extern float GetColorStopsOffsetIndexOf(global::System.Runtime.InteropServices.HandleRef gradient, uint index);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_GetColorStopsOffsetIndexOf", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial float GetColorStopsOffsetIndexOf(IntPtr gradient, uint index);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_GetColorStopsColorIndexOf")]
-            public static extern global::System.IntPtr GetColorStopsColorIndexOf(global::System.Runtime.InteropServices.HandleRef gradient, uint index);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_GetColorStopsColorIndexOf", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetColorStopsColorIndexOf(IntPtr gradient, uint index);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_SetSpread")]
-            public static extern void SetSpread(global::System.Runtime.InteropServices.HandleRef gradient, int index);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_SetSpread", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetSpread(IntPtr gradient, int index);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_GetSpread")]
-            public static extern int GetSpread(global::System.Runtime.InteropServices.HandleRef gradient);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Gradient_GetSpread", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetSpread(IntPtr gradient);
         }
     }
 }
+
+
+
+
+

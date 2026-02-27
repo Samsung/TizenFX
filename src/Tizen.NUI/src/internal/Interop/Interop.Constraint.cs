@@ -15,6 +15,10 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+using global::System.Runtime.InteropServices.Marshalling;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -22,87 +26,92 @@ namespace Tizen.NUI
         internal static partial class Constraint
         {
             // Property type specific API
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Boolean")]
-            public static extern global::System.IntPtr ConstraintBooleanNew(global::System.Runtime.InteropServices.HandleRef target, int propertyIndex, global::System.Runtime.InteropServices.HandleRef constraintFunction);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Boolean", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ConstraintBooleanNew(IntPtr target, int propertyIndex, IntPtr constraintFunction);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Float")]
-            public static extern global::System.IntPtr ConstraintFloatNew(global::System.Runtime.InteropServices.HandleRef target, int propertyIndex, global::System.Runtime.InteropServices.HandleRef constraintFunction);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Float", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ConstraintFloatNew(IntPtr target, int propertyIndex, IntPtr constraintFunction);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Integer")]
-            public static extern global::System.IntPtr ConstraintIntegerNew(global::System.Runtime.InteropServices.HandleRef target, int propertyIndex, global::System.Runtime.InteropServices.HandleRef constraintFunction);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Integer", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ConstraintIntegerNew(IntPtr target, int propertyIndex, IntPtr constraintFunction);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Vector2")]
-            public static extern global::System.IntPtr ConstraintVector2New(global::System.Runtime.InteropServices.HandleRef target, int propertyIndex, global::System.Runtime.InteropServices.HandleRef constraintFunction);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Vector2", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ConstraintVector2New(IntPtr target, int propertyIndex, IntPtr constraintFunction);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Vector3")]
-            public static extern global::System.IntPtr ConstraintVector3New(global::System.Runtime.InteropServices.HandleRef target, int propertyIndex, global::System.Runtime.InteropServices.HandleRef constraintFunction);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Vector3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ConstraintVector3New(IntPtr target, int propertyIndex, IntPtr constraintFunction);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Vector4")]
-            public static extern global::System.IntPtr ConstraintVector4New(global::System.Runtime.InteropServices.HandleRef target, int propertyIndex, global::System.Runtime.InteropServices.HandleRef constraintFunction);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Vector4", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ConstraintVector4New(IntPtr target, int propertyIndex, IntPtr constraintFunction);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Matrix3")]
-            public static extern global::System.IntPtr ConstraintMatrix3New(global::System.Runtime.InteropServices.HandleRef target, int propertyIndex, global::System.Runtime.InteropServices.HandleRef constraintFunction);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Matrix3", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ConstraintMatrix3New(IntPtr target, int propertyIndex, IntPtr constraintFunction);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Matrix")]
-            public static extern global::System.IntPtr ConstraintMatrixNew(global::System.Runtime.InteropServices.HandleRef target, int propertyIndex, global::System.Runtime.InteropServices.HandleRef constraintFunction);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Matrix", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ConstraintMatrixNew(IntPtr target, int propertyIndex, IntPtr constraintFunction);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Quaternion")]
-            public static extern global::System.IntPtr ConstraintRotationNew(global::System.Runtime.InteropServices.HandleRef target, int propertyIndex, global::System.Runtime.InteropServices.HandleRef constraintFunction);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_New_Quaternion", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr ConstraintRotationNew(IntPtr target, int propertyIndex, IntPtr constraintFunction);
 
             // Common API
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Constraint")]
-            public static extern global::System.IntPtr DeleteConstraint(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Constraint", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr DeleteConstraint(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_AddSource")]
-            public static extern void AddSource(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef sourceHandle, int sourceIndex);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_AddSource", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AddSource(IntPtr jarg1, IntPtr sourceHandle, int sourceIndex);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_AddLocalSource")]
-            public static extern void AddLocalSource(global::System.Runtime.InteropServices.HandleRef jarg1, int sourceIndex);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_AddLocalSource", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AddLocalSource(IntPtr jarg1, int sourceIndex);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_AddParentSource")]
-            public static extern void AddParentSource(global::System.Runtime.InteropServices.HandleRef jarg1, int sourceIndex);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_AddParentSource", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void AddParentSource(IntPtr jarg1, int sourceIndex);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Apply")]
-            public static extern void Apply(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Apply", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Apply(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_ApplyPost")]
-            public static extern void ApplyPost(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_ApplyPost", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void ApplyPost(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Remove")]
-            public static extern void Remove(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            // Note : Dali use RemoveAction as apply action behavior.
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_SetRemoveAction")]
-            public static extern void SetApplyAction(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_Remove", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void Remove(IntPtr jarg1);
 
             // Note : Dali use RemoveAction as apply action behavior.
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_GetRemoveAction")]
-            public static extern int GetApplyAction(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_SetRemoveAction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetApplyAction(IntPtr jarg1, int jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_SetApplyRate")]
-            public static extern void SetApplyRate(global::System.Runtime.InteropServices.HandleRef jarg1, uint applyRate);
+            // Note : Dali use RemoveAction as apply action behavior.
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_GetRemoveAction", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetApplyAction(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_GetApplyRate")]
-            public static extern uint GetApplyRate(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_SetApplyRate", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetApplyRate(IntPtr jarg1, uint applyRate);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_SetTag")]
-            public static extern void SetTag(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_GetApplyRate", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetApplyRate(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_GetTag")]
-            public static extern uint GetTag(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_SetTag", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial void SetTag(IntPtr jarg1, uint jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_GetTargetObject")]
-            public static extern global::System.IntPtr GetTargetObject(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_GetTag", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial uint GetTag(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_GetTargetProperty")]
-            public static extern int GetTargetProperty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_GetTargetObject", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr GetTargetObject(IntPtr jarg1);
+
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Constraint_GetTargetProperty", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial int GetTargetProperty(IntPtr jarg1);
 
             // Special Constraint
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EqualConstraintWithParentFloat_New")]
-            public static extern global::System.IntPtr NewEqualConstraintWithParentFloat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_EqualConstraintWithParentFloat_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewEqualConstraintWithParentFloat(IntPtr jarg1, int jarg2, int jarg3);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RelativeConstraintWithParentFloat_New")]
-            public static extern global::System.IntPtr NewRelativeConstraintWithParentFloat(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3, float jarg4);
+            [LibraryImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RelativeConstraintWithParentFloat_New", StringMarshalling = StringMarshalling.Utf8)]
+            public static partial global::System.IntPtr NewRelativeConstraintWithParentFloat(IntPtr jarg1, int jarg2, int jarg3, float jarg4);
         }
     }
 }
+
+
+
+
+
