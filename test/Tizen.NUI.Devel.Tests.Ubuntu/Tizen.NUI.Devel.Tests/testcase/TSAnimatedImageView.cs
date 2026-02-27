@@ -4,6 +4,7 @@ using NUnit.Framework.TUnit;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -16,6 +17,7 @@ namespace Tizen.NUI.Devel.Tests
         private const string tag = "NUITEST";
         private string image_path = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "Image.png";
         private string animated_image_path = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "dali-logo-anim.gif";
+        private bool finishedCheck = false;
 
         [SetUp]
         public void Init()
@@ -163,7 +165,12 @@ namespace Tizen.NUI.Devel.Tests
 
             Assert.AreEqual(-1, testView.TotalFrame, "Total frame should be -1 when ResourceUrl is not setup");
 
+            testView.SynchronousLoading = true;
             testView.ResourceUrl = animated_image_path;
+            testView.SetValues();
+
+            // Get/Set TotalFrame will works well only if view is scene on.
+            NUIApplication.GetDefaultWindow().Add(testView);
 
             Assert.AreEqual(expectedTotalFrame, testView.TotalFrame, "Total frame doesn't matched!");
 
@@ -184,12 +191,14 @@ namespace Tizen.NUI.Devel.Tests
 
             Assert.AreEqual(-1, testView.CurrentFrame, "Current frame should be -1 when ResourceUrl is not setup");
 
+            testView.SynchronousLoading = true;
             testView.ResourceUrl = animated_image_path;
+            testView.SetValues();
+
+            // Get/Set CurrentFrame will works well only if view is scene on.
+            NUIApplication.GetDefaultWindow().Add(testView);
 
             Assert.AreEqual(0, testView.CurrentFrame, "Current frame doesn't matched!");
-
-            // Set CurrentFrame will works well only if view is scene on.
-            NUIApplication.GetDefaultWindow().Add(testView);
 
             int expectFrame = 3;
             testView.CurrentFrame = expectFrame;
@@ -312,6 +321,63 @@ namespace Tizen.NUI.Devel.Tests
             Assert.AreEqual(expectSpeedFactor, testView.FrameSpeedFactor, "FrameSpeedFactor doesn't matched!");
 
             testView.Dispose();
+        }
+
+#region eunkiki.hong Looks Ubuntu TCT don't support async Task running. Ignore it for now.
+#if false
+        [Test]
+        [Category("P1")]
+        [Description("Finished test")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.AnimatedImageView.Finished E")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "EVL")]
+        [Property("AUTHOR", "eunkiki.hong@samsung.com")]
+        public async Task Finished_CHECK_EVENT()
+        {
+            AnimatedImageView testView = new AnimatedImageView();
+
+            testView.ResourceUrl = animated_image_path;
+            NUIApplication.GetDefaultWindow().Add(testView);
+
+            finishedCheck = false;
+            testView.LoopCount = 1;
+            testView.FrameSpeedFactor = 100.0f; ///< To make finished callback comes early.
+            testView.Finished += AnimatedImageView_Finished;
+
+            testView.Play();
+
+            await Task.Delay(1000);
+
+            // Loading image might spend long time. Retry several times.
+            await DelayUntilTrue(() => {return finishedCheck;});
+
+            Assert.IsTrue(finishedCheck, $"Callback should be comes");
+
+            testView.Finished -= AnimatedImageView_Finished;
+            testView.Unparent();
+            testView.Dispose();
+        }
+#endif
+#endregion
+
+        private void AnimatedImageView_Finished(object sender, EventArgs e)
+        {
+            finishedCheck = true;
+        }
+
+        private async Task DelayUntilTrue(Func<bool> check)
+        {
+            int tryCount = 0;
+            int maxTryCount = 10;
+            while (tryCount++ < maxTryCount)
+            {
+                if (check())
+                {
+                    break;
+                }
+                tlog.Debug(tag, $"Check function failed. wait 500 ms more");
+                await Task.Delay(500);
+            }
         }
     }
 }
