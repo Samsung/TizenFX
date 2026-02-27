@@ -68,7 +68,9 @@ namespace Tizen.NUI.Samples
             Assembly assembly = typeof(DaliDemo).Assembly;
 
             Type exampleType = assembly?.GetType(name);
-            IExample example = assembly?.CreateInstance(name) as IExample;
+
+            var rawExample = assembly?.CreateInstance(name);
+            IExample example = rawExample as IExample;
 
             if (null != example)
             {
@@ -85,13 +87,9 @@ namespace Tizen.NUI.Samples
                 try
                 {
                     // Hard coding to set NUIApplication into IExample
-                    if(name == "Tizen.NUI.Samples.FlushApplicationMessageSample")
+                    if (rawExample is IApplicationHolder applicationHolder)
                     {
-                        (example as FlushApplicationMessageSample)?.SetCurrentApplication(this);
-                    }
-                    if(name == "Tizen.NUI.Samples.BackgroundBlurEffectTest")
-                    {
-                        (example as BackgroundBlurEffectTest)?.SetCurrentApplication(this);
+                        applicationHolder.SetCurrentApplication(this);
                     }
                     example.Activate();
                 }
