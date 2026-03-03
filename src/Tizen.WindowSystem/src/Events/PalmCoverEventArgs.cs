@@ -26,12 +26,12 @@ namespace Tizen.WindowSystem
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PalmCoverEventArgs : EventArgs
     {
-        internal PalmCoverEventArgs(GestureState state, int duration, int cx, int cy, int size, double pressure)
+        internal PalmCoverEventArgs(GestureState state, int duration, int centerX, int centerY, int size, double pressure)
         {
             State = state;
             Duration = duration;
-            Cx = cx;
-            Cy = cy;
+            CenterX = centerX;
+            CenterY = centerY;
             Size = size;
             Pressure = pressure;
         }
@@ -44,13 +44,13 @@ namespace Tizen.WindowSystem
         /// </summary>
         public int Duration{ get; internal set;}
         /// <summary>
-        /// Cx
+        /// Center X
         /// </summary>
-        public int Cx{ get; internal set;}
+        public int CenterX{ get; internal set;}
         /// <summary>
-        /// Cy
+        /// Center Y
         /// </summary>
-        public int Cy{ get; internal set;}
+        public int CenterY{ get; internal set;}
         /// <summary>
         /// Size
         /// </summary>

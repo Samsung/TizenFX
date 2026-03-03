@@ -120,7 +120,7 @@ namespace Tizen.WindowSystem
         /// Send given wheel.
         /// </summary>
         /// <param name="wheelType">The wheel type to generate.</param>
-        /// <param name="value">The value of the wheel.</param>
+        /// <param name="value">The offset value of rolling (positive value means roll down or clockwise, and negative value means roll up or counter-clockwise).</param>
         public void SendWheel(WheelDirection wheelType, int value)
         {
             Interop.InputGenerator.ErrorCode res = Interop.InputGenerator.GenerateWheel(_inputGeneratorHandle, wheelType, value);

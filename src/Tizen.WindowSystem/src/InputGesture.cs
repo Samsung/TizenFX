@@ -276,25 +276,6 @@ namespace Tizen.WindowSystem
         }
 
         /// <summary>
-        /// Sets the size of a registered edge swipe gesture.
-        /// </summary>
-        /// <param name="fingers">The number of fingers.</param>
-        /// <param name="edge">The position of edge.</param>
-        /// <param name="edgeSize">The edge size.</param>
-        /// <param name="startPoint">The start point of edge area.</param>
-        /// <param name="endPoint">The end point of edge area.</param>
-        /// <exception cref="ArgumentException">Thrown when gesture is not registered.</exception>
-        public void SetEdgeSwipeSize(int fingers, GestureEdge edge, GestureEdgeSize edgeSize, int startPoint, int endPoint)
-        {
-            var key = (fingers, edge);
-            if (!_edgeSwipeHandles.TryGetValue(key, out IntPtr handle))
-                throw new ArgumentException("Edge swipe gesture not registered for this (fingers, edge) combination.");
-
-            var res = Interop.InputGesture.EdgeSwipeSizeSet(handle, edgeSize, startPoint, endPoint);
-            ErrorUtils.ThrowIfError((int)res, "Failed to set edge swipe size");
-        }
-
-        /// <summary>
         /// Registers an edge drag gesture to detect.
         /// </summary>
         /// <param name="fingers">The number of fingers.</param>
@@ -363,25 +344,6 @@ namespace Tizen.WindowSystem
                 Interop.InputGesture.EdgeDragFree(_handler, handle);
                 _edgeDragHandles.Remove(key);
             }
-        }
-
-        /// <summary>
-        /// Sets the size of a registered edge drag gesture.
-        /// </summary>
-        /// <param name="fingers">The number of fingers.</param>
-        /// <param name="edge">The position of edge.</param>
-        /// <param name="edgeSize">The edge size.</param>
-        /// <param name="startPoint">The start point of edge area.</param>
-        /// <param name="endPoint">The end point of edge area.</param>
-        /// <exception cref="ArgumentException">Thrown when gesture is not registered.</exception>
-        public void SetEdgeDragSize(int fingers, GestureEdge edge, GestureEdgeSize edgeSize, int startPoint, int endPoint)
-        {
-            var key = (fingers, edge);
-            if (!_edgeDragHandles.TryGetValue(key, out IntPtr handle))
-                throw new ArgumentException("Edge drag gesture not registered for this (fingers, edge) combination.");
-
-            var res = Interop.InputGesture.EdgeDragSizeSet(handle, edgeSize, startPoint, endPoint);
-            ErrorUtils.ThrowIfError((int)res, "Failed to set edge drag size");
         }
 
         /// <summary>
