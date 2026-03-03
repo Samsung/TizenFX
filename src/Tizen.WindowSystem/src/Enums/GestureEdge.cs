@@ -10,11 +10,6 @@ namespace Tizen.WindowSystem
     public enum GestureEdge
     {
         /// <summary>
-        /// edge none.
-        /// </summary>
-        None,
-
-        /// <summary>
         /// edge top.
         /// </summary>
         Top,

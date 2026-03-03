@@ -10,11 +10,6 @@ namespace Tizen.WindowSystem
     public enum GestureState
     {
         /// <summary>
-        /// None.
-        /// </summary>
-        None,
-
-        /// <summary>
         /// Begin.
         /// </summary>
         Begin,

@@ -10,11 +10,6 @@ namespace Tizen.WindowSystem
     public enum GestureGrabMode
     {
         /// <summary>
-        /// mode none.
-        /// </summary>
-        None,
-
-        /// <summary>
         /// mode exclusive.
         /// </summary>
         Exclusive,

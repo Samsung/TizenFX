@@ -10,11 +10,6 @@ namespace Tizen.WindowSystem
     public enum GestureEdgeSize
     {
         /// <summary>
-        /// edge size none.
-        /// </summary>
-        None,
-
-        /// <summary>
         /// edge size full.
         /// </summary>
         Full,
