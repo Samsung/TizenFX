@@ -562,6 +562,7 @@ namespace Tizen.NUI.BaseComponents
 
             // Assume that we are using standard Image at first.
             // (Since we might cache Visual.Property.Type as Visual.Type.AnimatedImage even we don't use URLs.)
+            base.allowToCreateVisualEmptyUrl = false;
             using (PropertyValue imageType = new PropertyValue((int)Visual.Type.Image))
             {
                 UpdateImage(Visual.Property.Type, imageType, false);
@@ -589,6 +590,10 @@ namespace Tizen.NUI.BaseComponents
                 // Trick that we are using resourceURLs without ResourceUrl API.
                 using PropertyValue animatiedImage = new PropertyValue((int)Visual.Type.AnimatedImage);
                 UpdateImage(Visual.Property.Type, animatiedImage, false);
+
+                // Mark some special flags at ImageView that we are using image sequence.
+                // This flag will allow to create new visuals even if _resourceUrl is null or empty.
+                base.allowToCreateVisualEmptyUrl = true;
             }
 
             base.UpdateImage();
