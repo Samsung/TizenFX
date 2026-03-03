@@ -66,7 +66,7 @@ namespace Tizen.WindowSystem.Shell
             if (_tzshQpService.IsInvalid)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                Tizen.WindowSystem.ErrorUtils.ThrowIfError(err);
+                ErrorUtils.ThrowIfError(err);
             }
         }
 
@@ -106,7 +106,7 @@ namespace Tizen.WindowSystem.Shell
             set
             {
                 int res = Interop.QuickPanelService.SetEffectType(_tzshQpService, value);
-                Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+                ErrorUtils.ThrowIfError(res);
                 _currentEffect = value;
             }
         }
@@ -124,7 +124,7 @@ namespace Tizen.WindowSystem.Shell
             set
             {
                 int res = Interop.QuickPanelService.LockScroll(_tzshQpService, value);
-                Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+                ErrorUtils.ThrowIfError(res);
                 _isLocked = value;
             }
         }
@@ -149,7 +149,7 @@ namespace Tizen.WindowSystem.Shell
 
             res = Interop.QuickPanelService.GetType(_tzshQpService, out type);
 
-            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+            ErrorUtils.ThrowIfError(res);
 
             return (QuickPanelCategory)type;
         }
@@ -163,7 +163,7 @@ namespace Tizen.WindowSystem.Shell
             int res;
 
             res = Interop.QuickPanelService.Show(_tzshQpService);
-            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+            ErrorUtils.ThrowIfError(res);
         }
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace Tizen.WindowSystem.Shell
             int res;
 
             res = Interop.QuickPanelService.Hide(_tzshQpService);
-            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+            ErrorUtils.ThrowIfError(res);
         }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace Tizen.WindowSystem.Shell
                 throw new ArgumentNullException(nameof(region));
             }
             res = Interop.QuickPanelService.SetContentRegion(_tzshQpService, angle, region.SafeHandle);
-            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+            ErrorUtils.ThrowIfError(res);
         }
 
         /// <summary>
@@ -213,7 +213,7 @@ namespace Tizen.WindowSystem.Shell
                 throw new ArgumentNullException(nameof(region));
             }
             res = Interop.QuickPanelService.SetHandlerRegion(_tzshQpService, angle, region.SafeHandle);
-            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+            ErrorUtils.ThrowIfError(res);
         }
     }
 }

@@ -66,7 +66,7 @@ namespace Tizen.WindowSystem.Shell
             if (_softkeyClient.IsInvalid)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                Tizen.WindowSystem.ErrorUtils.ThrowIfError(err);
+                ErrorUtils.ThrowIfError(err);
             }
         }
 
@@ -103,8 +103,8 @@ namespace Tizen.WindowSystem.Shell
             get
             {
                 int res = Interop.SoftkeyClient.GetVisibleState(_softkeyClient, out int vis);
-                Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
-                return vis != 0;
+                ErrorUtils.ThrowIfError(res);
+                return vis != 1;
             }
         }
 
@@ -119,13 +119,13 @@ namespace Tizen.WindowSystem.Shell
             get
             {
                 int res = Interop.SoftkeyClient.GetExpandState(_softkeyClient, out int expand);
-                Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
-                return expand != 0;
+                ErrorUtils.ThrowIfError(res);
+                return expand != 1;
             }
             set
             {
                 int res = Interop.SoftkeyClient.SetExpandState(_softkeyClient, value ? 1 : 0);
-                Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+                ErrorUtils.ThrowIfError(res);
             }
         }
 
@@ -140,13 +140,13 @@ namespace Tizen.WindowSystem.Shell
             get
             {
                 int res = Interop.SoftkeyClient.GetOpacityState(_softkeyClient, out int opacity);
-                Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
-                return opacity != 0;
+                ErrorUtils.ThrowIfError(res);
+                return opacity != 1;
             }
             set
             {
                 int res = Interop.SoftkeyClient.SetOpacityState(_softkeyClient, value ? 1 : 0);
-                Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+                ErrorUtils.ThrowIfError(res);
             }
         }
 
@@ -159,7 +159,7 @@ namespace Tizen.WindowSystem.Shell
         public void Show()
         {
             int res = Interop.SoftkeyClient.Show(_softkeyClient);
-            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+            ErrorUtils.ThrowIfError(res);
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace Tizen.WindowSystem.Shell
         public void Hide()
         {
             int res = Interop.SoftkeyClient.Hide(_softkeyClient);
-            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+            ErrorUtils.ThrowIfError(res);
         }
 
 

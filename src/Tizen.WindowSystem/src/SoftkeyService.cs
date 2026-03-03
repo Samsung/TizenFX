@@ -69,7 +69,7 @@ namespace Tizen.WindowSystem.Shell
             if (_softkeyService.IsInvalid)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                Tizen.WindowSystem.ErrorUtils.ThrowIfError(err);
+                ErrorUtils.ThrowIfError(err);
             }
         }
 
@@ -107,7 +107,7 @@ namespace Tizen.WindowSystem.Shell
                 {
                     _onVisibleChanged = OnVisibleChanged;
                     int res = Interop.SoftkeyService.SetVisibleEventHandler(_softkeyService, _onVisibleChanged, IntPtr.Zero);
-                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+                    ErrorUtils.ThrowIfError(res);
                 }
                 _visibleChanged += value;
             }
@@ -117,7 +117,7 @@ namespace Tizen.WindowSystem.Shell
                 if (_visibleChanged == null)
                 {
                     int res = Interop.SoftkeyService.SetVisibleEventHandler(_softkeyService, null, IntPtr.Zero);
-                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+                    ErrorUtils.ThrowIfError(res);
                 }
             }
         }
@@ -134,7 +134,7 @@ namespace Tizen.WindowSystem.Shell
                 {
                     _onExpandChanged = OnExpandChanged;
                     int res = Interop.SoftkeyService.SetExpandEventHandler(_softkeyService, _onExpandChanged, IntPtr.Zero);
-                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+                    ErrorUtils.ThrowIfError(res);
                 }
                 _expandChanged += value;
             }
@@ -144,7 +144,7 @@ namespace Tizen.WindowSystem.Shell
                 if (_expandChanged == null)
                 {
                     int res = Interop.SoftkeyService.SetExpandEventHandler(_softkeyService, null, IntPtr.Zero);
-                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+                    ErrorUtils.ThrowIfError(res);
                 }
             }
         }
@@ -161,7 +161,7 @@ namespace Tizen.WindowSystem.Shell
                 {
                     _onOpacityChanged = OnOpacityChanged;
                     int res = Interop.SoftkeyService.SetOpacityEventHandler(_softkeyService, _onOpacityChanged, IntPtr.Zero);
-                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res, "Unknown Error");
+                    ErrorUtils.ThrowIfError(res, "Unknown Error");
                 }
                 _opacityChanged += value;
             }
@@ -171,7 +171,7 @@ namespace Tizen.WindowSystem.Shell
                 if (_opacityChanged == null)
                 {
                     int res = Interop.SoftkeyService.SetOpacityEventHandler(_softkeyService, null, IntPtr.Zero);
-                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+                    ErrorUtils.ThrowIfError(res);
                 }
             }
         }
@@ -201,7 +201,7 @@ namespace Tizen.WindowSystem.Shell
         public void Show()
         {
             int res = Interop.SoftkeyService.Show(_softkeyService);
-            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+            ErrorUtils.ThrowIfError(res);
         }
 
         /// <summary>
@@ -211,7 +211,7 @@ namespace Tizen.WindowSystem.Shell
         public void Hide()
         {
             int res = Interop.SoftkeyService.Hide(_softkeyService);
-            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+            ErrorUtils.ThrowIfError(res);
         }
     }
 }

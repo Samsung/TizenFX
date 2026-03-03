@@ -55,7 +55,7 @@ namespace Tizen.WindowSystem.Shell
             if (_region.IsInvalid)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                Tizen.WindowSystem.ErrorUtils.ThrowIfError(err);
+                ErrorUtils.ThrowIfError(err);
             }
         }
 
@@ -95,7 +95,7 @@ namespace Tizen.WindowSystem.Shell
             int res;
 
             res = Interop.TizenShellRegion.Add(_region, x, y, width, height);
-            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+            ErrorUtils.ThrowIfError(res);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace Tizen.WindowSystem.Shell
             int res;
 
             res = Interop.TizenShellRegion.Subtract(_region, x, y, width, height);
-            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+            ErrorUtils.ThrowIfError(res);
         }
 
         internal SafeHandles.ShellRegionHandle SafeHandle

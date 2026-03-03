@@ -63,7 +63,7 @@ namespace Tizen.WindowSystem.Shell
             if (_taskbarService.IsInvalid)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                Tizen.WindowSystem.ErrorUtils.ThrowIfError(err);
+                ErrorUtils.ThrowIfError(err);
             }
 
             Position = position;
@@ -104,7 +104,7 @@ namespace Tizen.WindowSystem.Shell
                 if (_taskbarPosition != value)
                 {
                     int res = Interop.TaskbarService.SetPlaceType(_taskbarService, value);
-                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+                    ErrorUtils.ThrowIfError(res);
                     _taskbarPosition = value;
                 }
             }
@@ -123,7 +123,7 @@ namespace Tizen.WindowSystem.Shell
             int res;
 
             res = Interop.TaskbarService.SetSize(_taskbarService, width, height);
-            Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+            ErrorUtils.ThrowIfError(res);
         }
     }
 }

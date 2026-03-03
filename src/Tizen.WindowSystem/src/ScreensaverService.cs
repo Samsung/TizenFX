@@ -61,7 +61,7 @@ namespace Tizen.WindowSystem.Shell
             if (_screensaverService.IsInvalid)
             {
                 int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                Tizen.WindowSystem.ErrorUtils.ThrowIfError(err);
+                ErrorUtils.ThrowIfError(err);
             }
         }
 

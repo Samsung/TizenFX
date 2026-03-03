@@ -45,7 +45,7 @@ namespace Tizen.WindowSystem.Shell
             if (_tizenShell.IsInvalid)
             {
                 int error = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                Tizen.WindowSystem.ErrorUtils.ThrowIfError(error, "Unknown Error");
+                ErrorUtils.ThrowIfError(error, "Unknown Error");
             }
         }
 
