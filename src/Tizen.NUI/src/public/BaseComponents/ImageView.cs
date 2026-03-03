@@ -152,6 +152,7 @@ namespace Tizen.NUI.BaseComponents
         };
         internal PropertyMap cachedImagePropertyMap;
         internal bool imagePropertyUpdatedFlag;
+        internal bool allowToCreateVisualEmptyUrl = false;
 
         private bool imagePropertyUpdateProcessAttachedFlag;
         private Rectangle _border;
@@ -2358,7 +2359,7 @@ namespace Tizen.NUI.BaseComponents
         {
             // If previous resourceUrl was already empty, we don't need to do anything. just ignore.
             // Unregist and detach process only if previous resourceUrl was not empty
-            if (!string.IsNullOrEmpty(_resourceUrl))
+            if (allowToCreateVisualEmptyUrl || !string.IsNullOrEmpty(_resourceUrl))
             {
                 using PropertyValue emptyValue = new PropertyValue();
 
@@ -2471,7 +2472,7 @@ namespace Tizen.NUI.BaseComponents
                 cachedImagePropertyMap[key] = value;
 
                 // Lazy update only if visual creation required, and _resourceUrl is not empty, and ProcessAttachedFlag is false.
-                if (requiredVisualCreation && !string.IsNullOrEmpty(_resourceUrl) && !imagePropertyUpdateProcessAttachedFlag)
+                if (requiredVisualCreation && (allowToCreateVisualEmptyUrl || !string.IsNullOrEmpty(_resourceUrl)) && !imagePropertyUpdateProcessAttachedFlag)
                 {
                     imagePropertyUpdateProcessAttachedFlag = true;
                     ProcessorController.Instance.ProcessorOnceEvent += UpdateImage;
@@ -2523,7 +2524,7 @@ namespace Tizen.NUI.BaseComponents
             if (!((GetCachedImageVisualProperty(Visual.Property.Type)?.Get(out visualType) ?? false) && (visualType == (int)Visual.Type.AnimatedImage)))
             {
                 // If ResourceUrl is not setuped, don't set property. fast return.
-                if (string.IsNullOrEmpty(_resourceUrl))
+                if (!allowToCreateVisualEmptyUrl && string.IsNullOrEmpty(_resourceUrl))
                 {
                     return;
                 }
