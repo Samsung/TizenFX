@@ -5,6 +5,7 @@ namespace Tizen.WindowSystem.Shell
     /// <summary>
     /// Effect type.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public enum QuickPanelEffect
     {
         /// <summary>

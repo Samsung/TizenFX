@@ -18,6 +18,7 @@
 using System;
 using Tizen.System;
 using Tizen.Common;
+using System.ComponentModel;
 
 namespace Tizen.WindowSystem.Shell
 {
@@ -29,6 +30,7 @@ namespace Tizen.WindowSystem.Shell
     /// Through this class, we can conveniently retrieve various states of the Quickpanel service and make changes to specific states when necessary.
     /// </remarks>
     /// <since_tizen> 8 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class QuickPanelClient : IDisposable
     {
         TizenShell _tzsh;

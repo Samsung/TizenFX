@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using Tizen.Applications.Exceptions;
 
 namespace Tizen.WindowSystem.Shell
@@ -28,6 +29,7 @@ namespace Tizen.WindowSystem.Shell
     /// TizenShell serves as the entry point for interacting with the other subclass of Tizen Window System Shell.
     /// </remarks>
     /// <since_tizen> 8 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class TizenShell : IDisposable
     {
         SafeHandles.TizenShellHandle _tizenShell;

@@ -6,6 +6,7 @@ namespace Tizen.WindowSystem.Shell
     /// Enumeration for type of quickpanel service window.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public enum QuickPanelCategory
     {
         /// <summary>

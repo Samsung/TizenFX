@@ -5,6 +5,7 @@ namespace Tizen.WindowSystem.Shell
     /// <summary>
     /// Enumeration for placed type of taskbar service window.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public enum TaskbarPosition
     {
         /// <summary>
