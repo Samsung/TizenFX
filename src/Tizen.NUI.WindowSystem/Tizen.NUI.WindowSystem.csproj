@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <TizenCreateTpkOnBuild>false</TizenCreateTpkOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
+    <ProjectReference Include="..\Tizen.System.Information\Tizen.System.Information.csproj" />
+  </ItemGroup>
+
+</Project>
