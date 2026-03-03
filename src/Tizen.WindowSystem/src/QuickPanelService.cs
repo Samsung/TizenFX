@@ -182,38 +182,74 @@ namespace Tizen.WindowSystem.Shell
         /// Sets the content region of the quickpanel service.
         /// </summary>
         /// <param name="angle">The angle setting the region</param>
-        /// <param name="region">The region of the content</param>
+        /// <param name="regions">The regions of the content</param>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when a argument is null.</exception>
-        public void SetContentRegion(uint angle, ShellRegion region)
+        /// <exception cref="ArgumentNullException">Thrown when an argument is null.</exception>
+        public void SetContentRegion(uint angle, params (int x, int y, int width, int height)[] regions)
         {
-            int res;
-
-            if (region == null)
+            if (regions == null)
             {
-                throw new ArgumentNullException(nameof(region));
+                throw new ArgumentNullException(nameof(regions));
             }
-            res = Interop.QuickPanelService.SetContentRegion(_tzshQpService, angle, region.SafeHandle);
-            ErrorUtils.ThrowIfError(res);
+
+            var regionHandle = Interop.TizenShellRegion.Create(_tzsh.SafeHandle);
+            if (regionHandle.IsInvalid)
+            {
+                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
+                Tizen.WindowSystem.ErrorUtils.ThrowIfError(err);
+            }
+
+            try
+            {
+                foreach (var rect in regions)
+                {
+                    int resAdd = Interop.TizenShellRegion.Add(regionHandle, rect.x, rect.y, rect.width, rect.height);
+                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(resAdd);
+                }
+                int res = Interop.QuickPanelService.SetContentRegion(_tzshQpService, angle, regionHandle);
+                Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+            }
+            finally
+            {
+                regionHandle.Dispose();
+            }
         }
 
         /// <summary>
         /// Sets the handler region of the quickpanel service.
         /// </summary>
         /// <param name="angle">The angle setting the region</param>
-        /// <param name="region">The region of the content</param>
+        /// <param name="regions">The regions of the handler</param>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
-        /// <exception cref="ArgumentNullException">Thrown when a argument is null.</exception>
-        public void SetHandlerRegion(uint angle, ShellRegion region)
+        /// <exception cref="ArgumentNullException">Thrown when an argument is null.</exception>
+        public void SetHandlerRegion(uint angle, params (int x, int y, int width, int height)[] regions)
         {
-            int res;
-
-            if (region == null)
+            if (regions == null)
             {
-                throw new ArgumentNullException(nameof(region));
+                throw new ArgumentNullException(nameof(regions));
             }
-            res = Interop.QuickPanelService.SetHandlerRegion(_tzshQpService, angle, region.SafeHandle);
-            ErrorUtils.ThrowIfError(res);
+
+            var regionHandle = Interop.TizenShellRegion.Create(_tzsh.SafeHandle);
+            if (regionHandle.IsInvalid)
+            {
+                int err = Tizen.Internals.Errors.ErrorFacts.GetLastResult();
+                Tizen.WindowSystem.ErrorUtils.ThrowIfError(err);
+            }
+
+            try
+            {
+                foreach (var rect in regions)
+                {
+                    int resAdd = Interop.TizenShellRegion.Add(regionHandle, rect.x, rect.y, rect.width, rect.height);
+                    Tizen.WindowSystem.ErrorUtils.ThrowIfError(resAdd);
+                }
+                int res = Interop.QuickPanelService.SetHandlerRegion(_tzshQpService, angle, regionHandle);
+                Tizen.WindowSystem.ErrorUtils.ThrowIfError(res);
+            }
+            finally
+            {
+                regionHandle.Dispose();
+            }
         }
     }
 }
