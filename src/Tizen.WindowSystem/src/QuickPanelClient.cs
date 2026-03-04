@@ -16,7 +16,6 @@
  */
 
 using System;
-using Tizen.System;
 using Tizen.Common;
 using System.ComponentModel;
 
@@ -83,8 +82,11 @@ namespace Tizen.WindowSystem.Shell
                 ErrorUtils.ThrowIfError(err);
             }
 
-            Information.TryGetValue("http://tizen.org/feature/screen.width", out width);
-            Information.TryGetValue("http://tizen.org/feature/screen.height", out height);
+            IntPtr display = WindowSystem.Interop.EcoreWl2.GetDisplay(win.WindowHandle);
+            if (display != IntPtr.Zero)
+            {
+                WindowSystem.Interop.EcoreWl2.GetScreenSize(display, out width, out height);
+            }
             if (width > height) _screenOrientation = (WindowOrientation)(90);
         }
 

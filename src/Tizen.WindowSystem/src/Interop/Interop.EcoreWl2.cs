@@ -12,6 +12,12 @@ namespace Tizen.WindowSystem
 
             [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "ecore_wl2_window_id_get")]
             internal static extern int GetWindowId(IntPtr win);
+
+            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "ecore_wl2_window_display_get")]
+            internal static extern IntPtr GetDisplay(IntPtr win);
+
+            [global::System.Runtime.InteropServices.DllImport(lib, EntryPoint = "ecore_wl2_display_screen_size_get")]
+            internal static extern void GetScreenSize(IntPtr display, out int w, out int h);
         }
     }
 }
