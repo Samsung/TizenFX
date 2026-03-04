@@ -725,6 +725,7 @@ namespace Tizen.Applications
         /// Gets the size of encoded raw data without actually encoding it.
         /// </summary>
         /// <returns>The operation result.</returns>
+        /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when out of memory or when the bundle instance has been disposed.</exception>
         /// <since_tizen> 11 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -733,7 +734,11 @@ namespace Tizen.Applications
             int ret = Interop.Bundle.GetBundleEncodedRawSize(_handle, out UIntPtr size);
             if (ret == (int)BundleErrorFactory.BundleError.InvalidParameter)
             {
-                throw new ArgumentException("Invalid bundle");
+                throw new ArgumentException("Invalid parameter");
+            }
+            else if (ret != (int)BundleErrorFactory.BundleError.None)
+            {
+                throw new InvalidOperationException("Invalid bundle");
             }
 
             return (ulong)size;
