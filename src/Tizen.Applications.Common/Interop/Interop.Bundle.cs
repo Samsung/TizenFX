@@ -62,6 +62,9 @@ internal static partial class Interop
         [DllImport(Libraries.Bundle, EntryPoint = "bundle_encode")]
         internal static extern void BundleEncode(SafeBundleHandle handle, out string str, out int len);
 
+        [DllImport(Libraries.Bundle, EntryPoint = "bundle_get_encode_raw_size")]
+        internal static extern int GetBundleEncodedRawSize(SafeBundleHandle handle, out UIntPtr len);
+
         [DllImport(Libraries.Bundle, EntryPoint = "bundle_decode")]
         internal static extern SafeBundleHandle BundleDecode(string bundleRaw, int len);
 
