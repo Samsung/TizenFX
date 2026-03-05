@@ -188,6 +188,10 @@ internal static partial class Interop
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_without_header")]
             internal static extern ErrorCode CreateWithoutHeader(out IntPtr parcelHandle);
 
+            //int rpc_port_parcel_create_with_capacity(rpc_port_parcel_h* h, size_t capacity);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_with_capacity")]
+            internal static extern ErrorCode CreateWithCapacity(out IntPtr parcelHandle, UIntPtr capacity);
+
             //int rpc_port_parcel_reserve(rpc_port_parcel_h h, unsigned int size);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_reserve")]
             internal static extern ErrorCode Reserve(IntPtr parcelHandle, uint size);

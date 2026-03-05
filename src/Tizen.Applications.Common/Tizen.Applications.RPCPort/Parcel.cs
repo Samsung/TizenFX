@@ -202,6 +202,22 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
+        /// Constructs with capacity.
+        /// </summary>
+        /// <param name="capacity">The size of the new parcel.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Parcel(uint capacity)
+        {
+            Interop.LibRPCPort.ErrorCode error;
+
+            error = Interop.LibRPCPort.Parcel.CreateWithCapacity(out _handle, capacity);
+            if (error != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+        }
+
+        /// <summary>
         /// Constructs a new instance of the Parcel class.
         /// </summary>
         /// <param name="withHeader">Determines whether the created parcel object includes a header or not.</param>
