@@ -336,6 +336,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         /// <seealso cref="AudioManager.GetConnectedDevices()"/>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14. Will be removed in API16.")]
         public AudioDevice PreferredInputDevice
         {
             get
@@ -375,6 +376,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         /// <seealso cref="AudioManager.GetConnectedDevices()"/>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14. Will be removed in API16.")]
         public AudioDevice PreferredOutputDevice
         {
             get
@@ -415,6 +417,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         /// <seealso cref="AudioManager.GetConnectedDevices()"/>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14. Will be removed in API16.")]
         public bool HasStreamOnDevice(AudioDevice device)
         {
             if (device == null)

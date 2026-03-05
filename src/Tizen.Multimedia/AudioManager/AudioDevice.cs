@@ -122,6 +122,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API14. Will be removed in API16.")]
         public IEnumerable<AudioSampleFormat> GetSupportedSampleFormats()
         {
             Interop.AudioDevice.GetSupportedSampleFormats(_id, out IntPtr formats, out uint numberOfElements).
@@ -156,6 +157,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API14. Will be removed in API16.")]
         public void SetSampleFormat(AudioSampleFormat format)
         {
             Interop.AudioDevice.SetSampleFormat(_id, format).
@@ -173,6 +175,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API14. Will be removed in API16.")]
         public AudioSampleFormat GetSampleFormat()
         {
             Interop.AudioDevice.GetSampleFormat(_id, out AudioSampleFormat format).
@@ -228,6 +231,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API14. Will be removed in API16.")]
         public IEnumerable<uint> GetSupportedSampleRates()
         {
             Interop.AudioDevice.GetSupportedSampleRates(_id, out IntPtr rates, out uint numberOfElements).
@@ -265,6 +269,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API14. Will be removed in API16.")]
         public void SetSampleRate(uint rate)
         {
             Interop.AudioDevice.SetSampleRate(_id, ConvertRateToCoreValue(rate)).
@@ -282,6 +287,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API14. Will be removed in API16.")]
         public uint GetSampleRate()
         {
             Interop.AudioDevice.GetSampleRate(_id, out uint rate).
@@ -304,6 +310,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API14. Will be removed in API16.")]
         public void SetAvoidResampling(bool enable)
         {
             Interop.AudioDevice.SetAvoidResampling(_id, enable).
@@ -324,6 +331,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API14. Will be removed in API16.")]
         public bool GetAvoidResampling()
         {
             Interop.AudioDevice.GetAvoidResampling(_id, out bool enabled).
@@ -346,6 +354,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API14. Will be removed in API16.")]
         public void SetMediaStreamOnly(bool enable)
         {
             Interop.AudioDevice.SetMediaStreamOnly(_id, enable).
@@ -365,6 +374,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API14. Will be removed in API16.")]
         public bool GetMediaStreamOnly()
         {
             Interop.AudioDevice.GetMediaStreamOnly(_id, out bool enabled).
