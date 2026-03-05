@@ -15,6 +15,8 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -32,6 +34,13 @@ namespace Tizen.NUI.BaseComponents
         /// Actions property value to Jump to the specified frame.
         /// </summary>
         internal static readonly int ActionJumpTo = Interop.AnimatedImageView.AnimatedImageVisualActionJumpToGet();
+
+        internal VisualEventSignal VisualEventSignal()
+        {
+            VisualEventSignal ret = new VisualEventSignal(Interop.VisualEventSignal.NewWithView(View.getCPtr(this)), false);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
         #endregion Internal
 
         #region Private
@@ -45,6 +54,29 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.FrameSpeedFactor,
         };
         private List<string> resourceURLs = new List<string>();
+
+
+        private void OnFinished()
+        {
+            finishedEventHandler?.Invoke(this, null);
+        }
+
+        private void OnVisualEventSignal(IntPtr targetView, int visualIndex, int signalId)
+        {
+            if (IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            OnFinished();
+        }
+
+        private event EventHandler finishedEventHandler;
+        private VisualEventSignalCallbackType visualEventSignalCallback;
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void VisualEventSignalCallbackType(IntPtr targetView, int visualIndex, int signalId);
+
         #endregion Private
 
         #region Constructor, Destructor, Dispose
@@ -68,6 +100,17 @@ namespace Tizen.NUI.BaseComponents
             if (disposed)
             {
                 return;
+            }
+
+            if (this.HasBody())
+            {
+                if (visualEventSignalCallback != null)
+                {
+                    using VisualEventSignal visualEvent = VisualEventSignal();
+                    visualEvent?.Disconnect(visualEventSignalCallback);
+                    NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                    ReleaseSafeCallback(ref visualEventSignalCallback);
+                }
             }
 
             //Release your own unmanaged resources here.
@@ -519,6 +562,7 @@ namespace Tizen.NUI.BaseComponents
 
             // Assume that we are using standard Image at first.
             // (Since we might cache Visual.Property.Type as Visual.Type.AnimatedImage even we don't use URLs.)
+            base.allowToCreateVisualEmptyUrl = false;
             using (PropertyValue imageType = new PropertyValue((int)Visual.Type.Image))
             {
                 UpdateImage(Visual.Property.Type, imageType, false);
@@ -546,6 +590,10 @@ namespace Tizen.NUI.BaseComponents
                 // Trick that we are using resourceURLs without ResourceUrl API.
                 using PropertyValue animatiedImage = new PropertyValue((int)Visual.Type.AnimatedImage);
                 UpdateImage(Visual.Property.Type, animatiedImage, false);
+
+                // Mark some special flags at ImageView that we are using image sequence.
+                // This flag will allow to create new visuals even if _resourceUrl is null or empty.
+                base.allowToCreateVisualEmptyUrl = true;
             }
 
             base.UpdateImage();
@@ -580,6 +628,35 @@ namespace Tizen.NUI.BaseComponents
         #endregion Method
 
         #region Event, Enum, Struct, ETC
+        /// <summary>
+        /// The event handler for the animation finished event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler Finished
+        {
+            add
+            {
+                if (finishedEventHandler == null)
+                {
+                    CreateSafeCallback(OnVisualEventSignal, out visualEventSignalCallback);
+                    using VisualEventSignal visualEvent = VisualEventSignal();
+                    visualEvent.Connect(visualEventSignalCallback);
+                    NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                }
+                finishedEventHandler += value;
+            }
+            remove
+            {
+                finishedEventHandler -= value;
+                if (finishedEventHandler == null && visualEventSignalCallback != null)
+                {
+                    using VisualEventSignal visualEvent = VisualEventSignal();
+                    visualEvent?.Disconnect(visualEventSignalCallback);
+                    NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                    ReleaseSafeCallback(ref visualEventSignalCallback);
+                }
+            }
+        }
 
         /// <summary>
         /// Enumeration for what to do when the animation is stopped.

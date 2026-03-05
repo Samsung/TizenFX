@@ -1032,6 +1032,113 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Sets the default application for the app control.
+        /// </summary>
+        /// <remarks>
+        /// This method sets the specified application as the default handler
+        /// for the given app control's operation, MIME type, and URI combination.
+        /// This method is only available for platform level signed applications.
+        /// </remarks>
+        /// <param name="appControl">The AppControl.</param>
+        /// <param name="applicationId">The application ID to set as default.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
+        /// <exception cref="Exceptions.PermissionDeniedException">Thrown when the permission is denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <since_tizen> 14 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetDefaultApplication(AppControl appControl, string applicationId)
+        {
+            if (appControl == null)
+            {
+                throw new ArgumentNullException(nameof(appControl));
+            }
+
+            if (string.IsNullOrEmpty(applicationId))
+            {
+                throw new ArgumentNullException(nameof(applicationId));
+            }
+
+            Interop.AppControl.ErrorCode err =
+                Interop.AppControl.SetDefaultApplication(appControl._handle, applicationId);
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                switch (err)
+                {
+                case Interop.AppControl.ErrorCode.InvalidParameter:
+                    throw new ArgumentException("Invalid arguments");
+                case Interop.AppControl.ErrorCode.PermissionDenied:
+                    throw new Exceptions.PermissionDeniedException("Permission denied");
+                case Interop.AppControl.ErrorCode.OutOfMemory:
+                    throw new Exceptions.OutOfMemoryException("Out of memory");
+                default:
+                    throw new InvalidOperationException("err = " + err);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Unsets the default application.
+        /// </summary>
+        /// <remarks>
+        /// This method removes the default application setting for the specified application ID.
+        /// This method is only available for platform level signed applications.
+        /// </remarks>
+        /// <param name="applicationId">The application ID to unset as default.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
+        /// <exception cref="Exceptions.PermissionDeniedException">Thrown when the permission is denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <since_tizen> 14 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void UnsetDefaultApplication(string applicationId)
+        {
+            if (string.IsNullOrEmpty(applicationId))
+            {
+                throw new ArgumentNullException(nameof(applicationId));
+            }
+
+            Interop.AppControl.ErrorCode err = Interop.AppControl.UnsetDefaultApplication(applicationId);
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                switch (err)
+                {
+                case Interop.AppControl.ErrorCode.InvalidParameter:
+                    throw new ArgumentException("Invalid arguments");
+                case Interop.AppControl.ErrorCode.PermissionDenied:
+                    throw new Exceptions.PermissionDeniedException("Permission denied");
+                default:
+                    throw new InvalidOperationException("err = " + err);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Exports the app control data as a bundle.
+        /// </summary>
+        /// <remarks>
+        /// This method exports the internal data of the app control as a Bundle object.
+        /// The exported bundle contains all the information of the app control, including
+        /// the operation, URI, MIME type, extra data, and internal AUL data.
+        /// This method is only available for platform level signed applications.
+        /// </remarks>
+        /// <returns>The exported Bundle object.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <since_tizen> 14 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Bundle ExportAsBundle()
+        {
+            Interop.AppControl.ErrorCode err = Interop.AppControl.ExportAsBundle(_handle, out IntPtr bundleHandle);
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                throw new InvalidOperationException("Failed to export app control as bundle. err = " + err);
+            }
+
+            SafeBundleHandle safeBundleHandle = new SafeBundleHandle(bundleHandle, true);
+            return new Bundle(safeBundleHandle);
+        }
+
+        /// <summary>
         /// Gets all default applications.
         /// </summary>
         /// <returns>ApplicationIds.</returns>

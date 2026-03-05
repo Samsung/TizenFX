@@ -4816,36 +4816,63 @@ namespace Tizen.NUI.BaseComponents
                 {
                     using var signal = TextChangedSignal();
                     signal.Disconnect(textEditorTextChangedCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorTextChangedCallbackDelegate);
+                }
+
+                if (textEditorScrollStateChangedCallbackDelegate != null)
+                {
+                    using var signal = ScrollStateChangedSignal(this);
+                    signal.Disconnect(textEditorScrollStateChangedCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorScrollStateChangedCallbackDelegate);
                 }
 
                 if (textEditorMaxLengthReachedCallbackDelegate != null)
                 {
                     using var signal = MaxLengthReachedSignal();
                     signal.Disconnect(textEditorMaxLengthReachedCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorMaxLengthReachedCallbackDelegate);
+                }
+
+                if (textEditorAnchorClickedCallbackDelegate != null)
+                {
+                    using var signal = AnchorClickedSignal();
+                    signal.Disconnect(textEditorAnchorClickedCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorAnchorClickedCallbackDelegate);
                 }
 
                 if (textEditorSelectionStartedCallbackDelegate != null)
                 {
                     using var signal = SelectionStartedSignal();
                     signal.Disconnect(textEditorSelectionStartedCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorSelectionStartedCallbackDelegate);
                 }
 
                 if (textEditorSelectionClearedCallbackDelegate != null)
                 {
                     using var signal = SelectionClearedSignal();
                     signal.Disconnect(textEditorSelectionClearedCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorSelectionClearedCallbackDelegate);
                 }
 
                 if (textEditorCursorPositionChangedCallbackDelegate != null)
                 {
                     using var signal = CursorPositionChangedSignal();
                     signal.Disconnect(textEditorCursorPositionChangedCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorCursorPositionChangedCallbackDelegate);
                 }
 
                 if (textEditorSelectionChangedCallbackDelegate != null)
                 {
                     using var signal = SelectionChangedSignal();
                     signal.Disconnect(textEditorSelectionChangedCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorSelectionChangedCallbackDelegate);
+                }
+
+                if (textEditorInputFilteredCallbackDelegate != null)
+                {
+                    using var signal = InputFilteredSignal();
+                    signal.Disconnect(textEditorInputFilteredCallbackDelegate);
+                    ReleaseSafeCallback(ref textEditorInputFilteredCallbackDelegate);
                 }
             }
 

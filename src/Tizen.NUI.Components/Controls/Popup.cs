@@ -952,19 +952,6 @@ namespace Tizen.NUI.Components
             btGroup = new ButtonGroup(this);
         }
 
-        /// <summary>
-        /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override AccessibilityStates AccessibilityCalculateStates()
-        {
-            var states = base.AccessibilityCalculateStates();
-
-            states[AccessibilityState.Modal] = true;
-
-            return states;
-        }
-
         private void UpdateView()
         {
             btGroup.UpdateButton(buttonStyle);

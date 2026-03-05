@@ -132,6 +132,16 @@ internal static partial class Interop
         internal static extern void AppManagerUnsetLifecycleStateChangedCb();
         //void app_manager_unset_lifecycle_state_changed_cb(void)
 
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_add_lifecycle_state_changed_cb")]
+        internal static extern ErrorCode AppManagerAddLifecycleStateChangedCb(
+            AppManagerLifecycleStateChangedCallback callback, IntPtr userData, out IntPtr handle);
+        // int app_manager_add_lifecycle_state_changed_cb(app_manager_lifecycle_state_changed_cb callback,
+        // void *user_data, app_manager_lifecycle_noti_h *handle)
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_remove_lifecycle_state_changed_cb")]
+        internal static extern ErrorCode AppManagerRemoveLifecycleStateChangedCb(IntPtr handle);
+        // int app_manager_remove_lifecycle_state_changed_cb(app_manager_lifecycle_noti_h handle)
+
         [DllImport(Libraries.AppManager, EntryPoint = "app_manager_foreach_running_app_context")]
         internal static extern ErrorCode AppManagerForeachRunningAppContext(AppManagerAppContextCallback callback, IntPtr userData);
         //int app_manager_foreach_running_app_context(app_manager_app_context_cb callback, void *user_data)
@@ -391,7 +401,7 @@ internal static partial class Interop
         [DllImport(Libraries.AppManager, EntryPoint = "app_info_foreach_res_control")]
         internal static extern ErrorCode AppInfoForeachResControl(IntPtr handle, AppInfoResControlCallback callback, IntPtr userData);
 
-        [NativeStruct("struct rua_rec", Include="rua.h", PkgConfig="rua")]
+        [NativeStruct("struct rua_rec", Include = "rua.h", PkgConfig = "rua")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct RuaRec
         {
@@ -407,6 +417,10 @@ internal static partial class Interop
             internal IntPtr image;
             internal IntPtr compId;
         };
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void RuaHistoryUpdateCallback(IntPtr table, int nRows, int nCols, IntPtr userData);
+        //void (*rua_history_update_cb) (char **table, int nrows, int ncols, void *user_data);
 
         [DllImport(Libraries.Rua, EntryPoint = "rua_history_get_rec")]
         internal static extern ErrorCode RuaHistoryGetRecord(out RuaRec record, IntPtr table, int nRows, int nCols, int row);
@@ -431,5 +445,24 @@ internal static partial class Interop
         [DllImport(Libraries.Rua, EntryPoint = "rua_clear_history")]
         internal static extern ErrorCode RuaClearHistory();
         //int rua_clear_history(void);
+
+        [DllImport(Libraries.Rua, EntryPoint = "rua_register_update_cb")]
+        internal static extern ErrorCode RuaSetUpdateCallback(RuaHistoryUpdateCallback callback, IntPtr userData, out int id);
+        //int rua_register_update_cb(rua_history_update_cb callback, void *user_data, int *callback_id);
+
+        [DllImport(Libraries.Rua, EntryPoint = "rua_unregister_update_cb")]
+        internal static extern ErrorCode RuaUnSetUpdateCallback(int id);
+        //int rua_unregister_update_cb(int callback_id);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate int RuaStatTagIterCallback([MarshalAs(UnmanagedType.LPStr)] string ruaStatTag,
+                                                     IntPtr userData);
+        // int (*rua_stat_tag_iter_fn)(const char *rua_stat_tag, void *data)
+
+        [DllImport(Libraries.Rua, EntryPoint = "rua_stat_get_stat_tags")]
+        internal static extern ErrorCode RuaStatGetStatTags(string caller, RuaStatTagIterCallback callback,
+                                                            IntPtr userData);
+        // int rua_stat_get_stat_tags(char *caller, int (*rua_stat_tag_iter_fn)(const char *rua_stat_tag, void *data),
+        // void *data);
     }
 }

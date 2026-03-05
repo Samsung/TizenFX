@@ -23,8 +23,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Multimedia.MediaPlaye
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Multimedia", "..\..\src\Tizen.Multimedia\Tizen.Multimedia.csproj", "{8C1CA5FE-EEA0-4353-8735-B49347CF1812}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElmSharp", "..\..\src\ElmSharp\ElmSharp.csproj", "{CCDA00F7-7BDE-4913-B9F1-1AEE401EE4AD}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.Information", "..\..\src\Tizen.System.Information\Tizen.System.Information.csproj", "{02BEE3AD-99A6-44A5-89FC-D9F4132D9ECE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI.Wearable", "..\..\src\Tizen.NUI.Wearable\Tizen.NUI.Wearable.csproj", "{A2B607F9-5B9B-43AC-A8CA-E0FDF2A6694E}"

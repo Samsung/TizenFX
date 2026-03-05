@@ -616,20 +616,6 @@ namespace Tizen.NUI.Components
             Hide();
         }
 
-
-        /// <summary>
-        /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override AccessibilityStates AccessibilityCalculateStates()
-        {
-            var states = base.AccessibilityCalculateStates();
-
-            states[AccessibilityState.Modal] = true;
-
-            return states;
-        }
-
         /// <summary>
         /// Default title content of AlertDialog.
         /// If Title is set, then default title content is automatically displayed.

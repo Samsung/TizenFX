@@ -26,11 +26,6 @@ namespace Tizen.NUI.Components.Devel.Tests
                 base.Dispose(types);
             }
 
-            public AccessibilityStates OnAccessibilityCalculateStates()
-            {
-                return GetAccessibilityStates();
-            }
-
             public string OnAccessibilityGetName()
             {
                 return base.AccessibilityGetName();
@@ -88,43 +83,6 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AlertDialogDispose END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("AlertDialog AccessibilityCalculateStates.")]
-        [Property("SPEC", "Tizen.NUI.Components.AlertDialog.AccessibilityCalculateStates M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AlertDialogAccessibilityCalculateStates()
-        {
-            tlog.Debug(tag, $"AlertDialogAccessibilityCalculateStates START");
-
-            var testingTarget = new MyAlertDialog()
-            {
-                Size = new Size(100, 100),
-                TitleContent = new View() { Size = new Size(100, 20) },
-                Content = new View() { Size = new Size(100, 80) },
-                ActionContent = new View() { Size = new Size(50, 50) },
-            };
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<AlertDialog>(testingTarget, "Should return AlertDialog instance.");
-
-            try
-            {
-                var result = testingTarget.OnAccessibilityCalculateStates();
-                tlog.Debug(tag, "AccessibilityCalculateStates : " + result);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"AlertDialogAccessibilityCalculateStates END (OK)");
         }
 
         [Test]

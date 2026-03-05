@@ -8,8 +8,16 @@ using Tizen.NUI.Events;
 
 namespace Tizen.NUI.Samples
 {
-    public class GeometryTouchEvent : IExample
+    public class GeometryTouchEvent : IExample, IApplicationHolder
     {
+        internal static NUIApplication s_application;
+
+        public void SetCurrentApplication(Tizen.NUI.NUIApplication application)
+        {
+            Tizen.Log.Error("NUITEST", $"SetCurrentApplication {application}\n");
+            GeometryTouchEvent.s_application = application;
+        }
+
         class LogOutput : ScrollableBase
         {
             public LogOutput() : base()
@@ -45,7 +53,7 @@ namespace Tizen.NUI.Samples
                         ContentContainer.Remove(child);
                     }
                 }
-                ElmSharp.EcoreMainloop.Post(() =>
+                GeometryTouchEvent.s_application.AddIdle(() =>
                 {
                     ScrollTo((ContentContainer.Children.Count) * (txt.NaturalSize.Height), true);
                 });

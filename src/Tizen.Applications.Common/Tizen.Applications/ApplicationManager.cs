@@ -86,6 +86,7 @@ namespace Tizen.Applications
         private static EventHandler<ApplicationLifecycleStateChangedEventArgs> s_lifecycleStateChangedHandler;
         private static Interop.ApplicationManager.AppManagerLifecycleStateChangedCallback s_lifecycleStateChangedCallback;
         private static readonly object s_lifecycleStateChangedLock = new object();
+        private static IntPtr s_lifecycleHandle = IntPtr.Zero;
 
         /// <summary>
         /// Occurs whenever the installed application is enabled.
@@ -801,8 +802,8 @@ namespace Tizen.Applications
                 }
             };
 
-            Interop.ApplicationManager.ErrorCode err =
-                Interop.ApplicationManager.AppManagerSetLifecycleStateChangedCb(s_lifecycleStateChangedCallback, IntPtr.Zero);
+            Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppManagerAddLifecycleStateChangedCb(
+                s_lifecycleStateChangedCallback, IntPtr.Zero, out s_lifecycleHandle);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
                 throw ApplicationManagerErrorFactory.GetException(err, "Failed to register the lifecycle state changed event.");
@@ -811,7 +812,11 @@ namespace Tizen.Applications
 
         private static void UnRegisterLifecycleStateChangedEvent()
         {
-            Interop.ApplicationManager.AppManagerUnsetLifecycleStateChangedCb();
+            if (s_lifecycleHandle != IntPtr.Zero)
+            {
+                Interop.ApplicationManager.AppManagerRemoveLifecycleStateChangedCb(s_lifecycleHandle);
+                s_lifecycleHandle = IntPtr.Zero;
+            }
         }
 
         /// <summary>
@@ -856,6 +861,48 @@ namespace Tizen.Applications
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Gets the RUA (Recently Used Applications) stat tags for the specified caller.
+        /// </summary>
+        /// <remarks>
+        /// This method retrieves the list of application IDs that have been launched
+        /// by the specified caller application, as recorded in the RUA statistics.
+        /// This method is only available for platform level signed applications.
+        /// </remarks>
+        /// <param name="caller">The caller application identifier.</param>
+        /// <returns>An enumerable collection of application IDs (stat tags).</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the caller argument is null.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <since_tizen> 14 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static IEnumerable<string> GetRuaStatTags(string caller)
+        {
+            if (caller == null)
+            {
+                throw new ArgumentNullException(nameof(caller));
+            }
+
+            List<string> tags = new List<string>();
+            Interop.ApplicationManager.RuaStatTagIterCallback callback = (string ruaStatTag, IntPtr userData) =>
+            {
+                if (!string.IsNullOrEmpty(ruaStatTag))
+                {
+                    tags.Add(ruaStatTag);
+                }
+                return 0;
+            };
+
+            Interop.ApplicationManager.ErrorCode err =
+                Interop.ApplicationManager.RuaStatGetStatTags(caller, callback, IntPtr.Zero);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                throw ApplicationManagerErrorFactory.GetException(err, "Failed to get RUA stat tags.");
+            }
+            GC.KeepAlive(callback);
+
+            return tags;
         }
 
         /// <summary>

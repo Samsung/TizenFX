@@ -25,11 +25,6 @@ namespace Tizen.NUI.Components.Devel.Tests
             {
                 base.Dispose(types);
             }
-
-            public void MyAccessibilityCalculateStates()
-            {
-                GetAccessibilityStates();
-            }
         }
 
         internal class MyBindableObject : BindableObject
@@ -115,35 +110,6 @@ namespace Tizen.NUI.Components.Devel.Tests
             tlog.Debug(tag, "Content : " + testingTarget.Content);
 
             tlog.Debug(tag, $"DialogContent END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Dialog AccessibilityCalculateStates.")]
-        [Property("SPEC", "Tizen.NUI.Components.Dialog.AccessibilityCalculateStates M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void DialogAccessibilityCalculateStates()
-        {
-            tlog.Debug(tag, $"DialogAccessibilityCalculateStates START");
-
-            var testingTarget = new MyDialog();
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Dialog>(testingTarget, "Should return Dialog instance.");
-
-            try
-            {
-                testingTarget.MyAccessibilityCalculateStates();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            tlog.Debug(tag, $"DialogAccessibilityCalculateStates END (OK)");
         }
     }
 }

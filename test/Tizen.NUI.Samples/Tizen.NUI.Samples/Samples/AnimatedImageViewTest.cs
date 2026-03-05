@@ -45,6 +45,14 @@ namespace Tizen.NUI.Samples
                 image.Position2D = new Position2D(0, title.Size2D.Height);
                 image.ResourceUrl = imageUrl;
                 image.Play();
+                Tizen.Log.Info("NUITest", $"Animation[{image.ID}] created");
+                image.Finished += (o, e) => {
+                    AnimatedImageView imageView = o as AnimatedImageView;
+                    if (imageView != null)
+                    {
+                        Tizen.Log.Info("NUITest", $"Animation[{imageView.ID}] finished");
+                    }
+                };
                 this.Add(image);
 
                 status = new TextLabel("Initialized");
@@ -157,8 +165,14 @@ namespace Tizen.NUI.Samples
                 Normal = "Stop !",
                 Selected = "Play !"
             };
-            box.status.Text = "playing now";
-            box.but3.IsEnabled = false;
+            box.but3.Clicked += But3_Clicked;
+            box.but3.IsSelectable = false;
+            box.but3.Style.Text.Text = new Selector<string>
+            {
+                Normal = "Increase loop count",
+                Pressed = "Up 1 count",
+            };
+            box.status.Text = $"playing now, loop count: {box.image.LoopCount}";
 
             box2 = new Box(new Size2D(root.Size2D.Width, GetRatio(40, root.Size2D.Height)), "Image array Test", "");
             root.Add(box2);
@@ -192,7 +206,7 @@ namespace Tizen.NUI.Samples
                 Pressed = "Up 100ms",
             };
 
-            box2.but3.Clicked += But3_Clicked;
+            box2.but3.Clicked += But3_Clicked1;
             box2.but3.IsSelectable = false;
             box2.but3.Style.Text.Text = new Selector<string>
             {
@@ -203,9 +217,9 @@ namespace Tizen.NUI.Samples
 
         }
 
-        private void But3_Clicked(object sender, ClickedEventArgs e)
+        private void But3_Clicked1(object sender, ClickedEventArgs e)
         {
-            tlog.Fatal(tag, $"But3_Clicked()!");
+            tlog.Fatal(tag, $"But3_Clicked1()!");
             var src = sender as Button;
             if (src != null)
             {
@@ -245,6 +259,18 @@ namespace Tizen.NUI.Samples
                     box2.image.Play();
                     box2.status.Text = $"playing now,  frame delay: {box2.image.FrameDelay}ms,  loop count: {box2.image.LoopCount}";
                 }
+            }
+        }
+
+        private void But3_Clicked(object sender, ClickedEventArgs e)
+        {
+            tlog.Fatal(tag, $"But3_Clicked()!");
+            var src = sender as Button;
+            if (src != null)
+            {
+                box.image.LoopCount += 1;
+                box.image.Play();
+                box.status.Text = $"playing now, loop count: {box.image.LoopCount}";
             }
         }
 

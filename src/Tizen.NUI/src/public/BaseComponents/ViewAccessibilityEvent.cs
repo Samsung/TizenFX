@@ -308,18 +308,6 @@ namespace Tizen.NUI.BaseComponents
             return result;
         }
 
-        // AccessibilityValueTextRequested
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class AccessibilityValueTextRequestedEventArgs : EventArgs
-        {
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public string Text { get; set; }
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<AccessibilityValueTextRequestedEventArgs> AccessibilityValueTextRequested;
-
         ///////////////////////////////////////////////////////////////////
         // **************** AccessibilityActivatedSignal **************** //
         ///////////////////////////////////////////////////////////////////

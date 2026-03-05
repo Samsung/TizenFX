@@ -591,13 +591,13 @@ namespace Tizen.NUI
             {
                 var nativeSwigCPtr = swigCPtr.Handle;
 
-                ClearHolder(nativeSwigCPtr);
-
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
                     ReleaseSwigCPtr(new global::System.Runtime.InteropServices.HandleRef(this, nativeSwigCPtr));
+
+                    ClearHolder(nativeSwigCPtr);
                 }
             }
             else

@@ -352,6 +352,32 @@ namespace Tizen.NUI
 
         /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool BakeCustomProperty(uint id, string propertyName, PropertyValue propertyValue)
+        {
+            if (proxyIntPtr == IntPtr.Zero || propertyValue == null)
+            {
+                return false;
+            }
+            bool ret = Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceBakeCustomProperty(proxyIntPtr, id, propertyName, PropertyValue.getCPtr(propertyValue));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool GetCustomProperty(uint id, string propertyName, PropertyValue propertyValue)
+        {
+            if (proxyIntPtr == IntPtr.Zero || propertyValue == null)
+            {
+                return false;
+            }
+            bool ret = Interop.FrameUpdateCallbackInterface.FrameCallbackInterfaceGetCustomProperty(proxyIntPtr, id, propertyName, PropertyValue.getCPtr(propertyValue));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// This will be public opened after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected bool GetPositionAndSize(uint id, Vector3 Position, Vector3 Size)
         {
             if (proxyIntPtr == IntPtr.Zero)
