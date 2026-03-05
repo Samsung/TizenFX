@@ -44,7 +44,7 @@ namespace Tizen.NUI.Samples
                 image.Size2D = new Size2D(boxSize.Width, GetRatio(50, boxSize.Height));
                 image.Position2D = new Position2D(0, title.Size2D.Height);
                 image.ResourceUrl = imageUrl;
-                image.Play();
+                // image.Play();
                 Tizen.Log.Info("NUITest", $"Animation[{image.ID}] created");
                 image.Finished += (o, e) => {
                     AnimatedImageView imageView = o as AnimatedImageView;
@@ -182,7 +182,7 @@ namespace Tizen.NUI.Samples
                 box2.image.URLs.Add(resPath + "images/AGIF/dog-anim-00" + i + ".png");
             }
             box2.image.SetValues();
-            box2.image.Play();
+            // box2.image.Play();
 
             box2.but1.Clicked += But1_Clicked1;
             box2.but1.Style.Text.Text = new Selector<string>
