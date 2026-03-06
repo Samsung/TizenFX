@@ -81,6 +81,160 @@ namespace Tizen.NUI.BaseComponents
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void InputFilteredCallbackDelegate(IntPtr textEditor, InputFilterType type);
 
+        // Static callback wrappers
+        private static void OnStaticTextChanged(IntPtr textEditorCPtr)
+        {
+            var textEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditorCPtr) as TextEditor;
+            if (textEditor == null)
+            {
+                NUILog.Error("TextChanged comes from Disposed (or GC) TextEditor!\n");
+                return;
+            }
+
+            if (textEditor.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textEditor.OnTextChanged(textEditorCPtr);
+        }
+
+        private static void OnStaticScrollStateChanged(IntPtr textEditorCPtr, ScrollState state)
+        {
+            var textEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditorCPtr) as TextEditor;
+            if (textEditor == null)
+            {
+                NUILog.Error("ScrollStateChanged comes from Disposed (or GC) TextEditor!\n");
+                return;
+            }
+
+            if (textEditor.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textEditor.OnScrollStateChanged(textEditorCPtr, state);
+        }
+
+        private static void OnStaticCursorPositionChanged(IntPtr textEditorCPtr, uint oldPosition)
+        {
+            var textEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditorCPtr) as TextEditor;
+            if (textEditor == null)
+            {
+                NUILog.Error("CursorPositionChanged comes from Disposed (or GC) TextEditor!\n");
+                return;
+            }
+
+            if (textEditor.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textEditor.OnCursorPositionChanged(textEditorCPtr, oldPosition);
+        }
+
+        private static void OnStaticMaxLengthReached(IntPtr textEditorCPtr)
+        {
+            var textEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditorCPtr) as TextEditor;
+            if (textEditor == null)
+            {
+                NUILog.Error("MaxLengthReached comes from Disposed (or GC) TextEditor!\n");
+                return;
+            }
+
+            if (textEditor.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textEditor.OnMaxLengthReached(textEditorCPtr);
+        }
+
+        private static void OnStaticAnchorClicked(IntPtr textEditorCPtr, IntPtr href, uint hrefLength)
+        {
+            var textEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditorCPtr) as TextEditor;
+            if (textEditor == null)
+            {
+                NUILog.Error("AnchorClicked comes from Disposed (or GC) TextEditor!\n");
+                return;
+            }
+
+            if (textEditor.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textEditor.OnAnchorClicked(textEditorCPtr, href, hrefLength);
+        }
+
+        private static void OnStaticSelectionStarted(IntPtr textEditorCPtr)
+        {
+            var textEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditorCPtr) as TextEditor;
+            if (textEditor == null)
+            {
+                NUILog.Error("SelectionStarted comes from Disposed (or GC) TextEditor!\n");
+                return;
+            }
+
+            if (textEditor.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textEditor.OnSelectionStarted(textEditorCPtr);
+        }
+
+        private static void OnStaticSelectionCleared(IntPtr textEditorCPtr)
+        {
+            var textEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditorCPtr) as TextEditor;
+            if (textEditor == null)
+            {
+                NUILog.Error("SelectionCleared comes from Disposed (or GC) TextEditor!\n");
+                return;
+            }
+
+            if (textEditor.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textEditor.OnSelectionCleared(textEditorCPtr);
+        }
+
+        private static void OnStaticSelectionChanged(IntPtr textEditorCPtr, uint oldStart, uint oldEnd)
+        {
+            var textEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditorCPtr) as TextEditor;
+            if (textEditor == null)
+            {
+                NUILog.Error("SelectionChanged comes from Disposed (or GC) TextEditor!\n");
+                return;
+            }
+
+            if (textEditor.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textEditor.OnSelectionChanged(textEditorCPtr, oldStart, oldEnd);
+        }
+
+        private static void OnStaticInputFiltered(IntPtr textEditorCPtr, InputFilterType type)
+        {
+            var textEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditorCPtr) as TextEditor;
+            if (textEditor == null)
+            {
+                NUILog.Error("InputFiltered comes from Disposed (or GC) TextEditor!\n");
+                return;
+            }
+
+            if (textEditor.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textEditor.OnInputFiltered(textEditorCPtr, type);
+        }
+
         private bool invokeTextChanged = true;
 
         /// <summary>
@@ -94,7 +248,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorTextChangedEventHandler == null)
                 {
-                    CreateSafeCallback(OnTextChanged, out textEditorTextChangedCallbackDelegate);
+                    CreateSafeCallback(OnStaticTextChanged, out textEditorTextChangedCallbackDelegate);
                     using var signal = TextChangedSignal();
                     signal.Connect(textEditorTextChangedCallbackDelegate);
                 }
@@ -123,7 +277,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorScrollStateChangedEventHandler == null)
                 {
-                    CreateSafeCallback(OnScrollStateChanged, out textEditorScrollStateChangedCallbackDelegate);
+                    CreateSafeCallback(OnStaticScrollStateChanged, out textEditorScrollStateChangedCallbackDelegate);
                     using var signal = ScrollStateChangedSignal(this);
                     signal.Connect(textEditorScrollStateChangedCallbackDelegate);
                 }
@@ -151,7 +305,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorCursorPositionChangedEventHandler == null)
                 {
-                    CreateSafeCallback(OnCursorPositionChanged, out textEditorCursorPositionChangedCallbackDelegate);
+                    CreateSafeCallback(OnStaticCursorPositionChanged, out textEditorCursorPositionChangedCallbackDelegate);
                     using var signal = CursorPositionChangedSignal();
                     signal.Connect(textEditorCursorPositionChangedCallbackDelegate);
                 }
@@ -180,7 +334,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorMaxLengthReachedEventHandler == null)
                 {
-                    CreateSafeCallback(OnMaxLengthReached, out textEditorMaxLengthReachedCallbackDelegate);
+                    CreateSafeCallback(OnStaticMaxLengthReached, out textEditorMaxLengthReachedCallbackDelegate);
                     using var signal = MaxLengthReachedSignal();
                     signal.Connect(textEditorMaxLengthReachedCallbackDelegate);
                 }
@@ -208,7 +362,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorAnchorClickedEventHandler == null)
                 {
-                    CreateSafeCallback(OnAnchorClicked, out textEditorAnchorClickedCallbackDelegate);
+                    CreateSafeCallback(OnStaticAnchorClicked, out textEditorAnchorClickedCallbackDelegate);
                     using var signal = AnchorClickedSignal();
                     signal.Connect(textEditorAnchorClickedCallbackDelegate);
                 }
@@ -236,7 +390,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorSelectionStartedEventHandler == null)
                 {
-                    CreateSafeCallback(OnSelectionStarted, out textEditorSelectionStartedCallbackDelegate);
+                    CreateSafeCallback(OnStaticSelectionStarted, out textEditorSelectionStartedCallbackDelegate);
                     using var signal = SelectionStartedSignal();
                     signal.Connect(textEditorSelectionStartedCallbackDelegate);
                 }
@@ -264,7 +418,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorSelectionClearedEventHandler == null)
                 {
-                    CreateSafeCallback(OnSelectionCleared, out textEditorSelectionClearedCallbackDelegate);
+                    CreateSafeCallback(OnStaticSelectionCleared, out textEditorSelectionClearedCallbackDelegate);
                     using var signal = SelectionClearedSignal();
                     signal.Connect(textEditorSelectionClearedCallbackDelegate);
                 }
@@ -292,7 +446,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorSelectionChangedEventHandler == null)
                 {
-                    CreateSafeCallback(OnSelectionChanged, out textEditorSelectionChangedCallbackDelegate);
+                    CreateSafeCallback(OnStaticSelectionChanged, out textEditorSelectionChangedCallbackDelegate);
                     using var signal = SelectionChangedSignal();
                     signal.Connect(textEditorSelectionChangedCallbackDelegate);
                 }
@@ -339,7 +493,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textEditorInputFilteredEventHandler == null)
                 {
-                    CreateSafeCallback(OnInputFiltered, out textEditorInputFilteredCallbackDelegate);
+                    CreateSafeCallback(OnStaticInputFiltered, out textEditorInputFilteredCallbackDelegate);
                     using var signal = InputFilteredSignal();
                     signal.Connect(textEditorInputFilteredCallbackDelegate);
                 }
@@ -422,12 +576,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnTextChanged(IntPtr textEditor)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             if (textEditorTextChangedEventHandler != null && invokeTextChanged)
             {
                 TextChangedEventArgs e = new TextChangedEventArgs();
@@ -441,36 +589,18 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnSelectionStarted(IntPtr textEditor)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             //no data to be sent to the user
             textEditorSelectionStartedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnSelectionCleared(IntPtr textEditor)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             //no data to be sent to the user
             textEditorSelectionClearedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnScrollStateChanged(IntPtr textEditor, ScrollState state)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             if (textEditorScrollStateChangedEventHandler != null)
             {
                 ScrollStateChangedEventArgs e = new ScrollStateChangedEventArgs();
@@ -488,24 +618,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnCursorPositionChanged(IntPtr textEditor, uint oldPosition)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             // no data to be sent to the user, as in NUI there is no event provide old values.
             textEditorCursorPositionChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnMaxLengthReached(IntPtr textEditor)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             if (textEditorMaxLengthReachedEventHandler != null)
             {
                 MaxLengthReachedEventArgs e = new MaxLengthReachedEventArgs();
@@ -519,12 +637,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnAnchorClicked(IntPtr textEditor, IntPtr href, uint hrefLength)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             // Note: hrefLength is useful for get the length of a const char* (href) in dali-toolkit.
             // But NUI can get the length of string (href), so hrefLength is not necessary in NUI.
             AnchorClickedEventArgs e = new AnchorClickedEventArgs();
@@ -537,24 +649,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnSelectionChanged(IntPtr textEditor, uint oldStart, uint oldEnd)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             // no data to be sent to the user, as in NUI there is no event provide old values.
             textEditorSelectionChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnInputFiltered(IntPtr textEditor, InputFilterType type)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             InputFilteredEventArgs e = new InputFilteredEventArgs();
 
             // Populate all members of "e" (InputFilteredEventArgs) with real data
