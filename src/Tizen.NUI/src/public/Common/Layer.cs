@@ -49,6 +49,58 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void LayoutDirectionChangedEventCallbackType(IntPtr data, ViewLayoutDirectionType type);
 
+        // Static callback wrappers
+        private static void OnStaticVisibilityChanged(IntPtr layerCPtr, bool visibility, VisibilityChangeType type)
+        {
+            var layer = Registry.GetManagedBaseHandleFromNativePtr(layerCPtr) as Layer;
+            if (layer == null)
+            {
+                NUILog.Error("VisibilityChanged comes from Disposed (or GC) Layer!\n");
+                return;
+            }
+
+            if (layer.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            layer.OnVisibilityChanged(layerCPtr, visibility, type);
+        }
+
+        private static void OnStaticAggregatedVisibilityChanged(IntPtr layerCPtr, bool visibility)
+        {
+            var layer = Registry.GetManagedBaseHandleFromNativePtr(layerCPtr) as Layer;
+            if (layer == null)
+            {
+                NUILog.Error("AggregatedVisibilityChanged comes from Disposed (or GC) Layer!\n");
+                return;
+            }
+
+            if (layer.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            layer.OnAggregatedVisibilityChanged(layerCPtr, visibility);
+        }
+
+        private static void OnStaticLayoutDirectionChanged(IntPtr layerCPtr, ViewLayoutDirectionType type)
+        {
+            var layer = Registry.GetManagedBaseHandleFromNativePtr(layerCPtr) as Layer;
+            if (layer == null)
+            {
+                NUILog.Error("LayoutDirectionChanged comes from Disposed (or GC) Layer!\n");
+                return;
+            }
+
+            if (layer.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            layer.OnLayoutDirectionChanged(layerCPtr, type);
+        }
+
         private static int aliveCount;
 
         /// <summary>
@@ -68,7 +120,7 @@ namespace Tizen.NUI
 
             if (_layoutDirectionChangedEventCallback == null)
             {
-                CreateSafeCallback(OnLayoutDirectionChanged, out _layoutDirectionChangedEventCallback);
+                CreateSafeCallback(OnStaticLayoutDirectionChanged, out _layoutDirectionChangedEventCallback);
                 Interop.ActorSignal.LayoutDirectionChangedConnect(SwigCPtr, _layoutDirectionChangedEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }
@@ -713,7 +765,7 @@ namespace Tizen.NUI
             {
                 if (visibilityChangedEventHandler == null)
                 {
-                    CreateSafeCallback(OnVisibilityChanged, out visibilityChangedEventCallback);
+                    CreateSafeCallback(OnStaticVisibilityChanged, out visibilityChangedEventCallback);
                     Interop.ActorSignal.VisibilityChangedConnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -742,7 +794,7 @@ namespace Tizen.NUI
             {
                 if (aggregatedVisibilityChangedEventHandler == null)
                 {
-                    CreateSafeCallback(OnAggregatedVisibilityChanged, out aggregatedVisibilityChangedEventCallback);
+                    CreateSafeCallback(OnStaticAggregatedVisibilityChanged, out aggregatedVisibilityChangedEventCallback);
                     Interop.ActorSignal.AggregatedVisibilityChangedConnect(SwigCPtr, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -1035,11 +1087,6 @@ namespace Tizen.NUI
 
         private void OnLayoutDirectionChanged(IntPtr data, ViewLayoutDirectionType type)
         {
-            if (IsDisposedOrQueued)
-            {
-                return;
-            }
-
             foreach (var child in Children)
             {
                 child.RequestLayoutForInheritLayoutDirection();
