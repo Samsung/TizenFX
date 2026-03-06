@@ -1330,7 +1330,7 @@ namespace Tizen.NUI.BaseComponents
                 if (finishedEventHandler == null)
                 {
                     NUILog.Debug($"<[{GetId()}] Finished eventhandler added>");
-                    CreateSafeCallback(onVisualEventSignal, out visualEventSignalCallback);
+                    CreateSafeCallback(OnStaticVisualEventSignal, out visualEventSignalCallback);
                     using VisualEventSignal visualEvent = VisualEventSignal();
                     visualEvent.Connect(visualEventSignalCallback);
                 }
@@ -1538,7 +1538,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (visualEventSignalHandler == null)
                 {
-                    CreateSafeCallback(onVisualEventSignal, out visualEventSignalCallback);
+                    CreateSafeCallback(OnStaticVisualEventSignal, out visualEventSignalCallback);
                     using VisualEventSignal visualEvent = VisualEventSignal();
                     visualEvent?.Connect(visualEventSignalCallback);
                 }
@@ -1730,33 +1730,28 @@ namespace Tizen.NUI.BaseComponents
             finishedEventHandler?.Invoke(this, null);
         }
 
-        private void onVisualEventSignal(IntPtr targetView, int visualIndex, int signalId)
+        private static void OnStaticVisualEventSignal(IntPtr targetView, int visualIndex, int signalId)
         {
-            if (IsDisposedOrQueued)
+            var lottieAnimationView = Registry.GetManagedBaseHandleFromNativePtr(targetView) as LottieAnimationView;
+            if (lottieAnimationView == null)
+            {
+                NUILog.Error("VisualEventSignal comes from Disposed (or GC) ImageView!\n");
+                return;
+            }
+
+            if (lottieAnimationView.IsDisposedOrQueued)
             {
                 return;
             }
 
-            OnFinished();
+            lottieAnimationView.OnFinished();
 
-            if (targetView != IntPtr.Zero)
-            {
-                View v = Registry.GetManagedBaseHandleFromNativePtr(targetView) as View;
-                if (v != null)
-                {
-                    NUILog.Debug($"targetView is not null! name={v.Name}");
-                }
-                else
-                {
-                    NUILog.Debug($"target is something created from dali");
-                }
-            }
             VisualEventSignalArgs e = new VisualEventSignalArgs();
             e.VisualIndex = visualIndex;
             e.SignalId = signalId;
-            visualEventSignalHandler?.Invoke(this, e);
+            lottieAnimationView.visualEventSignalHandler?.Invoke(lottieAnimationView, e);
 
-            NUILog.Debug($"<[{GetId()}] onVisualEventSignal()! visualIndex={visualIndex}, signalId={signalId}>");
+            NUILog.Debug($"<[{lottieAnimationView.GetId()}] onVisualEventSignal()! visualIndex={visualIndex}, signalId={signalId}>");
         }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
