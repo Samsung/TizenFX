@@ -49,7 +49,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_interceptTouchDataEventHandler == null)
                 {
-                    _owner.CreateSafeCallback(OnInterceptTouch, out _interceptTouchDataCallback);
+                    _owner.CreateSafeCallback(OnStaticInterceptTouch, out _interceptTouchDataCallback);
                     Interop.ActorSignal.InterceptTouchConnect(_owner.SwigCPtr, _interceptTouchDataCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -74,7 +74,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_interceptWheelHandler == null)
                 {
-                    _owner.CreateSafeCallback(OnInterceptWheel, out _interceptWheelCallback);
+                    _owner.CreateSafeCallback(OnStaticInterceptWheel, out _interceptWheelCallback);
                     Interop.ActorSignal.InterceptWheelConnect(_owner.SwigCPtr, _interceptWheelCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -99,7 +99,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_wheelEventHandler == null)
                 {
-                    _owner.CreateSafeCallback(OnWheelEvent, out _wheelEventCallback);
+                    _owner.CreateSafeCallback(OnStaticWheelEvent, out _wheelEventCallback);
                     Interop.ActorSignal.WheelEventConnect(_owner.SwigCPtr, _wheelEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -124,7 +124,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_layoutDirectionChangedEventHandler == null)
                 {
-                    _owner.CreateSafeCallback(OnLayoutDirectionChanged, out _layoutDirectionChangedEventCallback);
+                    _owner.CreateSafeCallback(OnStaticLayoutDirectionChanged, out _layoutDirectionChangedEventCallback);
                     Interop.ActorSignal.LayoutDirectionChangedConnect(_owner.SwigCPtr, _layoutDirectionChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -209,9 +209,16 @@ namespace Tizen.NUI.BaseComponents
         }
 
         // Callback for View TouchSignal
-        private bool OnInterceptTouch(IntPtr view, IntPtr touchData)
+        private static bool OnStaticInterceptTouch(IntPtr viewCPtr, IntPtr touchData)
         {
-            if (_owner.IsDisposedOrQueued)
+            var owner = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (owner == null)
+            {
+                NUILog.Error("InterceptTouch comes from Disposed (or GC) View!\n");
+                return false;
+            }
+
+            if (owner.IsDisposedOrQueued)
             {
                 // Ignore native callback if the view is disposed or queued for disposal.
                 return false;
@@ -224,7 +231,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             // DisallowInterceptTouchEvent prevents the parent from intercepting touch.
-            if (_owner.DisallowInterceptTouchEvent)
+            if (owner.DisallowInterceptTouchEvent)
             {
                 return false;
             }
@@ -236,20 +243,22 @@ namespace Tizen.NUI.BaseComponents
 
             bool consumed = false;
 
-            if (_interceptTouchDataEventHandler != null)
+            var eventHandler = owner.GetViewEventRareData()._interceptTouchDataEventHandler;
+
+            if (eventHandler != null)
             {
                 if (NUIApplication.IsGeometryHittestEnabled())
                 {
-                    Delegate[] delegateList = _interceptTouchDataEventHandler.GetInvocationList();
+                    Delegate[] delegateList = eventHandler.GetInvocationList();
                     // Oring the result of each callback.
                     foreach (EventHandlerWithReturnType<object, View.TouchEventArgs, bool> del in delegateList)
                     {
-                        consumed |= del(_owner, e);
+                        consumed |= del(owner, e);
                     }
                 }
                 else
                 {
-                    consumed = _interceptTouchDataEventHandler(_owner, e);
+                    consumed = eventHandler(owner, e);
                 }
             }
 
@@ -257,9 +266,16 @@ namespace Tizen.NUI.BaseComponents
         }
 
         // Callback for View InterceptWheel signal
-        private bool OnInterceptWheel(IntPtr view, IntPtr wheelEvent)
+        private static bool OnStaticInterceptWheel(IntPtr viewCPtr, IntPtr wheelEvent)
         {
-            if (_owner.IsDisposedOrQueued)
+            var owner = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (owner == null)
+            {
+                NUILog.Error("InterceptWheel comes from Disposed (or GC) View!\n");
+                return false;
+            }
+
+            if (owner.IsDisposedOrQueued)
             {
                 // Ignore native callback if the view is disposed or queued for disposal.
                 return false;
@@ -272,7 +288,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             // DisallowInterceptWheelEvent prevents the parent from intercepting wheel.
-            if (_owner.DisallowInterceptWheelEvent)
+            if (owner.DisallowInterceptWheelEvent)
             {
                 return false;
             }
@@ -284,18 +300,27 @@ namespace Tizen.NUI.BaseComponents
 
             bool consumed = false;
 
-            if (_interceptWheelHandler != null)
+            var eventHandler = owner.GetViewEventRareData()._interceptWheelHandler;
+
+            if (eventHandler != null)
             {
-                consumed = _interceptWheelHandler(_owner, e);
+                consumed = eventHandler(owner, e);
             }
 
             return consumed;
         }
 
         // Callback for View Wheel signal
-        private bool OnWheelEvent(IntPtr view, IntPtr wheelEvent)
+        private static bool OnStaticWheelEvent(IntPtr viewCPtr, IntPtr wheelEvent)
         {
-            if (_owner.IsDisposedOrQueued)
+            var owner = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (owner == null)
+            {
+                NUILog.Error("WheelEvent comes from Disposed (or GC) View!\n");
+                return false;
+            }
+
+            if (owner.IsDisposedOrQueued)
             {
                 // Ignore native callback if the view is disposed or queued for disposal.
                 return false;
@@ -307,7 +332,7 @@ namespace Tizen.NUI.BaseComponents
                 return true;
             }
 
-            if (_owner.DispatchWheelEvents == false)
+            if (owner.DispatchWheelEvents == false)
             {
                 NUILog.Debug("If DispatchWheelEvents is false, it can not dispatch.");
                 return true;
@@ -320,12 +345,14 @@ namespace Tizen.NUI.BaseComponents
 
             bool consumed = false;
 
-            if (_wheelEventHandler != null)
+            var eventHandler = owner.GetViewEventRareData()._wheelEventHandler;
+
+            if (eventHandler != null)
             {
-                consumed = _wheelEventHandler(_owner, e);
+                consumed = eventHandler(owner, e);
             }
 
-            if (_owner.DispatchParentWheelEvents == false && consumed == false)
+            if (owner.DispatchParentWheelEvents == false && consumed == false)
             {
                 NUILog.Debug("If DispatchParentWheelEvents is false, it can not dispatch to parent.");
                 return true;
@@ -335,9 +362,16 @@ namespace Tizen.NUI.BaseComponents
         }
 
         // Callback for View layout direction change signal
-        private void OnLayoutDirectionChanged(IntPtr data, ViewLayoutDirectionType type)
+        private static void OnStaticLayoutDirectionChanged(IntPtr viewCPtr, ViewLayoutDirectionType type)
         {
-            if (_owner.IsDisposedOrQueued)
+            var owner = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (owner == null)
+            {
+                NUILog.Error("LayoutDirectionChanged comes from Disposed (or GC) View!\n");
+                return;
+            }
+
+            if (owner.IsDisposedOrQueued)
             {
                 // Ignore native callback if the view is disposed or queued for disposal.
                 return;
@@ -345,13 +379,10 @@ namespace Tizen.NUI.BaseComponents
 
             View.LayoutDirectionChangedEventArgs e = new();
 
-            if (data != IntPtr.Zero)
-            {
-                e.View = Registry.GetManagedBaseHandleFromNativePtr(data) as View;
-            }
+            e.View = owner;
             e.Type = type;
 
-            _layoutDirectionChangedEventHandler?.Invoke(_owner, e);
+            owner.GetViewEventRareData()._layoutDirectionChangedEventHandler?.Invoke(owner, e);
         }
     }
 }
