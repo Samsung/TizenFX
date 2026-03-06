@@ -62,14 +62,21 @@ namespace Tizen.NUI.BaseComponents
             finishedEventHandler?.Invoke(this, null);
         }
 
-        private void OnVisualEventSignal(IntPtr targetView, int visualIndex, int signalId)
+        private static void OnStaticVisualEventSignal(IntPtr targetView, int visualIndex, int signalId)
         {
-            if (IsDisposedOrQueued)
+            var animatedImageView = Registry.GetManagedBaseHandleFromNativePtr(targetView) as AnimatedImageView;
+            if (animatedImageView == null)
+            {
+                NUILog.Error("VisualEventSignal comes from Disposed (or GC) ImageView!\n");
+                return;
+            }
+
+            if (animatedImageView.IsDisposedOrQueued)
             {
                 return;
             }
 
-            OnFinished();
+            animatedImageView.OnFinished();
         }
 
         private event EventHandler finishedEventHandler;
@@ -697,7 +704,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (finishedEventHandler == null)
                 {
-                    CreateSafeCallback(OnVisualEventSignal, out visualEventSignalCallback);
+                    CreateSafeCallback(OnStaticVisualEventSignal, out visualEventSignalCallback);
                     using VisualEventSignal visualEvent = VisualEventSignal();
                     visualEvent.Connect(visualEventSignalCallback);
                     NDalicPINVOKE.ThrowExceptionIfExistsDebug();

@@ -997,7 +997,7 @@ namespace Tizen.NUI.BaseComponents
         /// This is a hidden API(inhouse API) only for internal purpose.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void RegisterHitTestCallback() => EnsureViewEventRareData().RegisterHitTestCallback(OnHitTestResult);
+        protected void RegisterHitTestCallback() => EnsureViewEventRareData().RegisterHitTestCallback(OnStaticHitTestResult);
 
         /// <summary>
         /// Unregister custom HitTest function.

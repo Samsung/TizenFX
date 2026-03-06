@@ -281,6 +281,41 @@ namespace Tizen.NUI.BaseComponents
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void _resourceLoadedCallbackType(IntPtr view);
 
+        // Static callback wrappers
+        private static void OnStaticResourceReady(IntPtr imageViewCPtr)
+        {
+            var imageView = Registry.GetManagedBaseHandleFromNativePtr(imageViewCPtr) as ImageView;
+            if (imageView == null)
+            {
+                NUILog.Error("ResourceReady comes from Disposed (or GC) ImageView!\n");
+                return;
+            }
+
+            if (imageView.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            imageView.OnResourceReady(imageViewCPtr);
+        }
+
+        private static void OnStaticResourceLoaded(IntPtr imageViewCPtr)
+        {
+            var imageView = Registry.GetManagedBaseHandleFromNativePtr(imageViewCPtr) as ImageView;
+            if (imageView == null)
+            {
+                NUILog.Error("ResourceLoaded comes from Disposed (or GC) ImageView!\n");
+                return;
+            }
+
+            if (imageView.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            imageView.OnResourceLoaded(imageViewCPtr);
+        }
+
         /// <summary>
         /// An event for ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted after all resources required by a control are loaded and ready.<br />
@@ -293,7 +328,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_resourceReadyEventHandler == null)
                 {
-                    CreateSafeCallback(OnResourceReady, out _resourceReadyEventCallback);
+                    CreateSafeCallback(OnStaticResourceReady, out _resourceReadyEventCallback);
                     using ViewResourceReadySignal resourceReadySignal = ResourceReadySignal(this);
                     resourceReadySignal?.Connect(_resourceReadyEventCallback);
                 }
@@ -320,7 +355,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_resourceLoadedEventHandler == null)
                 {
-                    CreateSafeCallback(OnResourceLoaded, out _resourceLoadedCallback);
+                    CreateSafeCallback(OnStaticResourceLoaded, out _resourceLoadedCallback);
                     using ViewResourceReadySignal resourceReadySignal = this.ResourceReadySignal(this);
                     resourceReadySignal?.Connect(_resourceLoadedCallback);
                 }
@@ -2290,12 +2325,6 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View ResourceReady signal
         private void OnResourceReady(IntPtr data)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             if (!CheckResourceReady())
             {
                 return;
@@ -2642,12 +2671,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnResourceLoaded(IntPtr view)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             if (!CheckResourceReady())
             {
                 return;
