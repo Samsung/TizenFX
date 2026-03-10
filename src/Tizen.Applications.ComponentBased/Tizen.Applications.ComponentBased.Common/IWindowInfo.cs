@@ -22,12 +22,14 @@ namespace Tizen.Applications.ComponentBased.Common
     /// Interface for window information
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API14")]
     public interface IWindowInfo : IDisposable
     {
         /// <summary>
         /// Gets window resource ID
         /// </summary>
         /// <returns></returns>
+        [Obsolete("Deprecated since API14")]
         int ResourceId { get; }
     }
 }

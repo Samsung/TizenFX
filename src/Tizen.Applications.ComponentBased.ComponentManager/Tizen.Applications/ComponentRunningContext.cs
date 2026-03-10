@@ -27,6 +27,7 @@ namespace Tizen.Applications.ComponentBased
     /// to retrieve information about the component's state and behavior.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API14")]
     public class ComponentRunningContext : IDisposable
     {
         private const string LogTag = "Tizen.Applications";
@@ -50,6 +51,7 @@ namespace Tizen.Applications.ComponentBased
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied to access the component.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public ComponentRunningContext(string componentId)
         {
             _componentId = componentId;
@@ -74,6 +76,7 @@ namespace Tizen.Applications.ComponentBased
         /// Represents the possible states of a component.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public enum ComponentState
         {
             /// <summary>
@@ -112,6 +115,7 @@ namespace Tizen.Applications.ComponentBased
         /// </summary>
         /// <returns>The component ID as a string.</returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public string ComponentId
         {
             get
@@ -135,6 +139,7 @@ namespace Tizen.Applications.ComponentBased
         /// Gets the application ID associated with the component.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public string ApplicationId
         {
             get
@@ -154,6 +159,7 @@ namespace Tizen.Applications.ComponentBased
         /// Gets the instance ID of the component.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public string InstanceId
         {
             get
@@ -173,6 +179,7 @@ namespace Tizen.Applications.ComponentBased
         /// Gets the current state of the component.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public ComponentState State
         {
             get
@@ -193,6 +200,7 @@ namespace Tizen.Applications.ComponentBased
         /// </summary>
         /// <returns><c>true</c> if the component is terminated; otherwise, <c>false</c>.</returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public bool IsTerminated
         {
             get
@@ -213,6 +221,7 @@ namespace Tizen.Applications.ComponentBased
         /// </summary>
         /// <returns><c>true</c> if the component is a sub-component; otherwise, <c>false</c>.</returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public bool IsSubComponent
         {
             get
@@ -237,6 +246,7 @@ namespace Tizen.Applications.ComponentBased
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied to resume the component.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public void Resume()
         {
             Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentManagerResumeComponent(_contextHandle);
@@ -256,6 +266,7 @@ namespace Tizen.Applications.ComponentBased
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <since_tizen> 6 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API14")]
         public void Pause()
         {
             Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentManagerPauseComponent(_contextHandle);
@@ -275,6 +286,7 @@ namespace Tizen.Applications.ComponentBased
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <since_tizen> 6 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API14")]
         public void Terminate()
         {
             Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentManagerTerminateComponent(_contextHandle);
@@ -288,6 +300,7 @@ namespace Tizen.Applications.ComponentBased
         /// Releases all resources used by the <see cref="ComponentRunningContext"/> class.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public void Dispose()
         {
             Dispose(true);

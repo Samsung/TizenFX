@@ -23,6 +23,7 @@ namespace Tizen.Applications.ComponentBased.Common
     /// This class provides methods for handling the lifecycle and state of UI components.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API14")]
     public abstract class FrameComponent : BaseComponent
     {
         /// <summary>
@@ -33,6 +34,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// </value>
         /// <exception cref="InvalidOperationException">Thrown when the display status cannot be retrieved.</exception>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public DisplayStatus DisplayStatus
         {
             get
@@ -53,6 +55,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <c>true</c> if the service component is successfully created; otherwise, <c>false</c>.
         /// </returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public abstract bool OnCreate();
 
         /// <summary>
@@ -63,6 +66,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// An <see cref="IWindowInfo"/> object that represents the created window.
         /// </returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public abstract IWindowInfo CreateWindowInfo();
 
         /// <summary>
@@ -71,6 +75,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <param name="appControl">The <see cref="AppControl"/> object containing the app control data.</param>
         /// <param name="restarted"><c>true</c> if the component was restarted; otherwise, <c>false</c>.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public virtual void OnStart(AppControl appControl, bool restarted)
         {
         }
@@ -79,6 +84,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Called when the component is resumed. Override this method to handle resume behavior.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public virtual void OnResume()
         {
         }
@@ -87,6 +93,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Called when the component is paused. Override this method to handle pause behavior.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public virtual void OnPause()
         {
         }
@@ -95,6 +102,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Called when the component is stopped. Override this method to handle stop behavior.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public virtual void OnStop()
         {
         }
@@ -103,6 +111,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Called when the component is destroyed. Override this method to handle destruction behavior.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public virtual void OnDestroy()
         {
         }
