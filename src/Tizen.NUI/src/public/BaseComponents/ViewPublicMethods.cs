@@ -380,7 +380,8 @@ namespace Tizen.NUI.BaseComponents
         /// Retrieves ImageUrl of View's offscreen rendering result.
         /// </summary>
         /// <remarks>
-        /// Returns valid url only when View.OffScreenRendering is set to View.OffScreenRenderingType.RenderOnce
+        /// Returns valid url only when View.OffScreenRendering is set to View.OffScreenRenderingType.RenderOnce.
+        /// The View.GetOffScreenImageUrl() method can return a valid URL only within the OffScreenRenderingFinished callback.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageUrl GetOffScreenImageUrl()
