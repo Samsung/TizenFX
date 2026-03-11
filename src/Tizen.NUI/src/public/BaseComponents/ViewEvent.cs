@@ -439,6 +439,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <remarks>
         /// This event is sent only when View.OffScreenRendering is set to View.OffScreenRenderingType.RefreshOnce.
+        /// The View.GetOffScreenImageUrl() method can return a valid URL only within this callback.
         /// </remarks>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
