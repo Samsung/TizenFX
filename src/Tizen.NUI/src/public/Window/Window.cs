@@ -1702,11 +1702,6 @@ namespace Tizen.NUI
                 if (borderLayer == null)
                 {
                     borderLayer = GetBorderWindowRootLayer();
-                    LayersChildren?.Add(borderLayer);
-                    borderLayer.SetWindow(this);
-
-                    // Must be called after LayersChildren and SetWindow() called.
-                    OnLayerAddedToBorderWindow(borderLayer);
                 }
                 return borderLayer;
             }
