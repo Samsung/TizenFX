@@ -18,6 +18,7 @@ using System;
 using System.ComponentModel;
 using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
+using System.Text;
 
 namespace Tizen.Applications.RPCPort
 {
@@ -438,7 +439,23 @@ namespace Tizen.Applications.RPCPort
         /// <since_tizen> 5 </since_tizen>
         public void WriteString(string b)
         {
-            Interop.LibRPCPort.Parcel.WriteString(_handle, b);
+            int utf8ByteCount = Encoding.UTF8.GetByteCount(b);
+            Interop.LibRPCPort.Parcel.WriteInt32(_handle, utf8ByteCount + 1);
+            Interop.LibRPCPort.Parcel.GetDataSize(_handle, out uint size);
+            Interop.LibRPCPort.Parcel.Reserve(_handle, (uint)utf8ByteCount + 1);
+            Interop.LibRPCPort.Parcel.GetDataPtr(_handle, out IntPtr dataHandle);
+
+            unsafe
+            {
+                fixed (char* charPtr = b)
+                {
+                    byte* bytePtr = (byte*)dataHandle.ToPointer() + size;
+                    int bytesEncoded = Encoding.UTF8.GetBytes(
+                        charPtr, b.Length,
+                        bytePtr, utf8ByteCount);
+                    bytePtr[bytesEncoded] = 0;
+                }
+            }
         }
 
         /// <summary>

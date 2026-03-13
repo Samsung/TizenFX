@@ -219,6 +219,10 @@ internal static partial class Interop
             //int rpc_port_parcel_create_from_parcel(rpc_port_parcel_h* h, rpc_port_parcel_h origin_parcel, unsigned int start_pos, unsigned int size);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_from_parcel")]
             internal static extern ErrorCode CreateFromParcel(out IntPtr parcelHandle, IntPtr originParcel, uint startPos, uint size);
+
+            //int rpc_port_parcel_get_data_ptr(rpc_port_parcel_h h, unsigned char** ptr)
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_get_data_ptr")]
+            internal static extern ErrorCode GetDataPtr(IntPtr parcelHandle, out IntPtr dataHandle);
         }
 
         internal static partial class Proxy
