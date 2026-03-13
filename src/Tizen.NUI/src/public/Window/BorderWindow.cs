@@ -615,10 +615,12 @@ namespace Tizen.NUI
                 Interop.Actor.SetAnchorPoint(borderWindowBottomLayer.SwigCPtr, topCentor.SwigCPtr);
                 Interop.Actor.Add(rootLayer.SwigCPtr, borderWindowBottomLayer.SwigCPtr);
 
+                LayersChildren?.Add(borderWindowBottomLayer);
                 borderWindowBottomLayer.SetWindow(this);
                 borderWindowBottomLayer.LowerToBottom();
 
-                ApplyBorderArea(borderWindowBottomLayer);
+                // Must be called after LayersChildren and SetWindow() called.
+                OnLayerAddedToBorderWindow(borderWindowBottomLayer);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) { throw NDalicPINVOKE.SWIGPendingException.Retrieve(); }
             }
@@ -632,7 +634,13 @@ namespace Tizen.NUI
                 borderWindowRootLayer = new Layer();
                 borderWindowRootLayer.Name = "RootLayer";
 
-                Interop.Actor.Add(rootLayer.SwigCPtr, borderWindowBottomLayer.SwigCPtr);
+                Interop.Actor.Add(rootLayer.SwigCPtr, borderWindowRootLayer.SwigCPtr);
+
+                LayersChildren?.Add(borderWindowRootLayer);
+                borderWindowRootLayer.SetWindow(this);
+
+                // Must be called after LayersChildren and SetWindow() called.
+                OnLayerAddedToBorderWindow(borderWindowRootLayer);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) { throw NDalicPINVOKE.SWIGPendingException.Retrieve(); }
             }
