@@ -1617,19 +1617,17 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(layer));
             }
 
-            if (isBorderWindow)
-            {
-                Interop.Actor.Add(GetRootLayer().SwigCPtr, layer.SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) { throw NDalicPINVOKE.SWIGPendingException.Retrieve(); }
-            }
-            else
-            {
-                Interop.Window.Add(SwigCPtr, Layer.getCPtr(layer));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
+            Interop.Window.Add(SwigCPtr, Layer.getCPtr(layer));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             LayersChildren?.Add(layer);
             layer.SetWindow(this);
+
+            if (isBorderWindow)
+            {
+                // Must be called after LayersChildren and SetWindow() called.
+                OnLayerAddedToBorderWindow(layer);
+            }
         }
 
         internal void Remove(Layer layer)
@@ -1640,6 +1638,11 @@ namespace Tizen.NUI
             }
             Interop.Window.Remove(SwigCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if (isBorderWindow)
+            {
+                OnLayerRemovedFromBorderWindow(layer);
+            }
 
             LayersChildren?.Remove(layer);
             layer.SetWindow(null);
@@ -1701,6 +1704,9 @@ namespace Tizen.NUI
                     borderLayer = GetBorderWindowRootLayer();
                     LayersChildren?.Add(borderLayer);
                     borderLayer.SetWindow(this);
+
+                    // Must be called after LayersChildren and SetWindow() called.
+                    OnLayerAddedToBorderWindow(borderLayer);
                 }
                 return borderLayer;
             }
