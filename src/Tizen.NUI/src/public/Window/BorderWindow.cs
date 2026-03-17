@@ -584,23 +584,13 @@ namespace Tizen.NUI
             if (hasTopView) borderHeight += topView.SizeHeight;
             if (hasBottomView) borderHeight += bottomView.SizeHeight;
 
+            LayersChildren?.ForEach(layer =>
+            {
+                ApplyBorderArea(layer, e.WindowSize);
+            });
+
             bool isMaximized = IsMaximized();
             bool isEnabledOverlay = (borderInterface.OverlayMode == true && isMaximized == true);
-
-            float width = 0;
-            float height = isEnabledOverlay ? 0 : borderHeight;
-            float y = isEnabledOverlay ? 0 : ((hasTopView == true) ? topView.SizeHeight : 0);
-
-            if (isMaximized == false)
-            {
-                width = (float)borderLineThickness * 2.0f;
-                height += (float)borderLineThickness * 2.0f;
-                y += (float)borderLineThickness;
-            }
-
-            Interop.ActorInternal.SetSize(GetBorderWindowRootLayer().SwigCPtr, resizeWidth, resizeHeight);
-            Interop.ActorInternal.SetSize(GetBorderWindowBottomLayer().SwigCPtr, resizeWidth + width, resizeHeight + height);
-            Interop.ActorInternal.SetPosition(GetBorderWindowRootLayer().SwigCPtr, 0, y);
 
             if (contentsView != null)
             {
@@ -619,13 +609,18 @@ namespace Tizen.NUI
             {
                 borderWindowBottomLayer = new Layer();
                 borderWindowBottomLayer.Name = "BorderWindowBottomLayer";
+
                 using Vector3 topCentor = new Vector3(0.5f, 0.0f, 0.5f);
                 Interop.ActorInternal.SetParentOrigin(borderWindowBottomLayer.SwigCPtr, topCentor.SwigCPtr);
                 Interop.Actor.SetAnchorPoint(borderWindowBottomLayer.SwigCPtr, topCentor.SwigCPtr);
                 Interop.Actor.Add(rootLayer.SwigCPtr, borderWindowBottomLayer.SwigCPtr);
-                Interop.ActorInternal.SetSize(borderWindowBottomLayer.SwigCPtr, WindowSize.Width + (float)borderLineThickness * 2.0f, WindowSize.Height + (float)borderLineThickness * 2.0f);
+
+                LayersChildren?.Add(borderWindowBottomLayer);
                 borderWindowBottomLayer.SetWindow(this);
                 borderWindowBottomLayer.LowerToBottom();
+
+                // Must be called after LayersChildren and SetWindow() called.
+                OnLayerAddedToBorderWindow(borderWindowBottomLayer);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) { throw NDalicPINVOKE.SWIGPendingException.Retrieve(); }
             }
@@ -638,15 +633,14 @@ namespace Tizen.NUI
             {
                 borderWindowRootLayer = new Layer();
                 borderWindowRootLayer.Name = "RootLayer";
-                using Vector3 topCentor = new Vector3(0.5f, 0.0f, 0.5f);
-                Interop.ActorInternal.SetParentOrigin(borderWindowRootLayer.SwigCPtr, topCentor.SwigCPtr);
-                Interop.Actor.SetAnchorPoint(borderWindowRootLayer.SwigCPtr, topCentor.SwigCPtr);
+
                 Interop.Actor.Add(rootLayer.SwigCPtr, borderWindowRootLayer.SwigCPtr);
-                Interop.ActorInternal.SetSize(borderWindowRootLayer.SwigCPtr, WindowSize.Width, WindowSize.Height - borderHeight - borderLineThickness * 2);
-                float height = (hasTopView == true) ? topView.SizeHeight : 0;
-                Interop.ActorInternal.SetPosition(borderWindowRootLayer.SwigCPtr, 0, height + (float)borderLineThickness);
-                using PropertyValue propertyValue = new Tizen.NUI.PropertyValue((int)Tizen.NUI.ClippingModeType.ClipToBoundingBox);
-                Tizen.NUI.Object.SetProperty(borderWindowRootLayer.SwigCPtr, Tizen.NUI.BaseComponents.View.Property.ClippingMode, propertyValue);
+
+                LayersChildren?.Add(borderWindowRootLayer);
+                borderWindowRootLayer.SetWindow(this);
+
+                // Must be called after LayersChildren and SetWindow() called.
+                OnLayerAddedToBorderWindow(borderWindowRootLayer);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending) { throw NDalicPINVOKE.SWIGPendingException.Retrieve(); }
             }
@@ -687,6 +681,66 @@ namespace Tizen.NUI
                 size.SetWidth(width);
             }
         }
+
+        private void OnLayerAddedToBorderWindow(Layer layer)
+        {
+            ApplyBorderArea(layer);
+
+            if (isEnabledOverlayMode)
+            {
+                GetBorderWindowBottomLayer().RaiseToTop();
+            }
+        }
+
+        private void OnLayerRemovedFromBorderWindow(Layer layer)
+        {
+            if (isBorderWindow == true && layer != null && layer != rootLayer && layer != borderWindowBottomLayer)
+            {
+                layer.Viewport = null;
+            }
+        }
+
+        private void ApplyBorderArea(Layer layer, Size2D preferredSize = null)
+        {
+            if (isBorderWindow == true && layer != null && layer != rootLayer)
+            {
+                var windowSize = preferredSize == null ? WindowSize : preferredSize;
+
+                bool isMaximized = IsMaximized();
+                bool isEnabledOverlay = (borderInterface.OverlayMode == true && isMaximized == true);
+
+                if (layer == borderWindowBottomLayer)
+                {
+                    float width = 0;
+                    float height = isEnabledOverlay ? 0 : borderHeight;
+                    if (isMaximized == false)
+                    {
+                        width = (float)borderLineThickness * 2.0f;
+                        height += (float)borderLineThickness * 2.0f;
+                    }
+                    Interop.ActorInternal.SetSize(borderWindowBottomLayer.SwigCPtr, windowSize.Width + width, windowSize.Height + height);
+                }
+                else
+                {
+                    int x = 0;
+                    int y = isEnabledOverlay ? 0 : ((hasTopView == true) ? (int)topView.SizeHeight : 0);
+
+                    if (isMaximized == false)
+                    {
+                        x += (int)borderLineThickness;
+                        y += (int)borderLineThickness;
+                    }
+                    var viewport = new Rectangle(x, y, windowSize.Width, windowSize.Height);
+                    layer.Viewport = viewport;
+                }
+
+                if (preferredSize == null)
+                {
+                    windowSize.Dispose();
+                }
+            }
+        }
+
         #endregion //Methods
 
         #region Structs

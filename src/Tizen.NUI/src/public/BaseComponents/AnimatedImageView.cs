@@ -58,17 +58,25 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnFinished()
         {
+            AnimationState = AnimationStates.Stopped;
             finishedEventHandler?.Invoke(this, null);
         }
 
-        private void OnVisualEventSignal(IntPtr targetView, int visualIndex, int signalId)
+        private static void OnStaticVisualEventSignal(IntPtr targetView, int visualIndex, int signalId)
         {
-            if (IsDisposedOrQueued)
+            var animatedImageView = Registry.GetManagedBaseHandleFromNativePtr(targetView) as AnimatedImageView;
+            if (animatedImageView == null)
+            {
+                NUILog.Error("VisualEventSignal comes from Disposed (or GC) ImageView!\n");
+                return;
+            }
+
+            if (animatedImageView.IsDisposedOrQueued)
             {
                 return;
             }
 
-            OnFinished();
+            animatedImageView.OnFinished();
         }
 
         private event EventHandler finishedEventHandler;
@@ -529,6 +537,12 @@ namespace Tizen.NUI.BaseComponents
                 return ret;
             }
         }
+
+        /// <summary>
+        /// Get state of animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AnimationStates AnimationState { get; private set; } = AnimationStates.Playing; // For backward behavior matching, keep initial value as Playing.
         #endregion Property
 
         #region Method
@@ -544,6 +558,36 @@ namespace Tizen.NUI.BaseComponents
 
             // Sync as current properties
             UpdateImage();
+        }
+
+        /// <summary>
+        /// Play Animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new void Play()
+        {
+            AnimationState = AnimationStates.Playing;
+            base.Play();
+        }
+
+        /// <summary>
+        /// Pause Animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new void Pause()
+        {
+            AnimationState = AnimationStates.Paused;
+            base.Pause();
+        }
+
+        /// <summary>
+        /// Stop Animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new void Stop()
+        {
+            AnimationState = AnimationStates.Stopped;
+            base.Stop();
         }
 
         /// <summary>
@@ -597,6 +641,28 @@ namespace Tizen.NUI.BaseComponents
             }
 
             base.UpdateImage();
+
+            if (!Disposed)
+            {
+                switch (AnimationState)
+                {
+                    case AnimationStates.Stopped:
+                    {
+                        base.Stop();
+                        break;
+                    }
+                    case AnimationStates.Playing:
+                    {
+                        base.Play();
+                        break;
+                    }
+                    case AnimationStates.Paused:
+                    {
+                        base.Pause();
+                        break;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -638,7 +704,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (finishedEventHandler == null)
                 {
-                    CreateSafeCallback(OnVisualEventSignal, out visualEventSignalCallback);
+                    CreateSafeCallback(OnStaticVisualEventSignal, out visualEventSignalCallback);
                     using VisualEventSignal visualEvent = VisualEventSignal();
                     visualEvent.Connect(visualEventSignalCallback);
                     NDalicPINVOKE.ThrowExceptionIfExistsDebug();
@@ -681,6 +747,24 @@ namespace Tizen.NUI.BaseComponents
             MaximumFrame
         }
 
+        /// <summary>
+        /// AnimationStates of animation.
+        /// </summary>
+        // Suppress warning : This has been being used by users, so that the interface can not be changed.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names", Justification = "<Pending>")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum AnimationStates
+        {
+            /// <summary> The animation has stopped.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Stopped = LottieAnimationView.PlayStateType.Stopped,
+            /// <summary> The animation is playing.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Playing = LottieAnimationView.PlayStateType.Playing,
+            /// <summary> The animation is paused.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Paused = LottieAnimationView.PlayStateType.Paused
+        }
         #endregion Event, Enum, Struct, ETC
     }
 }

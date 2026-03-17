@@ -71,6 +71,143 @@ namespace Tizen.NUI.BaseComponents
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void SelectionStartedCallbackDelegate(IntPtr textField);
 
+        // Static callback wrappers
+        private static void OnStaticTextChanged(IntPtr textFieldCPtr)
+        {
+            var textField = Registry.GetManagedBaseHandleFromNativePtr(textFieldCPtr) as TextField;
+            if (textField == null)
+            {
+                NUILog.Error("TextChanged comes from Disposed (or GC) TextField!\n");
+                return;
+            }
+
+            if (textField.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textField.OnTextChanged(textFieldCPtr);
+        }
+
+        private static void OnStaticCursorPositionChanged(IntPtr textFieldCPtr, uint oldPosition)
+        {
+            var textField = Registry.GetManagedBaseHandleFromNativePtr(textFieldCPtr) as TextField;
+            if (textField == null)
+            {
+                NUILog.Error("CursorPositionChanged comes from Disposed (or GC) TextField!\n");
+                return;
+            }
+
+            if (textField.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textField.OnCursorPositionChanged(textFieldCPtr, oldPosition);
+        }
+
+        private static void OnStaticMaxLengthReached(IntPtr textFieldCPtr)
+        {
+            var textField = Registry.GetManagedBaseHandleFromNativePtr(textFieldCPtr) as TextField;
+            if (textField == null)
+            {
+                NUILog.Error("MaxLengthReached comes from Disposed (or GC) TextField!\n");
+                return;
+            }
+
+            if (textField.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textField.OnMaxLengthReached(textFieldCPtr);
+        }
+
+        private static void OnStaticAnchorClicked(IntPtr textFieldCPtr, IntPtr href, uint hrefLength)
+        {
+            var textField = Registry.GetManagedBaseHandleFromNativePtr(textFieldCPtr) as TextField;
+            if (textField == null)
+            {
+                NUILog.Error("AnchorClicked comes from Disposed (or GC) TextField!\n");
+                return;
+            }
+
+            if (textField.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textField.OnAnchorClicked(textFieldCPtr, href, hrefLength);
+        }
+
+        private static void OnStaticSelectionStarted(IntPtr textFieldCPtr)
+        {
+            var textField = Registry.GetManagedBaseHandleFromNativePtr(textFieldCPtr) as TextField;
+            if (textField == null)
+            {
+                NUILog.Error("SelectionStarted comes from Disposed (or GC) TextField!\n");
+                return;
+            }
+
+            if (textField.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textField.OnSelectionStarted(textFieldCPtr);
+        }
+
+        private static void OnStaticSelectionCleared(IntPtr textFieldCPtr)
+        {
+            var textField = Registry.GetManagedBaseHandleFromNativePtr(textFieldCPtr) as TextField;
+            if (textField == null)
+            {
+                NUILog.Error("SelectionCleared comes from Disposed (or GC) TextField!\n");
+                return;
+            }
+
+            if (textField.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textField.OnSelectionCleared(textFieldCPtr);
+        }
+
+        private static void OnStaticSelectionChanged(IntPtr textFieldCPtr, uint oldStart, uint oldEnd)
+        {
+            var textField = Registry.GetManagedBaseHandleFromNativePtr(textFieldCPtr) as TextField;
+            if (textField == null)
+            {
+                NUILog.Error("SelectionChanged comes from Disposed (or GC) TextField!\n");
+                return;
+            }
+
+            if (textField.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textField.OnSelectionChanged(textFieldCPtr, oldStart, oldEnd);
+        }
+
+        private static void OnStaticInputFiltered(IntPtr textFieldCPtr, InputFilterType type)
+        {
+            var textField = Registry.GetManagedBaseHandleFromNativePtr(textFieldCPtr) as TextField;
+            if (textField == null)
+            {
+                NUILog.Error("InputFiltered comes from Disposed (or GC) TextField!\n");
+                return;
+            }
+
+            if (textField.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textField.OnInputFiltered(textFieldCPtr, type);
+        }
+
         private bool invokeTextChanged = true;
 
         /// <summary>
@@ -83,7 +220,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldTextChangedEventHandler == null)
                 {
-                    CreateSafeCallback(OnTextChanged, out textFieldTextChangedCallbackDelegate);
+                    CreateSafeCallback(OnStaticTextChanged, out textFieldTextChangedCallbackDelegate);
                     using var signal = TextChangedSignal();
                     signal.Connect(textFieldTextChangedCallbackDelegate);
                 }
@@ -111,7 +248,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldCursorPositionChangedEventHandler == null)
                 {
-                    CreateSafeCallback(OnCursorPositionChanged, out textFieldCursorPositionChangedCallbackDelegate);
+                    CreateSafeCallback(OnStaticCursorPositionChanged, out textFieldCursorPositionChangedCallbackDelegate);
                     using var signal = CursorPositionChangedSignal();
                     signal.Connect(textFieldCursorPositionChangedCallbackDelegate);
                 }
@@ -139,7 +276,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldMaxLengthReachedEventHandler == null)
                 {
-                    CreateSafeCallback(OnMaxLengthReached, out textFieldMaxLengthReachedCallbackDelegate);
+                    CreateSafeCallback(OnStaticMaxLengthReached, out textFieldMaxLengthReachedCallbackDelegate);
                     using var signal = MaxLengthReachedSignal();
                     signal.Connect(textFieldMaxLengthReachedCallbackDelegate);
                 }
@@ -167,7 +304,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldSelectionStartedEventHandler == null)
                 {
-                    CreateSafeCallback(OnSelectionStarted, out textFieldSelectionStartedCallbackDelegate);
+                    CreateSafeCallback(OnStaticSelectionStarted, out textFieldSelectionStartedCallbackDelegate);
                     using var signal = SelectionStartedSignal();
                     signal.Connect(textFieldSelectionStartedCallbackDelegate);
                 }
@@ -195,7 +332,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldSelectionClearedEventHandler == null)
                 {
-                    CreateSafeCallback(OnSelectionCleared, out textFieldSelectionClearedCallbackDelegate);
+                    CreateSafeCallback(OnStaticSelectionCleared, out textFieldSelectionClearedCallbackDelegate);
                     using var signal = SelectionClearedSignal();
                     signal.Connect(textFieldSelectionClearedCallbackDelegate);
                 }
@@ -223,7 +360,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldAnchorClickedEventHandler == null)
                 {
-                    CreateSafeCallback(OnAnchorClicked, out textFieldAnchorClickedCallbackDelegate);
+                    CreateSafeCallback(OnStaticAnchorClicked, out textFieldAnchorClickedCallbackDelegate);
                     using var signal = AnchorClickedSignal();
                     signal.Connect(textFieldAnchorClickedCallbackDelegate);
                 }
@@ -251,7 +388,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldSelectionChangedEventHandler == null)
                 {
-                    CreateSafeCallback(OnSelectionChanged, out textFieldSelectionChangedCallbackDelegate);
+                    CreateSafeCallback(OnStaticSelectionChanged, out textFieldSelectionChangedCallbackDelegate);
                     using var signal = SelectionChangedSignal();
                     signal.Connect(textFieldSelectionChangedCallbackDelegate);
                 }
@@ -298,7 +435,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textFieldInputFilteredEventHandler == null)
                 {
-                    CreateSafeCallback(OnInputFiltered, out textFieldInputFilteredCallbackDelegate);
+                    CreateSafeCallback(OnStaticInputFiltered, out textFieldInputFilteredCallbackDelegate);
                     using var signal = InputFilteredSignal();
                     signal.Connect(textFieldInputFilteredCallbackDelegate);
                 }
@@ -374,36 +511,18 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnSelectionStarted(IntPtr textField)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             //no data to be sent to the user
             textFieldSelectionStartedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnSelectionCleared(IntPtr textField)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             //no data to be sent to the user
             textFieldSelectionClearedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnTextChanged(IntPtr textField)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             if (textFieldTextChangedEventHandler != null && invokeTextChanged)
             {
                 TextChangedEventArgs e = new TextChangedEventArgs();
@@ -417,24 +536,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnCursorPositionChanged(IntPtr textField, uint oldPosition)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             // no data to be sent to the user, as in NUI there is no event provide old values.
             textFieldCursorPositionChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnMaxLengthReached(IntPtr textField)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             if (textFieldMaxLengthReachedEventHandler != null)
             {
                 MaxLengthReachedEventArgs e = new MaxLengthReachedEventArgs();
@@ -448,12 +555,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnAnchorClicked(IntPtr textField, IntPtr href, uint hrefLength)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             // Note: hrefLength is useful for get the length of a const char* (href) in dali-toolkit.
             // But NUI can get the length of string (href), so hrefLength is not necessary in NUI.
             AnchorClickedEventArgs e = new AnchorClickedEventArgs();
@@ -466,24 +567,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnSelectionChanged(IntPtr textField, uint oldStart, uint oldEnd)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             // no data to be sent to the user, as in NUI there is no event provide old values.
             textFieldSelectionChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }
 
         private void OnInputFiltered(IntPtr textField, InputFilterType type)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             InputFilteredEventArgs e = new InputFilteredEventArgs();
 
             // Populate all members of "e" (InputFilteredEventArgs) with real data

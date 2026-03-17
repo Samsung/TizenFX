@@ -380,7 +380,8 @@ namespace Tizen.NUI.BaseComponents
         /// Retrieves ImageUrl of View's offscreen rendering result.
         /// </summary>
         /// <remarks>
-        /// Returns valid url only when View.OffScreenRendering is set to View.OffScreenRenderingType.RenderOnce
+        /// Returns valid url only when View.OffScreenRendering is set to View.OffScreenRenderingType.RenderOnce.
+        /// The View.GetOffScreenImageUrl() method can return a valid URL only within the OffScreenRenderingFinished callback.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageUrl GetOffScreenImageUrl()
@@ -997,7 +998,7 @@ namespace Tizen.NUI.BaseComponents
         /// This is a hidden API(inhouse API) only for internal purpose.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected void RegisterHitTestCallback() => EnsureViewEventRareData().RegisterHitTestCallback(OnHitTestResult);
+        protected void RegisterHitTestCallback() => EnsureViewEventRareData().RegisterHitTestCallback(OnStaticHitTestResult);
 
         /// <summary>
         /// Unregister custom HitTest function.

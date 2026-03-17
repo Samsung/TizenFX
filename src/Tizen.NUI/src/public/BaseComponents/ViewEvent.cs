@@ -118,7 +118,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (keyInputFocusGainedEventHandler == null)
                 {
-                    CreateSafeCallback(OnKeyInputFocusGained, out keyInputFocusGainedCallback);
+                    CreateSafeCallback(OnStaticKeyInputFocusGained, out keyInputFocusGainedCallback);
                     Interop.ViewSignal.KeyInputFocusGainedConnect(SwigCPtr, keyInputFocusGainedCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -148,7 +148,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (keyInputFocusLostEventHandler == null)
                 {
-                    CreateSafeCallback(OnKeyInputFocusLost, out keyInputFocusLostCallback);
+                    CreateSafeCallback(OnStaticKeyInputFocusLost, out keyInputFocusLostCallback);
                     Interop.ViewSignal.KeyInputFocusLostConnect(SwigCPtr, keyInputFocusLostCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -178,7 +178,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (keyEventHandler == null)
                 {
-                    CreateSafeCallback(OnKeyEvent, out keyCallback);
+                    CreateSafeCallback(OnStaticKeyEvent, out keyCallback);
                     Interop.ViewSignal.KeyEventConnect(SwigCPtr, keyCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -208,7 +208,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (onRelayoutEventHandler == null)
                 {
-                    CreateSafeCallback(OnRelayout, out onRelayoutEventCallback);
+                    CreateSafeCallback(OnStaticRelayout, out onRelayoutEventCallback);
                     Interop.ActorSignal.OnRelayoutConnect(SwigCPtr, onRelayoutEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -273,7 +273,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (touchDataEventHandler == null)
                 {
-                    CreateSafeCallback(OnTouch, out touchDataCallback);
+                    CreateSafeCallback(OnStaticTouch, out touchDataCallback);
                     Interop.ActorSignal.TouchConnect(SwigCPtr, touchDataCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -303,7 +303,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (hoverEventHandler == null)
                 {
-                    CreateSafeCallback(OnHoverEvent, out hoverEventCallback);
+                    CreateSafeCallback(OnStaticHoverEvent, out hoverEventCallback);
                     Interop.ActorSignal.HoveredConnect(SwigCPtr, hoverEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -385,7 +385,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (onWindowEventHandler == null)
                 {
-                    CreateSafeCallback(OnWindow, out onWindowEventCallback);
+                    CreateSafeCallback(OnStaticWindow, out onWindowEventCallback);
                     Interop.ActorSignal.OnSceneConnect(SwigCPtr, onWindowEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -415,7 +415,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (offWindowEventHandler == null)
                 {
-                    CreateSafeCallback(OffWindow, out offWindowEventCallback);
+                    CreateSafeCallback(OffStaticWindow, out offWindowEventCallback);
                     Interop.ActorSignal.OffSceneConnect(SwigCPtr, offWindowEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -439,6 +439,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <remarks>
         /// This event is sent only when View.OffScreenRendering is set to View.OffScreenRenderingType.RefreshOnce.
+        /// The View.GetOffScreenImageUrl() method can return a valid URL only within this callback.
         /// </remarks>
         /// <since_tizen> 13 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -448,7 +449,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (offScreenRenderingFinishedEventHandler == null)
                 {
-                    CreateSafeCallback(OnOffScreenRenderingFinished, out offScreenRenderingFinishedCallback);
+                    CreateSafeCallback(OnStaticOffScreenRenderingFinished, out offScreenRenderingFinishedCallback);
                     Interop.ViewSignal.OffScreenRenderingFinishedConnect(SwigCPtr, offScreenRenderingFinishedCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -489,7 +490,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (visibilityChangedEventHandler == null)
                 {
-                    CreateSafeCallback(OnVisibilityChanged, out visibilityChangedEventCallback);
+                    CreateSafeCallback(OnStaticVisibilityChanged, out visibilityChangedEventCallback);
                     Interop.ActorSignal.VisibilityChangedConnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -526,7 +527,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (aggregatedVisibilityChangedEventHandler == null)
                 {
-                    CreateSafeCallback(OnAggregatedVisibilityChanged, out aggregatedVisibilityChangedEventCallback);
+                    CreateSafeCallback(OnStaticAggregatedVisibilityChanged, out aggregatedVisibilityChangedEventCallback);
                     Interop.ActorSignal.AggregatedVisibilityChangedConnect(SwigCPtr, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -573,7 +574,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (resourcesLoadedEventHandler == null)
                 {
-                    CreateSafeCallback(OnResourcesLoaded, out resourcesLoadedCallback);
+                    CreateSafeCallback(OnStaticResourcesLoaded, out resourcesLoadedCallback);
                     Interop.ViewSignal.ResourceReadyConnect(SwigCPtr, resourcesLoadedCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -630,7 +631,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (backgroundResourceLoadedEventHandler == null)
                 {
-                    CreateSafeCallback(OnBackgroundResourceLoaded, out backgroundResourceLoadedCallback);
+                    CreateSafeCallback(OnStaticBackgroundResourceLoaded, out backgroundResourceLoadedCallback);
                     Interop.ViewSignal.ResourceReadyConnect(SwigCPtr, backgroundResourceLoadedCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -710,12 +711,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnKeyInputFocusGained(IntPtr view)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             if (IsNativeHandleInvalid())
             {
                 if (this.Disposed)
@@ -754,12 +749,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnKeyInputFocusLost(IntPtr view)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             if (IsNativeHandleInvalid())
             {
                 if (this.Disposed)
@@ -800,12 +789,6 @@ namespace Tizen.NUI.BaseComponents
 
         private bool OnKeyEvent(IntPtr view, IntPtr keyEvent)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return false;
-            }
-
             if (keyEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("keyEvent should not be null!");
@@ -835,12 +818,6 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View OnRelayout signal
         private void OnRelayout(IntPtr data)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             if (onRelayoutEventHandler != null)
             {
                 onRelayoutEventHandler(this, null);
@@ -858,12 +835,6 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View HitTestResultSignal
         private bool OnHitTestResult(IntPtr view, IntPtr touchData)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return false;
-            }
-
             if (touchData == global::System.IntPtr.Zero)
             {
                 NUILog.Error("touchData should not be null!");
@@ -878,12 +849,6 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View TouchSignal
         private bool OnTouch(IntPtr view, IntPtr touchData)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return false;
-            }
-
             if (touchData == global::System.IntPtr.Zero)
             {
                 NUILog.Error("touchData should not be null!");
@@ -935,12 +900,6 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View Hover signal
         private bool OnHoverEvent(IntPtr view, IntPtr hoverEvent)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return false;
-            }
-
             if (hoverEvent == global::System.IntPtr.Zero)
             {
                 NUILog.Error("hoverEvent should not be null!");
@@ -975,12 +934,6 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View OnWindow signal
         private void OnWindow(IntPtr data)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             if (onWindowEventHandler != null)
             {
                 onWindowEventHandler(this, null);
@@ -990,12 +943,6 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View OffWindow signal
         private void OffWindow(IntPtr data)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             if (offWindowEventHandler != null)
             {
                 offWindowEventHandler(this, null);
@@ -1005,23 +952,15 @@ namespace Tizen.NUI.BaseComponents
         // Callback for the OffScreenRenderingFinished signal
         private void OnOffScreenRenderingFinished(IntPtr control)
         {
-            if (Disposed || IsDisposeQueued)
+            if (offScreenRenderingFinishedEventHandler != null)
             {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
+                offScreenRenderingFinishedEventHandler(this, null);
             }
-            offScreenRenderingFinishedEventHandler?.Invoke(this, null);
         }
 
         // Callback for View visibility change signal
         private void OnVisibilityChanged(IntPtr data, bool visibility, VisibilityChangeType type)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             VisibilityChangedEventArgs e = new VisibilityChangedEventArgs();
             IntPtr changedViewCPtr = Interop.Actor.GetVisiblityChangedActor();
             if (changedViewCPtr != IntPtr.Zero)
@@ -1048,12 +987,6 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View aggregated visibility change signal
         private void OnAggregatedVisibilityChanged(IntPtr data, bool visibility)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             AggregatedVisibilityChangedEventArgs e = new AggregatedVisibilityChangedEventArgs();
             e.Visibility = visibility;
 
@@ -1065,12 +998,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnResourcesLoaded(IntPtr view)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             if (!CheckResourceReady())
             {
                 return;
@@ -1084,12 +1011,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnBackgroundResourceLoaded(IntPtr view)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             BackgroundResourceLoadedEventArgs e = new BackgroundResourceLoadedEventArgs();
             e.Status = (ResourceLoadingStatusType)Interop.View.GetVisualResourceStatus(this.SwigCPtr, Property.BACKGROUND);
 
@@ -1097,6 +1018,258 @@ namespace Tizen.NUI.BaseComponents
             {
                 backgroundResourceLoadedEventHandler(this, e);
             }
+        }
+
+        private static void OnStaticKeyInputFocusGained(IntPtr viewCPtr)
+        {
+            var view = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (view == null)
+            {
+                NUILog.Error("KeyInputFocusGained comes from Disposed (or GC) View!\n");
+                return;
+            }
+
+            if (view.IsDisposedOrQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
+            view.OnKeyInputFocusGained(viewCPtr);
+        }
+
+        private static void OnStaticKeyInputFocusLost(IntPtr viewCPtr)
+        {
+            var view = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (view == null)
+            {
+                NUILog.Error("KeyInputFocusLost comes from Disposed (or GC) View!\n");
+                return;
+            }
+
+            if (view.IsDisposedOrQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
+            view.OnKeyInputFocusLost(viewCPtr);
+        }
+
+        private static bool OnStaticKeyEvent(IntPtr viewCPtr, IntPtr keyEvent)
+        {
+            var view = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (view == null)
+            {
+                NUILog.Error("KeyEvent comes from Disposed (or GC) View!\n");
+                return false;
+            }
+
+            if (view.IsDisposedOrQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
+            return view.OnKeyEvent(viewCPtr, keyEvent);
+        }
+
+        private static void OnStaticRelayout(IntPtr viewCPtr)
+        {
+            var view = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (view == null)
+            {
+                NUILog.Error("Relayout comes from Disposed (or GC) View!\n");
+                return;
+            }
+
+            if (view.IsDisposedOrQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
+            view.OnRelayout(viewCPtr);
+        }
+
+        private static bool OnStaticHitTestResult(IntPtr viewCPtr, IntPtr touchData)
+        {
+            var view = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (view == null)
+            {
+                NUILog.Error("Touch comes from Disposed (or GC) View!\n");
+                return false;
+            }
+
+            if (view.IsDisposedOrQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
+            return view.OnHitTestResult(viewCPtr, touchData);
+        }
+
+        private static bool OnStaticTouch(IntPtr viewCPtr, IntPtr touchData)
+        {
+            var view = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (view == null)
+            {
+                NUILog.Error("Touch comes from Disposed (or GC) View!\n");
+                return false;
+            }
+
+            if (view.IsDisposedOrQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
+            return view.OnTouch(viewCPtr, touchData);
+        }
+
+        private static bool OnStaticHoverEvent(IntPtr viewCPtr, IntPtr hoverEvent)
+        {
+            var view = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (view == null)
+            {
+                NUILog.Error("HoverEvent comes from Disposed (or GC) View!\n");
+                return false;
+            }
+
+            if (view.IsDisposedOrQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return false;
+            }
+
+            return view.OnHoverEvent(viewCPtr, hoverEvent);
+        }
+
+        private static void OnStaticWindow(IntPtr viewCPtr)
+        {
+            var view = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (view == null)
+            {
+                NUILog.Error("OnWindow comes from Disposed (or GC) View!\n");
+                return;
+            }
+
+            if (view.IsDisposedOrQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
+            view.OnWindow(viewCPtr);
+        }
+
+        private static void OffStaticWindow(IntPtr viewCPtr)
+        {
+            var view = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (view == null)
+            {
+                NUILog.Error("OffWindow comes from Disposed (or GC) View!\n");
+                return;
+            }
+
+            if (view.IsDisposedOrQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
+            view.OffWindow(viewCPtr);
+        }
+
+        private static void OnStaticOffScreenRenderingFinished(IntPtr viewCPtr)
+        {
+            var view = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (view == null)
+            {
+                NUILog.Error("OffScreenRenderingFinished comes from Disposed (or GC) View!\n");
+                return;
+            }
+
+            if (view.IsDisposedOrQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
+            view.OnOffScreenRenderingFinished(viewCPtr);
+        }
+
+        private static void OnStaticVisibilityChanged(IntPtr viewCPtr, bool visibility, VisibilityChangeType type)
+        {
+            var view = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (view == null)
+            {
+                NUILog.Error("VisibilityChanged comes from Disposed (or GC) View!\n");
+                return;
+            }
+
+            if (view.IsDisposedOrQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
+            view.OnVisibilityChanged(viewCPtr, visibility, type);
+        }
+
+        private static void OnStaticAggregatedVisibilityChanged(IntPtr viewCPtr, bool visibility)
+        {
+            var view = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (view == null)
+            {
+                NUILog.Error("AggregatedVisibilityChanged comes from Disposed (or GC) View!\n");
+                return;
+            }
+
+            if (view.IsDisposedOrQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
+            view.OnAggregatedVisibilityChanged(viewCPtr, visibility);
+        }
+
+        private static void OnStaticResourcesLoaded(IntPtr viewCPtr)
+        {
+            var view = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (view == null)
+            {
+                NUILog.Error("ResourcesLoaded comes from Disposed (or GC) View!\n");
+                return;
+            }
+
+            if (view.IsDisposedOrQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
+            view.OnResourcesLoaded(viewCPtr);
+        }
+
+        private static void OnStaticBackgroundResourceLoaded(IntPtr viewCPtr)
+        {
+            var view = Registry.GetManagedBaseHandleFromNativePtr(viewCPtr) as View;
+            if (view == null)
+            {
+                NUILog.Error("BackgroundResourceLoaded comes from Disposed (or GC) View!\n");
+                return;
+            }
+
+            if (view.IsDisposedOrQueued)
+            {
+                // Ignore native callback if the view is disposed or queued for disposal.
+                return;
+            }
+
+            view.OnBackgroundResourceLoaded(viewCPtr);
         }
 
         /// <summary>
@@ -1879,5 +2052,10 @@ namespace Tizen.NUI.BaseComponents
         private ViewGestureData GetViewGestureData() => GetAttached<ViewGestureData>();
 
         private ViewEventRareData EnsureViewEventRareData() => _viewEventRareData ??= new ViewEventRareData(this);
+
+        internal ViewEventRareData GetViewEventRareData()
+        {
+            return _viewEventRareData;
+        }
     }
 }
