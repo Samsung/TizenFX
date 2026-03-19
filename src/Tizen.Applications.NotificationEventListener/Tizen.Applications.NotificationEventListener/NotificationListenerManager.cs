@@ -231,9 +231,9 @@ namespace Tizen.Applications.NotificationEventListener
                 }
 
                 Log.Info(LogTag, $"type : {((int)operationType).ToString()}");
-                Log.Info(LogTag, $"Add : {AddEventHandler == null ? "0" : AddEventHandler.GetInvocationList().Length.ToString()}");
-                Log.Info(LogTag, $"update: {UpdateEventHandler == null ? "0" : UpdateEventHandler.GetInvocationList().Length.ToString()}");
-                Log.Info(LogTag, $"delete : {DeleteEventHandler == null ? "0" : DeleteEventHandler.GetInvocationList().Length.ToString()}");
+                Log.Info(LogTag, $"Add : {(AddEventHandler == null ? "0" : AddEventHandler.GetInvocationList().Length.ToString())}");
+                Log.Info(LogTag, $"update: {(UpdateEventHandler == null ? "0" : UpdateEventHandler.GetInvocationList().Length.ToString())}");
+                Log.Info(LogTag, $"delete : {(DeleteEventHandler == null ? "0" : DeleteEventHandler.GetInvocationList().Length.ToString())}");
 
                 switch ((int)operationType)
                 {

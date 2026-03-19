@@ -142,8 +142,7 @@ namespace Tizen.Network.Connection
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, $"Exception on adding ConnectionTypeChanged
-{e.ToString()}");
+                            Log.Error(Globals.LogTag, $"Exception on adding ConnectionTypeChanged {e.ToString()}");
                             return;
                         }
                     }
@@ -163,8 +162,7 @@ namespace Tizen.Network.Connection
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, $"Exception on removing ConnectionTypeChanged
-{e.ToString()}");
+                            Log.Error(Globals.LogTag, $"Exception on removing ConnectionTypeChanged {e.ToString()}");
                         }
                     }
                 }
@@ -215,8 +213,7 @@ namespace Tizen.Network.Connection
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, $"Exception on adding EthernetCableStateChanged
-{e.ToString()}");
+                            Log.Error(Globals.LogTag, $"Exception on adding EthernetCableStateChanged {e.ToString()}");
                             return;
                         }
                     }
@@ -236,8 +233,7 @@ namespace Tizen.Network.Connection
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, $"Exception on removing EthernetCableStateChanged
-{e.ToString()}");
+                            Log.Error(Globals.LogTag, $"Exception on removing EthernetCableStateChanged {e.ToString()}");
                         }
                     }
                 }
@@ -290,8 +286,7 @@ namespace Tizen.Network.Connection
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, $"Exception on adding IPAddressChanged
-{e.ToString()}");
+                            Log.Error(Globals.LogTag, $"Exception on adding IPAddressChanged {e.ToString()}");
                             return;
                         }
                     }
@@ -312,8 +307,7 @@ namespace Tizen.Network.Connection
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, $"Exception on removing IPAddressChanged
-{e.ToString()}");
+                            Log.Error(Globals.LogTag, $"Exception on removing IPAddressChanged {e.ToString()}");
                         }
                     }
                 }
@@ -368,8 +362,7 @@ namespace Tizen.Network.Connection
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, $"Exception on adding ProxyAddressChanged
-{e.ToString()}");
+                            Log.Error(Globals.LogTag, $"Exception on adding ProxyAddressChanged {e.ToString()}");
                             return;
                         }
                     }
@@ -389,8 +382,7 @@ namespace Tizen.Network.Connection
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, $"Exception on removing ProxyAddressChanged
-{e.ToString()}");
+                            Log.Error(Globals.LogTag, $"Exception on removing ProxyAddressChanged {e.ToString()}");
                         }
                     }
                 }
@@ -936,8 +928,7 @@ namespace Tizen.Network.Connection
                     }
                 } catch (Exception e)
                 {
-                    Log.Error(Globals.LogTag, $"Exception on SetDefaultCellularServiceProfileAsync
-{e.ToString()}");
+                    Log.Error(Globals.LogTag, $"Exception on SetDefaultCellularServiceProfileAsync {e.ToString()}");
                     task.SetException(e);
                 }
 
@@ -1041,8 +1032,7 @@ namespace Tizen.Network.Connection
                 }
                 catch (Exception e)
                 {
-                    Log.Error(Globals.LogTag, $"Exception on OpenProfile
-{e.ToString()}");
+                    Log.Error(Globals.LogTag, $"Exception on OpenProfile {e.ToString()}");
                     task.SetException(e);
                 }
 
@@ -1100,8 +1090,7 @@ namespace Tizen.Network.Connection
                 }
                 catch (Exception e)
                 {
-                    Log.Error(Globals.LogTag, $"Exception on CloseProfile
-{e.ToString()}");
+                    Log.Error(Globals.LogTag, $"Exception on CloseProfile {e.ToString()}");
                     task.SetException(e);
                 }
 

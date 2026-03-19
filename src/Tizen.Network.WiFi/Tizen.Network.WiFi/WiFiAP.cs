@@ -272,8 +272,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, $"Exception on ConnectAsync
-{e}");
+                Log.Error(Globals.LogTag, $"Exception on ConnectAsync {e}");
                 task.SetException(e);
             }
 
@@ -373,8 +372,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, $"Exception on ConnectWpsAsync
-{e}");
+                Log.Error(Globals.LogTag, $"Exception on ConnectWpsAsync {e}");
                 wpsTask.SetException(e);
                 Log.Info(Globals.LogTag, "Remove task for ConnectWpsAsync");
                 _wpsTaskMap.Remove(_apHandle);
@@ -471,8 +469,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, $"Exception on ConnectWpsWithoutSsidAsync
-{e}");
+                Log.Error(Globals.LogTag, $"Exception on ConnectWpsWithoutSsidAsync {e}");
                 wpsWithoutSsidTask.SetException(e);
             }
 
@@ -579,8 +576,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, $"Exception on Disconnect
-{e}");
+                Log.Error(Globals.LogTag, $"Exception on Disconnect {e}");
                 task.SetException(e);
             }
 
@@ -682,8 +678,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, $"Exception on ForgetAPAsync
-{e}");
+                Log.Error(Globals.LogTag, $"Exception on ForgetAPAsync {e}");
                 task.SetException(e);
             }
 
