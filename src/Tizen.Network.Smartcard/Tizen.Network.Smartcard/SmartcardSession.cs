@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -49,12 +49,12 @@ namespace Tizen.Network.Smartcard
                 int ret = Interop.Smartcard.Session.SessionGetReader(_sessionHandle, out reader);
                 if (ret != (int)SmartcardError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get reader, Error - " + (SmartcardError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get reader, Error - {(SmartcardError)ret}");
                 }
 
                 if (_readerObject.GetHandle() != reader)
                 {
-                    Log.Error(Globals.LogTag, "Does not correspond with reader, Error - " + _readerObject.GetHandle() + " " + reader);
+                    Log.Error(Globals.LogTag, $"Does not correspond with reader, Error - {_readerObject.GetHandle() } {reader}");
                 }
 
                 return _readerObject;
@@ -76,7 +76,7 @@ namespace Tizen.Network.Smartcard
                 int ret = Interop.Smartcard.Session.SessionGetAtr(_sessionHandle, out strAtr, out len);
                 if (ret != (int)SmartcardError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get atr, Error - " + (SmartcardError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get atr, Error - {(SmartcardError)ret}");
                 }
 
                 atrList = new byte[len];
@@ -102,7 +102,7 @@ namespace Tizen.Network.Smartcard
                 int ret = Interop.Smartcard.Session.SessionIsClosed(_sessionHandle, out isClosed);
                 if (ret != (int)SmartcardError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get present, Error - " + (SmartcardError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get present, Error - {(SmartcardError)ret}");
                 }
                 return isClosed;
             }
@@ -174,7 +174,7 @@ namespace Tizen.Network.Smartcard
             int ret = Interop.Smartcard.Session.SessionClose(_sessionHandle);
             if (ret != (int)SmartcardError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to close, Error - " + (SmartcardError)ret);
+                Log.Error(Globals.LogTag, $"Failed to close, Error - {(SmartcardError)ret}");
                 SmartcardErrorFactory.ThrowSmartcardException(ret);
             }
             Dispose(true);
@@ -192,7 +192,7 @@ namespace Tizen.Network.Smartcard
             int ret = Interop.Smartcard.Session.SessionCloseChannels(_sessionHandle);
             if (ret != (int)SmartcardError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to close, Error - " + (SmartcardError)ret);
+                Log.Error(Globals.LogTag, $"Failed to close, Error - {(SmartcardError)ret}");
                 SmartcardErrorFactory.ThrowSmartcardException(ret);
             }
 
@@ -223,7 +223,7 @@ namespace Tizen.Network.Smartcard
             int ret = Interop.Smartcard.Session.SessionOpenBasicChannel(_sessionHandle, aid, aidLen, p2, out _basicChannel);
             if (ret != (int)SmartcardError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to open basic channel, Error - " + (SmartcardError)ret);
+                Log.Error(Globals.LogTag, $"Failed to open basic channel, Error - {(SmartcardError)ret}");
                 SmartcardErrorFactory.ThrowSmartcardException(ret);
             }
             SmartcardChannel basicChannel = new SmartcardChannel(this, _basicChannel);
@@ -248,7 +248,7 @@ namespace Tizen.Network.Smartcard
             int ret = Interop.Smartcard.Session.SessionOpenLogicalChannel(_sessionHandle, aid, aidLen, p2, out _logicalChannel);
             if (ret != (int)SmartcardError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to open logical channel, Error - " + (SmartcardError)ret);
+                Log.Error(Globals.LogTag, $"Failed to open logical channel, Error - {(SmartcardError)ret}");
                 SmartcardErrorFactory.ThrowSmartcardException(ret);
             }
             SmartcardChannel logicalChannel = new SmartcardChannel(this, _logicalChannel);

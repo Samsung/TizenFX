@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -46,7 +46,7 @@ namespace Tizen.Uix.InputMethodManager
             ErrorCode error = ImeManagerShowImeList();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "ShowIMEList Failed with error " + error);
+                Log.Error(LogTag, $"ShowIMEList Failed with error {error}");
                 throw InputMethodManagerExceptionFactory.CreateException(error);
             }
         }
@@ -69,7 +69,7 @@ namespace Tizen.Uix.InputMethodManager
             ErrorCode error = ImeManagerShowImeSelector();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "ShowIMESelector Failed with error " + error);
+                Log.Error(LogTag, $"ShowIMESelector Failed with error {error}");
                 throw InputMethodManagerExceptionFactory.CreateException(error);
             }
         }
@@ -98,7 +98,7 @@ namespace Tizen.Uix.InputMethodManager
             ErrorCode error = ImeManagerIsImeEnabled(appId, out isIMEEnabled);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "IsIMEEnabled Failed with error " + error);
+                Log.Error(LogTag, $"IsIMEEnabled Failed with error {error}");
                 throw InputMethodManagerExceptionFactory.CreateException(error);
             }
 
@@ -126,7 +126,7 @@ namespace Tizen.Uix.InputMethodManager
             ErrorCode error = ImeManagerGetActiveIme(out activeIME);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "GetActiveIME Failed with error " + error);
+                Log.Error(LogTag, $"GetActiveIME Failed with error {error}");
                 throw InputMethodManagerExceptionFactory.CreateException(error);
             }
 
@@ -154,7 +154,7 @@ namespace Tizen.Uix.InputMethodManager
             ErrorCode error = (ErrorCode)Tizen.Internals.Errors.ErrorFacts.GetLastResult();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "GetEnabledIMECount Failed with error " + error);
+                Log.Error(LogTag, $"GetEnabledIMECount Failed with error {error}");
                 throw InputMethodManagerExceptionFactory.CreateException(error);
             }
 
@@ -179,7 +179,7 @@ namespace Tizen.Uix.InputMethodManager
             ErrorCode error = ImeManagerPrelaunchIme();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "PrelaunchIME Failed with error " + error);
+                Log.Error(LogTag, $"PrelaunchIME Failed with error {error}");
                 throw InputMethodManagerExceptionFactory.CreateException(error);
             }
         }

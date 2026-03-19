@@ -129,7 +129,7 @@ internal static partial class Interop
                     ErrorCode error = StickerDataDestroy(this.handle);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Destroy Failed with error " + error);
+                        Log.Error(LogTag, $"Destroy Failed with error {error}");
                     }
                 }
                 this.SetHandle(IntPtr.Zero);

@@ -81,7 +81,7 @@ namespace Tizen.Applications
                 Interop.AppControl.ErrorCode err = Interop.AppControl.GetCaller(SafeAppControlHandle, out value);
                 if (err != Interop.AppControl.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the caller application id from the AppControl. Err = " + err);
+                    Log.Warn(LogTag, $"Failed to get the caller application id from the AppControl. Err = {err}");
                 }
                 return value;
             }
@@ -111,7 +111,7 @@ namespace Tizen.Applications
                 Interop.AppControl.ErrorCode err = Interop.AppControl.IsReplyRequested(SafeAppControlHandle, out value);
                 if (err != Interop.AppControl.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to check the reply  of the AppControl is requested. Err = " + err);
+                    Log.Warn(LogTag, $"Failed to check the reply  of the AppControl is requested. Err = {err}");
                 }
                 return value;
             }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +25,7 @@ namespace Tizen.NUI
 
         internal static Exception GetException(Interop.FrameProvider.ErrorCode err, string message, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
-            Log.Error(logTag, memberName + "(" + lineNumber + ") " + message);
+            Log.Error(logTag, $"{memberName }({lineNumber }) {message}");
             switch (err)
             {
                 case Interop.FrameProvider.ErrorCode.InvalidParameter:

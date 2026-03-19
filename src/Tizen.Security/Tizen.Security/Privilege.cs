@@ -218,7 +218,7 @@ namespace Tizen.Security
     {
         internal static void ThrowException(Exception e, string msg)
         {
-            Tizen.Log.Error(Interop.Privilege.LogTag, "[" + e.ToString() + "] " + msg);
+            Tizen.Log.Error(Interop.Privilege.LogTag, $"[{e.ToString() }] {msg}");
             throw e;
         }
         internal static void CheckNThrowException(int err, string msg)
@@ -226,9 +226,9 @@ namespace Tizen.Security
             if (err == (int)ErrorCode.None)
                 return;
             if (err == (int)Interop.Privilege.ErrorCode.NoMatchingPrivilege)
-                Tizen.Log.Error(Interop.Privilege.LogTag, "[System.ArgumentException] No such a privilege. " + msg);
+                Tizen.Log.Error(Interop.Privilege.LogTag, $"[System.ArgumentException] No such a privilege. {msg}");
             else
-                Tizen.Log.Error(Interop.Privilege.LogTag, "[" + ErrorFacts.GetErrorMessage(err) + "] " + msg);
+                Tizen.Log.Error(Interop.Privilege.LogTag, $"[{ErrorFacts.GetErrorMessage(err) }] {msg}");
             switch (err)
             {
                 case (int)ErrorCode.NotSupported:

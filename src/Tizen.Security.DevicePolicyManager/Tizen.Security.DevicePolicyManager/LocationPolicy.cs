@@ -1,4 +1,4 @@
-﻿/*
+/*
  *  Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -68,7 +68,7 @@ namespace Tizen.Security.DevicePolicyManager
                 int ret = Interop.DevicePolicyManager.RestrictionGetLocationState(_dpm.GetHandle(), out state);
                 if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get location policy " + ret);
+                    Log.Error(Globals.LogTag, $"Failed to get location policy {ret}");
                     return true;
                 }
 
@@ -157,7 +157,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _locationPolicyName, _locationPolicyChangedCallback, IntPtr.Zero, out _locationCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
-                Log.Error(Globals.LogTag, "Failed to add policy changed callback, name " + _locationPolicyName + ", ret : " + ret);
+                Log.Error(Globals.LogTag, $"Failed to add policy changed callback, name {_locationPolicyName }, ret : {ret}");
                 throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
         }
@@ -167,7 +167,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _locationCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
-                Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _locationPolicyName + ", ret : " + ret);
+                Log.Error(Globals.LogTag, $"Failed to remove policy changed callback, name {_locationPolicyName }, ret : {ret}");
                 throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
 

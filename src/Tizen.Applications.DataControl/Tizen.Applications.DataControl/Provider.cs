@@ -165,7 +165,7 @@ namespace Tizen.Applications.DataControl
             ResultType ret = Interop.DataControl.GetClientAppId(requestId, out clientAppId);
             if (ret != ResultType.Success)
             {
-                Log.Error(LogTag, "Get client id fail " + ret.ToString());
+                Log.Error(LogTag, $"Get client id fail {ret.ToString()}");
                 return ResultType.IoError;
             }
             provider.CurrentClientAppId = clientAppId;
@@ -201,7 +201,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendInsertResult(requestId, result.RowID);
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendInsertResult fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendInsertResult fail {ret.ToString()}");
                     }
                 }
                 else
@@ -209,7 +209,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendError(requestId, result.Result.ToString());
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendError fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendError fail {ret.ToString()}");
                     }
                 }
             }
@@ -258,7 +258,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendBulkInsertResult(requestId, result.BulkResultData.SafeBulkDataHandle);
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendBulkInsertResult fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendBulkInsertResult fail {ret.ToString()}");
                     }
                 }
                 else
@@ -266,7 +266,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendError(requestId, result.Result.ToString());
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendError fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendError fail {ret.ToString()}");
                     }
                 }
 
@@ -294,13 +294,13 @@ namespace Tizen.Applications.DataControl
 
             if (cursor.Reset() == false)
             {
-                Log.Error(LogTag, "Reset is failed  :  " + requestId.ToString());
+                Log.Error(LogTag, $"Reset is failed  :  {requestId.ToString()}");
                 return;
             }
 
             if (cursor.GetRowCount() <= 0)
             {
-                Log.Error(LogTag, "The DB does not have another row : " + requestId.ToString());
+                Log.Error(LogTag, $"The DB does not have another row : {requestId.ToString()}");
                 int_tmp = BitConverter.GetBytes(DATACONTROL_RESULT_NO_DATA);
                 result = (ResultType)Interop.DataControl.UnsafeCode.WriteResult(socketFd, int_tmp, int_tmp.Length, out write_len);
                 return;
@@ -316,7 +316,7 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
-            Log.Info(LogTag, "Writing a column_count " + column_count.ToString());
+            Log.Info(LogTag, $"Writing a column_count {column_count.ToString()}");
 
             /* 2.column type x column_count */
             for (i = 0; i < column_count; i++)
@@ -329,13 +329,13 @@ namespace Tizen.Applications.DataControl
                     return;
                 }
 
-                Log.Info(LogTag, "Writing a column_type " + cursor.GetColumnType(i).ToString());
+                Log.Info(LogTag, $"Writing a column_type {cursor.GetColumnType(i).ToString()}");
             }
 
             /* 3. column name x column_count */
             for (i = 0; i < column_count; i++)
             {
-                Log.Info(LogTag, "Writing a name " + cursor.GetColumnName(i));
+                Log.Info(LogTag, $"Writing a name {cursor.GetColumnName(i)}");
 
                 total_len_of_column_names += cursor.GetColumnName(i).Length;
                 string_array = Encoding.UTF8.GetBytes(cursor.GetColumnName(i));
@@ -368,11 +368,11 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
-            Log.Info(LogTag, "Writing  total length of column namese " + total_len_of_column_names.ToString());
+            Log.Info(LogTag, $"Writing  total length of column namese {total_len_of_column_names.ToString()}");
 
             /* 5. row count */
             length_array = BitConverter.GetBytes(cursor.GetRowCount());
-            Log.Error(LogTag, "=========================== select rowcount " + cursor.GetRowCount().ToString());
+            Log.Error(LogTag, $"=========================== select rowcount {cursor.GetRowCount().ToString()}");
             result = (ResultType)Interop.DataControl.UnsafeCode.WriteResult(socketFd, length_array, length_array.Length, out write_len);
             if (result != ResultType.Success)
             {
@@ -380,7 +380,7 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
-            Log.Error(LogTag, "Writing a row count " + cursor.GetRowCount().ToString());
+            Log.Error(LogTag, $"Writing a row count {cursor.GetRowCount().ToString()}");
 
             rowcount = 0;
             do
@@ -542,7 +542,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendError(requestId, result.Result.ToString());
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendError fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendError fail {ret.ToString()}");
                     }
                 }
             }
@@ -581,7 +581,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendUpdateResult(requestId);
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendUpdateResult fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendUpdateResult fail {ret.ToString()}");
                     }
                 }
                 else
@@ -589,7 +589,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendError(requestId, result.Result.ToString());
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendError fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendError fail {ret.ToString()}");
                     }
                 }
             }
@@ -627,7 +627,7 @@ namespace Tizen.Applications.DataControl
                    ret = Interop.DataControl.SendDeleteResult(requestId);
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendDeleteResult fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendDeleteResult fail {ret.ToString()}");
                     }
 
                 }
@@ -636,7 +636,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendError(requestId, result.Result.ToString());
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendError fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendError fail {ret.ToString()}");
                     }
                 }
             }
@@ -672,7 +672,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendMapResult(requestId);
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendMapResult fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendMapResult fail {ret.ToString()}");
                     }
                 }
                 else
@@ -680,7 +680,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendError(requestId, result.Result.ToString());
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendError fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendError fail {ret.ToString()}");
                     }
                 }
             }
@@ -716,7 +716,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendMapResult(requestId);
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendMapResult fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendMapResult fail {ret.ToString()}");
                     }
                 }
                 else
@@ -724,7 +724,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendError(requestId, result.Result.ToString());
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendError fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendError fail {ret.ToString()}");
                     }
                 }
             }
@@ -760,7 +760,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendMapResult(requestId);
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendMapResult fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendMapResult fail {ret.ToString()}");
                     }
 
                 }
@@ -769,7 +769,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendError(requestId, result.Result.ToString());
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendError fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendError fail {ret.ToString()}");
                     }
                 }
             }
@@ -808,7 +808,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendMapGetResult(requestId, result.ValueList, valueCount);
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendMapGetResult fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendMapGetResult fail {ret.ToString()}");
                     }
 
                 }
@@ -817,7 +817,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendError(requestId, result.Result.ToString());
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendError fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendError fail {ret.ToString()}");
                     }
                 }
             }
@@ -865,7 +865,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendMapBulkAddResult(requestId, result.BulkResultData.SafeBulkDataHandle);
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendMapBulkAddResult fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendMapBulkAddResult fail {ret.ToString()}");
                     }
                 }
                 else
@@ -873,7 +873,7 @@ namespace Tizen.Applications.DataControl
                     ret = Interop.DataControl.SendError(requestId, result.Result.ToString());
                     if (ret != ResultType.Success)
                     {
-                        Log.Error(LogTag, "SendError fail " + ret.ToString());
+                        Log.Error(LogTag, $"SendError fail {ret.ToString()}");
                     }
                 }
 
@@ -927,7 +927,7 @@ namespace Tizen.Applications.DataControl
             {
                 provider = _providerDict[dataID];
                 provider.CurrentProviderId = providerID;
-                Log.Info(LogTag, "DataID :" + dataID + ", hash code : " + provider.GetHashCode().ToString());
+                Log.Info(LogTag, $"DataID :{dataID }, hash code : {provider.GetHashCode().ToString()}");
             }
             handle.Dispose();
 
@@ -1058,7 +1058,7 @@ namespace Tizen.Applications.DataControl
             }
 
             _providerDict.Add(DataID, this);
-            Log.Info(LogTag, "DataID :" + DataID + ", hash code : " + this.GetHashCode().ToString());
+            Log.Info(LogTag, $"DataID :{DataID }, hash code : {this.GetHashCode().ToString()}");
             _isRunning = true;
             _lock.ReleaseMutex();
         }
@@ -1071,7 +1071,7 @@ namespace Tizen.Applications.DataControl
         {
             if (_isRunning == true)
             {
-                Log.Info(LogTag, "DataID :" + DataID);
+                Log.Info(LogTag, $"DataID :{DataID}");
                 _isRunning = false;
                 _providerDict.Remove(DataID);
             }

@@ -330,7 +330,7 @@ namespace Tizen.NUI
                     return 4;
                 }
                 default:
-                    Tizen.Log.Error("Palette", "Invalided PixelFormat(" + pixelFormat + ") has been given \n");
+                    Tizen.Log.Error("Palette", $"Invalided PixelFormat({pixelFormat }) has been given \n");
                     return 0;
             }
         }

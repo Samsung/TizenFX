@@ -262,7 +262,7 @@ namespace Tizen.Applications
                         err = Interop.ApplicationManager.AppInfoClone(out clonedHandle, infoHandle);
                         if (err != Interop.ApplicationManager.ErrorCode.None)
                         {
-                            Log.Warn(LogTag, "Failed to clone the appinfo. err = " + err);
+                            Log.Warn(LogTag, $"Failed to clone the appinfo. err = {err}");
                             return false;
                         }
                         ApplicationInfo app = new ApplicationInfo(clonedHandle);
@@ -274,7 +274,7 @@ namespace Tizen.Applications
                 err = Interop.ApplicationManager.AppManagerForeachAppInfo(cb, IntPtr.Zero);
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Failed to retrieve the application Info. err " + err.ToString());
+                    Log.Error(LogTag, $"Failed to retrieve the application Info. err {err.ToString()}");
                 }
                 return result;
             }).ConfigureAwait(false);
@@ -350,7 +350,7 @@ namespace Tizen.Applications
                         Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppInfoClone(out clonedHandle, infoHandle);
                         if (err != Interop.ApplicationManager.ErrorCode.None)
                         {
-                            Log.Warn(LogTag, "Failed to clone the appinfo. err = " + err);
+                            Log.Warn(LogTag, $"Failed to clone the appinfo. err = {err}");
                             return false;
                         }
                         ApplicationInfo app = new ApplicationInfo(clonedHandle);
@@ -414,7 +414,7 @@ namespace Tizen.Applications
                         Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppInfoClone(out clonedHandle, infoHandle);
                         if (err != Interop.ApplicationManager.ErrorCode.None)
                         {
-                            Log.Warn(LogTag, "Failed to clone the appinfo. err = " + err);
+                            Log.Warn(LogTag, $"Failed to clone the appinfo. err = {err}");
                             return false;
                         }
                         ApplicationInfo app = new ApplicationInfo(clonedHandle);
@@ -474,7 +474,7 @@ namespace Tizen.Applications
                         err = Interop.ApplicationManager.AppContextClone(out clonedHandle, contextHandle);
                         if (err != Interop.ApplicationManager.ErrorCode.None)
                         {
-                            Log.Warn(LogTag, "Failed to clone the app context. err = " + err);
+                            Log.Warn(LogTag, $"Failed to clone the app context. err = {err}");
                             return false;
                         }
                         ApplicationRunningContext context = new ApplicationRunningContext(clonedHandle);
@@ -487,7 +487,7 @@ namespace Tizen.Applications
                 err = Interop.ApplicationManager.AppManagerForeachAppContext(cb, IntPtr.Zero);
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Failed to retrieve the running app context. err " + err.ToString());
+                    Log.Error(LogTag, $"Failed to retrieve the running app context. err {err.ToString()}");
                 }
                 return result;
             }).ConfigureAwait(false);
@@ -530,7 +530,7 @@ namespace Tizen.Applications
                         err = Interop.ApplicationManager.AppContextClone(out clonedHandle, contextHandle);
                         if (err != Interop.ApplicationManager.ErrorCode.None)
                         {
-                            Log.Warn(LogTag, "Failed to clone the app context. err = " + err);
+                            Log.Warn(LogTag, $"Failed to clone the app context. err = {err}");
                             return false;
                         }
                         ApplicationRunningContext context = new ApplicationRunningContext(clonedHandle);
@@ -543,7 +543,7 @@ namespace Tizen.Applications
                 err = Interop.ApplicationManager.AppManagerForeachRunningAppContext(cb, IntPtr.Zero);
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Failed to retrieve the running app context. err " + err.ToString());
+                    Log.Error(LogTag, $"Failed to retrieve the running app context. err {err.ToString()}");
                 }
                 return result;
             }).ConfigureAwait(false);

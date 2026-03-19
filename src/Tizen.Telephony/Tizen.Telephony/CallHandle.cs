@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -131,7 +131,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Call.GetHandleId(_callHandle, out handleId);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetHandleId Failed with Error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetHandleId Failed with Error {error}");
                     return 0;
                 }
 
@@ -156,7 +156,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Call.GetNumber(_callHandle, out number);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetNumber Failed with Error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetNumber Failed with Error {error}");
                     return "";
                 }
 
@@ -180,7 +180,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Call.GetType(_callHandle, out callType);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetType Failed with Error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetType Failed with Error {error}");
                     return CallType.Unavailable;
                 }
 
@@ -204,7 +204,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Call.GetStatus(_callHandle, out callStatus);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetStatus Failed with Error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetStatus Failed with Error {error}");
                     return CallStatus.Unavailable;
                 }
 
@@ -232,7 +232,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Call.GetDirection(_callHandle, out callDirection);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetDirection Failed with Error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetDirection Failed with Error {error}");
                     return CallDirection.Unavailable;
                 }
 
@@ -257,7 +257,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Call.GetConferenceStatus(_callHandle, out callConfStatus);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetConferenceStatus Failed with Error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetConferenceStatus Failed with Error {error}");
                     return false;
                 }
 

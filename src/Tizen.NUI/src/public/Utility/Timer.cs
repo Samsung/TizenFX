@@ -146,13 +146,13 @@ namespace Tizen.NUI
         {
             if (Thread.CurrentThread.ManagedThreadId != 1)
             {
-                Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
+                Tizen.Log.Error("NUI", $"current threadID : {Thread.CurrentThread.ManagedThreadId}");
 
                 StackTrace st = new StackTrace(true);
                 for (int i = 0; i < st.FrameCount; i++)
                 {
                     StackFrame sf = st.GetFrame(i);
-                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod() + ":" + sf.GetFileName() + ":" + sf.GetFileLineNumber());
+                    Tizen.Log.Error("NUI", $" Method {sf.GetMethod() }:{sf.GetFileName() }:{sf.GetFileLineNumber()}");
                 }
             }
 
@@ -176,13 +176,13 @@ namespace Tizen.NUI
         {
             if (Thread.CurrentThread.ManagedThreadId != 1)
             {
-                Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
+                Tizen.Log.Error("NUI", $"current threadID : {Thread.CurrentThread.ManagedThreadId}");
 
                 StackTrace st = new StackTrace(true);
                 for (int i = 0; i < st.FrameCount; i++)
                 {
                     StackFrame sf = st.GetFrame(i);
-                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod() + ":" + sf.GetFileName() + ":" + sf.GetFileLineNumber());
+                    Tizen.Log.Error("NUI", $" Method {sf.GetMethod() }:{sf.GetFileName() }:{sf.GetFileLineNumber()}");
                 }
             }
 
@@ -207,13 +207,13 @@ namespace Tizen.NUI
         {
             if (Thread.CurrentThread.ManagedThreadId != 1)
             {
-                Tizen.Log.Error("NUI", "current threadID : " + Thread.CurrentThread.ManagedThreadId);
+                Tizen.Log.Error("NUI", $"current threadID : {Thread.CurrentThread.ManagedThreadId}");
 
                 StackTrace st = new StackTrace(true);
                 for (int i = 0; i < st.FrameCount; i++)
                 {
                     StackFrame sf = st.GetFrame(i);
-                    Tizen.Log.Error("NUI", " Method " + sf.GetMethod() + ":" + sf.GetFileName() + ":" + sf.GetFileLineNumber());
+                    Tizen.Log.Error("NUI", $" Method {sf.GetMethod() }:{sf.GetFileName() }:{sf.GetFileLineNumber()}");
                 }
             }
 

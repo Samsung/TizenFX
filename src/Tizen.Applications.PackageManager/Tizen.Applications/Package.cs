@@ -347,71 +347,71 @@ namespace Tizen.Applications
             err = Interop.Package.PackageInfoGetMainAppId(handle, out package._mainAppId);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package main app id of " + pkgId);
+                Log.Warn(LogTag, $"Failed to get package main app id of {pkgId}");
             }
             err = Interop.Package.PackageInfoGetLabel(handle, out package._label);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package label of " + pkgId);
+                Log.Warn(LogTag, $"Failed to get package label of {pkgId}");
             }
             err = Interop.Package.PackageInfoGetIconPath(handle, out package._iconPath);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package icon path of " + pkgId);
+                Log.Warn(LogTag, $"Failed to get package icon path of {pkgId}");
             }
             err = Interop.Package.PackageInfoGetVersion(handle, out package._version);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package version of " + pkgId);
+                Log.Warn(LogTag, $"Failed to get package version of {pkgId}");
             }
 
             string type;
             Interop.Package.PackageInfoGetType(handle, out type);
             if (Enum.TryParse(type, true, out package._type) == false)
             {
-                Log.Warn(LogTag, "Failed to get package type of " + pkgId);
+                Log.Warn(LogTag, $"Failed to get package type of {pkgId}");
             }
             err = Interop.Package.PackageInfoGetRootPath(handle, out package._rootPath);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get package root directory of " + pkgId);
+                Log.Warn(LogTag, $"Failed to get package root directory of {pkgId}");
             }
             err = Interop.Package.PackageInfoGetInstalledStorage(handle, out package._installedStorageType);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get installed storage type of " + pkgId);
+                Log.Warn(LogTag, $"Failed to get installed storage type of {pkgId}");
             }
             err = Interop.Package.PackageInfoIsSystemPackage(handle, out package._isSystemPackage);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is system package or not");
+                Log.Warn(LogTag, $"Failed to get whether package {pkgId } is system package or not");
             }
             err = Interop.Package.PackageInfoIsRemovablePackage(handle, out package._isRemovable);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is removable or not");
+                Log.Warn(LogTag, $"Failed to get whether package {pkgId } is removable or not");
             }
             err = Interop.Package.PackageInfoIsPreloadPackage(handle, out package._isPreloaded);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is preloaded or not");
+                Log.Warn(LogTag, $"Failed to get whether package {pkgId } is preloaded or not");
             }
             err = Interop.Package.PackageInfoIsUpdatePackage(handle, out package._isUpdated);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is updated or not");
+                Log.Warn(LogTag, $"Failed to get whether package {pkgId } is updated or not");
             }
             err = Interop.Package.PackageInfoIsAccessible(handle, out package._isAccessible);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get whether package " + pkgId + " is accessible or not");
+                Log.Warn(LogTag, $"Failed to get whether package {pkgId } is accessible or not");
             }
             try
             {
                 err = Interop.Package.PackageInfoGetFirstInstalledTime(handle, out package._firstInstalledTime);
                 if (err != Interop.PackageManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get first installed time of " + pkgId);
+                    Log.Warn(LogTag, $"Failed to get first installed time of {pkgId}");
                 }
             }
             catch (TypeLoadException)
@@ -423,7 +423,7 @@ namespace Tizen.Applications
                 err = Interop.Package.PackageInfoGetInstalledTime(handle, out package._installedTime);
                 if (err != Interop.PackageManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get installed time of " + pkgId);
+                    Log.Warn(LogTag, $"Failed to get installed time of {pkgId}");
                 }
             }
             catch (TypeLoadException)

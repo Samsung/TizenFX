@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -76,7 +76,7 @@ namespace Tizen.System
         internal const string LogTag = "Tizen.System.PowerUsage";
         internal static Exception ThrowPowerUsageException(PowerUsageError errCode)
         {
-            Log.Error(LogTag, "Throw PowerUsage Exception : " + errCode);
+            Log.Error(LogTag, $"Throw PowerUsage Exception : {errCode}");
 
             switch (errCode)
             {

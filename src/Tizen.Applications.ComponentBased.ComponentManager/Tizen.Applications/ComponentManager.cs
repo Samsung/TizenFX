@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -58,7 +58,7 @@ namespace Tizen.Applications.ComponentBased
                         err = Interop.ComponentManager.ComponentInfoClone(out clonedHandle, infoHandle);
                         if (err != Interop.ComponentManager.ErrorCode.None)
                         {
-                            Log.Warn(LogTag, "Failed to clone the ComponentInfo. err = " + err);
+                            Log.Warn(LogTag, $"Failed to clone the ComponentInfo. err = {err}");
                             return false;
                         }
                         ComponentInfo info = new ComponentInfo(clonedHandle);
@@ -104,7 +104,7 @@ namespace Tizen.Applications.ComponentBased
                         err = Interop.ComponentManager.ComponentContextClone(out clonedHandle, contextHandle);
                         if (err != Interop.ComponentManager.ErrorCode.None)
                         {
-                            Log.Warn(LogTag, "Failed to clone the ComponentInfo. err = " + err);
+                            Log.Warn(LogTag, $"Failed to clone the ComponentInfo. err = {err}");
                             return false;
                         }
                         ComponentRunningContext context = new ComponentRunningContext(clonedHandle);

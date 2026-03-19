@@ -660,7 +660,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = BluetoothLeImplAdapter.Instance.StartScan ();
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to in start the le scan operation, Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to in start the le scan operation, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -690,7 +690,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = BluetoothLeImplAdapter.Instance.StartScan();
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to start the le scan operation, Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to start the le scan operation, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -717,7 +717,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = BluetoothLeImplAdapter.Instance.StopScan ();
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to stop the le scan operation, Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to stop the le scan operation, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }

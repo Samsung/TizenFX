@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -184,7 +184,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.CardEmulation.EnableCardEmulation();
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to enable card emulation mode, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to enable card emulation mode, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
@@ -201,7 +201,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.CardEmulation.DisableCardEmulatiion();
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to disable card emulation mode, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to disable card emulation mode, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
@@ -218,7 +218,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.CardEmulation.GetCardEmulationMode(out mode);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get card emulation mode, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get card emulation mode, Error - {(NfcError)ret}");
             }
 
             return (NfcSecureElementCardEmulationMode)mode;
@@ -236,7 +236,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.EnableTransactionForegroundDispatch();
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to enable foreground dispatch, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to enable foreground dispatch, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
@@ -253,7 +253,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.DisableTransactionForegroundDispatch();
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to disable foreground dispatch, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to disable foreground dispatch, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
@@ -275,7 +275,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.CardEmulation.IsActivatedHandlerForAid((int)seType, aid, out isActivatedHandle);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to check activated handle for aid, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to check activated handle for aid, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
 
@@ -299,7 +299,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.CardEmulation.IsActivatedHandlerForCategory((int)seType, (int)category, out isActivatedHandle);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to check activated handle for category, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to check activated handle for category, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
 
@@ -322,7 +322,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.CardEmulation.RegisterAid((int)seType, (int)category, aid);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to register aid, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to register aid, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
@@ -343,7 +343,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.CardEmulation.UnregisterAid((int)seType, (int)category, aid);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unregister aid, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unregister aid, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
@@ -360,7 +360,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.CardEmulation.SetPreferredHandler();
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set preferred handler, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set preferred handler, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
@@ -377,7 +377,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.CardEmulation.UnsetPreferredHandler();
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset preferred handler, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset preferred handler, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
@@ -409,7 +409,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.CardEmulation.ForeachRegisterdAids((int)seType, (int)category, callback, IntPtr.Zero);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get all registerd aid informations, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get all registerd aid informations, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
 
@@ -428,7 +428,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.SetSecureElementEventCallback(_secureElementEventCallback, IntPtr.Zero);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set secure element event callback, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set secure element event callback, Error - {(NfcError)ret}");
             }
         }
 
@@ -451,7 +451,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.SetSecureElementTransactionEventCallback((int)seType, _secureElementTransactionEventCallback, IntPtr.Zero);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set secure element transaction event callback, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set secure element transaction event callback, Error - {(NfcError)ret}");
             }
         }
 
@@ -474,7 +474,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.SetHostCardEmulationEventCallback(_hostCardEmulationEventCallback, IntPtr.Zero);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set host card emulation event callback, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set host card emulation event callback, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }

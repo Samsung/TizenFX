@@ -164,7 +164,7 @@ namespace Tizen.Applications.Messages
                     }
                     catch (Exception ex)
                     {
-                        Log.Error(LogTag, "Exception(" + ex.ToString() + ")");
+                        Log.Error(LogTag, $"Exception({ex.ToString() })");
                         args.Message = null;
                     }
 
@@ -331,7 +331,7 @@ namespace Tizen.Applications.Messages
                 }
                 catch (Exception e)
                 {
-                    Log.Warn(GetType().Namespace, "Exception in Dispose :" + e.Message);
+                    Log.Warn(GetType().Namespace, $"Exception in Dispose :{e.Message}");
                 }
             }
         }

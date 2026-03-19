@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2022 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -79,7 +79,7 @@ namespace Tizen.Uix.Sticker
             ErrorCode error = StickerDataCreate(out handle);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "StickerData Failed with error " + error);
+                Log.Error(LogTag, $"StickerData Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
             _handle = handle;
@@ -104,7 +104,7 @@ namespace Tizen.Uix.Sticker
             ErrorCode error = StickerDataClone(handle, out cloneHandle);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "StickerData Failed with error " + error);
+                Log.Error(LogTag, $"StickerData Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -165,7 +165,7 @@ namespace Tizen.Uix.Sticker
                 ErrorCode error = StickerDataGetAppId(_handle, out appId);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetAppId Failed with error " + error);
+                    Log.Error(LogTag, $"GetAppId Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
 
@@ -189,7 +189,7 @@ namespace Tizen.Uix.Sticker
                 ErrorCode error = StickerDataGetUri(_handle, out uriType, out uri);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetUri Failed with error " + error);
+                    Log.Error(LogTag, $"GetUri Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
 
@@ -213,7 +213,7 @@ namespace Tizen.Uix.Sticker
                 ErrorCode error = StickerDataGetUri(_handle, out uriType, out uri);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetUriType Failed with error " + error);
+                    Log.Error(LogTag, $"GetUriType Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
 
@@ -236,7 +236,7 @@ namespace Tizen.Uix.Sticker
             ErrorCode error = StickerDataSetUri(_handle, uriType, uri);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SetUri Failed with error " + error);
+                Log.Error(LogTag, $"SetUri Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -254,7 +254,7 @@ namespace Tizen.Uix.Sticker
             ErrorCode error = StickerDataAddKeyword(_handle, keyword);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "AddKeyword Failed with error " + error);
+                Log.Error(LogTag, $"AddKeyword Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -272,7 +272,7 @@ namespace Tizen.Uix.Sticker
             ErrorCode error = StickerDataRemoveKeyword(_handle, keyword);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "RemoveKeyword Failed with error " + error);
+                Log.Error(LogTag, $"RemoveKeyword Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -295,7 +295,7 @@ namespace Tizen.Uix.Sticker
             ErrorCode error = StickerDataForeachKeyword(_handle, _keywordDelegate, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "GetAllKeywords Failed with error " + error);
+                Log.Error(LogTag, $"GetAllKeywords Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -317,7 +317,7 @@ namespace Tizen.Uix.Sticker
                 ErrorCode error = StickerDataGetGroupName(_handle, out groupName);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetGroupName Failed with error " + error);
+                    Log.Error(LogTag, $"GetGroupName Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
 
@@ -328,7 +328,7 @@ namespace Tizen.Uix.Sticker
                 ErrorCode error = StickerDataSetGroupName(_handle, value);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "SetGroupName Failed with error " + error);
+                    Log.Error(LogTag, $"SetGroupName Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
             }
@@ -349,7 +349,7 @@ namespace Tizen.Uix.Sticker
                 ErrorCode error = StickerDataGetThumbnail(_handle, out thumbnail);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetThumbnail Failed with error " + error);
+                    Log.Error(LogTag, $"GetThumbnail Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
 
@@ -360,7 +360,7 @@ namespace Tizen.Uix.Sticker
                 ErrorCode error = StickerDataSetThumbnail(_handle, value);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "SetThumbnail Failed with error " + error);
+                    Log.Error(LogTag, $"SetThumbnail Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
             }
@@ -380,7 +380,7 @@ namespace Tizen.Uix.Sticker
                 ErrorCode error = StickerDataGetDescription(_handle, out description);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetDescription Failed with error " + error);
+                    Log.Error(LogTag, $"GetDescription Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
 
@@ -391,7 +391,7 @@ namespace Tizen.Uix.Sticker
                 ErrorCode error = StickerDataSetDescription(_handle, value);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "SetDescription Failed with error " + error);
+                    Log.Error(LogTag, $"SetDescription Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
             }
@@ -412,7 +412,7 @@ namespace Tizen.Uix.Sticker
                 ErrorCode error = StickerDataGetDate(_handle, out date);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetDate Failed with error " + error);
+                    Log.Error(LogTag, $"GetDate Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
 
@@ -435,7 +435,7 @@ namespace Tizen.Uix.Sticker
                 ErrorCode error = StickerDataGetDisplayType(_handle, out displayType);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetDisplayType Failed with error " + error);
+                    Log.Error(LogTag, $"GetDisplayType Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
 
@@ -446,7 +446,7 @@ namespace Tizen.Uix.Sticker
                 ErrorCode error = StickerDataSetDisplayType(_handle, value);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "SetDisplayType Failed with error " + error);
+                    Log.Error(LogTag, $"SetDisplayType Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
             }

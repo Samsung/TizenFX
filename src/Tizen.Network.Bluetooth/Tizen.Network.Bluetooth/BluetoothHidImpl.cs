@@ -47,7 +47,7 @@ namespace Tizen.Network.Bluetooth
             {
                 int ret = Interop.Bluetooth.Connect (deviceAddress);
                 if (ret != (int)BluetoothError.None) {
-                    Log.Error (Globals.LogTag, "Failed to connect device with the hid service, Error - " + (BluetoothError)ret);
+                    Log.Error (Globals.LogTag, $"Failed to connect device with the hid service, Error - {(BluetoothError)ret}");
                 }
                 return ret;
             }
@@ -60,7 +60,7 @@ namespace Tizen.Network.Bluetooth
             {
                 int ret = Interop.Bluetooth.Disconnect (deviceAddress);
                 if (ret != (int)BluetoothError.None) {
-                    Log.Error (Globals.LogTag, "Failed to disconnect device with the hid service, Error - " + (BluetoothError)ret);
+                    Log.Error (Globals.LogTag, $"Failed to disconnect device with the hid service, Error - {(BluetoothError)ret}");
                 }
                 return ret;
             }
@@ -118,7 +118,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.InitializeHid (_hidConnectionChangedCallback, IntPtr.Zero);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to initialize bluetooth hid, Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to initialize bluetooth hid, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException (ret);
                 }
                 else
@@ -139,7 +139,7 @@ namespace Tizen.Network.Bluetooth
             {
                 int ret = Interop.Bluetooth.DeinitializeHid ();
                 if (ret != (int)BluetoothError.None) {
-                    Log.Error (Globals.LogTag, "Failed to deinitialize bluetooth hid, Error - " + (BluetoothError)ret);
+                    Log.Error (Globals.LogTag, $"Failed to deinitialize bluetooth hid, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException (ret);
                 } else {
                     Globals.IsHidInitialize = false;

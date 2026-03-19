@@ -51,7 +51,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Vcalendar.Compose(list._listHandle, out stream);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "MakeVcalendar Failed with error " + error);
+                Log.Error(Globals.LogTag, $"MakeVcalendar Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
             return stream;
@@ -74,7 +74,7 @@ namespace Tizen.Pims.Calendar
             error = Interop.Vcalendar.Parse(stream, out _listHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "Parse Vcalendar Failed [" + error + "]");
+                Log.Error(Globals.LogTag, $"Parse Vcalendar Failed [{error }]");
                 throw CalendarErrorFactory.GetException(error);
             }
             return new CalendarList(_listHandle);
@@ -101,7 +101,7 @@ namespace Tizen.Pims.Calendar
             error = Interop.Vcalendar.ParseForEach(path, cb, IntPtr.Zero);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "Parse ForEach Vcalendar Failed [" + error + "]");
+                Log.Error(Globals.LogTag, $"Parse ForEach Vcalendar Failed [{error }]");
                 throw CalendarErrorFactory.GetException(error);
             }
         }

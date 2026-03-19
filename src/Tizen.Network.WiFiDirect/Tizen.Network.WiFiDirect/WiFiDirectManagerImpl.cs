@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -43,7 +43,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.Deinitialize();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to deinitialize Wi-Fi direct, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to deinitialize Wi-Fi direct, Error - {(WiFiDirectError)ret}");
                 if (ret != (int)WiFiDirectError.NotInitialized)
                 {
                     WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
@@ -103,7 +103,7 @@ namespace Tizen.Network.WiFiDirect
             else
             {
                 WiFiDirectThreadLocal obj = s_threadName.Value;
-                Log.Info(Globals.LogTag, "This thread is new , Id = " + obj.ThreadId);
+                Log.Info(Globals.LogTag, $"This thread is new , Id = {obj.ThreadId}");
                 return true;
             }
         }
@@ -265,7 +265,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.SetStateChangedCallback(_stateChangedCallback, IntPtr.Zero);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set Wi-Fi Direct state changed callback, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set Wi-Fi Direct state changed callback, Error - {(WiFiDirectError)ret}");
             }
         }
 
@@ -274,7 +274,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.UnsetStateChangedCallback();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset Wi-Fi Direct state changed callback, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset Wi-Fi Direct state changed callback, Error - {(WiFiDirectError)ret}");
             }
         }
 
@@ -292,7 +292,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.SetDiscoveryStateChangedCallback(_discoveryStateChangedCallback, IntPtr.Zero);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set Wi-Fi Direct discovery state changed callback, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set Wi-Fi Direct discovery state changed callback, Error - {(WiFiDirectError)ret}");
             }
         }
 
@@ -301,7 +301,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.UnsetDiscoveryStateChangedCallback();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset Wi-Fi Direct discovery state changed callback, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset Wi-Fi Direct discovery state changed callback, Error - {(WiFiDirectError)ret}");
             }
         }
 
@@ -322,7 +322,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.SetPeerFoundCallback(_peerFoundCallback, IntPtr.Zero);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set Wi-Fi Direct discovery state changed callback, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set Wi-Fi Direct discovery state changed callback, Error - {(WiFiDirectError)ret}");
             }
         }
 
@@ -331,7 +331,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.UnsetPeerFoundCallback();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset Wi-Fi Direct discovery state changed callback, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset Wi-Fi Direct discovery state changed callback, Error - {(WiFiDirectError)ret}");
             }
         }
 
@@ -349,7 +349,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.SetDeviceStateChangedCallback(_deviceStateChangedCallback, IntPtr.Zero);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set device state changed callback, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set device state changed callback, Error - {(WiFiDirectError)ret}");
             }
         }
 
@@ -358,7 +358,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.UnsetDeviceStateChangedCallback();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset device state changed callback, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset device state changed callback, Error - {(WiFiDirectError)ret}");
             }
         }
 
@@ -377,7 +377,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.SetConnectionChangedCallback(_connectionChangedCallback, IntPtr.Zero);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set connection status changed callback, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set connection status changed callback, Error - {(WiFiDirectError)ret}");
             }
         }
 
@@ -386,7 +386,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.UnsetConnectionChangedCallback();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset connection status changed callback, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset connection status changed callback, Error - {(WiFiDirectError)ret}");
             }
         }
 
@@ -405,7 +405,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.IsGroupOwner(out isGroupOwner);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get whether this device is the group owner or not, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get whether this device is the group owner or not, Error - {(WiFiDirectError)ret}");
                 }
 
                 return isGroupOwner;
@@ -420,7 +420,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.IsAutonomousGroup(out isAutonomousGroup);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to check whether the current group is autonomous or not, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to check whether the current group is autonomous or not, Error - {(WiFiDirectError)ret}");
                 }
 
                 return isAutonomousGroup;
@@ -435,7 +435,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetSsid(out ssid);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get SSID of local device, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get SSID of local device, Error - {(WiFiDirectError)ret}");
                     return null;
                 }
 
@@ -451,7 +451,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetInterfaceName(out networkInterface);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get name of network interface, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get name of network interface, Error - {(WiFiDirectError)ret}");
                     return "";
                 }
 
@@ -467,7 +467,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetIpAddress(out ipAddress);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get IP address of local device, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get IP address of local device, Error - {(WiFiDirectError)ret}");
                     return "";
                 }
 
@@ -483,7 +483,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetSubnetMask(out subnetMask);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get subnet mask, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get subnet mask, Error - {(WiFiDirectError)ret}");
                     return "";
                 }
 
@@ -499,7 +499,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetGatewayAddress(out gatewayAddress);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get gateway address, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get gateway address, Error - {(WiFiDirectError)ret}");
                     return "";
                 }
 
@@ -515,7 +515,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetMacAddress(out macAddress);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get mac address, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get mac address, Error - {(WiFiDirectError)ret}");
                     return null;
                 }
 
@@ -531,7 +531,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetState(out state);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get state of Wi-Fi direct service, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get state of Wi-Fi direct service, Error - {(WiFiDirectError)ret}");
                 }
 
                 return state;
@@ -546,7 +546,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.IsDiscoverable(out isDiscoverable);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to check whether the device is discoverable, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to check whether the device is discoverable, Error - {(WiFiDirectError)ret}");
                 }
 
                 return isDiscoverable;
@@ -561,7 +561,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.IsListeningOnly(out isListenOnly);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to check whether the local device is listening only, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to check whether the local device is listening only, Error - {(WiFiDirectError)ret}");
                 }
 
                 return isListenOnly;
@@ -576,7 +576,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetPrimaryType(out primaryType);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get the primary device type of local device, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get the primary device type of local device, Error - {(WiFiDirectError)ret}");
                 }
 
                 return primaryType;
@@ -591,7 +591,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetSecondaryType(out secondaryType);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get the secondary device type of local device, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get the secondary device type of local device, Error - {(WiFiDirectError)ret}");
                 }
 
                 return secondaryType;
@@ -606,7 +606,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetWpsMode(out mode);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get supproted wps modes at local device, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get supproted wps modes at local device, Error - {(WiFiDirectError)ret}");
                     return -1;
                 }
 
@@ -622,7 +622,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetLocalWpsType(out wpsType);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get the WPS type, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get the WPS type, Error - {(WiFiDirectError)ret}");
                 }
 
                 return wpsType;
@@ -637,7 +637,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetChannel(out channel);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get operating channel, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get operating channel, Error - {(WiFiDirectError)ret}");
                     return -1;
                 }
 
@@ -653,7 +653,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetPersistentGroupState(out isEnabled);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to check persistent group state, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to check persistent group state, Error - {(WiFiDirectError)ret}");
                 }
 
                 return isEnabled;
@@ -664,7 +664,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.SetPersistentGroupState(value);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set the persistent group state, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set the persistent group state, Error - {(WiFiDirectError)ret}");
                     WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
                 }
             }
@@ -678,7 +678,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetAutoConnectionMode(out isAutoConnect);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get autoconnection mode status, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get autoconnection mode status, Error - {(WiFiDirectError)ret}");
                 }
 
                 return isAutoConnect;
@@ -689,7 +689,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.SetAutoConnectionMode(value);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set the autoconnection mode, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set the autoconnection mode, Error - {(WiFiDirectError)ret}");
                     WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
                 }
             }
@@ -703,7 +703,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetWpsPin(out pin);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get WPS pin, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get WPS pin, Error - {(WiFiDirectError)ret}");
                 }
 
                 return pin;
@@ -714,7 +714,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.SetWpsPin(value.ToString());
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set or update WPS pin, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set or update WPS pin, Error - {(WiFiDirectError)ret}");
                     WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
                 }
             }
@@ -728,7 +728,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetName(out name);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get name of local device, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get name of local device, Error - {(WiFiDirectError)ret}");
                     return null;
                 }
 
@@ -740,7 +740,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.SetName(value.ToString());
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set name of local device, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set name of local device, Error - {(WiFiDirectError)ret}");
                     WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
                 }
             }
@@ -754,7 +754,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetReqWpsType(out wpsType);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get the requested WPS type, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get the requested WPS type, Error - {(WiFiDirectError)ret}");
                 }
 
                 return wpsType;
@@ -765,7 +765,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.SetReqWpsType(value);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set the requested WPS type, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set the requested WPS type, Error - {(WiFiDirectError)ret}");
                     WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
                 }
             }
@@ -779,7 +779,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetIntent(out intent);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get the intent of the group owner, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get the intent of the group owner, Error - {(WiFiDirectError)ret}");
                 }
 
                 return intent;
@@ -790,7 +790,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.SetIntent(value);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set the intent of the group owner, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set the intent of the group owner, Error - {(WiFiDirectError)ret}");
                     WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
                 }
             }
@@ -804,7 +804,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetMaxClients(out maxClients);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get the max number of clients, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get the max number of clients, Error - {(WiFiDirectError)ret}");
                 }
 
                 return maxClients;
@@ -815,7 +815,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.SetMaxClients(value);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set the max number of clients, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set the max number of clients, Error - {(WiFiDirectError)ret}");
                     WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
                 }
             }
@@ -829,7 +829,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetPassPhrase(out passphrase);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get Wi-Fi Protected Access password, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get Wi-Fi Protected Access password, Error - {(WiFiDirectError)ret}");
                     return "";
                 }
 
@@ -841,7 +841,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.SetPassPhrase(value.ToString());
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set or update Wi-Fi Protected Access password, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set or update Wi-Fi Protected Access password, Error - {(WiFiDirectError)ret}");
                     WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
                 }
             }
@@ -855,7 +855,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.GetSessionTimer(out sessionTimer);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get the timer used to expire the connection session, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get the timer used to expire the connection session, Error - {(WiFiDirectError)ret}");
                 }
 
                 return sessionTimer;
@@ -866,7 +866,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.SetSessionTimer(value);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set the timer used to expire the connection session, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set the timer used to expire the connection session, Error - {(WiFiDirectError)ret}");
                     WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
                 }
             }
@@ -877,7 +877,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.Activate();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to activate Wi-Fi direct service, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to activate Wi-Fi direct service, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -887,7 +887,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.Deactivate();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to deactivate Wi-Fi direct service, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to deactivate Wi-Fi direct service, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -897,7 +897,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.StartDiscoveryInChannel(listenOnly, duration, channel);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to start discovery, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to start discovery, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -907,7 +907,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.StopDiscovery();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to cancel discovery, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to cancel discovery, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -927,7 +927,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.GetDiscoveredPeers(callback, IntPtr.Zero);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get information of discovered peers, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get information of discovered peers, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
 
@@ -949,7 +949,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.GetConnectedPeers(callback, IntPtr.Zero);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get information of connected peers, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get information of connected peers, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
 
@@ -961,7 +961,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.DisconnectAll();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to disconnect all connected links, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to disconnect all connected links, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -971,7 +971,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.CreateGroup();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to create a WiFi-Direct group, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to create a WiFi-Direct group, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -981,7 +981,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.CreateGroupWithSsid(ssid);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to create a WiFi-Direct group with ssid, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to create a WiFi-Direct group with ssid, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -991,7 +991,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.DestroyGroup();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to destroy the WiFi-Direct group, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to destroy the WiFi-Direct group, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -1001,7 +1001,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.ActivatePushButton();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set the Wps config PBC, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set the Wps config PBC, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -1021,7 +1021,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.GetWpsTypes(callback, IntPtr.Zero);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get the supported WPS types, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get the supported WPS types, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
 
@@ -1043,7 +1043,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.GetPersistentGroups(callback, IntPtr.Zero);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get the persistent groups, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get the persistent groups, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
 
@@ -1055,7 +1055,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.RemovePersistentGroup(group.MacAddress, group.Ssid);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to remove a persistent group, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to remove a persistent group, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -1065,7 +1065,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.InitMiracast(enable);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set the WiFi-Direct Display(MIRACAST) service, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set the WiFi-Direct Display(MIRACAST) service, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -1075,7 +1075,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.InitDisplay();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to enable Wi-Fi Display functionality, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to enable Wi-Fi Display functionality, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
 
@@ -1090,7 +1090,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.DeinitDisplay();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to disable Wi-Fi Display functionality, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to disable Wi-Fi Display functionality, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
 
@@ -1105,7 +1105,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.SetDisplay(type, port, hdcp);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set the Wi-Fi Display parameters, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set the Wi-Fi Display parameters, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -1115,7 +1115,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.SetDisplayAvailability(availability);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set the Wi-Fi Display session availability, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set the Wi-Fi Display session availability, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -1125,7 +1125,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.SetAutoGroupRemoval(enable);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set automatic group removal feature when all peers are disconnected, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set automatic group removal feature when all peers are disconnected, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -1136,7 +1136,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.RegisterService(type, info, serviceInfo, out serviceId);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to register for service, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to register for service, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
 
@@ -1148,7 +1148,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.DeregisterService(serviceId);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to deregister service, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to deregister service, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -1159,7 +1159,7 @@ namespace Tizen.Network.WiFiDirect
 
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to add vsie, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to add vsie, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -1171,7 +1171,7 @@ namespace Tizen.Network.WiFiDirect
 
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get vsie, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get vsie, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
                 vsie = null;
             }
@@ -1185,7 +1185,7 @@ namespace Tizen.Network.WiFiDirect
 
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to remove vsie, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to remove vsie, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -1197,7 +1197,7 @@ namespace Tizen.Network.WiFiDirect
 
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get connecting peer info, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get connecting peer info, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
                 return null;
             }
@@ -1213,7 +1213,7 @@ namespace Tizen.Network.WiFiDirect
 
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to accept connection, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to accept connection, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -1224,7 +1224,7 @@ namespace Tizen.Network.WiFiDirect
 
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to reject connection, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to reject connection, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
         }
@@ -1251,7 +1251,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.Initialize();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to initialize Wi-Fi direct, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to initialize Wi-Fi direct, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
 
@@ -1295,7 +1295,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.Deinitialize();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to deinitialize Wi-Fi direct, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to deinitialize Wi-Fi direct, Error - {(WiFiDirectError)ret}");
                 WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
             }
 

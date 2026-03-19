@@ -63,7 +63,8 @@ namespace Tizen.Network.Connection
                         ProfileStateChangedStart();
                     } catch (Exception e)
                     {
-                        Log.Error(Globals.LogTag, "Exception on adding ProfileStateChanged\n" + e.ToString());
+                        Log.Error(Globals.LogTag, $"Exception on adding ProfileStateChanged
+{e.ToString()}");
                         return;
                     }
                 }
@@ -81,7 +82,8 @@ namespace Tizen.Network.Connection
                     }
                     catch (Exception e)
                     {
-                        Log.Error(Globals.LogTag, "Exception on removing ProfileStateChanged\n" + e.ToString());
+                        Log.Error(Globals.LogTag, $"Exception on removing ProfileStateChanged
+{e.ToString()}");
                     }
                 }
             }
@@ -101,7 +103,7 @@ namespace Tizen.Network.Connection
             int ret = Interop.ConnectionProfile.SetStateChangeCallback(ProfileHandle, _profileChangedCallback, IntPtr.Zero);
             if ((ConnectionError)ret != ConnectionError.None)
             {
-                Log.Error(Globals.LogTag, "It failed to register callback for changing profile state, " + (ConnectionError)ret);
+                Log.Error(Globals.LogTag, $"It failed to register callback for changing profile state, {(ConnectionError)ret}");
                 ConnectionErrorFactory.ThrowConnectionException(ret);
             }
         }
@@ -112,7 +114,7 @@ namespace Tizen.Network.Connection
             int ret = Interop.ConnectionProfile.UnsetStateChangeCallback(ProfileHandle);
             if ((ConnectionError)ret != ConnectionError.None)
             {
-                Log.Error(Globals.LogTag, "It failed to unregister callback for changing profile state, " + (ConnectionError)ret);
+                Log.Error(Globals.LogTag, $"It failed to unregister callback for changing profile state, {(ConnectionError)ret}");
                 ConnectionErrorFactory.ThrowConnectionException(ret);
             }
         }
@@ -144,7 +146,7 @@ namespace Tizen.Network.Connection
 
         private void Dispose(bool disposing)
         {
-            Log.Debug(Globals.LogTag, ">>> ConnectionProfile Dispose with " + disposing);
+            Log.Debug(Globals.LogTag, $">>> ConnectionProfile Dispose with {disposing}");
             if (disposed)
                 return;
 
@@ -193,7 +195,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.GetId(ProfileHandle, out Value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get id of connection profile, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get id of connection profile, {(ConnectionError)ret}");
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Glib.Free(Value);
@@ -214,7 +216,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.GetName(ProfileHandle, out Value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get name of connection profile, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get name of connection profile, {(ConnectionError)ret}");
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Glib.Free(Value);
@@ -235,7 +237,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.GetType(ProfileHandle, out Value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get type of connection profile, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get type of connection profile, {(ConnectionError)ret}");
                 }
                 return (ConnectionProfileType)Value;
             }
@@ -254,7 +256,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.GetNetworkInterfaceName(ProfileHandle, out Value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get network interface name, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get network interface name, {(ConnectionError)ret}");
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Glib.Free(Value);
@@ -281,7 +283,7 @@ namespace Tizen.Network.Connection
             int ret = Interop.ConnectionProfile.Refresh(ProfileHandle);
             if ((ConnectionError)ret != ConnectionError.None)
             {
-                Log.Error(Globals.LogTag, "It failed to get network interface name, " + (ConnectionError)ret);
+                Log.Error(Globals.LogTag, $"It failed to get network interface name, {(ConnectionError)ret}");
                 if ((ConnectionError)ret == ConnectionError.InvalidParameter)
                 {
                     throw new InvalidOperationException("Invalid handle");
@@ -324,7 +326,7 @@ namespace Tizen.Network.Connection
 
             if ((ConnectionError)ret != ConnectionError.None)
             {
-                Log.Error(Globals.LogTag, "It failed to get profile state, " + (ConnectionError)ret);
+                Log.Error(Globals.LogTag, $"It failed to get profile state, {(ConnectionError)ret}");
                 ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
                 ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                 ConnectionErrorFactory.ThrowConnectionException(ret);
@@ -350,7 +352,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.GetProxyType(ProfileHandle, out Value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get proxy type, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get proxy type, {(ConnectionError)ret}");
                 }
                 return (ProxyType)Value;
 
@@ -362,7 +364,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.SetProxyType(ProfileHandle, (int)value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set proxy type, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to set proxy type, {(ConnectionError)ret}");
                     ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
                     ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
@@ -388,7 +390,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.GetProxyAddress(ProfileHandle, (int)AddressFamily.IPv4, out Value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get proxy address, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get proxy address, {(ConnectionError)ret}");
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Glib.Free(Value);
@@ -404,7 +406,7 @@ namespace Tizen.Network.Connection
                     int ret = Interop.ConnectionProfile.SetProxyAddress(ProfileHandle, (int)AddressFamily.IPv4, value);
                     if ((ConnectionError)ret != ConnectionError.None)
                     {
-                        Log.Error(Globals.LogTag, "It failed to set proxy address, " + (ConnectionError)ret);
+                        Log.Error(Globals.LogTag, $"It failed to set proxy address, {(ConnectionError)ret}");
                         ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
                         ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                         ConnectionErrorFactory.ThrowConnectionException(ret);

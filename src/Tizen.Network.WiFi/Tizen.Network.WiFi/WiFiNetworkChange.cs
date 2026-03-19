@@ -67,7 +67,8 @@ namespace Tizen.Network.WiFi
                     }
                     catch (Exception e)
                     {
-                        Log.Error(Globals.LogTag, "Exception on adding DeviceStateChanged\n" + e);
+                        Log.Error(Globals.LogTag, $"Exception on adding DeviceStateChanged
+{e}");
                         return;
                     }
                 }
@@ -84,7 +85,8 @@ namespace Tizen.Network.WiFi
                     }
                     catch (Exception e)
                     {
-                        Log.Error(Globals.LogTag, "Exception on removing DeviceStateChanged\n" + e);
+                        Log.Error(Globals.LogTag, $"Exception on removing DeviceStateChanged
+{e}");
                     }
                 }
             }
@@ -102,7 +104,8 @@ namespace Tizen.Network.WiFi
                     }
                     catch (Exception e)
                     {
-                        Log.Error(Globals.LogTag, "Exception on adding ConnectionStateChanged\n" + e);
+                        Log.Error(Globals.LogTag, $"Exception on adding ConnectionStateChanged
+{e}");
                         return;
                     }
                 }
@@ -119,7 +122,8 @@ namespace Tizen.Network.WiFi
                     }
                     catch (Exception e)
                     {
-                        Log.Error(Globals.LogTag, "Exception on removing ConnectionStateChanged\n" + e);
+                        Log.Error(Globals.LogTag, $"Exception on removing ConnectionStateChanged
+{e}");
                     }
                 }
             }
@@ -137,7 +141,8 @@ namespace Tizen.Network.WiFi
                     }
                     catch (Exception e)
                     {
-                        Log.Error(Globals.LogTag, "Exception on adding RssiLevelChanged\n" + e);
+                        Log.Error(Globals.LogTag, $"Exception on adding RssiLevelChanged
+{e}");
                         return;
                     }
                 }
@@ -154,7 +159,8 @@ namespace Tizen.Network.WiFi
                     }
                     catch (Exception e)
                     {
-                        Log.Error(Globals.LogTag, "Exception on removing RssiLevelChanged\n" + e);
+                        Log.Error(Globals.LogTag, $"Exception on removing RssiLevelChanged
+{e}");
                     }
                 }
             }
@@ -172,7 +178,8 @@ namespace Tizen.Network.WiFi
                     }
                     catch (Exception e)
                     {
-                        Log.Error(Globals.LogTag, "Exception on adding ScanStateChanged\n" + e);
+                        Log.Error(Globals.LogTag, $"Exception on adding ScanStateChanged
+{e}");
                         return;
                     }
                 }
@@ -189,7 +196,8 @@ namespace Tizen.Network.WiFi
                     }
                     catch (Exception e)
                     {
-                        Log.Error(Globals.LogTag, "Exception on removing ScanStateChanged\n" + e);
+                        Log.Error(Globals.LogTag, $"Exception on removing ScanStateChanged
+{e}");
                     }
                 }
             }
@@ -207,7 +215,8 @@ namespace Tizen.Network.WiFi
                     }
                     catch (Exception e)
                     {
-                        Log.Error(Globals.LogTag, "Exception on adding BackgroundScanFinished\n" + e);
+                        Log.Error(Globals.LogTag, $"Exception on adding BackgroundScanFinished
+{e}");
                         return;
                     }
                 }
@@ -224,7 +233,8 @@ namespace Tizen.Network.WiFi
                     }
                     catch (Exception e)
                     {
-                        Log.Error(Globals.LogTag, "Exception on removing BackgroundScanFinished\n" + e);
+                        Log.Error(Globals.LogTag, $"Exception on removing BackgroundScanFinished
+{e}");
                     }
                 }
             }
@@ -232,7 +242,7 @@ namespace Tizen.Network.WiFi
 
         private void RegisterDeviceStateChangedEvent()
         {
-            Log.Info(Globals.LogTag, "RegisterDeviceStateChangedEvent in Thread " + Thread.CurrentThread.ManagedThreadId);
+            Log.Info(Globals.LogTag, $"RegisterDeviceStateChangedEvent in Thread {Thread.CurrentThread.ManagedThreadId}");
             _deviceChangedCallback = (int deviceState, IntPtr userDate) =>
             {
                 WiFiDeviceState state = (WiFiDeviceState)deviceState;
@@ -242,17 +252,17 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.SetDeviceStateChangedCallback(GetSafeHandle(), _deviceChangedCallback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set device state changed callback, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set device state changed callback, Error - {(WiFiError)ret}");
             }
         }
 
         private void UnregisterDeviceStateChangedEvent()
         {
-            Log.Info(Globals.LogTag, "UnregisterDeviceStateChangedEvent in Thread " + Thread.CurrentThread.ManagedThreadId);
+            Log.Info(Globals.LogTag, $"UnregisterDeviceStateChangedEvent in Thread {Thread.CurrentThread.ManagedThreadId}");
             int ret = Interop.WiFi.UnsetDeviceStateChangedCallback(GetSafeHandle());
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset device state changed callback, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset device state changed callback, Error - {(WiFiError)ret}");
             }
         }
 
@@ -270,7 +280,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.SetConnectionStateChangedCallback(GetSafeHandle(), _connectionChangedCallback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set copnnection state changed callback, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set copnnection state changed callback, Error - {(WiFiError)ret}");
             }
         }
 
@@ -279,7 +289,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.UnsetConnectionStateChangedCallback(GetSafeHandle());
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset device state changed callback, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset device state changed callback, Error - {(WiFiError)ret}");
             }
         }
 
@@ -295,7 +305,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.SetRssiLevelchangedCallback(GetSafeHandle(), _rssiChangedCallback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set rssi level changed callback, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set rssi level changed callback, Error - {(WiFiError)ret}");
             }
         }
 
@@ -304,7 +314,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.UnsetRssiLevelchangedCallback(GetSafeHandle());
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset rssi level changed callback, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset rssi level changed callback, Error - {(WiFiError)ret}");
             }
         }
 
@@ -317,7 +327,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.SetScanStateChangedCallback(GetSafeHandle(), _scanChangedCallback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set scan state changed callback, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set scan state changed callback, Error - {(WiFiError)ret}");
             }
         }
 
@@ -326,7 +336,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.UnsetScanStateChangedCallback(GetSafeHandle());
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset scan state changed callback, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset scan state changed callback, Error - {(WiFiError)ret}");
             }
         }
 
@@ -340,7 +350,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.SetBackgroundScanCallback(GetSafeHandle(), _backgroundScanFinishedCallback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set background scan callback, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set background scan callback, Error - {(WiFiError)ret}");
             }
         }
 
@@ -349,7 +359,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.UnsetBackgroundScanCallback(GetSafeHandle());
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset background scan callback, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset background scan callback, Error - {(WiFiError)ret}");
             }
         }
     }

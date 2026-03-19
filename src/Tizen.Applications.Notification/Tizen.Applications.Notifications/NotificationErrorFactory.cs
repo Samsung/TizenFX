@@ -38,7 +38,7 @@ namespace Tizen.Applications.Notifications
     {
         internal static Exception GetException(NotificationError ret, string msg, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
-            Log.Error(Notification.LogTag, memberName + " : " + lineNumber);
+            Log.Error(Notification.LogTag, $"{memberName } : {lineNumber}");
 
             switch (ret)
             {
