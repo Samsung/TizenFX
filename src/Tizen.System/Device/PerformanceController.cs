@@ -15,10 +15,11 @@
 */
 
 using System;
-
-using Tizen.Common;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.ComponentModel;
+
+using Tizen.Common;
 
 namespace Tizen.System
 {
@@ -34,12 +35,12 @@ namespace Tizen.System
     public static class PerformanceController
     {
         private delegate int PerformanceControlFunc(int timeout);
-        private static readonly Dictionary<PerformanceControlType, PerformanceControlFunc> PerformanceControlFunctions = new Dictionary<PerformanceControlType, PerformanceControlFunc>
+        private static readonly FrozenDictionary<PerformanceControlType, PerformanceControlFunc> PerformanceControlFunctions = new Dictionary<PerformanceControlType, PerformanceControlFunc>
         {
             {PerformanceControlType.AppLaunchHome, Interop.Device.DevicePmQosAppLaunchHome},
             {PerformanceControlType.HomeScreen, Interop.Device.DevicePmQosHomeScreen},
             /* Add Here */
-        };
+        }.ToFrozenDictionary();
 
         /// <summary>
         /// Increase the cpu clock within timeout.
