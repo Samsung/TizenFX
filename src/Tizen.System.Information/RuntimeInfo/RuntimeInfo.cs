@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 
 namespace Tizen.System
@@ -36,7 +37,7 @@ namespace Tizen.System
         private static RuntimeInfoEventHandler ChargerConnected = new RuntimeInfoEventHandler(RuntimeInfoKey.Charger);
         private static RuntimeInfoEventHandler AutoRotationEnabled = new RuntimeInfoEventHandler(RuntimeInfoKey.AutoRotation);
 
-        internal static readonly Dictionary<RuntimeInfoKey, Type> s_keyDataTypeMapping = new Dictionary<RuntimeInfoKey, Type>
+        internal static readonly FrozenDictionary<RuntimeInfoKey, Type> s_keyDataTypeMapping = new Dictionary<RuntimeInfoKey, Type>
         {
             [RuntimeInfoKey.Bluetooth] = typeof(bool),
             [RuntimeInfoKey.WifiHotspot] = typeof(bool),
@@ -52,7 +53,7 @@ namespace Tizen.System
             [RuntimeInfoKey.AutoRotation] = typeof(bool),
             [RuntimeInfoKey.Gps] = typeof(int),
             [RuntimeInfoKey.AudioJackConnector] = typeof(int)
-        };
+        }.ToFrozenDictionary();
 
         /// <summary>
         /// Validates the data type of the status represented by the runtime key.
