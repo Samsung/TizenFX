@@ -330,7 +330,7 @@ namespace Tizen.Multimedia
             _stateChangedCallback = (previous, current, byPolicy, _) =>
             {
                 SetState(current);
-                Log.Info(CameraLog.Tag, $"Camera state changed {previous.ToString() } -> {current.ToString()}");
+                Log.Info(CameraLog.Tag, $"Camera state changed {previous.ToString()} -> {current.ToString()}");
                 StateChanged?.Invoke(this, new CameraStateChangedEventArgs(previous, current, byPolicy));
             };
 

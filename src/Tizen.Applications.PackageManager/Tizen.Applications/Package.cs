@@ -384,27 +384,27 @@ namespace Tizen.Applications
             err = Interop.Package.PackageInfoIsSystemPackage(handle, out package._isSystemPackage);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, $"Failed to get whether package {pkgId } is system package or not");
+                Log.Warn(LogTag, $"Failed to get whether package {pkgId} is system package or not");
             }
             err = Interop.Package.PackageInfoIsRemovablePackage(handle, out package._isRemovable);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, $"Failed to get whether package {pkgId } is removable or not");
+                Log.Warn(LogTag, $"Failed to get whether package {pkgId} is removable or not");
             }
             err = Interop.Package.PackageInfoIsPreloadPackage(handle, out package._isPreloaded);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, $"Failed to get whether package {pkgId } is preloaded or not");
+                Log.Warn(LogTag, $"Failed to get whether package {pkgId} is preloaded or not");
             }
             err = Interop.Package.PackageInfoIsUpdatePackage(handle, out package._isUpdated);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, $"Failed to get whether package {pkgId } is updated or not");
+                Log.Warn(LogTag, $"Failed to get whether package {pkgId} is updated or not");
             }
             err = Interop.Package.PackageInfoIsAccessible(handle, out package._isAccessible);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, $"Failed to get whether package {pkgId } is accessible or not");
+                Log.Warn(LogTag, $"Failed to get whether package {pkgId} is accessible or not");
             }
             try
             {

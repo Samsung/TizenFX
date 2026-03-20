@@ -157,7 +157,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _browserPolicyName, _browserPolicyChangedCallback, IntPtr.Zero, out _browserCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
-                Log.Error(Globals.LogTag, $"Failed to add policy changed callback, name {_browserPolicyName }, ret : {ret}");
+                Log.Error(Globals.LogTag, $"Failed to add policy changed callback, name {_browserPolicyName}, ret : {ret}");
                 throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
         }
@@ -167,7 +167,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _browserCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
-                Log.Error(Globals.LogTag, $"Failed to remove policy changed callback, name {_browserPolicyName }, ret : {ret}");
+                Log.Error(Globals.LogTag, $"Failed to remove policy changed callback, name {_browserPolicyName}, ret : {ret}");
                 throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
 

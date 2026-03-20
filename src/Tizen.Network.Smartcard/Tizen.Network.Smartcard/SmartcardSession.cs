@@ -54,7 +54,7 @@ namespace Tizen.Network.Smartcard
 
                 if (_readerObject.GetHandle() != reader)
                 {
-                    Log.Error(Globals.LogTag, $"Does not correspond with reader, Error - {_readerObject.GetHandle() } {reader}");
+                    Log.Error(Globals.LogTag, $"Does not correspond with reader, Error - {_readerObject.GetHandle()} {reader}");
                 }
 
                 return _readerObject;

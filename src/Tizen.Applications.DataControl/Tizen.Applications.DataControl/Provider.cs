@@ -927,7 +927,7 @@ namespace Tizen.Applications.DataControl
             {
                 provider = _providerDict[dataID];
                 provider.CurrentProviderId = providerID;
-                Log.Info(LogTag, $"DataID :{dataID }, hash code : {provider.GetHashCode().ToString()}");
+                Log.Info(LogTag, $"DataID :{dataID}, hash code : {provider.GetHashCode().ToString()}");
             }
             handle.Dispose();
 
@@ -1058,7 +1058,7 @@ namespace Tizen.Applications.DataControl
             }
 
             _providerDict.Add(DataID, this);
-            Log.Info(LogTag, $"DataID :{DataID }, hash code : {this.GetHashCode().ToString()}");
+            Log.Info(LogTag, $"DataID :{DataID}, hash code : {this.GetHashCode().ToString()}");
             _isRunning = true;
             _lock.ReleaseMutex();
         }

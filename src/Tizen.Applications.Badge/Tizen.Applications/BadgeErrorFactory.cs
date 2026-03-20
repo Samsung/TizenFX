@@ -44,7 +44,7 @@ namespace Tizen.Applications
 
         internal static Exception GetException(BadgeError ret, string msg, [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
         {
-            Log.Error(LogTag, $"{memberName } : {lineNumber}");
+            Log.Error(LogTag, $"{memberName} : {lineNumber}");
 
             switch (ret)
             {

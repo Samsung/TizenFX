@@ -164,7 +164,7 @@ namespace Tizen.Applications.Messages
                     }
                     catch (Exception ex)
                     {
-                        Log.Error(LogTag, $"Exception({ex.ToString() })");
+                        Log.Error(LogTag, $"Exception({ex.ToString()})");
                         args.Message = null;
                     }
 

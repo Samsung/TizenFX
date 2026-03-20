@@ -124,7 +124,7 @@ namespace Tizen.NUI
                     var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                     var me = this.GetType().FullName;
 
-                    Tizen.Log.Fatal("NUI", $"{$"[NUI][Disposable] This API called from separate thread. This API must be called from MainThread. \n" }{                        $" process:{processId} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n"}");
+                    Tizen.Log.Fatal("NUI", $"[NUI][Disposable] This API called from separate thread. This API must be called from MainThread. \n process:{processId} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
 
                     //to fix ArtApp black screen issue. this will be enabled after talking with ArtApp team and fixing it.
                     // throw new global::System.InvalidOperationException("[NUI][Disposable] This API called from separate thread. This API must be called from MainThread. \n" +

@@ -203,7 +203,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _bluetoothPolicyName, _bluetoothPolicyChangedCallback, IntPtr.Zero, out _bluetoothCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
-                Log.Error(Globals.LogTag, $"Failed to add policy changed callback, name {_bluetoothPolicyName }, ret : {ret}");
+                Log.Error(Globals.LogTag, $"Failed to add policy changed callback, name {_bluetoothPolicyName}, ret : {ret}");
                 throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
         }
@@ -213,7 +213,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _bluetoothCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
-                Log.Error(Globals.LogTag, $"Failed to remove policy changed callback, name {_bluetoothPolicyName }, ret : {ret}");
+                Log.Error(Globals.LogTag, $"Failed to remove policy changed callback, name {_bluetoothPolicyName}, ret : {ret}");
                 throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
 
@@ -262,7 +262,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _bluetoothTetheringPolicyName, _bluetoothTetheringPolicyChangedCallback, IntPtr.Zero, out _bluetoothTetheringCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
-                Log.Error(Globals.LogTag, $"Failed to add policy changed callback, name {_bluetoothTetheringPolicyName }, ret : {ret}");
+                Log.Error(Globals.LogTag, $"Failed to add policy changed callback, name {_bluetoothTetheringPolicyName}, ret : {ret}");
                 throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
         }
@@ -272,7 +272,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _bluetoothTetheringCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
-                Log.Error(Globals.LogTag, $"Failed to remove policy changed callback, name {_bluetoothTetheringPolicyName }, ret : {ret}");
+                Log.Error(Globals.LogTag, $"Failed to remove policy changed callback, name {_bluetoothTetheringPolicyName}, ret : {ret}");
                 throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
 

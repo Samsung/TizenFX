@@ -37,7 +37,7 @@ namespace Tizen.Multimedia
             _owner = owner;
             _index = index;
 
-            Log.Debug(PlayerLog.Tag, $"frequency : {Frequency }, range : {FrequencyRange}");
+            Log.Debug(PlayerLog.Tag, $"frequency : {Frequency}, range : {FrequencyRange}");
         }
 
         /// <summary>

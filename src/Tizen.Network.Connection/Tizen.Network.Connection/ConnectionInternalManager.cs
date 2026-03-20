@@ -142,7 +142,7 @@ namespace Tizen.Network.Connection
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, $"Exception on adding ConnectionTypeChanged {e.ToString()}");
+                            Log.Error(Globals.LogTag, $"Exception on adding ConnectionTypeChanged\n{e.ToString()}");
                             return;
                         }
                     }
@@ -162,7 +162,7 @@ namespace Tizen.Network.Connection
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, $"Exception on removing ConnectionTypeChanged {e.ToString()}");
+                            Log.Error(Globals.LogTag, $"Exception on removing ConnectionTypeChanged\n{e.ToString()}");
                         }
                     }
                 }
@@ -213,7 +213,7 @@ namespace Tizen.Network.Connection
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, $"Exception on adding EthernetCableStateChanged {e.ToString()}");
+                            Log.Error(Globals.LogTag, $"Exception on adding EthernetCableStateChanged\n{e.ToString()}");
                             return;
                         }
                     }
@@ -233,7 +233,7 @@ namespace Tizen.Network.Connection
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, $"Exception on removing EthernetCableStateChanged {e.ToString()}");
+                            Log.Error(Globals.LogTag, $"Exception on removing EthernetCableStateChanged\n{e.ToString()}");
                         }
                     }
                 }
@@ -286,7 +286,7 @@ namespace Tizen.Network.Connection
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, $"Exception on adding IPAddressChanged {e.ToString()}");
+                            Log.Error(Globals.LogTag, $"Exception on adding IPAddressChanged\n{e.ToString()}");
                             return;
                         }
                     }
@@ -307,7 +307,7 @@ namespace Tizen.Network.Connection
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, $"Exception on removing IPAddressChanged {e.ToString()}");
+                            Log.Error(Globals.LogTag, $"Exception on removing IPAddressChanged\n{e.ToString()}");
                         }
                     }
                 }
@@ -362,7 +362,7 @@ namespace Tizen.Network.Connection
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, $"Exception on adding ProxyAddressChanged {e.ToString()}");
+                            Log.Error(Globals.LogTag, $"Exception on adding ProxyAddressChanged\n{e.ToString()}");
                             return;
                         }
                     }
@@ -382,7 +382,7 @@ namespace Tizen.Network.Connection
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, $"Exception on removing ProxyAddressChanged {e.ToString()}");
+                            Log.Error(Globals.LogTag, $"Exception on removing ProxyAddressChanged\n{e.ToString()}");
                         }
                     }
                 }
@@ -490,7 +490,7 @@ namespace Tizen.Network.Connection
 
             string result = Marshal.PtrToStringAnsi(ip);
             Interop.Glib.Free(ip);
-            Log.Info(Globals.LogTag, $"IPAddress {result } ({result.Length })");
+            Log.Info(Globals.LogTag, $"IPAddress {result} ({result.Length})");
             if (result.Length == 0)
             {
                 if (family == AddressFamily.IPv4)
@@ -569,7 +569,7 @@ namespace Tizen.Network.Connection
 
         internal long GetStatistics(ConnectionType connectionType, StatisticsType statisticsType)
         {
-            Log.Debug(Globals.LogTag, $"GetStatistics {connectionType }, {statisticsType}");
+            Log.Debug(Globals.LogTag, $"GetStatistics {connectionType}, {statisticsType}");
             long size;
             int ret = Interop.Connection.GetStatistics(GetHandle(), (int)connectionType,
                     (int)statisticsType, out size);
@@ -586,7 +586,7 @@ namespace Tizen.Network.Connection
 
         internal void ResetStatistics(ConnectionType connectionType, StatisticsType statisticsType)
         {
-            Log.Debug(Globals.LogTag, $"ResetStatistics {connectionType }, {statisticsType}");
+            Log.Debug(Globals.LogTag, $"ResetStatistics {connectionType}, {statisticsType}");
             int ret = Interop.Connection.ResetStatistics(GetHandle(), (int)connectionType,
                     (int)statisticsType);
             if ((ConnectionError)ret != ConnectionError.None)
@@ -603,7 +603,7 @@ namespace Tizen.Network.Connection
         {
             if (interfaceName != null && address != null && gateway != null)
             {
-                Log.Debug(Globals.LogTag, $"AddRoute {family }, {interfaceName }, {address }, {gateway}");
+                Log.Debug(Globals.LogTag, $"AddRoute {family}, {interfaceName}, {address}, {gateway}");
                 int ret = Interop.Connection.AddRoute(GetHandle(), family, interfaceName, address.ToString(), gateway.ToString());
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
@@ -625,7 +625,7 @@ namespace Tizen.Network.Connection
         {
             if (interfaceName != null && address != null && gateway != null)
             {
-                Log.Debug(Globals.LogTag, $"RemoveRoute {family }, {interfaceName }, {address }, {gateway}");
+                Log.Debug(Globals.LogTag, $"RemoveRoute {family}, {interfaceName}, {address}, {gateway}");
                 int ret = Interop.Connection.RemoveRoute(GetHandle(), family, interfaceName, address.ToString(), gateway.ToString());
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
@@ -741,7 +741,7 @@ namespace Tizen.Network.Connection
 
         internal IntPtr CreateCellularProfile(ConnectionProfileType type, string keyword)
         {
-            Log.Debug(Globals.LogTag, $"CreateCellularProfile, {type }, {keyword}");
+            Log.Debug(Globals.LogTag, $"CreateCellularProfile, {type}, {keyword}");
             if (keyword != null)
             {
                 IntPtr handle = IntPtr.Zero;
@@ -928,7 +928,7 @@ namespace Tizen.Network.Connection
                     }
                 } catch (Exception e)
                 {
-                    Log.Error(Globals.LogTag, $"Exception on SetDefaultCellularServiceProfileAsync {e.ToString()}");
+                    Log.Error(Globals.LogTag, $"Exception on SetDefaultCellularServiceProfileAsync\n{e.ToString()}");
                     task.SetException(e);
                 }
 
@@ -1032,7 +1032,7 @@ namespace Tizen.Network.Connection
                 }
                 catch (Exception e)
                 {
-                    Log.Error(Globals.LogTag, $"Exception on OpenProfile {e.ToString()}");
+                    Log.Error(Globals.LogTag, $"Exception on OpenProfile\n{e.ToString()}");
                     task.SetException(e);
                 }
 
@@ -1090,7 +1090,7 @@ namespace Tizen.Network.Connection
                 }
                 catch (Exception e)
                 {
-                    Log.Error(Globals.LogTag, $"Exception on CloseProfile {e.ToString()}");
+                    Log.Error(Globals.LogTag, $"Exception on CloseProfile\n{e.ToString()}");
                     task.SetException(e);
                 }
 

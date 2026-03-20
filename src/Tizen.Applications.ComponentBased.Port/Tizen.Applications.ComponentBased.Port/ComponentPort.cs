@@ -103,7 +103,7 @@ namespace Tizen.Applications.ComponentBased
                 _appearedNativeCallbackMap[requestId] = (string portName, int owner, IntPtr userData) =>
                 {
                     int id = (int)userData;
-                    Log.Info(LogTag, $"{portName } is appeared");
+                    Log.Info(LogTag, $"{portName} is appeared");
                     task.SetResult(true);
                     lock (_watcherIdMap)
                     {
@@ -127,7 +127,7 @@ namespace Tizen.Applications.ComponentBased
             {
                 _vanishedNativeCallbackMap[requestId] = (string portName, IntPtr userData) =>
                 {
-                    Log.Info(LogTag, $"{portName } is vanished");
+                    Log.Info(LogTag, $"{portName} is vanished");
                 };
             }
 

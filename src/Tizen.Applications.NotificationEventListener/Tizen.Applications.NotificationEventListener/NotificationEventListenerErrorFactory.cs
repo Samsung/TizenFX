@@ -30,7 +30,7 @@ namespace Tizen.Applications.NotificationEventListener
             [CallerFilePath] string filePath = "",
             [CallerLineNumber] int lineNumber = 0)
         {
-            Log.Error(LogTag, $"{memberName } : {lineNumber}");
+            Log.Error(LogTag, $"{memberName} : {lineNumber}");
             switch (err)
             {
                 case Interop.NotificationEventListener.ErrorCode.InvalidParameter:

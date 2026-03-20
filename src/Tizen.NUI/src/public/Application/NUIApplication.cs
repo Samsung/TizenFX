@@ -842,7 +842,7 @@ namespace Tizen.NUI
             if (e != null && e.ReceivedAppControl != null)
             {
                 Log.Info("NUI", $"OnAppControlReceived() is called! ApplicationId={e.ReceivedAppControl.ApplicationId}");
-                Log.Info("NUI", $"CallerApplicationId={e.ReceivedAppControl.CallerApplicationId }   IsReplyRequest={e.ReceivedAppControl.IsReplyRequest}");
+                Log.Info("NUI", $"CallerApplicationId={e.ReceivedAppControl.CallerApplicationId}   IsReplyRequest={e.ReceivedAppControl.IsReplyRequest}");
             }
             base.OnAppControlReceived(e);
         }

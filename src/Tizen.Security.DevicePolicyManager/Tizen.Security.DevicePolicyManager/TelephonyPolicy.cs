@@ -156,7 +156,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _messagingPolicyName, _messagingPolicyChangedCallback, IntPtr.Zero, out _messagingCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
-                Log.Error(Globals.LogTag, $"Failed to add policy changed callback, name {_messagingPolicyName }, ret : {ret}");
+                Log.Error(Globals.LogTag, $"Failed to add policy changed callback, name {_messagingPolicyName}, ret : {ret}");
                 throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
         }
@@ -166,7 +166,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _messagingCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
-                Log.Error(Globals.LogTag, $"Failed to remove policy changed callback, name {_messagingPolicyName }, ret : {ret}");
+                Log.Error(Globals.LogTag, $"Failed to remove policy changed callback, name {_messagingPolicyName}, ret : {ret}");
                 throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
 

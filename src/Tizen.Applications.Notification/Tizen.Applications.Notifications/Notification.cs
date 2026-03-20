@@ -503,7 +503,7 @@ namespace Tizen.Applications.Notifications
 
             foreach (Notification.StyleBase style in styleDictionary.Values)
             {
-                Log.Info(LogTag, $"Start to bind Notification.Style to SafeHandle [{style.Key }]");
+                Log.Info(LogTag, $"Start to bind Notification.Style to SafeHandle [{style.Key}]");
                 style.Make(this);
             }
 

@@ -256,7 +256,7 @@ namespace Tizen.MachineLearning.Train
         {
             if (error != NNTrainerError.None)
             {
-                Log.Error(NNTrainer.Tag, $"{msg }: {error.ToString()}");
+                Log.Error(NNTrainer.Tag, $"{msg}: {error.ToString()}");
                 throw NNTrainerExceptionFactory.CreateException(error, msg);
             }
         }

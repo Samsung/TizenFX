@@ -297,7 +297,7 @@ namespace Tizen.MachineLearning.Inference
         {
             if (error != NNStreamerError.None)
             {
-                Log.Error(NNStreamer.TAG, $"{msg }: {error.ToString()}");
+                Log.Error(NNStreamer.TAG, $"{msg}: {error.ToString()}");
                 throw NNStreamerExceptionFactory.CreateException(error, msg);
             }
         }

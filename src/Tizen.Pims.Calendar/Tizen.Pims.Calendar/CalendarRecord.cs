@@ -255,7 +255,7 @@ namespace Tizen.Pims.Calendar
                 int error = Interop.Record.GetString(_recordHandle, propertyId, out val);
                 if (CalendarError.None != (CalendarError)error)
                 {
-                    Log.Error(Globals.LogTag, $"Get String Failed [{error }]{String.Format("{0:X}", propertyId)}");
+                    Log.Error(Globals.LogTag, $"Get String Failed [{error}]{String.Format("{0:X}", propertyId)}");
                     throw CalendarErrorFactory.GetException(error);
                 }
                 parsedValue = Convert.ChangeType(val, typeof(T));
@@ -266,7 +266,7 @@ namespace Tizen.Pims.Calendar
                 int error = Interop.Record.GetInteger(_recordHandle, propertyId, out val);
                 if (CalendarError.None != (CalendarError)error)
                 {
-                    Log.Error(Globals.LogTag, $"Get Intger Failed [{error }]{String.Format("{0:X}", propertyId)}");
+                    Log.Error(Globals.LogTag, $"Get Intger Failed [{error}]{String.Format("{0:X}", propertyId)}");
                     throw CalendarErrorFactory.GetException(error);
                 }
                 parsedValue = Convert.ChangeType(val, typeof(T));
@@ -277,7 +277,7 @@ namespace Tizen.Pims.Calendar
                 int error = Interop.Record.GetLli(_recordHandle, propertyId, out val);
                 if (CalendarError.None != (CalendarError)error)
                 {
-                    Log.Error(Globals.LogTag, $"Get Long Failed [{error }]{String.Format("{0:X}", propertyId)}");
+                    Log.Error(Globals.LogTag, $"Get Long Failed [{error}]{String.Format("{0:X}", propertyId)}");
                     throw CalendarErrorFactory.GetException(error);
                 }
                 parsedValue = Convert.ChangeType(val, typeof(T));
@@ -288,7 +288,7 @@ namespace Tizen.Pims.Calendar
                 int error = Interop.Record.GetDouble(_recordHandle, propertyId, out val);
                 if (CalendarError.None != (CalendarError)error)
                 {
-                    Log.Error(Globals.LogTag, $"Get Double Failed [{error }]{String.Format("{0:X}", propertyId)}");
+                    Log.Error(Globals.LogTag, $"Get Double Failed [{error}]{String.Format("{0:X}", propertyId)}");
                     throw CalendarErrorFactory.GetException(error);
                 }
                 parsedValue = Convert.ChangeType(val, typeof(T));
@@ -299,7 +299,7 @@ namespace Tizen.Pims.Calendar
                 int error = Interop.Record.GetCalTime(_recordHandle, propertyId, out time);
                 if (CalendarError.None != (CalendarError)error)
                 {
-                    Log.Error(Globals.LogTag, $"Get CalendarTime Failed [{error }]{String.Format("{0:X}", propertyId)}");
+                    Log.Error(Globals.LogTag, $"Get CalendarTime Failed [{error}]{String.Format("{0:X}", propertyId)}");
                     throw CalendarErrorFactory.GetException(error);
                 }
                 CalendarTime val = ConvertIntPtrToCalendarTime(time);
@@ -330,7 +330,7 @@ namespace Tizen.Pims.Calendar
                 int error = Interop.Record.SetString(_recordHandle, propertyId, val);
                 if (CalendarError.None != (CalendarError)error)
                 {
-                    Log.Error(Globals.LogTag, $"Set String Failed [{error }]{String.Format("{0:X}", propertyId)}");
+                    Log.Error(Globals.LogTag, $"Set String Failed [{error}]{String.Format("{0:X}", propertyId)}");
                     throw CalendarErrorFactory.GetException(error);
                 }
             }
@@ -340,7 +340,7 @@ namespace Tizen.Pims.Calendar
                 int error = Interop.Record.SetInteger(_recordHandle, propertyId, val);
                 if (CalendarError.None != (CalendarError)error)
                 {
-                    Log.Error(Globals.LogTag, $"Set Integer Failed [{error }]{String.Format("{0:X}", propertyId)}");
+                    Log.Error(Globals.LogTag, $"Set Integer Failed [{error}]{String.Format("{0:X}", propertyId)}");
                     throw CalendarErrorFactory.GetException(error);
                 }
             }
@@ -350,7 +350,7 @@ namespace Tizen.Pims.Calendar
                 int error = Interop.Record.SetLli(_recordHandle, propertyId, val);
                 if (CalendarError.None != (CalendarError)error)
                 {
-                    Log.Error(Globals.LogTag, $"Set Long Failed [{error }]{String.Format("{0:X}", propertyId)}");
+                    Log.Error(Globals.LogTag, $"Set Long Failed [{error}]{String.Format("{0:X}", propertyId)}");
                     throw CalendarErrorFactory.GetException(error);
                 }
             }
@@ -360,7 +360,7 @@ namespace Tizen.Pims.Calendar
                 int error = Interop.Record.SetDouble(_recordHandle, propertyId, val);
                 if (CalendarError.None != (CalendarError)error)
                 {
-                    Log.Error(Globals.LogTag, $"Set Double Failed [{error }]{String.Format("{0:X}", propertyId)}");
+                    Log.Error(Globals.LogTag, $"Set Double Failed [{error}]{String.Format("{0:X}", propertyId)}");
                     throw CalendarErrorFactory.GetException(error);
                 }
             }
@@ -373,7 +373,7 @@ namespace Tizen.Pims.Calendar
                 int error = Interop.Record.SetCalTime(_recordHandle, propertyId, val);
                 if (CalendarError.None != (CalendarError)error)
                 {
-                    Log.Error(Globals.LogTag, $"Set CalendarTime Failed [{error }]{String.Format("{0:X}", propertyId)}");
+                    Log.Error(Globals.LogTag, $"Set CalendarTime Failed [{error}]{String.Format("{0:X}", propertyId)}");
                     throw CalendarErrorFactory.GetException(error);
                 }
             }
@@ -398,7 +398,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Record.AddChildRecord(_recordHandle, propertyId, childRecord._recordHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, $"AddChildRecord Failed [{error }]{String.Format("{0:X}", propertyId)}");
+                Log.Error(Globals.LogTag, $"AddChildRecord Failed [{error}]{String.Format("{0:X}", propertyId)}");
                 throw CalendarErrorFactory.GetException(error);
             }
             childRecord._disposedValue = true;
@@ -418,7 +418,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Record.RemoveChildRecord(_recordHandle, propertyId, childRecord._recordHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, $"RemoveChildRecord Failed [{error }]{String.Format("{0:X}", propertyId)}");
+                Log.Error(Globals.LogTag, $"RemoveChildRecord Failed [{error}]{String.Format("{0:X}", propertyId)}");
                 throw CalendarErrorFactory.GetException(error);
             }
             childRecord._disposedValue = false;
@@ -441,7 +441,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Record.GetChildRecordCount(_recordHandle, propertyId, out count);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, $"GetChildRecordCount Failed [{error }]{String.Format("{0:X}", propertyId)}");
+                Log.Error(Globals.LogTag, $"GetChildRecordCount Failed [{error}]{String.Format("{0:X}", propertyId)}");
                 throw CalendarErrorFactory.GetException(error);
             }
             return count;
@@ -466,7 +466,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Record.GetChildRecordPointer(_recordHandle, propertyId, index, out handle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, $"GetChildRecord Failed [{error }]{String.Format("{0:X}", propertyId)}");
+                Log.Error(Globals.LogTag, $"GetChildRecord Failed [{error}]{String.Format("{0:X}", propertyId)}");
                 throw CalendarErrorFactory.GetException(error);
             }
             return new CalendarRecord(handle, true);
@@ -489,7 +489,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Record.CloneChildRecordList(_recordHandle, propertyId, out listHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, $"CloneChildRecordList Failed with [{error }]{String.Format("{0:X}", propertyId)}");
+                Log.Error(Globals.LogTag, $"CloneChildRecordList Failed with [{error}]{String.Format("{0:X}", propertyId)}");
                 throw CalendarErrorFactory.GetException(error);
             }
             CalendarList list = new CalendarList(listHandle);

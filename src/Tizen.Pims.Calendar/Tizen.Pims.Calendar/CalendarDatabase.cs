@@ -396,7 +396,7 @@ namespace Tizen.Pims.Calendar
                         propertyId = CalendarViews.Extended.Id;
                     else
                     {
-                        Log.Error(Globals.LogTag, $"Invalid uri [{record.Uri }]");
+                        Log.Error(Globals.LogTag, $"Invalid uri [{record.Uri}]");
                         continue;
                     }
                 }

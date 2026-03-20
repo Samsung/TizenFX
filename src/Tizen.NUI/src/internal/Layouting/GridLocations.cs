@@ -181,9 +181,9 @@ namespace Tizen.NUI
                 if (column + columnSpan > maxColumnConut || row + rowSpan > maxRowCount)
                 {
                     if (column + columnSpan > maxColumnConut)
-                        Tizen.Log.Error("NUI", $"Column + ColumnSapn exceeds Grid Columns. Column + ColumnSpan ({column } + {columnSpan }) > Grid Columns({maxColumnConut })");
+                        Tizen.Log.Error("NUI", $"Column + ColumnSapn exceeds Grid Columns. Column + ColumnSpan ({column} + {columnSpan}) > Grid Columns({maxColumnConut})");
                     else
-                        Tizen.Log.Error("NUI", $"Row + RowSapn exceeds Grid Rows. Row + RowSapn ({row } + {rowSpan }) > Grid Rows({maxRowCount })");
+                        Tizen.Log.Error("NUI", $"Row + RowSapn exceeds Grid Rows. Row + RowSapn ({row} + {rowSpan}) > Grid Rows({maxRowCount})");
 
                     gridChildren.Add(new GridChild(null, new Node(0, 1, 0, 0), new Node(0, 1, 0, 0)));
 

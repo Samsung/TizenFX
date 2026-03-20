@@ -101,7 +101,7 @@ namespace Tizen.NUI
             if (lightMutedColor != null) swatchInfo[4] = lightMutedColor.ToString();
             if (darkMutedSwatch != null) swatchInfo[5] = darkMutedSwatch.ToString();
 
-            Tizen.Log.Info("Palette", $"VibrantSwatch [{swatchInfo[0] }] lightVibrantSwatch [{swatchInfo[1] }] darkVibrantSwatch [{swatchInfo[2] }] MutedSwatch [{swatchInfo[3] }] lightMutedColor [{swatchInfo[4] }] darkMutedSwatch [{swatchInfo[5] }] \n");
+            Tizen.Log.Info("Palette", $"VibrantSwatch [{swatchInfo[0]}] lightVibrantSwatch [{swatchInfo[1]}] darkVibrantSwatch [{swatchInfo[2]}] MutedSwatch [{swatchInfo[3]}] lightMutedColor [{swatchInfo[4]}] darkMutedSwatch [{swatchInfo[5]}] \n");
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace Tizen.NUI
         /// <since_tizen> 9 </since_tizen>
         public static Palette Generate(PixelBuffer pixelBuffer, Rectangle region)
         {
-            Tizen.Log.Info("Palette", $"pixelBuffer generate start with region: {region }\n");
+            Tizen.Log.Info("Palette", $"pixelBuffer generate start with region: {region}\n");
             if (pixelBuffer == null)
             {
                 throw new ArgumentNullException(nameof(pixelBuffer), "pixelBuffer should not be null.");
@@ -202,7 +202,7 @@ namespace Tizen.NUI
                 dominantSwatch = FinddominantSwatch();
 
             if (dominantSwatch != null) swatchInfo = dominantSwatch.ToString();
-            Tizen.Log.Info("Palette", $"dominantSwatch [{swatchInfo }] \n");
+            Tizen.Log.Info("Palette", $"dominantSwatch [{swatchInfo}] \n");
 
             return dominantSwatch;
         }
@@ -388,7 +388,7 @@ namespace Tizen.NUI
             if(region != null)
             {
                 // Crop the pixelbuffer first.
-                Tizen.Log.Info("Palette", $"pixelBuffer ({pixelBuffer.GetWidth() }x{pixelBuffer.GetHeight() }) crop to ({region.X } {region.X } {region.Width } {region.Height })\n");
+                Tizen.Log.Info("Palette", $"pixelBuffer ({pixelBuffer.GetWidth()}x{pixelBuffer.GetHeight()}) crop to ({region.X} {region.X} {region.Width} {region.Height})\n");
                 pixelBuffer.Crop((ushort)region.X, (ushort)region.Y, (ushort)region.Width, (ushort)region.Height);
             }
             int minDimension = Math.Min((int)pixelBuffer.GetWidth(), (int)pixelBuffer.GetHeight());
@@ -404,7 +404,7 @@ namespace Tizen.NUI
             int width = (int)Math.Round((int)pixelBuffer.GetWidth() * scaleRatio);
             int height = (int)Math.Round((int)pixelBuffer.GetHeight() * scaleRatio);
 
-            Tizen.Log.Info("Palette", $"pixelBuffer resize to  {width } {height }\n");
+            Tizen.Log.Info("Palette", $"pixelBuffer resize to  {width} {height}\n");
             pixelBuffer.Resize((ushort)width, (ushort)height);
 
             return;

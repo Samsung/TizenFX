@@ -107,7 +107,7 @@ namespace Tizen.Network.Smartcard
 
                 if (_sessionObject.GetHandle() != session)
                 {
-                    Log.Error(Globals.LogTag, $"Does not correspond with session, Error - {_sessionObject.GetHandle() } {session}");
+                    Log.Error(Globals.LogTag, $"Does not correspond with session, Error - {_sessionObject.GetHandle()} {session}");
                 }
 
                 return _sessionObject;

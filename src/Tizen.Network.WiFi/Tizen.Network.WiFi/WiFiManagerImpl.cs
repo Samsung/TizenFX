@@ -352,7 +352,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, $"Exception on ActivateAsync {e}");
+                Log.Error(Globals.LogTag, $"Exception on ActivateAsync\n{e}");
                 task.SetException(e);
             }
 
@@ -398,7 +398,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, $"Exception on ActivateWithWiFiPickerTestedAsync {e}");
+                Log.Error(Globals.LogTag, $"Exception on ActivateWithWiFiPickerTestedAsync\n{e}");
                 task.SetException(e);
             }
 
@@ -444,7 +444,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, $"Exception on Deactivate {e}");
+                Log.Error(Globals.LogTag, $"Exception on Deactivate\n{e}");
                 task.SetException(e);
             }
 
@@ -490,7 +490,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, $"Exception on Scan {e}");
+                Log.Error(Globals.LogTag, $"Exception on Scan\n{e}");
                 task.SetException(e);
             }
 
@@ -536,7 +536,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, $"Exception on ScanSpecificAPAsync {e}");
+                Log.Error(Globals.LogTag, $"Exception on ScanSpecificAPAsync\n{e}");
                 task.SetException(e);
             }
 
@@ -582,7 +582,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, $"Exception on BssidScan {e}");
+                Log.Error(Globals.LogTag, $"Exception on BssidScan\n{e}");
                 task.SetException(e);
             }
 
@@ -635,7 +635,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, $"Exception on HiddenAPConnect {e}");
+                Log.Error(Globals.LogTag, $"Exception on HiddenAPConnect\n{e}");
                 task.SetException(e);
             }
 
@@ -703,7 +703,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, $"Exception on Multi Scan {e}");
+                Log.Error(Globals.LogTag, $"Exception on Multi Scan\n{e}");
                 task.SetException(e);
             }
 
@@ -736,7 +736,7 @@ namespace Tizen.Network.WiFi
         {
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, $"{method } Fail, Error - {(WiFiError)ret}");
+                Log.Error(Globals.LogTag, $"{method} Fail, Error - {(WiFiError)ret}");
                 if (ret == (int)WiFiError.InvalidParameterError)
                 {
                     throw new InvalidOperationException("Invalid handle");

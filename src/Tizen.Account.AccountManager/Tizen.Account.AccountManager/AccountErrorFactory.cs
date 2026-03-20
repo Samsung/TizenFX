@@ -130,7 +130,7 @@ namespace Tizen.Account.AccountManager
 
         internal static Exception CreateException(AccountError err, string msg)
         {
-            Log.Info(LogTag, $"Got Error {err } throwing Exception with msg {msg}");
+            Log.Info(LogTag, $"Got Error {err} throwing Exception with msg {msg}");
             Exception exp;
             switch (err)
             {

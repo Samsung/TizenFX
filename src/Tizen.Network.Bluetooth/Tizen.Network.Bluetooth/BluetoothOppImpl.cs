@@ -113,7 +113,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.OppServerCancelTransfer(TransferId);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, $"Failed to cancel the transferid {TransferId } Error - {(BluetoothError)ret}");
+                    Log.Error(Globals.LogTag, $"Failed to cancel the transferid {TransferId} Error - {(BluetoothError)ret}");
                 }
                 return ret;
             }
@@ -127,7 +127,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.OppServerSetDestinationPath(path);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, $"Failed to Set the desitination path {path } Error - {(BluetoothError)ret}");
+                    Log.Error(Globals.LogTag, $"Failed to Set the desitination path {path} Error - {(BluetoothError)ret}");
                 }
                 return ret;
             }

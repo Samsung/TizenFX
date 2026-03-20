@@ -41,7 +41,7 @@ namespace Tizen.NUI
 
             // Count number of distinct colors
             numberColors = CountDistinctColors(pixels);
-            Tizen.Log.Info("Palette", $"DistinctColor Num = {numberColors }\n");
+            Tizen.Log.Info("Palette", $"DistinctColor Num = {numberColors}\n");
 
             // Create arrays
             colors = new int[numberColors];

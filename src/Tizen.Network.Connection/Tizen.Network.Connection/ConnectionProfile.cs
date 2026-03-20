@@ -63,7 +63,7 @@ namespace Tizen.Network.Connection
                         ProfileStateChangedStart();
                     } catch (Exception e)
                     {
-                        Log.Error(Globals.LogTag, $"Exception on adding ProfileStateChanged {e.ToString()}");
+                        Log.Error(Globals.LogTag, $"Exception on adding ProfileStateChanged\n{e.ToString()}");
                         return;
                     }
                 }
@@ -81,7 +81,7 @@ namespace Tizen.Network.Connection
                     }
                     catch (Exception e)
                     {
-                        Log.Error(Globals.LogTag, $"Exception on removing ProfileStateChanged {e.ToString()}");
+                        Log.Error(Globals.LogTag, $"Exception on removing ProfileStateChanged\n{e.ToString()}");
                     }
                 }
             }

@@ -143,7 +143,7 @@ namespace Tizen.Applications.ComponentBased
                 Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentContextGetAppId(_contextHandle, out appId);
                 if (err != Interop.ComponentManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, $"Failed to get the ApplicationId of {_componentId }. err = {err}");
+                    Log.Warn(LogTag, $"Failed to get the ApplicationId of {_componentId}. err = {err}");
                 }
 
                 return appId;
@@ -162,7 +162,7 @@ namespace Tizen.Applications.ComponentBased
                 Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentContextGetInstanceId(_contextHandle, out instanceId);
                 if (err != Interop.ComponentManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, $"Failed to get the InstanceId of {_componentId }. err = {err}");
+                    Log.Warn(LogTag, $"Failed to get the InstanceId of {_componentId}. err = {err}");
                 }
 
                 return instanceId;
@@ -181,7 +181,7 @@ namespace Tizen.Applications.ComponentBased
                 Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentContextGetComponentState(_contextHandle, out state);
                 if (err != Interop.ComponentManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, $"Failed to get the State of {_componentId }. err = {err}");
+                    Log.Warn(LogTag, $"Failed to get the State of {_componentId}. err = {err}");
                 }
 
                 return (ComponentState)state;
@@ -201,7 +201,7 @@ namespace Tizen.Applications.ComponentBased
                 Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentContextIsTerminated(_contextHandle, out isTerminated);
                 if (err != Interop.ComponentManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, $"Failed to get the IsTerminated of {_componentId }. err = {err}");
+                    Log.Warn(LogTag, $"Failed to get the IsTerminated of {_componentId}. err = {err}");
                 }
 
                 return isTerminated;
@@ -221,7 +221,7 @@ namespace Tizen.Applications.ComponentBased
                 Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentContextIsSubComponent(_contextHandle, out isSubComponent);
                 if (err != Interop.ComponentManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, $"Failed to get the IsSubComponent of {_componentId }. err = {err}");
+                    Log.Warn(LogTag, $"Failed to get the IsSubComponent of {_componentId}. err = {err}");
                 }
 
                 return isSubComponent;

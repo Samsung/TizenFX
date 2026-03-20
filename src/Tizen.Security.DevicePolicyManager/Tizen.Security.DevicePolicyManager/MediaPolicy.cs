@@ -203,7 +203,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _cameraPolicyName, _cameraPolicyChangedCallback, IntPtr.Zero, out _cameraCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
-                Log.Error(Globals.LogTag, $"Failed to add policy changed callback, name {_cameraPolicyName }, ret : {ret}");
+                Log.Error(Globals.LogTag, $"Failed to add policy changed callback, name {_cameraPolicyName}, ret : {ret}");
                 throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
         }
@@ -213,7 +213,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _cameraCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
-                Log.Error(Globals.LogTag, $"Failed to remove policy changed callback, name {_cameraPolicyName }, ret : {ret}");
+                Log.Error(Globals.LogTag, $"Failed to remove policy changed callback, name {_cameraPolicyName}, ret : {ret}");
                 throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
 
@@ -262,7 +262,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _microphonePolicyName, _microphonePolicyChangedCallback, IntPtr.Zero, out _microphoneCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
-                Log.Error(Globals.LogTag, $"Failed to add policy changed callback, name {_microphonePolicyName }, ret : {ret}");
+                Log.Error(Globals.LogTag, $"Failed to add policy changed callback, name {_microphonePolicyName}, ret : {ret}");
                 throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
         }
@@ -272,7 +272,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _microphoneCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
-                Log.Error(Globals.LogTag, $"Failed to remove policy changed callback, name {_microphonePolicyName }, ret : {ret}");
+                Log.Error(Globals.LogTag, $"Failed to remove policy changed callback, name {_microphonePolicyName}, ret : {ret}");
                 throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
 
