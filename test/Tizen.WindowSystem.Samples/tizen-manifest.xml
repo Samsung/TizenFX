@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="org.tizen.example.Tizen.WindowSystem.Samples" version="1.0.0" api-version="10.0" xmlns="http://tizen.org/ns/packages">
+    <profile name="common" />
+    <ui-application appid="org.tizen.example.Tizen.WindowSystem.Samples" exec="Tizen.WindowSystem.Samples.dll" multiple="false" nodisplay="false" taskmanage="true" api-version="6" type="dotnet-nui" launch_mode="single">
+        <label>Tizen.WindowSystem.Samples</label>
+        <icon>Tizen.WindowSystem.Samples.png</icon>
+        <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <splash-screens />
+    </ui-application>
+    <shortcut-list />
+    <privileges>
+        <privilege>http://tizen.org/privilege/windowsystem.admin</privilege>
+        <privilege>http://tizen.org/privilege/gesturegrab</privilege>
+        <privilege>http://tizen.org/privilege/inputgenerator</privilege>
+    </privileges>
+    <dependencies />
+    <provides-appdefined-privileges />
+</manifest>
