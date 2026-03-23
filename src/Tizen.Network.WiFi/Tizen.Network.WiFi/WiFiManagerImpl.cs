@@ -27,7 +27,7 @@ namespace Tizen.Network.WiFi
         internal const string LogTag = "Tizen.Network.WiFi";
     }
 
-    internal class HandleHolder
+    internal sealed class HandleHolder
     {
         private SafeWiFiManagerHandle _handle;
 
@@ -52,7 +52,7 @@ namespace Tizen.Network.WiFi
         }
     }
 
-    internal partial class WiFiManagerImpl
+    internal sealed partial class WiFiManagerImpl
     {
         private static WiFiManagerImpl s_instance = null;
         private static readonly object _lock = new object();

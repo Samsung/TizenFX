@@ -39,7 +39,7 @@ namespace Tizen.Network.Nfc
         }
     }
 
-    internal partial class NfcManagerImpl
+    internal sealed partial class NfcManagerImpl
     {
         private event EventHandler<ActivationChangedEventArgs> _activationChanged;
         private event EventHandler<NdefMessageDiscoveredEventArgs> _ndefMessageDiscovered;

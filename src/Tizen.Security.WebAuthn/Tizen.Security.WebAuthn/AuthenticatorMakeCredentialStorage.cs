@@ -20,7 +20,7 @@ using static Interop;
 
 namespace Tizen.Security.WebAuthn
 {
-    internal class AuthenticatorMakeCredentialStorage : AuthenticatorStorage
+    internal sealed class AuthenticatorMakeCredentialStorage : AuthenticatorStorage
     {
         #region Internal unmanaged memory
         private UnmanagedMemory _rpNameUnmanaged = new();

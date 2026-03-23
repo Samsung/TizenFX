@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class GLWindowResizedSignal : Disposable
+    internal sealed class GLWindowResizedSignal : Disposable
     {
         internal GLWindowResizedSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

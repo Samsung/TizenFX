@@ -19,7 +19,7 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Binding
 {
-    internal class InvalidationEventArgs : EventArgs
+    internal sealed class InvalidationEventArgs : EventArgs
     {
         public InvalidationEventArgs(InvalidationTrigger trigger)
         {

@@ -124,7 +124,7 @@ namespace Tizen.Account.AccountManager
         DBBusy = -0x01000000 | 0x10
     };
 
-    internal class AccountErrorFactory
+    internal sealed class AccountErrorFactory
     {
         internal const string LogTag = "Tizen.Account.AccountManager";
 

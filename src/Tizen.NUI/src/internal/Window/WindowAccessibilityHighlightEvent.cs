@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class WindowAccessibilityHighlightEvent : Disposable
+    internal sealed class WindowAccessibilityHighlightEvent : Disposable
     {
         internal WindowAccessibilityHighlightEvent(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

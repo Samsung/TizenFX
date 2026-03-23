@@ -23,7 +23,7 @@ using System.Collections.Generic;
 
 namespace Tizen.Network.Nsd
 {
-    internal class DnssdInitializer
+    internal sealed class DnssdInitializer
     {
         internal DnssdInitializer()
         {

@@ -27,7 +27,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// </summary>
     internal class UIText : TextLabel
     {
-        internal class UITextLayout : LayoutItem
+        internal sealed class UITextLayout : LayoutItem
         {
             private float lastWidth = 0;
             private float lastHeight = 0;

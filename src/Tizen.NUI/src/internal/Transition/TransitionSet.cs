@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// For the one page transition, may multiple transitions are played coincidently.
     /// Every transitions added on a TransitionSet have same play lifetime. And emit a single Finished signal.
     /// </summary>
-    internal class TransitionSet : BaseHandle
+    internal sealed class TransitionSet : BaseHandle
     {
         private TransitionSetFinishedEventCallbackType transitionSetFinishedEventCallback;
         private System.IntPtr finishedCallbackOfNative;

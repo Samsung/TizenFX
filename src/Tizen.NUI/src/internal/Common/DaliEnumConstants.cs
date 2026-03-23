@@ -223,7 +223,7 @@ namespace Tizen.NUI
     } // namespace Constants
 
 
-    internal class NUILog
+    internal sealed class NUILog
     {
         [Conditional("NUI_DEBUG_ON")]
         public static void Debug(string msg,

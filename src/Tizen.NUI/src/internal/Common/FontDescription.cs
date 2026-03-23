@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class FontDescription : Disposable
+    internal sealed class FontDescription : Disposable
     {
 
         internal FontDescription(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +22,7 @@ using System.Linq;
 
 namespace Tizen.NUI.Binding
 {
-    internal class SynchronizedList<T> : IList<T>, IReadOnlyList<T>
+    internal sealed class SynchronizedList<T> : IList<T>, IReadOnlyList<T>
     {
         readonly List<T> list = new List<T>();
         ReadOnlyCollection<T> snapshot;

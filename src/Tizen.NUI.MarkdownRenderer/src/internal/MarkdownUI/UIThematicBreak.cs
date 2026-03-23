@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +26,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// Represents a visual horizontal rule (thematic break) in a Markdown UI.
     /// Renders a line with specified color, thickness, and margin.
     /// </summary>
-    internal class UIThematicBreak : View
+    internal sealed class UIThematicBreak : View
     {
         public UIThematicBreak(ThematicBreakStyle thematicBreakStyle) : base()
         {

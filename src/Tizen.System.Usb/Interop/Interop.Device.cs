@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -90,7 +90,7 @@ internal static partial class Interop
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_control_transfer")]
     internal static extern ErrorCode ControlTransfer(this HostDeviceHandle /* usb_host_device_h */ dev, byte requestType, byte request, ushort value, ushort index, byte[] data, ushort length, uint timeout, out int transferred);
 
-    internal class HostDeviceHandle : SafeUsbHandle
+    internal sealed class HostDeviceHandle : SafeUsbHandle
     {
         internal HostDeviceHandle(IntPtr handle) : base(handle) { }
 

@@ -226,7 +226,7 @@ namespace Tizen.NUI
     /// <summary>
     /// WebBackForwardSubList is an internal class for a copy of back-forward list fragment of web view.
     /// </summary>
-    internal class WebBackForwardSubList : Disposable
+    internal sealed class WebBackForwardSubList : Disposable
     {
         internal WebBackForwardSubList(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

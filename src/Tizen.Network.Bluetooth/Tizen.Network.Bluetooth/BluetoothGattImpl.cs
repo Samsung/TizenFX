@@ -23,7 +23,7 @@ using System.Threading.Tasks;
 
 namespace Tizen.Network.Bluetooth
 {
-    internal class BluetoothGattServerImpl
+    internal sealed class BluetoothGattServerImpl
     {
         private BluetoothGattServerHandle _handle;
         internal event EventHandler<NotificationSentEventArg> _notificationSent;
@@ -214,7 +214,7 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
-    internal class BluetoothGattClientImpl
+    internal sealed class BluetoothGattClientImpl
     {
         private BluetoothGattClientHandle _handle;
         int _requestId = 0;
@@ -490,7 +490,7 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
-    internal class BluetoothGattServiceImpl : BluetoothGattAttributeImpl
+    internal sealed class BluetoothGattServiceImpl : BluetoothGattAttributeImpl
     {
         private Interop.Bluetooth.BtGattForeachCallback _characteristicForeachCallback;
         private Interop.Bluetooth.BtGattForeachCallback _includedServiceForeachCallback;
@@ -606,7 +606,7 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
-    internal class BluetoothGattCharacteristicImpl : BluetoothGattAttributeImpl
+    internal sealed class BluetoothGattCharacteristicImpl : BluetoothGattAttributeImpl
     {
         private Interop.Bluetooth.BtGattForeachCallback _descriptorForeachCallback;
 
@@ -728,7 +728,7 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
-    internal class BluetoothGattDescriptorImpl : BluetoothGattAttributeImpl
+    internal sealed class BluetoothGattDescriptorImpl : BluetoothGattAttributeImpl
     {
         internal BluetoothGattDescriptorImpl(string uuid, BluetoothGattPermission permission, byte[] value)
         {
@@ -858,7 +858,7 @@ namespace Tizen.Network.Bluetooth
     }
 
 
-    internal class BluetoothGattAttributeHandle : BluetoothGattHandle
+    internal sealed class BluetoothGattAttributeHandle : BluetoothGattHandle
     {
         public BluetoothGattAttributeHandle(IntPtr nativeHandle, bool hasOwnership) : base(nativeHandle, hasOwnership)
         {
@@ -879,7 +879,7 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
-    internal class BluetoothGattClientHandle : BluetoothGattHandle
+    internal sealed class BluetoothGattClientHandle : BluetoothGattHandle
     {
         protected override bool ReleaseHandle()
         {
@@ -892,7 +892,7 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
-    internal class BluetoothGattServerHandle : BluetoothGattHandle
+    internal sealed class BluetoothGattServerHandle : BluetoothGattHandle
     {
         protected override bool ReleaseHandle()
         {

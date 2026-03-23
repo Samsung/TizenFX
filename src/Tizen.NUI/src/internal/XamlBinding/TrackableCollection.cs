@@ -20,7 +20,7 @@ using System.Collections.ObjectModel;
 
 namespace Tizen.NUI.Binding
 {
-    internal class TrackableCollection<T> : ObservableCollection<T>
+    internal sealed class TrackableCollection<T> : ObservableCollection<T>
     {
         public event EventHandler Clearing;
 

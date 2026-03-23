@@ -18,7 +18,7 @@
 namespace Tizen.NUI
 {
     using Tizen.NUI.BaseComponents;
-    internal class TapGestureDetectedSignal : Disposable
+    internal sealed class TapGestureDetectedSignal : Disposable
     {
         internal TapGestureDetectedSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

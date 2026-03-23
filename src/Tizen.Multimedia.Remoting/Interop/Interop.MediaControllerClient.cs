@@ -341,7 +341,7 @@ internal static partial class Interop
         #endregion Event
     }
 
-    internal class MediaControllerClientHandle : SafeHandle
+    internal sealed class MediaControllerClientHandle : SafeHandle
     {
         protected MediaControllerClientHandle() : base(IntPtr.Zero, true)
         {

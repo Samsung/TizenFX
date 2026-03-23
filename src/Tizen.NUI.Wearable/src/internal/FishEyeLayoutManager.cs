@@ -22,7 +22,7 @@ namespace Tizen.NUI.Wearable
     /// <summary>
     /// [Draft] This class implements a fish eye layout
     /// </summary>
-    internal class FishEyeLayoutManager : RecycleLayoutManager
+    internal sealed class FishEyeLayoutManager : RecycleLayoutManager
     {
         public int CurrentFocusedIndex { get; set; } = 0;
         public int FocusedIndex { get; set; } = 0;

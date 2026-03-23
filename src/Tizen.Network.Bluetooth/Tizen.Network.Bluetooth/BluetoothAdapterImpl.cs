@@ -30,7 +30,7 @@ namespace Tizen.Network.Bluetooth
         internal static bool IsOppClientInitialized = false;
     }
 
-    internal partial class BluetoothAdapterImpl : IDisposable
+    internal sealed partial class BluetoothAdapterImpl : IDisposable
     {
         private event EventHandler<StateChangedEventArgs> _stateChanged;
         private event EventHandler<NameChangedEventArgs> _nameChanged;

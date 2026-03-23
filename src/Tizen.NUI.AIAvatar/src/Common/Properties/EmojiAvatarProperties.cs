@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +22,7 @@ namespace Tizen.NUI.AIAvatar
     /// <summary>
     /// Represents properties specific to an Emoji avatar, including mappings for joints, blend shapes, and nodes.
     /// </summary>
-    internal class EmojiAvatarProperties : AvatarProperties
+    internal sealed class EmojiAvatarProperties : AvatarProperties
     {
         private static AvatarPropertyMapper defaultJointMapper = new AvatarPropertyMapper();
         private static AvatarPropertyMapper defaultBlendShapeNameMapper = new AvatarPropertyMapper();

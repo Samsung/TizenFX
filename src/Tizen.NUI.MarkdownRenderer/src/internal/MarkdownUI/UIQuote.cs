@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +25,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// <summary>
     /// Represents a visual element for rendering a quote paragraph in a Markdown UI.
     /// </summary>
-    internal class UIQuoteParagraph : UIParagraph
+    internal sealed class UIQuoteParagraph : UIParagraph
     {
         public UIQuoteParagraph(string text, QuoteStyle quoteStyle, ParagraphStyle paragraphStyle, string hash, bool asyncRendering) : base(text, paragraphStyle, hash, asyncRendering)
         {
@@ -36,7 +36,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// <summary>
     /// Represents the visual element for the Quote bar, which is a vertical bar displayed beside the quote text.
     /// </summary>
-    internal class UIQuoteBar : View
+    internal sealed class UIQuoteBar : View
     {
         public UIQuoteBar(QuoteStyle quoteStyle, int barMargin) : base()
         {
@@ -51,7 +51,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// <summary>
     /// Represents a Markdown quote block, which includes a vertical bar and a container for the quote text.
     /// </summary>
-    internal class UIQuote : View
+    internal sealed class UIQuote : View
     {
         private readonly View bar;
         private readonly View container;

@@ -23,7 +23,7 @@ using System.Threading;
 
 namespace Tizen.Applications.DataControl.Core
 {
-    internal class CloneCursorCore : ICursor
+    internal sealed class CloneCursorCore : ICursor
     {
         internal const int MaxColumnNameSize = 1024;
         private const string LogTag = "Tizen.Applications.DataControl";

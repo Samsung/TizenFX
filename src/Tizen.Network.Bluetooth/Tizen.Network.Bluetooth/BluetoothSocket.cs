@@ -83,7 +83,7 @@ namespace Tizen.Network.Bluetooth
         void Disconnect();
     }
 
-    internal class BluetoothSocket : IBluetoothClientSocket, IDisposable
+    internal sealed class BluetoothSocket : IBluetoothClientSocket, IDisposable
     {
         private event EventHandler<SocketDataReceivedEventArgs> _dataReceived;
         private event EventHandler<SocketConnectionStateChangedEventArgs> _connectionStateChanged;

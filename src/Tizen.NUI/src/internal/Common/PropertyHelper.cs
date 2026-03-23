@@ -247,7 +247,7 @@ namespace Tizen.NUI
             return value;
         }
 
-        internal class SearchResult : Disposable
+        internal sealed class SearchResult : Disposable
         {
             private readonly OOConverter objectConverter;
             private readonly PPConverter propertyValueConverter;

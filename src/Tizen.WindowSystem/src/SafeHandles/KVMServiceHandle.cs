@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.WindowSystem.Shell.SafeHandles
 {
-    internal class KVMServiceHandle : SafeHandle
+    internal sealed class KVMServiceHandle : SafeHandle
     {
         public KVMServiceHandle() : base(IntPtr.Zero, true)
         {

@@ -125,7 +125,7 @@ namespace Tizen.Network.Connection
         int DhcpLeaseDuration { get; }
     }
 
-    internal class ConnectionAddressInformation : IAddressInformation
+    internal sealed class ConnectionAddressInformation : IAddressInformation
     {
         private IntPtr _profileHandle;
         private AddressFamily _family;

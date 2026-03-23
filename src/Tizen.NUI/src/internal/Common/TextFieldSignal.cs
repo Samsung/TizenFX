@@ -19,7 +19,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class TextFieldSignal : Disposable
+    internal sealed class TextFieldSignal : Disposable
     {
         internal TextFieldSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

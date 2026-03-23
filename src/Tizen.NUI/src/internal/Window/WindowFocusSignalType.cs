@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class WindowFocusSignalType : Disposable
+    internal sealed class WindowFocusSignalType : Disposable
     {
         internal WindowFocusSignalType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using System.Reflection;
 using Tizen.NUI.BaseComponents;
@@ -6,7 +6,7 @@ using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Components
 {
-    internal class AttributeTableBuilder : Microsoft.Windows.Design.Metadata.AttributeTableBuilder
+    internal sealed class AttributeTableBuilder : Microsoft.Windows.Design.Metadata.AttributeTableBuilder
     {
         private void AddAttributesForTypes()
         {
