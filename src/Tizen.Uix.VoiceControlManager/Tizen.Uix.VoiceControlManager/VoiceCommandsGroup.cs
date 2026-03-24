@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -50,7 +50,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcCmdListCreate(out handle);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Create Failed with error " + error);
+                Log.Error(LogTag, $"Create Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
             _handle = handle;
@@ -70,7 +70,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcCmdListForeachCommands(_handle, _callback, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "GetAllCommands Failed with error " + error);
+                Log.Error(LogTag, $"GetAllCommands Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
             _commands.CollectionChanged += OnCollectionChanged;
@@ -149,7 +149,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcCmdListAdd(_handle, command._handle);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Add Failed with error " + error);
+                Log.Error(LogTag, $"Add Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -159,7 +159,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcCmdListRemove(_handle, command._handle);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Remove Failed with error " + error);
+                Log.Error(LogTag, $"Remove Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }

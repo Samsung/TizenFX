@@ -42,13 +42,13 @@ namespace Tizen.Applications.DataControl
                     throw new InvalidOperationException(string.IsNullOrEmpty(errorMessage) ? "error code : " + errorCode.ToString() :
                         $"{errorMessage} - {errorCode}");
                 case ResultType.InvalidParameter:
-                    Log.Error(LogTag, "Invalid parameter : " + errorMessage);
+                    Log.Error(LogTag, $"Invalid parameter : {errorMessage}");
                     throw new ArgumentException(string.IsNullOrEmpty(errorMessage) ? "Invalid parameter" : "Invalid parameter : " + errorMessage);
                 case ResultType.PermissionDenied:
-                    Log.Error(LogTag, "Permission denied : " + errorMessage);
+                    Log.Error(LogTag, $"Permission denied : {errorMessage}");
                     throw new UnauthorizedAccessException(string.IsNullOrEmpty(errorMessage) ? "Permission denied" : "Permission denied : " + errorMessage);
                 case ResultType.MaxExceed:
-                    Log.Error(LogTag, "Too long argument : " + errorMessage);
+                    Log.Error(LogTag, $"Too long argument : {errorMessage}");
                     throw new ArgumentOutOfRangeException(string.IsNullOrEmpty(errorMessage) ? "Too long argument" : "Too long argument : " + errorMessage);                
                 default:
                     Log.Error(LogTag, $"Unknown error : {errorMessage} - {errorCode}");

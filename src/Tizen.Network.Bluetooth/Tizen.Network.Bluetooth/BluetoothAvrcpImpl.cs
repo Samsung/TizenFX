@@ -143,7 +143,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SetEqualizerStateChangedCallback(_equalizerStateChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set equalizer state changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set equalizer state changed callback, Error - {(BluetoothError)ret}");
             }
         }
         private void UnregisterEqualizerStateChangedEvent()
@@ -151,7 +151,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.UnsetEqualizerStateChangedCallback();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset equalizer state changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset equalizer state changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -168,7 +168,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SetRepeatModeChangedCallback(_repeatModeChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set repeat mode changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set repeat mode changed callback, Error - {(BluetoothError)ret}");
             }
         }
         private void UnregisterRepeatModeChangedEvent()
@@ -176,7 +176,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.UnsetRepeatModeChangedCallback();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset repeat mode changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset repeat mode changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -196,7 +196,7 @@ namespace Tizen.Network.Bluetooth
             if (ret != (int)BluetoothError.None)
             {
                 Log.Debug (Globals.LogTag, "failed inside RegisterShuffleModeChangedEvent");
-                Log.Error(Globals.LogTag, "Failed to set shuffle mode changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set shuffle mode changed callback, Error - {(BluetoothError)ret}");
             }
         }
         private void UnregisterShuffleModeChangedEvent()
@@ -204,7 +204,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.UnsetShuffleModeChangedCallback();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset shuffle mode changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset shuffle mode changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -221,7 +221,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SetScanModeChangedCallback(_scanModeChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set scan mode changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set scan mode changed callback, Error - {(BluetoothError)ret}");
             }
         }
         private void UnregisterScanModeChangedEvent()
@@ -229,7 +229,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.UnsetScanModeChangedCallback();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset scan mode changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset scan mode changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -248,7 +248,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.InitializeAvrcp(_targetConnectionChangedCallback, IntPtr.Zero);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error (Globals.LogTag, "Failed to initialize bluetooth avrcp, Error - " + (BluetoothError)ret);
+                    Log.Error (Globals.LogTag, $"Failed to initialize bluetooth avrcp, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
                 else
@@ -270,7 +270,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.DeinitializeAvrcp();
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error (Globals.LogTag, "Failed to deinitialize bluetooth avrcp, Error - " + (BluetoothError)ret);
+                    Log.Error (Globals.LogTag, $"Failed to deinitialize bluetooth avrcp, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
                 else
@@ -285,7 +285,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.NotifyEqualizerState((int)state);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to notify equalizer state to remote device, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to notify equalizer state to remote device, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -295,7 +295,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.NotifyRepeatMode((int)repeat);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to notify repeat mode to remote device, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to notify repeat mode to remote device, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -305,7 +305,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.NotifyShuffleMode((int)shuffle);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to notify shuffle mode to remote device, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to notify shuffle mode to remote device, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -315,7 +315,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.NotifyScanMode((int)scan);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to notify scan mode to remote device, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to notify scan mode to remote device, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -325,7 +325,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.NotifyPlayerState((int)state);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to notify player state to remote device, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to notify player state to remote device, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -335,7 +335,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.NotifyCurrentPosition(position);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to notify position to remote device, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to notify position to remote device, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -353,7 +353,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.NotifyTrack(title, artist, album, genre, trackNum, totalTracks, duration);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to notify track data to the remote device, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to notify track data to the remote device, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }

@@ -32,7 +32,7 @@ namespace Tizen.Network.Stc
 
         internal NetworkStatistics(Interop.Stc.SafeStatsHandle handle)
         {
-            Log.Debug(Globals.LogTag, "New Statistics Handle: " + handle);
+            Log.Debug(Globals.LogTag, $"New Statistics Handle: {handle}");
             _infoHandle = handle;
         }
 
@@ -88,7 +88,7 @@ namespace Tizen.Network.Stc
                 int ret = Interop.Stc.Info.GetAppId(_infoHandle, out appId);
                 if (ret != (int)StcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get AppId from NetworkStatistics, Error - " + (StcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get AppId from NetworkStatistics, Error - {(StcError)ret}");
                     return string.Empty;
                 }
                 return appId;
@@ -109,7 +109,7 @@ namespace Tizen.Network.Stc
                 int ret = Interop.Stc.Info.GetInterfaceName(_infoHandle, out ifaceName);
                 if (ret != (int)StcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get interface name from NetworkStatistics, Error - " + (StcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get interface name from NetworkStatistics, Error - {(StcError)ret}");
                     return string.Empty;
                 }
                 return ifaceName;
@@ -131,7 +131,7 @@ namespace Tizen.Network.Stc
                 int ret = Interop.Stc.Info.GetTimeInterval(_infoHandle, out from, out to);
                 if (ret != (int)StcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get time interval(from value) from NetworkStatistics, Error - " + (StcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get time interval(from value) from NetworkStatistics, Error - {(StcError)ret}");
                 }
                 return Interop.ConvertTimestampToDateTime(from);
             }
@@ -152,7 +152,7 @@ namespace Tizen.Network.Stc
                 int ret = Interop.Stc.Info.GetTimeInterval(_infoHandle, out from, out to);
                 if (ret != (int)StcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get time interval(to value) from NetworkStatistics, Error - " + (StcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get time interval(to value) from NetworkStatistics, Error - {(StcError)ret}");
                 }
                 return Interop.ConvertTimestampToDateTime(to);
             }
@@ -172,7 +172,7 @@ namespace Tizen.Network.Stc
                 int ret = Interop.Stc.Info.GetInterfaceType(_infoHandle, out ifaceType);
                 if (ret != (int)StcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get Interface type from NetworkStatistics, Error - " + (StcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get Interface type from NetworkStatistics, Error - {(StcError)ret}");
                 }
                 return ifaceType;
             }
@@ -193,7 +193,7 @@ namespace Tizen.Network.Stc
                 int ret = Interop.Stc.Info.GetCounter(_infoHandle, out incoming, out outgoing);
                 if (ret != (int)StcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get incoming counter from NetworkStatistics, Error - " + (StcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get incoming counter from NetworkStatistics, Error - {(StcError)ret}");
                 }
                 return incoming;
             }
@@ -214,7 +214,7 @@ namespace Tizen.Network.Stc
                 int ret = Interop.Stc.Info.GetCounter(_infoHandle, out incoming, out outgoing);
                 if (ret != (int)StcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get outgoing counter from NetworkStatistics, Error - " + (StcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get outgoing counter from NetworkStatistics, Error - {(StcError)ret}");
                 }
                 return outgoing;
             }
@@ -234,7 +234,7 @@ namespace Tizen.Network.Stc
                 int ret = Interop.Stc.Info.GetRoaming(_infoHandle, out roaming);
                 if (ret != (int)StcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get Roaming type from NetworkStatistics, Error - " + (StcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get Roaming type from NetworkStatistics, Error - {(StcError)ret}");
                 }
 
                 return roaming == RoamingType.Enabled;
@@ -255,7 +255,7 @@ namespace Tizen.Network.Stc
                 int ret = Interop.Stc.Info.GetProtocol(_infoHandle, out protocol);
                 if (ret != (int)StcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get Protocol type from NetworkStatistics, Error - " + (StcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get Protocol type from NetworkStatistics, Error - {(StcError)ret}");
                 }
                 return protocol;
             }
@@ -275,7 +275,7 @@ namespace Tizen.Network.Stc
                 int ret = Interop.Stc.Info.GetProcessState(_infoHandle, out state);
                 if (ret != (int)StcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get ApplicationState from NetworkStatistics, Error - " + (StcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get ApplicationState from NetworkStatistics, Error - {(StcError)ret}");
                 }
                 return state;
             }

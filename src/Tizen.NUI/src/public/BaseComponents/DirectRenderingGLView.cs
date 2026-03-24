@@ -288,7 +288,7 @@ namespace Tizen.NUI.BaseComponents
                         }
                         catch(Exception e)
                         {
-                            Tizen.Log.Error("NUI", "Exception in GlViewBindTextureResources : " + e.Message);
+                            Tizen.Log.Error("NUI", $"Exception in GlViewBindTextureResources : {e.Message}");
                         }
                         finally
                         {

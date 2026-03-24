@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -74,7 +74,7 @@ namespace Tizen.Network.Smartcard
             int ret = Interop.Smartcard.Initialize();
             if (ret != (int)SmartcardError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to initialize smartcard, Error - " + (SmartcardError)ret);
+                Log.Error(Globals.LogTag, $"Failed to initialize smartcard, Error - {(SmartcardError)ret}");
                 SmartcardErrorFactory.ThrowSmartcardException(ret);
             }
         }
@@ -84,7 +84,7 @@ namespace Tizen.Network.Smartcard
             int ret = Interop.Smartcard.Deinitialize();
             if (ret != (int)SmartcardError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to deinitialize smartcard, Error - " + (SmartcardError)ret);
+                Log.Error(Globals.LogTag, $"Failed to deinitialize smartcard, Error - {(SmartcardError)ret}");
             }
         }
 
@@ -97,7 +97,7 @@ namespace Tizen.Network.Smartcard
             int ret = Interop.Smartcard.GetReaders(out readerPtr, out len);
             if (ret != (int)SmartcardError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to remove with AP, Error - " + (SmartcardError)ret);
+                Log.Error(Globals.LogTag, $"Failed to remove with AP, Error - {(SmartcardError)ret}");
                 SmartcardErrorFactory.ThrowSmartcardException(ret);
             }
 

@@ -35,7 +35,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.List.First(_listHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "MoveFirst Failed with error " + error);
+                Log.Error(Globals.LogTag, $"MoveFirst Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
 
@@ -55,7 +55,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.List.Create(out _listHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "CalendarList Failed with error " + error);
+                Log.Error(Globals.LogTag, $"CalendarList Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
             GC.AddMemoryPressure(_memoryPressure);
@@ -76,7 +76,7 @@ namespace Tizen.Pims.Calendar
                     int error = Interop.List.GetCount(_listHandle, out count);
                     if (CalendarError.None != (CalendarError)error)
                     {
-                        Log.Error(Globals.LogTag, "GetCount Failed with error " + error);
+                        Log.Error(Globals.LogTag, $"GetCount Failed with error {error}");
                     }
                     _count = count;
                 }
@@ -104,12 +104,12 @@ namespace Tizen.Pims.Calendar
         {
             if (!disposedValue)
             {
-                Log.Debug(Globals.LogTag, "Dispose :" + disposing);
+                Log.Debug(Globals.LogTag, $"Dispose :{disposing}");
 
                 int error = Interop.List.Destroy(_listHandle, true);
                 if (CalendarError.None != (CalendarError)error)
                 {
-                    Log.Error(Globals.LogTag, "Destroy Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Destroy Failed with error {error}");
                 }
                 disposedValue = true;
                 GC.RemoveMemoryPressure(_memoryPressure);
@@ -140,7 +140,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.List.Add(_listHandle, record._recordHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "AddRecord Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddRecord Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
             record._disposedValue = true;
@@ -160,7 +160,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.List.Remove(_listHandle, record._recordHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "RemoveRecord Failed with error " + error);
+                Log.Error(Globals.LogTag, $"RemoveRecord Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
             record._disposedValue = false;
@@ -183,7 +183,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.List.GetCurrentRecordP(_listHandle, out handle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "GetCurrentRecord Failed with error " + error);
+                Log.Error(Globals.LogTag, $"GetCurrentRecord Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
             return new CalendarRecord(handle, true);
@@ -207,12 +207,12 @@ namespace Tizen.Pims.Calendar
             }
             else if (this.Count > 0 && CalendarError.NoData == (CalendarError)error)
             {
-                Log.Debug(Globals.LogTag, "Nodata MovePrevious " + error);
+                Log.Debug(Globals.LogTag, $"Nodata MovePrevious {error}");
                 return false;
             }
             else
             {
-                Log.Error(Globals.LogTag, "MovePrevious Failed with error " + error);
+                Log.Error(Globals.LogTag, $"MovePrevious Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -235,12 +235,12 @@ namespace Tizen.Pims.Calendar
             }
             else if (this.Count > 0 && CalendarError.NoData == (CalendarError)error)
             {
-                Log.Debug(Globals.LogTag, "Nodata MoveNext" + error);
+                Log.Debug(Globals.LogTag, $"Nodata MoveNext{error}");
                 return false;
             }
             else
             {
-                Log.Error(Globals.LogTag, "MoveNext Failed with error " + error);
+                Log.Error(Globals.LogTag, $"MoveNext Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -256,7 +256,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.List.First(_listHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "MoveFirst Failed with error " + error);
+                Log.Error(Globals.LogTag, $"MoveFirst Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -272,7 +272,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.List.Last(_listHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "MoveLast Failed with error " + error);
+                Log.Error(Globals.LogTag, $"MoveLast Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }

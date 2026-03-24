@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -52,7 +52,7 @@ namespace Tizen.Applications
                     if (err == Interop.Watch.ErrorCode.NotSupported)
                         throw new NotSupportedException("Failed to get Year. err : " + err);
                     else
-                        Log.Error(LOGTAG, "Failed to get Year err : " + err);
+                        Log.Error(LOGTAG, $"Failed to get Year err : {err}");
                 }
                 return year;
             }
@@ -77,7 +77,7 @@ namespace Tizen.Applications
                     if (err == Interop.Watch.ErrorCode.NotSupported)
                         throw new NotSupportedException("Failed to get Month. err : " + err);
                     else
-                        Log.Error(LOGTAG, "Failed to get Month err : " + err);
+                        Log.Error(LOGTAG, $"Failed to get Month err : {err}");
                 }
                 return month;
             }
@@ -102,7 +102,7 @@ namespace Tizen.Applications
                     if (err == Interop.Watch.ErrorCode.NotSupported)
                         throw new NotSupportedException("Failed to get Day. err : " + err);
                     else
-                        Log.Error(LOGTAG, "Failed to get Day err : " + err);
+                        Log.Error(LOGTAG, $"Failed to get Day err : {err}");
                 }
                 return day;
             }
@@ -127,7 +127,7 @@ namespace Tizen.Applications
                     if (err == Interop.Watch.ErrorCode.NotSupported)
                         throw new NotSupportedException("Failed to get DayOfWeek. err : " + err);
                     else
-                        Log.Error(LOGTAG, "Failed to get DayOfWeek err : " + err);
+                        Log.Error(LOGTAG, $"Failed to get DayOfWeek err : {err}");
                 }
                 return dayOfWeek;
             }
@@ -152,7 +152,7 @@ namespace Tizen.Applications
                     if (err == Interop.Watch.ErrorCode.NotSupported)
                         throw new NotSupportedException("Failed to get Hour. err : " + err);
                     else
-                        Log.Error(LOGTAG, "Failed to get Hour err : " + err);
+                        Log.Error(LOGTAG, $"Failed to get Hour err : {err}");
                 }
                 return hour;
             }
@@ -177,7 +177,7 @@ namespace Tizen.Applications
                     if (err == Interop.Watch.ErrorCode.NotSupported)
                         throw new NotSupportedException("Failed to get Hour24. err : " + err);
                     else
-                        Log.Error(LOGTAG, "Failed to get Hour24 err : " + err);
+                        Log.Error(LOGTAG, $"Failed to get Hour24 err : {err}");
                 }
                 return hour24;
             }
@@ -202,7 +202,7 @@ namespace Tizen.Applications
                     if (err == Interop.Watch.ErrorCode.NotSupported)
                         throw new NotSupportedException("Failed to get Minute. err : " + err);
                     else
-                        Log.Error(LOGTAG, "Failed to get Minute err : " + err);
+                        Log.Error(LOGTAG, $"Failed to get Minute err : {err}");
                 }
                 return minute;
             }
@@ -227,7 +227,7 @@ namespace Tizen.Applications
                     if (err == Interop.Watch.ErrorCode.NotSupported)
                         throw new NotSupportedException("Failed to get Second. err : " + err);
                     else
-                        Log.Error(LOGTAG, "Failed to get Second err : " + err);
+                        Log.Error(LOGTAG, $"Failed to get Second err : {err}");
                 }
                 return second;
             }
@@ -252,7 +252,7 @@ namespace Tizen.Applications
                     if (err == Interop.Watch.ErrorCode.NotSupported)
                         throw new NotSupportedException("Failed to get Millisecond. err : " + err);
                     else
-                        Log.Error(LOGTAG, "Failed to get Millisecond err : " + err);
+                        Log.Error(LOGTAG, $"Failed to get Millisecond err : {err}");
                 }
                 return ms;
             }
@@ -277,7 +277,7 @@ namespace Tizen.Applications
                     if (err == Interop.Watch.ErrorCode.NotSupported)
                         throw new NotSupportedException("Failed to get TimeZone. err : " + err);
                     else
-                        Log.Error(LOGTAG, "Failed to get TimeZone err : " + err);
+                        Log.Error(LOGTAG, $"Failed to get TimeZone err : {err}");
                 }
                 return zone;
             }
@@ -302,7 +302,7 @@ namespace Tizen.Applications
                     if (err == Interop.Watch.ErrorCode.NotSupported)
                         throw new NotSupportedException("Failed to get UtcTimestamp. err : " + err);
                     else
-                        Log.Error(LOGTAG, "Failed to get UtcTimestamp err : " + err);
+                        Log.Error(LOGTAG, $"Failed to get UtcTimestamp err : {err}");
                 }
                 return (new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).AddSeconds(ts).AddMilliseconds(Millisecond);
             }

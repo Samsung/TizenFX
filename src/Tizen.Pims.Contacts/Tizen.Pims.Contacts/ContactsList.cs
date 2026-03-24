@@ -34,7 +34,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.List.ContactsListGetCount(_listHandle, out count);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "ContactsList Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ContactsList Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             _memoryPressure += count * ContactsViews.Record.AverageSize;
@@ -53,7 +53,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.List.ContactsListCreate(out _listHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "ContactsList Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ContactsList Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             GC.AddMemoryPressure(_memoryPressure);
@@ -81,7 +81,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.List.ContactsListGetCount(_listHandle, out count);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "ContactsList Count Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"ContactsList Count Failed with error {error}");
                 }
                 return count;
             }
@@ -109,7 +109,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.List.ContactsListDestroy(_listHandle, true);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "ContactsListDestroy Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"ContactsListDestroy Failed with error {error}");
                 }
 
                 disposedValue = true;
@@ -142,7 +142,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.List.ContactsListAdd(_listHandle, record._recordHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "AddRecord Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddRecord Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             record._disposedValue = true;
@@ -162,7 +162,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.List.ContactsListRemove(_listHandle, record._recordHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "RemoveRecord Failed with error " + error);
+                Log.Error(Globals.LogTag, $"RemoveRecord Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             record._disposedValue = false;
@@ -184,7 +184,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.List.ContactsListGetCurrentRecordP(_listHandle, out handle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "GetCurrentRecord Failed with error " + error);
+                Log.Error(Globals.LogTag, $"GetCurrentRecord Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             return new ContactsRecord(handle, true);
@@ -209,12 +209,12 @@ namespace Tizen.Pims.Contacts
             }
             else if (Count > 0 && (int)ContactsError.NoData == error)
             {
-                Log.Debug(Globals.LogTag, "Nodata MovePrevious" + error);
+                Log.Debug(Globals.LogTag, $"Nodata MovePrevious{error}");
                 return false;
             }
             else
             {
-                Log.Error(Globals.LogTag, "MovePrevious Failed with error " + error);
+                Log.Error(Globals.LogTag, $"MovePrevious Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -238,12 +238,12 @@ namespace Tizen.Pims.Contacts
             }
             else if (Count > 0 && (int)ContactsError.NoData == error)
             {
-                Log.Debug(Globals.LogTag, "Nodata MoveNext" + error);
+                Log.Debug(Globals.LogTag, $"Nodata MoveNext{error}");
                 return false;
             }
             else
             {
-                Log.Error(Globals.LogTag, "MoveNext Failed with error " + error);
+                Log.Error(Globals.LogTag, $"MoveNext Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -259,7 +259,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.List.ContactsListFirst(_listHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "MoveFirst Failed with error " + error);
+                Log.Error(Globals.LogTag, $"MoveFirst Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -275,7 +275,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.List.ContactsListLast(_listHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "MoveFirst Failed with error " + error);
+                Log.Error(Globals.LogTag, $"MoveFirst Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -145,7 +145,7 @@ namespace Tizen.Applications.ComponentBased.Common
             Interop.CBApplication.ErrorCode err = Interop.CBApplication.BaseMain(argsClone.Length, argsClone, ref _callbacks, IntPtr.Zero);
             if (err != Interop.CBApplication.ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to run the application. Err = " + err);
+                Log.Error(LogTag, $"Failed to run the application. Err = {err}");
                 throw new InvalidOperationException("Fail to run application : err(" + err + ")");
             }
         }

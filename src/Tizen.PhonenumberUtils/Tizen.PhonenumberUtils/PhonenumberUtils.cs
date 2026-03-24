@@ -40,7 +40,7 @@ namespace Tizen.PhonenumberUtils
             ret = Interop.PhonenumberUtils.Connect();
             if (ret != (int)PhonenumberUtilsError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to connect, Error - " + (PhonenumberUtilsError)ret);
+                Log.Error(Globals.LogTag, $"Failed to connect, Error - {(PhonenumberUtilsError)ret}");
                 PhonenumberUtilsErrorFactory.ThrowPhonenumberUtilsException(ret);
             }
         }
@@ -75,7 +75,7 @@ namespace Tizen.PhonenumberUtils
 
             ret = Interop.PhonenumberUtils.Disconnect();
             if (ret != (int)PhonenumberUtilsError.None)
-                Log.Error(Globals.LogTag, "Failed to disconnect, Error - " + (PhonenumberUtilsError)ret);
+                Log.Error(Globals.LogTag, $"Failed to disconnect, Error - {(PhonenumberUtilsError)ret}");
 
             disposed = true;
         }
@@ -101,7 +101,7 @@ namespace Tizen.PhonenumberUtils
             ret = Interop.PhonenumberUtils.GetLocationFromNumber(number, (int)region, (int)language, out result);
             if (ret != (int)PhonenumberUtilsError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get location, Error - " + (PhonenumberUtilsError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get location, Error - {(PhonenumberUtilsError)ret}");
                 PhonenumberUtilsErrorFactory.ThrowPhonenumberUtilsException(ret);
             }
 
@@ -128,7 +128,7 @@ namespace Tizen.PhonenumberUtils
             ret = Interop.PhonenumberUtils.GetFormmatedNumber(number, (int)region, out result);
             if (ret != (int)PhonenumberUtilsError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get formatted number, Error - " + (PhonenumberUtilsError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get formatted number, Error - {(PhonenumberUtilsError)ret}");
                 PhonenumberUtilsErrorFactory.ThrowPhonenumberUtilsException(ret);
             }
 
@@ -160,7 +160,7 @@ namespace Tizen.PhonenumberUtils
             ret = Interop.PhonenumberUtils.GetNormailizedNumber(number, out result);
             if (ret != (int)PhonenumberUtilsError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get normalized number, Error - " + (PhonenumberUtilsError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get normalized number, Error - {(PhonenumberUtilsError)ret}");
                 PhonenumberUtilsErrorFactory.ThrowPhonenumberUtilsException(ret);
             }
 

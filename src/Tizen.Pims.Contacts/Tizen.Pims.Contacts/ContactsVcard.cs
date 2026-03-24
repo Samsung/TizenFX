@@ -74,7 +74,7 @@ namespace Tizen.Pims.Contacts
 
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Compose Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Compose Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
 
@@ -100,7 +100,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Vcard.ContactsVcardParseToContacts(stream, out listHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Parse Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Parse Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
 
@@ -128,7 +128,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Vcard.ContactsVcardParseToContactForeach(path, cb, IntPtr.Zero);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "ParseForEach Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ParseForEach Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }

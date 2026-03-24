@@ -359,7 +359,7 @@ namespace Tizen.Network.IoTConnectivity
                 }
                 catch (Exception exp)
                 {
-                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to new representation: " + exp.Message);
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, $"Failed to new representation: {exp.Message}");
                     return;
                 }
 
@@ -443,7 +443,7 @@ namespace Tizen.Network.IoTConnectivity
             IntPtr responseCompletionId = userData;
             TaskCompletionSource<RemoteResponse> responseCompletionSource;
 
-            Log.Info(IoTConnectivityErrorFactory.LogTag, "Result callback for : " + responseCompletionId);
+            Log.Info(IoTConnectivityErrorFactory.LogTag, $"Result callback for : {responseCompletionId}");
 
             if (!_taskCompletionMap.TryRemove(responseCompletionId, out responseCompletionSource))
             {
@@ -507,7 +507,7 @@ namespace Tizen.Network.IoTConnectivity
             IntPtr responseCompletionId = userData;
             TaskCompletionSource<RemoteResponse> responseCompletionSource;
 
-            Log.Info(IoTConnectivityErrorFactory.LogTag, "Result callback for : " + responseCompletionId);
+            Log.Info(IoTConnectivityErrorFactory.LogTag, $"Result callback for : {responseCompletionId}");
 
             if (!_taskCompletionMap.TryRemove(responseCompletionId, out responseCompletionSource))
             {
@@ -578,7 +578,7 @@ namespace Tizen.Network.IoTConnectivity
             IntPtr responseCompletionId = userData;
             TaskCompletionSource<RemoteResponse> responseCompletionSource;
 
-            Log.Info(IoTConnectivityErrorFactory.LogTag, "Result callback for : " + responseCompletionId);
+            Log.Info(IoTConnectivityErrorFactory.LogTag, $"Result callback for : {responseCompletionId}");
 
             if (!_taskCompletionMap.TryRemove(responseCompletionId, out responseCompletionSource))
             {
@@ -639,7 +639,7 @@ namespace Tizen.Network.IoTConnectivity
             IntPtr responseCompletionId = userData;
             TaskCompletionSource<RemoteResponse> responseCompletionSource;
 
-            Log.Info(IoTConnectivityErrorFactory.LogTag, "Result callback for : " + responseCompletionId);
+            Log.Info(IoTConnectivityErrorFactory.LogTag, $"Result callback for : {responseCompletionId}");
 
             if (!_taskCompletionMap.TryRemove(responseCompletionId, out responseCompletionSource))
             {
@@ -740,7 +740,7 @@ namespace Tizen.Network.IoTConnectivity
                 }
                 else
                 {
-                    Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to parse hostname " + hostName);
+                    Log.Error(IoTConnectivityErrorFactory.LogTag, $"Failed to parse hostname {hostName}");
                 }
             }
             return type;
@@ -782,7 +782,7 @@ namespace Tizen.Network.IoTConnectivity
                         }
                         catch (Exception exp)
                         {
-                            Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to new Representation: " + exp.Message);
+                            Log.Error(IoTConnectivityErrorFactory.LogTag, $"Failed to new Representation: {exp.Message}");
                             return;
                         }
 

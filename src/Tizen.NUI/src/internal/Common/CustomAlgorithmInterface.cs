@@ -74,7 +74,7 @@ namespace Tizen.NUI
             }
             catch (global::System.Exception ex)
             {
-                Tizen.Log.Error("NUI", "Registry Error: " + ex);
+                Tizen.Log.Error("NUI", $"Registry Error: {ex}");
                 throw;
             }
         }

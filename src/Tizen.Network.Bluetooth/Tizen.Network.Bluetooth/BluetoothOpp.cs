@@ -86,7 +86,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = _impl.StartServer(FilePath);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to Opp Start Server - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to Opp Start Server - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
                 return _instance;
@@ -113,7 +113,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = _impl.StopServer();
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to Stop the Opp Server - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to Stop the Opp Server - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
                 else
@@ -146,7 +146,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = _impl.AcceptPush(FileName, out _transitionId);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to Accept Push - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to Accept Push - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -172,7 +172,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = _impl.RejectPush();
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to Reject Push - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to Reject Push - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -198,7 +198,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = _impl.CancelTransferId(TransferId);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to Cancel Transfer - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to Cancel Transfer - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -224,7 +224,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = _impl.SetDestinationPath(FilePath);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to Set Destination Path - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to Set Destination Path - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -283,7 +283,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = BluetoothOppClientImpl.Instance.AddFile(FilePath);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to Set File Path - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to Set File Path - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -308,7 +308,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = BluetoothOppClientImpl.Instance.ClearFile();
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to Clear the Files - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to Clear the Files - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -333,7 +333,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = BluetoothOppClientImpl.Instance.CancelPush();
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to Cancel Push Operation - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to Cancel Push Operation - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -359,7 +359,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = BluetoothOppClientImpl.Instance.PushFile(Destination);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to Cancel Push Operation - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to Cancel Push Operation - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }

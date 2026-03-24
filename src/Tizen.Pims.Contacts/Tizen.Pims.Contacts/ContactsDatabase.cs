@@ -118,7 +118,7 @@ namespace Tizen.Pims.Contacts
                         int error = Interop.Database.AddStatusChangedCb(_contactsDBStatusChangedCallback, IntPtr.Zero);
                         if ((int)ContactsError.None != error)
                         {
-                            Log.Error(Globals.LogTag, "Add StatusChanged Failed with error " + error);
+                            Log.Error(Globals.LogTag, $"Add StatusChanged Failed with error {error}");
                         }
                     }
 
@@ -138,7 +138,7 @@ namespace Tizen.Pims.Contacts
                         int error = Interop.Database.RemoveStatusChangedCb(_contactsDBStatusChangedCallback, IntPtr.Zero);
                         if ((int)ContactsError.None != error)
                         {
-                            Log.Error(Globals.LogTag, "Remove StatusChanged Failed with error " + error);
+                            Log.Error(Globals.LogTag, $"Remove StatusChanged Failed with error {error}");
                         }
                     }
                 }
@@ -160,7 +160,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Database.GetVersion(out version);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "Version Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Version Failed with error {error}");
                 }
                 return version;
             }
@@ -180,7 +180,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Database.GetLastChangeVersion(out version);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "LastChangeVersion Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"LastChangeVersion Failed with error {error}");
                 }
                 return version;
             }
@@ -200,7 +200,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Database.GetStatus(out status);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "GetStatus Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"GetStatus Failed with error {error}");
                 }
                 return status;
             }
@@ -227,7 +227,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.Insert(record._recordHandle, out id);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Insert Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Insert Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             return id;
@@ -255,7 +255,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.InsertRecords(list._listHandle, out ids, out count);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Insert Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Insert Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
 
@@ -288,7 +288,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.Get(viewUri, recordId, out handle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Get Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Get Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             return new ContactsRecord(handle);
@@ -313,7 +313,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.Update(record._recordHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Update Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Update Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -337,7 +337,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.UpdateRecords(list._listHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Update Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Update Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -363,7 +363,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.Delete(viewUri, recordId);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Delete Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Delete Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -389,7 +389,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.DeleteRecords(viewUri, idArray, idArray.Length);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Delete Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Delete Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -414,7 +414,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.Replace(record._recordHandle, recordId);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Replace Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Replace Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -439,7 +439,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.ReplaceRecords(list._listHandle, idArray, idArray.Length);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Replace Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Replace Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -470,7 +470,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.GetRecords(viewUri, offset, limit, out handle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "GetAll Failed with error " + error);
+                Log.Error(Globals.LogTag, $"GetAll Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             return new ContactsList(handle);
@@ -501,7 +501,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.GetRecords(query._queryHandle, offset, limit, out handle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "GetAllWithQuery Failed with error " + error);
+                Log.Error(Globals.LogTag, $"GetAllWithQuery Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             return new ContactsList(handle);
@@ -533,7 +533,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.GetChangesByVersion(viewUri, addressBookId, contactsDBVersion, out recordList,out currentDBVersion);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "GetChangesByVersion Failed with error " + error);
+                Log.Error(Globals.LogTag, $"GetChangesByVersion Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             return new ContactsList(recordList);
@@ -567,7 +567,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.Search(viewUri, keyword, offset, limit, out recordList);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Search Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Search Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             return new ContactsList(recordList);
@@ -600,7 +600,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.Search(query._queryHandle, keyword, offset, limit, out recordList);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Search Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Search Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             return new ContactsList(recordList);
@@ -635,7 +635,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.Search(viewUri, keyword, offset, limit, range, out recordList);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Search Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Search Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             return new ContactsList(recordList);
@@ -673,7 +673,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.Search(viewUri, keyword, offset, limit, startMatch, endMatch, tokenNumber, out recordList);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Search Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Search Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             return new ContactsList(recordList);
@@ -710,7 +710,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.Search(query._queryHandle, keyword, offset, limit, startMatch, endMatch, tokenNumber, out recordList);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Search Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Search Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             return new ContactsList(recordList);
@@ -749,7 +749,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.Search(viewUri, keyword, offset, limit, range, startMatch, endMatch, tokenNumber, out recordList);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Search Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Search Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             return new ContactsList(recordList);
@@ -769,7 +769,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.GetCount(viewUri, out count);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "GetCount Failed with error " + error);
+                Log.Error(Globals.LogTag, $"GetCount Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             return count;
@@ -788,7 +788,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Database.GetCount(query._queryHandle, out count);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "GetCount Failed with error " + error);
+                Log.Error(Globals.LogTag, $"GetCount Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             return count;
@@ -822,7 +822,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Database.AddChangedCb(viewUri, _callbackMap[viewUri], IntPtr.Zero);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "AddDBChangedEventHandler Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"AddDBChangedEventHandler Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
             }
@@ -859,7 +859,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Database.RemoveChangedCb(viewUri, _callbackMap[viewUri], IntPtr.Zero);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "RemoveDBChangedEventHandler Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"RemoveDBChangedEventHandler Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
                 _callbackMap.Remove(viewUri);

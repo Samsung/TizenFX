@@ -133,7 +133,7 @@ namespace Tizen.Network.IoTConnectivity
             {
                 int requestId = (int)userData;
 
-                Log.Info(IoTConnectivityErrorFactory.LogTag, "Received s_RequestHandlerCallbackMap : " + requestId);
+                Log.Info(IoTConnectivityErrorFactory.LogTag, $"Received s_RequestHandlerCallbackMap : {requestId}");
 
                 if (request == IntPtr.Zero)
                 {

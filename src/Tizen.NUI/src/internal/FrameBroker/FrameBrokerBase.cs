@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -326,7 +326,7 @@ namespace Tizen.NUI
             }
             catch(Exception e)
             {
-                Tizen.Log.Error("NUI", "Exception in FrameBrokerBase : " + e.Message);
+                Tizen.Log.Error("NUI", $"Exception in FrameBrokerBase : {e.Message}");
             }
             finally
             {

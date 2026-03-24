@@ -152,7 +152,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.SetDnsAddress(_profileHandle, 1, (int)_family, value.ToString());
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set dns1 address, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to set dns1 address, {(ConnectionError)ret}");
                     ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
                     ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
@@ -172,7 +172,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.SetDnsAddress(_profileHandle, 2, (int)_family, value.ToString());
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set dns2 address, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to set dns2 address, {(ConnectionError)ret}");
                     ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
                     ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
@@ -194,7 +194,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.SetGatewayAddress(_profileHandle, (int)_family, value.ToString());
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set gateway, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to set gateway, {(ConnectionError)ret}");
                     ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
                     ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
@@ -217,7 +217,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.SetSubnetMask(_profileHandle, (int)_family, value.ToString());
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set subnet mask, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to set subnet mask, {(ConnectionError)ret}");
                     ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
                     ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
@@ -240,7 +240,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.SetIPAddress(_profileHandle, (int)_family, value.ToString());
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set ip, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to set ip, {(ConnectionError)ret}");
                     ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
                     ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
@@ -256,7 +256,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.GetIPConfigType(_profileHandle, (int)_family, out Value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get ip config type, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get ip config type, {(ConnectionError)ret}");
                 }
                 return (IPConfigType)Value;
             }
@@ -266,7 +266,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.SetIPConfigType(_profileHandle, (int)_family, (int)value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set ip config type, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to set ip config type, {(ConnectionError)ret}");
                     ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
                     ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
@@ -282,7 +282,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.GetPrefixLength(_profileHandle, (int)_family, out Value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get prefix length, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get prefix length, {(ConnectionError)ret}");
                 }
                 return Value;
             }
@@ -292,7 +292,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.SetPrefixLength(_profileHandle, (int)_family, value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set prefix length, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to set prefix length, {(ConnectionError)ret}");
                     ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
                     ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
@@ -308,7 +308,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.GetDnsConfigType(_profileHandle, (int)_family, out Value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get DNS config type, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get DNS config type, {(ConnectionError)ret}");
                 }
                 return (DnsConfigType)Value;
             }
@@ -318,7 +318,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.SetDnsConfigType(_profileHandle, (int)_family, (int)value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set DNS config type, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to set DNS config type, {(ConnectionError)ret}");
                     ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
                     ConnectionErrorFactory.CheckHandleNullException(ret, (_profileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
@@ -335,7 +335,7 @@ namespace Tizen.Network.Connection
                 if ((ConnectionError)ret != ConnectionError.None || 
                         dhcpServer == null || dhcpServer.Length == 0)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get the DHCP server address, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get the DHCP server address, {(ConnectionError)ret}");
                     return DefaultIPAddress();
                 }
                 return System.Net.IPAddress.Parse(dhcpServer);
@@ -346,7 +346,7 @@ namespace Tizen.Network.Connection
         {
             if (ret != (int)ConnectionError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get address, Error - " + (ConnectionError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get address, Error - {(ConnectionError)ret}");
                 return DefaultIPAddress();
             }
 
@@ -373,7 +373,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionProfile.GetDhcpLeaseDuration(_profileHandle, _family, out leaseDuration);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get the DHCP lease duration, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get the DHCP lease duration, {(ConnectionError)ret}");
                     leaseDuration = 0;
                 }
                 return leaseDuration;

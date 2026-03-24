@@ -687,7 +687,7 @@ namespace Tizen.Applications
 
             if (cnt1 == 0)
             {
-                Log.Error(LogTag, "No supported size :" + Id);
+                Log.Error(LogTag, $"No supported size :{Id}");
                 return null;
             }
 
@@ -728,7 +728,7 @@ namespace Tizen.Applications
 
             if (cnt1 != cnt2)
             {
-                Log.Error(LogTag, "Count not match cnt1 :" + cnt1 + ", cnt2 :" + cnt2);
+                Log.Error(LogTag, $"Count not match cnt1 :{cnt1}, cnt2 :{cnt2}");
                 return null;
             }
 
@@ -907,7 +907,7 @@ namespace Tizen.Applications
 
             s_lifecycleEventRefCnt[Id]++;
             s_eventObjects.Add(this);
-            Log.Debug(LogTag, "register lifecycle cb " + Id + " [" + s_lifecycleEventRefCnt[Id] + "]");
+            Log.Debug(LogTag, $"register lifecycle cb {Id} [{s_lifecycleEventRefCnt[Id]}]");
         }
 
         private void UnregisterLifecycleEvent()
@@ -944,12 +944,12 @@ namespace Tizen.Applications
 
             s_eventObjects.Remove(this);
             s_lifecycleEventRefCnt[Id]--;
-            Log.Debug(LogTag, "unregister lifecycle cb " + Id + " [" + s_lifecycleEventRefCnt[Id] + "]");
+            Log.Debug(LogTag, $"unregister lifecycle cb {Id} [{s_lifecycleEventRefCnt[Id]}]");
         }
 
         private static int OnLifecycleEvent(string widgetId, Interop.WidgetService.LifecycleEvent e, string instanceId, IntPtr userData)
         {
-            Log.Debug(LogTag, "Lifecycle event : " + instanceId + " [" + e + "]");
+            Log.Debug(LogTag, $"Lifecycle event : {instanceId} [{e }]");
             switch (e)
             {
                 case Interop.WidgetService.LifecycleEvent.Created:
