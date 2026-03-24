@@ -17,6 +17,7 @@
 
 namespace Tizen.NUI
 {
+    [global::System.Obsolete("Do not use this, Use Rotation instead.")]
     internal class AngleAxis : Disposable
     {
         internal AngleAxis(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
