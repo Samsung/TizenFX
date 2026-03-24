@@ -27,6 +27,70 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("dali PropertyValue with Matrix3 parameter constructor test")]
+        [Property("SPEC", "Tizen.NUI.PropertyValue.PropertyValue C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "Eunki Hong, eunkiki.hong@samsung.com")]
+        [Property("COVPARAM", "Matrix3")]
+        public void PropertyValue_INIT_WITH_MATRIX3()
+        {
+            tlog.Debug(tag, $"PropertyValue_INIT_WITH_MATRIX3 START");
+
+            using Matrix3 testingValue = new Matrix3(0.0f, 1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 6.0f, 7.0f, 8.0f);
+            using Matrix3 resultValue = new Matrix3();
+
+            using PropertyValue testingTarget = new PropertyValue(testingValue);
+
+            Assert.IsNotNull(testingTarget, "Can't create success object PropertyValue.");
+            Assert.IsInstanceOf<PropertyValue>(testingTarget, "Should return PropertyValue instance.");
+            Assert.AreEqual(PropertyType.Matrix3, testingTarget.GetType(), "Type should be matrix3");
+            Assert.AreEqual(true, testingTarget.Get(resultValue), "matrix3 get failed");
+
+            for(uint index = 0; index < 9; ++index)
+            {
+                float expectResult = (float)index;
+                Assert.AreEqual(expectResult, resultValue.ValueOfIndex(index), "The value of index is not correct!");
+            }
+
+            tlog.Debug(tag, $"PropertyValue_INIT_WITH_MATRIX3 END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("dali PropertyValue with Matrix parameter constructor test")]
+        [Property("SPEC", "Tizen.NUI.PropertyValue.PropertyValue C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "Eunki Hong, eunkiki.hong@samsung.com")]
+        [Property("COVPARAM", "Matrix")]
+        public void PropertyValue_INIT_WITH_MATRIX()
+        {
+            tlog.Debug(tag, $"PropertyValue_INIT_WITH_MATRIX START");
+
+            float[] array = {1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 2.0f, 0.0f, 0.0f, 0.0f, 0.0f, 3.0f, 0.0f, 0.0f, 0.0f, 0.0f, 4.0f};
+
+            using Matrix testingValue = new Matrix(array);
+            using Matrix resultValue = new Matrix();
+
+            using PropertyValue testingTarget = new PropertyValue(testingValue);
+
+            Assert.IsNotNull(testingTarget, "Can't create success object PropertyValue.");
+            Assert.IsInstanceOf<PropertyValue>(testingTarget, "Should return PropertyValue instance.");
+            Assert.AreEqual(PropertyType.Matrix, testingTarget.GetType(), "Type should be matrix");
+            Assert.AreEqual(true, testingTarget.Get(resultValue), "matrix get failed");
+
+            for(uint index = 0; index < 16; ++index)
+            {
+                float expectResult = array[index];
+                Assert.AreEqual(expectResult, resultValue.ValueOfIndex(index), "The value of index is not correct!");
+            }
+
+            tlog.Debug(tag, $"PropertyValue_INIT_WITH_MATRIX END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("Set value test for PropertyValue.EqualTo")]
         [Property("SPEC", "Tizen.NUI.Common.PropertyValue.EqualTo")]
         [Property("SPEC_URL", "-")]
