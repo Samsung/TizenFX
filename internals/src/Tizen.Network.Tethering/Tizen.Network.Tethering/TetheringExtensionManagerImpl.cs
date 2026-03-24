@@ -153,6 +153,30 @@ namespace Tizen.Network.Tethering
             CheckReturnValue(ret, "DeActivate", PrivilegeNetworkProfile);
         }
 
+        internal void UpdateTetheringInfo(string ssid, string passphrase)
+        {
+            if (ssid == null)
+            {
+                Log.Error(Globals.LogTag, "SSID cannot be null");
+                throw new ArgumentException("SSID cannot be null");
+            }
+
+            if (passphrase == null)
+            {
+                Log.Error(Globals.LogTag, "Passphrase cannot be null");
+                throw new ArgumentException("Passphrase cannot be null");
+            }
+
+            Log.Info(Globals.LogTag, "Updating tethering info");
+            int ret = Interop.TetheringExtension.UpdateTetheringInfo(GetHandle(), ssid, passphrase);
+
+            if (ret != (int)TetheringError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to update tethering info, Error - " + (TetheringError)ret);
+                CheckReturnValue(ret, "UpdateTetheringInfo", PrivilegeNetworkProfile);
+            }
+        }
+
         public TetheringInfo GetTetheringInfo()
         {
             Log.Info(Globals.LogTag, "GetTetheringInfo");
