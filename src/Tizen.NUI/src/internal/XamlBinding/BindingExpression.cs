@@ -627,7 +627,7 @@ namespace Tizen.NUI.Binding
                     {
                         if (name.Contains("["))
                         {
-                            if (name != string.Format("{0}[{1}]", part.IndexerName, part.Content))
+                            if (name != $"{part.IndexerName}[{part.Content}]")
                                 return;
                         }
                         else if (name != part.IndexerName)

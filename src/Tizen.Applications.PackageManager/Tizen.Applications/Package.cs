@@ -227,20 +227,20 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoCreate(Id, out packageInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to create native handle for package info of {0}. err = {1}", Id, err));
+                Log.Warn(LogTag, $"Failed to create native handle for package info of {Id}. err = {err}");
             }
 
             err = Interop.Package.PackageInfoForeachAppInfo(packageInfoHandle, (Interop.Package.AppType)type, cb, IntPtr.Zero);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to application info of {0}. err = {1}", Id, err));
+                Log.Warn(LogTag, $"Failed to application info of {Id}. err = {err}");
             }
             GC.KeepAlive(cb);
 
             err = Interop.Package.PackageInfoDestroy(packageInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to destroy native handle for package info of {0}. err = {1}", Id, err));
+                Log.Warn(LogTag, $"Failed to destroy native handle for package info of {Id}. err = {err}");
             }
             return appInfoList;
         }
@@ -446,7 +446,7 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoCreate(packageId, out packageInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                throw PackageManagerErrorFactory.GetException(err, string.Format("Failed to create native handle for package info of {0}", packageId));
+                throw PackageManagerErrorFactory.GetException(err, $"Failed to create native handle for package info of {packageId}");
             }
 
             Package package = CreatePackage(packageInfoHandle, packageId);
@@ -454,7 +454,7 @@ namespace Tizen.Applications
             err = Interop.Package.PackageInfoDestroy(packageInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to destroy native handle for package info of {0}. err = {1}", packageId, err));
+                Log.Warn(LogTag, $"Failed to destroy native handle for package info of {packageId}. err = {err}");
             }
             return package;
         }
@@ -482,7 +482,7 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoForeachPrivilegeInfo(packageInfoHandle, privilegeInfoCb, IntPtr.Zero);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get privilage info. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to get privilage info. err = {err}");
             }
             return privileges;
         }
@@ -514,7 +514,7 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoForeachDependencyInfo(packageInfoHandle, dependencyInfoCb, IntPtr.Zero);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get dependency info. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to get dependency info. err = {err}");
             }
             GC.KeepAlive(dependencyInfoCb);
             return dependencies;
@@ -531,7 +531,7 @@ namespace Tizen.Applications
             int err = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoForeachDependsOnByPkgId(packageId, dependencyInfoCb, IntPtr.Zero, Interop.PackageManagerInfoInternal.GetUID());
             if (err != 0)
             {
-                Log.Warn(LogTag, string.Format("Failed to get dependency info. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to get dependency info. err = {err}");
             }
             GC.KeepAlive(dependencyInfoCb);
             return dependencies;
@@ -552,7 +552,7 @@ namespace Tizen.Applications
                 err = Interop.Package.PackageInfoForeachRequiredPrivilege(requiredPrivileges, requiredPrivCallback, IntPtr.Zero);
                 if (err != Interop.PackageManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, string.Format("Failed to get required privileges of allowed packages info. err = {0}", err));
+                    Log.Warn(LogTag, $"Failed to get required privileges of allowed packages info. err = {err}");
                 }
                 else
                 {
@@ -565,7 +565,7 @@ namespace Tizen.Applications
             err = Interop.Package.PackageInfoForeachResAllowedPackage(packageInfoHandle, allowedPackageCallback, IntPtr.Zero);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get allowed packages info. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to get allowed packages info. err = {err}");
             }
             GC.KeepAlive(allowedPackageCallback);
             return allowedPackagesAndPrivileges;
@@ -577,7 +577,7 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoCreate(packageId, out packageInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Error(LogTag, string.Format("Failed to create native handle for package info of {0}", packageId));
+                Log.Error(LogTag, $"Failed to create native handle for package info of {packageId}");
                 return null;
             }
 
@@ -591,7 +591,7 @@ namespace Tizen.Applications
             err = Interop.Package.PackageInfoDestroy(packageInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to destroy native handle for package info of {0}. err = {1}", packageId, err));
+                Log.Warn(LogTag, $"Failed to destroy native handle for package info of {packageId}. err = {err}");
             }
 
             return expansionPackageName;

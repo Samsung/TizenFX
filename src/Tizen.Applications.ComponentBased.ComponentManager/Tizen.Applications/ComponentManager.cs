@@ -178,7 +178,7 @@ namespace Tizen.Applications.ComponentBased
         {
             internal static Exception GetException(Interop.ComponentManager.ErrorCode err, string message)
             {
-                string errMessage = string.Format("{0} err = {1}", message, err);
+                string errMessage = $"{message} err = {err}";
                 switch (err)
                 {
                     case Interop.ComponentManager.ErrorCode.InvalidParameter:

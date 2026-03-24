@@ -278,7 +278,7 @@ namespace Tizen.Applications
                     var err = Interop.PackageManager.PackageManagerCreate(out s_handle);
                     if (err != Interop.PackageManager.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, string.Format("Failed to create package manager handle. err = {0}", err));
+                        Log.Warn(LogTag, $"Failed to create package manager handle. err = {err}");
                     }
                 }
                 return s_handle;
@@ -297,7 +297,7 @@ namespace Tizen.Applications
                         RequestPackageCount[id] -= 1;
                         if (RequestPackageCount[id] < 1)
                         {
-                            Log.Debug(LogTag, string.Format("release request handle for id : {0}", id));
+                            Log.Debug(LogTag, $"release request handle for id : {id}");
                             RequestHandles[id].Dispose();
                             RequestHandles.Remove(id);
                             RequestCallbacks.Remove(id);
@@ -333,7 +333,7 @@ namespace Tizen.Applications
             var err = Interop.PackageManager.PackageManagerGetPackageIdByAppId(applicationId, out packageId);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get package Id of {0}. err = {1}", applicationId, err));
+                Log.Warn(LogTag, $"Failed to get package Id of {applicationId}. err = {err}");
                 if (err != Interop.PackageManager.ErrorCode.InvalidParameter)
                 {
                     throw PackageManagerErrorFactory.GetException(err, "Failed to get package Id");
@@ -373,7 +373,7 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerClearCacheDir(packageId);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to clear cache directory for {0}. err = {1}", packageId, err));
+                Log.Warn(LogTag, $"Failed to clear cache directory for {packageId}. err = {err}");
                 throw PackageManagerErrorFactory.GetException(err, "Failed to clear cache directory");
             }
         }
@@ -397,7 +397,7 @@ namespace Tizen.Applications
             var err = Interop.PackageManager.PackageManagerClearAllCacheDir();
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to clear all cache directories. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to clear all cache directories. err = {err}");
                 throw PackageManagerErrorFactory.GetException(err, "Failed to clear all cache directories");
             }
         }
@@ -422,7 +422,7 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerClearDataDir(packageId);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to clear data directory for {0}. err = {1}", packageId, err));
+                Log.Warn(LogTag, $"Failed to clear data directory for {packageId}. err = {err}");
                 throw PackageManagerErrorFactory.GetException(err, "Failed to clear data directory");
             }
         }
@@ -444,7 +444,7 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerClearUserDataWithPath(packageId, path);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to clear user data for {0} of {1}. err = {2}", path, packageId, err));
+                Log.Warn(LogTag, $"Failed to clear user data for {path} of {packageId}. err = {err}");
                 throw PackageManagerErrorFactory.GetException(err, "Failed to clear user data");
             }
         }
@@ -475,7 +475,7 @@ namespace Tizen.Applications
             var err = Interop.PackageManager.PackageManagerFilterCreate(out filterHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to create package filter handle. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to create package filter handle. err = {err}");
                 return packageList;
             }
 
@@ -486,7 +486,7 @@ namespace Tizen.Applications
                     err = Interop.PackageManager.PackageManagerFilterAdd(filterHandle, entry.Key, entry.Value);
                     if (err != Interop.PackageManager.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, string.Format("Failed to configure package filter. err = {0}", err));
+                        Log.Warn(LogTag, $"Failed to configure package filter. err = {err}");
                         break;
                     }
                 }
@@ -500,7 +500,7 @@ namespace Tizen.Applications
                     err = Interop.PackageManager.PackageManagerFilterAdd(filterHandle, entry.Key, entry.Value);
                     if (err != Interop.PackageManager.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, string.Format("Failed to configure package filter. err = {0}", err));
+                        Log.Warn(LogTag, $"Failed to configure package filter. err = {err}");
                         break;
                     }
                 }
@@ -517,7 +517,7 @@ namespace Tizen.Applications
                 err = Interop.PackageManager.PackageManagerFilterForeachPackageInfo(filterHandle, cb, IntPtr.Zero);
                 if (err != Interop.PackageManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, string.Format("Failed to get package Informations. err = {0}", err));
+                    Log.Warn(LogTag, $"Failed to get package Informations. err = {err}");
                 }
                 GC.KeepAlive(cb);
             }
@@ -525,7 +525,7 @@ namespace Tizen.Applications
             err = Interop.PackageManager.PackageManagerFilterDestroy(filterHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to destroy package filter handle. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to destroy package filter handle. err = {err}");
             }
             return packageList;
         }
@@ -757,7 +757,7 @@ namespace Tizen.Applications
         {
             if (packagePaths == null || !packagePaths.Any())
             {
-                Log.Warn(LogTag, string.Format("Invalid argument"));
+                Log.Warn(LogTag, "Invalid argument");
                 return false;
             }
 
@@ -765,7 +765,7 @@ namespace Tizen.Applications
             var err = Interop.PackageManager.PackageManagerRequestCreate(out RequestHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to install packages. Error in creating package manager request handle. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to install packages. Error in creating package manager request handle. err = {err}");
                 return false;
             }
 
@@ -776,7 +776,7 @@ namespace Tizen.Applications
                     err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLowerInvariant());
                     if (err != Interop.PackageManager.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, string.Format("Failed to install packages. Error in setting request package type. err = {0}", err));
+                        Log.Warn(LogTag, $"Failed to install packages. Error in setting request package type. err = {err}");
                         RequestHandle.Dispose();
                         return false;
                     }
@@ -787,7 +787,7 @@ namespace Tizen.Applications
                     err = Interop.PackageManager.PackageManagerRequestSetTepPath(RequestHandle, expansionPackagePath);
                     if (err != Interop.PackageManager.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, string.Format("Failed to install package. Error in setting request package mode. err = {0}", err));
+                        Log.Warn(LogTag, $"Failed to install package. Error in setting request package mode. err = {err}");
                         RequestHandle.Dispose();
                         return false;
                     }
@@ -816,7 +816,7 @@ namespace Tizen.Applications
                         }
                         else
                         {
-                            Log.Warn(LogTag, string.Format("Failed to install packages. err = {0}",  err));
+                            Log.Warn(LogTag, $"Failed to install packages. err = {err}");
                             RequestHandle.Dispose();
                             return false;
                         }
@@ -842,7 +842,7 @@ namespace Tizen.Applications
                         }
                         else
                         {
-                            Log.Warn(LogTag, string.Format("Failed to install package {0}. err = {1}", packagePaths, err));
+                            Log.Warn(LogTag, $"Failed to install package {packagePaths}. err = {err}");
                             RequestHandle.Dispose();
                             return false;
                         }
@@ -866,7 +866,7 @@ namespace Tizen.Applications
                         err = installPackages(RequestHandle, packagePaths.ToArray(), packagePaths.Count, out requestId);
                         if (err != Interop.PackageManager.ErrorCode.None)
                         {
-                            Log.Warn(LogTag, string.Format("Failed to install package {0}. err = {1}", packagePaths, err));
+                            Log.Warn(LogTag, $"Failed to install package {packagePaths}. err = {err}");
                             RequestHandle.Dispose();
                             return false;
                         }
@@ -885,7 +885,7 @@ namespace Tizen.Applications
                         err = install(RequestHandle, packagePaths[0], out requestId);
                         if (err != Interop.PackageManager.ErrorCode.None)
                         {
-                            Log.Warn(LogTag, string.Format("Failed to install package {0}. err = {1}", packagePaths, err));
+                            Log.Warn(LogTag, $"Failed to install package {packagePaths}. err = {err}");
                             RequestHandle.Dispose();
                             return false;
                         }
@@ -973,7 +973,7 @@ namespace Tizen.Applications
             var err = Interop.PackageManager.PackageManagerRequestCreate(out RequestHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to uninstall package {0}. Error in creating package manager request handle. err = {1}", packageId, err));
+                Log.Warn(LogTag, $"Failed to uninstall package {packageId}. Error in creating package manager request handle. err = {err}");
                 return false;
             }
 
@@ -982,7 +982,7 @@ namespace Tizen.Applications
                 err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLowerInvariant());
                 if (err != Interop.PackageManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, string.Format("Failed to uninstall package {0}. Error in setting request package type. err = {1}", packageId, err));
+                    Log.Warn(LogTag, $"Failed to uninstall package {packageId}. Error in setting request package type. err = {err}");
                     RequestHandle.Dispose();
                     return false;
                 }
@@ -999,7 +999,7 @@ namespace Tizen.Applications
                     }
                     else
                     {
-                        Log.Warn(LogTag, string.Format("Failed to uninstall package {0}. err = {1}", packageId, err));
+                        Log.Warn(LogTag, $"Failed to uninstall package {packageId}. err = {err}");
                         RequestHandle.Dispose();
                         return false;
                     }
@@ -1009,7 +1009,7 @@ namespace Tizen.Applications
                     err = Interop.PackageManager.PackageManagerRequestUninstall(RequestHandle, packageId, out requestId);
                     if (err != Interop.PackageManager.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, string.Format("Failed to uninstall package. err = {0}", err));
+                        Log.Warn(LogTag, $"Failed to uninstall package. err = {err}");
                         RequestHandle.Dispose();
                         return false;
                     }
@@ -1103,7 +1103,7 @@ namespace Tizen.Applications
             var err = Interop.PackageManager.PackageManagerRequestCreate(out RequestHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to create package manager request handle. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to create package manager request handle. err = {err}");
                 return false;
             }
 
@@ -1113,7 +1113,7 @@ namespace Tizen.Applications
                 err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLowerInvariant());
                 if (err != Interop.PackageManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, string.Format("Failed to move package. Error in setting request package type. err = {0}", err));
+                    Log.Warn(LogTag, $"Failed to move package. Error in setting request package type. err = {err}");
                     RequestHandle.Dispose();
                     return false;
                 }
@@ -1130,7 +1130,7 @@ namespace Tizen.Applications
                     }
                     else
                     {
-                        Log.Warn(LogTag, string.Format("Failed to move package to requested location. err = {0}", err));
+                        Log.Warn(LogTag, $"Failed to move package to requested location. err = {err}");
                         RequestHandle.Dispose();
                         result = false;
                     }
@@ -1140,7 +1140,7 @@ namespace Tizen.Applications
                     err = Interop.PackageManager.PackageManagerRequestMove(RequestHandle, packageId, (Interop.PackageManager.StorageType)newStorage);
                     if (err != Interop.PackageManager.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, string.Format("Failed to move package to requested location. err = {0}", err));
+                        Log.Warn(LogTag, $"Failed to move package to requested location. err = {err}");
                         RequestHandle.Dispose();
                         result = false;
                     }
@@ -1343,7 +1343,7 @@ namespace Tizen.Applications
             var err = Interop.AulInternal.AulPackageGetInstallStatus(packageId, out status);
             if (err != Interop.AulInternal.AulErrorCode.Ok)
             {
-                Log.Warn(LogTag, string.Format("Failed to get package install status for {0}. err = {1}", packageId, err));
+                Log.Warn(LogTag, $"Failed to get package install status for {packageId}. err = {err}");
                 throw AulErrorFactory.GetException(err, "Failed to get package install status");
             }
             return (PackageInstallStatus)status;
@@ -1439,7 +1439,7 @@ namespace Tizen.Applications
             }
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to register callback for package manager event. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to register callback for package manager event. err = {err}");
                 throw PackageManagerErrorFactory.GetException(err, "Failed to register package manager event.");
             }
         }
@@ -1537,7 +1537,7 @@ namespace Tizen.Applications
     {
         internal static Exception GetException(Interop.PackageManager.ErrorCode err, string message)
         {
-            string errMessage = string.Format("{0} err = {1}", message, err);
+            string errMessage = $"{message} err = {err}";
             switch (err)
             {
                 case Interop.PackageManager.ErrorCode.InvalidParameter:
@@ -1557,7 +1557,7 @@ namespace Tizen.Applications
     {
         internal static Exception GetException(Interop.AulInternal.AulErrorCode err, string message)
         {
-            string errMessage = string.Format("{0} err = {1}", message, err);
+            string errMessage = $"{message} err = {err}";
             switch (err)
             {
                 case Interop.AulInternal.AulErrorCode.EInval:

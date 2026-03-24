@@ -22,7 +22,7 @@ namespace Tizen.Applications.Cion
     {
         internal static Exception GetException(Interop.Cion.ErrorCode err, string message)
         {
-            string errMessage = string.Format("{0} err = {1}", message, err);
+            string errMessage = $"{message} err = {err}";
             switch (err)
             {
                 case Interop.Cion.ErrorCode.IoError:

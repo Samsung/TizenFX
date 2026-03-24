@@ -90,7 +90,7 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
                     break;
             }
 
-            Sql sql = new Sql(string.Format("SELECT * from {0} WHERE rowid = {1}", table_name, rowid));
+            Sql sql = new Sql($"SELECT * from {table_name} WHERE rowid = {rowid}");
             using (IStatement stmt = CreateStatement())
             using (IResultSet resultSet = stmt.ExecuteQuery(sql))
             {

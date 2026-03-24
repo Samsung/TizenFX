@@ -617,7 +617,7 @@ namespace Tizen.Security.TEEC
             }
 
             //MAYBE map origin of return code to specyfic Exception
-            Interop.CheckNThrowException(ret, string.Format("OpenSession('{0}')", destination));
+            Interop.CheckNThrowException(ret, $"OpenSession('{destination}')");
             opened = true;
         }
         internal void Open64(Guid destination, uint loginMethod, byte[] connectionData, Parameter[] paramlist)
@@ -650,7 +650,7 @@ namespace Tizen.Security.TEEC
             }
 
             //MAYBE map origin of return code to specyfic Exception
-            Interop.CheckNThrowException(ret, string.Format("OpenSession('{0}')", destination));
+            Interop.CheckNThrowException(ret, $"OpenSession('{destination}')");
             opened = true;
         }
 
@@ -728,7 +728,7 @@ namespace Tizen.Security.TEEC
             }
 
             //MAYBE map origin of return code to specific Exception
-            Interop.CheckNThrowException(ret, string.Format("InvokeCommand({0})", commandID));
+            Interop.CheckNThrowException(ret, $"InvokeCommand({commandID})");
         }
 
         /// <summary>
@@ -794,7 +794,7 @@ namespace Tizen.Security.TEEC
         {
             if (!TeeFeature.IsEnabled())
                 unchecked {
-                    Interop.CheckNThrowException((int)Interop.LibteecError.NotSupported, string.Format("InitializeContext('{0}')", name));
+                    Interop.CheckNThrowException((int)Interop.LibteecError.NotSupported, $"InitializeContext('{name}')");
                 }
 
             context_imp = Marshal.AllocHGlobal(Marshal.SizeOf<Interop.TEEC_Context>());
@@ -802,7 +802,7 @@ namespace Tizen.Security.TEEC
                 name = null;
             try {
                 int ret = Interop.Libteec.InitializeContext(name, context_imp);
-                Interop.CheckNThrowException(ret, string.Format("InitializeContext('{0}')", name));
+                Interop.CheckNThrowException(ret, $"InitializeContext('{name}')");
                 initialized = true;
             }
             catch (global::System.DllNotFoundException e)

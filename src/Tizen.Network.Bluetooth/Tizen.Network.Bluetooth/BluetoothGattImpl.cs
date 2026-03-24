@@ -79,7 +79,7 @@ namespace Tizen.Network.Bluetooth
             int err = Interop.Bluetooth.BtGattServerGetService(_handle, uuid, out serviceHandle);
             if (err.IsFailed())
             {
-                GattUtil.Error(err, string.Format("Failed to get service with UUID ({0})", uuid));
+                GattUtil.Error(err, $"Failed to get service with UUID ({uuid})");
                 return null;
             }
 
@@ -112,7 +112,7 @@ namespace Tizen.Network.Bluetooth
         internal void SendResponse(int requestId, int request_type, int status, byte[] value, int offset)
         {
             int err = Interop.Bluetooth.BtGattServerSendResponse(requestId, request_type, offset, status, value, value.Length);
-            GattUtil.ThrowForError(err, string.Format("Failed to send response for request Id {0}", requestId));
+            GattUtil.ThrowForError(err, $"Failed to send response for request Id {requestId}");
         }
 
         void SendIndicationCallback(int result, string clientAddress, IntPtr serverHandle, IntPtr characteristicHandle, bool completed, IntPtr userData)
@@ -147,7 +147,7 @@ namespace Tizen.Network.Bluetooth
             int err = Interop.Bluetooth.BtGattServerNotify(characteristic.GetHandle(), _sendIndicationCallback, clientAddress, (IntPtr)requestId);
             if (err.IsFailed())
             {
-                GattUtil.Error(err, string.Format("Failed to send value changed indication for characteristic uuid {0}", characteristic.Uuid));
+                GattUtil.Error(err, $"Failed to send value changed indication for characteristic uuid {characteristic.Uuid}");
                 task.SetResult(false);
                 _sendIndicationTaskSource.Remove(requestId);
                 BluetoothErrorFactory.ThrowBluetoothException(err);
@@ -271,7 +271,7 @@ namespace Tizen.Network.Bluetooth
             int err = Interop.Bluetooth.BtGattClientGetService(_handle, uuid, out serviceHandle);
             if (err.IsFailed())
             {
-                GattUtil.Error(err, string.Format("Failed to get service with UUID ({0})", uuid));
+                GattUtil.Error(err, $"Failed to get service with UUID ({uuid})");
                 return null;
             }
 
@@ -521,7 +521,7 @@ namespace Tizen.Network.Bluetooth
         internal void AddCharacteristic(BluetoothGattCharacteristic characteristic)
         {
             int err = Interop.Bluetooth.BtGattServiceAddCharacteristic(_handle, characteristic.GetHandle());
-            GattUtil.ThrowForError(err, string.Format("Failed to add characteristic with UUID ({0})", characteristic.Uuid));
+            GattUtil.ThrowForError(err, $"Failed to add characteristic with UUID ({characteristic.Uuid})");
         }
 
         internal BluetoothGattCharacteristic GetCharacteristic(BluetoothGattService service, string uuid)
@@ -530,7 +530,7 @@ namespace Tizen.Network.Bluetooth
             int err = Interop.Bluetooth.BtGattServiceGetCharacteristic(_handle, uuid, out attributeHandle);
             if (err.IsFailed())
             {
-                GattUtil.Error(err, string.Format("Failed to get Characteristic with UUID ({0})", uuid));
+                GattUtil.Error(err, $"Failed to get Characteristic with UUID ({uuid})");
                 return null;
             }
 
@@ -566,7 +566,7 @@ namespace Tizen.Network.Bluetooth
         internal void AddIncludeService(BluetoothGattService includedService)
         {
             int err = Interop.Bluetooth.BtGattServiceAddIncludedService(_handle, includedService.GetHandle());
-            GattUtil.ThrowForError(err, string.Format("Failed to add service with UUID ({0})", includedService.Uuid));
+            GattUtil.ThrowForError(err, $"Failed to add service with UUID ({includedService.Uuid})");
         }
 
         internal BluetoothGattService GetIncludeService(BluetoothGattService parentService, string uuid)
@@ -575,7 +575,7 @@ namespace Tizen.Network.Bluetooth
             int err = Interop.Bluetooth.BtGattServiceGetIncludedService(_handle, uuid, out attributeHandle);
             if (err.IsFailed())
             {
-                GattUtil.Error(err, string.Format("Failed to get included service with UUID ({0})", uuid));
+                GattUtil.Error(err, $"Failed to get included service with UUID ({uuid})");
                 return null;
             }
 
@@ -686,7 +686,7 @@ namespace Tizen.Network.Bluetooth
         internal void AddDescriptor(BluetoothGattDescriptor descriptor)
         {
             int err = Interop.Bluetooth.BtGattCharacteristicAddDescriptor(_handle, descriptor.GetHandle());
-            GattUtil.ThrowForError(err, string.Format("Failed to add descriptor with UUID ({0})", descriptor.Uuid));
+            GattUtil.ThrowForError(err, $"Failed to add descriptor with UUID ({descriptor.Uuid})");
         }
 
         internal BluetoothGattDescriptor GetDescriptor(BluetoothGattCharacteristic characteristic, string uuid)
@@ -695,7 +695,7 @@ namespace Tizen.Network.Bluetooth
             int err = Interop.Bluetooth.BtGattCharacteristicGetDescriptor(_handle, uuid, out handle);
             if (err.IsFailed())
             {
-                GattUtil.Error(err, string.Format("Failed to get descriptor with UUID ({0})", uuid));
+                GattUtil.Error(err, $"Failed to get descriptor with UUID ({uuid})");
                 return null;
             }
             BluetoothGattDescriptor descriptor = BluetoothGattDescriptorImpl.CreateBluetoothGattDescriptor(handle, uuid);
@@ -745,7 +745,7 @@ namespace Tizen.Network.Bluetooth
         {
             int permission;
             int err = Interop.Bluetooth.BtGattDescriptorGetPermissions(handle, out permission);
-            GattUtil.ThrowForError(err, string.Format("Failed to get permissions with UUID ({0})", uuid));
+            GattUtil.ThrowForError(err, $"Failed to get permissions with UUID ({uuid})");
 
             if (uuid == "")
             {
@@ -961,7 +961,7 @@ namespace Tizen.Network.Bluetooth
         {
             if (err.IsFailed())
             {
-                Log.Error(Globals.LogTag, string.Format("{0}, err: {1}", message, (BluetoothError)err), file, func, line);
+                Log.Error(Globals.LogTag, $"{message}, err: {(BluetoothError)err}", file, func, line);
             }
         }
 
@@ -969,7 +969,7 @@ namespace Tizen.Network.Bluetooth
         {
             if (err.IsFailed())
             {
-                Log.Error(Globals.LogTag, string.Format("{0}, err: {1}", message, (BluetoothError)err), file, func, line);
+                Log.Error(Globals.LogTag, $"{message}, err: {(BluetoothError)err}", file, func, line);
                 BluetoothErrorFactory.ThrowBluetoothException(err);
             }
         }

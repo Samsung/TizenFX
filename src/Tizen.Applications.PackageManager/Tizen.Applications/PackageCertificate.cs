@@ -64,14 +64,14 @@ namespace Tizen.Applications
             int ret = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoCreateCertinfo(out IntPtr handle);
             if (ret != 0)
             {
-                Log.Error(LogTag, string.Format("Failed to create cert info handle"));
+                Log.Error(LogTag, "Failed to create cert info handle");
                 return certificates;
             }
 
             ret = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoLoadCertinfo(packageId, handle, Interop.PackageManagerInfoInternal.GetUID());
             if (ret != 0)
             {
-                Log.Error(LogTag, string.Format("Failed to load cert info of {0}", packageId));
+                Log.Error(LogTag, $"Failed to load cert info of {packageId}");
                 return certificates;
             }
 
@@ -102,7 +102,7 @@ namespace Tizen.Applications
             ret = Interop.PackageManagerInfoInternal.PkgmgrinfoPkginfoDestroyCertinfo(handle);
             if (ret != 0)
             {
-                Log.Warn(LogTag, string.Format("Failed to destroy cert info handle"));
+                Log.Warn(LogTag, "Failed to destroy cert info handle");
             }
 
             return certificates;

@@ -28,15 +28,12 @@ internal static partial class Interop
                 return ;
             case (uint)LibteecError.NotImplemented:
             case (uint)LibteecError.NotSupported:
-                throw new NotSupportedException(string.Format("[{0}] {1} error=0x{2}",
-                        LogTag, msg, err.ToString("X")));
+                throw new NotSupportedException($"[{LogTag}] {msg} error=0x{err.ToString("X")}");
             case (uint)LibteecError.CommunicationFailed:
             case (uint)LibteecError.Generic:
-                throw new Exception(string.Format("[{0}] {1} error=0x{2}",
-                        LogTag, msg, err.ToString("X")));
+                throw new Exception($"[{LogTag}] {msg} error=0x{err.ToString("X")}");
             default:
-                throw new InvalidOperationException(string.Format("[{0}] {1}, error=0x{2}",
-                        LogTag, msg, err.ToString("X")));
+                throw new InvalidOperationException($"[{LogTag}] {msg}, error=0x{err.ToString("X")}");
 
         }
     }

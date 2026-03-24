@@ -90,7 +90,7 @@ namespace Tizen.NUI.Xaml
         {
             if (xmlinfo == null || !xmlinfo.HasLineInfo())
                 return message;
-            return string.Format("Position {0}:{1}. {2}", xmlinfo.LineNumber, xmlinfo.LinePosition, message);
+            return $"Position {xmlinfo.LineNumber}:{xmlinfo.LinePosition}. {message}";
         }
 
 

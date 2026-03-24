@@ -47,7 +47,7 @@ namespace Tizen.NUI.Binding
                 }
             }
 
-            throw new InvalidOperationException(string.Format("Cannot convert \"{0}\" into {1}", value, typeof(Rectangle)));
+            throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Rectangle)}");
         }
 
         //Internal used, will never open
