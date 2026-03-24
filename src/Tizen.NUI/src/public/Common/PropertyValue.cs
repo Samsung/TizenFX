@@ -227,12 +227,22 @@ namespace Tizen.NUI
         {
         }
 
-        internal PropertyValue(Matrix3 matrixValue) : this(Interop.PropertyValue.NewPropertyValueMatrix3(Matrix3.getCPtr(matrixValue)), true)
+        /// <summary>
+        /// Creates a Matrix3 property value.
+        /// </summary>
+        /// <param name="matrixValue">Matrix3 values.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyValue(Matrix3 matrixValue) : this(Interop.PropertyValue.NewPropertyValueMatrix3(Matrix3.getCPtr(matrixValue)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PropertyValue(Matrix matrixValue) : this(Interop.PropertyValue.NewPropertyValueMatrix(Matrix.getCPtr(matrixValue)), true)
+        /// <summary>
+        /// Creates a Matrix property value.
+        /// </summary>
+        /// <param name="matrixValue">Matrix values.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyValue(Matrix matrixValue) : this(Interop.PropertyValue.NewPropertyValueMatrix(Matrix.getCPtr(matrixValue)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1246,7 +1256,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set each components of Vector2.
+        /// Get each components of Vector2. It will be failed if the type is not Vector2.
         /// </summary>
         /// <param name="xValue">X value of Vector2 component</param>
         /// <param name="yValue">Y value of Vector2 component</param>
@@ -1257,7 +1267,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set each components of Vector3.
+        /// Set each components of Vector3. It will be failed if the type is not Vector3.
         /// </summary>
         /// <param name="xValue">X value of Vector3 component</param>
         /// <param name="yValue">Y value of Vector3 component</param>
@@ -1269,7 +1279,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set each components of Vector4.
+        /// Get each components of Vector4. It will be failed if the type is not Vector4.
         /// </summary>
         /// <param name="xValue">X value of Vector4 component</param>
         /// <param name="yValue">Y value of Vector4 component</param>
