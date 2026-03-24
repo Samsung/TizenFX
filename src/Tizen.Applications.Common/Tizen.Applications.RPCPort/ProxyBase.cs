@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Applications.RPCPort
 {
@@ -61,6 +62,114 @@ namespace Tizen.Applications.RPCPort
             Interop.LibRPCPort.Proxy.AddDisconnectedEventCb(_proxy, _disconnectedEventCallback, IntPtr.Zero);
             Interop.LibRPCPort.Proxy.AddRejectedEventCb(_proxy, _rejectedEventCallback, IntPtr.Zero);
             Interop.LibRPCPort.Proxy.AddReceivedEventCb(_proxy, _receivedEventCallback, IntPtr.Zero);
+        }
+
+        /// <summary>
+        /// Sets the communication domain as INET for the rpc port proxy.
+        /// </summary>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void SetDomainInet()
+        {
+            var err = Interop.LibRPCPort.Proxy.SetDomainInet(_proxy);
+            if (err != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+        }
+
+        /// <summary>
+        /// Connects to the target stub using TCP/IP protocol asynchronously.
+        /// </summary>
+        /// <param name="ip">The IP address of the target stub.</param>
+        /// <param name="appId">The application ID of the target stub.</param>
+        /// <param name="port">The name of rpc port.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <exception cref="PermissionDeniedException">Thrown when permission is denied.</exception>
+        /// <exception cref="InvalidIDException">Thrown when an invalid parameter is passed.</exception>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <privilege>http://tizen.org/privilege/datasharing</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void TcpConnect(string ip, string appId, string port)
+        {
+            var err = Interop.LibRPCPort.Proxy.TcpConnect(_proxy, ip, appId, port);
+            switch (err)
+            {
+                case Interop.LibRPCPort.ErrorCode.PermissionDenied:
+                    throw new PermissionDeniedException();
+                case Interop.LibRPCPort.ErrorCode.InvalidParameter:
+                    throw new InvalidIDException();
+                case Interop.LibRPCPort.ErrorCode.IoError:
+                    throw new InvalidIOException();
+            }
+        }
+
+        /// <summary>
+        /// Connects to the target stub using TCP/IP protocol synchronously.
+        /// </summary>
+        /// <param name="ip">The IP address of the target stub.</param>
+        /// <param name="appId">The application ID of the target stub.</param>
+        /// <param name="port">The name of rpc port.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <exception cref="PermissionDeniedException">Thrown when permission is denied.</exception>
+        /// <exception cref="InvalidIDException">Thrown when an invalid parameter is passed.</exception>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <privilege>http://tizen.org/privilege/datasharing</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void TcpConnectSync(string ip, string appId, string port)
+        {
+            var err = Interop.LibRPCPort.Proxy.TcpConnectSync(_proxy, ip, appId, port);
+            switch (err)
+            {
+                case Interop.LibRPCPort.ErrorCode.PermissionDenied:
+                    throw new PermissionDeniedException();
+                case Interop.LibRPCPort.ErrorCode.InvalidParameter:
+                    throw new InvalidIDException();
+                case Interop.LibRPCPort.ErrorCode.IoError:
+                    throw new InvalidIOException();
+            }
+        }
+
+        /// <summary>
+        /// Sets the client TLS certificate and key for authentication.
+        /// </summary>
+        /// <param name="certPath">Path to the client certificate file (PEM format).</param>
+        /// <param name="keyPath">Path to the client private key file (PEM format).</param>
+        /// <exception cref="InvalidIDException">Thrown when an invalid parameter is passed.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void SetTlsClientCertificate(string certPath, string keyPath)
+        {
+            var err = Interop.LibRPCPort.Proxy.SetTlsClientCertificate(_proxy, certPath, keyPath);
+            switch (err)
+            {
+                case Interop.LibRPCPort.ErrorCode.InvalidParameter:
+                    throw new InvalidIDException();
+                case Interop.LibRPCPort.ErrorCode.IoError:
+                    throw new InvalidIOException();
+            }
+        }
+
+        /// <summary>
+        /// Sets the CA certificate for server verification.
+        /// </summary>
+        /// <param name="caPath">Path to the CA certificate file (PEM format).</param>
+        /// <exception cref="InvalidIDException">Thrown when an invalid parameter is passed.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        //[EditorBrowsable(EditorBrowsableState.Never)]
+        protected void SetTlsCaCertificate(string caPath)
+        {
+            var err = Interop.LibRPCPort.Proxy.SetTlsCaCertificate(_proxy, caPath);
+            switch (err)
+            {
+                case Interop.LibRPCPort.ErrorCode.InvalidParameter:
+                    throw new InvalidIDException();
+                case Interop.LibRPCPort.ErrorCode.IoError:
+                    throw new InvalidIOException();
+            }
         }
 
         /// <summary>

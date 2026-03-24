@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Applications.RPCPort
 {
@@ -65,6 +66,102 @@ namespace Tizen.Applications.RPCPort
             Interop.LibRPCPort.Stub.AddReceivedEventCb(_stub, _receivedEventCallback, IntPtr.Zero);
             Interop.LibRPCPort.Stub.AddConnectedEventCb(_stub, _connectedEventCallback, IntPtr.Zero);
             Interop.LibRPCPort.Stub.AddDisconnectedEventCb(_stub, _disconnectedEventCallback, IntPtr.Zero);
+        }
+
+        /// <summary>
+        /// Sets the communication domain as INET for the rpc port stub.
+        /// </summary>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void SetDomainInet()
+        {
+            var err = Interop.LibRPCPort.Stub.SetDomainInet(_stub);
+            if (err != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+        }
+
+        /// <summary>
+        /// Sets the server TLS certificate and key.
+        /// </summary>
+        /// <param name="certPath">Path to the server certificate file (PEM format).</param>
+        /// <param name="keyPath">Path to the server private key file (PEM format).</param>
+        /// <exception cref="InvalidIDException">Thrown when an invalid parameter is passed.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void SetTlsCertificate(string certPath, string keyPath)
+        {
+            var err = Interop.LibRPCPort.Stub.SetTlsCertificate(_stub, certPath, keyPath);
+            switch (err)
+            {
+                case Interop.LibRPCPort.ErrorCode.InvalidParameter:
+                    throw new InvalidIDException();
+                case Interop.LibRPCPort.ErrorCode.IoError:
+                    throw new InvalidIOException();
+            }
+        }
+
+        /// <summary>
+        /// Sets the CA certificate for client verification.
+        /// </summary>
+        /// <param name="caPath">Path to the CA certificate file (PEM format).</param>
+        /// <exception cref="InvalidIDException">Thrown when an invalid parameter is passed.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void SetTlsCaCertificate(string caPath)
+        {
+            var err = Interop.LibRPCPort.Stub.SetTlsCaCertificate(_stub, caPath);
+            switch (err)
+            {
+                case Interop.LibRPCPort.ErrorCode.InvalidParameter:
+                    throw new InvalidIDException();
+                case Interop.LibRPCPort.ErrorCode.IoError:
+                    throw new InvalidIOException();
+            }
+        }
+
+        /// <summary>
+        /// Checks if the given instance has the specified privilege.
+        /// </summary>
+        /// <param name="instance">The instance name.</param>
+        /// <param name="privilege">The privilege name.</param>
+        /// <returns>True if the instance has the privilege, false otherwise.</returns>
+        /// <exception cref="InvalidIDException">Thrown when an invalid parameter is passed.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool HasPrivilege(string instance, string privilege)
+        {
+            var err = Interop.LibRPCPort.Stub.HasPrivilege(_stub, instance, privilege, out bool hasPrivilege);
+            switch (err)
+            {
+                case Interop.LibRPCPort.ErrorCode.InvalidParameter:
+                    throw new InvalidIDException();
+                case Interop.LibRPCPort.ErrorCode.IoError:
+                    throw new InvalidIOException();
+            }
+            return hasPrivilege;
+        }
+
+        /// <summary>
+        /// Checks if the given appid has the specified privilege.
+        /// </summary>
+        /// <param name="appId">The App ID.</param>
+        /// <param name="privilege">The privilege name.</param>
+        /// <returns>True if the appid has the privilege, false otherwise.</returns>
+        /// <exception cref="InvalidIDException">Thrown when an invalid parameter is passed.</exception>
+        /// <since_tizen> 13 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool HasPrivilegeLocal(string appId, string privilege)
+        {
+            var err = Interop.LibRPCPort.Stub.HasPrivilegeLocal(_stub, appId, privilege, out bool hasPrivilege);
+            switch (err)
+            {
+                case Interop.LibRPCPort.ErrorCode.InvalidParameter:
+                    throw new InvalidIDException();
+                case Interop.LibRPCPort.ErrorCode.IoError:
+                    throw new InvalidIOException();
+            }
+            return hasPrivilege;
         }
 
         /// <summary>
