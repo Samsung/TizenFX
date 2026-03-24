@@ -36,6 +36,10 @@ namespace Tizen.Benchmark.Gallery
             ("FrozenDictionary: Enum Key Lookup", FrozenDictionaryBenchmark.RunEnumKeyLookup),
             ("FrozenDictionary: Type Key Lookup", FrozenDictionaryBenchmark.RunTypeKeyLookup),
             ("FrozenDictionary: Size Comparison", FrozenDictionaryBenchmark.RunSizeComparison),
+            ("Stackalloc: Single Struct (Old)", StackallocBenchmark.RunSingleStructOldUI),
+            ("Stackalloc: Single Struct (New)", StackallocBenchmark.RunSingleStructNewUI),
+            ("Stackalloc: Struct Array (Old)", StackallocBenchmark.RunStructArrayOldUI),
+            ("Stackalloc: Struct Array (New)", StackallocBenchmark.RunStructArrayNewUI),
             // Add more benchmarks here in the future
         };
 

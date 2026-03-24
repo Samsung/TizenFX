@@ -3,6 +3,7 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>net8.0-tizen10.0</TargetFramework>
         <AssemblyName>Tizen.Benchmark.Gallery</AssemblyName>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
