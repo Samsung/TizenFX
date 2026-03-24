@@ -227,6 +227,26 @@ internal static partial class Interop
 
         internal static partial class Proxy
         {
+            // int rpc_port_proxy_set_domain_inet(rpc_port_proxy_h h);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_set_domain_inet")]
+            internal static extern ErrorCode SetDomainInet(IntPtr handle);
+
+            // int rpc_port_proxy_tcp_connect(rpc_port_proxy_h h, const char *ip, const char *appid, const char *port);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_tcp_connect")]
+            internal static extern ErrorCode TcpConnect(IntPtr handle, string ip, string appId, string port);
+
+            // int rpc_port_proxy_tcp_connect_sync(rpc_port_proxy_h h, const char *ip, const char *appid, const char *port);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_tcp_connect_sync")]
+            internal static extern ErrorCode TcpConnectSync(IntPtr handle, string ip, string appId, string port);
+
+            // int rpc_port_proxy_set_tls_client_certificate(rpc_port_proxy_h h, const char *cert_path, const char *key_path);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_set_tls_client_certificate")]
+            internal static extern ErrorCode SetTlsClientCertificate(IntPtr handle, string certPath, string keyPath);
+
+            // int rpc_port_proxy_set_tls_ca_certificate(rpc_port_proxy_h h, const char *ca_path);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_set_tls_ca_certificate")]
+            internal static extern ErrorCode SetTlsCaCertificate(IntPtr handle, string caPath);
+
             //typedef void (*rpc_port_proxy_connected_event_cb)(const char *ep, const char* port_name, rpc_port_h port, void* data);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void ConnectedEventCallback(string endPoint, string port_name, IntPtr port, IntPtr data);
@@ -282,6 +302,26 @@ internal static partial class Interop
 
         internal static partial class Stub
         {
+            // int rpc_port_stub_set_domain_inet(rpc_port_stub_h h);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_set_domain_inet")]
+            internal static extern ErrorCode SetDomainInet(IntPtr handle);
+
+            // int rpc_port_stub_set_tls_certificate(rpc_port_stub_h h, const char *cert_path, const char *key_path);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_set_tls_certificate")]
+            internal static extern ErrorCode SetTlsCertificate(IntPtr handle, string certPath, string keyPath);
+
+            // int rpc_port_stub_set_tls_ca_certificate(rpc_port_stub_h h, const char *ca_path);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_set_tls_ca_certificate")]
+            internal static extern ErrorCode SetTlsCaCertificate(IntPtr handle, string caPath);
+
+            // int rpc_port_stub_has_privilege(rpc_port_stub_h h, const char *instance, const char *privilege, bool *has_privilege);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_has_privilege")]
+            internal static extern ErrorCode HasPrivilege(IntPtr handle, string instance, string privilege, out bool hasPrivilege);
+
+            // int rpc_port_stub_has_privilege_local(rpc_port_stub_h h, const char *appid, const char *privilege, bool *has_privilege);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_has_privilege_local")]
+            internal static extern ErrorCode HasPrivilegeLocal(IntPtr handle, string appId, string privilege, out bool hasPrivilege);
+
             //typedef void (*rpc_port_stub_connected_event_cb)(const char *sender, const char *instance, void* data);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void ConnectedEventCallback(string sender, string instance, IntPtr data);
@@ -348,6 +388,33 @@ internal static partial class Interop
             //int rpc_port_disconnect(rpc_port_h h);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_disconnect")]
             internal static extern ErrorCode Disconnect(IntPtr handle);
+        }
+
+        internal static partial class Discovery
+        {
+            // typedef void (*rpc_port_discovery_cb)(const char *service_name, const char *tidl_port, const char* app_id, const char *ip, void *user_data);
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void DiscoveryCallback(string serviceName, string tidlPort, string appId, string ip, IntPtr userData);
+
+            // int rpc_port_discovery_create(rpc_port_discovery_h *h);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_discovery_create")]
+            internal static extern ErrorCode Create(out IntPtr handle);
+
+            // int rpc_port_discovery_destroy(rpc_port_discovery_h h);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_discovery_destroy")]
+            internal static extern ErrorCode Destroy(IntPtr handle);
+
+            // int rpc_port_discovery_start_finding(rpc_port_discovery_h h, rpc_port_discovery_cb cb, void *user_data);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_discovery_start_finding")]
+            internal static extern ErrorCode StartFinding(IntPtr handle, DiscoveryCallback cb, IntPtr userData);
+
+            // int rpc_port_discovery_stop_finding(rpc_port_discovery_h h);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_discovery_stop_finding")]
+            internal static extern ErrorCode StopFinding(IntPtr handle);
+
+            // int rpc_port_discovery_register_service(rpc_port_discovery_h h, const char *service_name, const char *tidl_port, const char *app_id);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_discovery_register_service")]
+            internal static extern ErrorCode RegisterService(IntPtr handle, string serviceName, string tidlPort, string appId);
         }
     }
 }
