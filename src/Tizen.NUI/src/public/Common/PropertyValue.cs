@@ -227,12 +227,22 @@ namespace Tizen.NUI
         {
         }
 
-        internal PropertyValue(Matrix3 matrixValue) : this(Interop.PropertyValue.NewPropertyValueMatrix3(Matrix3.getCPtr(matrixValue)), true)
+        /// <summary>
+        /// Creates a Matrix3 property value.
+        /// </summary>
+        /// <param name="matrixValue">Matrix3 values.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyValue(Matrix3 matrixValue) : this(Interop.PropertyValue.NewPropertyValueMatrix3(Matrix3.getCPtr(matrixValue)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PropertyValue(Matrix matrixValue) : this(Interop.PropertyValue.NewPropertyValueMatrix(Matrix.getCPtr(matrixValue)), true)
+        /// <summary>
+        /// Creates a Matrix property value.
+        /// </summary>
+        /// <param name="matrixValue">Matrix values.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyValue(Matrix matrixValue) : this(Interop.PropertyValue.NewPropertyValueMatrix(Matrix.getCPtr(matrixValue)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
