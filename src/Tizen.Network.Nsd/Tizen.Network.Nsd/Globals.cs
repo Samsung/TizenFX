@@ -28,7 +28,7 @@ namespace Tizen.Network.Nsd
             int ret = Interop.Nsd.Dnssd.Initialize();
             if(ret!=(int)DnssdError.None)
             {
-                Log.Error(LogTag, "Failed to initialize Dnssd, Error - "+ (DnssdError)ret);
+                Log.Error(LogTag, $"Failed to initialize Dnssd, Error - {(DnssdError)ret}");
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
         }
@@ -38,7 +38,7 @@ namespace Tizen.Network.Nsd
             int ret = Interop.Nsd.Ssdp.Initialize();
             if (ret != (int)SsdpError.None)
             {
-                Log.Error(LogTag, "Failed to initialize Ssdp, Error - " + (SsdpError)ret);
+                Log.Error(LogTag, $"Failed to initialize Ssdp, Error - {(SsdpError)ret}");
                 NsdErrorFactory.ThrowSsdpException(ret);
             }
         }

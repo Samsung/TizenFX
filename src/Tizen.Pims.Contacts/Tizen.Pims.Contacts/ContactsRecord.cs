@@ -43,7 +43,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Record.GetUriP(handle, out viewUri);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "ContactsRecord Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ContactsRecord Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             GC.AddMemoryPressure(_memoryPressure);
@@ -58,7 +58,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Record.GetUriP(handle, out viewUri);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "ContactsRecord Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ContactsRecord Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
 
@@ -75,7 +75,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Record.GetUriP(handle, out viewUri);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "ContactsRecord Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ContactsRecord Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             _uri = Marshal.PtrToStringAnsi(viewUri);
@@ -97,7 +97,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Record.Create(viewUri, out _recordHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "ContactsRecord Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ContactsRecord Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             _uri = viewUri;
@@ -149,7 +149,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Record.Destroy(_recordHandle, true);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "Dispose Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Dispose Failed with error {error}");
                 }
                 _disposedValue = true;
                 GC.RemoveMemoryPressure(_memoryPressure);
@@ -182,7 +182,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Record.Clone(_recordHandle, out _clonedRecordHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Clone Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Clone Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             return new ContactsRecord(_clonedRecordHandle, (int)_id);
@@ -208,7 +208,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Record.GetStr(_recordHandle, propertyId, out val);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "Get String Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Get String Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
                 parsedValue = Convert.ChangeType(val, typeof(T));
@@ -219,7 +219,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Record.GetInt(_recordHandle, propertyId, out val);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "Get Int Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Get Int Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
                 parsedValue = Convert.ChangeType(val, typeof(T));
@@ -230,7 +230,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Record.GetBool(_recordHandle, propertyId, out val);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "Get Bool Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Get Bool Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
                 parsedValue = Convert.ChangeType(val, typeof(T));
@@ -241,7 +241,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Record.GetLli(_recordHandle, propertyId, out val);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "Get Long Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Get Long Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
                 parsedValue = Convert.ChangeType(val, typeof(T));
@@ -252,7 +252,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Record.GetDouble(_recordHandle, propertyId, out val);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "Get Long Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Get Long Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
                 parsedValue = Convert.ChangeType(val, typeof(T));
@@ -282,7 +282,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Record.SetStr(_recordHandle, propertyId, val);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "Set String Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Set String Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
             }
@@ -292,7 +292,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Record.SetInt(_recordHandle, propertyId, val);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "Set Int Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Set Int Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
             }
@@ -302,7 +302,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Record.SetBool(_recordHandle, propertyId, val);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "Set Bool Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Set Bool Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
             }
@@ -312,7 +312,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Record.SetLli(_recordHandle, propertyId, val);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "Set Long Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Set Long Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
             }
@@ -322,7 +322,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Record.SetDouble(_recordHandle, propertyId, val);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "Get Long Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Get Long Failed with error {error}");
                     throw ContactsErrorFactory.CheckAndCreateException(error);
                 }
             }
@@ -347,7 +347,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Record.AddChildRecord(_recordHandle, propertyId, childRecord._recordHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "AddChildRecord Failed with error " + error);
+                Log.Error(Globals.LogTag, $"AddChildRecord Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             childRecord._disposedValue = true;
@@ -367,7 +367,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Record.RemoveChildRecord(_recordHandle, propertyId, childRecord._recordHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "RemoveChildRecord Failed with error " + error);
+                Log.Error(Globals.LogTag, $"RemoveChildRecord Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             childRecord._disposedValue = false;
@@ -388,7 +388,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Record.GetChildRecordCount(_recordHandle, propertyId, out count);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "GetChildRecordCount Failed with error " + error);
+                Log.Error(Globals.LogTag, $"GetChildRecordCount Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             return count;
@@ -411,7 +411,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Record.GetChildRecordAtP(_recordHandle, propertyId, index, out handle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "GetChildRecord Failed with error " + error);
+                Log.Error(Globals.LogTag, $"GetChildRecord Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             return new ContactsRecord(handle, true);
@@ -435,7 +435,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Record.CloneChildRecordList(_recordHandle, propertyId, out listHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "CloneChildRecordList Failed with error " + error);
+                Log.Error(Globals.LogTag, $"CloneChildRecordList Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             ContactsList list = new ContactsList(listHandle);

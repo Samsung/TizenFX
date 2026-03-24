@@ -124,7 +124,7 @@ namespace Tizen.MachineLearning.Train
 
             if (property.Length > 0) {
                 propertyParams = string.Join("|", property);
-                Log.Info(NNTrainer.Tag, "Set property:"+ propertyParams);
+                Log.Info(NNTrainer.Tag, $"Set property:{propertyParams}");
             }
 
             NNTrainerError ret = Interop.Optimizer.SetProperty(handle, propertyParams);

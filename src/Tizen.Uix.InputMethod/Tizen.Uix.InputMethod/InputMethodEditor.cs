@@ -1151,7 +1151,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeEventSetFocusedInCb(_imeFocusedInDelegate, IntPtr.Zero);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Add FocusedIn Failed with error " + error);
+                    Log.Error(LogTag, $"Add FocusedIn Failed with error {error}");
                 }
                 else
                 {
@@ -1180,7 +1180,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeEventSetFocusedOutCb(_imeFocusedOutDelegate, IntPtr.Zero);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Add FocusedOut Failed with error " + error);
+                    Log.Error(LogTag, $"Add FocusedOut Failed with error {error}");
                 }
                 else
                 {
@@ -1209,7 +1209,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeEventSetSurroundingTextUpdatedCb(_imeSurroundingTextUpdatedDelegate, IntPtr.Zero);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Add SurroundingTextUpdated Failed with error " + error);
+                    Log.Error(LogTag, $"Add SurroundingTextUpdated Failed with error {error}");
                 }
                 else
                 {
@@ -1237,7 +1237,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeEventSetInputContextResetCb(_imeInputContextResetDelegate, IntPtr.Zero);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Add InputContextReset Failed with error " + error);
+                    Log.Error(LogTag, $"Add InputContextReset Failed with error {error}");
                 }
                 else
                 {
@@ -1266,7 +1266,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeEventSetCursorPositionUpdatedCb(_imeCursorPositionUpdatedDelegate, IntPtr.Zero);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Add CursorPositionUpdated Failed with error " + error);
+                    Log.Error(LogTag, $"Add CursorPositionUpdated Failed with error {error}");
                 }
                 else
                 {
@@ -1296,7 +1296,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeEventSetLanguageSetCb(_imeLanguageSetDelegate, IntPtr.Zero);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Add LanguageSet Failed with error " + error);
+                    Log.Error(LogTag, $"Add LanguageSet Failed with error {error}");
                 }
                 else
                 {
@@ -1327,7 +1327,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeEventSetImdataSetCb(_imeDataSetDelegate, IntPtr.Zero);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Add DataSet Failed with error " + error);
+                    Log.Error(LogTag, $"Add DataSet Failed with error {error}");
                 }
                 else
                 {
@@ -1357,7 +1357,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeEventSetLayoutSetCb(_imeLayoutSetDelegate, IntPtr.Zero);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Add LayoutSet Failed with error " + error);
+                    Log.Error(LogTag, $"Add LayoutSet Failed with error {error}");
                 }
                 else
                 {
@@ -1387,7 +1387,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeEventSetReturnKeySetCb(_imeReturnKeySetDelegate, IntPtr.Zero);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Add ReturnKeySet Failed with error " + error);
+                    Log.Error(LogTag, $"Add ReturnKeySet Failed with error {error}");
                 }
                 else
                 {
@@ -1416,7 +1416,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeEventSetReturnKeyStateSetCb(_imeReturnKeyStateSetDelegate, IntPtr.Zero);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Add ReturnKeyStateSet Failed with error " + error);
+                    Log.Error(LogTag, $"Add ReturnKeyStateSet Failed with error {error}");
                 }
                 else
                 {
@@ -1445,7 +1445,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeEventSetDisplayLanguageChangedCb(_imeDisplayLanguageChangedDelegate, IntPtr.Zero);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Add DisplayLanguageChanged Failed with error " + error);
+                    Log.Error(LogTag, $"Add DisplayLanguageChanged Failed with error {error}");
                 }
                 else
                 {
@@ -1475,7 +1475,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeEventSetRotationChangedCb(_imeRotationChangedDelegate, IntPtr.Zero);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Add RotationChanged Failed with error " + error);
+                    Log.Error(LogTag, $"Add RotationChanged Failed with error {error}");
                 }
                 else
                 {
@@ -1504,7 +1504,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeEventSetAccessibilityStateChangedCb(_imeAccessibilityStateChangedDelegate, IntPtr.Zero);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Add AccessibilityStateChanged Failed with error " + error);
+                    Log.Error(LogTag, $"Add AccessibilityStateChanged Failed with error {error}");
                 }
                 else
                 {
@@ -1535,7 +1535,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeEventSetLanguageRequestedCallbackCb(_imeLanguageRequestedDelegate, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Add SetLanguageRequestedCallback Failed with error " + error);
+                Log.Error(LogTag, $"Add SetLanguageRequestedCallback Failed with error {error}");
             }
             _languageRequestedDelegate = languageRequested;
         }
@@ -1558,7 +1558,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeEventSetProcessKeyEventCb(_imeProcessKeyDelegate, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Add ProcessKey Failed with error " + error);
+                Log.Error(LogTag, $"Add ProcessKey Failed with error {error}");
             }
             _processKeyDelagate = processKey;
         }
@@ -1583,7 +1583,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeEventSetImdataRequestedCb(_imeImDataRequestedDelegate, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Add SetDataRequestedCallback Failed with error " + error);
+                Log.Error(LogTag, $"Add SetDataRequestedCallback Failed with error {error}");
             }
             _imDataRequestedDelegate = imDataRequested;
         }
@@ -1609,7 +1609,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeEventSetGeometryRequestedCallbackCb(_imeGeometryRequestedDelegate, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Add SetGeometryRequestedCallback Failed with error " + error);
+                Log.Error(LogTag, $"Add SetGeometryRequestedCallback Failed with error {error}");
             }
             _geometryRequestedDelegate = geometryRequested;
         }
@@ -1652,7 +1652,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeRun(ref _imeCallbackStructGCHandle._imeCallbackStruct, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Run Failed with error " + error);
+                Log.Error(LogTag, $"Run Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
 
@@ -1679,7 +1679,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeSendKeyEvent(keyCode, keyMask, forwardKey);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SendEvent Failed with error " + error);
+                Log.Error(LogTag, $"SendEvent Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -1699,7 +1699,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeCommitString(str);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "CommitString Failed with error " + error);
+                Log.Error(LogTag, $"CommitString Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -1718,7 +1718,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeShowPreeditString();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "ShowPreEditString Failed with error " + error);
+                Log.Error(LogTag, $"ShowPreEditString Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -1737,7 +1737,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeHidePreeditString();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "HidePreEditString Failed with error " + error);
+                Log.Error(LogTag, $"HidePreEditString Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -1775,7 +1775,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeUpdatePreeditString(str, einaList);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "UpdatePreEditString Failed with error " + error);
+                Log.Error(LogTag, $"UpdatePreEditString Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -1803,7 +1803,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeRequestSurroundingText(maxLenBefore, maxLenAfter);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "RequestSurroundingText Failed with error " + error);
+                Log.Error(LogTag, $"RequestSurroundingText Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -1825,7 +1825,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeDeleteSurroundingText(offset, len);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "DeleteSurroundingText Failed with error " + error);
+                Log.Error(LogTag, $"DeleteSurroundingText Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -1850,7 +1850,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeGetSurroundingText(maxLenBefore, maxLenAfter, out txt, out cursorPosition);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "GetSurroundingText Failed with error " + error);
+                Log.Error(LogTag, $"GetSurroundingText Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
             text = Marshal.PtrToStringAnsi(txt);
@@ -1873,7 +1873,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeSetSelection(start, end);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SetSelection Failed with error " + error);
+                Log.Error(LogTag, $"SetSelection Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -1892,7 +1892,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeRequestHide();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "RequestHide Failed with error " + error);
+                Log.Error(LogTag, $"RequestHide Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -1910,18 +1910,18 @@ namespace Tizen.Uix.InputMethod
         public static void Create()
         {
             ErrorCode error = ImeInitialize();
-            Log.Info(LogTag, "ImeInitialize result : " + error);
+            Log.Info(LogTag, $"ImeInitialize result : {error}");
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "ImeInitialize Failed with error " + error);
+                Log.Error(LogTag, $"ImeInitialize Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
 
             error = ImePrepare();
-            Log.Info(LogTag, "ImePrepare result : " + error);
+            Log.Info(LogTag, $"ImePrepare result : {error}");
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "ImePrepare Failed with error " + error);
+                Log.Error(LogTag, $"ImePrepare Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -1938,10 +1938,10 @@ namespace Tizen.Uix.InputMethod
         public static void Destroy()
         {
             ErrorCode error = ImeFinalize();
-            Log.Info(LogTag, "ImeFinalize result : " + error);
+            Log.Info(LogTag, $"ImeFinalize result : {error}");
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "ImeFinalize Failed with error " + error);
+                Log.Error(LogTag, $"ImeFinalize Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -1961,7 +1961,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeSetFloatingMode(floatingMode);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SetFloatingMode Failed with error " + error);
+                Log.Error(LogTag, $"SetFloatingMode Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -1983,7 +1983,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeSetFloatingDragStart();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SetFloatingDragStart Failed with error " + error);
+                Log.Error(LogTag, $"SetFloatingDragStart Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -2005,7 +2005,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeSetFloatingDragEnd();
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SetFloatingDragEnd Failed with error " + error);
+                Log.Error(LogTag, $"SetFloatingDragEnd Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -2027,7 +2027,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeUpdateInputPanelEvent(ImeEventType.Language, 0);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SendLanguageUpdated Failed with error " + error);
+                Log.Error(LogTag, $"SendLanguageUpdated Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -2047,7 +2047,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeUpdateInputPanelEvent(ImeEventType.ShiftMode, enable ? (uint)ImeShiftMode.On : (uint)ImeShiftMode.Off);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SendInputPanelEvent Failed with error " + error);
+                Log.Error(LogTag, $"SendInputPanelEvent Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -2066,7 +2066,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeUpdateInputPanelEvent(ImeEventType.Geometry, 0);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SendCustomGeometryUpdated Failed with error " + error);
+                Log.Error(LogTag, $"SendCustomGeometryUpdated Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -2087,7 +2087,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeGetSelectedText(out txt);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "GetSelectedText Failed with error " + error);
+                Log.Error(LogTag, $"GetSelectedText Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
             return Marshal.PtrToStringAnsi(txt);
@@ -2111,7 +2111,7 @@ namespace Tizen.Uix.InputMethod
                     ErrorCode error = ImeEventSetPredictionHintSetCb(_imePredictionHintSetDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add PredictionHintUpdated Failed with error " + error);
+                        Log.Error(LogTag, $"Add PredictionHintUpdated Failed with error {error}");
                     }
                 }
                 _predictionHintUpdated += value;
@@ -2141,7 +2141,7 @@ namespace Tizen.Uix.InputMethod
                     ErrorCode error = ImeEventSetPredictionHintDataSetCb(_imePredictionHintDataSetDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add PredictionHintDataUpdated Failed with error " + error);
+                        Log.Error(LogTag, $"Add PredictionHintDataUpdated Failed with error {error}");
                     }
                 }
                 _predictionHintDataUpdated += value;
@@ -2170,7 +2170,7 @@ namespace Tizen.Uix.InputMethod
                     ErrorCode error = ImeEventSetMimeTypeSetRequestCb(_imeMimeTypeSetRequestDelegate, IntPtr.Zero);
                     if (error != ErrorCode.None)
                     {
-                        Log.Error(LogTag, "Add MimeTypeUpdateRequested Failed with error " + error);
+                        Log.Error(LogTag, $"Add MimeTypeUpdateRequested Failed with error {error}");
                     }
                 }
                 _mimeTypeUpdateRequested += value;
@@ -2196,7 +2196,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeSendPrivateCommand(command);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SendPrivateCommand Failed with error " + error);
+                Log.Error(LogTag, $"SendPrivateCommand Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -2218,7 +2218,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeCommitContent(content, description, mimeType);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "CommitContent Failed with error " + error);
+                Log.Error(LogTag, $"CommitContent Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -2246,7 +2246,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeSetNativeWindowSize(window, portraitWidth, portraitHeight, landscapeWidth, landscapeHeight);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SetSize Failed with error " + error);
+                Log.Error(LogTag, $"SetSize Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -2271,7 +2271,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeEventSetProcessKeyEventWithKeycodeCb(_imeProcessKeyWithKeycodeDelegate, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Add ProcessKeyWithKeycode Failed with error " + error);
+                Log.Error(LogTag, $"Add ProcessKeyWithKeycode Failed with error {error}");
             }
             _processKeyWithKeycodeDelagate = processKey;
         }
@@ -2291,7 +2291,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeUpdatePreeditCursor(position);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "UpdatePreeditCursor Failed with error " + error);
+                Log.Error(LogTag, $"UpdatePreeditCursor Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -2311,7 +2311,7 @@ namespace Tizen.Uix.InputMethod
             ErrorCode error = ImeSetCandidateVisibilityState(visible);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SetCandidateVisibilityState Failed with error " + error);
+                Log.Error(LogTag, $"SetCandidateVisibilityState Failed with error {error}");
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
@@ -2334,7 +2334,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeEventSetInputHintSetCb(_imeInputHintSetDelegate, IntPtr.Zero);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Add InputHintSet Failed with error " + error);
+                    Log.Error(LogTag, $"Add InputHintSet Failed with error {error}");
                 }
                 else
                 {

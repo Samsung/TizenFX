@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -97,7 +97,7 @@ namespace Tizen.Applications.WatchfaceComplication
             }
             ComplicationError err = data.UpdateSharedData(sharedData);
             if (err != ComplicationError.None)
-                Log.Error(LogTag, "Set complication data error : " + err);
+                Log.Error(LogTag, $"Set complication data error : {err}");
         }
 
         /// <summary>

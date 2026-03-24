@@ -124,7 +124,7 @@ namespace Tizen.Location
     {
         internal static Exception ThrowLocationException(int errCode)
         {
-            Log.Error(Globals.LogTag, "Throw Location Exception : " + errCode);
+            Log.Error(Globals.LogTag, $"Throw Location Exception : {errCode}");
             LocationError error = (LocationError)errCode;
             switch (error)
             {

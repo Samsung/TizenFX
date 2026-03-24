@@ -115,30 +115,30 @@ namespace Tizen.Applications.CoreBackend
             err = Interop.Widget.AddEventHandler(out _lowMemoryEventHandle, Interop.Widget.AppEventType.LowMemory, _lowMemoryCallback, IntPtr.Zero);
             if (err != Interop.Widget.ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to add event handler for LowMemory event. Err = " + err);
+                Log.Error(LogTag, $"Failed to add event handler for LowMemory event. Err = {err}");
             }
             err = Interop.Widget.AddEventHandler(out _lowBatteryEventHandle, Interop.Widget.AppEventType.LowBattery, _lowBatteryCallback, IntPtr.Zero);
             if (err != Interop.Widget.ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to add event handler for LowBattery event. Err = " + err);
+                Log.Error(LogTag, $"Failed to add event handler for LowBattery event. Err = {err}");
             }
 
             err = Interop.Widget.AddEventHandler(out _localeChangedEventHandle, Interop.Widget.AppEventType.LanguageChanged, _localeChangedCallback, IntPtr.Zero);
             if (err != Interop.Widget.ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to add event handler for LocaleChanged event. Err = " + err);
+                Log.Error(LogTag, $"Failed to add event handler for LocaleChanged event. Err = {err}");
             }
 
             err = Interop.Widget.AddEventHandler(out _regionChangedEventHandle, Interop.Widget.AppEventType.RegionFormatChanged, _regionChangedCallback, IntPtr.Zero);
             if (err != Interop.Widget.ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to add event handler for RegionFormatChanged event. Err = " + err);
+                Log.Error(LogTag, $"Failed to add event handler for RegionFormatChanged event. Err = {err}");
             }
 
             err = Interop.Widget.Main(args.Length, args, ref _callbacks, IntPtr.Zero);
             if (err != Interop.Widget.ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to run the application. Err = " + err);
+                Log.Error(LogTag, $"Failed to run the application. Err = {err}");
             }
         }
 
@@ -182,7 +182,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.Widget.AppEventGetLowMemoryStatus(infoHandle, out status);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to get memory status. Err = " + err);
+                Log.Error(LogTag, $"Failed to get memory status. Err = {err}");
             }
             if (_handlers.ContainsKey(EventType.LowMemory))
             {
@@ -197,7 +197,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.Widget.AppEventGetLowBatteryStatus(infoHandle, out status);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to get battery status. Err = " + err);
+                Log.Error(LogTag, $"Failed to get battery status. Err = {err}");
             }
             if (_handlers.ContainsKey(EventType.LowBattery))
             {
@@ -212,7 +212,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.Widget.AppEventGetLanguage(infoHandle, out lang);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to get changed language. Err = " + err);
+                Log.Error(LogTag, $"Failed to get changed language. Err = {err}");
             }
             if (_handlers.ContainsKey(EventType.LocaleChanged))
             {
@@ -227,7 +227,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.Widget.AppEventGetRegionFormat(infoHandle, out region);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to get changed region format. Err = " + err);
+                Log.Error(LogTag, $"Failed to get changed region format. Err = {err}");
             }
             if (_handlers.ContainsKey(EventType.RegionFormatChanged))
             {

@@ -262,7 +262,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetDownloadedPath(_downloadId, out path);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get DownloadedPath, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get DownloadedPath, {(DownloadError)ret}");
                     return String.Empty;
                 }
                 return path;
@@ -286,7 +286,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetMimeType(_downloadId, out mime);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get MimeType, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get MimeType, {(DownloadError)ret}");
                     return String.Empty;
                 }
                 return mime;
@@ -309,7 +309,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetState(_downloadId, out state);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get DownloadState, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get DownloadState, {(DownloadError)ret}");
                     return DownloadState.None;
                 }
                 return (DownloadState)state;
@@ -334,7 +334,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetContentName(_downloadId, out name);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get ContentName, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get ContentName, {(DownloadError)ret}");
                     return String.Empty;
                 }
                 return name;
@@ -359,7 +359,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetContentSize(_downloadId, out size);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get ContentSize, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get ContentSize, {(DownloadError)ret}");
                     return 0;
                 }
                 return size;
@@ -386,7 +386,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetHttpStatus(_downloadId, out status);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get HttpStatus, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get HttpStatus, {(DownloadError)ret}");
                     return 0;
                 }
                 return status;
@@ -414,7 +414,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetETag(_downloadId, out etag);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get ETagValue, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get ETagValue, {(DownloadError)ret}");
                     return String.Empty;
                 }
                 return etag;
@@ -459,7 +459,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetTempFilePath(_downloadId, out path);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get TemporaryPath, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get TemporaryPath, {(DownloadError)ret}");
                     return String.Empty;
                 }
                 return path;
@@ -486,7 +486,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetUrl(_downloadId, out url);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get Url, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get Url, {(DownloadError)ret}");
                     return String.Empty;
                 }
                 return url;
@@ -526,7 +526,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetNetworkType(_downloadId, out type);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get AllowedNetworkType, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get AllowedNetworkType, {(DownloadError)ret}");
                     return NetworkType.All;
                 }
                 return (NetworkType)type;
@@ -561,7 +561,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetDestination(_downloadId, out path);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get DestinationPath, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get DestinationPath, {(DownloadError)ret}");
                     return String.Empty;
                 }
                 return path;
@@ -596,7 +596,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetFileName(_downloadId, out name);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get FileName, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get FileName, {(DownloadError)ret}");
                     return String.Empty;
                 }
                 return name;
@@ -632,7 +632,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetAutoDownload(_downloadId, out value);
                 if (ret != (int)DownloadError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get AutoDownload, " + (DownloadError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get AutoDownload, {(DownloadError)ret}");
                     return false;
                 }
                 return value;

@@ -647,7 +647,7 @@ namespace Tizen.Multimedia
             }
             if (ret != PlayerErrorCode.None)
             {
-                Log.Error(PlayerLog.Tag, "Failed to set play position, " + (PlayerError)ret);
+                Log.Error(PlayerLog.Tag, $"Failed to set play position, {(PlayerError)ret}");
             }
             ret.ThrowIfFailed(this, "Failed to set play position");
         }
@@ -1001,7 +1001,7 @@ namespace Tizen.Multimedia
                 var handler = AudioDataDecoded;
                 if (handler != null)
                 {
-                    Log.Debug(PlayerLog.Tag, "packet : " + packetHandle.ToString());
+                    Log.Debug(PlayerLog.Tag, $"packet : {packetHandle.ToString()}");
                     handler.Invoke(this,
                         new AudioDataDecodedEventArgs(MediaPacket.From(packetHandle)));
                 }
@@ -1074,7 +1074,7 @@ namespace Tizen.Multimedia
                 var handler = VideoFrameDecoded;
                 if (handler != null)
                 {
-                    Log.Debug(PlayerLog.Tag, "packet : " + packetHandle);
+                    Log.Debug(PlayerLog.Tag, $"packet : {packetHandle}");
                     handler.Invoke(this,
                         new VideoFrameDecodedEventArgs(MediaPacket.From(packetHandle)));
                 }

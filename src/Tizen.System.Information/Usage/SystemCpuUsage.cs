@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 - 2017 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -105,7 +105,7 @@ namespace Tizen.System
         {
             if(coreId < 0 || coreId >= ProcessorCount)
             {
-                Log.Error(InformationErrorFactory.LogTag, "Invalid core ID " + coreId);
+                Log.Error(InformationErrorFactory.LogTag, $"Invalid core ID {coreId}");
                 InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
             }
 
@@ -123,7 +123,7 @@ namespace Tizen.System
         {
             if (coreId < 0 || coreId >= ProcessorCount)
             {
-                Log.Error(InformationErrorFactory.LogTag, "Invalid core ID " + coreId);
+                Log.Error(InformationErrorFactory.LogTag, $"Invalid core ID {coreId}");
                 InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
             }
 
@@ -165,14 +165,14 @@ namespace Tizen.System
                 ret = Interop.RuntimeInfo.GetProcessorCurrentFrequency(coreId, out CurrentFrequencies[coreId]);
                 if (ret != InformationError.None)
                 {
-                    Log.Error(InformationErrorFactory.LogTag, "Interop failed to get the current frequency of processor " + coreId);
+                    Log.Error(InformationErrorFactory.LogTag, $"Interop failed to get the current frequency of processor {coreId}");
                     InformationErrorFactory.ThrowException(ret);
                 }
 
                 ret = Interop.RuntimeInfo.GetProcessorMaxFrequency(coreId, out MaxFrequencies[coreId]);
                 if (ret != InformationError.None)
                 {
-                    Log.Error(InformationErrorFactory.LogTag, "Interop failed to get the max frequency of processor " + coreId);
+                    Log.Error(InformationErrorFactory.LogTag, $"Interop failed to get the max frequency of processor {coreId}");
                     InformationErrorFactory.ThrowException(ret);
                 }
             }

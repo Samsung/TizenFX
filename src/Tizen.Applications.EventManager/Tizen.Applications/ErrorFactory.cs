@@ -37,13 +37,13 @@ namespace Tizen.Applications.EventManager
                     throw new InvalidOperationException(string.IsNullOrEmpty(errorMessage) ? "error code : " + errorCode.ToString() :
                         $"{errorMessage} - {errorCode}");
                 case Interop.AppEvent.ErrorCode.InvalidParameter:
-                    Log.Error(LogTag, "Invalid parameter : " + errorMessage);
+                    Log.Error(LogTag, $"Invalid parameter : {errorMessage}");
                     throw new ArgumentException(string.IsNullOrEmpty(errorMessage) ? "Invalid parameter" : "Invalid parameter : " + errorMessage);
                 case Interop.AppEvent.ErrorCode.PermissionDenied:
-                    Log.Error(LogTag, "Permission denied : " + errorMessage);
+                    Log.Error(LogTag, $"Permission denied : {errorMessage}");
                     throw new UnauthorizedAccessException(string.IsNullOrEmpty(errorMessage) ? "Permission denied" : "Permission denied : " + errorMessage);
                 case Interop.AppEvent.ErrorCode.TimeOut:
-                    Log.Error(LogTag, "Timeout : " + errorMessage);
+                    Log.Error(LogTag, $"Timeout : {errorMessage}");
                     throw new TimeoutException(string.IsNullOrEmpty(errorMessage) ? "Timeout" : "Timeout : " + errorMessage);
                 default:
                     Log.Error(LogTag, $"Unknown error : {errorMessage} - {errorCode}");

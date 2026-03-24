@@ -88,7 +88,7 @@ namespace Tizen.Applications
 
             if (err != Interop.Widget.ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to set content. Err = " + err);
+                Log.Error(LogTag, $"Failed to set content. Err = {err}");
 
                 switch(err)
                 {
@@ -122,7 +122,7 @@ namespace Tizen.Applications
 
             if (err != Interop.Widget.ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to set title. Err = " + err);
+                Log.Error(LogTag, $"Failed to set title. Err = {err}");
 
                 switch (err)
                 {
@@ -153,7 +153,7 @@ namespace Tizen.Applications
 
             if (err != Interop.Widget.ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to terminate context. Err = " + err);
+                Log.Error(LogTag, $"Failed to terminate context. Err = {err}");
 
                 switch (err)
                 {

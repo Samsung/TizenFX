@@ -50,7 +50,7 @@ namespace Tizen.Multimedia
                 return;
             }
 
-            Log.Info(CameraLog.Tag, "errorCode : " + errorCode.ToString() + ", Caller : " + caller + ", line " + line.ToString());
+            Log.Info(CameraLog.Tag, $"errorCode : {errorCode.ToString()}, Caller : {caller}, line {line.ToString()}");
 
             switch (errorCode)
             {

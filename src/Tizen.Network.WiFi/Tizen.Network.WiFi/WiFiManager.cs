@@ -61,7 +61,7 @@ namespace Tizen.Network.WiFi
         internal void SetTID(int id)
         {
             _tid = id;
-            Log.Info(Globals.LogTag, "New Handle for Thread " + _tid);
+            Log.Info(Globals.LogTag, $"New Handle for Thread {_tid}");
         }
     }
 

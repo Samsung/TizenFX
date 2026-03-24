@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -560,7 +560,7 @@ namespace Tizen.Uix.SttEngine
             Error error = STTEMain(argc, argv, _structIntPtrHandle);
             if (error != Error.None)
             {
-                Log.Error(LogTag, "STTEMain Failed with error " + error);
+                Log.Error(LogTag, $"STTEMain Failed with error {error}");
                 throw ExceptionFactory.CreateException((ErrorCode)error);
             }
 
@@ -636,7 +636,7 @@ namespace Tizen.Uix.SttEngine
                 Error error = STTESendResult(resultEvent, type, result, resultCount, message, timeInfo, IntPtr.Zero);
                 if (error != Error.None)
                 {
-                    Log.Error(LogTag, "STTESendResult Failed with error " + error);
+                    Log.Error(LogTag, $"STTESendResult Failed with error {error}");
                     throw ExceptionFactory.CreateException((ErrorCode)error);
                 }
 
@@ -668,7 +668,7 @@ namespace Tizen.Uix.SttEngine
             Error err = STTESendError(error, msg);
             if (err != Error.None)
             {
-                Log.Error(LogTag, "SendError Failed with error " + err);
+                Log.Error(LogTag, $"SendError Failed with error {err}");
                 throw ExceptionFactory.CreateException((ErrorCode)error);
             }
         }
@@ -696,7 +696,7 @@ namespace Tizen.Uix.SttEngine
             Error error = STTESendSpeechStatus(status, IntPtr.Zero);
             if (error != Error.None)
             {
-                Log.Error(LogTag, "SendSpeechStatus Failed with error " + error);
+                Log.Error(LogTag, $"SendSpeechStatus Failed with error {error}");
                 throw ExceptionFactory.CreateException((ErrorCode)error);
             }
 
@@ -747,7 +747,7 @@ namespace Tizen.Uix.SttEngine
             Error error = STTESetPrivateDataSetCb(_privateDataSetCb);
             if (error != Error.None)
             {
-                Log.Error(LogTag, "SetPrivateDataSetDelegate Failed with error " + error);
+                Log.Error(LogTag, $"SetPrivateDataSetDelegate Failed with error {error}");
                 throw ExceptionFactory.CreateException((ErrorCode)error);
             }
 
@@ -798,7 +798,7 @@ namespace Tizen.Uix.SttEngine
             Error error = STTESetPrivateDataRequestedCb(_privateDataRequestedCb);
             if (error != Error.None)
             {
-                Log.Error(LogTag, "SetPrivateDataRequestedDelegate Failed with error " + error);
+                Log.Error(LogTag, $"SetPrivateDataRequestedDelegate Failed with error {error}");
                 throw ExceptionFactory.CreateException((ErrorCode)error);
             }
 

@@ -195,7 +195,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.BtGattServerSetMtuChangedCallback(_handle, _attMtuChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set MTU changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set MTU changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -204,7 +204,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.BtGattServerUnsetMtuChangedCallback(_handle);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset MTU changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset MTU changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -429,7 +429,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.BtGattClientSetMtuChangedCallback(_handle, _attMtuChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set MTU changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set MTU changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -438,7 +438,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.BtGattClientUnsetMtuChangedCallback(_handle);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset MTU changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset MTU changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -471,7 +471,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.BtGattClientSetServiceChangedCallback(_handle, _serviceChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set service changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set service changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -480,7 +480,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.BtGattClientUnsetServiceChangedCallback(_handle);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset service changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset service changed callback, Error - {(BluetoothError)ret}");
             }
         }
 

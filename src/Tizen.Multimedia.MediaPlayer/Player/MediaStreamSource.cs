@@ -82,17 +82,17 @@ namespace Tizen.Multimedia
                     {
                         if (Enum.IsDefined(typeof(MediaFormatAudioMimeType), format))
                         {
-                            Log.Debug(PlayerLog.Tag, "supported audio : " + ((MediaFormatAudioMimeType)format).ToString());
+                            Log.Debug(PlayerLog.Tag, $"supported audio : {((MediaFormatAudioMimeType)format).ToString()}");
                             _supportedAudioFormats.Add((MediaFormatAudioMimeType)format);
                         }
                         else if (Enum.IsDefined(typeof(MediaFormatVideoMimeType), format))
                         {
-                            Log.Debug(PlayerLog.Tag, "supported video : " + ((MediaFormatVideoMimeType)format).ToString());
+                            Log.Debug(PlayerLog.Tag, $"supported video : {((MediaFormatVideoMimeType)format).ToString()}");
                             _supportedVideoFormats.Add((MediaFormatVideoMimeType)format);
                         }
                         else
                         {
-                            Log.Debug(PlayerLog.Tag, "skipped : " + format.ToString());
+                            Log.Debug(PlayerLog.Tag, $"skipped : {format.ToString()}");
                         }
 
                         return true;
@@ -119,7 +119,7 @@ namespace Tizen.Multimedia
 
             if (!SupportedAudioTypes.Contains(format.MimeType))
             {
-                Log.Error(PlayerLog.Tag, "The audio format is not supported : " + format.MimeType);
+                Log.Error(PlayerLog.Tag, $"The audio format is not supported : {format.MimeType}");
                 throw new ArgumentException($"The audio format is not supported, Type : {format.MimeType}.");
             }
 
@@ -135,7 +135,7 @@ namespace Tizen.Multimedia
 
             if (!SupportedVideoTypes.Contains(format.MimeType))
             {
-                Log.Error(PlayerLog.Tag, "The video format is not supported : " + format.MimeType);
+                Log.Error(PlayerLog.Tag, $"The video format is not supported : {format.MimeType}");
                 throw new ArgumentException($"The video format is not supported, Type : {format.MimeType}.");
             }
 
@@ -258,7 +258,7 @@ namespace Tizen.Multimedia
 
             if (packet.Format.Type == MediaFormatType.Text || packet.Format.Type == MediaFormatType.Container)
             {
-                Log.Error(PlayerLog.Tag, "The format of the packet is invalid : " + packet.Format.Type);
+                Log.Error(PlayerLog.Tag, $"The format of the packet is invalid : {packet.Format.Type}");
                 throw new ArgumentException($"The format of the packet is invalid : { packet.Format.Type }.");
             }
 

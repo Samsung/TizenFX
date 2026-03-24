@@ -70,7 +70,7 @@ namespace Tizen.Multimedia
                 {
                     _bands[index] = new EqualizerBand(this, index);
                 }
-                Log.Info(PlayerLog.Tag, "get equalizer band : " + _bands[index]);
+                Log.Info(PlayerLog.Tag, $"get equalizer band : {_bands[index]}");
                 return _bands[index];
             }
         }

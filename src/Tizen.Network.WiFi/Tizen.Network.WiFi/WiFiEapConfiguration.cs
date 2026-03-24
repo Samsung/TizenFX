@@ -43,7 +43,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.GetEapCaCertFile(_configHandle, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get caCertFile Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get caCertFile Error - {(WiFiError)ret}");
                     return "";
                 }
                 return Marshal.PtrToStringAnsi(strPtr);
@@ -53,7 +53,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.SetEapCaCertFile(_configHandle, value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set caCertFile, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set caCertFile, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _configHandle.DangerousGetHandle());
                 }
             }
@@ -75,7 +75,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.GetEapType(_configHandle, out type);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to eap type Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to eap type Error - {(WiFiError)ret}");
                 }
                 return (WiFiEapType)type;
             }
@@ -84,7 +84,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.SetEapType(_configHandle, (int)value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set eap type, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set eap type, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _configHandle.DangerousGetHandle());
                 }
             }
@@ -106,7 +106,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.GetEapAuthType(_configHandle, out type);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get auth type Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get auth type Error - {(WiFiError)ret}");
                 }
                 return (WiFiAuthenticationType)type;
             }
@@ -115,7 +115,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.SetEapAuthType(_configHandle, (int)value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set eap auth type, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set eap auth type, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _configHandle.DangerousGetHandle());
                 }
             }
@@ -137,7 +137,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.GetEapAnonymousIdentity(_configHandle, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get anonymous identify Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get anonymous identify Error - {(WiFiError)ret}");
                     return "";
                 }
                 return Marshal.PtrToStringAnsi(strPtr);
@@ -147,7 +147,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.SetEapAnonymousIdentity(_configHandle, value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set anonymous identify, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set anonymous identify, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _configHandle.DangerousGetHandle());
                 }
             }
@@ -169,7 +169,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.GetEapIdentity(_configHandle, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get identify Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get identify Error - {(WiFiError)ret}");
                     return "";
                 }
                 return Marshal.PtrToStringAnsi(strPtr);
@@ -179,7 +179,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.SetEapIdentity(_configHandle, value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set identify, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set identify, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _configHandle.DangerousGetHandle());
                 }
             }
@@ -201,7 +201,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.GetEapSubjectMatch(_configHandle, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get subject match Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get subject match Error - {(WiFiError)ret}");
                     return "";
                 }
                 return Marshal.PtrToStringAnsi(strPtr);
@@ -211,7 +211,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Config.SetEapSubjectMatch(_configHandle, value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set subject match, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set subject match, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _configHandle.DangerousGetHandle());
                 }
             }
@@ -236,7 +236,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.Config.GetEapClientCertFile(_configHandle, out strPtr);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get client cert file, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get client cert file, Error - {(WiFiError)ret}");
                 if (ret == (int)WiFiError.InvalidParameterError)
                 {
                     throw new InvalidOperationException("Invalid handle");
@@ -261,7 +261,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.Config.SetEapClientCertFile(_configHandle, privateKey, clientCert);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set client cert file, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set client cert file, Error - {(WiFiError)ret}");
                 WiFiErrorFactory.ThrowWiFiException(ret, _configHandle.DangerousGetHandle());
             }
         }

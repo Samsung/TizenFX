@@ -54,7 +54,7 @@ namespace Tizen.Pims.Calendar
                 int error = Interop.Database.GetCurrentVersion(out version);
                 if (CalendarError.None != (CalendarError)error)
                 {
-                    Log.Error(Globals.LogTag, "Version Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Version Failed with error {error}");
                 }
                 return version;
             }
@@ -79,7 +79,7 @@ namespace Tizen.Pims.Calendar
                 int error = Interop.Database.GetLastChangeVersion(out version);
                 if (CalendarError.None != (CalendarError)error)
                 {
-                    Log.Error(Globals.LogTag, "LastChangeVersion Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"LastChangeVersion Failed with error {error}");
                 }
                 return version;
             }
@@ -105,7 +105,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Database.Insert(record._recordHandle, out id);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "Insert Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Insert Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
             return id;
@@ -137,10 +137,10 @@ namespace Tizen.Pims.Calendar
             {
 				if (CalendarError.DBNotFound == (CalendarError)error)
 				{
-					Log.Error(Globals.LogTag, "No data" + error);
+					Log.Error(Globals.LogTag, $"No data{error}");
 					return null;
 				}
-				Log.Error(Globals.LogTag, "Get Failed with error " + error);
+				Log.Error(Globals.LogTag, $"Get Failed with error {error}");
 				throw CalendarErrorFactory.GetException(error);
             }
             return new CalendarRecord(handle);
@@ -164,7 +164,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Database.Update(record._recordHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "Update Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Update Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -189,7 +189,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Database.Delete(viewUri, recordId);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "Delete Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Delete Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -213,7 +213,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Database.Replace(record._recordHandle, id);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "Replace Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Replace Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -243,7 +243,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Database.GetAllRecords(viewUri, offset, limit, out handle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "GetAll Failed with error " + error);
+                Log.Error(Globals.LogTag, $"GetAll Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
             return new CalendarList(handle);
@@ -272,7 +272,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Database.GetRecords(query._queryHandle, offset, limit, out handle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "GetAllWithQuery Failed with error " + error);
+                Log.Error(Globals.LogTag, $"GetAllWithQuery Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
             return new CalendarList(handle);
@@ -301,7 +301,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Database.InsertRecords(list._listHandle, out ids, out count);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "Insert Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Insert Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
             int[] idArr = new int[count];
@@ -328,7 +328,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Database.UpdateRecords(list._listHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "Update Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Update Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -353,7 +353,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Database.DeleteRecords(viewUri, idArray, idArray.Length);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "Delete Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Delete Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -396,7 +396,7 @@ namespace Tizen.Pims.Calendar
                         propertyId = CalendarViews.Extended.Id;
                     else
                     {
-                        Log.Error(Globals.LogTag, "Invalid uri [" + record.Uri + "]");
+                        Log.Error(Globals.LogTag, $"Invalid uri [{record.Uri}]");
                         continue;
                     }
                 }
@@ -425,7 +425,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Database.ReplaceRecords(list._listHandle, idArray, idArray.Length);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "Replace Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Replace Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -456,7 +456,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Database.GetChangesByVersion(viewUri, BookId, calendarDBVersion, out recordList, out currentDBVersion);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "GetChangesByVersion Failed with error " + error);
+                Log.Error(Globals.LogTag, $"GetChangesByVersion Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
             return new CalendarList(recordList);
@@ -479,7 +479,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Database.GetCount(viewUri, out count);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "GetCount Failed with error " + error);
+                Log.Error(Globals.LogTag, $"GetCount Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
             return count;
@@ -501,7 +501,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Database.GetCountWithQuery(query._queryHandle, out count);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "GetCount Failed with error " + error);
+                Log.Error(Globals.LogTag, $"GetCount Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
             return count;
@@ -536,7 +536,7 @@ namespace Tizen.Pims.Calendar
 				int error = Interop.Database.AddChangedCallback(viewUri, _callbackMap[viewUri], IntPtr.Zero);
 				if (CalendarError.None != (CalendarError)error)
 				{
-					Log.Error(Globals.LogTag, "AddDBChangedDelegate Failed with error " + error);
+					Log.Error(Globals.LogTag, $"AddDBChangedDelegate Failed with error {error}");
 					throw CalendarErrorFactory.GetException(error);
 				}
 			}
@@ -576,7 +576,7 @@ namespace Tizen.Pims.Calendar
 				int error = Interop.Database.RemoveChangedCallback(viewUri, _callbackMap[viewUri], IntPtr.Zero);
 				if (CalendarError.None != (CalendarError)error)
 				{
-					Log.Error(Globals.LogTag, "RemoveDBChangedDelegate Failed with error " + error);
+					Log.Error(Globals.LogTag, $"RemoveDBChangedDelegate Failed with error {error}");
 					throw CalendarErrorFactory.GetException(error);
 				}
 				_callbackMap.Remove(viewUri);
@@ -603,7 +603,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Database.LinkRecord(baseId, recordId);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "LinkRecor Failed with error " + error);
+                Log.Error(Globals.LogTag, $"LinkRecor Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -627,7 +627,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Database.UnlinkRecord(recordId);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "UnlinkRecor Failed with error " + error);
+                Log.Error(Globals.LogTag, $"UnlinkRecor Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }

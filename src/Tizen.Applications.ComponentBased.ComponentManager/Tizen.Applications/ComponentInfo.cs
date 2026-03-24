@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -86,7 +86,7 @@ namespace Tizen.Applications.ComponentBased
                 Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentInfoGetComponentId(_infoHandle, out compId);
                 if (err != Interop.ComponentManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the ComponentId. err = " + err);
+                    Log.Warn(LogTag, $"Failed to get the ComponentId. err = {err}");
                 }
                 _componentId = compId;
 
@@ -106,7 +106,7 @@ namespace Tizen.Applications.ComponentBased
                 Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentInfoGetAppId(_infoHandle, out appId);
                 if (err != Interop.ComponentManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the ApplicationId of " + _componentId + ". err = " + err);
+                    Log.Warn(LogTag, $"Failed to get the ApplicationId of {_componentId}. err = {err}");
                 }
 
                 return appId;
@@ -125,7 +125,7 @@ namespace Tizen.Applications.ComponentBased
                 Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentInfoGetComponentType(_infoHandle, out type);
                 if (err != Interop.ComponentManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the Type of " + _componentId + ". err = " + err);
+                    Log.Warn(LogTag, $"Failed to get the Type of {_componentId}. err = {err}");
                 }
 
                 return (ComponentType)type;
@@ -144,7 +144,7 @@ namespace Tizen.Applications.ComponentBased
                 Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentInfoIsIconDisplay(_infoHandle, out iconDisplay);
                 if (err != Interop.ComponentManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the IsIconDisplay of " + _componentId + ". err = " + err);
+                    Log.Warn(LogTag, $"Failed to get the IsIconDisplay of {_componentId}. err = {err}");
                 }
 
                 return iconDisplay;
@@ -163,7 +163,7 @@ namespace Tizen.Applications.ComponentBased
                 Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentInfoIsManagedByTaskManager(_infoHandle, out managed);
                 if (err != Interop.ComponentManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the IsManagedByTaskManager of " + _componentId + ". err = " + err);
+                    Log.Warn(LogTag, $"Failed to get the IsManagedByTaskManager of {_componentId}. err = {err}");
                 }
 
                 return managed;
@@ -182,7 +182,7 @@ namespace Tizen.Applications.ComponentBased
                 Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentInfoGetIcon(_infoHandle, out path);
                 if (err != Interop.ComponentManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the IconPath of " + _componentId + ". err = " + err);
+                    Log.Warn(LogTag, $"Failed to get the IconPath of {_componentId}. err = {err}");
                 }
 
                 return path;
@@ -200,7 +200,7 @@ namespace Tizen.Applications.ComponentBased
                 Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentInfoGetLabel(_infoHandle, out label);
                 if (err != Interop.ComponentManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the Label of " + _componentId + ". err = " + err);
+                    Log.Warn(LogTag, $"Failed to get the Label of {_componentId}. err = {err}");
                 }
 
                 return label;
@@ -220,7 +220,7 @@ namespace Tizen.Applications.ComponentBased
             Interop.ComponentManager.ErrorCode err = Interop.ComponentManager.ComponentInfoGetLocalizedLabel(_infoHandle, locale, out label);
             if (err != Interop.ComponentManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get the GetLocalizedLabel of " + _componentId + ". err = " + err);
+                Log.Warn(LogTag, $"Failed to get the GetLocalizedLabel of {_componentId}. err = {err}");
                 label = Label;
             }
             return label;

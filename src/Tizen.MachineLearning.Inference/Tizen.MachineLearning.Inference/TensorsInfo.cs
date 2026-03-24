@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2019 Samsung Electronics Co., Ltd. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -254,7 +254,7 @@ namespace Tizen.MachineLearning.Inference
 
             if (_handle == IntPtr.Zero)
             {
-                Log.Info(NNStreamer.TAG, "_handle is IntPtr.Zero\n" + "  GetTensorsInfoHandle() is called");
+                Log.Info(NNStreamer.TAG, $"_handle is IntPtr.Zero\n  GetTensorsInfoHandle() is called");
                 GetTensorsInfoHandle();
             }
 

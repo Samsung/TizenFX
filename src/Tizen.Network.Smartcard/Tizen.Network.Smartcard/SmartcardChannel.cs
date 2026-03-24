@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -45,7 +45,7 @@ namespace Tizen.Network.Smartcard
                 int ret = Interop.Smartcard.Channel.ChannelIsBasicChannel(_channelHandle, out isBasicChannel);
                 if (ret != (int)SmartcardError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get basic channel, Error - " + (SmartcardError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get basic channel, Error - {(SmartcardError)ret}");
                 }
                 return isBasicChannel;
             }
@@ -64,7 +64,7 @@ namespace Tizen.Network.Smartcard
                 int ret = Interop.Smartcard.Channel.ChannelIsBasicChannel(_channelHandle, out isBasicChannel);
                 if (ret != (int)SmartcardError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get logical channel, Error - " + (SmartcardError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get logical channel, Error - {(SmartcardError)ret}");
                 }
                 return !isBasicChannel;
             }
@@ -83,7 +83,7 @@ namespace Tizen.Network.Smartcard
                 int ret = Interop.Smartcard.Channel.ChannelIsClosed(_channelHandle, out isClosed);
                 if (ret != (int)SmartcardError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get closed, Error - " + (SmartcardError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get closed, Error - {(SmartcardError)ret}");
                 }
                 return isClosed;
             }
@@ -102,12 +102,12 @@ namespace Tizen.Network.Smartcard
                 int ret = Interop.Smartcard.Channel.ChannelGetSession(_channelHandle, out session);
                 if (ret != (int)SmartcardError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get session, Error - " + (SmartcardError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get session, Error - {(SmartcardError)ret}");
                 }
 
                 if (_sessionObject.GetHandle() != session)
                 {
-                    Log.Error(Globals.LogTag, "Does not correspond with session, Error - " + _sessionObject.GetHandle() + " " + session);
+                    Log.Error(Globals.LogTag, $"Does not correspond with session, Error - {_sessionObject.GetHandle()} {session}");
                 }
 
                 return _sessionObject;
@@ -164,7 +164,7 @@ namespace Tizen.Network.Smartcard
             int ret = Interop.Smartcard.Channel.ChannelClose(_channelHandle);
             if (ret != (int)SmartcardError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to channel close, Error - " + (SmartcardError)ret);
+                Log.Error(Globals.LogTag, $"Failed to channel close, Error - {(SmartcardError)ret}");
                 SmartcardErrorFactory.ThrowSmartcardException(ret);
             }
             Dispose(true);
@@ -184,7 +184,7 @@ namespace Tizen.Network.Smartcard
             int ret = Interop.Smartcard.Channel.ChannelGetSelectResponse(_channelHandle, out strAtr, out len);
             if (ret != (int)SmartcardError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get select response, Error - " + (SmartcardError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get select response, Error - {(SmartcardError)ret}");
             }
 
             respList = new byte[len];
@@ -211,7 +211,7 @@ namespace Tizen.Network.Smartcard
             int ret = Interop.Smartcard.Channel.ChannelTransmit(_channelHandle, cmd, cmd.Length, out strAtr, out len);
             if (ret != (int)SmartcardError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to transmit, Error - " + (SmartcardError)ret);
+                Log.Error(Globals.LogTag, $"Failed to transmit, Error - {(SmartcardError)ret}");
             }
 
             atrList = new byte[len];
@@ -238,7 +238,7 @@ namespace Tizen.Network.Smartcard
             int ret = Interop.Smartcard.Channel.ChannelTransmitRetrieveResponse(_channelHandle, out strAtr, out len);
             if (ret != (int)SmartcardError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get trasmit retrieve response, Error - " + (SmartcardError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get trasmit retrieve response, Error - {(SmartcardError)ret}");
             }
 
             respList = new byte[len];
@@ -262,7 +262,7 @@ namespace Tizen.Network.Smartcard
             int ret = Interop.Smartcard.Channel.ChannelSelectNext(_channelHandle, out selectNext);
             if (ret != (int)SmartcardError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to select next, Error - " + (SmartcardError)ret);
+                Log.Error(Globals.LogTag, $"Failed to select next, Error - {(SmartcardError)ret}");
             }
             return selectNext;
         }

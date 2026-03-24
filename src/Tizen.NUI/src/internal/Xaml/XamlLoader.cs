@@ -97,7 +97,7 @@ namespace Tizen.NUI.Xaml
             }
             catch (XamlParseException e)
             {
-                Tizen.Log.Fatal("NUI", "XamlParseException e.Message: " + e.Message);
+                Tizen.Log.Fatal("NUI", $"XamlParseException e.Message: {e.Message}");
                 Console.WriteLine("\n[FATAL] XamlParseException e.Message: {0}\n", e.Message);
             }
         }
@@ -281,7 +281,7 @@ namespace Tizen.NUI.Xaml
                 xaml = reader.ReadToEnd();
                 reader.Close();
                 reader.Dispose();
-                Tizen.Log.Fatal("NUI", "File is exist!, try with xaml: " + xaml);
+                Tizen.Log.Fatal("NUI", $"File is exist!, try with xaml: {xaml}");
                 return xaml;
             }
 
@@ -296,12 +296,12 @@ namespace Tizen.NUI.Xaml
             string resourceName = type.Name + ".xaml";
             string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
 
-            Tizen.Log.Fatal("NUI", "the resource path: " + resource);
+            Tizen.Log.Fatal("NUI", $"the resource path: {resource}");
             int windowWidth = NUIApplication.GetDefaultWindow().Size.Width;
             int windowHeight = NUIApplication.GetDefaultWindow().Size.Height;
 
             string likelyResourcePath = resource + "layout/" + windowWidth.ToString() + "x" + windowHeight.ToString() + "/" + resourceName;
-            Tizen.Log.Fatal("NUI", "the resource path: " + likelyResourcePath);
+            Tizen.Log.Fatal("NUI", $"the resource path: {likelyResourcePath}");
 
             if (!File.Exists(likelyResourcePath))
             {
@@ -315,7 +315,7 @@ namespace Tizen.NUI.Xaml
                 xaml = reader.ReadToEnd();
                 reader.Close();
                 reader.Dispose();
-                Tizen.Log.Fatal("NUI", "File is exist!, try with xaml: " + xaml);
+                Tizen.Log.Fatal("NUI", $"File is exist!, try with xaml: {xaml}");
                 var pattern = String.Format("x:Class *= *\"{0}\"", type.FullName);
                 var regex = new Regex(pattern, RegexOptions.ECMAScript);
                 if (regex.IsMatch(xaml) || xaml.Contains(String.Format("x:Class=\"{0}\"", type.FullName)))

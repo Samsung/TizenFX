@@ -54,7 +54,7 @@ namespace Tizen.Network.Connection
         internal static void ThrowConnectionException(int errno , string message = "")
         {
             ConnectionError _error = (ConnectionError)errno;
-            Log.Debug(Globals.LogTag, "ThrowConnectionException " + _error);
+            Log.Debug(Globals.LogTag, $"ThrowConnectionException {_error}");
             switch (_error)
             {
                 case ConnectionError.AddressFamilyNotSupported:

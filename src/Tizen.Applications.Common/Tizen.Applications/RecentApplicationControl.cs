@@ -117,7 +117,7 @@ namespace Tizen.Applications
                     }
                     catch (Exception e)
                     {
-                        Log.Error(LogTag, "Failed to get record by using RuaHistoryGetRecord. Err = " + e.Message);
+                        Log.Error(LogTag, $"Failed to get record by using RuaHistoryGetRecord. Err = {e.Message}");
                     }
                 }
             };
