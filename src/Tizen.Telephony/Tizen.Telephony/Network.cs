@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -325,11 +325,11 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetLac(_handle, out lac);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetLac Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetLac Failed with error {error}");
                     return -1;
                 }
 
-                Log.Info(Interop.Telephony.LogTag, "Lac Value " + lac);
+                Log.Info(Interop.Telephony.LogTag, $"Lac Value {lac}");
                 return lac;
             }
 
@@ -355,11 +355,11 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetCellId(_handle, out cellId);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetCellId Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetCellId Failed with error {error}");
                     return -1;
                 }
 
-                Log.Info(Interop.Telephony.LogTag, "CellId Value " + cellId);
+                Log.Info(Interop.Telephony.LogTag, $"CellId Value {cellId}");
                 return cellId;
             }
         }
@@ -382,11 +382,11 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetRssi(_handle, out currentRssi);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetRssi Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetRssi Failed with error {error}");
                     return Rssi.Unavailable;
                 }
 
-                Log.Info(Interop.Telephony.LogTag, "CurrentRssi Value " + currentRssi);
+                Log.Info(Interop.Telephony.LogTag, $"CurrentRssi Value {currentRssi}");
                 return currentRssi;
             }
         }
@@ -408,7 +408,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetRoamingStatus(_handle, out roamingStatus);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetRoamingStatus Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetRoamingStatus Failed with error {error}");
                     return false;
                 }
 
@@ -437,7 +437,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetMcc(_handle, out mcc);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetMcc Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetMcc Failed with error {error}");
                     return "";
                 }
 
@@ -466,7 +466,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetMnc(_handle, out mnc);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetMnc Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetMnc Failed with error {error}");
                     return "";
                 }
 
@@ -495,7 +495,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetNetworkName(_handle, out networkName);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetNetworkName Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetNetworkName Failed with error {error}");
                     return "";
                 }
 
@@ -523,7 +523,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetType(_handle, out networkType);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetType Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetType Failed with error {error}");
                     return Type.Unknown;
                 }
 
@@ -551,7 +551,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetPsType(_handle, out networkPsType);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetPsType Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetPsType Failed with error {error}");
                     return PsType.Unknown;
                 }
 
@@ -577,7 +577,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetNetworkNameOption(_handle, out networkNameOption);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetNetworkNameOption Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetNetworkNameOption Failed with error {error}");
                     return NameOption.Unknown;
                 }
 
@@ -603,7 +603,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetServiceState(_handle, out networkServiceState);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetServiceState Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetServiceState Failed with error {error}");
                     return ServiceState.Unavailable;
                 }
 
@@ -629,7 +629,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetDefaultDataSubscription(_handle, out networkDefaultDataSubs);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetDefaultDataSubscription Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetDefaultDataSubscription Failed with error {error}");
                     return DefaultDataSubscription.Unknown;
                 }
 
@@ -655,7 +655,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetDefaultSubscription(_handle, out networkDefaultSubscription);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetDefaultSubscription Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetDefaultSubscription Failed with error {error}");
                     return DefaultSubscription.Unknown;
                 }
 
@@ -681,7 +681,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetSelectionMode(_handle, out networkSelectionMode);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetSelectionMode Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetSelectionMode Failed with error {error}");
                     return SelectionMode.Unavailable;
                 }
 
@@ -711,7 +711,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetTac(_handle, out tac);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetTac Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetTac Failed with error {error}");
                     return -1;
                 }
 
@@ -741,7 +741,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetSystemId(_handle, out systemId);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetSystemId Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetSystemId Failed with error {error}");
                     return -1;
                 }
 
@@ -771,7 +771,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetNetworkId(_handle, out networkId);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetNetworkId Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetNetworkId Failed with error {error}");
                     return -1;
                 }
 
@@ -801,7 +801,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetBaseStationId(_handle, out baseStationId);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetBaseStationId Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetBaseStationId Failed with error {error}");
                     return -1;
                 }
 
@@ -831,7 +831,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetBaseStationLatitude(_handle, out baseStationLatitude);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetBaseStationLatitude Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetBaseStationLatitude Failed with error {error}");
                     return 0x7FFFFFFF;
                 }
 
@@ -860,7 +860,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Network.GetBaseStationLongitude(_handle, out baseStationLongitude);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetBaseStationLongitude Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetBaseStationLongitude Failed with error {error}");
                     return 0x7FFFFFFF;
                 }
 

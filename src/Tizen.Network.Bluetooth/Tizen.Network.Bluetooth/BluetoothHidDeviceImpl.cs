@@ -59,7 +59,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SendHidDeviceMouseEvent(deviceAddress, mouseData);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to send mouse event to the remote device, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to send mouse event to the remote device, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -69,7 +69,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SendHidDeviceKeyEvent(deviceAddress, keyData);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to send key event to the remote device, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to send key event to the remote device, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -104,7 +104,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SetHidDeviceDataReceivedCallback(_hidDeviceDataReceivedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set data received callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set data received callback, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -114,7 +114,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.UnsetHidDeviceDataReceivedCallback();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset data received callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset data received callback, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -124,7 +124,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.ReplyToReportHidDevice(deviceAddress, headerType, paramType, data, data.Length, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to reply to report from hid host, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to reply to report from hid host, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -159,7 +159,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.ActivateHidDevice(_hidDeviceConnectionStateChangedCallback, IntPtr.Zero);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to activate to the remote device, Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to activate to the remote device, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -175,7 +175,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.DeactivateHidDevice();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to deactivate to the remote device, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to deactivate to the remote device, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }

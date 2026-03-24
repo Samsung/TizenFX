@@ -514,7 +514,7 @@ namespace Tizen.Network.IoTConnectivity
                         }
                         catch (Exception exp)
                         {
-                            Log.Error(IoTConnectivityErrorFactory.LogTag, "Can't clone RemoteResource's handle: " + exp.Message);
+                            Log.Error(IoTConnectivityErrorFactory.LogTag, $"Can't clone RemoteResource's handle: {exp.Message}");
                             return true;
                         }
                         ResourceFoundEventArgs e = new ResourceFoundEventArgs()
@@ -524,7 +524,7 @@ namespace Tizen.Network.IoTConnectivity
                             Resource = resource
                         };
                         ResourceFound?.Invoke(null, e);
-                        Log.Info(IoTConnectivityErrorFactory.LogTag, "e.EventContinue : " + e.EventContinue);
+                        Log.Info(IoTConnectivityErrorFactory.LogTag, $"e.EventContinue : {e.EventContinue}");
                         return e.EventContinue;
                     }
                     else
@@ -624,7 +624,7 @@ namespace Tizen.Network.IoTConnectivity
                             return true;
                         }
                         DeviceInformationFound?.Invoke(null, e);
-                        Log.Info(IoTConnectivityErrorFactory.LogTag, "e.EventContinue : " + e.EventContinue);
+                        Log.Info(IoTConnectivityErrorFactory.LogTag, $"e.EventContinue : {e.EventContinue}");
                         return e.EventContinue;
                     }
                     else
@@ -725,7 +725,7 @@ namespace Tizen.Network.IoTConnectivity
                             return true;
                         }
                         PlatformInformationFound?.Invoke(null, e);
-                        Log.Info(IoTConnectivityErrorFactory.LogTag, "e.EventContinue : " + e.EventContinue);
+                        Log.Info(IoTConnectivityErrorFactory.LogTag, $"e.EventContinue : {e.EventContinue}");
                         return e.EventContinue;
                     }
                     else
@@ -942,18 +942,18 @@ namespace Tizen.Network.IoTConnectivity
                 SystemTime = (systemTime != IntPtr.Zero) ? Marshal.PtrToStringAnsi(systemTime) : string.Empty
             };
 
-            Log.Info(IoTConnectivityErrorFactory.LogTag, "e.RequestId is " + e.RequestId);
-            Log.Info(IoTConnectivityErrorFactory.LogTag, "e.PlatformId is " + e.PlatformId);
-            Log.Info(IoTConnectivityErrorFactory.LogTag, "e.ManufacturerName is " + e.ManufacturerName);
-            Log.Info(IoTConnectivityErrorFactory.LogTag, "e.ManufacturerURL is " + e.ManufacturerURL);
-            Log.Info(IoTConnectivityErrorFactory.LogTag, "e.DateOfManufacture is " + e.DateOfManufacture);
-            Log.Info(IoTConnectivityErrorFactory.LogTag, "e.ModelNumber is " + e.ModelNumber);
-            Log.Info(IoTConnectivityErrorFactory.LogTag, "e.PlatformVersion is " + e.PlatformVersion);
-            Log.Info(IoTConnectivityErrorFactory.LogTag, "e.OsVersion is " + e.OsVersion);
-            Log.Info(IoTConnectivityErrorFactory.LogTag, "e.HardwareVersion is " + e.HardwareVersion);
-            Log.Info(IoTConnectivityErrorFactory.LogTag, "e.FirmwareVersion is " + e.FirmwareVersion);
-            Log.Info(IoTConnectivityErrorFactory.LogTag, "e.SupportUrl is " + e.SupportUrl);
-            Log.Info(IoTConnectivityErrorFactory.LogTag, "e.SystemTime is " + e.SystemTime);
+            Log.Info(IoTConnectivityErrorFactory.LogTag, $"e.RequestId is {e.RequestId}");
+            Log.Info(IoTConnectivityErrorFactory.LogTag, $"e.PlatformId is {e.PlatformId}");
+            Log.Info(IoTConnectivityErrorFactory.LogTag, $"e.ManufacturerName is {e.ManufacturerName}");
+            Log.Info(IoTConnectivityErrorFactory.LogTag, $"e.ManufacturerURL is {e.ManufacturerURL}");
+            Log.Info(IoTConnectivityErrorFactory.LogTag, $"e.DateOfManufacture is {e.DateOfManufacture}");
+            Log.Info(IoTConnectivityErrorFactory.LogTag, $"e.ModelNumber is {e.ModelNumber}");
+            Log.Info(IoTConnectivityErrorFactory.LogTag, $"e.PlatformVersion is {e.PlatformVersion}");
+            Log.Info(IoTConnectivityErrorFactory.LogTag, $"e.OsVersion is {e.OsVersion}");
+            Log.Info(IoTConnectivityErrorFactory.LogTag, $"e.HardwareVersion is {e.HardwareVersion}");
+            Log.Info(IoTConnectivityErrorFactory.LogTag, $"e.FirmwareVersion is {e.FirmwareVersion}");
+            Log.Info(IoTConnectivityErrorFactory.LogTag, $"e.SupportUrl is {e.SupportUrl}");
+            Log.Info(IoTConnectivityErrorFactory.LogTag, $"e.SystemTime is {e.SystemTime}");
 
             return e;
         }

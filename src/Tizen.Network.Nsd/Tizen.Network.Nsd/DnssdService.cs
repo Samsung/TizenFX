@@ -35,7 +35,7 @@ namespace Tizen.Network.Nsd
             int ret = Interop.Nsd.Dnssd.Deinitialize();
             if (ret != (int)DnssdError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to deinitialize Dnssd, Error - " + (DnssdError)ret);
+                Log.Error(Globals.LogTag, $"Failed to deinitialize Dnssd, Error - {(DnssdError)ret}");
             }
         }
     }
@@ -74,11 +74,11 @@ namespace Tizen.Network.Nsd
         internal void DnssdInitializeCreateService()
         {
             DnssdInitializer dnssdInit = Globals.s_threadDns.Value;
-            Log.Info(Globals.LogTag, "Initialize ThreadLocal<DnssdInitializer> instance = " + dnssdInit);
+            Log.Info(Globals.LogTag, $"Initialize ThreadLocal<DnssdInitializer> instance = {dnssdInit}");
             int ret = Interop.Nsd.Dnssd.CreateService(_serviceType, out _serviceHandle);
             if (ret != (int)DnssdError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to create a local Dnssd service handle, Error - " + (DnssdError)ret);
+                Log.Error(Globals.LogTag, $"Failed to create a local Dnssd service handle, Error - {(DnssdError)ret}");
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
         }
@@ -104,7 +104,7 @@ namespace Tizen.Network.Nsd
                 int ret = Interop.Nsd.Dnssd.GetName(_serviceHandle, out name);
                 if (ret != (int)DnssdError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get name of service, Error: " + (DnssdError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get name of service, Error: {(DnssdError)ret}");
                     return null;
                 }
 
@@ -121,7 +121,7 @@ namespace Tizen.Network.Nsd
                 int ret = Interop.Nsd.Dnssd.SetName(_serviceHandle, value);
                 if (ret != (int)DnssdError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set name of service, Error: " + (DnssdError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set name of service, Error: {(DnssdError)ret}");
                     NsdErrorFactory.ThrowDnssdException(ret);
                 }
             }
@@ -144,7 +144,7 @@ namespace Tizen.Network.Nsd
                 int ret = Interop.Nsd.Dnssd.GetType(_serviceHandle, out type);
                 if (ret != (int)DnssdError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get type of service, Error: " + (DnssdError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get type of service, Error: {(DnssdError)ret}");
                     return null;
                 }
 
@@ -172,7 +172,7 @@ namespace Tizen.Network.Nsd
                 int ret = Interop.Nsd.Dnssd.GetPort(_serviceHandle, out port);
                 if (ret != (int)DnssdError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get port number of Dnssd service, Error: " + (DnssdError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get port number of Dnssd service, Error: {(DnssdError)ret}");
                     return -1;
                 }
 
@@ -189,7 +189,7 @@ namespace Tizen.Network.Nsd
                 int ret = Interop.Nsd.Dnssd.SetPort(_serviceHandle, value);
                 if (ret != (int)DnssdError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set port number of Dnssd service, Error: " + (DnssdError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set port number of Dnssd service, Error: {(DnssdError)ret}");
                     NsdErrorFactory.ThrowDnssdException(ret);
                 }
             }
@@ -211,7 +211,7 @@ namespace Tizen.Network.Nsd
                 int ret = Interop.Nsd.Dnssd.GetIP(_serviceHandle, out IPv4, out IPv6);
                 if (ret != (int)DnssdError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get the IP of Dnssd remote service, Error: " + (DnssdError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get the IP of Dnssd remote service, Error: {(DnssdError)ret}");
                     return null;
                 }
 
@@ -233,7 +233,7 @@ namespace Tizen.Network.Nsd
             int ret = Interop.Nsd.Dnssd.GetAllTxtRecord(_serviceHandle, out ushort length, out IntPtr data);
             if (ret != (int)DnssdError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get the TXT record, Error: " + (DnssdError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get the TXT record, Error: {(DnssdError)ret}");
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
             byte[] value = Array.Empty<byte>();
@@ -266,14 +266,14 @@ namespace Tizen.Network.Nsd
             int ret = Interop.Nsd.Dnssd.AddTxtRecord(_serviceHandle, key, length, byteValue);
             if (ret != (int)DnssdError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to add the TXT record, Error: " + (DnssdError)ret);
+                Log.Error(Globals.LogTag, $"Failed to add the TXT record, Error: {(DnssdError)ret}");
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
             byte[] txtValue = GetRawTXTRecords();
             ret = Interop.Nsd.Dnssd.SetRecord(_serviceHandle, _dnsRecordtype, (ushort)txtValue.Length, txtValue);
             if (ret != (int)DnssdError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set the DNS resource record, Error: " + (DnssdError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set the DNS resource record, Error: {(DnssdError)ret}");
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
         }
@@ -291,7 +291,7 @@ namespace Tizen.Network.Nsd
             int ret = Interop.Nsd.Dnssd.RemoveTxtRecord(_serviceHandle, key);
             if (ret != (int)DnssdError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to remove the TXT record, Error: " + (DnssdError)ret);
+                Log.Error(Globals.LogTag, $"Failed to remove the TXT record, Error: {(DnssdError)ret}");
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
         }
@@ -317,7 +317,7 @@ namespace Tizen.Network.Nsd
             {
                 if (result != DnssdError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to finish the registration of Dnssd local service, Error: " + result);
+                    Log.Error(Globals.LogTag, $"Failed to finish the registration of Dnssd local service, Error: {result}");
                     NsdErrorFactory.ThrowDnssdException((int)result);
                 }
             };
@@ -325,7 +325,7 @@ namespace Tizen.Network.Nsd
             int ret = Interop.Nsd.Dnssd.RegisterService(_serviceHandle, _serviceRegisteredCallback, IntPtr.Zero);
             if (ret != (int)DnssdError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to register the Dnssd local service, Error: " + (DnssdError)ret);
+                Log.Error(Globals.LogTag, $"Failed to register the Dnssd local service, Error: {(DnssdError)ret}");
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
         }
@@ -345,7 +345,7 @@ namespace Tizen.Network.Nsd
             int ret = Interop.Nsd.Dnssd.DeregisterService(_serviceHandle);
             if (ret != (int)DnssdError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to deregister the Dnssd local service, Error: " + (DnssdError)ret);
+                Log.Error(Globals.LogTag, $"Failed to deregister the Dnssd local service, Error: {(DnssdError)ret}");
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
         }
@@ -364,7 +364,7 @@ namespace Tizen.Network.Nsd
                         int ret = Interop.Nsd.Dnssd.DestroyService(_serviceHandle);
                         if (ret != (int)DnssdError.None)
                         {
-                            Log.Error(Globals.LogTag, "Failed to destroy the local Dnssd service handle, Error - " + (DnssdError)ret);
+                            Log.Error(Globals.LogTag, $"Failed to destroy the local Dnssd service handle, Error - {(DnssdError)ret}");
                         }
                     }
                 }

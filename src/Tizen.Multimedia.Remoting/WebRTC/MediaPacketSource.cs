@@ -203,7 +203,7 @@ namespace Tizen.Multimedia.Remoting
 
             if (packet.Format.Type == MediaFormatType.Text || packet.Format.Type == MediaFormatType.Container)
             {
-                Log.Error(WebRTCLog.Tag, "The format of the packet is invalid : " + packet.Format.Type);
+                Log.Error(WebRTCLog.Tag, $"The format of the packet is invalid : {packet.Format.Type}");
                 throw new ArgumentException($"The format of the packet is invalid : {packet.Format.Type}.");
             }
 

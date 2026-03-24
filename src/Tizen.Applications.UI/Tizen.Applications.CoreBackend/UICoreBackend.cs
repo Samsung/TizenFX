@@ -66,42 +66,42 @@ namespace Tizen.Applications.CoreBackend
             err = Interop.Application.AddEventHandler(out _lowMemoryEventHandle, AppEventType.LowMemory, _onLowMemoryNative, IntPtr.Zero);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to add event handler for LowMemory event. Err = " + err);
+                Log.Error(LogTag, $"Failed to add event handler for LowMemory event. Err = {err}");
             }
             err = Interop.Application.AddEventHandler(out _lowBatteryEventHandle, AppEventType.LowBattery, _onLowBatteryNative, IntPtr.Zero);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to add event handler for LowBattery event. Err = " + err);
+                Log.Error(LogTag, $"Failed to add event handler for LowBattery event. Err = {err}");
             }
 
             err = Interop.Application.AddEventHandler(out _localeChangedEventHandle, AppEventType.LanguageChanged, _onLocaleChangedNative, IntPtr.Zero);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to add event handler for LocaleChanged event. Err = " + err);
+                Log.Error(LogTag, $"Failed to add event handler for LocaleChanged event. Err = {err}");
             }
 
             err = Interop.Application.AddEventHandler(out _regionChangedEventHandle, AppEventType.RegionFormatChanged, _onRegionChangedNative, IntPtr.Zero);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to add event handler for RegionFormatChanged event. Err = " + err);
+                Log.Error(LogTag, $"Failed to add event handler for RegionFormatChanged event. Err = {err}");
             }
 
             err = Interop.Application.AddEventHandler(out _deviceOrientationChangedEventHandle, AppEventType.DeviceOrientationChanged, _onDeviceOrientationChangedNative, IntPtr.Zero);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to add event handler for DeviceOrientationChanged event. Err = " + err);
+                Log.Error(LogTag, $"Failed to add event handler for DeviceOrientationChanged event. Err = {err}");
             }
 
             err = Interop.Application.AddEventHandler(out _timeZoneChangedEventHandle, AppEventType.TimeZoneChanged, _onTimeZoneChangedNative, IntPtr.Zero);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to add event handler for TimeZoneChanged event. Err = " + err);
+                Log.Error(LogTag, $"Failed to add event handler for TimeZoneChanged event. Err = {err}");
             }
 
             err = Interop.Application.Main(args.Length, args, ref _callbacks, IntPtr.Zero);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to run the application. Err = " + err);
+                Log.Error(LogTag, $"Failed to run the application. Err = {err}");
             }
         }
 

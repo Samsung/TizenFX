@@ -46,7 +46,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = BluetoothHidImpl.Instance.Connect(RemoteAddress);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to Connect - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to Connect - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -69,7 +69,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = BluetoothHidImpl.Instance.Disconnect(RemoteAddress);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to Disconnect - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to Disconnect - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }

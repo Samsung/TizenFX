@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -350,7 +350,7 @@ namespace Tizen.Uix.Tts
             TtsError error = TtsCreate(out handle);
             if (error != TtsError.None)
             {
-                Log.Error(LogTag, "Create Failed with error " + error);
+                Log.Error(LogTag, $"Create Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -386,7 +386,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsSetStateChangedCB(_handle, _stateDelegate, IntPtr.Zero);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Add StateChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Add StateChanged Failed with error {error}");
                         }
                     }
                     _stateChanged += value;
@@ -404,7 +404,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsUnsetStateChangedCB(_handle);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Remove StateChanged Failed with error {error}");
                         }
                     }
                 }
@@ -433,7 +433,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsSetUtteranceStartedCB(_handle, _utteranceStartedResultDelegate, IntPtr.Zero);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Add UtteranceStarted Failed with error " + error);
+                            Log.Error(LogTag, $"Add UtteranceStarted Failed with error {error}");
                         }
                     }
                     _utteranceStarted += value;
@@ -450,7 +450,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsUnsetUtteranceStartedCB(_handle);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Remove UtteranceStarted Failed with error " + error);
+                            Log.Error(LogTag, $"Remove UtteranceStarted Failed with error {error}");
                         }
                     }
                 }
@@ -478,7 +478,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsSetUtteranceCompletedCB(_handle, _utteranceCompletedResultDelegate, IntPtr.Zero);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Add UtteranceCompleted Failed with error " + error);
+                            Log.Error(LogTag, $"Add UtteranceCompleted Failed with error {error}");
                         }
                     }
                     _utteranceCompleted += value;
@@ -495,7 +495,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsUnsetUtteranceCompletedCB(_handle);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Remove UtteranceCompleted Failed with error " + error);
+                            Log.Error(LogTag, $"Remove UtteranceCompleted Failed with error {error}");
                         }
                     }
                 }
@@ -523,7 +523,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsSetErrorCB(_handle, _errorDelegate, IntPtr.Zero);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Add ErrorOccurred Failed with error " + error);
+                            Log.Error(LogTag, $"Add ErrorOccurred Failed with error {error}");
                         }
                     }
                     _errorOccurred += value;
@@ -540,7 +540,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsUnsetErrorCB(_handle);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Remove ErrorOccurred Failed with error " + error);
+                            Log.Error(LogTag, $"Remove ErrorOccurred Failed with error {error}");
                         }
                     }
                 }
@@ -570,7 +570,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsSetDefaultVoiceChangedCB(_handle, _voiceChangedDelegate, IntPtr.Zero);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Add DefaultVoiceChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Add DefaultVoiceChanged Failed with error {error}");
                         }
                     }
                     _defaultVoiceChanged += value;
@@ -587,7 +587,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsUnsetDefaultVoiceChangedCB(_handle);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Remove DefaultVoiceChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Remove DefaultVoiceChanged Failed with error {error}");
                         }
                     }
                 }
@@ -616,7 +616,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsSetEngineChangedCB(_handle, _engineDelegate, IntPtr.Zero);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Add EngineChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Add EngineChanged Failed with error {error}");
                         }
                     }
                     _engineChanged += value;
@@ -633,7 +633,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsUnsetEngineChangedCB(_handle);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Remove EngineChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Remove EngineChanged Failed with error {error}");
                         }
                     }
                 }
@@ -660,7 +660,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsSetScreenReaderChangedCB(_handle, _screenReaderDelegate, IntPtr.Zero);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Add ScreenReaderChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Add ScreenReaderChanged Failed with error {error}");
                         }
                     }
                     _screenReaderChanged += value;
@@ -677,7 +677,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsUnsetScreenReaderChangedCB(_handle);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Remove ScreenReaderChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Remove ScreenReaderChanged Failed with error {error}");
                         }
                     }
                 }
@@ -705,7 +705,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsSetServiceStateChangedCB(_handle, _serviceStateDelegate, IntPtr.Zero);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Add ServiceStateChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Add ServiceStateChanged Failed with error {error}");
                         }
                     }
                     _serviceStateChanged += value;
@@ -722,7 +722,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsUnsetStateChangedCB(_handle);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Remove ServiceStateChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Remove ServiceStateChanged Failed with error {error}");
                         }
                     }
                 }
@@ -752,7 +752,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsSetSynthesizedPcmCB(_handle, _synthesizedPcmDelegate, IntPtr.Zero);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Add SynthesizedPcm Failed with error " + error);
+                            Log.Error(LogTag, $"Add SynthesizedPcm Failed with error {error}");
                         }
                     }
                     _synthesizedPcmEventHandler += value;
@@ -769,7 +769,7 @@ namespace Tizen.Uix.Tts
                         TtsError error = TtsUnsetSynthesizedPcmCB(_handle);
                         if (error != TtsError.None)
                         {
-                            Log.Error(LogTag, "Remove SynthesizedPcm Failed with error " + error);
+                            Log.Error(LogTag, $"Remove SynthesizedPcm Failed with error {error}");
                         }
                     }
                 }
@@ -795,7 +795,7 @@ namespace Tizen.Uix.Tts
                 TtsError error = TtsGetDefaultVoice(_handle, out language, out voiceType);
                 if (error != TtsError.None)
                 {
-                    Log.Error(LogTag, "DefaultVoice Failed with error " + error);
+                    Log.Error(LogTag, $"DefaultVoice Failed with error {error}");
                     return new SupportedVoice();
                 }
 
@@ -824,7 +824,7 @@ namespace Tizen.Uix.Tts
                 TtsError error = TtsGetMaxTextSize(_handle, out maxTextSize);
                 if (error != TtsError.None)
                 {
-                    Log.Error(LogTag, "MaxTextSize Failed with error " + error);
+                    Log.Error(LogTag, $"MaxTextSize Failed with error {error}");
                     return 0;
                 }
 
@@ -851,7 +851,7 @@ namespace Tizen.Uix.Tts
                 TtsError error = TtsGetState(_handle, out state);
                 if (error != TtsError.None)
                 {
-                    Log.Error(LogTag, "CurrentState Failed with error " + error);
+                    Log.Error(LogTag, $"CurrentState Failed with error {error}");
                     return State.Unavailable;
                 }
 
@@ -875,7 +875,7 @@ namespace Tizen.Uix.Tts
                 TtsError error = TtsGetServiceState(_handle, out state);
                 if (error != TtsError.None)
                 {
-                    Log.Error(LogTag, "CurrentServiceState Failed with error " + error);
+                    Log.Error(LogTag, $"CurrentServiceState Failed with error {error}");
                     return ServiceState.Unavailable;
                 }
 
@@ -911,7 +911,7 @@ namespace Tizen.Uix.Tts
                 TtsError error = TtsGetMode(_handle, out mode);
                 if (error != TtsError.None)
                 {
-                    Log.Error(LogTag, "Get Mode Failed with error " + error);
+                    Log.Error(LogTag, $"Get Mode Failed with error {error}");
                     return Mode.Default;
                 }
 
@@ -924,7 +924,7 @@ namespace Tizen.Uix.Tts
 
                 if (error != TtsError.None)
                 {
-                    Log.Error(LogTag, "Set Mode Failed with error " + error);
+                    Log.Error(LogTag, $"Set Mode Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
             }
@@ -952,7 +952,7 @@ namespace Tizen.Uix.Tts
                 TtsError error = TtsCheckScreenReaderOn(_handle, out isOn);
                 if (error != TtsError.None)
                 {
-                    Log.Error(LogTag, "Fail to check screen reader on with error " + error);
+                    Log.Error(LogTag, $"Fail to check screen reader on with error {error}");
                     return false;
                 }
 
@@ -986,7 +986,7 @@ namespace Tizen.Uix.Tts
                 TtsError error = TtsSetPlayingMode(_handle, value);
                 if (error != TtsError.None)
                 {
-                    Log.Error(LogTag, "Set Mode Failed with error " + error);
+                    Log.Error(LogTag, $"Set Mode Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
                 _playingMode = value;
@@ -1014,7 +1014,7 @@ namespace Tizen.Uix.Tts
             TtsError error = TtsSetCredential(_handle, credential);
             if (error != TtsError.None)
             {
-                Tizen.Log.Error(LogTag, "SetCredential Failed with error " + error);
+                Tizen.Log.Error(LogTag, $"SetCredential Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1044,7 +1044,7 @@ namespace Tizen.Uix.Tts
             TtsError error = TtsPrepare(_handle);
             if (error != TtsError.None)
             {
-                Log.Error(LogTag, "Prepare Failed with error " + error);
+                Log.Error(LogTag, $"Prepare Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1069,7 +1069,7 @@ namespace Tizen.Uix.Tts
             TtsError error = TtsUnprepare(_handle);
             if (error != TtsError.None)
             {
-                Log.Error(LogTag, "Unprepare Failed with error " + error);
+                Log.Error(LogTag, $"Unprepare Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1104,7 +1104,7 @@ namespace Tizen.Uix.Tts
             TtsError error = TtsForeachSupportedVoices(_handle, _supportedvoiceDelegate, IntPtr.Zero);
             if (error != TtsError.None)
             {
-                Log.Error(LogTag, "GetSupportedVoices Failed with error " + error);
+                Log.Error(LogTag, $"GetSupportedVoices Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -1140,7 +1140,7 @@ namespace Tizen.Uix.Tts
             TtsError error = TtsGetPrivateData(_handle, key, out data);
             if (error != TtsError.None)
             {
-                Log.Error(LogTag, "GetPrivateData Failed with error " + error);
+                Log.Error(LogTag, $"GetPrivateData Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -1176,7 +1176,7 @@ namespace Tizen.Uix.Tts
             TtsError error = TtsSetPrivateData(_handle, key, data);
             if (error != TtsError.None)
             {
-                Log.Error(LogTag, "SetPrivateData Failed with error " + error);
+                Log.Error(LogTag, $"SetPrivateData Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1206,7 +1206,7 @@ namespace Tizen.Uix.Tts
             TtsError error = TtsGetSpeedRange(_handle, out min, out normal, out max);
             if (error != TtsError.None)
             {
-                Log.Error(LogTag, "GetSpeedRange Failed with error " + error);
+                Log.Error(LogTag, $"GetSpeedRange Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -1257,7 +1257,7 @@ namespace Tizen.Uix.Tts
             TtsError error = TtsAddText(_handle, text, language, voiceType, speed, out id);
             if (error != TtsError.None)
             {
-                Log.Error(LogTag, "AddText Failed with error " + error);
+                Log.Error(LogTag, $"AddText Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -1291,7 +1291,7 @@ namespace Tizen.Uix.Tts
             TtsError error = TtsPlay(_handle);
             if (error != TtsError.None)
             {
-                Log.Error(LogTag, "Play Failed with error " + error);
+                Log.Error(LogTag, $"Play Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1322,7 +1322,7 @@ namespace Tizen.Uix.Tts
             TtsError error = TtsStop(_handle);
             if (error != TtsError.None)
             {
-                Log.Error(LogTag, "Stop Failed with error " + error);
+                Log.Error(LogTag, $"Stop Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1352,7 +1352,7 @@ namespace Tizen.Uix.Tts
             TtsError error = TtsPause(_handle);
             if (error != TtsError.None)
             {
-                Log.Error(LogTag, "Pause Failed with error " + error);
+                Log.Error(LogTag, $"Pause Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1385,7 +1385,7 @@ namespace Tizen.Uix.Tts
             TtsError error = TtsRepeat(_handle, out string text, out int uttId);
             if (error != TtsError.None)
             {
-                Log.Error(LogTag, "Repeat Failed with error " + error);
+                Log.Error(LogTag, $"Repeat Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -1418,7 +1418,7 @@ namespace Tizen.Uix.Tts
                     TtsError error = TtsDestroy(_handle);
                     if (error != TtsError.None)
                     {
-                        Log.Error(LogTag, "Destroy Failed with error " + error);
+                        Log.Error(LogTag, $"Destroy Failed with error {error}");
                     }
                     _handle = IntPtr.Zero;
                 }

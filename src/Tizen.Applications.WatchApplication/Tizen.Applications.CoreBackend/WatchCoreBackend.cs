@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -123,31 +123,31 @@ namespace Tizen.Applications.CoreBackend
             err = Interop.Watch.AddEventHandler(out _lowMemoryEventHandle, Interop.Watch.AppEventType.LowMemory, _lowMemoryCallback, IntPtr.Zero);
             if (err != Interop.Watch.ErrorCode.None)
             {
-                Log.Error(LOGTAG, "Failed to add event handler for LowMemory event, Err = " + err);
+                Log.Error(LOGTAG, $"Failed to add event handler for LowMemory event, Err = {err}");
             }
 
             err = Interop.Watch.AddEventHandler(out _lowBatteryEventHandle, Interop.Watch.AppEventType.LowBattery, _lowBatteryCallback, IntPtr.Zero);
             if (err != Interop.Watch.ErrorCode.None)
             {
-                Log.Error(LOGTAG, "Failed to add event handler for LowBattery event, Err = " + err);
+                Log.Error(LOGTAG, $"Failed to add event handler for LowBattery event, Err = {err}");
             }
 
             err = Interop.Watch.AddEventHandler(out _localeChangedEventHandle, Interop.Watch.AppEventType.LanguageChanged, _localeChangedCallback, IntPtr.Zero);
             if (err != Interop.Watch.ErrorCode.None)
             {
-                Log.Error(LOGTAG, "Failed to add event handler for LocaleChanged event, Err = " + err);
+                Log.Error(LOGTAG, $"Failed to add event handler for LocaleChanged event, Err = {err}");
             }
 
             err = Interop.Watch.AddEventHandler(out _regionChnagedEventHandle, Interop.Watch.AppEventType.RegionFormatChanged, _regionChnagedCallback, IntPtr.Zero);
             if (err != Interop.Watch.ErrorCode.None)
             {
-                Log.Error(LOGTAG, "Failed to add event handler for RegionFormatChanged event, Err = " + err);
+                Log.Error(LOGTAG, $"Failed to add event handler for RegionFormatChanged event, Err = {err}");
             }
 
             err = Interop.Watch.Main(args.Length, args, ref _callbacks, IntPtr.Zero);
             if (err != Interop.Watch.ErrorCode.None)
             {
-                Log.Error(LOGTAG, "Failed to run the Watch application, Err = " + err);
+                Log.Error(LOGTAG, $"Failed to run the Watch application, Err = {err}");
             }
         }
 
@@ -157,7 +157,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.Watch.AppEventGetLowMemoryStatus(infoHandle, out status);
             if (err != ErrorCode.None)
             {
-                Log.Error(LOGTAG, "Failed to get memory status, Err = " + err);
+                Log.Error(LOGTAG, $"Failed to get memory status, Err = {err}");
             }
             if (_handlers.ContainsKey(WatchEventType.LowMemory))
             {
@@ -172,7 +172,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.Watch.AppEventGetLowBatteryStatus(infoHandle, out status);
             if (err != Tizen.Internals.Errors.ErrorCode.None)
             {
-                Log.Error(LOGTAG, "Failed to get battery status, Err = " + err);
+                Log.Error(LOGTAG, $"Failed to get battery status, Err = {err}");
             }
             if (_handlers.ContainsKey(WatchEventType.LowBattery))
             {
@@ -186,7 +186,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.Watch.AppEventGetLanguage(infoHandle, out lang);
             if (err != ErrorCode.None)
             {
-                Log.Error(LOGTAG, "Failed to get changed language. Err = " + err);
+                Log.Error(LOGTAG, $"Failed to get changed language. Err = {err}");
             }
             if (_handlers.ContainsKey(WatchEventType.LocaleChanged))
             {
@@ -200,7 +200,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.Watch.AppEventGetRegionFormat(infoHandle, out region);
             if (err != ErrorCode.None)
             {
-                Log.Error(LOGTAG, "Failed to get changed region format. Err = " + err);
+                Log.Error(LOGTAG, $"Failed to get changed region format. Err = {err}");
             }
             if (_handlers.ContainsKey(WatchEventType.RegionFormatChanged))
             {

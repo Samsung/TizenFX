@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -65,7 +65,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.Tag.GetType(_tagHandle, out type);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get tag type, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get tag type, Error - {(NfcError)ret}");
                 }
                 return (NfcTagType)type;
             }
@@ -83,7 +83,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.Tag.IsSupportNdef(_tagHandle, out isSupport);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get support state, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get support state, Error - {(NfcError)ret}");
                 }
                 return isSupport;
 
@@ -102,7 +102,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.Tag.GetMaximumNdefSize(_tagHandle, out maxSize);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get max ndef size, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get max ndef size, Error - {(NfcError)ret}");
                 }
                 return maxSize;
             }
@@ -120,7 +120,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.Tag.GetNdefSize(_tagHandle, out ndefSize);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get ndef size, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get ndef size, Error - {(NfcError)ret}");
                 }
                 return ndefSize;
             }
@@ -194,7 +194,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.Tag.ForeachInformation(_tagHandle, callback, IntPtr.Zero);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get all Tag information, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get all Tag information, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
 
@@ -223,7 +223,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.Tag.Transceive(_tagHandle, buffer, buffer.Length, _nativeTransceiveCallback, (IntPtr)requestId);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to transceive data, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to transceive data, Error - {(NfcError)ret}");
                 _transceiveTaskSource.Remove(requestId);
                 NfcErrorFactory.ThrowNfcException(ret);
             }
@@ -251,7 +251,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.Tag.ReadNdef(_tagHandle, _nativeTagReadCallback, (IntPtr)requestId);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to read ndef message, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to read ndef message, Error - {(NfcError)ret}");
                 _readNdefTaskSource.Remove(requestId);
                 NfcErrorFactory.ThrowNfcException(ret);
             }
@@ -282,7 +282,7 @@ namespace Tizen.Network.Nfc
 
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to write ndef message, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to write ndef message, Error - {(NfcError)ret}");
                 _voidTaskSource.Remove(requestId);
                 NfcErrorFactory.ThrowNfcException(ret);
             }
@@ -313,7 +313,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.Tag.FormatNdef(_tagHandle, keyValue, keyValue.Length, _nativeVoidCallback, (IntPtr)requestId);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to format ndef message, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to format ndef message, Error - {(NfcError)ret}");
                 _voidTaskSource.Remove(requestId);
                 NfcErrorFactory.ThrowNfcException(ret);
             }

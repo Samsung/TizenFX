@@ -157,7 +157,7 @@ namespace Tizen.Applications
             int ret = Interop.Preference.IsExisting(key, out contains);
             if (ret != (int)PreferenceErrorFactory.PreferenceError.None)
             {
-                Log.Error(LogTag, "Failed to find key(" + key + ")");
+                Log.Error(LogTag, $"Failed to find key({key})");
                 throw PreferenceErrorFactory.GetException(ret);
             }
 
@@ -205,13 +205,13 @@ namespace Tizen.Applications
             }
             else
             {
-                Log.Error(LogTag, "Failed to set key(" + key + ")");
+                Log.Error(LogTag, $"Failed to set key({key})");
                 throw new ArgumentException("Invalid parameter");
             }
 
             if (ret != (int)PreferenceErrorFactory.PreferenceError.None)
             {
-                Log.Error(LogTag, "Failed to set key(" + key + ")");
+                Log.Error(LogTag, $"Failed to set key({key})");
                 throw PreferenceErrorFactory.GetException(ret);
             }
         }
@@ -267,13 +267,13 @@ namespace Tizen.Applications
             }
             else
             {
-                Log.Error(LogTag, "Failed to get key(" + key + ")");
+                Log.Error(LogTag, $"Failed to get key({key})");
                 throw new ArgumentException("Invalid parameter");
             }
 
             if (ret != (int)PreferenceErrorFactory.PreferenceError.None)
             {
-                Log.Error(LogTag, "Failed to get key(" + key + ")");
+                Log.Error(LogTag, $"Failed to get key({key})");
                 throw PreferenceErrorFactory.GetException(ret);
             }
 
@@ -301,7 +301,7 @@ namespace Tizen.Applications
             int ret = Interop.Preference.Remove(key);
             if (ret != (int)PreferenceErrorFactory.PreferenceError.None)
             {
-                Log.Error(LogTag, "Failed to remove key(" + key + ")");
+                Log.Error(LogTag, $"Failed to remove key({key})");
                 throw PreferenceErrorFactory.GetException(ret);
             }
         }

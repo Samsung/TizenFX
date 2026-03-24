@@ -1,4 +1,4 @@
-﻿/*
+/*
  *  Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -65,7 +65,7 @@ namespace Tizen.Security.DevicePolicyManager
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, "Failed to create policy. " + e.Message);
+                Log.Error(Globals.LogTag, $"Failed to create policy. {e.Message}");
                 throw new InvalidOperationException("Failed to create policy.");
             }
         }
@@ -103,7 +103,7 @@ namespace Tizen.Security.DevicePolicyManager
                     int ret = Interop.DevicePolicyManager.DestroyHandle(_handle);
                     if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
                     {
-                        Log.Error(Globals.LogTag, "Failed to destroy handle " + ret);
+                        Log.Error(Globals.LogTag, $"Failed to destroy handle {ret}");
                     }
 
                     _handle = IntPtr.Zero;

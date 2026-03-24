@@ -46,7 +46,7 @@ namespace Tizen.Applications.Messages
             }
 
             Log.Error(LogTag, $"{memberName}({lineNumber.ToString()}) : {filePath}");
-            Log.Error(LogTag, "Error : " + errorMessage);
+            Log.Error(LogTag, $"Error : {errorMessage}");
 
             switch ((MessagePortError)errorCode)
             {

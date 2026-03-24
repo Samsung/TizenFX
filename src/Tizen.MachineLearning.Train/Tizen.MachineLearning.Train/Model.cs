@@ -69,7 +69,7 @@ namespace Tizen.MachineLearning.Train
                 handle = IntPtr.Zero;
             }
             NNTrainer.CheckException(ret, "Failed to create model instance with modelConf");
-            Log.Info(NNTrainer.Tag, "Created Model with Conf path: "+ modelConf);
+            Log.Info(NNTrainer.Tag, $"Created Model with Conf path: {modelConf}");
         }
         /// <summary>
         /// Destructor of Model
@@ -134,7 +134,7 @@ namespace Tizen.MachineLearning.Train
 
             if (hyperparameter.Length > 0) {
                 compileParams = string.Join("|", hyperparameter);
-                Log.Info(NNTrainer.Tag, "Compile hyperparameter:"+ compileParams);
+                Log.Info(NNTrainer.Tag, $"Compile hyperparameter:{compileParams}");
             }
 
             NNTrainerError ret = Interop.Model.Compile(handle, compileParams);
@@ -158,7 +158,7 @@ namespace Tizen.MachineLearning.Train
 
             if (hyperparameter.Length > 0) {
                 runParams = string.Join("|", hyperparameter);
-                Log.Info(NNTrainer.Tag, "Run hyperparameter:"+ runParams);
+                Log.Info(NNTrainer.Tag, $"Run hyperparameter:{runParams}");
             }
 
             NNTrainerError ret = Interop.Model.Run(handle, runParams);
@@ -206,7 +206,7 @@ namespace Tizen.MachineLearning.Train
         {
             if (string.IsNullOrEmpty(filePath))
                 NNTrainer.CheckException(NNTrainerError.InvalidParameter, "File path is null");
-            Log.Info(NNTrainer.Tag, "File path: "+ filePath);
+            Log.Info(NNTrainer.Tag, $"File path: {filePath}");
             NNTrainerError ret = Interop.Model.Save(handle, filePath, format);
             NNTrainer.CheckException(ret, "Failed to save model to path");
         }
@@ -236,7 +236,7 @@ namespace Tizen.MachineLearning.Train
         {
             if (string.IsNullOrEmpty(filePath))
                 NNTrainer.CheckException(NNTrainerError.InvalidParameter, "File path is null");
-            Log.Info(NNTrainer.Tag, "File Path: "+ filePath);
+            Log.Info(NNTrainer.Tag, $"File Path: {filePath}");
             NNTrainerError ret = Interop.Model.Load(handle, filePath, format);
             NNTrainer.CheckException(ret, "Failed to load model to path");
         }

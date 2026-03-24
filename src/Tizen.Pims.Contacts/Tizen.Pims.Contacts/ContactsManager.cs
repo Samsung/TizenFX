@@ -78,7 +78,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Service.Connect();
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "Connect Failed with error " + error);
+                Log.Error(Globals.LogTag, $"Connect Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
             _db = new ContactsDatabase();
@@ -115,7 +115,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Service.Disconnect();
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "Disconnect Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Disconnect Failed with error {error}");
                 }
 
                 disposedValue = true;
@@ -162,7 +162,7 @@ namespace Tizen.Pims.Contacts
                         int error = Interop.Setting.AddNameDisplayOrderChangedCB(_displayOrderChangedCallback, IntPtr.Zero);
                         if ((int)ContactsError.None != error)
                         {
-                            Log.Error(Globals.LogTag, "Add NameDisplayOrderChangedCB Failed with error " + error);
+                            Log.Error(Globals.LogTag, $"Add NameDisplayOrderChangedCB Failed with error {error}");
                         }
                     }
 
@@ -181,7 +181,7 @@ namespace Tizen.Pims.Contacts
                         int error = Interop.Setting.RemoveNameDisplayOrderChangedCB(_displayOrderChangedCallback, IntPtr.Zero);
                         if ((int)ContactsError.None != error)
                         {
-                            Log.Error(Globals.LogTag, "Remove StateChanged Failed with error " + error);
+                            Log.Error(Globals.LogTag, $"Remove StateChanged Failed with error {error}");
                         }
                     }
                 }
@@ -213,7 +213,7 @@ namespace Tizen.Pims.Contacts
                         int error = Interop.Setting.AddNameSortingOrderChangedCB(_sortingOrderChangedCallback, IntPtr.Zero);
                         if ((int)ContactsError.None != error)
                         {
-                            Log.Error(Globals.LogTag, "Add NameSortingOrderChangedCB Failed with error " + error);
+                            Log.Error(Globals.LogTag, $"Add NameSortingOrderChangedCB Failed with error {error}");
                         }
                     }
 
@@ -232,7 +232,7 @@ namespace Tizen.Pims.Contacts
                         int error = Interop.Setting.RemoveNameSortingOrderChangedCB(_sortingOrderChangedCallback, IntPtr.Zero);
                         if ((int)ContactsError.None != error)
                         {
-                            Log.Error(Globals.LogTag, "Remove StateChanged Failed with error " + error);
+                            Log.Error(Globals.LogTag, $"Remove StateChanged Failed with error {error}");
                         }
                     }
                 }
@@ -271,7 +271,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Setting.GetNameDisplayOrder(out contactDisplayOrder);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "Get NameDisplayOrder Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Get NameDisplayOrder Failed with error {error}");
                 }
                 return contactDisplayOrder;
             }
@@ -280,7 +280,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Setting.SetNameDisplayOrder(value);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "Set NameDisplayOrder Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Set NameDisplayOrder Failed with error {error}");
                 }
             }
         }
@@ -304,7 +304,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Setting.GetNameSortingOrder(out contactsSortingOrder);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "Get NameSortingOrder Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Get NameSortingOrder Failed with error {error}");
                 }
                 return contactsSortingOrder;
             }
@@ -313,7 +313,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Setting.SetNameSortingOrder(value);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "Set NameSortingOrder Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"Set NameSortingOrder Failed with error {error}");
                 }
             }
         }

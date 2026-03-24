@@ -120,7 +120,7 @@ namespace Tizen.Applications.ThemeManager
                 Interop.ThemeManager.ErrorCode err = Interop.ThemeManager.LoaderSetCurrentTheme(_loaderHandle, value.Id);
                 if (err != Interop.ThemeManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to set current. Err = " + err);
+                    Log.Warn(LogTag, $"Failed to set current. Err = {err}");
                     throw Interop.ThemeManager.ThemeManagerErrorFactory.GetException(err, "Failed to set current theme");
                 }
 

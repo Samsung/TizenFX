@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -102,7 +102,7 @@ namespace Tizen.Network.Nfc
 
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get connected tag, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get connected tag, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
             _tag = new NfcTag(tagHandle);
@@ -122,7 +122,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.SetTagDiscoveredCallback(_tagDiscoveredCallback, IntPtr.Zero);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set tag discovered callback, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set tag discovered callback, Error - {(NfcError)ret}");
             }
         }
 

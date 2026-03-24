@@ -258,11 +258,11 @@ namespace Tizen.Network.Bluetooth
                 IntPtr[] extensionList = new IntPtr[device.ServiceCount];
                 Marshal.Copy (device.ServiceUuidList, extensionList, 0, device.ServiceCount);
                 uuidList = new Collection<string> ();
-                Log.Info(Globals.LogTag, "UUID Count: " + device.ServiceCount);
+                Log.Info(Globals.LogTag, $"UUID Count: {device.ServiceCount}");
                 foreach (IntPtr extension in extensionList) {
                     if (extension != IntPtr.Zero) {
                         string uuid = Marshal.PtrToStringAnsi (extension);
-                        Log.Info(Globals.LogTag, "UUID: " + uuid);
+                        Log.Info(Globals.LogTag, $"UUID: {uuid}");
                         uuidList.Add (uuid);
                     }
                 }
@@ -271,7 +271,7 @@ namespace Tizen.Network.Bluetooth
             resultDevice.RemoteDeviceAddress = device.Address;
             if (device.Name != IntPtr.Zero) {
                 resultDevice.RemoteDeviceName = Marshal.PtrToStringAnsi(device.Name);
-                Log.Info(Globals.LogTag, "Device Name: " + resultDevice.RemoteDeviceName);
+                Log.Info(Globals.LogTag, $"Device Name: {resultDevice.RemoteDeviceName}");
             }
             resultDevice.RemoteDeviceClass = new BluetoothClass();
             resultDevice.Class.MajorType = device.Class.MajorDeviceClassType;
@@ -299,11 +299,11 @@ namespace Tizen.Network.Bluetooth
                 IntPtr[] extensionList = new IntPtr[structDevice.ServiceCount];
                 Marshal.Copy (structDevice.ServiceUuidList, extensionList, 0, structDevice.ServiceCount);
                 uuidList = new Collection<string> ();
-                Log.Info(Globals.LogTag, "UUID Count: " + structDevice.ServiceCount);
+                Log.Info(Globals.LogTag, $"UUID Count: {structDevice.ServiceCount}");
                 foreach (IntPtr extension in extensionList) {
                     if (extension != IntPtr.Zero) {
                         string uuid = Marshal.PtrToStringAnsi(extension);
-                        Log.Info(Globals.LogTag, "UUID: " + uuid);
+                        Log.Info(Globals.LogTag, $"UUID: {uuid}");
                         uuidList.Add(uuid);
                     }
                 }
@@ -312,7 +312,7 @@ namespace Tizen.Network.Bluetooth
             resultDevice.RemoteDeviceAddress = structDevice.Address;
             if (structDevice.Name != IntPtr.Zero) {
                 resultDevice.RemoteDeviceName = Marshal.PtrToStringAnsi(structDevice.Name);
-                Log.Info(Globals.LogTag, "Device Name: " + resultDevice.RemoteDeviceName);
+                Log.Info(Globals.LogTag, $"Device Name: {resultDevice.RemoteDeviceName}");
             }
 
             resultDevice.RemoteDeviceClass = new BluetoothClass();
@@ -346,10 +346,10 @@ namespace Tizen.Network.Bluetooth
                 IntPtr[] extensionList = new IntPtr[structData.ServiceCount];
                 Marshal.Copy (structData.ServiceUuid, extensionList, 0, structData.ServiceCount);
                 uuidList = new Collection<string> ();
-                Log.Info(Globals.LogTag, "UUID Count: " + structData.ServiceCount);
+                Log.Info(Globals.LogTag, $"UUID Count: {structData.ServiceCount}");
                 foreach (IntPtr extension in extensionList) {
                     string uuid = Marshal.PtrToStringAnsi (extension);
-                    Log.Info(Globals.LogTag, "UUID: " + uuid);
+                    Log.Info(Globals.LogTag, $"UUID: {uuid}");
                     uuidList.Add (uuid);
                 }
             }
@@ -421,7 +421,7 @@ namespace Tizen.Network.Bluetooth
         internal static BluetoothLeServiceData ConvertStructToLeServiceData(BluetoothLeServiceDataStruct structServiceData)
         {
             BluetoothLeServiceData serviceData = new BluetoothLeServiceData();
-            Log.Info(Globals.LogTag, "ServiceDataLength" + structServiceData.ServiceDataLength);
+            Log.Info(Globals.LogTag, $"ServiceDataLength{structServiceData.ServiceDataLength}");
 
             if (structServiceData.ServiceDataLength > 0)
             {
@@ -436,7 +436,7 @@ namespace Tizen.Network.Bluetooth
         internal static SocketData ConvertStructToSocketData(SocketDataStruct structInfo)
         {
             SocketData data = new SocketData();
-            Log.Info(Globals.LogTag, "SocketDataLength" + structInfo.DataSize);
+            Log.Info(Globals.LogTag, $"SocketDataLength{structInfo.DataSize}");
 
             data._fd = structInfo.SocketFd;
             if (structInfo.DataSize > 0)

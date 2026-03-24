@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -145,7 +145,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeDeviceInfoGetName(_handle, out name);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetName Failed with error " + error);
+                    Log.Error(LogTag, $"GetName Failed with error {error}");
                     return "";
                 }
                 return name;
@@ -164,7 +164,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeDeviceInfoGetClass(_handle, out devClass);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetClass Failed with error " + error);
+                    Log.Error(LogTag, $"GetClass Failed with error {error}");
                     return DeviceClass.Undefined;
                 }
                 return devClass;
@@ -183,7 +183,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeDeviceInfoGetSubclass(_handle, out subclass);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetSubclass Failed with error " + error);
+                    Log.Error(LogTag, $"GetSubclass Failed with error {error}");
                     return DeviceSubclass.Undefined;
                 }
                 return subclass;

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -60,7 +60,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionCellularProfile.GetApn(ProfileHandle, out Value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get apn, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get apn, {(ConnectionError)ret}");
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Glib.Free(Value);
@@ -76,7 +76,7 @@ namespace Tizen.Network.Connection
                     int ret = Interop.ConnectionCellularProfile.SetApn(ProfileHandle, value);
                     if ((ConnectionError)ret != ConnectionError.None)
                     {
-                        Log.Error(Globals.LogTag, "It failed to set apn, " + (ConnectionError)ret);
+                        Log.Error(Globals.LogTag, $"It failed to set apn, {(ConnectionError)ret}");
                         ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony");
                         ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                         ConnectionErrorFactory.ThrowConnectionException(ret);
@@ -109,7 +109,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionCellularProfile.GetHomeUrl(ProfileHandle, out Value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get home url, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get home url, {(ConnectionError)ret}");
                 }
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Glib.Free(Value);
@@ -125,7 +125,7 @@ namespace Tizen.Network.Connection
                     int ret = Interop.ConnectionCellularProfile.SetHomeUrl(ProfileHandle, value);
                     if ((ConnectionError)ret != ConnectionError.None)
                     {
-                        Log.Error(Globals.LogTag, "It failed to set home url, " + (ConnectionError)ret);
+                        Log.Error(Globals.LogTag, $"It failed to set home url, {(ConnectionError)ret}");
                         ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony");
                         ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                         ConnectionErrorFactory.ThrowConnectionException(ret);
@@ -157,7 +157,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionCellularProfile.GetServiceType(ProfileHandle, out value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get service type, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get service type, {(ConnectionError)ret}");
                 }
                 return (CellularServiceType)value;
             }
@@ -169,7 +169,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionCellularProfile.SetServiceType(ProfileHandle, (int)value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set service type, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to set service type, {(ConnectionError)ret}");
                     ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony");
                     ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
@@ -195,7 +195,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionCellularProfile.GetPdnType(ProfileHandle, out value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get pdn type, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get pdn type, {(ConnectionError)ret}");
                 }
                 return (CellularPdnType)value;
             }
@@ -207,7 +207,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionCellularProfile.SetPdnType(ProfileHandle, (int)value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set pdn type, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to set pdn type, {(ConnectionError)ret}");
                     ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony");
                     ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
@@ -233,7 +233,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionCellularProfile.GetRoamingPdnType(ProfileHandle, out value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get roam pdn type, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get roam pdn type, {(ConnectionError)ret}");
                 }
                 return (CellularPdnType)value;
             }
@@ -245,7 +245,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionCellularProfile.SetRoamingPdnType(ProfileHandle, (int)value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set roam pdn type, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to set roam pdn type, {(ConnectionError)ret}");
                     ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony");
                     ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);
@@ -267,7 +267,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionCellularProfile.IsRoaming(ProfileHandle, out value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get isRoaming, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get isRoaming, {(ConnectionError)ret}");
                 }
                 return value;
             }
@@ -293,7 +293,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionCellularProfile.GetAuthInfo(ProfileHandle, out type, out name, out password);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get cellular authentication information, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get cellular authentication information, {(ConnectionError)ret}");
                     return null;
                 }
 
@@ -317,7 +317,7 @@ namespace Tizen.Network.Connection
                     int ret = Interop.ConnectionCellularProfile.SetAuthInfo(ProfileHandle, type, name, password);
                     if ((ConnectionError)ret != ConnectionError.None)
                     {
-                        Log.Error(Globals.LogTag, "It failed to set auth information, " + (ConnectionError)ret);
+                        Log.Error(Globals.LogTag, $"It failed to set auth information, {(ConnectionError)ret}");
                         ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony");
                         ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                         ConnectionErrorFactory.ThrowConnectionException(ret);
@@ -344,7 +344,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionCellularProfile.IsHidden(ProfileHandle, out value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get hidden value, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get hidden value, {(ConnectionError)ret}");
                 }
                 return value;
             }
@@ -363,7 +363,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionCellularProfile.IsEditable(ProfileHandle, out value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get editable value, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get editable value, {(ConnectionError)ret}");
                 }
                 return value;
             }
@@ -382,7 +382,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionCellularProfile.IsDefault(ProfileHandle, out value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get IsDefault value, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get IsDefault value, {(ConnectionError)ret}");
                 }
                 return value;
             }

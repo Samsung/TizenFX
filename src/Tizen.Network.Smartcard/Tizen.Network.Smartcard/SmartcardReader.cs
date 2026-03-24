@@ -46,7 +46,7 @@ namespace Tizen.Network.Smartcard
                 int ret = Interop.Smartcard.Reader.ReaderGetName(_readerHandle, out strPtr);
                 if (ret != (int)SmartcardError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get reader name, Error - " + (SmartcardError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get reader name, Error - {(SmartcardError)ret}");
                     return "";
                 }
                 return Marshal.PtrToStringAnsi(strPtr);
@@ -66,7 +66,7 @@ namespace Tizen.Network.Smartcard
                 int ret = Interop.Smartcard.Reader.ReaderIsSecureElementPresent(_readerHandle, out isPresent);
                 if (ret != (int)SmartcardError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get present, Error - " + (SmartcardError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get present, Error - {(SmartcardError)ret}");
                 }
                 return isPresent;
             }
@@ -135,7 +135,7 @@ namespace Tizen.Network.Smartcard
             int ret = Interop.Smartcard.Reader.ReaderOpenSession(_readerHandle, out _session);
             if (ret != (int)SmartcardError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get session handle, Error - " + (SmartcardError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get session handle, Error - {(SmartcardError)ret}");
             }
 
             SmartcardSession session = new SmartcardSession(this, _session);
@@ -155,7 +155,7 @@ namespace Tizen.Network.Smartcard
             int ret = Interop.Smartcard.Reader.ReaderCloseSessions(_readerHandle);
             if (ret != (int)SmartcardError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to close sessions, Error - " + (SmartcardError)ret);
+                Log.Error(Globals.LogTag, $"Failed to close sessions, Error - {(SmartcardError)ret}");
                 SmartcardErrorFactory.ThrowSmartcardException(ret);
             }
 

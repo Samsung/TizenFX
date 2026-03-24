@@ -39,7 +39,7 @@ namespace Tizen.Applications.Notifications
             NotificationError ret = Interop.Notification.Clone(ptr, out cloned);
             if (ret != NotificationError.None)
             {
-                Log.Error(Notification.LogTag, "Fail to clone notification : " + ret.ToString());
+                Log.Error(Notification.LogTag, $"Fail to clone notification : {ret.ToString()}");
                 return;
             }
 
@@ -352,7 +352,7 @@ namespace Tizen.Applications.Notifications
             if (ptr == IntPtr.Zero)
             {
                 NotificationError ret = (NotificationError)Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-                Log.Error(Notification.LogTag, "unable to load Notification : " + ret.ToString());
+                Log.Error(Notification.LogTag, $"unable to load Notification : {ret.ToString()}");
                 if (ret == NotificationError.DbError)
                 {
                     throw NotificationErrorFactory.GetException(NotificationError.InvalidParameter, "the tag does not exist");
@@ -526,7 +526,7 @@ namespace Tizen.Applications.Notifications
                 throw NotificationErrorFactory.GetException(ret, "GetBlockState failed");
             }
 
-            Log.Info(Notification.LogTag, "Current block state is " + state.ToString());
+            Log.Info(Notification.LogTag, $"Current block state is {state.ToString()}");
             return state;
         }
 

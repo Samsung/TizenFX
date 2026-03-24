@@ -370,8 +370,7 @@ namespace Tizen.NUI
                     var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                     var me = this.GetType().FullName;
 
-                    Tizen.Log.Fatal("NUI", $"[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
-                        $" process:{processId} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
+                    Tizen.Log.Fatal("NUI", $"[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n process:{processId} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
 
                     //to fix ArtApp black screen issue. this will be enabled after talking with ArtApp team and fixing it.
                     // throw new global::System.InvalidOperationException("[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
@@ -694,16 +693,14 @@ namespace Tizen.NUI
                     var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                     var me = this.GetType().FullName;
 
-                    Tizen.Log.Fatal("NUI", $"SwigCPtr Error! NUI's native dali object is already disposed. " +
-                        $"OR the native dali object handle of NUI becomes null! \n" +
-                        $" process:{processId} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
+                    Tizen.Log.Fatal("NUI", $"SwigCPtr Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null! \n process:{processId} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
 
                     Tizen.Log.Fatal("NUI", $"[ERROR] back trace!");
                     global::System.Diagnostics.StackTrace st = new global::System.Diagnostics.StackTrace(true);
                     for (int i = 0; i < st.FrameCount; i++)
                     {
                         global::System.Diagnostics.StackFrame sf = st.GetFrame(i);
-                        Tizen.Log.Fatal("NUI", " Method " + sf.GetMethod() + ":" + sf.GetFileName() + ":" + sf.GetFileLineNumber());
+                        Tizen.Log.Fatal("NUI", $" Method {sf.GetMethod()}:{sf.GetFileName()}:{sf.GetFileLineNumber()}");
                     }
                     Tizen.Log.Fatal("NUI", "Error! just return here with null swigCPtr! this can cause unknown error or crash in next step");
 

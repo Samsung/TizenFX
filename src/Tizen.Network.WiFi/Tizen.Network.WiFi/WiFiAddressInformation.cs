@@ -48,7 +48,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.SetDnsAddress(_handle, 1, (int)_family, value.ToString());
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set first dns address, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set first dns address, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
                 }
             }
@@ -67,7 +67,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.SetDnsAddress(_handle, 2, (int)_family, value.ToString());
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set second dns address, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set second dns address, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
                 }
             }
@@ -86,7 +86,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.SetGatewayAddress(_handle, (int)_family, value.ToString());
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set gateway address, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set gateway address, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
                 }
             }
@@ -105,7 +105,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.SetSubnetMask(_handle, (int)_family, value.ToString());
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set subnet mask, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set subnet mask, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
                 }
             }
@@ -124,7 +124,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.SetIPAddress(_handle, (int)_family, value.ToString());
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set ip address, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set ip address, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
                 }
             }
@@ -138,7 +138,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetIPConfigType(_handle, (int)_family, out type);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get ip config type, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get ip config type, Error - {(WiFiError)ret}");
                 }
                 return (IPConfigType)type;
             }
@@ -147,7 +147,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.SetIPConfigType(_handle, (int)_family, (int)value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set ip config type, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set ip config type, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
                 }
             }
@@ -161,7 +161,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetPrefixLength(_handle, (int)_family, out Value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get prefix length, " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get prefix length, {(WiFiError)ret}");
                     return -1;
                 }
                 return Value;
@@ -172,7 +172,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.SetPrefixLength(_handle, (int)_family, value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set prefix length, " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to set prefix length, {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
                 }
             }
@@ -186,7 +186,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetDnsConfigType(_handle, (int)_family, out Value);
                 if ((WiFiError)ret != WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get DNS config type, " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get DNS config type, {(WiFiError)ret}");
                 }
                 return (DnsConfigType)Value;
             }
@@ -195,7 +195,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.SetDnsConfigType(_handle, (int)_family, (int)value);
                 if ((WiFiError)ret != WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set DNS config type, " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to set DNS config type, {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
                 }
             }
@@ -213,7 +213,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetDhcpServerAddress(_handle, _family, out dhcpServer);
                 if (ret != (int)WiFiError.None || dhcpServer == null || dhcpServer.Length == 0)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get DHCP server address, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get DHCP server address, Error - {(WiFiError)ret}");
                     return DefaultIPAddress();
                 }
 
@@ -233,7 +233,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetDhcpLeaseDuration(_handle, AddressFamily.IPv4, out leaseDuration);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get DHCP lease duration, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get DHCP lease duration, Error - {(WiFiError)ret}");
                     return 0;
                 }
 
@@ -245,7 +245,7 @@ namespace Tizen.Network.WiFi
         {
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get address, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get address, Error - {(WiFiError)ret}");
                 return DefaultIPAddress();
             }
 

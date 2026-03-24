@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -107,7 +107,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Modem.GetImei(_handle, out imei);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetImei Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetImei Failed with error {error}");
                     return "";
                 }
 
@@ -132,7 +132,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Modem.GetPowerStatus(_handle, out status);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetImei Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetImei Failed with error {error}");
                     return PowerStatus.Unknown;
                 }
 
@@ -165,7 +165,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Modem.GetMeid(_handle, out meid);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetMeid Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetMeid Failed with error {error}");
                     return "";
                 }
 

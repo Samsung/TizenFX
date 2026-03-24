@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -434,7 +434,7 @@ namespace Tizen.Uix.TtsEngine
             Error error = TTSEMain(argc, argv, _structIntPtrHandle);
             if (error != Error.None)
             {
-                Log.Error(LogTag, "TTSEMain Failed with error " + error);
+                Log.Error(LogTag, $"TTSEMain Failed with error {error}");
                 throw ExceptionFactory.CreateException((ErrorCode)error);
             }
 
@@ -461,7 +461,7 @@ namespace Tizen.Uix.TtsEngine
             Error error = TTSEGetSpeedRange(out min, out normal, out max);
             if (error != Error.None)
             {
-                Log.Error(LogTag, "TTSEGetSpeedRange Failed with error " + error);
+                Log.Error(LogTag, $"TTSEGetSpeedRange Failed with error {error}");
                 throw ExceptionFactory.CreateException((ErrorCode)error);
             }
 
@@ -487,7 +487,7 @@ namespace Tizen.Uix.TtsEngine
             Error error = TTSEGetPitchRange(out min, out normal, out max);
             if (error != Error.None)
             {
-                Log.Error(LogTag, "TTSEGetPitchRange Failed with error " + error);
+                Log.Error(LogTag, $"TTSEGetPitchRange Failed with error {error}");
                 throw ExceptionFactory.CreateException((ErrorCode)error);
             }
 
@@ -520,7 +520,7 @@ namespace Tizen.Uix.TtsEngine
             Error error = TTSESendResult(resultEvent, data, dataSize, audioType, rate, IntPtr.Zero);
             if (error != Error.None)
             {
-                Log.Error(LogTag, "TTSESendResult Failed with error " + error);
+                Log.Error(LogTag, $"TTSESendResult Failed with error {error}");
                 throw ExceptionFactory.CreateException((ErrorCode)error);
             }
         }
@@ -544,7 +544,7 @@ namespace Tizen.Uix.TtsEngine
             Error err = TTSESendError(error, msg);
             if (err != Error.None)
             {
-                Log.Error(LogTag, "SendError Failed with error " + err);
+                Log.Error(LogTag, $"SendError Failed with error {err}");
                 throw ExceptionFactory.CreateException((ErrorCode)error);
             }
 
@@ -590,7 +590,7 @@ namespace Tizen.Uix.TtsEngine
             Error error = TTSESetPrivateDataSetCb(_privateDataSetCb);
             if (error != Error.None)
             {
-                Log.Error(LogTag, "SetPrivateDataSetDelegate Failed with error " + error);
+                Log.Error(LogTag, $"SetPrivateDataSetDelegate Failed with error {error}");
                 throw ExceptionFactory.CreateException((ErrorCode)error);
             }
 
@@ -637,7 +637,7 @@ namespace Tizen.Uix.TtsEngine
             Error error = TTSESetPrivateDataRequestedCb(_privateDataRequestedCb);
             if (error != Error.None)
             {
-                Log.Error(LogTag, "SetPrivateDataRequestedDelegate Failed with error " + error);
+                Log.Error(LogTag, $"SetPrivateDataRequestedDelegate Failed with error {error}");
                 throw ExceptionFactory.CreateException((ErrorCode)error);
             }
 

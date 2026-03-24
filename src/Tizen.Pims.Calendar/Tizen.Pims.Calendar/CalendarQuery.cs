@@ -48,7 +48,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Query.Create(viewUri, out _queryHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "CalendarQuery Failed with error " + error);
+                Log.Error(Globals.LogTag, $"CalendarQuery Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -78,12 +78,12 @@ namespace Tizen.Pims.Calendar
         {
             if (!disposedValue)
             {
-                Log.Debug(Globals.LogTag, "Dispose :" + disposing);
+                Log.Debug(Globals.LogTag, $"Dispose :{disposing}");
 
                 int error = Interop.Query.Destroy(_queryHandle);
                 if (CalendarError.None != (CalendarError)error)
                 {
-                    Log.Error(Globals.LogTag, "CalendarQueryDestroy Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"CalendarQueryDestroy Failed with error {error}");
                 }
                 disposedValue = true;
             }
@@ -119,7 +119,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Query.SetProjection(_queryHandle, propertyIdArray, propertyIdArray.Length);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "SetProjection Failed with error " + error);
+                Log.Error(Globals.LogTag, $"SetProjection Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -136,7 +136,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Query.SetDistinct(_queryHandle, set);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "SetDistinct Failed with error " + error);
+                Log.Error(Globals.LogTag, $"SetDistinct Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -154,7 +154,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Query.SetFilter(_queryHandle, filter._filterHandle);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "SetFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"SetFilter Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }
@@ -173,7 +173,7 @@ namespace Tizen.Pims.Calendar
             int error = Interop.Query.SetSort(_queryHandle, propertyId, isAscending);
             if (CalendarError.None != (CalendarError)error)
             {
-                Log.Error(Globals.LogTag, "SetSort Failed with error " + error);
+                Log.Error(Globals.LogTag, $"SetSort Failed with error {error}");
                 throw CalendarErrorFactory.GetException(error);
             }
         }

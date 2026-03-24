@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -165,7 +165,7 @@ namespace Tizen.NUI
         /// </remarks>
         protected override void OnFrameResumed(FrameData frame)
         {
-            Log.Info("NUI", "OnFrameResumed : " + frame.DirectionForward);
+            Log.Info("NUI", $"OnFrameResumed : {frame.DirectionForward}");
             direction = frame.DirectionForward;
 
             if (isAnimating)

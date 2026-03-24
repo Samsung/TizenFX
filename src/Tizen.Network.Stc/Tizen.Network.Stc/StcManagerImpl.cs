@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -34,12 +34,12 @@ namespace Tizen.Network.Stc
         internal StcHandleHolder()
         {
             _handle = StcManagerImpl.Instance.Initialize();
-            Log.Debug(Globals.LogTag, "Handle: " + _handle);
+            Log.Debug(Globals.LogTag, $"Handle: {_handle}");
         }
 
         internal SafeStcHandle GetSafeHandle()
         {
-            Log.Debug(Globals.LogTag, "StcHandleholder safehandle = " + _handle);
+            Log.Debug(Globals.LogTag, $"StcHandleholder safehandle = {_handle}");
             return _handle;
         }
     }
@@ -88,7 +88,7 @@ namespace Tizen.Network.Stc
             int ret = Interop.Stc.Initialize(out handle);
             if (ret != (int)StcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to initialize Stc, Error - " + (StcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to initialize Stc, Error - {(StcError)ret}");
                 throw StcErrorFactory.GetStcException(ret);
             }
             return handle;
@@ -106,7 +106,7 @@ namespace Tizen.Network.Stc
                 {
                     if (result != (int)StcError.None)
                     {
-                        Log.Error(Globals.LogTag, "GetAllStats failed, Error - " + (StcError)result);
+                        Log.Error(Globals.LogTag, $"GetAllStats failed, Error - {(StcError)result}");
                         task.SetException(StcErrorFactory.GetStcException(result));
                         lock (_getAllStatsCb_map)
                         {
@@ -121,7 +121,7 @@ namespace Tizen.Network.Stc
                     {
                         if (resultTemp != (int)StcError.None)
                         {
-                            Log.Error(Globals.LogTag, "ForeachAllStats failed, Error - " + (StcError)resultTemp);
+                            Log.Error(Globals.LogTag, $"ForeachAllStats failed, Error - {(StcError)resultTemp}");
                             task.SetException(StcErrorFactory.GetStcException(resultTemp));
                         }
 
@@ -129,7 +129,7 @@ namespace Tizen.Network.Stc
                         int retValue = Interop.Stc.Info.StatsClone(info, out cloned);
                         if (retValue != (int)StcError.None)
                         {
-                            Log.Error(Globals.LogTag, "StatsClone() failed , Error - " + (StcError)retValue);
+                            Log.Error(Globals.LogTag, $"StatsClone() failed , Error - {(StcError)retValue}");
                             task.SetException(StcErrorFactory.GetStcException(retValue));
                         }
 
@@ -140,7 +140,7 @@ namespace Tizen.Network.Stc
                     int retTemp = Interop.Stc.ForeachAllStats(infoList, foreachAllStatsCb, IntPtr.Zero);
                     if(retTemp != (int)StcError.None)
                     {
-                        Log.Error(Globals.LogTag, "foreachAllStatus() failed , Error - " + (StcError)retTemp);
+                        Log.Error(Globals.LogTag, $"foreachAllStatus() failed , Error - {(StcError)retTemp}");
                         task.SetException(StcErrorFactory.GetStcException(retTemp));
                     }
                     else
@@ -159,7 +159,7 @@ namespace Tizen.Network.Stc
                         int ret = Interop.Stc.GetAllStats(GetSafeHandle(), filterHandle, _getAllStatsCb_map[id], id);
                         if (ret != (int)StcError.None)
                         {
-                               Log.Error(Globals.LogTag, "GetAllStatus() failed , Error - " + (StcError)ret);
+                               Log.Error(Globals.LogTag, $"GetAllStatus() failed , Error - {(StcError)ret}");
                                throw StcErrorFactory.GetStcException(ret);
                         }
                 }

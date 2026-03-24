@@ -448,7 +448,7 @@ namespace Tizen.Network.IoTConnectivity
             }
             catch (Exception exp)
             {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to new ResourceOptions: " + exp.Message);
+                Log.Error(IoTConnectivityErrorFactory.LogTag, $"Failed to new ResourceOptions: {exp.Message}");
                 return null;
             }
 
@@ -458,7 +458,7 @@ namespace Tizen.Network.IoTConnectivity
             }
             catch (Exception exp)
             {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to new ResourceQuery: " + exp.Message);
+                Log.Error(IoTConnectivityErrorFactory.LogTag, $"Failed to new ResourceQuery: {exp.Message}");
                 opts?.Dispose();
                 return null;
             }
@@ -469,7 +469,7 @@ namespace Tizen.Network.IoTConnectivity
             }
             catch (Exception exp)
             {
-                Log.Error(IoTConnectivityErrorFactory.LogTag, "Failed to new Representation: " + exp.Message);
+                Log.Error(IoTConnectivityErrorFactory.LogTag, $"Failed to new Representation: {exp.Message}");
                 opts?.Dispose();
                 query?.Dispose();
                 return null;

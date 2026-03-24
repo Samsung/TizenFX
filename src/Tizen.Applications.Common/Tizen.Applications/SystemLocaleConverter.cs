@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -45,7 +45,7 @@ namespace Tizen.Applications
                 }
                 catch (CultureNotFoundException)
                 {
-                    Log.Error(LogTag, "CultureNotFoundException occurs. CultureName: " + cultureName);
+                    Log.Error(LogTag, $"CultureNotFoundException occurs. CultureName: {cultureName}");
                 }
             }
 
@@ -115,7 +115,7 @@ namespace Tizen.Applications
                 }
                 catch (CultureNotFoundException e)
                 {
-                    Log.Error(LogTag, "Failed to create CultureInfo. err = " + e.Message);
+                    Log.Error(LogTag, $"Failed to create CultureInfo. err = {e.Message}");
                 }
             }
 

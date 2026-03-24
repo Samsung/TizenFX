@@ -60,7 +60,7 @@ namespace Tizen.Network.Nsd
         public SsdpBrowser(string target)
         {
             SsdpInitializer ssdpInit = Globals.s_threadSsd.Value;
-            Log.Info(Globals.LogTag, "Initialize ThreadLocal<SsdpInitializer> instance = " + ssdpInit);
+            Log.Info(Globals.LogTag, $"Initialize ThreadLocal<SsdpInitializer> instance = {ssdpInit}");
             if (target == null)
             {
                 Log.Debug(Globals.LogTag, "target is null");
@@ -85,7 +85,7 @@ namespace Tizen.Network.Nsd
         public void StartDiscovery()
         {
             SsdpInitializer ssdpInit = Globals.s_threadSsd.Value;
-            Log.Info(Globals.LogTag, "Initialize ThreadLocal<SsdpInitializer> instance = " + ssdpInit);
+            Log.Info(Globals.LogTag, $"Initialize ThreadLocal<SsdpInitializer> instance = {ssdpInit}");
 
             _serviceFoundCallback = (SsdpServiceState state, uint service, IntPtr userData) =>
             {
@@ -100,7 +100,7 @@ namespace Tizen.Network.Nsd
             int ret = Interop.Nsd.Ssdp.StartBrowsing(_target, out _browserHandle, _serviceFoundCallback, IntPtr.Zero);
             if (ret != (int)SsdpError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to discover Ssdp remote service, Error - " + (SsdpError)ret);
+                Log.Error(Globals.LogTag, $"Failed to discover Ssdp remote service, Error - {(SsdpError)ret}");
                 NsdErrorFactory.ThrowSsdpException(ret);
             }
         }
@@ -120,7 +120,7 @@ namespace Tizen.Network.Nsd
             int ret = Interop.Nsd.Ssdp.StopBrowsing(_browserHandle);
             if (ret != (int)SsdpError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to stop discovery of Ssdp remote service, Error - " + (SsdpError)ret);
+                Log.Error(Globals.LogTag, $"Failed to stop discovery of Ssdp remote service, Error - {(SsdpError)ret}");
                 NsdErrorFactory.ThrowSsdpException(ret);
             }
         }

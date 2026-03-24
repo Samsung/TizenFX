@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -22,7 +22,7 @@ namespace Tizen.Telephony
     {
         internal static Exception CreateException(Interop.Telephony.TelephonyError err)
         {
-            Tizen.Log.Error(Interop.Telephony.LogTag, "Error " + err);
+            Tizen.Log.Error(Interop.Telephony.LogTag, $"Error {err}");
             Exception exp;
             switch (err)
             {

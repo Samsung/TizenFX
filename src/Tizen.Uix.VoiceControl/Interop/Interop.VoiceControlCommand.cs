@@ -1,4 +1,4 @@
-﻿﻿/*
+﻿/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -121,7 +121,7 @@ internal static partial class Interop
                     Interop.VoiceControl.ErrorCode error = VcCmdListDestroy(this.handle, false);
                     if (error != Interop.VoiceControl.ErrorCode.None)
                     {
-                        Log.Error(VoiceControl.LogTag, "Destroy Failed with error " + error);
+                        Log.Error(VoiceControl.LogTag, $"Destroy Failed with error {error}");
                     }
                 }
                 this.SetHandle(IntPtr.Zero);
@@ -158,7 +158,7 @@ internal static partial class Interop
                     error = VcCmdDestroy(this.handle);
                     if (error != Interop.VoiceControl.ErrorCode.None)
                     {
-                        Log.Error(VoiceControl.LogTag, "Destroy Failed with error " + error);
+                        Log.Error(VoiceControl.LogTag, $"Destroy Failed with error {error}");
                     }
                 }
                 this.SetHandle(IntPtr.Zero);

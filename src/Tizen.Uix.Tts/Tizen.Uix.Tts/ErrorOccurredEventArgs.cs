@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -167,7 +167,7 @@ namespace Tizen.Uix.Tts
                 TtsError error = TtsGetErrorMessage(_handle, out errorMesage);
                 if (error != TtsError.None)
                 {
-                    Log.Error(LogTag, "GetErrorMessage Failed with error " + error);
+                    Log.Error(LogTag, $"GetErrorMessage Failed with error {error}");
                     return "";
                 }
 

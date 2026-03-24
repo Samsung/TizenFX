@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -75,7 +75,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Call.GetPreferredVoiceSubscription(_handle, out subs);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetPreferredVoiceSubscription Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetPreferredVoiceSubscription Failed with error {error}");
                     return CallPreferredVoiceSubscription.Unknown;
                 }
 
@@ -106,7 +106,7 @@ namespace Tizen.Telephony
             TelephonyError error = Interop.Call.GetCallList(_handle, out count, out _callList);
             if (error != TelephonyError.None)
             {
-                Tizen.Log.Error(Interop.Telephony.LogTag, "GetCallList Failed with error " + error);
+                Tizen.Log.Error(Interop.Telephony.LogTag, $"GetCallList Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
