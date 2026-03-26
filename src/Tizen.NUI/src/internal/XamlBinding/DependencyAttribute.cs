@@ -19,7 +19,7 @@ using System;
 namespace Tizen.NUI.Binding
 {
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
-    internal class DependencyAttribute : Attribute
+    internal sealed class DependencyAttribute : Attribute
     {
         public DependencyAttribute(Type implementorType)
         {

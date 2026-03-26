@@ -6,7 +6,7 @@ using Tizen.WindowSystem;
 
 namespace Tizen.WindowSystem.SafeHandles
 {
-    internal class InputGestureHandle : SafeHandle
+    internal sealed class InputGestureHandle : SafeHandle
     {
         public InputGestureHandle() : base(IntPtr.Zero, true)
         {

@@ -19,7 +19,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class TextLabelSignal : Disposable
+    internal sealed class TextLabelSignal : Disposable
     {
 
         internal TextLabelSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

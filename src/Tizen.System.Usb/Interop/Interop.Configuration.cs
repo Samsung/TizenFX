@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -40,7 +40,7 @@ internal static partial class Interop
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_config_get_interface")]
     internal static extern ErrorCode GetInterface(this UsbConfigHandle /* usb_host_config_h */ config, int interfaceIndex, out IntPtr /* usb_host_interface_h */ usbInterface);
 
-    internal class UsbConfigHandle : SafeUsbHandle
+    internal sealed class UsbConfigHandle : SafeUsbHandle
     {
         [DllImport(Libraries.Usb, EntryPoint = "usb_host_config_destroy")]
         internal static extern ErrorCode ConfigDestroy(IntPtr /* usb_host_config_h */ config);

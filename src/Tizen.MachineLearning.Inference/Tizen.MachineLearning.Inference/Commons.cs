@@ -341,7 +341,7 @@ namespace Tizen.MachineLearning.Inference
         }
     }
 
-    internal class NNStreamerExceptionFactory
+    internal sealed class NNStreamerExceptionFactory
     {
         internal static Exception CreateException(NNStreamerError err, string msg)
         {

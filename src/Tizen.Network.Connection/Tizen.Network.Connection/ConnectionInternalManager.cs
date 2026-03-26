@@ -68,7 +68,7 @@ namespace Tizen.Network.Connection
         }
     }
 
-    internal class ConnectionInternalManager
+    internal sealed class ConnectionInternalManager
     {
         private static ConnectionInternalManager s_instance = null;
         private static readonly object _lock = new object();

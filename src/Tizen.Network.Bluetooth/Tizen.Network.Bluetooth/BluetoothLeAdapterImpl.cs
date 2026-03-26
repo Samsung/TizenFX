@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.Network.Bluetooth
 {
-    internal class BluetoothLeImplAdapter : IDisposable
+    internal sealed class BluetoothLeImplAdapter : IDisposable
     {
         private static readonly BluetoothLeImplAdapter _instance = new BluetoothLeImplAdapter();
 

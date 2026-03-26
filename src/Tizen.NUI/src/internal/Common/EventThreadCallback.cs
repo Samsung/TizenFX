@@ -19,7 +19,7 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    internal class EventThreadCallback : Disposable
+    internal sealed class EventThreadCallback : Disposable
     {
         public delegate void CallbackDelegate();
 

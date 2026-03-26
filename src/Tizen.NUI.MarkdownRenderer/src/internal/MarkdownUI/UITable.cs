@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +26,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// Represents a single row within a markdown table, supporting both header and body rows.
     /// Header rows include a container for cell content and an underline for separation.
     /// </summary>
-    internal class UITableRow : View
+    internal sealed class UITableRow : View
     {
         private readonly View container;
         private readonly View underline;
@@ -120,7 +120,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// Represents a single cell within a markdown table.
     /// Applies style and padding according to the table's style settings.
     /// </summary>
-    internal class UITableCell : View
+    internal sealed class UITableCell : View
     {
         private readonly TableStyle table;
 
@@ -142,7 +142,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// Represents a markdown table, containing header and body rows.
     /// Applies overall table style and outer margin.
     /// </summary>
-    internal class UITable : View
+    internal sealed class UITable : View
     {
         private readonly TableStyle table;
 

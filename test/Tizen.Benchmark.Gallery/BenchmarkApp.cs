@@ -30,17 +30,36 @@ namespace Tizen.Benchmark.Gallery
         private ScrollableBase scrollView;
         private TextLabel resultLabel;
 
-        private readonly List<(string Name, Action<TextLabel> RunBenchmark)> benchmarks = new List<(string, Action<TextLabel>)>
+        /// <summary>
+        /// Benchmark groups — each group has a title and its own set of benchmarks.
+        /// </summary>
+        private readonly List<(string GroupName, List<(string Name, Action<TextLabel> Run)> Items)> benchmarkGroups = new()
         {
-            ("FrozenDictionary: String Key Lookup", FrozenDictionaryBenchmark.RunStringKeyLookup),
-            ("FrozenDictionary: Enum Key Lookup", FrozenDictionaryBenchmark.RunEnumKeyLookup),
-            ("FrozenDictionary: Type Key Lookup", FrozenDictionaryBenchmark.RunTypeKeyLookup),
-            ("FrozenDictionary: Size Comparison", FrozenDictionaryBenchmark.RunSizeComparison),
-            ("Stackalloc: Single Struct (Old)", StackallocBenchmark.RunSingleStructOldUI),
-            ("Stackalloc: Single Struct (New)", StackallocBenchmark.RunSingleStructNewUI),
-            ("Stackalloc: Struct Array (Old)", StackallocBenchmark.RunStructArrayOldUI),
-            ("Stackalloc: Struct Array (New)", StackallocBenchmark.RunStructArrayNewUI),
-            // Add more benchmarks here in the future
+            ("FrozenDictionary", new List<(string, Action<TextLabel>)>
+            {
+                ("String Key Lookup", FrozenDictionaryBenchmark.RunStringKeyLookup),
+                ("Enum Key Lookup", FrozenDictionaryBenchmark.RunEnumKeyLookup),
+                ("Type Key Lookup", FrozenDictionaryBenchmark.RunTypeKeyLookup),
+                ("Size Comparison", FrozenDictionaryBenchmark.RunSizeComparison),
+            }),
+
+            ("Stackalloc / Fixed", new List<(string, Action<TextLabel>)>
+            {
+                ("Single Struct (Old)", StackallocBenchmark.RunSingleStructOldUI),
+                ("Single Struct (New)", StackallocBenchmark.RunSingleStructNewUI),
+                ("Struct Array (Old)", StackallocBenchmark.RunStructArrayOldUI),
+                ("Struct Array (New)", StackallocBenchmark.RunStructArrayNewUI),
+            }),
+
+            ("Sealed Class", new List<(string, Action<TextLabel>)>
+            {
+                ("Virtual (sealed)", SealedClassBenchmark.RunVirtualSealedUI),
+                ("Virtual (non-sealed)", SealedClassBenchmark.RunVirtualNonSealedUI),
+                ("Interface (sealed)", SealedClassBenchmark.RunInterfaceSealedUI),
+                ("Interface (non-sealed)", SealedClassBenchmark.RunInterfaceNonSealedUI),
+            }),
+
+            // Add more benchmark groups here in the future
         };
 
         protected override void OnCreate()
@@ -90,27 +109,26 @@ namespace Tizen.Benchmark.Gallery
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Vertical,
-                    CellPadding = new Size2D(0, 8),
+                    CellPadding = new Size2D(0, 6),
                 },
             };
             rootView.Add(scrollView);
 
-            // Create benchmark buttons
-            foreach (var (name, runBenchmark) in benchmarks)
+            // Create grouped benchmark sections
+            foreach (var (groupName, items) in benchmarkGroups)
             {
-                var button = CreateBenchmarkButton(name, runBenchmark);
-                scrollView.Add(button);
+                AddGroupSection(groupName, items);
             }
 
-            // "Run All" button
+            // Global "Run All" button
             var runAllButton = new Button()
             {
-                Text = "▶ Run All Benchmarks",
+                Text = "▶▶ Run All Benchmarks",
                 WidthResizePolicy = ResizePolicyType.FillToParent,
                 HeightResizePolicy = ResizePolicyType.UseNaturalSize,
                 Padding = new Extents(10, 10, 10, 10),
                 PointSize = 16,
-                BackgroundColor = new Color(0.2f, 0.6f, 0.3f, 1.0f),
+                BackgroundColor = new Color(0.6f, 0.2f, 0.5f, 1.0f),
                 TextColor = Color.White,
                 CornerRadius = 12,
             };
@@ -142,6 +160,45 @@ namespace Tizen.Benchmark.Gallery
             resultScrollView.Add(resultLabel);
         }
 
+        private void AddGroupSection(string groupName, List<(string Name, Action<TextLabel> Run)> items)
+        {
+            // Group header
+            var header = new TextLabel()
+            {
+                Text = $"━━ {groupName} ━━",
+                TextColor = new Color(0.6f, 0.75f, 0.95f, 1.0f),
+                PointSize = 15,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.UseNaturalSize,
+                FontFamily = "SamsungOneUI",
+                Padding = new Extents(0, 0, 8, 2),
+            };
+            scrollView.Add(header);
+
+            // Individual benchmark buttons
+            foreach (var (name, run) in items)
+            {
+                var button = CreateBenchmarkButton($"{groupName}: {name}", run);
+                scrollView.Add(button);
+            }
+
+            // Per-group "Run All" button
+            var runGroupButton = new Button()
+            {
+                Text = $"▶ Run All {groupName}",
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.UseNaturalSize,
+                Padding = new Extents(10, 10, 8, 8),
+                PointSize = 14,
+                BackgroundColor = new Color(0.2f, 0.6f, 0.3f, 1.0f),
+                TextColor = Color.White,
+                CornerRadius = 10,
+            };
+            runGroupButton.Clicked += (s, e) => RunGroupBenchmarks(groupName, items);
+            scrollView.Add(runGroupButton);
+        }
+
         private Button CreateBenchmarkButton(string name, Action<TextLabel> runBenchmark)
         {
             var button = new Button()
@@ -149,7 +206,7 @@ namespace Tizen.Benchmark.Gallery
                 Text = name,
                 WidthResizePolicy = ResizePolicyType.FillToParent,
                 HeightResizePolicy = ResizePolicyType.UseNaturalSize,
-                Padding = new Extents(10, 10, 10, 10),
+                Padding = new Extents(10, 10, 8, 8),
                 PointSize = 14,
                 BackgroundColor = new Color(0.2f, 0.35f, 0.55f, 1.0f),
                 TextColor = Color.White,
@@ -169,21 +226,66 @@ namespace Tizen.Benchmark.Gallery
             return button;
         }
 
-        private void RunAllBenchmarks()
+        private void RunGroupBenchmarks(string groupName, List<(string Name, Action<TextLabel> Run)> items)
         {
-            resultLabel.Text = "Running all benchmarks...\n\n";
-            Console.WriteLine("\nRunning all benchmarks...\n");
+            resultLabel.Text = $"Running {groupName} benchmarks...\n\n";
+            Console.WriteLine($"\nRunning {groupName} benchmarks...\n");
             int index = 0;
 
             Timer timer = new Timer(200);
             timer.Tick += (s, e) =>
             {
-                if (index < benchmarks.Count)
+                if (index < items.Count)
                 {
-                    var (name, runBenchmark) = benchmarks[index];
+                    var (name, run) = items[index];
                     resultLabel.Text += $"--- {name} ---\n";
                     Console.WriteLine($"--- {name} ---");
-                    runBenchmark(resultLabel);
+                    run(resultLabel);
+                    resultLabel.Text += "\n";
+                    Console.WriteLine();
+                    index++;
+                    return true;
+                }
+                resultLabel.Text += $"=== {groupName} complete ===\n";
+                Console.WriteLine($"=== {groupName} complete ===");
+                return false;
+            };
+            timer.Start();
+        }
+
+        private void RunAllBenchmarks()
+        {
+            resultLabel.Text = "Running all benchmarks...\n\n";
+            Console.WriteLine("\nRunning all benchmarks...\n");
+
+            // Flatten all groups into a single queue
+            var allBenchmarks = new List<(string GroupName, string Name, Action<TextLabel> Run)>();
+            foreach (var (groupName, items) in benchmarkGroups)
+            {
+                foreach (var (name, run) in items)
+                {
+                    allBenchmarks.Add((groupName, name, run));
+                }
+            }
+
+            int index = 0;
+            string currentGroup = "";
+
+            Timer timer = new Timer(200);
+            timer.Tick += (s, e) =>
+            {
+                if (index < allBenchmarks.Count)
+                {
+                    var (groupName, name, run) = allBenchmarks[index];
+                    if (groupName != currentGroup)
+                    {
+                        resultLabel.Text += $"━━ {groupName} ━━\n";
+                        Console.WriteLine($"━━ {groupName} ━━");
+                        currentGroup = groupName;
+                    }
+                    resultLabel.Text += $"--- {name} ---\n";
+                    Console.WriteLine($"--- {name} ---");
+                    run(resultLabel);
                     resultLabel.Text += "\n";
                     Console.WriteLine();
                     index++;
@@ -203,3 +305,4 @@ namespace Tizen.Benchmark.Gallery
         }
     }
 }
+

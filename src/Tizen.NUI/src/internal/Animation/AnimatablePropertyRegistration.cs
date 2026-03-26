@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class AnimatablePropertyRegistration : Disposable
+    internal sealed class AnimatablePropertyRegistration : Disposable
     {
         internal AnimatablePropertyRegistration(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

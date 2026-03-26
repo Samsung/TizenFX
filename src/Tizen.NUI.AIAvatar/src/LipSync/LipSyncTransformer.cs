@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,7 @@ using System.Text.Json;
 namespace Tizen.NUI.AIAvatar
 {
 
-    internal class LipSyncTransformer
+    internal sealed class LipSyncTransformer
     {
         private LipData lipData;
         private VisemeData visemeData;

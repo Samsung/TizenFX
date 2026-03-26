@@ -54,7 +54,7 @@ namespace Tizen.Network.Nfc
         }
     }
 
-    internal partial class NfcManagerImpl : IDisposable
+    internal sealed partial class NfcManagerImpl : IDisposable
     {
         private static readonly NfcManagerImpl _instance = new NfcManagerImpl();
         private static readonly NfcTagAdapter _instanceTagAdapter = new NfcTagAdapter();

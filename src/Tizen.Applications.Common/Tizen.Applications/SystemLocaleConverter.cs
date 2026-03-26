@@ -25,7 +25,7 @@ using System.Threading.Tasks;
 
 namespace Tizen.Applications
 {
-    internal class SystemLocaleConverter
+    internal sealed class SystemLocaleConverter
     {
         private static readonly string LogTag = "Tizen.Applications";
         public SystemLocaleConverter()
@@ -152,7 +152,7 @@ namespace Tizen.Applications
         }
 
 
-        internal class ULocale
+        internal sealed class ULocale
         {
             private const int ULOC_FULLNAME_CAPACITY = 157;
             private const int ULOC_LANG_CAPACITY = 12;

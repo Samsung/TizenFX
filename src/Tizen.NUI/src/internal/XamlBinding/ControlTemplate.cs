@@ -23,7 +23,7 @@ namespace Tizen.NUI.Binding
     /// Template that specifies a group of styles and effects for controls.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class ControlTemplate : ElementTemplate
+    internal sealed class ControlTemplate : ElementTemplate
     {
         /// <summary>
         /// For internal use only.

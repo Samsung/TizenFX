@@ -16,7 +16,7 @@
  */
 namespace Tizen.NUI
 {
-    internal class WidgetImplPtr
+    internal sealed class WidgetImplPtr
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

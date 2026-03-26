@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -73,7 +73,7 @@ internal static partial class Interop
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_transfer")]
     internal static extern ErrorCode Transfer(this UsbEndpointHandle /* usb_host_endpoint_h */ ep, byte[] data, int length, out int transferred, uint timeout);
 
-    internal class UsbEndpointHandle : SafeUsbHandle
+    internal sealed class UsbEndpointHandle : SafeUsbHandle
     {
         public UsbEndpointHandle(IntPtr handle) : base(handle) { }
         public override void Destroy() { }

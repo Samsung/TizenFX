@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +25,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// <summary>
     /// Renders a code block as a NUI View, including an optional language label and styled code text.
     /// </summary>
-    internal class UICode : View
+    internal sealed class UICode : View
     {
         private readonly CodeStyle code;
 

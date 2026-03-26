@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -21,7 +21,7 @@ using System.Text;
 
 namespace Tizen.Content.MimeType
 {
-    internal class MimeExceptionFactory
+    internal sealed class MimeExceptionFactory
     {
         internal static Exception CreateException(MimeUtil.MimeError err)
         {

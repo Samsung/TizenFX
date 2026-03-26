@@ -41,7 +41,7 @@ namespace Tizen.Network.WiFi
         }
     }
 
-    internal partial class WiFiManagerImpl
+    internal sealed partial class WiFiManagerImpl
     {
         private event EventHandler<DeviceStateChangedEventArgs> _deviceStateChanged;
         private event EventHandler<ConnectionStateChangedEventArgs> _connectionStateChanged;

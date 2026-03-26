@@ -6,7 +6,7 @@ using Tizen.WindowSystem;
 
 namespace Tizen.WindowSystem.SafeHandles
 {
-    internal class InputGeneratorHandle : SafeHandle
+    internal sealed class InputGeneratorHandle : SafeHandle
     {
         public InputGeneratorHandle() : base(IntPtr.Zero, true)
         {

@@ -20,7 +20,7 @@ using Tizen.Internals.Errors;
 
 namespace Tizen.Applications.CoreBackend
 {
-    internal class UICoreBackend : DefaultCoreBackend
+    internal sealed class UICoreBackend : DefaultCoreBackend
     {
         private Interop.Application.UIAppLifecycleCallbacks _callbacks;
         private IntPtr _lowMemoryEventHandle = IntPtr.Zero;

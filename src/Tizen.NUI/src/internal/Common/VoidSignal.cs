@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class VoidSignal : Disposable
+    internal sealed class VoidSignal : Disposable
     {
         internal VoidSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
