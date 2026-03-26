@@ -18,7 +18,7 @@ using System;
 
 namespace Tizen.Network.Bluetooth
 {
-    internal class BluetoothOppServerImpl
+    internal sealed class BluetoothOppServerImpl
     {
         private static readonly Lazy<BluetoothOppServerImpl> _instance = new Lazy<BluetoothOppServerImpl>(() =>
         {
@@ -143,7 +143,7 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
-    internal class BluetoothOppClientImpl
+    internal sealed class BluetoothOppClientImpl
     {
         private static readonly Lazy<BluetoothOppClientImpl> _instance = new Lazy<BluetoothOppClientImpl>(() =>
         {

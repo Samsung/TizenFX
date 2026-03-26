@@ -315,7 +315,7 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
-    internal class BluetoothLeScanData
+    internal sealed class BluetoothLeScanData
     {
         internal string RemoteAddress
         {

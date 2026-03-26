@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class ScrollableSignal : Disposable
+    internal sealed class ScrollableSignal : Disposable
     {
         internal ScrollableSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

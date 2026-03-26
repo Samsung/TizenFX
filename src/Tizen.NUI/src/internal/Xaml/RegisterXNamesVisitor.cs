@@ -20,7 +20,7 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Xaml
 {
-    internal class RegisterXNamesVisitor : IXamlNodeVisitor
+    internal sealed class RegisterXNamesVisitor : IXamlNodeVisitor
     {
         public RegisterXNamesVisitor(HydrationContext context)
         {

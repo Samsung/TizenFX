@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.WindowSystem.Shell.SafeHandles
 {
-    internal class ScreensaverServiceHandle : SafeHandle
+    internal sealed class ScreensaverServiceHandle : SafeHandle
     {
         public ScreensaverServiceHandle() : base(IntPtr.Zero, true)
         {

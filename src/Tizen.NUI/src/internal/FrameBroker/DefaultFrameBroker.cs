@@ -22,7 +22,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Default FrameBroker of NUI Application.
     /// </summary>
-    internal class DefaultFrameBroker : FrameBrokerBase
+    internal sealed class DefaultFrameBroker : FrameBrokerBase
     {
         private const int DefaultTransitionDuration = 500;
 

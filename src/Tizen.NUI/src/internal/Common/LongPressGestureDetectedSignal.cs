@@ -18,7 +18,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class LongPressGestureDetectedSignal : Disposable
+    internal sealed class LongPressGestureDetectedSignal : Disposable
     {
         internal LongPressGestureDetectedSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

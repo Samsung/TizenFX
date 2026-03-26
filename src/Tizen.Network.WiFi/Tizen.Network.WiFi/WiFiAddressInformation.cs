@@ -21,7 +21,7 @@ using Tizen.Network.Connection;
 
 namespace Tizen.Network.WiFi
 {
-    internal class WiFiAddressInformation : IAddressInformation
+    internal sealed class WiFiAddressInformation : IAddressInformation
     {
         private Interop.WiFi.SafeWiFiAPHandle _handle;
         private AddressFamily _family;

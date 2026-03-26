@@ -19,7 +19,7 @@ using System;
 namespace Tizen.NUI.Binding
 {
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
-    internal class ExportEffectAttribute : Attribute
+    internal sealed class ExportEffectAttribute : Attribute
     {
         public ExportEffectAttribute(Type effectType, string uniqueName)
         {

@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// <summary>
     /// It is an internal class for security origin list of web view.
     /// </summary>
-    internal class WebSecurityOriginList : Disposable
+    internal sealed class WebSecurityOriginList : Disposable
     {
         internal WebSecurityOriginList(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

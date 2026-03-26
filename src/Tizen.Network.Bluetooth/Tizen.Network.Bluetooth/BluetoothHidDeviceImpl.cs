@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace Tizen.Network.Bluetooth
 {
-    internal class BluetoothHidDeviceImpl
+    internal sealed class BluetoothHidDeviceImpl
     {
         private event EventHandler<HidDeviceConnectionStateChangedEventArgs> _hidDeviceConnectionStateChanged;
         private Interop.Bluetooth.HidDeviceConnectionStateChangedCallback _hidDeviceConnectionStateChangedCallback;

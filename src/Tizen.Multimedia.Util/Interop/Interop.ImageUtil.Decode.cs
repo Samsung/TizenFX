@@ -51,7 +51,7 @@ internal static partial class Interop
         }
     }
 
-    internal class ImageDecoderHandle : SafeHandle
+    internal sealed class ImageDecoderHandle : SafeHandle
     {
         protected ImageDecoderHandle() : base(IntPtr.Zero, true)
         {

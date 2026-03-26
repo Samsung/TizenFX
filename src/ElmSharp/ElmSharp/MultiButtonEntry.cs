@@ -423,7 +423,7 @@ namespace ElmSharp
             return true;
         }
 
-        internal class EntryInner : Entry
+        internal sealed class EntryInner : Entry
         {
             /// <summary>
             /// Creates and initializes a new instance of the EntryInner class.

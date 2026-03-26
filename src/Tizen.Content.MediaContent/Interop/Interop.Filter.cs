@@ -40,7 +40,7 @@ internal static partial class Interop
         internal static extern MediaContentError SetOrder(FilterHandle filter, string orderExpression);
     }
 
-    internal class FilterHandle : MediaContentCriticalHandle
+    internal sealed class FilterHandle : MediaContentCriticalHandle
     {
         public static readonly FilterHandle Null = new FilterHandle();
 

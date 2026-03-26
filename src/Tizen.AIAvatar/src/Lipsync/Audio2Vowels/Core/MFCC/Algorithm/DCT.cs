@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,7 +19,7 @@ using System;
 
 namespace Tizen.AIAvatar
 {
-    internal class DCT
+    internal sealed class DCT
     {
         private int dctSize;
         private int featureCount;
