@@ -20,7 +20,7 @@ using System.Collections.Generic;
 
 namespace Tizen.NUI.Xaml
 {
-    internal class HydrationContext
+    internal sealed class HydrationContext
     {
         public HydrationContext()
         {

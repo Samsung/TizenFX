@@ -16,7 +16,7 @@
  */
 namespace Tizen.NUI
 {
-    internal class VectorBlob : Disposable
+    internal sealed class VectorBlob : Disposable
     {
         internal VectorBlob(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {

@@ -18,7 +18,7 @@ using System.Diagnostics;
 
 namespace Tizen.Multimedia
 {
-    internal class MultimediaDebug
+    internal sealed class MultimediaDebug
     {
         [Conditional("DEBUG")]
         internal static void AssertNoError(int errorCode)

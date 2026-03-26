@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class ResizeSignal : Disposable
+    internal sealed class ResizeSignal : Disposable
     {
         internal ResizeSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

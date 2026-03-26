@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.ComponentModel;
 using Microsoft.Windows.Design;
 
 namespace Tizen.NUI.Components.Design
 {
-    internal class AttributeTableBuilder : Microsoft.Windows.Design.Metadata.AttributeTableBuilder
+    internal sealed class AttributeTableBuilder : Microsoft.Windows.Design.Metadata.AttributeTableBuilder
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AttributeTableBuilder()
@@ -14,7 +14,7 @@ namespace Tizen.NUI.Components.Design
         }
     }
 
-    internal class AnythingConverter : global::System.ComponentModel.TypeConverter
+    internal sealed class AnythingConverter : global::System.ComponentModel.TypeConverter
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)

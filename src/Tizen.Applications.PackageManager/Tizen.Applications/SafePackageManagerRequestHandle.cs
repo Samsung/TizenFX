@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.Applications
 {
-    internal class SafePackageManagerRequestHandle : SafeHandle
+    internal sealed class SafePackageManagerRequestHandle : SafeHandle
     {
         /// <summary>
         /// Initializes a new instance of the SafePackageManagerRequestHandle class.

@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class VectorUnsignedChar : Disposable
+    internal sealed class VectorUnsignedChar : Disposable
     {
         internal VectorUnsignedChar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {

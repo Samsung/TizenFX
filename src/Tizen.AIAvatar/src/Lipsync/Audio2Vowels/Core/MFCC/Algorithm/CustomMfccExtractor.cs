@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,7 +20,7 @@ using System.Collections.Generic;
 
 namespace Tizen.AIAvatar
 {
-    internal class CustomMfccExtractor : IMfccExtractor
+    internal sealed class CustomMfccExtractor : IMfccExtractor
     {
         private readonly int FilterBankSize = 24;
 
@@ -96,7 +96,7 @@ namespace Tizen.AIAvatar
     }
 
     //DLL Interface
-    internal class Extractor
+    internal sealed class Extractor
     {
         public static float[][] ComputeFrom(float[] audio, int samplingRate, float frameDuration, float hopDuration, int featureCount)
         {

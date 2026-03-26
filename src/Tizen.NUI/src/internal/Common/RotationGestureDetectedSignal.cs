@@ -18,7 +18,7 @@
 namespace Tizen.NUI
 {
     using Tizen.NUI.BaseComponents;
-    internal class RotationGestureDetectedSignal : Disposable
+    internal sealed class RotationGestureDetectedSignal : Disposable
     {
         internal RotationGestureDetectedSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

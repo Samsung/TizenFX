@@ -263,7 +263,7 @@ namespace Tizen.MachineLearning.Train
 
     }
 
-    internal class NNTrainerExceptionFactory
+    internal sealed class NNTrainerExceptionFactory
     {
         internal static Exception CreateException(NNTrainerError err, string msg)
         {

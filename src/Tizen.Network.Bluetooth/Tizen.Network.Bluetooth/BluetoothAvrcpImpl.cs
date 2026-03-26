@@ -18,7 +18,7 @@ using System;
 
 namespace Tizen.Network.Bluetooth
 {
-    internal class BluetoothAvrcpImpl : IDisposable
+    internal sealed class BluetoothAvrcpImpl : IDisposable
     {
         private event EventHandler<TargetConnectionStateChangedEventArgs> _targetConnectionChanged;
         private event EventHandler<EqualizerStateChangedEventArgs> _equalizerStateChanged;

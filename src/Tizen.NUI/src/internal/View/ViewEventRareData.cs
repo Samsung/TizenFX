@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.NUI.BaseComponents
 {
-    internal class ViewEventRareData
+    internal sealed class ViewEventRareData
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool WheelEventCallbackType(IntPtr view, IntPtr wheelEvent);

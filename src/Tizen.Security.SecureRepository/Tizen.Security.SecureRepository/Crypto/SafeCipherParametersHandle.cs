@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.Security.SecureRepository.Crypto
 {
-    internal class SafeCipherParametersHandle : SafeHandle
+    internal sealed class SafeCipherParametersHandle : SafeHandle
     {
         internal SafeCipherParametersHandle(CipherAlgorithmType algorithm) :
             base(IntPtr.Zero, true)

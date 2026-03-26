@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class GaussianBlurViewSignal : Disposable
+    internal sealed class GaussianBlurViewSignal : Disposable
     {
         internal GaussianBlurViewSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

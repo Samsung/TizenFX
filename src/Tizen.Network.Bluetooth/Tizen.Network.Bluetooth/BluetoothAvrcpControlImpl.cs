@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.Network.Bluetooth
 {
-    internal class BluetoothAvrcpControlImpl :IDisposable
+    internal sealed class BluetoothAvrcpControlImpl :IDisposable
     {
         private event EventHandler<PositionChangedEventArgs> _positionChanged;
         private event EventHandler<PlayStateChangedEventArgs> _playStateChanged;

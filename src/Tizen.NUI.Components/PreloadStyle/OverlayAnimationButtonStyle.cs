@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2020 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -79,7 +79,7 @@ namespace Tizen.NUI.Components
     /// OverlayAnimationButtonExtension class is a extended ButtonExtension class that make the overlay image blinking on a Button pressed.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class OverlayAnimationButtonExtension : ButtonExtension
+    internal sealed class OverlayAnimationButtonExtension : ButtonExtension
     {
         private Animation PressAnimation { get; set; }
 

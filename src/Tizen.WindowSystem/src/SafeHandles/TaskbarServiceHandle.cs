@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.WindowSystem.Shell.SafeHandles
 {
-    internal class TaskbarServiceHandle : SafeHandle
+    internal sealed class TaskbarServiceHandle : SafeHandle
     {
         public TaskbarServiceHandle() : base(IntPtr.Zero, true)
         {

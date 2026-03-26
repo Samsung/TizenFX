@@ -27,7 +27,7 @@ namespace Tizen.Network.Stc
         internal const string LogTag = "Tizen.Network.Stc";
     }
 
-    internal class StcHandleHolder
+    internal sealed class StcHandleHolder
     {
         readonly SafeStcHandle _handle;
 
@@ -47,7 +47,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// The implementation of Stc APIs.
     /// </summary>
-    internal class StcManagerImpl
+    internal sealed class StcManagerImpl
     {
         private static StcManagerImpl _instance;
         private Dictionary<IntPtr, Interop.Stc.GetAllStatsFinishedCallback> _getAllStatsCb_map = new Dictionary<IntPtr, Interop.Stc.GetAllStatsFinishedCallback>();

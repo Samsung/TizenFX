@@ -26,7 +26,7 @@ namespace Tizen.Network.Smartcard
         internal const string LogTag = "Tizen.Network.Smartcard";
     }
 
-    internal class SmartcardManagerImpl : IDisposable
+    internal sealed class SmartcardManagerImpl : IDisposable
     {
         private static readonly SmartcardManagerImpl _instance = new SmartcardManagerImpl();
         private bool disposed = false;

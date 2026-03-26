@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.WindowSystem.Shell.SafeHandles
 {
-    internal class QuickPanelClientHandle : SafeHandle
+    internal sealed class QuickPanelClientHandle : SafeHandle
     {
         public QuickPanelClientHandle() : base(IntPtr.Zero, true)
         {

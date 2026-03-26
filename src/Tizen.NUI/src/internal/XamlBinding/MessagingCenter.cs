@@ -37,7 +37,7 @@ namespace Tizen.NUI.Binding
         void Unsubscribe<TSender>(object subscriber, string message) where TSender : class;
     }
 
-    internal class MessagingCenter : IMessagingCenter
+    internal sealed class MessagingCenter : IMessagingCenter
     {
         public static IMessagingCenter Instance { get; } = new MessagingCenter();
 

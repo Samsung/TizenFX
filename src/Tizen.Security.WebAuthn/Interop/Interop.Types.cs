@@ -42,7 +42,7 @@ internal static partial class Interop
 
     [NativeStruct("wauthn_rp_entity_s", Include="webauthn-types.h", PkgConfig=pkg)]
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    internal class WauthnRpEntity
+    internal sealed class WauthnRpEntity
     {
         public readonly IntPtr name;                        // string
         public readonly IntPtr id;                          // string
@@ -56,7 +56,7 @@ internal static partial class Interop
 
     [NativeStruct("wauthn_user_entity_s", Include="webauthn-types.h", PkgConfig=pkg)]
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    internal class WauthnUserEntity
+    internal sealed class WauthnUserEntity
     {
         public readonly IntPtr name;                        // string
         public readonly IntPtr id;                          // WauthnConstBuffer*
@@ -72,7 +72,7 @@ internal static partial class Interop
 
     [NativeStruct("wauthn_pubkey_cred_params_s", Include="webauthn-types.h", PkgConfig=pkg)]
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    internal class WauthnPubkeyCredParams
+    internal sealed class WauthnPubkeyCredParams
     {
         public readonly nuint size;
         public readonly IntPtr parameters;                  // WauthnPubkeyCredParam[]
@@ -86,7 +86,7 @@ internal static partial class Interop
 
     [NativeStruct("wauthn_pubkey_cred_descriptors_s", Include="webauthn-types.h", PkgConfig=pkg)]
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    internal class WauthnPubkeyCredDescriptors
+    internal sealed class WauthnPubkeyCredDescriptors
     {
         public readonly nuint size;
         public readonly IntPtr descriptors;                 // WauthnPubkeyCredDescriptor[]
@@ -100,7 +100,7 @@ internal static partial class Interop
 
     [NativeStruct("wauthn_authenticator_sel_cri_s", Include="webauthn-types.h", PkgConfig=pkg)]
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    internal class WauthnAuthenticationSelCri
+    internal sealed class WauthnAuthenticationSelCri
     {
         public readonly AuthenticatorAttachment attachment;
         public readonly ResidentKeyRequirement residentKey;
@@ -122,7 +122,7 @@ internal static partial class Interop
 
     [NativeStruct("wauthn_pubkey_cred_hints_s", Include="webauthn-types.h", PkgConfig=pkg)]
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    internal class WauthnPubkeyCredHints
+    internal sealed class WauthnPubkeyCredHints
     {
         public readonly nuint size;
         public readonly IntPtr hints;                       // PubkeyCredHint[]
@@ -136,7 +136,7 @@ internal static partial class Interop
 
     [NativeStruct("wauthn_attestation_formats_s", Include="webauthn-types.h", PkgConfig=pkg)]
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    internal class WauthnAttestationFormats
+    internal sealed class WauthnAttestationFormats
     {
         public readonly nuint size;
         public readonly IntPtr attestationFormats;          // WauthnConstBuffer[]
@@ -150,7 +150,7 @@ internal static partial class Interop
 
     [NativeStruct("wauthn_pubkey_cred_creation_options_s", Include="webauthn-types.h", PkgConfig=pkg)]
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    internal class WauthnPubkeyCredCreationOptions
+    internal sealed class WauthnPubkeyCredCreationOptions
     {
         public readonly IntPtr rp;                          // WauthnRpEntity*
         public readonly IntPtr user;                        // WauthnUserEntity*
@@ -193,7 +193,7 @@ internal static partial class Interop
 
     [NativeStruct("wauthn_pubkey_cred_request_options_s", Include="webauthn-types.h", PkgConfig=pkg)]
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    internal class WauthnPubkeyCredRequestOptions
+    internal sealed class WauthnPubkeyCredRequestOptions
     {
         public readonly nuint timeout;
         [MarshalAs(UnmanagedType.LPStr)]
@@ -231,7 +231,7 @@ internal static partial class Interop
 
     [NativeStruct("wauthn_pubkey_credential_attestation_s", Include="webauthn-types.h", PkgConfig=pkg)]
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    internal class WauthnPubkeyCredentialAttestation
+    internal sealed class WauthnPubkeyCredentialAttestation
     {
         public readonly IntPtr id;                          // WauthnConstBuffer*
         public readonly PubkeyCredType type;
@@ -262,7 +262,7 @@ internal static partial class Interop
 
     [NativeStruct("wauthn_pubkey_credential_assertion_s", Include="webauthn-types.h", PkgConfig=pkg)]
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    internal class WauthnPubkeyCredentialAssertion
+    internal sealed class WauthnPubkeyCredentialAssertion
     {
         public readonly IntPtr id;                          // WauthnConstBuffer*
         public readonly PubkeyCredType type;
@@ -291,7 +291,7 @@ internal static partial class Interop
 
     [NativeStruct("wauthn_client_data_s", Include="webauthn-types.h", PkgConfig=pkg)]
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    internal class WauthnClientData
+    internal sealed class WauthnClientData
     {
         public readonly IntPtr clientDataJson;              // WauthnConstBuffer*
         public readonly HashAlgorithm hashAlgo;
@@ -305,7 +305,7 @@ internal static partial class Interop
 
     [NativeStruct("wauthn_mc_callbacks_s", Include="webauthn-types.h", PkgConfig=pkg)]
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    internal class WauthnMcCallbacks
+    internal sealed class WauthnMcCallbacks
     {
         [MarshalAs(UnmanagedType.FunctionPtr)]
         public readonly WauthnDisplayQrcodeCallback qrcodeCallback;
@@ -328,7 +328,7 @@ internal static partial class Interop
 
     [NativeStruct("wauthn_ga_callbacks_s", Include="webauthn-types.h", PkgConfig=pkg)]
     [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
-    internal class WauthnGaCallbacks
+    internal sealed class WauthnGaCallbacks
     {
         [MarshalAs(UnmanagedType.FunctionPtr)]
         public readonly WauthnDisplayQrcodeCallback qrcodeCallback;

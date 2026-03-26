@@ -18,7 +18,7 @@ using System;
 
 namespace Tizen.Network.Bluetooth
 {
-    internal class BluetoothHidImpl : IDisposable
+    internal sealed class BluetoothHidImpl : IDisposable
     {
         private event EventHandler<HidConnectionStateChangedEventArgs> _hidConnectionChanged;
         private Interop.Bluetooth.HidConnectionStateChangedCallback _hidConnectionChangedCallback;

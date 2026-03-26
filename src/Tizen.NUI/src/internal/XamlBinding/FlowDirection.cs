@@ -27,7 +27,7 @@ namespace Tizen.NUI.Binding
     }
 
     [Xaml.TypeConversion(typeof(FlowDirection))]
-    internal class FlowDirectionConverter : TypeConverter
+    internal sealed class FlowDirectionConverter : TypeConverter
     {
         public override object ConvertFromInvariantString(string value)
         {

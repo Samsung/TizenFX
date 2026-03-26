@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2025 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -24,7 +24,7 @@ using SystemIO = System.IO;
 
 namespace Tizen.Applications
 {
-    internal class ServiceAssemblyLoadContext : AssemblyLoadContext
+    internal sealed class ServiceAssemblyLoadContext : AssemblyLoadContext
     {
         public ServiceAssemblyLoadContext() : base(isCollectible: true) { }
 

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -34,7 +34,7 @@ namespace Tizen.Account.SyncManager
         AdapterNotFound = -0x01020000 | 0X02
     }
 
-    internal class ErrorFactory
+    internal sealed class ErrorFactory
     {
         internal static string LogTag = "Tizen.Account.SyncManager";
 

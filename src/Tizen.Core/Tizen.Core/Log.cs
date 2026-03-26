@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2024 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,7 +18,7 @@ using System.Runtime.CompilerServices;
 
 namespace Tizen.Core
 {
-    internal class Log
+    internal sealed class Log
     {
         private static string LogTag = "Tizen.Core";
 

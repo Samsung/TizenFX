@@ -21,7 +21,7 @@ using System.Threading;
 
 namespace Tizen.Network.WiFiDirect
 {
-    internal class WiFiDirectThreadLocal
+    internal sealed class WiFiDirectThreadLocal
     {
         private int _threadId;
         internal WiFiDirectThreadLocal(int id)
@@ -125,7 +125,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// The implementation of Wi-Fi Direct APIs.
     /// </summary>
-    internal partial class WiFiDirectManagerImpl : IDisposable
+    internal sealed partial class WiFiDirectManagerImpl : IDisposable
     {
         private event EventHandler<StateChangedEventArgs> _stateChanged;
         private event EventHandler<DiscoveryStateChangedEventArgs > _discoveryStateChanged;
