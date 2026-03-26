@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Runtime.InteropServices;
 
 using Tizen.NUI.BaseComponents;
 
@@ -240,11 +241,11 @@ namespace Tizen.NUI.Utility
 
                     if (!attributesFound)
                     {
-                        tag.TagName = new String(tagChaList.ToArray());
+                        tag.TagName = new string(CollectionsMarshal.AsSpan(tagChaList));
                     }
                     else
                     {
-                        tag.AttributeName = new String(tagChaList.ToArray());
+                        tag.AttributeName = new string(CollectionsMarshal.AsSpan(tagChaList));
                     }
 
                     isPreviousSlash = false;
@@ -263,7 +264,7 @@ namespace Tizen.NUI.Utility
                     // Let's save tag name.
                     if (!attributesFound)
                     {
-                        tag.TagName = new String(tagChaList.ToArray());
+                        tag.TagName = new string(CollectionsMarshal.AsSpan(tagChaList));
                         tagChaList.Clear();
                     }
                     tagChaList.Add((char)character);
