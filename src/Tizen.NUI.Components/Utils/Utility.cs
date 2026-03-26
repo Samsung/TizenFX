@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,7 +20,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
 {
-    internal class Utility
+    internal sealed class Utility
     {
         public static void Dispose(View child)
         {

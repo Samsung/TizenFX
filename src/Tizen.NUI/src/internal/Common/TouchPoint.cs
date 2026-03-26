@@ -18,7 +18,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class TouchPoint : Disposable
+    internal sealed class TouchPoint : Disposable
     {
         internal TouchPoint(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn, false)
         {

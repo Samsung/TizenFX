@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class KeyboardEventSignalType : Disposable
+    internal sealed class KeyboardEventSignalType : Disposable
     {
 
         internal KeyboardEventSignalType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

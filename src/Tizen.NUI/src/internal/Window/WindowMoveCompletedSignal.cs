@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class WindowMoveCompletedSignal : Disposable
+    internal sealed class WindowMoveCompletedSignal : Disposable
     {
         internal WindowMoveCompletedSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

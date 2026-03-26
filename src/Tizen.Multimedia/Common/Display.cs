@@ -46,7 +46,7 @@ namespace Tizen.Multimedia
         TError SetDisplay<TError>(IDisplayable<TError> target);
     }
 
-    internal class EcoreDisplaySetter : IDisplaySetter
+    internal sealed class EcoreDisplaySetter : IDisplaySetter
     {
         private readonly IntPtr _windowHandle;
         private readonly Rectangle _rect;

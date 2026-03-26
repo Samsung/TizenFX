@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// SlideTransitionItem is an object to set slide transition of a View that will appear or disappear.
     /// SlideTransitionItem object is required to be added to the TransitionSet to play.
     /// </summary>
-    internal class SlideTransitionItem : TransitionItemBase
+    internal sealed class SlideTransitionItem : TransitionItemBase
     {
         /// <summary>
         /// Creates an initialized SlideTransition.<br />

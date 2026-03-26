@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.WindowSystem.Shell.SafeHandles
 {
-    internal class TizenShellHandle : SafeHandle
+    internal sealed class TizenShellHandle : SafeHandle
     {
         public TizenShellHandle() : base(IntPtr.Zero, true)
         {

@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.WindowSystem.Shell.SafeHandles
 {
-    internal class SoftkeyServiceHandle : SafeHandle
+    internal sealed class SoftkeyServiceHandle : SafeHandle
     {
         public SoftkeyServiceHandle() : base(IntPtr.Zero, true)
         {

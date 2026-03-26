@@ -22,7 +22,7 @@ using Tizen.NUI.Xaml;
 namespace Tizen.NUI.Binding
 {
     [ContentProperty("Platforms")]
-    internal class OnPlatform<T>
+    internal sealed class OnPlatform<T>
     {
         public OnPlatform()
         {
@@ -108,7 +108,7 @@ namespace Tizen.NUI.Binding
     }
 
     [ContentProperty("Value")]
-    internal class On
+    internal sealed class On
     {
         [TypeConverter(typeof(ListStringTypeConverter))]
         public IList<string> Platform { get; set; }

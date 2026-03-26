@@ -25,7 +25,7 @@ using System.Runtime.CompilerServices;
 namespace Tizen.NUI
 {
     [SuppressMessage("Microsoft.Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is a singleton class and is not disposed")]
-    internal class DisposeQueue
+    internal sealed class DisposeQueue
     {
         private static readonly DisposeQueue disposableQueue = new DisposeQueue();
         private List<IDisposable> disposables = new List<IDisposable>();

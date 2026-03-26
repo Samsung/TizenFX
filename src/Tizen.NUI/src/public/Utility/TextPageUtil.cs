@@ -28,7 +28,7 @@ namespace Tizen.NUI.Utility
     /// This is a class for stroing the text of a page.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class PageData
+    internal sealed class PageData
     {
         public string PreviousTag { get; set; }
         public string EndTag { get; set; }
@@ -40,7 +40,7 @@ namespace Tizen.NUI.Utility
     /// This is a class that stores information when parsing markup text.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class TagData
+    internal sealed class TagData
     {
         public string TagName { get; set; }
         public string AttributeName { get; set; }

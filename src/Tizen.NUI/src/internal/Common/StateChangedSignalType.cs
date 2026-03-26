@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class StateChangedSignalType : Disposable
+    internal sealed class StateChangedSignalType : Disposable
     {
         internal StateChangedSignalType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

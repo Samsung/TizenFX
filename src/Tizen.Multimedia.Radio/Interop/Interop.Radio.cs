@@ -111,7 +111,7 @@ internal static partial class Interop
         internal static extern RadioError GetVolume(RadioHandle radio, out float volume);
     }
 
-    internal class RadioHandle : SafeHandle
+    internal sealed class RadioHandle : SafeHandle
     {
         protected RadioHandle() : base(IntPtr.Zero, true)
         {

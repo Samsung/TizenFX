@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,7 +33,7 @@ namespace Tizen.NUI.MarkdownRenderer
     /// Builds a UI tree from a Markdown block AST and manages view re-use through caching.
     /// Designed for efficient incremental updates and streaming rendering.
     /// </summary>
-    internal class MarkdownUIBuilder
+    internal sealed class MarkdownUIBuilder
     {
         private MarkdownStyle style;
         private MarkdownUICacheManager cacheManager = new MarkdownUICacheManager();

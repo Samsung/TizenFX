@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2022 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -39,7 +39,7 @@ namespace Tizen.Applications
         }
     }
 
-    internal class GSourceContext
+    internal sealed class GSourceContext
     {
         private readonly ConcurrentQueue<Action> _actionQueue = new ConcurrentQueue<Action>();
         private readonly object _lock = new object();

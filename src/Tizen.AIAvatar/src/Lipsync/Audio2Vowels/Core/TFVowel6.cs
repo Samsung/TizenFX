@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2024 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,7 +22,7 @@ using static Tizen.AIAvatar.AIAvatar;
 
 namespace Tizen.AIAvatar
 {
-    internal class TFVowel6 : ISingleShotModel
+    internal sealed class TFVowel6 : ISingleShotModel
     {
         private SingleShot singleShot;
         private TensorsInfo inputInfo;

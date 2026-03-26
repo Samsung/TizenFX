@@ -18,7 +18,7 @@ using System;
 
 namespace Tizen.Network.Bluetooth
 {
-    internal class BluetoothAudioImpl : IDisposable
+    internal sealed class BluetoothAudioImpl : IDisposable
     {
         private event EventHandler<AudioConnectionStateChangedEventArgs> _audioConnectionChanged;
         private Interop.Bluetooth.AudioConnectionStateChangedCallback _audioConnectionChangedCallback;

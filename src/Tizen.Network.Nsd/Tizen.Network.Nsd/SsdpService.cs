@@ -19,7 +19,7 @@ using System.Threading;
 
 namespace Tizen.Network.Nsd
 {
-    internal class SsdpInitializer
+    internal sealed class SsdpInitializer
     {
         internal SsdpInitializer()
         {
