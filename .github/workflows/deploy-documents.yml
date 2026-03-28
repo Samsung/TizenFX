@@ -48,7 +48,7 @@ jobs:
           _site/index-internals.json
           obj/${{ matrix.version }}
           obj/internals
-        key: docfx-site-${{ matrix.version }}-${{ steps.info.outputs.commit }}
+        key: docfx-site-v2-${{ matrix.version }}-${{ steps.info.outputs.commit }}
 
     - name: Build Version
       if: steps.cache-v.outputs.cache-hit != 'true'
