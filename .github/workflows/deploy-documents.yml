@@ -73,6 +73,14 @@ jobs:
           _site/index-${{ matrix.version }}.json
           _site/internals
           _site/index-internals.json
+          _site/styles
+          _site/images
+          _site/fonts
+          _site/*.html
+          _site/*.json
+          _site/favicon.ico
+          _site/logo.svg
+          _site/xrefmap.yml
         if-no-files-found: ignore
         overwrite: true
 
