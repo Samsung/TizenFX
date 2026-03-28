@@ -10,7 +10,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [API4, API5, API6, API7, API8, API9, API10, API11, API12, API13, API14, internals]
+        version: [API4, API5, API6, API7, API8, API9, API10, API11, API12, API13, API14]
 
     steps:
     - uses: actions/checkout@v4
@@ -31,7 +31,6 @@ jobs:
         VERSION="${{ matrix.version }}"
         BRANCH=$VERSION
         if [ "$VERSION" = "API14" ]; then BRANCH="main"; fi
-        if [ "$VERSION" = "internals" ]; then BRANCH="main"; fi
         
         COMMIT=$(git ls-remote https://github.com/Samsung/TizenFX.git refs/heads/$BRANCH | cut -f1)
         if [ -z "$COMMIT" ]; then COMMIT="unknown"; fi
@@ -45,7 +44,10 @@ jobs:
         path: |
           _site/${{ matrix.version }}
           _site/index-${{ matrix.version }}.json
+          _site/internals
+          _site/index-internals.json
           obj/${{ matrix.version }}
+          obj/internals
         key: docfx-site-${{ matrix.version }}-${{ steps.info.outputs.commit }}
 
     - name: Build Version
@@ -56,6 +58,11 @@ jobs:
         ./build.sh clone ${{ matrix.version }}
         ./build.sh restore ${{ matrix.version }}
         ./build.sh build ${{ matrix.version }}
+        
+        # Build internals if current version is API14 (shared source)
+        if [ "${{ matrix.version }}" == "API14" ]; then
+          ./build.sh build internals
+        fi
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
@@ -64,6 +71,9 @@ jobs:
         path: |
           _site/${{ matrix.version }}
           _site/index-${{ matrix.version }}.json
+          _site/internals
+          _site/index-internals.json
+        if-no-files-found: ignore
         overwrite: true
 
   deploy:
