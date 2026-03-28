@@ -100,7 +100,7 @@ jobs:
 
     - name: Install dependencies for Indexing
       run: |
-        npm install stream-json stream-chain lunr
+        npm install JSONStream lunr
 
     - name: Generate Search Index
       run: |
