@@ -1,61 +1,102 @@
 name: "Deploy Documents"
 
 on:
-  schedule:
-  - cron: "0 16 * * *"
   workflow_dispatch:
 
 jobs:
 
-  build:
-    runs-on: ubuntu-22.04
-    container:
-      image: tizendotnet/tizenfx-build-worker:2.5
-      options: --ulimit nofile=10240:10240
+  build-versions:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [API4, API5, API6, API7, API8, API9, API10, API11, API12, API13, API14, internals]
 
     steps:
     - uses: actions/checkout@v4
       with:
         repository: TizenAPI/TizenFX-Docs
+        ref: net8.0
 
-    - name: Checkout TizenFX sources
+    - uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Install DocFX Tool
+      run: dotnet tool install -g docfx --version 2.78.4
+
+    - name: Get Version Branch/Commit
+      id: info
       run: |
-        ./build.sh clone
-    - name: Cache DocFX output
-      id: cache-site
+        VERSION="${{ matrix.version }}"
+        BRANCH=$VERSION
+        if [ "$VERSION" = "API14" ]; then BRANCH="main"; fi
+        if [ "$VERSION" = "internals" ]; then BRANCH="main"; fi
+        
+        COMMIT=$(git ls-remote https://github.com/Samsung/TizenFX.git refs/heads/$BRANCH | cut -f1)
+        if [ -z "$COMMIT" ]; then COMMIT="unknown"; fi
+        echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+        echo "commit=$COMMIT" >> $GITHUB_OUTPUT
+
+    - name: Cache Version Build
+      id: cache-v
       uses: actions/cache@v4
       with:
-        path: _site
-        key: docfx-gh-pages-site-${{ hashFiles('repos/commits') }}
+        path: |
+          _site/${{ matrix.version }}
+          _site/index-${{ matrix.version }}.json
+          obj/${{ matrix.version }}
+        key: docfx-site-${{ matrix.version }}-${{ steps.info.outputs.commit }}
 
-    - name: Build Documents
-      if: steps.cache-site.outputs.cache-hit != 'true'
+    - name: Build Version
+      if: steps.cache-v.outputs.cache-hit != 'true'
       run: |
-        ./build.sh restore
-        ./build.sh build
-        ./build.sh index
-    - name: Archive Artifacts
-      run: |
-        tar cfz site.tar.gz _site/
-    - uses: actions/upload-artifact@v4
+        chmod +x ./build.sh
+        # Clone only the target version
+        ./build.sh clone ${{ matrix.version }}
+        ./build.sh restore ${{ matrix.version }}
+        ./build.sh build ${{ matrix.version }}
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
       with:
-        name: documents
-        path: site.tar.gz
+        name: site-${{ matrix.version }}
+        path: |
+          _site/${{ matrix.version }}
+          _site/index-${{ matrix.version }}.json
         overwrite: true
 
   deploy:
-    needs: [build]
-    runs-on: ubuntu-22.04
+    needs: [build-versions]
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/download-artifact@v4
+    - uses: actions/checkout@v4
       with:
-        name: documents
-        overwrite: true
+        repository: TizenAPI/TizenFX-Docs
+        ref: net8.0
 
-    - name: Extract Artifacts
+    - name: Download All Artifacts
+      uses: actions/download-artifact@v4
+      with:
+        path: _site
+        pattern: site-*
+        merge-multiple: true
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: Install dependencies for Indexing
       run: |
-        tar xfz site.tar.gz
+        npm install stream-json lunr
+
+    - name: Generate Search Index
+      run: |
+        chmod +x ./build.sh
+        ./build.sh index
+
     - name: Deploy GitHub Pages
       uses: peaceiris/actions-gh-pages@v4
       with:
@@ -64,4 +105,4 @@ jobs:
         publish_branch: gh-pages
         user_name: 'TizenAPI-Bot'
         user_email: 'tizenapi@samsung.com'
-        full_commit_message: 'Update documents'
+        full_commit_message: 'Update documents (Matrix Build)'
