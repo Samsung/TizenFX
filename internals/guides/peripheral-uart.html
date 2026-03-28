@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE]><![endif]-->
 <html>
   <head>
@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="UART ">
     <meta name="generator" content="docfx ">
-    <meta name="version" content="internals">
+    <meta name="version" content="">
   
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -42,7 +42,7 @@
             <div class="collapse navbar-collapse" id="navbar">
               <form class="navbar-form navbar-right" role="search" id="search">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="search-query" placeholder="" autocomplete="off">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
                 </div>
               </form>
             </div>
@@ -60,19 +60,82 @@
       <div class="container body-content">
 
         <div id="search-results">
-          <div class="search-list"> <span></span></div>
+          <div class="search-list">Search Results for <span></span></div>
           <div class="sr-items">
             <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
           </div>
-          <ul id="pagination" data-first="data-prev=" data-next="data-last="></ul>
+          <ul id="pagination" data-first=First data-prev=Previous data-next=Next data-last=Last></ul>
         </div>
       </div>
       <div role="main" class="container body-content hide-when-search">
-
         <div class="sidenav hide-when-search">
-          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle"></a>
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
           <div class="sidetoggle collapse" id="sidetoggle">
-            <div id="sidetoc"></div>
+            <div>
+              <div class="sidefilter">
+                <form class="toc-filter">
+                  <span class="glyphicon glyphicon-filter filter-icon"></span>
+                  <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+                </form>
+              </div>
+              <div class="sidetoc">
+                <div class="toc" id="toc">
+
+                  <ul class="nav level1">
+                    <li class="">
+                      <a href="../index.html" title="About Internal API" class="">About Internal API</a>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a class="">API References</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a class="">API References</a>
+                          </li>
+                          <li class="">
+                            <a href="../api/Tizen.Inspections.html" title="Tizen.Inspections" class="">Tizen.Inspections</a>
+                          </li>
+                          <li class="">
+                            <a href="../api/Tizen.Peripheral.Adc.html" title="Tizen.Peripheral.Adc" class="">Tizen.Peripheral.Adc</a>
+                          </li>
+                          <li class="">
+                            <a href="../api/Tizen.Peripheral.Gpio.html" title="Tizen.Peripheral.Gpio" class="">Tizen.Peripheral.Gpio</a>
+                          </li>
+                          <li class="">
+                            <a href="../api/Tizen.Peripheral.I2c.html" title="Tizen.Peripheral.I2c" class="">Tizen.Peripheral.I2c</a>
+                          </li>
+                          <li class="">
+                            <a href="../api/Tizen.Peripheral.Pwm.html" title="Tizen.Peripheral.Pwm" class="">Tizen.Peripheral.Pwm</a>
+                          </li>
+                          <li class="">
+                            <a href="../api/Tizen.Peripheral.Spi.html" title="Tizen.Peripheral.Spi" class="">Tizen.Peripheral.Spi</a>
+                          </li>
+                          <li class="">
+                            <a href="../api/Tizen.Peripheral.Uart.html" title="Tizen.Peripheral.Uart" class="">Tizen.Peripheral.Uart</a>
+                          </li>
+                          <li class="">
+                            <a href="../api/Tizen.Uix.VoiceControlWidget.html" title="Tizen.Uix.VoiceControlWidget" class="">Tizen.Uix.VoiceControlWidget</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a class="">Guides</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="../guides/inspections.html" title="Tizen.Inspections" class="">Tizen.Inspections</a>
+                          </li>
+                          <li class="">
+                            <a href="../guides/peripheral.html" title="Tizen.Peripheral" class="">Tizen.Peripheral</a>
+                          </li>
+                        </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="article row grid-right">
@@ -210,6 +273,7 @@ SerialPort.Read(data, offset, data.Length);
 </code></pre>
 </li>
 </ul>
+
 </article>
           </div>
 
@@ -241,7 +305,7 @@ SerialPort.Read(data, offset, data.Length);
       </footer>
     </div>
 
-    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.vendor.min.js"></script>
     <script type="text/javascript" src="../../styles/docfx.js"></script>
     <script type="text/javascript" src="../../styles/main.js"></script>
   </body>
