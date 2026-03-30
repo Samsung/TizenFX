@@ -1802,6 +1802,44 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Gets or sets LoadPolicy for image.<br />
+        /// If not supplied, the default is LoadPolicyType.Attached.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LoadPolicyType LoadPolicy
+        {
+            get
+            {
+                return InternalLoadPolicy;
+            }
+            set
+            {
+                InternalLoadPolicy = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private LoadPolicyType InternalLoadPolicy
+        {
+            get
+            {
+                int ret = (int)LoadPolicyType.Attached;
+
+                PropertyValue loadPoli = GetCachedImageVisualProperty(ImageVisualProperty.LoadPolicy);
+                loadPoli?.Get(out ret);
+                loadPoli?.Dispose();
+
+                return (LoadPolicyType)ret;
+            }
+            set
+            {
+                PropertyValue setValue = new PropertyValue((int)value);
+                UpdateImage(ImageVisualProperty.LoadPolicy, setValue);
+                setValue?.Dispose();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the wrap mode for the u coordinate.<br />
         /// It decides how the texture should be sampled when the u coordinate exceeds the range of 0.0 to 1.0.<br />
         /// If not specified, the default is WrapModeType.Default(CLAMP).<br />
