@@ -1,0 +1,621 @@
+{
+  "source_base_path": "/home/runner/work/TizenFX/TizenFX",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/Feedback.gif",
+      "output": {
+        "resource": {
+          "relative_path": "images/Feedback.gif"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tizen_favicon.ico",
+      "output": {
+        "resource": {
+          "relative_path": "images/tizen_favicon.ico"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/tizen_logo.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/tizen_logo.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Network.Tethering.TetheringDisabledCause.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Network.Tethering.TetheringDisabledCause.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Network.Tethering.TetheringDisabledCause",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Network.Tethering.TetheringDisabledCause.yml\" sourcestartlinenumber=\"1\">Enumeration for the Tethering disabled reason.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Network.Tethering.TetheringError.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Network.Tethering.TetheringError.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Network.Tethering.TetheringError",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Network.Tethering.TetheringError.yml\" sourcestartlinenumber=\"1\">Enumeration for the Tethering error code.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Network.Tethering.TetheringSecurityType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Network.Tethering.TetheringSecurityType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Network.Tethering.TetheringSecurityType",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Network.Tethering.TetheringSecurityType.yml\" sourcestartlinenumber=\"1\">Enumeration for the Tethering Security type.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Network.Tethering.TetheringType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Network.Tethering.TetheringType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Network.Tethering.TetheringType",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Network.Tethering.TetheringType.yml\" sourcestartlinenumber=\"1\">Enumeration for the Tethering type.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Network.Tethering.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Network.Tethering.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Network.Tethering",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Peripheral.Gpio.GpioChangePolarity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Peripheral.Gpio.GpioChangePolarity.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Peripheral.Gpio.GpioChangePolarity",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Peripheral.Gpio.GpioChangePolarity.yml\" sourcestartlinenumber=\"1\">Enumeration of edge types for the GPIO interrupt.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Peripheral.Gpio.GpioPinDriveMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Peripheral.Gpio.GpioPinDriveMode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Peripheral.Gpio.GpioPinDriveMode",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Peripheral.Gpio.GpioPinDriveMode.yml\" sourcestartlinenumber=\"1\">Enumeration of GPIO direction options.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Peripheral.Gpio.GpioPinValue.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Peripheral.Gpio.GpioPinValue.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Peripheral.Gpio.GpioPinValue",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Peripheral.Gpio.GpioPinValue.yml\" sourcestartlinenumber=\"1\">Enumeration of GPIO values.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Peripheral.Gpio.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Peripheral.Gpio.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Peripheral.Gpio",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Peripheral.Pwm.PwmPulsePolarity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Peripheral.Pwm.PwmPulsePolarity.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Peripheral.Pwm.PwmPulsePolarity",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Peripheral.Pwm.PwmPulsePolarity.yml\" sourcestartlinenumber=\"1\">Enumeration for PWM polarity.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Peripheral.Pwm.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Peripheral.Pwm.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Peripheral.Pwm",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Peripheral.Spi.BitOrder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Peripheral.Spi.BitOrder.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Peripheral.Spi.BitOrder",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Peripheral.Spi.BitOrder.yml\" sourcestartlinenumber=\"1\">Enumeration of bit orders.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Peripheral.Spi.SpiMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Peripheral.Spi.SpiMode.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Peripheral.Spi.SpiMode",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Peripheral.Spi.SpiMode.yml\" sourcestartlinenumber=\"1\">Enumeration of SPI transfer modes.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Peripheral.Spi.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Peripheral.Spi.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Peripheral.Spi",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Peripheral.Uart.BaudRate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Peripheral.Uart.BaudRate.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Peripheral.Uart.BaudRate",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Peripheral.Uart.BaudRate.yml\" sourcestartlinenumber=\"1\">Enumeration for baud rate.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Peripheral.Uart.DataBits.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Peripheral.Uart.DataBits.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Peripheral.Uart.DataBits",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Peripheral.Uart.DataBits.yml\" sourcestartlinenumber=\"1\">Enumeration for byte size.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Peripheral.Uart.HardwareFlowControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Peripheral.Uart.HardwareFlowControl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Peripheral.Uart.HardwareFlowControl",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Peripheral.Uart.HardwareFlowControl.yml\" sourcestartlinenumber=\"1\">Enumeration for hardware flow control.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Peripheral.Uart.Parity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Peripheral.Uart.Parity.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Peripheral.Uart.Parity",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Peripheral.Uart.Parity.yml\" sourcestartlinenumber=\"1\">Enumeration for parity bit.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Peripheral.Uart.SoftwareFlowControl.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Peripheral.Uart.SoftwareFlowControl.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Peripheral.Uart.SoftwareFlowControl",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Peripheral.Uart.SoftwareFlowControl.yml\" sourcestartlinenumber=\"1\">Enumeration for software flow control.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Peripheral.Uart.StopBits.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Peripheral.Uart.StopBits.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Peripheral.Uart.StopBits",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Peripheral.Uart.StopBits.yml\" sourcestartlinenumber=\"1\">Enumeration for stop bits.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Peripheral.Uart.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Peripheral.Uart.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Peripheral.Uart",
+      "Summary": null
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Uix.VoiceControlWidget.CommandFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Uix.VoiceControlWidget.CommandFormat.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Uix.VoiceControlWidget.CommandFormat",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Uix.VoiceControlWidget.CommandFormat.yml\" sourcestartlinenumber=\"1\">Enumeration for the command format.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Uix.VoiceControlWidget.CommandType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Uix.VoiceControlWidget.CommandType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Uix.VoiceControlWidget.CommandType",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Uix.VoiceControlWidget.CommandType.yml\" sourcestartlinenumber=\"1\">Enumeration for the command type.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Uix.VoiceControlWidget.Error.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Uix.VoiceControlWidget.Error.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Uix.VoiceControlWidget.Error",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Uix.VoiceControlWidget.Error.yml\" sourcestartlinenumber=\"1\">Enumeration for the error values that can occur.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Uix.VoiceControlWidget.RecognitionModeType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Uix.VoiceControlWidget.RecognitionModeType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Uix.VoiceControlWidget.RecognitionModeType",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Uix.VoiceControlWidget.RecognitionModeType.yml\" sourcestartlinenumber=\"1\">Enumerations of recognition mode</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Uix.VoiceControlWidget.ResultEvent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Uix.VoiceControlWidget.ResultEvent.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Uix.VoiceControlWidget.ResultEvent",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Uix.VoiceControlWidget.ResultEvent.yml\" sourcestartlinenumber=\"1\">Enumeration for the result event.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Uix.VoiceControlWidget.SendEventType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Uix.VoiceControlWidget.SendEventType.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Uix.VoiceControlWidget.SendEventType",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Uix.VoiceControlWidget.SendEventType.yml\" sourcestartlinenumber=\"1\">Enumerations of send event type</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Uix.VoiceControlWidget.ServiceState.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Uix.VoiceControlWidget.ServiceState.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Uix.VoiceControlWidget.ServiceState",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Uix.VoiceControlWidget.ServiceState.yml\" sourcestartlinenumber=\"1\">Enumeration for the service state.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Uix.VoiceControlWidget.State.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Uix.VoiceControlWidget.State.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Uix.VoiceControlWidget.State",
+      "Summary": "<p sourcefile=\"obj/internals/api/Tizen.Uix.VoiceControlWidget.State.yml\" sourcestartlinenumber=\"1\">Enumeration for the client state.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "obj/internals/api/Tizen.Uix.VoiceControlWidget.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/Tizen.Uix.VoiceControlWidget.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Tizen.Uix.VoiceControlWidget",
+      "Summary": null
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "obj/internals/api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/toc.html"
+        },
+        ".json": {
+          "relative_path": "internals/api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "repos/API14/internals/docs/api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "internals/api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "repos/API14/internals/docs/guides/inspections.md",
+      "output": {
+        ".html": {
+          "relative_path": "internals/guides/inspections.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "repos/API14/internals/docs/guides/peripheral-gpio.md",
+      "output": {
+        ".html": {
+          "relative_path": "internals/guides/peripheral-gpio.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "repos/API14/internals/docs/guides/peripheral-i2c.md",
+      "output": {
+        ".html": {
+          "relative_path": "internals/guides/peripheral-i2c.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "repos/API14/internals/docs/guides/peripheral-pwm.md",
+      "output": {
+        ".html": {
+          "relative_path": "internals/guides/peripheral-pwm.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "repos/API14/internals/docs/guides/peripheral-spi.md",
+      "output": {
+        ".html": {
+          "relative_path": "internals/guides/peripheral-spi.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "repos/API14/internals/docs/guides/peripheral-uart.md",
+      "output": {
+        ".html": {
+          "relative_path": "internals/guides/peripheral-uart.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "repos/API14/internals/docs/guides/peripheral.md",
+      "output": {
+        ".html": {
+          "relative_path": "internals/guides/peripheral.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "repos/API14/internals/docs/guides/toc.md",
+      "output": {
+        ".html": {
+          "relative_path": "internals/guides/toc.html"
+        },
+        ".json": {
+          "relative_path": "internals/guides/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "repos/API14/internals/docs/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "internals/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "repos/API14/internals/docs/toc.md",
+      "output": {
+        ".html": {
+          "relative_path": "internals/toc.html"
+        },
+        ".json": {
+          "relative_path": "internals/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        },
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

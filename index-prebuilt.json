@@ -1,1 +1,1 @@
-{"version":"2.3.9","fields":["title","keywords"],"fieldVectors":[["title/undefined",[]],["keywords/undefined",[]]],"invertedIndex":[],"pipeline":[]}
+{"version":"2.3.9","fields":["title","keywords"],"fieldVectors":[["title/undefined",[]],["keywords/undefined",[]]],"invertedIndex":[],"pipeline":["docfxStopWordFilter"]}
