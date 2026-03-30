@@ -128,6 +128,7 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.SamplingMode,
             ImageVisualProperty.DesiredWidth,
             ImageVisualProperty.DesiredHeight,
+            ImageVisualProperty.LoadPolicy,
             ImageVisualProperty.ReleasePolicy,
             ImageVisualProperty.WrapModeU,
             ImageVisualProperty.WrapModeV,
