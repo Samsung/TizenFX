@@ -5,12 +5,8 @@ on:
 
 jobs:
 
-  build-versions:
+  build-docs:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        version: [API4, API5, API6, API7, API8, API9, API10, API11, API12, API13, API14]
 
     steps:
     - uses: actions/checkout@v4
@@ -25,67 +21,40 @@ jobs:
     - name: Install DocFX Tool
       run: dotnet tool install -g docfx --version 2.78.4
 
-    - name: Get Version Branch/Commit
+    - name: Get Repository Info
       id: info
       run: |
-        VERSION="${{ matrix.version }}"
-        BRANCH=$VERSION
-        if [ "$VERSION" = "API14" ]; then BRANCH="main"; fi
-        
-        COMMIT=$(git ls-remote https://github.com/Samsung/TizenFX.git refs/heads/$BRANCH | cut -f1)
-        if [ -z "$COMMIT" ]; then COMMIT="unknown"; fi
-        echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+        COMMIT=$(git ls-remote https://github.com/Samsung/TizenFX.git refs/heads/main | cut -f1)
         echo "commit=$COMMIT" >> $GITHUB_OUTPUT
 
-    - name: Cache Version Build
+    - name: Cache Build
       id: cache-v
       uses: actions/cache@v4
       with:
         path: |
-          _site/${{ matrix.version }}
-          _site/index-${{ matrix.version }}.json
-          _site/internals
-          _site/index-internals.json
-          obj/${{ matrix.version }}
-          obj/internals
-        key: docfx-site-v3-${{ matrix.version }}-${{ steps.info.outputs.commit }}-${{ hashFiles('docfx.json', 'filterConfig.yml') }}
+          _site
+          obj
+        key: docfx-site-v4-${{ steps.info.outputs.commit }}-${{ hashFiles('docfx.json', 'filterConfig.yml') }}
 
-    - name: Build Version
+    - name: Build All Versions
       if: steps.cache-v.outputs.cache-hit != 'true'
       run: |
         chmod +x ./build.sh
-        # Clone only the target version
-        ./build.sh clone ${{ matrix.version }}
-        ./build.sh restore ${{ matrix.version }}
-        ./build.sh build ${{ matrix.version }}
-        
-        # Build internals if current version is API14 (shared source)
-        if [ "${{ matrix.version }}" == "API14" ]; then
-          ./build.sh build internals
-        fi
+        # Clone all versions
+        ./build.sh clone
+        ./build.sh restore
+        ./build.sh build
+        ./build.sh build internals
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: site-${{ matrix.version }}
+        name: site-full
         path: |
-          _site/${{ matrix.version }}
-          _site/index-${{ matrix.version }}.json
-          _site/internals
-          _site/index-internals.json
-          _site/styles
-          _site/images
-          _site/fonts
-          _site/*.html
-          _site/*.json
-          _site/favicon.ico
-          _site/logo.svg
-          _site/xrefmap.yml
-        if-no-files-found: ignore
-        overwrite: true
+          _site/
 
   deploy:
-    needs: [build-versions]
+    needs: [build-docs]
     runs-on: ubuntu-latest
 
     steps:
@@ -94,19 +63,18 @@ jobs:
         repository: TizenAPI/TizenFX-Docs
         ref: net8.0
 
-    - name: Download All Artifacts
+    - name: Download Artifacts
       uses: actions/download-artifact@v4
       with:
+        name: site-full
         path: _site
-        pattern: site-*
-        merge-multiple: true
 
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: 20
 
-    - name: Install dependencies for Indexing
+    - name: Install dependencies for Indexing19
       run: |
         npm install JSONStream lunr
 
