@@ -34,7 +34,7 @@ jobs:
         path: |
           _site
           obj
-        key: docfx-site-v4-${{ steps.info.outputs.commit }}-${{ hashFiles('docfx.json', 'filterConfig.yml') }}
+        key: docfx-site-v4-${{ steps.info.outputs.commit }}-${{ hashFiles('docfx.json', 'filterConfig.yml', 'build.sh', 'build-index2.js') }}
 
     - name: Build All Versions
       if: steps.cache-v.outputs.cache-hit != 'true'
