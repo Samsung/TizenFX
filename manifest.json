@@ -600,6 +600,396 @@
       "version": ""
     },
     {
+      "type": "Resource",
+      "source_relative_path": "templates/material/LICENSE",
+      "output": {
+        "resource": {
+          "relative_path": "templates/material/LICENSE"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/material/partials/head.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/material/partials/head.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/material/styles/main.css",
+      "output": {
+        "resource": {
+          "relative_path": "templates/material/styles/main.css"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen/favicon.ico",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen/favicon.ico"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen/partials/affix.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen/partials/affix.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen/partials/class.header.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen/partials/class.header.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen/partials/class.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen/partials/class.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen/partials/footer.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen/partials/footer.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen/partials/head.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen/partials/head.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen/partials/logo.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen/partials/logo.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen/plugins/Tizen.DocFX.Plugins.MetadataProvider.dll",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen/plugins/Tizen.DocFX.Plugins.MetadataProvider.dll"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen/styles/main.js",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen/styles/main.js"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen/styles/search-worker.js",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen/styles/search-worker.js"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen/styles/tizen.css",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen/styles/tizen.css"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen/toc.html.liquid",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen/toc.html.liquid"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen/token.json",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen/token.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/favicon.ico",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/favicon.ico"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/layout/_master.tmpl",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/layout/_master.tmpl"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/partials/affix.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/partials/affix.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/partials/breadcrumb.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/partials/breadcrumb.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/partials/class.header.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/partials/class.header.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/partials/class.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/partials/class.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/partials/entity-title.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/partials/entity-title.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/partials/enum.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/partials/enum.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/partials/footer.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/partials/footer.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/partials/head.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/partials/head.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/partials/logo.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/partials/logo.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/partials/namespace.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/partials/namespace.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/partials/toc.tmpl.partial",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/partials/toc.tmpl.partial"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/plugins/Tizen.DocFX.Plugins.MetadataProvider.dll",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/plugins/Tizen.DocFX.Plugins.MetadataProvider.dll"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/styles/404.svg",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/styles/404.svg"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/styles/docfx.css",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/styles/docfx.css"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/styles/docfx.js",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/styles/docfx.js"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/styles/docfx.vendor.css",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/styles/docfx.vendor.css"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/styles/main.js",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/styles/main.js"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/styles/search-worker.js",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/styles/search-worker.js"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/styles/tizen.css",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/styles/tizen.css"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/toc.html.tmpl",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/toc.html.tmpl"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "templates/tizen_docs/token.json",
+      "output": {
+        "resource": {
+          "relative_path": "templates/tizen_docs/token.json"
+        }
+      },
+      "version": ""
+    },
+    {
       "type": "Toc",
       "source_relative_path": "toc.yml",
       "output": {

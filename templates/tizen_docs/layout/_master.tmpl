@@ -1,0 +1,43 @@
+{{!Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE file in the project root for full license information.}}
+{{!include(/^styles/.*/)}}
+{{!include(/^fonts/.*/)}}
+{{!include(favicon.ico)}}
+{{!include(logo.svg)}}
+{{!include(search-stopwords.json)}}
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  {{>partials/head}}
+  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+            {{^_disableToc}}
+            {{>partials/toc}}
+            {{/_disableToc}}
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+            {{^_disableAffix}}
+            {{>partials/affix}}
+            {{/_disableAffix}}
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+              {{^_disableBreadcrumb}}
+              {{>partials/breadcrumb}}
+              {{/_disableBreadcrumb}}
+              <section class="content wrap" id="_content" data-uid="{{uid}}">
+                {{!body}}
+              </section>
+            </div>
+          </main>
+        </div>
+      </div>
+      {{^_disableFooter}}
+      {{>partials/footer}}
+      {{/_disableFooter}}
+    </div>
+    {{>partials/scripts}}
+  </body>
+</html>
