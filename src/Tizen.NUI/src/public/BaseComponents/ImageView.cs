@@ -128,6 +128,7 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.SamplingMode,
             ImageVisualProperty.DesiredWidth,
             ImageVisualProperty.DesiredHeight,
+            ImageVisualProperty.LoadPolicy,
             ImageVisualProperty.ReleasePolicy,
             ImageVisualProperty.WrapModeU,
             ImageVisualProperty.WrapModeV,
@@ -1823,6 +1824,44 @@ namespace Tizen.NUI.BaseComponents
             {
                 PropertyValue setValue = new PropertyValue((int)value);
                 UpdateImage(ImageVisualProperty.ReleasePolicy, setValue);
+                setValue?.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets LoadPolicy for image.<br />
+        /// If not supplied, the default is LoadPolicyType.Attached.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LoadPolicyType LoadPolicy
+        {
+            get
+            {
+                return InternalLoadPolicy;
+            }
+            set
+            {
+                InternalLoadPolicy = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private LoadPolicyType InternalLoadPolicy
+        {
+            get
+            {
+                int ret = (int)LoadPolicyType.Attached;
+
+                PropertyValue loadPoli = GetCachedImageVisualProperty(ImageVisualProperty.LoadPolicy);
+                loadPoli?.Get(out ret);
+                loadPoli?.Dispose();
+
+                return (LoadPolicyType)ret;
+            }
+            set
+            {
+                PropertyValue setValue = new PropertyValue((int)value);
+                UpdateImage(ImageVisualProperty.LoadPolicy, setValue);
                 setValue?.Dispose();
             }
         }
