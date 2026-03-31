@@ -157,7 +157,7 @@ namespace Tizen.Security.SecureRepository
             Policy privateKeyPolicy, Policy publicKeyPolicy)
         {
             if (size != 1024 && size != 2048 && size != 4096)
-                throw new ArgumentException(string.Format("Invalid key size({0})", size));
+                throw new ArgumentException($"Invalid key size({size})");
             else if (privateKeyAlias == null || publicKeyAlias == null ||
                 privateKeyPolicy == null || publicKeyPolicy == null)
                 throw new ArgumentNullException("alias and policy should not be null");
@@ -203,7 +203,7 @@ namespace Tizen.Security.SecureRepository
             Policy privateKeyPolicy, Policy publicKeyPolicy)
         {
             if (size != 1024 && size != 2048 && size != 3072 && size != 4096)
-                throw new ArgumentException(string.Format("Invalid key size({0})", size));
+                throw new ArgumentException($"Invalid key size({size})");
             else if (privateKeyAlias == null || publicKeyAlias == null ||
                 privateKeyPolicy == null || publicKeyPolicy == null)
                 throw new ArgumentNullException("alias and policy should not be null");
@@ -283,7 +283,7 @@ namespace Tizen.Security.SecureRepository
         static public void CreateAesKey(int size, string keyAlias, Policy policy)
         {
             if (size != 128 && size != 192 && size != 256)
-                throw new ArgumentException(string.Format("Invalid key size({0})", size));
+                throw new ArgumentException($"Invalid key size({size})");
             else if (keyAlias == null || policy == null)
                 throw new ArgumentNullException("alias and policy should not be null");
 

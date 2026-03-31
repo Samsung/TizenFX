@@ -45,7 +45,7 @@ namespace Tizen.System
                 Interop.Storage.ErrorCode err = Interop.Storage.StorageManagerGetForeachDeviceSupported(cb, IntPtr.Zero);
                 if (err != Interop.Storage.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, string.Format("Failed to get storage list. err = {0}", err));
+                    Log.Warn(LogTag, $"Failed to get storage list. err = {err}");
                 }
                 return storageList;
             }
@@ -71,7 +71,7 @@ namespace Tizen.System
             Interop.Storage.ErrorCode err = Interop.Storage.StorageSetChanged((int)type, s_ChangedEventCallback, IntPtr.Zero);
             if (err != Interop.Storage.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to Register changed event callback for external storage. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to Register changed event callback for external storage. err = {err}");
 
                 switch (err)
                 {
@@ -89,7 +89,7 @@ namespace Tizen.System
             Interop.Storage.ErrorCode err = Interop.Storage.StorageUnsetChanged((int)type, s_ChangedEventCallback);
             if (err != Interop.Storage.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to Unreegister changed event callback for external storage. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to Unreegister changed event callback for external storage. err = {err}");
 
                 switch (err)
                 {

@@ -93,7 +93,7 @@ namespace Tizen.Applications.Cion
                     Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
                     if (clone_ret != Interop.Cion.ErrorCode.None)
                     {
-                        Log.Error(LogTag, string.Format("Failed to clone peer info."));
+                        Log.Error(LogTag, "Failed to clone peer info.");
                         return;
                     }
 
@@ -145,7 +145,7 @@ namespace Tizen.Applications.Cion
                     Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
                     if (clone_ret != Interop.Cion.ErrorCode.None)
                     {
-                        Log.Error(LogTag, string.Format("Failed to clone peer info."));
+                        Log.Error(LogTag, "Failed to clone peer info.");
                         return;
                     }
                     OnDisconnected(new PeerInfo(clone));
@@ -234,7 +234,7 @@ namespace Tizen.Applications.Cion
             Interop.Cion.ErrorCode ret = Interop.CionClient.CionClientDisconnect(_handle);
             if (ret != Interop.Cion.ErrorCode.None)
             {
-                Log.Error(LogTag, string.Format("Failed to disconnect: {0}", ret));
+                Log.Error(LogTag, $"Failed to disconnect: {ret}");
             }
             _peer = null;
         }
@@ -257,7 +257,7 @@ namespace Tizen.Applications.Cion
             }
             byte[] returnData = new byte[returnDataSize];
             Marshal.Copy(returnDataPtr, returnData, 0, returnDataSize);
-            Log.Info(LogTag, string.Format("Returned data size: {0}", returnDataSize));
+            Log.Info(LogTag, $"Returned data size: {returnDataSize}");
 
             return returnData;
         }
@@ -295,7 +295,7 @@ namespace Tizen.Applications.Cion
                     }
                     catch (Exception e)
                     {
-                        Log.Error(LogTag, string.Format("Failed to create PayloadAsyncResult from result handle: {0}.", e.Message));
+                        Log.Error(LogTag, $"Failed to create PayloadAsyncResult from result handle: {e.Message}.");
                         tcsToReturn.SetException(e);
                         return;
                     }
