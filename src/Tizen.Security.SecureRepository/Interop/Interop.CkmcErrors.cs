@@ -38,11 +38,9 @@ internal static partial class Interop
                 return;
             case (int)KeyManagerError.InvalidParameter:
             case (int)KeyManagerError.InvalidFormat:
-                throw new ArgumentException(string.Format("[{0}] {1}, error={2}",
-                    LogTag, msg, ErrorFacts.GetErrorMessage(err)));
+                throw new ArgumentException($"[{LogTag}] {msg}, error={ErrorFacts.GetErrorMessage(err)}");
             default:
-                throw new InvalidOperationException(string.Format("[{0}] {1}, error={2}",
-                    LogTag, msg, ErrorFacts.GetErrorMessage(err)));
+                throw new InvalidOperationException($"[{LogTag}] {msg}, error={ErrorFacts.GetErrorMessage(err)}");
         }
     }
 }

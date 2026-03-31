@@ -61,7 +61,7 @@ namespace Tizen.Applications.Cion
                 Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerSetDisplayName(_handle, value);
                 if (ret != Interop.Cion.ErrorCode.None)
                 {
-                    Log.Error(LogTag, string.Format("Failed to set display name: {0}", ret));
+                    Log.Error(LogTag, $"Failed to set display name: {ret}");
                 }
                 else
                 {
@@ -183,7 +183,7 @@ namespace Tizen.Applications.Cion
                     Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
                     if (clone_ret != Interop.Cion.ErrorCode.None)
                     {
-                        Log.Error(LogTag, string.Format("Failed to clone peer info."));
+                        Log.Error(LogTag, "Failed to clone peer info.");
                         return;
                     }
                     OnDisconnected(new PeerInfo(clone));
@@ -289,7 +289,7 @@ namespace Tizen.Applications.Cion
                         }
                         catch (Exception e)
                         {
-                            Log.Error(LogTag, string.Format("Failed to create PayloadAsyncResult from result handle: {0}.", e.Message));
+                            Log.Error(LogTag, $"Failed to create PayloadAsyncResult from result handle: {e.Message}.");
                             return;
                         }
                         TaskCompletionSource<PayloadAsyncResult> tcsToReturn = _tcsDictionary[Tuple.Create(resultPayload.PayloadId, resultPayload.PeerInfo.UUID)];

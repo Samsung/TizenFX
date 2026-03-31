@@ -46,7 +46,7 @@ namespace Tizen.System
             Interop.Storage.ErrorCode err = Interop.Storage.StorageGetTotalSpace(Id, out _totalSpace);
             if (err != Interop.Storage.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get total storage space for storage Id: {0}. err = {1}", Id, err));
+                Log.Warn(LogTag, $"Failed to get total storage space for storage Id: {Id}. err = {err}");
             }
 
             s_stateChangedEventCallback = (id, state, userData) =>
@@ -76,12 +76,12 @@ namespace Tizen.System
             information_set = true;
             s_stateChangedEventHandler = eventhandler;
             if (s_stateChangedEventHandler == null)
-                Log.Warn(LogTag, string.Format("Can't register event handler"));
+                Log.Warn(LogTag, "Can't register event handler");
 
             Interop.Storage.ErrorCode err = Interop.Storage.StorageGetTotalSpace(Id, out _totalSpace);
             if (err != Interop.Storage.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get total storage space for storage Id: {0}. err = {1}", Id, err));
+                Log.Warn(LogTag, $"Failed to get total storage space for storage Id: {Id}. err = {err}");
             }
 
             s_stateChangedEventCallback = (id, state, userData) =>
@@ -102,7 +102,7 @@ namespace Tizen.System
             Interop.Storage.ErrorCode err = Interop.Storage.StorageSetStateChanged(Id, s_stateChangedEventCallback, IntPtr.Zero);
             if (err != Interop.Storage.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to Register state changed event callback for storage Id: {0}. err = {1}", Id, err));
+                Log.Warn(LogTag, $"Failed to Register state changed event callback for storage Id: {Id}. err = {err}");
             }
         }
 
@@ -111,7 +111,7 @@ namespace Tizen.System
             Interop.Storage.ErrorCode err = Interop.Storage.StorageUnsetStateChanged(Id, s_stateChangedEventCallback);
             if (err != Interop.Storage.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to Register state changed event callback for storage Id: {0}. err = {1}", Id, err));
+                Log.Warn(LogTag, $"Failed to Register state changed event callback for storage Id: {Id}. err = {err}");
             }
         }
 
@@ -128,7 +128,7 @@ namespace Tizen.System
         /// myStorage.StorageStateChanged += (s, e) =>
         /// {
         ///     var storage = s as Storage;
-        ///     Console.WriteLine(string.Format("State Changed to {0}", storage.State));
+        ///     Console.WriteLine($"State Changed to {storage.State}");
         /// }
         /// </code>
         /// </example>
@@ -195,7 +195,7 @@ namespace Tizen.System
                     Interop.Storage.ErrorCode err = Interop.Storage.StorageGetState(Id, out _state);
                     if (err != Interop.Storage.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, string.Format("Failed to get storage state for storage Id: {0}. err = {1}", Id, err));
+                        Log.Warn(LogTag, $"Failed to get storage state for storage Id: {Id}. err = {err}");
                     }
                 }
                 return (StorageState)_state;
@@ -215,7 +215,7 @@ namespace Tizen.System
                 Interop.Storage.ErrorCode err = Interop.Storage.StorageGetTypeDev(Id, out _storagetype, out _devicetype);
                 if (err != Interop.Storage.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, string.Format("Failed to get storage device type for storage Id: {0}. err = {1}", Id, err));
+                    Log.Warn(LogTag, $"Failed to get storage device type for storage Id: {Id}. err = {err}");
                 }
                 return (StorageDevice)_devicetype;
             }
@@ -233,7 +233,7 @@ namespace Tizen.System
             {
                 if (!information_set)
                 {
-                    Log.Error(LogTag, string.Format("Doesn't know fstype."));
+                    Log.Error(LogTag, "Doesn't know fstype.");
                     throw new InvalidOperationException("Doesn't know type of file system");
                 }
                 return _fstype;
@@ -252,7 +252,7 @@ namespace Tizen.System
             {
                 if (!information_set)
                 {
-                    Log.Error(LogTag, string.Format("Doesn't know fsuuid."));
+                    Log.Error(LogTag, "Doesn't know fsuuid.");
                     throw new InvalidOperationException("Doesn't know uuid of file system");
                 }
                 return _fsuuid;
@@ -271,7 +271,7 @@ namespace Tizen.System
             {
                 if (!information_set)
                 {
-                    Log.Error(LogTag, string.Format("Doesn't know primary information."));
+                    Log.Error(LogTag, "Doesn't know primary information.");
                     throw new InvalidOperationException("Doesn't know primary information");
                 }
                 return _primary;
@@ -290,7 +290,7 @@ namespace Tizen.System
             {
                 if (!information_set)
                 {
-                    Log.Error(LogTag, string.Format("Doesn't know flags."));
+                    Log.Error(LogTag, "Doesn't know flags.");
                     throw new InvalidOperationException("Doesn't know flags");
                 }
                 return _flags;
@@ -312,7 +312,7 @@ namespace Tizen.System
                 Interop.Storage.ErrorCode err = Interop.Storage.StorageGetAvailableSpace(Id, out available);
                 if (err != Interop.Storage.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, string.Format("Failed to get available storage stace for storage Id: {0}. err = {1}", Id, err));
+                    Log.Warn(LogTag, $"Failed to get available storage stace for storage Id: {Id}. err = {err}");
                 }
 
                 return available;
@@ -332,7 +332,7 @@ namespace Tizen.System
                 Interop.Storage.ErrorCode err = Interop.Storage.StorageGetAvailableSpace(Id, out available);
                 if (err != Interop.Storage.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, string.Format("Failed to get available storage stace for storage Id: {0}. err = {1}", Id, err));
+                    Log.Warn(LogTag, $"Failed to get available storage stace for storage Id: {Id}. err = {err}");
                 }
 
                 return available;
@@ -374,7 +374,7 @@ namespace Tizen.System
             Interop.Storage.ErrorCode err = Interop.Storage.StorageGetAbsoluteDirectory(Id, (Interop.Storage.DirectoryType)dirType, out path);
             if (err != Interop.Storage.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get package Id. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to get package Id. err = {err}");
                 switch (err)
                 {
                     case Interop.Storage.ErrorCode.InvalidParameter:

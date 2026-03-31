@@ -80,7 +80,7 @@ namespace Tizen.Multimedia.Vision
             }
             set
             {
-                Set(KeyForegroundColorAttr, string.Format("{0:x2}{1:x2}{2:x2}", value.R, value.G, value.B));
+                Set(KeyForegroundColorAttr, $"{value.R:x2}{value.G:x2}{value.B:x2}");
                 _foregroundColor = value;
             }
         }
@@ -103,7 +103,7 @@ namespace Tizen.Multimedia.Vision
             }
             set
             {
-                Set(KeyBackgroundColorAttr, string.Format("{0:x2}{1:x2}{2:x2}", value.R, value.G, value.B));
+                Set(KeyBackgroundColorAttr, $"{value.R:x2}{value.G:x2}{value.B:x2}");
                 _backgroundColor = value;
             }
         }

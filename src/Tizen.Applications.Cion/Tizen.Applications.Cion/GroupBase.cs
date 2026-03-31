@@ -161,7 +161,7 @@ namespace Tizen.Applications.Cion
             Interop.Cion.ErrorCode ret = Interop.CionGroup.CionGroupUnsubscribe(_handle);
             if (ret != Interop.Cion.ErrorCode.None)
             {
-                Log.Error(LogTag, string.Format("Failed to unsubscribe: {0}", ret));
+                Log.Error(LogTag, $"Failed to unsubscribe: {ret}");
             }
         }
 

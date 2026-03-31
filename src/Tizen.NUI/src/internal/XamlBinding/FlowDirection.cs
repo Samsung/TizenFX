@@ -43,7 +43,7 @@ namespace Tizen.NUI.Binding
                 if (value.Equals("inherit", StringComparison.OrdinalIgnoreCase))
                     return FlowDirection.MatchParent;
             }
-            throw new InvalidOperationException(string.Format("Cannot convert \"{0}\" into {1}", value, typeof(FlowDirection)));
+            throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(FlowDirection)}");
         }
     }
 }

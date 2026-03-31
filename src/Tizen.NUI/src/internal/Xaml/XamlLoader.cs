@@ -91,7 +91,7 @@ namespace Tizen.NUI.Xaml
             {
                 var xaml = GetXamlForType(callingType);
                 if (string.IsNullOrEmpty(xaml))
-                    throw new XamlParseException(string.Format("Can't get xaml from type {0}", callingType), new XmlLineInfo());
+                    throw new XamlParseException($"Can't get xaml from type {callingType}", new XmlLineInfo());
                 Load(view, xaml);
                 NUIApplication.CurrentLoadedXaml = callingType.FullName;
             }
@@ -106,7 +106,7 @@ namespace Tizen.NUI.Xaml
         {
             var xaml = GetAnimationXaml(path);
             if (string.IsNullOrEmpty(xaml))
-                throw new XamlParseException(string.Format("No embeddedresource found for {0}", path), new XmlLineInfo());
+                throw new XamlParseException($"No embeddedresource found for {path}", new XmlLineInfo());
             Type type = typeof(T);
             T ret = (T)type.Assembly.CreateInstance(type.FullName) ?? default(T);
 
@@ -316,15 +316,15 @@ namespace Tizen.NUI.Xaml
                 reader.Close();
                 reader.Dispose();
                 Tizen.Log.Fatal("NUI", $"File is exist!, try with xaml: {xaml}");
-                var pattern = String.Format("x:Class *= *\"{0}\"", type.FullName);
+                var pattern = $"x:Class *= *\"{type.FullName}\"";
                 var regex = new Regex(pattern, RegexOptions.ECMAScript);
-                if (regex.IsMatch(xaml) || xaml.Contains(String.Format("x:Class=\"{0}\"", type.FullName)))
+                if (regex.IsMatch(xaml) || xaml.Contains($"x:Class=\"{type.FullName}\""))
                 {
                     return xaml;
                 }
                 else
                 {
-                    throw new XamlParseException(string.Format("Can't find type {0}", type.FullName), new XmlLineInfo());
+                    throw new XamlParseException($"Can't find type {type.FullName}", new XmlLineInfo());
                 }
             }
             else
@@ -334,7 +334,7 @@ namespace Tizen.NUI.Xaml
                 var resourceId = XamlResourceIdAttribute.GetResourceIdForType(type);
                 if (null == resourceId)
                 {
-                    throw new XamlParseException(string.Format("Can't find type {0} in embedded resource", type.FullName), new XmlLineInfo());
+                    throw new XamlParseException($"Can't find type {type.FullName} in embedded resource", new XmlLineInfo());
                 }
                 else
                 {
@@ -350,7 +350,7 @@ namespace Tizen.NUI.Xaml
                     }
                     else
                     {
-                        throw new XamlParseException(string.Format("Can't get xaml stream {0} in embedded resource", type.FullName), new XmlLineInfo());
+                        throw new XamlParseException($"Can't get xaml stream {type.FullName} in embedded resource", new XmlLineInfo());
                     }
                 }
             }
@@ -461,9 +461,9 @@ namespace Tizen.NUI.Xaml
 
                 var xaml = reader.ReadToEnd();
 
-                var pattern = String.Format("x:Class *= *\"{0}\"", type.FullName);
+                var pattern = $"x:Class *= *\"{type.FullName}\"";
                 var regex = new Regex(pattern, RegexOptions.ECMAScript);
-                if (regex.IsMatch(xaml) || xaml.Contains(String.Format("x:Class=\"{0}\"", type.FullName)))
+                if (regex.IsMatch(xaml) || xaml.Contains($"x:Class=\"{type.FullName}\""))
                     return xaml;
             }
             return null;
@@ -509,24 +509,24 @@ namespace Tizen.NUI.Xaml
                 NUILog.Debug($"File is exist!, try with xaml: {xaml}");
 
                 // Layer
-                var pattern = String.Format("x:Class *= *\"{0}\"", "Tizen.NUI.Layer");
+                var pattern = $"x:Class *= *\"{"Tizen.NUI.Layer"}\"";
                 var regex = new Regex(pattern, RegexOptions.ECMAScript);
-                if (regex.IsMatch(xaml) || xaml.Contains(String.Format("x:Class=\"{0}\"", "Tizen.NUI.Layer")))
+                if (regex.IsMatch(xaml) || xaml.Contains($"x:Class=\"{"Tizen.NUI.Layer"}\""))
                 {
                     reader.Dispose();
                     return xaml;
                 }
                 // View
-                pattern = String.Format("x:Class *= *\"{0}\"", "Tizen.NUI.BaseComponents.View");
+                pattern = $"x:Class *= *\"{"Tizen.NUI.BaseComponents.View"}\"";
                 regex = new Regex(pattern, RegexOptions.ECMAScript);
-                if (regex.IsMatch(xaml) || xaml.Contains(String.Format("x:Class=\"{0}\"", "Tizen.NUI.BaseComponents.View")))
+                if (regex.IsMatch(xaml) || xaml.Contains($"x:Class=\"{"Tizen.NUI.BaseComponents.View"}\""))
                 {
                     reader.Dispose();
                     return xaml;
                 }
 
                 reader.Dispose();
-                throw new XamlParseException(string.Format("Can't find type {0}", "Tizen.NUI.XamlMainPage nor View nor Layer"), new XmlLineInfo());
+                throw new XamlParseException($"Can't find type {"Tizen.NUI.XamlMainPage nor View nor Layer"}", new XmlLineInfo());
             }
             return null;
         }
