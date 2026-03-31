@@ -514,11 +514,11 @@ namespace Tizen.Applications.ComponentBased
                 string foundAssemblyName = GetAssemblyName(typeName);
                 if (foundAssemblyName.Length != 0)
                 {
-                    returntype = Type.GetType(String.Format("{0}, {1}", typeName, foundAssemblyName));
+                    returntype = Type.GetType($"{typeName}, {foundAssemblyName}");
                 }
                 else
                 {
-                    returntype = Type.GetType(String.Format("{0}, {1}", typeName, assemblyName));
+                    returntype = Type.GetType($"{typeName}, {assemblyName}");
                 }
                 return returntype;
             }
@@ -528,7 +528,7 @@ namespace Tizen.Applications.ComponentBased
         {
             internal static Exception GetException(Interop.ComponentPort.ErrorCode err, string message)
             {
-                string errMessage = string.Format("{0} err = {1}", message, err);
+                string errMessage = $"{message} err = {err}";
                 switch (err)
                 {
                     case Interop.ComponentPort.ErrorCode.InvalidParameter:

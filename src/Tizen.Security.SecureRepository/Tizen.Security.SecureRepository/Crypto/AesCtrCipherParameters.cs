@@ -51,7 +51,7 @@ namespace Tizen.Security.SecureRepository.Crypto
             {
                 if (value < 0)
                     throw new ArgumentOutOfRangeException(
-                        string.Format("invalid value{0} on CounterLength", value));
+                        $"invalid value{value} on CounterLength");
                 Add(CipherParameterName.CounterLength, value);
             }
         }

@@ -692,7 +692,7 @@ namespace Tizen.MachineLearning.Inference
                 CheckGetParam(propertyName);
 
                 NNStreamerError ret = Interop.Pipeline.GetPropertyBool(Handle, propertyName, out int value);
-                NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+                NNStreamer.CheckException(ret, $"Failed to get {propertyName} property.");
 
                 retValue = value == 0 ? false : true;
             }
@@ -711,7 +711,7 @@ namespace Tizen.MachineLearning.Inference
                 CheckGetParam(propertyName);
 
                 NNStreamerError ret = Interop.Pipeline.GetPropertyString(Handle, propertyName, out string value);
-                NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+                NNStreamer.CheckException(ret, $"Failed to get {propertyName} property.");
 
                 retValue = value;
             }
@@ -730,7 +730,7 @@ namespace Tizen.MachineLearning.Inference
                 CheckGetParam(propertyName);
 
                 NNStreamerError ret = Interop.Pipeline.GetPropertyInt32(Handle, propertyName, out int value);
-                NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+                NNStreamer.CheckException(ret, $"Failed to get {propertyName} property.");
 
                 retValue = value;
             }
@@ -749,7 +749,7 @@ namespace Tizen.MachineLearning.Inference
                 CheckGetParam(propertyName);
 
                 NNStreamerError ret = Interop.Pipeline.GetPropertyInt64(Handle, propertyName, out long value);
-                NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+                NNStreamer.CheckException(ret, $"Failed to get {propertyName} property.");
 
                 retValue = value;
             }
@@ -768,7 +768,7 @@ namespace Tizen.MachineLearning.Inference
                 CheckGetParam(propertyName);
 
                 NNStreamerError ret = Interop.Pipeline.GetPropertyUInt32(Handle, propertyName, out uint value);
-                NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+                NNStreamer.CheckException(ret, $"Failed to get {propertyName} property.");
 
                 retValue = value;
             }
@@ -787,7 +787,7 @@ namespace Tizen.MachineLearning.Inference
                 CheckGetParam(propertyName);
 
                 NNStreamerError ret = Interop.Pipeline.GetPropertyUInt64(Handle, propertyName, out ulong value);
-                NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+                NNStreamer.CheckException(ret, $"Failed to get {propertyName} property.");
 
                 retValue = value;
             }
@@ -806,7 +806,7 @@ namespace Tizen.MachineLearning.Inference
                 CheckGetParam(propertyName);
 
                 NNStreamerError ret = Interop.Pipeline.GetPropertyDouble(Handle, propertyName, out double value);
-                NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+                NNStreamer.CheckException(ret, $"Failed to get {propertyName} property.");
 
                 retValue = value;
             }
@@ -829,49 +829,49 @@ namespace Tizen.MachineLearning.Inference
                 if (typeof(bool).IsAssignableFrom(typeof(T)))
                 {
                     ret = Interop.Pipeline.GetPropertyBool(Handle, propertyName, out int value);
-                    NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+                    NNStreamer.CheckException(ret, $"Failed to get {propertyName} property.");
 
                     return (T)Convert.ChangeType(value == 0 ? false : true, typeof(T));
                 }
                 else if (typeof(string).IsAssignableFrom(typeof(T)))
                 {
                     ret = Interop.Pipeline.GetPropertyString(Handle, propertyName, out string value);
-                    NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+                    NNStreamer.CheckException(ret, $"Failed to get {propertyName} property.");
 
                     return (T)Convert.ChangeType(value, typeof(T));
                 }
                 else if (typeof(int).IsAssignableFrom(typeof(T)))
                 {
                     ret = Interop.Pipeline.GetPropertyInt32(Handle, propertyName, out int value);
-                    NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+                    NNStreamer.CheckException(ret, $"Failed to get {propertyName} property.");
 
                     return (T)Convert.ChangeType(value, typeof(T));
                 }
                 else if (typeof(long).IsAssignableFrom(typeof(T)))
                 {
                     ret = Interop.Pipeline.GetPropertyInt64(Handle, propertyName, out long value);
-                    NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+                    NNStreamer.CheckException(ret, $"Failed to get {propertyName} property.");
 
                     return (T)Convert.ChangeType(value, typeof(T));
                 }
                 else if (typeof(uint).IsAssignableFrom(typeof(T)))
                 {
                     ret = Interop.Pipeline.GetPropertyUInt32(Handle, propertyName, out uint value);
-                    NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+                    NNStreamer.CheckException(ret, $"Failed to get {propertyName} property.");
 
                     return (T)Convert.ChangeType(value, typeof(T));
                 }
                 else if (typeof(ulong).IsAssignableFrom(typeof(T)))
                 {
                     ret = Interop.Pipeline.GetPropertyUInt64(Handle, propertyName, out ulong value);
-                    NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+                    NNStreamer.CheckException(ret, $"Failed to get {propertyName} property.");
 
                     return (T)Convert.ChangeType(value, typeof(T));
                 }
                 else if (typeof(double).IsAssignableFrom(typeof(T)))
                 {
                     ret = Interop.Pipeline.GetPropertyDouble(Handle, propertyName, out double value);
-                    NNStreamer.CheckException(ret, string.Format("Failed to get {0} property.", propertyName));
+                    NNStreamer.CheckException(ret, $"Failed to get {propertyName} property.");
 
                     return (T)Convert.ChangeType(value, typeof(T));
                 }
@@ -894,7 +894,7 @@ namespace Tizen.MachineLearning.Inference
                 int setValue = value ? 1 : 0;
 
                 NNStreamerError ret = Interop.Pipeline.SetPropertyBool(Handle, propertyName, setValue);
-                NNStreamer.CheckException(ret, string.Format("Failed to set {0} property.", propertyName));
+                NNStreamer.CheckException(ret, $"Failed to set {propertyName} property.");
             }
 
             /// <summary>
@@ -911,7 +911,7 @@ namespace Tizen.MachineLearning.Inference
                 CheckSetParam(propertyName, value);
 
                 NNStreamerError ret = Interop.Pipeline.SetPropertyString(Handle, propertyName, value);
-                NNStreamer.CheckException(ret, string.Format("Failed to set {0} property.", propertyName));
+                NNStreamer.CheckException(ret, $"Failed to set {propertyName} property.");
             }
 
             /// <summary>
@@ -928,7 +928,7 @@ namespace Tizen.MachineLearning.Inference
                 CheckSetParam(propertyName, value);
 
                 NNStreamerError ret = Interop.Pipeline.SetPropertyInt32(Handle, propertyName, value);
-                NNStreamer.CheckException(ret, string.Format("Failed to set {0} property.", propertyName));
+                NNStreamer.CheckException(ret, $"Failed to set {propertyName} property.");
             }
 
             /// <summary>
@@ -945,7 +945,7 @@ namespace Tizen.MachineLearning.Inference
                 CheckSetParam(propertyName, value);
 
                 NNStreamerError ret = Interop.Pipeline.SetPropertyInt64(Handle, propertyName, value);
-                NNStreamer.CheckException(ret, string.Format("Failed to set {0} property.", propertyName));
+                NNStreamer.CheckException(ret, $"Failed to set {propertyName} property.");
             }
 
             /// <summary>
@@ -962,7 +962,7 @@ namespace Tizen.MachineLearning.Inference
                 CheckSetParam(propertyName, value);
 
                 NNStreamerError ret = Interop.Pipeline.SetPropertyUInt32(Handle, propertyName, value);
-                NNStreamer.CheckException(ret, string.Format("Failed to set {0} property.", propertyName));
+                NNStreamer.CheckException(ret, $"Failed to set {propertyName} property.");
             }
 
             /// <summary>
@@ -979,7 +979,7 @@ namespace Tizen.MachineLearning.Inference
                 CheckSetParam(propertyName, value);
 
                 NNStreamerError ret = Interop.Pipeline.SetPropertyUInt64(Handle, propertyName, value);
-                NNStreamer.CheckException(ret, string.Format("Failed to set {0} property.", propertyName));
+                NNStreamer.CheckException(ret, $"Failed to set {propertyName} property.");
             }
 
             /// <summary>
@@ -996,7 +996,7 @@ namespace Tizen.MachineLearning.Inference
                 CheckSetParam(propertyName, value);
 
                 NNStreamerError ret = Interop.Pipeline.SetPropertyDouble(Handle, propertyName, value);
-                NNStreamer.CheckException(ret, string.Format("Failed to set {0} property.", propertyName));
+                NNStreamer.CheckException(ret, $"Failed to set {propertyName} property.");
             }
         }
     }

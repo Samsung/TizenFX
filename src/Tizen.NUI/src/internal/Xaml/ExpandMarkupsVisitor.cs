@@ -166,7 +166,7 @@ namespace Tizen.NUI.Xaml
                     {
                         var lineInfoProvider = serviceProvider.GetService(typeof(IXmlLineInfoProvider)) as IXmlLineInfoProvider;
                         var lineInfo = (lineInfoProvider != null) ? lineInfoProvider.XmlLineInfo : new XmlLineInfo();
-                        throw new XamlParseException(String.Format("MarkupExtension not found for {0}", match), lineInfo);
+                        throw new XamlParseException($"MarkupExtension not found for {match}", lineInfo);
                     }
                 }
 
