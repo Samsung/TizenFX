@@ -164,7 +164,7 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.PackageArchive.PackageArchiveInfoCreate(archivePath, out packageArchiveInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                throw PackageManagerErrorFactory.GetException(err, string.Format("Failed to create native handle for package archive info of {0}", archivePath));
+                throw PackageManagerErrorFactory.GetException(err, $"Failed to create native handle for package archive info of {archivePath}");
             }
 
             PackageArchive packageArchive = CreatePackageArchive(packageArchiveInfoHandle, archivePath);
@@ -172,7 +172,7 @@ namespace Tizen.Applications
             err = Interop.PackageArchive.PackageArchiveInfoDestroy(packageArchiveInfoHandle);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to destroy native handle for package archive info of {0}. err = {1}", archivePath, err));
+                Log.Warn(LogTag, $"Failed to destroy native handle for package archive info of {archivePath}. err = {err}");
             }
             return packageArchive;
         }
@@ -189,7 +189,7 @@ namespace Tizen.Applications
             Interop.PackageManager.ErrorCode err = Interop.PackageArchive.PackageArchiveInfoForeachDirectDependency(handle, dependencyInfoCb, IntPtr.Zero);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get dependency info. err = {0}", err));
+                Log.Warn(LogTag, $"Failed to get dependency info. err = {err}");
             }
             return dependencies;
         }

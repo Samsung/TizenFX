@@ -299,9 +299,7 @@ namespace Tizen.Common
 
         private static ArgumentException CreateColorArgumentException(int value, string color)
         {
-            return new ArgumentException(string.Format("'{0}' is not a valid" +
-                        " value for '{1}'. '{1}' should be greater or equal to 0 and" +
-                        " less than or equal to 255.", value, color));
+            return new ArgumentException($"'{value}' is not a valid value for '{color}'. '{color}' should be greater or equal to 0 and less than or equal to 255.");
         }
 
         #endregion  // Static Methods
@@ -369,7 +367,7 @@ namespace Tizen.Common
         /// <since_tizen> 3 </since_tizen>
         public override string ToString()
         {
-            return string.Format("Color [R={0}, G={1}, B={2}, A={3}]", R, G, B, A);
+            return $"Color [R={R}, G={G}, B={B}, A={A}]";
         }
 
         /// <summary>

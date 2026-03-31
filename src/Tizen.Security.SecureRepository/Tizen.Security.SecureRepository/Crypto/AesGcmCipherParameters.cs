@@ -56,7 +56,7 @@ namespace Tizen.Security.SecureRepository.Crypto
                     value != 112 && value != 120 && value != 128)
                 {
                     throw new ArgumentOutOfRangeException(
-                        string.Format("invalid value{0} on TagLength", value));
+                        $"invalid value{value} on TagLength");
                 }
                 else
                 {

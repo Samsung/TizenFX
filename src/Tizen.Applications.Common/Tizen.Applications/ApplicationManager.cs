@@ -1141,7 +1141,7 @@ namespace Tizen.Applications
                 }
                 else
                 {
-                    Log.Warn(LogTag, string.Format("'{0}' is not supported key for the filter.", item.Key));
+                    Log.Warn(LogTag, $"'{item.Key}' is not supported key for the filter.");
                 }
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
@@ -1192,7 +1192,7 @@ namespace Tizen.Applications
 
         internal static Exception GetException(Interop.ApplicationManager.ErrorCode err, string message)
         {
-            string errMessage = String.Format("{0} err = {1}", message, err);
+            string errMessage = $"{message} err = {err}";
             switch (err)
             {
                 case Interop.ApplicationManager.ErrorCode.InvalidParameter:
