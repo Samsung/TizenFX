@@ -85,6 +85,19 @@ namespace Tizen.NUI
             { "borderlineOffset", "viewBorderlineOffset" },
             { "BorderlineOffset", "viewBorderlineOffset" },
         };
+        private static readonly Dictionary<string, string> renderablePropertySynonymTable = new Dictionary<string, string>()
+        {
+            { "color", "rendererMixColor" },
+            { "Color", "rendererMixColor" },
+            { "colorRed", "rendererMixColorRed" },
+            { "ColorRed", "rendererMixColorRed" },
+            { "colorGreen", "rendererMixColorGreen" },
+            { "ColorGreen", "rendererMixColorGreen" },
+            { "colorBlue", "rendererMixColorBlue" },
+            { "ColorBlue", "rendererMixColorBlue" },
+            { "opacity", "rendererOpacity" },
+            { "Opacity", "rendererOpacity" },
+        };
 
         static PropertyHelper() { }
 
@@ -96,6 +109,14 @@ namespace Tizen.NUI
             if (animatable is View)
             {
                 if (viewPropertySynonymTable.TryGetValue(stringProperty, out var stringSynonym))
+                {
+                    stringProperty = stringSynonym;
+                    return true;
+                }
+            }
+            else if (animatable is Renderable)
+            {
+                if (renderablePropertySynonymTable.TryGetValue(stringProperty, out var stringSynonym))
                 {
                     stringProperty = stringSynonym;
                     return true;
@@ -125,10 +146,10 @@ namespace Tizen.NUI
         ///</summary>
         internal static SearchResult Search(Animatable animatable, string stringProperty)
         {
+            ConvertSynonymPropertyName(animatable, ref stringProperty);
+
             if (animatable is View)
             {
-                ConvertSynonymPropertyName(animatable, ref stringProperty);
-
                 View view = animatable as View;
                 return SearchProperty(view, stringProperty) ?? SearchVisualProperty(view, stringProperty);
             }
