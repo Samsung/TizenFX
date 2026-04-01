@@ -195,7 +195,7 @@ namespace Tizen.NUI.BaseComponents
         private ViewAccessibilityData _accessibilityData;
         private ViewAccessibilityRareData _accessibilityRareData;
 
-        internal class ControlHandle : SafeHandle
+        internal sealed class ControlHandle : SafeHandle
         {
             public ControlHandle() : base(IntPtr.Zero, true) { }
 
@@ -307,18 +307,6 @@ namespace Tizen.NUI.BaseComponents
             NDalicPINVOKE.ThrowExceptionIfExists();
             return result;
         }
-
-        // AccessibilityValueTextRequested
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class AccessibilityValueTextRequestedEventArgs : EventArgs
-        {
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public string Text { get; set; }
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<AccessibilityValueTextRequestedEventArgs> AccessibilityValueTextRequested;
 
         ///////////////////////////////////////////////////////////////////
         // **************** AccessibilityActivatedSignal **************** //

@@ -16,7 +16,7 @@
  */
 namespace Tizen.NUI
 {
-    internal class FontMetrics : Disposable
+    internal sealed class FontMetrics : Disposable
     {
         internal FontMetrics(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

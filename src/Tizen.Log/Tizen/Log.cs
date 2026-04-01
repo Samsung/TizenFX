@@ -93,6 +93,7 @@ namespace Tizen
             }
         }
 
+
         private static unsafe void _PrintFallback(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
         {
             fixed (byte* pTagByte = Encoding.UTF8.GetBytes(tag))
@@ -146,6 +147,8 @@ namespace Tizen
                 _PrintFallback(log_id, priority, tag, message, file, func, line);
             }
         }
+
+
     }
 
     /// <summary>
@@ -170,6 +173,7 @@ namespace Tizen
             Print(Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, message, file, func, line);
         }
 
+
         /// <summary>
         /// Prints a regular log message with the DEBUG priority.
         /// </summary>
@@ -183,6 +187,7 @@ namespace Tizen
         {
             Print(Interop.Dlog.LogPriority.DLOG_DEBUG, tag, message, file, func, line);
         }
+
 
         /// <summary>
         /// Prints a regular log message with the INFO priority.
@@ -198,6 +203,7 @@ namespace Tizen
             Print(Interop.Dlog.LogPriority.DLOG_INFO, tag, message, file, func, line);
         }
 
+
         /// <summary>
         /// Prints a regular log message with the WARNING priority.
         /// </summary>
@@ -211,6 +217,7 @@ namespace Tizen
         {
             Print(Interop.Dlog.LogPriority.DLOG_WARN, tag, message, file, func, line);
         }
+
 
         /// <summary>
         /// Prints a regular log message with the ERROR priority.
@@ -226,6 +233,7 @@ namespace Tizen
             Print(Interop.Dlog.LogPriority.DLOG_ERROR, tag, message, file, func, line);
         }
 
+
         /// <summary>
         /// Prints a regular log message with the FATAL priority.
         /// </summary>
@@ -240,10 +248,13 @@ namespace Tizen
             Print(Interop.Dlog.LogPriority.DLOG_FATAL, tag, message, file, func, line);
         }
 
+
         static unsafe void Print(Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
         {
             LogPrinter.Print(priority, tag, message, file, func, line);
         }
+
+
     }
 
     /// <summary>
@@ -269,6 +280,8 @@ namespace Tizen
             // For internal dlog APIs, Verbose level log is disabled
             // Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, message, file, func, line);
         }
+
+
 
         /// <summary>
         /// Prints an internal log message with the DEBUG priority.
@@ -298,6 +311,7 @@ namespace Tizen
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_INFO, tag, message, file, func, line);
         }
 
+
         /// <summary>
         /// Prints an internal log message with the WARNING priority.
         /// </summary>
@@ -311,6 +325,7 @@ namespace Tizen
         {
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_WARN, tag, message, file, func, line);
         }
+
 
         /// <summary>
         /// Prints an internal log message with the ERROR priority.
@@ -326,6 +341,7 @@ namespace Tizen
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_ERROR, tag, message, file, func, line);
         }
 
+
         /// <summary>
         /// Prints an internal log message with the FATAL priority.
         /// </summary>
@@ -340,10 +356,12 @@ namespace Tizen
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_FATAL, tag, message, file, func, line);
         }
 
+
         static unsafe void Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
         {
             LogPrinter.Print(log_id, priority, tag, message, file, func, line);
         }
+
     }
 
     /// <summary>
@@ -370,6 +388,7 @@ namespace Tizen
             // Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_VERBOSE, tag, message, file, func, line);
         }
 
+
         /// <summary>
         /// Prints a secure log message with the DEBUG priority.
         /// </summary>
@@ -383,6 +402,7 @@ namespace Tizen
         {
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_DEBUG, tag, message, file, func, line);
         }
+
 
         /// <summary>
         /// Prints a secure log message with the INFO priority.
@@ -398,6 +418,7 @@ namespace Tizen
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_INFO, tag, message, file, func, line);
         }
 
+
         /// <summary>
         /// Prints a secure log message with the WARNING priority.
         /// </summary>
@@ -411,6 +432,7 @@ namespace Tizen
         {
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_WARN, tag, message, file, func, line);
         }
+
 
         /// <summary>
         /// Prints a secure log message with the ERROR priority.
@@ -426,6 +448,7 @@ namespace Tizen
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_ERROR, tag, message, file, func, line);
         }
 
+
         /// <summary>
         /// Prints a secure log message with the FATAL priority.
         /// </summary>
@@ -440,11 +463,13 @@ namespace Tizen
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_FATAL, tag, message, file, func, line);
         }
 
+
         static unsafe void Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
         {
 #if !DISABLE_SECURELOG
             LogPrinter.Print(log_id, priority, tag, message, file, func, line);
 #endif
         }
+
     }
 }

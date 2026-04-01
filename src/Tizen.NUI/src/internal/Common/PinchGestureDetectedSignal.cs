@@ -19,7 +19,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class PinchGestureDetectedSignal : Disposable
+    internal sealed class PinchGestureDetectedSignal : Disposable
     {
         internal PinchGestureDetectedSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

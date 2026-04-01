@@ -164,7 +164,8 @@ class MultiPassRenderingSample : NUIApplication
         mSecondRenderTask.SetExclusive(true);
         mSecondRenderTask.SetClearEnabled(true);
         mSecondRenderTask.SetCullMode(false); // Allways rendering even if scene is out of camera.
-        mSecondRenderTask.SetRefreshRate(5); // Refresh per 5 frame
+        //mSecondRenderTask.SetRefreshRate(5); // Refresh per 5 frame
+        mSecondRenderTask.SetRefreshRate(1); // Refresh always
 
         mSecondRenderTask.ClearColor = new Vector4(0.0f, 1.0f, 0.0f, 0.5f);
         mSecondRenderTask.OrderIndex = mFirstRenderTask.OrderIndex + 1;
@@ -406,6 +407,119 @@ class MultiPassRenderingSample : NUIApplication
     }
     #endregion
 
+    #region Fourth Scene Creation
+    private RenderTask mFourthRenderTask; // Must have reference. Dispose will remove rendering automatically
+    private FrameBuffer mFourthFrameBuffer;
+    private Texture mFourthRenderedTexture;
+
+    const uint c_FourthSceneWidth = 200u;
+    const uint c_FourthSceneHeight = 400u;
+
+    private Animation mFourceSceneAnimation;
+    private View mFourceStopperView;
+    private void CreateFourthScene()
+    {
+        mFourthRenderTask = mRenderTaskList.CreateTask();
+
+        mFourthRenderTask.SetExclusive(false); // We should render original souce result too.
+        mFourthRenderTask.SetClearEnabled(true);
+        mFourthRenderTask.SetCullMode(false); // Allways rendering even if scene is out of camera.
+        mFourthRenderTask.SetRefreshRate(1); // Refresh always
+
+        mFourthRenderTask.ClearColor = Vector4.Zero;
+        mFourthRenderTask.OrderIndex = mThirdRenderTask.OrderIndex + 1;
+
+        // TODO : Tizen.NUI.Camera is deprecated! Need to find more good way to support it.
+        Tizen.NUI.Camera camera = new Tizen.NUI.Camera()
+        {
+            PositionUsesPivotPoint = true,
+            ParentOrigin = ParentOrigin.Center,
+            PivotPoint = PivotPoint.Center,
+        };
+        camera.SetPerspectiveProjection(new Vector2(c_FourthSceneWidth, c_FourthSceneHeight));
+        camera.SetInvertYAxis(true);
+
+        mFourthRenderTask.SetCamera(camera);
+
+        mFourthFrameBuffer = new FrameBuffer(c_FourthSceneWidth, c_FourthSceneHeight, 0);
+        mFourthRenderedTexture = new Texture(TextureShape.Texture2D, PixelFormat.RGBA8888, c_FourthSceneWidth, c_FourthSceneHeight);
+        mFourthFrameBuffer.AttachColorTexture(mFourthRenderedTexture);
+        mFourthRenderTask.SetFrameBuffer(mFourthFrameBuffer);
+
+        View fourthSceneRoot = new View()
+        {
+            Size = new Size(c_FourthSceneWidth, c_FourthSceneHeight),
+            Position = new Position(10, 30 + c_SecondSceneHeight + c_ThirdSceneHeight),
+            PositionUsesPivotPoint = false,
+            ParentOrigin = ParentOrigin.TopLeft,
+            PivotPoint = PivotPoint.Center,
+
+            ClippingMode = ClippingModeType.ClipToBoundingBox,
+        };
+
+        View fourthSceneRotator = new View()
+        {
+            ParentOrigin = ParentOrigin.Center,
+            PivotPoint = PivotPoint.Center,
+        };
+
+        fourthSceneRoot.Add(fourthSceneRotator);
+
+        BuildFourthViews(fourthSceneRotator);
+
+        mFourthRenderTask.SetSourceView(fourthSceneRoot);
+        mFourthRenderTask.RenderUntil(mFourceStopperView);
+
+        fourthSceneRoot.Add(camera); // Make camera follow scene root
+        mWindow.Add(fourthSceneRoot);
+
+        mFourceSceneAnimation = new Animation(10000);
+        mFourceSceneAnimation.AnimateBy(fourthSceneRotator, "Orientation", new Rotation(new Radian(new Degree(360.0f)), Vector3.ZAxis));
+        mFourceSceneAnimation.Looping = true;
+        mFourceSceneAnimation.Play();
+
+        AttachViewer(mFourthRenderedTexture, new Size(c_FourthSceneWidth, c_FourthSceneHeight), new Position(20 + c_FourthSceneWidth, 30 + c_SecondSceneHeight + c_ThirdSceneHeight));
+    }
+
+    void BuildFourthViews(View root)
+    {
+        const uint childrenCount = 20;
+        float size = (float)Math.Min(c_FourthSceneWidth, c_FourthSceneHeight) / 10.0f;
+        float radius = (float)Math.Min(c_FourthSceneWidth, c_FourthSceneHeight) / 2.0f - size;
+        Random rand = new Random();
+        for(uint i = 0; i < childrenCount; ++i)
+        {
+            var view = new View()
+            {
+                Size = new Size(size, size),
+                Position = new Position(radius * (float)Math.Cos(i * Math.PI * 2.0f / childrenCount), radius * (float)Math.Sin(i * Math.PI * 2.0f / childrenCount)),
+                BackgroundColor = new Color((float)rand.NextDouble(), (float)rand.NextDouble(), (float)rand.NextDouble(), 1),
+
+                CornerRadius = 0.5f,
+                CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+
+                PositionUsesPivotPoint = true,
+                ParentOrigin = ParentOrigin.Center,
+                PivotPoint = PivotPoint.Center,
+            };
+            root.Add(view);
+            if(i == 0)
+            {
+                view.BackgroundColor = Color.White;
+                var label = new TextLabel("S");
+                view.Add(label);
+            }
+            else if(i == childrenCount / 2)
+            {
+                mFourceStopperView = view;
+                view.BackgroundColor = Color.White;
+                var label = new TextLabel("E");
+                view.Add(label);
+            }
+        }
+    }
+    #endregion
+
     public void Activate()
     {
         mWindow = Window.Default;
@@ -420,6 +534,7 @@ class MultiPassRenderingSample : NUIApplication
         CreateFirstScene();
         CreateSecondScene();
         CreateThirdScene();
+        CreateFourthScene();
     }
 
     public void Deactivate()

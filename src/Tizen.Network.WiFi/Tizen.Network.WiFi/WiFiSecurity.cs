@@ -44,7 +44,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetSecurityType(_apHandle, out type);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get security type, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get security type, Error - {(WiFiError)ret}");
                 }
                 return (WiFiSecurityType)type;
             }
@@ -53,7 +53,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.SetSecurityType(_apHandle, (int)value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set security type, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set security type, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
                 }
             }
@@ -75,7 +75,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetEncryptionType(_apHandle, out type);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get encryption type, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get encryption type, Error - {(WiFiError)ret}");
                 }
                 return (WiFiEncryptionType)type;
             }
@@ -84,7 +84,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.SetEncryptionType(_apHandle, (int)value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set encryption type, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set encryption type, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
                 }
             }
@@ -116,7 +116,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.IsPassphraseRequired(_apHandle, out required);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get isPassportRequired, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get isPassportRequired, Error - {(WiFiError)ret}");
                 }
                 return required;
             }
@@ -135,7 +135,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.IsWpsSupported(_apHandle, out supported);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get isWapSupported, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get isWapSupported, Error - {(WiFiError)ret}");
                 }
                 return supported;
             }
@@ -166,7 +166,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.AP.SetPassphrase(_apHandle, passphrase);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set passphrase, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set passphrase, Error - {(WiFiError)ret}");
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
         }

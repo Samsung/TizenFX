@@ -66,7 +66,7 @@ namespace Tizen.Applications
             err = Interop.ApplicationManager.AppManagerGetAppContext(applicationId, out contextHandle);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get the handle of the ApplicationRunningContext. err = " + err);
+                Log.Warn(LogTag, $"Failed to get the handle of the ApplicationRunningContext. err = {err}");
                 switch (err)
                 {
                     case Interop.ApplicationManager.ErrorCode.InvalidParameter:
@@ -98,7 +98,7 @@ namespace Tizen.Applications
             err = Interop.ApplicationManager.AppManagerGetAppContextByInstanceId(applicationId, instanceId, out contextHandle);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get the handle of the ApplicationRunningContext. err = " + err);
+                Log.Warn(LogTag, $"Failed to get the handle of the ApplicationRunningContext. err = {err}");
                 switch (err)
                 {
                     case Interop.ApplicationManager.ErrorCode.InvalidParameter:
@@ -166,7 +166,7 @@ namespace Tizen.Applications
                 err = Interop.ApplicationManager.AppContextGetAppId(_contextHandle, out appid);
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the application id. err = " + err);
+                    Log.Warn(LogTag, $"Failed to get the application id. err = {err}");
                 }
                 return appid;
             }
@@ -185,7 +185,7 @@ namespace Tizen.Applications
                 err = Interop.ApplicationManager.AppContextGetAppId(_contextHandle, out appid);
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the application id. err = " + err);
+                    Log.Warn(LogTag, $"Failed to get the application id. err = {err}");
                 }
                 else
                 {
@@ -193,7 +193,7 @@ namespace Tizen.Applications
                     err = Interop.ApplicationManager.AppContextGetAppId(_contextHandle, out appid);
                     if (err != Interop.ApplicationManager.ErrorCode.None)
                     {
-                        Log.Warn(LogTag, "Failed to get is running. err = " + err);
+                        Log.Warn(LogTag, $"Failed to get is running. err = {err}");
                     }
                 }
                 return !isRunning;
@@ -212,7 +212,7 @@ namespace Tizen.Applications
                 err = Interop.ApplicationManager.AppContextGetPackageId(_contextHandle, out packageid);
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the package id. err = " + err);
+                    Log.Warn(LogTag, $"Failed to get the package id. err = {err}");
                 }
                 return packageid;
             }
@@ -230,7 +230,7 @@ namespace Tizen.Applications
                 err = Interop.ApplicationManager.AppContextGetPid(_contextHandle, out pid);
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the process id. err = " + err);
+                    Log.Warn(LogTag, $"Failed to get the process id. err = {err}");
                 }
                 return pid;
             }
@@ -252,7 +252,7 @@ namespace Tizen.Applications
                 err = Interop.ApplicationManager.AppContextGetAppState(_contextHandle, out state);
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the application state. err = " + err);
+                    Log.Warn(LogTag, $"Failed to get the application state. err = {err}");
                 }
                 return (AppState)state;
             }
@@ -270,7 +270,7 @@ namespace Tizen.Applications
                 err = Interop.ApplicationManager.AppContextIsSubApp(_contextHandle, out subapp);
                 if (err != Interop.ApplicationManager.ErrorCode.None)
                 {
-                    Log.Warn(LogTag, "Failed to get the IsSubApp value. err = " + err);
+                    Log.Warn(LogTag, $"Failed to get the IsSubApp value. err = {err}");
                 }
                 return subapp;
             }

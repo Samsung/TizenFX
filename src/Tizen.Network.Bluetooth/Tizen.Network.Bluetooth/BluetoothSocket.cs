@@ -83,7 +83,7 @@ namespace Tizen.Network.Bluetooth
         void Disconnect();
     }
 
-    internal class BluetoothSocket : IBluetoothClientSocket, IDisposable
+    internal sealed class BluetoothSocket : IBluetoothClientSocket, IDisposable
     {
         private event EventHandler<SocketDataReceivedEventArgs> _dataReceived;
         private event EventHandler<SocketConnectionStateChangedEventArgs> _connectionStateChanged;
@@ -160,7 +160,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SetDataReceivedCallback(_dataReceivedCallback, uData);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set data received callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set data received callback, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -170,7 +170,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.UnsetDataReceivedCallback();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset data received callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset data received callback, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -192,7 +192,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SetConnectionStateChangedCallback(_connectionStateChangedCallback, data);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set connection state changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set connection state changed callback, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -202,7 +202,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.UnsetSocketConnectionStateChangedCallback();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset connection state changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset connection state changed callback, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -220,7 +220,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.ConnectSocket(remoteAddress, serviceUuid);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to connect to socket, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to connect to socket, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -238,7 +238,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.DisconnectSocket(connectedSocket);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to disconnect socket, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to disconnect socket, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -259,7 +259,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SendData(connectedSocket, data, data.Length);
             if (ret < 0)
             {
-                Log.Error(Globals.LogTag, "Failed to send data, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to send data, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
             return ret;
@@ -280,7 +280,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SendData(connectedSocket, data, data.Length);
             if (ret < 0)
             {
-                Log.Error(Globals.LogTag, "Failed to send data, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to send data, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
             return ret;

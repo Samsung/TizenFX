@@ -25,7 +25,7 @@ namespace Tizen.Applications
         DBusError = -0x01140000 | 0x03,
     }
 
-    internal class ToastMessageErrorFactory
+    internal sealed class ToastMessageErrorFactory
     {
         private const string _logTag = "Tizen.Applications.ToastMessage";
 

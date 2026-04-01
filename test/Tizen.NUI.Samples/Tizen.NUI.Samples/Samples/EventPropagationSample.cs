@@ -6,8 +6,15 @@ using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Samples
 {
-  public class EventPropagationSample : IExample
+  public class EventPropagationSample : IExample, IApplicationHolder
   {
+    internal static NUIApplication s_application;
+
+    public void SetCurrentApplication(Tizen.NUI.NUIApplication application)
+    {
+        Tizen.Log.Error("NUITEST", $"SetCurrentApplication {application}\n");
+        EventPropagationSample.s_application = application;
+    }
 
     class MyView : View
     {
@@ -58,7 +65,7 @@ namespace Tizen.NUI.Samples
                     ContentContainer.Remove(child);
                 }
             }
-            ElmSharp.EcoreMainloop.Post(() =>
+            EventPropagationSample.s_application.AddIdle(() =>
             {
                 ScrollTo((ContentContainer.Children.Count) * (txt.NaturalSize.Height), true);
             });

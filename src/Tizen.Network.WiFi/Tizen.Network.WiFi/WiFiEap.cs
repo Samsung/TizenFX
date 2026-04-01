@@ -48,7 +48,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetEapCaCertFile(_apHandle, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get caCertFile, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get caCertFile, Error - {(WiFiError)ret}");
                     return "";
                 }
                 return Marshal.PtrToStringAnsi(strPtr);
@@ -62,7 +62,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.SetEapCaCertFile(_apHandle, value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set caCertFile, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set caCertFile, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
                 }
             }
@@ -84,7 +84,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetEapType(_apHandle, out type);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get eap type, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get eap type, Error - {(WiFiError)ret}");
                 }
                 return (WiFiEapType)type;
             }
@@ -93,7 +93,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.SetEapType(_apHandle, (int)value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set eap type, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set eap type, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
                 }
             }
@@ -115,7 +115,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetEapAuthType(_apHandle, out type);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get auth type, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get auth type, Error - {(WiFiError)ret}");
                 }
                 return (WiFiAuthenticationType)type;
             }
@@ -124,7 +124,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.SetEapAuthType(_apHandle, (int)value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set eap auth type, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set eap auth type, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
                 }
             }
@@ -151,7 +151,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.AP.GetEapPrivateKeyFile(_apHandle, out strPtr);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get private key file, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get private key file, Error - {(WiFiError)ret}");
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
             return Marshal.PtrToStringAnsi(strPtr);
@@ -177,7 +177,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.AP.SetEapPrivateKeyFile(_apHandle, privateKeyFile, password);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set private key file, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set private key file, Error - {(WiFiError)ret}");
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
         }
@@ -197,7 +197,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.AP.GetEapClientCertFile(_apHandle, out strPtr);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get client cert file, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get client cert file, Error - {(WiFiError)ret}");
                 if (ret == (int)WiFiError.InvalidParameterError)
                 {
                     throw new InvalidOperationException("Invalid handle");
@@ -226,7 +226,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.AP.SetEapClientCertFile(_apHandle, clientCertFile);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set client cert file, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set client cert file, Error - {(WiFiError)ret}");
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
         }
@@ -247,7 +247,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.AP.GetEapPassphrase(_apHandle, out strptr, out passwordSet);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get user name in eap passphrase, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get user name in eap passphrase, Error - {(WiFiError)ret}");
                 if (ret == (int)WiFiError.InvalidParameterError)
                 {
                     throw new InvalidOperationException("Invalid handle");
@@ -273,7 +273,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.AP.GetEapPassphrase(_apHandle, out strptr, out passwordSet);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get IsPasswordSet in passphrase, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get IsPasswordSet in passphrase, Error - {(WiFiError)ret}");
                 if (ret == (int)WiFiError.InvalidParameterError)
                 {
                     throw new InvalidOperationException("Invalid handle");
@@ -302,7 +302,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.AP.SetEapPassphrase(_apHandle, userName, null);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set username, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set username, Error - {(WiFiError)ret}");
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
         }
@@ -326,7 +326,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.AP.SetEapPassphrase(_apHandle, null, password);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set password, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set password, Error - {(WiFiError)ret}");
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
         }

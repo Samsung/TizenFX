@@ -13,8 +13,11 @@
 // limitations under the License.
 //
 
+using System;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.ComponentModel;
 
@@ -34,7 +37,15 @@ namespace Tizen.NUI.Visuals
 
         internal static readonly int ActionJumpTo = Tizen.NUI.BaseComponents.AnimatedImageView.ActionJumpTo;
 
-        private List<string> resourceUrls;
+        private event EventHandler finishedEventHandler;
+        private VisualEventSignalCallbackType visualEventSignalCallback;
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void VisualEventSignalCallbackType(IntPtr targetView, int visualIndex, int signalId);
+
+        private ObservableCollection<string> resourceUrls;
+
+        internal Tizen.NUI.BaseComponents.AnimatedImageView.AnimationStates AnimationState { get; set; } = Tizen.NUI.BaseComponents.AnimatedImageView.AnimationStates.Stopped;
         #endregion
 
         #region Constructor
@@ -65,7 +76,7 @@ namespace Tizen.NUI.Visuals
         /// If we set ResourceUrlList as non-null, ImageVisual.ResourceUrl will be ignored.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public List<string> ResourceUrlList
+        public ObservableCollection<string> ResourceUrlList
         {
             get
             {
@@ -73,7 +84,15 @@ namespace Tizen.NUI.Visuals
             }
             set
             {
+                if(resourceUrls != null)
+                {
+                    resourceUrls.CollectionChanged -= OnResourceUrlListItemChanged;
+                }
                 resourceUrls = value;
+                if(resourceUrls != null)
+                {
+                    resourceUrls.CollectionChanged += OnResourceUrlListItemChanged;
+                }
 
                 // Always request to create new visual
                 visualCreationRequiredFlag = true;
@@ -257,6 +276,8 @@ namespace Tizen.NUI.Visuals
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Play()
         {
+            AnimationState = Tizen.NUI.BaseComponents.AnimatedImageView.AnimationStates.Playing;
+
             // Sync as current properties
             UpdateVisualPropertyMap();
 
@@ -269,6 +290,8 @@ namespace Tizen.NUI.Visuals
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Pause()
         {
+            AnimationState = Tizen.NUI.BaseComponents.AnimatedImageView.AnimationStates.Paused;
+
             // Sync as current properties
             UpdateVisualPropertyMap();
 
@@ -281,6 +304,8 @@ namespace Tizen.NUI.Visuals
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop()
         {
+            AnimationState = Tizen.NUI.BaseComponents.AnimatedImageView.AnimationStates.Stopped;
+
             // Sync as current properties
             UpdateVisualPropertyMap();
 
@@ -288,9 +313,39 @@ namespace Tizen.NUI.Visuals
         }
         #endregion
 
+        #region Public Events
+        /// <summary>
+        /// The event handler for the animation finished event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler Finished
+        {
+            add
+            {
+                if (finishedEventHandler == null)
+                {
+                    visualEventSignalCallback = OnStaticVisualEventSignal;
+                    ConnectVisualEvent();
+                    NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                }
+                finishedEventHandler += value;
+            }
+            remove
+            {
+                finishedEventHandler -= value;
+                if (finishedEventHandler == null && visualEventSignalCallback != null)
+                {
+                    DisconnectVisualEvent();
+                    visualEventSignalCallback = null;
+                }
+            }
+        }
+        #endregion
+
         #region Internal Methods
         internal override void OnUpdateVisualPropertyMap()
         {
+            DisconnectVisualEvent();
             if (resourceUrls != null && resourceUrls.Count > 0)
             {
                 using var urlArray = new PropertyArray();
@@ -314,6 +369,112 @@ namespace Tizen.NUI.Visuals
                 // If we don't use image sequence, follow the ImageVisual logic.
                 base.OnUpdateVisualPropertyMap();
             }
+        }
+
+        internal override void OnVisualCreated()
+        {
+            base.OnVisualCreated();
+
+            ConnectVisualEvent();
+
+            if (!Disposed)
+            {
+                switch (AnimationState)
+                {
+                    case Tizen.NUI.BaseComponents.AnimatedImageView.AnimationStates.Stopped:
+                    {
+                        Stop();
+                        break;
+                    }
+                    case Tizen.NUI.BaseComponents.AnimatedImageView.AnimationStates.Playing:
+                    {
+                        Play();
+                        break;
+                    }
+                    case Tizen.NUI.BaseComponents.AnimatedImageView.AnimationStates.Paused:
+                    {
+                        Pause();
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Dispose for VisualObject
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                if(resourceUrls != null)
+                {
+                    resourceUrls.CollectionChanged -= OnResourceUrlListItemChanged;
+                }
+                resourceUrls = null;
+            }
+
+            if (this.HasBody())
+            {
+                DisconnectVisualEvent();
+                visualEventSignalCallback = null;
+            }
+
+            base.Dispose(type);
+        }
+
+        private void ConnectVisualEvent()
+        {
+            if (visualEventSignalCallback != null)
+            {
+                // TODO : Implement here
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+            }
+        }
+
+        private void DisconnectVisualEvent()
+        {
+            if (visualEventSignalCallback != null)
+            {
+                // TODO : Implement here
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+            }
+        }
+
+        private void OnFinished()
+        {
+            AnimationState = Tizen.NUI.BaseComponents.AnimatedImageView.AnimationStates.Stopped;
+            finishedEventHandler?.Invoke(this, null);
+        }
+
+        private static void OnStaticVisualEventSignal(IntPtr targetView, int visualIndex, int signalId)
+        {
+            var view = Registry.GetManagedBaseHandleFromNativePtr(targetView) as Tizen.NUI.BaseComponents.View;
+            if (view == null)
+            {
+                NUILog.Error("VisualEventSignal comes from Disposed (or GC) ImageView!\n");
+                return;
+            }
+
+            if (view.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            // TODO : Need to implement here!
+        }
+
+        private void OnResourceUrlListItemChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            // Always request to create new visual
+            visualCreationRequiredFlag = true;
+            ReqeustProcessorOnceEvent();
         }
         #endregion
     }

@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class ContentReceivedSignalType : Disposable
+    internal sealed class ContentReceivedSignalType : Disposable
     {
         /// <summary>
         /// ContentReceivedSignalType

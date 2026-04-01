@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -54,7 +54,7 @@ namespace Tizen.Network.Nfc
         }
     }
 
-    internal partial class NfcManagerImpl : IDisposable
+    internal sealed partial class NfcManagerImpl : IDisposable
     {
         private static readonly NfcManagerImpl _instance = new NfcManagerImpl();
         private static readonly NfcTagAdapter _instanceTagAdapter = new NfcTagAdapter();
@@ -125,7 +125,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.GetCachedMessage(out ndef);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get cached ndef message, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get cached ndef message, Error - {(NfcError)ret}");
                 }
 
                 NfcNdefMessage ndefMessage = new NfcNdefMessage(ndef);
@@ -155,7 +155,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.GetSecureElementType(out type);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get secure element type, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get secure element type, Error - {(NfcError)ret}");
                 }
                 return (NfcSecureElementType)type;
             }
@@ -164,7 +164,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.SetSecureElementType((int)value);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set secure element type, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set secure element type, Error - {(NfcError)ret}");
                 }
             }
         }
@@ -182,7 +182,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.SetSystemHandlerEnable(value);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to enable system handler, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to enable system handler, Error - {(NfcError)ret}");
                 }
             }
         }
@@ -222,7 +222,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.Initialize();
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to Initialize Nfc, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to Initialize Nfc, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
@@ -232,7 +232,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.Deinitialize();
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to Deinitialize Nfc, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to Deinitialize Nfc, Error - {(NfcError)ret}");
             }
         }
 
@@ -248,7 +248,7 @@ namespace Tizen.Network.Nfc
                     Log.Debug(Globals.LogTag, "nfc activated");
                     if (error != (int)NfcError.None)
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during Nfc activating, " + (NfcError)error);
+                        Log.Error(Globals.LogTag, $"Error occurs during Nfc activating, {(NfcError)error}");
                         task.SetException(new InvalidOperationException("Error occurs during Nfc activating, " + (NfcError)error));
                     }
                     task.SetResult(true);
@@ -261,7 +261,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.SetActivation(activation, _callback_map[id], id);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to activate nfc, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to activate nfc, Error - {(NfcError)ret}");
                     NfcErrorFactory.ThrowNfcException(ret);
                 }
             }

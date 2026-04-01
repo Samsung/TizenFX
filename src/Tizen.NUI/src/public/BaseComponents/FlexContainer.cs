@@ -216,7 +216,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Enumeration for the primary direction in which content is ordered in the flex container
-        /// and on which sides the ?�start??and ?�end??are.
+        /// and on which sides the ?占퐏tart??and ?占폾nd??are.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -654,7 +654,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Enumeration for the instance of child properties belonging to the FlexContainer class.
         /// </summary>
-        internal class ChildProperty
+        internal sealed class ChildProperty
         {
             internal static readonly int FLEX = Interop.FlexContainer.ChildPropertyFlexGet();
             internal static readonly int AlignSelf = Interop.FlexContainer.ChildPropertyAlignSelfGet();

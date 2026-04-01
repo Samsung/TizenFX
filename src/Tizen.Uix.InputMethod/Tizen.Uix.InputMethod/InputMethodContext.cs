@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -313,7 +313,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeContextGetLayout(_handle, out layout);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetLayout Failed with error " + error);
+                    Log.Error(LogTag, $"GetLayout Failed with error {error}");
                     return InputPanelLayout.Undefined;
                 }
                 return layout;
@@ -332,7 +332,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeContextGetLayoutVariation(_handle, out layoutVariation);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetLayoutVariation Failed with error " + error);
+                    Log.Error(LogTag, $"GetLayoutVariation Failed with error {error}");
                     return LayoutVariation.Undefined;
                 }
                 return layoutVariation;
@@ -351,7 +351,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeContextGetCursorPosition(_handle, out cursorPosition);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetCursorPosition Failed with error " + error);
+                    Log.Error(LogTag, $"GetCursorPosition Failed with error {error}");
                     return -1;
                 }
                 return cursorPosition;
@@ -370,7 +370,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeContextGetAutocapitalType(_handle, out autoCapitalType);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetAutoCapitalization Failed with error " + error);
+                    Log.Error(LogTag, $"GetAutoCapitalization Failed with error {error}");
                     return AutoCapitalization.Undefined;
                 }
                 return autoCapitalType;
@@ -389,7 +389,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeContextGetReturnKey(_handle, out returnKeyType);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetReturnKey Failed with error " + error);
+                    Log.Error(LogTag, $"GetReturnKey Failed with error {error}");
                     return InputPanelReturnKey.Undefined;
                 }
                 return returnKeyType;
@@ -408,7 +408,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeContextGetReturnKeyState(_handle, out returnKeyState);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetReturnKeyState Failed with error " + error);
+                    Log.Error(LogTag, $"GetReturnKeyState Failed with error {error}");
                     return false;
                 }
                 return returnKeyState;
@@ -427,7 +427,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeContextGetPredictionMode(_handle, out predictionMode);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetPredictionMode Failed with error " + error);
+                    Log.Error(LogTag, $"GetPredictionMode Failed with error {error}");
                     return false;
                 }
                 return predictionMode;
@@ -446,7 +446,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeContextGetPasswordMode(_handle, out passwordMode);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetPasswordMode Failed with error " + error);
+                    Log.Error(LogTag, $"GetPasswordMode Failed with error {error}");
                     return false;
                 }
                 return passwordMode;
@@ -465,7 +465,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeContextGetInputHint(_handle, out inputHint);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetInputHint Failed with error " + error);
+                    Log.Error(LogTag, $"GetInputHint Failed with error {error}");
                     return InputHints.Undefined;
                 }
                 return inputHint;
@@ -484,7 +484,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeContextGetBidiDirection(_handle, out biDiDirection);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetBiDirection Failed with error " + error);
+                    Log.Error(LogTag, $"GetBiDirection Failed with error {error}");
                     return BiDirection.Undefined;
                 }
                 return biDiDirection;
@@ -503,7 +503,7 @@ namespace Tizen.Uix.InputMethod
                 ErrorCode error = ImeContextGetLanguage(_handle, out langauge);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetLanguage Failed with error " + error);
+                    Log.Error(LogTag, $"GetLanguage Failed with error {error}");
                     return InputPanelLanguage.Undefined;
                 }
                 return langauge;

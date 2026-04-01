@@ -22,7 +22,7 @@ using NativeHandle = Interop.RecorderHandle;
 
 namespace Tizen.Multimedia
 {
-    internal class Capabilities
+    internal sealed class Capabilities
     {
         public IEnumerable<RecorderFileFormat> SupportedFileFormats { get; }
         public IEnumerable<RecorderAudioCodec> SupportedAudioCodecs { get; }

@@ -19,7 +19,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class VideoViewSignal : Disposable
+    internal sealed class VideoViewSignal : Disposable
     {
         internal VideoViewSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

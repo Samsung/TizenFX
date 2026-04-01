@@ -5,7 +5,7 @@ using System;
 
 namespace Tizen.NUI.Samples
 {
-    public class BackgroundBlurEffectTest : IExample
+    public class BackgroundBlurEffectTest : IExample, IApplicationHolder
     {
         static private string DEMO_IMAGE_DIR = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "images/";
         static private string s_imagePath = DEMO_IMAGE_DIR + "Dali/DaliDemo/Logo-for-demo.png";

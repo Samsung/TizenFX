@@ -86,7 +86,7 @@ namespace Tizen.Applications.NotificationEventListener
                         }
                         catch (Exception ex)
                         {
-                            Log.Error(LogTag, "unable to get ParentIndex " + ex.Message);
+                            Log.Error(LogTag, $"unable to get ParentIndex {ex.Message}");
                         }
                     }
                 }

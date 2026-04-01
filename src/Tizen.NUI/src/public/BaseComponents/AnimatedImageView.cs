@@ -15,6 +15,8 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -32,6 +34,13 @@ namespace Tizen.NUI.BaseComponents
         /// Actions property value to Jump to the specified frame.
         /// </summary>
         internal static readonly int ActionJumpTo = Interop.AnimatedImageView.AnimatedImageVisualActionJumpToGet();
+
+        internal VisualEventSignal VisualEventSignal()
+        {
+            VisualEventSignal ret = new VisualEventSignal(Interop.VisualEventSignal.NewWithView(View.getCPtr(this)), false);
+            NDalicPINVOKE.ThrowExceptionIfExists();
+            return ret;
+        }
         #endregion Internal
 
         #region Private
@@ -45,6 +54,37 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.FrameSpeedFactor,
         };
         private List<string> resourceURLs = new List<string>();
+
+
+        private void OnFinished()
+        {
+            AnimationState = AnimationStates.Stopped;
+            finishedEventHandler?.Invoke(this, null);
+        }
+
+        private static void OnStaticVisualEventSignal(IntPtr targetView, int visualIndex, int signalId)
+        {
+            var animatedImageView = Registry.GetManagedBaseHandleFromNativePtr(targetView) as AnimatedImageView;
+            if (animatedImageView == null)
+            {
+                NUILog.Error("VisualEventSignal comes from Disposed (or GC) ImageView!\n");
+                return;
+            }
+
+            if (animatedImageView.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            animatedImageView.OnFinished();
+        }
+
+        private event EventHandler finishedEventHandler;
+        private VisualEventSignalCallbackType visualEventSignalCallback;
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void VisualEventSignalCallbackType(IntPtr targetView, int visualIndex, int signalId);
+
         #endregion Private
 
         #region Constructor, Destructor, Dispose
@@ -68,6 +108,17 @@ namespace Tizen.NUI.BaseComponents
             if (disposed)
             {
                 return;
+            }
+
+            if (this.HasBody())
+            {
+                if (visualEventSignalCallback != null)
+                {
+                    using VisualEventSignal visualEvent = VisualEventSignal();
+                    visualEvent?.Disconnect(visualEventSignalCallback);
+                    NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                    ReleaseSafeCallback(ref visualEventSignalCallback);
+                }
             }
 
             //Release your own unmanaged resources here.
@@ -486,6 +537,12 @@ namespace Tizen.NUI.BaseComponents
                 return ret;
             }
         }
+
+        /// <summary>
+        /// Get state of animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AnimationStates AnimationState { get; private set; } = AnimationStates.Playing; // For backward behavior matching, keep initial value as Playing.
         #endregion Property
 
         #region Method
@@ -504,6 +561,36 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Play Animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new void Play()
+        {
+            AnimationState = AnimationStates.Playing;
+            base.Play();
+        }
+
+        /// <summary>
+        /// Pause Animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new void Pause()
+        {
+            AnimationState = AnimationStates.Paused;
+            base.Pause();
+        }
+
+        /// <summary>
+        /// Stop Animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new void Stop()
+        {
+            AnimationState = AnimationStates.Stopped;
+            base.Stop();
+        }
+
+        /// <summary>
         /// Update animated-image-relative properties synchronously.
         /// After call this API, All image properties updated.
         /// </summary>
@@ -519,6 +606,7 @@ namespace Tizen.NUI.BaseComponents
 
             // Assume that we are using standard Image at first.
             // (Since we might cache Visual.Property.Type as Visual.Type.AnimatedImage even we don't use URLs.)
+            base.allowToCreateVisualEmptyUrl = false;
             using (PropertyValue imageType = new PropertyValue((int)Visual.Type.Image))
             {
                 UpdateImage(Visual.Property.Type, imageType, false);
@@ -546,9 +634,35 @@ namespace Tizen.NUI.BaseComponents
                 // Trick that we are using resourceURLs without ResourceUrl API.
                 using PropertyValue animatiedImage = new PropertyValue((int)Visual.Type.AnimatedImage);
                 UpdateImage(Visual.Property.Type, animatiedImage, false);
+
+                // Mark some special flags at ImageView that we are using image sequence.
+                // This flag will allow to create new visuals even if _resourceUrl is null or empty.
+                base.allowToCreateVisualEmptyUrl = true;
             }
 
             base.UpdateImage();
+
+            if (!Disposed)
+            {
+                switch (AnimationState)
+                {
+                    case AnimationStates.Stopped:
+                    {
+                        base.Stop();
+                        break;
+                    }
+                    case AnimationStates.Playing:
+                    {
+                        base.Play();
+                        break;
+                    }
+                    case AnimationStates.Paused:
+                    {
+                        base.Pause();
+                        break;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -580,6 +694,35 @@ namespace Tizen.NUI.BaseComponents
         #endregion Method
 
         #region Event, Enum, Struct, ETC
+        /// <summary>
+        /// The event handler for the animation finished event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler Finished
+        {
+            add
+            {
+                if (finishedEventHandler == null)
+                {
+                    CreateSafeCallback(OnStaticVisualEventSignal, out visualEventSignalCallback);
+                    using VisualEventSignal visualEvent = VisualEventSignal();
+                    visualEvent.Connect(visualEventSignalCallback);
+                    NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                }
+                finishedEventHandler += value;
+            }
+            remove
+            {
+                finishedEventHandler -= value;
+                if (finishedEventHandler == null && visualEventSignalCallback != null)
+                {
+                    using VisualEventSignal visualEvent = VisualEventSignal();
+                    visualEvent?.Disconnect(visualEventSignalCallback);
+                    NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                    ReleaseSafeCallback(ref visualEventSignalCallback);
+                }
+            }
+        }
 
         /// <summary>
         /// Enumeration for what to do when the animation is stopped.
@@ -604,6 +747,24 @@ namespace Tizen.NUI.BaseComponents
             MaximumFrame
         }
 
+        /// <summary>
+        /// AnimationStates of animation.
+        /// </summary>
+        // Suppress warning : This has been being used by users, so that the interface can not be changed.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names", Justification = "<Pending>")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum AnimationStates
+        {
+            /// <summary> The animation has stopped.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Stopped = LottieAnimationView.PlayStateType.Stopped,
+            /// <summary> The animation is playing.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Playing = LottieAnimationView.PlayStateType.Playing,
+            /// <summary> The animation is paused.</summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Paused = LottieAnimationView.PlayStateType.Paused
+        }
         #endregion Event, Enum, Struct, ETC
     }
 }

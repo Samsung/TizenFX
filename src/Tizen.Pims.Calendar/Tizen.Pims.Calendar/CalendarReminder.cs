@@ -82,7 +82,7 @@ namespace Tizen.Pims.Calendar
                     int error = Interop.Reminder.Add(_reminderAlertedCallback, IntPtr.Zero);
                     if (CalendarError.None != (CalendarError)error)
                     {
-                        Log.Error(Globals.LogTag, "Add reminder Failed with error " + error);
+                        Log.Error(Globals.LogTag, $"Add reminder Failed with error {error}");
                     }
                 }
                 s_reminderAlerted += value;
@@ -98,7 +98,7 @@ namespace Tizen.Pims.Calendar
                     int error = Interop.Reminder.Remove(_reminderAlertedCallback, IntPtr.Zero);
                     if (CalendarError.None != (CalendarError)error)
                     {
-                        Log.Error(Globals.LogTag, "Remove reminder Failed with error " + error);
+                        Log.Error(Globals.LogTag, $"Remove reminder Failed with error {error}");
                     }
                 }
             }

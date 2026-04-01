@@ -13,4 +13,8 @@
     <icon>Tizen.NUI.WindowSystem.InputGesture.png</icon>
     <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
   </ui-application>
+    <privileges>
+        <privilege>http://tizen.org/privilege/gesturegrab</privilege>
+        <privilege>http://tizen.org/privilege/inputgenerator</privilege>
+    </privileges>
 </manifest>

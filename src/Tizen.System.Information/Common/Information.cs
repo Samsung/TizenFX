@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -45,7 +46,7 @@ namespace Tizen.System
         internal const string RuntimeInfoStringKeyAudioJackType = "audiojack.type";
 
 
-        private static readonly Dictionary<string, RuntimeInfoKey> StringEnumMapping = new Dictionary<string, RuntimeInfoKey>
+        private static readonly FrozenDictionary<string, RuntimeInfoKey> StringEnumMapping = new Dictionary<string, RuntimeInfoKey>
         {
             [RuntimeInfoStringKeyPrefix + RuntimeInfoStringKeyBluetooth] = RuntimeInfoKey.Bluetooth,
             [RuntimeInfoStringKeyPrefix + RuntimeInfoStringKeyTetheringWiFi] = RuntimeInfoKey.WifiHotspot,
@@ -61,9 +62,9 @@ namespace Tizen.System
             [RuntimeInfoStringKeyPrefix + RuntimeInfoStringKeyAutoRotation] = RuntimeInfoKey.AutoRotation,
             [RuntimeInfoStringKeyPrefix + RuntimeInfoStringKeyGps] = RuntimeInfoKey.Gps,
             [RuntimeInfoStringKeyPrefix + RuntimeInfoStringKeyAudioJackType] = RuntimeInfoKey.AudioJackConnector
-        };
+        }.ToFrozenDictionary();
 
-        internal static readonly Dictionary<RuntimeInfoKey, string> EnumStringMapping = new Dictionary<RuntimeInfoKey, string>
+        internal static readonly FrozenDictionary<RuntimeInfoKey, string> EnumStringMapping = new Dictionary<RuntimeInfoKey, string>
         {
             [RuntimeInfoKey.Bluetooth] = RuntimeInfoStringKeyBluetooth,
             [RuntimeInfoKey.WifiHotspot] = RuntimeInfoStringKeyTetheringWiFi,
@@ -79,7 +80,7 @@ namespace Tizen.System
             [RuntimeInfoKey.AutoRotation] = RuntimeInfoStringKeyAutoRotation,
             [RuntimeInfoKey.Gps] = RuntimeInfoStringKeyGps,
             [RuntimeInfoKey.AudioJackConnector] = RuntimeInfoStringKeyAudioJackType
-        };
+        }.ToFrozenDictionary();
 
         private static bool ConvertStringToRuntimeInfoKey(string key, out RuntimeInfoKey feature)
         {

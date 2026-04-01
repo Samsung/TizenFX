@@ -38,6 +38,7 @@ namespace Tizen.NUI
         private WheelEventCallbackType interceptWheelCallback;
         private EventCallbackDelegateType1 stageKeyCallbackDelegate;
         private InterceptKeyEventDelegateType stageInterceptKeyCallbackDelegate;
+        private InterceptKeyEventDelegateType stageSystemInterceptKeyCallbackDelegate;
         private EventCallbackDelegateType0 stageEventProcessingFinishedEventCallbackDelegate;
         private EventHandler stageContextLostEventHandler;
         private EventCallbackDelegateType0 stageContextLostEventCallbackDelegate;
@@ -305,6 +306,13 @@ namespace Tizen.NUI
                     CreateSafeCallback(OnStageInterceptKey, out stageInterceptKeyCallbackDelegate);
                     using KeyEventSignal signal = new KeyEventSignal(Interop.Window.InterceptKeyEventSignal(SwigCPtr), false);
                     signal.Ensure()?.Connect(stageInterceptKeyCallbackDelegate);
+
+                    // release systemInterceptKeyCallback, In OnStageInterceptKey, handle the same thing as systemInterceptKeyCallback.
+                    if (stageSystemInterceptKeyCallbackDelegate != null)
+                    {
+                        signal.Ensure()?.Disconnect(stageSystemInterceptKeyCallbackDelegate);
+                        ReleaseSafeCallback(ref stageSystemInterceptKeyCallbackDelegate);
+                    }
                 }
                 stageInterceptKeyHandler += value;
             }
@@ -316,6 +324,14 @@ namespace Tizen.NUI
                     using KeyEventSignal signal = new KeyEventSignal(Interop.Window.InterceptKeyEventSignal(SwigCPtr), false);
                     signal.Ensure()?.Disconnect(stageInterceptKeyCallbackDelegate);
                     ReleaseSafeCallback(ref stageInterceptKeyCallbackDelegate);
+
+                    // If stageSystemInterceptKeyHandler is registered, reconnect the signal.
+                    if (stageSystemInterceptKeyHandler != null && stageSystemInterceptKeyCallbackDelegate == null)
+                    {
+                        CreateSafeCallback(OnSystemStageInterceptKey, out stageSystemInterceptKeyCallbackDelegate);
+                        using KeyEventSignal systemSignal = new KeyEventSignal(Interop.Window.InterceptKeyEventSignal(SwigCPtr), false);
+                        systemSignal.Ensure()?.Connect(stageSystemInterceptKeyCallbackDelegate);
+                    }
                 }
             }
         }
@@ -713,6 +729,7 @@ namespace Tizen.NUI
         private ReturnTypeEventHandler<object, WheelEventArgs, bool> interceptWheelHandler;
         private event EventHandler<KeyEventArgs> stageKeyHandler;
         private ReturnTypeEventHandler<object, KeyEventArgs, bool> stageInterceptKeyHandler;
+        private ReturnTypeEventHandler<object, KeyEventArgs, bool> stageSystemInterceptKeyHandler;
         private event EventHandler stageEventProcessingFinishedEventHandler;
         private event EventHandler<ResizedEventArgs> windowResizeEventHandler;
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler2;
@@ -822,6 +839,37 @@ namespace Tizen.NUI
                     using VoidSignal signal = new VoidSignal(Interop.StageSignal.SceneCreatedSignal(stageCPtr), false);
                     signal.Ensure()?.Disconnect(stageSceneCreatedEventCallbackDelegate);
                     ReleaseSafeCallback(ref stageSceneCreatedEventCallbackDelegate);
+                }
+            }
+        }
+
+        /// <summary>
+        /// System-level key event interception that occurs before the user-level InterceptKeyEvent.<br />
+        /// This event is intended for internal framework use and provides the highest priority for intercepting key events.<br />
+        /// When this event returns true (consumed), it prevents the key event from being dispatched to both InterceptKeyEvent and child views.<br />
+        /// Multiple handlers can be registered, and their return values are OR'd together.<br />
+        /// This event is marked as internal and should not be used by application code.
+        /// </summary>
+        internal event ReturnTypeEventHandler<object, KeyEventArgs, bool> SystemInterceptKeyEvent
+        {
+            add
+            {
+                if (stageSystemInterceptKeyHandler == null && stageInterceptKeyHandler == null)
+                {
+                    CreateSafeCallback(OnSystemStageInterceptKey, out stageSystemInterceptKeyCallbackDelegate);
+                    using KeyEventSignal signal = new KeyEventSignal(Interop.Window.InterceptKeyEventSignal(SwigCPtr), false);
+                    signal.Ensure()?.Connect(stageSystemInterceptKeyCallbackDelegate);
+                }
+                stageSystemInterceptKeyHandler += value;
+            }
+            remove
+            {
+                stageSystemInterceptKeyHandler -= value;
+                if (stageSystemInterceptKeyHandler == null && stageSystemInterceptKeyCallbackDelegate != null)
+                {
+                    using KeyEventSignal signal = new KeyEventSignal(Interop.Window.InterceptKeyEventSignal(SwigCPtr), false);
+                    signal.Ensure()?.Disconnect(stageSystemInterceptKeyCallbackDelegate);
+                    ReleaseSafeCallback(ref stageSystemInterceptKeyCallbackDelegate);
                 }
             }
         }
@@ -1177,6 +1225,26 @@ namespace Tizen.NUI
                 return false;
             }
 
+            bool systemConsumed = false;
+            if (stageSystemInterceptKeyHandler != null)
+            {
+                KeyEventArgs e = new KeyEventArgs();
+                e.Key = Tizen.NUI.Key.GetKeyFromPtr(data);
+
+                Delegate[] delegateList = stageSystemInterceptKeyHandler.GetInvocationList();
+                // Oring the result of each callback.
+                foreach (ReturnTypeEventHandler<object, KeyEventArgs, bool> del in delegateList)
+                {
+                    systemConsumed |= del(this, e);
+                }
+            }
+
+            // If SystemInterceptKeyEvent consumes, it also blocks interceptKeyEvent.
+            if (systemConsumed)
+            {
+                return true;
+            }
+
             bool consumed = false;
             if (stageInterceptKeyHandler != null)
             {
@@ -1186,6 +1254,31 @@ namespace Tizen.NUI
                 consumed = stageInterceptKeyHandler(this, e);
             }
             return consumed;
+        }
+
+        // Callback for Stage InterceptKeyEventsignal
+        private bool OnSystemStageInterceptKey(IntPtr data)
+        {
+            if (IsDisposedOrQueued)
+            {
+                // Ignore native callback if the window is disposed or queued for disposal.
+                return false;
+            }
+
+            bool systemConsumed = false;
+            if (stageSystemInterceptKeyHandler != null)
+            {
+                KeyEventArgs e = new KeyEventArgs();
+                e.Key = Tizen.NUI.Key.GetKeyFromPtr(data);
+
+                Delegate[] delegateList = stageSystemInterceptKeyHandler.GetInvocationList();
+                // Oring the result of each callback.
+                foreach (ReturnTypeEventHandler<object, KeyEventArgs, bool> del in delegateList)
+                {
+                    systemConsumed |= del(this, e);
+                }
+            }
+            return systemConsumed;
         }
 
         // Callback for Stage EventProcessingFinishedSignal

@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -360,7 +360,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttCreate(out handle);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "Create Failed with error " + error);
+                Log.Error(LogTag, $"Create Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -404,7 +404,7 @@ namespace Tizen.Uix.Stt
                         SttError error = SttSetRecognitionResultCB(_handle, _resultDelegate, IntPtr.Zero);
                         if (error != SttError.None)
                         {
-                            Log.Error(LogTag, "Add RecognitionResult Failed with error " + error);
+                            Log.Error(LogTag, $"Add RecognitionResult Failed with error {error}");
                         }
                     }
                     _recognitionResult += value;
@@ -421,7 +421,7 @@ namespace Tizen.Uix.Stt
                         SttError error = SttUnsetRecognitionResultCB(_handle);
                         if (error != SttError.None)
                         {
-                            Log.Error(LogTag, "Remove RecognitionResult Failed with error " + error);
+                            Log.Error(LogTag, $"Remove RecognitionResult Failed with error {error}");
                         }
                     }
                 }
@@ -450,7 +450,7 @@ namespace Tizen.Uix.Stt
                         SttError error = SttSetStateChangedCB(_handle, _stateDelegate, IntPtr.Zero);
                         if (error != SttError.None)
                         {
-                            Log.Error(LogTag, "Add StateChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Add StateChanged Failed with error {error}");
                         }
                     }
                     _stateChanged += value;
@@ -467,7 +467,7 @@ namespace Tizen.Uix.Stt
                         SttError error = SttUnsetStateChangedCB(_handle);
                         if (error != SttError.None)
                         {
-                            Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Remove StateChanged Failed with error {error}");
                         }
                     }
                 }
@@ -495,7 +495,7 @@ namespace Tizen.Uix.Stt
                         SttError error = SttSetErrorCB(_handle, _errorDelegate, IntPtr.Zero);
                         if (error != SttError.None)
                         {
-                            Log.Error(LogTag, "Add ErrorOccurred Failed with error " + error);
+                            Log.Error(LogTag, $"Add ErrorOccurred Failed with error {error}");
                         }
                     }
                     _errorOccurred += value;
@@ -512,7 +512,7 @@ namespace Tizen.Uix.Stt
                         SttError error = SttUnsetErrorCB(_handle);
                         if (error != SttError.None)
                         {
-                            Log.Error(LogTag, "Remove ErrorOccurred Failed with error " + error);
+                            Log.Error(LogTag, $"Remove ErrorOccurred Failed with error {error}");
                         }
                     }
                 }
@@ -542,7 +542,7 @@ namespace Tizen.Uix.Stt
                         SttError error = SttSetDefaultLanguageChangedCB(_handle, _languageDelegate, IntPtr.Zero);
                         if (error != SttError.None)
                         {
-                            Log.Error(LogTag, "Add DefaultLanguageChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Add DefaultLanguageChanged Failed with error {error}");
                         }
                     }
                     _defaultLanguageChanged += value;
@@ -559,7 +559,7 @@ namespace Tizen.Uix.Stt
                         SttError error = SttUnsetDefaultLanguageChangedCB(_handle);
                         if (error != SttError.None)
                         {
-                            Log.Error(LogTag, "Remove DefaultLanguageChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Remove DefaultLanguageChanged Failed with error {error}");
                         }
                     }
                 }
@@ -590,7 +590,7 @@ namespace Tizen.Uix.Stt
                         SttError error = SttSetEngineChangedCB(_handle, _engineDelegate, IntPtr.Zero);
                         if (error != SttError.None)
                         {
-                            Log.Error(LogTag, "Add EngineChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Add EngineChanged Failed with error {error}");
                         }
                     }
                     _engineChanged += value;
@@ -607,7 +607,7 @@ namespace Tizen.Uix.Stt
                         SttError error = SttUnsetEngineChangedCB(_handle);
                         if (error != SttError.None)
                         {
-                            Log.Error(LogTag, "Remove EngineChanged Failed with error " + error);
+                            Log.Error(LogTag, $"Remove EngineChanged Failed with error {error}");
                         }
                     }
                 }
@@ -637,7 +637,7 @@ namespace Tizen.Uix.Stt
                 SttError error = SttGetDefaultLanguage(_handle, out language);
                 if (error != SttError.None)
                 {
-                    Log.Error(LogTag, "DefaultLanguage Failed with error " + error);
+                    Log.Error(LogTag, $"DefaultLanguage Failed with error {error}");
                     return "";
                 }
 
@@ -666,7 +666,7 @@ namespace Tizen.Uix.Stt
                 SttError error = SttGetRecordingVolume(_handle, out volume);
                 if (error != SttError.None)
                 {
-                    Log.Error(LogTag, "GetRecordingVolume Failed with error " + error);
+                    Log.Error(LogTag, $"GetRecordingVolume Failed with error {error}");
                     return 0.0f;
                 }
 
@@ -696,7 +696,7 @@ namespace Tizen.Uix.Stt
                 SttError error = SttGetState(_handle, out state);
                 if (error != SttError.None)
                 {
-                    Log.Error(LogTag, "GetState Failed with error " + error);
+                    Log.Error(LogTag, $"GetState Failed with error {error}");
                     return State.Unavailable;
                 }
 
@@ -735,7 +735,7 @@ namespace Tizen.Uix.Stt
                 SttError error = SttGetEngine(_handle, out engineId);
                 if (error != SttError.None)
                 {
-                    Log.Error(LogTag, "Get EngineId Failed with error " + error);
+                    Log.Error(LogTag, $"Get EngineId Failed with error {error}");
                     return "";
                 }
 
@@ -746,7 +746,7 @@ namespace Tizen.Uix.Stt
                 SttError error = SttSetEngine(_handle, value);
                 if (error != SttError.None)
                 {
-                    Log.Error(LogTag, "Set EngineId Failed with error " + error);
+                    Log.Error(LogTag, $"Set EngineId Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
             }
@@ -785,7 +785,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttForeachDetailedResult(_handle, _resultTimeDelegate, IntPtr.Zero);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "GetDetailedResult Failed with error " + error);
+                Log.Error(LogTag, $"GetDetailedResult Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
             return list;
@@ -821,7 +821,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttGetPrivateData(_handle, key, out data);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "GetPrivateData Failed with error " + error);
+                Log.Error(LogTag, $"GetPrivateData Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -857,7 +857,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttSetPrivateData(_handle, key, data);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "SetPrivateData Failed with error " + error);
+                Log.Error(LogTag, $"SetPrivateData Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -895,7 +895,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttForeEachSupportedEngines(_handle, supportedEngineDelegate, IntPtr.Zero);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "Create Failed with error " + error);
+                Log.Error(LogTag, $"Create Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -933,7 +933,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttSetcredential(_handle, credential);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "SetCredential Failed with error " + error);
+                Log.Error(LogTag, $"SetCredential Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -964,7 +964,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttPrepare(_handle);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "SetEngine Failed with error " + error);
+                Log.Error(LogTag, $"SetEngine Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -994,7 +994,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttUnprepare(_handle);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "Unprepare Failed with error " + error);
+                Log.Error(LogTag, $"Unprepare Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1035,7 +1035,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttForeachSupportedLanguages(_handle, supportedLanguageDelegate, IntPtr.Zero);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "GetSupportedLanguages Failed with error " + error);
+                Log.Error(LogTag, $"GetSupportedLanguages Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -1109,7 +1109,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttIsRecognitionTypeSupported(_handle, recType, out supported);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "IsRecognitionTypeSupported Failed with error " + error);
+                Log.Error(LogTag, $"IsRecognitionTypeSupported Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -1145,7 +1145,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttSetSilenceDetection(_handle, type);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "SetSilenceDetection Failed with error " + error);
+                Log.Error(LogTag, $"SetSilenceDetection Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1181,7 +1181,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttSetStartSound(_handle, filePath);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "SetStartSound Failed with error " + error);
+                Log.Error(LogTag, $"SetStartSound Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1212,7 +1212,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttUnsetStartSound(_handle);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "UnsetStartSound Failed with error " + error);
+                Log.Error(LogTag, $"UnsetStartSound Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1248,7 +1248,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttSetStopSound(_handle, filePath);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "SetStopSound Failed with error " + error);
+                Log.Error(LogTag, $"SetStopSound Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1279,7 +1279,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttUnsetStopSound(_handle);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "UnsetStopSound Failed with error " + error);
+                Log.Error(LogTag, $"UnsetStopSound Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1360,7 +1360,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttStart(_handle, language, recType);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "Start Failed with error " + error);
+                Log.Error(LogTag, $"Start Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1400,7 +1400,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttStop(_handle);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "Stop Failed with error " + error);
+                Log.Error(LogTag, $"Stop Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1441,7 +1441,7 @@ namespace Tizen.Uix.Stt
             SttError error = SttCancel(_handle);
             if (error != SttError.None)
             {
-                Log.Error(LogTag, "Cancel Failed with error " + error);
+                Log.Error(LogTag, $"Cancel Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -1472,7 +1472,7 @@ namespace Tizen.Uix.Stt
                     SttError error = SttDestroy(_handle);
                     if (error != SttError.None)
                     {
-                        Log.Error(LogTag, "Destroy Failed with error " + error);
+                        Log.Error(LogTag, $"Destroy Failed with error {error}");
                     }
                     _handle = IntPtr.Zero;
                 }

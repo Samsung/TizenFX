@@ -178,5 +178,14 @@ internal static partial class Interop
 
         [DllImport(Libraries.AppControl, EntryPoint = "app_control_get_screen_name")]
         internal static extern ErrorCode GetScreenName(SafeAppControlHandle handle, out string screen_name);
+
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_set_defapp")]
+        internal static extern ErrorCode SetDefaultApplication(SafeAppControlHandle handle, string appId);
+
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_unset_defapp")]
+        internal static extern ErrorCode UnsetDefaultApplication(string appId);
+
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_export_as_bundle")]
+        internal static extern ErrorCode ExportAsBundle(SafeAppControlHandle handle, out IntPtr bundle);
     }
 }

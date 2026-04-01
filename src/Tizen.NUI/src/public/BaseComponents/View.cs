@@ -463,7 +463,6 @@ namespace Tizen.NUI.BaseComponents
         static internal new void Preload()
         {
             Container.Preload();
-            RegisterAccessibilityDelegate();
         }
 
         /// <summary>
@@ -522,34 +521,9 @@ namespace Tizen.NUI.BaseComponents
             switch (accessibilityMode)
             {
                 case ViewAccessibilityMode.Custom:
-                {
-                    if (_accessibilityDeletageRegisterted == false && NUIApplication.IsPreload == false)
-                    {
-                        RegisterAccessibilityDelegate();
-                    }
-
-                    switch (resizePolicyMode)
-                    {
-                        case ViewResizePolicyMode.Ignore:
-                        {
-                            return Interop.View.NewCustomWithBehaviour(1); // Special enum to ignore size negotiate.
-                        }
-                        case ViewResizePolicyMode.Default:
-                        default:
-                        {
-                            return Interop.View.NewCustom();
-                        }
-                    }
-                }
                 case ViewAccessibilityMode.Default:
                 default:
                 {
-#if !PROFILE_TV
-                    if (_accessibilityDeletageRegisterted == false && NUIApplication.IsPreload == false)
-                    {
-                        RegisterAccessibilityDelegate();
-                    }
-#endif
                     switch (resizePolicyMode)
                     {
                         case ViewResizePolicyMode.Ignore:

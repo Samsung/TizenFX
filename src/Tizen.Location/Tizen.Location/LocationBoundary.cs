@@ -100,7 +100,7 @@ namespace Tizen.Location
             int ret = Interop.LocationBoundary.DestroyBoundary(handle);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in DestroyBoundary handle" + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in DestroyBoundary handle{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
@@ -130,7 +130,7 @@ namespace Tizen.Location
             int ret = Interop.LocationBoundary.CreateRectangularBoundary(topLeft, bottomRight, out boundsHandle);
             if ((LocationBoundError)ret != LocationBoundError.None)
             {
-                Log.Error(Globals.LogTag, "Error Creating Rectangular Boundary," + (LocationBoundError)ret);
+                Log.Error(Globals.LogTag, $"Error Creating Rectangular Boundary,{(LocationBoundError)ret}");
                 throw LocationErrorFactory.ThrowLocationBoundaryException(ret);
             }
             handle = boundsHandle;
@@ -204,7 +204,7 @@ namespace Tizen.Location
             int ret = Interop.LocationBoundary.CreateCircleBoundary(coordinate, radius, out boundsHandle);
             if ((LocationBoundError)ret != LocationBoundError.None)
             {
-                Log.Error(Globals.LogTag, "Error Creating Circular Boundary," + (LocationBoundError)ret);
+                Log.Error(Globals.LogTag, $"Error Creating Circular Boundary,{(LocationBoundError)ret}");
                 throw LocationErrorFactory.ThrowLocationBoundaryException(ret);
             }
             handle = boundsHandle;
@@ -248,7 +248,7 @@ namespace Tizen.Location
             int ret = Interop.LocationBoundary.GetCircleCoordinates(handle, out center, out radius);
             if ((LocationBoundError)ret != LocationBoundError.None)
             {
-                Log.Error(Globals.LogTag, "Error Get Circle Center," + (LocationBoundError)ret);
+                Log.Error(Globals.LogTag, $"Error Get Circle Center,{(LocationBoundError)ret}");
                 throw LocationErrorFactory.ThrowLocationBoundaryException(ret);
             }
             return center;
@@ -261,7 +261,7 @@ namespace Tizen.Location
             int ret = Interop.LocationBoundary.GetCircleCoordinates(handle, out center, out radius);
             if ((LocationBoundError)ret != LocationBoundError.None)
             {
-                Log.Error(Globals.LogTag, "Error Get Radius," + (LocationBoundError)ret);
+                Log.Error(Globals.LogTag, $"Error Get Radius,{(LocationBoundError)ret}");
                 throw LocationErrorFactory.ThrowLocationBoundaryException(ret);
             }
             return radius;
@@ -293,19 +293,26 @@ namespace Tizen.Location
             }
 
             BoundaryType = BoundaryType.Polygon;
-            IntPtr listPointer = Marshal.AllocHGlobal(Marshal.SizeOf(coordinates[0]) * coordinates.Count);
             IntPtr boundsHandle;
+            var coordArray = new Coordinate[coordinates.Count];
             for (int i = 0; i < coordinates.Count; i++)
             {
-                Marshal.StructureToPtr(coordinates[i], listPointer + i * Marshal.SizeOf(coordinates[0]), false);
+                coordArray[i] = coordinates[i];
             }
-            int ret = Interop.LocationBoundary.CreatePolygonBoundary(listPointer, coordinates.Count, out boundsHandle);
-            if ((LocationBoundError)ret != LocationBoundError.None)
+
+            unsafe
             {
-                Log.Error(Globals.LogTag, "Error Creating Polygon Boundary," + (LocationBoundError)ret);
-                throw LocationErrorFactory.ThrowLocationBoundaryException(ret);
+                fixed (Coordinate* listPointer = coordArray)
+                {
+                    int ret = Interop.LocationBoundary.CreatePolygonBoundary((IntPtr)listPointer, coordinates.Count, out boundsHandle);
+                    if ((LocationBoundError)ret != LocationBoundError.None)
+                    {
+                        Log.Error(Globals.LogTag, $"Error Creating Polygon Boundary, {(LocationBoundError)ret}");
+                        throw LocationErrorFactory.ThrowLocationBoundaryException(ret);
+                    }
+                    handle = boundsHandle;
+                }
             }
-            handle = boundsHandle;
         }
 
         /// <summary>
@@ -339,7 +346,7 @@ namespace Tizen.Location
             int ret = Interop.LocationBoundary.GetForEachPolygonCoordinates(handle, callback, IntPtr.Zero);
             if ((LocationBoundError)ret != LocationBoundError.None)
             {
-                Log.Error(Globals.LogTag, "Error Get foreach Boundary," + (LocationBoundError)ret);
+                Log.Error(Globals.LogTag, $"Error Get foreach Boundary,{(LocationBoundError)ret}");
                 throw LocationErrorFactory.ThrowLocationBoundaryException(ret);
             }
             return coordinateList;

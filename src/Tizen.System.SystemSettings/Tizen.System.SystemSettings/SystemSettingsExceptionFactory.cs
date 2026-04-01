@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -28,7 +28,7 @@ namespace Tizen.System
         NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
         LockScreenAppPasswordMode = -0x01140000 | 0x01
     };
-    internal class SystemSettingsExceptionFactory
+    internal sealed class SystemSettingsExceptionFactory
     {
         internal const string LogTag = "Tizen.System.SystemSettings";
 

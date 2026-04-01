@@ -223,7 +223,7 @@ namespace Tizen.NUI
     } // namespace Constants
 
 
-    internal class NUILog
+    internal sealed class NUILog
     {
         [Conditional("NUI_DEBUG_ON")]
         public static void Debug(string msg,
@@ -256,7 +256,7 @@ namespace Tizen.NUI
             for (int i = 0; i < st.FrameCount; i++)
             {
                 global::System.Diagnostics.StackFrame sf = st.GetFrame(i);
-                Tizen.Log.Error("NUI", " Method " + sf.GetMethod() + ":" + sf.GetFileName() + ":" + sf.GetFileLineNumber());
+                Tizen.Log.Error("NUI", $" Method {sf.GetMethod()}:{sf.GetFileName()}:{sf.GetFileLineNumber()}");
             }
         }
     }

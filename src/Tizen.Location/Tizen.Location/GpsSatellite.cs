@@ -85,7 +85,7 @@ namespace Tizen.Location
             int ret = Interop.GpsSatellite.GetNMEAData(_handle, out value);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error getting the NMEAData," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error getting the NMEAData,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
 
@@ -119,7 +119,7 @@ namespace Tizen.Location
             int ret = Interop.GpsSatellite.GetSatelliteStatus(_handle, out numActive, out numInView, out timestamp);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error getting the satellite" + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error getting the satellite{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
             return numActive;
@@ -151,7 +151,7 @@ namespace Tizen.Location
             int ret = Interop.GpsSatellite.GetSatelliteStatus(_handle, out numActive, out numInView, out timestamp);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error getting the satellite" + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error getting the satellite{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
             return numInView;
@@ -189,7 +189,7 @@ namespace Tizen.Location
             int ret = Interop.GpsSatellite.GetForEachSatelliteInView(_handle, _satelliteStatusinfomationCallback, IntPtr.Zero);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error getting the satellite" + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error getting the satellite{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
             return satelliteList;
@@ -279,7 +279,7 @@ namespace Tizen.Location
             int ret = Interop.GpsSatellite.SetSatelliteStatusChangedCallback(_handle, _satelliteStatuschangedCallback, _interval, GCHandle.ToIntPtr(handle));
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in setting satellite status changed callback," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in setting satellite status changed callback,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }
@@ -290,7 +290,7 @@ namespace Tizen.Location
             int ret = Interop.GpsSatellite.UnSetSatelliteStatusChangedCallback(_handle);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error in Getting Unsetting satellite status changed callback," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error in Getting Unsetting satellite status changed callback,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }

@@ -59,6 +59,91 @@ namespace Tizen.NUI.BaseComponents
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AsyncHeightForWidthComputedCallbackDelegate(IntPtr textLabel, float width, float height);
 
+        // Static callback wrappers
+        private static void OnStaticAsyncHeightForWidthComputed(IntPtr textLabelCPtr, float width, float height)
+        {
+            var textLabel = Registry.GetManagedBaseHandleFromNativePtr(textLabelCPtr) as TextLabel;
+            if (textLabel == null)
+            {
+                NUILog.Error("AsyncHeightForWidthComputed comes from Disposed (or GC) TextLabel!\n");
+                return;
+            }
+
+            if (textLabel.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textLabel.OnAsyncHeightForWidthComputed(textLabelCPtr, width, height);
+        }
+
+        private static void OnStaticAsyncNaturalSizeComputed(IntPtr textLabelCPtr, float width, float height)
+        {
+            var textLabel = Registry.GetManagedBaseHandleFromNativePtr(textLabelCPtr) as TextLabel;
+            if (textLabel == null)
+            {
+                NUILog.Error("AsyncNaturalSizeComputed comes from Disposed (or GC) TextLabel!\n");
+                return;
+            }
+
+            if (textLabel.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textLabel.OnAsyncNaturalSizeComputed(textLabelCPtr, width, height);
+        }
+
+        private static void OnStaticAsyncTextRendered(IntPtr textLabelCPtr, float width, float height)
+        {
+            var textLabel = Registry.GetManagedBaseHandleFromNativePtr(textLabelCPtr) as TextLabel;
+            if (textLabel == null)
+            {
+                NUILog.Error("AsyncTextRendered comes from Disposed (or GC) TextLabel!\n");
+                return;
+            }
+
+            if (textLabel.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textLabel.OnAsyncTextRendered(textLabelCPtr, width, height);
+        }
+
+        private static void OnStaticAnchorClicked(IntPtr textLabelCPtr, IntPtr href, uint hrefLength)
+        {
+            var textLabel = Registry.GetManagedBaseHandleFromNativePtr(textLabelCPtr) as TextLabel;
+            if (textLabel == null)
+            {
+                NUILog.Error("AnchorClicked comes from Disposed (or GC) TextLabel!\n");
+                return;
+            }
+
+            if (textLabel.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textLabel.OnAnchorClicked(textLabelCPtr, href, hrefLength);
+        }
+
+        private static void OnStaticTextFitChanged(IntPtr textLabelCPtr)
+        {
+            var textLabel = Registry.GetManagedBaseHandleFromNativePtr(textLabelCPtr) as TextLabel;
+            if (textLabel == null)
+            {
+                NUILog.Error("TextFitChanged comes from Disposed (or GC) TextLabel!\n");
+                return;
+            }
+
+            if (textLabel.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            textLabel.OnTextFitChanged(textLabelCPtr);
+        }
 
         /// <summary>
         /// The AsyncHeightForWidthComputed signal is emitted when the async natural size computed.
@@ -70,7 +155,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textLabelAsyncHeightForWidthComputedEventHandler == null)
                 {
-                    textLabelAsyncHeightForWidthComputedCallbackDelegate = OnAsyncHeightForWidthComputed;
+                    CreateSafeCallback(OnStaticAsyncHeightForWidthComputed, out textLabelAsyncHeightForWidthComputedCallbackDelegate);
                     Interop.TextLabel.AsyncHeightForWidthComputedConnect(SwigCPtr, textLabelAsyncHeightForWidthComputedCallbackDelegate.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -83,19 +168,13 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.TextLabel.AsyncHeightForWidthComputedDisconnect(SwigCPtr, textLabelAsyncHeightForWidthComputedCallbackDelegate.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    textLabelAsyncHeightForWidthComputedCallbackDelegate = null;
+                    ReleaseSafeCallback(ref textLabelAsyncHeightForWidthComputedCallbackDelegate);
                 }
             }
         }
 
         private void OnAsyncHeightForWidthComputed(IntPtr textLabel, float width, float height)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             AsyncTextSizeComputedEventArgs e = new AsyncTextSizeComputedEventArgs(width, height);
 
             if (textLabelAsyncHeightForWidthComputedEventHandler != null)
@@ -114,7 +193,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textLabelAsyncNaturalSizeComputedEventHandler == null)
                 {
-                    textLabelAsyncNaturalSizeComputedCallbackDelegate = OnAsyncNaturalSizeComputed;
+                    CreateSafeCallback(OnStaticAsyncNaturalSizeComputed, out textLabelAsyncNaturalSizeComputedCallbackDelegate);
                     Interop.TextLabel.AsyncNaturalSizeComputedConnect(SwigCPtr, textLabelAsyncNaturalSizeComputedCallbackDelegate.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -127,19 +206,13 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.TextLabel.AsyncNaturalSizeComputedDisconnect(SwigCPtr, textLabelAsyncNaturalSizeComputedCallbackDelegate.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    textLabelAsyncNaturalSizeComputedCallbackDelegate = null;
+                    ReleaseSafeCallback(ref textLabelAsyncNaturalSizeComputedCallbackDelegate);
                 }
             }
         }
 
         private void OnAsyncNaturalSizeComputed(IntPtr textLabel, float width, float height)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             AsyncTextSizeComputedEventArgs e = new AsyncTextSizeComputedEventArgs(width, height);
 
             if (textLabelAsyncNaturalSizeComputedEventHandler != null)
@@ -158,7 +231,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textLabelAsyncTextRenderedEventHandler == null)
                 {
-                    textLabelAsyncTextRenderedCallbackDelegate = OnAsyncTextRendered;
+                    CreateSafeCallback(OnStaticAsyncTextRendered, out textLabelAsyncTextRenderedCallbackDelegate);
                     Interop.TextLabel.AsyncTextRenderedConnect(SwigCPtr, textLabelAsyncTextRenderedCallbackDelegate.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -171,19 +244,13 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Interop.TextLabel.AsyncTextRenderedDisconnect(SwigCPtr, textLabelAsyncTextRenderedCallbackDelegate.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    textLabelAsyncTextRenderedCallbackDelegate = null;
+                    ReleaseSafeCallback(ref textLabelAsyncTextRenderedCallbackDelegate);
                 }
             }
         }
 
         private void OnAsyncTextRendered(IntPtr textLabel, float width, float height)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             AsyncTextRenderedEventArgs e = new AsyncTextRenderedEventArgs(width, height);
 
             if (textLabelAsyncTextRenderedEventHandler != null)
@@ -202,7 +269,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textLabelAnchorClickedEventHandler == null)
                 {
-                    textLabelAnchorClickedCallbackDelegate = (OnAnchorClicked);
+                    CreateSafeCallback(OnStaticAnchorClicked, out textLabelAnchorClickedCallbackDelegate);
                     using var signal = AnchorClickedSignal();
                     signal.Connect(textLabelAnchorClickedCallbackDelegate);
                 }
@@ -211,10 +278,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 textLabelAnchorClickedEventHandler -= value;
-                using var signal = AnchorClickedSignal();
-                if (textLabelAnchorClickedEventHandler == null && signal.Empty() == false)
+                if (textLabelAnchorClickedEventHandler == null && textLabelAnchorClickedCallbackDelegate != null)
                 {
+                    using var signal = AnchorClickedSignal();
                     signal.Disconnect(textLabelAnchorClickedCallbackDelegate);
+                    ReleaseSafeCallback(ref textLabelAnchorClickedCallbackDelegate);
                 }
             }
         }
@@ -228,12 +296,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnAnchorClicked(IntPtr textLabel, IntPtr href, uint hrefLength)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             // Note: hrefLength is useful for get the length of a const char* (href) in dali-toolkit.
             // But NUI can get the length of string (href), so hrefLength is not necessary in NUI.
             AnchorClickedEventArgs e = new AnchorClickedEventArgs();
@@ -255,7 +317,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (textLabelTextFitChangedEventHandler == null)
                 {
-                    textLabelTextFitChangedCallbackDelegate = (OnTextFitChanged);
+                    CreateSafeCallback(OnStaticTextFitChanged, out textLabelTextFitChangedCallbackDelegate);
                     using var signal = TextFitChangedSignal();
                     signal.Connect(textLabelTextFitChangedCallbackDelegate);
                 }
@@ -264,10 +326,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 textLabelTextFitChangedEventHandler -= value;
-                using var signal = TextFitChangedSignal();
-                if (textLabelTextFitChangedEventHandler == null && signal.Empty() == false)
+                if (textLabelTextFitChangedEventHandler == null && textLabelTextFitChangedCallbackDelegate != null)
                 {
+                    using var signal = TextFitChangedSignal();
                     signal.Disconnect(textLabelTextFitChangedCallbackDelegate);
+                    ReleaseSafeCallback(ref textLabelTextFitChangedCallbackDelegate);
                 }
             }
         }
@@ -281,12 +344,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnTextFitChanged(IntPtr textLabel)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             // no data to be sent to the user, as in NUI there is no event provide old values.
             textLabelTextFitChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }

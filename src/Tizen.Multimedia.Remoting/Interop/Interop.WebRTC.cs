@@ -384,7 +384,7 @@ internal static partial class Interop
         }
     }
 
-    internal class WebRTCHandle : SafeHandle
+    internal sealed class WebRTCHandle : SafeHandle
     {
         protected WebRTCHandle() : base(IntPtr.Zero, true)
         {

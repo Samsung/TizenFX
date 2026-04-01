@@ -24,7 +24,7 @@ using Tizen.NUI.Binding.Internals;
 // [assembly:Dependency(typeof(Tizen.NUI.Xaml.ResourcesLoader))]
 namespace Tizen.NUI.Xaml
 {
-    internal class ResourcesLoader : IResourcesLoader
+    internal sealed class ResourcesLoader : IResourcesLoader
     {
         public T CreateFromResource<T>(string resourcePath, Assembly assembly, IXmlLineInfo lineInfo) where T : new()
         {

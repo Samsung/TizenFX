@@ -17,6 +17,7 @@
 
 using System.Reflection;
 using System;
+using System.Collections.Frozen;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
@@ -170,7 +171,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Lookup table to match C# types to DALi types, used for the automatic property registration.
         /// </summary>
-        private static readonly Dictionary<string, Tizen.NUI.PropertyType> daliPropertyTypeLookup = new Dictionary<string, Tizen.NUI.PropertyType>
+        private static readonly FrozenDictionary<string, Tizen.NUI.PropertyType> daliPropertyTypeLookup = new Dictionary<string, Tizen.NUI.PropertyType>
         {
             { "float",   PropertyType.Float },
             { "int",     PropertyType.Integer },
@@ -187,7 +188,7 @@ namespace Tizen.NUI
             { "PropertyMap",   PropertyType.Map },
             //  { "Matrix3", PropertyType.MATRIX3 }, commented out until we need to use Matrices from JSON
             //  { "Matrix",  PropertyType.MATRIX },
-        };
+        }.ToFrozenDictionary();
 
         /// <summary>
         /// ViewRegistry is a singleton.

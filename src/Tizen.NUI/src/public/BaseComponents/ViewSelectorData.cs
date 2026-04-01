@@ -23,7 +23,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// The class storing extra selector properties of view that is rared used.
     /// </summary>
-    internal class ViewSelectorData
+    internal sealed class ViewSelectorData
     {
         internal ViewSelectorData() { }
 

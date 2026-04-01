@@ -1,4 +1,4 @@
-﻿ /*
+ /*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -72,7 +72,7 @@ namespace Tizen.Messaging.Push
                 }
                 default:
                 {
-                    Tizen.Log.Error(Interop.PushClient.LogTag, "Creating Exception for Default case for error code " + result);
+                    Tizen.Log.Error(Interop.PushClient.LogTag, $"Creating Exception for Default case for error code {result}");
                     exp = new Exception();
                     break;
                 }

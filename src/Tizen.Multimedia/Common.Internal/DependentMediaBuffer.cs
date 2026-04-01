@@ -22,7 +22,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a buffer that is dependent on the owner object.
     /// </summary>
-    internal class DependentMediaBuffer : MediaBufferBase
+    internal sealed class DependentMediaBuffer : MediaBufferBase
     {
         private readonly IBufferOwner _owner;
 

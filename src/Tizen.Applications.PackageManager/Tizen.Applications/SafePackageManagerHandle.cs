@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.Applications
 {
-    internal class SafePackageManagerHandle : SafeHandle
+    internal sealed class SafePackageManagerHandle : SafeHandle
     {
         /// <summary>
         /// Initializes a new instance of the SafePackageManagerHandle class.

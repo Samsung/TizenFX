@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -53,7 +53,7 @@ namespace Tizen.Network.Stc
             int ret = Interop.Stc.Deinitialize(this.handle);
             if (ret != (int)StcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to deinitialize Stc, Error - " + (StcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to deinitialize Stc, Error - {(StcError)ret}");
                 return false;
             }
             this.SetHandle(IntPtr.Zero);

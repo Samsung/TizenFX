@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 - 2017 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -262,7 +262,7 @@ namespace Tizen.System
             var ret = Interop.RuntimeInfo.GetProcessMemoryValueInt(pids.ToArray<int>(), pids.ToArray<int>().Length, key, out IntPtr ptr);
             if (ret != InformationError.None)
             {
-                Log.Error(InformationErrorFactory.LogTag, "Interop failed to get process memory info: " + key.ToString());
+                Log.Error(InformationErrorFactory.LogTag, $"Interop failed to get process memory info: {key.ToString()}");
                 if (ret == InformationError.NoData)
                     return null;
                 InformationErrorFactory.ThrowException(ret);

@@ -396,7 +396,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SetGattConnectionStateChangedCallback(s_connectionStateChangeCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set gatt connection state changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set gatt connection state changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -405,7 +405,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.UnsetGattConnectionStateChangedCallback();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset gatt connection state changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset gatt connection state changed callback, Error - {(BluetoothError)ret}");
             }
         }
 

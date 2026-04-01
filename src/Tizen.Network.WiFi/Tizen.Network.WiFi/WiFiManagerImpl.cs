@@ -27,7 +27,7 @@ namespace Tizen.Network.WiFi
         internal const string LogTag = "Tizen.Network.WiFi";
     }
 
-    internal class HandleHolder
+    internal sealed class HandleHolder
     {
         private SafeWiFiManagerHandle _handle;
 
@@ -38,21 +38,21 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.Initialize(tid, out _handle);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Initialize Fail, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Initialize Fail, Error - {(WiFiError)ret}");
                 WiFiErrorFactory.ThrowWiFiException(ret, "http://tizen.org/privilege/network.get");
             }
             _handle.SetTID(tid);
-            Log.Info(Globals.LogTag, "Handle: " + _handle);
+            Log.Info(Globals.LogTag, $"Handle: {_handle}");
         }
 
         internal SafeWiFiManagerHandle GetSafeHandle()
         {
-            Log.Debug(Globals.LogTag, "Handleholder safehandle = " + _handle);
+            Log.Debug(Globals.LogTag, $"Handleholder safehandle = {_handle}");
             return _handle;
         }
     }
 
-    internal partial class WiFiManagerImpl
+    internal sealed partial class WiFiManagerImpl
     {
         private static WiFiManagerImpl s_instance = null;
         private static readonly object _lock = new object();
@@ -79,7 +79,7 @@ namespace Tizen.Network.WiFi
                     int ret = Interop.WiFi.GetMacAddress(GetSafeHandle(), out address);
                     if (ret != (int)WiFiError.None)
                     {
-                        Log.Error(Globals.LogTag, "Failed to get mac address, Error - " + (WiFiError)ret);
+                        Log.Error(Globals.LogTag, $"Failed to get mac address, Error - {(WiFiError)ret}");
                         _macAddress = "";
                     }
                     else
@@ -99,7 +99,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.GetNetworkInterfaceName(GetSafeHandle(), out name);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get interface name, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get interface name, Error - {(WiFiError)ret}");
                     return "";
                 }
                 return name;
@@ -114,7 +114,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.GetConnectionState(GetSafeHandle(), out state);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get connection state, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get connection state, Error - {(WiFiError)ret}");
                     return WiFiConnectionState.Failure;
                 }
                 return (WiFiConnectionState)state;
@@ -129,7 +129,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.IsActive(GetSafeHandle(), out active);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get isActive, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get isActive, Error - {(WiFiError)ret}");
                 }
                 return active;
             }
@@ -143,7 +143,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.GetScanState(GetSafeHandle(), out state);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get scan state, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get scan state, Error - {(WiFiError)ret}");
                     return WiFiScanState.NotScanning;
                 }
                 return (WiFiScanState)state;
@@ -305,7 +305,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.GetConnectedAP(GetSafeHandle(), out apHandle);
             if (ret == (int)WiFiError.NoConnectionError)
             {
-                Log.Error(Globals.LogTag, "No connection " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"No connection {(WiFiError)ret}");
                 return null;
             }
             CheckReturnValue(ret, "GetConnectedAP", PrivilegeNetworkGet);
@@ -326,7 +326,7 @@ namespace Tizen.Network.WiFi
                     Log.Info(Globals.LogTag, "ActivateAsync done");
                     if (error != (int)WiFiError.None)
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during WiFi activating, " + (WiFiError)error);
+                        Log.Error(Globals.LogTag, $"Error occurs during WiFi activating, {(WiFiError)error}");
                         task.SetException(WiFiErrorFactory.GetException(error, "Error occurs during WiFi activating"));
                     }
                     else
@@ -352,7 +352,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, "Exception on ActivateAsync\n" + e);
+                Log.Error(Globals.LogTag, $"Exception on ActivateAsync\n{e}");
                 task.SetException(e);
             }
 
@@ -372,7 +372,7 @@ namespace Tizen.Network.WiFi
                     Log.Info(Globals.LogTag, "ActivateWithWiFiPickerTestedAsync done");
                     if (error != (int)WiFiError.None)
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during WiFi activating, " + (WiFiError)error);
+                        Log.Error(Globals.LogTag, $"Error occurs during WiFi activating, {(WiFiError)error}");
                         task.SetException(WiFiErrorFactory.GetException(error, "Error occurs during WiFi activating"));
                     }
                     else
@@ -398,7 +398,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, "Exception on ActivateWithWiFiPickerTestedAsync\n" + e);
+                Log.Error(Globals.LogTag, $"Exception on ActivateWithWiFiPickerTestedAsync\n{e}");
                 task.SetException(e);
             }
 
@@ -418,7 +418,7 @@ namespace Tizen.Network.WiFi
                     Log.Info(Globals.LogTag, "DeactivateAsync done");
                     if (error != (int)WiFiError.None)
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during WiFi deactivating, " + (WiFiError)error);
+                        Log.Error(Globals.LogTag, $"Error occurs during WiFi deactivating, {(WiFiError)error}");
                         task.SetException(WiFiErrorFactory.GetException(error, "Error occurs during WiFi deactivating"));
                     }
                     else
@@ -444,7 +444,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, "Exception on Deactivate\n" + e);
+                Log.Error(Globals.LogTag, $"Exception on Deactivate\n{e}");
                 task.SetException(e);
             }
 
@@ -464,7 +464,7 @@ namespace Tizen.Network.WiFi
                     Log.Info(Globals.LogTag, "ScanAsync done");
                     if (error != (int)WiFiError.None)
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during WiFi scanning, " + (WiFiError)error);
+                        Log.Error(Globals.LogTag, $"Error occurs during WiFi scanning, {(WiFiError)error}");
                         task.SetException(new InvalidOperationException("Error occurs during WiFi scanning, " + (WiFiError)error));
                     }
                     else
@@ -490,7 +490,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, "Exception on Scan\n" + e);
+                Log.Error(Globals.LogTag, $"Exception on Scan\n{e}");
                 task.SetException(e);
             }
 
@@ -499,7 +499,7 @@ namespace Tizen.Network.WiFi
 
         internal Task ScanSpecificAPAsync(string essid)
         {
-            Log.Info(Globals.LogTag, "ScanSpecificAPAsync " + essid);
+            Log.Info(Globals.LogTag, $"ScanSpecificAPAsync {essid}");
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;
             lock (_callback_map)
@@ -507,10 +507,10 @@ namespace Tizen.Network.WiFi
                 id = (IntPtr)_requestId++;
                 _callback_map[id] = (error, key) =>
                 {
-                    Log.Info(Globals.LogTag, "ScanSpecificAPAsync Done " + essid);
+                    Log.Info(Globals.LogTag, $"ScanSpecificAPAsync Done {essid}");
                     if (error != (int)WiFiError.None)
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during WiFi scanning, " + (WiFiError)error);
+                        Log.Error(Globals.LogTag, $"Error occurs during WiFi scanning, {(WiFiError)error}");
                         task.SetException(new InvalidOperationException("Error occurs during WiFi scanning, " + (WiFiError)error));
                     }
                     else
@@ -536,7 +536,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, "Exception on ScanSpecificAPAsync\n" + e);
+                Log.Error(Globals.LogTag, $"Exception on ScanSpecificAPAsync\n{e}");
                 task.SetException(e);
             }
 
@@ -556,7 +556,7 @@ namespace Tizen.Network.WiFi
                     Log.Info(Globals.LogTag, "BssidScanAsync done");
                     if (error != (int)WiFiError.None)
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during bssid scanning, " + (WiFiError)error);
+                        Log.Error(Globals.LogTag, $"Error occurs during bssid scanning, {(WiFiError)error}");
                         task.SetException(new InvalidOperationException("Error occurs during bssid scanning, " + (WiFiError)error));
                     }
                     else
@@ -582,7 +582,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, "Exception on BssidScan\n" + e);
+                Log.Error(Globals.LogTag, $"Exception on BssidScan\n{e}");
                 task.SetException(e);
             }
 
@@ -606,10 +606,10 @@ namespace Tizen.Network.WiFi
                 id = (IntPtr)_requestId++;
                 _callback_map[id] = (error, key) =>
                 {
-                    Log.Info(Globals.LogTag, "HiddenAPConnect Done " + essid);
+                    Log.Info(Globals.LogTag, $"HiddenAPConnect Done {essid}");
                     if (error != (int)WiFiError.None)
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during HiddenAPConnect, " + (WiFiError)error);
+                        Log.Error(Globals.LogTag, $"Error occurs during HiddenAPConnect, {(WiFiError)error}");
                         task.SetException(new InvalidOperationException("Error occurs during HiddenAPConnect, " + (WiFiError)error));
                     }
                     else
@@ -635,7 +635,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, "Exception on HiddenAPConnect\n" + e);
+                Log.Error(Globals.LogTag, $"Exception on HiddenAPConnect\n{e}");
                 task.SetException(e);
             }
 
@@ -677,7 +677,7 @@ namespace Tizen.Network.WiFi
                     Log.Info(Globals.LogTag, "Multi Scan done");
                     if (error != (int)WiFiError.None)
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during multi scanning, " + (WiFiError)error);
+                        Log.Error(Globals.LogTag, $"Error occurs during multi scanning, {(WiFiError)error}");
                         task.SetException(new InvalidOperationException("Error occurs during multi scanning, " + (WiFiError)error));
                     }
                     else
@@ -703,7 +703,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, "Exception on Multi Scan\n" + e);
+                Log.Error(Globals.LogTag, $"Exception on Multi Scan\n{e}");
                 task.SetException(e);
             }
 
@@ -719,7 +719,7 @@ namespace Tizen.Network.WiFi
                 if (ret != (int)WiFiError.None)
                 {
                     _tdlsMacAddress = "";
-                    Log.Error(Globals.LogTag, "Failed to get mac address, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get mac address, Error - {(WiFiError)ret}");
                 }
                 else
                 {
@@ -727,7 +727,7 @@ namespace Tizen.Network.WiFi
                     Marshal.FreeHGlobal(strPtr);
                 }
 
-                Log.Info(Globals.LogTag, "Tdls Mac address: " + _tdlsMacAddress);
+                Log.Info(Globals.LogTag, $"Tdls Mac address: {_tdlsMacAddress}");
                 return _tdlsMacAddress;
             }
         }
@@ -736,7 +736,7 @@ namespace Tizen.Network.WiFi
         {
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, method + " Fail, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"{method} Fail, Error - {(WiFiError)ret}");
                 if (ret == (int)WiFiError.InvalidParameterError)
                 {
                     throw new InvalidOperationException("Invalid handle");

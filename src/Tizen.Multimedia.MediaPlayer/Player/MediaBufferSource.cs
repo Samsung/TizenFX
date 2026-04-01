@@ -46,7 +46,7 @@ namespace Tizen.Multimedia
         {
             if (length <= 0)
             {
-                Log.Error(PlayerLog.Tag, "invalid length : " + length);
+                Log.Error(PlayerLog.Tag, $"invalid length : {length}");
                 throw new ArgumentOutOfRangeException(nameof(length), length,
                     "length can't be equal to or less than zero.");
             }

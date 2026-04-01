@@ -173,7 +173,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.AppCommon.AppEventGetLowMemoryStatus(infoHandle, out status);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to get memory status. Err = " + err);
+                Log.Error(LogTag, $"Failed to get memory status. Err = {err}");
             }
             if (Handlers.ContainsKey(EventType.LowMemory))
             {
@@ -195,7 +195,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.AppCommon.AppEventGetLowBatteryStatus(infoHandle, out status);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to get battery status. Err = " + err);
+                Log.Error(LogTag, $"Failed to get battery status. Err = {err}");
             }
             if (Handlers.ContainsKey(EventType.LowBattery))
             {
@@ -217,7 +217,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.AppCommon.AppEventGetLanguage(infoHandle, out lang);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to get changed language. Err = " + err);
+                Log.Error(LogTag, $"Failed to get changed language. Err = {err}");
             }
             if (Handlers.ContainsKey(EventType.LocaleChanged))
             {
@@ -239,7 +239,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.AppCommon.AppEventGetRegionFormat(infoHandle, out region);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to get changed region format. Err = " + err);
+                Log.Error(LogTag, $"Failed to get changed region format. Err = {err}");
             }
             if (Handlers.ContainsKey(EventType.RegionFormatChanged))
             {
@@ -261,7 +261,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.AppCommon.AppEventGetDeviceOrientation(infoHandle, out orientation);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to get device orientation. Err = " + err);
+                Log.Error(LogTag, $"Failed to get device orientation. Err = {err}");
             }
             if (Handlers.ContainsKey(EventType.DeviceOrientationChanged))
             {
@@ -283,7 +283,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.AppCommon.AppEventGetSuspendedState(infoHandle, out state);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to get device orientation. Err = " + err);
+                Log.Error(LogTag, $"Failed to get device orientation. Err = {err}");
             }
             if (Handlers.ContainsKey(EventType.SuspendedStateChanged))
             {
@@ -304,7 +304,7 @@ namespace Tizen.Applications.CoreBackend
             ErrorCode err = Interop.AppCommon.AppEventGetTimeZone(infoHandle, out string timeZone, out string timeZoneId);
             if (err != ErrorCode.None)
             {
-                Log.Error(LogTag, "Failed to get time zone. Err = " + err);
+                Log.Error(LogTag, $"Failed to get time zone. Err = {err}");
             }
             if (Handlers.ContainsKey(EventType.TimeZoneChanged))
             {

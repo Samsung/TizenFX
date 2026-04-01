@@ -47,17 +47,17 @@ namespace Tizen.Security
                                     else
                                     {
                                         s_responseWeakMap.Remove(privilege);
-                                        Log.Error(LogTag, "No response context for: " + privilege);
+                                        Log.Error(LogTag, $"No response context for: {privilege}");
                                     }
                                 }
                                 else
                                 {
-                                    Log.Error(LogTag, "No listener for: " + privilege);
+                                    Log.Error(LogTag, $"No listener for: {privilege}");
                                 }
                             }
                             catch (Exception e)
                             {
-                                Log.Error(LogTag, "Exception in callback : " + e.Message);
+                                Log.Error(LogTag, $"Exception in callback : {e.Message}");
                             }
                             s_PrivilegesInProgress.Remove(privilege);
                         };
@@ -70,7 +70,7 @@ namespace Tizen.Security
         {
             if (privileges == null || !privileges.Any())
             {
-                Log.Error(LogTag, "privileges for " + methodName + " are null or empty.");
+                Log.Error(LogTag, $"privileges for {methodName} are null or empty.");
                 throw new ArgumentException("privileges for " + methodName + " are null or empty.");
             }
 
@@ -78,7 +78,7 @@ namespace Tizen.Security
             {
                 if (string.IsNullOrEmpty(privilege))
                 {
-                    Log.Error(LogTag, " At least one privilege for " + methodName + " is null or empty.");
+                    Log.Error(LogTag, $" At least one privilege for {methodName} is null or empty.");
                     throw new ArgumentException(" At least one privilege for " + methodName + " is null or empty.");
                 }
             }
@@ -213,7 +213,7 @@ namespace Tizen.Security
         {
             if (!s_PrivilegesInProgress.Add(privilege))
             {
-                Log.Error(LogTag, "Request for this privilege: " + privilege + " is already in progress.");
+                Log.Error(LogTag, $"Request for this privilege: {privilege} is already in progress.");
                 throw new ArgumentException("Request for this privilege: " + privilege + " is already in progress.");
             }
 
@@ -270,18 +270,18 @@ namespace Tizen.Security
             {
                 if (!s_PrivilegesInProgress.Add(privilegesArray[iterator]))
                 {
-                    Log.Error(LogTag, "Request for this privilege: " + privilegesArray[iterator] + " is already in progress.");
+                    Log.Error(LogTag, $"Request for this privilege: {privilegesArray[iterator]} is already in progress.");
 
                     for (int removeIterator = iterator - 1; removeIterator >= 0; --removeIterator)
                     {
                         s_PrivilegesInProgress.Remove(privilegesArray[removeIterator]);
                     }
-                    Log.Error(LogTag, "Request for this privilege: " + privilegesArray[iterator] + " is already in progress.");
+                    Log.Error(LogTag, $"Request for this privilege: {privilegesArray[iterator]} is already in progress.");
                     throw new ArgumentException("Request for this privilege: " + privilegesArray[iterator] + " is already in progress.");
                 }
             }
 
-            Log.Info(LogTag, "Sending request for permissions: " + string.Join(" ", privilegesArray));
+            Log.Info(LogTag, $"Sending request for permissions: {string.Join(" ", privilegesArray)}");
 
             int requestId = 0;
             lock (s_multipleRequestMap)

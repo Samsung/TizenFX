@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class KeyEventSignal : Disposable
+    internal sealed class KeyEventSignal : Disposable
     {
         internal KeyEventSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

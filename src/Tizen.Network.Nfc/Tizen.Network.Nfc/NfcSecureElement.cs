@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -80,7 +80,7 @@ namespace Tizen.Network.Nfc
             int ret = Interop.Nfc.CardEmulation.HceSendApduRespondse(_secureElementHandle, response, responseLength);
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to hcd send apdu response, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to hcd send apdu response, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }

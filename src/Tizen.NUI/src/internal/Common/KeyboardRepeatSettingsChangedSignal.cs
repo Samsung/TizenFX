@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class KeyboardRepeatSettingsChangedSignal : Disposable
+    internal sealed class KeyboardRepeatSettingsChangedSignal : Disposable
     {
 
         internal KeyboardRepeatSettingsChangedSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

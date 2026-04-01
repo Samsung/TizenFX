@@ -132,6 +132,16 @@ internal static partial class Interop
         internal static extern void AppManagerUnsetLifecycleStateChangedCb();
         //void app_manager_unset_lifecycle_state_changed_cb(void)
 
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_add_lifecycle_state_changed_cb")]
+        internal static extern ErrorCode AppManagerAddLifecycleStateChangedCb(
+            AppManagerLifecycleStateChangedCallback callback, IntPtr userData, out IntPtr handle);
+        // int app_manager_add_lifecycle_state_changed_cb(app_manager_lifecycle_state_changed_cb callback,
+        // void *user_data, app_manager_lifecycle_noti_h *handle)
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_manager_remove_lifecycle_state_changed_cb")]
+        internal static extern ErrorCode AppManagerRemoveLifecycleStateChangedCb(IntPtr handle);
+        // int app_manager_remove_lifecycle_state_changed_cb(app_manager_lifecycle_noti_h handle)
+
         [DllImport(Libraries.AppManager, EntryPoint = "app_manager_foreach_running_app_context")]
         internal static extern ErrorCode AppManagerForeachRunningAppContext(AppManagerAppContextCallback callback, IntPtr userData);
         //int app_manager_foreach_running_app_context(app_manager_app_context_cb callback, void *user_data)
@@ -443,5 +453,16 @@ internal static partial class Interop
         [DllImport(Libraries.Rua, EntryPoint = "rua_unregister_update_cb")]
         internal static extern ErrorCode RuaUnSetUpdateCallback(int id);
         //int rua_unregister_update_cb(int callback_id);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate int RuaStatTagIterCallback([MarshalAs(UnmanagedType.LPStr)] string ruaStatTag,
+                                                     IntPtr userData);
+        // int (*rua_stat_tag_iter_fn)(const char *rua_stat_tag, void *data)
+
+        [DllImport(Libraries.Rua, EntryPoint = "rua_stat_get_stat_tags")]
+        internal static extern ErrorCode RuaStatGetStatTags(string caller, RuaStatTagIterCallback callback,
+                                                            IntPtr userData);
+        // int rua_stat_get_stat_tags(char *caller, int (*rua_stat_tag_iter_fn)(const char *rua_stat_tag, void *data),
+        // void *data);
     }
 }

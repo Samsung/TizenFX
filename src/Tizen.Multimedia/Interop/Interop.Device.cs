@@ -54,34 +54,34 @@ namespace Tizen.Multimedia
             internal static extern AudioManagerError IsDeviceRunning(int deviceId, out bool isRunning);
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_supported_sample_formats_by_id")]
-            internal static extern AudioManagerError GetSupportedSampleFormats(int deviceId, out IntPtr formats, out uint numberOfElements);
+            internal static extern AudioManagerError GetSupportedSampleFormats(int deviceId, out IntPtr formats, out uint numberOfElements); // Deprecated in API14
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_sample_format_by_id")]
-            internal static extern AudioManagerError SetSampleFormat(int deviceId, AudioSampleFormat format);
+            internal static extern AudioManagerError SetSampleFormat(int deviceId, AudioSampleFormat format); // Deprecated in API14
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_sample_format_by_id")]
-            internal static extern AudioManagerError GetSampleFormat(int deviceId, out AudioSampleFormat format);
+            internal static extern AudioManagerError GetSampleFormat(int deviceId, out AudioSampleFormat format); // Deprecated in API14
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_supported_sample_rates_by_id")]
-            internal static extern AudioManagerError GetSupportedSampleRates(int deviceId, out IntPtr rates, out uint numberOfElements);
+            internal static extern AudioManagerError GetSupportedSampleRates(int deviceId, out IntPtr rates, out uint numberOfElements); // Deprecated in API14
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_sample_rate_by_id")]
-            internal static extern AudioManagerError SetSampleRate(int deviceId, uint rate);
+            internal static extern AudioManagerError SetSampleRate(int deviceId, uint rate); // Deprecated in API14
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_sample_rate_by_id")]
-            internal static extern AudioManagerError GetSampleRate(int deviceId, out uint rate);
+            internal static extern AudioManagerError GetSampleRate(int deviceId, out uint rate); // Deprecated in API14
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_avoid_resampling_by_id")]
-            internal static extern AudioManagerError SetAvoidResampling(int deviceId, bool enable);
+            internal static extern AudioManagerError SetAvoidResampling(int deviceId, bool enable); // Deprecated in API14
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_avoid_resampling_by_id")]
-            internal static extern AudioManagerError GetAvoidResampling(int deviceId, out bool enabled);
+            internal static extern AudioManagerError GetAvoidResampling(int deviceId, out bool enabled); // Deprecated in API14
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_media_stream_only_by_id")]
-            internal static extern AudioManagerError SetMediaStreamOnly(int deviceId, bool enable);
+            internal static extern AudioManagerError SetMediaStreamOnly(int deviceId, bool enable); // Deprecated in API14
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_media_stream_only_by_id")]
-            internal static extern AudioManagerError GetMediaStreamOnly(int deviceId, out bool enabled);
+            internal static extern AudioManagerError GetMediaStreamOnly(int deviceId, out bool enabled); // Deprecated in API14
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_device_connection_changed_cb")]
             internal static extern AudioManagerError AddDeviceConnectionChangedCallback(

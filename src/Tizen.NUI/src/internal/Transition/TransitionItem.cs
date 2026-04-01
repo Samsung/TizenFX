@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// TransitionItem is an object to set Transition of View pair those have same TransitionTag.
     /// TransitionItem object is required for each View pair and this is added to the TransitionSet to play.
     /// </summary>
-    internal class TransitionItem : TransitionItemBase
+    internal sealed class TransitionItem : TransitionItemBase
     {
         /// <summary>
         /// Creates an initialized transition.<br />

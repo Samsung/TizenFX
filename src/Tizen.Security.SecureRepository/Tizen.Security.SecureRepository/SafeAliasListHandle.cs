@@ -1,4 +1,4 @@
-﻿/*
+/*
  *  Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,7 +21,7 @@ using static Interop;
 
 namespace Tizen.Security.SecureRepository
 {
-    internal class SafeAliasListHandle
+    internal sealed class SafeAliasListHandle
     {
         public SafeAliasListHandle(IntPtr ptr)
         {
