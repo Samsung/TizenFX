@@ -270,6 +270,12 @@ class MultiPassRenderingSample : NUIApplication
 
         mThirdSceneAnimation = new Animation(3000);
         mThirdSceneAnimation.AnimateBy(thirdSceneRoot.GetRenderableAt(0u).Shader, "uDelta", (float)Math.PI * 2.0f);
+        mThirdSceneAnimation.AnimateTo(thirdSceneRoot.GetRenderableAt(0u), "ColorRed", 0.0f, 0, 500);
+        mThirdSceneAnimation.AnimateTo(thirdSceneRoot.GetRenderableAt(0u), "ColorRed", 1.0f, 1500, 2000);
+        mThirdSceneAnimation.AnimateTo(thirdSceneRoot.GetRenderableAt(0u), "ColorGreen", 0.0f, 500, 1000);
+        mThirdSceneAnimation.AnimateTo(thirdSceneRoot.GetRenderableAt(0u), "ColorGreen", 1.0f, 2000, 2500);
+        mThirdSceneAnimation.AnimateTo(thirdSceneRoot.GetRenderableAt(0u), "ColorBlue", 0.0f, 1000, 1500);
+        mThirdSceneAnimation.AnimateTo(thirdSceneRoot.GetRenderableAt(0u), "ColorBlue", 1.0f, 2500, 3000);
         mThirdSceneAnimation.Looping = true;
         mThirdSceneAnimation.Play();
 
@@ -397,8 +403,9 @@ class MultiPassRenderingSample : NUIApplication
         "    highp float height = sin( len * 12.0 - uDelta * 4.0 );\n" +
         "    highp vec2 texCoord = vTexCoord + pos/len * height * 0.02;\n" +
         "    lowp vec4 texColor = TEXTURE(sTexture, texCoord);\n" +
-        "    texColor.rgb *= (0.9 + height * 0.1);\n" +
-        "    gl_FragColor = texColor * uColor;\n" +
+        "    texColor *= uColor;\n" +
+        "    texColor.rgb = mix(vec3(1.0, 1.0, 1.0) - texColor.rgb, texColor.rgb, (0.9 + height * 0.1));\n" +
+        "    gl_FragColor = texColor;\n" +
         "}\n";
 
         Shader shader = new Shader(vertexShader, fragmentShader, "GenerateThirdRenderable");
