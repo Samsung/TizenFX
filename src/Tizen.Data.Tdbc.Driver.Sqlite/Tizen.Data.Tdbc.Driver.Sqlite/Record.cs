@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2023 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Data.Tdbc.Driver.Sqlite
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class Record : IRecord
+    internal sealed class Record : IRecord
     {
         private IntPtr _stmt;
         IRecord IEnumerator<IRecord>.Current => this;

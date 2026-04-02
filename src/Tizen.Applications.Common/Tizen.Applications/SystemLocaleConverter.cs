@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2025 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,7 +25,7 @@ using System.Threading.Tasks;
 
 namespace Tizen.Applications
 {
-    internal class SystemLocaleConverter
+    internal sealed class SystemLocaleConverter
     {
         private static readonly string LogTag = "Tizen.Applications";
         public SystemLocaleConverter()
@@ -45,7 +45,7 @@ namespace Tizen.Applications
                 }
                 catch (CultureNotFoundException)
                 {
-                    Log.Error(LogTag, "CultureNotFoundException occurs. CultureName: " + cultureName);
+                    Log.Error(LogTag, $"CultureNotFoundException occurs. CultureName: {cultureName}");
                 }
             }
 
@@ -115,7 +115,7 @@ namespace Tizen.Applications
                 }
                 catch (CultureNotFoundException e)
                 {
-                    Log.Error(LogTag, "Failed to create CultureInfo. err = " + e.Message);
+                    Log.Error(LogTag, $"Failed to create CultureInfo. err = {e.Message}");
                 }
             }
 
@@ -152,7 +152,7 @@ namespace Tizen.Applications
         }
 
 
-        internal class ULocale
+        internal sealed class ULocale
         {
             private const int ULOC_FULLNAME_CAPACITY = 157;
             private const int ULOC_LANG_CAPACITY = 12;

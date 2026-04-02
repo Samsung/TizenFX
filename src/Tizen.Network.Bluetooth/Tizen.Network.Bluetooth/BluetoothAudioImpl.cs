@@ -18,7 +18,7 @@ using System;
 
 namespace Tizen.Network.Bluetooth
 {
-    internal class BluetoothAudioImpl : IDisposable
+    internal sealed class BluetoothAudioImpl : IDisposable
     {
         private event EventHandler<AudioConnectionStateChangedEventArgs> _audioConnectionChanged;
         private Interop.Bluetooth.AudioConnectionStateChangedCallback _audioConnectionChangedCallback;
@@ -61,7 +61,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SetAudioConnectionStateChangedCallback(_audioConnectionChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set audio connection changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set audio connection changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -70,7 +70,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.UnsetAudioConnectionStateChangedCallback();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset audio connection changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset audio connection changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -79,7 +79,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.Connect(deviceAddress, (int)type);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to connect device with the given profile type, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to connect device with the given profile type, Error - {(BluetoothError)ret}");
             }
             return ret;
         }
@@ -89,7 +89,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.Disconnect(deviceAddress, (int)type);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to disconnect device with the given profile type, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to disconnect device with the given profile type, Error - {(BluetoothError)ret}");
             }
             return ret;
         }
@@ -101,7 +101,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.OpenAgSco();
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to open ag sco to remote device, Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to open ag sco to remote device, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -118,7 +118,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.CloseAgSco();
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to close ag sco to remote device, Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to close ag sco to remote device, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -136,7 +136,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.IsAgScoOpened(out isOpened);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to check whether an opened SCO exists or not., Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to check whether an opened SCO exists or not., Error - {(BluetoothError)ret}");
                 }
                 return isOpened;
             }
@@ -172,7 +172,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SetAgScoStateChangedCallback(_agScoStateChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set ag sco state changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set ag sco state changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -181,7 +181,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.UnsetAgScoStateChangedCallback();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset ag sco state changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset ag sco state changed callback, Error - {(BluetoothError)ret}");
             }
         }
 
@@ -192,7 +192,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.NotifyAgVoiceRecognitionState(enable);
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to notify sco voice recognition state, Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to notify sco voice recognition state, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -209,7 +209,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.SelectAudioRole(role);
                 if (ret != (int)BluetoothError.None && ret != (int)BluetoothError.AlreadyDone)
                 {
-                    Log.Error(Globals.LogTag, "Failed to select audio role, Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to select audio role, Error - {(BluetoothError)ret}");
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }
@@ -266,7 +266,7 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.InitializeAudio ();
                 if (ret != (int)BluetoothError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to initialize bluetoothaudio, Error - " + (BluetoothError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to initialize bluetoothaudio, Error - {(BluetoothError)ret}");
                     Globals.IsAudioInitialize = false;
                     BluetoothErrorFactory.ThrowBluetoothException (ret);
                 }
@@ -286,7 +286,7 @@ namespace Tizen.Network.Bluetooth
             if (Globals.IsAudioInitialize) {
                 int ret = Interop.Bluetooth.DeinitializeAudio ();
                 if (ret != (int)BluetoothError.None) {
-                    Log.Error (Globals.LogTag, "Failed to deinitialize bluetoothaudio, Error - " + (BluetoothError)ret);
+                    Log.Error (Globals.LogTag, $"Failed to deinitialize bluetoothaudio, Error - {(BluetoothError)ret}");
                 }
             }
         }

@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -86,7 +86,7 @@ namespace Tizen.Uix.VoiceControlManager
             ErrorCode error = VcCmdCreate(out handle);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "Create Failed with error " + error);
+                Log.Error(LogTag, $"Create Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
             _handle = handle;
@@ -120,7 +120,7 @@ namespace Tizen.Uix.VoiceControlManager
                 ErrorCode error = VcCmdGetUnfixedCommand(_handle, out unfixedCommand);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "UnfixedCommand Failed with error " + error);
+                    Log.Error(LogTag, $"UnfixedCommand Failed with error {error}");
                     return string.Empty;
                 }
 
@@ -149,7 +149,7 @@ namespace Tizen.Uix.VoiceControlManager
                 ErrorCode error = VcCmdGetType(_handle, out type);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetType Failed with error " + error);
+                    Log.Error(LogTag, $"GetType Failed with error {error}");
                     return CommandType.Undefined;
                 }
 
@@ -165,7 +165,7 @@ namespace Tizen.Uix.VoiceControlManager
                 ErrorCode error = VcCmdSetType(_handle, value);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "SetType Failed with error " + error);
+                    Log.Error(LogTag, $"SetType Failed with error {error}");
                 }
             }
         }
@@ -187,7 +187,7 @@ namespace Tizen.Uix.VoiceControlManager
                 ErrorCode error = VcCmdGetFormat(_handle, out format);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetFormat Failed with error " + error);
+                    Log.Error(LogTag, $"GetFormat Failed with error {error}");
                     return CommandFormat.Undefined;
                 }
 
@@ -198,7 +198,7 @@ namespace Tizen.Uix.VoiceControlManager
                 ErrorCode error = VcCmdSetFormat(_handle, value);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "SetFormat Failed with error " + error);
+                    Log.Error(LogTag, $"SetFormat Failed with error {error}");
                 }
             }
         }
@@ -223,7 +223,7 @@ namespace Tizen.Uix.VoiceControlManager
                 ErrorCode error = VcCmdGetCommand(_handle, out command);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "GetCommand Failed with error " + error);
+                    Log.Error(LogTag, $"GetCommand Failed with error {error}");
                     return string.Empty;
                 }
 
@@ -234,7 +234,7 @@ namespace Tizen.Uix.VoiceControlManager
                 ErrorCode error = VcCmdSetCommand(_handle, value);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "SetCommand Failed with error " + error);
+                    Log.Error(LogTag, $"SetCommand Failed with error {error}");
                 }
             }
         }

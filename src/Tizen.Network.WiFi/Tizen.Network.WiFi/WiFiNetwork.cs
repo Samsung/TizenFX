@@ -48,7 +48,7 @@ namespace Tizen.Network.WiFi
                     int ret = Interop.WiFi.AP.GetEssid(_apHandle, out strPtr);
                     if (ret != (int)WiFiError.None)
                     {
-                        Log.Error(Globals.LogTag, "Failed to get essid, Error - " + (WiFiError)ret);
+                        Log.Error(Globals.LogTag, $"Failed to get essid, Error - {(WiFiError)ret}");
                         _essid = "";
                     }
                     else
@@ -76,7 +76,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetRawSsid(_apHandle, out ptr, out length);
                 if (ret != (int)WiFiError.None || length == 0)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get raw essid, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get raw essid, Error - {(WiFiError)ret}");
                     rawSsid = null;
                 }
                 else
@@ -103,7 +103,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetBssid(_apHandle, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get bssid, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get bssid, Error - {(WiFiError)ret}");
                     bssid = "";
                 }
                 else
@@ -157,7 +157,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetProxyAddress(_apHandle, (int)AddressFamily.IPv4, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get proxy address, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get proxy address, Error - {(WiFiError)ret}");
                     proxy = "";
                 }
                 else
@@ -171,7 +171,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.SetProxyAddress(_apHandle, (int)AddressFamily.IPv4, value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set proxy address, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set proxy address, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
                 }
             }
@@ -193,7 +193,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetProxyType(_apHandle, out type);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get proxy type, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get proxy type, Error - {(WiFiError)ret}");
                 }
                 return (WiFiProxyType)type;
             }
@@ -202,7 +202,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.SetProxyType(_apHandle, (int)value);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set proxy type, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set proxy type, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
                 }
             }
@@ -221,7 +221,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetFrequency(_apHandle, out freq);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get frequency, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get frequency, Error - {(WiFiError)ret}");
                 }
                 return freq;
             }
@@ -240,7 +240,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetRssi(_apHandle, out rssi);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get rssi, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get rssi, Error - {(WiFiError)ret}");
                 }
                 return rssi;
             }
@@ -261,7 +261,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetRssiLevel(_apHandle, out rssi);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get rssi level, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get rssi level, Error - {(WiFiError)ret}");
                 }
                 return (WiFiRssiLevel)rssi;
             }
@@ -280,7 +280,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetMaxSpeed(_apHandle, out maxSpeed);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get max speed, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get max speed, Error - {(WiFiError)ret}");
                 }
                 return maxSpeed;
             }
@@ -299,7 +299,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.IsFavorite(_apHandle, out isFavorite);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get favorite, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get favorite, Error - {(WiFiError)ret}");
                 }
                 return isFavorite;
             }
@@ -315,11 +315,11 @@ namespace Tizen.Network.WiFi
             get
             {
                 bool isPasspoint;
-                Log.Debug(Globals.LogTag, "Handle: " + _apHandle);
+                Log.Debug(Globals.LogTag, $"Handle: {_apHandle}");
                 int ret = Interop.WiFi.AP.IsPasspoint(_apHandle, out isPasspoint);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get isPassport, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get isPassport, Error - {(WiFiError)ret}");
                 }
                 return isPasspoint;
             }
@@ -338,7 +338,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetConnectionState(_apHandle, out state);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get connection state, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get connection state, Error - {(WiFiError)ret}");
                 }
                 return (WiFiConnectionState)state;
             }
@@ -358,7 +358,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.AP.GetCountryCode(_apHandle, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get country code, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get country code, Error - {(WiFiError)ret}");
                     code = "";
                 }
                 else
@@ -399,7 +399,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.AP.GetAllIPv6Addresses(_apHandle, callback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get all IPv6 addresses, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get all IPv6 addresses, Error - {(WiFiError)ret}");
                 if (ret == (int)WiFiError.InvalidParameterError)
                 {
                     throw new InvalidOperationException("Invalid handle");
@@ -435,7 +435,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.AP.GetBssids(_apHandle, callback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get BSSIDs, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get BSSIDs, Error - {(WiFiError)ret}");
                 if (ret == (int)WiFiError.InvalidParameterError)
                 {
                     throw new InvalidOperationException("Invalid handle");
@@ -456,7 +456,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.AP.GetEssid(_apHandle, out strPtr);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to get essid, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to get essid, Error - {(WiFiError)ret}");
                 _essid = "";
             }
             else

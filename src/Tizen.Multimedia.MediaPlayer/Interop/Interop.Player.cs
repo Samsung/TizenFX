@@ -395,7 +395,7 @@ internal static partial class Interop
         internal static extern PlayerErrorCode GetVideoCodecType(IntPtr player, out CodecType type);
     }
 
-    internal class PlayerHandle : SafeHandle
+    internal sealed class PlayerHandle : SafeHandle
     {
         protected PlayerHandle() : base(IntPtr.Zero, true)
         {

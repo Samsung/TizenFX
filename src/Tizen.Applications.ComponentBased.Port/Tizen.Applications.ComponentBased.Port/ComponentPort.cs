@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -107,7 +107,7 @@ namespace Tizen.Applications.ComponentBased
                 _appearedNativeCallbackMap[requestId] = (string portName, int owner, IntPtr userData) =>
                 {
                     int id = (int)userData;
-                    Log.Info(LogTag, portName + " is appeared");
+                    Log.Info(LogTag, $"{portName} is appeared");
                     task.SetResult(true);
                     lock (_watcherIdMap)
                     {
@@ -131,7 +131,7 @@ namespace Tizen.Applications.ComponentBased
             {
                 _vanishedNativeCallbackMap[requestId] = (string portName, IntPtr userData) =>
                 {
-                    Log.Info(LogTag, portName + " is vanished");
+                    Log.Info(LogTag, $"{portName} is vanished");
                 };
             }
 
@@ -389,19 +389,19 @@ namespace Tizen.Applications.ComponentBased
                     }
                     catch (ArgumentException e)
                     {
-                        Log.Error(LogTag, "ArgumentException occurs. " + e.Message);
+                        Log.Error(LogTag, $"ArgumentException occurs. {e.Message}");
                     }
                     catch (InvalidOperationException e)
                     {
-                        Log.Error(LogTag, "InvalidOperationException occurs. " + e.Message);
+                        Log.Error(LogTag, $"InvalidOperationException occurs. {e.Message}");
                     }
                     catch (InvalidDataContractException e)
                     {
-                        Log.Error(LogTag, "InvalidDataContractException occurs. " + e.Message);
+                        Log.Error(LogTag, $"InvalidDataContractException occurs. {e.Message}");
                     }
                     catch (SerializationException e)
                     {
-                        Log.Error(LogTag, "SerializationException occurs. " + e.Message);
+                        Log.Error(LogTag, $"SerializationException occurs. {e.Message}");
                     }
 
                     return parcel;
@@ -438,15 +438,15 @@ namespace Tizen.Applications.ComponentBased
             }
             catch (ArgumentNullException e)
             {
-                Log.Error(LogTag, "ArgumentNullException occurs: " + e.Message);
+                Log.Error(LogTag, $"ArgumentNullException occurs: {e.Message}");
             }
             catch (InvalidOperationException e)
             {
-                Log.Error(LogTag, "InvalidOperationException occurs: " + e.Message);
+                Log.Error(LogTag, $"InvalidOperationException occurs: {e.Message}");
             }
             catch (XmlException e)
             {
-                Log.Error(LogTag, "XmlException occurs: " + e.Message);
+                Log.Error(LogTag, $"XmlException occurs: {e.Message}");
             }
 
             return envelope;
@@ -509,7 +509,7 @@ namespace Tizen.Applications.ComponentBased
                     {
                         if (t.FullName == typeName)
                         {
-                            Log.Warn(LogTag, "Found! AssemblyName: " + a.FullName);
+                            Log.Warn(LogTag, $"Found! AssemblyName: {a.FullName}");
                             return a.FullName;
                         }
                     }
@@ -521,16 +521,16 @@ namespace Tizen.Applications.ComponentBased
             public override Type BindToType(string assemblyName, string typeName)
             {
                 Type returntype = null;
-                Log.Warn(LogTag, "AssemblyName: " + assemblyName);
-                Log.Warn(LogTag, "TypeName: " + typeName);
+                Log.Warn(LogTag, $"AssemblyName: {assemblyName}");
+                Log.Warn(LogTag, $"TypeName: {typeName}");
                 string foundAssemblyName = GetAssemblyName(typeName);
                 if (foundAssemblyName.Length != 0)
                 {
-                    returntype = Type.GetType(String.Format("{0}, {1}", typeName, foundAssemblyName));
+                    returntype = Type.GetType($"{typeName}, {foundAssemblyName}");
                 }
                 else
                 {
-                    returntype = Type.GetType(String.Format("{0}, {1}", typeName, assemblyName));
+                    returntype = Type.GetType($"{typeName}, {assemblyName}");
                 }
                 return returntype;
             }
@@ -540,7 +540,7 @@ namespace Tizen.Applications.ComponentBased
         {
             internal static Exception GetException(Interop.ComponentPort.ErrorCode err, string message)
             {
-                string errMessage = string.Format("{0} err = {1}", message, err);
+                string errMessage = $"{message} err = {err}";
                 switch (err)
                 {
                     case Interop.ComponentPort.ErrorCode.InvalidParameter:

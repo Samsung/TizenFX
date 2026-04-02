@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -40,7 +40,7 @@ namespace Tizen.NUI.Xaml
         BottomUp
     }
 
-    internal class XamlNodeVisitor : IXamlNodeVisitor
+    internal sealed class XamlNodeVisitor : IXamlNodeVisitor
     {
         readonly Action<INode, INode> action;
 

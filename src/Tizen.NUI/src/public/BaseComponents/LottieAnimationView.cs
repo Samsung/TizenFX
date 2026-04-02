@@ -130,12 +130,16 @@ namespace Tizen.NUI.BaseComponents
             }
 
             //disconnect event signal
-            if (finishedEventHandler != null && visualEventSignalCallback != null)
+            if (this.HasBody())
             {
-                using VisualEventSignal visualEvent = VisualEventSignal();
-                visualEvent.Disconnect(visualEventSignalCallback);
-                finishedEventHandler = null;
-                NUILog.Debug($"disconnect event signal");
+                if (finishedEventHandler != null && visualEventSignalCallback != null)
+                {
+                    using VisualEventSignal visualEvent = VisualEventSignal();
+                    visualEvent.Disconnect(visualEventSignalCallback);
+                    ReleaseSafeCallback(ref visualEventSignalCallback);
+                    finishedEventHandler = null;
+                    NUILog.Debug($"disconnect event signal");
+                }
             }
 
             base.Dispose(type);
@@ -1326,7 +1330,7 @@ namespace Tizen.NUI.BaseComponents
                 if (finishedEventHandler == null)
                 {
                     NUILog.Debug($"<[{GetId()}] Finished eventhandler added>");
-                    visualEventSignalCallback = onVisualEventSignal;
+                    CreateSafeCallback(OnStaticVisualEventSignal, out visualEventSignalCallback);
                     using VisualEventSignal visualEvent = VisualEventSignal();
                     visualEvent.Connect(visualEventSignalCallback);
                 }
@@ -1340,7 +1344,10 @@ namespace Tizen.NUI.BaseComponents
                 {
                     using VisualEventSignal visualEvent = VisualEventSignal();
                     visualEvent?.Disconnect(visualEventSignalCallback);
-                    visualEventSignalCallback = null;
+                    if (visualEvent?.Empty() == true)
+                    {
+                        ReleaseSafeCallback(ref visualEventSignalCallback);
+                    }
                 }
             }
         }
@@ -1511,7 +1518,7 @@ namespace Tizen.NUI.BaseComponents
         internal static readonly int ActionSetDynamicProperty = Interop.LottieAnimationView.AnimatedVectorImageVisualActionSetDynamicPropertyGet();
         internal static readonly int ActionFlush = Interop.LottieAnimationView.AnimatedVectorImageVisualActionFlushGet();
 
-        internal class VisualEventSignalArgs : EventArgs
+        internal sealed class VisualEventSignalArgs : EventArgs
         {
             public int VisualIndex
             {
@@ -1531,7 +1538,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (visualEventSignalHandler == null)
                 {
-                    visualEventSignalCallback = onVisualEventSignal;
+                    CreateSafeCallback(OnStaticVisualEventSignal, out visualEventSignalCallback);
                     using VisualEventSignal visualEvent = VisualEventSignal();
                     visualEvent?.Connect(visualEventSignalCallback);
                 }
@@ -1546,7 +1553,7 @@ namespace Tizen.NUI.BaseComponents
                     visualEvent?.Disconnect(visualEventSignalCallback);
                     if (visualEvent?.Empty() == true)
                     {
-                        visualEventSignalCallback = null;
+                        ReleaseSafeCallback(ref visualEventSignalCallback);
                     }
                 }
             }
@@ -1723,33 +1730,28 @@ namespace Tizen.NUI.BaseComponents
             finishedEventHandler?.Invoke(this, null);
         }
 
-        private void onVisualEventSignal(IntPtr targetView, int visualIndex, int signalId)
+        private static void OnStaticVisualEventSignal(IntPtr targetView, int visualIndex, int signalId)
         {
-            if (IsDisposedOrQueued)
+            var lottieAnimationView = Registry.GetManagedBaseHandleFromNativePtr(targetView) as LottieAnimationView;
+            if (lottieAnimationView == null)
+            {
+                NUILog.Error("VisualEventSignal comes from Disposed (or GC) ImageView!\n");
+                return;
+            }
+
+            if (lottieAnimationView.IsDisposedOrQueued)
             {
                 return;
             }
 
-            OnFinished();
+            lottieAnimationView.OnFinished();
 
-            if (targetView != IntPtr.Zero)
-            {
-                View v = Registry.GetManagedBaseHandleFromNativePtr(targetView) as View;
-                if (v != null)
-                {
-                    NUILog.Debug($"targetView is not null! name={v.Name}");
-                }
-                else
-                {
-                    NUILog.Debug($"target is something created from dali");
-                }
-            }
             VisualEventSignalArgs e = new VisualEventSignalArgs();
             e.VisualIndex = visualIndex;
             e.SignalId = signalId;
-            visualEventSignalHandler?.Invoke(this, e);
+            lottieAnimationView.visualEventSignalHandler?.Invoke(lottieAnimationView, e);
 
-            NUILog.Debug($"<[{GetId()}] onVisualEventSignal()! visualIndex={visualIndex}, signalId={signalId}>");
+            NUILog.Debug($"<[{lottieAnimationView.GetId()}] onVisualEventSignal()! visualIndex={visualIndex}, signalId={signalId}>");
         }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

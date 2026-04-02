@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Runtime.InteropServices;
 
 using Tizen.NUI.BaseComponents;
 
@@ -28,7 +29,7 @@ namespace Tizen.NUI.Utility
     /// This is a class for stroing the text of a page.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class PageData
+    internal sealed class PageData
     {
         public string PreviousTag { get; set; }
         public string EndTag { get; set; }
@@ -40,7 +41,7 @@ namespace Tizen.NUI.Utility
     /// This is a class that stores information when parsing markup text.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal class TagData
+    internal sealed class TagData
     {
         public string TagName { get; set; }
         public string AttributeName { get; set; }
@@ -240,11 +241,11 @@ namespace Tizen.NUI.Utility
 
                     if (!attributesFound)
                     {
-                        tag.TagName = new String(tagChaList.ToArray());
+                        tag.TagName = new string(CollectionsMarshal.AsSpan(tagChaList));
                     }
                     else
                     {
-                        tag.AttributeName = new String(tagChaList.ToArray());
+                        tag.AttributeName = new string(CollectionsMarshal.AsSpan(tagChaList));
                     }
 
                     isPreviousSlash = false;
@@ -263,7 +264,7 @@ namespace Tizen.NUI.Utility
                     // Let's save tag name.
                     if (!attributesFound)
                     {
-                        tag.TagName = new String(tagChaList.ToArray());
+                        tag.TagName = new string(CollectionsMarshal.AsSpan(tagChaList));
                         tagChaList.Clear();
                     }
                     tagChaList.Add((char)character);

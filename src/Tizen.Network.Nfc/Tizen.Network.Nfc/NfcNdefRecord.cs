@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -42,7 +42,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.NdefRecord.GetId(_recordHandle, out id, out idLength);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get id, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get id, Error - {(NfcError)ret}");
                     return null;
                 }
 
@@ -63,7 +63,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.NdefRecord.GetPayload(_recordHandle, out payload, out payloadLength);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get payload, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get payload, Error - {(NfcError)ret}");
                     return null;
                 }
 
@@ -84,7 +84,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.NdefRecord.GetType(_recordHandle, out type, out typeSize);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get payload, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get payload, Error - {(NfcError)ret}");
                     return null;
                 }
 
@@ -104,7 +104,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.NdefRecord.GetTnf(_recordHandle, out tnf);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get tnf, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get tnf, Error - {(NfcError)ret}");
                 }
                 return (NfcRecordTypeNameFormat)tnf;
             }
@@ -122,7 +122,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.NdefRecord.GetText(_recordHandle, out text);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get text, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get text, Error - {(NfcError)ret}");
                 }
                 return text;
             }
@@ -140,7 +140,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.NdefRecord.GetLanguageCode(_recordHandle, out languageCode);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get language code, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get language code, Error - {(NfcError)ret}");
                 }
                 return languageCode;
             }
@@ -158,7 +158,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.NdefRecord.GetEncodeType(_recordHandle, out encodeType);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get encode type, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get encode type, Error - {(NfcError)ret}");
                 }
                 return (NfcEncodeType)encodeType;
             }
@@ -176,7 +176,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.NdefRecord.GetUri(_recordHandle, out uri);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get uri, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get uri, Error - {(NfcError)ret}");
                 }
                 return uri;
             }
@@ -194,7 +194,7 @@ namespace Tizen.Network.Nfc
                 int ret = Interop.Nfc.NdefRecord.GetMimeType(_recordHandle, out mimeType);
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get mime type, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to get mime type, Error - {(NfcError)ret}");
                 }
                 return mimeType;
             }
@@ -218,7 +218,7 @@ namespace Tizen.Network.Nfc
 
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to create Ndef record, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to create Ndef record, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
@@ -239,7 +239,7 @@ namespace Tizen.Network.Nfc
 
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to create ndef Text record, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to create ndef Text record, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
@@ -258,7 +258,7 @@ namespace Tizen.Network.Nfc
 
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to create ndef Uri record, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to create ndef Uri record, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
@@ -279,7 +279,7 @@ namespace Tizen.Network.Nfc
 
             if (ret != (int)NfcError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to create ndef Mime record, Error - " + (NfcError)ret);
+                Log.Error(Globals.LogTag, $"Failed to create ndef Mime record, Error - {(NfcError)ret}");
                 NfcErrorFactory.ThrowNfcException(ret);
             }
         }
@@ -314,7 +314,7 @@ namespace Tizen.Network.Nfc
 
                 if (ret != (int)NfcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to destroy ndef record, Error - " + (NfcError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to destroy ndef record, Error - {(NfcError)ret}");
                 }
             }
             //Free unmanaged objects

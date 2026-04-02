@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2019 Samsung Electronics Co., Ltd. All Rights Reserved.
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -297,7 +297,7 @@ namespace Tizen.MachineLearning.Inference
         {
             if (error != NNStreamerError.None)
             {
-                Log.Error(NNStreamer.TAG, msg + ": " + error.ToString());
+                Log.Error(NNStreamer.TAG, $"{msg}: {error.ToString()}");
                 throw NNStreamerExceptionFactory.CreateException(error, msg);
             }
         }
@@ -341,7 +341,7 @@ namespace Tizen.MachineLearning.Inference
         }
     }
 
-    internal class NNStreamerExceptionFactory
+    internal sealed class NNStreamerExceptionFactory
     {
         internal static Exception CreateException(NNStreamerError err, string msg)
         {

@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2022 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -56,7 +56,7 @@ namespace Tizen.Uix.Sticker
                 ErrorCode error = StickerProviderCreate(out handle);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Create Failed with error " + error);
+                    Log.Error(LogTag, $"Create Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
                 _handle = handle;
@@ -85,7 +85,7 @@ namespace Tizen.Uix.Sticker
                 ErrorCode error = StickerProviderDestroy(_handle);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "Destroy Failed with error " + error);
+                    Log.Error(LogTag, $"Destroy Failed with error {error}");
                     if (error == ErrorCode.InvalidParameter)
                         throw ExceptionFactory.CreateException(ErrorCode.OperationFailed);
                     else
@@ -115,7 +115,7 @@ namespace Tizen.Uix.Sticker
             ErrorCode error = StickerProviderInsertData(_handle, data.SafeStickerDataHandle);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "InsertData Failed with error " + error);
+                Log.Error(LogTag, $"InsertData Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -153,7 +153,7 @@ namespace Tizen.Uix.Sticker
             ErrorCode error = StickerProviderInsertDataByJsonFile(_handle, jsonPath, _insertDelegate, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "InsertData Failed with error " + error);
+                Log.Error(LogTag, $"InsertData Failed with error {error}");
                 task.SetException(ExceptionFactory.CreateException(error));
             }
             return task.Task;
@@ -178,7 +178,7 @@ namespace Tizen.Uix.Sticker
             ErrorCode error = StickerProviderUpdateData(_handle, data.SafeStickerDataHandle);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "UpdateData Failed with error " + error);
+                Log.Error(LogTag, $"UpdateData Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -197,7 +197,7 @@ namespace Tizen.Uix.Sticker
             ErrorCode error = StickerProviderDeleteData(_handle, data.SafeStickerDataHandle);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "DeleteData Failed with error " + error);
+                Log.Error(LogTag, $"DeleteData Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -219,7 +219,7 @@ namespace Tizen.Uix.Sticker
             ErrorCode error = StickerProviderDeleteDataByUri(_handle, uri);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "DeleteData Failed with error " + error);
+                Log.Error(LogTag, $"DeleteData Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }
@@ -239,7 +239,7 @@ namespace Tizen.Uix.Sticker
                 ErrorCode error = StickerProviderGetStickerCount(_handle, out _count);
                 if (error != ErrorCode.None)
                 {
-                    Log.Error(LogTag, "StickerCount Failed with error " + error);
+                    Log.Error(LogTag, $"StickerCount Failed with error {error}");
                     throw ExceptionFactory.CreateException(error);
                 }
 
@@ -272,7 +272,7 @@ namespace Tizen.Uix.Sticker
             ErrorCode error = StickerProviderDataForeachAll(_handle, offset, count, out var result, _dataForeachDelegate, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "GetAllStickers Failed with error " + error);
+                Log.Error(LogTag, $"GetAllStickers Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
 
@@ -298,7 +298,7 @@ namespace Tizen.Uix.Sticker
             ErrorCode error = StickerProviderSetGroupImage(_handle, groupImage.GroupName, groupImage.UriType, groupImage.Uri);
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, "SetGroupImage Failed with error " + error);
+                Log.Error(LogTag, $"SetGroupImage Failed with error {error}");
                 throw ExceptionFactory.CreateException(error);
             }
         }

@@ -46,7 +46,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Query.ContactsQueryCreate(viewUri, out _queryHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "ContactsQuery Failed with error " + error);
+                Log.Error(Globals.LogTag, $"ContactsQuery Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -86,7 +86,7 @@ namespace Tizen.Pims.Contacts
                 int error = Interop.Query.ContactsQueryDestroy(_queryHandle);
                 if ((int)ContactsError.None != error)
                 {
-                    Log.Error(Globals.LogTag, "ContactsQueryDestroy Failed with error " + error);
+                    Log.Error(Globals.LogTag, $"ContactsQueryDestroy Failed with error {error}");
                 }
 
                 disposedValue = true;
@@ -123,7 +123,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Query.ContactsQuerySetProjection(_queryHandle, propertyIdArray, propertyIdArray.Length);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "SetProjection Failed with error " + error);
+                Log.Error(Globals.LogTag, $"SetProjection Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -140,7 +140,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Query.ContactsQuerySetDistinct(_queryHandle, set);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "SetDistinct Failed with error " + error);
+                Log.Error(Globals.LogTag, $"SetDistinct Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -158,7 +158,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Query.ContactsQuerySetFilter(_queryHandle, filter._filterHandle);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "SetFilter Failed with error " + error);
+                Log.Error(Globals.LogTag, $"SetFilter Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }
@@ -177,7 +177,7 @@ namespace Tizen.Pims.Contacts
             int error = Interop.Query.ContactsQuerySetSort(_queryHandle, propertyId, isAscending);
             if ((int)ContactsError.None != error)
             {
-                Log.Error(Globals.LogTag, "SetSort Failed with error " + error);
+                Log.Error(Globals.LogTag, $"SetSort Failed with error {error}");
                 throw ContactsErrorFactory.CheckAndCreateException(error);
             }
         }

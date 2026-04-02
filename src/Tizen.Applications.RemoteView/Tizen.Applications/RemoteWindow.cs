@@ -19,7 +19,7 @@ using System;
 
 namespace Tizen.Applications
 {
-    internal class RemoteWindow : Layout
+    internal sealed class RemoteWindow : Layout
     {
         private static IntPtr _handle;
 

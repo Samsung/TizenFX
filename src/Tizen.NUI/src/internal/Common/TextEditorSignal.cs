@@ -19,7 +19,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class TextEditorSignal : Disposable
+    internal sealed class TextEditorSignal : Disposable
     {
         internal TextEditorSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

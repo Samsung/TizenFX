@@ -307,9 +307,7 @@ namespace Tizen.NUI
                         var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                         var me = this.GetType().FullName;
 
-                        Tizen.Log.Error("NUI", $"Error! NUI's native dali object is already disposed. " +
-                            $"OR the native dali object handle of NUI becomes null! \n" +
-                            $" process:{processId} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                        Tizen.Log.Error("NUI", $"Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null! \n process:{processId} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
 
                         process?.Dispose();
                     }
@@ -324,8 +322,7 @@ namespace Tizen.NUI
                         var me = this.GetType().FullName;
 
                         //in this case, this object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked!
-                        Tizen.Log.Error("NUI", "in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked! just return here! \n" +
-                            $"process:{processId} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                        Tizen.Log.Error("NUI", $"in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked! just return here! \nprocess:{processId} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
 
                         process?.Dispose();
                         return;

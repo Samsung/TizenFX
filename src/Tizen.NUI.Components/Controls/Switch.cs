@@ -88,19 +88,6 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override AccessibilityStates AccessibilityCalculateStates()
-        {
-            var states = base.AccessibilityCalculateStates();
-
-            states[AccessibilityState.Checked] = this.IsSelected;
-
-            return states;
-        }
-
-        /// <summary>
         /// An event for the item selected signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>

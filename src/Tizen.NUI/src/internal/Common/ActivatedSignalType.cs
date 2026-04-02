@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class ActivatedSignalType : Disposable
+    internal sealed class ActivatedSignalType : Disposable
     {
         internal ActivatedSignalType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

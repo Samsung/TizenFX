@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -24,7 +24,7 @@ namespace Tizen.Uix.InputMethod
     {
         internal static Exception CreateException(ErrorCode err)
         {
-            Tizen.Log.Error(LogTag, "Error " + err);
+            Tizen.Log.Error(LogTag, $"Error {err}");
             Exception exp;
             switch (err)
             {

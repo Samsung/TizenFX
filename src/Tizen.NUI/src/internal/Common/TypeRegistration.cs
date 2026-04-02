@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class TypeRegistration : Disposable
+    internal sealed class TypeRegistration : Disposable
     {
         internal TypeRegistration(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

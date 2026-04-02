@@ -66,7 +66,7 @@ namespace Tizen.Network.WiFi
 
         internal WiFiAP(IntPtr handle)
         {
-            Log.Debug(Globals.LogTag, "New WiFiAP. Handle: " + handle);
+            Log.Debug(Globals.LogTag, $"New WiFiAP. Handle: {handle}");
             _apHandle = handle;
             Initialize();
         }
@@ -86,7 +86,7 @@ namespace Tizen.Network.WiFi
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public WiFiAP(string essid)
         {
-            Log.Debug(Globals.LogTag, "New WiFiAP. Essid: " + essid);
+            Log.Debug(Globals.LogTag, $"New WiFiAP. Essid: {essid}");
             createHandle(essid, true);
             Initialize();
         }
@@ -134,7 +134,7 @@ namespace Tizen.Network.WiFi
             if (_disposed)
                 return;
 
-            Log.Info(Globals.LogTag, "WiFiAP Handle HashCode: " + _apHandle.GetHashCode());
+            Log.Info(Globals.LogTag, $"WiFiAP Handle HashCode: {_apHandle.GetHashCode()}");
             int ret = Interop.WiFi.AP.Destroy(_apHandle);
             if (ret == (int)WiFiError.None)
             {
@@ -162,7 +162,7 @@ namespace Tizen.Network.WiFi
 
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to create handle, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to create handle, Error - {(WiFiError)ret}");
                 WiFiErrorFactory.ThrowWiFiException(ret, WiFiManagerImpl.Instance.GetSafeHandle().DangerousGetHandle());
             }
         }
@@ -194,7 +194,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.AP.Refresh(_apHandle);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to refresh ap handle, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to refresh ap handle, Error - {(WiFiError)ret}");
                 if (ret == (int)WiFiError.InvalidParameterError)
                 {
                     throw new InvalidOperationException("Invalid handle");
@@ -223,7 +223,7 @@ namespace Tizen.Network.WiFi
         /// <exception cref="InvalidKeyException">Thrown when the key is wrong.</exception>
         public Task ConnectAsync()
         {
-            Log.Info(Globals.LogTag, "ConnectAsync HashCode: " + _apHandle.GetHashCode());
+            Log.Info(Globals.LogTag, $"ConnectAsync HashCode: {_apHandle.GetHashCode()}");
             if (_disposed)
             {
                 throw new ObjectDisposedException("Invalid AP instance (Object may have been disposed or released)");
@@ -235,10 +235,10 @@ namespace Tizen.Network.WiFi
                 id = (IntPtr)_requestId++;
                 _callback_map[id] = (error, key) =>
                 {
-                    Log.Info(Globals.LogTag, "ConnectAsync done " + (WiFiError)error);
+                    Log.Info(Globals.LogTag, $"ConnectAsync done {(WiFiError)error}");
                     if (error != (int)WiFiError.None)
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during WiFi connecting, " + (WiFiError)error);
+                        Log.Error(Globals.LogTag, $"Error occurs during WiFi connecting, {(WiFiError)error}");
                         task.SetException(WiFiErrorFactory.GetException(error, "Error occurs during WiFi connecting"));
                     }
                     else
@@ -262,7 +262,7 @@ namespace Tizen.Network.WiFi
                 }
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to connect wifi, Error - {(WiFiError)ret}");
                     if (ret == (int)WiFiError.InvalidParameterError)
                     {
                         throw new InvalidOperationException("Invalid handle");
@@ -272,7 +272,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, "Exception on ConnectAsync\n" + e);
+                Log.Error(Globals.LogTag, $"Exception on ConnectAsync\n{e}");
                 task.SetException(e);
             }
 
@@ -321,7 +321,7 @@ namespace Tizen.Network.WiFi
                     Log.Info(Globals.LogTag, "ConnectWpsAsync done");
                     if (error != (int)WiFiError.None)
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during WiFi connecting, " + (WiFiError)error);
+                        Log.Error(Globals.LogTag, $"Error occurs during WiFi connecting, {(WiFiError)error}");
                         wpsTask.SetException(WiFiErrorFactory.GetException(error, "Error occurs during WiFi connecting"));
                         Log.Info(Globals.LogTag, "Remove task for ConnectWpsAsync");
                         _wpsTaskMap.Remove(_apHandle);
@@ -366,13 +366,13 @@ namespace Tizen.Network.WiFi
 
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to connect wifi, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, WiFiManagerImpl.Instance.GetSafeHandle().DangerousGetHandle(), _apHandle);
                 }
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, "Exception on ConnectWpsAsync\n" + e);
+                Log.Error(Globals.LogTag, $"Exception on ConnectWpsAsync\n{e}");
                 wpsTask.SetException(e);
                 Log.Info(Globals.LogTag, "Remove task for ConnectWpsAsync");
                 _wpsTaskMap.Remove(_apHandle);
@@ -417,7 +417,7 @@ namespace Tizen.Network.WiFi
                     Log.Info(Globals.LogTag, "ConnectWpsWithoutSsidAsync done");
                     if (error != (int)WiFiError.None)
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during WiFi connecting, " + (WiFiError)error);
+                        Log.Error(Globals.LogTag, $"Error occurs during WiFi connecting, {(WiFiError)error}");
                         wpsWithoutSsidTask.SetException(WiFiErrorFactory.GetException(error, "Error occurs during WiFi connecting"));
                         wpsWithoutSsidTask = null;
                         Log.Info(Globals.LogTag, "task is null");
@@ -463,13 +463,13 @@ namespace Tizen.Network.WiFi
 
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to connect wifi, Error - {(WiFiError)ret}");
                     WiFiErrorFactory.ThrowWiFiException(ret, WiFiManagerImpl.Instance.GetSafeHandle().DangerousGetHandle());
                 }
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, "Exception on ConnectWpsWithoutSsidAsync\n" + e);
+                Log.Error(Globals.LogTag, $"Exception on ConnectWpsWithoutSsidAsync\n{e}");
                 wpsWithoutSsidTask.SetException(e);
             }
 
@@ -493,7 +493,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.CancelWps(WiFiManagerImpl.Instance.GetSafeHandle());
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to cancel Wps, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to cancel Wps, Error - {(WiFiError)ret}");
                 WiFiErrorFactory.ThrowWiFiException(ret, WiFiManagerImpl.Instance.GetSafeHandle().DangerousGetHandle());
             }
 
@@ -505,7 +505,7 @@ namespace Tizen.Network.WiFi
             }
             foreach (var item in _wpsTaskMap)
             {
-                Log.Info(Globals.LogTag, "Cancel ConnectWpsAsync() by " + item.Key.GetHashCode());
+                Log.Info(Globals.LogTag, $"Cancel ConnectWpsAsync() by {item.Key.GetHashCode()}");
                 item.Value.SetCanceled();
             }
             _wpsTaskMap.Clear();
@@ -546,7 +546,7 @@ namespace Tizen.Network.WiFi
                     Log.Info(Globals.LogTag, "DisconnectAsync done");
                     if (error != (int)WiFiError.None)
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during WiFi disconnecting, " + (WiFiError)error);
+                        Log.Error(Globals.LogTag, $"Error occurs during WiFi disconnecting, {(WiFiError)error}");
                         task.SetException(new InvalidOperationException("Error occurs during WiFi disconnecting, " + (WiFiError)error));
                     }
                     else
@@ -566,7 +566,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.Disconnect(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle, _callback_map[id], id);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to disconnect wifi, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to disconnect wifi, Error - {(WiFiError)ret}");
                     if (ret == (int)WiFiError.InvalidParameterError)
                     {
                         throw new InvalidOperationException("Invalid handle");
@@ -576,7 +576,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, "Exception on Disconnect\n" + e);
+                Log.Error(Globals.LogTag, $"Exception on Disconnect\n{e}");
                 task.SetException(e);
             }
 
@@ -606,7 +606,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.RemoveAP(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to forget AP, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to forget AP, Error - {(WiFiError)ret}");
                 if (ret == (int)WiFiError.InvalidParameterError)
                 {
                     throw new InvalidOperationException("Invalid handle");
@@ -648,7 +648,7 @@ namespace Tizen.Network.WiFi
                     Log.Info(Globals.LogTag, "ForgetAPAsync done");
                     if (error != (int)WiFiError.None)
                     {
-                        Log.Error(Globals.LogTag, "Error occurs during WiFi disconnecting, " + (WiFiError)error);
+                        Log.Error(Globals.LogTag, $"Error occurs during WiFi disconnecting, {(WiFiError)error}");
                         task.SetException(new InvalidOperationException("Error occurs during WiFi disconnecting, " + (WiFiError)error));
                     }
                     else
@@ -668,7 +668,7 @@ namespace Tizen.Network.WiFi
                 int ret = Interop.WiFi.ForgetAP(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle, _callback_map[id], id);
                 if (ret != (int)WiFiError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to forget wifi, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to forget wifi, Error - {(WiFiError)ret}");
                     if (ret == (int)WiFiError.InvalidParameterError)
                     {
                         throw new InvalidOperationException("Invalid handle");
@@ -678,7 +678,7 @@ namespace Tizen.Network.WiFi
             }
             catch (Exception e)
             {
-                Log.Error(Globals.LogTag, "Exception on ForgetAPAsync\n" + e);
+                Log.Error(Globals.LogTag, $"Exception on ForgetAPAsync\n{e}");
                 task.SetException(e);
             }
 
@@ -708,7 +708,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.UpdateAP(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to update AP, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, $"Failed to update AP, Error - {(WiFiError)ret}");
                 WiFiErrorFactory.ThrowWiFiException(ret, WiFiManagerImpl.Instance.GetSafeHandle().DangerousGetHandle(), _apHandle);
             }
         }

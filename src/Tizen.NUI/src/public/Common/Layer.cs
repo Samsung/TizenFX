@@ -17,6 +17,7 @@
 using System;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 
@@ -30,6 +31,7 @@ namespace Tizen.NUI
     {
         private Window window;
         private int layoutCount;
+        private Rectangle _viewport;
 
         private EventHandler<VisibilityChangedEventArgs> visibilityChangedEventHandler;
         private VisibilityChangedEventCallbackType visibilityChangedEventCallback;
@@ -47,6 +49,58 @@ namespace Tizen.NUI
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void LayoutDirectionChangedEventCallbackType(IntPtr data, ViewLayoutDirectionType type);
+
+        // Static callback wrappers
+        private static void OnStaticVisibilityChanged(IntPtr layerCPtr, bool visibility, VisibilityChangeType type)
+        {
+            var layer = Registry.GetManagedBaseHandleFromNativePtr(layerCPtr) as Layer;
+            if (layer == null)
+            {
+                NUILog.Error("VisibilityChanged comes from Disposed (or GC) Layer!\n");
+                return;
+            }
+
+            if (layer.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            layer.OnVisibilityChanged(layerCPtr, visibility, type);
+        }
+
+        private static void OnStaticAggregatedVisibilityChanged(IntPtr layerCPtr, bool visibility)
+        {
+            var layer = Registry.GetManagedBaseHandleFromNativePtr(layerCPtr) as Layer;
+            if (layer == null)
+            {
+                NUILog.Error("AggregatedVisibilityChanged comes from Disposed (or GC) Layer!\n");
+                return;
+            }
+
+            if (layer.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            layer.OnAggregatedVisibilityChanged(layerCPtr, visibility);
+        }
+
+        private static void OnStaticLayoutDirectionChanged(IntPtr layerCPtr, ViewLayoutDirectionType type)
+        {
+            var layer = Registry.GetManagedBaseHandleFromNativePtr(layerCPtr) as Layer;
+            if (layer == null)
+            {
+                NUILog.Error("LayoutDirectionChanged comes from Disposed (or GC) Layer!\n");
+                return;
+            }
+
+            if (layer.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            layer.OnLayoutDirectionChanged(layerCPtr, type);
+        }
 
         private static int aliveCount;
 
@@ -67,7 +121,7 @@ namespace Tizen.NUI
 
             if (_layoutDirectionChangedEventCallback == null)
             {
-                _layoutDirectionChangedEventCallback = OnLayoutDirectionChanged;
+                CreateSafeCallback(OnStaticLayoutDirectionChanged, out _layoutDirectionChangedEventCallback);
                 Interop.ActorSignal.LayoutDirectionChangedConnect(SwigCPtr, _layoutDirectionChangedEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
             }
@@ -95,7 +149,7 @@ namespace Tizen.NUI
 
                 Interop.ActorSignal.VisibilityChangedDisconnect(GetBaseHandleCPtrHandleRef, visibilityChangedEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                visibilityChangedEventCallback = null;
+                ReleaseSafeCallback(ref visibilityChangedEventCallback);
             }
 
             if (aggregatedVisibilityChangedEventCallback != null)
@@ -104,7 +158,7 @@ namespace Tizen.NUI
 
                 Interop.ActorSignal.AggregatedVisibilityChangedDisconnect(GetBaseHandleCPtrHandleRef, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
-                aggregatedVisibilityChangedEventCallback = null;
+                ReleaseSafeCallback(ref aggregatedVisibilityChangedEventCallback);
             }
 
             if (_layoutDirectionChangedEventCallback != null)
@@ -113,7 +167,7 @@ namespace Tizen.NUI
 
                 Interop.ActorSignal.LayoutDirectionChangedDisconnect(GetBaseHandleCPtrHandleRef, _layoutDirectionChangedEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExists();
-                _layoutDirectionChangedEventCallback = null;
+                ReleaseSafeCallback(ref _layoutDirectionChangedEventCallback);
             }
 
             LayoutCount = 0;
@@ -188,32 +242,19 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets the viewport (in window coordinates), type rectangle.
-        /// The contents of the layer will not be visible outside this box, when ViewportEnabled is true.
+        /// The contents of the layer will not be visible outside this box.
+        /// By default, it is the size of attached Window.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public Rectangle Viewport
         {
             get
             {
-                if (ClippingEnabled)
-                {
-                    Rectangle ret = new Rectangle(Interop.Layer.GetClippingBox(SwigCPtr), true);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                    return ret;
-                }
-                else
-                {
-                    // Clipping not enabled so return the window size
-                    Size2D windowSize = window?.Size;
-                    Rectangle ret = new Rectangle(0, 0, windowSize.Width, windowSize.Height);
-                    return ret;
-                }
+                return GetViewport();
             }
             set
             {
-                Interop.Layer.SetClippingBox(SwigCPtr, Rectangle.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                ClippingEnabled = true;
+                SetViewport(value);
             }
         }
 
@@ -299,25 +340,6 @@ namespace Tizen.NUI
             get
             {
                 return GetDepth();
-            }
-        }
-
-        /// <summary>
-        /// Internal only property to enable or disable clipping, type boolean.
-        /// By default, this is false, i.e., the viewport of the layer is the entire window.
-        /// </summary>
-        internal bool ClippingEnabled
-        {
-            get
-            {
-                bool ret = Interop.Layer.IsClipping(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-            set
-            {
-                Interop.Layer.SetClipping(SwigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
 
@@ -712,7 +734,7 @@ namespace Tizen.NUI
             {
                 if (visibilityChangedEventHandler == null)
                 {
-                    visibilityChangedEventCallback = OnVisibilityChanged;
+                    CreateSafeCallback(OnStaticVisibilityChanged, out visibilityChangedEventCallback);
                     Interop.ActorSignal.VisibilityChangedConnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -726,7 +748,7 @@ namespace Tizen.NUI
                 {
                     Interop.ActorSignal.VisibilityChangedDisconnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    visibilityChangedEventCallback = null;
+                    ReleaseSafeCallback(ref visibilityChangedEventCallback);
                 }
             }
         }
@@ -741,7 +763,7 @@ namespace Tizen.NUI
             {
                 if (aggregatedVisibilityChangedEventHandler == null)
                 {
-                    aggregatedVisibilityChangedEventCallback = OnAggregatedVisibilityChanged;
+                    CreateSafeCallback(OnStaticAggregatedVisibilityChanged, out aggregatedVisibilityChangedEventCallback);
                     Interop.ActorSignal.AggregatedVisibilityChangedConnect(SwigCPtr, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
                 }
@@ -755,7 +777,7 @@ namespace Tizen.NUI
                 {
                     Interop.ActorSignal.AggregatedVisibilityChangedDisconnect(SwigCPtr, aggregatedVisibilityChangedEventCallback.ToHandleRef(this));
                     NDalicPINVOKE.ThrowExceptionIfExists();
-                    aggregatedVisibilityChangedEventCallback = null;
+                    ReleaseSafeCallback(ref aggregatedVisibilityChangedEventCallback);
                 }
             }
         }
@@ -981,9 +1003,55 @@ namespace Tizen.NUI
             return ret;
         }
 
+        private void SetViewport(Rectangle viewport)
+        {
+            // Check by equality operator first.
+            if (_viewport != viewport)
+            {
+                Interop.Layer.SetClipping(SwigCPtr, (viewport != null));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
+
+            _viewport = viewport;
+
+            if (_viewport != null)
+            {
+                Interop.Layer.SetClippingBox(SwigCPtr, Rectangle.getCPtr(_viewport));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+            }
+        }
+
+        private Rectangle GetViewport()
+        {
+            if (_viewport == null && window != null)
+            {
+                // Clipping not enabled so return the window size
+                using Size2D windowSize = window.Size;
+                return new Rectangle(0, 0, windowSize.Width, windowSize.Height);
+            }
+            return _viewport;
+        }
+
         internal class Property
         {
             internal static readonly int BEHAVIOR = Interop.Layer.BehaviorGet();
+        }
+
+        internal void CreateSafeCallback<T>(T method, out T safeCallback) where T : Delegate
+        {
+            // TODO : Delgate strong-connected with object. So if we hold method, View could not be GC.
+            // But we have to keep safeCallback since Native could invoke it if View & Delegate GC.
+            // Until find good way to resolve this issue,
+
+            // AddToNativeHolder(method);
+            safeCallback = method;
+        }
+
+        internal void ReleaseSafeCallback<T>(ref T safeCallback) where T : Delegate
+        {
+            Debug.Assert(safeCallback != null);
+            // RemoveFromNativeHolder(safeCallback);
+            safeCallback = null;
         }
 
         // Callback for View visibility change signal
@@ -1017,11 +1085,6 @@ namespace Tizen.NUI
 
         private void OnLayoutDirectionChanged(IntPtr data, ViewLayoutDirectionType type)
         {
-            if (IsDisposedOrQueued)
-            {
-                return;
-            }
-
             foreach (var child in Children)
             {
                 child.RequestLayoutForInheritLayoutDirection();

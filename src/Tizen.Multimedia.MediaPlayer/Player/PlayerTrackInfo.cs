@@ -62,7 +62,7 @@ namespace Tizen.Multimedia
             NativePlayer.GetTrackCount(_owner.Handle, _streamType, out var count).
                 ThrowIfFailed(_owner, "Failed to get count of the track");
 
-            Log.Info(PlayerLog.Tag, "get count : " + count);
+            Log.Info(PlayerLog.Tag, $"get count : {count}");
 
             return count;
         }
@@ -116,7 +116,7 @@ namespace Tizen.Multimedia
                     Log.Error(PlayerLog.Tag, "not defined code");
                     return null;
                 }
-                Log.Info(PlayerLog.Tag, "get language code : " + result);
+                Log.Info(PlayerLog.Tag, $"get language code : {result}");
                 return result;
             }
             finally
@@ -158,7 +158,7 @@ namespace Tizen.Multimedia
 
                 NativePlayer.GetCurrentTrack(_owner.Handle, _streamType, out var value).
                     ThrowIfFailed(_owner, "Failed to get the selected index of the player");
-                Log.Debug(PlayerLog.Tag, "get selected index : " + value);
+                Log.Debug(PlayerLog.Tag, $"get selected index : {value}");
                 return value;
             }
             set

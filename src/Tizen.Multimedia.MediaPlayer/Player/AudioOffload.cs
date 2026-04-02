@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -170,11 +170,11 @@ namespace Tizen.Multimedia
             {
                 if (!Enum.IsDefined(typeof(MediaFormatAudioMimeType), format))
                 {
-                    Log.Warn(PlayerLog.Tag, "not supported : " + format.ToString());
+                    Log.Warn(PlayerLog.Tag, $"not supported : {format.ToString()}");
                     return false;
                 }
 
-                Log.Debug(PlayerLog.Tag, "supported : " + ((MediaFormatAudioMimeType)format).ToString());
+                Log.Debug(PlayerLog.Tag, $"supported : {((MediaFormatAudioMimeType)format).ToString()}");
                 audioFormats.Add((MediaFormatAudioMimeType)format);
                 return true;
             };

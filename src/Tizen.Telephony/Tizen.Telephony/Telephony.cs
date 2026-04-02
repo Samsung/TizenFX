@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -103,7 +103,7 @@ namespace Tizen.Telephony
                     Interop.Telephony.TelephonyError error = Interop.Telephony.TelephonySetStateChangedCb(stateDelegate, IntPtr.Zero);
                     if (error != TelephonyError.None)
                     {
-                        Log.Error(LogTag, "Add StateChanged Failed with Error: " + error);
+                        Log.Error(LogTag, $"Add StateChanged Failed with Error: {error}");
                     }
 
                     else
@@ -122,7 +122,7 @@ namespace Tizen.Telephony
                     Interop.Telephony.TelephonyError error = Interop.Telephony.TelephonyUnsetStateChangedCb(stateDelegate);
                     if (error != TelephonyError.None)
                     {
-                        Log.Error(LogTag, "Remove StateChanged Failed with Error: " + error);
+                        Log.Error(LogTag, $"Remove StateChanged Failed with Error: {error}");
                     }
                 }
             }
@@ -144,7 +144,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Telephony.TelephonyGetState(out state);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetState Failed with Error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetState Failed with Error {error}");
                     return State.Unavailable;
                 }
 

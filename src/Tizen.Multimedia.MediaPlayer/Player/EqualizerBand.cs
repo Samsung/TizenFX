@@ -37,7 +37,7 @@ namespace Tizen.Multimedia
             _owner = owner;
             _index = index;
 
-            Log.Debug(PlayerLog.Tag, "frequency : " + Frequency + ", range : " + FrequencyRange);
+            Log.Debug(PlayerLog.Tag, $"frequency : {Frequency}, range : {FrequencyRange}");
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace Tizen.Multimedia
                 Native.GetEqualizerBandLevel(_owner.Player.Handle, _index, out var value).
                     ThrowIfFailed(_owner.Player, "Failed to get the level of the equalizer band");
 
-                Log.Info(PlayerLog.Tag, "get level : " + value);
+                Log.Info(PlayerLog.Tag, $"get level : {value}");
                 return value;
             }
             set
@@ -72,7 +72,7 @@ namespace Tizen.Multimedia
 
                 if (value < _owner.BandLevelRange.Min || _owner.BandLevelRange.Max < value)
                 {
-                    Log.Error(PlayerLog.Tag, "invalid level : " + value);
+                    Log.Error(PlayerLog.Tag, $"invalid level : {value}");
                     throw new ArgumentOutOfRangeException(nameof(value), value,
                         $"valid value range is { nameof(AudioEffect.BandLevelRange) }." +
                         $"but got {value}.");

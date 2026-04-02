@@ -27,11 +27,6 @@ namespace Tizen.NUI.Components.Devel.Tests
             public MySwitch() : base()
             { }
 
-            public void OnAccessibilityCalculateStates()
-            {
-                GetAccessibilityStates();
-            }
-
             public void MyOnControlStateChanged(ControlStateChangedEventArgs controlStateChangedInfo)
             {
                 base.OnControlStateChanged(controlStateChangedInfo);
@@ -48,36 +43,6 @@ namespace Tizen.NUI.Components.Devel.Tests
         public void Destroy()
         {
             tlog.Info(tag, "Destroy() is called!");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Switch AccessibilityCalculateStates.")]
-        [Property("SPEC", "Tizen.NUI.Components.Switch.AccessibilityCalculateStates M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void SwitchAccessibilityCalculateStates()
-        {
-            tlog.Debug(tag, $"SwitchAccessibilityCalculateStates START");
-
-            var testingTarget = new MySwitch();
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Switch>(testingTarget, "Should return Switch instance.");
-
-            try
-            {
-                testingTarget.OnAccessibilityCalculateStates();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"SwitchAccessibilityCalculateStates END (OK)");
         }
 
         [Test]

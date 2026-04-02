@@ -41,7 +41,7 @@ internal static partial class Interop
         {
             internal static Exception GetException(Interop.ThemeManager.ErrorCode err, string message)
             {
-                string errMessage = string.Format("{0} err = {1}", message, err);
+                string errMessage = $"{message} err = {err}";
                 Log.Warn(LogTag, errMessage);
                 switch (err)
                 {

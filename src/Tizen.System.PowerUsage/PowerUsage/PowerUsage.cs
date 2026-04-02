@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2020 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -88,7 +88,7 @@ namespace Tizen.System
                 PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.GetPowerUsageByAppForAllResources(appID, Convert.ToInt32(((DateTimeOffset)start).ToUnixTimeSeconds()), Convert.ToInt32(((DateTimeOffset)end).ToUnixTimeSeconds()), out dataHandle);
                 if (ret != PowerUsageError.None)
                 {
-                    Log.Error(PowerUsageErrorFactory.LogTag, "Error getting battery usage for all resources" + ret);
+                    Log.Error(PowerUsageErrorFactory.LogTag, $"Error getting battery usage for all resources{ret}");
                     throw PowerUsageErrorFactory.ThrowPowerUsageException(ret);
                 }
 
@@ -117,7 +117,7 @@ namespace Tizen.System
                 PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.BatteryUsageDataDestroy(dataHandle);
                 if (ret != PowerUsageError.None)
                 {
-                    Log.Error(PowerUsageErrorFactory.LogTag, "Error in Destroy handle, " + ret);
+                    Log.Error(PowerUsageErrorFactory.LogTag, $"Error in Destroy handle, {ret}");
                 }
             }
             return batteryUsage;
@@ -151,7 +151,7 @@ namespace Tizen.System
                 }
                 else
                 {
-                    Log.Error(PowerUsageErrorFactory.LogTag, "Error getting battery usage by app per resrource ," + ret);
+                    Log.Error(PowerUsageErrorFactory.LogTag, $"Error getting battery usage by app per resrource ,{ret}");
                     throw PowerUsageErrorFactory.ThrowPowerUsageException(ret);
                 }
             }
@@ -178,7 +178,7 @@ namespace Tizen.System
             PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.GetPowerUsageByApp(appID, Convert.ToInt32(((DateTimeOffset)start).ToUnixTimeSeconds()), Convert.ToInt32(((DateTimeOffset)end).ToUnixTimeSeconds()), out batteryUsage);
             if (ret != PowerUsageError.None)
             {
-                Log.Error(PowerUsageErrorFactory.LogTag, "Error getting battery usage by app," + ret);
+                Log.Error(PowerUsageErrorFactory.LogTag, $"Error getting battery usage by app,{ret}");
                 throw PowerUsageErrorFactory.ThrowPowerUsageException(ret);
             }
             return batteryUsage;
@@ -211,7 +211,7 @@ namespace Tizen.System
                 }
                 else
                 {
-                    Log.Error(PowerUsageErrorFactory.LogTag, "Error getting battery usage by resource ," + ret);
+                    Log.Error(PowerUsageErrorFactory.LogTag, $"Error getting battery usage by resource ,{ret}");
                     throw PowerUsageErrorFactory.ThrowPowerUsageException(ret);
                 }
             }
@@ -236,7 +236,7 @@ namespace Tizen.System
             PowerUsageError ret = (PowerUsageError)Interop.PowerUsage.UsageDataGetPowerUsagePerResource(dataHandle, rtype, out batteryUsage);
             if (ret != PowerUsageError.None)
             {
-                Log.Error(PowerUsageErrorFactory.LogTag, "Error getting battery usage for resource" + ret);
+                Log.Error(PowerUsageErrorFactory.LogTag, $"Error getting battery usage for resource{ret}");
                 throw PowerUsageErrorFactory.ThrowPowerUsageException(ret);
             }
             return batteryUsage;

@@ -256,14 +256,14 @@ namespace Tizen.MachineLearning.Train
         {
             if (error != NNTrainerError.None)
             {
-                Log.Error(NNTrainer.Tag, msg + ": " + error.ToString());
+                Log.Error(NNTrainer.Tag, $"{msg}: {error.ToString()}");
                 throw NNTrainerExceptionFactory.CreateException(error, msg);
             }
         }
 
     }
 
-    internal class NNTrainerExceptionFactory
+    internal sealed class NNTrainerExceptionFactory
     {
         internal static Exception CreateException(NNTrainerError err, string msg)
         {

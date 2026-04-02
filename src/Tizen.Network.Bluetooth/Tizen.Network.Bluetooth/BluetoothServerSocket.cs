@@ -118,7 +118,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SetConnectionStateChangedCallback(_connectionStateChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set accept state changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set accept state changed callback, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -128,7 +128,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.UnsetSocketConnectionStateChangedCallback();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset accept state changed callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset accept state changed callback, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -147,7 +147,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.Listen(socketFd, 1);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to accept connection, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to accept connection, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -166,7 +166,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.ListenWithoutAccept(socketFd, 1);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to ListenWithoutAccept, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to ListenWithoutAccept, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -192,7 +192,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.Accept(socketFd);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to accept connection, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to accept connection, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
             return _taskForAccept.Task;
@@ -212,7 +212,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.Reject(socketFd);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to reject connection, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to reject connection, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -256,7 +256,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.SetSocketConnectionRequestedCallback(_connectionRequestedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set connection requested callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set connection requested callback, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -266,7 +266,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.UnsetSocketConnectionRequestedCallback();
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset connection requested callback, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset connection requested callback, Error - {(BluetoothError)ret}");
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -297,7 +297,7 @@ namespace Tizen.Network.Bluetooth
             int ret = Interop.Bluetooth.DestroyServerSocket(socketFd);
             if (ret != (int)BluetoothError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to destroy socket, Error - " + (BluetoothError)ret);
+                Log.Error(Globals.LogTag, $"Failed to destroy socket, Error - {(BluetoothError)ret}");
             }
             StaticAcceptStateChanged -= OnAcceptStateChanged;
             StaticConnectionRequested -= OnConnectionRequested;

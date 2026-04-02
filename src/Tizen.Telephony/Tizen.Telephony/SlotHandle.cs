@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -77,7 +77,7 @@ namespace Tizen.Telephony
             }
             catch (Exception e)
             {
-                Tizen.Log.Error(Interop.Telephony.LogTag, "SetNotificationId Failed with Error " + e.ToString());
+                Tizen.Log.Error(Interop.Telephony.LogTag, $"SetNotificationId Failed with Error {e.ToString()}");
                 throw e;
             }
         }

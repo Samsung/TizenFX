@@ -152,6 +152,7 @@ namespace Tizen.NUI.BaseComponents
         };
         internal PropertyMap cachedImagePropertyMap;
         internal bool imagePropertyUpdatedFlag;
+        internal bool allowToCreateVisualEmptyUrl = false;
 
         private bool imagePropertyUpdateProcessAttachedFlag;
         private Rectangle _border;
@@ -280,6 +281,41 @@ namespace Tizen.NUI.BaseComponents
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void _resourceLoadedCallbackType(IntPtr view);
 
+        // Static callback wrappers
+        private static void OnStaticResourceReady(IntPtr imageViewCPtr)
+        {
+            var imageView = Registry.GetManagedBaseHandleFromNativePtr(imageViewCPtr) as ImageView;
+            if (imageView == null)
+            {
+                NUILog.Error("ResourceReady comes from Disposed (or GC) ImageView!\n");
+                return;
+            }
+
+            if (imageView.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            imageView.OnResourceReady(imageViewCPtr);
+        }
+
+        private static void OnStaticResourceLoaded(IntPtr imageViewCPtr)
+        {
+            var imageView = Registry.GetManagedBaseHandleFromNativePtr(imageViewCPtr) as ImageView;
+            if (imageView == null)
+            {
+                NUILog.Error("ResourceLoaded comes from Disposed (or GC) ImageView!\n");
+                return;
+            }
+
+            if (imageView.IsDisposedOrQueued)
+            {
+                return;
+            }
+
+            imageView.OnResourceLoaded(imageViewCPtr);
+        }
+
         /// <summary>
         /// An event for ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted after all resources required by a control are loaded and ready.<br />
@@ -292,10 +328,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_resourceReadyEventHandler == null)
                 {
-                    _resourceReadyEventCallback = OnResourceReady;
-                    ViewResourceReadySignal resourceReadySignal = ResourceReadySignal(this);
+                    CreateSafeCallback(OnStaticResourceReady, out _resourceReadyEventCallback);
+                    using ViewResourceReadySignal resourceReadySignal = ResourceReadySignal(this);
                     resourceReadySignal?.Connect(_resourceReadyEventCallback);
-                    resourceReadySignal?.Dispose();
                 }
 
                 _resourceReadyEventHandler += value;
@@ -309,7 +344,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     using ViewResourceReadySignal resourceReadySignal = ResourceReadySignal(this);
                     resourceReadySignal?.Disconnect(_resourceReadyEventCallback);
-                    _resourceReadyEventCallback = null;
+                    ReleaseSafeCallback(ref _resourceReadyEventCallback);
                 }
             }
         }
@@ -320,10 +355,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_resourceLoadedEventHandler == null)
                 {
-                    _resourceLoadedCallback = OnResourceLoaded;
-                    ViewResourceReadySignal resourceReadySignal = this.ResourceReadySignal(this);
+                    CreateSafeCallback(OnStaticResourceLoaded, out _resourceLoadedCallback);
+                    using ViewResourceReadySignal resourceReadySignal = this.ResourceReadySignal(this);
                     resourceReadySignal?.Connect(_resourceLoadedCallback);
-                    resourceReadySignal?.Dispose();
                 }
 
                 _resourceLoadedEventHandler += value;
@@ -335,7 +369,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     using ViewResourceReadySignal resourceReadySignal = this.ResourceReadySignal(this);
                     resourceReadySignal?.Disconnect(_resourceLoadedCallback);
-                    _resourceLoadedCallback = null;
+                    ReleaseSafeCallback(ref _resourceLoadedCallback);
                 }
             }
         }
@@ -2261,6 +2295,23 @@ namespace Tizen.NUI.BaseComponents
                 cachedImagePropertyMap = null;
             }
 
+            if (this.HasBody())
+            {
+                if (_resourceReadyEventCallback != null)
+                {
+                    using ViewResourceReadySignal resourceReadySignal = ResourceReadySignal(this);
+                    resourceReadySignal?.Disconnect(_resourceReadyEventCallback);
+                    ReleaseSafeCallback(ref _resourceReadyEventCallback);
+                }
+
+                if (_resourceLoadedCallback != null)
+                {
+                    using ViewResourceReadySignal resourceReadySignal = ResourceReadySignal(this);
+                    resourceReadySignal?.Disconnect(_resourceLoadedCallback);
+                    ReleaseSafeCallback(ref _resourceLoadedCallback);
+                }
+            }
+
             base.Dispose(type);
         }
 
@@ -2274,12 +2325,6 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View ResourceReady signal
         private void OnResourceReady(IntPtr data)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             if (!CheckResourceReady())
             {
                 return;
@@ -2343,7 +2388,7 @@ namespace Tizen.NUI.BaseComponents
         {
             // If previous resourceUrl was already empty, we don't need to do anything. just ignore.
             // Unregist and detach process only if previous resourceUrl was not empty
-            if (!string.IsNullOrEmpty(_resourceUrl))
+            if (allowToCreateVisualEmptyUrl || !string.IsNullOrEmpty(_resourceUrl))
             {
                 using PropertyValue emptyValue = new PropertyValue();
 
@@ -2456,7 +2501,7 @@ namespace Tizen.NUI.BaseComponents
                 cachedImagePropertyMap[key] = value;
 
                 // Lazy update only if visual creation required, and _resourceUrl is not empty, and ProcessAttachedFlag is false.
-                if (requiredVisualCreation && !string.IsNullOrEmpty(_resourceUrl) && !imagePropertyUpdateProcessAttachedFlag)
+                if (requiredVisualCreation && (allowToCreateVisualEmptyUrl || !string.IsNullOrEmpty(_resourceUrl)) && !imagePropertyUpdateProcessAttachedFlag)
                 {
                     imagePropertyUpdateProcessAttachedFlag = true;
                     ProcessorController.Instance.ProcessorOnceEvent += UpdateImage;
@@ -2508,7 +2553,7 @@ namespace Tizen.NUI.BaseComponents
             if (!((GetCachedImageVisualProperty(Visual.Property.Type)?.Get(out visualType) ?? false) && (visualType == (int)Visual.Type.AnimatedImage)))
             {
                 // If ResourceUrl is not setuped, don't set property. fast return.
-                if (string.IsNullOrEmpty(_resourceUrl))
+                if (!allowToCreateVisualEmptyUrl && string.IsNullOrEmpty(_resourceUrl))
                 {
                     return;
                 }
@@ -2626,12 +2671,6 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnResourceLoaded(IntPtr view)
         {
-            if (Disposed || IsDisposeQueued)
-            {
-                // Ignore native callback if the view is disposed or queued for disposal.
-                return;
-            }
-
             if (!CheckResourceReady())
             {
                 return;

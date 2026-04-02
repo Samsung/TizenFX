@@ -19,7 +19,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class FocusGroupChangedSignal : Disposable
+    internal sealed class FocusGroupChangedSignal : Disposable
     {
         internal FocusGroupChangedSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

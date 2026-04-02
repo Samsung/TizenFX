@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -37,7 +37,7 @@ namespace Tizen.Location
         public static bool IsSupportedType(LocationType locationType)
         {
             bool status = Interop.LocatorHelper.IsSupported((int)locationType);
-            Log.Info(Globals.LogTag, "Checking if the Location Manager type is supported ," + status);
+            Log.Info(Globals.LogTag, $"Checking if the Location Manager type is supported ,{status}");
             return status;
         }
 
@@ -59,7 +59,7 @@ namespace Tizen.Location
             int ret = Interop.LocatorHelper.IsEnabled((int)locationType, out status);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error Checking the Location Manager type is Enabled," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error Checking the Location Manager type is Enabled,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
             return status;
@@ -84,7 +84,7 @@ namespace Tizen.Location
             int ret = Interop.LocatorHelper.EnableType((int)locationType, status);
             if (((LocationError)ret != LocationError.None))
             {
-                Log.Error(Globals.LogTag, "Error Sets the Location type," + (LocationError)ret);
+                Log.Error(Globals.LogTag, $"Error Sets the Location type,{(LocationError)ret}");
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
         }

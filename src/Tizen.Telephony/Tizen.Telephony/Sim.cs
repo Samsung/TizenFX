@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -161,7 +161,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Sim.GetIccId(_handle, out iccId);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetIccId Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetIccId Failed with error {error}");
                     return "";
                 }
 
@@ -191,7 +191,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Sim.GetOperator(_handle, out simOperator);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetOperator Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetOperator Failed with error {error}");
                     return "";
                 }
 
@@ -220,7 +220,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Sim.GetMsin(_handle, out msin);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetMsin Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetMsin Failed with error {error}");
                     return "";
                 }
 
@@ -250,7 +250,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Sim.GetSpn(_handle, out spn);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetSpn Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetSpn Failed with error {error}");
                     return "";
                 }
 
@@ -279,7 +279,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Sim.IsChanged(_handle, out ischanged);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "IsChanged Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"IsChanged Failed with error {error}");
                     return false;
                 }
 
@@ -309,7 +309,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Sim.GetState(_handle, out currentState);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetState Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetState Failed with error {error}");
                     return State.Unavailable;
                 }
 
@@ -338,7 +338,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Sim.GetApplicationList(_handle, out appList);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetApplicationList Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetApplicationList Failed with error {error}");
                     return 0;
                 }
 
@@ -368,7 +368,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Sim.GetSubscriberNumber(_handle, out subscriberNumber);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetSubscriberNumber Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetSubscriberNumber Failed with error {error}");
                     return "";
                 }
 
@@ -397,7 +397,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Sim.GetSubscriberId(_handle, out subscriberId);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetSubscriberId Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetSubscriberId Failed with error {error}");
                     return "";
                 }
 
@@ -425,7 +425,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Sim.GetLockState(_handle, out currentLockState);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetLockState Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetLockState Failed with error {error}");
                     return LockState.Unknown;
                 }
 
@@ -455,7 +455,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Sim.GetGroupId1(_handle, out groupId1);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetGroupId1 Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetGroupId1 Failed with error {error}");
                     return "";
                 }
 
@@ -484,7 +484,7 @@ namespace Tizen.Telephony
                 TelephonyError error = Interop.Sim.GetCallForwardingIndicatorState(_handle, out callForwardingIndicatorState);
                 if (error != TelephonyError.None)
                 {
-                    Tizen.Log.Error(Interop.Telephony.LogTag, "GetCallForwardingIndicatorState Failed with error " + error);
+                    Tizen.Log.Error(Interop.Telephony.LogTag, $"GetCallForwardingIndicatorState Failed with error {error}");
                     return false;
                 }
 

@@ -52,7 +52,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionWiFiProfile.GetEssid(ProfileHandle, out value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to create profile handle, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to create profile handle, {(ConnectionError)ret}");
                 }
                 string result = Marshal.PtrToStringAnsi(value);
                 Interop.Glib.Free(value);
@@ -73,7 +73,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionWiFiProfile.GetBssid(ProfileHandle, out value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get bssid, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get bssid, {(ConnectionError)ret}");
                 }
                 string result = Marshal.PtrToStringAnsi(value);
                 Interop.Glib.Free(value);
@@ -94,7 +94,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionWiFiProfile.GetRssi(ProfileHandle, out value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get rssi, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get rssi, {(ConnectionError)ret}");
                 }
                 return value;
             }
@@ -113,7 +113,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionWiFiProfile.GetFrequency(ProfileHandle, out value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get frequency, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get frequency, {(ConnectionError)ret}");
                 }
                 return value;
             }
@@ -132,7 +132,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionWiFiProfile.GetMaxSpeed(ProfileHandle, out value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get max speed, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get max speed, {(ConnectionError)ret}");
                 }
                 return value;
             }
@@ -151,7 +151,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionWiFiProfile.GetSecurityType(ProfileHandle, out value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get security type, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get security type, {(ConnectionError)ret}");
                 }
                 return (WiFiSecurityType)value;
             }
@@ -170,7 +170,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionWiFiProfile.GetEncryptionType(ProfileHandle, out value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get encryption type, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get encryption type, {(ConnectionError)ret}");
                 }
                 return (WiFiEncryptionType)value;
             }
@@ -190,7 +190,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionWiFiProfile.IsRequiredPassphrase(ProfileHandle, out value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get PassphraseRequired, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get PassphraseRequired, {(ConnectionError)ret}");
                 }
                 return value;
             }
@@ -209,7 +209,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionWiFiProfile.IsSupportedWps(ProfileHandle, out value);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to get IsSupportedWps, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to get IsSupportedWps, {(ConnectionError)ret}");
                 }
                 return value;
             }
@@ -234,7 +234,7 @@ namespace Tizen.Network.Connection
                 int ret = Interop.ConnectionWiFiProfile.SetPassphrase(ProfileHandle, passphrase);
                 if ((ConnectionError)ret != ConnectionError.None)
                 {
-                    Log.Error(Globals.LogTag, "It failed to set passphrase, " + (ConnectionError)ret);
+                    Log.Error(Globals.LogTag, $"It failed to set passphrase, {(ConnectionError)ret}");
                     ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.wifi");
                     ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");
                     ConnectionErrorFactory.ThrowConnectionException(ret);

@@ -366,7 +366,7 @@ namespace Tizen.System
             Interop.Feedback.FeedbackError res = (Interop.Feedback.FeedbackError)Interop.Feedback.Initialize();
             if (res != Interop.Feedback.FeedbackError.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to initialize feedback. err = {0}", res));
+                Log.Warn(LogTag, $"Failed to initialize feedback. err = {res}");
                 switch (res)
                 {
                     case Interop.Feedback.FeedbackError.NotSupported:
@@ -389,7 +389,7 @@ namespace Tizen.System
             Interop.Feedback.FeedbackError res = (Interop.Feedback.FeedbackError)Interop.Feedback.Deinitialize();
             if (res != Interop.Feedback.FeedbackError.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to deinitialize feedback. err = {0}", res));
+                Log.Warn(LogTag, $"Failed to deinitialize feedback. err = {res}");
             }
         }
 
@@ -435,7 +435,7 @@ namespace Tizen.System
 
             if (res != Interop.Feedback.FeedbackError.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get supported information. err = {0}", res));
+                Log.Warn(LogTag, $"Failed to get supported information. err = {res}");
                 switch (res)
                 {
                     case Interop.Feedback.FeedbackError.NotInitialized:
@@ -496,7 +496,7 @@ namespace Tizen.System
 
             if (res != Interop.Feedback.FeedbackError.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to play feedback. err = {0}", res));
+                Log.Warn(LogTag, $"Failed to play feedback. err = {res}");
                 switch (res)
                 {
                     case Interop.Feedback.FeedbackError.NotInitialized:
@@ -543,7 +543,7 @@ namespace Tizen.System
 
             if (res != Interop.Feedback.FeedbackError.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to stop feedback. err = {0}", res));
+                Log.Warn(LogTag, $"Failed to stop feedback. err = {res}");
                 switch (res)
                 {
                     case Interop.Feedback.FeedbackError.NotInitialized:
@@ -592,7 +592,7 @@ namespace Tizen.System
 
             if (res != Interop.Feedback.FeedbackError.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get count of theme internal. err = {0}", res));
+                Log.Warn(LogTag, $"Failed to get count of theme internal. err = {res}");
                 switch (res)
                 {
                     case Interop.Feedback.FeedbackError.NotInitialized:
@@ -639,7 +639,7 @@ namespace Tizen.System
 
             if (res != Interop.Feedback.FeedbackError.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get id of theme internal. err = {0}", res));
+                Log.Warn(LogTag, $"Failed to get id of theme internal. err = {res}");
                 switch (res)
                 {
                     case Interop.Feedback.FeedbackError.InvalidParameter:
@@ -686,7 +686,7 @@ namespace Tizen.System
 
             if (res != Interop.Feedback.FeedbackError.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to set id of theme internal. err = {0}", res));
+                Log.Warn(LogTag, $"Failed to set id of theme internal. err = {res}");
                 switch (res)
                 {
                     case Interop.Feedback.FeedbackError.InvalidParameter:
@@ -732,7 +732,7 @@ namespace Tizen.System
 
             if (res != Interop.Feedback.FeedbackError.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to Stop feedback by feedback type internal. err = {0}", res));
+                Log.Warn(LogTag, $"Failed to Stop feedback by feedback type internal. err = {res}");
                 switch (res)
                 {
                     case Interop.Feedback.FeedbackError.NotInitialized:
@@ -781,7 +781,7 @@ namespace Tizen.System
             res = (Interop.Feedback.FeedbackError)Interop.Feedback.GetThemeIdsInternal((Interop.Feedback.FeedbackType)type, out countOfTheme, out getThemeIds);
             if (res != Interop.Feedback.FeedbackError.None)
             {
-                Log.Warn(LogTag, string.Format("Failed to get ids of theme internal. err = {0}", res));
+                Log.Warn(LogTag, $"Failed to get ids of theme internal. err = {res}");
                 switch (res)
                 {
                     case Interop.Feedback.FeedbackError.InvalidParameter:

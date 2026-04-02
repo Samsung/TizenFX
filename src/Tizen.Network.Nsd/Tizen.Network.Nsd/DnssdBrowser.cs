@@ -57,7 +57,7 @@ namespace Tizen.Network.Nsd
         public DnssdBrowser(string serviceType)
         {
             DnssdInitializer dnssdInit = Globals.s_threadDns.Value;
-            Log.Info(Globals.LogTag, "Initialize ThreadLocal<DnssdInitializer> instance = " + dnssdInit);
+            Log.Info(Globals.LogTag, $"Initialize ThreadLocal<DnssdInitializer> instance = {dnssdInit}");
             if(serviceType == null)
             {
                 Log.Debug(Globals.LogTag, "serviceType is null");
@@ -83,7 +83,7 @@ namespace Tizen.Network.Nsd
         public void StartDiscovery()
         {
             DnssdInitializer dnssdInit = Globals.s_threadDns.Value;
-            Log.Info(Globals.LogTag, "Initialize ThreadLocal<DnssdInitializer> instance = " + dnssdInit);
+            Log.Info(Globals.LogTag, $"Initialize ThreadLocal<DnssdInitializer> instance = {dnssdInit}");
 
             _serviceFoundCallback = (DnssdServiceState state, uint service, IntPtr userData) =>
             {
@@ -98,7 +98,7 @@ namespace Tizen.Network.Nsd
             int ret = Interop.Nsd.Dnssd.StartBrowsing(_serviceType, out _browserHandle, _serviceFoundCallback, IntPtr.Zero);
             if (ret != (int)DnssdError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to discover Dnssd remote service, Error - " + (DnssdError)ret);
+                Log.Error(Globals.LogTag, $"Failed to discover Dnssd remote service, Error - {(DnssdError)ret}");
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
         }
@@ -115,7 +115,7 @@ namespace Tizen.Network.Nsd
             int ret = Interop.Nsd.Dnssd.StopBrowsing(_browserHandle);
             if (ret != (int)DnssdError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to stop discovery of Dnssd remote service, Error - " + (DnssdError)ret);
+                Log.Error(Globals.LogTag, $"Failed to stop discovery of Dnssd remote service, Error - {(DnssdError)ret}");
                 NsdErrorFactory.ThrowDnssdException(ret);
             }
         }

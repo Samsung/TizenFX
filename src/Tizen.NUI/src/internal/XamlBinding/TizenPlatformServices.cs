@@ -30,7 +30,7 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Binding
 {
-    internal class TizenPlatformServices : IPlatformServices
+    internal sealed class TizenPlatformServices : IPlatformServices
     {
         static SHA256 checksum = SHA256.Create();
 
@@ -123,7 +123,7 @@ namespace Tizen.NUI.Binding
         #endregion
 
         // In .NETCore, AppDomain is not supported. The list of the assemblies should be generated manually.
-        internal class AppDomain
+        internal sealed class AppDomain
         {
             public static AppDomain CurrentDomain { get; private set; }
 

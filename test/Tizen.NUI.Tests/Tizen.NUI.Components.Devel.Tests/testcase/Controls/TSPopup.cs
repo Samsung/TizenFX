@@ -32,11 +32,6 @@ namespace Tizen.NUI.Components.Devel.Tests
             {
                 base.OnUpdate();
             }
-
-            public AccessibilityStates OnAccessibilityCalculateStates()
-            {
-                return base.AccessibilityCalculateStates();
-            }
         }
 
         [SetUp]
@@ -467,35 +462,6 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"PopupOnUpdate END (OK)");
-        }
-
-        [Category("P1")]
-        [Description("Popup AccessibilityCalculateStates.")]
-        [Property("SPEC", "Tizen.NUI.Components.Popup.AccessibilityCalculateStates M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        [Obsolete]
-        public void PopupAccessibilityCalculateStates()
-        {
-            tlog.Debug(tag, $"PopupAccessibilityCalculateStates START");
-
-            var testingTarget = new PopupImpl();
-            Assert.IsNotNull(testingTarget, "null handle");
-
-            try
-            {
-                testingTarget.OnAccessibilityCalculateStates();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"PopupAccessibilityCalculateStates END (OK)");
         }
     }
 }

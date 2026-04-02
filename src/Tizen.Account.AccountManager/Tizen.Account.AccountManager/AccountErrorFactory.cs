@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -124,13 +124,13 @@ namespace Tizen.Account.AccountManager
         DBBusy = -0x01000000 | 0x10
     };
 
-    internal class AccountErrorFactory
+    internal sealed class AccountErrorFactory
     {
         internal const string LogTag = "Tizen.Account.AccountManager";
 
         internal static Exception CreateException(AccountError err, string msg)
         {
-            Log.Info(LogTag, "Got Error " + err + " throwing Exception with msg " + msg);
+            Log.Info(LogTag, $"Got Error {err} throwing Exception with msg {msg}");
             Exception exp;
             switch (err)
             {

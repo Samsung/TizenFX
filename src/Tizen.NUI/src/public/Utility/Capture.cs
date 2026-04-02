@@ -413,7 +413,7 @@ namespace Tizen.NUI
         public bool Success { get; internal set; }
     }
 
-    internal class CaptureSignal : Disposable
+    internal sealed class CaptureSignal : Disposable
     {
         internal CaptureSignal(IntPtr cPtr) : base(cPtr, false)
         {

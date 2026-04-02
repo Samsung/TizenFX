@@ -135,7 +135,7 @@ namespace Tizen.Multimedia
                     throw new NotAvailableException(msg);
 
                 default:
-                    Log.Info(PlayerLog.Tag, "Unknow error: " + errorCode);
+                    Log.Info(PlayerLog.Tag, $"Unknow error: {errorCode}");
                     break;
             }
 

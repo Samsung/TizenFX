@@ -1,4 +1,4 @@
-﻿/*
+/*
 * Copyright (c) 2016 - 2017 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -18,7 +18,7 @@ using System;
 
 namespace Tizen.System
 {
-    internal class RuntimeInfoEventHandler
+    internal sealed class RuntimeInfoEventHandler
     {
         private RuntimeInfoKey Key;
         private event EventHandler<RuntimeFeatureStatusChangedEventArgs> Handler;

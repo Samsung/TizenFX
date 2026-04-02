@@ -33,7 +33,7 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class TextLabel : View, IPropertyProvider
     {
-        internal class TextLabelLayout : LayoutItem
+        internal sealed class TextLabelLayout : LayoutItem
         {
             private float lastWidth = 0;
             private float lastHeight = 0;
@@ -2916,7 +2916,7 @@ namespace Tizen.NUI.BaseComponents
         /// | OptionList | PointSize   | 24 | 28 | 32 | 48 |
         /// |            | MinLineSize | 40 | 48 | 48 | 62 | &lt;&lt; MinLineSize sorted in ascending order
         ///                                    ^    ^
-        ///                                    same values ​are not a problem
+        ///                                    same values ?땇re not a problem
         ///
         /// [Binary search not possible]
         /// |            | List index  |  0 |  1 |  2 |  3 |
@@ -3682,30 +3682,32 @@ namespace Tizen.NUI.BaseComponents
                 {
                     using var signal = AnchorClickedSignal();
                     signal.Disconnect(textLabelAnchorClickedCallbackDelegate);
+                    ReleaseSafeCallback(ref textLabelAnchorClickedCallbackDelegate);
                 }
 
                 if (textLabelTextFitChangedCallbackDelegate != null)
                 {
                     using var signal = TextFitChangedSignal();
                     signal.Disconnect(textLabelTextFitChangedCallbackDelegate);
+                    ReleaseSafeCallback(ref textLabelTextFitChangedCallbackDelegate);
                 }
 
                 if (textLabelAsyncTextRenderedCallbackDelegate != null)
                 {
                     Interop.TextLabel.AsyncTextRenderedDisconnect(this.SwigCPtr, textLabelAsyncTextRenderedCallbackDelegate.ToHandleRef(this));
-                    textLabelAsyncTextRenderedCallbackDelegate = null;
+                    ReleaseSafeCallback(ref textLabelAsyncTextRenderedCallbackDelegate);
                 }
 
                 if (textLabelAsyncNaturalSizeComputedCallbackDelegate != null)
                 {
                     Interop.TextLabel.AsyncNaturalSizeComputedDisconnect(this.SwigCPtr, textLabelAsyncNaturalSizeComputedCallbackDelegate.ToHandleRef(this));
-                    textLabelAsyncNaturalSizeComputedCallbackDelegate = null;
+                    ReleaseSafeCallback(ref textLabelAsyncNaturalSizeComputedCallbackDelegate);
                 }
 
                 if (textLabelAsyncHeightForWidthComputedCallbackDelegate != null)
                 {
                     Interop.TextLabel.AsyncHeightForWidthComputedDisconnect(this.SwigCPtr, textLabelAsyncHeightForWidthComputedCallbackDelegate.ToHandleRef(this));
-                    textLabelAsyncHeightForWidthComputedCallbackDelegate = null;
+                    ReleaseSafeCallback(ref textLabelAsyncHeightForWidthComputedCallbackDelegate);
                 }
             }
 

@@ -37,14 +37,14 @@ namespace Tizen.System
                 return Interop.SystemInfo.SystemInfoType.platform;
             }
 
-            Log.Debug(InformationErrorFactory.LogTag, string.Format("Key {0} not in platform system info", key));
+            Log.Debug(InformationErrorFactory.LogTag, $"Key {key} not in platform system info");
             err = Interop.SystemInfo.SystemInfoGetCustomType(key, out valueType);
             if (err == InformationError.None)
             {
                 return Interop.SystemInfo.SystemInfoType.Custom;
             }
 
-            Log.Debug(InformationErrorFactory.LogTag, string.Format("Key {0} not in custom system info", key));
+            Log.Debug(InformationErrorFactory.LogTag, $"Key {key} not in custom system info");
             return Interop.SystemInfo.SystemInfoType.None;
         }
 
@@ -157,7 +157,7 @@ namespace Tizen.System
 
             if (err != InformationError.None)
             {
-                Log.Warn(InformationErrorFactory.LogTag, string.Format("Failed to get value for key: {0}. err = {1}", key, err));
+                Log.Warn(InformationErrorFactory.LogTag, $"Failed to get value for key: {key}. err = {err}");
                 return false;
             }
 
@@ -192,7 +192,7 @@ namespace Tizen.System
 
             if (err != InformationError.None)
             {
-                Log.Warn(InformationErrorFactory.LogTag, string.Format("Failed to get value for key: {0}. err = {1}", key, err));
+                Log.Warn(InformationErrorFactory.LogTag, $"Failed to get value for key: {key}. err = {err}");
                 return false;
             }
 
@@ -227,7 +227,7 @@ namespace Tizen.System
 
             if (err != InformationError.None)
             {
-                Log.Warn(InformationErrorFactory.LogTag, string.Format("Failed to get value for key: {0}. err = {1}", key, err));
+                Log.Warn(InformationErrorFactory.LogTag, $"Failed to get value for key: {key}. err = {err}");
                 return false;
             }
 
@@ -262,7 +262,7 @@ namespace Tizen.System
 
             if (err != InformationError.None)
             {
-                Log.Warn(InformationErrorFactory.LogTag, string.Format("Failed to get value for key: {0}. err = {1}", key, err));
+                Log.Warn(InformationErrorFactory.LogTag, $"Failed to get value for key: {key}. err = {err}");
                 return false;
             }
 

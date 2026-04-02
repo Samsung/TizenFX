@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -256,7 +256,7 @@ namespace Tizen.Network.WiFiDirect
                     int ret = Interop.WiFiDirect.GetDisplayType(_peerMacAddress, out displayType);
                     if (ret != (int)WiFiDirectError.None)
                     {
-                        Log.Error(Globals.LogTag, "Failed to get the peer display type, Error - " + (WiFiDirectError)ret);
+                        Log.Error(Globals.LogTag, $"Failed to get the peer display type, Error - {(WiFiDirectError)ret}");
                     }
 
                     return displayType;
@@ -287,7 +287,7 @@ namespace Tizen.Network.WiFiDirect
                     int ret = Interop.WiFiDirect.GetDisplayAvailability(_peerMacAddress, out displayAvailability);
                     if (ret != (int)WiFiDirectError.None)
                     {
-                        Log.Error(Globals.LogTag, "Failed to get the peer display availability, Error - " + (WiFiDirectError)ret);
+                        Log.Error(Globals.LogTag, $"Failed to get the peer display availability, Error - {(WiFiDirectError)ret}");
                     }
 
                     return displayAvailability;
@@ -318,7 +318,7 @@ namespace Tizen.Network.WiFiDirect
                     int ret = Interop.WiFiDirect.GetDisplayHdcp(_peerMacAddress, out hdcpSupport);
                     if (ret != (int)WiFiDirectError.None)
                     {
-                        Log.Error(Globals.LogTag, "Failed to get the peer display hdcp support, Error - " + (WiFiDirectError)ret);
+                        Log.Error(Globals.LogTag, $"Failed to get the peer display hdcp support, Error - {(WiFiDirectError)ret}");
                         return -1;
                     }
 
@@ -350,7 +350,7 @@ namespace Tizen.Network.WiFiDirect
                     int ret = Interop.WiFiDirect.GetDisplayPort(_peerMacAddress, out displayPort);
                     if (ret != (int)WiFiDirectError.None)
                     {
-                        Log.Error(Globals.LogTag, "Failed to get the peer display port, Error - " + (WiFiDirectError)ret);
+                        Log.Error(Globals.LogTag, $"Failed to get the peer display port, Error - {(WiFiDirectError)ret}");
                         return -1;
                     }
 
@@ -382,7 +382,7 @@ namespace Tizen.Network.WiFiDirect
                     int ret = Interop.WiFiDirect.GetDisplayThroughput(_peerMacAddress, out displayThroughput);
                     if (ret != (int)WiFiDirectError.None)
                     {
-                        Log.Error(Globals.LogTag, "Failed to get the peer display max throughput, Error - " + (WiFiDirectError)ret);
+                        Log.Error(Globals.LogTag, $"Failed to get the peer display max throughput, Error - {(WiFiDirectError)ret}");
                         return -1;
                     }
 
@@ -414,7 +414,7 @@ namespace Tizen.Network.WiFiDirect
                     int ret = Interop.WiFiDirect.GetRssi(_peerMacAddress, out rssi);
                     if (ret != (int)WiFiDirectError.None)
                     {
-                        Log.Error(Globals.LogTag, "Failed to get the peer RSSI, Error - " + (WiFiDirectError)ret);
+                        Log.Error(Globals.LogTag, $"Failed to get the peer RSSI, Error - {(WiFiDirectError)ret}");
                         return -1;
                     }
 
@@ -447,7 +447,7 @@ namespace Tizen.Network.WiFiDirect
 
                     if (ret != (int)WiFiDirectError.None)
                     {
-                        Log.Error(Globals.LogTag, "Failed to get the peer VSIE, Error - " + (WiFiDirectError)ret);
+                        Log.Error(Globals.LogTag, $"Failed to get the peer VSIE, Error - {(WiFiDirectError)ret}");
                         return null;
                     }
 
@@ -566,7 +566,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.SetConnectionChangedCallback(_connectionStateChangedCallback, IntPtr.Zero);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set connection state changed callback, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set connection state changed callback, Error - {(WiFiDirectError)ret}");
             }
         }
 
@@ -575,7 +575,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.UnsetConnectionChangedCallback();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset connection state changed callback, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset connection state changed callback, Error - {(WiFiDirectError)ret}");
             }
         }
 
@@ -591,7 +591,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.SetIpAddressAssignedCallback(_ipAddressAssignedCallback, IntPtr.Zero);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set ip address assigned callback, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set ip address assigned callback, Error - {(WiFiDirectError)ret}");
             }
         }
 
@@ -600,7 +600,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.UnsetIpAddressAssignedCallback();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset ip address assigned callback, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset ip address assigned callback, Error - {(WiFiDirectError)ret}");
             }
         }
 
@@ -624,7 +624,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.SetServiceStateChangedCallback(_serviceStateChangedCallback, IntPtr.Zero);
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set service state changed callback, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to set service state changed callback, Error - {(WiFiDirectError)ret}");
             }
         }
 
@@ -633,7 +633,7 @@ namespace Tizen.Network.WiFiDirect
             int ret = Interop.WiFiDirect.UnsetServiceStateChangedCallback();
             if (ret != (int)WiFiDirectError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to unset service state changed callback, Error - " + (WiFiDirectError)ret);
+                Log.Error(Globals.LogTag, $"Failed to unset service state changed callback, Error - {(WiFiDirectError)ret}");
             }
         }
 
@@ -653,7 +653,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.Connect(_peerMacAddress);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to connect, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to connect, Error - {(WiFiDirectError)ret}");
                     WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
                 }
             }
@@ -680,7 +680,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.CancelConnection(_peerMacAddress);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to cancel the connection, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to cancel the connection, Error - {(WiFiDirectError)ret}");
                     WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
                 }
             }
@@ -708,7 +708,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.Disconnect(_peerMacAddress);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to disconnect, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to disconnect, Error - {(WiFiDirectError)ret}");
                     WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
                 }
             }
@@ -735,7 +735,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.SetAutoConnectionPeer(_peerMacAddress);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to set auto connection, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to set auto connection, Error - {(WiFiDirectError)ret}");
                     WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
                 }
             }
@@ -768,7 +768,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.StartServiceDiscovery(_peerMacAddress, type);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to start Wi-Fi Direct service discovery, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to start Wi-Fi Direct service discovery, Error - {(WiFiDirectError)ret}");
                     WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
                 }
             }
@@ -800,7 +800,7 @@ namespace Tizen.Network.WiFiDirect
                 int ret = Interop.WiFiDirect.StopServiceDiscovery(_peerMacAddress, type);
                 if (ret != (int)WiFiDirectError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to stop Wi-Fi Direct service discovery, Error - " + (WiFiDirectError)ret);
+                    Log.Error(Globals.LogTag, $"Failed to stop Wi-Fi Direct service discovery, Error - {(WiFiDirectError)ret}");
                     WiFiDirectErrorFactory.ThrowWiFiDirectException(ret);
                 }
             }

@@ -18,7 +18,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal class WindowPointerConstraintsSignal : Disposable
+    internal sealed class WindowPointerConstraintsSignal : Disposable
     {
         internal WindowPointerConstraintsSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

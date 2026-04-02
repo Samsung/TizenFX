@@ -275,7 +275,7 @@ namespace Tizen.Applications
                     case Interop.AppCommon.AppCommonErrorCode.InvalidContext:
                         throw new InvalidOperationException("Invalid app context");
                     case Interop.AppCommon.AppCommonErrorCode.PermissionDenied:
-                        throw new DirectoryNotFoundException(String.Format("Allowed Resource about {0} is not Found", resourceType));
+                        throw new DirectoryNotFoundException($"Allowed Resource about {resourceType} is not Found");
                     default:
                         throw new InvalidOperationException("Invalid Operation");
                 }
@@ -309,7 +309,7 @@ namespace Tizen.Applications
                     case Interop.AppCommon.AppCommonErrorCode.InvalidContext:
                         throw new InvalidOperationException("Invalid app context");
                     case Interop.AppCommon.AppCommonErrorCode.PermissionDenied:
-                        throw new DirectoryNotFoundException(String.Format("Allowed Resource about {0} is not Found", resourceType));
+                        throw new DirectoryNotFoundException($"Allowed Resource about {resourceType} is not Found");
                     default:
                         throw new InvalidOperationException("Invalid Operation");
                 }

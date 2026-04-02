@@ -18,7 +18,7 @@ using static Interop;
 
 namespace Tizen.Security.WebAuthn
 {
-    internal class AuthenticatorGetAssertionStorage : AuthenticatorStorage
+    internal sealed class AuthenticatorGetAssertionStorage : AuthenticatorStorage
     {
         private WauthnGaOnResponseCallback _responseCallback;
         private bool _disposed = false;

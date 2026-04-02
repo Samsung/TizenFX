@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
@@ -28,7 +29,7 @@ namespace Tizen.NUI
 
     internal static class PropertyHelper
     {
-        private static readonly Dictionary<string, VisualPropertyData> visualPropertyTable = new Dictionary<string, VisualPropertyData>()
+        private static readonly FrozenDictionary<string, VisualPropertyData> visualPropertyTable = new Dictionary<string, VisualPropertyData>()
         {
             { "backgroundColor",            new VisualPropertyData(View.Property.BACKGROUND, ColorVisualProperty.MixColor, ObjectColorToVector4, PropertyValueColorToVector4) },
             { "backgroundOpacity",          new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.Opacity, ObjectIntToFloat) },
@@ -48,8 +49,8 @@ namespace Tizen.NUI
             { "shadow.CornerRadius",        new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
             { "shadow.CornerSquareness",    new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerSquareness, ObjectIntToFloat) },
             { "gradient.StartOffset",       new VisualPropertyData(View.Property.BACKGROUND, GradientVisualProperty.StartOffset, ObjectIntToFloat) },
-        };
-        private static readonly Dictionary<string, VisualPropertyData> visualPropertyUpperCaseTable = new Dictionary<string, VisualPropertyData>()
+        }.ToFrozenDictionary();
+        private static readonly FrozenDictionary<string, VisualPropertyData> visualPropertyUpperCaseTable = new Dictionary<string, VisualPropertyData>()
         {
             { "BackgroundColor",            new VisualPropertyData(View.Property.BACKGROUND, ColorVisualProperty.MixColor, ObjectColorToVector4, PropertyValueColorToVector4) },
             { "BackgroundOpacity",          new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.Opacity, ObjectIntToFloat) },
@@ -69,8 +70,8 @@ namespace Tizen.NUI
             { "Shadow.CornerRadius",        new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
             { "Shadow.CornerSquareness",    new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerSquareness, ObjectIntToFloat) },
             { "Gradient.StartOffset",       new VisualPropertyData(View.Property.BACKGROUND, GradientVisualProperty.StartOffset, ObjectIntToFloat) },
-        };
-        private static readonly Dictionary<string, string> viewPropertySynonymTable = new Dictionary<string, string>()
+        }.ToFrozenDictionary();
+        private static readonly FrozenDictionary<string, string> viewPropertySynonymTable = new Dictionary<string, string>()
         {
             { "cornerRadius", "viewCornerRadius" },
             { "CornerRadius", "viewCornerRadius" },
@@ -84,7 +85,7 @@ namespace Tizen.NUI
             { "BorderlineColor", "viewBorderlineColor" },
             { "borderlineOffset", "viewBorderlineOffset" },
             { "BorderlineOffset", "viewBorderlineOffset" },
-        };
+        }.ToFrozenDictionary();
 
         static PropertyHelper() { }
 
@@ -246,7 +247,7 @@ namespace Tizen.NUI
             return value;
         }
 
-        internal class SearchResult : Disposable
+        internal sealed class SearchResult : Disposable
         {
             private readonly OOConverter objectConverter;
             private readonly PPConverter propertyValueConverter;

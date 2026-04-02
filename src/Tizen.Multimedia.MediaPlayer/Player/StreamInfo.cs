@@ -270,7 +270,7 @@ namespace Tizen.Multimedia
             NativePlayer.GetDuration(Player.Handle, out var duration).
                 ThrowIfFailed(Player, "Failed to get the duration");
 
-            Log.Info(PlayerLog.Tag, "get duration : " + duration);
+            Log.Info(PlayerLog.Tag, $"get duration : {duration}");
             return duration;
         }
 
@@ -297,7 +297,7 @@ namespace Tizen.Multimedia
             NativePlayer.GetDurationNanoseconds(Player.Handle, out var duration).
                 ThrowIfFailed(Player, "Failed to get the duration in nanoseconds");
 
-            Log.Info(PlayerLog.Tag, "get duration(nsec) : " + duration);
+            Log.Info(PlayerLog.Tag, $"get duration(nsec) : {duration}");
             return duration;
         }
 

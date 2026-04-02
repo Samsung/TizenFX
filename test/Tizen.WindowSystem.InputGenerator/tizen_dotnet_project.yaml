@@ -1,0 +1,9 @@
+# csproj file path
+csproj_file: Tizen.WindowSystem.InputGenerator.csproj
+
+# files monitored for dirty/modified status
+files:
+  - Tizen.WindowSystem.InputGenerator.csproj
+  - Tizen.WindowSystem.InputGenerator.cs
+  - tizen-manifest.xml
+  - shared/res/Tizen.WindowSystem.InputGenerator.png
