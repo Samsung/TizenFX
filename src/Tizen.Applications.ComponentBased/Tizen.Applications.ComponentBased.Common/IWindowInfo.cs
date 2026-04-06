@@ -22,6 +22,7 @@ namespace Tizen.Applications.ComponentBased.Common
     /// Interface for window information
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("This has been deprecated in API14")]
     public interface IWindowInfo : IDisposable
     {
         /// <summary>

@@ -28,6 +28,7 @@ namespace Tizen.Applications.ComponentBased.Common
     /// Each component has its own lifecycle, and the framework handles these lifecycles independently.
     /// </remarks>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("This has been deprecated in API14")]
     public abstract class ComponentBasedApplication : Application
     {
         private const string LogTag = "Tizen.Applications";
@@ -54,6 +55,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public ComponentBasedApplication(IDictionary<Type, string> typeInfo)
         {
             _callbacks.OnInit = new Interop.CBApplication.CBAppInitCallback(OnInitNative);
@@ -84,6 +86,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public void RegisterComponent(Type compType, string compId)
         {
             if (_componentFactories.ContainsKey(compType))
@@ -131,6 +134,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public override void Run(string[] args)
         {
             base.Run(args);
@@ -154,6 +158,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Exits the application's main loop.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         public override void Exit()
         {
             Interop.CBApplication.BaseExit();
@@ -203,6 +208,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Override this method to handle any initialization logic before the application enters the main event loop.
         /// </remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         protected virtual void OnInit(string[] args)
         {
         }
@@ -214,6 +220,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Override this method to handle any cleanup logic after the application has finished running.
         /// </remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         protected virtual void OnFinished()
         {
         }
@@ -225,6 +232,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// This is an abstract method that must be implemented by derived classes to define the behavior when the application starts.
         /// </remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         protected abstract void OnRun();
 
         /// <summary>
@@ -234,6 +242,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Override this method to handle any logic needed before the application exits.
         /// </remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("This has been deprecated in API14")]
         protected virtual void OnExit()
         {
         }
