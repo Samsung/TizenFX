@@ -22,6 +22,7 @@ namespace Tizen.Applications.ComponentBased.Common
     /// Proxy for window
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
+    [Obsolete("This has been deprecated in API14")]
     public interface IWindowProxy : IWindowInfo
     {
         /// <summary>

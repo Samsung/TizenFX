@@ -14,12 +14,15 @@
  * limitations under the License.
  */
  
+using System;
+
 namespace Tizen.Applications.ComponentBased
 {
     /// <summary>
     /// Enumeration for component type.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("This has been deprecated in API14")]
     public enum ComponentType
     {
         /// <summary>
