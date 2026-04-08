@@ -16,6 +16,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Tizen.Content.Download
 {
@@ -23,6 +24,7 @@ namespace Tizen.Content.Download
     /// The CacheManager class provides the functions to manage cache properties.
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
+    [ExcludeFromCodeCoverage]
     public static class CacheManager
     {
 
