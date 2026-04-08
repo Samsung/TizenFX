@@ -278,6 +278,26 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// Gets the device state and the process ID that uses the camera device.
+        /// </summary>
+        /// <param name="device">The device to get the state.</param>
+        /// <param name="processId">The process ID that uses the camera device.</param>
+        /// <returns>Returns the state of the camera device.</returns>
+        /// <feature> http://tizen.org/feature/camera </feature>
+        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
+        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static CameraDeviceState GetDeviceState(CameraDevice device, out int processId)
+        {
+            ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
+
+            Native.GetDeviceState2(device, out var val, out processId).ThrowIfFailed("Failed to get the camera device state.");
+
+            return val;
+        }
+
+        /// <summary>
         /// Gets the flash state.
         /// </summary>
         /// <param name="device">The device to get the state.</param>

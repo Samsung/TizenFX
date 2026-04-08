@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Multimedia
 {
@@ -24,10 +25,11 @@ namespace Tizen.Multimedia
     /// <since_tizen> 3 </since_tizen>
     public class CameraDeviceStateChangedEventArgs : EventArgs
     {
-        internal CameraDeviceStateChangedEventArgs(CameraDevice device, CameraDeviceState state)
+        internal CameraDeviceStateChangedEventArgs(CameraDevice device, CameraDeviceState state, int pid)
         {
             Device = device;
             State = state;
+            ProcessId = pid;
         }
 
         /// <summary>
@@ -41,5 +43,11 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public CameraDeviceState State { get; }
+
+        /// <summary>
+        /// Gets the process ID that uses the camera device.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int ProcessId { get; }
     }
 }
