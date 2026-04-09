@@ -60,7 +60,7 @@ internal static partial class Interop
         internal delegate void HdrCaptureProgressCallback(int percent, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void DeviceStateChangedCallback(CameraDevice device, CameraDeviceState state, IntPtr userData);
+        internal delegate void DeviceStateChangedCallback(CameraDevice device, CameraDeviceState state, int pid, IntPtr userData);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_create")]
         internal static extern CameraError Create(CameraDevice device, out IntPtr handle);
@@ -85,6 +85,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_get_device_state")]
         internal static extern CameraError GetDeviceState(CameraDevice device, out CameraDeviceState state);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_get_device_state2")]
+        internal static extern CameraError GetDeviceState2(CameraDevice device, out CameraDeviceState state, out int pid);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_start_capture")]
         internal static extern CameraError StartCapture(IntPtr handle, CapturingCallback captureCallback,
@@ -184,7 +187,7 @@ internal static partial class Interop
         [DllImport(Libraries.Camera, EntryPoint = "camera_unset_state_changed_cb")]
         internal static extern CameraError UnsetStateChangedCallback(IntPtr handle);
 
-        [DllImport(Libraries.Camera, EntryPoint = "camera_add_device_state_changed_cb")]
+        [DllImport(Libraries.Camera, EntryPoint = "camera_add_device_state_changed_cb2")]
         internal static extern CameraError SetDeviceStateChangedCallback(DeviceStateChangedCallback callback, IntPtr userData, out int callbackId);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_remove_device_state_changed_cb")]

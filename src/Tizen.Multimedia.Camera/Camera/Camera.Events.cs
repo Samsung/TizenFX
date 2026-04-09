@@ -340,9 +340,9 @@ namespace Tizen.Multimedia
 
         private static void RegisterDeviceStateChangedCallback()
         {
-            _deviceStateChangedCallback = (device, state, _) =>
+            _deviceStateChangedCallback = (device, state, pid, _) =>
             {
-                _deviceStateChanged?.Invoke(null, new CameraDeviceStateChangedEventArgs(device, state));
+                _deviceStateChanged?.Invoke(null, new CameraDeviceStateChangedEventArgs(device, state, pid));
             };
 
             Native.SetDeviceStateChangedCallback(_deviceStateChangedCallback, IntPtr.Zero, out _deviceStateCallbackId).
