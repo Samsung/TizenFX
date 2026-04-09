@@ -32,6 +32,9 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_AddFramePresentedCallback")]
             public static extern void AddFramePresentedCallback(HandleRef nuiWindow, HandleRef nuiCallbakc, int nuiFrameId);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetForceRendering")]
+            public static extern void SetForceRendering(HandleRef nuiWindow, uint frameCount);
         }
     }
 }
