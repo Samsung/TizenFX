@@ -58,9 +58,13 @@ internal static partial class Interop
         internal static partial int RemoveRegistrationCallback(int watcher_id);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void message_port_message_cb(int local_port_id, string remote_app_id, string remote_port, bool trusted_remote_port, IntPtr message, IntPtr userData);
+        internal delegate void message_port_message_cb(int local_port_id, string remote_app_id, string remote_port, [MarshalAs(UnmanagedType.U1)] bool trusted_remote_port, IntPtr message, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void message_port_registration_event_cb(string remote_app_id, string remote_port, bool trusted_remote_port, IntPtr userData);
+        internal delegate void message_port_registration_event_cb(string remote_app_id, string remote_port, [MarshalAs(UnmanagedType.U1)] bool trusted_remote_port, IntPtr userData);
     }
 }
+
+
+
+

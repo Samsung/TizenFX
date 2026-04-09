@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications;
 using Tizen.Multimedia.Remoting;
 
@@ -217,7 +218,7 @@ internal static partial class Interop
         internal static extern MediaControllerError DisconnectDb(IntPtr dbHandle);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_db_check_server_table_exist")]
-        internal static extern MediaControllerError CheckServerExist(IntPtr dbHandle, string appId, out bool value);
+        internal static extern MediaControllerError CheckServerExist(IntPtr dbHandle, string appId, [MarshalAs(UnmanagedType.U1)] out bool value);
         #endregion Database
 
 
@@ -312,3 +313,4 @@ internal static partial class Interop
         #endregion Event
     }
 }
+

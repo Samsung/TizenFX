@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Interop.Errors.cs
  *
  *  Created on: Apr 4, 2017
@@ -38,3 +38,6 @@ internal static partial class Interop
         }
     }
 }
+
+
+

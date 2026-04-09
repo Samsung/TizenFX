@@ -28,7 +28,7 @@ internal static partial class Interop
     {
         internal delegate void AppEventCallback(IntPtr handle, IntPtr data);
 
-        internal delegate bool AppCreateCallback(IntPtr userData);
+        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool AppCreateCallback(IntPtr userData);
 
         internal delegate void AppPauseCallback(IntPtr userData);
 
@@ -69,3 +69,8 @@ internal static partial class Interop
         }
     }
 }
+
+
+
+
+

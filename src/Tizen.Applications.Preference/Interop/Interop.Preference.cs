@@ -31,7 +31,7 @@ internal static partial class Interop
     {
         internal delegate void ChangedCallback(string key, IntPtr userData);
 
-        internal delegate bool ItemCallback(string key, IntPtr userData);
+        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool ItemCallback(string key, IntPtr userData);
 
         [LibraryImport(Libraries.Preference, EntryPoint = "preference_set_int", StringMarshalling = StringMarshalling.Utf8)]
         internal static partial int SetInt(string key, int value);
@@ -76,3 +76,7 @@ internal static partial class Interop
         internal static partial int ForeachItem(ItemCallback callback, IntPtr userData);
     }
 }
+
+
+
+

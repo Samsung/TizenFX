@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 using Tizen.Internals.Errors;
 using Tizen.Applications;
@@ -43,209 +44,209 @@ internal static partial class Interop
         internal static partial class Parcel
         {
             //int rpc_port_parcel_create(rpc_port_parcel_h *h);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create")]
-            internal static extern ErrorCode Create(out IntPtr handle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create")]
+        internal static partial ErrorCode Create(out IntPtr handle);
 
             //int rpc_port_parcel_create_from_port(rpc_port_parcel_h *h, rpc_port_h port);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_from_port")]
-            internal static extern ErrorCode CreateFromPort(out IntPtr parcelHandle, IntPtr portHandle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_from_port")]
+        internal static partial ErrorCode CreateFromPort(out IntPtr parcelHandle, IntPtr portHandle);
 
             //int rpc_port_parcel_send(rpc_port_parcel_h h, rpc_port_h port);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_send")]
-            internal static extern ErrorCode Send(IntPtr parcelHandle, IntPtr portHandle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_send")]
+        internal static partial ErrorCode Send(IntPtr parcelHandle, IntPtr portHandle);
 
             //int rpc_port_parcel_destroy(rpc_port_parcel_h h);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_destroy")]
-            internal static extern ErrorCode Destroy(IntPtr handle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_destroy")]
+        internal static partial ErrorCode Destroy(IntPtr handle);
 
             //int rpc_port_parcel_write_byte(rpc_port_parcel_h h, char b);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_byte")]
-            internal static extern ErrorCode WriteByte(IntPtr parcelHandle, byte b);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_byte")]
+        internal static partial ErrorCode WriteByte(IntPtr parcelHandle, byte b);
 
             //int rpc_port_parcel_write_int16(rpc_port_parcel_h h, short i);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_int16")]
-            internal static extern ErrorCode WriteInt16(IntPtr parcelHandle, short i);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_int16")]
+        internal static partial ErrorCode WriteInt16(IntPtr parcelHandle, short i);
 
             //int rpc_port_parcel_write_int32(rpc_port_parcel_h h, int i);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_int32")]
-            internal static extern ErrorCode WriteInt32(IntPtr parcelHandle, int i);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_int32")]
+        internal static partial ErrorCode WriteInt32(IntPtr parcelHandle, int i);
 
             //int rpc_port_parcel_write_int64(rpc_port_parcel_h h, int i);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_int64")]
-            internal static extern ErrorCode WriteInt64(IntPtr parcelHandle, long i);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_int64")]
+        internal static partial ErrorCode WriteInt64(IntPtr parcelHandle, long i);
 
             //int rpc_port_parcel_write_float(rpc_port_parcel_h h, float f);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_float")]
-            internal static extern ErrorCode WriteFloat(IntPtr parcelHandle, float f);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_float")]
+        internal static partial ErrorCode WriteFloat(IntPtr parcelHandle, float f);
 
             //int rpc_port_parcel_write_double(rpc_port_parcel_h h, double d);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_double")]
-            internal static extern ErrorCode WriteDouble(IntPtr parcelHandle, double d);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_double")]
+        internal static partial ErrorCode WriteDouble(IntPtr parcelHandle, double d);
 
             //int rpc_port_parcel_write_string(rpc_port_parcel_h h, const char* str);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_string")]
-            internal static extern ErrorCode WriteString(IntPtr parcelHandle, string str);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_string", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode WriteString(IntPtr parcelHandle, string str);
 
             //int rpc_port_parcel_write_bool(rpc_port_parcel_h h, bool b);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_bool")]
-            internal static extern ErrorCode WriteBool(IntPtr parcelHandle, bool b);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_bool")]
+        internal static partial ErrorCode WriteBool(IntPtr parcelHandle, [MarshalAs(UnmanagedType.U1)] bool b);
 
             //int rpc_port_parcel_write_bundle(rpc_port_parcel_h h, bundle* b);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_bundle")]
-            internal static extern ErrorCode WriteBundle(IntPtr parcelHandle, IntPtr b);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_bundle")]
+        internal static partial ErrorCode WriteBundle(IntPtr parcelHandle, IntPtr b);
 
             //int rpc_port_parcel_write_array_count(rpc_port_parcel_h h, int count);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_array_count")]
-            internal static extern ErrorCode WriteArrayCount(IntPtr parcelHandle, int count);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_write_array_count")]
+        internal static partial ErrorCode WriteArrayCount(IntPtr parcelHandle, int count);
 
             //int rpc_port_parcel_read_byte(rpc_port_parcel_h h, char* b);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_byte")]
-            internal static extern ErrorCode ReadByte(IntPtr parcelHandle, out byte b);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_byte")]
+        internal static partial ErrorCode ReadByte(IntPtr parcelHandle, out byte b);
 
             //int rpc_port_parcel_read_int16(rpc_port_parcel_h h, short *i);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_int16")]
-            internal static extern ErrorCode ReadInt16(IntPtr parcelHandle, out short i);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_int16")]
+        internal static partial ErrorCode ReadInt16(IntPtr parcelHandle, out short i);
 
             //int rpc_port_parcel_read_int32(rpc_port_parcel_h h, int* i);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_int32")]
-            internal static extern ErrorCode ReadInt32(IntPtr parcelHandle, out int i);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_int32")]
+        internal static partial ErrorCode ReadInt32(IntPtr parcelHandle, out int i);
 
             //int rpc_port_parcel_read_int64(rpc_port_parcel_h h, long long* i);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_int64")]
-            internal static extern ErrorCode ReadInt64(IntPtr parcelHandle, out long i);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_int64")]
+        internal static partial ErrorCode ReadInt64(IntPtr parcelHandle, out long i);
 
             //int rpc_port_parcel_read_float(rpc_port_parcel_h h, float *f);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_float")]
-            internal static extern ErrorCode ReadFloat(IntPtr parcelHandle, out float f);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_float")]
+        internal static partial ErrorCode ReadFloat(IntPtr parcelHandle, out float f);
 
             //int rpc_port_parcel_read_double(rpc_port_parcel_h h, double *d);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_double")]
-            internal static extern ErrorCode ReadDouble(IntPtr parcelHandle, out double f);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_double")]
+        internal static partial ErrorCode ReadDouble(IntPtr parcelHandle, out double f);
 
             //int rpc_port_parcel_read_string(rpc_port_parcel_h h, char** str);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_string")]
-            internal static extern ErrorCode ReadString(IntPtr parcelHandle, out string str);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_string", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode ReadString(IntPtr parcelHandle, out string str);
 
             //int rpc_port_parcel_read_bool(rpc_port_parcel_h h, bool *b);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_bool")]
-            internal static extern ErrorCode ReadBool(IntPtr parcelHandle, out bool b);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_bool")]
+        internal static partial ErrorCode ReadBool(IntPtr parcelHandle, [MarshalAs(UnmanagedType.U1)] out [MarshalAs(UnmanagedType.U1)] bool b);
 
             //int rpc_port_parcel_read_bundle(rpc_port_parcel_h h, bundle** b);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_bundle")]
-            internal static extern ErrorCode ReadBundle(IntPtr parcelHandle, out IntPtr b);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_bundle")]
+        internal static partial ErrorCode ReadBundle(IntPtr parcelHandle, out IntPtr b);
 
             //int rpc_port_parcel_read_array_count(rpc_port_parcel_h h, int *count);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_array_count")]
-            internal static extern ErrorCode ReadArrayCount(IntPtr parcelHandle, out int count);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_array_count")]
+        internal static partial ErrorCode ReadArrayCount(IntPtr parcelHandle, out int count);
 
             //int rpc_port_parcel_burst_read(rpc_port_parcel_h h, unsigned char *buf, unsigned int size);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_burst_read")]
-            internal static extern ErrorCode Read(IntPtr parcelHandle, [In, Out] byte[] buf, int size);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_burst_read")]
+        internal static partial ErrorCode Read(IntPtr parcelHandle, [In, Out] byte[] buf, int size);
 
             //int rpc_port_parcel_burst_write(rpc_port_parcel_h h, const unsigned char *buf, unsigned int size);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_burst_write")]
-            internal static extern ErrorCode Write(IntPtr parcelHandle, byte[] buf, int size);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_burst_write")]
+        internal static partial ErrorCode Write(IntPtr parcelHandle, byte[] buf, int size);
 
             //int rpc_port_parcel_get_header(rpc_port_parcel_h h, rpc_port_parcel_header_h *header);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_get_header")]
-            internal static extern ErrorCode GetHeader(IntPtr parcelHandle, out IntPtr ParcelHeaderHandle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_get_header")]
+        internal static partial ErrorCode GetHeader(IntPtr parcelHandle, out IntPtr ParcelHeaderHandle);
 
             //int rpc_port_parcel_header_set_tag(rpc_port_parcel_header_h header, const char *tag);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_set_tag")]
-            internal static extern ErrorCode SetTag(IntPtr parcelHeaderHandle, string tag);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_set_tag", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode SetTag(IntPtr parcelHeaderHandle, string tag);
 
             //int rpc_port_parcel_header_get_tag(rpc_port_parcel_header_h header, char **tag);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_get_tag")]
-            internal static extern ErrorCode GetTag(IntPtr parcelHeaderHandle, out string tag);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_get_tag", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetTag(IntPtr parcelHeaderHandle, out string tag);
 
             //int rpc_port_parcel_header_set_tag_ex(rpc_port_parcel_header_h header,
             //    unsigned char tidlc_version_major, unsigned char tidlc_version_minor,
             //    unsigned char tidlc_version_patch, unsigned char tidl_protocol_ver, unsigned char flags);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_set_tag_ex")]
-            internal static extern ErrorCode SetTagEx(IntPtr parcelHeaderHandle, byte major, byte minor, byte patch, byte protocol, byte flags);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_set_tag_ex")]
+        internal static partial ErrorCode SetTagEx(IntPtr parcelHeaderHandle, byte major, byte minor, byte patch, byte protocol, byte flags);
 
             //int rpc_port_parcel_header_set_seq_num(rpc_port_parcel_header_h header, int seq_num);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_set_seq_num")]
-            internal static extern ErrorCode SetSeqNum(IntPtr parcelHeaderHandle, int seq_num);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_set_seq_num")]
+        internal static partial ErrorCode SetSeqNum(IntPtr parcelHeaderHandle, int seq_num);
 
             //int rpc_port_parcel_header_get_seq_num(rpc_port_parcel_header_h header, int *seq_num);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_get_seq_num")]
-            internal static extern ErrorCode GetSeqNum(IntPtr parcelHeaderHandle, out int seq_num);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_get_seq_num")]
+        internal static partial ErrorCode GetSeqNum(IntPtr parcelHeaderHandle, out int seq_num);
 
             //int rpc_port_parcel_header_get_timestamp(rpc_port_parcel_header_h header, struct timespec *timestamp);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_get_timestamp")]
-            internal static extern ErrorCode GetTimeStamp(IntPtr parcelHeaderHandle, ref Libc.TimeStamp time);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_header_get_timestamp")]
+        internal static partial ErrorCode GetTimeStamp(IntPtr parcelHeaderHandle, ref Libc.TimeStamp time);
 
             //int rpc_port_parcel_get_raw(rpc_port_parcel_h h, void **raw, unsigned int *size);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_get_raw")]
-            internal static extern ErrorCode GetRaw(IntPtr parcelHandle, out IntPtr raw, out uint size);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_get_raw")]
+        internal static partial ErrorCode GetRaw(IntPtr parcelHandle, out IntPtr raw, out uint size);
 
             //int rpc_port_parcel_create_from_raw(rpc_port_parcel_h *h, const void *raw, unsigned int size);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_from_raw")]
-            internal static extern ErrorCode CreateFromRaw(out IntPtr parcelHandle, byte[] raw, uint size);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_from_raw")]
+        internal static partial ErrorCode CreateFromRaw(out IntPtr parcelHandle, byte[] raw, uint size);
 
             //int rpc_port_parcel_create_without_header(rpc_port_parcel_h *h);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_without_header")]
-            internal static extern ErrorCode CreateWithoutHeader(out IntPtr parcelHandle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_without_header")]
+        internal static partial ErrorCode CreateWithoutHeader(out IntPtr parcelHandle);
 
             //int rpc_port_parcel_create_with_capacity(rpc_port_parcel_h* h, size_t capacity);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_with_capacity")]
-            internal static extern ErrorCode CreateWithCapacity(out IntPtr parcelHandle, UIntPtr capacity);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_with_capacity")]
+        internal static partial ErrorCode CreateWithCapacity(out IntPtr parcelHandle, UIntPtr capacity);
 
             //int rpc_port_parcel_reserve(rpc_port_parcel_h h, unsigned int size);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_reserve")]
-            internal static extern ErrorCode Reserve(IntPtr parcelHandle, uint size);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_reserve")]
+        internal static partial ErrorCode Reserve(IntPtr parcelHandle, uint size);
 
             //int rpc_port_parcel_set_data_size(rpc_port_parcel_h h, unsigned int size);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_set_data_size")]
-            internal static extern ErrorCode SetDataSize(IntPtr parcelHandle, uint size);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_set_data_size")]
+        internal static partial ErrorCode SetDataSize(IntPtr parcelHandle, uint size);
 
             //int rpc_port_parcel_get_data_size(rpc_port_parcel_h h, unsigned int* size);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_get_data_size")]
-            internal static extern ErrorCode GetDataSize(IntPtr parcelHandle, out uint size);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_get_data_size")]
+        internal static partial ErrorCode GetDataSize(IntPtr parcelHandle, out uint size);
 
             //int rpc_port_parcel_pin(rpc_port_parcel_h h);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_pin")]
-            internal static extern ErrorCode Pin(IntPtr parcelHandle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_pin")]
+        internal static partial ErrorCode Pin(IntPtr parcelHandle);
 
             //int rpc_port_parcel_get_reader(rpc_port_parcel_h h, unsigned int* reader_pos);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_get_reader")]
-            internal static extern ErrorCode GetReader(IntPtr parcelHandle, out uint readerPos);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_get_reader")]
+        internal static partial ErrorCode GetReader(IntPtr parcelHandle, out uint readerPos);
 
             //int rpc_port_parcel_set_reader(rpc_port_parcel_h h, unsigned int reader_pos);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_set_reader")]
-            internal static extern ErrorCode SetReader(IntPtr parcelHandle, uint readerPos);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_set_reader")]
+        internal static partial ErrorCode SetReader(IntPtr parcelHandle, uint readerPos);
 
             //int rpc_port_parcel_create_from_parcel(rpc_port_parcel_h* h, rpc_port_parcel_h origin_parcel, unsigned int start_pos, unsigned int size);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_from_parcel")]
-            internal static extern ErrorCode CreateFromParcel(out IntPtr parcelHandle, IntPtr originParcel, uint startPos, uint size);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_create_from_parcel")]
+        internal static partial ErrorCode CreateFromParcel(out IntPtr parcelHandle, IntPtr originParcel, uint startPos, uint size);
 
             //int rpc_port_parcel_get_data_ptr(rpc_port_parcel_h h, unsigned char** ptr)
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_get_data_ptr")]
-            internal static extern ErrorCode GetDataPtr(IntPtr parcelHandle, out IntPtr dataHandle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_get_data_ptr")]
+        internal static partial ErrorCode GetDataPtr(IntPtr parcelHandle, out IntPtr dataHandle);
         }
 
         internal static partial class Proxy
         {
             // int rpc_port_proxy_set_domain_inet(rpc_port_proxy_h h);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_set_domain_inet")]
-            internal static extern ErrorCode SetDomainInet(IntPtr handle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_set_domain_inet")]
+        internal static partial ErrorCode SetDomainInet(IntPtr handle);
 
             // int rpc_port_proxy_tcp_connect(rpc_port_proxy_h h, const char *ip, const char *appid, const char *port);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_tcp_connect")]
-            internal static extern ErrorCode TcpConnect(IntPtr handle, string ip, string appId, string port);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_tcp_connect", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode TcpConnect(IntPtr handle, string ip, string appId, string port);
 
             // int rpc_port_proxy_tcp_connect_sync(rpc_port_proxy_h h, const char *ip, const char *appid, const char *port);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_tcp_connect_sync")]
-            internal static extern ErrorCode TcpConnectSync(IntPtr handle, string ip, string appId, string port);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_tcp_connect_sync", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode TcpConnectSync(IntPtr handle, string ip, string appId, string port);
 
             // int rpc_port_proxy_set_tls_client_certificate(rpc_port_proxy_h h, const char *cert_path, const char *key_path);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_set_tls_client_certificate")]
-            internal static extern ErrorCode SetTlsClientCertificate(IntPtr handle, string certPath, string keyPath);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_set_tls_client_certificate", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode SetTlsClientCertificate(IntPtr handle, string certPath, string keyPath);
 
             // int rpc_port_proxy_set_tls_ca_certificate(rpc_port_proxy_h h, const char *ca_path);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_set_tls_ca_certificate")]
-            internal static extern ErrorCode SetTlsCaCertificate(IntPtr handle, string caPath);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_set_tls_ca_certificate", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode SetTlsCaCertificate(IntPtr handle, string caPath);
 
             //typedef void (*rpc_port_proxy_connected_event_cb)(const char *ep, const char* port_name, rpc_port_h port, void* data);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -264,63 +265,63 @@ internal static partial class Interop
             internal delegate void ReceivedEventCallback(string endPoint, string port_name, IntPtr data);
 
             //int rpc_port_proxy_create(rpc_port_proxy_h *h);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_create")]
-            internal static extern ErrorCode Create(out IntPtr handle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_create")]
+        internal static partial ErrorCode Create(out IntPtr handle);
 
             //int rpc_port_proxy_destroy(rpc_port_proxy_h h);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_destroy")]
-            internal static extern ErrorCode Destroy(IntPtr handle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_destroy")]
+        internal static partial ErrorCode Destroy(IntPtr handle);
 
             //int rpc_port_proxy_connect(rpc_port_proxy_h h, const char *appid, const char* port);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_connect")]
-            internal static extern ErrorCode Connect(IntPtr handle, string appId, string port);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_connect", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode Connect(IntPtr handle, string appId, string port);
 
             //int rpc_port_proxy_add_connected_event_cb(rpc_port_proxy_h h, rpc_port_proxy_connected_event_cb cb, void* data);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_add_connected_event_cb")]
-            internal static extern ErrorCode AddConnectedEventCb(IntPtr handle, ConnectedEventCallback cb, IntPtr data);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_add_connected_event_cb")]
+        internal static partial ErrorCode AddConnectedEventCb(IntPtr handle, ConnectedEventCallback cb, IntPtr data);
 
             //int rpc_port_proxy_add_disconnected_event_cb(rpc_port_proxy_h h, rpc_port_proxy_disconnected_event_cb cb, void* data);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_add_disconnected_event_cb")]
-            internal static extern ErrorCode AddDisconnectedEventCb(IntPtr handle, DisconnectedEventCallback cb, IntPtr data);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_add_disconnected_event_cb")]
+        internal static partial ErrorCode AddDisconnectedEventCb(IntPtr handle, DisconnectedEventCallback cb, IntPtr data);
 
             //int rpc_port_proxy_add_rejected_event_cb(rpc_port_proxy_h h, rpc_port_proxy_rejected_event_cb cb, void* data);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_add_rejected_event_cb")]
-            internal static extern ErrorCode AddRejectedEventCb(IntPtr handle, RejectedEventCallback cb, IntPtr data);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_add_rejected_event_cb")]
+        internal static partial ErrorCode AddRejectedEventCb(IntPtr handle, RejectedEventCallback cb, IntPtr data);
 
             //int rpc_port_proxy_add_received_event_cb(rpc_port_proxy_h h, rpc_port_proxy_received_event_cb cb, void* data);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_add_received_event_cb")]
-            internal static extern ErrorCode AddReceivedEventCb(IntPtr handle, ReceivedEventCallback cb, IntPtr data);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_add_received_event_cb")]
+        internal static partial ErrorCode AddReceivedEventCb(IntPtr handle, ReceivedEventCallback cb, IntPtr data);
 
             //int rpc_port_proxy_get_port(rpc_port_proxy_h h, rpc_port_port_type_e type, rpc_port_h* port);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_get_port")]
-            internal static extern ErrorCode GetPort(IntPtr handle, PortType t, out IntPtr port);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_get_port")]
+        internal static partial ErrorCode GetPort(IntPtr handle, PortType t, out IntPtr port);
 
             //int rpc_port_proxy_connect_sync(rpc_port_proxy_h h, const char* appid, const char* port);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_connect_sync")]
-            internal static extern ErrorCode ConnectSync(IntPtr handle, string appId, string port);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_connect_sync", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode ConnectSync(IntPtr handle, string appId, string port);
         }
 
         internal static partial class Stub
         {
             // int rpc_port_stub_set_domain_inet(rpc_port_stub_h h);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_set_domain_inet")]
-            internal static extern ErrorCode SetDomainInet(IntPtr handle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_set_domain_inet")]
+        internal static partial ErrorCode SetDomainInet(IntPtr handle);
 
             // int rpc_port_stub_set_tls_certificate(rpc_port_stub_h h, const char *cert_path, const char *key_path);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_set_tls_certificate")]
-            internal static extern ErrorCode SetTlsCertificate(IntPtr handle, string certPath, string keyPath);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_set_tls_certificate", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode SetTlsCertificate(IntPtr handle, string certPath, string keyPath);
 
             // int rpc_port_stub_set_tls_ca_certificate(rpc_port_stub_h h, const char *ca_path);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_set_tls_ca_certificate")]
-            internal static extern ErrorCode SetTlsCaCertificate(IntPtr handle, string caPath);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_set_tls_ca_certificate", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode SetTlsCaCertificate(IntPtr handle, string caPath);
 
             // int rpc_port_stub_has_privilege(rpc_port_stub_h h, const char *instance, const char *privilege, bool *has_privilege);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_has_privilege")]
-            internal static extern ErrorCode HasPrivilege(IntPtr handle, string instance, string privilege, out bool hasPrivilege);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_has_privilege", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode HasPrivilege(IntPtr handle, string instance, string privilege, [MarshalAs(UnmanagedType.U1)] out [MarshalAs(UnmanagedType.U1)] bool hasPrivilege);
 
             // int rpc_port_stub_has_privilege_local(rpc_port_stub_h h, const char *appid, const char *privilege, bool *has_privilege);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_has_privilege_local")]
-            internal static extern ErrorCode HasPrivilegeLocal(IntPtr handle, string appId, string privilege, out bool hasPrivilege);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_has_privilege_local", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode HasPrivilegeLocal(IntPtr handle, string appId, string privilege, [MarshalAs(UnmanagedType.U1)] out [MarshalAs(UnmanagedType.U1)] bool hasPrivilege);
 
             //typedef void (*rpc_port_stub_connected_event_cb)(const char *sender, const char *instance, void* data);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -335,59 +336,59 @@ internal static partial class Interop
             internal delegate int ReceivedEventCallback(string sender, string instance, IntPtr port, IntPtr data);
 
             //int rpc_port_stub_create(rpc_port_stub_h* h, const char* port_name);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_create")]
-            internal static extern ErrorCode Create(out IntPtr handle, string portName);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_create", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode Create(out IntPtr handle, string portName);
 
             //int rpc_port_stub_destroy(rpc_port_stub_h h);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_destroy")]
-            internal static extern ErrorCode Destroy(IntPtr handle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_destroy")]
+        internal static partial ErrorCode Destroy(IntPtr handle);
 
             //int rpc_port_stub_listen(rpc_port_stub_h h);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_listen")]
-            internal static extern ErrorCode Listen(IntPtr handle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_listen")]
+        internal static partial ErrorCode Listen(IntPtr handle);
 
             //int rpc_port_stub_add_connected_event_cb(rpc_port_stub_h h, rpc_port_stub_connected_event_cb cb, void* data);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_add_connected_event_cb")]
-            internal static extern ErrorCode AddConnectedEventCb(IntPtr handle, ConnectedEventCallback cb, IntPtr data);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_add_connected_event_cb")]
+        internal static partial ErrorCode AddConnectedEventCb(IntPtr handle, ConnectedEventCallback cb, IntPtr data);
 
             //int rpc_port_stub_add_disconnected_event_cb(rpc_port_stub_h h, rpc_port_stub_disconnected_event_cb cb, void* data);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_add_disconnected_event_cb")]
-            internal static extern ErrorCode AddDisconnectedEventCb(IntPtr handle, DisconnectedEventCallback cb, IntPtr data);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_add_disconnected_event_cb")]
+        internal static partial ErrorCode AddDisconnectedEventCb(IntPtr handle, DisconnectedEventCallback cb, IntPtr data);
 
             //int rpc_port_stub_add_received_event_cb(rpc_port_stub_h h, rpc_port_stub_received_event_cb cb, void* data);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_add_received_event_cb")]
-            internal static extern ErrorCode AddReceivedEventCb(IntPtr handle, ReceivedEventCallback cb, IntPtr data);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_add_received_event_cb")]
+        internal static partial ErrorCode AddReceivedEventCb(IntPtr handle, ReceivedEventCallback cb, IntPtr data);
 
             //int rpc_port_stub_add_privilege(rpc_port_stub_h h, const char *privilege);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_add_privilege")]
-            internal static extern ErrorCode AddPrivilege(IntPtr handle, string privilege);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_add_privilege", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AddPrivilege(IntPtr handle, string privilege);
 
             //int rpc_port_stub_set_trusted(rpc_port_stub_h h, const bool trusted);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_set_trusted")]
-            internal static extern ErrorCode SetTrusted(IntPtr handle, bool trusted);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_set_trusted")]
+        internal static partial ErrorCode SetTrusted(IntPtr handle, [MarshalAs(UnmanagedType.U1)] bool trusted);
 
             //int rpc_port_stub_get_port(rpc_port_stub_h h, rpc_port_port_type_e type, const char* instance, rpc_port_h *port);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_get_port")]
-            internal static extern ErrorCode GetPort(IntPtr handle, PortType t, string instance, out IntPtr port);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_get_port", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetPort(IntPtr handle, PortType t, string instance, out IntPtr port);
         }
 
         internal static partial class Port
         {
             //int rpc_port_set_private_sharing_array(rpc_port_h port, const char* paths[], unsigned int size);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_set_private_sharing_array")]
-            internal static extern ErrorCode SetPrivateSharingArray(IntPtr handle, string[] paths, uint size);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_set_private_sharing_array", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode SetPrivateSharingArray(IntPtr handle, string[] paths, uint size);
 
             //int rpc_port_set_private_sharing(rpc_port_h port, const char* path);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_set_private_sharing")]
-            internal static extern ErrorCode SetPrivateSharing(IntPtr handle, string path);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_set_private_sharing", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode SetPrivateSharing(IntPtr handle, string path);
 
             //int rpc_port_unset_private_sharing(rpc_port_h port);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_unset_private_sharing")]
-            internal static extern ErrorCode UnsetPrivateSharing(IntPtr handle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_unset_private_sharing")]
+        internal static partial ErrorCode UnsetPrivateSharing(IntPtr handle);
 
             //int rpc_port_disconnect(rpc_port_h h);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_disconnect")]
-            internal static extern ErrorCode Disconnect(IntPtr handle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_disconnect")]
+        internal static partial ErrorCode Disconnect(IntPtr handle);
         }
 
         internal static partial class Discovery
@@ -397,24 +398,24 @@ internal static partial class Interop
             internal delegate void DiscoveryCallback(string serviceName, string tidlPort, string appId, string ip, IntPtr userData);
 
             // int rpc_port_discovery_create(rpc_port_discovery_h *h);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_discovery_create")]
-            internal static extern ErrorCode Create(out IntPtr handle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_discovery_create")]
+        internal static partial ErrorCode Create(out IntPtr handle);
 
             // int rpc_port_discovery_destroy(rpc_port_discovery_h h);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_discovery_destroy")]
-            internal static extern ErrorCode Destroy(IntPtr handle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_discovery_destroy")]
+        internal static partial ErrorCode Destroy(IntPtr handle);
 
             // int rpc_port_discovery_start_finding(rpc_port_discovery_h h, rpc_port_discovery_cb cb, void *user_data);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_discovery_start_finding")]
-            internal static extern ErrorCode StartFinding(IntPtr handle, DiscoveryCallback cb, IntPtr userData);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_discovery_start_finding")]
+        internal static partial ErrorCode StartFinding(IntPtr handle, DiscoveryCallback cb, IntPtr userData);
 
             // int rpc_port_discovery_stop_finding(rpc_port_discovery_h h);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_discovery_stop_finding")]
-            internal static extern ErrorCode StopFinding(IntPtr handle);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_discovery_stop_finding")]
+        internal static partial ErrorCode StopFinding(IntPtr handle);
 
             // int rpc_port_discovery_register_service(rpc_port_discovery_h h, const char *service_name, const char *tidl_port, const char *app_id);
-            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_discovery_register_service")]
-            internal static extern ErrorCode RegisterService(IntPtr handle, string serviceName, string tidlPort, string appId);
+            [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_discovery_register_service", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode RegisterService(IntPtr handle, string serviceName, string tidlPort, string appId);
         }
     }
 }

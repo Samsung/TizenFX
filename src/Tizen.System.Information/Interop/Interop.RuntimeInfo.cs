@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -126,8 +126,8 @@ internal static partial class Interop
         [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_value_double")]
         public static partial InformationError GetValue(RuntimeInfoKey key, out double status);
 
-        [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_value_string", StringMarshalling = StringMarshalling.Utf8)]
-        public static partial InformationError GetValue(RuntimeInfoKey key, out string status);
+        [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_value_string")]
+        public static partial InformationError GetValue(RuntimeInfoKey key, [MarshalAs(UnmanagedType.LPStr)] out string status);
 
         [LibraryImport(Libraries.RuntimeInfo, EntryPoint = "runtime_info_get_system_memory_info")]
         public static partial InformationError GetSystemMemoryInfo(out MemoryInfo memoryInfo);

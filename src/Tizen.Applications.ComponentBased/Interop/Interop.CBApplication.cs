@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Internals;
 using Tizen.Applications;
 
@@ -70,7 +71,7 @@ internal static partial class Interop
         }
 
         internal delegate IntPtr FrameCreateCallback(IntPtr context, IntPtr userData);
-        internal delegate void FrameStartCallback(IntPtr context, IntPtr appControl, bool restarted, IntPtr userData);
+        internal delegate void FrameStartCallback(IntPtr context, IntPtr appControl, [MarshalAs(UnmanagedType.U1)] bool restarted, IntPtr userData);
         internal delegate void FrameResumeCallback(IntPtr context, IntPtr userData);
         internal delegate void FramePauseCallback(IntPtr context, IntPtr userData);
         internal delegate void FrameStopCallback(IntPtr context, IntPtr userData);
@@ -106,8 +107,8 @@ internal static partial class Interop
             public FrameTimeZoneChangedCallback OnTimeZoneChanged;
         }
 
-        internal delegate bool ServiceCreateCallback(IntPtr context, IntPtr userData);
-        internal delegate void ServiceStartCommandCallback(IntPtr context, IntPtr appControl, bool restarted, IntPtr userData);
+        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool ServiceCreateCallback(IntPtr context, IntPtr userData);
+        internal delegate void ServiceStartCommandCallback(IntPtr context, IntPtr appControl, [MarshalAs(UnmanagedType.U1)] bool restarted, IntPtr userData);
         internal delegate void ServiceDestroyCallback(IntPtr context, IntPtr userData);
         internal delegate void ServiceRestoreCallback(IntPtr context, IntPtr content, IntPtr userData);
         internal delegate void ServiceSaveCallback(IntPtr context, IntPtr content, IntPtr userData);
@@ -138,11 +139,11 @@ internal static partial class Interop
         }
 
         internal delegate IntPtr WidgetCreateCallback(IntPtr context, int width, int height, IntPtr userData);
-        internal delegate void WidgetStartCallback(IntPtr context, bool restarted, IntPtr userData);
+        internal delegate void WidgetStartCallback(IntPtr context, [MarshalAs(UnmanagedType.U1)] bool restarted, IntPtr userData);
         internal delegate void WidgetResumeCallback(IntPtr context, IntPtr userData);
         internal delegate void WidgetPauseCallback(IntPtr context, IntPtr userData);
         internal delegate void WidgetStopCallback(IntPtr context, IntPtr userData);
-        internal delegate void WidgetDestroyCallback(IntPtr context, bool permanent, IntPtr userData);
+        internal delegate void WidgetDestroyCallback(IntPtr context, [MarshalAs(UnmanagedType.U1)] bool permanent, IntPtr userData);
         internal delegate void WidgetRestoreCallback(IntPtr context, IntPtr content, IntPtr userData);
         internal delegate void WidgetSaveCallback(IntPtr context, IntPtr content, IntPtr userData);
         internal delegate void WidgetDeviceOrientationChangedCallback(IntPtr context, int orientation, IntPtr userData);
@@ -184,44 +185,44 @@ internal static partial class Interop
         internal delegate void BaseSuspendedStateCallback(IntPtr context, int state, IntPtr userData);
         internal delegate void BaseTimeZoneChangedCallback(IntPtr context, string timeZone, string timeZoneId, IntPtr userData);
 
-        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_based_app_base_main")]
+        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_based_app_base_main", CallingConvention = CallingConvention.Cdecl)]
         internal static extern ErrorCode BaseMain(int argc, string[] argv, ref CBAppLifecycleCallbacks callback, IntPtr userData);
 
-        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_based_app_base_exit")]
-        internal static extern ErrorCode BaseExit();
+        [LibraryImport(Libraries.CompCoreBase, EntryPoint = "component_based_app_base_exit")]
+        internal static partial ErrorCode BaseExit();
 
-        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_based_app_base_add_frame_component")]
+        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_based_app_base_add_frame_component", CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr BaseAddFrameComponent(IntPtr comp_class, string compId, ref FrameLifecycleCallbacks callback, IntPtr userData);
 
-        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_based_app_base_add_service_component")]
+        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_based_app_base_add_service_component", CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr BaseAddServiceComponent(IntPtr comp_class, string compId, ref ServiceLifecycleCallbacks callback, IntPtr userData);
 
-        [DllImport(Libraries.WidgetCompCoreBase, EntryPoint = "component_based_app_base_add_widget_component")]
+        [DllImport(Libraries.WidgetCompCoreBase, EntryPoint = "component_based_app_base_add_widget_component", CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr BaseAddWidgetComponent(IntPtr comp_class, string compId, ref WidgetLifecycleCallbacks callback, IntPtr userData);
 
-        [DllImport(Libraries.CompCoreBase, EntryPoint = "base_frame_create_window")]
-        internal static extern IntPtr BaseFrameCreateWindow(out IntPtr winHandle, int winId, IntPtr raw);
+        [LibraryImport(Libraries.CompCoreBase, EntryPoint = "base_frame_create_window")]
+        internal static partial IntPtr BaseFrameCreateWindow(out IntPtr winHandle, int winId, IntPtr raw);
 
-        [DllImport(Libraries.CompCoreBase, EntryPoint = "base_frame_window_get_compId")]
-        internal static extern IntPtr BaseFrameWindowGetId(IntPtr winHandle, out int winId);
+        [LibraryImport(Libraries.CompCoreBase, EntryPoint = "base_frame_window_get_compId")]
+        internal static partial IntPtr BaseFrameWindowGetId(IntPtr winHandle, out int winId);
 
-        [DllImport(Libraries.CompCoreBase, EntryPoint = "base_frame_window_get_raw")]
-        internal static extern IntPtr BaseFrameWindowGetRaw(IntPtr winHandle, out IntPtr raw);
+        [LibraryImport(Libraries.CompCoreBase, EntryPoint = "base_frame_window_get_raw")]
+        internal static partial IntPtr BaseFrameWindowGetRaw(IntPtr winHandle, out IntPtr raw);
 
-        [DllImport(Libraries.CompCoreBase, EntryPoint = "base_frame_get_display_status")]
-        internal static extern ErrorCode BaseFrameGetDisplayStatus(IntPtr context, out NativeDisplayStatus status);
+        [LibraryImport(Libraries.CompCoreBase, EntryPoint = "base_frame_get_display_status")]
+        internal static partial ErrorCode BaseFrameGetDisplayStatus(IntPtr context, out NativeDisplayStatus status);
 
-        [DllImport(Libraries.WidgetCompCoreBase, EntryPoint = "base_widget_create_window")]
-        internal static extern IntPtr BaseWidgetCreateWindow(out IntPtr winHandle, int winId, IntPtr raw);
+        [LibraryImport(Libraries.WidgetCompCoreBase, EntryPoint = "base_widget_create_window")]
+        internal static partial IntPtr BaseWidgetCreateWindow(out IntPtr winHandle, int winId, IntPtr raw);
 
-        [DllImport(Libraries.WidgetCompCoreBase, EntryPoint = "base_widget_window_get_id")]
-        internal static extern IntPtr BaseWidgetWindowGetId(IntPtr winHandle, out int winId);
+        [LibraryImport(Libraries.WidgetCompCoreBase, EntryPoint = "base_widget_window_get_id")]
+        internal static partial IntPtr BaseWidgetWindowGetId(IntPtr winHandle, out int winId);
 
-        [DllImport(Libraries.WidgetCompCoreBase, EntryPoint = "base_widget_window_get_raw")]
-        internal static extern IntPtr BaseWidgetWindowGetRaw(IntPtr winHandle, out IntPtr raw);
+        [LibraryImport(Libraries.WidgetCompCoreBase, EntryPoint = "base_widget_window_get_raw")]
+        internal static partial IntPtr BaseWidgetWindowGetRaw(IntPtr winHandle, out IntPtr raw);
 
-        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_get_instance_id")]
-        internal static extern ErrorCode GetInstanceId(IntPtr context, out string instanceId);
+        [LibraryImport(Libraries.CompCoreBase, EntryPoint = "component_get_instance_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetInstanceId(IntPtr context, out string instanceId);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ReplyCallback(IntPtr request, IntPtr reply, int result, IntPtr userData);
@@ -229,15 +230,19 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ResultCallback(IntPtr request, int result, IntPtr userData);
 
-        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_send_launch_request_async")]
-        internal static extern ErrorCode SendLaunchRequestAsync(IntPtr context, SafeAppControlHandle appControl,
+        [LibraryImport(Libraries.CompCoreBase, EntryPoint = "component_send_launch_request_async", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode SendLaunchRequestAsync(IntPtr context, SafeAppControlHandle appControl,
             ResultCallback resultCallback, ReplyCallback replyCallback, IntPtr userData);
 
-        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_send_launch_request_sync")]
-        internal static extern ErrorCode SendLaunchRequestSync(IntPtr context, SafeAppControlHandle appControl,
+        [LibraryImport(Libraries.CompCoreBase, EntryPoint = "component_send_launch_request_sync", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode SendLaunchRequestSync(IntPtr context, SafeAppControlHandle appControl,
             SafeAppControlHandle replyControl, out int result);
 
-        [DllImport(Libraries.CompCoreBase, EntryPoint = "component_finish")]
-        internal static extern ErrorCode ComponentFinish(IntPtr context);
+        [LibraryImport(Libraries.CompCoreBase, EntryPoint = "component_finish")]
+        internal static partial ErrorCode ComponentFinish(IntPtr context);
     }
 }
+
+
+
+

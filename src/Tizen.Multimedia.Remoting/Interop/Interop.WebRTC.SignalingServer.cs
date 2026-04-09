@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,11 +16,12 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Multimedia.Remoting;
 
 internal static partial class Interop
 {
-    internal static class SignalingServer
+    internal static partial class SignalingServer
     {
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_signaling_server_create")]
         internal static extern WebRTCErrorCode Create(int port, out IntPtr handle);
@@ -35,7 +36,7 @@ internal static partial class Interop
         internal static extern WebRTCErrorCode Stop(IntPtr handle);
     }
 
-    internal static class SignalingClient
+    internal static partial class SignalingClient
     {
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_signaling_connect")]
         internal static extern WebRTCErrorCode Connect(string serverIp, int port, SignalingMessageCallback callback, IntPtr userData, out IntPtr clientHandle);

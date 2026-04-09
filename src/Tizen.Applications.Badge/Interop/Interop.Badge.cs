@@ -32,7 +32,7 @@ internal static partial class Interop
             ServiceReady
         }
 
-        internal delegate bool ForeachCallback(string appId, uint count, IntPtr userData);
+        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool ForeachCallback(string appId, uint count, IntPtr userData);
 
         internal delegate void ChangedCallback(Action action, string appId, uint count, IntPtr userData);
 
@@ -64,3 +64,7 @@ internal static partial class Interop
         internal static partial BadgeError UnsetChangedCallback(ChangedCallback callback);
     }
 }
+
+
+
+

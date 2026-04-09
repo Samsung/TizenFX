@@ -120,6 +120,10 @@ internal static partial class Interop
 
         //callback
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool RegisteredAlarmCallback(int alarmId, IntPtr userData);
+        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool RegisteredAlarmCallback(int alarmId, IntPtr userData);
     }
 }
+
+
+
+

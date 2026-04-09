@@ -53,3 +53,6 @@ internal static partial class Interop
         internal static partial ErrorCode EventKeepLastEventData(string eventName);
     }
 }
+
+
+

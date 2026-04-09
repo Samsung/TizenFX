@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Content.MediaContent;
 
 internal static partial class Interop
@@ -81,7 +82,7 @@ internal static partial class Interop
         internal static extern MediaContentError ExportToFile(IntPtr playlist, string filePath);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool PlaylistMemberCallback(int memberId, IntPtr mediaInfo, IntPtr data);
+        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool PlaylistMemberCallback(int memberId, IntPtr mediaInfo, IntPtr data);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_playlist_foreach_playlist_from_db")]
         internal static extern MediaContentError ForeachPlaylistFromDb(FilterHandle filter,
@@ -92,3 +93,8 @@ internal static partial class Interop
             PlaylistMemberCallback callback, IntPtr userData = default(IntPtr));
     }
 }
+
+
+
+
+

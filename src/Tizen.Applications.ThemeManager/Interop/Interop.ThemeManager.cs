@@ -38,7 +38,7 @@ internal static partial class Interop
             KeyNotAvailable = Tizen.Internals.Errors.ErrorCode.KeyNotAvailable,
         }
 
-        internal static class ThemeManagerErrorFactory
+        internal static partial class ThemeManagerErrorFactory
         {
             internal static Exception GetException(Interop.ThemeManager.ErrorCode err, string message)
             {
@@ -140,3 +140,7 @@ internal static partial class Interop
         internal static partial ErrorCode LoaderSetCurrentTheme(IntPtr loaderHandle, string id);
     }
 }
+
+
+
+

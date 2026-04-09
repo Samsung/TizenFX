@@ -77,3 +77,5 @@ internal static partial class Interop
         internal static partial ErrorCode GetState(IntPtr attach_panel, out int state);
     }
 }
+
+

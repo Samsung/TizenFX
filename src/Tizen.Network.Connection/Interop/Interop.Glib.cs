@@ -16,12 +16,16 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
     internal static partial class Glib
     {
-        [DllImport(Libraries.Glib, EntryPoint = "g_free", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern uint Free(IntPtr data);
+        [LibraryImport(Libraries.Glib, EntryPoint = "g_free")]
+        internal static partial uint Free(IntPtr data);
     }
 }
+
+
+

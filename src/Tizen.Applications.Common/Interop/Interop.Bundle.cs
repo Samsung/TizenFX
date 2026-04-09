@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 using Tizen.Applications;
 
@@ -26,53 +27,53 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void Iterator(string key, int type, IntPtr keyval, IntPtr userData);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_create")]
-        internal static extern SafeBundleHandle Create();
+        [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_create")]
+        internal static partial SafeBundleHandle Create();
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_free")]
-        internal static extern int DangerousFree(IntPtr handle);
+        [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_free")]
+        internal static partial int DangerousFree(IntPtr handle);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_del")]
-        internal static extern int RemoveItem(SafeBundleHandle handle, string key);
+        [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_del", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int RemoveItem(SafeBundleHandle handle, string key);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_add_str")]
-        internal static extern int AddString(SafeBundleHandle handle, string key, string value);
+        [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_add_str", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int AddString(SafeBundleHandle handle, string key, string value);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_get_type")]
-        internal static extern int GetType(SafeBundleHandle handle, string key);
+        [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_get_type", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetType(SafeBundleHandle handle, string key);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_get_str")]
-        internal static extern int GetString(SafeBundleHandle handle, string key, out IntPtr value);
+        [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_get_str", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetString(SafeBundleHandle handle, string key, out IntPtr value);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_add_byte")]
-        internal static extern unsafe int AddByte(SafeBundleHandle handle, string key, byte* value, int size);
+        [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_add_byte", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial unsafe int AddByte(SafeBundleHandle handle, string key, byte* value, int size);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_get_byte")]
-        internal static extern int GetByte(SafeBundleHandle handle, string key, out IntPtr value, out int size);
+        [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_get_byte", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetByte(SafeBundleHandle handle, string key, out IntPtr value, out int size);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_add_str_array")]
-        internal static extern int AddStringArray(SafeBundleHandle handle, string key, string[] value, int size);
+        [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_add_str_array", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int AddStringArray(SafeBundleHandle handle, string key, string[] value, int size);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_get_str_array")]
-        internal static extern IntPtr GetStringArray(SafeBundleHandle handle, string key, out int size);
+        [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_get_str_array", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial IntPtr GetStringArray(SafeBundleHandle handle, string key, out int size);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_foreach")]
-        internal static extern void Foreach(SafeBundleHandle handle, Iterator iterator, IntPtr userData);
+        [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_foreach")]
+        internal static partial void Foreach(SafeBundleHandle handle, Iterator iterator, IntPtr userData);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_encode")]
-        internal static extern void BundleEncode(SafeBundleHandle handle, out string str, out int len);
+        [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_encode", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial void BundleEncode(SafeBundleHandle handle, out string str, out int len);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_get_encode_raw_size")]
-        internal static extern int GetBundleEncodedRawSize(SafeBundleHandle handle, out UIntPtr len);
+        [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_get_encode_raw_size")]
+        internal static partial int GetBundleEncodedRawSize(SafeBundleHandle handle, out UIntPtr len);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_decode")]
-        internal static extern SafeBundleHandle BundleDecode(string bundleRaw, int len);
+        [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_decode", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial SafeBundleHandle BundleDecode(string bundleRaw, int len);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_dup")]
-        internal static extern SafeBundleHandle DangerousClone(IntPtr handle);
+        [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_dup")]
+        internal static partial SafeBundleHandle DangerousClone(IntPtr handle);
 
-        [DllImport(Libraries.Bundle, EntryPoint = "bundle_import_from_argv")]
-        internal static extern SafeBundleHandle ImportFromArgv(int argc, string[] argv);
+        [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_import_from_argv", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial SafeBundleHandle ImportFromArgv(int argc, string[] argv);
 
         internal static class UnsafeCode
         {
