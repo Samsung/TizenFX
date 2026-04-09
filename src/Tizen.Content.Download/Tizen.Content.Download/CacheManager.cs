@@ -65,7 +65,7 @@ namespace Tizen.Content.Download
                 int ret = Interop.Download.GetDownloadCacheMaxSize(out maxCacheSize);
                 if (ret != (int)DownloadError.None)
                 {
-                    DownloadErrorFactory.ThrowException(ret, "Failed to get max size of cache");
+                    DownloadErrorFactory.ThrowException(ret, "Failed to get maximum size of cache");
                 }
                 return maxCacheSize;
             }
