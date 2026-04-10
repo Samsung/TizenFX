@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 using Tizen.Applications;
 
@@ -36,19 +37,19 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void EventCallback(string eventName, IntPtr eventData, IntPtr userData);
 
-        [DllImport(Libraries.AppEvent, EntryPoint = "event_add_event_handler")]
-        internal static extern ErrorCode EventAddHandler(string eventName, EventCallback cb, IntPtr userData, out IntPtr handle);
+        [LibraryImport(Libraries.AppEvent, EntryPoint = "event_add_event_handler", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode EventAddHandler(string eventName, EventCallback cb, IntPtr userData, out IntPtr handle);
 
-        [DllImport(Libraries.AppEvent, EntryPoint = "event_remove_event_handler")]
-        internal static extern ErrorCode EventRemoveHandler(IntPtr handle);
+        [LibraryImport(Libraries.AppEvent, EntryPoint = "event_remove_event_handler")]
+        internal static partial ErrorCode EventRemoveHandler(IntPtr handle);
 
-        [DllImport(Libraries.AppEvent, EntryPoint = "event_publish_app_event")]
-        internal static extern ErrorCode EventPublishAppEvent(string eventName, SafeBundleHandle eventData);
+        [LibraryImport(Libraries.AppEvent, EntryPoint = "event_publish_app_event", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode EventPublishAppEvent(string eventName, SafeBundleHandle eventData);
 
-        [DllImport(Libraries.AppEvent, EntryPoint = "event_publish_trusted_app_event")]
-        internal static extern ErrorCode EventPublishTrustedAppEvent(string eventName, SafeBundleHandle eventData);
+        [LibraryImport(Libraries.AppEvent, EntryPoint = "event_publish_trusted_app_event", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode EventPublishTrustedAppEvent(string eventName, SafeBundleHandle eventData);
 
-        [DllImport(Libraries.AppEvent, EntryPoint = "event_keep_last_event_data")]
-        internal static extern ErrorCode EventKeepLastEventData(string eventName);
+        [LibraryImport(Libraries.AppEvent, EntryPoint = "event_keep_last_event_data", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode EventKeepLastEventData(string eventName);
     }
 }
