@@ -1,4 +1,4 @@
-﻿/*
+/*
  *  Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
@@ -128,6 +128,3 @@ internal static partial class Interop
         static public extern void RequestCancellation(IntPtr operation);
     }
 }
-
-
-
