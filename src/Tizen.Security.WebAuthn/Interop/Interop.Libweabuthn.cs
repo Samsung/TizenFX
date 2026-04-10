@@ -27,11 +27,11 @@ internal static partial class Interop
 
     internal static partial class Libwebauthn
     {
-        [LibraryImport(Libraries.Libwebauthn, EntryPoint = "wauthn_set_api_version", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.Libwebauthn, EntryPoint = "wauthn_set_api_version")]
         public static partial int SetApiVersion(int apiVersionNumber);
         // int wauthn_set_api_version(int api_version_number);
 
-        [LibraryImport(Libraries.Libwebauthn, EntryPoint = "wauthn_supported_authenticators", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.Libwebauthn, EntryPoint = "wauthn_supported_authenticators")]
         public static partial int SupportedAuthenticators(out uint supported);
         // int wauthn_supported_authenticators(unsigned int *supported);
 
@@ -43,7 +43,7 @@ internal static partial class Interop
         public static extern int GetAssertion([In] WauthnClientData clientData, [In] WauthnPubkeyCredRequestOptions options, [In, Out] WauthnGaCallbacks callbacks);
         // int wauthn_get_assertion( const wauthn_client_data_s *client_data, const wauthn_pubkey_cred_request_options_s *options, wauthn_ga_callbacks_s *callbacks);
 
-        [LibraryImport(Libraries.Libwebauthn, EntryPoint = "wauthn_cancel", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.Libwebauthn, EntryPoint = "wauthn_cancel")]
         public static partial int Cancel();
         // int wauthn_cancel();
     }

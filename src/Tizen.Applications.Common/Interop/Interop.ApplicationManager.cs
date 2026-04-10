@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -133,7 +133,7 @@ internal static partial class Interop
         internal static partial void AppManagerUnsetLifecycleStateChangedCb();
         //void app_manager_unset_lifecycle_state_changed_cb(void)
 
-        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_add_lifecycle_state_changed_cb", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_add_lifecycle_state_changed_cb")]
         internal static partial ErrorCode AppManagerAddLifecycleStateChangedCb(
             AppManagerLifecycleStateChangedCallback callback, IntPtr userData, out IntPtr handle);
         // int app_manager_add_lifecycle_state_changed_cb(app_manager_lifecycle_state_changed_cb callback,

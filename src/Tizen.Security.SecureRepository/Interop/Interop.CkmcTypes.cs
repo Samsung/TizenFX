@@ -124,23 +124,23 @@ internal static partial class Interop
         public static partial int KeyNew(byte[] rawKey, UIntPtr size, int keyType, string password, out IntPtr cert);
         // int ckmc_key_new(unsigned char *raw_key, size_t key_size, ckmc_key_type_e key_type, char *password, ckmc_key_s **ppkey);
         //
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_key_free", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_key_free")]
         public static partial void KeyFree(IntPtr buffer);
         // void ckmc_key_free(ckmc_key_s *key);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_buffer_new", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_buffer_new")]
         public static partial int BufferNew(byte[] data, UIntPtr size, out IntPtr buffer);
         // int ckmc_buffer_new(unsigned char *data, size_t size, ckmc_raw_buffer_s** ppbuffer);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_buffer_free", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_buffer_free")]
         public static partial void BufferFree(IntPtr buffer);
         // void ckmc_buffer_free(ckmc_raw_buffer_s* buffer);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_new", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_new")]
         public static partial int CertNew(byte[] rawCert, UIntPtr size, int dataFormat, out IntPtr cert);
         // int ckmc_cert_new(unsigned char *raw_cert, size_t cert_size, ckmc_data_format_e data_format, ckmc_cert_s** ppcert);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_free", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_free")]
         public static partial void CertFree(IntPtr buffer);
         // void ckmc_cert_free(ckmc_cert_s *cert);
 
@@ -148,7 +148,7 @@ internal static partial class Interop
         public static partial int LoadCertFromFile(string filePath, out IntPtr cert);
         // int ckmc_load_cert_from_file(const char *file_path, ckmc_cert_s **cert);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_pkcs12_new", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_pkcs12_new")]
         public static partial int Pkcs12New(IntPtr key, IntPtr cert, IntPtr caCerts, out IntPtr p12_bundle);
         // int ckmc_pkcs12_new(ckmc_key_s *private_key, ckmc_cert_s* cert, ckmc_cert_list_s *ca_cert_list, ckmc_pkcs12_s** pkcs12_bundle);
 
@@ -156,7 +156,7 @@ internal static partial class Interop
         public static partial int Pkcs12Load(string filePath, string password, out IntPtr pkcs12);
         // int ckmc_pkcs12_load(const char *file_path, const char* passphrase, ckmc_pkcs12_s **pkcs12_bundle);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_pkcs12_free", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_pkcs12_free")]
         public static partial void Pkcs12Free(IntPtr pkcs12);
         // void ckmc_pkcs12_free(ckmc_pkcs12_s *pkcs12);
 
@@ -168,55 +168,55 @@ internal static partial class Interop
         public static partial int AliasListAdd(IntPtr previous, string alias, out IntPtr aliasList);
         // int ckmc_alias_list_add(ckmc_alias_list_s *previous, char* alias, ckmc_alias_list_s **pplast);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_alias_list_free", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_alias_list_free")]
         public static partial void AliasListFree(IntPtr first);
         // void ckmc_alias_list_free(ckmc_alias_list_s* first);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_alias_list_all_free", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_alias_list_all_free")]
         public static partial void AliasListAllFree(IntPtr first);
         // void ckmc_alias_list_all_free(ckmc_alias_list_s* first);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_list_new", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_list_new")]
         public static partial int CertListNew(IntPtr cert, out IntPtr certList);
         // int ckmc_cert_list_new(ckmc_cert_s *cert, ckmc_cert_list_s **ppcert_list);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_list_add", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_list_add")]
         public static partial int CertListAdd(IntPtr previous, IntPtr cert, out IntPtr certList);
         // int ckmc_cert_list_add(ckmc_cert_list_s *previous, ckmc_cert_s *cert, ckmc_cert_list_s** pplast);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_list_free", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_list_free")]
         public static partial void CertListFree(IntPtr first);
         // void ckmc_cert_list_free(ckmc_cert_list_s *first);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_list_all_free", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_cert_list_all_free")]
         public static partial void CertListAllFree(IntPtr first);
         // void ckmc_cert_list_all_free(ckmc_cert_list_s *first);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_new", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_new")]
         public static partial int ParamListNew(out IntPtr paramList);
         // int ckmc_param_list_new(ckmc_param_list_h *pparams);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_set_integer", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_set_integer")]
         public static partial int ParamListSetInteger(IntPtr paramList, int name, long value);
         // int ckmc_param_list_set_integer(ckmc_param_list_h params, ckmc_param_name_e name, uint64_t value);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_set_buffer", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_set_buffer")]
         public static partial int ParamListSetBuffer(IntPtr paramList, int name, IntPtr buffer);
         // int ckmc_param_list_set_buffer(ckmc_param_list_h params, ckmc_param_name_e name, const ckmc_raw_buffer_s* buffer);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_get_integer", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_get_integer")]
         public static partial int ParamListGetInteger(IntPtr paramList, int name, out long value);
         // int ckmc_param_list_get_integer(ckmc_param_list_h params, ckmc_param_name_e name, uint64_t *pvalue);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_get_buffer", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_get_buffer")]
         public static partial int ParamListGetBuffer(IntPtr paramList, int name, out IntPtr buffer);
         // int ckmc_param_list_get_buffer(ckmc_param_list_h params, ckmc_param_name_e name, ckmc_raw_buffer_s **ppbuffer);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_free", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_param_list_free")]
         public static partial void ParamListFree(IntPtr first);
         // void ckmc_param_list_free(ckmc_param_list_h params);
 
-        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_generate_new_params", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.KeyManager, EntryPoint = "ckmc_generate_new_params")]
         public static partial int GenerateNewParam(int algoType, out IntPtr paramList);
         // int ckmc_generate_new_params(ckmc_algo_type_e type, ckmc_param_list_h *pparams);
     }

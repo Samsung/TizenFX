@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -230,11 +230,11 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ResultCallback(IntPtr request, int result, IntPtr userData);
 
-        [LibraryImport(Libraries.CompCoreBase, EntryPoint = "component_send_launch_request_async", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.CompCoreBase, EntryPoint = "component_send_launch_request_async")]
         internal static partial ErrorCode SendLaunchRequestAsync(IntPtr context, SafeAppControlHandle appControl,
             ResultCallback resultCallback, ReplyCallback replyCallback, IntPtr userData);
 
-        [LibraryImport(Libraries.CompCoreBase, EntryPoint = "component_send_launch_request_sync", StringMarshalling = StringMarshalling.Utf8)]
+        [LibraryImport(Libraries.CompCoreBase, EntryPoint = "component_send_launch_request_sync")]
         internal static partial ErrorCode SendLaunchRequestSync(IntPtr context, SafeAppControlHandle appControl,
             SafeAppControlHandle replyControl, out int result);
 

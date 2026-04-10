@@ -52,8 +52,8 @@ internal static partial class Interop
         internal static partial int DestroyHandle(IntPtr handle);
         // int dpm_manager_destroy(device_policy_manager_h handle)
 
-        [DllImport(Libraries.DevicePolicyManager, EntryPoint = "dpm_password_get_expires", CallingConvention = CallingConvention.Cdecl), ]
-        internal static extern int PasswordGetExpires(IntPtr handle, out int value);
+        [LibraryImport(Libraries.DevicePolicyManager, EntryPoint = "dpm_password_get_expires")]
+        internal static partial int PasswordGetExpires(IntPtr handle, out int value);
         // int dpm_password_get_expires(device_policy_manager_h handle, int* value)
 
         [LibraryImport(Libraries.DevicePolicyManager, EntryPoint = "dpm_password_get_history")]
