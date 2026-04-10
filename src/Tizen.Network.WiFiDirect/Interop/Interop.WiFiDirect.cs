@@ -45,13 +45,13 @@ internal static partial class Interop
         internal delegate void StateChangedCallback(WiFiDirectState state, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool DiscoveredPeerCallback(ref DiscoveredPeerStruct peer, IntPtr userData);
+        internal delegate bool DiscoveredPeerCallback(ref DiscoveredPeerStruct peer, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool ConnectedPeerCallback(ref ConnectedPeerStruct peer, IntPtr userData);
+        internal delegate bool ConnectedPeerCallback(ref ConnectedPeerStruct peer, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool WpsTypeCallback(WiFiDirectWpsType type, IntPtr userData);
+        internal delegate bool WpsTypeCallback(WiFiDirectWpsType type, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool PersistentGroupCallback(string address, string ssid, IntPtr userData);
+        internal delegate bool PersistentGroupCallback(string address, string ssid, IntPtr userData);
 
         [LibraryImport(Libraries.WiFiDirect,EntryPoint = "wifi_direct_set_state_changed_cb")]
         internal static partial int SetStateChangedCallback(StateChangedCallback stateChangedCb, IntPtr userData);

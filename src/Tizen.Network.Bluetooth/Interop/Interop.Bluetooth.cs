@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -17,7 +17,6 @@
 using System;
 using Tizen.Network.Bluetooth;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
@@ -41,7 +40,7 @@ internal static partial class Interop
         internal delegate void DiscoveryStateChangedCallback(int result, BluetoothDeviceDiscoveryState state, IntPtr deviceInfo, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool BondedDeviceCallback([MarshalAs(UnmanagedType.Struct)]ref BluetoothDeviceStruct device, IntPtr userData);
+        internal delegate bool BondedDeviceCallback([MarshalAs(UnmanagedType.Struct)]ref BluetoothDeviceStruct device, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void BondCreatedCallback(int result, [MarshalAs(UnmanagedType.Struct)]ref BluetoothDeviceStruct device, IntPtr userData);
@@ -52,9 +51,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ServiceSearchedCallback(int result, [MarshalAs(UnmanagedType.Struct)]ref BluetoothDeviceSdpStruct sdp, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void DeviceConnectionStateChangedCallback([MarshalAs(UnmanagedType.U1)] bool connected, [MarshalAs(UnmanagedType.Struct)]ref BluetoothDeviceConnectionStruct device, IntPtr userData);
+        internal delegate void DeviceConnectionStateChangedCallback(bool connected, [MarshalAs(UnmanagedType.Struct)]ref BluetoothDeviceConnectionStruct device, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool ConnectedProfileCallback(int profile, IntPtr userData);
+        internal delegate bool ConnectedProfileCallback(int profile, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void DataReceivedCallback([MarshalAs(UnmanagedType.Struct)]ref SocketDataStruct socketData, IntPtr userData);
@@ -62,7 +61,7 @@ internal static partial class Interop
         internal delegate void SocketConnectionStateChangedCallback(int result, BluetoothSocketState connectionState, [MarshalAs(UnmanagedType.Struct)]ref SocketConnectionStruct socketConnection, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void AudioConnectionStateChangedCallback(int result, [MarshalAs(UnmanagedType.U1)] bool connected, string deviceAddress, int profileType, IntPtr userData);
+        internal delegate void AudioConnectionStateChangedCallback(int result, bool connected, string deviceAddress, int profileType, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ConnectionRequestedCallback(string deviceAddress, IntPtr userData);
@@ -82,7 +81,7 @@ internal static partial class Interop
         internal delegate void PushFinishedCallback(int result, string deviceAddress, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void TargetConnectionStateChangedCallback([MarshalAs(UnmanagedType.U1)] bool connected, string deviceAddress, IntPtr userData);
+        internal delegate void TargetConnectionStateChangedCallback(bool connected, string deviceAddress, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void EqualizerStateChangedCallback(int equalizer, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -93,7 +92,7 @@ internal static partial class Interop
         internal delegate void ScanModeChangedCallback(int scan, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void AvrcpControlConnectionChangedCallback([MarshalAs(UnmanagedType.U1)] bool connected, string remoteAddress, IntPtr userData);
+        internal delegate void AvrcpControlConnectionChangedCallback(bool connected, string remoteAddress, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void PositionChangedCallback(uint position, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -102,13 +101,13 @@ internal static partial class Interop
         internal delegate void TrackInfoChangedCallback([MarshalAs(UnmanagedType.Struct)]ref TrackInfoStruct track, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void ConnectionChangedCallback(int result, [MarshalAs(UnmanagedType.U1)] bool connected, string deviceAddress, IntPtr userData);
+        internal delegate void ConnectionChangedCallback(int result, bool connected, string deviceAddress, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ClientCharacteristicValueChangedCallback(IntPtr characteristicHandle, string value, int len, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void GattClientRequestedCallback(int result, IntPtr handle, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool GattForEachCallback(int total, int index, IntPtr handle, IntPtr userData);
+        internal delegate bool GattForEachCallback(int total, int index, IntPtr handle, IntPtr userData);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_initialize")]
         internal static extern int Initialize();
@@ -132,7 +131,7 @@ internal static partial class Interop
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_get_visibility")]
         internal static extern int GetVisibility(out int visibility, out int duration);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_is_discovering")]
-        internal static extern int IsDiscovering([MarshalAs(UnmanagedType.U1)] out bool isDiscovering);
+        internal static extern int IsDiscovering(out bool isDiscovering);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_start_device_discovery")]
         internal static extern int StartDiscovery();
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_stop_device_discovery")]
@@ -144,7 +143,7 @@ internal static partial class Interop
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_free_device_info")]
         internal static extern int FreeDeviceInfo(IntPtr deviceInfo);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_is_service_used")]
-        internal static extern int IsServiceUsed(string serviceUuid, [MarshalAs(UnmanagedType.U1)] out bool used);
+        internal static extern int IsServiceUsed(string serviceUuid, out bool used);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_get_local_oob_data")]
         internal static extern int GetOobData(out IntPtr hash, out IntPtr randomizer, out int hashLen, out int randomizerLen);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_set_remote_oob_data")]
@@ -172,7 +171,7 @@ internal static partial class Interop
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_unset_device_discovery_state_changed_cb")]
         internal static extern int UnsetDiscoveryStateChangedCallback();
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_passkey_confirmation_reply")]
-        internal static extern int PasskeyConfirmationReply([MarshalAs(UnmanagedType.U1)] bool confirmationReply);
+        internal static extern int PasskeyConfirmationReply(bool confirmationReply);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_set_authentication_req_cb")]
         internal static extern int SetAuthenticationRequestedCallback(AuthenticationRequestedCallback stateChangedCb, IntPtr userData);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_unset_authentication_req_cb")]
@@ -200,7 +199,7 @@ internal static partial class Interop
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_device_foreach_connected_profiles")]
         internal static extern int GetConnectedProfiles(string deviceAddress, ConnectedProfileCallback connectedProfileCb, IntPtr userData);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_device_is_profile_connected")]
-        internal static extern int IsProfileConnected(string deviceAddress, int profile, [MarshalAs(UnmanagedType.U1)] out bool connectionStatus);
+        internal static extern int IsProfileConnected(string deviceAddress, int profile, out bool connectionStatus);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_device_set_bond_created_cb")]
         internal static extern int SetBondCreatedCallback(BondCreatedCallback bondCreatedCb, IntPtr userData);
@@ -239,7 +238,7 @@ internal static partial class Interop
                             BluetoothLeAdvertisingState advertisingState, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate void GattConnectionStateChangedCallBack(int result, [MarshalAs(UnmanagedType.U1)] bool connected,
+        public delegate void GattConnectionStateChangedCallBack(int result, bool connected,
                                         string remoteAddress, IntPtr userData);
 
         //Bluetooth Le Adapter Apis
@@ -285,7 +284,7 @@ internal static partial class Interop
                             out int manufDataLength);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_connect")]
-        internal static extern int GattConnect(string deviceAddress, [MarshalAs(UnmanagedType.U1)] bool autoConnect);
+        internal static extern int GattConnect(string deviceAddress, bool autoConnect);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_gatt_disconnect")]
         internal static extern int GattDisconnect(string deviceAddress);
@@ -325,11 +324,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_le_set_advertising_device_name")]
         public static extern int SetAdvertisingDeviceName(IntPtr advertiserHandle, BluetoothLePacketType packetType,
-                                                [MarshalAs(UnmanagedType.U1)] bool includeName);
+                                                bool includeName);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_le_set_advertising_tx_power_level")]
         public static extern int SetAdvertisingTxPowerLevel(IntPtr advertiserHandle, BluetoothLePacketType packetType,
-                                                [MarshalAs(UnmanagedType.U1)] bool includePowerLevel);
+                                                bool includePowerLevel);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_le_clear_advertising_data")]
         public static extern int ClearAdvertisingData(IntPtr advertiserHandle, BluetoothLePacketType packetType);
@@ -347,7 +346,7 @@ internal static partial class Interop
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_le_set_advertising_connectable")]
         public static extern int SetAdvertisingConnectable(IntPtr advertiserHandle,
-                                        [MarshalAs(UnmanagedType.U1)] bool connectable);
+                                        bool connectable);
 
         //Bluetooth Socket
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -388,7 +387,7 @@ internal static partial class Interop
 
         // Bluetooth Audio
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void AgScoStateChangedCallback(int result, [MarshalAs(UnmanagedType.U1)] bool opened, IntPtr userData);
+        internal delegate void AgScoStateChangedCallback(int result, bool opened, IntPtr userData);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_audio_initialize")]
         internal static extern int InitializeAudio();
@@ -409,19 +408,19 @@ internal static partial class Interop
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_ag_close_sco")]
         internal static extern int CloseAgSco();
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_ag_is_sco_opened")]
-        internal static extern int IsAgScoOpened([MarshalAs(UnmanagedType.U1)] out bool opened);
+        internal static extern int IsAgScoOpened(out bool opened);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_ag_set_sco_state_changed_cb")]
         internal static extern int SetAgScoStateChangedCallback(AgScoStateChangedCallback scoStateChangedCb, IntPtr userData);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_ag_unset_sco_state_changed_cb")]
         internal static extern int UnsetAgScoStateChangedCallback();
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_ag_notify_voice_recognition_state")]
-        internal static extern int NotifyAgVoiceRecognitionState([MarshalAs(UnmanagedType.U1)] bool enable);
+        internal static extern int NotifyAgVoiceRecognitionState(bool enable);
 
         // Bluetooth Hid
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void HidConnectionStateChangedCallback(int result, [MarshalAs(UnmanagedType.U1)] bool connected, string deviceAddress, IntPtr userData);
+        internal delegate void HidConnectionStateChangedCallback(int result, bool connected, string deviceAddress, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void HidDeviceConnectionStateChangedCallback(int result, [MarshalAs(UnmanagedType.U1)] bool connected, string deviceAddress, IntPtr userData);
+        internal delegate void HidDeviceConnectionStateChangedCallback(int result, bool connected, string deviceAddress, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void HidDeviceDataReceivedCallback(ref BluetoothHidDeviceReceivedDataStruct receivedData, IntPtr userData);
 
@@ -621,22 +620,22 @@ internal static partial class Interop
         // Bluetooth GATT
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool BtGattForeachCallback(int total, int index, IntPtr gattHandle, IntPtr userData);
+        internal delegate bool BtGattForeachCallback(int total, int index, IntPtr gattHandle, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate void BtGattServerReadValueRequestedCallback(string clientAddress, int requestId, IntPtr serverHandle, IntPtr gattHandle, int offset, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        internal delegate void BtGattServerWriteValueRequestedCallback(string clientAddress, int requestId, IntPtr serverHandle, IntPtr gattHandle, [MarshalAs(UnmanagedType.U1)] bool response_needed, int offset, IntPtr value, int len, IntPtr userData);
+        internal delegate void BtGattServerWriteValueRequestedCallback(string clientAddress, int requestId, IntPtr serverHandle, IntPtr gattHandle, bool response_needed, int offset, IntPtr value, int len, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate void BtClientCharacteristicValueChangedCallback(IntPtr characteristicHandle, IntPtr value, int len, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        internal delegate void BtGattServerNotificationStateChangeCallback([MarshalAs(UnmanagedType.U1)] bool notify, IntPtr serverHandle, IntPtr characteristicHandle, IntPtr userData);
+        internal delegate void BtGattServerNotificationStateChangeCallback(bool notify, IntPtr serverHandle, IntPtr characteristicHandle, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        internal delegate void BtGattServerNotificationSentCallback(int result, string clientAddress, IntPtr serverHandle, IntPtr characteristicHandle, [MarshalAs(UnmanagedType.U1)] bool completed, IntPtr userData);
+        internal delegate void BtGattServerNotificationSentCallback(int result, string clientAddress, IntPtr serverHandle, IntPtr characteristicHandle, bool completed, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate void BtGattClientRequestCompletedCallback(int result, IntPtr requestHandle, IntPtr userData);
@@ -843,11 +842,5 @@ internal static partial class Interop
         internal static extern int BtGattServerGetDeviceMtu(string remoteAddress, out int mtu);
     }
 }
-
-
-
-
-
-
 
 

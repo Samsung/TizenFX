@@ -28,7 +28,7 @@ internal static partial class Interop
         {
             internal static partial class DeviceInformation
             {
-                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool DeviceInformationCallback(IntPtr deviceInfoHandle, int result, IntPtr userData);
+                internal delegate bool DeviceInformationCallback(IntPtr deviceInfoHandle, int result, IntPtr userData);
 
                 internal enum Property
                 {
@@ -47,7 +47,7 @@ internal static partial class Interop
 
             internal static partial class PlatformInformation
             {
-                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool PlatformInformationCallback(IntPtr platformInfoHandle, int result, IntPtr userData);
+                internal delegate bool PlatformInformationCallback(IntPtr platformInfoHandle, int result, IntPtr userData);
 
                 internal enum Propery
                 {
@@ -197,7 +197,7 @@ internal static partial class Interop
             internal static partial class ResourceFinder
             {
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool FoundResourceCallback(IntPtr remoteResourceHandle, int result, IntPtr userData);
+                internal delegate bool FoundResourceCallback(IntPtr remoteResourceHandle, int result, IntPtr userData);
 
                 [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_find_resource", StringMarshalling = StringMarshalling.Utf8)]
                 internal static partial int AddResourceFoundCb(string hostAddress, int connectivityType, IntPtr query, FoundResourceCallback cb, IntPtr userData);

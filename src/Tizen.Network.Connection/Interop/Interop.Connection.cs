@@ -32,7 +32,7 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void ConnectionCallback(ConnectionError result, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] public delegate bool IPv6AddressCallback(IntPtr ipv6, IntPtr userData);
+        public delegate bool IPv6AddressCallback(IntPtr ipv6, IntPtr userData);
 
         [LibraryImport(Libraries.Connection, EntryPoint = "connection_create")]
         public static partial int Create(out IntPtr handle);

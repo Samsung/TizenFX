@@ -39,7 +39,7 @@ internal static partial class Interop
         internal delegate void VoidCallback(int result, IntPtr userData);
         //nfc_tag_information_cb
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool TagInformationCallback(IntPtr key, IntPtr value, int valueSize, IntPtr userData);
+        internal delegate bool TagInformationCallback(IntPtr key, IntPtr value, int valueSize, IntPtr userData);
         //nfc_tag_transceive_completed_cb
         //nfc_mifare_read_block_completed_cb
         //nfc_mifare_read_page_completed_cb
@@ -47,19 +47,19 @@ internal static partial class Interop
         internal delegate void TagTransceiveCompletedCallback(int result, IntPtr value, int bufferSize, IntPtr userData);
         //nfc_tag_read_completed_cb
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool TagReadCompletedCallback(int result, IntPtr message, IntPtr userData);
+        internal delegate bool TagReadCompletedCallback(int result, IntPtr message, IntPtr userData);
         //nfc_snep_event_cb
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void SnepEventCallback(IntPtr handle, int snepEvent, int result, IntPtr message, IntPtr userData);
         //nfc_se_registered_aid_cb
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void SecureElementRegisteredAidCallback(int seType, IntPtr aid, [MarshalAs(UnmanagedType.U1)] bool readOnly, IntPtr userData);
+        internal delegate void SecureElementRegisteredAidCallback(int seType, IntPtr aid, bool readOnly, IntPtr userData);
 
 
         //Callback for event
         //nfc_activation_changed_cb
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void ActivationChangedCallback([MarshalAs(UnmanagedType.U1)] bool activated, IntPtr userData);
+        internal delegate void ActivationChangedCallback(bool activated, IntPtr userData);
         //nfc_tag_discovered_cb
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void TagDiscoveredCallback(int type, IntPtr tag, IntPtr userData);

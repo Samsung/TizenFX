@@ -41,7 +41,7 @@ internal static partial class Interop
             internal static partial class ResourceTypes
             {
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool ForeachCallback(string type, IntPtr userData);
+                internal delegate bool ForeachCallback(string type, IntPtr userData);
 
                 [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_resource_types_create")]
                 internal static partial int Create(out IntPtr types);
@@ -65,7 +65,7 @@ internal static partial class Interop
             internal static partial class ResourceInterfaces
             {
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool ForeachCallback(string iface, IntPtr userData);
+                internal delegate bool ForeachCallback(string iface, IntPtr userData);
 
                 [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_resource_interfaces_create")]
                 internal static partial int Create(out IntPtr ifaces);
@@ -88,7 +88,7 @@ internal static partial class Interop
 
             internal static partial class Attributes
             {
-                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool AttributesCallback(IntPtr attributes, string key, IntPtr userData);
+                internal delegate bool AttributesCallback(IntPtr attributes, string key, IntPtr userData);
 
                 [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_attributes_create")]
                 internal static partial int Create(out IntPtr attributes);
@@ -162,7 +162,7 @@ internal static partial class Interop
 
             internal static partial class Query
             {
-                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool QueryCallback(string key, string value, IntPtr userData);
+                internal delegate bool QueryCallback(string key, string value, IntPtr userData);
 
                 [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_query_create")]
                 internal static partial int Create(out IntPtr query);
@@ -197,7 +197,7 @@ internal static partial class Interop
 
             internal static partial class Representation
             {
-                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool RepresentationChildrenCallback(IntPtr child, IntPtr userData);
+                internal delegate bool RepresentationChildrenCallback(IntPtr child, IntPtr userData);
 
                 [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_representation_create")]
                 internal static partial int Create(out IntPtr repr);
@@ -250,7 +250,7 @@ internal static partial class Interop
 
             internal static partial class Options
             {
-                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool OptionsCallback(ushort id, string data, IntPtr userData);
+                internal delegate bool OptionsCallback(ushort id, string data, IntPtr userData);
 
                 [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_options_create")]
                 internal static partial int Create(out IntPtr options);
@@ -273,19 +273,19 @@ internal static partial class Interop
 
             internal static partial class List
             {
-                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool IntCallback(int pos, int value, IntPtr userData);
+                internal delegate bool IntCallback(int pos, int value, IntPtr userData);
 
-                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool BoolCallback(int pos, [MarshalAs(UnmanagedType.U1)] bool value, IntPtr userData);
+                internal delegate bool BoolCallback(int pos, bool value, IntPtr userData);
 
-                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool DoubleCallback(int pos, double value, IntPtr userData);
+                internal delegate bool DoubleCallback(int pos, double value, IntPtr userData);
 
-                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool ByteStrCallback(int pos, byte[] value, int len, IntPtr userData);
+                internal delegate bool ByteStrCallback(int pos, byte[] value, int len, IntPtr userData);
 
-                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool StrCallback(int pos, string value, IntPtr userData);
+                internal delegate bool StrCallback(int pos, string value, IntPtr userData);
 
-                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool ListCallback(int pos, IntPtr value, IntPtr userData);
+                internal delegate bool ListCallback(int pos, IntPtr value, IntPtr userData);
 
-                [return: MarshalAs(UnmanagedType.U1)] internal delegate bool AttribsCallback(int pos, IntPtr value, IntPtr userData);
+                internal delegate bool AttribsCallback(int pos, IntPtr value, IntPtr userData);
 
                 [LibraryImport(Libraries.IoTCon, EntryPoint = "iotcon_list_create")]
                 internal static partial int Create(DataType type, out IntPtr list);
