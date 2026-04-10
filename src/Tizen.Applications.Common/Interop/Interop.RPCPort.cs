@@ -129,7 +129,7 @@ internal static partial class Interop
 
             //int rpc_port_parcel_read_bool(rpc_port_parcel_h h, bool *b);
             [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_bool")]
-        internal static partial ErrorCode ReadBool(IntPtr parcelHandle, [MarshalAs(UnmanagedType.U1)] out [MarshalAs(UnmanagedType.U1)] bool b);
+        internal static partial ErrorCode ReadBool(IntPtr parcelHandle, [MarshalAs(UnmanagedType.U1)] out bool b);
 
             //int rpc_port_parcel_read_bundle(rpc_port_parcel_h h, bundle** b);
             [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_parcel_read_bundle")]
@@ -317,11 +317,11 @@ internal static partial class Interop
 
             // int rpc_port_stub_has_privilege(rpc_port_stub_h h, const char *instance, const char *privilege, bool *has_privilege);
             [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_has_privilege", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial ErrorCode HasPrivilege(IntPtr handle, string instance, string privilege, [MarshalAs(UnmanagedType.U1)] out [MarshalAs(UnmanagedType.U1)] bool hasPrivilege);
+        internal static partial ErrorCode HasPrivilege(IntPtr handle, string instance, string privilege, [MarshalAs(UnmanagedType.U1)] out bool hasPrivilege);
 
             // int rpc_port_stub_has_privilege_local(rpc_port_stub_h h, const char *appid, const char *privilege, bool *has_privilege);
             [LibraryImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_has_privilege_local", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial ErrorCode HasPrivilegeLocal(IntPtr handle, string appId, string privilege, [MarshalAs(UnmanagedType.U1)] out [MarshalAs(UnmanagedType.U1)] bool hasPrivilege);
+        internal static partial ErrorCode HasPrivilegeLocal(IntPtr handle, string appId, string privilege, [MarshalAs(UnmanagedType.U1)] out bool hasPrivilege);
 
             //typedef void (*rpc_port_stub_connected_event_cb)(const char *sender, const char *instance, void* data);
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

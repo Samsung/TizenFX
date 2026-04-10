@@ -46,7 +46,7 @@ internal static partial class Interop
         internal static partial int GetString(SafeBundleHandle handle, string key, out IntPtr value);
 
         [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_add_byte", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial unsafe int AddByte(SafeBundleHandle handle, string key, byte* value, int size);
+        internal static unsafe partial int AddByte(SafeBundleHandle handle, string key, byte* value, int size);
 
         [LibraryImport(Libraries.Bundle, EntryPoint = "bundle_get_byte", StringMarshalling = StringMarshalling.Utf8)]
         internal static partial int GetByte(SafeBundleHandle handle, string key, out IntPtr value, out int size);

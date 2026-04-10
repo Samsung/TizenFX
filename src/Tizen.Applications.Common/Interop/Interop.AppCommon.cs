@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -49,46 +49,46 @@ internal static partial class Interop
         [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_name", StringMarshalling = StringMarshalling.Utf8)]
         internal static partial ErrorCode AppGetName(out string name);
 
-        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_resource_path")]
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_resource_path", StringMarshalling = StringMarshalling.Utf8)]
         internal static partial string AppGetResourcePath();
 
-        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_data_path")]
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_data_path", StringMarshalling = StringMarshalling.Utf8)]
         internal static partial string AppGetDataPath();
 
-        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_cache_path")]
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_cache_path", StringMarshalling = StringMarshalling.Utf8)]
         internal static partial string AppGetCachePath();
 
-        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_shared_data_path")]
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_shared_data_path", StringMarshalling = StringMarshalling.Utf8)]
         internal static partial string AppGetSharedDataPath();
 
-        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_shared_resource_path")]
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_shared_resource_path", StringMarshalling = StringMarshalling.Utf8)]
         internal static partial string AppGetSharedResourcePath();
 
-        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_shared_trusted_path")]
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_shared_trusted_path", StringMarshalling = StringMarshalling.Utf8)]
         internal static partial string AppGetSharedTrustedPath();
 
-        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_tep_resource_path")]
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_tep_resource_path", StringMarshalling = StringMarshalling.Utf8)]
         internal static partial string AppGetTepResourcePath();
 
-        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_external_cache_path")]
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_external_cache_path", StringMarshalling = StringMarshalling.Utf8)]
         internal static partial string AppGetExternalCachePath();
 
-        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_external_data_path")]
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_external_data_path", StringMarshalling = StringMarshalling.Utf8)]
         internal static partial string AppGetExternalDataPath();
 
-        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_external_shared_data_path")]
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_external_shared_data_path", StringMarshalling = StringMarshalling.Utf8)]
         internal static partial string AppGetExternalSharedDataPath();
 
-        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_common_data_path")]
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_common_data_path", StringMarshalling = StringMarshalling.Utf8)]
         internal static partial string AppGetCommonDataPath();
 
-        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_common_cache_path")]
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_common_cache_path", StringMarshalling = StringMarshalling.Utf8)]
         internal static partial string AppGetCommonCachePath();
 
-        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_common_shared_data_path")]
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_common_shared_data_path", StringMarshalling = StringMarshalling.Utf8)]
         internal static partial string AppGetCommonSharedDataPath();
 
-        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_common_shared_trusted_path")]
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_common_shared_trusted_path", StringMarshalling = StringMarshalling.Utf8)]
         internal static partial string AppGetCommonSharedTrustedPath();
 
         [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_version", StringMarshalling = StringMarshalling.Utf8)]
@@ -149,6 +149,7 @@ internal static partial class Interop
         // int app_locale_manager_get_system_language(char **lang)
     }
 }
+
 
 
 
