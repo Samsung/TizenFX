@@ -16,7 +16,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 using Tizen.Multimedia.Vision;
 
 /// <summary>
@@ -37,20 +36,20 @@ internal static partial class Interop
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void RoiTrackedCallback(IntPtr source, Rectangle roi, IntPtr userData = default);
 
-            [LibraryImport(Libraries.MediaVisionRoiTracker, EntryPoint = "mv_roi_tracker_create")]
-            internal static partial MediaVisionError Create(out IntPtr handle);
+            [DllImport(Libraries.MediaVisionRoiTracker, EntryPoint = "mv_roi_tracker_create")]
+            internal static extern MediaVisionError Create(out IntPtr handle);
 
-            [LibraryImport(Libraries.MediaVisionRoiTracker, EntryPoint = "mv_roi_tracker_destroy")]
-            internal static partial MediaVisionError Destroy(IntPtr handle);
+            [DllImport(Libraries.MediaVisionRoiTracker, EntryPoint = "mv_roi_tracker_destroy")]
+            internal static extern MediaVisionError Destroy(IntPtr handle);
 
-            [LibraryImport(Libraries.MediaVisionRoiTracker, EntryPoint = "mv_roi_tracker_configure")]
-            internal static partial MediaVisionError Configure(IntPtr handle, IntPtr engineConfig);
+            [DllImport(Libraries.MediaVisionRoiTracker, EntryPoint = "mv_roi_tracker_configure")]
+            internal static extern MediaVisionError Configure(IntPtr handle, IntPtr engineConfig);
 
-            [LibraryImport(Libraries.MediaVisionRoiTracker, EntryPoint = "mv_roi_tracker_prepare")]
-            internal static partial MediaVisionError Prepare(IntPtr handle, int x, int y, int width, int height);
+            [DllImport(Libraries.MediaVisionRoiTracker, EntryPoint = "mv_roi_tracker_prepare")]
+            internal static extern MediaVisionError Prepare(IntPtr handle, int x, int y, int width, int height);
 
-            [LibraryImport(Libraries.MediaVisionRoiTracker, EntryPoint = "mv_roi_tracker_perform", StringMarshalling = StringMarshalling.Utf8)]
-            internal static partial MediaVisionError TrackRoi(IntPtr handle, IntPtr source, RoiTrackedCallback callback,
+            [DllImport(Libraries.MediaVisionRoiTracker, EntryPoint = "mv_roi_tracker_perform")]
+            internal static extern MediaVisionError TrackRoi(IntPtr handle, IntPtr source, RoiTrackedCallback callback,
                 IntPtr userData = default);
         }
     }

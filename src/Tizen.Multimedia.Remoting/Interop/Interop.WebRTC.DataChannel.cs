@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,7 +16,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications;
 using Tizen.Multimedia.Remoting;
 

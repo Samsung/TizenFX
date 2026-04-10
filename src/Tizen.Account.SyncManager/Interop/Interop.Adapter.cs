@@ -8,17 +8,16 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
     internal static partial class Adapter
     {
-        [LibraryImport(Libraries.SyncManager, EntryPoint = "sync_adapter_set_callbacks")]
-        internal static partial int SetCallbacks(SyncAdapterStartSyncCallback onStartCb, SyncAdapterCancelSyncCallback onCancelCb);
+        [DllImport(Libraries.SyncManager, EntryPoint = "sync_adapter_set_callbacks")]
+        internal static extern int SetCallbacks(SyncAdapterStartSyncCallback onStartCb, SyncAdapterCancelSyncCallback onCancelCb);
 
-        [LibraryImport(Libraries.SyncManager, EntryPoint = "sync_adapter_unset_callbacks")]
-        internal static partial int UnsetCallbacks();
+        [DllImport(Libraries.SyncManager, EntryPoint = "sync_adapter_unset_callbacks")]
+        internal static extern int UnsetCallbacks();
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate bool SyncAdapterStartSyncCallback(IntPtr account, string syncJobName, string syncCapability, IntPtr syncJobUserData);

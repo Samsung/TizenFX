@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,7 +16,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 using Tizen.Multimedia;
 
 internal static partial class Interop
@@ -26,16 +25,16 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void WavPlayerCompletedCallback(int playerId, IntPtr userData);
 
-        [LibraryImport(Libraries.WavPlayer, EntryPoint = "wav_player_start_new", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial WavPlayerError Start(string filePath, AudioStreamPolicyHandle streamInfoHandle,
+        [DllImport(Libraries.WavPlayer, EntryPoint = "wav_player_start_new")]
+        internal static extern WavPlayerError Start(string filePath, AudioStreamPolicyHandle streamInfoHandle,
             WavPlayerCompletedCallback completedCallback, IntPtr userData, out int id);
 
-        [LibraryImport(Libraries.WavPlayer, EntryPoint = "wav_player_start_loop", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial WavPlayerError StartLoop(string filePath, AudioStreamPolicyHandle streamInfoHandle, uint count,
+        [DllImport(Libraries.WavPlayer, EntryPoint = "wav_player_start_loop")]
+        internal static extern WavPlayerError StartLoop(string filePath, AudioStreamPolicyHandle streamInfoHandle, uint count,
             WavPlayerCompletedCallback completedCallback, IntPtr userData, out int id);
 
-        [LibraryImport(Libraries.WavPlayer, EntryPoint = "wav_player_stop")]
-        internal static partial WavPlayerError Stop(int id);
+        [DllImport(Libraries.WavPlayer, EntryPoint = "wav_player_stop")]
+        internal static extern WavPlayerError Stop(int id);
     }
 }
 

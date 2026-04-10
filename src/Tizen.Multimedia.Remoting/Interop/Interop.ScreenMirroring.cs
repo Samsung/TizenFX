@@ -17,7 +17,6 @@
 using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 using Tizen.Internals;
 using Tizen.Multimedia;
 using Tizen.Multimedia.Remoting;
@@ -183,4 +182,3 @@ internal static partial class Interop
         }
     }
 }
-

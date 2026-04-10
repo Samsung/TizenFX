@@ -16,7 +16,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 using Tizen.Multimedia;
 
 internal static partial class Interop
@@ -35,20 +34,20 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool FileFormatCallback(RecorderFileFormat value, IntPtr userData);
 
-        [LibraryImport(Libraries.Recorder, EntryPoint = "recorder_foreach_supported_file_format", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial RecorderErrorCode GetFileFormats(RecorderHandle handle,
+        [DllImport(Libraries.Recorder, EntryPoint = "recorder_foreach_supported_file_format")]
+        internal static extern RecorderErrorCode GetFileFormats(RecorderHandle handle,
             FileFormatCallback callback, IntPtr userData = default(IntPtr));
 
-        [LibraryImport(Libraries.Recorder, EntryPoint = "recorder_foreach_supported_audio_encoder", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial RecorderErrorCode GetAudioEncoders(RecorderHandle handle,
+        [DllImport(Libraries.Recorder, EntryPoint = "recorder_foreach_supported_audio_encoder")]
+        internal static extern RecorderErrorCode GetAudioEncoders(RecorderHandle handle,
             AudioEncoderCallback callback, IntPtr userData = default(IntPtr));
 
-        [LibraryImport(Libraries.Recorder, EntryPoint = "recorder_foreach_supported_video_encoder", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial RecorderErrorCode GetVideoEncoders(RecorderHandle handle,
+        [DllImport(Libraries.Recorder, EntryPoint = "recorder_foreach_supported_video_encoder")]
+        internal static extern RecorderErrorCode GetVideoEncoders(RecorderHandle handle,
             VideoEncoderCallback callback, IntPtr userData = default(IntPtr));
 
-        [LibraryImport(Libraries.Recorder, EntryPoint = "recorder_foreach_supported_video_resolution", StringMarshalling = StringMarshalling.Utf8)]
-        public static partial RecorderErrorCode GetVideoResolutions(RecorderHandle handle,
+        [DllImport(Libraries.Recorder, EntryPoint = "recorder_foreach_supported_video_resolution")]
+        public static extern RecorderErrorCode GetVideoResolutions(RecorderHandle handle,
             VideoResolutionCallback callback, IntPtr userData = default(IntPtr));
     }
 }

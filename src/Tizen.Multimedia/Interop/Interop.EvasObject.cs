@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,7 +16,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 
 namespace Tizen.Multimedia
 {
@@ -24,11 +23,11 @@ namespace Tizen.Multimedia
     {
         internal static partial class EvasObject
         {
-            [LibraryImport("libevas.so.1")]
-            internal static partial IntPtr evas_object_image_add(IntPtr parent);
+            [DllImport("libevas.so.1")]
+            internal static extern IntPtr evas_object_image_add(IntPtr parent);
 
-            [LibraryImport("libevas.so.1")]
-            internal static partial IntPtr evas_object_evas_get(IntPtr obj);
+            [DllImport("libevas.so.1")]
+            internal static extern IntPtr evas_object_evas_get(IntPtr obj);
         }
     }
 }

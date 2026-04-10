@@ -16,16 +16,12 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
     internal static partial class Libc
     {
-        [LibraryImport(Libraries.Libc, EntryPoint = "free")]
-        internal static partial int Free(IntPtr ptr);
+        [DllImport(Libraries.Libc, EntryPoint = "free", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int Free(IntPtr ptr);
     }
 }
-
-
-
