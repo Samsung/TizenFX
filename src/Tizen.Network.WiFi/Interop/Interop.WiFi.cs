@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Network.WiFi;
 using Tizen.Network.Connection;
 
@@ -27,7 +28,7 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void VoidCallback(int result, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool HandleCallback(IntPtr handle, IntPtr userData);
+        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool HandleCallback(IntPtr handle, IntPtr userData);
 
         //Callback for event
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -53,7 +54,7 @@ internal static partial class Interop
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_deactivate")]
         internal static extern int Deactivate(SafeWiFiManagerHandle wifi, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_is_activated")]
-        internal static extern int IsActive(SafeWiFiManagerHandle wifi, out bool activated);
+        internal static extern int IsActive(SafeWiFiManagerHandle wifi, [MarshalAs(UnmanagedType.U1)] out bool activated);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_get_mac_address")]
         internal static extern int GetMacAddress(SafeWiFiManagerHandle wifi, out string macAddress);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_get_network_interface_name")]
@@ -135,10 +136,10 @@ internal static partial class Interop
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_tdls_get_connected_peer")]
         internal static extern int GetTdlsConnectedPeer(SafeWiFiManagerHandle wifi, out IntPtr peerMacAddress);
 
-        internal static class AP
+        internal static partial class AP
         {
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-            internal delegate bool FoundBssidCallback(string bssid, int rssi, int freq, IntPtr userData);
+            [return: MarshalAs(UnmanagedType.U1)] internal delegate bool FoundBssidCallback(string bssid, int rssi, int freq, IntPtr userData);
 
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_create")]
             internal static extern int Create(SafeWiFiManagerHandle wifi, string essid, out IntPtr ap);
@@ -169,9 +170,9 @@ internal static partial class Interop
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_max_speed")]
             internal static extern int GetMaxSpeed(SafeWiFiAPHandle ap, out int maxSpeed);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_is_favorite")]
-            internal static extern int IsFavorite(SafeWiFiAPHandle ap, out bool isFavorite);
+            internal static extern int IsFavorite(SafeWiFiAPHandle ap, [MarshalAs(UnmanagedType.U1)] out bool isFavorite);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_is_passpoint")]
-            internal static extern int IsPasspoint(SafeWiFiAPHandle ap, out bool isPasspoint);
+            internal static extern int IsPasspoint(SafeWiFiAPHandle ap, [MarshalAs(UnmanagedType.U1)] out bool isPasspoint);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_connection_state")]
             internal static extern int GetConnectionState(SafeWiFiAPHandle ap, out int connectionState);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_ip_config_type")]
@@ -229,17 +230,17 @@ internal static partial class Interop
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_encryption_type")]
             internal static extern int SetEncryptionType(SafeWiFiAPHandle ap, int encryptionType);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_is_passphrase_required")]
-            internal static extern int IsPassphraseRequired(SafeWiFiAPHandle ap, out bool required);
+            internal static extern int IsPassphraseRequired(SafeWiFiAPHandle ap, [MarshalAs(UnmanagedType.U1)] out bool required);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_passphrase")]
             internal static extern int SetPassphrase(SafeWiFiAPHandle ap, string passphrase);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_is_wps_supported")]
-            internal static extern int IsWpsSupported(SafeWiFiAPHandle ap, out bool supported);
+            internal static extern int IsWpsSupported(SafeWiFiAPHandle ap, [MarshalAs(UnmanagedType.U1)] out bool supported);
 
             ////EAP
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_eap_passphrase")]
             internal static extern int SetEapPassphrase(SafeWiFiAPHandle ap, string userName, string password);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_eap_passphrase")]
-            internal static extern int GetEapPassphrase(SafeWiFiAPHandle ap, out IntPtr userName, out bool isPasswordSet);
+            internal static extern int GetEapPassphrase(SafeWiFiAPHandle ap, out IntPtr userName, [MarshalAs(UnmanagedType.U1)] out bool isPasswordSet);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_eap_ca_cert_file")]
             internal static extern int GetEapCaCertFile(SafeWiFiAPHandle ap, out IntPtr file);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_eap_ca_cert_file")]
@@ -262,7 +263,7 @@ internal static partial class Interop
             internal static extern int SetEapAuthType(SafeWiFiAPHandle ap, int file);
         }
 
-        internal static class Config
+        internal static partial class Config
         {
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_create")]
             internal static extern int Create(SafeWiFiManagerHandle wifi, string name, string passPhrase, int securityType, out IntPtr config);
@@ -285,9 +286,9 @@ internal static partial class Interop
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_get_proxy_address")]
             internal static extern int GetProxyAddress(IntPtr config, out int addressFamily, out IntPtr proxyAddress);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_set_hidden_ap_property")]
-            internal static extern int SetHiddenAPProperty(IntPtr config, bool isHidden);
+            internal static extern int SetHiddenAPProperty(IntPtr config, [MarshalAs(UnmanagedType.U1)] bool isHidden);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_get_hidden_ap_property")]
-            internal static extern int GetHiddenAPProperty(IntPtr config, out bool isHidden);
+            internal static extern int GetHiddenAPProperty(IntPtr config, [MarshalAs(UnmanagedType.U1)] out bool isHidden);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_get_eap_anonymous_identity")]
             internal static extern int GetEapAnonymousIdentity(SafeWiFiConfigHandle config, out IntPtr anonymousIdentify);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_config_set_eap_anonymous_identity")]
@@ -329,16 +330,14 @@ internal static partial class Interop
             public SafeWiFiAPHandle(IntPtr handle) : base(handle, true)
             {
             }
-
-            public override bool IsInvalid
+        public override bool IsInvalid
             {
                 get
                 {
                     return this.handle == IntPtr.Zero;
                 }
             }
-
-            protected override bool ReleaseHandle()
+        protected override bool ReleaseHandle()
             {
                 this.SetHandle(IntPtr.Zero);
                 return true;
@@ -354,16 +353,14 @@ internal static partial class Interop
             public SafeWiFiConfigHandle(IntPtr handle) : base(handle, true)
             {
             }
-
-            public override bool IsInvalid
+        public override bool IsInvalid
             {
                 get
                 {
                     return this.handle == IntPtr.Zero;
                 }
             }
-
-            protected override bool ReleaseHandle()
+        protected override bool ReleaseHandle()
             {
                 this.SetHandle(IntPtr.Zero);
                 return true;
@@ -374,7 +371,7 @@ internal static partial class Interop
 
     internal static partial class Glib
     {
-        [DllImport(Libraries.Glib, EntryPoint = "g_free", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.Glib, EntryPoint = "g_free")]
         public static extern void Free(IntPtr userData);
     }
 
@@ -384,3 +381,10 @@ internal static partial class Interop
         public static extern void Free(IntPtr userData);
     }
 }
+
+
+
+
+
+
+
