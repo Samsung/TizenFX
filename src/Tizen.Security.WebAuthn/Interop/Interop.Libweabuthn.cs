@@ -16,7 +16,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
@@ -27,12 +26,12 @@ internal static partial class Interop
 
     internal static partial class Libwebauthn
     {
-        [LibraryImport(Libraries.Libwebauthn, EntryPoint = "wauthn_set_api_version")]
-        public static partial int SetApiVersion(int apiVersionNumber);
+        [DllImport(Libraries.Libwebauthn, EntryPoint = "wauthn_set_api_version", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SetApiVersion(int apiVersionNumber);
         // int wauthn_set_api_version(int api_version_number);
 
-        [LibraryImport(Libraries.Libwebauthn, EntryPoint = "wauthn_supported_authenticators")]
-        public static partial int SupportedAuthenticators(out uint supported);
+        [DllImport(Libraries.Libwebauthn, EntryPoint = "wauthn_supported_authenticators", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int SupportedAuthenticators(out uint supported);
         // int wauthn_supported_authenticators(unsigned int *supported);
 
         [DllImport(Libraries.Libwebauthn, EntryPoint = "wauthn_make_credential", CallingConvention = CallingConvention.Cdecl)]
@@ -43,11 +42,8 @@ internal static partial class Interop
         public static extern int GetAssertion([In] WauthnClientData clientData, [In] WauthnPubkeyCredRequestOptions options, [In, Out] WauthnGaCallbacks callbacks);
         // int wauthn_get_assertion( const wauthn_client_data_s *client_data, const wauthn_pubkey_cred_request_options_s *options, wauthn_ga_callbacks_s *callbacks);
 
-        [LibraryImport(Libraries.Libwebauthn, EntryPoint = "wauthn_cancel")]
-        public static partial int Cancel();
+        [DllImport(Libraries.Libwebauthn, EntryPoint = "wauthn_cancel", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int Cancel();
         // int wauthn_cancel();
     }
 }
-
-
-

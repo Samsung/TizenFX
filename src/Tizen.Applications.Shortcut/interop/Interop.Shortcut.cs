@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2017 Samsung Electronics Co., Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +16,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 
 using Tizen.Applications.Shortcut;
 
@@ -98,32 +97,28 @@ internal static partial class Interop
             COMM = -0x01160000 | 0x40
         }
 
-        [LibraryImport(Libraries.Shortcut, EntryPoint = "shortcut_add_to_home_sync", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial ErrorCode AddToHome(string name, int type, string uri, string icon, int dubplicate);
+        [DllImport(Libraries.Shortcut, EntryPoint = "shortcut_add_to_home_sync")]
+        internal static extern ErrorCode AddToHome(string name, int type, string uri, string icon, int dubplicate);
 
-        [LibraryImport(Libraries.Shortcut, EntryPoint = "shortcut_add_to_home_widget_sync", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial ErrorCode AddToWidget(string name, ShortcutWidgetSize size,  string widgetId, string icon, double period, int dubplicate);
+        [DllImport(Libraries.Shortcut, EntryPoint = "shortcut_add_to_home_widget_sync")]
+        internal static extern ErrorCode AddToWidget(string name, ShortcutWidgetSize size,  string widgetId, string icon, double period, int dubplicate);
 
-        [LibraryImport(Libraries.Shortcut, EntryPoint = "shortcut_remove_from_home_sync", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial ErrorCode Delete(string name);
+        [DllImport(Libraries.Shortcut, EntryPoint = "shortcut_remove_from_home_sync")]
+        internal static extern ErrorCode Delete(string name);
 
-        [LibraryImport(Libraries.Shortcut, EntryPoint = "shortcut_get_list", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial ErrorCode GetList(string name, ListCallback list, IntPtr data);
+        [DllImport(Libraries.Shortcut, EntryPoint = "shortcut_get_list")]
+        internal static extern ErrorCode GetList(string name, ListCallback list, IntPtr data);
 
-        [LibraryImport(Libraries.Shortcut, EntryPoint = "shortcut_set_request_cb")]
-        internal static partial ErrorCode SetShortcutAddCallback(AddCallback cb, IntPtr data);
+        [DllImport(Libraries.Shortcut, EntryPoint = "shortcut_set_request_cb")]
+        internal static extern ErrorCode SetShortcutAddCallback(AddCallback cb, IntPtr data);
 
-        [LibraryImport(Libraries.Shortcut, EntryPoint = "shortcut_unset_request_cb")]
-        internal static partial ErrorCode UnsetShortcutAddCallback();
+        [DllImport(Libraries.Shortcut, EntryPoint = "shortcut_unset_request_cb")]
+        internal static extern ErrorCode UnsetShortcutAddCallback();
 
-        [LibraryImport(Libraries.Shortcut, EntryPoint = "shortcut_set_remove_cb")]
-        internal static partial ErrorCode SetShortcutDeleteCallback(DeleteCallback cb, IntPtr data);
+        [DllImport(Libraries.Shortcut, EntryPoint = "shortcut_set_remove_cb")]
+        internal static extern ErrorCode SetShortcutDeleteCallback(DeleteCallback cb, IntPtr data);
 
-        [LibraryImport(Libraries.Shortcut, EntryPoint = "shortcut_unset_remove_cb")]
-        internal static partial ErrorCode UnsetShortcutDeleteCallback();
+        [DllImport(Libraries.Shortcut, EntryPoint = "shortcut_unset_remove_cb")]
+        internal static extern ErrorCode UnsetShortcutDeleteCallback();
     }
 }
-
-
-
-
