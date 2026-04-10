@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen;
 using Tizen.Applications;
 
@@ -63,79 +64,79 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate int ThemeLoaderChangedCallback(IntPtr handle, IntPtr userData);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_get_id")]
-        internal static extern ErrorCode GetId(IntPtr handle, out string id);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_get_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetId(IntPtr handle, out string id);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_get_version")]
-        internal static extern ErrorCode GetVersion(IntPtr handle, out string version);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_get_version", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetVersion(IntPtr handle, out string version);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_get_tool_version")]
-        internal static extern ErrorCode GetToolVersion(IntPtr handle, out string version);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_get_tool_version", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetToolVersion(IntPtr handle, out string version);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_get_title")]
-        internal static extern ErrorCode GetTitle(IntPtr handle, out string title);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_get_title", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetTitle(IntPtr handle, out string title);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_get_resolution")]
-        internal static extern ErrorCode GetResolution(IntPtr handle, out string resolution);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_get_resolution", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetResolution(IntPtr handle, out string resolution);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_get_preview")]
-        internal static extern ErrorCode GetPreview(IntPtr handle, out string preview);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_get_preview", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetPreview(IntPtr handle, out string preview);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_get_description")]
-        internal static extern ErrorCode GetDescription(IntPtr handle, out string description);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_get_description", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetDescription(IntPtr handle, out string description);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_get_string")]
-        internal static extern ErrorCode GetString(IntPtr handle, string key, out string val);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_get_string", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetString(IntPtr handle, string key, out string val);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_get_string_array")]
-        internal static extern ErrorCode GetStringArray(IntPtr handle, string key, out IntPtr val, out int count);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_get_string_array", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetStringArray(IntPtr handle, string key, out IntPtr val, out int count);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_get_path")]
-        internal static extern ErrorCode GetPath(IntPtr handle, string key, out string val);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_get_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetPath(IntPtr handle, string key, out string val);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_get_path_array")]
-        internal static extern ErrorCode GetPathArray(IntPtr handle, string key, out IntPtr val, out int count);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_get_path_array", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetPathArray(IntPtr handle, string key, out IntPtr val, out int count);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_get_int")]
-        internal static extern ErrorCode GetInt(IntPtr handle, string key, out int val);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_get_int", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetInt(IntPtr handle, string key, out int val);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_get_float")]
-        internal static extern ErrorCode GetFloat(IntPtr handle, string key, out float val);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_get_float", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetFloat(IntPtr handle, string key, out float val);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_get_bool")]
-        internal static extern ErrorCode GetBool(IntPtr handle, string key, out bool val);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_get_bool", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode GetBool(IntPtr handle, string key, [MarshalAs(UnmanagedType.U1)] out bool val);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_is_key_exist")]
-        internal static extern ErrorCode IsKeyExist(IntPtr handle, string key, out bool val);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_is_key_exist", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode IsKeyExist(IntPtr handle, string key, [MarshalAs(UnmanagedType.U1)] out bool val);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_clone")]
-        internal static extern ErrorCode ThemeClone(IntPtr handle, out IntPtr cloned);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_clone")]
+        internal static partial ErrorCode ThemeClone(IntPtr handle, out IntPtr cloned);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_destroy")]
-        internal static extern ErrorCode ThemeDestroy(IntPtr handle);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_destroy")]
+        internal static partial ErrorCode ThemeDestroy(IntPtr handle);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_loader_create")]
-        internal static extern ErrorCode LoaderCreate(out IntPtr loaderHandle);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_loader_create")]
+        internal static partial ErrorCode LoaderCreate(out IntPtr loaderHandle);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_loader_destroy")]
-        internal static extern ErrorCode LoaderDestroy(IntPtr loaderHandle);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_loader_destroy")]
+        internal static partial ErrorCode LoaderDestroy(IntPtr loaderHandle);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_loader_add_event")]
-        internal static extern ErrorCode LoaderAddEvent(IntPtr loaderHandle, ThemeLoaderChangedCallback callback, IntPtr userData, out string eventId);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_loader_add_event", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode LoaderAddEvent(IntPtr loaderHandle, ThemeLoaderChangedCallback callback, IntPtr userData, out string eventId);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_loader_remove_event")]
-        internal static extern ErrorCode LoaderRemoveEvent(IntPtr loaderHandle, string eventId);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_loader_remove_event", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode LoaderRemoveEvent(IntPtr loaderHandle, string eventId);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_loader_load_current")]
-        internal static extern ErrorCode LoaderLoadCurrentTheme(IntPtr loaderHandle, out IntPtr handle);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_loader_load_current")]
+        internal static partial ErrorCode LoaderLoadCurrentTheme(IntPtr loaderHandle, out IntPtr handle);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_loader_load")]
-        internal static extern ErrorCode LoaderLoadTheme(IntPtr loaderHandle, string id, out IntPtr handle);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_loader_load", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode LoaderLoadTheme(IntPtr loaderHandle, string id, out IntPtr handle);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_loader_query_id")]
-        internal static extern ErrorCode LoaderQueryId(IntPtr loaderHandle, out IntPtr ids, out int count);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_loader_query_id")]
+        internal static partial ErrorCode LoaderQueryId(IntPtr loaderHandle, out IntPtr ids, out int count);
 
-        [DllImport(Libraries.ThemeManager, EntryPoint = "theme_loader_set_current")]
-        internal static extern ErrorCode LoaderSetCurrentTheme(IntPtr loaderHandle, string id);
+        [LibraryImport(Libraries.ThemeManager, EntryPoint = "theme_loader_set_current", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode LoaderSetCurrentTheme(IntPtr loaderHandle, string id);
     }
 }

@@ -16,12 +16,13 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
     internal static partial class DotnetUtil
     {
-        [DllImport(Libraries.Vconf, EntryPoint = "vconf_get_int")]
-        internal static extern int GetVconfInt(string key, out int value);
+        [LibraryImport(Libraries.Vconf, EntryPoint = "vconf_get_int", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int GetVconfInt(string key, out int value);
     }
 }

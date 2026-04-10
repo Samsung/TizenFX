@@ -15,6 +15,7 @@
  */
 
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
@@ -38,11 +39,10 @@ internal static partial class Interop
             DLOG_SILENT,
             DLOG_PRIO_MAX,
         }
-        [DllImportAttribute(Libraries.Dlog, EntryPoint = "dlog_print_dotnet", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int Print(LogPriority prio, string tag, string fmt, string msg);
+        [LibraryImport(Libraries.Dlog, EntryPoint = "dlog_print_dotnet", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int Print(LogPriority prio, string tag, string fmt, string msg);
 
-        [DllImportAttribute(Libraries.Dlog, EntryPoint = "dlog_print_dotnet", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int Print(LogPriority prio, string tag, string fmt, string file, string func, int line, string msg);
+        [LibraryImport(Libraries.Dlog, EntryPoint = "dlog_print_dotnet", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial int Print(LogPriority prio, string tag, string fmt, string file, string func, int line, string msg);
     }
 }
-

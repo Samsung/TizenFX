@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
 using Tizen.Internals;
@@ -38,23 +39,23 @@ internal static partial class Interop
         internal delegate void AppControlCallback(IntPtr appControl, IntPtr userData);
 
 
-        [DllImport(Libraries.Application, EntryPoint = "app_get_device_orientation")]
-        internal static extern DeviceOrientation AppGetDeviceOrientation();
+        [LibraryImport(Libraries.Application, EntryPoint = "app_get_device_orientation")]
+        internal static partial DeviceOrientation AppGetDeviceOrientation();
 
-        [DllImport(Libraries.Application, EntryPoint = "ui_app_main")]
+        [DllImport(Libraries.Application, EntryPoint = "ui_app_main", CallingConvention = CallingConvention.Cdecl)]
         internal static extern ErrorCode Main(int argc, string[] argv, ref UIAppLifecycleCallbacks callback, IntPtr userData);
 
-        [DllImport(Libraries.Application, EntryPoint = "ui_app_exit")]
-        internal static extern void Exit();
+        [LibraryImport(Libraries.Application, EntryPoint = "ui_app_exit")]
+        internal static partial void Exit();
 
-        [DllImport(Libraries.Application, EntryPoint = "ui_app_add_event_handler")]
-        internal static extern ErrorCode AddEventHandler(out IntPtr handle, DefaultCoreBackend.AppEventType eventType, AppEventCallback callback, IntPtr data);
+        [LibraryImport(Libraries.Application, EntryPoint = "ui_app_add_event_handler")]
+        internal static partial ErrorCode AddEventHandler(out IntPtr handle, DefaultCoreBackend.AppEventType eventType, AppEventCallback callback, IntPtr data);
 
-        [DllImport(Libraries.Application, EntryPoint = "ui_app_remove_event_handler")]
-        internal static extern ErrorCode RemoveEventHandler(IntPtr handle);
+        [LibraryImport(Libraries.Application, EntryPoint = "ui_app_remove_event_handler")]
+        internal static partial ErrorCode RemoveEventHandler(IntPtr handle);
 
-        [DllImport(Libraries.Application, EntryPoint = "ui_app_get_window_position")]
-        internal static extern ErrorCode GetWindowPosition(out int x, out int y, out int w, out int h);
+        [LibraryImport(Libraries.Application, EntryPoint = "ui_app_get_window_position")]
+        internal static partial ErrorCode GetWindowPosition(out int x, out int y, out int w, out int h);
 
         [NativeStruct("ui_app_lifecycle_callback_s", Include="app.h", PkgConfig="capi-appfw-application")]
         [StructLayout(LayoutKind.Sequential)]
@@ -68,4 +69,3 @@ internal static partial class Interop
         }
     }
 }
-
