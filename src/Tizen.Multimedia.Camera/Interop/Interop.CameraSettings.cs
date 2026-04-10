@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,7 +16,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 using Tizen.Multimedia;
 
 internal static partial class Interop
@@ -195,7 +194,7 @@ internal static partial class Interop
         internal static extern CameraError EnableTag(IntPtr handle, bool enable);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_enabled_tag")]
-        internal static extern CameraError IsEnabledTag(IntPtr handle, [MarshalAs(UnmanagedType.U1)] out bool enabled);
+        internal static extern CameraError IsEnabledTag(IntPtr handle, out bool enabled);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_tag_image_description")]
         internal static extern CameraError SetImageDescription(IntPtr handle, string description);
@@ -255,19 +254,19 @@ internal static partial class Interop
         internal static extern CameraError EnableAntiShake(IntPtr handle, bool enable);
 
         [DllImport(Libraries.Camera, EntryPoint = " camera_attr_is_enabled_anti_shake")]
-        internal static extern CameraError IsEnabledAntiShake(IntPtr handle, [MarshalAs(UnmanagedType.U1)] out bool enabled);
+        internal static extern CameraError IsEnabledAntiShake(IntPtr handle, out bool enabled);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_enable_video_stabilization")]
         internal static extern CameraError EnableVideoStabilization(IntPtr handle, bool enable);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_enabled_video_stabilization")]
-        internal static extern CameraError IsEnabledVideoStabilization(IntPtr handle, [MarshalAs(UnmanagedType.U1)] out bool enabled);
+        internal static extern CameraError IsEnabledVideoStabilization(IntPtr handle, out bool enabled);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_enable_auto_contrast")]
         internal static extern CameraError EnableAutoContrast(IntPtr handle, bool enable);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_enabled_auto_contrast")]
-        internal static extern CameraError IsEnabledAutoContrast(IntPtr handle, [MarshalAs(UnmanagedType.U1)] out bool enabled);
+        internal static extern CameraError IsEnabledAutoContrast(IntPtr handle, out bool enabled);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_disable_shutter_sound")]
         internal static extern CameraError DisableShutterSound(IntPtr handle, bool disable);
@@ -309,4 +308,3 @@ internal static partial class Interop
         internal static extern CameraError GetPreviewFrameRotation(IntPtr handle, out Rotation rotation);
     }
 }
-

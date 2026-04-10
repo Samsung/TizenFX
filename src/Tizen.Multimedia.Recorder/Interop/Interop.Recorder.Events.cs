@@ -38,7 +38,7 @@ internal static partial class Interop
             uint timeStamp, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void StatechangedCallback(RecorderState previous, RecorderState current, [MarshalAs(UnmanagedType.U1)] bool byPolicy, IntPtr userData);
+        internal delegate void StatechangedCallback(RecorderState previous, RecorderState current, bool byPolicy, IntPtr userData);
 
         [LibraryImport(Libraries.Recorder, EntryPoint = "recorder_set_error_cb")]
         internal static partial RecorderErrorCode SetErrorCallback(RecorderHandle handle, RecorderErrorCallback callback,

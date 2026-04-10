@@ -27,7 +27,7 @@ internal static partial class Interop
         public delegate void AudioStreamCallback(IntPtr handle, uint nbytes, IntPtr userdata);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        public delegate void AudioStateChangedCallback(IntPtr handle, int previous, int current, [MarshalAs(UnmanagedType.U1)] bool byPolicy, IntPtr userData);
+        public delegate void AudioStateChangedCallback(IntPtr handle, int previous, int current, bool byPolicy, IntPtr userData);
 
         internal static partial class AudioInput
         {
