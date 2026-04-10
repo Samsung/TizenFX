@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Internals;
 using Tizen.Multimedia;
 
@@ -27,7 +28,7 @@ internal static partial class Interop
         internal delegate void FaceDetectedCallback(IntPtr faces, int count, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void StateChangedCallback(CameraState previous, CameraState current, bool byPolicy, IntPtr userData);
+        internal delegate void StateChangedCallback(CameraState previous, CameraState current, [MarshalAs(UnmanagedType.U1)] bool byPolicy, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void InterruptedCallback(CameraPolicy policy, CameraState previous, CameraState current, IntPtr userData);
@@ -125,7 +126,7 @@ internal static partial class Interop
         internal static extern CameraError SetDisplayReuseHint(IntPtr handle, bool hint);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_get_display_reuse_hint")]
-        internal static extern CameraError GetDisplayReuseHint(IntPtr handle, out bool hint);
+        internal static extern CameraError GetDisplayReuseHint(IntPtr handle, [MarshalAs(UnmanagedType.U1)] out bool hint);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_set_capture_resolution")]
         internal static extern CameraError SetCaptureResolution(IntPtr handle, int width, int height);
@@ -329,7 +330,7 @@ internal static partial class Interop
     internal static partial class CameraDeviceManager
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void DeviceConnectionChangedCallback(ref CameraDeviceStruct connectedDevice, bool idConnedted, IntPtr userData);
+        internal delegate void DeviceConnectionChangedCallback(ref CameraDeviceStruct connectedDevice, [MarshalAs(UnmanagedType.U1)] bool idConnedted, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool SupportedDeviceCallback(ref CameraDeviceStruct supportedDevice, IntPtr userData);
