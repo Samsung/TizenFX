@@ -16,7 +16,6 @@
 
 using Tizen.System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
@@ -37,34 +36,34 @@ internal static partial class Interop
             None,
         }
 
-        [LibraryImport(Libraries.SystemInfo, EntryPoint = "system_info_get_platform_type", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial InformationError SystemInfoGetPlatformType(string key, out SystemInfoValueType type);
+        [DllImport(Libraries.SystemInfo, EntryPoint = "system_info_get_platform_type")]
+        internal static extern InformationError SystemInfoGetPlatformType(string key, out SystemInfoValueType type);
 
-        [LibraryImport(Libraries.SystemInfo, EntryPoint = "system_info_get_custom_type", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial InformationError SystemInfoGetCustomType(string key, out SystemInfoValueType type);
+        [DllImport(Libraries.SystemInfo, EntryPoint = "system_info_get_custom_type")]
+        internal static extern InformationError SystemInfoGetCustomType(string key, out SystemInfoValueType type);
 
-        [LibraryImport(Libraries.SystemInfo, EntryPoint = "system_info_get_platform_bool", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial InformationError SystemInfoGetPlatformBool(string key, [MarshalAs(UnmanagedType.U1)] out bool value);
+        [DllImport(Libraries.SystemInfo, EntryPoint = "system_info_get_platform_bool")]
+        internal static extern InformationError SystemInfoGetPlatformBool(string key, out bool value);
 
-        [LibraryImport(Libraries.SystemInfo, EntryPoint = "system_info_get_platform_int", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial InformationError SystemInfoGetPlatformInt(string key, out int value);
+        [DllImport(Libraries.SystemInfo, EntryPoint = "system_info_get_platform_int")]
+        internal static extern InformationError SystemInfoGetPlatformInt(string key, out int value);
 
-        [LibraryImport(Libraries.SystemInfo, EntryPoint = "system_info_get_platform_double", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial InformationError SystemInfoGetPlatformDouble(string key, out double value);
+        [DllImport(Libraries.SystemInfo, EntryPoint = "system_info_get_platform_double")]
+        internal static extern InformationError SystemInfoGetPlatformDouble(string key, out double value);
 
-        [LibraryImport(Libraries.SystemInfo, EntryPoint = "system_info_get_platform_string", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial InformationError SystemInfoGetPlatformString(string key, out string value);
+        [DllImport(Libraries.SystemInfo, EntryPoint = "system_info_get_platform_string")]
+        internal static extern InformationError SystemInfoGetPlatformString(string key, out string value);
 
-        [LibraryImport(Libraries.SystemInfo, EntryPoint = "system_info_get_custom_bool", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial InformationError SystemInfoGetCustomBool(string key, [MarshalAs(UnmanagedType.U1)] out bool value);
+        [DllImport(Libraries.SystemInfo, EntryPoint = "system_info_get_custom_bool")]
+        internal static extern InformationError SystemInfoGetCustomBool(string key, out bool value);
 
-        [LibraryImport(Libraries.SystemInfo, EntryPoint = "system_info_get_custom_int", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial InformationError SystemInfoGetCustomInt(string key, out int value);
+        [DllImport(Libraries.SystemInfo, EntryPoint = "system_info_get_custom_int")]
+        internal static extern InformationError SystemInfoGetCustomInt(string key, out int value);
 
-        [LibraryImport(Libraries.SystemInfo, EntryPoint = "system_info_get_custom_double", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial InformationError SystemInfoGetCustomDouble(string key, out double value);
+        [DllImport(Libraries.SystemInfo, EntryPoint = "system_info_get_custom_double")]
+        internal static extern InformationError SystemInfoGetCustomDouble(string key, out double value);
 
-        [LibraryImport(Libraries.SystemInfo, EntryPoint = "system_info_get_custom_string", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial InformationError SystemInfoGetCustomString(string key, out string value);
+        [DllImport(Libraries.SystemInfo, EntryPoint = "system_info_get_custom_string")]
+        internal static extern InformationError SystemInfoGetCustomString(string key, out string value);
     }
 }

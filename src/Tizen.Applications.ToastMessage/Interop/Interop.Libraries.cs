@@ -21,6 +21,3 @@ internal static partial class Interop
         public const string ToastMessage = "libnotification.so.0";
     }
 }
-
-
-

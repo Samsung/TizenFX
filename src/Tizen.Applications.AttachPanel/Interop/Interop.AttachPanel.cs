@@ -1,6 +1,5 @@
 using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications;
 
 /// <summary>
@@ -31,51 +30,49 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void AttachPanelResultCallback(IntPtr attachPanel, int category, IntPtr result, int resultCode, IntPtr userData);
 
-        [LibraryImport(Libraries.AttachPanel, EntryPoint = "attach_panel_create")]
-        internal static partial ErrorCode CreateAttachPanel(IntPtr conform, out IntPtr attach_panel);
+        [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_create")]
+        internal static extern ErrorCode CreateAttachPanel(IntPtr conform, out IntPtr attach_panel);
 
-        [LibraryImport(Libraries.AttachPanel, EntryPoint = "attach_panel_destroy")]
-        internal static partial ErrorCode DestroyAttachPanel(IntPtr attach_panel);
+        [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_destroy")]
+        internal static extern ErrorCode DestroyAttachPanel(IntPtr attach_panel);
 
-        [LibraryImport(Libraries.AttachPanel, EntryPoint = "attach_panel_add_content_category")]
-        internal static partial ErrorCode AddCategory(IntPtr attach_panel, int content_category, IntPtr extraData);
+        [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_add_content_category")]
+        internal static extern ErrorCode AddCategory(IntPtr attach_panel, int content_category, IntPtr extraData);
 
-        [LibraryImport(Libraries.AttachPanel, EntryPoint = "attach_panel_remove_content_category")]
-        internal static partial ErrorCode RemoveCategory(IntPtr attach_panel, int content_category);
+        [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_remove_content_category")]
+        internal static extern ErrorCode RemoveCategory(IntPtr attach_panel, int content_category);
 
-        [LibraryImport(Libraries.AttachPanel, EntryPoint = "attach_panel_set_extra_data")]
-        internal static partial ErrorCode SetExtraData(IntPtr attach_panel, int content_category, IntPtr extraData);
+        [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_set_extra_data")]
+        internal static extern ErrorCode SetExtraData(IntPtr attach_panel, int content_category, IntPtr extraData);
 
-        [LibraryImport(Libraries.AttachPanel, EntryPoint = "attach_panel_set_result_cb")]
-        internal static partial ErrorCode SetResultCb(IntPtr attach_panel, AttachPanelResultCallback callback, IntPtr userData);
+        [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_set_result_cb")]
+        internal static extern ErrorCode SetResultCb(IntPtr attach_panel, AttachPanelResultCallback callback, IntPtr userData);
 
-        [LibraryImport(Libraries.AttachPanel, EntryPoint = "attach_panel_unset_result_cb")]
-        internal static partial ErrorCode UnsetResultCb(IntPtr attach_panel);
+        [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_unset_result_cb")]
+        internal static extern ErrorCode UnsetResultCb(IntPtr attach_panel);
 
-        [LibraryImport(Libraries.AttachPanel, EntryPoint = "attach_panel_set_event_cb")]
-        internal static partial ErrorCode SetEventCb(IntPtr attach_panel, AttachPanelEventCallback callback, IntPtr userData);
+        [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_set_event_cb")]
+        internal static extern ErrorCode SetEventCb(IntPtr attach_panel, AttachPanelEventCallback callback, IntPtr userData);
 
-        [LibraryImport(Libraries.AttachPanel, EntryPoint = "attach_panel_unset_event_cb")]
-        internal static partial ErrorCode UnsetEventCb(IntPtr attach_panel);
+        [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_unset_event_cb")]
+        internal static extern ErrorCode UnsetEventCb(IntPtr attach_panel);
 
-        [LibraryImport(Libraries.AttachPanel, EntryPoint = "attach_panel_show")]
-        internal static partial ErrorCode Show(IntPtr attach_panel);
+        [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_show")]
+        internal static extern ErrorCode Show(IntPtr attach_panel);
 
-        [LibraryImport(Libraries.AttachPanel, EntryPoint = "attach_panel_show_without_animation")]
-        internal static partial ErrorCode ShowWithoutAnimation(IntPtr attach_panel);
+        [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_show_without_animation")]
+        internal static extern ErrorCode ShowWithoutAnimation(IntPtr attach_panel);
 
-        [LibraryImport(Libraries.AttachPanel, EntryPoint = "attach_panel_hide")]
-        internal static partial ErrorCode Hide(IntPtr attach_panel);
+        [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_hide")]
+        internal static extern ErrorCode Hide(IntPtr attach_panel);
 
-        [LibraryImport(Libraries.AttachPanel, EntryPoint = "attach_panel_hide_without_animation")]
-        internal static partial ErrorCode HideWithoutAnimation(IntPtr attach_panel);
+        [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_hide_without_animation")]
+        internal static extern ErrorCode HideWithoutAnimation(IntPtr attach_panel);
 
-        [LibraryImport(Libraries.AttachPanel, EntryPoint = "attach_panel_get_visibility")]
-        internal static partial ErrorCode GetVisibility(IntPtr attach_panel, out int visible);
+        [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_get_visibility")]
+        internal static extern ErrorCode GetVisibility(IntPtr attach_panel, out int visible);
 
-        [LibraryImport(Libraries.AttachPanel, EntryPoint = "attach_panel_get_state")]
-        internal static partial ErrorCode GetState(IntPtr attach_panel, out int state);
+        [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_get_state")]
+        internal static extern ErrorCode GetState(IntPtr attach_panel, out int state);
     }
 }
-
-
