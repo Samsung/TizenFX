@@ -82,7 +82,7 @@ internal static partial class Interop
         }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void AppManagerLifecycleStateChangedCallback(string appId, int pid, AppLifecycleState state, [MarshalAs(UnmanagedType.U1)] bool hasFocus, IntPtr userData);
+        internal delegate void AppManagerLifecycleStateChangedCallback(string appId, int pid, AppLifecycleState state, bool hasFocus, IntPtr userData);
         //void (*app_manager_lifecycle_state_changed_cb)(const char *app_id, pid_t pid, app_manager_lifecycle_state_e state, [MarshalAs(UnmanagedType.U1)] bool has_focus, void *user_data)
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -95,26 +95,26 @@ internal static partial class Interop
         //void(* app_manager_app_context_event_cb)(app_context_h app_context, app_context_event_e event, void *user_data)
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool AppManagerAppInfoCallback(IntPtr handle, IntPtr userData);
+        internal delegate bool AppManagerAppInfoCallback(IntPtr handle, IntPtr userData);
         //bool(* app_manager_app_info_cb )(app_info_h app_info, void *user_data)
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool AppManagerAppContextCallback(IntPtr handle, IntPtr userData);
+        internal delegate bool AppManagerAppContextCallback(IntPtr handle, IntPtr userData);
         //bool(* app_manager_app_context_cb)(app_context_h app_context, void *user_data)
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool AppInfoFilterCallback(IntPtr handle, IntPtr userData);
+        internal delegate bool AppInfoFilterCallback(IntPtr handle, IntPtr userData);
         //bool(* app_info_filter_cb )(app_info_h app_info, void *user_data)
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool AppInfoMetadataCallback(string key, string value, IntPtr userData);
+        internal delegate bool AppInfoMetadataCallback(string key, string value, IntPtr userData);
         //bool(* app_info_metadata_cb )(const char *metadata_key, const char *metadata_value, void *user_data)
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool AppInfoCategoryCallback(string category, IntPtr userData);
+        internal delegate bool AppInfoCategoryCallback(string category, IntPtr userData);
         //bool (*app_info_category_cb) (const char *category, void *user_data)
 
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool AppInfoResControlCallback(string resType, string minResVersion, string maxResVersion, string autoClose, IntPtr userUdata);
+        internal delegate bool AppInfoResControlCallback(string resType, string minResVersion, string maxResVersion, string autoClose, IntPtr userUdata);
         //bool (*app_info_res_control_cb) (const char *res_type, const char *min_res_version, const char *max_res_version, const char *auto_close, void *user_data);
 
         [LibraryImport(Libraries.AppManager, EntryPoint = "app_manager_set_app_context_event_cb")]

@@ -71,7 +71,7 @@ internal static partial class Interop
         }
 
         internal delegate IntPtr FrameCreateCallback(IntPtr context, IntPtr userData);
-        internal delegate void FrameStartCallback(IntPtr context, IntPtr appControl, [MarshalAs(UnmanagedType.U1)] bool restarted, IntPtr userData);
+        internal delegate void FrameStartCallback(IntPtr context, IntPtr appControl, bool restarted, IntPtr userData);
         internal delegate void FrameResumeCallback(IntPtr context, IntPtr userData);
         internal delegate void FramePauseCallback(IntPtr context, IntPtr userData);
         internal delegate void FrameStopCallback(IntPtr context, IntPtr userData);
@@ -107,8 +107,8 @@ internal static partial class Interop
             public FrameTimeZoneChangedCallback OnTimeZoneChanged;
         }
 
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool ServiceCreateCallback(IntPtr context, IntPtr userData);
-        internal delegate void ServiceStartCommandCallback(IntPtr context, IntPtr appControl, [MarshalAs(UnmanagedType.U1)] bool restarted, IntPtr userData);
+        internal delegate bool ServiceCreateCallback(IntPtr context, IntPtr userData);
+        internal delegate void ServiceStartCommandCallback(IntPtr context, IntPtr appControl, bool restarted, IntPtr userData);
         internal delegate void ServiceDestroyCallback(IntPtr context, IntPtr userData);
         internal delegate void ServiceRestoreCallback(IntPtr context, IntPtr content, IntPtr userData);
         internal delegate void ServiceSaveCallback(IntPtr context, IntPtr content, IntPtr userData);
@@ -139,11 +139,11 @@ internal static partial class Interop
         }
 
         internal delegate IntPtr WidgetCreateCallback(IntPtr context, int width, int height, IntPtr userData);
-        internal delegate void WidgetStartCallback(IntPtr context, [MarshalAs(UnmanagedType.U1)] bool restarted, IntPtr userData);
+        internal delegate void WidgetStartCallback(IntPtr context, bool restarted, IntPtr userData);
         internal delegate void WidgetResumeCallback(IntPtr context, IntPtr userData);
         internal delegate void WidgetPauseCallback(IntPtr context, IntPtr userData);
         internal delegate void WidgetStopCallback(IntPtr context, IntPtr userData);
-        internal delegate void WidgetDestroyCallback(IntPtr context, [MarshalAs(UnmanagedType.U1)] bool permanent, IntPtr userData);
+        internal delegate void WidgetDestroyCallback(IntPtr context, bool permanent, IntPtr userData);
         internal delegate void WidgetRestoreCallback(IntPtr context, IntPtr content, IntPtr userData);
         internal delegate void WidgetSaveCallback(IntPtr context, IntPtr content, IntPtr userData);
         internal delegate void WidgetDeviceOrientationChangedCallback(IntPtr context, int orientation, IntPtr userData);

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2017 Samsung Electronics Co., Ltd. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -24,7 +24,7 @@ internal static partial class Interop
 {
     internal static partial class Shortcut
     {
-        internal delegate int AddCallback(string appId, string shortcutName, int type, string contentInfo, string iconPath, int processId, double period, [MarshalAs(UnmanagedType.U1)] bool isAllowDuplicate, IntPtr data);
+        internal delegate int AddCallback(string appId, string shortcutName, int type, string contentInfo, string iconPath, int processId, double period, bool isAllowDuplicate, IntPtr data);
 
         internal delegate int DeleteCallback(string appId, string shortcutName, int processId, IntPtr data);
 

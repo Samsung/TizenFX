@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,7 +16,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications.CoreBackend;
 using Tizen.Internals;
 using Tizen.Internals.Errors;
@@ -27,7 +26,7 @@ internal static partial class Interop
     {
         internal delegate void AppEventCallback(IntPtr handle, IntPtr data);
 
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool ServiceAppCreateCallback(IntPtr userData);
+        internal delegate bool ServiceAppCreateCallback(IntPtr userData);
 
         internal delegate void ServiceAppTerminateCallback(IntPtr userData);
 
@@ -58,8 +57,3 @@ internal static partial class Interop
         }
     }
 }
-
-
-
-
-

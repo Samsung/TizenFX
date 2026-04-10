@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -23,7 +23,7 @@ internal static partial class Interop
     internal static partial class Glib
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool GSourceFunc(IntPtr userData);
+        internal delegate bool GSourceFunc(IntPtr userData);
 
         [LibraryImport(Libraries.Glib, EntryPoint = "g_idle_add")]
         internal static partial uint IdleAdd(GSourceFunc d, IntPtr data);

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -27,10 +27,10 @@ internal static partial class Interop
         internal const int AppStartedStatus = 1;
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool ExtraDataCallback(IntPtr handle, string key, IntPtr userData);
+        internal delegate bool ExtraDataCallback(IntPtr handle, string key, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool AppMatchedCallback(IntPtr handle, string applicationId, IntPtr userData);
+        internal delegate bool AppMatchedCallback(IntPtr handle, string applicationId, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ReplyCallback(IntPtr request, IntPtr reply, int result, IntPtr userData);
@@ -39,7 +39,7 @@ internal static partial class Interop
         internal delegate void ResultCallback(IntPtr request, int result, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool DefaultApplicationCallback(string applicationId, IntPtr userData);
+        internal delegate bool DefaultApplicationCallback(string applicationId, IntPtr userData);
 
         internal enum ErrorCode
         {

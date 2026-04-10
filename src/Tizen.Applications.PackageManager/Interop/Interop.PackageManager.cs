@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -27,7 +27,7 @@ internal static partial class Interop
         internal delegate void PackageManagerEventCallback(string type, string packageId, EventType eventType, PackageEventState eventState, int progress, ErrorCode error, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool PackageManagerPackageInfoCallback(IntPtr handle, IntPtr userData);
+        internal delegate bool PackageManagerPackageInfoCallback(IntPtr handle, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate void PackageManagerSizeInfoCallback(string packageId, IntPtr sizeInfoHandle, IntPtr userData);

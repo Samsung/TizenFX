@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -43,11 +43,11 @@ internal static partial class Interop
         }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool ComponentManagerComponentContextCallback(IntPtr handle, IntPtr userData);
+        internal delegate bool ComponentManagerComponentContextCallback(IntPtr handle, IntPtr userData);
         // [MarshalAs(UnmanagedType.U1)] bool (*component_manager_component_context_cb)(component_context_h handle, void *user_data);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool ComponentManagerComponentInfoCallback(IntPtr handle, IntPtr userData);
+        internal delegate bool ComponentManagerComponentInfoCallback(IntPtr handle, IntPtr userData);
         // [MarshalAs(UnmanagedType.U1)] bool (*component_manager_component_info_cb)(component_info_h handle, void *user_data);
                
         [LibraryImport(Libraries.ComponentManager, EntryPoint = "component_manager_foreach_component_context")]

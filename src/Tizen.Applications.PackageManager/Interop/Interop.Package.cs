@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -27,19 +27,19 @@ internal static partial class Interop
     internal static partial class Package
     {
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool PackageInfoAppInfoCallback(AppType appType, string appId, IntPtr userData);
+        internal delegate bool PackageInfoAppInfoCallback(AppType appType, string appId, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool PackageInfoCertificateInfoCallback(IntPtr handle, CertificateType certType, string certValue, IntPtr userData);
+        internal delegate bool PackageInfoCertificateInfoCallback(IntPtr handle, CertificateType certType, string certValue, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool PackageInfoPrivilegeInfoCallback(string privilege, IntPtr userData);
+        internal delegate bool PackageInfoPrivilegeInfoCallback(string privilege, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool PackageInfoDependencyInfoCallback(string from, string to, string type, string requiredVersion, IntPtr userData);
+        internal delegate bool PackageInfoDependencyInfoCallback(string from, string to, string type, string requiredVersion, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool PackageInfoResAllowedPackageCallback(string allowedPackage, IntPtr requiredPrivileges, IntPtr userData);
+        internal delegate bool PackageInfoResAllowedPackageCallback(string allowedPackage, IntPtr requiredPrivileges, IntPtr userData);
 
         // Any change here might require changes in Tizen.Applications.AppType enum
         internal enum AppType

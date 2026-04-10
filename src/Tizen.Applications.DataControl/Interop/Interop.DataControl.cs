@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,7 +16,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using Tizen.Applications;
 using Tizen.Internals;
@@ -44,15 +43,17 @@ internal static partial class Interop
             {
             }
 
-            internal SafeBulkDataHandle(IntPtr existingHandle, [MarshalAs(UnmanagedType.U1)] bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
+            internal SafeBulkDataHandle(IntPtr existingHandle, bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
             {
                 SetHandle(existingHandle);
             }
-        public override bool IsInvalid
+
+            public override bool IsInvalid
             {
                 get { return this.handle == IntPtr.Zero; }
             }
-        protected override bool ReleaseHandle()
+
+            protected override bool ReleaseHandle()
             {
                 DataControl.BulkFree(this.handle);
                 this.SetHandle(IntPtr.Zero);
@@ -67,15 +68,17 @@ internal static partial class Interop
             {
             }
 
-            internal SafeBulkResultDataHandle(IntPtr existingHandle, [MarshalAs(UnmanagedType.U1)] bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
+            internal SafeBulkResultDataHandle(IntPtr existingHandle, bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
             {
                 SetHandle(existingHandle);
             }
-        public override bool IsInvalid
+
+            public override bool IsInvalid
             {
                 get { return this.handle == IntPtr.Zero; }
             }
-        protected override bool ReleaseHandle()
+
+            protected override bool ReleaseHandle()
             {
                 DataControl.BulkResultFree(this.handle);
                 this.SetHandle(IntPtr.Zero);
@@ -90,15 +93,17 @@ internal static partial class Interop
             {
             }
 
-            internal SafeCursorHandle(IntPtr existingHandle, [MarshalAs(UnmanagedType.U1)] bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
+            internal SafeCursorHandle(IntPtr existingHandle, bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
             {
                 SetHandle(existingHandle);
             }
-        public override bool IsInvalid
+
+            public override bool IsInvalid
             {
                 get { return this.handle == IntPtr.Zero; }
             }
-        protected override bool ReleaseHandle()
+
+            protected override bool ReleaseHandle()
             {
                 this.SetHandle(IntPtr.Zero);
                 return true;
@@ -112,15 +117,17 @@ internal static partial class Interop
             {
             }
 
-            internal SafeDataControlHandle(IntPtr existingHandle, [MarshalAs(UnmanagedType.U1)] bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
+            internal SafeDataControlHandle(IntPtr existingHandle, bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
             {
                 SetHandle(existingHandle);
             }
-        public override bool IsInvalid
+
+            public override bool IsInvalid
             {
                 get { return this.handle == IntPtr.Zero; }
             }
-        protected override bool ReleaseHandle()
+
+            protected override bool ReleaseHandle()
             {
                 DataControl.Destroy(this.handle);
                 this.SetHandle(IntPtr.Zero);
@@ -147,15 +154,15 @@ internal static partial class Interop
         internal static extern ResultType DataControlGetDataId(SafeDataControlHandle handle, out string dataId);
 
         internal delegate void MapGetResponseCallback(int requestID,
-            IntPtr provider, IntPtr resultValueList, int resultValueCount, [MarshalAs(UnmanagedType.U1)] bool providerResult, string error, IntPtr userData);
+            IntPtr provider, IntPtr resultValueList, int resultValueCount, bool providerResult, string error, IntPtr userData);
         internal delegate void MapSetResponseCallback(int requestID,
-            IntPtr provider, [MarshalAs(UnmanagedType.U1)] bool providerResult, string error, IntPtr userData);
+            IntPtr provider, bool providerResult, string error, IntPtr userData);
         internal delegate void MapAddResponseCallback(int requestID,
-            IntPtr provider, [MarshalAs(UnmanagedType.U1)] bool providerResult, string error, IntPtr userData);
+            IntPtr provider, bool providerResult, string error, IntPtr userData);
         internal delegate void MapRemoveResponseCallback(int requestID,
-            IntPtr provider, [MarshalAs(UnmanagedType.U1)] bool providerResult, string error, IntPtr userData);
+            IntPtr provider, bool providerResult, string error, IntPtr userData);
         internal delegate void MapBulkAddResponseCallback(int requestID,
-            IntPtr provider, IntPtr bulkResults, [MarshalAs(UnmanagedType.U1)] bool providerResult, string error, IntPtr userData);
+            IntPtr provider, IntPtr bulkResults, bool providerResult, string error, IntPtr userData);
 
         [NativeStruct("data_control_map_response_cb", Include="data_control.h", PkgConfig="data-control")]
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -168,15 +175,15 @@ internal static partial class Interop
         }
 
         internal delegate void SqlSelectResponseCallback(int requestID,
-            IntPtr provider, IntPtr cursor, [MarshalAs(UnmanagedType.U1)] bool providerResult, string error, IntPtr userData);
+            IntPtr provider, IntPtr cursor, bool providerResult, string error, IntPtr userData);
         internal delegate void SqlInsertResponseCallback(int requestID,
-            IntPtr provider, long inserted_row_id, [MarshalAs(UnmanagedType.U1)] bool providerResult, string error, IntPtr userData);
+            IntPtr provider, long inserted_row_id, bool providerResult, string error, IntPtr userData);
         internal delegate void SqlUpdateResponseCallback(int requestID,
-            IntPtr provider, [MarshalAs(UnmanagedType.U1)] bool providerResult, string error, IntPtr userData);
+            IntPtr provider, bool providerResult, string error, IntPtr userData);
         internal delegate void SqlDeleteResponseCallback(int requestID,
-            IntPtr provider, [MarshalAs(UnmanagedType.U1)] bool providerResult, string error, IntPtr userData);
+            IntPtr provider, bool providerResult, string error, IntPtr userData);
         internal delegate void SqlBulkInsertResponseCallback(int requestID,
-            IntPtr provider, IntPtr bulk_results, [MarshalAs(UnmanagedType.U1)] bool providerResult, string error, IntPtr userData);
+            IntPtr provider, IntPtr bulk_results, bool providerResult, string error, IntPtr userData);
 
         [NativeStruct("data_control_sql_response_cb", Include="data_control.h", PkgConfig="data-control")]
         [StructLayoutAttribute(LayoutKind.Sequential)]
@@ -427,17 +434,17 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void DataChangeCallback(IntPtr handle, ChangeType type, IntPtr data, IntPtr userData);
 
-        [DllImport(Libraries.DataControl, EntryPoint = "data_control_add_data_change_cb")]
+        [DllImport(Libraries.DataControl, EntryPoint = "data_control_add_data_change_cb", CallingConvention = CallingConvention.Cdecl)]
         internal static extern ResultType AddDataChangeCallback(SafeDataControlHandle provider, DataChangeCallback callback,
             IntPtr userData, AddCallbackResultCallback resultCallback, IntPtr resultCbUserData, out int callbackID);
 
-        [DllImport(Libraries.DataControl, EntryPoint = "data_control_remove_data_change_cb")]
+        [DllImport(Libraries.DataControl, EntryPoint = "data_control_remove_data_change_cb", CallingConvention = CallingConvention.Cdecl)]
         internal static extern ResultType RemoveDataChangeCallback(SafeDataControlHandle provider, int callbackID);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool DataChangeConsumerFilterCb(IntPtr handle, string consumerAppid, IntPtr userData);
+        internal delegate bool DataChangeConsumerFilterCb(IntPtr handle, string consumerAppid, IntPtr userData);
 
-        [DllImport(Libraries.DataControl, EntryPoint = "data_control_provider_add_data_change_consumer_filter_cb")]
+        [DllImport(Libraries.DataControl, EntryPoint = "data_control_provider_add_data_change_consumer_filter_cb", CallingConvention = CallingConvention.Cdecl)]
         internal static extern ResultType AddDataChangeConsumerFilterCallback(DataChangeConsumerFilterCb callback,
             IntPtr userData,
             out int callbackID);
@@ -451,7 +458,7 @@ internal static partial class Interop
         [DllImport(Libraries.DataControl, EntryPoint = "data_control_provider_send_map_bulk_add_result")]
         internal static extern ResultType SendMapBulkAddResult(int requestId, SafeBulkResultDataHandle result);
 
-        internal static partial class UnsafeCode
+        internal static class UnsafeCode
         {
             internal static unsafe ResultType WriteResult(int socketFd, byte[] value, int nbytes, out uint bytesWrite)
             {
@@ -464,10 +471,3 @@ internal static partial class Interop
 
     }
 }
-
-
-
-
-
-
-

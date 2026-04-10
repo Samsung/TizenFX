@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,7 +16,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 using Tizen.Content.MediaContent;
 
 internal static partial class Interop
@@ -32,7 +31,7 @@ internal static partial class Interop
             MediaInfoColumnKey groupType, FilterHandle filter, out int count);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        [return: MarshalAs(UnmanagedType.U1)] internal delegate bool MediaGroupCallback(string groupName, IntPtr data);
+        internal delegate bool MediaGroupCallback(string groupName, IntPtr data);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_group_foreach_group_from_db")]
         internal static extern MediaContentError ForeachGroup(FilterHandle filter,
@@ -43,8 +42,3 @@ internal static partial class Interop
             FilterHandle filter, Common.ItemCallback callback, IntPtr userData = default(IntPtr));
     }
 }
-
-
-
-
-
