@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,7 +16,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 using Tizen.Content.MediaContent;
 
 internal static partial class Interop
@@ -44,7 +43,7 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_content_scan_folder")]
         internal static extern MediaContentError ScanFolder(string folderPath,
-            [MarshalAs(UnmanagedType.U1)] bool recursive, MediaScanCompletedCallback scanCompletedCallback, IntPtr userData = default(IntPtr));
+            bool recursive, MediaScanCompletedCallback scanCompletedCallback, IntPtr userData = default(IntPtr));
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_content_add_db_updated_cb")]
         internal static extern MediaContentError AddDbUpdatedCb(MediaContentDBUpdatedCallback mediaContentDBUpdatedCallback,
@@ -54,8 +53,3 @@ internal static partial class Interop
         internal static extern MediaContentError RemoveDbUpdatedCb(IntPtr notiHandle);
     }
 }
-
-
-
-
-
