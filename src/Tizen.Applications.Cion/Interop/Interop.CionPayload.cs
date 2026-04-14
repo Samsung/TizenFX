@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications.Cion;
 
 using ErrorCode = Interop.Cion.ErrorCode;
@@ -30,37 +31,40 @@ internal static partial class Interop
             File,
         }
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_payload_create")]
-        internal static extern ErrorCode CionPayloadCreate(out PayloadSafeHandle payload, PayloadType type);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_payload_create")]
+        internal static partial ErrorCode CionPayloadCreate(out PayloadSafeHandle payload, PayloadType type);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_payload_destroy")]
-        internal static extern ErrorCode CionPayloadDestroy(IntPtr payload);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_payload_destroy")]
+        internal static partial ErrorCode CionPayloadDestroy(IntPtr payload);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_payload_get_type")]
-        internal static extern ErrorCode CionPayloadGetType(IntPtr payload, out PayloadType type);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_payload_get_type")]
+        internal static partial ErrorCode CionPayloadGetType(IntPtr payload, out PayloadType type);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_payload_get_data")]
-        internal static extern ErrorCode CionPayloadGetData(PayloadSafeHandle payload, out IntPtr data, out int dataSize);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_payload_get_data")]
+        internal static partial ErrorCode CionPayloadGetData(PayloadSafeHandle payload, out IntPtr data, out int dataSize);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_payload_set_data")]
-        internal static extern ErrorCode CionPayloadSetData(PayloadSafeHandle payload, byte[] data, int dataSize);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_payload_set_data")]
+        internal static partial ErrorCode CionPayloadSetData(PayloadSafeHandle payload, byte[] data, int dataSize);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_payload_save_as_file")]
-        internal static extern ErrorCode CionPayloadSaveAsFile(PayloadSafeHandle payload, string path);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_payload_save_as_file", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionPayloadSaveAsFile(PayloadSafeHandle payload, string path);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_payload_get_received_file_name")]
-        internal static extern ErrorCode CionPayloadGetReceivedFileName(PayloadSafeHandle payload, out string path);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_payload_get_received_file_name", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionPayloadGetReceivedFileName(PayloadSafeHandle payload, out string path);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_payload_get_received_bytes")]
-        internal static extern ErrorCode CionPayloadGetReceivedBytes(PayloadSafeHandle payload, out UInt64 bytes);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_payload_get_received_bytes")]
+        internal static partial ErrorCode CionPayloadGetReceivedBytes(PayloadSafeHandle payload, out UInt64 bytes);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_payload_get_total_bytes")]
-        internal static extern ErrorCode CionPayloadGetTotalBytes(PayloadSafeHandle payload, out UInt64 bytes);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_payload_get_total_bytes")]
+        internal static partial ErrorCode CionPayloadGetTotalBytes(PayloadSafeHandle payload, out UInt64 bytes);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_payload_set_file_path")]
-        internal static extern ErrorCode CionPayloadSetFilePath(PayloadSafeHandle payload, string path);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_payload_set_file_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionPayloadSetFilePath(PayloadSafeHandle payload, string path);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_payload_get_payload_id")]
-        internal static extern ErrorCode CionPayloadGetPayloadID(PayloadSafeHandle payload, out string id);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_payload_get_payload_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionPayloadGetPayloadID(PayloadSafeHandle payload, out string id);
     }
 }
+
+
+

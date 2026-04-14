@@ -21,10 +21,10 @@ internal static partial class Interop
 {
     internal static partial class CommonError
     {
-        [LibraryImport(Libraries.Base, EntryPoint = "get_last_result")]
-        internal static partial int GetLastResult();
+        [DllImport(Libraries.Base, EntryPoint = "get_last_result")]
+        internal static extern int GetLastResult();
 
-        [LibraryImport(Libraries.Base, EntryPoint = "get_error_message")]
-        internal static partial IntPtr GetErrorMessage(int errorCode);
+        [DllImport(Libraries.Base, EntryPoint = "get_error_message")]
+        internal static extern IntPtr GetErrorMessage(int errorCode);
     }
 }

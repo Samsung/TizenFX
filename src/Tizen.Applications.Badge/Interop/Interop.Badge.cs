@@ -16,7 +16,6 @@
 
 using System;
 using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications;
 
 internal static partial class Interop
@@ -36,31 +35,31 @@ internal static partial class Interop
 
         internal delegate void ChangedCallback(Action action, string appId, uint count, IntPtr userData);
 
-        [LibraryImport(Libraries.Badge, EntryPoint = "badge_add", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial BadgeError Add(string appId);
+        [DllImport(Libraries.Badge, EntryPoint = "badge_add")]
+        internal static extern BadgeError Add(string appId);
 
-        [LibraryImport(Libraries.Badge, EntryPoint = "badge_remove", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial BadgeError Remove(string appId);
+        [DllImport(Libraries.Badge, EntryPoint = "badge_remove")]
+        internal static extern BadgeError Remove(string appId);
 
-        [LibraryImport(Libraries.Badge, EntryPoint = "badge_set_count", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial BadgeError SetCount(string appId, uint count);
+        [DllImport(Libraries.Badge, EntryPoint = "badge_set_count")]
+        internal static extern BadgeError SetCount(string appId, uint count);
 
-        [LibraryImport(Libraries.Badge, EntryPoint = "badge_get_count", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial BadgeError GetCount(string appId, out uint count);
+        [DllImport(Libraries.Badge, EntryPoint = "badge_get_count")]
+        internal static extern BadgeError GetCount(string appId, out uint count);
 
-        [LibraryImport(Libraries.Badge, EntryPoint = "badge_set_display", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial BadgeError SetDisplay(string appId, uint isDisplay);
+        [DllImport(Libraries.Badge, EntryPoint = "badge_set_display")]
+        internal static extern BadgeError SetDisplay(string appId, uint isDisplay);
 
-        [LibraryImport(Libraries.Badge, EntryPoint = "badge_get_display", StringMarshalling = StringMarshalling.Utf8)]
-        internal static partial BadgeError GetDisplay(string appId, out uint isDisplay);
+        [DllImport(Libraries.Badge, EntryPoint = "badge_get_display")]
+        internal static extern BadgeError GetDisplay(string appId, out uint isDisplay);
 
-        [LibraryImport(Libraries.Badge, EntryPoint = "badge_foreach")]
-        internal static partial BadgeError Foreach(ForeachCallback callback, IntPtr userData);
+        [DllImport(Libraries.Badge, EntryPoint = "badge_foreach")]
+        internal static extern BadgeError Foreach(ForeachCallback callback, IntPtr userData);
 
-        [LibraryImport(Libraries.Badge, EntryPoint = "badge_register_changed_cb")]
-        internal static partial BadgeError SetChangedCallback(ChangedCallback callback, IntPtr userData);
+        [DllImport(Libraries.Badge, EntryPoint = "badge_register_changed_cb")]
+        internal static extern BadgeError SetChangedCallback(ChangedCallback callback, IntPtr userData);
 
-        [LibraryImport(Libraries.Badge, EntryPoint = "badge_unregister_changed_cb")]
-        internal static partial BadgeError UnsetChangedCallback(ChangedCallback callback);
+        [DllImport(Libraries.Badge, EntryPoint = "badge_unregister_changed_cb")]
+        internal static extern BadgeError UnsetChangedCallback(ChangedCallback callback);
     }
 }
