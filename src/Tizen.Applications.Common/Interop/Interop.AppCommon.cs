@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 using Tizen.Internals.Errors;
 using Tizen.Applications;
@@ -42,109 +43,113 @@ internal static partial class Interop
             PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
         }
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_id")]
-        internal static extern ErrorCode AppGetId(out string appId);
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_id", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppGetId(out string appId);
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_name")]
-        internal static extern ErrorCode AppGetName(out string name);
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_name", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppGetName(out string name);
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_resource_path")]
-        internal static extern string AppGetResourcePath();
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_resource_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string AppGetResourcePath();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_data_path")]
-        internal static extern string AppGetDataPath();
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_data_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string AppGetDataPath();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_cache_path")]
-        internal static extern string AppGetCachePath();
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_cache_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string AppGetCachePath();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_shared_data_path")]
-        internal static extern string AppGetSharedDataPath();
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_shared_data_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string AppGetSharedDataPath();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_shared_resource_path")]
-        internal static extern string AppGetSharedResourcePath();
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_shared_resource_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string AppGetSharedResourcePath();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_shared_trusted_path")]
-        internal static extern string AppGetSharedTrustedPath();
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_shared_trusted_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string AppGetSharedTrustedPath();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_tep_resource_path")]
-        internal static extern string AppGetTepResourcePath();
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_tep_resource_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string AppGetTepResourcePath();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_external_cache_path")]
-        internal static extern string AppGetExternalCachePath();
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_external_cache_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string AppGetExternalCachePath();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_external_data_path")]
-        internal static extern string AppGetExternalDataPath();
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_external_data_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string AppGetExternalDataPath();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_external_shared_data_path")]
-        internal static extern string AppGetExternalSharedDataPath();
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_external_shared_data_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string AppGetExternalSharedDataPath();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_common_data_path")]
-        internal static extern string AppGetCommonDataPath();
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_common_data_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string AppGetCommonDataPath();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_common_cache_path")]
-        internal static extern string AppGetCommonCachePath();
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_common_cache_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string AppGetCommonCachePath();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_common_shared_data_path")]
-        internal static extern string AppGetCommonSharedDataPath();
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_common_shared_data_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string AppGetCommonSharedDataPath();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_common_shared_trusted_path")]
-        internal static extern string AppGetCommonSharedTrustedPath();
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_common_shared_trusted_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial string AppGetCommonSharedTrustedPath();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_version")]
-        internal static extern ErrorCode AppGetVersion(out string version);
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_version", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppGetVersion(out string version);
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_low_memory_status")]
-        internal static extern ErrorCode AppEventGetLowMemoryStatus(IntPtr handle, out LowMemoryStatus status);
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_event_get_low_memory_status")]
+        internal static partial ErrorCode AppEventGetLowMemoryStatus(IntPtr handle, out LowMemoryStatus status);
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_low_battery_status")]
-        internal static extern ErrorCode AppEventGetLowBatteryStatus(IntPtr handle, out LowBatteryStatus status);
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_event_get_low_battery_status")]
+        internal static partial ErrorCode AppEventGetLowBatteryStatus(IntPtr handle, out LowBatteryStatus status);
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_language")]
-        internal static extern ErrorCode AppEventGetLanguage(IntPtr handle, out string lang);
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_event_get_language", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppEventGetLanguage(IntPtr handle, out string lang);
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_region_format")]
-        internal static extern ErrorCode AppEventGetRegionFormat(IntPtr handle, out string region);
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_event_get_region_format", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppEventGetRegionFormat(IntPtr handle, out string region);
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_resource_manager_get")]
-        internal static extern ErrorCode AppResourceManagerGet(ResourceCategory category, string id, out string path);
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_resource_manager_get", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppResourceManagerGet(ResourceCategory category, string id, out string path);
 
-        [DllImport(Libraries.Application, EntryPoint = "app_resource_manager_get")]
-        internal static extern ErrorCode LegacyAppResourceManagerGet(ResourceCategory category, string id, out string path);
+        [LibraryImport(Libraries.Application, EntryPoint = "app_resource_manager_get", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode LegacyAppResourceManagerGet(ResourceCategory category, string id, out string path);
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_device_orientation")]
-        internal static extern ErrorCode AppEventGetDeviceOrientation(IntPtr handle, out DeviceOrientation orientation);
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_event_get_device_orientation")]
+        internal static partial ErrorCode AppEventGetDeviceOrientation(IntPtr handle, out DeviceOrientation orientation);
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_suspended_state")]
-        internal static extern ErrorCode AppEventGetSuspendedState(IntPtr handle, out SuspendedState state);
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_event_get_suspended_state")]
+        internal static partial ErrorCode AppEventGetSuspendedState(IntPtr handle, out SuspendedState state);
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_res_control_allowed_resource_path")]
-        internal static extern AppCommonErrorCode AppGetResControlAllowedResourcePath(string applicationId, out string path);
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_res_control_allowed_resource_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial AppCommonErrorCode AppGetResControlAllowedResourcePath(string applicationId, out string path);
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_res_control_global_resource_path")]
-        internal static extern AppCommonErrorCode AppGetResControlGlobalResourcePath(string applicationId, out string path);
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_get_res_control_global_resource_path", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial AppCommonErrorCode AppGetResControlGlobalResourcePath(string applicationId, out string path);
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_time_zone")]
-        internal static extern ErrorCode AppEventGetTimeZone(IntPtr handle, out string timeZone, out string timeZoneId);
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_event_get_time_zone", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode AppEventGetTimeZone(IntPtr handle, out string timeZone, out string timeZoneId);
         
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_watchdog_timer_enable")]
-        internal static extern AppCommonErrorCode AppWatchdogTimerEnable();
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_watchdog_timer_enable")]
+        internal static partial AppCommonErrorCode AppWatchdogTimerEnable();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_watchdog_timer_disable")]
-        internal static extern AppCommonErrorCode AppWatchdogTimerDisable();
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_watchdog_timer_disable")]
+        internal static partial AppCommonErrorCode AppWatchdogTimerDisable();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_watchdog_timer_kick")]
-        internal static extern AppCommonErrorCode AppWatchdogTimerKick();
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_watchdog_timer_kick")]
+        internal static partial AppCommonErrorCode AppWatchdogTimerKick();
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_locale_manager_set_language")]
-        internal static extern AppCommonErrorCode AppLocaleManagerSetLanguage(string lang);
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_locale_manager_set_language", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial AppCommonErrorCode AppLocaleManagerSetLanguage(string lang);
         // int app_locale_manager_set_language(const char *lang)
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_locale_manager_get_language")]
-        internal static extern AppCommonErrorCode AppLocaleManagerGetLanguage(out IntPtr langPtr);
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_locale_manager_get_language")]
+        internal static partial AppCommonErrorCode AppLocaleManagerGetLanguage(out IntPtr langPtr);
         // int app_locale_manager_get_language(char **lang)
 
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_locale_manager_get_system_language")]
-        internal static extern AppCommonErrorCode AppLocaleManagerGetSystemLanguage(out IntPtr langPtr);
+        [LibraryImport(Libraries.AppCommon, EntryPoint = "app_locale_manager_get_system_language")]
+        internal static partial AppCommonErrorCode AppLocaleManagerGetSystemLanguage(out IntPtr langPtr);
         // int app_locale_manager_get_system_language(char **lang)
     }
 }
+
+
+
+
