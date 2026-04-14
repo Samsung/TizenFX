@@ -21,7 +21,8 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    internal static class PropertyBridge
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public static class PropertyBridge
     {
         private static StringGetterDelegate _stringGetterDelegate;
 
