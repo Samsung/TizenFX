@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using Tizen.Applications.Cion;
 
 using ErrorCode = Interop.Cion.ErrorCode;
@@ -24,10 +25,13 @@ internal static partial class Interop
 {
     internal static partial class CionConnectionResult
     {
-        [DllImport(Libraries.Cion, EntryPoint = "cion_connection_result_get_status")]
-        internal static extern ErrorCode CionConnectionResultGetStatus(IntPtr result, out ConnectionStatus status);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_connection_result_get_status")]
+        internal static partial ErrorCode CionConnectionResultGetStatus(IntPtr result, out ConnectionStatus status);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_connection_result_get_reason")]
-        internal static extern ErrorCode CionConnectionResultGetReason(IntPtr result, out string reason);
+        [LibraryImport(Libraries.Cion, EntryPoint = "cion_connection_result_get_reason", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode CionConnectionResultGetReason(IntPtr result, out string reason);
     }
 }
+
+
+
