@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 internal static partial class Interop
 {
@@ -33,19 +34,22 @@ internal static partial class Interop
         internal delegate int PackageInfoPackageMetadataListCallback(string key, string value, IntPtr userData);
         // int (*pkgmgrinfo_pkg_metadata_list_cb)(const char *key, const char *value, void *user_data);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "pkgmgrinfo_pkginfo_get_pkginfo")]
-        internal static extern ErrorCode PackageInfoGet(string packageId, out IntPtr handle);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "pkgmgrinfo_pkginfo_get_pkginfo", StringMarshalling = StringMarshalling.Utf8)]
+        internal static partial ErrorCode PackageInfoGet(string packageId, out IntPtr handle);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "pkgmgrinfo_pkginfo_destroy_pkginfo")]
-        internal static extern ErrorCode PackageInfoDestroy(IntPtr handle);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "pkgmgrinfo_pkginfo_destroy_pkginfo")]
+        internal static partial ErrorCode PackageInfoDestroy(IntPtr handle);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "pkgmgrinfo_pkginfo_get_res_type")]
-        internal static extern ErrorCode PackageInfoGetResourceType(IntPtr handle, out IntPtr resourceType);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "pkgmgrinfo_pkginfo_get_res_type")]
+        internal static partial ErrorCode PackageInfoGetResourceType(IntPtr handle, out IntPtr resourceType);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "pkgmgrinfo_pkginfo_get_res_version")]
-        internal static extern ErrorCode PackageInfoGetResourceVersion(IntPtr handle, out IntPtr resourceVersion);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "pkgmgrinfo_pkginfo_get_res_version")]
+        internal static partial ErrorCode PackageInfoGetResourceVersion(IntPtr handle, out IntPtr resourceVersion);
 
-        [DllImport(Libraries.PackageManager, EntryPoint = "pkgmgrinfo_pkginfo_foreach_metadata")]
-        internal static extern ErrorCode PackageInfoForeachMetadata(IntPtr handle, PackageInfoPackageMetadataListCallback callback, IntPtr userData);
+        [LibraryImport(Libraries.PackageManager, EntryPoint = "pkgmgrinfo_pkginfo_foreach_metadata")]
+        internal static partial ErrorCode PackageInfoForeachMetadata(IntPtr handle, PackageInfoPackageMetadataListCallback callback, IntPtr userData);
     }
 }
+
+
+
