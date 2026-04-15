@@ -140,10 +140,7 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public void ReplyToLaunchRequest(AppControl replyRequest, AppControlReplyResult result)
         {
-            if (replyRequest == null)
-            {
-                throw new ArgumentNullException(nameof(replyRequest));
-            }
+            ArgumentNullException.ThrowIfNull(replyRequest);
             Interop.AppControl.ErrorCode err = Interop.AppControl.ReplyToLaunchRequest(replyRequest.SafeAppControlHandle, this.SafeAppControlHandle, (int)result);
             if (err != Interop.AppControl.ErrorCode.None)
                 throw new InvalidOperationException("Failed to reply. Err = " + err);

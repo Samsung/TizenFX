@@ -879,10 +879,7 @@ namespace Tizen.Applications
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static IEnumerable<string> GetRuaStatTags(string caller)
         {
-            if (caller == null)
-            {
-                throw new ArgumentNullException(nameof(caller));
-            }
+            ArgumentNullException.ThrowIfNull(caller);
 
             List<string> tags = new List<string>();
             Interop.ApplicationManager.RuaStatTagIterCallback callback = (string ruaStatTag, IntPtr userData) =>
