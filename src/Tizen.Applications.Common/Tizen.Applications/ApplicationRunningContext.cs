@@ -67,17 +67,7 @@ namespace Tizen.Applications
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
                 Log.Warn(LogTag, $"Failed to get the handle of the ApplicationRunningContext. err = {err}");
-                switch (err)
-                {
-                    case Interop.ApplicationManager.ErrorCode.InvalidParameter:
-                        throw new ArgumentException("Invalid Parameter.");
-                    case Interop.ApplicationManager.ErrorCode.NoSuchApp:
-                        throw new InvalidOperationException("No such application.");
-                    case Interop.ApplicationManager.ErrorCode.OutOfMemory:
-                        throw new OutOfMemoryException("Out of memory");
-                    default:
-                        throw new InvalidOperationException("Invalid Operation.");
-                }
+                throw MapContextError(err);
             }
             _contextHandle = contextHandle;
         }
@@ -99,17 +89,7 @@ namespace Tizen.Applications
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
                 Log.Warn(LogTag, $"Failed to get the handle of the ApplicationRunningContext. err = {err}");
-                switch (err)
-                {
-                    case Interop.ApplicationManager.ErrorCode.InvalidParameter:
-                        throw new ArgumentException("Invalid Parameter.");
-                    case Interop.ApplicationManager.ErrorCode.NoSuchApp:
-                        throw new InvalidOperationException("No such application.");
-                    case Interop.ApplicationManager.ErrorCode.OutOfMemory:
-                        throw new OutOfMemoryException("Out of memory");
-                    default:
-                        throw new InvalidOperationException("Invalid Operation.");
-                }
+                throw MapContextError(err);
             }
             _contextHandle = contextHandle;
         }
@@ -290,15 +270,7 @@ namespace Tizen.Applications
             err = Interop.ApplicationManager.AppManagerTerminateApp(_contextHandle);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
-                switch (err)
-                {
-                    case Interop.ApplicationManager.ErrorCode.InvalidParameter:
-                        throw new ArgumentException("Invalid argument.");
-                    case Interop.ApplicationManager.ErrorCode.PermissionDenied:
-                        throw new UnauthorizedAccessException("Permission denied.");
-                    default:
-                        throw new InvalidOperationException("Invalid Operation.");
-                }
+                throw MapContextError(err);
             }
         }
 
@@ -316,15 +288,7 @@ namespace Tizen.Applications
             err = Interop.ApplicationManager.AppManagerTerminateAppWithoutRestarting(_contextHandle);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
-                switch (err)
-                {
-                    case Interop.ApplicationManager.ErrorCode.InvalidParameter:
-                        throw new ArgumentException("Invalid argument.");
-                    case Interop.ApplicationManager.ErrorCode.PermissionDenied:
-                        throw new UnauthorizedAccessException("Permission denied.");
-                    default:
-                        throw new InvalidOperationException("Invalid Operation.");
-                }
+                throw MapContextError(err);
             }
         }
 
@@ -341,17 +305,18 @@ namespace Tizen.Applications
             err = Interop.ApplicationManager.AppManagerResumeApp(_contextHandle);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
-                switch (err)
-                {
-                    case Interop.ApplicationManager.ErrorCode.InvalidParameter:
-                        throw new ArgumentException("Invalid argument.");
-                    case Interop.ApplicationManager.ErrorCode.PermissionDenied:
-                        throw new UnauthorizedAccessException("Permission denied.");
-                    default:
-                        throw new InvalidOperationException("Invalid Operation.");
-                }
+                throw MapContextError(err);
             }
         }
+
+        private static Exception MapContextError(Interop.ApplicationManager.ErrorCode err) => err switch
+        {
+            Interop.ApplicationManager.ErrorCode.InvalidParameter => new ArgumentException("Invalid Parameter."),
+            Interop.ApplicationManager.ErrorCode.NoSuchApp        => new InvalidOperationException("No such application."),
+            Interop.ApplicationManager.ErrorCode.OutOfMemory      => new OutOfMemoryException("Out of memory"),
+            Interop.ApplicationManager.ErrorCode.PermissionDenied => new UnauthorizedAccessException("Permission denied."),
+            _                                                      => new InvalidOperationException("Invalid Operation."),
+        };
 
         /// <summary>
         /// Releases all resources used by the ApplicationRunningContext class.
