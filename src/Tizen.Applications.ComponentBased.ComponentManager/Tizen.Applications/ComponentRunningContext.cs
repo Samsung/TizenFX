@@ -300,7 +300,6 @@ namespace Tizen.Applications.ComponentBased
         /// Releases all resources used by the <see cref="ComponentRunningContext"/> class.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated since API level 14")]
         public void Dispose()
         {
             Dispose(true);
