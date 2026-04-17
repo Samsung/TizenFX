@@ -36,7 +36,6 @@ namespace Tizen.NUI
         /// <param name="widgetType">Derived widget class type.</param>
         public NUIWidgetApplication(System.Type widgetType) : base(new NUIWidgetCoreBackend())
         {
-            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
             NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
             core?.RegisterWidgetInfo(new Dictionary<System.Type, string> { { widgetType, ApplicationInfo.ApplicationId } });
         }
@@ -53,7 +52,6 @@ namespace Tizen.NUI
             }
             else
             {
-                Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
                 NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
                 core?.RegisterWidgetInfo(widgetTypes);
             }
@@ -68,7 +66,6 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public NUIWidgetApplication(System.Type widgetType, string styleSheet) : base(new NUIWidgetCoreBackend(styleSheet))
         {
-            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
             NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
             core?.RegisterWidgetInfo(new Dictionary<System.Type, string> { { widgetType, ApplicationInfo.ApplicationId } });
         }
@@ -120,6 +117,11 @@ namespace Tizen.NUI
                     _isUsingXaml = value;
                 }
             }
+        }
+
+        static NUIWidgetApplication()
+        {
+            NUIApplicationInitializer.StaticInitialize();
         }
 
         internal WidgetApplication ApplicationHandle
