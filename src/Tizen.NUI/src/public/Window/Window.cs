@@ -2547,10 +2547,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Request to rendering forcibly for this window
+        /// Requests forced rendering for this window.
         /// </summary>
         /// <param name="frameCount">The number of frames to render forcibly.</param>
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetForceRendering(uint frameCount)
         {
