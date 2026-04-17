@@ -19,6 +19,9 @@ using System.Collections.Concurrent;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// Posts actions onto the GLib main loop used by the Team application.
+    /// </summary>
     internal static class GSourceManager
     {
         private static readonly GSourceContext _tizenContext = new GSourceContext();
@@ -39,6 +42,9 @@ namespace Tizen.Applications
         }
     }
 
+    /// <summary>
+    /// Holds the GLib source state and action queue for a single main loop context.
+    /// </summary>
     internal class GSourceContext
     {
         private readonly ConcurrentQueue<Action> _actionQueue = new ConcurrentQueue<Action>();

@@ -16,10 +16,16 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// Represents the resource control information for a Team application.
+    /// </summary>
+    /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ResourceControl
     {
         internal ResourceControl(string resourceType, string minResourceVersion, string maxResourceVersion, bool isAutoClose)
@@ -30,12 +36,32 @@ namespace Tizen.Applications
             IsAutoClose = isAutoClose;
         }
 
+        /// <summary>
+        /// Gets the resource type.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ResourceType { get; }
 
+        /// <summary>
+        /// Gets the minimum version of the required resource package.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string MinResourceVersion { get; }
 
+        /// <summary>
+        /// Gets the maximum version of the required resource package.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string MaxResourceVersion { get; }
 
+        /// <summary>
+        /// Gets a value indicating whether the resource is auto-closed.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsAutoClose { get; }
     }
 }

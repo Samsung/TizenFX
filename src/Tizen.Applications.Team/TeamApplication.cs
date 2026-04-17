@@ -15,10 +15,20 @@
  */
 
 using System;
+using System.ComponentModel;
 using Tizen.Applications.CoreBackend;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// Represents the abstract base class of a Team application instance.
+    /// </summary>
+    /// <remarks>
+    /// A Team application is a member instance managed by the Team host process. Each instance
+    /// owns its own lifecycle, directory information, and application information.
+    /// </remarks>
+    /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class TeamApplication : IDisposable
     {
         internal const string LogTag = "DN_TAM";
@@ -27,16 +37,34 @@ namespace Tizen.Applications
 
         private TeamDirectoryInfo _directoryInfo;
         private TeamApplicationInfo _applicationInfo;
+
+        /// <summary>
+        /// The backend that drives this Team application instance.
+        /// </summary>
         protected readonly TeamCoreBackend _backend;
 
+        /// <summary>
+        /// Gets the backend associated with this Team application instance.
+        /// </summary>
         protected ICoreBackend Backend => _backend;
 
+        /// <summary>
+        /// Initializes the <see cref="TeamApplication"/> class with the given backend.
+        /// </summary>
+        /// <param name="backend">The backend used to drive this Team application instance.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="backend"/> is null.</exception>
         protected TeamApplication(TeamCoreBackend backend)
         {
             Log.Info(LogTag, "TeamApplication constructor called");
             _backend = backend ?? throw new ArgumentNullException(nameof(backend));
         }
 
+        /// <summary>
+        /// Gets the directory information of the current Team application instance.
+        /// </summary>
+        /// <value>A <see cref="TeamDirectoryInfo"/> instance, or <c>null</c> if the member handle is not yet available.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public TeamDirectoryInfo DirectoryInfo
         {
             get
@@ -57,6 +85,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the application information of the current Team application instance.
+        /// </summary>
+        /// <value>A <see cref="TeamApplicationInfo"/> instance, or <c>null</c> if the member handle or application id cannot be resolved.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public TeamApplicationInfo ApplicationInfo
         {
             get
@@ -89,8 +123,20 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the current Team application instance.
+        /// </summary>
+        /// <value>The current <see cref="TeamApplication"/> instance.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public TeamApplication Current { get { return this; } }
 
+        /// <summary>
+        /// Gets the name of the current Team application instance.
+        /// </summary>
+        /// <value>The name string, or <see cref="string.Empty"/> if it cannot be retrieved.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Name
         {
             get
@@ -113,6 +159,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the version of the current Team application instance.
+        /// </summary>
+        /// <value>The version string, or <see cref="string.Empty"/> if it cannot be retrieved.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Version
         {
             get
@@ -135,6 +187,13 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Runs the Team application's main loop and registers this instance with the Team manager.
+        /// </summary>
+        /// <param name="args">Arguments from commandline.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="args"/> is null.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void Run(string[] args)
         {
             if (args == null)
@@ -144,6 +203,11 @@ namespace Tizen.Applications
             TeamManager.RegisterRunningTeamApp(this);
         }
 
+        /// <summary>
+        /// Exits the main loop of this Team application instance and unregisters it from the Team manager.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void Exit()
         {
             TeamManager.UnRegisterRunningTeamApp(this);
@@ -152,6 +216,10 @@ namespace Tizen.Applications
 
         private bool _disposedValue = false;
 
+        /// <summary>
+        /// Releases the resources used by this Team application instance.
+        /// </summary>
+        /// <param name="disposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -169,11 +237,19 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Finalizes the <see cref="TeamApplication"/> instance.
+        /// </summary>
         ~TeamApplication()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Releases all resources used by this Team application instance.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
             Log.Info(LogTag, "TeamApplication.Dispose() called");

@@ -22,6 +22,15 @@ using Tizen.Internals.Errors;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// Represents the installed application information of a Team application instance.
+    /// </summary>
+    /// <remarks>
+    /// The information is obtained lazily from the native application manager and cached for subsequent access.
+    /// Call <see cref="Dispose()"/> to release the underlying native handle.
+    /// </remarks>
+    /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class TeamApplicationInfo : IDisposable
     {
         private const string LogTag = "DN_TAMS";
@@ -45,11 +54,20 @@ namespace Tizen.Applications
             _applicationId = applicationId;
         }
 
+        /// <summary>
+        /// Finalizes the <see cref="TeamApplicationInfo"/> instance.
+        /// </summary>
         ~TeamApplicationInfo()
         {
             Dispose(false);
         }
 
+        /// <summary>
+        /// Gets the application id.
+        /// </summary>
+        /// <value>The application id string.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ApplicationId
         {
             get
@@ -58,6 +76,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the package id of the application.
+        /// </summary>
+        /// <value>The package id string, or <see cref="string.Empty"/> if it cannot be retrieved.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string PackageId
         {
             get
@@ -76,6 +100,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the label of the application.
+        /// </summary>
+        /// <value>The application label, or <see cref="string.Empty"/> if it cannot be retrieved.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Label
         {
             get
@@ -94,6 +124,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path of the executable file of the application.
+        /// </summary>
+        /// <value>The executable file path, or <see cref="string.Empty"/> if it cannot be retrieved.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ExecutablePath
         {
             get
@@ -112,6 +148,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path of the icon image of the application.
+        /// </summary>
+        /// <value>The icon image path, or <see cref="string.Empty"/> if it cannot be retrieved.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string IconPath
         {
             get
@@ -130,6 +172,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the application type.
+        /// </summary>
+        /// <value>The application type string, or <see cref="string.Empty"/> if it cannot be retrieved.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ApplicationType
         {
             get
@@ -148,6 +196,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the application component type.
+        /// </summary>
+        /// <value>The <see cref="ApplicationComponentType"/> of this application.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ApplicationComponentType ComponentType
         {
             get
@@ -166,6 +220,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the metadata key-value pairs declared by the application.
+        /// </summary>
+        /// <value>A dictionary containing the metadata entries.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IDictionary<String, String> Metadata
         {
             get
@@ -198,6 +258,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the application is not displayed on the launcher.
+        /// </summary>
+        /// <value><c>true</c> if the application is hidden from the launcher; otherwise, <c>false</c>.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsNoDisplay
         {
             get
@@ -217,6 +283,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the application is launched automatically on system boot.
+        /// </summary>
+        /// <value><c>true</c> if the application is launched on boot; otherwise, <c>false</c>.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsOnBoot
         {
             get
@@ -235,6 +307,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the application is preloaded on the device.
+        /// </summary>
+        /// <value><c>true</c> if the application is preloaded; otherwise, <c>false</c>.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsPreload
         {
             get
@@ -253,6 +331,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the categories the application belongs to.
+        /// </summary>
+        /// <value>An enumerable collection of category names.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IEnumerable<string> Categories
         {
             get
@@ -281,6 +365,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path of the directory shared with other applications for this Team member.
+        /// </summary>
+        /// <value>The shared data directory path.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string SharedDataPath
         {
             get
@@ -298,6 +388,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path of the read-only resource directory shared with other applications for this Team member.
+        /// </summary>
+        /// <value>The shared resource directory path.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string SharedResourcePath
         {
             get
@@ -315,6 +411,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path of the directory shared only with trusted applications for this Team member.
+        /// </summary>
+        /// <value>The shared trusted directory path.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string SharedTrustedPath
         {
             get
@@ -332,6 +434,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path of the shared directory on the external storage for this Team member.
+        /// </summary>
+        /// <value>The external shared data directory path.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ExternalSharedDataPath
         {
             get
@@ -349,6 +457,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the resource control entries declared by the application.
+        /// </summary>
+        /// <value>An enumerable collection of <see cref="ResourceControl"/> entries.</value>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public IEnumerable<ResourceControl> ResourceControls
         {
             get
@@ -376,6 +490,13 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the localized label of the application for the given locale.
+        /// </summary>
+        /// <param name="locale">The locale in the form of language and country code (for example, "en-US").</param>
+        /// <returns>The localized label; falls back to <see cref="Label"/> if no localized value is available.</returns>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetLocalizedLabel(string locale)
         {
             string label = string.Empty;
@@ -388,6 +509,10 @@ namespace Tizen.Applications
             return label;
         }
 
+        /// <summary>
+        /// Gets the absolute path of the common shared data directory for this Team member.
+        /// </summary>
+        /// <value>The common shared data directory path.</value>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string CommonSharedDataPath
         {
@@ -406,6 +531,10 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path of the common shared trusted directory for this Team member.
+        /// </summary>
+        /// <value>The common shared trusted directory path.</value>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string CommonSharedTrustedPath
         {
@@ -439,6 +568,11 @@ namespace Tizen.Applications
             return _infoHandle;
         }
 
+        /// <summary>
+        /// Releases all resources used by this <see cref="TeamApplicationInfo"/>.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
             Dispose(true);

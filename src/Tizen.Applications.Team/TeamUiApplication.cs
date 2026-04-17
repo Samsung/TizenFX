@@ -15,15 +15,33 @@
  */
 
 using System;
+using System.ComponentModel;
 using Tizen.NUI;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// Represents a Team application that provides a default NUI window.
+    /// </summary>
+    /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class TeamUiApplication : TeamCoreUiApplication
     {
+        /// <summary>
+        /// Initializes the <see cref="TeamUiApplication"/> class.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public TeamUiApplication()
         {
         }
+
+        /// <summary>
+        /// Runs the Team UI application's main loop.
+        /// </summary>
+        /// <param name="args">Arguments from commandline.</param>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Run(string[] args)
         {
             base.Run(args);

@@ -20,6 +20,9 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// Resolves culture names from the platform-provided CultureInfo INI file.
+    /// </summary>
     internal static class CultureInfoHelper
     {
         private const string _pathCultureInfoIni = "/usr/share/dotnet.tizen/framework/i18n/CultureInfo.ini";

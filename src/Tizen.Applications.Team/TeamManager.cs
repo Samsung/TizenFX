@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Reflection;
 using System.Runtime.Loader;
 using Tizen.NUI.BaseComponents;
@@ -50,6 +51,11 @@ namespace Tizen.Applications
         public bool Owned { get; set; }
     }
 
+    /// <summary>
+    /// Provides registration and management of Team application instances, loaded assemblies, and view ownership.
+    /// </summary>
+    /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public static class TeamManager
     {
         private const string LogTag = "DN_TAM";
@@ -103,11 +109,23 @@ namespace Tizen.Applications
             return null;
         }
 
+        /// <summary>
+        /// Initializes the Team application runtime and starts the Team main loop.
+        /// </summary>
+        /// <param name="args">Arguments from commandline. May be <c>null</c>.</param>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Init(string[] args)
         {
             TeamLoop.Run(args);
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the Team main loop has been initialized.
+        /// </summary>
+        /// <returns><c>true</c> if the Team main loop is running; otherwise, <c>false</c>.</returns>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool IsInit()
         {
             return TeamLoop.IsRunning();
@@ -177,6 +195,16 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Registers a <see cref="View"/> with the Team manager under the given application id.
+        /// </summary>
+        /// <param name="view">The view to register.</param>
+        /// <param name="appid">The application id that owns the view.</param>
+        /// <returns>A unique identifier assigned to the registered view.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="view"/> or <paramref name="appid"/> is null or empty.</exception>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="appid"/> has already been registered.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static int AddView(View view, string appid)
         {
             if (view == null)
@@ -200,6 +228,13 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Removes a view previously registered via <see cref="AddView"/>.
+        /// </summary>
+        /// <param name="id">The unique identifier returned from <see cref="AddView"/>.</param>
+        /// <returns><c>true</c> if the view was removed; <c>false</c> if no matching id was found.</returns>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool RemoveView(int id)
         {
             lock (_lock)
@@ -215,6 +250,14 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Claims ownership of the view registered under the given application id.
+        /// </summary>
+        /// <param name="appid">The application id that owns the view.</param>
+        /// <returns>The owned <see cref="View"/>, or <c>null</c> if the view is already owned or not found.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="appid"/> is null or empty.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static View OwnViewApp(string appid)
         {
             if (string.IsNullOrEmpty(appid))
@@ -241,6 +284,13 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Releases ownership of the view registered under the given application id.
+        /// </summary>
+        /// <param name="appid">The application id that owns the view.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="appid"/> is null or empty.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void DisownViewApp(string appid)
         {
             if (string.IsNullOrEmpty(appid))

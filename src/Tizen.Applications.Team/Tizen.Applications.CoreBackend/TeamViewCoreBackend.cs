@@ -21,6 +21,9 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.Applications.CoreBackend
 {
+    /// <summary>
+    /// Backend implementation for Team view applications that render into a shared host-provided <see cref="View"/>.
+    /// </summary>
     internal class TeamViewCoreBackend : TeamCoreBackend
     {
         internal new static string LogTag = "DN_TAM";

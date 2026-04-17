@@ -19,6 +19,9 @@ using Tizen.Internals;
 
 namespace Tizen.Applications.CoreBackend
 {
+    /// <summary>
+    /// Backend implementation for Team service applications that run without a graphical UI.
+    /// </summary>
     internal class TeamServiceCoreBackend : TeamCoreBackend
     {
         internal new static string LogTag = "DN_TAM";

@@ -22,6 +22,15 @@ using Tizen.Internals.Errors;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// Represents the directory paths available to a Team application instance.
+    /// </summary>
+    /// <remarks>
+    /// Each path is resolved lazily on first access and cached. Any failure in the native call is translated
+    /// into a .NET exception; see each property for the specific exceptions that can be thrown.
+    /// </remarks>
+    /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class TeamDirectoryInfo
     {
         private IntPtr _memberHandle;
@@ -45,6 +54,16 @@ namespace Tizen.Applications
             _memberHandle = memberHandle;
         }
 
+        /// <summary>
+        /// Gets the absolute path to the private data directory of this Team application.
+        /// </summary>
+        /// <value>The private data directory path.</value>
+        /// <exception cref="ArgumentException">Thrown when the member handle is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the team member context is invalid or the path cannot be retrieved.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the Team member is not found.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Data
         {
             get
@@ -60,6 +79,16 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path to the private cache directory of this Team application.
+        /// </summary>
+        /// <value>The private cache directory path.</value>
+        /// <exception cref="ArgumentException">Thrown when the member handle is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the team member context is invalid or the path cannot be retrieved.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the Team member is not found.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Cache
         {
             get
@@ -75,6 +104,16 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path to the read-only resource directory of this Team application.
+        /// </summary>
+        /// <value>The read-only resource directory path.</value>
+        /// <exception cref="ArgumentException">Thrown when the member handle is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the team member context is invalid or the path cannot be retrieved.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the Team member is not found.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Resource
         {
             get
@@ -90,6 +129,16 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path to the directory shared with other applications.
+        /// </summary>
+        /// <value>The shared data directory path.</value>
+        /// <exception cref="ArgumentException">Thrown when the member handle is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the team member context is invalid or the path cannot be retrieved.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the Team member is not found.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string SharedData
         {
             get
@@ -105,6 +154,16 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path to the read-only resource directory shared with other applications.
+        /// </summary>
+        /// <value>The shared resource directory path.</value>
+        /// <exception cref="ArgumentException">Thrown when the member handle is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the team member context is invalid or the path cannot be retrieved.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the Team member is not found.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string SharedResource
         {
             get
@@ -120,6 +179,16 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path to the directory shared only with trusted applications.
+        /// </summary>
+        /// <value>The shared trusted directory path.</value>
+        /// <exception cref="ArgumentException">Thrown when the member handle is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the team member context is invalid or the path cannot be retrieved.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the Team member is not found.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string SharedTrusted
         {
             get
@@ -135,6 +204,16 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path to the private data directory on the external storage.
+        /// </summary>
+        /// <value>The external data directory path.</value>
+        /// <exception cref="ArgumentException">Thrown when the member handle is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the team member context is invalid or the path cannot be retrieved.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the Team member is not found.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ExternalData
         {
             get
@@ -150,6 +229,16 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path to the private cache directory on the external storage.
+        /// </summary>
+        /// <value>The external cache directory path.</value>
+        /// <exception cref="ArgumentException">Thrown when the member handle is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the team member context is invalid or the path cannot be retrieved.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the Team member is not found.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ExternalCache
         {
             get
@@ -165,6 +254,16 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path to the shared directory on the external storage.
+        /// </summary>
+        /// <value>The external shared data directory path.</value>
+        /// <exception cref="ArgumentException">Thrown when the member handle is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the team member context is invalid or the path cannot be retrieved.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the Team member is not found.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ExternalSharedData
         {
             get
@@ -180,6 +279,16 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path to the resource directory of the Tizen Expansion Package.
+        /// </summary>
+        /// <value>The expansion package resource directory path.</value>
+        /// <exception cref="ArgumentException">Thrown when the member handle is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the team member context is invalid or the path cannot be retrieved.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the Team member is not found.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string ExpansionPackageResource
         {
             get
@@ -195,6 +304,14 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path to the common data directory shared among users.
+        /// </summary>
+        /// <value>The common data directory path.</value>
+        /// <exception cref="ArgumentException">Thrown when the member handle is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the team member context is invalid or the path cannot be retrieved.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the Team member is not found.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string CommonData
         {
@@ -211,6 +328,14 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path to the common cache directory shared among users.
+        /// </summary>
+        /// <value>The common cache directory path.</value>
+        /// <exception cref="ArgumentException">Thrown when the member handle is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the team member context is invalid or the path cannot be retrieved.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the Team member is not found.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string CommonCache
         {
@@ -227,6 +352,14 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path to the common shared data directory shared among users.
+        /// </summary>
+        /// <value>The common shared data directory path.</value>
+        /// <exception cref="ArgumentException">Thrown when the member handle is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the team member context is invalid or the path cannot be retrieved.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the Team member is not found.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string CommonSharedData
         {
@@ -243,6 +376,14 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path to the common shared trusted directory shared among users.
+        /// </summary>
+        /// <value>The common shared trusted directory path.</value>
+        /// <exception cref="ArgumentException">Thrown when the member handle is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the team member context is invalid or the path cannot be retrieved.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the Team member is not found.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string CommonSharedTrusted
         {
@@ -259,6 +400,17 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the absolute path to the resource directory allowed by resource control for the given resource type.
+        /// </summary>
+        /// <param name="resType">The resource type.</param>
+        /// <returns>The path to the allowed resource directory.</returns>
+        /// <exception cref="ArgumentException">Thrown when the member handle or <paramref name="resType"/> is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the team member context is invalid or the path cannot be retrieved.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the Team member is not found.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetResourceControlAllowedResource(string resType)
         {
             Interop.TeamManager.TeamAppErrorCode err = Interop.TeamManager.TeamAppGetResControlAllowedPath(_memberHandle, resType, out string path);
@@ -267,6 +419,17 @@ namespace Tizen.Applications
             return path;
         }
 
+        /// <summary>
+        /// Gets the absolute path to the global resource directory by resource control for the given resource type.
+        /// </summary>
+        /// <param name="resType">The resource type.</param>
+        /// <returns>The path to the global resource directory.</returns>
+        /// <exception cref="ArgumentException">Thrown when the member handle or <paramref name="resType"/> is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system runs out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the team member context is invalid or the path cannot be retrieved.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown when the Team member is not found.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetResourceControlGlobalResource(string resType)
         {
             Interop.TeamManager.TeamAppErrorCode err = Interop.TeamManager.TeamAppGetResControlGlobalPath(_memberHandle, resType, out string path);
