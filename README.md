@@ -2,6 +2,10 @@
 
 [![License](https://img.shields.io/badge/licence-Apache%202.0-brightgreen.svg?label=License&style=flat-square)](LICENSE)
 [![Build](https://img.shields.io/github/actions/workflow/status/Samsung/TizenFX/build-branches.yml?query=branch%3Amain?label=Build&style=flat-square)](https://github.com/Samsung/TizenFX/actions?query=workflow%3A%22Build+Branches%22+branch%3Amain)
+![Analysis](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgist.githubusercontent.com%2FJoonghyunCho%2Fd7515bb87b2597efd779e737b1bfaa03%2Fraw%2Ftask-status.json&query=$.tasks.RefactorAnalysis.status&label=AI%20Refactor%20Analysis)
+![Execute](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgist.githubusercontent.com%2FJoonghyunCho%2Fd7515bb87b2597efd779e737b1bfaa03%2Fraw%2Ftask-status.json&query=$.tasks.RefactorExecute.status&label=AI%20Refactor%20Execute)
+![Review](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgist.githubusercontent.com%2FJoonghyunCho%2Fd7515bb87b2597efd779e737b1bfaa03%2Fraw%2Ftask-status.json&query=$.tasks.PRReviewCheck.status&label=AI%20PR%20Review%20Check)
+![CodeReview](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgist.githubusercontent.com%2FJoonghyunCho%2Fd7515bb87b2597efd779e737b1bfaa03%2Fraw%2Ftask-status.json&query=$.tasks.PRCodeReview.status&label=AI%20PR%20Code%20Review)
 
 TizenFX API, which allows you to access platform-specific features not covered by the generic .NET and .NET MAUI features, such as system information and status, battery status, sensor date, and account and connectivity services.
 
