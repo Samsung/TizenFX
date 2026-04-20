@@ -22,7 +22,7 @@ namespace Tizen.Applications.ComponentBased
     /// Enumeration for component type.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    [Obsolete("Deprecated since API level 14")]
+    [Obsolete("This has been deprecated in API14")]
     public enum ComponentType
     {
         /// <summary>
