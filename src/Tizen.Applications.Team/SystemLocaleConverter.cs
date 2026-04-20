@@ -24,6 +24,9 @@ using System.Threading.Tasks;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// Converts Tizen system locale strings into <see cref="CultureInfo"/> values with ICU fallback.
+    /// </summary>
     internal class SystemLocaleConverter
     {
         private static readonly string LogTag = "DN_TAM";
@@ -151,6 +154,9 @@ namespace Tizen.Applications
         }
 
 
+        /// <summary>
+        /// Wraps ICU uloc_* interop for parsing and canonicalizing locale strings.
+        /// </summary>
         internal class ULocale
         {
             private const int ULOC_FULLNAME_CAPACITY = 157;

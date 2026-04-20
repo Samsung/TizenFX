@@ -20,6 +20,9 @@ using Tizen.NUI;
 
 namespace Tizen.Applications.CoreBackend
 {
+    /// <summary>
+    /// Backend implementation for Team UI applications that own a default <see cref="Window"/>.
+    /// </summary>
     internal class TeamUICoreBackend : TeamCoreBackend
     {
         internal new static string LogTag = "DN_TAM";

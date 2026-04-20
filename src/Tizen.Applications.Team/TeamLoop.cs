@@ -16,6 +16,7 @@
 
 
 using System;
+using System.ComponentModel;
 using System.Threading;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -25,6 +26,11 @@ using Tizen.NUI;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// Provides the entry point to the native Team main loop and the dynamic assembly load/unload callbacks.
+    /// </summary>
+    /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public static class TeamLoop
     {
         private const string LogTag = "DN_TAM";
@@ -42,6 +48,12 @@ namespace Tizen.Applications
             _ops.OnLoopCreate = new Interop.TeamLoop.TeamLoopOpsOnLoopCreate(DoOnLoopCreate);
             _ops.OnLoopTerminate = new Interop.TeamLoop.TeamLoopOpsOnLoopTerminate(DoOnLoopTerminate);
         }
+        /// <summary>
+        /// Starts the Team main loop. Subsequent calls while the loop is running are no-ops.
+        /// </summary>
+        /// <param name="args">Arguments passed to the native Team loop.</param>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Run(string[] args)
         {
             Log.Info(LogTag, $"Run() called - Already Running: {_isRunning}");
@@ -69,6 +81,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the Team main loop is currently running.
+        /// </summary>
+        /// <returns><c>true</c> if the main loop is running; otherwise, <c>false</c>.</returns>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool IsRunning()
         {
           Log.Info(LogTag, $"IsRunning() called - Result: {_isRunning}");
@@ -223,6 +241,12 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Gets the command line arguments that were passed to <see cref="Run(string[])"/>.
+        /// </summary>
+        /// <returns>The arguments array, or <c>null</c> if <see cref="Run(string[])"/> has not been invoked.</returns>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static string[] GetSystemArgs()
         {
             Log.Info(LogTag, $"GetSystemArgs() called - Count: {_systemArgs?.Length ?? 0}");

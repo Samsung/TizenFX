@@ -15,18 +15,36 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Tizen.Applications.CoreBackend;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// Represents a Team application that runs without a graphical user interface.
+    /// </summary>
+    /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class TeamServiceApplication : TeamCoreApplication
     {
+        /// <summary>
+        /// Initializes the <see cref="TeamServiceApplication"/> class.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
 #pragma warning disable CA2000
         public TeamServiceApplication() : base(new TeamServiceCoreBackend())
 #pragma warning restore CA2000
         {
         }
+
+        /// <summary>
+        /// Runs the Team service application's main loop.
+        /// </summary>
+        /// <param name="args">Arguments from commandline.</param>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Run(string[] args)
         {
             base.Run(args);

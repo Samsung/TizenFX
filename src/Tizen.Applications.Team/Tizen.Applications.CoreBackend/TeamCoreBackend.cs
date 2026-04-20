@@ -15,14 +15,32 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Applications.CoreBackend
 {
+    /// <summary>
+    /// Represents the abstract base backend that drives a Team application instance.
+    /// </summary>
+    /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class TeamCoreBackend : DefaultCoreBackend
     {
+        /// <summary>
+        /// The native handle that identifies this Team member instance.
+        /// </summary>
         protected IntPtr _memberHandle = IntPtr.Zero;
+
+        /// <summary>
+        /// The identifier of the loaded assembly associated with this Team member instance.
+        /// </summary>
         protected IntPtr _loadObjId = IntPtr.Zero;
+
+        /// <summary>
+        /// The native handle to the arguments passed to this Team member instance.
+        /// </summary>
         protected IntPtr _argHandle = IntPtr.Zero;
+
         internal abstract IntPtr MemberHandle { get; }
         internal abstract IntPtr LoadObjId { get; }
         internal abstract IntPtr ArgHandle { get; }

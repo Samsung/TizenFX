@@ -15,27 +15,103 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.Threading.Tasks;
 using Tizen.Applications.CoreBackend;
 
 namespace Tizen.Applications
 {
+    /// <summary>
+    /// Represents the core Team application with common lifecycle and system events.
+    /// </summary>
+    /// <remarks>
+    /// Subclasses typically add UI- or service-specific behavior on top of the events exposed here.
+    /// </remarks>
+    /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class TeamCoreApplication : TeamApplication
     {
+        /// <summary>
+        /// Initializes the <see cref="TeamCoreApplication"/> class with the given backend.
+        /// </summary>
+        /// <param name="backend">The backend used to drive this Team application instance.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="backend"/> is null.</exception>
         protected TeamCoreApplication(TeamCoreBackend backend) : base(backend)
         {
             Log.Info(LogTag, "TeamCoreApplication constructor called");
         }
+
+        /// <summary>
+        /// Occurs whenever the application is launched.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler Created;
+
+        /// <summary>
+        /// Occurs whenever the application is about to shut down.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler Terminated;
+
+        /// <summary>
+        /// Occurs whenever the application receives an application control request.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<AppControlReceivedEventArgs> AppControlReceived;
+
+        /// <summary>
+        /// Occurs when a low memory condition is reported by the system.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<LowMemoryEventArgs> LowMemory;
+
+        /// <summary>
+        /// Occurs when a low battery condition is reported by the system.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<LowBatteryEventArgs> LowBattery;
+
+        /// <summary>
+        /// Occurs when the system language is changed.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<LocaleChangedEventArgs> LocaleChanged;
+
+        /// <summary>
+        /// Occurs when the region format of the system is changed.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<RegionFormatChangedEventArgs> RegionFormatChanged;
+
+        /// <summary>
+        /// Occurs when the device orientation is changed.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<DeviceOrientationEventArgs> DeviceOrientationChanged;
+
+        /// <summary>
+        /// Occurs when the system time zone is changed.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<TimeZoneChangedEventArgs> TimeZoneChanged;
+
+        /// <summary>
+        /// Runs the Team application's main loop and subscribes to lifecycle and system events.
+        /// </summary>
+        /// <param name="args">Arguments from commandline.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="args"/> is null.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void Run(string[] args)
         {
             base.Run(args);
@@ -53,6 +129,9 @@ namespace Tizen.Applications
             _backend.Run(args);
         }
 
+        /// <summary>
+        /// Invoked when the application is created. Raises the <see cref="Created"/> event.
+        /// </summary>
         protected virtual void OnCreate()
         {
             if (!GlobalizationMode.Invariant)
@@ -70,12 +149,19 @@ namespace Tizen.Applications
             Created?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Invoked when the application is about to terminate. Raises the <see cref="Terminated"/> event.
+        /// </summary>
         protected virtual void OnTerminate()
         {
             Log.Info(LogTag, "TeamCoreApplication.OnTerminate() called");
             Terminated?.Invoke(this, EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Invoked when the application receives an application control request. Raises the <see cref="AppControlReceived"/> event.
+        /// </summary>
+        /// <param name="e">The event data containing the received application control.</param>
         protected virtual void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
             Log.Info(LogTag, "TeamCoreApplication.OnAppControlReceived() called");
@@ -88,6 +174,11 @@ namespace Tizen.Applications
             AppControlReceived?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// Invoked when a low memory event is reported by the system. Raises the <see cref="LowMemory"/> event
+        /// and triggers <see cref="GC.Collect()"/> on soft/hard warnings.
+        /// </summary>
+        /// <param name="e">The event data describing the low memory status.</param>
         protected virtual void OnLowMemory(LowMemoryEventArgs e)
         {
             Log.Info(LogTag, $"TeamCoreApplication.OnLowMemory() called - Status: {e?.LowMemoryStatus}");
@@ -104,6 +195,10 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Invoked when a low battery event is reported by the system. Raises the <see cref="LowBattery"/> event.
+        /// </summary>
+        /// <param name="e">The event data describing the low battery status.</param>
         protected virtual void OnLowBattery(LowBatteryEventArgs e)
         {
             Log.Info(LogTag, $"TeamCoreApplication.OnLowBattery() called - Status: {e?.LowBatteryStatus}");
@@ -116,6 +211,10 @@ namespace Tizen.Applications
             LowBattery?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// Invoked when the system language is changed. Updates the current UI culture and raises the <see cref="LocaleChanged"/> event.
+        /// </summary>
+        /// <param name="e">The event data describing the new locale.</param>
         protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
         {
             Log.Info(LogTag, $"TeamCoreApplication.OnLocaleChanged() called - Locale: {e?.Locale}");
@@ -133,6 +232,10 @@ namespace Tizen.Applications
             LocaleChanged?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// Invoked when the region format is changed. Updates the current culture and raises the <see cref="RegionFormatChanged"/> event.
+        /// </summary>
+        /// <param name="e">The event data describing the new region.</param>
         protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
             Log.Info(LogTag, $"TeamCoreApplication.OnRegionFormatChanged() called - Region: {e?.Region}");
@@ -150,12 +253,20 @@ namespace Tizen.Applications
             RegionFormatChanged?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// Invoked when the device orientation is changed. Raises the <see cref="DeviceOrientationChanged"/> event.
+        /// </summary>
+        /// <param name="e">The event data describing the new orientation.</param>
         protected virtual void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
         {
             Log.Info(LogTag, $"TeamCoreApplication.OnDeviceOrientationChanged() called - Orientation: {e?.DeviceOrientation}");
             DeviceOrientationChanged?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// Invoked when the system time zone is changed. Clears cached culture data and raises the <see cref="TimeZoneChanged"/> event.
+        /// </summary>
+        /// <param name="e">The event data describing the new time zone.</param>
         protected virtual void OnTimeZoneChanged(TimeZoneChangedEventArgs e)
         {
             Log.Info(LogTag, $"TeamCoreApplication.OnTimeZoneChanged() called - TimeZone: {e?.TimeZone}, ID: {e?.TimeZoneId}");
@@ -163,6 +274,13 @@ namespace Tizen.Applications
             TimeZoneChanged?.Invoke(this, e);
         }
 
+        /// <summary>
+        /// Posts an action to be executed on the main loop of the current Team application.
+        /// </summary>
+        /// <param name="runner">The action to be executed on the main loop.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="runner"/> is null.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Post(Action runner)
         {
             Log.Info(LogTag, "TeamCoreApplication.Post(Action) called");
@@ -174,6 +292,15 @@ namespace Tizen.Applications
             GSourceManager.Post(runner);
         }
 
+        /// <summary>
+        /// Posts a function to be executed on the main loop of the current Team application and awaits its result.
+        /// </summary>
+        /// <typeparam name="T">The type of the result returned by <paramref name="runner"/>.</typeparam>
+        /// <param name="runner">The function to be executed on the main loop.</param>
+        /// <returns>A task that completes with the result of <paramref name="runner"/>.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="runner"/> is null.</exception>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static async Task<T> Post<T>(Func<T> runner)
         {
             Log.Info(LogTag, $"TeamCoreApplication.Post<T>() called - Type: {typeof(T).Name}");
