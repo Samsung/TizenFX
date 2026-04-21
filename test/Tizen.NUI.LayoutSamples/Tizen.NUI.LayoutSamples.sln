@@ -27,8 +27,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElmSharp", "..\..\src\ElmSh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.Information", "..\..\src\Tizen.System.Information\Tizen.System.Information.csproj", "{02BEE3AD-99A6-44A5-89FC-D9F4132D9ECE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI.Wearable", "..\..\src\Tizen.NUI.Wearable\Tizen.NUI.Wearable.csproj", "{A2B607F9-5B9B-43AC-A8CA-E0FDF2A6694E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.Feedback", "..\..\src\Tizen.System.Feedback\Tizen.System.Feedback.csproj", "{D422D03E-7E32-4230-8306-B16DFE27E95A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Multimedia.Camera", "..\..\src\Tizen.Multimedia.Camera\Tizen.Multimedia.Camera.csproj", "{210C3F38-BD17-4583-816D-550C319FC6CF}"
