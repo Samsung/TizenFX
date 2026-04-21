@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-#if !PROFILE_WEARABLE
 
 using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
@@ -865,5 +864,3 @@ namespace Tizen.NUI.Components
         }
     }
 }
-
-#endif // !PROFILE_WEARABLE
