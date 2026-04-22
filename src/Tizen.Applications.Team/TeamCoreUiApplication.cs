@@ -62,6 +62,32 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Get NUI render thread id
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int RenderThreadId { get; private set; } = -1;
+
+        /// <summary>
+        /// Add delegate to NUI app controller.
+        /// </summary>
+        /// <param name="func">The function to remove</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool AddIdle(global::System.Delegate func)
+        {
+          return true;
+        }
+
+        /// <summary>
+        /// Remove delegate what we added by AddIdle.
+        /// </summary>
+        /// <param name="func">The function to remove</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveIdle(global::System.Delegate func)
+        {
+          return;
+        }
+
+        /// <summary>
         /// Occurs whenever the application is resumed.
         /// </summary>
         /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
