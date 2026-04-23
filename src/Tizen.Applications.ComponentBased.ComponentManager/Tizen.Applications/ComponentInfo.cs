@@ -24,6 +24,7 @@ namespace Tizen.Applications.ComponentBased
     /// This class encapsulates details such as component ID, application ID, and other attributes.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API14")]
     public class ComponentInfo : IDisposable
     {
         private const string LogTag = "Tizen.Applications";
@@ -51,6 +52,7 @@ namespace Tizen.Applications.ComponentBased
         /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public ComponentInfo(string componentId)
         {
             _componentId = componentId;
@@ -75,6 +77,7 @@ namespace Tizen.Applications.ComponentBased
         /// Gets the ID of the component.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public string ComponentId
         {
             get
@@ -98,6 +101,7 @@ namespace Tizen.Applications.ComponentBased
         /// Gets the application ID associated with the component.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public string ApplicationId
         {
             get
@@ -117,6 +121,7 @@ namespace Tizen.Applications.ComponentBased
         /// Gets the type of the component.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public ComponentType ComponentType
         {
             get
@@ -136,6 +141,7 @@ namespace Tizen.Applications.ComponentBased
         /// Checks whether the icon of the component should be displayed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public bool IsIconDisplayed
         {
             get
@@ -155,6 +161,7 @@ namespace Tizen.Applications.ComponentBased
         /// Checks whether the component is managed by the task manager.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public bool IsManagedByTaskManager
         {
             get
@@ -174,6 +181,7 @@ namespace Tizen.Applications.ComponentBased
         /// Gets the absolute path of the component's icon image.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public string IconPath
         {
             get
@@ -192,6 +200,7 @@ namespace Tizen.Applications.ComponentBased
         /// <summary>
         /// Gets the label of the component.
         /// </summary>
+        [Obsolete("Deprecated since API14")]
         public string Label
         {
             get
@@ -214,6 +223,7 @@ namespace Tizen.Applications.ComponentBased
         /// <remarks>Available values are in the format "[2-letter lowercase language code (ISO 639-1)]-[2-letter lowercase country code (ISO 3166-alpha-2)]".</remarks>
         /// <returns>The localized label corresponding to the specified locale.</returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public string GetLocalizedLabel(string locale)
         {
             string label = string.Empty;
@@ -230,6 +240,7 @@ namespace Tizen.Applications.ComponentBased
         /// Releases all resources used by the <see cref="ComponentInfo"/> class.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public void Dispose()
         {
             Dispose(true);

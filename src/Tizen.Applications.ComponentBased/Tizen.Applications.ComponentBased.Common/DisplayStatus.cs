@@ -22,6 +22,7 @@ namespace Tizen.Applications.ComponentBased.Common
     /// Enumeration for display status.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API14")]
     public enum DisplayStatus
     {
         /// <summary>

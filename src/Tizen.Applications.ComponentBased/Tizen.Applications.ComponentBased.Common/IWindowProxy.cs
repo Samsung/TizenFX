@@ -22,6 +22,7 @@ namespace Tizen.Applications.ComponentBased.Common
     /// Proxy for window
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
+    [Obsolete("Deprecated since API14")]
     public interface IWindowProxy : IWindowInfo
     {
         /// <summary>
@@ -29,6 +30,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// </summary>
         /// <param name="width">The width of the window</param>
         /// <param name="height">The height of the window</param>
+        [Obsolete("Deprecated since API14")]
         void InitializeWindow(int width, int height);
     }
 }

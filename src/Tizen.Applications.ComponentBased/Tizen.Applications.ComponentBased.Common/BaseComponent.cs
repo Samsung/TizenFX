@@ -28,6 +28,7 @@ namespace Tizen.Applications.ComponentBased.Common
     /// It serves as a base class to be inherited by other components.
     /// </remarks>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API14")]
     public abstract class BaseComponent
     {
         internal IntPtr Handle;
@@ -36,42 +37,49 @@ namespace Tizen.Applications.ComponentBased.Common
         /// Occurs when the system memory is low.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public event EventHandler<LowMemoryEventArgs> LowMemory;
 
         /// <summary>
         /// Occurs when the system battery is low.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public event EventHandler<LowBatteryEventArgs> LowBattery;
 
         /// <summary>
         /// Occurs when the system language is chagned.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public event EventHandler<LocaleChangedEventArgs> LocaleChanged;
 
         /// <summary>
         /// Occurs when the region format is changed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public event EventHandler<RegionFormatChangedEventArgs> RegionFormatChanged;
 
         /// <summary>
         /// Occurs when the device orientation is changed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public event EventHandler<DeviceOrientationEventArgs> DeviceOrientationChanged;
 
         /// <summary>
         /// Occurs when the device orientation is changed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public event EventHandler<SuspendedStateEventArgs> SuspendedStateChanged;
 
         /// <summary>
         /// Occurs when the time zone is changed.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public event EventHandler<TimeZoneChangedEventArgs> TimeZoneChanged;
 
         /// <summary>
@@ -79,24 +87,28 @@ namespace Tizen.Applications.ComponentBased.Common
         /// It will be created after OnCreate method is invoked.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public string Id { get; private set; }
 
         /// <summary>
         /// Gets the ID of the component.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public string ComponentId { get; private set; }
 
         /// <summary>
         /// Gets the parent application object to which the component belongs.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public ComponentBasedApplication Parent { get; private set; }
 
         /// <summary>
         /// Finishes the current component.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public void Finish()
         {
             Interop.CBApplication.ComponentFinish(Handle);
@@ -106,6 +118,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// A Context Handle
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IntPtr ContextHandle
         {
@@ -132,6 +145,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// </summary>
         /// <param name="c">A bundle containing the saved state of the component. It can only be used within the callback. To use it outside, create a copy.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public virtual void OnRestoreContents(Bundle c)
         {
         }
@@ -141,6 +155,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// </summary>
         /// <param name="c">A bundle containing the current state of the component. It can only be used within the callback. To use it outside, create a copy.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public virtual void OnSaveContent(Bundle c)
         {
         }
@@ -196,6 +211,7 @@ namespace Tizen.Applications.ComponentBased.Common
         /// <exception cref="Exceptions.LaunchRejectedException">Thrown when the launch request is rejected.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API14")]
         public Task<AppControlResult> SendLaunchRequestAsync(AppControl control, AppControlReplyCallback replyAfterLaunching)
         {
             if (control == null)
