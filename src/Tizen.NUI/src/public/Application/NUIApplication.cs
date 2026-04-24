@@ -878,7 +878,6 @@ namespace Tizen.NUI
                 Log.Error("NUI", "[NUI] Preload() Should be called before application created. Ignore\n");
                 return;
             }
-            IsPreload = true;
 
             Interop.Application.PreInitialize();
             SupportPreInitializedCreation = Interop.Application.IsSupportPreInitializedCreation();
@@ -891,8 +890,6 @@ namespace Tizen.NUI
             // Get default window only if pre initialize creation supported.
             if (SupportPreInitializedCreation)
             {
-                NUIApplicationInitializer.Initialize();
-
                 Log.Info("NUI", "[NUI] Preload: GetWindow");
                 Tizen.Tracer.Begin("[NUI] Preload: GetWindow");
                 var nativeWindow = Interop.Application.GetPreInitializeWindow();
@@ -914,6 +911,8 @@ namespace Tizen.NUI
 
             // Initialize exception tasks. It must be called end of Preload()
             NDalicPINVOKE.Preload();
+
+            IsPreload = true;
         }
 
         /// <summary>
