@@ -16,8 +16,9 @@
 
 using System;
 using Tizen.Internals;
+using Tizen.Applications.CoreBackend;
 
-namespace Tizen.Applications.CoreBackend
+namespace Tizen.Applications
 {
     /// <summary>
     /// Backend implementation for Team service applications that run without a graphical UI.

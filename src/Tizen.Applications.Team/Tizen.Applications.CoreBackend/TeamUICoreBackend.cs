@@ -17,8 +17,10 @@
 using System;
 using Tizen.Internals;
 using Tizen.NUI;
+using Tizen.Applications.CoreBackend;
 
-namespace Tizen.Applications.CoreBackend
+
+namespace Tizen.Applications
 {
     /// <summary>
     /// Backend implementation for Team UI applications that own a default <see cref="Window"/>.
