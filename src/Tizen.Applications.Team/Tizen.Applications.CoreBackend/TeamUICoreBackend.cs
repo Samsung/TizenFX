@@ -25,7 +25,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Backend implementation for Team UI applications that own a default <see cref="Window"/>.
     /// </summary>
-    internal class TeamUICoreBackend : TeamCoreBackend
+    internal class TeamUICoreBackend : TeamCoreBackend, IUICoreBackend
     {
         internal new static string LogTag = "DN_TAM";
         private Interop.TeamMember.UIMemberLifecycleCallbacks _callbacks;

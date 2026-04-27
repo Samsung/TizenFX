@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
 using Tizen.NUI;
 
@@ -28,7 +29,7 @@ namespace Tizen.Applications
     /// </summary>
     /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class TeamCoreUiApplication : TeamCoreApplication
+    public class TeamCoreUiApplication : TeamCoreApplication, IUIApplication
     {
         public enum WindowMode
         {
@@ -159,5 +160,110 @@ namespace Tizen.Applications
         {
             Paused?.Invoke(this, EventArgs.Empty);
         }
+
+        #region IUIApplication Interface
+
+        /// <summary>
+        /// Gets the backend associated with this application as <see cref="IUICoreBackend"/>.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        IUICoreBackend IUIApplication.Backend => (TeamUICoreBackend)_backend;
+
+        /// <summary>
+        /// Gets the application information as <see cref="IApplicationInfo"/>.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        IApplicationInfo IUIApplication.ApplicationInfo => ApplicationInfo;
+
+        /// <summary>
+        /// Gets the directory information as <see cref="IDirectoryInfo"/>.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        IDirectoryInfo IUIApplication.DirectoryInfo => DirectoryInfo;
+
+        /// <summary>
+        /// Gets the default window as <see cref="IUIApplication"/> interface.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        TWindow IUIApplication.GetDefaultWindow<TWindow>() => (TWindow)(object)GetDefaultWindow();
+
+        // Methods - explicit interface implementation
+        /// <summary>
+        /// Invoked before the application is created.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnPreCreate() => OnPreCreate();
+
+        /// <summary>
+        /// Invoked when the application is created.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnCreate() => OnCreate();
+
+        /// <summary>
+        /// Invoked when the application is terminated.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnTerminate() => OnTerminate();
+
+        /// <summary>
+        /// Invoked when the application is paused.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnPause() => OnPause();
+
+        /// <summary>
+        /// Invoked when the application is resumed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnResume() => OnResume();
+
+        /// <summary>
+        /// Invoked when the application receives an app control request.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnAppControlReceived(AppControlReceivedEventArgs e) => OnAppControlReceived(e);
+
+        /// <summary>
+        /// Invoked when a low memory event is reported by the system.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnLowMemory(LowMemoryEventArgs e) => OnLowMemory(e);
+
+        /// <summary>
+        /// Invoked when a low battery event is reported by the system.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnLowBattery(LowBatteryEventArgs e) => OnLowBattery(e);
+
+        /// <summary>
+        /// Invoked when the system language is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnLocaleChanged(LocaleChangedEventArgs e) => OnLocaleChanged(e);
+
+        /// <summary>
+        /// Invoked when the region format is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnRegionFormatChanged(RegionFormatChangedEventArgs e) => OnRegionFormatChanged(e);
+
+        /// <summary>
+        /// Invoked when the device orientation is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnDeviceOrientationChanged(DeviceOrientationEventArgs e) => OnDeviceOrientationChanged(e);
+
+        /// <summary>
+        /// Invoked when the system time zone is changed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        void IUIApplication.OnTimeZoneChanged(TimeZoneChangedEventArgs e) => OnTimeZoneChanged(e);
+
+        #endregion
     }
 }
