@@ -10,6 +10,7 @@ A collection of Claude skills that automate maintenance of the TizenFX repo. Run
 | [`pr-review-check`](./pr-review-check/SKILL.md) | Evaluates reviews on `ai-task` labeled PRs and either applies them to the code or replies (MAX_AI_ROUNDS=3) | `ai-task` labeled open PRs |
 | [`refactor-analysis`](./refactor-analysis/SKILL.md) | Uses 4 evaluation lenses (Performance / Modernization / Clean Code / Coding Guidelines) to discover refactoring targets and register GitHub Issues | Rotating scan over `src/Tizen.*` directories |
 | [`refactor-execute`](./refactor-execute/SKILL.md) | Picks up `ai-task` issues, dispatches to refactoring/feature mode, and opens a PR | `ai-task` labeled open Issues |
+| [`issue-triage`](./issue-triage/SKILL.md) | Posts a first-pass technical answer and mentions the relevant CODEOWNERS reviewer on un-triaged issues. Comment-only — no labels, no assigning, no code changes. | Open Issues without `ai-task` and without an assignee |
 
 ## Pipeline Relationships
 
@@ -21,6 +22,14 @@ refactor-analysis → Issue(ai-task)
                     ┌─── pr-code-review (applies to all PRs)
                     │
                     └─── pr-review-check (ai-task PRs — apply/respond to reviews)
+
+(parallel track — independent of the refactor pipeline)
+
+community Issue (no ai-task, no assignee)
+    ↓
+issue-triage → posts first-pass answer + mentions CODEOWNERS reviewer
+    ↓
+human maintainer reviews and decides (assign, label, or close)
 ```
 
 ## One-time Setup
@@ -90,7 +99,7 @@ Or without the PS script:
 ```powershell
 cd $env:TIZENFX_ROOT
 git fetch origin; git checkout main; git reset --hard origin/main
-Get-Content "$env:TIZENFX_ROOT\skills\pr-code-review\SKILL.md" -Raw |
+Get-Content "$env:TIZENFX_ROOT\.agents\skills\pr-code-review\SKILL.md" -Raw |
     claude -p --allowedTools "Bash(gh:*,git:*,dotnet:*)"
 ```
 
@@ -108,7 +117,7 @@ Get-Content "$env:TIZENFX_ROOT\skills\pr-code-review\SKILL.md" -Raw |
 
 - **The top `---` frontmatter block in each SKILL.md** is stripped by the PS script, and only the body is piped into `claude -p`. The frontmatter structure must be preserved.
 - Cross-skill logic (e.g., the `🤖 [AI Review]` prefix convention on AI comments) is spread across multiple skills — any change must consider the full pipeline impact.
-- If a skill `name:` is changed, update the PS script path (`$env:TIZENFX_ROOT\skills\<name>`) accordingly.
+- If a skill `name:` is changed, update the PS script path (`$env:TIZENFX_ROOT\.agents\skills\<name>`) accordingly.
 
 ## Related Documents
 
