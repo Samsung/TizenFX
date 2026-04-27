@@ -139,7 +139,7 @@ If **any one** of the four applies, do not flag. Prioritize accuracy over diff-b
 3. **Always include a ```` ```suggestion ```` block when proposing a fix.** Avoid prose-only feedback with no diff.
 4. Use only two severity levels: 🔴 / 🟡
 5. Max 5 comments per PR. Essentials only.
-6. No "looks good" filler. Praise is limited to a single line only for **design choices with clearly surfaced intent**.
+6. No "looks good" filler. Praise is limited to a single line only for **design choices with clearly surfaced intent**. The single allowed exception is the **mandatory "Reviewed — no findings" summary** at the end of this stage, posted when the review found nothing to flag — so the maintainer / author knows the review actually ran.
 7. **No follow-up / reminder / status-check / @-mention action-request comments** (e.g., `@author please address...` ❌)
 
 **Standard template (inline comment):**
@@ -189,7 +189,12 @@ private static readonly FrozenDictionary<string, int> _mapping = new Dictionary<
   -F line={LINE_NUMBER}
 ```
 
-**Overall summary comment (optional, concise variant):**
+**Final summary comment — required behavior**
+
+After completing the inline review, post **exactly one** PR-level summary comment via `gh pr comment`. Which form to use depends on what was produced:
+
+**Case A — at least one inline comment was left** (optional; recommended once total ≥ 2):
+
 ```bash
 gh pr comment {NUMBER} --repo samsung/TizenFX --body "🤖 [AI Review]
 Left {N} inline comments (🔴 {critical}, 🟡 {suggestion}). See inline for details.
@@ -197,6 +202,35 @@ Left {N} inline comments (🔴 {critical}, 🟡 {suggestion}). See inline for de
 ---
 *Automated review by AI assistant*"
 ```
+
+**Case B — no inline comments produced** (the diff was reviewed and judged clean): **mandatory**. Posting nothing is no longer acceptable — the audit trail and the maintainers must be able to see that the review ran.
+
+```bash
+gh pr comment {NUMBER} --repo samsung/TizenFX --body "🤖 [AI Review]
+
+**Reviewed — no findings.**
+
+**Scope checked:**
+- {3–6 bullets enumerating what was actually verified on this diff — see rules below}
+
+No 🔴 critical issues, no 🟡 suggestions to flag.
+
+---
+*Automated review — final merge decision rests with human reviewers.*"
+```
+
+Rules for the **Scope checked** block (Case B):
+
+1. Each bullet must be **specific to this PR's diff** — generic phrases like "code looks good", "no obvious bugs", "follows conventions" are forbidden.
+2. If the bullets you would write are all generic, that means the review was shallow — re-do the diff inspection until you can name at least 3 concrete checks you performed on this PR.
+3. Pick from the dimensions actually applicable to the change kind:
+   - **Refactor** → behavior preservation sites, public API signature unchanged, TFM/feature compatibility (e.g., `ArgumentNullException.ThrowIfNull` ≥ .NET 6), excluded-pattern intent (e.g., "lines with custom messages left untouched")
+   - **Feature** → new public API has docs and `since_tizen`, edge cases handled, no breaking change
+   - **Bug fix** → root cause matches reported behavior, regression coverage thought through
+   - **Build / packaging / docs** → state the artifact you verified
+4. Quote the count where helpful ("11 manual null-check sites", "4 new public methods", etc.) — proves the review actually read the diff.
+
+**Case C — only Stage ④ replies were produced (no Stage ③ inline comments)**: do **not** post a Case-B summary; the reply itself is the activity record. (Stage ② already filtered out "skip — no-delta" before we reached this point.)
 
 ---
 
@@ -245,7 +279,7 @@ gh api repos/samsung/TizenFX/pulls/{NUMBER}/comments \
 - Draft PRs are skipped (`ai-task` PRs are not skipped)
 
 ### Reporting
-- **Review performed**: PR number, link, number of comments left, severity distribution (🔴 / 🟡)
+- **Review performed**: PR number, link, number of inline comments left, severity distribution (🔴 / 🟡), and the **summary form posted** (`Case A` = inline-summary, `Case B` = clean-review, `Case C` = replies-only)
 - **Responses performed**: PR number, number of comments answered
 - **Skipped**: PR number and reason (`no-delta` / `draft` / `quota-5`)
 - **Errors**: PR number and error summary, if any
