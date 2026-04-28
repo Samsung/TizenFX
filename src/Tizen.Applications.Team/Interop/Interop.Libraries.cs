@@ -22,7 +22,7 @@ internal static partial class Interop
         public const string Glib = "libglib-2.0.so.0";
         public const string Libc = "libc.so.6";
         public const string BaseUtilsi18n = "libbase-utils-i18n.so.0";
-        public const string IniParser = "libiniparser.so.1";
+        public const string IniParser = "libiniparser.so.4";
         public const string AppManager = "libcapi-appfw-app-manager.so.0";
     }
 }
