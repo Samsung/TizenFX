@@ -297,6 +297,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <since_tizen> 4 </since_tizen>
@@ -313,7 +314,7 @@ namespace Tizen.Applications
         {
             Interop.ApplicationManager.ErrorCode.InvalidParameter => new ArgumentException("Invalid Parameter."),
             Interop.ApplicationManager.ErrorCode.NoSuchApp        => new InvalidOperationException("No such application."),
-            Interop.ApplicationManager.ErrorCode.OutOfMemory      => new OutOfMemoryException("Out of memory"),
+            Interop.ApplicationManager.ErrorCode.OutOfMemory      => new OutOfMemoryException("Out of memory."),
             Interop.ApplicationManager.ErrorCode.PermissionDenied => new UnauthorizedAccessException("Permission denied."),
             _                                                      => new InvalidOperationException("Invalid Operation."),
         };
