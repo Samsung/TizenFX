@@ -1,10 +1,6 @@
 ﻿using global::System;
 using NUnit.Framework;
-using NUnit.Framework.TUnit;
-using Tizen.NUI.Components;
-using Tizen.NUI.BaseComponents;
 using System.Threading.Tasks;
-using Tizen.WebView;
 
 namespace Tizen.NUI.Devel.Tests
 {

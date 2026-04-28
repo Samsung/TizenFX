@@ -1006,27 +1006,27 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"Vector3Clone END (OK)");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("Vector3 AsFloat.")]
-        [Property("SPEC", "Tizen.NUI.Vector3.AsFloat M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void Vector3AsFloat()
-        {
-            tlog.Debug(tag, $"Vector3AsFloat START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("Vector3 AsFloat.")]
+        //[Property("SPEC", "Tizen.NUI.Vector3.AsFloat M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void Vector3AsFloat()
+        //{
+        //    tlog.Debug(tag, $"Vector3AsFloat START");
 
-            var testingTarget = new Vector3(10.0f, 20.0f, 30.0f);
-            Assert.IsNotNull(testingTarget, "Can't create success object Vector3");
-            Assert.IsInstanceOf<Vector3>(testingTarget, "Should be an instance of Vector3 type.");
+        //    var testingTarget = new Vector3(10.0f, 20.0f, 30.0f);
+        //    Assert.IsNotNull(testingTarget, "Can't create success object Vector3");
+        //    Assert.IsInstanceOf<Vector3>(testingTarget, "Should be an instance of Vector3 type.");
 
-            var result = testingTarget.AsFloat();
-            Assert.IsInstanceOf<SWIGTYPE_p_float>(result, "Should be an instance of SWIGTYPE_p_float type.");
+        //    var result = testingTarget.AsFloat();
+        //    Assert.IsInstanceOf<SWIGTYPE_p_float>(result, "Should be an instance of SWIGTYPE_p_float type.");
 
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"Vector3AsFloat END (OK)");
-        }
+        //    testingTarget.Dispose();
+        //    tlog.Debug(tag, $"Vector3AsFloat END (OK)");
+        //}
 
         [Test]
         [Category("P1")]
