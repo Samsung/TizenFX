@@ -128,6 +128,7 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.SamplingMode,
             ImageVisualProperty.DesiredWidth,
             ImageVisualProperty.DesiredHeight,
+            ImageVisualProperty.LoadPolicy,
             ImageVisualProperty.ReleasePolicy,
             ImageVisualProperty.WrapModeU,
             ImageVisualProperty.WrapModeV,
@@ -204,17 +205,10 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="url">The URL of the image resource to display.</param>
         /// <since_tizen> 3 </since_tizen>
-        public ImageView(string url) : this(Interop.ImageView.New(ConvertResourceUrl(ref url)), true)
+        public ImageView(string url) : this(Interop.ImageView.New(), true)
         {
-            _resourceUrl = url;
-
-            // Update cached property. Note that we should not re-create new visual.
-            using (PropertyValue urlValue = new PropertyValue(_resourceUrl))
-            {
-                UpdateImage(ImageVisualProperty.URL, urlValue, false);
-            }
+            ResourceUrl = url;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
 
         /// <summary>
@@ -224,38 +218,19 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView(string url, bool shown) : this(Interop.ImageView.New(ConvertResourceUrl(ref url)), true)
+        public ImageView(string url, bool shown) : this(Interop.ImageView.New(), true)
         {
-            _resourceUrl = url;
-
-            // Update cached property. Note that we should not re-create new visual.
-            using (PropertyValue urlValue = new PropertyValue(_resourceUrl))
-            {
-                UpdateImage(ImageVisualProperty.URL, urlValue, false);
-            }
+            ResourceUrl = url;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);
         }
 
-        internal ImageView(string url, Uint16Pair size, bool shown = true) : this(Interop.ImageView.New(ConvertResourceUrl(ref url), Uint16Pair.getCPtr(size)), true)
+        internal ImageView(string url, Uint16Pair size, bool shown = true) : this(Interop.ImageView.New(), true)
         {
-            _resourceUrl = url;
-            _desired_width = size?.GetWidth() ?? -1;
-            _desired_height = size?.GetHeight() ?? -1;
+            ResourceUrl = url;
+            DesiredWidth = size?.GetWidth() ?? -1;
+            DesiredHeight = size?.GetHeight() ?? -1;
 
-            // Update cached property. Note that we should not re-create new visual.
-            using (PropertyValue urlValue = new PropertyValue(_resourceUrl))
-            {
-                UpdateImage(ImageVisualProperty.URL, urlValue, false);
-            }
-            using (PropertyValue desiredWidthValue = new PropertyValue(_desired_width))
-            {
-                UpdateImage(ImageVisualProperty.DesiredWidth, desiredWidthValue, false);
-            }
-            using (PropertyValue desiredHeightValue = new PropertyValue(_desired_height))
-            {
-                UpdateImage(ImageVisualProperty.DesiredWidth, desiredHeightValue, false);
-            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             if (!shown)
@@ -1823,6 +1798,44 @@ namespace Tizen.NUI.BaseComponents
             {
                 PropertyValue setValue = new PropertyValue((int)value);
                 UpdateImage(ImageVisualProperty.ReleasePolicy, setValue);
+                setValue?.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets LoadPolicy for image.<br />
+        /// If not supplied, the default is LoadPolicyType.Attached.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LoadPolicyType LoadPolicy
+        {
+            get
+            {
+                return InternalLoadPolicy;
+            }
+            set
+            {
+                InternalLoadPolicy = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        private LoadPolicyType InternalLoadPolicy
+        {
+            get
+            {
+                int ret = (int)LoadPolicyType.Attached;
+
+                PropertyValue loadPoli = GetCachedImageVisualProperty(ImageVisualProperty.LoadPolicy);
+                loadPoli?.Get(out ret);
+                loadPoli?.Dispose();
+
+                return (LoadPolicyType)ret;
+            }
+            set
+            {
+                PropertyValue setValue = new PropertyValue((int)value);
+                UpdateImage(ImageVisualProperty.LoadPolicy, setValue);
                 setValue?.Dispose();
             }
         }

@@ -103,8 +103,7 @@ namespace Tizen.NUI
 
         static NUIApplication()
         {
-            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
-            PropertyBridge.RegisterStringGetter();
+            NUIApplicationInitializer.StaticInitialize();
         }
 
         /// <summary>
@@ -879,6 +878,7 @@ namespace Tizen.NUI
                 Log.Error("NUI", "[NUI] Preload() Should be called before application created. Ignore\n");
                 return;
             }
+
             Interop.Application.PreInitialize();
             SupportPreInitializedCreation = Interop.Application.IsSupportPreInitializedCreation();
 
