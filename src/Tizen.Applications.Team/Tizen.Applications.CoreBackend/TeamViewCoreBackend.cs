@@ -108,15 +108,7 @@ namespace Tizen.Applications.CoreBackend
             // base.Run() is not required.
             if (!TeamManager.IsInit())
             {
-              string[] argsClone = new string[args == null ? 1 : args.Length + 1];
-              if (args != null && args.Length > 1)
-              {
-                  args.CopyTo(argsClone, 1);
-              }
-              argsClone[0] = "Tizen.Applications.Team.dll";
-
-              TeamManager.Init(argsClone);
-              Log.Info("DN_TAM", $"Launching Team Loop.");
+              Log.Error("DN_TAM", $"Team Loop is not running!. Launch app via launcher.");
               return;
             }
 

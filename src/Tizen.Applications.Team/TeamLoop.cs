@@ -44,7 +44,6 @@ namespace Tizen.Applications
             _ops.Load = new Interop.TeamLoop.TeamLoopOpsLoad(DoLoad);
             _ops.Unload = new Interop.TeamLoop.TeamLoopOpsUnload(DoUnload);
             _ops.CreateArgs = new Interop.TeamLoop.TeamLoopOpsCreateArgs(DoCreateArgs);
-            _ops.CreateLibPath = new Interop.TeamLoop.TeamLoopOpsCreateLibPath(DoCreateLibPath);
             _ops.OnLoopCreate = new Interop.TeamLoop.TeamLoopOpsOnLoopCreate(DoOnLoopCreate);
             _ops.OnLoopTerminate = new Interop.TeamLoop.TeamLoopOpsOnLoopTerminate(DoOnLoopTerminate);
         }
@@ -203,41 +202,6 @@ namespace Tizen.Applications
             {
                 Log.Error(LogTag, $"Failed to invoke Main method - ID: {loadObj}, Error: {e.Message}");
                 return IntPtr.Zero;
-            }
-        }
-
-        internal static void DoCreateLibPath(string path, ref IntPtr output)
-        {
-            if (string.IsNullOrEmpty(path))
-            {
-                Log.Error(LogTag, "Invalid path: null or empty");
-                output = IntPtr.Zero;
-                return;
-            }
-
-            int lastDotIndex = path.LastIndexOf('.');
-            if (lastDotIndex < 0)
-            {
-                Log.Error(LogTag, $"Invalid path format: {path}. Expected format: org.appfw.csteam.{{member_id}}");
-                output = IntPtr.Zero;
-                return;
-            }
-
-            string memberId = path.Substring(lastDotIndex + 1);
-            if (string.IsNullOrEmpty(memberId))
-            {
-                Log.Error(LogTag, $"Empty member_id extracted from: {path}");
-                output = IntPtr.Zero;
-                return;
-            }
-
-            string libPath = $"/usr/share/csteam/dll/{memberId}.dll";
-            Log.Info(LogTag, $"Created lib path: {libPath} from {path}");
-
-            output = Marshal.StringToHGlobalAnsi(libPath);
-
-            if (output == IntPtr.Zero) {
-                Log.Error(LogTag, "Failed to allocate memory for lib path");
             }
         }
 

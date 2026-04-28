@@ -28,8 +28,6 @@ internal static partial class Interop
 
         internal delegate IntPtr TeamLoopOpsCreateArgs(IntPtr loadObj);
 
-        internal delegate void TeamLoopOpsCreateLibPath([MarshalAs(UnmanagedType.LPStr)] string path, ref IntPtr output);
-
         internal delegate void TeamLoopOpsOnLoopCreate();
 
         internal delegate void TeamLoopOpsOnLoopTerminate();
@@ -49,9 +47,6 @@ internal static partial class Interop
 
             [MarshalAs(UnmanagedType.FunctionPtr)]
             public TeamLoopOpsCreateArgs CreateArgs;
-
-            [MarshalAs(UnmanagedType.FunctionPtr)]
-            public TeamLoopOpsCreateLibPath CreateLibPath;
 
             [MarshalAs(UnmanagedType.FunctionPtr)]
             public TeamLoopOpsOnLoopCreate OnLoopCreate;
