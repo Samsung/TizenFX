@@ -1161,7 +1161,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 SWIGTYPE_p_Dali__CallbackBase callback = new SWIGTYPE_p_Dali__CallbackBase(new ImageView().SwigCPtr.Handle);
-                var result = Application.Instance.AddIdle(callback);
+                var result = Application.Instance.AddIdle(() => callback);
                 tlog.Debug(tag, "result : " + result);
             }
             catch (Exception e)
@@ -1267,7 +1267,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                Application application = Application.NewApplication(dummy, NUIApplication.WindowMode.Opaque, WindowType.Normal);
+                Application application = Application.NewApplication([""], dummy, NUIApplication.WindowMode.Opaque, WindowType.Normal);
             }
             catch (Exception e)
             {

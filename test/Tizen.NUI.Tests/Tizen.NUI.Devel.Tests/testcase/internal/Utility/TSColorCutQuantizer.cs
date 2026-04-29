@@ -41,7 +41,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 using (Rectangle region = new Rectangle())
                 {
-                    var testingTarget = ColorCutQuantizer.FromBitmap(pixelBuffer, region, 255);
+                    var testingTarget = ColorCutQuantizer.FromBitmap(pixelBuffer, 255);
                     Assert.IsNotNull(testingTarget, "Should be not null!");
                     Assert.IsInstanceOf<ColorCutQuantizer>(testingTarget, "Should be an Instance of ColorCutQuantizer!");
                 }
@@ -67,7 +67,7 @@ namespace Tizen.NUI.Devel.Tests
                 {
                     try
                     {
-                        ColorCutQuantizer.FromBitmap(pixelBuffer, region, 0);
+                        ColorCutQuantizer.FromBitmap(pixelBuffer, 0);
                     }
                     catch (ArgumentNullException e)
                     {
@@ -94,7 +94,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 using (Rectangle region = null)
                 {
-                    var testingTarget = ColorCutQuantizer.FromBitmap(pixelBuffer, region, 255);
+                    var testingTarget = ColorCutQuantizer.FromBitmap(pixelBuffer, 255);
                     Assert.IsNotNull(testingTarget, "Should be not null!");
                     Assert.IsInstanceOf<ColorCutQuantizer>(testingTarget, "Should be an Instance of ColorCutQuantizer!");
                 }
@@ -118,7 +118,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 using (Rectangle region = new Rectangle())
                 {
-                    var testingTarget = ColorCutQuantizer.FromBitmap(pixelBuffer, region, 255);
+                    var testingTarget = ColorCutQuantizer.FromBitmap(pixelBuffer, 255);
                     Assert.IsNotNull(testingTarget, "Should be not null!");
                     Assert.IsInstanceOf<ColorCutQuantizer>(testingTarget, "Should be an Instance of ColorCutQuantizer!");
 

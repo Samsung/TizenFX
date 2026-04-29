@@ -190,40 +190,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WidgetImplWidgetInstanceOnUpdateArgsForce END (OK)");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("WidgetImpl.SetImpl.")]
-        [Property("SPEC", "Tizen.NUI.WidgetImpl.SetImpl M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WidgetImplSetImpl()
-        {
-            tlog.Debug(tag, $"WidgetImplSetImpl START");
-
-            var testingTarget = new WidgetImpl();
-            Assert.IsNotNull(testingTarget, "Can't create success object WidgetImpl");
-            Assert.IsInstanceOf<WidgetImpl>(testingTarget, "Should be an instance of WidgetImpl type.");
-
-            Widget widget = new Widget();
-
-            try
-            {
-                testingTarget.SetImpl(new SWIGTYPE_p_Dali__Widget__Impl(widget.GetIntPtr()));
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }
-
-            widget.Dispose();
-            widget = null;
-
-            testingTarget.Dispose();
-            testingTarget = null;
-            tlog.Debug(tag, $"WidgetImplSetImpl END (OK)");
-        }
+ 
 
         [Test]
         [Category("P1")]

@@ -87,8 +87,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"AccessibilitySay START");
 
-            var result = Accessibility.Accessibility.Say("Hi,Bixby! Please help to order a sandwich.", true);
-            tlog.Debug(tag, "Status : " + result);
+            Accessibility.Accessibility.Say("Hi,Bixby! Please help to order a sandwich.", true);
 
             tlog.Debug(tag, $"AccessibilitySay END (OK)");
         }

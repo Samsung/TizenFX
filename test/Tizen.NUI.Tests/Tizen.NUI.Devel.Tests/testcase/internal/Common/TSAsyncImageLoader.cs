@@ -56,9 +56,8 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"AsyncImageLoaderConstructorWithAsyncImageLoader START");
 
-            using (AsyncImageLoader loader = new AsyncImageLoader())
+            using (var testingTarget = new AsyncImageLoader(Interop.AsyncImageLoader.New(), true))
             {
-                var testingTarget = new AsyncImageLoader(loader);
                 Assert.IsNotNull(testingTarget, "Can't create success object AsyncImageLoader");
                 Assert.IsInstanceOf<AsyncImageLoader>(testingTarget, "Should be an instance of AsyncImageLoader type.");
 
@@ -66,66 +65,6 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"AsyncImageLoaderConstructorWithAsyncImageLoader END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("AsyncImageLoader Assign.")]
-        [Property("SPEC", "Tizen.NUI.AsyncImageLoader.Assign M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AsyncImageLoaderAssign()
-        {
-            tlog.Debug(tag, $"AsyncImageLoaderAssign START");
-
-            using (AsyncImageLoader loader = new AsyncImageLoader())
-            {
-                var testingTarget = new AsyncImageLoader(loader);
-                Assert.IsNotNull(testingTarget, "Can't create success object AsyncImageLoader");
-                Assert.IsInstanceOf<AsyncImageLoader>(testingTarget, "Should be an instance of AsyncImageLoader type.");
-
-                try
-                {
-                    testingTarget.Assign(loader);
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception: Failed!");
-                }
-
-                testingTarget.Dispose();
-            }
-
-            tlog.Debug(tag, $"AsyncImageLoaderAssign END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("AsyncImageLoader DownCast.")]
-        [Property("SPEC", "Tizen.NUI.AsyncImageLoader.DownCast M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AsyncImageLoaderDownCast()
-        {
-            tlog.Debug(tag, $"AsyncImageLoaderDownCast START");
-
-            using (AsyncImageLoader loader = new AsyncImageLoader())
-            {
-                try
-                {
-                    AsyncImageLoader.DownCast(loader);
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception: Failed!");
-                }
-            }
-
-            tlog.Debug(tag, $"AsyncImageLoaderDownCast END (OK)");
         }
 
         [Test]
@@ -170,7 +109,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 try
                 {
-                    loader.Load(url, new Uint16Pair(100, 80));
+                    loader.Load(url, 100, 80);
                 }
                 catch (Exception e)
                 {
@@ -197,7 +136,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 try
                 {
-                    loader.Load(url, new Uint16Pair(100, 80), FittingModeType.Center, SamplingModeType.Linear, false);
+                    loader.Load(url, 100, 80, FittingModeType.Center, SamplingModeType.Linear, false);
                 }
                 catch (Exception e)
                 {
@@ -224,7 +163,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 try
                 {
-                    loader.Load(url, new Uint16Pair(100, 80), FittingModeType.Center, SamplingModeType.Linear, false);
+                    loader.Load(url, 100, 80, FittingModeType.Center, SamplingModeType.Linear, false);
                     loader.Cancel(0);
                 }
                 catch (Exception e)
@@ -252,7 +191,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 try
                 {
-                    loader.Load(url, new Uint16Pair(100, 80), FittingModeType.Center, SamplingModeType.Linear, false);
+                    loader.Load(url, 100, 80, FittingModeType.Center, SamplingModeType.Linear, false);
                     loader.CancelAll();
                 }
                 catch (Exception e)
@@ -263,33 +202,6 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"AsyncImageLoaderCancelAll END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("AsyncImageLoader ImageLoadedSignal.")]
-        [Property("SPEC", "Tizen.NUI.AsyncImageLoader.ImageLoadedSignal M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AsyncImageLoaderImageLoadedSignal()
-        {
-            tlog.Debug(tag, $"AsyncImageLoaderImageLoadedSignal START");
-
-            using (AsyncImageLoader loader = new AsyncImageLoader())
-            {
-                try
-                {
-                    loader.ImageLoadedSignal();
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception: Failed!");
-                }
-            }
-
-            tlog.Debug(tag, $"AsyncImageLoaderImageLoadedSignal END (OK)");
         }
     }
 }
