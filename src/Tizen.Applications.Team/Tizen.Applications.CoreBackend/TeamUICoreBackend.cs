@@ -30,6 +30,7 @@ namespace Tizen.Applications.CoreBackend
         private bool _disposedValue = false;
         private int DefaultWindowId = 0;
         internal Window defaultWindow;
+        internal WindowData initWindowData;
         internal override IntPtr MemberHandle => _memberHandle;
         internal override IntPtr LoadObjId => _loadObjId;
         internal override IntPtr ArgHandle => _argHandle;
@@ -48,6 +49,19 @@ namespace Tizen.Applications.CoreBackend
         private Interop.TeamMember.AppTimeZoneChangedCallback _onTimeZoneChangedNative;
 
         public TeamUICoreBackend()
+        {
+          initWindowData = null;
+          SetUpCallback();
+        }
+
+
+        public TeamUICoreBackend(WindowData windowdata)
+        {
+          initWindowData = windowdata;
+          SetUpCallback();
+        }
+
+        internal void SetUpCallback()
         {
             _onCreateNative = new Interop.TeamMember.UIAppCreateCallback(OnCreateNative);
             _onTerminateNative = new Interop.TeamMember.AppTerminateCallback(OnTerminateNative);
@@ -143,6 +157,32 @@ namespace Tizen.Applications.CoreBackend
             }
         }
 
+        internal void CreateDefaultWindow()
+        {
+            if(GetDefaultWindow() == null) {
+
+                Window window = null;
+                var err = Interop.TeamManager.TeamAppGetName(MemberHandle, out string name);
+                if (err != Interop.TeamManager.TeamAppErrorCode.None)
+                {
+                    Log.Warn(LogTag, $"Failed to get Name. err = {err}");
+                    name = "";
+                }
+
+                if(initWindowData != null)
+                {
+                    window = new Window(name, initWindowData);
+                }
+                else
+                {
+                    window = new Window();
+                    window.Title = name;
+                }
+
+                SetDefaultWindow(window);
+                window.Hide();
+            }
+        }
         private IntPtr OnCreateNative(IntPtr context, IntPtr userdata)
         {
             if (_memberHandle != IntPtr.Zero)
@@ -151,26 +191,45 @@ namespace Tizen.Applications.CoreBackend
             }
             _memberHandle = context;
 
+            CreateDefaultWindow();
+
+            if (Handlers.ContainsKey(EventType.PreCreated))
+            {
+                var handler = Handlers[EventType.PreCreated] as Action;
+                if (handler != null)
+                {
+                    try
+                    {
+                      handler?.Invoke();
+                    }
+                    catch (Exception ex)
+                    {
+                      Log.Error(LogTag, $"Error in User PreCreated handler: {ex.Message}");
+                    }
+                }
+                else
+                {
+                    Log.Error(LogTag, "Invalid OnPreCreate Callback type");
+                    return IntPtr.Zero;
+                }
+            }
+
             if (Handlers.ContainsKey(EventType.Created))
             {
                 var handler = Handlers[EventType.Created] as Action;
                 if (handler != null)
                 {
-                    // This function will set default window
                     try
                     {
-                        var window = new Window();
-                        SetDefaultWindow(window);
-                        window.Hide();
+                      handler?.Invoke();
+                    }
+                    catch (Exception ex)
+                    {
+                      Log.Error(LogTag, $"Error in User Created handler: {ex.Message}");
+                    }
 
-                        try {
-                          handler?.Invoke();
-                        }
-                        catch (Exception ex)
-                        {
-                          Log.Error(LogTag, $"Error in User Created handler: {ex.Message}");
-                        }
-
+                    try
+                    {
                         IntPtr window_h = Interop.TeamManager.CreateWl2WindowById(GetDefaultWindowId());
                         return window_h;
                     }

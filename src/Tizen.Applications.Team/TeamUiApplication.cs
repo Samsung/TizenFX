@@ -17,6 +17,7 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI;
+using Tizen.Applications.CoreBackend;
 
 namespace Tizen.Applications
 {
@@ -32,7 +33,13 @@ namespace Tizen.Applications
         /// </summary>
         /// This will be public opened in next tizen after ACR done. (Before ACR, need to be hidden as inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TeamUiApplication()
+        public TeamUiApplication() : base (new TeamUICoreBackend())
+        {
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TeamUiApplication(WindowData windowdata)
+          : base (new TeamUICoreBackend(windowdata))
         {
         }
 
