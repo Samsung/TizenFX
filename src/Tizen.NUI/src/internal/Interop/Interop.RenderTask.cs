@@ -89,6 +89,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_SetCameraActor")]
             public static extern void SetCameraActor(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_SetBuiltinCameraActor")]
+            public static extern void SetBuiltinCameraActor(global::System.Runtime.InteropServices.HandleRef nuiRenderTask, uint builtinCameraType, float screenSizeWidth, float screenSizeHeight, bool invertY, global::System.Runtime.InteropServices.HandleRef nuiCameraPropertyMap);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RenderTask_GetCameraActor")]
             public static extern global::System.IntPtr GetCameraActor(global::System.Runtime.InteropServices.HandleRef jarg1);
 
