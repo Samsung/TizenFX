@@ -164,4 +164,23 @@ namespace Tizen.Network.Tethering
         /// <since_tizen> 13 </since_tizen>
         Sae = 3,
     }
+
+    /// <summary>
+    /// Enumeration for the Tethering Extension mode.
+    /// </summary>
+    /// <since_tizen> 13 </since_tizen>
+    public enum TetheringExtensionMode
+    {
+        /// <summary>
+        /// Tethering is disabled.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        Disabled = 0,
+
+        /// <summary>
+        /// Tethering is enabled.
+        /// </summary>
+        /// <since_tizen> 13 </since_tizen>
+        Enabled = 1,
+    }
 }
