@@ -142,112 +142,56 @@ namespace Tizen.Sensor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The name of the sensor. </value>
-        public string Name
-        {
-            get
-            {
-                Log.Info(Globals.LogTag, "Getting the sensor name");
-                return _name;
-            }
-        }
+        public string Name => _name;
 
         /// <summary>
         /// Property: Gets the vendor of the sensor as a string.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The vendor name of the sensor. </value>
-        public string Vendor
-        {
-            get
-            {
-                Log.Info(Globals.LogTag, "Getting the sensor vendor name");
-                return _vendor;
-            }
-        }
+        public string Vendor => _vendor;
 
         /// <summary>
         /// Property: Gets the minimum value of the range of the sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The lower bound of the range of the sensor reading. </value>
-        public float MinValue
-        {
-            get
-            {
-                Log.Info(Globals.LogTag, "Getting the min value of the sensor");
-                return _minValue;
-            }
-        }
+        public float MinValue => _minValue;
 
         /// <summary>
         /// Property: Gets the maximum value of the range of the sensor data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The upper bound of the range of the sensor reading. </value>
-        public float MaxValue
-        {
-            get
-            {
-                Log.Info(Globals.LogTag, "Getting the max value of the sensor");
-                return _maxValue;
-            }
-        }
+        public float MaxValue => _maxValue;
 
         /// <summary>
         /// Property: Gets the resolution of the sensor as a float type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The resolution. </value>
-        public float Resolution
-        {
-            get
-            {
-                Log.Info(Globals.LogTag, "Getting the resolution of the sensor");
-                return _resolution;
-            }
-        }
+        public float Resolution => _resolution;
 
         /// <summary>
         /// Property: Gets the minimum interval of the sensor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The minimum update interval. </value>
-        public int MinInterval
-        {
-            get
-            {
-                Log.Info(Globals.LogTag, "Getting the min interval for the sensor");
-                return _minInterval;
-            }
-        }
+        public int MinInterval => _minInterval;
 
         /// <summary>
         /// Property: Gets the FIFO count of the sensor as int type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The size of the hardware FIFO. </value>
-        public int FifoCount
-        {
-            get
-            {
-                Log.Info(Globals.LogTag, "Getting the fifo count of the sensor");
-                return _fifoCount;
-            }
-        }
+        public int FifoCount => _fifoCount;
 
         /// <summary>
         /// Property: Gets the maximum batch count of the sensor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> The maximum batch count. </value>
-        public int MaxBatchCount
-        {
-            get
-            {
-                Log.Info(Globals.LogTag, "Getting the max batch count of the sensor");
-                return _maxBatchCount;
-            }
-        }
+        public int MaxBatchCount => _maxBatchCount;
 
         /// <summary>
         /// Sets the interval of the sensor for the sensor data event.
@@ -260,15 +204,10 @@ namespace Tizen.Sensor
         {
             set
             {
-                Log.Info(Globals.LogTag, "Setting the interval of the sensor");
                 _interval = value;
                 SetInterval();
             }
-            get
-            {
-                Log.Info(Globals.LogTag, "Getting the interval of the sensor");
-                return _interval;
-            }
+            get => _interval;
         }
 
         /// <summary>
@@ -281,15 +220,10 @@ namespace Tizen.Sensor
         {
             set
             {
-                Log.Info(Globals.LogTag, "Setting the max batch latency of the sensor");
                 _maxBatchLatency = value;
                 SetMaxBatchLatency();
             }
-            get
-            {
-                Log.Info(Globals.LogTag, "Getting the max batch latency of the sensor");
-                return _maxBatchLatency;
-            }
+            get => _maxBatchLatency;
         }
 
         /// <summary>
@@ -304,15 +238,10 @@ namespace Tizen.Sensor
         {
             set
             {
-                Log.Info(Globals.LogTag, "Setting the pause policy of the sensor");
                 _pausePolicy = value;
                 SetAttribute(SensorAttribute.PausePolicy, (int)_pausePolicy);
             }
-            get
-            {
-                Log.Info(Globals.LogTag, "Getting the pause policy of the sensor");
-                return _pausePolicy;
-            }
+            get => _pausePolicy;
         }
 
         /// <summary>
@@ -325,16 +254,8 @@ namespace Tizen.Sensor
         /// <value> The time span. </value>
         public TimeSpan TimeSpan
         {
-            set
-            {
-                Log.Info(Globals.LogTag, "Setting the timespan of the sensor values");
-                _timestamp = (ulong)value.Ticks;
-            }
-            get
-            {
-                Log.Info(Globals.LogTag, "Getting the timespan of the sensor values");
-                return new TimeSpan((Int64)_timestamp);
-            }
+            set => _timestamp = (ulong)value.Ticks;
+            get => new TimeSpan((Int64)_timestamp);
         }
 
         /// <summary>
@@ -345,16 +266,8 @@ namespace Tizen.Sensor
         /// <value> Timestamp. </value>
         public ulong Timestamp
         {
-            set
-            {
-                Log.Info(Globals.LogTag, "Setting the timestamp of the sensor values");
-                _timestamp = value;
-            }
-            get
-            {
-                Log.Info(Globals.LogTag, "Getting the timestamp of the sensor values");
-                return _timestamp;
-            }
+            set => _timestamp = value;
+            get => _timestamp;
         }
 
         /// <summary>
@@ -362,14 +275,7 @@ namespace Tizen.Sensor
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value><c>true</c> if the sensor is sensing; otherwise <c>false</c>.</value>
-        public bool IsSensing
-        {
-            get
-            {
-                Log.Info(Globals.LogTag, "Checking if the sensor is started");
-                return _isSensing;
-            }
-        }
+        public bool IsSensing => _isSensing;
 
         internal IntPtr ListenerHandle
         {
