@@ -153,6 +153,16 @@ namespace Tizen.Network.Tethering
             CheckReturnValue(ret, "DeActivate", PrivilegeNetworkProfile);
         }
 
+        internal void UpdateTetheringInfo(string ssid, string passphrase)
+        {
+            ArgumentNullException.ThrowIfNull(ssid);
+            ArgumentNullException.ThrowIfNull(passphrase);
+
+            Log.Info(Globals.LogTag, "Updating tethering info");
+            int ret = Interop.TetheringExtension.UpdateTetheringInfo(GetHandle(), ssid, passphrase);
+            CheckReturnValue(ret, "UpdateTetheringInfo", PrivilegeNetworkProfile);
+        }
+
         public TetheringInfo GetTetheringInfo()
         {
             Log.Info(Globals.LogTag, "GetTetheringInfo");
