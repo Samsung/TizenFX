@@ -44,11 +44,7 @@ namespace Tizen.Uix.InputMethodManager
         public static void ShowIMEList()
         {
             ErrorCode error = ImeManagerShowImeList();
-            if (error != ErrorCode.None)
-            {
-                Log.Error(LogTag, $"ShowIMEList Failed with error {error}");
-                throw InputMethodManagerExceptionFactory.CreateException(error);
-            }
+            ThrowOnError("ShowIMEList", error);
         }
 
         /// <summary>
@@ -67,11 +63,7 @@ namespace Tizen.Uix.InputMethodManager
         public static void ShowIMESelector()
         {
             ErrorCode error = ImeManagerShowImeSelector();
-            if (error != ErrorCode.None)
-            {
-                Log.Error(LogTag, $"ShowIMESelector Failed with error {error}");
-                throw InputMethodManagerExceptionFactory.CreateException(error);
-            }
+            ThrowOnError("ShowIMESelector", error);
         }
 
         /// <summary>
@@ -96,11 +88,7 @@ namespace Tizen.Uix.InputMethodManager
         {
             bool isIMEEnabled;
             ErrorCode error = ImeManagerIsImeEnabled(appId, out isIMEEnabled);
-            if (error != ErrorCode.None)
-            {
-                Log.Error(LogTag, $"IsIMEEnabled Failed with error {error}");
-                throw InputMethodManagerExceptionFactory.CreateException(error);
-            }
+            ThrowOnError("IsIMEEnabled", error);
 
             return isIMEEnabled;
         }
@@ -124,11 +112,7 @@ namespace Tizen.Uix.InputMethodManager
         {
             string activeIME;
             ErrorCode error = ImeManagerGetActiveIme(out activeIME);
-            if (error != ErrorCode.None)
-            {
-                Log.Error(LogTag, $"GetActiveIME Failed with error {error}");
-                throw InputMethodManagerExceptionFactory.CreateException(error);
-            }
+            ThrowOnError("GetActiveIME", error);
 
             return activeIME;
         }
@@ -150,15 +134,11 @@ namespace Tizen.Uix.InputMethodManager
         /// <since_tizen> 3 </since_tizen>
         public static int GetEnabledIMECount()
         {
-            int activeIME = ImeManagerGetEnabledImeCount();
+            int count = ImeManagerGetEnabledImeCount();
             ErrorCode error = (ErrorCode)Tizen.Internals.Errors.ErrorFacts.GetLastResult();
-            if (error != ErrorCode.None)
-            {
-                Log.Error(LogTag, $"GetEnabledIMECount Failed with error {error}");
-                throw InputMethodManagerExceptionFactory.CreateException(error);
-            }
+            ThrowOnError("GetEnabledIMECount", error);
 
-            return activeIME;
+            return count;
         }
 
         /// <summary>
@@ -177,9 +157,14 @@ namespace Tizen.Uix.InputMethodManager
         public static void PrelaunchIME()
         {
             ErrorCode error = ImeManagerPrelaunchIme();
+            ThrowOnError("PrelaunchIME", error);
+        }
+
+        private static void ThrowOnError(string methodName, ErrorCode error)
+        {
             if (error != ErrorCode.None)
             {
-                Log.Error(LogTag, $"PrelaunchIME Failed with error {error}");
+                Log.Error(LogTag, $"{methodName} Failed with error {error}");
                 throw InputMethodManagerExceptionFactory.CreateException(error);
             }
         }
